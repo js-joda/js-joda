@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/pithu/joda-js.git"
   },
+  "main": "src/joda.js",
   "scripts": {
       "test": "./node_modules/.bin/mocha --compilers js:babel/register"
   },
