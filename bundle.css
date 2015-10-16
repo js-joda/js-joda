@@ -1,0 +1,21 @@
+body {
+    font-family: "Fira Sans", "Helvetica Neue", Helvetica,Arial, sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.pageBody {
+  padding: 0 36px;
+  position: relative;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 64px 0;
+}
