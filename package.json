@@ -1,0 +1,16 @@
+{
+  "name": "joda-js",
+  "version": "0.0.1",
+  "description": "a date and time library for javascript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pithu/joda-js.git"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "timezone"
+  ],
+  "author": "pithu",
+  "homepage": "https://pithu.github.com/joda-js"
+}
