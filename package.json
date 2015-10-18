@@ -10,7 +10,9 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers js:babel/register",
     "test-coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
-    "esdoc": " ./node_modules/.bin/esdoc -c esdoc.json"
+    "build-esdoc": " ./node_modules/.bin/esdoc -c esdoc.json",
+    "build-dist": "./node_modules/.bin/webpack --progress --colors",
+    "build-readme2html": "./node_modules/.bin/marked README.md"
   },
   "keywords": [
     "date",
@@ -21,9 +23,13 @@
   "homepage": "https://pithu.github.com/joda-js",
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
     "chai": "^3.3.0",
     "esdoc": "^0.4.0",
     "isparta": "^3.1.0",
-    "mocha": "^2.3.3"
+    "marked": "^0.3.5",
+    "mocha": "^2.3.3",
+    "webpack": "^1.12.2"
   }
 }
