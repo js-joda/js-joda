@@ -15,6 +15,9 @@ module.exports = {
         loaders: [
             { test: __dirname + "/src",
               loader: 'babel-loader'
+            },
+            { test: __dirname + "/test",
+              loader: 'babel-loader'
             }
         ]
     },

@@ -10,6 +10,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers js:babel/register",
     "test-coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
+    "test-browser": "./node_modules/.bin/karma start --single-run",
     "build-esdoc": " ./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist": "./node_modules/.bin/webpack --progress --colors",
     "build-dist-min": "DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors",
@@ -29,6 +30,13 @@
     "chai": "^3.3.0",
     "esdoc": "^0.4.0",
     "isparta": "^3.1.0",
+    "karma": "^0.13.11",
+    "karma-chai-plugins": "^0.6.0",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
     "marked": "^0.3.5",
     "mocha": "^2.3.3",
     "webpack": "^1.12.2"
