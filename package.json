@@ -8,8 +8,8 @@
   },
   "main": "src/joda.js",
   "scripts": {
-      "test": "./node_modules/.bin/mocha --compilers js:babel/register"
     "test": "./node_modules/.bin/mocha --compilers js:babel/register",
+    "test-coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
     "esdoc": " ./node_modules/.bin/esdoc -c esdoc.json"
   },
   "keywords": [
@@ -23,6 +23,7 @@
     "babel": "^5.8.23",
     "chai": "^3.3.0",
     "esdoc": "^0.4.0",
+    "isparta": "^3.1.0",
     "mocha": "^2.3.3"
   }
 }
