@@ -9,7 +9,7 @@ module.exports = {
     devtool: sourceMaps ? "source-map" : "",
     output: {
         path: __dirname  + "/dist",
-        filename: minify ? 'joda.dist.min.js' : 'joda.dist.js'
+        filename: minify ? 'joda.min.js' : 'joda.js'
     },
     module: {
         loaders: [
