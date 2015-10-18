@@ -1,6 +1,9 @@
 # Node dependency directory
 node_modules
 
+# esdoc
+esdoc
+
 # Ide
 .idea
 
