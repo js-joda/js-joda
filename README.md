@@ -42,9 +42,9 @@ Install joda using npm
 
 Then require it to any module
  
-    var LocalDate = require('joda').LocalDate
+    var LocalDate = require('joda').LocalDate;
     
-    var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2) // 2013-02-24T00:00:00
+    var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
      
 ### Browser
 
@@ -54,9 +54,7 @@ Then add it as a script tag to your page
 
     <script src="joda.min.js"></script>
     <script>
-        var LocalDate = require('joda').LocalDate
-        
-        var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2) // 2013-02-24T00:00:00
+        var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
     </script>
      
 ## Documentation
