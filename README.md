@@ -2,6 +2,7 @@ Immutable data and time library for javascript
 =============================================
 
 [![Build Status](https://travis-ci.org/pithu/joda-js.svg)](https://travis-ci.org/pithu/joda-js)
+[![Coverage Status](https://coveralls.io/repos/pithu/joda-js/badge.svg?branch=master&service=github)](https://coveralls.io/github/pithu/joda-js?branch=master)
 
 ## Introduction
 

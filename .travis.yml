@@ -7,3 +7,6 @@ before_script:
   - "sleep 3" # give xvfb some time to start
 script:
   - "npm run test-travis"
+
+after_script:
+  - "cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
