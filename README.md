@@ -20,7 +20,7 @@ providing syntactic sugar. The native Date object always consist of a date / tim
 
 + In opposite to that, Joda.js is a standalone date and time implementation. 
 It brings concepts like a LocalDate that allows to handle dates like birthdays or holidays in a clean and error-safe way, 
-especially if this dates are persisted on an external server.
+especially if this dates are persisted to an external server.
 
 + Joda.js is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux. 
@@ -30,8 +30,8 @@ with the architecture of frameworks like React and Flux.
 ## Getting started
 
 The library is in a very early state, far away from productive. 
-But your very welcome to play around with Joda.js and to give your feedback. 
-Please check the tests and the Api Documentation for the current state of development.
+But you are very welcome to play around with Joda.js and to give your feedback. 
+Please check the tests and the API Documentation for the current state of development.
 
 ### Node
 
