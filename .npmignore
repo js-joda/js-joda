@@ -1,14 +1,10 @@
 # Node dependency directory
 node_modules
 
+# npm
+npm-debug.log
+
 # build output
-## code coverage
-coverage
-
-## esdoc
-esdoc
-
-## etc
 build
 
 # Ide
