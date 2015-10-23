@@ -16,7 +16,7 @@ Joda-Time is the de facto standard date and time library for Java. From Java SE 
 ## Why yet another javascript date and time library
 
 + Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object, 
-providing syntactic sugar. The native Date object always consist of a date / time and a timezone part.
+providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
 
 + In opposite to that, Joda.js is a standalone date and time implementation. 
 It brings concepts like a LocalDate that allows to handle dates like birthdays or holidays in a clean and error-safe way, 
