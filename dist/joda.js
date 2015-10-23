@@ -81,9 +81,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _Math = __webpack_require__(2);
+	var _assert = __webpack_require__(2);
 	
-	var _chronoIsoChronology = __webpack_require__(3);
+	var _Math = __webpack_require__(3);
+	
+	var _chronoIsoChronology = __webpack_require__(4);
+	
+	var _temporalChronoField = __webpack_require__(5);
 	
 	/**
 	 * The number of days in a 400 year cycle.
@@ -124,6 +128,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function LocalDate(year, month, dayOfMonth) {
 	        _classCallCheck(this, LocalDate);
 	
+	        if (!LocalDate.validate(year, month, dayOfMonth)) {
+	            return;
+	        }
 	        this._year = year;
 	        this._month = month;
 	        this._day = dayOfMonth;
@@ -160,6 +167,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._day;
 	        }
 	
+	        /*
+	         * Returns a copy of this LocalDate with the specified number of days added.
+	         * 
+	         * This method adds the specified amount to the days field incrementing the
+	         * month and year fields as necessary to ensure the result remains valid.
+	         * The result is only invalid if the maximum/minimum year is exceeded.
+	         * 
+	         * For example, 2008-12-31 plus one day would result in 2009-01-01.
+	         * 
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} daysToAdd - the days to add, may be negative
+	         * @return {LocalDate} a LocalDate based on this date with the days added, not null
+	         * @throws AssertionError if the result exceeds the supported date range
+	         */
+	    }, {
+	        key: 'plusDays',
+	        value: function plusDays(daysToAdd) {
+	            if (daysToAdd === 0) {
+	                return this;
+	            }
+	            var mjDay = this.toEpochDay() + daysToAdd;
+	            return LocalDate.ofEpochDay(mjDay);
+	        }
+	    }, {
+	        key: 'toEpochDay',
+	
 	        /**
 	         * Converts this date to the Epoch Day.
 	         *
@@ -168,8 +202,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return {number} the Epoch Day equivalent to this date
 	         */
-	    }, {
-	        key: 'toEpochDay',
 	        value: function toEpochDay() {
 	            var y = this.year();
 	            var m = this.month();
@@ -236,6 +268,81 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            return yearString + monthString + dayString;
 	        }
+	
+	        /*
+	         * Obtains an instance of LocalDate from the epoch day count.
+	         *
+	         * This returns a LocalDate with the specified epoch-day.
+	         * The {@link ChronoField#EPOCH_DAY EPOCH_DAY} is a simple incrementing count
+	         * of days where day 0 is 1970-01-01. Negative numbers represent earlier days.
+	         *
+	         * @param {number} epochDay - the Epoch Day to convert, based on the epoch 1970-01-01
+	         * @return {LocalDate} the local date, not null
+	         * @throws AssertionError if the epoch days exceeds the supported date range
+	         */
+	
+	    }], [{
+	        key: 'ofEpochDay',
+	        value: function ofEpochDay(epochDay) {
+	            var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
+	            zeroDay = epochDay + DAYS_0000_TO_1970;
+	            zeroDay -= 60;
+	            adjust = 0;
+	            if (zeroDay < 0) {
+	                adjustCycles = (0, _Math.intDiv)(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+	                adjust = adjustCycles * 400;
+	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
+	            }
+	            yearEst = (0, _Math.intDiv)(400 * zeroDay + 591, DAYS_PER_CYCLE);
+	            doyEst = zeroDay - (365 * yearEst + (0, _Math.intDiv)(yearEst, 4) - (0, _Math.intDiv)(yearEst, 100) + (0, _Math.intDiv)(yearEst, 400));
+	            if (doyEst < 0) {
+	                yearEst--;
+	                doyEst = zeroDay - (365 * yearEst + (0, _Math.intDiv)(yearEst, 4) - (0, _Math.intDiv)(yearEst, 100) + (0, _Math.intDiv)(yearEst, 400));
+	            }
+	            yearEst += adjust;
+	            marchDoy0 = doyEst;
+	            marchMonth0 = (0, _Math.intDiv)(marchDoy0 * 5 + 2, 153);
+	            month = (marchMonth0 + 2) % 12 + 1;
+	            dom = marchDoy0 - (0, _Math.intDiv)(marchMonth0 * 306 + 5, 10) + 1;
+	            yearEst += (0, _Math.intDiv)(marchMonth0, 10);
+	            year = yearEst;
+	            return new LocalDate(year, month, dom);
+	        }
+	    }, {
+	        key: 'validate',
+	
+	        /**
+	         * @private
+	         */
+	        value: function validate(year, month, dayOfMonth) {
+	            var dom;
+	            _temporalChronoField.YEAR.checkValidValue(year);
+	            _temporalChronoField.MONTH_OF_YEAR.checkValidValue(month);
+	            _temporalChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
+	            if (dayOfMonth > 28) {
+	                dom = 31;
+	                switch (month) {
+	                    case 2:
+	                        dom = _chronoIsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28;
+	                        break;
+	                    case 4:
+	                    case 6:
+	                    case 9:
+	                    case 11:
+	                        dom = 30;
+	                }
+	                if (dayOfMonth > dom) {
+	                    if (dayOfMonth === 29) {
+	                        (0, _assert.assert)(false, "Invalid date 'February 29' as '" + year + "' is not a leap year");
+	                        return false;
+	                    } else {
+	                        (0, _assert.assert)(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'");
+	                        return false;
+	                    }
+	                }
+	            }
+	            return true;
+	        }
 	    }]);
 	
 	    return LocalDate;
@@ -252,6 +359,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.assert = assert;
+	var __slice = [].slice;
+	
+	function assert() {
+	    var args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+	    return console.assert.apply(console, args);
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.intDiv = intDiv;
 	
 	function intDiv(a, b) {
@@ -259,7 +383,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -308,6 +432,204 @@ return /******/ (function(modules) { // webpackBootstrap
 	})();
 
 	exports.IsoChronology = IsoChronology;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var _ValueRange = __webpack_require__(6);
+	
+	var ChronoField = (function () {
+	    function ChronoField(name, baseUnit, rangeUnit, range, displayNameKey) {
+	        _classCallCheck(this, ChronoField);
+	
+	        this.name = function () {
+	            return name;
+	        };
+	        this.baseUnit = function () {
+	            return baseUnit;
+	        };
+	        this.rangeUnit = function () {
+	            return rangeUnit;
+	        };
+	        this.range = function () {
+	            return range;
+	        };
+	        this.displayNameKey = function () {
+	            return displayNameKey;
+	        };
+	    }
+	
+	    _createClass(ChronoField, [{
+	        key: "checkValidValue",
+	        value: function checkValidValue(value) {
+	            return this.range().checkValidValue(value, this.name());
+	        }
+	    }]);
+	
+	    return ChronoField;
+	})();
+	
+	var DAY_OF_MONTH = new ChronoField("DayOfMonth", null, null, _ValueRange.ValueRange.of(1, 28, 31), "day");
+	
+	exports.DAY_OF_MONTH = DAY_OF_MONTH;
+	var MONTH_OF_YEAR = new ChronoField("MonthOfYear", null, null, _ValueRange.ValueRange.of(1, 12), "month");
+	
+	exports.MONTH_OF_YEAR = MONTH_OF_YEAR;
+	var YEAR = new ChronoField("" + "Year", null, null, _ValueRange.ValueRange.of(-999999, 999999), "year");
+	exports.YEAR = YEAR;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var _assert = __webpack_require__(2);
+	
+	/**
+	 * The range of valid values for a date-time field.
+	 * 
+	 * All TemporalField instances have a valid range of values.
+	 * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
+	 * This class captures that valid range.
+	 * 
+	 * It is important to be aware of the limitations of this class.
+	 * Only the minimum and maximum values are provided.
+	 * It is possible for there to be invalid values within the outer range.
+	 * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
+	 * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
+	 * 
+	 * Instances of this class are not tied to a specific field.
+	 *
+	 */
+	
+	var ValueRange = (function () {
+	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
+	        _classCallCheck(this, ValueRange);
+	
+	        (0, _assert.assert)(!(minSmallest > minLargest), "Smallest minimum value '" + minSmallest + "' must be less than largest minimum value '" + minLargest + "'");
+	        (0, _assert.assert)(!(maxSmallest > maxLargest), "Smallest maximum value '" + maxSmallest + "' must be less than largest maximum value '" + maxLargest + "'");
+	        (0, _assert.assert)(!(minLargest > maxLargest), "Minimum value '" + minLargest + "' must be less than maximum value '" + maxLargest + "'");
+	
+	        this.minimum = function () {
+	            return minSmallest;
+	        };
+	        this.largestMinimum = function () {
+	            return minLargest;
+	        };
+	        this.maximum = function () {
+	            return maxLargest;
+	        };
+	        this.smallestMaximum = function () {
+	            return maxSmallest;
+	        };
+	    }
+	
+	    _createClass(ValueRange, [{
+	        key: "isValidValue",
+	        value: function isValidValue(value) {
+	            return this.minimum() <= value && value <= this.maximum();
+	        }
+	    }, {
+	        key: "checkValidValue",
+	        value: function checkValidValue(value, field) {
+	            var msg;
+	            if (!this.isValidValue(value)) {
+	                if (field != null) {
+	                    msg = "Invalid value for " + field + " (valid values " + this.toString() + "): " + value;
+	                } else {
+	                    msg = "Invalid value (valid values " + this.toString() + "): " + value;
+	                }
+	                return (0, _assert.assert)(false, msg);
+	            }
+	        }
+	
+	        /*
+	         * Outputs this range as a String.
+	         * 
+	         * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
+	         * where the largestMin or smallestMax sections may be omitted, together
+	         * with associated slash, if they are the same as the min or max.
+	         *
+	         * @return {string} a string representation of this range, not null
+	         */
+	
+	    }, {
+	        key: "toString",
+	        value: function toString() {
+	            var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? "/" + this.largestMinimum() : "");
+	            str += " - ";
+	            str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? "/" + this.maximum() : "");
+	            return str;
+	        }
+	
+	        /*
+	         * called with 2 params: Obtains a fixed value range.
+	         *
+	         * This factory obtains a range where the minimum and maximum values are fixed.
+	         * For example, the ISO month-of-year always runs from 1 to 12.
+	         *
+	         * @param min  the minimum value
+	         * @param max  the maximum value
+	         * @return the ValueRange for min, max, not null
+	          * called with 3 params: Obtains a variable value range.
+	         *
+	         * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
+	         * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
+	         *
+	         * @param min  the minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return the ValueRange for min, smallest max, largest max, not null
+	          * called with 4 params: Obtains a fully variable value range.
+	         *
+	         * This factory obtains a range where both the minimum and maximum value may vary.
+	         *
+	         * @param minSmallest  the smallest minimum value
+	         * @param minLargest  the largest minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
+	         */
+	
+	    }], [{
+	        key: "of",
+	        value: function of() {
+	            if (arguments.length === 2) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
+	            } else if (arguments.length === 3) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
+	            } else if (arguments.length === 4) {
+	                return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
+	            } else {
+	                return (0, _assert.assert)(false, "Invalid number of arguments " + arguments.length);
+	            }
+	        }
+	    }]);
+	
+	    return ValueRange;
+	})();
+
+	exports.ValueRange = ValueRange;
 
 /***/ }
 /******/ ])
