@@ -1,16 +1,11 @@
 /**
- *  Copyright (c) 2014-2015, Philipp Thürwächter
- *  All rights reserved.
- */
-
-/**
  * A date without a time-zone in the ISO-8601 calendar system,
- * such as {@code 2007-12-03}.
+ * such as 2007-12-03.
  *
- * {@code LocalDate} is an immutable date-time object that represents a date,
+ * LocalDate is an immutable date-time object that represents a date,
  * often viewed as year-month-day. Other date fields, such as day-of-year,
  * day-of-week and week-of-year, can also be accessed.
- * For example, the value "2nd October 2007" can be stored in a {@code LocalDate}.
+ * For example, the value "2nd October 2007" can be stored in a LocalDate.
  *
  * This class does not store or represent a time or time-zone.
  * Instead, it is a description of the date, as used for birthdays.
@@ -20,30 +15,48 @@
 
 export class LocalDate {
 
+    /**
+     *
+     * @param {number} year
+     * @param {number} month
+     * @param {number} dayOfMonth
+     */
     constructor(year, month, dayOfMonth){
         this._year = year;
         this._month = month;
         this._day = dayOfMonth;
     }
 
+    /**
+     *
+     * @return {number} gets the year
+     */
     year() {
         return this._year
     }
 
+    /**
+     *
+     * @return {number} gets the month
+     */
     month() {
         return this._month
     }
 
+    /**
+     *
+     * @return {number} gets the day of month
+     */
     day() {
         return this._day
     }
 
     /**
-     * Outputs this date as a {@code String}, such as {@code 2007-12-03}.
+     * Outputs this date as a String, such as 2007-12-03.
      *
-     * The output will be in the ISO-8601 format {@code uuuu-MM-dd}.
+     * The output will be in the ISO-8601 format uuuu-MM-dd.
      *
-     * @return a string representation of this date, not null
+     * @return {string} a string representation of this date, not null
      */
     toString() {
         var dayString, monthString, yearString;
