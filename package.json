@@ -14,7 +14,7 @@
     "build-esdoc": " ./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist": "./node_modules/.bin/webpack --progress --colors",
     "build-dist-min": "DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors",
-    "build-readme2html": "./node_modules/.bin/marked README.md"
+    "build-readme2html": "mkdir -p build && ./node_modules/.bin/marked -i README.md -o build/README.hml && ./node_modules/.bin/marked -i CheatSheet.md -o build/CheatSheet.hml "
   },
   "keywords": [
     "date",

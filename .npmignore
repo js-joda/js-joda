@@ -1,11 +1,15 @@
 # Node dependency directory
 node_modules
 
-# code coverage
+# build output
+## code coverage
 coverage
 
-# esdoc
+## esdoc
 esdoc
+
+## etc
+build
 
 # Ide
 .idea
