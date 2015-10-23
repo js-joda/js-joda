@@ -1,5 +1,6 @@
 # Node dependency directory
 node_modules
+npm-debug.log
 
 # build output
 ## code coverage
