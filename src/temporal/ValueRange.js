@@ -18,6 +18,7 @@ import {assert} from '../assert';
  */
 
 export class ValueRange {
+
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
         assert(!(minSmallest > minLargest), "Smallest minimum value '" + minSmallest +
             "' must be less than largest minimum value '" + minLargest + "'");
