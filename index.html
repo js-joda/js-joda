@@ -22,11 +22,68 @@
         </div>
         <div class="pageBody">
             <div class="content">
+                <h1>Joda.js</h1>
                 <!-- Readme.md -->
-                <div class="header">
-                    <h1>Joda.js</h1>
-                </div>
-                <div class="intro">Joda.js, an immutable data and time library for javascript</div>
+                <h1 id="immutable-data-and-time-library-for-javascript">Immutable data and time library for javascript</h1>
+                <p><a href="https://travis-ci.org/pithu/joda-js"><img src="https://travis-ci.org/pithu/joda-js.svg" alt="Build Status"></a></p>
+                <h2 id="introduction">Introduction</h2>
+                <p><strong>Joda.js is a project that wants to bring joda time library to the javascript world.
+                The Project is in a very early state.
+                Be aware that the most of the things written here are not ready yet</strong> </p>
+                <p>Joda.js, a port of the Joda-Time immutable data and time library to javascript.
+                It provides a simple and clean API based on the ISO8601 calendar.
+                Joda-Time is the de facto standard date and time library for Java. From Java SE 8 it is part of the jdk at java.time (JSR-310).</p>
+                <h2 id="why-yet-another-javascript-date-and-time-library">Why yet another javascript date and time library</h2>
+                <ul>
+                <li><p>Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object,
+                providing syntactic sugar. The native Date object always consist of a date / time and a timezone part.</p>
+                </li>
+                <li><p>In opposite to that, Joda.js is a standalone date and time implementation.
+                It brings concepts like a LocalDate that allows to handle dates like birthdays or holidays in a clean and error-safe way,
+                especially if this dates are persisted on an external server.</p>
+                </li>
+                <li><p>Joda.js is immutable. Immutability aligns well with pure functions and
+                with the architecture of frameworks like React and Flux. </p>
+                </li>
+                <li><p>Joda.js is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).</p>
+                </li>
+                </ul>
+                <h2 id="getting-started">Getting started</h2>
+                <p>The library is in a very early state, far away from productive.
+                But you are very welcome to play around with Joda.js and to give your feedback.
+                Please check the tests and the Api Documentation for the current state of development.</p>
+                <h3 id="node">Node</h3>
+                <p>Install joda using npm</p>
+                <pre><code>npm install joda
+                </code></pre><p>Then require it to any module</p>
+                <pre><code>
+var LocalDate = require(&#39;joda&#39;).LocalDate
+
+var d = LocalDate.parse(&#39;2012-12-24&#39;).atStartOfDay().plusMonths(2) // 2013-02-24T00:00:00
+                </code></pre><h3 id="browser">Browser</h3>
+                <p>To use Joda.js from a browser, download dist/joda.min.js</p>
+                <p>Then add it as a script tag to your page</p>
+                <pre><code>
+&lt;script src=&quot;joda.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var LocalDate = require(&#39;joda&#39;).LocalDate
+
+    var d = LocalDate.parse(&#39;2012-12-24&#39;).atStartOfDay().plusMonths(2) // 2013-02-24T00:00:00
+&lt;/script&gt;
+                </code></pre><h2 id="documentation">Documentation</h2>
+                <ul>
+                <li><a href="cheat-sheet.html">Cheat Sheet</a> Quick start guide </li>
+                <li><a href="https://doc.esdoc.org/github.com/pithu/joda-js/">API</a> ESDoc generated API documentation hosted by the ESDoc Hosting Service</li>
+                </ul>
+                <h2 id="license">License</h2>
+                <ul>
+                <li><p>The License model is still under consideration, but it will be an open source license.</p>
+                </li>
+                <li><p>Joda-Time is under Apache 2.0 licence.</p>
+                </li>
+                <li><p>OpenJdk is under GNU GPL+linking exception.</p>
+                </li>
+                </ul>
             </div>
         </div>
     </body>
