@@ -63,6 +63,7 @@ Then add it as a script tag to your page
 
 + [Cheat Sheet](CheatSheet.md) Quick start guide 
 + [API](https://doc.esdoc.org/github.com/pithu/joda-js/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [Joda.js Homepage](http://pithu.github.io/joda-js/) Project homepage
 
 
 ## License
