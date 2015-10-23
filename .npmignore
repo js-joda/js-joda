@@ -4,6 +4,13 @@ node_modules
 # npm
 npm-debug.log
 
+# build config
+esdoc.json
+karma.conf.js
+.istanbul.yml
+.travis.yml
+webpack.config.js
+
 # build output
 build
 
