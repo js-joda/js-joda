@@ -1,5 +1,18 @@
-# node
+# Node dependency directory
 node_modules
 
-# ide
+# build output
+## code coverage
+coverage
+
+## esdoc
+esdoc
+
+## etc
+build
+
+# Ide
 .idea
+
+
+
