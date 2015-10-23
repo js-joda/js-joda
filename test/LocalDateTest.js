@@ -41,4 +41,20 @@ describe('LocalDate', () => {
         d = new LocalDate(-40, 12, 31);
         expect(d.toEpochDay()).to.equal(-733773);
     });
+
+    it('plusDays should walk through one year', () => {
+        // var DAYS_PER_CYCLE = 146097;
+
+        var start = new LocalDate(1970, 1, 1);
+        var current = start;
+        for(var i=0; i<365; i++){
+            current = current.plusDays(1);
+        }
+        expect(current.year()).to.equal(start.year() + 1);
+        expect(current.month()).to.equal(start.month());
+        expect(current.day()).to.equal(start.day());
+
+    });
+
+
   });
