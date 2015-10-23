@@ -1,3 +1,19 @@
+import { intDiv } from './Math'
+import { IsoChronology } from './chrono/IsoChronology'
+
+/**
+ * The number of days in a 400 year cycle.
+ */
+const  DAYS_PER_CYCLE = 146097;
+
+
+  /**
+   * The number of days from year zero to year 1970.
+   * There are five 400 year cycles from year zero to 2000.
+   * There are 7 leap years from 1970 to 2000.
+   */
+const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
+
 /**
  * A date without a time-zone in the ISO-8601 calendar system,
  * such as 2007-12-03.
@@ -52,8 +68,36 @@ export class LocalDate {
     }
 
     /**
-     * Outputs this date as a String, such as 2007-12-03.
+     * Converts this date to the Epoch Day.
      *
+     * The Epoch Day count is a simple incrementing count of days where day 0 is 1970-01-01 (ISO).
+     * This definition is the same for all chronologies, enabling conversion.
+     *
+     * @return {number} the Epoch Day equivalent to this date
+     */
+    toEpochDay() {
+        var y = this.year();
+        var m = this.month();
+        var total = 0;
+        total += 365 * y;
+        if (y >= 0) {
+            total += intDiv(y + 3, 4) - intDiv(y + 99, 100) + intDiv(y + 399, 400);
+        } else {
+            total -= intDiv(y, -4) - intDiv(y, -100) + intDiv(y, -400);
+        }
+        total += intDiv(367 * m - 362, 12);
+        total += this.day() - 1;
+        if (m > 2) {
+            total--;
+            if (!IsoChronology.isLeapYear(y)) {
+                total--;
+            }
+        }
+        return total - DAYS_0000_TO_1970;
+    }
+
+    /**
+     * Outputs this date as a String, such as 2007-12-03.
      * The output will be in the ISO-8601 format uuuu-MM-dd.
      *
      * @return {string} a string representation of this date, not null

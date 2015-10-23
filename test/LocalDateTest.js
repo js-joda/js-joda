@@ -25,4 +25,20 @@ describe('LocalDate', () => {
         expect(d.toString()).to.equal("-10000-01-01")
 
     });
+
+    it('toEpochDay should convert to the epoch day ', () => {
+        var d;
+
+        d = new LocalDate(1970, 1, 1);
+        expect(d.toEpochDay()).to.equal(0);
+
+        d = new LocalDate(1971, 1, 1);
+        expect(d.toEpochDay()).to.equal(365);
+
+        d = new LocalDate(2015, 12, 31);
+        expect(d.toEpochDay()).to.equal(16800);
+
+        d = new LocalDate(-40, 12, 31);
+        expect(d.toEpochDay()).to.equal(-733773);
+    });
   });
