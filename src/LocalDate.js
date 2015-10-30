@@ -42,9 +42,7 @@ export class LocalDate {
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
-        if (!LocalDate.validate(year, month, dayOfMonth)){
-            return
-        }
+        LocalDate.validate(year, month, dayOfMonth);
         this._year = year;
         this._month = month;
         this._day = dayOfMonth;
@@ -231,13 +229,10 @@ export class LocalDate {
             if (dayOfMonth > dom) {
                 if (dayOfMonth === 29) {
                     assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year");
-                    return false;
                 } else {
                     assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'");
-                    return false;
                 }
             }
         }
-        return true;
     };
 }
