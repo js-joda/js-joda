@@ -1,6 +1,6 @@
 import {assert} from './assert';
 
-import { intDiv } from './Math';
+import { MathUtil } from './MathUtil';
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
 
@@ -111,11 +111,11 @@ export class LocalDate {
         var total = 0;
         total += 365 * y;
         if (y >= 0) {
-            total += intDiv(y + 3, 4) - intDiv(y + 99, 100) + intDiv(y + 399, 400);
+            total += MathUtil.div(y + 3, 4) - MathUtil.div(y + 99, 100) + MathUtil.div(y + 399, 400);
         } else {
-            total -= intDiv(y, -4) - intDiv(y, -100) + intDiv(y, -400);
+            total -= MathUtil.div(y, -4) - MathUtil.div(y, -100) + MathUtil.div(y, -400);
         }
-        total += intDiv(367 * m - 362, 12);
+        total += MathUtil.div(367 * m - 362, 12);
         total += this.day() - 1;
         if (m > 2) {
             total--;
@@ -188,22 +188,22 @@ export class LocalDate {
         zeroDay -= 60;
         adjust = 0;
         if (zeroDay < 0) {
-            adjustCycles = intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+            adjustCycles = MathUtil.div(zeroDay + 1, DAYS_PER_CYCLE) - 1;
             adjust = adjustCycles * 400;
             zeroDay += -adjustCycles * DAYS_PER_CYCLE;
         }
-        yearEst = intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
-        doyEst = zeroDay - (365 * yearEst + intDiv(yearEst, 4) - intDiv(yearEst, 100) + intDiv(yearEst, 400));
+        yearEst = MathUtil.div(400 * zeroDay + 591, DAYS_PER_CYCLE);
+        doyEst = zeroDay - (365 * yearEst + MathUtil.div(yearEst, 4) - MathUtil.div(yearEst, 100) + MathUtil.div(yearEst, 400));
         if (doyEst < 0) {
             yearEst--;
-            doyEst = zeroDay - (365 * yearEst + intDiv(yearEst, 4) - intDiv(yearEst, 100) + intDiv(yearEst, 400));
+            doyEst = zeroDay - (365 * yearEst + MathUtil.div(yearEst, 4) - MathUtil.div(yearEst, 100) + MathUtil.div(yearEst, 400));
         }
         yearEst += adjust;
         marchDoy0 = doyEst;
-        marchMonth0 = intDiv(marchDoy0 * 5 + 2, 153);
+        marchMonth0 = MathUtil.div(marchDoy0 * 5 + 2, 153);
         month = (marchMonth0 + 2) % 12 + 1;
-        dom = marchDoy0 - intDiv(marchMonth0 * 306 + 5, 10) + 1;
-        yearEst += intDiv(marchMonth0, 10);
+        dom = marchDoy0 - MathUtil.div(marchMonth0 * 306 + 5, 10) + 1;
+        yearEst += MathUtil.div(marchMonth0, 10);
         year = yearEst;
         return new LocalDate(year, month, dom);
     };
