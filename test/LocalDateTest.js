@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {LocalDate} from '../src/LocalDate';
+import {isCoverageTestRunner} from './testUtils';
 
 describe('LocalDate', () => {
 
@@ -43,14 +44,26 @@ describe('LocalDate', () => {
     });
 
     it('plusDays should walk through one year', () => {
-        // var DAYS_PER_CYCLE = 146097;
-
         var start = new LocalDate(1970, 1, 1);
         var current = start;
         for(var i=0; i<365; i++){
             current = current.plusDays(1);
         }
         expect(current.year()).to.equal(start.year() + 1);
+        expect(current.month()).to.equal(start.month());
+        expect(current.day()).to.equal(start.day());
+
+    });
+
+    var itSkipInCoverageRunner = isCoverageTestRunner() ? it.skip : it;
+    itSkipInCoverageRunner('plusDays should walk through a 400 years cycle', () => {
+        var DAYS_PER_400_YEARS_CYCLE = 146097;
+        var start = new LocalDate(1970, 1, 1);
+        var current = start;
+        for(var i=0; i<DAYS_PER_400_YEARS_CYCLE; i++){
+            current = current.plusDays(1);
+        }
+        expect(current.year()).to.equal(start.year() + 400);
         expect(current.month()).to.equal(start.month());
         expect(current.day()).to.equal(start.day());
 
