@@ -5,10 +5,15 @@ import {isCoverageTestRunner} from './testUtils';
 describe('Creating a LocalDate instance', () => {
     it('should create a LocalDate instance for a valid date', () => {
         expect(new LocalDate(1970, 1, 1)).to.be.an.instanceOf(LocalDate);
+        expect(new LocalDate(2016, 2, 29)).to.be.an.instanceOf(LocalDate);
     });
 
-    it.skip('should fail with an AssertionError for invalid dates', () => {
-        expect(new LocalDate(1970, 1, -1)).to.throw(AssertionError);
+    it('should fail with an AssertionError for invalid dates', () => {
+        expect(() => {new LocalDate(1970, 1, -1)}).to.throw(Error);
+        expect(() => {new LocalDate(1970, -1, 1)}).to.throw(Error);
+        expect(() => {new LocalDate(1970, 2, 29)}).to.throw(Error);
+        expect(() => {new LocalDate(1970, 2, 30)}).to.throw(Error);
+        expect(() => {new LocalDate(1970, 4, 31)}).to.throw(Error);
     });
 
 });
@@ -90,6 +95,15 @@ describe('Using a LocalDate instance', () => {
             expect(current.day()).to.equal(start.day());
 
         });
+
+        it('should add days for dates B.C.', () => {
+            var d = new LocalDate(-2000, 1, 1);
+            expect(d.plusDays(1).toString()).to.equal('-2000-01-02');
+
+            var d = new LocalDate(-10000, 12, 31);
+            expect(d.plusDays(1).toString()).to.equal('-9999-01-01');
+        });
+
     });
 
 });
