@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(2);
 	
-	var _Math = __webpack_require__(3);
+	var _MathUtil = __webpack_require__(3);
 	
 	var _chronoIsoChronology = __webpack_require__(4);
 	
@@ -128,9 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function LocalDate(year, month, dayOfMonth) {
 	        _classCallCheck(this, LocalDate);
 	
-	        if (!LocalDate.validate(year, month, dayOfMonth)) {
-	            return;
-	        }
+	        LocalDate.validate(year, month, dayOfMonth);
 	        this._year = year;
 	        this._month = month;
 	        this._day = dayOfMonth;
@@ -208,11 +206,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var total = 0;
 	            total += 365 * y;
 	            if (y >= 0) {
-	                total += (0, _Math.intDiv)(y + 3, 4) - (0, _Math.intDiv)(y + 99, 100) + (0, _Math.intDiv)(y + 399, 400);
+	                total += _MathUtil.MathUtil.div(y + 3, 4) - _MathUtil.MathUtil.div(y + 99, 100) + _MathUtil.MathUtil.div(y + 399, 400);
 	            } else {
-	                total -= (0, _Math.intDiv)(y, -4) - (0, _Math.intDiv)(y, -100) + (0, _Math.intDiv)(y, -400);
+	                total -= _MathUtil.MathUtil.div(y, -4) - _MathUtil.MathUtil.div(y, -100) + _MathUtil.MathUtil.div(y, -400);
 	            }
-	            total += (0, _Math.intDiv)(367 * m - 362, 12);
+	            total += _MathUtil.MathUtil.div(367 * m - 362, 12);
 	            total += this.day() - 1;
 	            if (m > 2) {
 	                total--;
@@ -289,22 +287,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            zeroDay -= 60;
 	            adjust = 0;
 	            if (zeroDay < 0) {
-	                adjustCycles = (0, _Math.intDiv)(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+	                adjustCycles = _MathUtil.MathUtil.div(zeroDay + 1, DAYS_PER_CYCLE) - 1;
 	                adjust = adjustCycles * 400;
 	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
 	            }
-	            yearEst = (0, _Math.intDiv)(400 * zeroDay + 591, DAYS_PER_CYCLE);
-	            doyEst = zeroDay - (365 * yearEst + (0, _Math.intDiv)(yearEst, 4) - (0, _Math.intDiv)(yearEst, 100) + (0, _Math.intDiv)(yearEst, 400));
+	            yearEst = _MathUtil.MathUtil.div(400 * zeroDay + 591, DAYS_PER_CYCLE);
+	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.div(yearEst, 4) - _MathUtil.MathUtil.div(yearEst, 100) + _MathUtil.MathUtil.div(yearEst, 400));
 	            if (doyEst < 0) {
 	                yearEst--;
-	                doyEst = zeroDay - (365 * yearEst + (0, _Math.intDiv)(yearEst, 4) - (0, _Math.intDiv)(yearEst, 100) + (0, _Math.intDiv)(yearEst, 400));
+	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.div(yearEst, 4) - _MathUtil.MathUtil.div(yearEst, 100) + _MathUtil.MathUtil.div(yearEst, 400));
 	            }
 	            yearEst += adjust;
 	            marchDoy0 = doyEst;
-	            marchMonth0 = (0, _Math.intDiv)(marchDoy0 * 5 + 2, 153);
+	            marchMonth0 = _MathUtil.MathUtil.div(marchDoy0 * 5 + 2, 153);
 	            month = (marchMonth0 + 2) % 12 + 1;
-	            dom = marchDoy0 - (0, _Math.intDiv)(marchMonth0 * 306 + 5, 10) + 1;
-	            yearEst += (0, _Math.intDiv)(marchMonth0, 10);
+	            dom = marchDoy0 - _MathUtil.MathUtil.div(marchMonth0 * 306 + 5, 10) + 1;
+	            yearEst += _MathUtil.MathUtil.div(marchMonth0, 10);
 	            year = yearEst;
 	            return new LocalDate(year, month, dom);
 	        }
@@ -334,14 +332,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (dayOfMonth > dom) {
 	                    if (dayOfMonth === 29) {
 	                        (0, _assert.assert)(false, "Invalid date 'February 29' as '" + year + "' is not a leap year");
-	                        return false;
 	                    } else {
 	                        (0, _assert.assert)(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'");
-	                        return false;
 	                    }
 	                }
 	            }
-	            return true;
 	        }
 	    }]);
 	
@@ -360,27 +355,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	exports.assert = assert;
-	var __slice = [].slice;
 	
-	function assert() {
-	    var args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-	    return console.assert.apply(console, args);
+	function assert(assertion, msg) {
+	    if (!assertion) {
+	        throw new Error(msg);
+	    }
 	}
 
 /***/ },
 /* 3 */
 /***/ function(module, exports) {
 
+	/**
+	 * Math helper with static function for integer operations
+	 */
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.intDiv = intDiv;
 	
-	function intDiv(a, b) {
-	    return ~ ~(a / b);
-	}
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MathUtil = (function () {
+	    function MathUtil() {
+	        _classCallCheck(this, MathUtil);
+	    }
+	
+	    _createClass(MathUtil, null, [{
+	        key: "div",
+	        value: function div(a, b) {
+	            return ~ ~(a / b);
+	        }
+	    }]);
+	
+	    return MathUtil;
+	})();
+
+	exports.MathUtil = MathUtil;
 
 /***/ },
 /* 4 */
