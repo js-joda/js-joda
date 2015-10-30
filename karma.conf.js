@@ -1,8 +1,8 @@
 module.exports = function(config) {
   config.set({
     files: [
-        {pattern: 'test/*.js'},
-        {pattern: 'test/**/*.js'}
+        {pattern: 'test/*Test.js'},
+        {pattern: 'test/**/*Test.js'}
     ],
     frameworks: [
         'mocha',
