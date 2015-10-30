@@ -2,7 +2,18 @@ import {expect} from 'chai';
 import {LocalDate} from '../src/LocalDate';
 import {isCoverageTestRunner} from './testUtils';
 
-describe('when using a LocalDate instance', () => {
+describe('Creating a LocalDate instance', () => {
+    it('should create a LocalDate instance for a valid date', () => {
+        expect(new LocalDate(1970, 1, 1)).to.be.an.instanceOf(LocalDate);
+    });
+
+    it.skip('should fail with an AssertionError for invalid dates', () => {
+        expect(new LocalDate(1970, 1, -1)).to.throw(AssertionError);
+    });
+
+});
+
+describe('Using a LocalDate instance', () => {
 
     describe('when calling toString()', () => {
         it('should convert valid dates to an ISO-8601 String', () => {
@@ -48,6 +59,12 @@ describe('when using a LocalDate instance', () => {
     });
 
     describe('when calling plusDays(day)', () => {
+        it('should return the same instance when adding zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.plusDays(0)
+            expect(oneDay).to.equal(otherDay)
+        });
+
         it('should walk through one year by adding one day after the other', () => {
             var start = new LocalDate(1970, 1, 1);
             var current = start;
@@ -75,4 +92,4 @@ describe('when using a LocalDate instance', () => {
         });
     });
 
-  });
+});
