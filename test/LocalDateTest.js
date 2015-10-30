@@ -96,11 +96,20 @@ describe('Using a LocalDate instance', () => {
 
         });
 
+        it('should handle leap and non leap years', () => {
+            var d = new LocalDate(2015, 2, 28);
+            expect(d.plusDays(1).toString()).to.equal('2015-03-01');
+
+            d = new LocalDate(2016, 2, 28);
+            expect(d.plusDays(1).toString()).to.equal('2016-02-29');
+            expect(d.plusDays(2).toString()).to.equal('2016-03-01');
+        });
+
         it('should add days for dates B.C.', () => {
             var d = new LocalDate(-2000, 1, 1);
             expect(d.plusDays(1).toString()).to.equal('-2000-01-02');
 
-            var d = new LocalDate(-10000, 12, 31);
+            d = new LocalDate(-10000, 12, 31);
             expect(d.plusDays(1).toString()).to.equal('-9999-01-01');
         });
 
