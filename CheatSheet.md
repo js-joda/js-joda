@@ -1,4 +1,4 @@
-Joda.js Cheat sheet
+JS-Joda-Time Cheat sheet
 =============================================
 
 [For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/pithu/joda-js/)  

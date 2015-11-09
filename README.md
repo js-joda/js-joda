@@ -20,19 +20,19 @@ Joda-Time is the de facto standard date and time library for Java. From Java SE 
 + Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object, 
 providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
 
-+ In opposite to that, Joda.js is a standalone date and time implementation. 
++ In opposite to that, JS-Joda-Time is a standalone date and time implementation. 
 It brings concepts like a LocalDate that allows to handle dates like birthdays or holidays in a clean and error-safe way, 
 especially if this dates are persisted to an external server.
 
-+ Joda.js is immutable. Immutability aligns well with pure functions and
++ JS-Joda-Time is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux. 
 
-+ Joda.js is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).
++ JS-Joda-Time is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).
 
 ## Getting started
 
 The library is in a very early state, far away from productive. 
-But you are very welcome to play around with Joda.js and to give your feedback. 
+But you are very welcome to play around with JS-Joda-Time and to give your feedback. 
 Please check the tests and the API Documentation for the current state of development.
 
 ### Node
@@ -49,7 +49,7 @@ Then require it to any module
      
 ### Browser
 
-To use Joda.js from a browser, download either dist/jsJodaTime.min.js or dist/jsJodaTime.js (with sourcemaps for development) 
+To use JS-Joda-Time from a browser, download either dist/jsJodaTime.min.js or dist/jsJodaTime.js (with sourcemaps for development) 
 
 Then add it as a script tag to your page
 
