@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["joda"] = factory();
+		exports["jsJodaTime"] = factory();
 	else
-		root["joda"] = factory();
+		root["jsJodaTime"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -649,4 +649,4 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ ])
 });
 ;
-//# sourceMappingURL=joda.js.map
+//# sourceMappingURL=jsJodaTime.js.map

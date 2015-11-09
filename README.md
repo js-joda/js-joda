@@ -43,7 +43,7 @@ Install joda using npm
 
 Then require it to any module
  
-    var LocalDate = require('joda').LocalDate;
+    var LocalDate = require('js-joda-time').LocalDate;
     
     var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
      
@@ -55,7 +55,7 @@ Then add it as a script tag to your page
 
     <script src="joda.min.js"></script>
     <script>
-        var LocalDate = joda.LocalDate;
+        var LocalDate = jsJodaTime.LocalDate;
         var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
     </script>
      
@@ -73,4 +73,9 @@ Then add it as a script tag to your page
 + Joda-Time is under Apache 2.0 licence.
 
 + OpenJdk is under GNU GPL+linking exception.
+
++ The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne. 
+The API of this project (as far as possible with javascript), a lot of implementation details and documentation 
+are just copied but never equalled ;)
+
 

@@ -9,9 +9,9 @@ module.exports = {
     devtool: sourceMaps ? "source-map" : "",
     output: {
         path: __dirname  + "/dist",
-        filename: minify ? 'joda.min.js' : 'joda.js',
+        filename: minify ? 'jsJodaTime.min.js' : 'jsJodaTime.js',
         libraryTarget: minify ? 'var' : 'umd',
-        library: 'joda'
+        library: 'jsJodaTime'
     },
     module: {
         loaders: [
