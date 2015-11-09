@@ -4,7 +4,7 @@
   "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pithu/joda-js.git"
+    "url": "https://github.com/pithu/js-joda-time.git"
   },
   "main": "dist/joda.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "timezone"
   ],
   "author": "pithu",
-  "homepage": "https://pithu.github.com/joda-js",
+  "homepage": "https://pithu.github.com/js-joda-time",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
