@@ -7,11 +7,11 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-**Joda.js is a project that wants to bring joda time library to the javascript world. 
+**JS-Joda-Time is a project that wants to bring joda time library to the javascript world. 
 The Project is in a very early state. 
 Be aware that the most of the things written here are not ready yet** 
 
-Joda.js, a port of the Joda-Time immutable data and time library to javascript. 
+JS-Joda-Time, a port of the Joda-Time immutable data and time library to javascript. 
 It provides a simple and clean API based on the ISO8601 calendar.
 Joda-Time is the de facto standard date and time library for Java. From Java SE 8 it is part of the jdk at java.time (JSR-310).
 
@@ -39,7 +39,7 @@ Please check the tests and the API Documentation for the current state of develo
 
 Install joda using npm
 
-    npm install joda
+    npm install js-joda-time
 
 Then require it to any module
  
@@ -49,11 +49,11 @@ Then require it to any module
      
 ### Browser
 
-To use Joda.js from a browser, download either dist/joda.min.js or dist/joda.js (with sourcemaps for development) 
+To use Joda.js from a browser, download either dist/jsJodaTime.min.js or dist/jsJodaTime.js (with sourcemaps for development) 
 
 Then add it as a script tag to your page
 
-    <script src="joda.min.js"></script>
+    <script src="jsJodaTime.min.js"></script>
     <script>
         var LocalDate = jsJodaTime.LocalDate;
         var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
@@ -62,8 +62,8 @@ Then add it as a script tag to your page
 ## Documentation
 
 + [Cheat Sheet](CheatSheet.md) Quick start guide 
-+ [API](https://doc.esdoc.org/github.com/pithu/joda-js/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
-+ [Joda.js Homepage](http://pithu.github.io/joda-js/) Project homepage
++ [API](https://doc.esdoc.org/github.com/pithu/js-joda-time/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [JS-Joda-Time Homepage](http://pithu.github.io/js-joda-time/) Project homepage
 
 
 ## License
