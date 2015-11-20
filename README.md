@@ -1,9 +1,9 @@
 Immutable data and time library for javascript
 =============================================
 
-[![npm version](https://badge.fury.io/js/joda.svg)](https://badge.fury.io/js/joda)
-[![Build Status](https://travis-ci.org/pithu/joda-js.svg)](https://travis-ci.org/pithu/joda-js)
-[![Coverage Status](https://coveralls.io/repos/pithu/joda-js/badge.svg?branch=master&service=github)](https://coveralls.io/github/pithu/joda-js?branch=master)
+[![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
+[![Build Status](https://travis-ci.org/pithu/js-joda.svg)](https://travis-ci.org/pithu/js-joda)
+[![Coverage Status](https://coveralls.io/repos/pithu/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/pithu/js-joda?branch=master)
 
 ## Introduction
 
