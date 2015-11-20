@@ -5,13 +5,13 @@ var sourceMaps = !minify
 
 module.exports = {
     context: __dirname,
-    entry: './src/joda.js',
+    entry: './src/js-joda.js',
     devtool: sourceMaps ? "source-map" : "",
     output: {
         path: __dirname  + "/dist",
-        filename: minify ? 'jsJodaTime.min.js' : 'jsJodaTime.js',
+        filename: minify ? 'js-joda.min.js' : 'js-joda.js',
         libraryTarget: minify ? 'var' : 'umd',
-        library: 'jsJodaTime'
+        library: 'jsjoda'
     },
     module: {
         loaders: [

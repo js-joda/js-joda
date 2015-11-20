@@ -7,11 +7,11 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-**JS-Joda-Time is a project that wants to bring joda time library to the javascript world. 
+**js-joda is a project that wants to bring joda time library to the javascript world. 
 The Project is in a very early state. 
 Be aware that the most of the things written here are not ready yet** 
 
-JS-Joda-Time, a port of the Joda-Time immutable data and time library to javascript. 
+js-joda, a port of the Joda-Time immutable data and time library to javascript. 
 It provides a simple and clean API based on the ISO8601 calendar.
 Joda-Time is the de facto standard date and time library for Java. From Java SE 8 it is part of the jdk at java.time (JSR-310).
 
@@ -20,50 +20,50 @@ Joda-Time is the de facto standard date and time library for Java. From Java SE 
 + Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object, 
 providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
 
-+ In opposite to that, JS-Joda-Time is a standalone date and time implementation. 
++ In opposite to that, js-joda is a standalone date and time implementation. 
 It brings concepts like a LocalDate that allows to handle dates like birthdays or holidays in a clean and error-safe way, 
 especially if this dates are persisted to an external server.
 
-+ JS-Joda-Time is immutable. Immutability aligns well with pure functions and
++ js-joda is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux. 
 
-+ JS-Joda-Time is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).
++ js-joda is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).
 
 ## Getting started
 
 The library is in a very early state, far away from productive. 
-But you are very welcome to play around with JS-Joda-Time and to give your feedback. 
+But you are very welcome to play around with js-joda and to give your feedback. 
 Please check the tests and the API Documentation for the current state of development.
 
 ### Node
 
 Install joda using npm
 
-    npm install js-joda-time
+    npm install js-joda
 
 Then require it to any module
  
-    var LocalDate = require('js-joda-time').LocalDate;
+    var LocalDate = require('js-joda').LocalDate;
     
     var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
      
 ### Browser
 
-To use JS-Joda-Time from a browser, download either dist/jsJodaTime.min.js or dist/jsJodaTime.js (with sourcemaps for development) 
+To use js-joda from a browser, download either dist/js-joda.min.js or dist/js-joda.js (with sourcemaps for development) 
 
 Then add it as a script tag to your page
 
-    <script src="jsJodaTime.min.js"></script>
+    <script src="js-joda.min.js"></script>
     <script>
-        var LocalDate = jsJodaTime.LocalDate;
+        var LocalDate = jsjoda.LocalDate;
         var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
     </script>
      
 ## Documentation
 
 + [Cheat Sheet](CheatSheet.md) Quick start guide 
-+ [API](https://doc.esdoc.org/github.com/pithu/js-joda-time/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
-+ [JS-Joda-Time Homepage](http://pithu.github.io/js-joda-time/) Project homepage
++ [API](https://doc.esdoc.org/github.com/pithu/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [js-joda Homepage](http://pithu.github.io/js-joda/) Project homepage
 
 
 ## License
