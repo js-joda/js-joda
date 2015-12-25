@@ -17,7 +17,7 @@ module.exports = function(config) {
       noInfo: true
     },
     reporters: ['progress'],
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome', 'Firefox', 'PhantomJS'],
     plugins: [ "karma-*" ]
   })
 };
