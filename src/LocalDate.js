@@ -94,7 +94,26 @@ export class LocalDate {
         var mjDay = this.toEpochDay() + daysToAdd;
         return LocalDate.ofEpochDay(mjDay);
     };
-    
+
+    /*
+     * Returns a copy of this LocalDate with the specified number of days subtracted.
+     * 
+     * This method subtracts the specified amount from the days field decrementing the
+     * month and year fields as necessary to ensure the result remains valid.
+     * The result is only invalid if the maximum/minimum year is exceeded.
+     * 
+     * For example, 2009-01-01 minus one day would result in 2008-12-31.
+     * 
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} daysToSubtract - the days to subtract, may be negative
+     * @return {LocalDate} a LocalDate based on this date with the days subtracted, not null
+     * @throws AssertionError if the result exceeds the supported date range
+     */
+    minusDays(daysToSubtract) {
+        return this.plusDays(daysToSubtract * -1)
+    };
+
     /**
      * Converts this date to the Epoch Day.
      *
