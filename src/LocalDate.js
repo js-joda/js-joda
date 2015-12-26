@@ -90,7 +90,7 @@ export class LocalDate {
         return this._day
     }
 
-    /*
+    /**
      * Returns a copy of this LocalDate with the specified number of days added.
      * 
      * This method adds the specified amount to the days field incrementing the
@@ -186,7 +186,7 @@ export class LocalDate {
         return yearString + monthString + dayString;
     }
 
-    /*
+    /**
      * Obtains an instance of LocalDate from the epoch day count.
      *
      * This returns a LocalDate with the specified epoch-day.
