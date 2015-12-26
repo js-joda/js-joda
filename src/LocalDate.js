@@ -111,7 +111,7 @@ export class LocalDate {
      * @throws AssertionError if the result exceeds the supported date range
      */
     minusDays(daysToSubtract) {
-        return this.plusDays(daysToSubtract * -1)
+        return (daysToSubtract == Number.MIN_VALUE ? this.plusDays(Number.MAX_VALUE).plusDays(1) : this.plusDays(-daysToSubtract));
     };
 
     /**
