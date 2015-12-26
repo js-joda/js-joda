@@ -49,6 +49,23 @@ export class LocalDate {
     }
 
     /**
+     * Obtains an instance of {@code LocalDate} from a year, month and day.
+     * <p>
+     * This returns a {@code LocalDate} with the specified year, month and day-of-month.
+     * The day must be valid for the year and month, otherwise an exception will be thrown.
+     *
+     * @param year  the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param month  the month-of-year to represent, from 1 (January) to 12 (December)
+     * @param dayOfMonth  the day-of-month to represent, from 1 to 31
+     * @return LocalDate the local date, not null
+     * @throws DateTimeException if the value of any field is out of range,
+     *  or if the day-of-month is invalid for the month-year
+     */
+    static of(year, month, dayOfMonth) {
+        return new LocalDate(year, month, dayOfMonth);
+    }
+
+    /**
      *
      * @return {number} gets the year
      */
