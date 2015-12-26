@@ -85,6 +85,7 @@ export class LocalDate {
      *
      * @return {number} gets the day of month
      */
+    // TODO: should be dayOfMonth() ?
     day() {
         return this._day
     }
