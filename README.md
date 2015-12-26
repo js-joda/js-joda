@@ -23,7 +23,7 @@ In opposite to that, js-joda is a standalone date and time implementation.
 
 + The API has a domain-driven design with classes for the different use cases, like LocalDate, ZonedDateTime or Period.
 For examples LocalDate allows to handle dates like birthdays or holidays in a clean and error-safe way, 
-especially if this dates are persisted to an external server.
+especially if these dates are persisted to an external server.
 
 + js-joda is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux. 
