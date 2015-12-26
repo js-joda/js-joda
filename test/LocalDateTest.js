@@ -135,7 +135,7 @@ describe('Using a LocalDate instance', () => {
         });
 
         var itSkipInCoverageRunner = isCoverageTestRunner() ? it.skip : it;
-        itSkipInCoverageRunner('should walk through a 400 years cycle by adding one day after the other', () => {
+        itSkipInCoverageRunner('should walk through a 400 years cycle by subtracting one day after the other', () => {
             var DAYS_PER_400_YEARS_CYCLE = 146097;
             var start = new LocalDate(2370, 1, 1);
             var current = start;
