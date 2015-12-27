@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {LocalDate} from '../../src/LocalDate';
+import * as Month from '../../src/Month';
 import {isCoverageTestRunner} from '../testUtils';
 
 describe('tck.java.time.TCKLocalDate', () => {
@@ -26,8 +27,7 @@ describe('tck.java.time.TCKLocalDate', () => {
      */
     function check (test, y, m, d) {
         expect(test.year()).to.equal(y);
-        //expect(test.month().getValue()).to.equal(m);// TODO: Month implementation
-        expect(test.month()).to.equal(m);
+        expect(test.month().value()).to.equal(m);
         expect(test.day()).to.equal(d);
         expect(test).to.equal(test);
         expect(LocalDate.of(y, m, d)).to.eql(test);
@@ -35,7 +35,7 @@ describe('tck.java.time.TCKLocalDate', () => {
 
     describe('of() factories', () => {
 
-        it.skip('factory_of_intsMonth', () => {
+        it('factory_of_intsMonth', () => {
             expect(LocalDate.of(2007, Month.JULY, 15)).to.eql(TEST_2007_07_15);
         });
 
