@@ -4,6 +4,7 @@ import { MathUtil } from './MathUtil';
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
 import * as Month from './Month'
+import {DateTimeException} from './errors'
 
 
 /**
@@ -43,13 +44,12 @@ export class LocalDate {
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
+        if (month instanceof Month.Month) {
+            month = month.value();
+        }
         LocalDate.validate(year, month, dayOfMonth);
         this._year = year;
-        if (month instanceof Month.Month) {
-            this._month = month.value();
-        } else {
-            this._month = month;
-        }
+        this._month = month;
         this._day = dayOfMonth;
     }
 
@@ -274,9 +274,9 @@ export class LocalDate {
             }
             if (dayOfMonth > dom) {
                 if (dayOfMonth === 29) {
-                    assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year");
+                    assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year", DateTimeException);
                 } else {
-                    assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'");
+                    assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'", DateTimeException);
                 }
             }
         }
