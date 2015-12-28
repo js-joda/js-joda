@@ -171,6 +171,37 @@ export class LocalDate {
     }
 
     /**
+     * Checks if this date is equal to another date.
+     *
+     * Compares this LocalDate with another ensuring that the date is the same.
+     *
+     * Only objects of type LocalDate are compared, other types return false.
+     *
+     * @param otherDate  the object to check, null returns false
+     * @return true if this is equal to the other date
+     */
+    equals(otherDate) {
+        if (this === otherDate) {
+            return true;
+        }
+        if (otherDate instanceof LocalDate) {
+            return this._compareTo(otherDate) === 0;
+        }
+        return false;
+    }
+
+    _compareTo(otherDate){
+        var cmp = this.year() - otherDate.year();
+        if (cmp == 0) {
+            cmp = (this.month() - otherDate.month());
+            if (cmp == 0) {
+                cmp = (this.day() - otherDate.day());
+            }
+        }
+        return cmp;
+    }
+
+    /**
      * Outputs this date as a String, such as 2007-12-03.
      * The output will be in the ISO-8601 format uuuu-MM-dd.
      *
@@ -281,4 +312,6 @@ export class LocalDate {
             }
         }
     };
+
+
 }
