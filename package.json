@@ -44,5 +44,8 @@
     "mocha": "^2.3.3",
     "phantomjs": "^1.9.19",
     "webpack": "^1.12.2"
+  },
+  "dependencies": {
+    "es6-error": "^2.0.2"
   }
 }
