@@ -2,6 +2,7 @@ import {expect} from 'chai';
 import {LocalDate} from '../../src/LocalDate';
 import * as Month from '../../src/Month';
 import {isCoverageTestRunner} from '../testUtils';
+import {DateTimeException} from '../../src/errors';
 
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
@@ -39,25 +40,25 @@ describe('tck.java.time.TCKLocalDate', () => {
             expect(LocalDate.of(2007, Month.JULY, 15)).to.eql(TEST_2007_07_15);
         });
 
-        it.skip('factory_of_intsMonth_29febNonLeap', () => {
+        it('factory_of_intsMonth_29febNonLeap', () => {
             expect(() => {
-                LocalDate.of(2007, Month.FEBRUARY, 29)
+                LocalDate.of(2007, Month.FEBRUARY, 29);
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_intsMonth_31apr', () => {
+        it('factory_of_intsMonth_31apr', () => {
             expect(() => {
                 LocalDate.of(2007, Month.APRIL, 31)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_intsMonth_dayTooLow', () => {
+        it('factory_of_intsMonth_dayTooLow', () => {
             expect(() => {
                 LocalDate.of(2007, Month.JANUARY, 0)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_intsMonth_dayTooHigh', () => {
+        it('factory_of_intsMonth_dayTooHigh', () => {
             expect(() => {
                 LocalDate.of(2007, Month.JANUARY, 32)
             }).to.throw(DateTimeException);
@@ -69,7 +70,7 @@ describe('tck.java.time.TCKLocalDate', () => {
             }).to.throw(NullPointerException);
         });
 
-        it.skip('factory_of_intsMonth_yearTooLow', () => {
+        it('factory_of_intsMonth_yearTooLow', () => {
             expect(() => {
                 LocalDate.of(Number.MIN_SAFE_INTEGER, null, 30)
             }).to.throw(DateTimeException);
@@ -80,43 +81,43 @@ describe('tck.java.time.TCKLocalDate', () => {
             check(TEST_2007_07_15, 2007, 7, 15)
         });
 
-        it.skip('factory_of_ints_29febNonLeap', () => {
+        it('factory_of_ints_29febNonLeap', () => {
             expect(() => {
                 LocalDate.of(2007, 2, 29)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_31apr', () => {
+        it('factory_of_ints_31apr', () => {
             expect(() => {
                 LocalDate.of(2007, 4, 31)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_dayTooLow', () => {
+        it('factory_of_ints_dayTooLow', () => {
             expect(() => {
                 LocalDate.of(2007, 1, 0)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_dayTooHigh', () => {
+        it('factory_of_ints_dayTooHigh', () => {
             expect(() => {
                 LocalDate.of(2007, 1, 32)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_monthTooLow', () => {
+        it('factory_of_ints_monthTooLow', () => {
             expect(() => {
                 LocalDate.of(2007, 0, 1)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_monthTooHigh', () => {
+        it('factory_of_ints_monthTooHigh', () => {
             expect(() => {
                 LocalDate.of(2007, 13, 1)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_ints_yearTooLow', () => {
+        it('factory_of_ints_yearTooLow', () => {
             expect(() => {
                 LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 1)
             }).to.throw(DateTimeException);
