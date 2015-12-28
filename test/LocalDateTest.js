@@ -114,7 +114,111 @@ describe('Using a LocalDate instance', () => {
         });
 
     });
-    
+
+    describe('when calling plusDays(day)', () => {
+        it('should return the same instance when adding zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.plusDays(0)
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should walk through one year by adding one day after the other', () => {
+            var start = new LocalDate(1970, 1, 1);
+            var current = start;
+            for (var i = 0; i < 365; i++) {
+                current = current.plusDays(1);
+            }
+            expect(current.year()).to.equal(start.year() + 1);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        var itSkipInCoverageRunner = isCoverageTestRunner() ? it.skip : it;
+        itSkipInCoverageRunner('should walk through a 400 years cycle by adding one day after the other', () => {
+            var DAYS_PER_400_YEARS_CYCLE = 146097;
+            var start = new LocalDate(1970, 1, 1);
+            var current = start;
+            for (var i = 0; i < DAYS_PER_400_YEARS_CYCLE; i++) {
+                current = current.plusDays(1);
+            }
+            expect(current.year()).to.equal(start.year() + 400);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        it('should handle leap and non leap years', () => {
+            var d = new LocalDate(2015, 2, 28);
+            expect(d.plusDays(1).toString()).to.equal('2015-03-01');
+
+            d = new LocalDate(2016, 2, 28);
+            expect(d.plusDays(1).toString()).to.equal('2016-02-29');
+            expect(d.plusDays(2).toString()).to.equal('2016-03-01');
+        });
+
+        it('should add days for dates B.C.', () => {
+            var d = new LocalDate(-2000, 1, 1);
+            expect(d.plusDays(1).toString()).to.equal('-2000-01-02');
+
+            d = new LocalDate(-10000, 12, 31);
+            expect(d.plusDays(1).toString()).to.equal('-9999-01-01');
+        });
+
+    });
+
+    describe('when calling plusDays(day) with a negative argument', () => {
+        it('should return the same instance when subtracting zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.plusDays(-0)
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should walk backwards through one year by subtracting one day after the other', () => {
+            var start = new LocalDate(1971, 1, 1);
+            var current = start;
+            for (var i = 0; i < 365; i++) {
+                current = current.plusDays(-1);
+            }
+            expect(current.year()).to.equal(start.year() - 1);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        var itSkipInCoverageRunner = isCoverageTestRunner() ? it.skip : it;
+        itSkipInCoverageRunner('should walk through a 400 years cycle by subtracting one day after the other', () => {
+            var DAYS_PER_400_YEARS_CYCLE = 146097;
+            var start = new LocalDate(2370, 1, 1);
+            var current = start;
+            for (var i = 0; i < DAYS_PER_400_YEARS_CYCLE; i++) {
+                current = current.plusDays(-1);
+            }
+            expect(current.year()).to.equal(start.year() - 400);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        it('should handle leap and non leap years', () => {
+            var d = new LocalDate(2015, 3, 1);
+            expect(d.plusDays(-1).toString()).to.equal('2015-02-28');
+
+            d = new LocalDate(2016, 3, 1);
+            expect(d.plusDays(-1).toString()).to.equal('2016-02-29');
+            expect(d.plusDays(-2).toString()).to.equal('2016-02-28');
+        });
+
+        it('should subtract days for dates B.C.', () => {
+            var d = new LocalDate(-2000, 1, 2);
+            expect(d.plusDays(-1).toString()).to.equal('-2000-01-01');
+
+            d = new LocalDate(-9999, 1, 1);
+            expect(d.plusDays(-1).toString()).to.equal('-10000-12-31');
+        });
+
+    });
+
     describe('when calling minusDays(day)', () => {
         it('should return the same instance when subtracting zero days', () => {
             var oneDay = new LocalDate(1970, 1, 1);
@@ -163,6 +267,58 @@ describe('Using a LocalDate instance', () => {
 
             d = new LocalDate(-9999, 1, 1);
             expect(d.minusDays(1).toString()).to.equal('-10000-12-31');
+        });
+
+    });
+
+    describe('when calling minusDays(day) with a negative argument', () => {
+        it('should return the same instance when adding zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.minusDays(-0)
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should walk through one year by adding one day after the other', () => {
+            var start = new LocalDate(1970, 1, 1);
+            var current = start;
+            for (var i = 0; i < 365; i++) {
+                current = current.minusDays(-1);
+            }
+            expect(current.year()).to.equal(start.year() + 1);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        var itSkipInCoverageRunner = isCoverageTestRunner() ? it.skip : it;
+        itSkipInCoverageRunner('should walk through a 400 years cycle by adding one day after the other', () => {
+            var DAYS_PER_400_YEARS_CYCLE = 146097;
+            var start = new LocalDate(1970, 1, 1);
+            var current = start;
+            for (var i = 0; i < DAYS_PER_400_YEARS_CYCLE; i++) {
+                current = current.minusDays(-1);
+            }
+            expect(current.year()).to.equal(start.year() + 400);
+            expect(current.month()).to.equal(start.month());
+            expect(current.day()).to.equal(start.day());
+
+        });
+
+        it('should handle leap and non leap years', () => {
+            var d = new LocalDate(2015, 2, 28);
+            expect(d.minusDays(-1).toString()).to.equal('2015-03-01');
+
+            d = new LocalDate(2016, 2, 28);
+            expect(d.minusDays(-1).toString()).to.equal('2016-02-29');
+            expect(d.minusDays(-2).toString()).to.equal('2016-03-01');
+        });
+
+        it('should add days for dates B.C.', () => {
+            var d = new LocalDate(-2000, 1, 1);
+            expect(d.minusDays(-1).toString()).to.equal('-2000-01-02');
+
+            d = new LocalDate(-10000, 12, 31);
+            expect(d.minusDays(-1).toString()).to.equal('-9999-01-01');
         });
 
     });
