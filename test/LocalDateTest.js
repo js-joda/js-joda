@@ -66,8 +66,13 @@ describe('Using a LocalDate instance', () => {
     describe('when calling plusDays(day)', () => {
         it('should return the same instance when adding zero days', () => {
             var oneDay = new LocalDate(1970, 1, 1);
-            var otherDay = oneDay.plusDays(0)
+            var otherDay = oneDay.plusDays(0);
             expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should return the next day when adding one day', () => {
+            var oneDay = new LocalDate(1970, 1, 1).plusDays(1);
+            expect(oneDay.toString()).to.equal('1970-01-02')
         });
 
         it('should walk through one year by adding one day after the other', () => {
@@ -115,4 +120,42 @@ describe('Using a LocalDate instance', () => {
 
     });
 
+    describe('when calling plusDays(day) with a negative argument', () => {
+        it('should return the same instance when subtracting zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.plusDays(-0);
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should return the day before when subtracting one day', () => {
+            var oneDay = new LocalDate(1970, 1, 1).plusDays(-1);
+            expect(oneDay.toString()).to.equal('1969-12-31')
+        });
+    });
+
+    describe('when calling minusDays(day)', () => {
+        it('should return the same instance when subtracting zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.minusDays(0);
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should return the day before when subtracting one day', () => {
+            var oneDay = new LocalDate(1970, 1, 1).minusDays(1);
+            expect(oneDay.toString()).to.equal('1969-12-31')
+        });
+    });
+
+    describe('when calling minusDays(day) with a negative argument', () => {
+        it('should return the same instance when adding zero days', () => {
+            var oneDay = new LocalDate(1970, 1, 1);
+            var otherDay = oneDay.minusDays(-0);
+            expect(oneDay).to.equal(otherDay)
+        });
+
+        it('should return the next day when adding one day', () => {
+            var oneDay = new LocalDate(1970, 1, 1).minusDays(-1);
+            expect(oneDay.toString()).to.equal('1970-01-02')
+        });
+    });
 });
