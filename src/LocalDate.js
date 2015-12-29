@@ -3,6 +3,8 @@ import {assert} from './assert';
 import { MathUtil } from './MathUtil';
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
+import * as Month from './Month'
+import {DateTimeException} from './errors'
 
 
 /**
@@ -38,10 +40,13 @@ export class LocalDate {
     /**
      *
      * @param {number} year
-     * @param {number} month
+     * @param {Month, number} month
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
+        if (month instanceof Month.Month) {
+            month = month.value();
+        }
         LocalDate.validate(year, month, dayOfMonth);
         this._year = year;
         this._month = month;
@@ -54,9 +59,9 @@ export class LocalDate {
      * This returns a {@code LocalDate} with the specified year, month and day-of-month.
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
-     * @param year  the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param month  the month-of-year to represent, from 1 (January) to 12 (December)
-     * @param dayOfMonth  the day-of-month to represent, from 1 to 31
+     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {Month, number} month  the month-of-year to represent, from 1 (January) to 12 (December)
+     * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
      * @return LocalDate the local date, not null
      * @throws DateTimeException if the value of any field is out of range,
      *  or if the day-of-month is invalid for the month-year
@@ -77,8 +82,12 @@ export class LocalDate {
      *
      * @return {number} gets the month
      */
-    month() {
+    monthValue() {
         return this._month
+    }
+    
+    month() {
+        return Month.of(this._month);
     }
 
     /**
@@ -142,7 +151,7 @@ export class LocalDate {
      */
     toEpochDay() {
         var y = this.year();
-        var m = this.month();
+        var m = this.monthValue();
         var total = 0;
         total += 365 * y;
         if (y >= 0) {
@@ -171,7 +180,7 @@ export class LocalDate {
         var dayString, monthString, yearString;
 
         var yearValue = this.year();
-        var monthValue = this.month();
+        var monthValue = this.monthValue();
         var dayValue = this.day();
 
         var absYear = Math.abs(yearValue);
@@ -265,9 +274,9 @@ export class LocalDate {
             }
             if (dayOfMonth > dom) {
                 if (dayOfMonth === 29) {
-                    assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year");
+                    assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year", DateTimeException);
                 } else {
-                    assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'");
+                    assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'", DateTimeException);
                 }
             }
         }

@@ -1,5 +1,9 @@
-export function assert(assertion, msg) {
+export function assert(assertion, msg, error) {
     if(!assertion){
-        throw new Error(msg);
+        if (error) {
+            throw new error(msg);
+        } else {
+            throw new Error(msg);
+        }
     }
 }

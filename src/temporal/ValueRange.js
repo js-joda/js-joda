@@ -1,4 +1,5 @@
 import {assert} from '../assert';
+import {DateTimeException} from '../errors'
 
 /**
  * The range of valid values for a date-time field.
@@ -53,7 +54,7 @@ export class ValueRange {
             } else {
                 msg = ("Invalid value (valid values " + (this.toString()) + "): ") + value;
             }
-            return assert(false, msg);
+            return assert(false, msg, DateTimeException);
         }
     }
 

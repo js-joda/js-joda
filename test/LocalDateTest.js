@@ -82,7 +82,7 @@ describe('Using a LocalDate instance', () => {
                 current = current.plusDays(1);
             }
             expect(current.year()).to.equal(start.year() + 1);
-            expect(current.month()).to.equal(start.month());
+            expect(current.monthValue()).to.equal(start.monthValue());
             expect(current.day()).to.equal(start.day());
 
         });
@@ -96,7 +96,7 @@ describe('Using a LocalDate instance', () => {
                 current = current.plusDays(1);
             }
             expect(current.year()).to.equal(start.year() + 400);
-            expect(current.month()).to.equal(start.month());
+            expect(current.monthValue()).to.equal(start.monthValue());
             expect(current.day()).to.equal(start.day());
 
         });
