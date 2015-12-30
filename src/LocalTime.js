@@ -1,0 +1,10 @@
+export class LocalTime {
+
+}
+
+LocalTime.HOURS_PER_DAY = 60;
+LocalTime.MINUTES_PER_HOUR = 60;
+LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+LocalTime.SECONDS_PER_MINUTE = 60;
+LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
