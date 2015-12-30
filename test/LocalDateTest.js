@@ -163,31 +163,38 @@ describe('Using a LocalDate instance', () => {
         it('should return true if the instances are equal', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             expect(oneDay.equals(oneDay)).to.be.true;
-        })
+        });
         it('should return true if the two dates are equal', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             var otherDay = new LocalDate(1970, 1, 1);
             expect(oneDay.equals(otherDay)).to.be.true;
-        })
+        });
         it('should return false if the year of the two dates are not equal', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             var otherDay = new LocalDate(1971, 1, 1);
             expect(oneDay.equals(otherDay)).to.be.false;
-        })
+        });
         it('should return false if the month of the two dates are not equal', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             var otherDay = new LocalDate(1970, 2, 1);
             expect(oneDay.equals(otherDay)).to.be.false;
-        })
+        });
         it('should return false if the dayOfMonth of the two dates are not equal', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             var otherDay = new LocalDate(1970, 1, 3);
             expect(oneDay.equals(otherDay)).to.be.false;
-        })
+        });
         it('should return false if the other date is not an instance of LocalDate', () => {
             var oneDay = new LocalDate(1970, 1, 1);
             var otherDay = {};
             expect(oneDay.equals(otherDay)).to.be.false;
-        })
+        });
     });
+    describe('when calling now', () => {
+       it.skip('should return instance of LocalDate', () =>{
+           var oneDay = LocalDate.now();
+           expect(oneDay).to.be.instanceof(LocalDate);
+       })
+    });
+
 });

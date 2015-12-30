@@ -1,11 +1,14 @@
 import {assert} from './assert';
 
 import { MathUtil } from './MathUtil';
+import {DateTimeException} from './errors';
+
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
-import {Month} from './Month'
-import {DateTimeException} from './errors'
 
+import {Clock} from './Clock';
+import {Month} from './Month';
+import {LocalTime} from './LocalTime';
 
 /**
  * The number of days in a 400 year cycle.
@@ -168,6 +171,14 @@ export class LocalDate {
             }
         }
         return total - DAYS_0000_TO_1970;
+    }
+
+    static now(clock = Clock.systemDefaultZone()) {
+        var now = clock.instant();
+        var offset = clock.offset(now);
+        var epochSec = now.epochSecond() + offset.totalSeconds();
+        var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
+        return LocalDate.ofEpochDay(epochDay);
     }
 
     /**
