@@ -54,6 +54,13 @@ export class Month {
         return monthString;
     }
 
+    /**
+     *
+     * @param {number} month
+     */
+    static of(month) {
+        return MONTHS[month-1];
+    }
 }
 
 export const JANUARY = new Month(1);
@@ -71,10 +78,3 @@ export const DECEMBER = new Month(12);
 
 var MONTHS = [JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER];
 
-/**
- * 
- * @param {number} month
- */
-export function of(month) {
-    return MONTHS[month-1];
-}

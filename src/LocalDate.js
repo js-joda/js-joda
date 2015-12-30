@@ -3,7 +3,7 @@ import {assert} from './assert';
 import { MathUtil } from './MathUtil';
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
-import * as Month from './Month'
+import {Month} from './Month'
 import {DateTimeException} from './errors'
 
 
@@ -44,7 +44,7 @@ export class LocalDate {
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
-        if (month instanceof Month.Month) {
+        if (month instanceof Month) {
             month = month.value();
         }
         LocalDate.validate(year, month, dayOfMonth);
@@ -193,7 +193,7 @@ export class LocalDate {
     _compareTo(otherDate){
         var cmp = this.year() - otherDate.year();
         if (cmp == 0) {
-            cmp = (this.month() - otherDate.month());
+            cmp = (this.monthValue() - otherDate.monthValue());
             if (cmp == 0) {
                 cmp = (this.day() - otherDate.day());
             }
