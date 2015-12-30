@@ -34,6 +34,43 @@ describe('tck.java.time.TCKLocalDate', () => {
         expect(LocalDate.of(y, m, d)).to.eql(test);
     }
 
+    function isIsoLeap(year) {
+        if (year % 4 != 0) {
+            return false;
+        }
+        if (year % 100 == 0 && year % 400 != 0) {
+            return false;
+        }
+        return true;
+    }
+    
+    //-----------------------------------------------------------------------
+    // Since plusDays/minusDays actually depends on MJDays, it cannot be used for testing
+    function next(date) {
+        var newDayOfMonth = date.day() + 1;
+        if (newDayOfMonth <= date.month().length(isIsoLeap(date.year()))) {
+            return date.withDayOfMonth(newDayOfMonth);
+        }
+        date = date.withDayOfMonth(1);
+        if (date.month() == Month.DECEMBER) {
+            date = date.withYear(date.year() + 1);
+        }
+        return date.withMonth(date.month().plus(1));
+    }
+
+    function previous(date) {
+        var newDayOfMonth = date.day() - 1;
+        if (newDayOfMonth > 0) {
+            return date.withDayOfMonth(newDayOfMonth);
+        }
+        date = date.with(date.getMonth().minus(1));
+        if (date.month() == Month.DECEMBER) {
+            date = date.withYear(date.getYear() - 1);
+        }
+        return date.withDayOfMonth(date.getMonth().length(isIsoLeap(date.getYear())));
+    }
+
+
     describe('of() factories', () => {
 
         it('factory_of_intsMonth', () => {
@@ -64,10 +101,10 @@ describe('tck.java.time.TCKLocalDate', () => {
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_of_intsMonth_nullMonth', () => {
+        it('factory_of_intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDate.of(2007, null, 30)
-            }).to.throw(NullPointerException);
+            }).to.throw(DateTimeException); /* NullPointerException in JDK */
         });
 
         it('factory_of_intsMonth_yearTooLow', () => {
@@ -124,41 +161,41 @@ describe('tck.java.time.TCKLocalDate', () => {
         });
 
         //-----------------------------------------------------------------------
-        it.skip('factory_ofYearDay_ints_nonLeap', () => {
+        it('factory_ofYearDay_ints_nonLeap', () => {
             var date = LocalDate.of(2007, 1, 1);
-            for (i = 1; i < 365; i++) {
+            for (let i = 1; i < 365; i++) {
                 expect(LocalDate.ofYearDay(2007, i)).to.eql(date);
                 date = next(date);
             }
         });
 
-        it.skip('factory_ofYearDay_ints_leap', () => {
+        it('factory_ofYearDay_ints_leap', () => {
             var date = LocalDate.of(2008, 1, 1);
-            for (i = 1; i < 366; i++) {
+            for (let i = 1; i < 366; i++) {
                 expect(LocalDate.ofYearDay(2008, i)).to.eql(date);
                 date = next(date);
             }
         });
 
-        it.skip('factory_ofYearDay_ints_366nonLeap', () => {
+        it('factory_ofYearDay_ints_366nonLeap', () => {
             expect(() => {
                 LocalDate.ofYearDay(2007, 366)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_ofYearDay_ints_dayTooLow', () => {
+        it('factory_ofYearDay_ints_dayTooLow', () => {
             expect(() => {
                 LocalDate.ofYearDay(2007, 0)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_ofYearDay_ints_dayTooHigh', () => {
+        it('factory_ofYearDay_ints_dayTooHigh', () => {
             expect(() => {
                 LocalDate.ofYearDay(2007, 367)
             }).to.throw(DateTimeException);
         });
 
-        it.skip('factory_ofYearDay_ints_yearTooLow', () => {
+        it('factory_ofYearDay_ints_yearTooLow', () => {
             expect(() => {
                 LocalDate.ofYearDay(Number.MIN_SAFE_INTEGER, 1)
             }).to.throw(DateTimeException);
