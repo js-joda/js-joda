@@ -63,18 +63,21 @@ export class Month {
     }
 }
 
-export const JANUARY = new Month(1);
-export const FEBRUARY = new Month(2);
-export const MARCH = new Month(3);
-export const APRIL = new Month(4);
-export const MAY = new Month(5);
-export const JUNE = new Month(6);
-export const JULY = new Month(7);
-export const AUGUST = new Month(8);
-export const SEPTEMBER = new Month(9);
-export const OCTOBER = new Month(10);
-export const NOVEMBER = new Month(11);
-export const DECEMBER = new Month(12);
+Month.JANUARY = new Month(1);
+Month.FEBRUARY = new Month(2);
+Month.MARCH = new Month(3);
+Month.APRIL = new Month(4);
+Month.MAY = new Month(5);
+Month.JUNE = new Month(6);
+Month.JULY = new Month(7);
+Month.AUGUST = new Month(8);
+Month.SEPTEMBER = new Month(9);
+Month.OCTOBER = new Month(10);
+Month.NOVEMBER = new Month(11);
+Month.DECEMBER = new Month(12);
 
-var MONTHS = [JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER];
+var MONTHS = [
+    Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
+    Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
+];
 
