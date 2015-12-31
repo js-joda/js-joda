@@ -53,7 +53,7 @@ export class Month {
         var newMonthVal = ((this.value() + amount) % 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal == 0 ? 12 : newMonthVal;
-        return of(newMonthVal);
+``        return Month.of(newMonthVal);
     }
 
     /**
@@ -85,12 +85,12 @@ export class Month {
      */
     length(leapYear) {
         switch (this) {
-            case FEBRUARY:
+            case Month.FEBRUARY:
                 return (leapYear ? 29 : 28);
-            case APRIL:
-            case JUNE:
-            case SEPTEMBER:
-            case NOVEMBER:
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
                 return 30;
             default:
                 return 31;
@@ -109,29 +109,29 @@ export class Month {
     firstDayOfYear(leapYear) {
         var leap = leapYear ? 1 : 0;
         switch (this) {
-            case JANUARY:
+            case Month.JANUARY:
                 return 1;
-            case FEBRUARY:
+            case Month.FEBRUARY:
                 return 32;
-            case MARCH:
+            case Month.MARCH:
                 return 60 + leap;
-            case APRIL:
+            case Month.APRIL:
                 return 91 + leap;
-            case MAY:
+            case Month.MAY:
                 return 121 + leap;
-            case JUNE:
+            case Month.JUNE:
                 return 152 + leap;
-            case JULY:
+            case Month.JULY:
                 return 182 + leap;
-            case AUGUST:
+            case Month.AUGUST:
                 return 213 + leap;
-            case SEPTEMBER:
+            case Month.SEPTEMBER:
                 return 244 + leap;
-            case OCTOBER:
+            case Month.OCTOBER:
                 return 274 + leap;
-            case NOVEMBER:
+            case Month.NOVEMBER:
                 return 305 + leap;
-            case DECEMBER:
+            case Month.DECEMBER:
             default:
                 return 335 + leap;
         }
@@ -140,37 +140,14 @@ export class Month {
    /**
      *
      * @param {number} month
-     */
+     * @return {Month} not null
+     **/
     static of(month) {
-        return MONTHS[month-1];
+       if (month < 1 || month > 12) {
+           assert(false, "Invalid value for MonthOfYear: " + month, DateTimeException);
+       }
+       return MONTHS[month-1];
     }
-}
-
-export const JANUARY = new Month(1);
-export const FEBRUARY = new Month(2);
-export const MARCH = new Month(3);
-export const APRIL = new Month(4);
-export const MAY = new Month(5);
-export const JUNE = new Month(6);
-export const JULY = new Month(7);
-export const AUGUST = new Month(8);
-export const SEPTEMBER = new Month(9);
-export const OCTOBER = new Month(10);
-export const NOVEMBER = new Month(11);
-export const DECEMBER = new Month(12);
-
-var MONTHS = [JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER];
-
-/**
- * 
- * @param {number} month
- * @return {Month} not null
- */
-export function of(month) {
-    if (month < 1 || month > 12) {
-        assert(false, "Invalid value for MonthOfYear: " + month, DateTimeException);
-    }
-    return MONTHS[month-1];
 }
 
 Month.JANUARY = new Month(1);
