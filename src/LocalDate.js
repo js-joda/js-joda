@@ -222,6 +222,7 @@ export class LocalDate {
         var dayString, monthString, yearString;
 
         var yearValue = this.year();
+        var monthValue = this.monthValue();
         var dayValue = this.day();
 
         var absYear = Math.abs(yearValue);
@@ -240,7 +241,11 @@ export class LocalDate {
           }
         }
 
-        monthString = "-" + this.month().toString();
+        if (monthValue < 10) {
+          monthString = "-0" + monthValue;
+        } else {
+          monthString = "-" + monthValue;
+        }
 
         if (dayValue < 10) {
           dayString = "-0" + dayValue;
