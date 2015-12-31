@@ -8,6 +8,7 @@ import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
+import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 
 /**
@@ -389,5 +390,15 @@ export class LocalDate {
         }
     };
 
-
 }
+
+/**
+ * The minimum supported {@code LocalDate}
+ * This could be used by an application as a "far past" date.
+ */
+LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
+/**
+ * The maximum supported {@code LocalDate}
+ * This could be used by an application as a "far future" date.
+ */
+LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
