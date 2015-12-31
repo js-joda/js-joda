@@ -356,7 +356,6 @@ export class LocalDate {
         if (this._month == month) {
             return this;
         }
-        MONTH_OF_YEAR.checkValidValue(month);
         return LocalDate.of(this._year, month, this._day);
     }
 
