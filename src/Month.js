@@ -18,7 +18,6 @@ import {DateTimeException} from './errors'
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
  */
-
 export class Month {
     
     /**
