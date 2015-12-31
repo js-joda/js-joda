@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import {LocalDate} from '../../src/LocalDate';
-import * as Month from '../../src/Month';
-import {isCoverageTestRunner} from '../testUtils';
+import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
 
 describe('tck.java.time.TCKLocalDate', () => {

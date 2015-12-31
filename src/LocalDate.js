@@ -1,11 +1,14 @@
 import {assert} from './assert';
 
 import { MathUtil } from './MathUtil';
+import {DateTimeException} from './errors';
+
 import { IsoChronology } from './chrono/IsoChronology';
 import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
-import * as Month from './Month'
-import {DateTimeException} from './errors'
 
+import {Clock} from './Clock';
+import {Month} from './Month';
+import {LocalTime} from './LocalTime';
 
 /**
  * The number of days in a 400 year cycle.
@@ -44,7 +47,7 @@ export class LocalDate {
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
-        if (month instanceof Month.Month) {
+        if (month instanceof Month) {
             month = month.value();
         }
         LocalDate.validate(year, month, dayOfMonth);
@@ -168,6 +171,45 @@ export class LocalDate {
             }
         }
         return total - DAYS_0000_TO_1970;
+    }
+
+    static now(clock = Clock.systemDefaultZone()) {
+        var now = clock.instant();
+        var offset = clock.offset(now);
+        var epochSec = now.epochSecond() + offset.totalSeconds();
+        var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
+        return LocalDate.ofEpochDay(epochDay);
+    }
+
+    /**
+     * Checks if this date is equal to another date.
+     *
+     * Compares this LocalDate with another ensuring that the date is the same.
+     *
+     * Only objects of type LocalDate are compared, other types return false.
+     *
+     * @param otherDate  the object to check, null returns false
+     * @return true if this is equal to the other date
+     */
+    equals(otherDate) {
+        if (this === otherDate) {
+            return true;
+        }
+        if (otherDate instanceof LocalDate) {
+            return this._compareTo(otherDate) === 0;
+        }
+        return false;
+    }
+
+    _compareTo(otherDate){
+        var cmp = this.year() - otherDate.year();
+        if (cmp == 0) {
+            cmp = (this.monthValue() - otherDate.monthValue());
+            if (cmp == 0) {
+                cmp = (this.day() - otherDate.day());
+            }
+        }
+        return cmp;
     }
 
     /**
@@ -342,4 +384,6 @@ export class LocalDate {
             }
         }
     };
+
+
 }

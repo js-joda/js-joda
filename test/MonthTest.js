@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import * as Month from '../src/Month';
+import {Month} from '../src/Month';
 
 describe('Month', () => {
 
