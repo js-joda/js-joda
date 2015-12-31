@@ -137,28 +137,7 @@ export class Month {
         }
     }
 
-
-    /**
-     * Outputs the numerical representation of this month as a String, such as 12.
-     * The output will be in the ISO-8601 format MM.
-     *
-     * @return {string} a string representation of this month, not null
-     */
-    toString() {
-        var monthString;
-
-        var monthValue = this.value();
-
-        if (monthValue < 10) {
-          monthString = "0" + monthValue;
-        } else {
-          monthString = "" + monthValue;
-        }
-
-        return monthString;
-    }
-
-    /**
+   /**
      *
      * @param {number} month
      */
