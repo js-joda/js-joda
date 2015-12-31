@@ -5,15 +5,17 @@ import {DateTimeException} from '../../src/errors';
 
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
+    var MAX_VALID_EPOCHDAYS;
+    var MIN_VALID_EPOCHDAYS;
+    var MAX_DATE;
+    var MIN_DATE;
     before(() => {
         TEST_2007_07_15 = LocalDate.of(2007, 7, 15);
 
-        //LocalDate max = LocalDate.MAX;
-        //LocalDate min = LocalDate.MIN;
-        //MAX_VALID_EPOCHDAYS = max.toEpochDay();
-        //MIN_VALID_EPOCHDAYS = min.toEpochDay();
-        //MAX_DATE = max;
-        //MIN_DATE = min;
+        MAX_DATE = LocalDate.MAX;
+        MIN_DATE = LocalDate.MIN;
+        MAX_VALID_EPOCHDAYS = MAX_DATE.toEpochDay();
+        MIN_VALID_EPOCHDAYS = MIN_DATE.toEpochDay();
         //MAX_INSTANT = max.atStartOfDay(ZoneOffset.UTC).toInstant();
         //MIN_INSTANT = min.atStartOfDay(ZoneOffset.UTC).toInstant();    
     });
@@ -199,7 +201,30 @@ describe('tck.java.time.TCKLocalDate', () => {
                 LocalDate.ofYearDay(Number.MIN_SAFE_INTEGER, 1)
             }).to.throw(DateTimeException);
         });
-
     });
+
+    describe('ofEpochDay()', () => {
+        it('factory_ofEpochDay', () => {
+            let date_0000_01_01 = -678941 - 40587;
+            expect(LocalDate.ofEpochDay(0)).to.eql(LocalDate.of(1970, 1, 1));
+            expect(LocalDate.ofEpochDay(date_0000_01_01)).to.eql(LocalDate.of(0, 1, 1));
+            expect(LocalDate.ofEpochDay(date_0000_01_01 - 1)).to.eql(LocalDate.of(-1, 12, 31));
+            //expect(LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MAX_VALUE, 12, 31));
+            //expect(LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MIN_VALUE, 1, 1));
+        });
+
+        it('factory_ofEpochDay_aboveMax', () => {
+            expect(() => {
+                LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS + 1)
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofEpochDay_belowMin', () => {
+            expect(() => {
+                LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS - 1)
+            }).to.throw(DateTimeException);
+        });
+    });
+        
 });
 
