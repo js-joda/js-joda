@@ -53,7 +53,7 @@ export class Month {
         var newMonthVal = ((this.value() + amount) % 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal == 0 ? 12 : newMonthVal;
-``        return Month.of(newMonthVal);
+        return Month.of(newMonthVal);
     }
 
     /**
