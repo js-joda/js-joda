@@ -97,6 +97,52 @@ export class Month {
     }
 
     /**
+     * Gets the minimum length of this month in days.
+     * <p>
+     * February has a minimum length of 28 days.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @return {number} the minimum length of this month in days, from 28 to 31
+     */
+    minLength() {
+        switch (this) {
+            case Month.FEBRUARY:
+                return 28;
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
+     * Gets the maximum length of this month in days.
+     * <p>
+     * February has a maximum length of 29 days.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @return {number} the maximum length of this month in days, from 29 to 31
+     */
+    maxLength() {
+        switch (this) {
+            case Month.FEBRUARY:
+                return 29;
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
      * Gets the day-of-year corresponding to the first day of this month.
      * <p>
      * This returns the day-of-year that this month begins on, using the leap

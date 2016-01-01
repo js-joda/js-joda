@@ -150,5 +150,70 @@ describe('tck.java.time.TCKMonth', () => {
         });
     });
 
+    describe('length(boolean)', () => {
+        it('test_length_boolean_notLeapYear', () => {
+            expect(Month.JANUARY.length(false)).to.eql(31);
+            expect(Month.FEBRUARY.length(false)).to.eql(28);
+            expect(Month.MARCH.length(false)).to.eql(31);
+            expect(Month.APRIL.length(false)).to.eql(30);
+            expect(Month.MAY.length(false)).to.eql(31);
+            expect(Month.JUNE.length(false)).to.eql(30);
+            expect(Month.JULY.length(false)).to.eql(31);
+            expect(Month.AUGUST.length(false)).to.eql(31);
+            expect(Month.SEPTEMBER.length(false)).to.eql(30);
+            expect(Month.OCTOBER.length(false)).to.eql(31);
+            expect(Month.NOVEMBER.length(false)).to.eql(30);
+            expect(Month.DECEMBER.length(false)).to.eql(31);
+        });
+        it('test_length_boolean_leapYear', () => {
+            expect(Month.JANUARY.length(true), 31);
+            expect(Month.FEBRUARY.length(true), 29);
+            expect(Month.MARCH.length(true), 31);
+            expect(Month.APRIL.length(true), 30);
+            expect(Month.MAY.length(true), 31);
+            expect(Month.JUNE.length(true), 30);
+            expect(Month.JULY.length(true), 31);
+            expect(Month.AUGUST.length(true), 31);
+            expect(Month.SEPTEMBER.length(true), 30);
+            expect(Month.OCTOBER.length(true), 31);
+            expect(Month.NOVEMBER.length(true), 30);
+            expect(Month.DECEMBER.length(true), 31);
+        });
+    });
+
+    describe('minLength()', () => {
+        it('test_minLength', () => {
+            expect(Month.JANUARY.minLength()).to.eql(31);
+            expect(Month.FEBRUARY.minLength()).to.eql(28);
+            expect(Month.MARCH.minLength()).to.eql(31);
+            expect(Month.APRIL.minLength()).to.eql(30);
+            expect(Month.MAY.minLength()).to.eql(31);
+            expect(Month.JUNE.minLength()).to.eql(30);
+            expect(Month.JULY.minLength()).to.eql(31);
+            expect(Month.AUGUST.minLength()).to.eql(31);
+            expect(Month.SEPTEMBER.minLength()).to.eql(30);
+            expect(Month.OCTOBER.minLength()).to.eql(31);
+            expect(Month.NOVEMBER.minLength()).to.eql(30);
+            expect(Month.DECEMBER.minLength()).to.eql(31);
+        });
+    });
+
+    describe('maxLength()', () => {
+        it('test_maxLength', () => {
+            expect(Month.JANUARY.maxLength()).to.eql(31);
+            expect(Month.FEBRUARY.maxLength()).to.eql(29);
+            expect(Month.MARCH.maxLength()).to.eql(31);
+            expect(Month.APRIL.maxLength()).to.eql(30);
+            expect(Month.MAY.maxLength()).to.eql(31);
+            expect(Month.JUNE.maxLength()).to.eql(30);
+            expect(Month.JULY.maxLength()).to.eql(31);
+            expect(Month.AUGUST.maxLength()).to.eql(31);
+            expect(Month.SEPTEMBER.maxLength()).to.eql(30);
+            expect(Month.OCTOBER.maxLength()).to.eql(31);
+            expect(Month.NOVEMBER.maxLength()).to.eql(30);
+            expect(Month.DECEMBER.maxLength()).to.eql(31);
+        });
+    });
+
 });
 
