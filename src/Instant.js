@@ -1,5 +1,6 @@
 import {DateTimeException} from './errors'
 import {MathUtil} from './MathUtil'
+import {LocalTime} from './LocalTime'
 
 // TODO verify the arbitrary values for min/ max seconds, set to about 999_999 Years for now
 const MIN_SECONDS = -30818963289600;
@@ -10,7 +11,7 @@ export class Instant {
     constructor(seconds, nanoOfSecond){
         Instant.validate(seconds, nanoOfSecond);
         this._seconds = seconds;
-        this._nano = nanoOfSecond;
+        this._nanos = nanoOfSecond;
     }
 
     epochSecond(){
@@ -18,11 +19,30 @@ export class Instant {
     }
 
     epochMilli(){
-        return this._seconds * 1000 + this._nano / 1000000;
+        return this._seconds * 1000 + this._nanos / 1000000;
     }
 
     nano(){
-        return this._nano
+        return this._nanos
+    }
+
+    plusSeconds(secondsToAdd) {
+        return this._plus(secondsToAdd, 0);
+    }
+
+    minusSeconds(secondsToSubtract) {
+        return this.plusSeconds(secondsToSubtract * -1);
+    }
+
+    _plus(secondsToAdd, nanosToAdd) {
+        if ((secondsToAdd | nanosToAdd) == 0) {
+            return this;
+        }
+        var epochSec = this._seconds + secondsToAdd;
+        epochSec = epochSec + MathUtil.div(nanosToAdd, LocalTime.NANOS_PER_SECOND);
+        var nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
+        var nanoAdjustment = this._nanos + nanosToAdd;
+        return Instant.ofEpochSecond(epochSec, nanoAdjustment);
     }
 
     equals(otherInstant) {
