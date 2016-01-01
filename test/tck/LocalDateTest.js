@@ -231,14 +231,66 @@ describe('tck.java.time.TCKLocalDate', () => {
 
     describe('now()', () => {
         it('now_Clock_allSecsInDay_utc', () => {
+            var instant, clock, test;
             for (let i = 0; i < (2 * 24 * 60 * 60); i++) {
-                var instant = Instant.ofEpochSecond(i);
-                var clock = Clock.fixed(instant, ZoneOffset.UTC);
-                var test = LocalDate.now(clock);
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant, ZoneOffset.UTC);
+                test = LocalDate.now(clock);
                 expect(test.year()).to.equal(1970);
                 expect(test.month()).to.equal(Month.JANUARY);
-                expect(test.day()).to.equal(i < 24 * 60 * 60 ? 1 : 2);
+                expect(test.day()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
             }
+        });
+
+        it('now_Clock_allSecsInDay_offset', () => {
+            var instant, clock, test;
+            var zoneOffset = ZoneOffset.ofHours(1);
+            for (let i = 0; i < (2 * 24 * 60 * 60); i++) {
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant.minusSeconds(zoneOffset.totalSeconds()), zoneOffset);
+                test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1970);
+                expect(test.month()).to.equal(Month.JANUARY);
+                expect(test.day()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
+            }
+        });
+
+        it('now_Clock_allSecsInDay_beforeEpoch', () => {
+            var instant, clock, test;
+            for (let i = -1; i >= -(2 * 24 * 60 * 60); i--) {
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant, ZoneOffset.UTC);
+                test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1969);
+                expect(test.month()).to.equal(Month.DECEMBER);
+                expect(test.day()).to.equal((i >= -24 * 60 * 60) ? 31 : 30);
+            }
+        });
+
+        it.skip('now_Clock_maxYear', () => {
+            var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
+            var test = LocalDate.now(clock);
+            expect(test.equals(MAX_DATE)).to.equal(true);
+        });
+
+        it.skip('now_Clock_tooBig', () => {
+            var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
+            expect(() => {
+                LocalDate.now(clock);
+            }).to.throw(DateTimeException);
+        });
+
+        it.skip('now_Clock_minYear', () => {
+            var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
+            var test = LocalDate.now(clock);
+            expect(test.equals(MIN_DATE)).to.equal(true);
+        });
+
+        it.skip('now_Clock_tooLow', () => {
+            var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
+            expect(() => {
+                LocalDate.now(clock);
+            }).to.throw(DateTimeException);
         });
     });
 });
