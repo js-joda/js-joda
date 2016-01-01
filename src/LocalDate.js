@@ -8,6 +8,7 @@ import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
+import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 
 /**
@@ -293,6 +294,71 @@ export class LocalDate {
         year = yearEst;
         return new LocalDate(year, month, dom);
     };
+    
+    /**
+     * Obtains an instance of {@code LocalDate} from a year and day-of-year.
+     * <p>
+     * This returns a {@code LocalDate} with the specified year and day-of-year.
+     * The day-of-year must be valid for the year, otherwise an exception will be thrown.
+     *
+     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
+     * @return LocalDate the local date, not null
+     * @throws DateTimeException if the value of any field is out of range,
+     *  or if the day-of-year is invalid for the year
+     */
+    static ofYearDay(year, dayOfYear) {
+        YEAR.checkValidValue(year);
+        //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
+        var leap = IsoChronology.isLeapYear(year);
+        if (dayOfYear == 366 && leap == false) {
+            assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
+        }
+        var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
+        var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
+        if (dayOfYear > monthEnd) {
+            moy = moy.plus(1);
+        }
+        var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
+        return new LocalDate(year, moy.value(), dom);
+    }
+    
+    /**
+     * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+     * <p>
+     * If the resulting date is invalid, an exception is thrown.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+     * @return {LocalDate} based on this date with the requested day, not null
+     * @throws DateTimeException if the day-of-month value is invalid,
+     *  or if the day-of-month is invalid for the month-year
+     */
+    withDayOfMonth(dayOfMonth) {
+        if (this._day == dayOfMonth) {
+            return this;
+        }
+        return LocalDate.of(this._year, this._month, dayOfMonth);
+    }
+    
+    /**
+     * Returns a copy of this {@code LocalDate} with the month-of-year altered.
+     * <p>
+     * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+     * @return {@code LocalDate} based on this date with the requested month, not null
+     * @throws DateTimeException if the month-of-year value is invalid
+     */
+    withMonth(month) {
+        if (this._month == month) {
+            return this;
+        }
+        return LocalDate.of(this._year, month, this._day);
+    }
 
     /**
      * @private
@@ -324,5 +390,15 @@ export class LocalDate {
         }
     };
 
-
 }
+
+/**
+ * The minimum supported {@code LocalDate}
+ * This could be used by an application as a "far past" date.
+ */
+LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
+/**
+ * The maximum supported {@code LocalDate}
+ * This could be used by an application as a "far future" date.
+ */
+LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);

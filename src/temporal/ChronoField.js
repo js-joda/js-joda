@@ -1,4 +1,5 @@
 import { ValueRange } from './ValueRange';
+import {Year} from '../Year'
 
 class  ChronoField {
 
@@ -35,7 +36,7 @@ export const MONTH_OF_YEAR = new ChronoField(
 );
 
 export const YEAR = new ChronoField("" +
-    "Year", null, null, ValueRange.of(-999999, 999999), "year"
+    "Year", null, null, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), "year"
 );
 
 

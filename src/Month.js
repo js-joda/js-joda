@@ -1,3 +1,6 @@
+import {assert} from './assert'
+import {DateTimeException} from './errors'
+
 /**
  * A month-of-year, such as 'July'.
  * <p>
@@ -15,7 +18,6 @@
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
  */
-
 export class Month {
     
     /**
@@ -33,33 +35,117 @@ export class Month {
     value() {
         return this._value
     }
-
+    
     /**
-     * Outputs the numerical representation of this month as a String, such as 12.
-     * The output will be in the ISO-8601 format MM.
+     * Returns the month-of-year that is the specified number of months after this one.
+     * <p>
+     * The calculation rolls around the end of the year from December to January.
+     * The specified period may be negative.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
      *
-     * @return {string} a string representation of this month, not null
+     * @param {number} months  the months to add, positive or negative
+     * @return {Month} the resulting month, not null
      */
-    toString() {
-        var monthString;
-
-        var monthValue = this.value();
-
-        if (monthValue < 10) {
-          monthString = "0" + monthValue;
-        } else {
-          monthString = "" + monthValue;
-        }
-
-        return monthString;
+    plus(months) {
+        var amount = Math.floor((months % 12));
+        var newMonthVal = ((this.value() + amount) % 12);
+        /* December is 12, not 0, but 12 % 12 = 0 */
+        newMonthVal = newMonthVal == 0 ? 12 : newMonthVal;
+        return Month.of(newMonthVal);
     }
 
     /**
+     * Returns the month-of-year that is the specified number of months before this one.
+     * <p>
+     * The calculation rolls around the start of the year from January to December.
+     * The specified period may be negative.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} months  the months to subtract, positive or negative
+     * @return {Month} the resulting month, not null
+     */
+    minus(months) {
+        return this.plus(-(months % 12));
+    }
+
+    /**
+     * Gets the length of this month in days.
+     * <p>
+     * This takes a flag to determine whether to return the length for a leap year or not.
+     * <p>
+     * February has 28 days in a standard year and 29 days in a leap year.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @param {boolean} leapYear  true if the length is required for a leap year
+     * @return {number} the length of this month in days, from 28 to 31
+     */
+    length(leapYear) {
+        switch (this) {
+            case Month.FEBRUARY:
+                return (leapYear ? 29 : 28);
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
+     * Gets the day-of-year corresponding to the first day of this month.
+     * <p>
+     * This returns the day-of-year that this month begins on, using the leap
+     * year flag to determine the length of February.
+     *
+     * @param {boolean} leapYear  true if the length is required for a leap year
+     * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
+     */
+    firstDayOfYear(leapYear) {
+        var leap = leapYear ? 1 : 0;
+        switch (this) {
+            case Month.JANUARY:
+                return 1;
+            case Month.FEBRUARY:
+                return 32;
+            case Month.MARCH:
+                return 60 + leap;
+            case Month.APRIL:
+                return 91 + leap;
+            case Month.MAY:
+                return 121 + leap;
+            case Month.JUNE:
+                return 152 + leap;
+            case Month.JULY:
+                return 182 + leap;
+            case Month.AUGUST:
+                return 213 + leap;
+            case Month.SEPTEMBER:
+                return 244 + leap;
+            case Month.OCTOBER:
+                return 274 + leap;
+            case Month.NOVEMBER:
+                return 305 + leap;
+            case Month.DECEMBER:
+            default:
+                return 335 + leap;
+        }
+    }
+
+   /**
      *
      * @param {number} month
-     */
+     * @return {Month} not null
+     **/
     static of(month) {
-        return MONTHS[month-1];
+       if (month < 1 || month > 12) {
+           assert(false, "Invalid value for MonthOfYear: " + month, DateTimeException);
+       }
+       return MONTHS[month-1];
     }
 }
 
