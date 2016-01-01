@@ -48,7 +48,7 @@ export class Month {
      * @return {Month} the resulting month, not null
      */
     plus(months) {
-        var amount = Math.floor((months % 12));
+        var amount = Math.floor((months % 12)) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
         var newMonthVal = ((this.value() + amount) % 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal == 0 ? 12 : newMonthVal;
