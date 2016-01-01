@@ -91,9 +91,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _temporalChronoField = __webpack_require__(7);
 	
-	var _Clock = __webpack_require__(9);
+	var _Clock = __webpack_require__(10);
 	
-	var _Month = __webpack_require__(13);
+	var _Month = __webpack_require__(14);
+	
+	var _Year = __webpack_require__(9);
 	
 	var _LocalTime = __webpack_require__(12);
 	
@@ -144,6 +146,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._month = month;
 	        this._day = dayOfMonth;
 	    }
+	
+	    /**
+	     * The minimum supported {@code LocalDate}
+	     * This could be used by an application as a "far past" date.
+	     */
 	
 	    /**
 	     * Obtains an instance of {@code LocalDate} from a year, month and day.
@@ -298,9 +305,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: '_compareTo',
 	        value: function _compareTo(otherDate) {
 	            var cmp = this.year() - otherDate.year();
-	            if (cmp == 0) {
+	            if (cmp === 0) {
 	                cmp = this.monthValue() - otherDate.monthValue();
-	                if (cmp == 0) {
+	                if (cmp === 0) {
 	                    cmp = this.day() - otherDate.day();
 	                }
 	            }
@@ -365,6 +372,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @throws AssertionError if the epoch days exceeds the supported date range
 	         */
 	
+	    }, {
+	        key: 'withDayOfMonth',
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+	         * <p>
+	         * If the resulting date is invalid, an exception is thrown.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+	         * @return {LocalDate} based on this date with the requested day, not null
+	         * @throws DateTimeException if the day-of-month value is invalid,
+	         *  or if the day-of-month is invalid for the month-year
+	         */
+	        value: function withDayOfMonth(dayOfMonth) {
+	            if (this._day === dayOfMonth) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, this._month, dayOfMonth);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the month-of-year altered.
+	         * <p>
+	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+	         * @return {@code LocalDate} based on this date with the requested month, not null
+	         * @throws DateTimeException if the month-of-year value is invalid
+	         */
+	    }, {
+	        key: 'withMonth',
+	        value: function withMonth(month) {
+	            if (this._month === month) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, month, this._day);
+	        }
+	
+	        /**
+	         * @private
+	         */
 	    }], [{
 	        key: 'of',
 	        value: function of(year, month, dayOfMonth) {
@@ -409,11 +461,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new LocalDate(year, month, dom);
 	        }
 	    }, {
-	        key: 'validate',
+	        key: 'ofYearDay',
 	
 	        /**
-	         * @private
+	         * Obtains an instance of {@code LocalDate} from a year and day-of-year.
+	         * <p>
+	         * This returns a {@code LocalDate} with the specified year and day-of-year.
+	         * The day-of-year must be valid for the year, otherwise an exception will be thrown.
+	         *
+	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+	         * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
+	         * @return LocalDate the local date, not null
+	         * @throws DateTimeException if the value of any field is out of range,
+	         *  or if the day-of-year is invalid for the year
 	         */
+	        value: function ofYearDay(year, dayOfYear) {
+	            _temporalChronoField.YEAR.checkValidValue(year);
+	            //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
+	            var leap = _chronoIsoChronology.IsoChronology.isLeapYear(year);
+	            if (dayOfYear === 366 && leap === false) {
+	                (0, _assert.assert)(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", _errors.DateTimeException);
+	            }
+	            var moy = _Month.Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
+	            var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
+	            if (dayOfYear > monthEnd) {
+	                moy = moy.plus(1);
+	            }
+	            var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
+	            return new LocalDate(year, moy.value(), dom);
+	        }
+	    }, {
+	        key: 'validate',
 	        value: function validate(year, month, dayOfMonth) {
 	            var dom;
 	            _temporalChronoField.YEAR.checkValidValue(year);
@@ -444,8 +522,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    return LocalDate;
 	})();
-
+	
 	exports.LocalDate = LocalDate;
+	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
+	/**
+	 * The maximum supported {@code LocalDate}
+	 * This could be used by an application as a "far future" date.
+	 */
+	LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
 
 /***/ },
 /* 2 */
@@ -532,7 +616,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	
-	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
@@ -669,17 +753,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
 	var _ValueRange = __webpack_require__(8);
+	
+	var _Year = __webpack_require__(9);
 	
 	var ChronoField = (function () {
 	    function ChronoField(name, baseUnit, rangeUnit, range, displayNameKey) {
@@ -703,7 +789,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    _createClass(ChronoField, [{
-	        key: "checkValidValue",
+	        key: 'checkValidValue',
 	        value: function checkValidValue(value) {
 	            return this.range().checkValidValue(value, this.name());
 	        }
@@ -718,7 +804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var MONTH_OF_YEAR = new ChronoField("MonthOfYear", null, null, _ValueRange.ValueRange.of(1, 12), "month");
 	
 	exports.MONTH_OF_YEAR = MONTH_OF_YEAR;
-	var YEAR = new ChronoField("" + "Year", null, null, _ValueRange.ValueRange.of(-999999, 999999), "year");
+	var YEAR = new ChronoField("" + "Year", null, null, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), "year");
 	exports.YEAR = YEAR;
 
 /***/ },
@@ -867,6 +953,59 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 9 */
+/***/ function(module, exports) {
+
+	/**
+	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
+	 * <p>
+	 * {@code Year} is an immutable date-time object that represents a year.
+	 * Any field that can be derived from a year can be obtained.
+	 * <p>
+	 * <b>Note that years in the ISO chronology only align with years in the
+	 * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
+	 * modern Gregorian/ISO rules until 1920.
+	 * As such, historical years must be treated with caution.</b>
+	 * <p>
+	 * This class does not store or represent a month, day, time or time-zone.
+	 * For example, the value "2007" can be stored in a {@code Year}.
+	 * <p>
+	 * Years represented by this class follow the ISO-8601 standard and use
+	 * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
+	 * <p>
+	 * The ISO-8601 calendar system is the modern civil calendar system used today
+	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	 * system, in which today's rules for leap years are applied for all time.
+	 * For most applications written today, the ISO-8601 rules are entirely suitable.
+	 * However, any application that makes use of historical dates, and requires them
+	 * to be accurate will find the ISO-8601 approach unsuitable.
+	 *
+	 */
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Year = function Year() {
+	  _classCallCheck(this, Year);
+	}
+	
+	/**
+	 * The minimum supported year
+	 */
+	;
+	
+	exports.Year = Year;
+	Year.MIN_VALUE = -999999;
+	/**
+	 * The maximum supported year
+	 */
+	Year.MAX_VALUE = 999999;
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -875,7 +1014,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
@@ -883,9 +1022,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _Instant = __webpack_require__(10);
+	var _Instant = __webpack_require__(11);
 	
-	var _ZoneOffset = __webpack_require__(11);
+	var _ZoneOffset = __webpack_require__(13);
 	
 	/**
 	 * Clock implementation differs from the jdk.
@@ -906,7 +1045,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _classCallCheck(this, Clock);
 	    }
 	
-	    _createClass(Clock, null, [{
+	    _createClass(Clock, [{
+	        key: 'millis',
+	        value: function millis() {
+	            throw new TypeError('millis() function is not implemented');
+	        }
+	    }, {
+	        key: 'instant',
+	        value: function instant() {
+	            throw new TypeError('instant() function is not implemented');
+	        }
+	
+	        /**
+	         * in opposite to the jdk implementation the Clock itself returns the offset, that is because
+	         * javascript provides only the UTC and the "local" (system default time zone.
+	         * it is not possible the get the system default ZoneId without guessing. If we would define ZoneRules, we had to
+	         * define something like a virtual, not standard ZoneId like "SystemDefault".
+	         * Until we to not have a tzdb, we leave this question open
+	         */
+	    }, {
+	        key: 'offset',
+	        value: function offset() {
+	            throw new TypeError('offset() function is not implemented');
+	        }
+	    }], [{
 	        key: 'systemUTC',
 	        value: function systemUTC() {
 	            return new SystemUTCClock();
@@ -915,6 +1077,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'systemDefaultZone',
 	        value: function systemDefaultZone() {
 	            return new SystemDefaultClock();
+	        }
+	    }, {
+	        key: 'fixed',
+	        value: function fixed(fixedInstant, zoneOffset) {
+	            return new FixedClock(fixedInstant, zoneOffset);
 	        }
 	    }]);
 	
@@ -971,8 +1138,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SystemUTCClock;
 	})(SystemClock);
 	
-	exports.SystemUTCClock = SystemUTCClock;
-	
 	var SystemDefaultClock = (function (_SystemClock2) {
 	    _inherits(SystemDefaultClock, _SystemClock2);
 	
@@ -998,10 +1163,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SystemDefaultClock;
 	})(SystemClock);
 	
-	exports.SystemDefaultClock = SystemDefaultClock;
+	var FixedClock = (function (_Clock2) {
+	    _inherits(FixedClock, _Clock2);
+	
+	    function FixedClock(fixedInstant, zoneOffset) {
+	        _classCallCheck(this, FixedClock);
+	
+	        _get(Object.getPrototypeOf(FixedClock.prototype), 'constructor', this).call(this);
+	        this._instant = fixedInstant;
+	        this._zoneOffset = zoneOffset;
+	    }
+	
+	    _createClass(FixedClock, [{
+	        key: 'instant',
+	        value: function instant() {
+	            return this._instant;
+	        }
+	    }, {
+	        key: 'offset',
+	        value: function offset() {
+	            return this._zoneOffset;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return "FixedClock[]";
+	        }
+	    }]);
+	
+	    return FixedClock;
+	})(Clock);
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1018,6 +1212,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(3);
 	
+	var _LocalTime = __webpack_require__(12);
+	
 	// TODO verify the arbitrary values for min/ max seconds, set to about 999_999 Years for now
 	var MIN_SECONDS = -30818963289600;
 	var MAX_SECONDS = 30697775193600;
@@ -1028,7 +1224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        Instant.validate(seconds, nanoOfSecond);
 	        this._seconds = seconds;
-	        this._nano = nanoOfSecond;
+	        this._nanos = nanoOfSecond;
 	    }
 	
 	    _createClass(Instant, [{
@@ -1039,12 +1235,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'epochMilli',
 	        value: function epochMilli() {
-	            return this._seconds * 1000 + this._nano / 1000000;
+	            return this._seconds * 1000 + this._nanos / 1000000;
 	        }
 	    }, {
 	        key: 'nano',
 	        value: function nano() {
-	            return this._nano;
+	            return this._nanos;
+	        }
+	    }, {
+	        key: 'plusSeconds',
+	        value: function plusSeconds(secondsToAdd) {
+	            return this._plus(secondsToAdd, 0);
+	        }
+	    }, {
+	        key: 'minusSeconds',
+	        value: function minusSeconds(secondsToSubtract) {
+	            return this.plusSeconds(secondsToSubtract * -1);
+	        }
+	    }, {
+	        key: '_plus',
+	        value: function _plus(secondsToAdd, nanosToAdd) {
+	            if ((secondsToAdd | nanosToAdd) == 0) {
+	                return this;
+	            }
+	            var epochSec = this._seconds + secondsToAdd;
+	            epochSec = epochSec + _MathUtil.MathUtil.div(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            var nanosToAdd = nanosToAdd % _LocalTime.LocalTime.NANOS_PER_SECOND;
+	            var nanoAdjustment = this._nanos + nanosToAdd;
+	            return Instant.ofEpochSecond(epochSec, nanoAdjustment);
 	        }
 	    }, {
 	        key: 'equals',
@@ -1098,7 +1316,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
 
 /***/ },
-/* 11 */
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var LocalTime = function LocalTime() {
+	  _classCallCheck(this, LocalTime);
+	};
+	
+	exports.LocalTime = LocalTime;
+	
+	LocalTime.HOURS_PER_DAY = 24;
+	LocalTime.MINUTES_PER_HOUR = 60;
+	LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+	
+	LocalTime.SECONDS_PER_MINUTE = 60;
+	LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+	LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+	
+	LocalTime.NANOS_PER_SECOND = 1000000000;
+
+/***/ },
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1213,34 +1459,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
 
 /***/ },
-/* 12 */
-/***/ function(module, exports) {
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
 	});
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
-	var LocalTime = function LocalTime() {
-	  _classCallCheck(this, LocalTime);
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	exports.LocalTime = LocalTime;
+	var _assert = __webpack_require__(2);
 	
-	LocalTime.HOURS_PER_DAY = 60;
-	LocalTime.MINUTES_PER_HOUR = 60;
-	LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
-	LocalTime.SECONDS_PER_MINUTE = 60;
-	LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-	LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
+	var _errors = __webpack_require__(4);
+	
 	/**
 	 * A month-of-year, such as 'July'.
 	 * <p>
@@ -1258,16 +1493,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * concept defined exactly equivalent to the ISO-8601 calendar system.
 	 *
 	 */
-	
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var Month = (function () {
 	
@@ -1288,40 +1513,130 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	
 	    _createClass(Month, [{
-	        key: "value",
+	        key: 'value',
 	        value: function value() {
 	            return this._value;
 	        }
 	
 	        /**
-	         * Outputs the numerical representation of this month as a String, such as 12.
-	         * The output will be in the ISO-8601 format MM.
+	         * Returns the month-of-year that is the specified number of months after this one.
+	         * <p>
+	         * The calculation rolls around the end of the year from December to January.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @return {string} a string representation of this month, not null
+	         * @param {number} months  the months to add, positive or negative
+	         * @return {Month} the resulting month, not null
 	         */
 	    }, {
-	        key: "toString",
-	        value: function toString() {
-	            var monthString;
-	
-	            var monthValue = this.value();
-	
-	            if (monthValue < 10) {
-	                monthString = "0" + monthValue;
-	            } else {
-	                monthString = "" + monthValue;
-	            }
-	
-	            return monthString;
+	        key: 'plus',
+	        value: function plus(months) {
+	            var amount = Math.floor(months % 12);
+	            var newMonthVal = (this.value() + amount) % 12;
+	            /* December is 12, not 0, but 12 % 12 = 0 */
+	            newMonthVal = newMonthVal == 0 ? 12 : newMonthVal;
+	            return Month.of(newMonthVal);
 	        }
 	
 	        /**
+	         * Returns the month-of-year that is the specified number of months before this one.
+	         * <p>
+	         * The calculation rolls around the start of the year from January to December.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @param {number} month
+	         * @param {number} months  the months to subtract, positive or negative
+	         * @return {Month} the resulting month, not null
 	         */
+	    }, {
+	        key: 'minus',
+	        value: function minus(months) {
+	            return this.plus(-(months % 12));
+	        }
+	
+	        /**
+	         * Gets the length of this month in days.
+	         * <p>
+	         * This takes a flag to determine whether to return the length for a leap year or not.
+	         * <p>
+	         * February has 28 days in a standard year and 29 days in a leap year.
+	         * April, June, September and November have 30 days.
+	         * All other months have 31 days.
+	         *
+	         * @param {boolean} leapYear  true if the length is required for a leap year
+	         * @return {number} the length of this month in days, from 28 to 31
+	         */
+	    }, {
+	        key: 'length',
+	        value: function length(leapYear) {
+	            switch (this) {
+	                case Month.FEBRUARY:
+	                    return leapYear ? 29 : 28;
+	                case Month.APRIL:
+	                case Month.JUNE:
+	                case Month.SEPTEMBER:
+	                case Month.NOVEMBER:
+	                    return 30;
+	                default:
+	                    return 31;
+	            }
+	        }
+	
+	        /**
+	         * Gets the day-of-year corresponding to the first day of this month.
+	         * <p>
+	         * This returns the day-of-year that this month begins on, using the leap
+	         * year flag to determine the length of February.
+	         *
+	         * @param {boolean} leapYear  true if the length is required for a leap year
+	         * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
+	         */
+	    }, {
+	        key: 'firstDayOfYear',
+	        value: function firstDayOfYear(leapYear) {
+	            var leap = leapYear ? 1 : 0;
+	            switch (this) {
+	                case Month.JANUARY:
+	                    return 1;
+	                case Month.FEBRUARY:
+	                    return 32;
+	                case Month.MARCH:
+	                    return 60 + leap;
+	                case Month.APRIL:
+	                    return 91 + leap;
+	                case Month.MAY:
+	                    return 121 + leap;
+	                case Month.JUNE:
+	                    return 152 + leap;
+	                case Month.JULY:
+	                    return 182 + leap;
+	                case Month.AUGUST:
+	                    return 213 + leap;
+	                case Month.SEPTEMBER:
+	                    return 244 + leap;
+	                case Month.OCTOBER:
+	                    return 274 + leap;
+	                case Month.NOVEMBER:
+	                    return 305 + leap;
+	                case Month.DECEMBER:
+	                default:
+	                    return 335 + leap;
+	            }
+	        }
+	
+	        /**
+	          *
+	          * @param {number} month
+	          * @return {Month} not null
+	          **/
 	    }], [{
-	        key: "of",
+	        key: 'of',
 	        value: function of(month) {
+	            if (month < 1 || month > 12) {
+	                (0, _assert.assert)(false, "Invalid value for MonthOfYear: " + month, _errors.DateTimeException);
+	            }
 	            return MONTHS[month - 1];
 	        }
 	    }]);
