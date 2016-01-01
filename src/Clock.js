@@ -23,6 +23,29 @@ export class Clock {
     static systemDefaultZone() {
         return new SystemDefaultClock();
     }
+
+    static fixed(fixedInstant, zoneOffset) {
+        return new FixedClock(fixedInstant, zoneOffset);
+    }
+
+    millis(){
+        throw new TypeError('millis() function is not implemented')
+    }
+
+    instant(){
+        throw new TypeError('instant() function is not implemented')
+    }
+
+    /**
+     * in opposite to the jdk implementation the Clock itself returns the offset, that is because
+     * javascript provides only the UTC and the "local" (system default time zone.
+     * it is not possible the get the system default ZoneId without guessing. If we would define ZoneRules, we had to
+     * define something like a virtual, not standard ZoneId like "SystemDefault".
+     * Until we to not have a tzdb, we leave this question open
+     */
+    offset(){
+        throw new TypeError('offset() function is not implemented')
+    }
 }
 
 class SystemClock extends Clock {
@@ -39,13 +62,13 @@ class SystemClock extends Clock {
     }
 }
 
-export class SystemUTCClock extends SystemClock{
+class SystemUTCClock extends SystemClock{
     toString(){
         return "SystemClock[UTC]";
     }
 }
 
-export class SystemDefaultClock extends SystemClock{
+class SystemDefaultClock extends SystemClock{
     offset(instant) {
         var offsetInMinutes = new Date().getTimezoneOffset(instant.epochMilli());
         return ZoneOffset.ofTotalMinutes(offsetInMinutes);
@@ -55,3 +78,24 @@ export class SystemDefaultClock extends SystemClock{
         return "SystemClock[default]";
     }
 }
+
+class FixedClock extends Clock{
+    constructor(fixedInstant, zoneOffset) {
+        super();
+        this._instant = fixedInstant;
+        this._zoneOffset = zoneOffset;
+    }
+
+    instant() {
+        return this._instant;
+    }
+
+    offset() {
+        return this._zoneOffset;
+    }
+
+    toString(){
+        return "FixedClock[]";
+    }
+}
+
