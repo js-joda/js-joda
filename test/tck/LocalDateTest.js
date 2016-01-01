@@ -1,7 +1,10 @@
 import {expect} from 'chai';
+import {Clock} from '../../src/Clock';
+import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
+import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
@@ -225,6 +228,18 @@ describe('tck.java.time.TCKLocalDate', () => {
             }).to.throw(DateTimeException);
         });
     });
-        
+
+    describe('now()', () => {
+        it('now_Clock_allSecsInDay_utc', () => {
+            for (let i = 0; i < (2 * 24 * 60 * 60); i++) {
+                var instant = Instant.ofEpochSecond(i);
+                var clock = Clock.fixed(instant, ZoneOffset.UTC);
+                var test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1970);
+                expect(test.month()).to.equal(Month.JANUARY);
+                expect(test.day()).to.equal(i < 24 * 60 * 60 ? 1 : 2);
+            }
+        });
+    });
 });
 
