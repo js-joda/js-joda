@@ -263,6 +263,23 @@ describe('tck.java.time.TCKMonth', () => {
             expect(Month.DECEMBER.firstMonthOfQuarter()).to.eql(Month.OCTOBER);
         });
     });
+    
+    describe('toString()', () => {
+        it('test_toString', () => {
+            expect(Month.JANUARY.toString()).to.eql("JANUARY");
+            expect(Month.FEBRUARY.toString()).to.eql("FEBRUARY");
+            expect(Month.MARCH.toString()).to.eql("MARCH");
+            expect(Month.APRIL.toString()).to.eql("APRIL");
+            expect(Month.MAY.toString()).to.eql("MAY");
+            expect(Month.JUNE.toString()).to.eql("JUNE");
+            expect(Month.JULY.toString()).to.eql("JULY");
+            expect(Month.AUGUST.toString()).to.eql("AUGUST");
+            expect(Month.SEPTEMBER.toString()).to.eql("SEPTEMBER");
+            expect(Month.OCTOBER.toString()).to.eql("OCTOBER");
+            expect(Month.NOVEMBER.toString()).to.eql("NOVEMBER");
+            expect(Month.DECEMBER.toString()).to.eql("DECEMBER");
+        });
+    });
 
 });
 

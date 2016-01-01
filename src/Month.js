@@ -217,6 +217,43 @@ export class Month {
     }
 
     /**
+     * toString implementation... in JDK this is inherited from the Enum class
+     * 
+     * @returns {String}
+     */
+    toString(leapYear) {
+        var leap = leapYear ? 1 : 0;
+        switch (this) {
+            case Month.JANUARY:
+                return 'JANUARY';
+            case Month.FEBRUARY:
+                return 'FEBRUARY';
+            case Month.MARCH:
+                return 'MARCH';
+            case Month.APRIL:
+                return 'APRIL';
+            case Month.MAY:
+                return 'MAY';
+            case Month.JUNE:
+                return 'JUNE';
+            case Month.JULY:
+                return 'JULY';
+            case Month.AUGUST:
+                return 'AUGUST';
+            case Month.SEPTEMBER:
+                return 'SEPTEMBER';
+            case Month.OCTOBER:
+                return 'OCTOBER';
+            case Month.NOVEMBER:
+                return 'NOVEMBER';
+            case Month.DECEMBER:
+                return 'DECEMBER';
+            default:
+                return 'unknown Month, value: ' + this.value();
+        }
+    }
+
+    /**
      *
      * @param {number} month
      * @return {Month} not null
