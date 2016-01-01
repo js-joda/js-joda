@@ -182,7 +182,41 @@ export class Month {
         }
     }
 
-   /**
+    /**
+     * Gets the month corresponding to the first month of this quarter.
+     * <p>
+     * The year can be divided into four quarters.
+     * This method returns the first month of the quarter for the base month.
+     * January, February and March return January.
+     * April, May and June return April.
+     * July, August and September return July.
+     * October, November and December return October.
+     *
+     * @return {Month} the first month of the quarter corresponding to this month, not null
+     */
+    firstMonthOfQuarter() {
+        switch (this) {
+            case Month.JANUARY:
+            case Month.FEBRUARY:
+            case Month.MARCH:
+                return Month.JANUARY;
+            case Month.APRIL:
+            case Month.MAY:
+            case Month.JUNE:
+                return Month.APRIL;
+            case Month.JULY:
+            case Month.AUGUST:
+            case Month.SEPTEMBER:
+                return Month.JULY;
+            case Month.OCTOBER:
+            case Month.NOVEMBER:
+            case Month.DECEMBER:
+            default:
+                return Month.OCTOBER;
+        }
+    }
+
+    /**
      *
      * @param {number} month
      * @return {Month} not null

@@ -216,5 +216,53 @@ describe('tck.java.time.TCKMonth', () => {
         });
     });
 
+    describe('firstDayOfYear(boolean)', () => {
+        it('test_firstDayOfYear_notLeapYear', () => {
+            expect(Month.JANUARY.firstDayOfYear(false)).to.eql(1);
+            expect(Month.FEBRUARY.firstDayOfYear(false)).to.eql(1 + 31);
+            expect(Month.MARCH.firstDayOfYear(false)).to.eql(1 + 31 + 28);
+            expect(Month.APRIL.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31);
+            expect(Month.MAY.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30);
+            expect(Month.JUNE.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31);
+            expect(Month.JULY.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30);
+            expect(Month.AUGUST.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30 + 31);
+            expect(Month.SEPTEMBER.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31);
+            expect(Month.OCTOBER.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30);
+            expect(Month.NOVEMBER.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
+            expect(Month.DECEMBER.firstDayOfYear(false)).to.eql(1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30);
+        });
+        it('test_firstDayOfYear_leapYear', () => {
+            expect(Month.JANUARY.firstDayOfYear(true)).to.eql(1);
+            expect(Month.FEBRUARY.firstDayOfYear(true)).to.eql(1 + 31);
+            expect(Month.MARCH.firstDayOfYear(true)).to.eql(1 + 31 + 29);
+            expect(Month.APRIL.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31);
+            expect(Month.MAY.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30);
+            expect(Month.JUNE.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31);
+            expect(Month.JULY.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30);
+            expect(Month.AUGUST.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30 + 31);
+            expect(Month.SEPTEMBER.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31);
+            expect(Month.OCTOBER.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30);
+            expect(Month.NOVEMBER.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
+            expect(Month.DECEMBER.firstDayOfYear(true)).to.eql(1 + 31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30);
+        });
+    });
+
+    describe('firstDayOfYear(boolean)', () => {
+        it('test_firstMonthOfQuarter', () => {
+            expect(Month.JANUARY.firstMonthOfQuarter()).to.eql(Month.JANUARY);
+            expect(Month.FEBRUARY.firstMonthOfQuarter()).to.eql(Month.JANUARY);
+            expect(Month.MARCH.firstMonthOfQuarter()).to.eql(Month.JANUARY);
+            expect(Month.APRIL.firstMonthOfQuarter()).to.eql(Month.APRIL);
+            expect(Month.MAY.firstMonthOfQuarter()).to.eql(Month.APRIL);
+            expect(Month.JUNE.firstMonthOfQuarter()).to.eql(Month.APRIL);
+            expect(Month.JULY.firstMonthOfQuarter()).to.eql(Month.JULY);
+            expect(Month.AUGUST.firstMonthOfQuarter()).to.eql(Month.JULY);
+            expect(Month.SEPTEMBER.firstMonthOfQuarter()).to.eql(Month.JULY);
+            expect(Month.OCTOBER.firstMonthOfQuarter()).to.eql(Month.OCTOBER);
+            expect(Month.NOVEMBER.firstMonthOfQuarter()).to.eql(Month.OCTOBER);
+            expect(Month.DECEMBER.firstMonthOfQuarter()).to.eql(Month.OCTOBER);
+        });
+    });
+
 });
 
