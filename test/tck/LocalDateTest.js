@@ -35,7 +35,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     function check (test, y, m, d) {
         expect(test.year()).to.equal(y);
         expect(test.month().value()).to.equal(m);
-        expect(test.day()).to.equal(d);
+        expect(test.dayOfMonth()).to.equal(d);
         expect(test).to.equal(test);
         expect(LocalDate.of(y, m, d)).to.eql(test);
     }
@@ -53,7 +53,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     //-----------------------------------------------------------------------
     // Since plusDays/minusDays actually depends on MJDays, it cannot be used for testing
     function next(date) {
-        var newDayOfMonth = date.day() + 1;
+        var newDayOfMonth = date.dayOfMonth() + 1;
         if (newDayOfMonth <= date.month().length(isIsoLeap(date.year()))) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -65,7 +65,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     }
 
     function previous(date) {
-        var newDayOfMonth = date.day() - 1;
+        var newDayOfMonth = date.dayOfMonth() - 1;
         if (newDayOfMonth > 0) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -243,7 +243,7 @@ describe('tck.java.time.TCKLocalDate', () => {
                 test = LocalDate.now(clock);
                 expect(test.year()).to.equal(1970);
                 expect(test.month()).to.equal(Month.JANUARY);
-                expect(test.day()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
+                expect(test.dayOfMonth()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
             }
         });
 
@@ -259,7 +259,7 @@ describe('tck.java.time.TCKLocalDate', () => {
                 test = LocalDate.now(clock);
                 expect(test.year()).to.equal(1970);
                 expect(test.month()).to.equal(Month.JANUARY);
-                expect(test.day()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
+                expect(test.dayOfMonth()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
             }
         });
 
@@ -274,7 +274,7 @@ describe('tck.java.time.TCKLocalDate', () => {
                 test = LocalDate.now(clock);
                 expect(test.year()).to.equal(1969);
                 expect(test.month()).to.equal(Month.DECEMBER);
-                expect(test.day()).to.equal((i >= -24 * 60 * 60) ? 31 : 30);
+                expect(test.dayOfMonth()).to.equal((i >= -24 * 60 * 60) ? 31 : 30);
             }
         });
 

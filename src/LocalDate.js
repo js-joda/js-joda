@@ -98,8 +98,7 @@ export class LocalDate {
      *
      * @return {number} gets the day of month
      */
-    // TODO: should be dayOfMonth() ?
-    day() {
+    dayOfMonth() {
         return this._day
     }
 
@@ -164,7 +163,7 @@ export class LocalDate {
             total -= MathUtil.div(y, -4) - MathUtil.div(y, -100) + MathUtil.div(y, -400);
         }
         total += MathUtil.div(367 * m - 362, 12);
-        total += this.day() - 1;
+        total += this.dayOfMonth() - 1;
         if (m > 2) {
             total--;
             if (!IsoChronology.isLeapYear(y)) {
@@ -207,7 +206,7 @@ export class LocalDate {
         if (cmp === 0) {
             cmp = (this.monthValue() - otherDate.monthValue());
             if (cmp === 0) {
-                cmp = (this.day() - otherDate.day());
+                cmp = (this.dayOfMonth() - otherDate.dayOfMonth());
             }
         }
         return cmp;
@@ -224,7 +223,7 @@ export class LocalDate {
 
         var yearValue = this.year();
         var monthValue = this.monthValue();
-        var dayValue = this.day();
+        var dayValue = this.dayOfMonth();
 
         var absYear = Math.abs(yearValue);
 
