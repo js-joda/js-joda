@@ -6,6 +6,8 @@ import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {isCoverageTestRunner} from '../testUtils';
+
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
     var MAX_VALID_EPOCHDAYS;
@@ -233,6 +235,9 @@ describe('tck.java.time.TCKLocalDate', () => {
         it('now_Clock_allSecsInDay_utc', () => {
             var instant, clock, test;
             for (let i = 0; i < (2 * 24 * 60 * 60); i++) {
+                if(isCoverageTestRunner() && i%100 !== 0){
+                    continue
+                }
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant, ZoneOffset.UTC);
                 test = LocalDate.now(clock);
@@ -246,6 +251,9 @@ describe('tck.java.time.TCKLocalDate', () => {
             var instant, clock, test;
             var zoneOffset = ZoneOffset.ofHours(1);
             for (let i = 0; i < (2 * 24 * 60 * 60); i++) {
+                if(isCoverageTestRunner() && i%100 !== 0){
+                    continue
+                }
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant.minusSeconds(zoneOffset.totalSeconds()), zoneOffset);
                 test = LocalDate.now(clock);
@@ -258,6 +266,9 @@ describe('tck.java.time.TCKLocalDate', () => {
         it('now_Clock_allSecsInDay_beforeEpoch', () => {
             var instant, clock, test;
             for (let i = -1; i >= -(2 * 24 * 60 * 60); i--) {
+                if(isCoverageTestRunner() && i%100 !== 0){
+                    continue
+                }
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant, ZoneOffset.UTC);
                 test = LocalDate.now(clock);
