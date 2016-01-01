@@ -1,5 +1,4 @@
 import {expect} from 'chai';
-import 'babel-polyfill'; // required for the ES6 'for..of' loops in some browsers... they make the tests sooo much nicer :/
 
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
@@ -105,8 +104,8 @@ describe('tck.java.time.TCKMonth', () => {
                 [11, -1, 10],
                 [12, -1, 11]
             ];
-            for (let i of data_plus) {
-                let [base, amount, expected] = i;
+            for (let i in data_plus) {
+                let [base, amount, expected] = data_plus[i];
                 expect(Month.of(base).plus(amount)).to.eql(Month.of(expected));
             }
         });
@@ -145,8 +144,8 @@ describe('tck.java.time.TCKMonth', () => {
                 [1, 12, 1],
                 [1, 13, 12]
             ];
-            for (let i of data_minus) {
-                let [base, amount, expected] = i;
+            for (let i in data_minus) {
+                let [base, amount, expected] = data_minus[i];
                 expect(Month.of(base).minus(amount)).to.eql(Month.of(expected));
             }
         });
