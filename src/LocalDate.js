@@ -204,9 +204,9 @@ export class LocalDate {
 
     _compareTo(otherDate){
         var cmp = this.year() - otherDate.year();
-        if (cmp == 0) {
+        if (cmp === 0) {
             cmp = (this.monthValue() - otherDate.monthValue());
-            if (cmp == 0) {
+            if (cmp === 0) {
                 cmp = (this.day() - otherDate.day());
             }
         }
@@ -311,7 +311,7 @@ export class LocalDate {
         YEAR.checkValidValue(year);
         //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
         var leap = IsoChronology.isLeapYear(year);
-        if (dayOfYear == 366 && leap == false) {
+        if (dayOfYear === 366 && leap === false) {
             assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
         }
         var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
@@ -336,7 +336,7 @@ export class LocalDate {
      *  or if the day-of-month is invalid for the month-year
      */
     withDayOfMonth(dayOfMonth) {
-        if (this._day == dayOfMonth) {
+        if (this._day === dayOfMonth) {
             return this;
         }
         return LocalDate.of(this._year, this._month, dayOfMonth);
@@ -354,7 +354,7 @@ export class LocalDate {
      * @throws DateTimeException if the month-of-year value is invalid
      */
     withMonth(month) {
-        if (this._month == month) {
+        if (this._month === month) {
             return this;
         }
         return LocalDate.of(this._year, month, this._day);
