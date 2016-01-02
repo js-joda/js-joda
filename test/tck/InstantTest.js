@@ -229,7 +229,8 @@ describe('tck.java.time.TCKInstant', () => {
         });
 
         it('plus_secondsPlusNanos', () => {
-            for(var plusData of dataProviderPlus){
+            for(var i=0; i < dataProviderPlus.length; i++){
+                var plusData = dataProviderPlus[i];
                 plus_secondsPlusNanos.apply(this, plusData);
             }
         });
@@ -289,7 +290,8 @@ describe('tck.java.time.TCKInstant', () => {
         });
 
         it('plusSeconds', () => {
-            for(var plusData of dataProviderPlus){
+            for(var i=0; i < dataProviderPlus.length; i++){
+                var plusData = dataProviderPlus[i];
                 plusSeconds.apply(this, plusData);
             }
         });
