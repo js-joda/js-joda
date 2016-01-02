@@ -420,10 +420,70 @@ describe('tck.java.time.TCKInstant', () => {
             }).to.throw(DateTimeException);
         });
 
-        it('plusSeconds_long_overflowTooSmall', () => {
+        it('plusNanos_long_overflowTooSmall', () => {
             var instant = Instant.ofEpochSecond(MIN_SECOND, 0);
             expect(()=>{
                 instant.plusNanos(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+
+    describe('minusSeconds', () => {
+        var dataProviderPlus;
+        beforeEach(() => {
+            dataProviderPlus = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, -1, 0],
+                [0, 0, -1, 1, 0],
+                [0, 0, -MIN_SECOND, MIN_SECOND, 0],
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 0, 0],
+                [1, 0, -1, 2, 0],
+                [1, 0, -MIN_SECOND + 1, MIN_SECOND, 0],
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 0, 1],
+                [1, 1, -1, 2, 1],
+                [1, 1, -MIN_SECOND, MIN_SECOND + 1, 1],
+                [1, 1, -MIN_SECOND + 1, MIN_SECOND, 1],
+                [-1, 1, 0, -1, 1],
+                [-1, 1, 1, -2, 1],
+                [-1, 1, -1, 0, 1],
+                [-1, 1, -MAX_SECOND, MAX_SECOND - 1, 1],
+                [-1, 1, -(MAX_SECOND + 1), MAX_SECOND, 1],
+
+                [MIN_SECOND, 2, MIN_SECOND, 0, 2],
+                [MIN_SECOND + 1, 2, MIN_SECOND, 1, 2],
+                [MAX_SECOND - 1, 2, MAX_SECOND, -1, 2],
+                [MAX_SECOND, 2, MAX_SECOND, 0, 2],
+            ];
+
+        });
+
+        it('minuseconds', () => {
+            for(var i=0; i < dataProviderPlus.length; i++){
+                var plusData = dataProviderPlus[i];
+                minusSeconds.apply(this, plusData);
+            }
+        });
+
+        function minusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
+            var instant = Instant.ofEpochSecond(seconds, nanos);
+            instant = instant.minusSeconds(amount);
+            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
+            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
+        };
+
+        it('minusSeconds_long_overflowTooBig', () => {
+            var instant = Instant.ofEpochSecond(1, 0);
+            expect(()=>{
+                instant.minusSeconds(-MAX_SECOND);
+            }).to.throw(DateTimeException);
+        });
+
+        it('minusSeconds_long_overflowTooSmall', () => {
+            var instant = Instant.ofEpochSecond(-1, 0);
+            expect(()=>{
+                instant.minusSeconds(-MIN_SECOND);
             }).to.throw(DateTimeException);
         });
     });
