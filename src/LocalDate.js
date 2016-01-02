@@ -173,6 +173,16 @@ export class LocalDate {
         return total - DAYS_0000_TO_1970;
     }
 
+    /**
+     * Obtains the current date from the system clock in the default time-zone or
+     * if specified, the current date from the specified clock.
+     *
+     * This will query the specified clock to obtain the current date - today.
+     * Using this method allows the use of an alternate clock for testing.
+     *
+     * @param clock  the clock to use, if null, the system clock and default time-zone is used.
+     * @return the current date, not null
+     */
     static now(clock = Clock.systemDefaultZone()) {
         var now = clock.instant();
         var offset = clock.offset(now);
