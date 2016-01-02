@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {Instant} from '../../src/Instant';
+import {DateTimeException} from '../../src/errors';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
@@ -24,7 +25,7 @@ describe('tck.java.time.TCKInstant', () => {
         });
     });
 
-    describe('plus', () => {
+    describe.only('plus', () => {
         var dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
@@ -239,6 +240,20 @@ describe('tck.java.time.TCKInstant', () => {
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
         };
 
+        it('plus_longTemporalUnit_overflowTooBig', () => {
+            var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+            expect(()=>{
+                instant.plusNanos(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('plus_longTemporalUnit_overflowTooSmall', () => {
+            var instant = Instant.ofEpochSecond(MIN_SECOND);
+            expect(()=>{
+                instant.plusNanos(999999999);
+                instant.plusSeconds(-1);
+            }).to.throw(DateTimeException);
+        });
     });
 });
 
