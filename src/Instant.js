@@ -225,15 +225,14 @@ export class Instant {
     /**
      * Obtains an instance of {@code Instant} using seconds from the
      * epoch of 1970-01-01T00:00:00Z.
-     * <p>
-     * The nanosecond field is set to zero.
      *
      * @param epochSecond  the number of seconds from 1970-01-01T00:00:00Z
+     * @param nanoAdjustment nanoseconds start from the start of epochSecond, if null the nanosecond field is set to zero.
      * @return an instant, not null
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
-    static ofEpochSecond(epochSeconds, nanoAdjustment=0){
-        var secs = epochSeconds + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+    static ofEpochSecond(epochSecond, nanoAdjustment=0){
+        var secs = epochSecond + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         return Instant._create(secs, nos);
     }
