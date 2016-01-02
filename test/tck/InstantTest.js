@@ -25,7 +25,7 @@ describe('tck.java.time.TCKInstant', () => {
         });
     });
 
-    describe.only('plus', () => {
+    describe('plus', () => {
         var dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
@@ -234,6 +234,7 @@ describe('tck.java.time.TCKInstant', () => {
             }
         });
 
+        // TODO replace plusSeconds and plusNano by plus(amount, TemporalUnit)
         function plus_secondsPlusNanos(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond){
             var instant = Instant.ofEpochSecond(seconds, nanos).plusSeconds(otherSeconds).plusNanos(otherNanos);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
@@ -252,6 +253,65 @@ describe('tck.java.time.TCKInstant', () => {
             expect(()=>{
                 instant.plusNanos(999999999);
                 instant.plusSeconds(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+
+    describe('plusSeconds', () => {
+        var dataProviderPlus;
+        beforeEach(() => {
+            dataProviderPlus = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 1, 0],
+                [0, 0, -1, -1, 0],
+                [0, 0, MAX_SECOND, MAX_SECOND, 0],
+                [0, 0, MIN_SECOND, MIN_SECOND, 0],
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 2, 0],
+                [1, 0, -1, 0, 0],
+                [1, 0, MAX_SECOND - 1, MAX_SECOND, 0],
+                [1, 0, MIN_SECOND, MIN_SECOND + 1, 0],
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 2, 1],
+                [1, 1, -1, 0, 1],
+                [1, 1, MAX_SECOND - 1, MAX_SECOND, 1],
+                [1, 1, MIN_SECOND, MIN_SECOND + 1, 1],
+                [-1, 1, 0, -1, 1],
+                [-1, 1, 1, 0, 1],
+                [-1, 1, -1, -2, 1],
+                [-1, 1, MAX_SECOND, MAX_SECOND - 1, 1],
+                [-1, 1, MIN_SECOND + 1, MIN_SECOND, 1],
+
+                [MAX_SECOND, 2, -MAX_SECOND, 0, 2],
+                [MIN_SECOND, 2, -MIN_SECOND, 0, 2],
+            ];
+
+        });
+
+        it('plusSeconds', () => {
+            for(var plusData of dataProviderPlus){
+                plusSeconds.apply(this, plusData);
+            }
+        });
+
+        function plusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
+            var instant = Instant.ofEpochSecond(seconds, nanos);
+            instant = instant.plusSeconds(amount);
+            expect(instant.epochSecond()).to.equal(expectedSeconds);
+            expect(instant.nano()).to.equal(expectedNanoOfSecond);
+        };
+
+        it('plusSeconds_long_overflowTooBig', () => {
+            var instant = Instant.ofEpochSecond(1, 0);
+            expect(()=>{
+                instant.plusSeconds(MAX_SECOND);
+            }).to.throw(DateTimeException);
+        });
+
+        it('plusSeconds_long_overflowTooSmall', () => {
+            var instant = Instant.ofEpochSecond(-1, 0);
+            expect(()=>{
+                instant.plusSeconds(MIN_SECOND);
             }).to.throw(DateTimeException);
         });
     });
