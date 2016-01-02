@@ -1,9 +1,10 @@
 import {expect} from 'chai';
 
+import {ChronoField} from '../../src/temporal/ChronoField';
+import {DateTimeException} from '../../src/errors';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Month} from '../../src/Month';
-import {DateTimeException} from '../../src/errors';
 
 describe('tck.java.time.TCKMonth', () => {
     const MAX_LENGTH = 12;
@@ -46,8 +47,9 @@ describe('tck.java.time.TCKMonth', () => {
         }).to.throw(DateTimeException); // NullPointerException in JDK
     });
 
-    describe.skip('isSupported(TemporalField)', () => {
+    describe('isSupported(TemporalField)', () => {
         it('test_isSupported_TemporalField', () => {
+            // TODO: most of these currently "succeed" because they are undefined and thus isSupported returns false :/
             expect(Month.AUGUST.isSupported(null)).to.eql(false);
             expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_SECOND)).to.eql(false);
             expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_DAY)).to.eql(false);

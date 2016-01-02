@@ -1,4 +1,5 @@
 import {assert} from './assert'
+import {ChronoField} from './temporal/ChronoField'
 import {DateTimeException} from './errors'
 
 /**
@@ -34,6 +35,35 @@ export class Month {
      */
     value() {
         return this._value
+    }
+    
+    /**
+     * Checks if the specified field is supported.
+     * <p>
+     * This checks if this month-of-year can be queried for the specified field.
+     * If false, then calling the {@link #range(TemporalField) range} and
+     * {@link #get(TemporalField) get} methods will throw an exception.
+     * <p>
+     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then
+     * this method returns true.
+     * All other {@code ChronoField} instances will return false.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField} field  the field to check, null returns false
+     * @return {boolean} true if the field is supported on this month-of-year, false if not
+     */
+    isSupported(field) {
+        if (null === field) {
+            return false;
+        }
+        if (field instanceof ChronoField) {
+            return field === ChronoField.MONTH_OF_YEAR;
+        }
+        return field != null && field.isSupportedBy(this);
     }
     
     /**
