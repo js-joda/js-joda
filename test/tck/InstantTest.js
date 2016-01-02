@@ -1,4 +1,6 @@
 import {expect} from 'chai';
+import {Clock} from '../../src/Clock';
+import {ZoneOffset} from '../../src/ZoneOffset';
 import {Instant} from '../../src/Instant';
 import {MathUtil} from '../../src/MathUtil';
 import {DateTimeException} from '../../src/errors';
@@ -488,5 +490,31 @@ describe('tck.java.time.TCKInstant', () => {
         });
     });
 
+    describe('now', () => {
+        it('two calls of now should be closer the 0.1 secs', () => {
+            var expected = Instant.now(Clock.systemUTC());
+            var test = Instant.now();
+            var diff = Math.abs(test.epochMilli() - expected.epochMilli());
+            expect(diff).to.be.lessThan(100);  // less than 0.1 secs
+        });
+
+        it('now_Clock_allSecsInDay_utc', () => {
+            for (var i = 0; i < (2 * 24 * 60 * 60); i+=100) {
+                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                var clock = Clock.fixed(expected, ZoneOffset.UTC);
+                var test = Instant.now(clock);
+                expect(test.equals(expected)).to.equal(true);
+            }
+        });
+
+        it('now_Clock_allSecsInDay_beforeEpoch', () => {
+            for (var i =-1; i >= -(24 * 60 * 60); i-=100) {
+                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                var clock = Clock.fixed(expected, ZoneOffset.UTC);
+                var test = Instant.now(clock);
+                expect(test.equals(expected)).to.equal(true);
+            }
+        });
+    });
 });
 

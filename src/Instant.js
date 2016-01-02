@@ -1,5 +1,6 @@
 import {DateTimeException} from './errors'
 import {MathUtil} from './MathUtil'
+import {Clock} from './Clock'
 import {LocalTime} from './LocalTime'
 
 // TODO verify the arbitrary values for min/ max seconds, set to about 999_999 Years for now
@@ -152,7 +153,7 @@ export class Instant {
      * @param clock  the clock to use, defaults to the system clock
      * @return the current instant, not null
      */
-    now(clock = Clock.systemUTC()) {
+    static now(clock = Clock.systemUTC()){
         return clock.instant();
     }
 
