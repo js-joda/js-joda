@@ -105,16 +105,16 @@ describe('tck.java.time.TCKMonth', () => {
             ];
         });
         it('test_query', () => {
-            for (let i in data_query) {
-                let [temporal, query, expected] = data_query[i];
+            data_query.forEach((val) => {
+                let [temporal, query, expected] = val;
                 expect(temporal.query(query)).to.eql(expected);
-            }
+            });
         });
         it('test_queryFrom', () => {
-            for (let i in data_query) {
+            data_query.forEach((val) => {
                 let [temporal, query, expected] = data_query[i];
                 expect(query.queryFrom(temporal)).to.eql(expected);
-            }
+            });
         });
         it('test_query_null', () => {
             expect(() => {
@@ -197,10 +197,10 @@ describe('tck.java.time.TCKMonth', () => {
                 [11, -1, 10],
                 [12, -1, 11]
             ];
-            for (let i in data_plus) {
-                let [base, amount, expected] = data_plus[i];
+            data_plus.forEach((val) => {
+                let [base, amount, expected] = val;
                 expect(Month.of(base).plus(amount)).to.eql(Month.of(expected));
-            }
+            });
         });
 
     });
@@ -237,10 +237,10 @@ describe('tck.java.time.TCKMonth', () => {
                 [1, 12, 1],
                 [1, 13, 12]
             ];
-            for (let i in data_minus) {
-                let [base, amount, expected] = data_minus[i];
+            data_minus.forEach((val) => {
+                let [base, amount, expected] = val;
                 expect(Month.of(base).minus(amount)).to.eql(Month.of(expected));
-            }
+            });
         });
     });
 
