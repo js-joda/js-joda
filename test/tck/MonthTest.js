@@ -46,6 +46,99 @@ describe('tck.java.time.TCKMonth', () => {
         }).to.throw(DateTimeException); // NullPointerException in JDK
     });
 
+    describe.skip('isSupported(TemporalField)', () => {
+        it('test_isSupported_TemporalField', () => {
+            expect(Month.AUGUST.isSupported(null)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_SECOND)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MICRO_OF_SECOND)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MICRO_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MILLI_OF_SECOND)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MILLI_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.SECOND_OF_MINUTE)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.SECOND_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MINUTE_OF_HOUR)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MINUTE_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.HOUR_OF_AMPM)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.CLOCK_HOUR_OF_AMPM)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.HOUR_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.CLOCK_HOUR_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.AMPM_OF_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_WEEK)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_MONTH)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_YEAR)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.EPOCH_DAY)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_WEEK_OF_MONTH)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_WEEK_OF_YEAR)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.MONTH_OF_YEAR)).to.eql(true);
+            expect(Month.AUGUST.isSupported(ChronoField.PROLEPTIC_MONTH)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.YEAR)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.YEAR_OF_ERA)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.ERA)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.INSTANT_SECONDS)).to.eql(false);
+            expect(Month.AUGUST.isSupported(ChronoField.OFFSET_SECONDS)).to.eql(false);
+        });
+    });
+
+    describe.skip('get(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            expect(Month.JULY.get(ChronoField.MONTH_OF_YEAR)).to.eql(7);
+        });
+        it('test_getLong_TemporalField', () => {
+            expect(Month.JULY.getLong(ChronoField.MONTH_OF_YEAR)).to.eql(7);
+        });
+    });
+
+    describe.skip('query(TemporalQuery)', () => {
+        var data_query;
+        before(() => {
+            data_query = [
+                [Month.JUNE, TemporalQueries.chronology(), IsoChronology.INSTANCE],
+                [Month.JUNE, TemporalQueries.zoneId(), null],
+                [Month.JUNE, TemporalQueries.precision(), ChronoUnit.MONTHS],
+                [Month.JUNE, TemporalQueries.zone(), null],
+                [Month.JUNE, TemporalQueries.offset(), null],
+                [Month.JUNE, TemporalQueries.localDate(), null],
+                [Month.JUNE, TemporalQueries.localTime(), null],
+            ];
+        });
+        it('test_query', () => {
+            for (let i in data_query) {
+                let [temporal, query, expected] = data_query[i];
+                expect(temporal.query(query)).to.eql(expected);
+            }
+        });
+        it('test_queryFrom', () => {
+            for (let i in data_query) {
+                let [temporal, query, expected] = data_query[i];
+                expect(query.queryFrom(temporal)).to.eql(expected);
+            }
+        });
+        it('test_query_null', () => {
+            expect(() => {
+                Month.JUNE.query(null);
+            }).to.throw(DateTimeException); //NullPointerException in JDK
+        });
+    });
+
+    describe.skip('getText()', () => {
+        it('test_getText', () => {
+            expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql("Jan");
+        });
+        it('test_getText_nullStyle', () => {
+            expect(() => {
+                Month.JANUARY.getDisplayName(null, Locale.US);
+            }).to.throw(DateTimeException); //NullPointerException in JDK
+        });
+        it('test_getText_nullLocale', () => {
+            expect(() => {
+                Month.JANUARY.getDisplayName(TextStyle.FULL, null);
+            }).to.throw(DateTimeException); //NullPointerException in JDK
+        });
+    });
+    
     describe('plus(long), plus(long,unit)', () => {
 
         it('test_plus_long', () => {
