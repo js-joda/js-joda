@@ -11,3 +11,8 @@ script:
 
 after_script:
   - cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+notifications:
+  slack:
+    rooms:
+      - js-joda:WtVY1EJYfAiiDW3QMnAWJZe2#travis
