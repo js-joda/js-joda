@@ -1,6 +1,6 @@
 import {assert} from './assert'
 import {ChronoField} from './temporal/ChronoField'
-import {DateTimeException} from './errors'
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors'
 
 /**
  * A month-of-year, such as 'July'.
@@ -64,6 +64,69 @@ export class Month {
             return field === ChronoField.MONTH_OF_YEAR;
         }
         return field != null && field.isSupportedBy(this);
+    }
+
+    /**
+     * Gets the value of the specified field from this month-of-year as an {@code int}.
+     * <p>
+     * This queries this month for the value of the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     * value of the month-of-year, from 1 to 12, will be returned.
+     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {Number} the value for the field, within the valid range of values
+     * @throws DateTimeException if a value for the field cannot be obtained or
+     *         the value is outside the range of valid values for the field
+     * @throws UnsupportedTemporalTypeException if the field is not supported or
+     *         the range of values exceeds an {@code int}
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        if (field === ChronoField.MONTH_OF_YEAR) {
+            return this.value();
+        }
+        return TemporalAccessor.super.get(field);
+    }
+
+    /**
+     * Gets the value of the specified field from this month-of-year as a {@code long}.
+     * <p>
+     * This queries this month for the value of the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     * value of the month-of-year, from 1 to 12, will be returned.
+     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {Number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws UnsupportedTemporalTypeException if the field is not supported
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    getLong(field) {
+        if (field === ChronoField.MONTH_OF_YEAR) {
+            return this.value();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+        }
+        return field.getFrom(this);
     }
     
     /**

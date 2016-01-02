@@ -84,7 +84,7 @@ describe('tck.java.time.TCKMonth', () => {
         });
     });
 
-    describe.skip('get(TemporalField)', () => {
+    describe('get(TemporalField)', () => {
         it('test_get_TemporalField', () => {
             expect(Month.JULY.get(ChronoField.MONTH_OF_YEAR)).to.eql(7);
         });
