@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {Instant} from '../../src/Instant';
+import {MathUtil} from '../../src/MathUtil';
 import {DateTimeException} from '../../src/errors';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
@@ -317,5 +318,115 @@ describe('tck.java.time.TCKInstant', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    describe('plusNanos', () => {
+        var dataProviderPlus;
+        beforeEach(() => {
+            dataProviderPlus = [
+                [0, 0, 0,           0, 0],
+                [0, 0, 1,           0, 1],
+                [0, 0, 999999999,   0, 999999999],
+                [0, 0, 1000000000,  1, 0],
+                [0, 0, 1000000001,  1, 1],
+                [0, 0, 1999999999,  1, 999999999],
+                [0, 0, 2000000000,  2, 0],
+                [0, 0, -1,          -1, 999999999],
+                [0, 0, -999999999,  -1, 1],
+                [0, 0, -1000000000, -1, 0],
+                [0, 0, -1000000001, -2, 999999999],
+                [0, 0, -1999999999, -2, 1],
+
+                [1, 0, 0,           1, 0],
+                [1, 0, 1,           1, 1],
+                [1, 0, 999999999,   1, 999999999],
+                [1, 0, 1000000000,  2, 0],
+                [1, 0, 1000000001,  2, 1],
+                [1, 0, 1999999999,  2, 999999999],
+                [1, 0, 2000000000,  3, 0],
+                [1, 0, -1,          0, 999999999],
+                [1, 0, -999999999,  0, 1],
+                [1, 0, -1000000000, 0, 0],
+                [1, 0, -1000000001, -1, 999999999],
+                [1, 0, -1999999999, -1, 1],
+
+                [-1, 0, 0,           -1, 0],
+                [-1, 0, 1,           -1, 1],
+                [-1, 0, 999999999,   -1, 999999999],
+                [-1, 0, 1000000000,  0, 0],
+                [-1, 0, 1000000001,  0, 1],
+                [-1, 0, 1999999999,  0, 999999999],
+                [-1, 0, 2000000000,  1, 0],
+                [-1, 0, -1,          -2, 999999999],
+                [-1, 0, -999999999,  -2, 1],
+                [-1, 0, -1000000000, -2, 0],
+                [-1, 0, -1000000001, -3, 999999999],
+                [-1, 0, -1999999999, -3, 1],
+
+                [1, 1, 0,           1, 1],
+                [1, 1, 1,           1, 2],
+                [1, 1, 999999998,   1, 999999999],
+                [1, 1, 999999999,   2, 0],
+                [1, 1, 1000000000,  2, 1],
+                [1, 1, 1999999998,  2, 999999999],
+                [1, 1, 1999999999,  3, 0],
+                [1, 1, 2000000000,  3, 1],
+                [1, 1, -1,          1, 0],
+                [1, 1, -2,          0, 999999999],
+                [1, 1, -1000000000, 0, 1],
+                [1, 1, -1000000001, 0, 0],
+                [1, 1, -1000000002, -1, 999999999],
+                [1, 1, -2000000000, -1, 1],
+
+                [1, 999999999, 0,           1, 999999999],
+                [1, 999999999, 1,           2, 0],
+                [1, 999999999, 999999999,   2, 999999998],
+                [1, 999999999, 1000000000,  2, 999999999],
+                [1, 999999999, 1000000001,  3, 0],
+                [1, 999999999, -1,          1, 999999998],
+                [1, 999999999, -1000000000, 0, 999999999],
+                [1, 999999999, -1000000001, 0, 999999998],
+                [1, 999999999, -1999999999, 0, 0],
+                [1, 999999999, -2000000000, -1, 999999999],
+
+                [MAX_SECOND, 0, 999999999, MAX_SECOND, 999999999],
+                [MAX_SECOND - 1, 0, 1999999999, MAX_SECOND, 999999999],
+                [MIN_SECOND, 1, -1, MIN_SECOND, 0],
+                [MIN_SECOND + 1, 1, -1000000001, MIN_SECOND, 0],
+
+                [0, 0, MAX_SECOND, MathUtil.div(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
+                [0, 0, MIN_SECOND, MathUtil.div(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
+            ];
+
+        });
+
+        it('plusNanos', () => {
+            for(var i=0; i < dataProviderPlus.length; i++){
+                var plusData = dataProviderPlus[i];
+                plusNanos.apply(this, plusData);
+            }
+        });
+
+        function plusNanos(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
+            var instant = Instant.ofEpochSecond(seconds, nanos);
+            instant = instant.plusNanos(amount);
+            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
+            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
+        };
+
+        it('plusNanos_long_overflowTooBig', () => {
+            var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+            expect(()=>{
+                instant.plusNanos(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('plusSeconds_long_overflowTooSmall', () => {
+            var instant = Instant.ofEpochSecond(MIN_SECOND, 0);
+            expect(()=>{
+                instant.plusNanos(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+
 });
 
