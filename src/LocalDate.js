@@ -98,8 +98,7 @@ export class LocalDate {
      *
      * @return {number} gets the day of month
      */
-    // TODO: should be dayOfMonth() ?
-    day() {
+    dayOfMonth() {
         return this._day
     }
 
@@ -164,7 +163,7 @@ export class LocalDate {
             total -= MathUtil.div(y, -4) - MathUtil.div(y, -100) + MathUtil.div(y, -400);
         }
         total += MathUtil.div(367 * m - 362, 12);
-        total += this.day() - 1;
+        total += this.dayOfMonth() - 1;
         if (m > 2) {
             total--;
             if (!IsoChronology.isLeapYear(y)) {
@@ -174,6 +173,16 @@ export class LocalDate {
         return total - DAYS_0000_TO_1970;
     }
 
+    /**
+     * Obtains the current date from the system clock in the default time-zone or
+     * if specified, the current date from the specified clock.
+     *
+     * This will query the specified clock to obtain the current date - today.
+     * Using this method allows the use of an alternate clock for testing.
+     *
+     * @param clock  the clock to use, if null, the system clock and default time-zone is used.
+     * @return the current date, not null
+     */
     static now(clock = Clock.systemDefaultZone()) {
         var now = clock.instant();
         var offset = clock.offset(now);
@@ -204,10 +213,10 @@ export class LocalDate {
 
     _compareTo(otherDate){
         var cmp = this.year() - otherDate.year();
-        if (cmp == 0) {
+        if (cmp === 0) {
             cmp = (this.monthValue() - otherDate.monthValue());
-            if (cmp == 0) {
-                cmp = (this.day() - otherDate.day());
+            if (cmp === 0) {
+                cmp = (this.dayOfMonth() - otherDate.dayOfMonth());
             }
         }
         return cmp;
@@ -224,7 +233,7 @@ export class LocalDate {
 
         var yearValue = this.year();
         var monthValue = this.monthValue();
-        var dayValue = this.day();
+        var dayValue = this.dayOfMonth();
 
         var absYear = Math.abs(yearValue);
 
@@ -311,7 +320,7 @@ export class LocalDate {
         YEAR.checkValidValue(year);
         //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
         var leap = IsoChronology.isLeapYear(year);
-        if (dayOfYear == 366 && leap == false) {
+        if (dayOfYear === 366 && leap === false) {
             assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
         }
         var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
@@ -336,7 +345,7 @@ export class LocalDate {
      *  or if the day-of-month is invalid for the month-year
      */
     withDayOfMonth(dayOfMonth) {
-        if (this._day == dayOfMonth) {
+        if (this._day === dayOfMonth) {
             return this;
         }
         return LocalDate.of(this._year, this._month, dayOfMonth);
@@ -354,7 +363,7 @@ export class LocalDate {
      * @throws DateTimeException if the month-of-year value is invalid
      */
     withMonth(month) {
-        if (this._month == month) {
+        if (this._month === month) {
             return this;
         }
         return LocalDate.of(this._year, month, this._day);

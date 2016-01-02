@@ -1,7 +1,12 @@
 import {expect} from 'chai';
+import {Clock} from '../../src/Clock';
+import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
+import {ZoneOffset} from '../../src/ZoneOffset';
+
+import {isCoverageTestRunner} from '../testUtils';
 
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
@@ -30,7 +35,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     function check (test, y, m, d) {
         expect(test.year()).to.equal(y);
         expect(test.month().value()).to.equal(m);
-        expect(test.day()).to.equal(d);
+        expect(test.dayOfMonth()).to.equal(d);
         expect(test).to.equal(test);
         expect(LocalDate.of(y, m, d)).to.eql(test);
     }
@@ -48,7 +53,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     //-----------------------------------------------------------------------
     // Since plusDays/minusDays actually depends on MJDays, it cannot be used for testing
     function next(date) {
-        var newDayOfMonth = date.day() + 1;
+        var newDayOfMonth = date.dayOfMonth() + 1;
         if (newDayOfMonth <= date.month().length(isIsoLeap(date.year()))) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -60,7 +65,7 @@ describe('tck.java.time.TCKLocalDate', () => {
     }
 
     function previous(date) {
-        var newDayOfMonth = date.day() - 1;
+        var newDayOfMonth = date.dayOfMonth() - 1;
         if (newDayOfMonth > 0) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -225,6 +230,70 @@ describe('tck.java.time.TCKLocalDate', () => {
             }).to.throw(DateTimeException);
         });
     });
-        
+
+    describe('now()', () => {
+        it('now_Clock_allSecsInDay_utc', () => {
+            var instant, clock, test;
+            for (let i = 0; i < (2 * 24 * 60 * 60); i += 100) {
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant, ZoneOffset.UTC);
+                test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1970);
+                expect(test.month()).to.equal(Month.JANUARY);
+                expect(test.dayOfMonth()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
+            }
+        });
+
+        it('now_Clock_allSecsInDay_offset', () => {
+            var instant, clock, test;
+            var zoneOffset = ZoneOffset.ofHours(1);
+            for (let i = 0; i < (2 * 24 * 60 * 60); i +=100) {
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant.minusSeconds(zoneOffset.totalSeconds()), zoneOffset);
+                test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1970);
+                expect(test.month()).to.equal(Month.JANUARY);
+                expect(test.dayOfMonth()).to.equal((i < 24 * 60 * 60) ? 1 : 2);
+            }
+        });
+
+        it('now_Clock_allSecsInDay_beforeEpoch', () => {
+            var instant, clock, test;
+            for (let i = -1; i >= -(2 * 24 * 60 * 60); i -= 100) {
+                instant = Instant.ofEpochSecond(i);
+                clock = Clock.fixed(instant, ZoneOffset.UTC);
+                test = LocalDate.now(clock);
+                expect(test.year()).to.equal(1969);
+                expect(test.month()).to.equal(Month.DECEMBER);
+                expect(test.dayOfMonth()).to.equal((i >= -24 * 60 * 60) ? 31 : 30);
+            }
+        });
+
+        it.skip('now_Clock_maxYear', () => {
+            var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
+            var test = LocalDate.now(clock);
+            expect(test.equals(MAX_DATE)).to.equal(true);
+        });
+
+        it.skip('now_Clock_tooBig', () => {
+            var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
+            expect(() => {
+                LocalDate.now(clock);
+            }).to.throw(DateTimeException);
+        });
+
+        it.skip('now_Clock_minYear', () => {
+            var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
+            var test = LocalDate.now(clock);
+            expect(test.equals(MIN_DATE)).to.equal(true);
+        });
+
+        it.skip('now_Clock_tooLow', () => {
+            var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
+            expect(() => {
+                LocalDate.now(clock);
+            }).to.throw(DateTimeException);
+        });
+    });
 });
 
