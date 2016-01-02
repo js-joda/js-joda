@@ -4,7 +4,7 @@ import { MathUtil } from './MathUtil';
 import {DateTimeException} from './errors';
 
 import { IsoChronology } from './chrono/IsoChronology';
-import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
+import {ChronoField} from './temporal/ChronoField';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
@@ -317,8 +317,8 @@ export class LocalDate {
      *  or if the day-of-year is invalid for the year
      */
     static ofYearDay(year, dayOfYear) {
-        YEAR.checkValidValue(year);
-        //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
+        ChronoField.YEAR.checkValidValue(year);
+        //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
         var leap = IsoChronology.isLeapYear(year);
         if (dayOfYear === 366 && leap === false) {
             assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
@@ -374,9 +374,9 @@ export class LocalDate {
      */
     static validate(year, month, dayOfMonth) {
         var dom;
-        YEAR.checkValidValue(year);
-        MONTH_OF_YEAR.checkValidValue(month);
-        DAY_OF_MONTH.checkValidValue(dayOfMonth);
+        ChronoField.YEAR.checkValidValue(year);
+        ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+        ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth > 28) {
             dom = 31;
             switch (month) {

@@ -1,7 +1,7 @@
 import { ValueRange } from './ValueRange';
 import {Year} from '../Year'
 
-class  ChronoField {
+export class  ChronoField {
 
     constructor(name, baseUnit, rangeUnit, range, displayNameKey) {
         this.name = function () {
@@ -26,17 +26,10 @@ class  ChronoField {
     }
 }
 
+ChronoField.DAY_OF_MONTH = new ChronoField("DayOfMonth", null, null, ValueRange.of(1, 28, 31), "day");
 
-export const DAY_OF_MONTH = new ChronoField(
-    "DayOfMonth", null, null, ValueRange.of(1, 28, 31), "day"
-);
+ChronoField.MONTH_OF_YEAR = new ChronoField("MonthOfYear", null, null, ValueRange.of(1, 12), "month");
 
-export const MONTH_OF_YEAR = new ChronoField(
-    "MonthOfYear", null, null, ValueRange.of(1, 12), "month"
-);
-
-export const YEAR = new ChronoField("" +
-    "Year", null, null, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), "year"
-);
+ChronoField.YEAR = new ChronoField("Year", null, null, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), "year");
 
 
