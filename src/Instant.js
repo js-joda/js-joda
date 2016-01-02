@@ -198,8 +198,8 @@ export class Instant {
         }
         var epochSec = this._seconds + secondsToAdd;
         epochSec = epochSec + MathUtil.div(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        var nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
-        var nanoAdjustment = this._nanos + nanosToAdd;
+        var _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
+        var nanoAdjustment = this._nanos + _nanosToAdd;
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);
     }
 
@@ -233,7 +233,9 @@ export class Instant {
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
     static ofEpochSecond(epochSeconds, nanoAdjustment=0){
-        return Instant._create(epochSeconds, nanoAdjustment);
+        var secs = epochSeconds + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        return Instant._create(secs, nos);
     }
 
     /**
