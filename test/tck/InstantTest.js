@@ -21,10 +21,10 @@ describe('tck.java.time.TCKInstant', () => {
             check(Instant.EPOCH, 0, 0);
         });
         it('MIN', () => {
-            check(Instant.MIN, -30818963289600, 0);
+            check(Instant.MIN, -31619087596800, 0);
         });
         it('MAX', () => {
-            check(Instant.MAX, 30697775193600, 999999999);
+            check(Instant.MAX, 31494784694400, 999999999);
         });
     });
 
