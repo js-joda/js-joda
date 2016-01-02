@@ -62,8 +62,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalDate = __webpack_require__(1);
 	
+	var _Instant = __webpack_require__(11);
+	
+	var _Clock = __webpack_require__(10);
+	
+	var _ZoneOffset = __webpack_require__(13);
+	
 	exports['default'] = {
-	    LocalDate: _LocalDate.LocalDate
+	    LocalDate: _LocalDate.LocalDate,
+	    Instant: _Instant.Instant,
+	    Clock: _Clock.Clock,
+	    ZoneOffset: _ZoneOffset.ZoneOffset
 	};
 	module.exports = exports['default'];
 
@@ -586,19 +595,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    _createClass(MathUtil, null, [{
 	        key: "div",
-	        value: function div(a, b) {
-	            return ~ ~(a / b);
+	        value: function div(x, y) {
+	            var r = x / y;
+	            if (r < 0) {
+	                return Math.ceil(r);
+	            } else {
+	                return Math.floor(r);
+	            }
 	        }
 	
 	        // TODO test it
 	    }, {
 	        key: "floorDiv",
 	        value: function floorDiv(x, y) {
-	            var r = MathUtil.div(x, y);
-	            // if the signs are different and modulo not zero, round down
-	            if ((x ^ y) < 0 && r * y !== x) {
-	                r--;
-	            }
+	            var r = Math.floor(x / y);
 	            return r;
 	        }
 	
@@ -1331,9 +1341,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalTime = __webpack_require__(12);
 	
-	// TODO verify the arbitrary values for min/ max seconds, set to about 999_999 Years for now
-	var MIN_SECONDS = -30818963289600;
-	var MAX_SECONDS = 30697775193600;
+	// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
+	var MIN_SECONDS = -31619087596800; // -999999-01-01
+	var MAX_SECONDS = 31494784694400; // 999999-12-31
 	
 	/**
 	 * An instantaneous point on the time-line.
