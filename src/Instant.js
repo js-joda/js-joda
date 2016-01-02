@@ -144,6 +144,19 @@ export class Instant {
     }
 
     /**
+     * Obtains the current instant from the system clock, or if specified
+     * the current instant from the specified clock.
+     *
+     * This will query the specified clock to obtain the current time.
+     *
+     * @param clock  the clock to use, defaults to the system clock
+     * @return the current instant, not null
+     */
+    now(clock = Clock.systemUTC()) {
+        return clock.instant();
+    }
+
+    /**
      * Returns a copy of this instant with the specified duration in seconds added.
      * 
      * This instance is immutable and unaffected by this method call.
