@@ -2,7 +2,6 @@
  * Math helper with static function for integer operations
  */
 export class MathUtil {
-    // TODO test it
     static intDiv(x, y) {
         var r = x/y;
         if(r < 0){
