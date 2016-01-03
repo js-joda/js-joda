@@ -262,7 +262,7 @@ TemporalQueries.CHRONO = (temporal) =>
 /**
  * A query for the smallest supported unit.
  */
-TemporalQueries.RECISION = (temporal) =>
+TemporalQueries.PRECISION = (temporal) =>
     temporal.query(TemporalQueries.PRECISION);
 
 //-----------------------------------------------------------------------
