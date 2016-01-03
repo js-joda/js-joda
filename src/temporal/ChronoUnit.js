@@ -10,13 +10,10 @@
  * The documentation of each unit explains how it operates.
  *
  */
-class ChronoUnit /*implements TemporalUnit*/ {
-
-    var _name;
-    var _duration;
+export class ChronoUnit /*implements TemporalUnit*/ {
 
     /**
-     * s
+     * 
      * @param {String} name
      * @param {Duration} estimatedDuration
      */
