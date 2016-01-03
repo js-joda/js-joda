@@ -1,7 +1,8 @@
+var path = require('path');
 var webpack = require("webpack");
 
 var minify = JSON.parse(process.env.DIST_MIN || "0");
-var sourceMaps = !minify
+var sourceMaps = !minify;
 
 module.exports = {
     context: __dirname,
@@ -14,14 +15,17 @@ module.exports = {
         library: 'jsjoda'
     },
     module: {
-        loaders: [
-            { test: __dirname + "/src",
-              loader: 'babel-loader'
-            },
-            { test: __dirname + "/test",
-              loader: 'babel-loader'
-            }
-        ]
+        loaders: [{
+                loader: 'babel-loader',
+                include: [
+                    path.resolve(__dirname, "src"),
+                    path.resolve(__dirname, "test")
+                ],
+                test: /\.js$/,
+                query: {
+                    presets: ['es2015']
+                }
+        }]
     },
     plugins: minify ? [
       new webpack.optimize.UglifyJsPlugin({minimize: true})
