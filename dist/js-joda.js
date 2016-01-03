@@ -56,25 +56,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
 	
 	var _LocalDate = __webpack_require__(1);
 	
+	Object.defineProperty(exports, 'LocalDate', {
+	  enumerable: true,
+	  get: function get() {
+	    return _LocalDate.LocalDate;
+	  }
+	});
+	
 	var _Instant = __webpack_require__(11);
+	
+	Object.defineProperty(exports, 'Instant', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Instant.Instant;
+	  }
+	});
 	
 	var _Clock = __webpack_require__(10);
 	
+	Object.defineProperty(exports, 'Clock', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Clock.Clock;
+	  }
+	});
+	
 	var _ZoneOffset = __webpack_require__(13);
 	
-	exports['default'] = {
-	    LocalDate: _LocalDate.LocalDate,
-	    Instant: _Instant.Instant,
-	    Clock: _Clock.Clock,
-	    ZoneOffset: _ZoneOffset.ZoneOffset
-	};
-	module.exports = exports['default'];
+	Object.defineProperty(exports, 'ZoneOffset', {
+	  enumerable: true,
+	  get: function get() {
+	    return _ZoneOffset.ZoneOffset;
+	  }
+	});
 
 /***/ },
 /* 1 */
@@ -82,13 +102,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.LocalDate = undefined;
 	
 	var _assert = __webpack_require__(2);
 	
@@ -96,9 +115,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(4);
 	
-	var _chronoIsoChronology = __webpack_require__(6);
+	var _IsoChronology = __webpack_require__(6);
 	
-	var _temporalChronoField = __webpack_require__(7);
+	var _ChronoField = __webpack_require__(7);
 	
 	var _Clock = __webpack_require__(10);
 	
@@ -107,6 +126,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _Year = __webpack_require__(9);
 	
 	var _LocalTime = __webpack_require__(12);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/**
 	 * The number of days in a 400 year cycle.
@@ -135,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * such as an offset or time-zone.
 	 */
 	
-	var LocalDate = (function () {
+	var LocalDate = exports.LocalDate = (function () {
 	
 	    /**
 	     *
@@ -155,11 +176,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._month = month;
 	        this._day = dayOfMonth;
 	    }
-	
-	    /**
-	     * The minimum supported {@code LocalDate}
-	     * This could be used by an application as a "far past" date.
-	     */
 	
 	    /**
 	     * Obtains an instance of {@code LocalDate} from a year, month and day.
@@ -190,6 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return {number} gets the month
 	         */
+	
 	    }, {
 	        key: 'monthValue',
 	        value: function monthValue() {
@@ -205,6 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return {number} gets the day of month
 	         */
+	
 	    }, {
 	        key: 'dayOfMonth',
 	        value: function dayOfMonth() {
@@ -226,6 +244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return {LocalDate} a LocalDate based on this date with the days added, not null
 	         * @throws AssertionError if the result exceeds the supported date range
 	         */
+	
 	    }, {
 	        key: 'plusDays',
 	        value: function plusDays(daysToAdd) {
@@ -273,15 +292,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var total = 0;
 	            total += 365 * y;
 	            if (y >= 0) {
-	                total += _MathUtil.MathUtil.div(y + 3, 4) - _MathUtil.MathUtil.div(y + 99, 100) + _MathUtil.MathUtil.div(y + 399, 400);
+	                total += _MathUtil.MathUtil.intDiv(y + 3, 4) - _MathUtil.MathUtil.intDiv(y + 99, 100) + _MathUtil.MathUtil.intDiv(y + 399, 400);
 	            } else {
-	                total -= _MathUtil.MathUtil.div(y, -4) - _MathUtil.MathUtil.div(y, -100) + _MathUtil.MathUtil.div(y, -400);
+	                total -= _MathUtil.MathUtil.intDiv(y, -4) - _MathUtil.MathUtil.intDiv(y, -100) + _MathUtil.MathUtil.intDiv(y, -400);
 	            }
-	            total += _MathUtil.MathUtil.div(367 * m - 362, 12);
+	            total += _MathUtil.MathUtil.intDiv(367 * m - 362, 12);
 	            total += this.dayOfMonth() - 1;
 	            if (m > 2) {
 	                total--;
-	                if (!_chronoIsoChronology.IsoChronology.isLeapYear(y)) {
+	                if (!_IsoChronology.IsoChronology.isLeapYear(y)) {
 	                    total--;
 	                }
 	            }
@@ -298,6 +317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param clock  the clock to use, if null, the system clock and default time-zone is used.
 	         * @return the current date, not null
 	         */
+	
 	    }, {
 	        key: 'equals',
 	
@@ -339,6 +359,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return {string} a string representation of this date, not null
 	         */
+	
 	    }, {
 	        key: 'toString',
 	        value: function toString() {
@@ -424,6 +445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return {@code LocalDate} based on this date with the requested month, not null
 	         * @throws DateTimeException if the month-of-year value is invalid
 	         */
+	
 	    }, {
 	        key: 'withMonth',
 	        value: function withMonth(month) {
@@ -436,6 +458,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @private
 	         */
+	
 	    }], [{
 	        key: 'of',
 	        value: function of(year, month, dayOfMonth) {
@@ -460,22 +483,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            zeroDay -= 60;
 	            adjust = 0;
 	            if (zeroDay < 0) {
-	                adjustCycles = _MathUtil.MathUtil.div(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+	                adjustCycles = _MathUtil.MathUtil.intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
 	                adjust = adjustCycles * 400;
 	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
 	            }
-	            yearEst = _MathUtil.MathUtil.div(400 * zeroDay + 591, DAYS_PER_CYCLE);
-	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.div(yearEst, 4) - _MathUtil.MathUtil.div(yearEst, 100) + _MathUtil.MathUtil.div(yearEst, 400));
+	            yearEst = _MathUtil.MathUtil.intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
+	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
 	            if (doyEst < 0) {
 	                yearEst--;
-	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.div(yearEst, 4) - _MathUtil.MathUtil.div(yearEst, 100) + _MathUtil.MathUtil.div(yearEst, 400));
+	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
 	            }
 	            yearEst += adjust;
 	            marchDoy0 = doyEst;
-	            marchMonth0 = _MathUtil.MathUtil.div(marchDoy0 * 5 + 2, 153);
+	            marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
 	            month = (marchMonth0 + 2) % 12 + 1;
-	            dom = marchDoy0 - _MathUtil.MathUtil.div(marchMonth0 * 306 + 5, 10) + 1;
-	            yearEst += _MathUtil.MathUtil.div(marchMonth0, 10);
+	            dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
+	            yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
 	            year = yearEst;
 	            return new LocalDate(year, month, dom);
 	        }
@@ -495,9 +518,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *  or if the day-of-year is invalid for the year
 	         */
 	        value: function ofYearDay(year, dayOfYear) {
-	            _temporalChronoField.YEAR.checkValidValue(year);
+	            _ChronoField.YEAR.checkValidValue(year);
 	            //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
-	            var leap = _chronoIsoChronology.IsoChronology.isLeapYear(year);
+	            var leap = _IsoChronology.IsoChronology.isLeapYear(year);
 	            if (dayOfYear === 366 && leap === false) {
 	                (0, _assert.assert)(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", _errors.DateTimeException);
 	            }
@@ -513,14 +536,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'validate',
 	        value: function validate(year, month, dayOfMonth) {
 	            var dom;
-	            _temporalChronoField.YEAR.checkValidValue(year);
-	            _temporalChronoField.MONTH_OF_YEAR.checkValidValue(month);
-	            _temporalChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
+	            _ChronoField.YEAR.checkValidValue(year);
+	            _ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+	            _ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
 	            if (dayOfMonth > 28) {
 	                dom = 31;
 	                switch (month) {
 	                    case 2:
-	                        dom = _chronoIsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28;
+	                        dom = _IsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28;
 	                        break;
 	                    case 4:
 	                    case 6:
@@ -542,7 +565,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return LocalDate;
 	})();
 	
-	exports.LocalDate = LocalDate;
+	/**
+	 * The minimum supported {@code LocalDate}
+	 * This could be used by an application as a "far past" date.
+	 */
+	
 	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
 	/**
 	 * The maximum supported {@code LocalDate}
@@ -560,7 +587,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: true
 	});
 	exports.assert = assert;
-	
 	function assert(assertion, msg, error) {
 	    if (!assertion) {
 	        if (error) {
@@ -575,27 +601,28 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ function(module, exports) {
 
-	/**
-	 * Math helper with static function for integer operations
-	 */
 	"use strict";
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var MathUtil = (function () {
+	/**
+	 * Math helper with static function for integer operations
+	 */
+	
+	var MathUtil = exports.MathUtil = (function () {
 	    function MathUtil() {
 	        _classCallCheck(this, MathUtil);
 	    }
 	
 	    _createClass(MathUtil, null, [{
-	        key: "div",
-	        value: function div(x, y) {
+	        key: "intDiv",
+	        value: function intDiv(x, y) {
 	            var r = x / y;
 	            if (r < 0) {
 	                return Math.ceil(r);
@@ -603,16 +630,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return Math.floor(r);
 	            }
 	        }
-	
-	        // TODO test it
 	    }, {
 	        key: "floorDiv",
 	        value: function floorDiv(x, y) {
 	            var r = Math.floor(x / y);
 	            return r;
 	        }
-	
-	        // TODO test it
 	    }, {
 	        key: "floorMod",
 	        value: function floorMod(x, y) {
@@ -624,31 +647,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return MathUtil;
 	})();
 
-	exports.MathUtil = MathUtil;
-
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	exports.DateTimeException = undefined;
 	
 	var _es6Error = __webpack_require__(5);
 	
 	var _es6Error2 = _interopRequireDefault(_es6Error);
 	
-	var DateTimeException = (function (_ExtendableError) {
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DateTimeException = exports.DateTimeException = (function (_ExtendableError) {
 	    _inherits(DateTimeException, _ExtendableError);
 	
 	    function DateTimeException() {
@@ -656,13 +678,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        _classCallCheck(this, DateTimeException);
 	
-	        _get(Object.getPrototypeOf(DateTimeException.prototype), 'constructor', this).call(this, message);
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeException).call(this, message));
 	    }
 	
 	    return DateTimeException;
-	})(_es6Error2['default']);
-
-	exports.DateTimeException = DateTimeException;
+	})(_es6Error2.default);
 
 /***/ },
 /* 5 */
@@ -724,15 +744,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var IsoChronology = (function () {
+	var IsoChronology = exports.IsoChronology = (function () {
 	    function IsoChronology() {
 	        _classCallCheck(this, IsoChronology);
 	    }
@@ -767,25 +787,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return IsoChronology;
 	})();
 
-	exports.IsoChronology = IsoChronology;
-
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.YEAR = exports.MONTH_OF_YEAR = exports.DAY_OF_MONTH = undefined;
 	
 	var _ValueRange = __webpack_require__(8);
 	
 	var _Year = __webpack_require__(9);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var ChronoField = (function () {
 	    function ChronoField(name, baseUnit, rangeUnit, range, displayNameKey) {
@@ -818,14 +837,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ChronoField;
 	})();
 	
-	var DAY_OF_MONTH = new ChronoField("DayOfMonth", null, null, _ValueRange.ValueRange.of(1, 28, 31), "day");
+	var DAY_OF_MONTH = exports.DAY_OF_MONTH = new ChronoField("DayOfMonth", null, null, _ValueRange.ValueRange.of(1, 28, 31), "day");
 	
-	exports.DAY_OF_MONTH = DAY_OF_MONTH;
-	var MONTH_OF_YEAR = new ChronoField("MonthOfYear", null, null, _ValueRange.ValueRange.of(1, 12), "month");
+	var MONTH_OF_YEAR = exports.MONTH_OF_YEAR = new ChronoField("MonthOfYear", null, null, _ValueRange.ValueRange.of(1, 12), "month");
 	
-	exports.MONTH_OF_YEAR = MONTH_OF_YEAR;
-	var YEAR = new ChronoField("" + "Year", null, null, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), "year");
-	exports.YEAR = YEAR;
+	var YEAR = exports.YEAR = new ChronoField("" + "Year", null, null, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), "year");
 
 /***/ },
 /* 8 */
@@ -833,17 +849,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.ValueRange = undefined;
 	
 	var _assert = __webpack_require__(2);
 	
 	var _errors = __webpack_require__(4);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/**
 	 * The range of valid values for a date-time field.
@@ -862,7 +879,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var ValueRange = (function () {
+	var ValueRange = exports.ValueRange = (function () {
 	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
 	        _classCallCheck(this, ValueRange);
 	
@@ -969,12 +986,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ValueRange;
 	})();
 
-	exports.ValueRange = ValueRange;
-
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
 	/**
 	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
 	 * <p>
@@ -1000,24 +1023,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * to be accurate will find the ISO-8601 approach unsuitable.
 	 *
 	 */
-	"use strict";
 	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var Year = function Year() {
+	var Year = exports.Year = function Year() {
 	  _classCallCheck(this, Year);
-	}
+	};
 	
 	/**
 	 * The minimum supported year
 	 */
-	;
 	
-	exports.Year = Year;
 	Year.MIN_VALUE = -999999;
 	/**
 	 * The maximum supported year
@@ -1030,21 +1044,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.Clock = undefined;
 	
 	var _Instant = __webpack_require__(11);
 	
 	var _ZoneOffset = __webpack_require__(13);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/**
 	 * A clock providing access to the current instant, date and time using a time-zone.
@@ -1086,7 +1101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Clock = (function () {
+	var Clock = exports.Clock = (function () {
 	    function Clock() {
 	        _classCallCheck(this, Clock);
 	    }
@@ -1121,6 +1136,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return the current instant from this clock, not null
 	         */
+	
 	    }, {
 	        key: 'instant',
 	        value: function instant() {
@@ -1134,6 +1150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * define something like a virtual, not standard ZoneId like "SystemDefault".
 	         * Until we to not have a tzdb, we leave this question open
 	         */
+	
 	    }, {
 	        key: 'offset',
 	        value: function offset() {
@@ -1170,6 +1187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return a clock that uses the system clock in the default zone, not null
 	         * @see ZoneId#systemDefault()
 	         */
+	
 	    }, {
 	        key: 'systemDefaultZone',
 	        value: function systemDefaultZone() {
@@ -1188,6 +1206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param zoneOffset  the zoneOffset to use as zone Offset, not null
 	         * @return a clock that always returns the same instant, not null
 	         */
+	
 	    }, {
 	        key: 'fixed',
 	        value: function fixed(fixedInstant, zoneOffset) {
@@ -1198,21 +1217,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Clock;
 	})();
 	
-	exports.Clock = Clock;
-	
 	var SystemClock = (function (_Clock) {
 	    _inherits(SystemClock, _Clock);
 	
 	    function SystemClock() {
 	        _classCallCheck(this, SystemClock);
 	
-	        _get(Object.getPrototypeOf(SystemClock.prototype), 'constructor', this).apply(this, arguments);
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SystemClock).apply(this, arguments));
 	    }
-	
-	    /**
-	     * Implementation of a clock that always returns the latest time from
-	     * {@link Date#getTime()}.
-	     */
 	
 	    _createClass(SystemClock, [{
 	        key: 'millis',
@@ -1234,19 +1246,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SystemClock;
 	})(Clock);
 	
+	/**
+	 * Implementation of a clock that always returns the latest time from
+	 * {@link Date#getTime()}.
+	 */
+	
 	var SystemUTCClock = (function (_SystemClock) {
 	    _inherits(SystemUTCClock, _SystemClock);
 	
 	    function SystemUTCClock() {
 	        _classCallCheck(this, SystemUTCClock);
 	
-	        _get(Object.getPrototypeOf(SystemUTCClock.prototype), 'constructor', this).apply(this, arguments);
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SystemUTCClock).apply(this, arguments));
 	    }
-	
-	    /**
-	     * Implementation of a clock that always returns the latest time from
-	     * sytem default Zone {@link Date#getTime()} and {@link Date#getTimeZoneOffset()}.
-	     */
 	
 	    _createClass(SystemUTCClock, [{
 	        key: 'toString',
@@ -1258,19 +1270,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SystemUTCClock;
 	})(SystemClock);
 	
+	/**
+	 * Implementation of a clock that always returns the latest time from
+	 * sytem default Zone {@link Date#getTime()} and {@link Date#getTimeZoneOffset()}.
+	 */
+	
 	var SystemDefaultClock = (function (_SystemClock2) {
 	    _inherits(SystemDefaultClock, _SystemClock2);
 	
 	    function SystemDefaultClock() {
 	        _classCallCheck(this, SystemDefaultClock);
 	
-	        _get(Object.getPrototypeOf(SystemDefaultClock.prototype), 'constructor', this).apply(this, arguments);
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SystemDefaultClock).apply(this, arguments));
 	    }
-	
-	    /**
-	     * Implementation of a clock that always returns the same instant.
-	     * This is typically used for testing.
-	     */
 	
 	    _createClass(SystemDefaultClock, [{
 	        key: 'offset',
@@ -1288,15 +1300,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return SystemDefaultClock;
 	})(SystemClock);
 	
+	/**
+	 * Implementation of a clock that always returns the same instant.
+	 * This is typically used for testing.
+	 */
+	
 	var FixedClock = (function (_Clock2) {
 	    _inherits(FixedClock, _Clock2);
 	
 	    function FixedClock(fixedInstant, zoneOffset) {
 	        _classCallCheck(this, FixedClock);
 	
-	        _get(Object.getPrototypeOf(FixedClock.prototype), 'constructor', this).call(this);
-	        this._instant = fixedInstant;
-	        this._zoneOffset = zoneOffset;
+	        var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(FixedClock).call(this));
+	
+	        _this4._instant = fixedInstant;
+	        _this4._zoneOffset = zoneOffset;
+	        return _this4;
 	    }
 	
 	    _createClass(FixedClock, [{
@@ -1325,13 +1344,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.Instant = undefined;
 	
 	var _errors = __webpack_require__(4);
 	
@@ -1340,6 +1358,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _Clock = __webpack_require__(10);
 	
 	var _LocalTime = __webpack_require__(12);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
 	var MIN_SECONDS = -31619087596800; // -999999-01-01
@@ -1437,7 +1457,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Instant = (function () {
+	var Instant = exports.Instant = (function () {
 	    function Instant(seconds, nanoOfSecond) {
 	        _classCallCheck(this, Instant);
 	
@@ -1470,6 +1490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return the milli seconds from the epoch of 1970-01-01T00:00:00Z
 	         */
+	
 	    }, {
 	        key: 'epochMilli',
 	        value: function epochMilli() {
@@ -1485,6 +1506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @return the nanoseconds within the second, always positive, never exceeds 999,999,999
 	         */
+	
 	    }, {
 	        key: 'nano',
 	        value: function nano() {
@@ -1500,6 +1522,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param clock  the clock to use, defaults to the system clock
 	         * @return the current instant, not null
 	         */
+	
 	    }, {
 	        key: 'plusSeconds',
 	
@@ -1525,6 +1548,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return an {@code Instant} based on this instant with the specified seconds subtracted, not null
 	         * @throws DateTimeException if the result exceeds the maximum or minimum instant
 	         */
+	
 	    }, {
 	        key: 'minusSeconds',
 	        value: function minusSeconds(secondsToSubtract) {
@@ -1540,6 +1564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return an {@code Instant} based on this instant with the specified nanoseconds added, not null
 	         * @throws DateTimeException if the result exceeds the maximum or minimum instant
 	         */
+	
 	    }, {
 	        key: 'plusNanos',
 	        value: function plusNanos(nanosToAdd) {
@@ -1556,6 +1581,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return an {@code Instant} based on this instant with the specified seconds added, not null
 	         * @throws DateTimeException if the result exceeds the maximum or minimum instant
 	         */
+	
 	    }, {
 	        key: '_plus',
 	        value: function _plus(secondsToAdd, nanosToAdd) {
@@ -1563,7 +1589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this;
 	            }
 	            var epochSec = this._seconds + secondsToAdd;
-	            epochSec = epochSec + _MathUtil.MathUtil.div(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            epochSec = epochSec + _MathUtil.MathUtil.intDiv(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
 	            var _nanosToAdd = nanosToAdd % _LocalTime.LocalTime.NANOS_PER_SECOND;
 	            var nanoAdjustment = this._nanos + _nanosToAdd;
 	            return Instant.ofEpochSecond(epochSec, nanoAdjustment);
@@ -1577,6 +1603,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param otherInstant  the other instant, null/ undefined returns false
 	         * @return true if the other instant is equal to this one
 	         */
+	
 	    }, {
 	        key: 'equals',
 	        value: function equals(otherInstant) {
@@ -1598,6 +1625,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return an instant, not null
 	         * @throws DateTimeException if the instant exceeds the maximum or minimum instant
 	         */
+	
 	    }], [{
 	        key: 'now',
 	        value: function now() {
@@ -1625,6 +1653,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return an instant, not null
 	         * @throws DateTimeException if the instant exceeds the maximum or minimum instant
 	         */
+	
 	    }, {
 	        key: 'ofEpochMilli',
 	        value: function ofEpochMilli(epochMilli) {
@@ -1652,8 +1681,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Instant;
 	})();
 	
-	exports.Instant = Instant;
-	
 	Instant.EPOCH = new Instant(0, 0);
 	Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
 	Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
@@ -1670,11 +1697,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var LocalTime = function LocalTime() {
+	var LocalTime = exports.LocalTime = function LocalTime() {
 	  _classCallCheck(this, LocalTime);
 	};
-	
-	exports.LocalTime = LocalTime;
 	
 	LocalTime.HOURS_PER_DAY = 24;
 	LocalTime.MINUTES_PER_HOUR = 60;
@@ -1692,22 +1717,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.ZoneOffset = undefined;
 	
 	var _errors = __webpack_require__(4);
 	
 	var _LocalTime = __webpack_require__(12);
 	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
 	var MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
 	var SECONDS_CACHE = {};
 	
-	var ZoneOffset = (function () {
+	var ZoneOffset = exports.ZoneOffset = (function () {
 	    function ZoneOffset(totalSeconds) {
 	        _classCallCheck(this, ZoneOffset);
 	
@@ -1797,8 +1823,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ZoneOffset;
 	})();
 	
-	exports.ZoneOffset = ZoneOffset;
-	
 	ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
 
 /***/ },
@@ -1807,17 +1831,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	Object.defineProperty(exports, '__esModule', {
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	exports.Month = undefined;
 	
 	var _assert = __webpack_require__(2);
 	
 	var _errors = __webpack_require__(4);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	/**
 	 * A month-of-year, such as 'July'.
@@ -1837,7 +1862,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Month = (function () {
+	var Month = exports.Month = (function () {
 	
 	    /**
 	     *
@@ -1872,6 +1897,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {number} months  the months to add, positive or negative
 	         * @return {Month} the resulting month, not null
 	         */
+	
 	    }, {
 	        key: 'plus',
 	        value: function plus(months) {
@@ -1893,6 +1919,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {number} months  the months to subtract, positive or negative
 	         * @return {Month} the resulting month, not null
 	         */
+	
 	    }, {
 	        key: 'minus',
 	        value: function minus(months) {
@@ -1911,6 +1938,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {boolean} leapYear  true if the length is required for a leap year
 	         * @return {number} the length of this month in days, from 28 to 31
 	         */
+	
 	    }, {
 	        key: 'length',
 	        value: function length(leapYear) {
@@ -1936,6 +1964,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param {boolean} leapYear  true if the length is required for a leap year
 	         * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
 	         */
+	
 	    }, {
 	        key: 'firstDayOfYear',
 	        value: function firstDayOfYear(leapYear) {
@@ -1974,6 +2003,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          * @param {number} month
 	          * @return {Month} not null
 	          **/
+	
 	    }], [{
 	        key: 'of',
 	        value: function of(month) {
@@ -1986,8 +2016,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    return Month;
 	})();
-	
-	exports.Month = Month;
 	
 	Month.JANUARY = new Month(1);
 	Month.FEBRUARY = new Month(2);

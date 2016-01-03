@@ -1,11 +1,5 @@
-import { LocalDate } from './LocalDate'
-import { Instant } from './Instant'
-import { Clock } from './Clock'
-import { ZoneOffset } from './ZoneOffset'
+export { LocalDate } from './LocalDate';
+export { Instant } from './Instant';
+export { Clock } from './Clock';
+export { ZoneOffset } from './ZoneOffset';
 
-export default {
-    LocalDate: LocalDate,
-    Instant: Instant,
-    Clock: Clock,
-    ZoneOffset: ZoneOffset
-}
