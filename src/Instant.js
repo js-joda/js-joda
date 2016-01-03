@@ -211,7 +211,7 @@ export class Instant {
             return this;
         }
         var epochSec = this._seconds + secondsToAdd;
-        epochSec = epochSec + MathUtil.div(nanosToAdd, LocalTime.NANOS_PER_SECOND);
+        epochSec = epochSec + MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND);
         var _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
         var nanoAdjustment = this._nanos + _nanosToAdd;
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);

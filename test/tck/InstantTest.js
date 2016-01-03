@@ -395,8 +395,8 @@ describe('tck.java.time.TCKInstant', () => {
                 [MIN_SECOND, 1, -1, MIN_SECOND, 0],
                 [MIN_SECOND + 1, 1, -1000000001, MIN_SECOND, 0],
 
-                [0, 0, MAX_SECOND, MathUtil.div(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
-                [0, 0, MIN_SECOND, MathUtil.div(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
+                [0, 0, MAX_SECOND, MathUtil.intDiv(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
+                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
             ];
 
         });
