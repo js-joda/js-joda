@@ -21,10 +21,10 @@ describe('tck.java.time.TCKInstant', () => {
             check(Instant.EPOCH, 0, 0);
         });
         it('MIN', () => {
-            check(Instant.MIN, -30818963289600, 0);
+            check(Instant.MIN, -31619087596800, 0);
         });
         it('MAX', () => {
-            check(Instant.MAX, 30697775193600, 999999999);
+            check(Instant.MAX, 31494784694400, 999999999);
         });
     });
 
@@ -395,8 +395,8 @@ describe('tck.java.time.TCKInstant', () => {
                 [MIN_SECOND, 1, -1, MIN_SECOND, 0],
                 [MIN_SECOND + 1, 1, -1000000001, MIN_SECOND, 0],
 
-                [0, 0, MAX_SECOND, MathUtil.div(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
-                [0, 0, MIN_SECOND, MathUtil.div(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
+                [0, 0, MAX_SECOND, MathUtil.intDiv(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
+                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
             ];
 
         });

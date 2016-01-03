@@ -3,9 +3,9 @@ import {MathUtil} from './MathUtil'
 import {Clock} from './Clock'
 import {LocalTime} from './LocalTime'
 
-// TODO verify the arbitrary values for min/ max seconds, set to about 999_999 Years for now
-const MIN_SECONDS = -30818963289600;
-const MAX_SECONDS = 30697775193600;
+// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
+const MIN_SECONDS = -31619087596800; // -999999-01-01
+const MAX_SECONDS = 31494784694400; // 999999-12-31
 
 /**
  * An instantaneous point on the time-line.
@@ -211,7 +211,7 @@ export class Instant {
             return this;
         }
         var epochSec = this._seconds + secondsToAdd;
-        epochSec = epochSec + MathUtil.div(nanosToAdd, LocalTime.NANOS_PER_SECOND);
+        epochSec = epochSec + MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND);
         var _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
         var nanoAdjustment = this._nanos + _nanosToAdd;
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);
