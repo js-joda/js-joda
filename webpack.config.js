@@ -21,7 +21,7 @@ module.exports = {
                     path.resolve(__dirname, "src"),
                     path.resolve(__dirname, "test")
                 ],
-                test: /(src)|(test)\/.+.js$/
+                test: /.js$/
         }]
     },
     plugins: minify ? [

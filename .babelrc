@@ -1,4 +1,3 @@
 {
-  "presets": ["es2015"],
-  "only": ["/test/", "/src/"]
+  "presets": ["es2015"]
 }
