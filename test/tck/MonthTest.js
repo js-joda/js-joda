@@ -1,10 +1,13 @@
 import {expect} from 'chai';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {DateTimeException} from '../../src/errors';
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Month} from '../../src/Month';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 describe('tck.java.time.TCKMonth', () => {
     const MAX_LENGTH = 12;
@@ -93,7 +96,7 @@ describe('tck.java.time.TCKMonth', () => {
         });
     });
 
-    describe.skip('query(TemporalQuery)', () => {
+    describe('query(TemporalQuery)', () => {
         var data_query;
         before(() => {
             data_query = [
@@ -114,7 +117,7 @@ describe('tck.java.time.TCKMonth', () => {
         });
         it('test_queryFrom', () => {
             data_query.forEach((val) => {
-                let [temporal, query, expected] = data_query[i];
+                let [temporal, query, expected] = val;
                 expect(query.queryFrom(temporal)).to.eql(expected);
             });
         });
