@@ -75,7 +75,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the zone ID of a temporal, not null
      */
-    zoneId() {
+    static zoneId() {
         return TemporalQueries.ZONE_ID;
     }
 
@@ -114,7 +114,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the chronology of a temporal, not null
      */
-    chronology() {
+    static chronology() {
         return TemporalQueries.CHRONO;
     }
 
@@ -151,7 +151,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the precision of a temporal, not null
      */
-    precision() {
+    static precision() {
         return TemporalQueries.PRECISION;
     }
 
@@ -173,7 +173,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the zone ID or offset of a temporal, not null
      */
-    zone() {
+    static zone() {
         return TemporalQueries.ZONE;
     }
 
@@ -196,7 +196,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the offset of a temporal, not null
      */
-    offset() {
+    static offset() {
         return TemporalQueries.OFFSET;
     }
 
@@ -219,7 +219,7 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the date of a temporal, not null
      */
-    localDate() {
+    static localDate() {
         return TemporalQueries.LOCAL_DATE;
     }
 
@@ -242,64 +242,78 @@ export class TemporalQueries {
      *
      * @return a query that can obtain the time of a temporal, not null
      */
-    localTime() {
+    static localTime() {
         return TemporalQueries.LOCAL_TIME;
     }
+}
+
+/** create something similar to the JDK {TemporalQuery} functional interface, takes a function and returns a new TemporalQuery object that presents that function
+ * as the queryFrom() function... 
+ * @param queryFromFunction
+ */
+function createTemporalQuery(queryFromFunction) {
+    class TemporalQuery {
+    }
+    TemporalQuery.prototype.queryFrom = queryFromFunction;   
+    return new TemporalQuery();
 }
 //-----------------------------------------------------------------------
 /**
  * A strict query for the {@code ZoneId}.
  */
-TemporalQueries.ZONE_ID = (temporal) =>
-    temporal.query(TemporalQueries.ZONE_ID);
+TemporalQueries.ZONE_ID = createTemporalQuery((temporal) => {
+    return temporal.query(TemporalQueries.ZONE_ID);
+});
 
 /**
  * A query for the {@code Chronology}.
  */
-TemporalQueries.CHRONO = (temporal) =>
-    temporal.query(TemporalQueries.CHRONO);
+TemporalQueries.CHRONO = createTemporalQuery((temporal) => {
+    return temporal.query(TemporalQueries.CHRONO);
+});
 
 /**
  * A query for the smallest supported unit.
  */
-TemporalQueries.PRECISION = (temporal) =>
-    temporal.query(TemporalQueries.PRECISION);
+TemporalQueries.PRECISION = createTemporalQuery((temporal) => {
+    return temporal.query(TemporalQueries.PRECISION);
+});
 
 //-----------------------------------------------------------------------
 /**
  * A query for {@code ZoneOffset} returning null if not found.
  */
-TemporalQueries.OFFSET = (temporal) => {
-    if (temporal.isSupported(OFFSET_SECONDS)) {
+TemporalQueries.OFFSET = createTemporalQuery((temporal) => {
+    if (temporal.isSupported(TemporalQueries.OFFSET_SECONDS)) {
         return ZoneOffset.ofTotalSeconds(temporal.get(OFFSET_SECONDS));
     }
     return null;
-};
+});
 
 /**
  * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
  */
-TemporalQueries.ZONE = (temporal) => {
-    zone = temporal.query(ZONE_ID);
-    return (zone != null ? zone : temporal.query(OFFSET));
-};
+TemporalQueries.ZONE = createTemporalQuery((temporal) => {
+    var zone = temporal.query(TemporalQueries.ZONE_ID);
+    return (zone != null ? zone : temporal.query(TemporalQueries.OFFSET));
+});
 
 /**
  * A query for {@code LocalDate} returning null if not found.
  */
-TemporalQueries.LOCAL_DATE = (temporal) => {
-    if (temporal.isSupported(EPOCH_DAY)) {
-        return LocalDate.ofEpochDay(temporal.getLong(EPOCH_DAY));
+TemporalQueries.LOCAL_DATE = createTemporalQuery((temporal) => {
+    if (temporal.isSupported(TemporalQueries.EPOCH_DAY)) {
+        return LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
     }
     return null;
-};
+});
 
 /**
  * A query for {@code LocalTime} returning null if not found.
  */
-TemporalQueries.LOCAL_TIME = (temporal) => {
-    if (temporal.isSupported(NANO_OF_DAY)) {
-        return LocalTime.ofNanoOfDay(temporal.getLong(NANO_OF_DAY));
+TemporalQueries.LOCAL_TIME = createTemporalQuery((temporal) => {
+    if (temporal.isSupported(TemporalQueries.NANO_OF_DAY)) {
+        return LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
     }
     return null;
-};
+});
