@@ -5,7 +5,7 @@ describe('Clock', () => {
    describe('should deny calling an instant method of pseudo abstract class Clock', () => {
        it('millis', () => {
             expect(() => {
-                new Clock().instant();
+                new Clock().millis();
             }).to.throw(TypeError);
         });
        it('instant', () => {
@@ -15,9 +15,21 @@ describe('Clock', () => {
         });
        it('offset', () => {
             expect(() => {
-                new Clock().instant();
+                new Clock().offset();
             }).to.throw(TypeError);
         });
+   });
+
+   describe('toString', () => {
+       it('SystemUTC', () => {
+           expect(Clock.systemUTC().toString()).to.contain('SystemClock');
+       });
+       it('SystemDefaultZone', () => {
+           expect(Clock.systemDefaultZone().toString()).to.contain('SystemClock');
+       });
+       it('Fixed', () => {
+           expect(Clock.fixed().toString()).to.contain('FixedClock');
+       });
    });
 });
 
