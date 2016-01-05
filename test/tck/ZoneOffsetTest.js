@@ -85,7 +85,7 @@ describe('ZoneOffset', () => {
     });
 
     describe('ofHoursMinutesSeconds', () => {
-        var step = isCoverageTestRunner() ? 10 : 1;
+        var step = 10; // isCoverageTestRunner() ? 10 : 1;
         it('test_factory_int_hours_minutes_seconds', () => {
             for (let i = -17; i <= 17; i++) {
                 for (let j = -59; j <= 59; j+= step) {
