@@ -1,6 +1,10 @@
 import {assert} from './assert'
 import {ChronoField} from './temporal/ChronoField'
+import {ChronoUnit} from './temporal/ChronoUnit'
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors'
+import {IsoChronology} from './chrono/IsoChronology'
+import {TemporalAccessor} from './temporal/TemporalAccessor'
+import {TemporalQueries} from './temporal/TemporalQueries'
 
 /**
  * A month-of-year, such as 'July'.
@@ -19,13 +23,14 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors'
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
  */
-export class Month {
+export class Month extends TemporalAccessor {
     
     /**
      *
      * @param {number} value
      */
-    constructor(value){
+    constructor(value) {
+        super();
         this._value = value;
     }
 
@@ -308,6 +313,35 @@ export class Month {
                 return Month.OCTOBER;
         }
     }
+    
+        /**
+     * Queries this month-of-year using the specified query.
+     * <p>
+     * This queries this month-of-year using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        assert(query != null, 'query() parameter must not be null', DateTimeException);
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.MONTHS;
+        }
+        return super.query(query);
+    }
+
+
 
     /**
      * toString implementation... in JDK this is inherited from the Enum class
