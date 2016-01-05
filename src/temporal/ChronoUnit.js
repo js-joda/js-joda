@@ -1,3 +1,5 @@
+import {Duration} from '../Duration';
+
 /**
  * A standard set of date periods units.
  * <p>
@@ -229,7 +231,7 @@ ChronoUnit.HOURS = new ChronoUnit("Hours", Duration.ofSeconds(3600));
  * Unit that represents the concept of half a day, as used in AM/PM.
  * For the ISO calendar system, it is equal to 12 hours.
  */
-HALF_DAYS("HalfDays", Duration.ofSeconds(43200)),
+ChronoUnit.HALF_DAYS = new ChronoUnit("HalfDays", Duration.ofSeconds(43200)),
 /**
  * Unit that represents the concept of a day.
  * For the ISO calendar system, it is the standard day from midnight to midnight.
