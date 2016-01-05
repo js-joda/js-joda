@@ -21,10 +21,7 @@ module.exports = {
                     path.resolve(__dirname, "src"),
                     path.resolve(__dirname, "test")
                 ],
-                test: /\.js$/,
-                query: {
-                    presets: ['es2015']
-                }
+                test: /.js$/
         }]
     },
     plugins: minify ? [
