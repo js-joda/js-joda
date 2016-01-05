@@ -23,3 +23,5 @@ export class IsoChronology {
     }
 }
 
+IsoChronology.INSTANCE = new IsoChronology();
+
