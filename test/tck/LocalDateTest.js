@@ -232,6 +232,20 @@ describe('tck.java.time.TCKLocalDate', () => {
     });
 
     describe('now()', () => {
+
+        it('now', () => {
+           var expected = LocalDate.now(Clock.systemDefaultZone());
+           var test = LocalDate.now();
+            for (let i = 0; i < 100; i++) {
+                if (expected.equals(test)) {
+                    return;
+                }
+                expected = LocalDate.now(Clock.systemDefaultZone());
+                test = LocalDate.now();
+            }
+            expect(test.equals(expected));
+        });
+
         it('now_Clock_allSecsInDay_utc', () => {
             var instant, clock, test;
             for (let i = 0; i < (2 * 24 * 60 * 60); i += 100) {
