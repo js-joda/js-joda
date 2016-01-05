@@ -6,8 +6,6 @@ import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
-import {isCoverageTestRunner} from '../testUtils';
-
 describe('tck.java.time.TCKLocalDate', () => {
     var TEST_2007_07_15;
     var MAX_VALID_EPOCHDAYS;
