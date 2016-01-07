@@ -2,43 +2,22 @@
  * Common implementations of {@code TemporalQuery}.
  * <p>
  * This class provides common implementations of {@link TemporalQuery}.
- * These are defined here as they must be constants, and the definition
- * of lambdas does not guarantee that. By assigning them once here,
- * they become 'normal' Java constants.
- * <p>
- * Queries are a key tool for extracting information from temporal objects.
- * They exist to externalize the process of querying, permitting different
- * approaches, as per the strategy design pattern.
- * Examples might be a query that checks if the date is the day before February 29th
- * in a leap year, or calculates the number of days to your next birthday.
- * <p>
- * The {@link TemporalField} interface provides another mechanism for querying
- * temporal objects. That interface is limited to returning a {@code long}.
- * By contrast, queries can return any type.
+ * These queries are primarily used as optimizations, allowing the internals
+ * of other objects to be extracted effectively. Note that application code
+ * can also use the {@code from(TemporalAccessor)} method on most temporal
+ * objects as a method reference matching the query interface, such as
+ * {@code LocalDate::from} and {@code ZoneId::from}.
  * <p>
  * There are two equivalent ways of using a {@code TemporalQuery}.
- * The first is to invoke the method on this interface directly.
+ * The first is to invoke the method on the interface directly.
  * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:
  * <pre>
  *   // these two lines are equivalent, but the second approach is recommended
- *   temporal = thisQuery.queryFrom(temporal);
- *   temporal = temporal.query(thisQuery);
+ *   dateTime = query.queryFrom(dateTime);
+ *   dateTime = dateTime.query(query);
  * </pre>
  * It is recommended to use the second approach, {@code query(TemporalQuery)},
  * as it is a lot clearer to read in code.
- * <p>
- * The most common implementations are method references, such as
- * {@code LocalDate::from} and {@code ZoneId::from}.
- * Additional common queries are provided to return:
- * <ul>
- * <li> a Chronology,
- * <li> a LocalDate,
- * <li> a LocalTime,
- * <li> a ZoneOffset,
- * <li> a precision,
- * <li> a zone, or
- * <li> a zoneId.
- * </ul>
  *
  */
 export class TemporalQueries {
@@ -49,12 +28,13 @@ export class TemporalQueries {
      * This queries a {@code TemporalAccessor} for the zone.
      * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
      * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
-     * Thus a {@link ZonedDateTime} will return the result of {@code getZone()},
-     * but an {@link OffsetDateTime} will return null.
+     * Thus a {@link ZonedDateTime} will return the result of
+     * {@code getZone()}, but an {@link OffsetDateTime} will
+     * return null.
      * <p>
-     * In most cases, applications should use {@link #zone()} as this query is too strict.
+     * In most cases, applications should use {@link #ZONE} as this query is too strict.
      * <p>
-     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
+     * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
      * {@code LocalDate} returns null<br>
      * {@code LocalTime} returns null<br>
      * {@code LocalDateTime} returns null<br>
@@ -161,10 +141,11 @@ export class TemporalQueries {
      * This queries a {@code TemporalAccessor} for the zone.
      * It first tries to obtain the zone, using {@link #zoneId()}.
      * If that is not found it tries to obtain the {@link #offset()}.
-     * Thus a {@link java.time.ZonedDateTime} will return the result of {@code getZone()},
-     * while an {@link java.time.OffsetDateTime} will return the result of {@code getOffset()}.
      * <p>
      * In most cases, applications should use this query rather than {@code #zoneId()}.
+     * <p>
+     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
+     * field and uses it to create a {@code ZoneOffset}.
      * <p>
      * The method {@link ZoneId#from(TemporalAccessor)} can be used as a
      * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.
@@ -209,13 +190,6 @@ export class TemporalQueries {
      * <p>
      * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
      * field and uses it to create a {@code LocalDate}.
-     * <p>
-     * The method {@link ZoneOffset#from(TemporalAccessor)} can be used as a
-     * {@code TemporalQuery} via a method reference, {@code LocalDate::from}.
-     * This query and {@code LocalDate::from} will return the same result if the
-     * temporal object contains a date. If the temporal object does not contain
-     * a date, then the method reference will throw an exception, whereas this
-     * query will return null.
      *
      * @return a query that can obtain the date of a temporal, not null
      */
@@ -232,13 +206,6 @@ export class TemporalQueries {
      * <p>
      * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
      * field and uses it to create a {@code LocalTime}.
-     * <p>
-     * The method {@link ZoneOffset#from(TemporalAccessor)} can be used as a
-     * {@code TemporalQuery} via a method reference, {@code LocalTime::from}.
-     * This query and {@code LocalTime::from} will return the same result if the
-     * temporal object contains a time. If the temporal object does not contain
-     * a time, then the method reference will throw an exception, whereas this
-     * query will return null.
      *
      * @return a query that can obtain the time of a temporal, not null
      */
@@ -247,8 +214,10 @@ export class TemporalQueries {
     }
 }
 
-/** create something similar to the JDK {TemporalQuery} functional interface, takes a function and returns a new TemporalQuery object that presents that function
- * as the queryFrom() function... 
+/** 
+ * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
+ * as the queryFrom() function.
+ * TODO: maybe should be moved to a separate file?
  * @param queryFromFunction
  */
 function createTemporalQuery(queryFromFunction) {
@@ -285,7 +254,7 @@ TemporalQueries.PRECISION = createTemporalQuery((temporal) => {
  */
 TemporalQueries.OFFSET = createTemporalQuery((temporal) => {
     if (temporal.isSupported(TemporalQueries.OFFSET_SECONDS)) {
-        return ZoneOffset.ofTotalSeconds(temporal.get(OFFSET_SECONDS));
+        return ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
     }
     return null;
 });
