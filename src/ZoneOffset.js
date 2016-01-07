@@ -14,6 +14,25 @@ export class ZoneOffset {
         return this._totalSeconds;
     }
 
+    /**
+     * Checks if this offset is equal to another offset.
+     *
+     * The comparison is based on the amount of the offset in seconds.
+     * This is equivalent to a comparison by ID.
+     *
+     * @param obj  the object to check, null returns false
+     * @return true if this is equal to the other offset
+     */
+    equals(obj) {
+        if (this === obj) {
+           return true;
+        }
+        if (obj instanceof ZoneOffset) {
+            return this._totalSeconds === obj._totalSeconds;
+        }
+        return false;
+    }
+
     static validateTotalSeconds(totalSeconds){
         if (Math.abs(totalSeconds) > MAX_SECONDS) {
             throw new DateTimeException("Zone offset not in valid range: -18:00 to +18:00");
@@ -85,3 +104,5 @@ export class ZoneOffset {
 }
 
 ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-MAX_SECONDS);
+ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(MAX_SECONDS);

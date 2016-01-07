@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {Clock} from '../src/Clock';
 import {LocalDate} from '../src/LocalDate';
 import {isCoverageTestRunner} from './testUtils';
 
@@ -190,9 +191,19 @@ describe('Using a LocalDate instance', () => {
             expect(oneDay.equals(otherDay)).to.be.false;
         });
     });
+
     describe('when calling now', () => {
-       it.skip('should return instance of LocalDate', () =>{
+       it('should return instance of LocalDate', () =>{
            var oneDay = LocalDate.now();
+           expect(oneDay).to.be.instanceof(LocalDate);
+       });
+
+       it('should return instance of LocalDate for a UTC clock', () =>{
+           var oneDay = LocalDate.now(Clock.systemUTC());
+           expect(oneDay).to.be.instanceof(LocalDate);
+       });
+       it('should return instance of LocalDate for the system default clock', () =>{
+           var oneDay = LocalDate.now(Clock.systemDefaultZone());
            expect(oneDay).to.be.instanceof(LocalDate);
        })
     });
