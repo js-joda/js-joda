@@ -100,7 +100,7 @@ export class Month extends TemporalAccessor {
         if (field === ChronoField.MONTH_OF_YEAR) {
             return this.value();
         }
-        return TemporalAccessor.super.get(field);
+        return range(field).checkValidIntValue(getLong(field), field);
     }
 
     /**
