@@ -49,15 +49,12 @@ export class ChronoUnit /*implements TemporalUnit*/ {
      * @return {boolean} true if the duration is estimated, false if accurate
      */
     isDurationEstimated() {
-        return this.compareTo(ChronoUnit.DAYS) >= 0;
+        return isDateBased() || this === ChronoUnit.FOREVER;
     }
 
     //-----------------------------------------------------------------------
     /**
      * Checks if this unit is a date unit.
-     * <p>
-     * All units from days to eras inclusive are date-based.
-     * Time-based units and {@code FOREVER} return false.
      *
      * @return true if a date unit, false if a time unit
      */
@@ -67,9 +64,6 @@ export class ChronoUnit /*implements TemporalUnit*/ {
 
     /**
      * Checks if this unit is a time unit.
-     * <p>
-     * All units from nanos to half-days inclusive are time-based.
-     * Date-based units and {@code FOREVER} return false.
      *
      * @return true if a time unit, false if a date unit
      */
@@ -91,7 +85,26 @@ export class ChronoUnit /*implements TemporalUnit*/ {
      * @return {boolean} true if the unit is supported
      */
     isSupportedBy(temporal) {
-        return temporal.isSupported(this);
+        if (this === ChronoUnit.FOREVER) {
+            return false;
+        }
+        if (temporal instanceof ChronoLocalDate) {
+            return isDateBased();
+        }
+        if (temporal instanceof ChronoLocalDateTime || temporal instanceof ChronoZonedDateTime) {
+            return true;
+        }
+        try {
+            temporal.plus(1, this);
+            return true;
+        } catch (e) {
+            try {
+                temporal.plus(-1, this);
+                return true;
+            } catch (e2) {
+                return false;
+            }
+        }
     }
 
     /**
@@ -174,20 +187,20 @@ export class ChronoUnit /*implements TemporalUnit*/ {
      * @implSpec
      * Implementations must begin by checking to if the two temporals have the
      * same type using {@code .constructor.name}. If they do not, then the result must be
-     * obtained by calling {@code temporal1Inclusive.until(temporal2Exclusive, this)}.
+     * obtained by calling {@code temporal1.until(temporal2, this)}.
      *
-     * @param {Temporal} temporal1Inclusive  the base temporal object, not null
-     * @param {Temporal} temporal2Exclusive  the other temporal object, exclusive, not null
-     * @return {Number} the amount of time between temporal1Inclusive and temporal2Exclusive
-     *  in terms of this unit; positive if temporal2Exclusive is later than
-     *  temporal1Inclusive, negative if earlier
+     * @param {Temporal} temporal1  the base temporal object, not null
+     * @param {Temporal} temporal2  the other temporal object, exclusive, not null
+     * @return {Number} the amount of time between temporal1 and temporal2
+     *  in terms of this unit; positive if temporal2 is later than
+     *  temporal1, negative if earlier
      * @throws DateTimeException if the amount cannot be calculated, or the end
      *  temporal cannot be converted to the same type as the start temporal
      * @throws UnsupportedTemporalTypeException if the unit is not supported by the temporal
      * @throws ArithmeticException if numeric overflow occurs
      */
-    between(temporal1Inclusive, temporal2Exclusive) {
-        return temporal1Inclusive.until(temporal2Exclusive, this);
+    between(temporal1, temporal2) {
+        return temporal1.until(temporal2, this);
     }
 
     //-----------------------------------------------------------------------
