@@ -49,7 +49,7 @@ export class ChronoUnit /*implements TemporalUnit*/ {
      * @return {boolean} true if the duration is estimated, false if accurate
      */
     isDurationEstimated() {
-        return isDateBased() || this === ChronoUnit.FOREVER;
+        return this.isDateBased() || this === ChronoUnit.FOREVER;
     }
 
     //-----------------------------------------------------------------------
@@ -88,12 +88,15 @@ export class ChronoUnit /*implements TemporalUnit*/ {
         if (this === ChronoUnit.FOREVER) {
             return false;
         }
+        /* TODO: classes not implemented yet */
+/*
         if (temporal instanceof ChronoLocalDate) {
             return isDateBased();
         }
         if (temporal instanceof ChronoLocalDateTime || temporal instanceof ChronoZonedDateTime) {
             return true;
         }
+*/
         try {
             temporal.plus(1, this);
             return true;
@@ -213,38 +216,38 @@ export class ChronoUnit /*implements TemporalUnit*/ {
  * Unit that represents the concept of a nanosecond, the smallest supported unit of time.
  * For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
  */
-ChronoUnit.NANOS = new ChronoUnit("Nanos", Duration.ofNanos(1));
+ChronoUnit.NANOS = new ChronoUnit('Nanos', Duration.ofNanos(1));
 /**
  * Unit that represents the concept of a microsecond.
  * For the ISO calendar system, it is equal to the 1,000,000th part of the second unit.
  */
-ChronoUnit.MICROS = new ChronoUnit("Micros", Duration.ofNanos(1000));
+ChronoUnit.MICROS = new ChronoUnit('Micros', Duration.ofNanos(1000));
 /**
  * Unit that represents the concept of a millisecond.
  * For the ISO calendar system, it is equal to the 1000th part of the second unit.
  */
-ChronoUnit.MILLIS = new ChronoUnit("Millis", Duration.ofNanos(1000000));
+ChronoUnit.MILLIS = new ChronoUnit('Millis', Duration.ofNanos(1000000));
 /**
  * Unit that represents the concept of a second.
  * For the ISO calendar system, it is equal to the second in the SI system
  * of units, except around a leap-second.
  */
-ChronoUnit.SECONDS = new ChronoUnit("Seconds", Duration.ofSeconds(1));
+ChronoUnit.SECONDS = new ChronoUnit('Seconds', Duration.ofSeconds(1));
 /**
  * Unit that represents the concept of a minute.
  * For the ISO calendar system, it is equal to 60 seconds.
  */
-ChronoUnit.MINUTES = new ChronoUnit("Minutes", Duration.ofSeconds(60));
+ChronoUnit.MINUTES = new ChronoUnit('Minutes', Duration.ofSeconds(60));
 /**
  * Unit that represents the concept of an hour.
  * For the ISO calendar system, it is equal to 60 minutes.
  */
-ChronoUnit.HOURS = new ChronoUnit("Hours", Duration.ofSeconds(3600));
+ChronoUnit.HOURS = new ChronoUnit('Hours', Duration.ofSeconds(3600));
 /**
  * Unit that represents the concept of half a day, as used in AM/PM.
  * For the ISO calendar system, it is equal to 12 hours.
  */
-ChronoUnit.HALF_DAYS = new ChronoUnit("HalfDays", Duration.ofSeconds(43200)),
+ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', Duration.ofSeconds(43200));
 /**
  * Unit that represents the concept of a day.
  * For the ISO calendar system, it is the standard day from midnight to midnight.
@@ -255,14 +258,14 @@ ChronoUnit.HALF_DAYS = new ChronoUnit("HalfDays", Duration.ofSeconds(43200)),
  * at midnight - when converting between calendar systems, the date should be
  * equivalent at midday.
  */
-ChronoUnit.DAYS = new ChronoUnit("Days", Duration.ofSeconds(86400));
+ChronoUnit.DAYS = new ChronoUnit('Days', Duration.ofSeconds(86400));
 /**
  * Unit that represents the concept of a week.
  * For the ISO calendar system, it is equal to 7 days.
  * <p>
  * When used with other calendar systems it must correspond to an integral number of days.
  */
-ChronoUnit.WEEKS = new ChronoUnit("Weeks", Duration.ofSeconds(7 * 86400));
+ChronoUnit.WEEKS = new ChronoUnit('Weeks', Duration.ofSeconds(7 * 86400));
 /**
  * Unit that represents the concept of a month.
  * For the ISO calendar system, the length of the month varies by month-of-year.
@@ -270,7 +273,7 @@ ChronoUnit.WEEKS = new ChronoUnit("Weeks", Duration.ofSeconds(7 * 86400));
  * <p>
  * When used with other calendar systems it must correspond to an integral number of days.
  */
-ChronoUnit.MONTHS = new ChronoUnit("Months", Duration.ofSeconds(31556952 / 12));
+ChronoUnit.MONTHS = new ChronoUnit('Months', Duration.ofSeconds(31556952 / 12));
 /**
  * Unit that represents the concept of a year.
  * For the ISO calendar system, it is equal to 12 months.
@@ -279,7 +282,7 @@ ChronoUnit.MONTHS = new ChronoUnit("Months", Duration.ofSeconds(31556952 / 12));
  * When used with other calendar systems it must correspond to an integral number of days
  * or months roughly equal to a year defined by the passage of the Earth around the Sun.
  */
-ChronoUnit.YEARS = new ChronoUnit("Years", Duration.ofSeconds(31556952));
+ChronoUnit.YEARS = new ChronoUnit('Years', Duration.ofSeconds(31556952));
 /**
  * Unit that represents the concept of a decade.
  * For the ISO calendar system, it is equal to 10 years.
@@ -287,7 +290,7 @@ ChronoUnit.YEARS = new ChronoUnit("Years", Duration.ofSeconds(31556952));
  * When used with other calendar systems it must correspond to an integral number of days
  * and is normally an integral number of years.
  */
-ChronoUnit.DECADES = new ChronoUnit("Decades", Duration.ofSeconds(31556952 * 10));
+ChronoUnit.DECADES = new ChronoUnit('Decades', Duration.ofSeconds(31556952 * 10));
 /**
  * Unit that represents the concept of a century.
  * For the ISO calendar system, it is equal to 100 years.
@@ -295,7 +298,7 @@ ChronoUnit.DECADES = new ChronoUnit("Decades", Duration.ofSeconds(31556952 * 10)
  * When used with other calendar systems it must correspond to an integral number of days
  * and is normally an integral number of years.
  */
-ChronoUnit.CENTURIES = new ChronoUnit("Centuries", Duration.ofSeconds(31556952 * 100));
+ChronoUnit.CENTURIES = new ChronoUnit('Centuries', Duration.ofSeconds(31556952 * 100));
 /**
  * Unit that represents the concept of a millennium.
  * For the ISO calendar system, it is equal to 1000 years.
@@ -303,7 +306,7 @@ ChronoUnit.CENTURIES = new ChronoUnit("Centuries", Duration.ofSeconds(31556952 *
  * When used with other calendar systems it must correspond to an integral number of days
  * and is normally an integral number of years.
  */
-ChronoUnit.MILLENNIA = new ChronoUnit("Millennia", Duration.ofSeconds(31556952 * 1000));
+ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', Duration.ofSeconds(31556952 * 1000));
 /**
  * Unit that represents the concept of an era.
  * The ISO calendar system doesn't have eras thus it is impossible to add
@@ -312,7 +315,7 @@ ChronoUnit.MILLENNIA = new ChronoUnit("Millennia", Duration.ofSeconds(31556952 *
  * <p>
  * When used with other calendar systems there are no restrictions on the unit.
  */
-ChronoUnit.ERAS = new ChronoUnit("Eras", Duration.ofSeconds(31556952 * 1000000000));
+ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * 1000000000));
 /**
  * Artificial unit that represents the concept of forever.
  * This is primarily used with {@link TemporalField} to represent unbounded fields
@@ -320,4 +323,4 @@ ChronoUnit.ERAS = new ChronoUnit("Eras", Duration.ofSeconds(31556952 * 100000000
  * The estimated duration of the era is artificially defined as the largest duration
  * supported by {@code Duration}.
  */
-ChronoUnit.FOREVER = new ChronoUnit("Forever", Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
+ChronoUnit.FOREVER = new ChronoUnit('Forever', Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
