@@ -20,7 +20,6 @@ import {MathUtil} from './MathUtil';
  * The range of a duration requires the storage of a number larger than a {@code long}.
  * To achieve this, the class stores a {@code long} representing seconds and an {@code int}
  * representing nanosecond-of-second, which will always be between 0 and 999,999,999.
- * The model is of a directed duration, meaning that the duration may be negative.
  * <p>
  * The duration is measured in "seconds", but these are not necessarily identical to
  * the scientific "SI second" definition based on atomic clocks.
@@ -47,7 +46,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Duration} representing a number of standard 24 hour days.
+     * Obtains an instance of {@code Duration} from a number of standard 24 hour days.
      * <p>
      * The seconds are calculated based on the standard definition of a day,
      * where each day is 86400 seconds which implies a 24 hour day.
@@ -58,11 +57,11 @@ export class Duration
      * @throws ArithmeticException if the input days exceeds the capacity of {@code Duration}
      */
     static ofDays(days) {
-        return create(Math.multiplyExact(days, SECONDS_PER_DAY), 0);
+        return create(MathUtil.safeMultiply(days, SECONDS_PER_DAY), 0);
     }
 
     /**
-     * Obtains a {@code Duration} representing a number of standard hours.
+     * Obtains an instance of {@code Duration} from a number of standard hours.
      * <p>
      * The seconds are calculated based on the standard definition of an hour,
      * where each hour is 3600 seconds.
@@ -73,11 +72,11 @@ export class Duration
      * @throws ArithmeticException if the input hours exceeds the capacity of {@code Duration}
      */
     static ofHours(hours) {
-        return create(Math.multiplyExact(hours, SECONDS_PER_HOUR), 0);
+        return create(MathUtil.safeMultiply(hours, SECONDS_PER_HOUR), 0);
     }
 
     /**
-     * Obtains a {@code Duration} representing a number of standard minutes.
+     * Obtains an instance of {@code Duration} from a number of standard minutes.
      * <p>
      * The seconds are calculated based on the standard definition of a minute,
      * where each minute is 60 seconds.
@@ -88,12 +87,12 @@ export class Duration
      * @throws ArithmeticException if the input minutes exceeds the capacity of {@code Duration}
      */
     static ofMinutes(minutes) {
-        return create(Math.multiplyExact(minutes, SECONDS_PER_MINUTE), 0);
+        return create(MathUtil.safeMultiply(minutes, SECONDS_PER_MINUTE), 0);
     }
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Duration} representing a number of seconds.
+     * Obtains an instance of {@code Duration} from a number of seconds.
      * <p>
      * The nanosecond in second field is set to zero.
      *
@@ -105,8 +104,8 @@ export class Duration
     }
 
     /**
-     * Obtains a {@code Duration} representing a number of seconds and an
-     * adjustment in nanoseconds.
+     * Obtains an instance of {@code Duration} from a number of seconds
+     * and an adjustment in nanoseconds.
      * <p>
      * This method allows an arbitrary number of nanoseconds to be passed in.
      * The factory will alter the values of the second and nanosecond in order
@@ -131,7 +130,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Duration} representing a number of milliseconds.
+     * Obtains an instance of {@code Duration} from a number of milliseconds.
      * <p>
      * The seconds and nanoseconds are extracted from the specified milliseconds.
      *
@@ -150,7 +149,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Duration} representing a number of nanoseconds.
+     * Obtains an instance of {@code Duration} from a number of nanoseconds.
      * <p>
      * The seconds and nanoseconds are extracted from the specified nanoseconds.
      *
@@ -169,7 +168,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Duration} representing an amount in the specified unit.
+     * Obtains an instance of {@code Duration} from a duration in the specified unit.
      * <p>
      * The parameters represent the two parts of a phrase like '6 Hours'. For example:
      * <pre>
@@ -177,7 +176,7 @@ export class Duration
      *  Duration.of(465, HOURS);
      * </pre>
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@linkplain TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
      *
      * @param {Number} amount  the amount of the duration, measured in terms of the unit, positive or negative
@@ -187,37 +186,76 @@ export class Duration
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static of(amount, unit) {
-        return ZERO.plus(amount, unit);
+        return Duration.ZERO.plus(amount, unit);
     }
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code Duration} from a temporal amount.
+     * Obtains an instance of {@code Duration} from an amount.
      * <p>
      * This obtains a duration based on the specified amount.
-     * A {@code TemporalAmount} represents an  amount of time, which may be
-     * date-based or time-based, which this factory extracts to a duration.
+     * A TemporalAmount represents an amount of time, which may be date-based
+     * or time-based, which this factory extracts to a duration.
      * <p>
      * The conversion loops around the set of units from the amount and uses
-     * the {@linkplain TemporalUnit#getDuration() duration} of the unit to
-     * calculate the total {@code Duration}.
-     * Only a subset of units are accepted by this method. The unit must either
-     * have an {@linkplain TemporalUnit#isDurationEstimated() exact duration}
-     * or be {@link ChronoUnit#DAYS} which is treated as 24 hours.
-     * If any other units are found then an exception is thrown.
+     * the duration of the unit to calculate the total Duration.
+     * Only a subset of units are accepted by this method.
+     * The unit must either have an exact duration or be ChronoUnit.DAYS which
+     * is treated as 24 hours. If any other units are found then an exception is thrown.
      *
      * @param {Number} amount  the temporal amount to convert, not null
-     * @return {Duration} the equivalent duration, not null
-     * @throws DateTimeException if unable to convert to a {@code Duration}
-     * @throws ArithmeticException if numeric overflow occurs
+     * @return {Duration} the resulting duration, not null
+     * @throws DateTimeException if the amount cannot be converted
+     * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
-        Objects.requireNonNull(amount, "amount");
+        Jdk8Methods.requireNonNull(amount, "amount");
         var duration = ZERO;
-        amount.getUnits().forEach((unit) => {
+        amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
         });
         return duration;
+    }
+    
+    /**
+     * Obtains an instance of {@code Duration} representing the duration between two instants.
+     * <p>
+     * Obtains a {@code Duration} representing the duration between two instants.
+     * This calculates the duration between two temporal objects of the same type.
+     * The difference in seconds is calculated using {@link Temporal#until(Temporal, TemporalUnit)}.
+     * The difference in nanoseconds is calculated using by querying the
+     * {@link ChronoField#NANO_OF_SECOND NANO_OF_SECOND} field.
+     * <p>
+     * The result of this method can be a negative period if the end is before the start.
+     * To guarantee to obtain a positive duration call abs() on the result.
+     *
+     * @param {Temporal} startInclusive  the start instant, inclusive, not null
+     * @param {Temporal} endExclusive  the end instant, exclusive, not null
+     * @return {@code Duration}, not null
+     * @throws DateTimeException if the seconds between the temporals cannot be obtained
+     * @throws ArithmeticException if the calculation exceeds the capacity of {@code Duration}
+     */
+    static between(startInclusive, endExclusive) {
+        var secs = startInclusive.until(endExclusive, SECONDS);
+        var nanos = 0;
+        if (startInclusive.isSupported(NANO_OF_SECOND) && endExclusive.isSupported(NANO_OF_SECOND)) {
+            try {
+                let startNos = startInclusive.getLong(NANO_OF_SECOND);
+                nanos = endExclusive.getLong(NANO_OF_SECOND) - startNos;
+                if (secs > 0 && nanos < 0) {
+                    nanos += LocalTime.NANOS_PER_SECOND;
+                } else if (secs < 0 && nanos > 0) {
+                    nanos -= LocalTime.NANOS_PER_SECOND;
+                } else if (secs == 0 && nanos != 0) {
+                    // two possible meanings for result, so recalculate secs
+                    let adjustedEnd = endExclusive.with(LocalTime.NANO_OF_SECOND, startNos);
+                    secs = startInclusive.until(adjustedEnd, ChronoUnit.SECONDS);
+                }
+            } catch (e) {
+                // ignore and only use seconds
+            }
+        }
+        return this.ofSeconds(secs, nanos);
     }
 
     //-----------------------------------------------------------------------
@@ -241,9 +279,9 @@ export class Duration
      * there must be at least one section after the "T".
      * The number part of each section must consist of one or more ASCII digits.
      * The number may be prefixed by the ASCII negative or positive symbol.
-     * The number of days, hours and minutes must parse to an {@code long}.
-     * The number of seconds must parse to an {@code long} with optional fraction.
-     * The decimal povar may be either a dot or a comma.
+     * The number of days, hours and minutes must parse to a {@code long}.
+     * The number of seconds must parse to a {@code long} with optional fraction.
+     * The decimal point may be either a dot or a comma.
      * The fractional part may have from zero to 9 digits.
      * <p>
      * The leading plus/minus sign, and negative values for other units are
@@ -251,14 +289,14 @@ export class Duration
      * <p>
      * Examples:
      * <pre>
-     *    "PT20.345S" -- parses as "20.345 seconds"
-     *    "PT15M"     -- parses as "15 minutes" (where a minute is 60 seconds)
-     *    "PT10H"     -- parses as "10 hours" (where an hour is 3600 seconds)
-     *    "P2D"       -- parses as "2 days" (where a day is 24 hours or 86400 seconds)
-     *    "P2DT3H4M"  -- parses as "2 days, 3 hours and 4 minutes"
-     *    "P-6H3M"    -- parses as "-6 hours and +3 minutes"
-     *    "-P6H3M"    -- parses as "-6 hours and -3 minutes"
-     *    "-P-6H+3M"  -- parses as "+6 hours and -3 minutes"
+     *    "PT20.345S" -> parses as "20.345 seconds"
+     *    "PT15M"     -> parses as "15 minutes" (where a minute is 60 seconds)
+     *    "PT10H"     -> parses as "10 hours" (where an hour is 3600 seconds)
+     *    "P2D"       -> parses as "2 days" (where a day is 24 hours or 86400 seconds)
+     *    "P2DT3H4M"  -> parses as "2 days, 3 hours and 4 minutes"
+     *    "P-6H3M"    -> parses as "-6 hours and +3 minutes"
+     *    "-P6H3M"    -> parses as "-6 hours and -3 minutes"
+     *    "-P-6H+3M"  -> parses as "+6 hours and -3 minutes"
      * </pre>
      *
      * @param {String} text  the text to parse, not null
@@ -266,38 +304,39 @@ export class Duration
      * @throws DateTimeParseException if the text cannot be parsed to a duration
      */
     static parse(text) {
-        //Objects.requireNonNull(text, "text");
+        //Jdk8Methods.requireNonNull(text, "text");
         /**
          * The pattern for parsing.
          */
-        const PATTERN = new RegExp("([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?", "i");
+        const PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
         var matches = PATTERN.match(text);
         if (matches !== null) {
             // to match the group numbers of the JDK code, we remove the first array element (the complete match)
             matches.shift();
             // check for letter T but no time sections
-            if ("T".equals(matches[3]) == false) {
-                var negate = "-".equals(matches[1]);
+            if ('T'.equals(matches[3]) == false) {
+                var negate = '-'.equals(matches[1]);
                 var dayMatch = matches[2];
                 var hourMatch = matches[4];
                 var minuteMatch = matches[5];
                 var secondMatch = matches[6];
                 var fractionMatch = matches[7];
                 if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-                    var daysAsSecs = parseNumber(text, dayMatch, SECONDS_PER_DAY, "days");
-                    var hoursAsSecs = parseNumber(text, hourMatch, SECONDS_PER_HOUR, "hours");
-                    var minsAsSecs = parseNumber(text, minuteMatch, SECONDS_PER_MINUTE, "minutes");
-                    var seconds = parseNumber(text, secondMatch, 1, "seconds");
-                    var nanos = parseFraction(text,  fractionMatch, seconds < 0 ? -1 : 1);
+                    var daysAsSecs = parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, 'days');
+                    var hoursAsSecs = parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
+                    var minsAsSecs = parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
+                    var seconds = parseNumber(text, secondMatch, 1, 'seconds');
+                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) == '-';
+                    var nanos = parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
-                        return create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
+                        return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
                     } catch (ex) {
-                        throw new DateTimeParseException("Text cannot be parsed to a Duration: overflow", text, 0).initCause(ex);
+                        throw new DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0).initCause(ex);
                     }
                 }
             }
         }
-        throw new DateTimeParseException("Text cannot be parsed to a Duration", text, 0);
+        throw new DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
     }
 
     static parseNumber(text, parsed, multiplier, errorText) {
@@ -306,8 +345,11 @@ export class Duration
             return 0;
         }
         try {
+            if (parsed.startsWith("+")) {
+                parsed = parsed.substring(1);
+            }
             var val = Long.parseLong(parsed);
-            return Math.multiplyExact(val, multiplier);
+            return MathUtil.safeMultiply(val, multiplier);
         } catch (ex) {
             throw new DateTimeParseException("Text cannot be parsed to a Duration: " + errorText, text, 0).initCause(ex);
         }
@@ -327,53 +369,11 @@ export class Duration
     }
 
     static create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
-        var seconds = Math.addExact(daysAsSecs, Math.addExact(hoursAsSecs, Math.addExact(minsAsSecs, secs)));
+        var seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
         if (negate) {
-            return ofSeconds(seconds, nanos).negated();
+            return Duration.ofSeconds(seconds, nanos).negated();
         }
-        return ofSeconds(seconds, nanos);
-    }
-
-    //-----------------------------------------------------------------------
-    /**
-     * Obtains a {@code Duration} representing the duration between two temporal objects.
-     * <p>
-     * This calculates the duration between two temporal objects. If the objects
-     * are of different types, then the duration is calculated based on the type
-     * of the first object. For example, if the first argument is a {@code LocalTime}
-     * then the second argument is converted to a {@code LocalTime}.
-     * <p>
-     * The specified temporal objects must support the {@link ChronoUnit#SECONDS SECONDS} unit.
-     * For full accuracy, either the {@link ChronoUnit#NANOS NANOS} unit or the
-     * {@link ChronoField#NANO_OF_SECOND NANO_OF_SECOND} field should be supported.
-     * <p>
-     * The result of this method can be a negative period if the end is before the start.
-     * To guarantee to obtain a positive duration call {@link #abs()} on the result.
-     *
-     * @param {Temporal} startInclusive  the start instant, inclusive, not null
-     * @param {Temporal} endExclusive  the end instant, exclusive, not null
-     * @return {@code Duration}, not null
-     * @throws DateTimeException if the seconds between the temporals cannot be obtained
-     * @throws ArithmeticException if the calculation exceeds the capacity of {@code Duration}
-     */
-    static between(startInclusive, endExclusive) {
-        try {
-            return ofNanos(startInclusive.until(endExclusive, NANOS));
-        } catch (ex) {
-            var secs = startInclusive.until(endExclusive, SECONDS);
-            var nanos;
-            try {
-                nanos = endExclusive.getLong(NANO_OF_SECOND) - startInclusive.getLong(NANO_OF_SECOND);
-                if (secs > 0 && nanos < 0) {
-                    secs++;
-                } else if (secs < 0 && nanos > 0) {
-                    secs--;
-                }
-            } catch (ex2) {
-                nanos = 0;
-            }
-            return ofSeconds(secs, nanos);
-        }
+        return Duration.ofSeconds(seconds, nanos);
     }
 
     //-----------------------------------------------------------------------
@@ -413,18 +413,6 @@ export class Duration
         }
     }
 
-    /**
-     * Gets the set of units supported by this duration.
-     * <p>
-     * The supported units are {@link ChronoUnit#SECONDS SECONDS},
-     * and {@link ChronoUnit#NANOS NANOS}.
-     * They are returned in the order seconds, nanos.
-     * <p>
-     * This set can be used in conjunction with {@link #get(TemporalUnit)}
-     * to access the entire state of the duration.
-     *
-     * @return {Array} a list containing the seconds and nanos units, not null
-     */
     units() {
         return [ChronoUnit.SECONDS, ChronoUnit.NANOS];
     }
@@ -545,7 +533,7 @@ export class Duration
      * <p>
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@linkplain TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
      * <p>
      * This instance is immutable and unaffected by this method call.
@@ -557,9 +545,9 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plus(amountToAdd, unit) {
-        Objects.requireNonNull(unit, "unit");
-        if (unit == DAYS) {
-            return plus(Math.multiplyExact(amountToAdd, SECONDS_PER_DAY), 0);
+        Jdk8Methods.requireNonNull(unit, "unit");
+        if (unit == ChronoUnit.DAYS) {
+            return plus(MathUtil.safeMultiply(amountToAdd, SECONDS_PER_DAY), 0);
         }
         if (unit.isDurationEstimated()) {
             throw new UnsupportedTemporalTypeException("Unit must not have an estimated duration");
@@ -574,7 +562,7 @@ export class Duration
                 case ChronoUnit.MILLIS: return plusMillis(amountToAdd);
                 case ChronoUnit.SECONDS: return plusSeconds(amountToAdd);
             }
-            return plusSeconds(Math.multiplyExact(unit.getDuration().seconds, amountToAdd));
+            return plusSeconds(MathUtil.safeMultiply(unit.getDuration().seconds, amountToAdd));
         }
         var duration = unit.getDuration().multipliedBy(amountToAdd);
         return plusSeconds(duration.getSeconds()).plusNanos(duration.getNano());
@@ -582,10 +570,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this duration with the specified duration in standard 24 hour days added.
-     * <p>
-     * The number of days is multiplied by 86400 to obtain the number of seconds to add.
-     * This is based on the standard definition of a day as 24 hours.
+     * Returns a copy of this duration with the specified duration in 24 hour days added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
@@ -594,7 +579,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDays(daysToAdd) {
-        return plus(Math.multiplyExact(daysToAdd, SECONDS_PER_DAY), 0);
+        return plus(MathUtil.safeMultiply(daysToAdd, SECONDS_PER_DAY), 0);
     }
 
     /**
@@ -607,7 +592,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusHours(hoursToAdd) {
-        return plus(Math.multiplyExact(hoursToAdd, SECONDS_PER_HOUR), 0);
+        return plus(MathUtil.safeMultiply(hoursToAdd, SECONDS_PER_HOUR), 0);
     }
 
     /**
@@ -620,7 +605,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusMinutes(minutesToAdd) {
-        return plus(Math.multiplyExact(minutesToAdd, SECONDS_PER_MINUTE), 0);
+        return plus(MathUtil.safeMultiply(minutesToAdd, SECONDS_PER_MINUTE), 0);
     }
 
     /**
@@ -676,8 +661,8 @@ export class Duration
         if ((secondsToAdd | nanosToAdd) == 0) {
             return this;
         }
-        var epochSec = Math.addExact(seconds, secondsToAdd);
-        epochSec = Math.addExact(epochSec, nanosToAdd / LocalTime.NANOS_PER_SECOND);
+        var epochSec = MathUtil.addExact(seconds, secondsToAdd);
+        epochSec = MathUtil.addExact(epochSec, nanosToAdd / LocalTime.NANOS_PER_SECOND);
         nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
         var nanoAdjustment = nanos + nanosToAdd;  // safe int+LocalTime.NANOS_PER_SECOND
         return ofSeconds(epochSec, nanoAdjustment);
@@ -707,7 +692,7 @@ export class Duration
      * <p>
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@linkplain TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
      * <p>
      * This instance is immutable and unaffected by this method call.
@@ -723,10 +708,7 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this duration with the specified duration in standard 24 hour days subtracted.
-     * <p>
-     * The number of days is multiplied by 86400 to obtain the number of seconds to subtract.
-     * This is based on the standard definition of a day as 24 hours.
+     * Returns a copy of this duration with the specified duration in 24 hour days subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
@@ -740,8 +722,6 @@ export class Duration
 
     /**
      * Returns a copy of this duration with the specified duration in hours subtracted.
-     * <p>
-     * The number of hours is multiplied by 3600 to obtain the number of seconds to subtract.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
@@ -1014,8 +994,8 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     toMillis() {
-        var millis = Math.multiplyExact(this._seconds, 1000);
-        millis = Math.addExact(millis, this._nanos / 1000000);
+        var millis = MathUtil.safeMultiply(this._seconds, 1000);
+        millis = MathUtil.addExact(millis, this._nanos / 1000000);
         return millis;
     }
 
@@ -1029,8 +1009,8 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     toNanos() {
-        var totalNanos = Math.multiplyExact(seconds, LocalTime.NANOS_PER_SECOND);
-        totalNanos = Math.addExact(totalNanos, nanos);
+        var totalNanos = MathUtil.safeMultiply(seconds, LocalTime.NANOS_PER_SECOND);
+        totalNanos = MathUtil.addExact(totalNanos, nanos);
         return totalNanos;
     }
 
@@ -1044,7 +1024,7 @@ export class Duration
      * @return the comparator value, negative if less, positive if greater
      */
     compareTo(otherDuration) {
-        var cmp = Long.compare(seconds, otherDuration.seconds);
+        var cmp = Jdk8Methods.compareLongs(seconds, otherDuration.seconds);
         if (cmp != 0) {
             return cmp;
         }
@@ -1084,10 +1064,10 @@ export class Duration
      * <p>
      * Examples:
      * <pre>
-     *    "20.345 seconds"                 -- "PT20.345S
-     *    "15 minutes" (15 * 60 seconds)   -- "PT15M"
-     *    "10 hours" (10 * 3600 seconds)   -- "PT10H"
-     *    "2 days" (2 * 86400 seconds)     -- "PT48H"
+     *    "20.345 seconds"                 -> "PT20.345S
+     *    "15 minutes" (15 * 60 seconds)   -> "PT15M"
+     *    "10 hours" (10 * 3600 seconds)   -> "PT10H"
+     *    "2 days" (2 * 86400 seconds)     -> "PT48H"
      * </pre>
      * Note that multiples of 24 hours are not output as days to avoid confusion
      * with {@code Period}.
