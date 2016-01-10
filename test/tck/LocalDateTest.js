@@ -75,6 +75,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
         return date.withDayOfMonth(date.getMonth().length(isIsoLeap(date.getYear())));
     }
 
+    describe('constants', () => {
+        it('LocalDate.MAX', () => {
+            check(MAX_DATE, Year.MAX_VALUE, 12, 31);
+        });
+        it('LocalDate.MIN', () => {
+            check(MIN_DATE, Year.MIN_VALUE, 1, 1);
+        });
+    });
 
     describe('of() factories', () => {
 
