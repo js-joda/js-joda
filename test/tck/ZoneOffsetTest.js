@@ -2,8 +2,6 @@ import {expect} from 'chai';
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
-import {isCoverageTestRunner} from '../testUtils';
-
 describe('org.threeten.bp.TestZoneOffset', () => {
     describe('constant', () => {
         it('test_constant_UTC', () => {
