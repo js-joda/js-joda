@@ -8,7 +8,7 @@ import {DateTimeException} from '../../src/errors';
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
 
-describe('tck.java.time.TCKInstant', () => {
+describe('org.threeten.bp.TestInstant', () => {
     function check(instant, epochSecs, nos) {
         expect(instant.epochSecond()).to.equal(epochSecs);
         expect(instant.nano()).to.equal(nos);

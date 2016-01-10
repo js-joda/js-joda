@@ -5,8 +5,9 @@ import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {Year} from '../../src/Year';
 
-describe('tck.java.time.TCKLocalDate', () => {
+describe('org.threeten.bp.TestLocalDate', () => {
     var TEST_2007_07_15;
     var MAX_VALID_EPOCHDAYS;
     var MIN_VALID_EPOCHDAYS;

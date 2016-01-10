@@ -9,7 +9,7 @@ import {LocalTime} from '../../src/LocalTime';
 import {Month} from '../../src/Month';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
-describe('tck.java.time.TCKMonth', () => {
+describe('org.threeten.bp.TestMonth', () => {
     const MAX_LENGTH = 12;
 
     //-----------------------------------------------------------------------
@@ -48,43 +48,6 @@ describe('tck.java.time.TCKMonth', () => {
         expect(() => {
             Month.from(null);
         }).to.throw(DateTimeException); // NullPointerException in JDK
-    });
-
-    describe('isSupported(TemporalField)', () => {
-        it('test_isSupported_TemporalField', () => {
-            // TODO: most of these currently "succeed" because they are undefined and thus isSupported returns false :/
-            expect(Month.AUGUST.isSupported(null)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_SECOND)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.NANO_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MICRO_OF_SECOND)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MICRO_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MILLI_OF_SECOND)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MILLI_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.SECOND_OF_MINUTE)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.SECOND_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MINUTE_OF_HOUR)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MINUTE_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.HOUR_OF_AMPM)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.CLOCK_HOUR_OF_AMPM)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.HOUR_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.CLOCK_HOUR_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.AMPM_OF_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_WEEK)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_MONTH)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.DAY_OF_YEAR)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.EPOCH_DAY)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_WEEK_OF_MONTH)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.ALIGNED_WEEK_OF_YEAR)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.MONTH_OF_YEAR)).to.eql(true);
-            expect(Month.AUGUST.isSupported(ChronoField.PROLEPTIC_MONTH)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.YEAR)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.YEAR_OF_ERA)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.ERA)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.INSTANT_SECONDS)).to.eql(false);
-            expect(Month.AUGUST.isSupported(ChronoField.OFFSET_SECONDS)).to.eql(false);
-        });
     });
 
     describe('get(TemporalField)', () => {

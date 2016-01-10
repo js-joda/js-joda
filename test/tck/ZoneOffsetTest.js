@@ -4,7 +4,7 @@ import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {isCoverageTestRunner} from '../testUtils';
 
-describe('ZoneOffset', () => {
+describe('org.threeten.bp.TestZoneOffset', () => {
     describe('constant', () => {
         it('test_constant_UTC', () => {
             var test = ZoneOffset.UTC;
