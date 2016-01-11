@@ -92,18 +92,6 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code Duration} from a number of seconds.
-     * <p>
-     * The nanosecond in second field is set to zero.
-     *
-     * @param {Number} seconds  the number of seconds, positive or negative
-     * @return {@code Duration}, not null
-     */
-    static ofSeconds(seconds) {
-        return Duration.create(seconds, 0);
-    }
-
-    /**
      * Obtains an instance of {@code Duration} from a number of seconds
      * and an adjustment in nanoseconds.
      * <p>
