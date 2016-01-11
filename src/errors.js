@@ -1,14 +1,14 @@
-import ExtendableError from 'es6-error'
+import ExtendableError from 'es6-error';
 
 export class DateTimeException extends ExtendableError {
     constructor(message = 'DateTimeException') {
-        super(message)
+        super(message);
     }
 }
 
 export class DateTimeParseException extends ExtendableError {
     constructor(message = 'DateTimeParseException', text = '', index = 0) {
-        super(message + ": " + text + ", at index: " + index)
+        super(message + ': ' + text + ', at index: ' + index);
     }
     
     initCause(exception) {
@@ -19,6 +19,12 @@ export class DateTimeParseException extends ExtendableError {
 
 export class UnsupportedTemporalTypeException extends ExtendableError {
     constructor(message = 'UnsupportedTemporalTypeException') {
-        super(message)
+        super(message);
+    }
+}
+
+export class ArithmeticException extends ExtendableError {
+    constructor(message = 'ArithmeticException') {
+        super(message);
     }
 }
