@@ -2,8 +2,7 @@ import {expect} from 'chai';
 
 import {Duration} from '../../src/Duration';
 
-describe('tck.java.time.TCKDuration', () => {
-    const CYCLE_SECS = 146097 * 86400;
+describe('org.threeten.bp.TestDuration', () => {
 
     describe('constants', () => {
         it('test_zero', () => {
