@@ -111,7 +111,7 @@ export class Duration
      * @throws ArithmeticException if the adjustment causes the seconds to exceed the capacity of {@code Duration}
      */
     static ofSeconds(seconds, nanoAdjustment = 0) {
-        var secs = seconds + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
         var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         return Duration.create(secs, nos);
     }
