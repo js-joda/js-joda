@@ -243,7 +243,7 @@ describe('org.threeten.bp.TestInstant', () => {
             var instant = Instant.ofEpochSecond(seconds, nanos).plusSeconds(otherSeconds).plusNanos(otherNanos);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
-        };
+        }
 
         it('plus_longTemporalUnit_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
@@ -287,7 +287,7 @@ describe('org.threeten.bp.TestInstant', () => {
                 [-1, 1, MIN_SECOND + 1, MIN_SECOND, 1],
 
                 [MAX_SECOND, 2, -MAX_SECOND, 0, 2],
-                [MIN_SECOND, 2, -MIN_SECOND, 0, 2],
+                [MIN_SECOND, 2, -MIN_SECOND, 0, 2]
             ];
 
         });
@@ -304,7 +304,7 @@ describe('org.threeten.bp.TestInstant', () => {
             instant = instant.plusSeconds(amount);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
-        };
+        }
 
         it('plusSeconds_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(1, 0);
@@ -396,7 +396,7 @@ describe('org.threeten.bp.TestInstant', () => {
                 [MIN_SECOND + 1, 1, -1000000001, MIN_SECOND, 0],
 
                 [0, 0, MAX_SECOND, MathUtil.intDiv(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
-                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
+                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000]
             ];
 
         });
@@ -411,9 +411,9 @@ describe('org.threeten.bp.TestInstant', () => {
         function plusNanos(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
             var instant = Instant.ofEpochSecond(seconds, nanos);
             instant = instant.plusNanos(amount);
-            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
-            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
-        };
+            expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
+            expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
+        }
 
         it('plusNanos_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
@@ -456,7 +456,7 @@ describe('org.threeten.bp.TestInstant', () => {
                 [MIN_SECOND, 2, MIN_SECOND, 0, 2],
                 [MIN_SECOND + 1, 2, MIN_SECOND, 1, 2],
                 [MAX_SECOND - 1, 2, MAX_SECOND, -1, 2],
-                [MAX_SECOND, 2, MAX_SECOND, 0, 2],
+                [MAX_SECOND, 2, MAX_SECOND, 0, 2]
             ];
 
         });
@@ -471,9 +471,9 @@ describe('org.threeten.bp.TestInstant', () => {
         function minusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
             var instant = Instant.ofEpochSecond(seconds, nanos);
             instant = instant.minusSeconds(amount);
-            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
-            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
-        };
+            expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
+            expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
+        }
 
         it('minusSeconds_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(1, 0);

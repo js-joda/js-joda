@@ -69,7 +69,7 @@ describe('org.threeten.bp.TestMonth', () => {
                 [Month.JUNE, TemporalQueries.zone(), null],
                 [Month.JUNE, TemporalQueries.offset(), null],
                 [Month.JUNE, TemporalQueries.localDate(), null],
-                [Month.JUNE, TemporalQueries.localTime(), null],
+                [Month.JUNE, TemporalQueries.localTime(), null]
             ];
         });
         it('test_query', () => {
@@ -93,7 +93,7 @@ describe('org.threeten.bp.TestMonth', () => {
 
     describe.skip('getText()', () => {
         it('test_getText', () => {
-            expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql("Jan");
+            expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql('Jan');
         });
         it('test_getText_nullStyle', () => {
             expect(() => {
@@ -327,18 +327,18 @@ describe('org.threeten.bp.TestMonth', () => {
     
     describe('toString()', () => {
         it('test_toString', () => {
-            expect(Month.JANUARY.toString()).to.eql("JANUARY");
-            expect(Month.FEBRUARY.toString()).to.eql("FEBRUARY");
-            expect(Month.MARCH.toString()).to.eql("MARCH");
-            expect(Month.APRIL.toString()).to.eql("APRIL");
-            expect(Month.MAY.toString()).to.eql("MAY");
-            expect(Month.JUNE.toString()).to.eql("JUNE");
-            expect(Month.JULY.toString()).to.eql("JULY");
-            expect(Month.AUGUST.toString()).to.eql("AUGUST");
-            expect(Month.SEPTEMBER.toString()).to.eql("SEPTEMBER");
-            expect(Month.OCTOBER.toString()).to.eql("OCTOBER");
-            expect(Month.NOVEMBER.toString()).to.eql("NOVEMBER");
-            expect(Month.DECEMBER.toString()).to.eql("DECEMBER");
+            expect(Month.JANUARY.toString()).to.eql('JANUARY');
+            expect(Month.FEBRUARY.toString()).to.eql('FEBRUARY');
+            expect(Month.MARCH.toString()).to.eql('MARCH');
+            expect(Month.APRIL.toString()).to.eql('APRIL');
+            expect(Month.MAY.toString()).to.eql('MAY');
+            expect(Month.JUNE.toString()).to.eql('JUNE');
+            expect(Month.JULY.toString()).to.eql('JULY');
+            expect(Month.AUGUST.toString()).to.eql('AUGUST');
+            expect(Month.SEPTEMBER.toString()).to.eql('SEPTEMBER');
+            expect(Month.OCTOBER.toString()).to.eql('OCTOBER');
+            expect(Month.NOVEMBER.toString()).to.eql('NOVEMBER');
+            expect(Month.DECEMBER.toString()).to.eql('DECEMBER');
         });
     });
 

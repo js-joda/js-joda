@@ -98,78 +98,78 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_of_intsMonth_31apr', () => {
             expect(() => {
-                LocalDate.of(2007, Month.APRIL, 31)
+                LocalDate.of(2007, Month.APRIL, 31);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_intsMonth_dayTooLow', () => {
             expect(() => {
-                LocalDate.of(2007, Month.JANUARY, 0)
+                LocalDate.of(2007, Month.JANUARY, 0);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_intsMonth_dayTooHigh', () => {
             expect(() => {
-                LocalDate.of(2007, Month.JANUARY, 32)
+                LocalDate.of(2007, Month.JANUARY, 32);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_intsMonth_nullMonth', () => {
             expect(() => {
-                LocalDate.of(2007, null, 30)
+                LocalDate.of(2007, null, 30);
             }).to.throw(DateTimeException); /* NullPointerException in JDK */
         });
 
         it('factory_of_intsMonth_yearTooLow', () => {
             expect(() => {
-                LocalDate.of(Number.MIN_SAFE_INTEGER, null, 30)
+                LocalDate.of(Number.MIN_SAFE_INTEGER, null, 30);
             }).to.throw(DateTimeException);
         });
 
         //-----------------------------------------------------------------------
         it('factory_of_ints', () => {
-            check(TEST_2007_07_15, 2007, 7, 15)
+            check(TEST_2007_07_15, 2007, 7, 15);
         });
 
         it('factory_of_ints_29febNonLeap', () => {
             expect(() => {
-                LocalDate.of(2007, 2, 29)
+                LocalDate.of(2007, 2, 29);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_31apr', () => {
             expect(() => {
-                LocalDate.of(2007, 4, 31)
+                LocalDate.of(2007, 4, 31);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_dayTooLow', () => {
             expect(() => {
-                LocalDate.of(2007, 1, 0)
+                LocalDate.of(2007, 1, 0);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_dayTooHigh', () => {
             expect(() => {
-                LocalDate.of(2007, 1, 32)
+                LocalDate.of(2007, 1, 32);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_monthTooLow', () => {
             expect(() => {
-                LocalDate.of(2007, 0, 1)
+                LocalDate.of(2007, 0, 1);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_monthTooHigh', () => {
             expect(() => {
-                LocalDate.of(2007, 13, 1)
+                LocalDate.of(2007, 13, 1);
             }).to.throw(DateTimeException);
         });
 
         it('factory_of_ints_yearTooLow', () => {
             expect(() => {
-                LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 1)
+                LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 1);
             }).to.throw(DateTimeException);
         });
 
@@ -192,25 +192,25 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_ofYearDay_ints_366nonLeap', () => {
             expect(() => {
-                LocalDate.ofYearDay(2007, 366)
+                LocalDate.ofYearDay(2007, 366);
             }).to.throw(DateTimeException);
         });
 
         it('factory_ofYearDay_ints_dayTooLow', () => {
             expect(() => {
-                LocalDate.ofYearDay(2007, 0)
+                LocalDate.ofYearDay(2007, 0);
             }).to.throw(DateTimeException);
         });
 
         it('factory_ofYearDay_ints_dayTooHigh', () => {
             expect(() => {
-                LocalDate.ofYearDay(2007, 367)
+                LocalDate.ofYearDay(2007, 367);
             }).to.throw(DateTimeException);
         });
 
         it('factory_ofYearDay_ints_yearTooLow', () => {
             expect(() => {
-                LocalDate.ofYearDay(Number.MIN_SAFE_INTEGER, 1)
+                LocalDate.ofYearDay(Number.MIN_SAFE_INTEGER, 1);
             }).to.throw(DateTimeException);
         });
     });
@@ -227,13 +227,13 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_ofEpochDay_aboveMax', () => {
             expect(() => {
-                LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS + 1)
+                LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS + 1);
             }).to.throw(DateTimeException);
         });
 
         it('factory_ofEpochDay_belowMin', () => {
             expect(() => {
-                LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS - 1)
+                LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS - 1);
             }).to.throw(DateTimeException);
         });
     });
@@ -241,8 +241,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('now()', () => {
 
         it('now', () => {
-           var expected = LocalDate.now(Clock.systemDefaultZone());
-           var test = LocalDate.now();
+            var expected = LocalDate.now(Clock.systemDefaultZone());
+            var test = LocalDate.now();
             for (let i = 0; i < 100; i++) {
                 if (expected.equals(test)) {
                     return;

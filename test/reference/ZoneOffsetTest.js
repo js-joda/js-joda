@@ -222,7 +222,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
         });
 
     });
- });
+});
 
 function doTestOffset(offset, hours, minutes, seconds) {
     expect(offset.totalSeconds()).to.equal(hours * 60 * 60 + minutes * 60 + seconds);
@@ -254,4 +254,4 @@ function doTestOffset(offset, hours, minutes, seconds) {
     }
     //assertEquals(ZoneOffset.of(id), offset);
     //assertEquals(offset.toString(), id);
-};
+}
