@@ -30,10 +30,16 @@ export class MathUtil {
         if (y === 0) {
             return x;
         }
+        if (x === undefined || y === undefined) {
+            throw new ArithmeticException('Invalid addition using undefined as argument');
+        }
+        if (isNaN(x) || isNaN(y)) {
+            throw new ArithmeticException('Invalid addition using NaN as argument');
+        }
         let r = x + y;
         // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
         // TODO: is this correct and complete?
-        if (!Number.isSafeInteger(r) || r === x && r === y) {
+        if (r > Number.MAX_SAFE_INTEGER || r === x || r === y) {
             throw new ArithmeticException('Invalid addition beyond Number.MAX_SAFE_INTEGER!');
         }
         return r;
