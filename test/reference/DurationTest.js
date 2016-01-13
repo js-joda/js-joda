@@ -5,6 +5,7 @@ import {ArithmeticException} from '../../src/errors';
 // there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
+import {MathUtil} from '../../src/MathUtil';
 
 describe('org.threeten.bp.TestDuration', () => {
 
@@ -87,5 +88,34 @@ describe('org.threeten.bp.TestDuration', () => {
             });
         });
     });
-    
+
+    describe('ofNanos(long)', () => {
+        it('factory_nanos_nanos', () => {
+            let test = Duration.ofNanos(1);
+            expect(test.seconds()).to.eql(0);
+            expect(test.nano()).to.eql(1);
+        });
+        it('factory_nanos_nanosSecs', () => {
+            let test = Duration.ofNanos(1000000002);
+            expect(test.seconds()).to.eql(1);
+            expect(test.nano()).to.eql(2);
+        });
+        it('factory_nanos_nanos_negative', () => {
+            let test = Duration.ofNanos(-2000000001);
+            expect(test.seconds()).to.eql(-3);
+            expect(test.nano()).to.eql(999999999);
+        });
+        it('factory_nanos_nanos_max', () => {
+            var maxValue = 2^53-1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
+            let test = Duration.ofNanos(maxValue);
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(maxValue, 1000000000));
+            expect(test.nano()).to.eql(MathUtil.floorMod(maxValue, 1000000000));
+        });
+        it('factory_nanos_nanos_min', () => {
+            var minValue = -(2^53-1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
+            let test = Duration.ofNanos(minValue);
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(minValue, 1000000000));
+            expect(test.nano()).to.eql(MathUtil.floorMod(minValue, 1000000000));
+        });
+    });
 });

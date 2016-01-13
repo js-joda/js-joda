@@ -145,8 +145,8 @@ export class Duration
      * @return {@code Duration}, not null
      */
     static ofNanos(nanos) {
-        var secs = nanos / LocalTime.NANOS_PER_SECOND;
-        var nos = Math.floor(nanos % LocalTime.NANOS_PER_SECOND);
+        var secs = MathUtil.floorDiv(nanos, LocalTime.NANOS_PER_SECOND);
+        var nos = MathUtil.floorMod(nanos, LocalTime.NANOS_PER_SECOND);
         if (nos < 0) {
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
