@@ -44,5 +44,10 @@ export class MathUtil {
         }
         return r;
     }
+
+    static safeMultiply(x, y) {
+        let r = x * y;
+        return r;
+    }
 }
 
