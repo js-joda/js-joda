@@ -1,7 +1,8 @@
 import {expect} from 'chai';
 
 import {ArithmeticException} from '../../src/errors';
-//yuck... circular dependency between ChronoUnit and Duration... for the Duration import to work we must import ChronoUnit first :/ ... there MUST be a better way to do this??
+//yuck... circular dependency between ChronoUnit and Duration... for the Duration import to work we must import ChronoUnit first :/ ...
+// there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
 
@@ -58,4 +59,33 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException)
         });
     });
+    
+    describe('ofMillis(long)', () => {
+        var data_ofMillis;
+        before(() => {
+            data_ofMillis = [
+                [0, 0, 0],
+                [1, 0, 1000000],
+                [2, 0, 2000000],
+                [999, 0, 999000000],
+                [1000, 1, 0],
+                [1001, 1, 1000000],
+                [-1, -1, 999000000],
+                [-2, -1, 998000000],
+                [-999, -1, 1000000],
+                [-1000, -1, 0],
+                [-1001, -2, 999000000]
+            ];
+        });
+
+        it('factory_millis_long', () => {
+            data_ofMillis.forEach((val) => {
+                let [millis, expectedSeconds, expectedNano] = val;
+                let test = Duration.ofMillis(millis);
+                expect(test.seconds()).to.eql(expectedSeconds);
+                expect(test.nano()).to.eql(expectedNano);
+            });
+        });
+    });
+    
 });

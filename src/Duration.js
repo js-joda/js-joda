@@ -126,13 +126,13 @@ export class Duration
      * @return {@code Duration}, not null
      */
     static ofMillis(millis) {
-        var secs = millis / 1000;
-        var mos = (int) (millis % 1000);
+        var secs = MathUtil.floorDiv(millis, 1000);
+        var mos = MathUtil.floorMod(millis, 1000);
         if (mos < 0) {
             mos += 1000;
             secs--;
         }
-        return create(secs, mos * 1000000);
+        return Duration.create(secs, mos * 1000000);
     }
 
     //-----------------------------------------------------------------------
