@@ -1,5 +1,8 @@
 import {ArithmeticException} from './errors';
 
+export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Math.pow(2, 53) - 1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
+export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER ? Number.MIN_SAFE_INTEGER : -(Math.pow(2, 53) - 1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
+
 /**
  * Math helper with static function for integer operations
  */
@@ -46,8 +49,19 @@ export class MathUtil {
     }
 
     static safeMultiply(x, y) {
+        if (x == 1) {
+            return y;
+        }
+        if (y == 1) {
+            return x;
+        }
+        if (x == 0 || y == 0) {
+            return 0;
+        }
         let r = x * y;
-        return r;
-    }
+        if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y != x || (x == MIN_SAFE_INTEGER && y == -1) || (y == MIN_SAFE_INTEGER && x == -1)) {
+            throw new ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
+        }
+        return r;    }
 }
 

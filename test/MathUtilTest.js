@@ -1,8 +1,7 @@
 import {expect} from 'chai';
 
 import {ArithmeticException} from '../src/errors';
-import {MathUtil} from '../src/MathUtil';
-import {MAX_VALUE, MIN_VALUE} from './testUtils';
+import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../src/MathUtil';
 
 describe('MathUtil', () => {
     describe('intDiv', () => {
@@ -56,14 +55,14 @@ describe('MathUtil', () => {
             testFloorDivMod(-3, -3, 1, 0);
             testFloorDivMod(-4, -3, 1, -1);
 
-            testFloorDivMod(MAX_VALUE, 1, MAX_VALUE, 0);
-            testFloorDivMod(MAX_VALUE, -1, -MAX_VALUE, 0);
-            testFloorDivMod(MAX_VALUE, 3, 3002399751580330, 1);
-            testFloorDivMod(MAX_VALUE - 1, 3, 3002399751580330, 0);
-            testFloorDivMod(MAX_VALUE - 2, 3, 3002399751580329, 2);
+            testFloorDivMod(MAX_SAFE_INTEGER, 1, MAX_SAFE_INTEGER, 0);
+            testFloorDivMod(MAX_SAFE_INTEGER, -1, -MAX_SAFE_INTEGER, 0);
+            testFloorDivMod(MAX_SAFE_INTEGER, 3, 3002399751580330, 1);
+            testFloorDivMod(MAX_SAFE_INTEGER - 1, 3, 3002399751580330, 0);
+            testFloorDivMod(MAX_SAFE_INTEGER - 2, 3, 3002399751580329, 2);
 
-            testFloorDivMod(MIN_VALUE + 1, 3, -3002399751580330, 0);
-            testFloorDivMod(MIN_VALUE, -1, MAX_VALUE, 0);
+            testFloorDivMod(MIN_SAFE_INTEGER + 1, 3, -3002399751580330, 0);
+            testFloorDivMod(MIN_SAFE_INTEGER, -1, MAX_SAFE_INTEGER, 0);
 
             // following test fails because the end of javascript floating point accuracy reached
             //testFloorDivMod(Number.MIN_SAFE_INTEGER, 3, -3002399751580331, 2);
