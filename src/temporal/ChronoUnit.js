@@ -211,6 +211,18 @@ export class ChronoUnit /*implements TemporalUnit*/ {
         return this._name;
     }
 
+    /**
+     * Compares this ChronoUnit to the specified {TemporalUnit}.
+     * <p>
+     * The comparison is based on the total length of the durations.
+     *
+     * @param {TemporalUnit} other  the other unit to compare to, not null
+     * @return the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        this.duration().compareTo(other.duration());
+    }
+
 }
 /**
  * Unit that represents the concept of a nanosecond, the smallest supported unit of time.
