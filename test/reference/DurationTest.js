@@ -57,7 +57,7 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
         it('factory_seconds_long_long_tooBig', () => {
-            expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException)
+            expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException);
         });
     });
     
@@ -141,4 +141,57 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => Duration.ofMinutes(MathUtil.floorDiv(MIN_SAFE_INTEGER, 60) - 1)).to.throw(ArithmeticException);
         });
     });
+
+    describe('ofHours()', () => {
+        const SECONDS_PER_HOUR = 3600;
+        it('factory_hours', () => {
+            let test = Duration.ofHours(2);
+            expect(test.seconds()).to.eql(2 * SECONDS_PER_HOUR);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_hours_max', () => {
+            let test = Duration.ofHours(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR));
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) * SECONDS_PER_HOUR);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_hours_min', () => {
+            var hours = MathUtil.floorDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) + 1;
+            let test = Duration.ofHours(hours);
+            expect(test.seconds()).to.eql(hours * SECONDS_PER_HOUR);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_hours_tooBig', () => {
+            expect(() => Duration.ofHours(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) + 1)).to.throw(ArithmeticException);
+        });
+        it('factory_hours_tooSmall', () => {
+            expect(() => Duration.ofHours(MathUtil.floorDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) - 1)).to.throw(ArithmeticException);
+        });
+    });
+    
+    describe('ofDays()', () => {
+        const SECONDS_PER_DAY = 86400;
+        it('factory_days', () => {
+            let test = Duration.ofDays(2);
+            expect(test.seconds()).to.eql(2 * SECONDS_PER_DAY);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_days_max', () => {
+            let test = Duration.ofDays(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY));
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) * SECONDS_PER_DAY);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_days_min', () => {
+            var days = MathUtil.floorDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) + 1;
+            let test = Duration.ofDays(days);
+            expect(test.seconds()).to.eql(days * SECONDS_PER_DAY);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_days_tooBig', () => {
+            expect(() => Duration.ofDays(MathUtil.floorDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) + 1)).to.throw(ArithmeticException);
+        });
+        it('factory_days_tooSmall', () => {
+            expect(() => Duration.ofDays(MathUtil.floorDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) - 1)).to.throw(ArithmeticException);
+        });
+    });
+
 });
