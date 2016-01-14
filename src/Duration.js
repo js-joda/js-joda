@@ -198,7 +198,7 @@ export class Duration
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
-        Jdk8Methods.requireNonNull(amount, "amount");
+        Jdk8Methods.requireNonNull(amount, 'amount');
         var duration = ZERO;
         amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
@@ -334,13 +334,13 @@ export class Duration
             return 0;
         }
         try {
-            if (parsed.startsWith("+")) {
+            if (parsed.startsWith('+')) {
                 parsed = parsed.substring(1);
             }
             var val = Long.parseLong(parsed);
             return MathUtil.safeMultiply(val, multiplier);
         } catch (ex) {
-            throw new DateTimeParseException("Text cannot be parsed to a Duration: " + errorText, text, 0).initCause(ex);
+            throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0).initCause(ex);
         }
     }
 
@@ -350,10 +350,10 @@ export class Duration
             return 0;
         }
         try {
-            parsed = (parsed + "000000000").substring(0, 9);
+            parsed = (parsed + '000000000').substring(0, 9);
             return Integer.parseInt(parsed) * negate;
         } catch (ex) {
-            throw new DateTimeParseException("Text cannot be parsed to a Duration: fraction", text, 0).initCause(ex);
+            throw new DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0).initCause(ex);
         }
     }
 
@@ -398,7 +398,7 @@ export class Duration
         } else if (unit === NANOS) {
             return nanos;
         } else {
-            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
         }
     }
 
@@ -515,7 +515,7 @@ export class Duration
      */
     plusDuration(duration) {
         return plus(duration.getSeconds(), duration.getNano());
-     }
+    }
 
 
     /**
@@ -551,12 +551,12 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusAmountUnit(amountToAdd, unit) {
-        requireNonNull(unit, "unit");
+        requireNonNull(unit, 'unit');
         if (unit == ChronoUnit.DAYS) {
             return this.plusSecondsNanos(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY), 0);
         }
         if (unit.isDurationEstimated()) {
-            throw new UnsupportedTemporalTypeException("Unit must not have an estimated duration");
+            throw new UnsupportedTemporalTypeException('Unit must not have an estimated duration');
         }
         if (amountToAdd == 0) {
             return this;
@@ -691,7 +691,7 @@ export class Duration
             return plus(Long.MAX_VALUE, -nanosToSubtract).plus(1, 0);
         }
         return plus(-secsToSubtract, -nanosToSubtract);
-     }
+    }
 
     /**
      * Returns a copy of this duration with the specified duration subtracted.
@@ -811,7 +811,7 @@ export class Duration
             return this;
         }
         return create(toSeconds().multiply(BigDecimal.valueOf(multiplicand)));
-     }
+    }
 
     /**
      * Returns a copy of this duration divided by the specified value.
@@ -824,13 +824,13 @@ export class Duration
      */
     dividedBy(divisor) {
         if (divisor == 0) {
-            throw new ArithmeticException("Cannot divide by zero");
+            throw new ArithmeticException('Cannot divide by zero');
         }
         if (divisor == 1) {
             return this;
         }
         return create(toSeconds().divide(BigDecimal.valueOf(divisor), RoundingMode.DOWN));
-     }
+    }
 
     /**
      * Converts this duration to the total length in seconds and
@@ -1082,12 +1082,12 @@ export class Duration
      */
     toString() {
         if (this === ZERO) {
-            return "PT0S";
+            return 'PT0S';
         }
         var hours = seconds / SECONDS_PER_HOUR;
         var minutes = (int) ((seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
         var secs = (int) (seconds % SECONDS_PER_MINUTE);
-        var rval = "PT";
+        var rval = 'PT';
         if (hours != 0) {
             rval += hours + 'H';
         }
@@ -1099,7 +1099,7 @@ export class Duration
         }
         if (secs < 0 && nanos > 0) {
             if (secs == -1) {
-                buf.append("-0");
+                buf.append('-0');
             } else {
                 buf.append(secs + 1);
             }
