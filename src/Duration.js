@@ -57,7 +57,7 @@ export class Duration
      * @throws ArithmeticException if the input days exceeds the capacity of {@code Duration}
      */
     static ofDays(days) {
-        return create(MathUtil.safeMultiply(days, SECONDS_PER_DAY), 0);
+        return Duration.create(MathUtil.safeMultiply(days, LocalTime.SECONDS_PER_DAY), 0);
     }
 
     /**
@@ -72,7 +72,7 @@ export class Duration
      * @throws ArithmeticException if the input hours exceeds the capacity of {@code Duration}
      */
     static ofHours(hours) {
-        return create(MathUtil.safeMultiply(hours, SECONDS_PER_HOUR), 0);
+        return Duration.create(MathUtil.safeMultiply(hours, LocalTime.SECONDS_PER_HOUR), 0);
     }
 
     /**
@@ -87,7 +87,7 @@ export class Duration
      * @throws ArithmeticException if the input minutes exceeds the capacity of {@code Duration}
      */
     static ofMinutes(minutes) {
-        return create(MathUtil.safeMultiply(minutes, SECONDS_PER_MINUTE), 0);
+        return Duration.create(MathUtil.safeMultiply(minutes, LocalTime.SECONDS_PER_MINUTE), 0);
     }
 
     //-----------------------------------------------------------------------

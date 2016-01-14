@@ -5,7 +5,7 @@ import {ArithmeticException} from '../../src/errors';
 // there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
-import {MathUtil} from '../../src/MathUtil';
+import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../../src/MathUtil';
 
 describe('org.threeten.bp.TestDuration', () => {
 
@@ -106,16 +106,39 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(test.nano()).to.eql(999999999);
         });
         it('factory_nanos_nanos_max', () => {
-            var maxValue = 2^53-1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
-            let test = Duration.ofNanos(maxValue);
-            expect(test.seconds()).to.eql(MathUtil.floorDiv(maxValue, 1000000000));
-            expect(test.nano()).to.eql(MathUtil.floorMod(maxValue, 1000000000));
+            let test = Duration.ofNanos(MAX_SAFE_INTEGER);
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(MAX_SAFE_INTEGER, 1000000000));
+            expect(test.nano()).to.eql(MathUtil.floorMod(MAX_SAFE_INTEGER, 1000000000));
         });
         it('factory_nanos_nanos_min', () => {
-            var minValue = -(2^53-1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
-            let test = Duration.ofNanos(minValue);
-            expect(test.seconds()).to.eql(MathUtil.floorDiv(minValue, 1000000000));
-            expect(test.nano()).to.eql(MathUtil.floorMod(minValue, 1000000000));
+            let test = Duration.ofNanos(MIN_SAFE_INTEGER);
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(MIN_SAFE_INTEGER, 1000000000));
+            expect(test.nano()).to.eql(MathUtil.floorMod(MIN_SAFE_INTEGER, 1000000000));
+        });
+    });
+    
+    describe('ofMinutes()', () => {
+        it('factory_minutes', () => {
+            let test = Duration.ofMinutes(2);
+            expect(test.seconds()).to.eql(120);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_minutes_max', () => {
+            let test = Duration.ofMinutes( MathUtil.floorDiv(MAX_SAFE_INTEGER, 60));
+            expect(test.seconds()).to.eql(MathUtil.floorDiv(MAX_SAFE_INTEGER, 60) * 60);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_minutes_min', () => {
+            var minutes = MathUtil.floorDiv(MIN_SAFE_INTEGER, 60) + 1;
+            let test = Duration.ofMinutes( minutes);
+            expect(test.seconds()).to.eql(minutes * 60);
+            expect(test.nano()).to.eql(0);
+        });
+        it('factory_minutes_tooBig', () => {
+            expect(() => Duration.ofMinutes(MathUtil.floorDiv(MAX_SAFE_INTEGER, 60) + 1)).to.throw(ArithmeticException);
+        });
+        it('factory_minutes_tooSmall', () => {
+            expect(() => Duration.ofMinutes(MathUtil.floorDiv(MIN_SAFE_INTEGER, 60) - 1)).to.throw(ArithmeticException);
         });
     });
 });
