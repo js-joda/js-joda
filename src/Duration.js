@@ -1,3 +1,4 @@
+import {requireNonNull} from './assert';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
 import {LocalTime} from './LocalTime';
@@ -126,8 +127,8 @@ export class Duration
      * @return {@code Duration}, not null
      */
     static ofMillis(millis) {
-        var secs = MathUtil.floorDiv(millis, 1000);
-        var mos = MathUtil.floorMod(millis, 1000);
+        var secs = MathUtil.intDiv(millis, 1000);
+        var mos = MathUtil.intMod(millis, 1000);
         if (mos < 0) {
             mos += 1000;
             secs--;
@@ -145,8 +146,8 @@ export class Duration
      * @return {@code Duration}, not null
      */
     static ofNanos(nanos) {
-        var secs = MathUtil.floorDiv(nanos, LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.floorMod(nanos, LocalTime.NANOS_PER_SECOND);
+        var secs = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
+        var nos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
         if (nos < 0) {
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
@@ -463,7 +464,7 @@ export class Duration
      * A negative duration is expressed by the negative sign of the seconds part.
      * A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds.
      *
-     * @return the nanoseconds within the second part of the length of the duration, from 0 to 999,999,999
+     * @return {Number} the nanoseconds within the second part of the length of the duration, from 0 to 999,999,999
      */
     nano() {
         return this._nanos;
@@ -512,10 +513,27 @@ export class Duration
      * @return {@code Duration} based on this duration with the specified duration added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plus(duration) {
+    plusDuration(duration) {
         return plus(duration.getSeconds(), duration.getNano());
      }
 
+
+    /**
+     * to handle function overriding this function accepts two arguments, checks their type and delegates to the appropriate function
+     * 
+     * @param a
+     * @param b
+     */
+    plus(a, b){
+        if (a instanceof Duration) {
+            return this.plusDuration(a);
+        }
+        if (b instanceof ChronoUnit) {
+            return this.plusAmountUnit(a, b);
+        }
+        return this.plusSecondsNanos(a, b);
+    }
+    
     /**
      * Returns a copy of this duration with the specified duration added.
      * <p>
@@ -532,10 +550,10 @@ export class Duration
      * @throws UnsupportedTemporalTypeException if the unit is not supported
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plus(amountToAdd, unit) {
-        Jdk8Methods.requireNonNull(unit, "unit");
+    plusAmountUnit(amountToAdd, unit) {
+        requireNonNull(unit, "unit");
         if (unit == ChronoUnit.DAYS) {
-            return plus(MathUtil.safeMultiply(amountToAdd, SECONDS_PER_DAY), 0);
+            return this.plusSecondsNanos(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY), 0);
         }
         if (unit.isDurationEstimated()) {
             throw new UnsupportedTemporalTypeException("Unit must not have an estimated duration");
@@ -545,15 +563,15 @@ export class Duration
         }
         if (unit instanceof ChronoUnit) {
             switch (unit) {
-                case ChronoUnit.NANOS: return plusNanos(amountToAdd);
-                case ChronoUnit.MICROS: return plusSeconds((amountToAdd / (1000000 * 1000)) * 1000).plusNanos((amountToAdd % (1000000 * 1000)) * 1000);
-                case ChronoUnit.MILLIS: return plusMillis(amountToAdd);
-                case ChronoUnit.SECONDS: return plusSeconds(amountToAdd);
+                case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
+                case ChronoUnit.MICROS: return this.plusSecondsNanos(MathUtil.intDiv(amountToAdd, (1000000 * 1000)) * 1000, MathUtil.intMod(amountToAdd, (1000000 * 1000)) * 1000);
+                case ChronoUnit.MILLIS: return this.plusMillis(amountToAdd);
+                case ChronoUnit.SECONDS: return this.plusSeconds(amountToAdd);
             }
-            return plusSeconds(MathUtil.safeMultiply(unit.getDuration().seconds, amountToAdd));
+            return this.plusSecondsNanos(MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
         }
-        var duration = unit.getDuration().multipliedBy(amountToAdd);
-        return plusSeconds(duration.getSeconds()).plusNanos(duration.getNano());
+        var duration = unit.duration().multipliedBy(amountToAdd);
+        return this.plusSecondsNanos(duration.seconds(), duration.nano());
     }
 
     //-----------------------------------------------------------------------
@@ -567,7 +585,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDays(daysToAdd) {
-        return plus(MathUtil.safeMultiply(daysToAdd, SECONDS_PER_DAY), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(daysToAdd, SECONDS_PER_DAY), 0);
     }
 
     /**
@@ -580,7 +598,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusHours(hoursToAdd) {
-        return plus(MathUtil.safeMultiply(hoursToAdd, SECONDS_PER_HOUR), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(hoursToAdd, SECONDS_PER_HOUR), 0);
     }
 
     /**
@@ -593,7 +611,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusMinutes(minutesToAdd) {
-        return plus(MathUtil.safeMultiply(minutesToAdd, SECONDS_PER_MINUTE), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(minutesToAdd, SECONDS_PER_MINUTE), 0);
     }
 
     /**
@@ -606,7 +624,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusSeconds(secondsToAdd) {
-        return plus(secondsToAdd, 0);
+        return this.plusSecondsNanos(secondsToAdd, 0);
     }
 
     /**
@@ -619,7 +637,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusMillis(millisToAdd) {
-        return plus(millisToAdd / 1000, (millisToAdd % 1000) * 1000000);
+        return this.plusSecondsNanos(MathUtil.intDiv(millisToAdd, 1000), MathUtil.intMod(millisToAdd, 1000) * 1000000);
     }
 
     /**
@@ -632,7 +650,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusNanos(nanosToAdd) {
-        return plus(0, nanosToAdd);
+        return this.plusSecondsNanos(0, nanosToAdd);
     }
 
     /**
@@ -645,15 +663,15 @@ export class Duration
      * @return {@code Duration} based on this duration with the specified seconds added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plus(secondsToAdd, nanosToAdd) {
+    plusSecondsNanos(secondsToAdd, nanosToAdd) {
         if ((secondsToAdd | nanosToAdd) == 0) {
             return this;
         }
-        var epochSec = MathUtil.addExact(seconds, secondsToAdd);
-        epochSec = MathUtil.addExact(epochSec, nanosToAdd / LocalTime.NANOS_PER_SECOND);
-        nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
-        var nanoAdjustment = nanos + nanosToAdd;  // safe int+LocalTime.NANOS_PER_SECOND
-        return ofSeconds(epochSec, nanoAdjustment);
+        var epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
+        epochSec = MathUtil.safeAdd(epochSec, MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND));
+        nanosToAdd = MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_SECOND);
+        var nanoAdjustment = this._nanos + nanosToAdd;  // safe int+LocalTime.NANOS_PER_SECOND
+        return Duration.ofSeconds(epochSec, nanoAdjustment);
     }
 
     //-----------------------------------------------------------------------
@@ -1009,14 +1027,14 @@ export class Duration
      * The comparison is based on the total length of the durations.
      *
      * @param {Duration} otherDuration  the other duration to compare to, not null
-     * @return the comparator value, negative if less, positive if greater
+     * @return {Number} the comparator value, negative if less, positive if greater
      */
     compareTo(otherDuration) {
-        var cmp = Jdk8Methods.compareLongs(seconds, otherDuration.seconds);
+        var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
         if (cmp != 0) {
             return cmp;
         }
-        return nanos - otherDuration.nanos;
+        return this._nanos - otherDuration.nano();
     }
 
     //-----------------------------------------------------------------------
