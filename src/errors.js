@@ -28,3 +28,9 @@ export class ArithmeticException extends ExtendableError {
         super(message);
     }
 }
+
+export class NullPointerException extends ExtendableError {
+    constructor(message = 'NullPointerException') {
+        super(message);
+    }
+}
