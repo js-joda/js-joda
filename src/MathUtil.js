@@ -16,6 +16,15 @@ export class MathUtil {
         }
     }
 
+    static intMod(x, y) {
+        var r = x - MathUtil.intDiv(x, y) * y;
+        if(r < 0){
+            return Math.ceil(r);
+        } else {
+            return Math.floor(r);
+        }
+    }
+
     static floorDiv(x, y){
         var r = Math.floor(x / y);
         return r;
@@ -62,6 +71,25 @@ export class MathUtil {
         if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y != x || (x == MIN_SAFE_INTEGER && y == -1) || (y == MIN_SAFE_INTEGER && x == -1)) {
             throw new ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
         }
-        return r;    }
+        return r;
+    }
+
+    /**
+     * Compares two Numbers.
+     *
+     * @param {Number} a  the first value
+     * @param {Number} b  the second value
+     * @return {Number} the result
+     */
+    static compareNumbers(a, b) {
+        if (a < b) {
+            return -1;
+        }
+        if (a > b) {
+            return 1;
+        }
+        return 0;
+    }
+
 }
 
