@@ -1,8 +1,12 @@
 import ExtendableError from 'es6-error';
 
 export class DateTimeException extends ExtendableError {
-    constructor(message = 'DateTimeException') {
-        super(message);
+    constructor(message = 'DateTimeException', cause = null) {
+        let msg = message;
+        if (cause !== null && cause instanceof Error) {
+            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+        }
+        super(msg);
     }
 }
 
