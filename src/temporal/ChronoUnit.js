@@ -220,7 +220,7 @@ export class ChronoUnit /*implements TemporalUnit*/ {
      * @return the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
-        this.duration().compareTo(other.duration());
+        return this.duration().compareTo(other.duration());
     }
 
 }

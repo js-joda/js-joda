@@ -526,11 +526,16 @@ export class Duration
      */
     plus(a, b){
         if (a instanceof Duration) {
+            requireNonNull(a, 'duration');
             return this.plusDuration(a);
         }
         if (b instanceof ChronoUnit) {
+            requireNonNull(a, 'amount');
+            requireNonNull(b, 'unit');
             return this.plusAmountUnit(a, b);
         }
+        requireNonNull(a, 'seconds');
+        requireNonNull(b, 'nanos');
         return this.plusSecondsNanos(a, b);
     }
     

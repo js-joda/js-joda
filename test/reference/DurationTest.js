@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {ArithmeticException} from '../../src/errors';
+import {ArithmeticException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
 //yuck... circular dependency between ChronoUnit and Duration... for the Duration import to work we must import ChronoUnit first :/ ...
 // there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
@@ -195,9 +195,7 @@ describe('org.threeten.bp.TestDuration', () => {
     });
 
     describe('of(long,TemporalUnit)', () => {
-        var data_ofMillis;
-        before(() => {
-            data_ofMillis = [
+        let data_of_long_TemporalUnit = [
                 [0, ChronoUnit.NANOS, 0, 0],
                 [0, ChronoUnit.MICROS, 0, 0],
                 [0, ChronoUnit.MILLIS, 0, 0],
@@ -253,15 +251,39 @@ describe('org.threeten.bp.TestDuration', () => {
                 [MathUtil.intDiv(MAX_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MAX_SAFE_INTEGER, 43200) * 43200, 0],
                 [MathUtil.intDiv(MIN_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MIN_SAFE_INTEGER, 43200) * 43200, 0]
             ];
-        });
+
+        let data_of_long_TemporalUnit_outOfRange = [
+            [MAX_SAFE_INTEGER / 60 + 1, ChronoUnit.MINUTES],
+            [MIN_SAFE_INTEGER / 60 - 1, ChronoUnit.MINUTES],
+            [MAX_SAFE_INTEGER / 3600 + 1, ChronoUnit.HOURS],
+            [MIN_SAFE_INTEGER / 3600 - 1, ChronoUnit.HOURS],
+            [MAX_SAFE_INTEGER / 43200 + 1, ChronoUnit.HALF_DAYS],
+            [MIN_SAFE_INTEGER / 43200 - 1, ChronoUnit.HALF_DAYS]
+        ];
+
 
         it('factory_of_longTemporalUnit', () => {
-            data_ofMillis.forEach((val, index) => {
+            data_of_long_TemporalUnit.forEach((val) => {
                 let [amount, unit, expectedSeconds, expectedNanos] = val;
                 let test = Duration.of(amount, unit);
                 expect(test.seconds()).to.eql(expectedSeconds);
                 expect(test.nano()).to.eql(expectedNanos);
             });
+        });
+
+        it('factory_of_longTemporalUnit_outOfRange', () => {
+            data_of_long_TemporalUnit_outOfRange.forEach((val) => {
+                let [amount, unit] = val;
+                expect(() => Duration.of(amount, unit)).to.throw(ArithmeticException);
+            });
+        });
+
+        it('factory_of_longTemporalUnit_estimatedUnit', () => {
+            expect(() => Duration.of(2, ChronoUnit.WEEKS)).to.throw(UnsupportedTemporalTypeException);
+        });
+
+        it('factory_of_longTemporalUnit_null', () => {
+            expect(() => Duration.of(1, null)).to.throw(NullPointerException);
         });
 
     });
