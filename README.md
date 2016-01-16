@@ -7,13 +7,13 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-**js-joda is a project that wants to bring joda time library API to the javascript world. 
+**js-joda is a project that wants to bring JSR-310 (more specifically the ThreeTen-Backport) date and time API to the javascript world. 
 The Project is in a very early state. 
 Be aware that the most of the things written here are not ready yet** 
 
-js-joda, a port of the Joda-Time immutable data and time library to javascript. 
+js-joda, a port of the ThreeTen immutable data and time library to javascript. 
 It provides a simple and clean API based on the ISO8601 calendar.
-Joda-Time is the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
+Joda-Time (the predecessor project) used to be the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
 JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
 
 js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. 
@@ -84,41 +84,7 @@ Any further timezone converting and localization is not part of the first milest
 
 ## License
 
-+ js-joda is released under the BSD 3-clause license:
-
-```
-/*
- * Copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
- *  
- * All rights reserved.
- *  
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *  
- *  * Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *  
- *  * Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *  
- *  * Neither the name of js-joda nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *  
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
- ```
++ js-joda is released under the [BSD 3-clause license](LICENSE.md):
 
 + our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
 
