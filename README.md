@@ -7,13 +7,18 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-**js-joda is a project that wants to bring joda time library to the javascript world. 
+**js-joda is a project that wants to bring JSR-310 (more specifically the ThreeTen-Backport) date and time API to the javascript world. 
 The Project is in a very early state. 
 Be aware that the most of the things written here are not ready yet** 
 
 js-joda, a port of the Joda-Time immutable data and time library to javascript. 
 It provides a simple and clean API based on the ISO8601 calendar.
-Joda-Time is the de facto standard date and time library for Java. From Java SE 8 it is part of the jdk at java.time (JSR-310).
+Joda-Time used to be the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
+JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
+
+js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. 
+This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. 
+The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our javascript port.
 
 ## Why yet another javascript date and time library
 
@@ -28,7 +33,7 @@ especially if these dates are persisted to an external server.
 + js-joda is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux. 
 
-+ js-joda is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the jdk8 java.time package).
++ js-joda is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the ThreeTen-Backport of the Java SE 8 java.time package).
 
 ## Getting started
 
@@ -66,16 +71,29 @@ Then add it as a script tag to your page
 + [API](https://doc.esdoc.org/github.com/pithu/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
 + [js-joda Homepage](http://pithu.github.io/js-joda/) Project homepage
 
+## Roadmap
+
+### Milestone 1
+Our current plan is to have a first milestone with LocalDate, LocalDateTime, Instant, Duration and Period working. 
+The result of the first milestone will be a fully functional Date/Time library, converting from and to ISO8601, with UTC and system default timezone. 
+
+### Future Milestones
+
+Any further timezone converting and localization is not part of the first milestone and will be saved for later. This might also be an extra package
+ to reduce library size if Timezone functionality is not needed.
 
 ## License
 
-+ The License model is still under consideration, but it will be an open source license.
++ js-joda is released under the [BSD 3-clause license](LICENSE.md):
+
++ our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
 
 + Joda-Time is under Apache 2.0 licence.
 
-+ OpenJdk is under GNU GPL+linking exception.
++ OpenJDK is under GNU GPL+linking exception.
 
 + The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne. 
+
 The API of this project (as far as possible with javascript), a lot of implementation details and documentation 
 are just copied but never equalled ;)
 
