@@ -1,7 +1,7 @@
-import {DateTimeException} from './errors'
-import {MathUtil} from './MathUtil'
-import {Clock} from './Clock'
-import {LocalTime} from './LocalTime'
+import {DateTimeException} from './errors';
+import {MathUtil} from './MathUtil';
+import {Clock} from './Clock';
+import {LocalTime} from './LocalTime';
 
 // TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
 const MIN_SECONDS = -31619087596800; // -999999-01-01
@@ -116,7 +116,7 @@ export class Instant {
      * @return the seconds from the epoch of 1970-01-01T00:00:00Z
      */
     epochSecond(){
-        return this._seconds
+        return this._seconds;
     }
 
     /**
@@ -141,7 +141,7 @@ export class Instant {
      * @return the nanoseconds within the second, always positive, never exceeds 999,999,999
      */
     nano(){
-        return this._nanos
+        return this._nanos;
     }
 
     /**
@@ -231,7 +231,7 @@ export class Instant {
         }
         if(otherInstant instanceof Instant){
             return this.epochSecond() === otherInstant.epochSecond() &&
-                this.nano() === otherInstant.nano()
+                this.nano() === otherInstant.nano();
         }
         return false;
     }
@@ -276,7 +276,7 @@ export class Instant {
 
     static validate(seconds, nanoOfSecond){
         if (seconds < MIN_SECONDS || seconds > MAX_SECONDS) {
-            throw new DateTimeException("Instant exceeds minimum or maximum instant")
+            throw new DateTimeException('Instant exceeds minimum or maximum instant');
         }
     }
 }
