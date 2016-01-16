@@ -49,5 +49,6 @@
   },
   "dependencies": {
     "es6-error": "^2.0.2"
-  }
+  },
+  "license": "BSD-3-Clause"
 }
