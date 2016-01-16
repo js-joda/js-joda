@@ -11,9 +11,9 @@ Immutable data and time library for javascript
 The Project is in a very early state. 
 Be aware that the most of the things written here are not ready yet** 
 
-js-joda, a port of the Joda-Time immutable data and time library to javascript. 
+js-joda, a port of the ThreeTen immutable data and time library to javascript. 
 It provides a simple and clean API based on the ISO8601 calendar.
-Joda-Time used to be the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
+Joda-Time (the predecessor project) used to be the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
 JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
 
 js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. 
