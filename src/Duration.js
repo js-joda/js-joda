@@ -517,7 +517,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDuration(duration) {
-        return plus(duration.getSeconds(), duration.getNano());
+        return this.plus(duration.seconds(), duration.nano());
     }
 
 
@@ -678,7 +678,7 @@ export class Duration
         var epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
         epochSec = MathUtil.safeAdd(epochSec, MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND));
         nanosToAdd = MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        var nanoAdjustment = this._nanos + nanosToAdd;  // safe int+LocalTime.NANOS_PER_SECOND
+        var nanoAdjustment = MathUtil.safeAdd(this._nanos, nanosToAdd);  // safe int+LocalTime.NANOS_PER_SECOND
         return Duration.ofSeconds(epochSec, nanoAdjustment);
     }
 
