@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {ChronoField} from '../../src/temporal/ChronoField';
 import {Clock} from '../../src/Clock';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Instant} from '../../src/Instant';
@@ -9,6 +10,13 @@ const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
 
 describe('org.threeten.bp.TestInstant', () => {
+    
+    var TEST_12345_123456789;
+    
+    before(() => {
+        TEST_12345_123456789 = Instant.ofEpochSecond(12345, 123456789);
+    });
+    
     function check(instant, epochSecs, nos) {
         expect(instant.epochSecond()).to.equal(epochSecs);
         expect(instant.nano()).to.equal(nos);
@@ -516,5 +524,23 @@ describe('org.threeten.bp.TestInstant', () => {
             }
         });
     });
+    
+    describe('get(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.get(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.get(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.get(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+        });
+
+        it('test_getLong_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.getLong(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.getLong(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.getLong(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+            expect(test.getLong(ChronoField.INSTANT_SECONDS)).to.eql(12345);
+        });
+    });
+
 });
 
