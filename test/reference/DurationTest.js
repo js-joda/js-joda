@@ -325,4 +325,29 @@ describe('org.threeten.bp.TestDuration', () => {
 
     });
 
+    describe('isZero(), isPositive(), isPositiveOrZero(), isNegative(), isNegativeOrZero()', () => {
+
+        it('test_isZero', () => {
+            expect(Duration.ofNanos(0).isZero()).to.eql(true);
+            expect(Duration.ofSeconds(0).isZero()).to.eql(true);
+            expect(Duration.ofNanos(1).isZero()).to.eql(false);
+            expect(Duration.ofSeconds(1).isZero()).to.eql(false);
+            expect(Duration.ofSeconds(1, 1).isZero()).to.eql(false);
+            expect(Duration.ofNanos(-1).isZero()).to.eql(false);
+            expect(Duration.ofSeconds(-1).isZero()).to.eql(false);
+            expect(Duration.ofSeconds(-1, -1).isZero()).to.eql(false);
+        });
+
+        it('test_isNegative', () => {
+            expect(Duration.ofNanos(0).isNegative()).to.eql(false);
+            expect(Duration.ofSeconds(0).isNegative()).to.eql(false);
+            expect(Duration.ofNanos(1).isNegative()).to.eql(false);
+            expect(Duration.ofSeconds(1).isNegative()).to.eql(false);
+            expect(Duration.ofSeconds(1, 1).isNegative()).to.eql(false);
+            expect(Duration.ofNanos(-1).isNegative()).to.eql(true);
+            expect(Duration.ofSeconds(-1).isNegative()).to.eql(true);
+            expect(Duration.ofSeconds(-1, -1).isNegative()).to.eql(true);
+        });
+    });
+
 });
