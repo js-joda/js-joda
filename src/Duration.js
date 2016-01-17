@@ -3,7 +3,7 @@ import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
 import {LocalTime} from './LocalTime';
-import {MathUtil} from './MathUtil';
+import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
 
 /**
  * A time-based amount of time, such as '34.5 seconds'.
@@ -684,6 +684,27 @@ export class Duration
 
     //-----------------------------------------------------------------------
     /**
+     * to handle function overriding this function accepts two arguments, checks their type and delegates to the appropriate function
+     *
+     * @param a
+     * @param b
+     */
+    minus(a, b) {
+        if (a instanceof Duration) {
+            requireNonNull(a, 'duration');
+            return this.minusDuration(a);
+        }
+        if (b instanceof ChronoUnit) {
+            requireNonNull(a, 'amount');
+            requireNonNull(b, 'unit');
+            return this.minusAmountUnit(a, b);
+        }
+        requireNonNull(a, 'seconds');
+        requireNonNull(b, 'nanos');
+        return this.minusSecondsNanos(a, b);
+    }
+
+    /**
      * Returns a copy of this duration with the specified duration subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
@@ -692,13 +713,13 @@ export class Duration
      * @return {@code Duration} based on this duration with the specified duration subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minus(duration) {
+    minusDuration(duration) {
         var secsToSubtract = duration.seconds();
         var nanosToSubtract = duration.nano();
-        if (secsToSubtract == Long.MIN_VALUE) {
-            return plus(Long.MAX_VALUE, -nanosToSubtract).plus(1, 0);
+        if (secsToSubtract == MIN_SAFE_INTEGER) {
+            return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
         }
-        return plus(-secsToSubtract, -nanosToSubtract);
+        return this.plus(-secsToSubtract, -nanosToSubtract);
     }
 
     /**
@@ -716,8 +737,8 @@ export class Duration
      * @return {@code Duration} based on this duration with the specified duration subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minus(amountToSubtract, unit) {
-        return (amountToSubtract == Long.MIN_VALUE ? plus(Long.MAX_VALUE, unit).plus(1, unit) : plus(-amountToSubtract, unit));
+    minusAmountUnit(amountToSubtract, unit) {
+        return (amountToSubtract == MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 
     //-----------------------------------------------------------------------
@@ -731,7 +752,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDays(daysToSubtract) {
-        return (daysToSubtract == Long.MIN_VALUE ? plusDays(Long.MAX_VALUE).plusDays(1) : plusDays(-daysToSubtract));
+        return (daysToSubtract == MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract));
     }
 
     /**
@@ -744,7 +765,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusHours(hoursToSubtract) {
-        return (hoursToSubtract == Long.MIN_VALUE ? plusHours(Long.MAX_VALUE).plusHours(1) : plusHours(-hoursToSubtract));
+        return (hoursToSubtract == MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract));
     }
 
     /**
@@ -759,7 +780,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMinutes(minutesToSubtract) {
-        return (minutesToSubtract == Long.MIN_VALUE ? plusMinutes(Long.MAX_VALUE).plusMinutes(1) : plusMinutes(-minutesToSubtract));
+        return (minutesToSubtract == MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract));
     }
 
     /**
@@ -772,7 +793,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusSeconds(secondsToSubtract) {
-        return (secondsToSubtract == Long.MIN_VALUE ? plusSeconds(Long.MAX_VALUE).plusSeconds(1) : plusSeconds(-secondsToSubtract));
+        return (secondsToSubtract == MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract));
     }
 
     /**
@@ -785,7 +806,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMillis(millisToSubtract) {
-        return (millisToSubtract == Long.MIN_VALUE ? plusMillis(Long.MAX_VALUE).plusMillis(1) : plusMillis(-millisToSubtract));
+        return (millisToSubtract == MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract));
     }
 
     /**
@@ -798,7 +819,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusNanos(nanosToSubtract) {
-        return (nanosToSubtract == Long.MIN_VALUE ? plusNanos(Long.MAX_VALUE).plusNanos(1) : plusNanos(-nanosToSubtract));
+        return (nanosToSubtract == MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract));
     }
 
     //-----------------------------------------------------------------------
