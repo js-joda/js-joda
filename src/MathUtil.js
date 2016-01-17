@@ -52,7 +52,29 @@ export class MathUtil {
         // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
         // TODO: is this correct and complete?
         if (r > Number.MAX_SAFE_INTEGER || r === x || r === y) {
-            throw new ArithmeticException('Invalid addition beyond Number.MAX_SAFE_INTEGER!');
+            throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+        }
+        return r;
+    }
+    
+    static safeSubtract(x, y) {
+        if (x === 0) {
+            return y;
+        }
+        if (y === 0) {
+            return x;
+        }
+        if (x === undefined || y === undefined) {
+            throw new ArithmeticException('Invalid subtraction using undefined as argument');
+        }
+        if (isNaN(x) || isNaN(y)) {
+            throw new ArithmeticException('Invalid subtraction using NaN as argument');
+        }
+        let r = x - y;
+        // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
+        // TODO: is this correct and complete?
+        if (r < Number.MIN_SAFE_INTEGER || r === x || r === y) {
+            throw new ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER!');
         }
         return r;
     }
