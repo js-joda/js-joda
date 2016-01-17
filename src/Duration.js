@@ -360,7 +360,22 @@ export class Duration
         }
     }
 
-    static create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
+    //-----------------------------------------------------------------------
+    /**
+     * to handle function overriding this function accepts any number of arguments, checks their type and delegates to the appropriate function
+     *
+     */
+    static create() {
+        if (arguments.length == 1) {
+            return Duration.createSeconds(arguments[0]);
+        } else if (arguments.length == 2) {
+            return Duration.createSecondsNanos(arguments[0], arguments[1]);
+        } else {
+            return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4])
+        }
+    }
+
+    static createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
         var seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
         if (negate) {
             return Duration.ofSeconds(seconds, nanos).negated();
@@ -368,18 +383,40 @@ export class Duration
         return Duration.ofSeconds(seconds, nanos);
     }
 
-    //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@code Duration} using seconds and nanoseconds.
      *
      * @param {Number} seconds  the length of the duration in seconds, positive or negative
      * @param {Number} nanoAdjustment  the nanosecond adjustment within the second, from 0 to 999,999,999
      */
-    static create(seconds = 0, nanoAdjustment = 0) {
+    static createSecondsNanos(seconds = 0, nanoAdjustment = 0) {
         if ((seconds | nanoAdjustment) == 0) {
             return Duration.ZERO;
         }
+        // if seconds is a float, we need to adjust the nanos from it as well
+        if (seconds >= 0) {
+            nanoAdjustment += seconds % 1 * LocalTime.NANOS_PER_SECOND;
+        } else {
+            nanoAdjustment -= seconds % 1 * LocalTime.NANOS_PER_SECOND;
+        }
+        seconds = Math.floor(seconds);
+        nanoAdjustment = Math.round(nanoAdjustment);
+
         return new Duration(seconds, nanoAdjustment);
+    }
+    
+    /**
+     * Creates an instance of {@code Duration} from a number of seconds.
+     *
+     * @param {Number} seconds  the number of seconds, up to scale 9, positive or negative
+     * @return {Duration}, not null
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    static createSeconds(seconds) {
+        let nanos = Math.round(seconds * Math.pow(10, 9));
+        let div = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
+        let rem = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
+        return Duration.ofSeconds(div, rem);
     }
 
     //-----------------------------------------------------------------------
@@ -834,12 +871,12 @@ export class Duration
      */
     multipliedBy(multiplicand) {
         if (multiplicand == 0) {
-            return ZERO;
+            return Duration.ZERO;
         }
         if (multiplicand == 1) {
             return this;
         }
-        return create(toSeconds().multiply(BigDecimal.valueOf(multiplicand)));
+        return Duration.create(MathUtil.safeMultiply(this.toSeconds(), multiplicand));
     }
 
     /**
@@ -868,7 +905,8 @@ export class Duration
      * @return {Number} the total length of the duration in seconds, with a scale of 9, not null
      */
     toSeconds() {
-        return BigDecimal.valueOf(seconds).add(BigDecimal.valueOf(nanos, 9));
+        var nanoFloat = MathUtil.safeMultiply(this._nanos, Math.pow(10, -9));
+        return MathUtil.safeAdd(this._seconds, nanoFloat);
     }
 
     //-----------------------------------------------------------------------

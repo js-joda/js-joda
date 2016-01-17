@@ -1243,7 +1243,8 @@ describe('org.threeten.bp.TestDuration', () => {
 
         });
         describe('minusNanos()', () => {
-            let data_minusNanos = [[0, 0, 0, 0, 0],
+            let data_minusNanos = [
+                [0, 0, 0, 0, 0],
                 [0, 0, 1, -1, 999999999],
                 [0, 0, 999999999, -1, 1],
                 [0, 0, 1000000000, -1, 0],
@@ -1340,4 +1341,134 @@ describe('org.threeten.bp.TestDuration', () => {
         });
     });
 
+    describe('multipliedBy()', () => {
+        let data_multipliedBy = [
+            [-4, 666666667, -3, 9, 999999999],
+            [-4, 666666667, -2, 6, 666666666],
+            [-4, 666666667, -1, 3, 333333333],
+            [-4, 666666667, 0, 0, 0],
+            [-4, 666666667, 1, -4, 666666667],
+            [-4, 666666667, 2, -7, 333333334],
+            [-4, 666666667, 3, -10, 1],
+            
+            [-3, 0, -3, 9, 0],
+            [-3, 0, -2, 6, 0],
+            [-3, 0, -1, 3, 0],
+            [-3, 0, 0, 0, 0],
+            [-3, 0, 1, -3, 0],
+            [-3, 0, 2, -6, 0],
+            [-3, 0, 3, -9, 0],
+            
+            [-2, 0, -3, 6, 0],
+            [-2, 0, -2, 4, 0],
+            [-2, 0, -1, 2, 0],
+            [-2, 0, 0, 0, 0],
+            [-2, 0, 1, -2, 0],
+            [-2, 0, 2, -4, 0],
+            [-2, 0, 3, -6, 0],
+            
+            [-1, 0, -3, 3, 0],
+            [-1, 0, -2, 2, 0],
+            [-1, 0, -1, 1, 0],
+            [-1, 0, 0, 0, 0],
+            [-1, 0, 1, -1, 0],
+            [-1, 0, 2, -2, 0],
+            [-1, 0, 3, -3, 0],
+
+            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
+            [-1, 500000000, -3, 1, 500000000],
+            [-1, 500000000, -2, 1, 0],
+            [-1, 500000000, -1, 0, 500000000],
+            [-1, 500000000, 0, 0, 0],
+            [-1, 500000000, 1, -1, 500000000],
+            [-1, 500000000, 2, -1, 0],
+            [-1, 500000000, 3, -2, 500000000],
+            */
+
+            [0, 0, -3, 0, 0],
+            [0, 0, -2, 0, 0],
+            [0, 0, -1, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 2, 0, 0],
+            [0, 0, 3, 0, 0],
+
+            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
+            [0, 500000000, -3, -2, 500000000],
+            [0, 500000000, -2, -1, 0],
+            [0, 500000000, -1, -1, 500000000],
+            [0, 500000000, 0, 0, 0],
+            [0, 500000000, 1, 0, 500000000],
+            [0, 500000000, 2, 1, 0],
+            [0, 500000000, 3, 1, 500000000],
+            */
+
+            [1, 0, -3, -3, 0],
+            [1, 0, -2, -2, 0],
+            [1, 0, -1, -1, 0],
+            [1, 0, 0, 0, 0],
+            [1, 0, 1, 1, 0],
+            [1, 0, 2, 2, 0],
+            [1, 0, 3, 3, 0],
+
+            [2, 0, -3, -6, 0],
+            [2, 0, -2, -4, 0],
+            [2, 0, -1, -2, 0],
+            [2, 0, 0, 0, 0],
+            [2, 0, 1, 2, 0],
+            [2, 0, 2, 4, 0],
+            [2, 0, 3, 6, 0],
+
+            [3, 0, -3, -9, 0],
+            [3, 0, -2, -6, 0],
+            [3, 0, -1, -3, 0],
+            [3, 0, 0, 0, 0],
+            [3, 0, 1, 3, 0],
+            [3, 0, 2, 6, 0],
+            [3, 0, 3, 9, 0],
+
+            [3, 333333333, -3, -10, 1],
+            [3, 333333333, -2, -7, 333333334],
+            [3, 333333333, -1, -4, 666666667],
+            [3, 333333333, 0, 0, 0],
+            [3, 333333333, 1, 3, 333333333],
+            [3, 333333333, 2, 6, 666666666],
+            [3, 333333333, 3, 9, 999999999]
+
+        ];
+
+        it('multipliedBy', () => {
+            data_multipliedBy.forEach((val) => {
+                let [seconds, nanos, mulitplicand, expectedSeconds, expectedNanos] = val;
+                let t = Duration.ofSeconds(seconds, nanos).multipliedBy(mulitplicand);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+        
+        it('multipliedBy_max', () => {
+            let test = Duration.ofSeconds(1).multipliedBy(MAX_SAFE_INTEGER);
+            expect(test).to.eql(Duration.ofSeconds(MAX_SAFE_INTEGER));
+        });
+
+        it('multipliedBy_min', () => {
+            let test = Duration.ofSeconds(1).multipliedBy(MIN_SAFE_INTEGER);
+            expect(test).to.eql(Duration.ofSeconds(MIN_SAFE_INTEGER));
+        });
+
+        it('multipliedBy_tooBig', () => {
+            let t = Duration.ofSeconds(1, 1);
+            expect(() => {
+                t.multipliedBy(MAX_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
+        it('multipliedBy_tooBig_negative', () => {
+            let t = Duration.ofSeconds(1, 1);
+            expect(() => {
+                t.multipliedBy(MIN_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
+    });
 });
