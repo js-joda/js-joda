@@ -350,7 +350,7 @@ describe('org.threeten.bp.TestDuration', () => {
         });
     });
 
-    describe('plus()', () => {
+    describe('plusDuration()', () => {
         let data_plus = [
             [MIN_SAFE_INTEGER, 0, MAX_SAFE_INTEGER, 0, 0, 0],
 
@@ -534,7 +534,7 @@ describe('org.threeten.bp.TestDuration', () => {
         ];
 
         it('plus', () => {
-            data_plus.forEach((val, index) => {
+            data_plus.forEach((val) => {
                 let [seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanos] = val;
                 let t = Duration.ofSeconds(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
                 expect(t.seconds()).to.eql(expectedSeconds);
@@ -553,6 +553,93 @@ describe('org.threeten.bp.TestDuration', () => {
                 Duration.ofSeconds(MIN_SAFE_INTEGER).plus(Duration.ofSeconds(-1, 999999999));
             }).to.throw(ArithmeticException);
         });
+    });
+
+    describe('plusAmountUnit()', () => {
+        it('plus_longTemporalUnit_seconds', () => {
+            let t = Duration.ofSeconds(1);
+            t = t.plus(1, ChronoUnit.SECONDS);
+            expect(t.seconds()).to.eql(2);
+            expect(t.nano()).to.eql(0);
+        });
+
+        it('plus_longTemporalUnit_millis', () => {
+            let t = Duration.ofSeconds(1);
+            t = t.plus(1, ChronoUnit.MILLIS);
+            expect(t.seconds()).to.eql(1);
+            expect(t.nano()).to.eql(1000000);
+        });
+
+        it('plus_longTemporalUnit_micros', () => {
+            let t = Duration.ofSeconds(1);
+            t = t.plus(1, ChronoUnit.MICROS);
+            expect(t.seconds()).to.eql(1);
+            expect(t.nano()).to.eql(1000);
+        });
+
+        it('plus_longTemporalUnit_nanos', () => {
+            let t = Duration.ofSeconds(1);
+            t = t.plus(1, ChronoUnit.NANOS);
+            expect(t.seconds()).to.eql(1);
+            expect(t.nano()).to.eql(1);
+        });
+
+        it('plus_longTemporalUnit_null', () => {
+            let t = Duration.ofSeconds(1);
+            expect(() => {
+                t.plus(1, null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('plusSeconds()', () => {
+        let data_plusSeconds = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 1, 0],
+            [0, 0, -1, -1, 0],
+            [0, 0, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER, 0],
+            [0, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER, 0],
+            [1, 0, 0, 1, 0],
+            [1, 0, 1, 2, 0],
+            [1, 0, -1, 0, 0],
+            [1, 0, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 0],
+            [1, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 0],
+            [1, 1, 0, 1, 1],
+            [1, 1, 1, 2, 1],
+            [1, 1, -1, 0, 1],
+            [1, 1, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 1],
+            [1, 1, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 1],
+            [-1, 1, 0, -1, 1],
+            [-1, 1, 1, 0, 1],
+            [-1, 1, -1, -2, 1],
+            [-1, 1, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER - 1, 1],
+            [-1, 1, MIN_SAFE_INTEGER + 1, MIN_SAFE_INTEGER, 1]
+        ];
+
+        it('plusSeconds_long', () => {
+            data_plusSeconds.forEach((val) => {
+                let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
+                let t = Duration.ofSeconds(seconds, nanos).plusSeconds(amount);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('plusSeconds_long_overflowTooBig', () => {
+            let t = Duration.ofSeconds(1);
+            expect(() => {
+                t.plusSeconds(MAX_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
+        it('plusSeconds_long_overflowTooSmall', () => {
+            let t = Duration.ofSeconds(-1);
+            expect(() => {
+                t.plusSeconds(MIN_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
     });
 
 });
