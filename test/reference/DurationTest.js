@@ -17,276 +17,278 @@ describe('org.threeten.bp.TestDuration', () => {
         });
     });
 
-    describe('ofSeconds(long)', () => {
-        it('factory_seconds_long', () => {
-            for (let i = -2; i <= 2; i++) {
-                let t = Duration.ofSeconds(i);
-                expect(t.seconds()).to.eql(i);
-                expect(t.nano()).to.eql(0);
-            }
-        });
-    });
-
-    describe('ofSeconds(long, long)', () => {
-        it('factory_seconds_long_long', () => {
-            for (let i = -2; i <= 2; i++) {
-                for (let j = 0; j < 10; j++) {
-                    let t = Duration.ofSeconds(i, j);
+    describe('of', () => {
+        describe('ofSeconds(long)', () => {
+            it('factory_seconds_long', () => {
+                for (let i = -2; i <= 2; i++) {
+                    let t = Duration.ofSeconds(i);
                     expect(t.seconds()).to.eql(i);
-                    expect(t.nano()).to.eql(j);
+                    expect(t.nano()).to.eql(0);
                 }
-                for (let j = -10; j < 0; j++) {
-                    let t = Duration.ofSeconds(i, j);
-                    expect(t.seconds()).to.eql(i - 1);
-                    expect(t.nano()).to.eql(j + 1000000000);
-                }
-                for (let j = 999999990; j < 1000000000; j++) {
-                    let t = Duration.ofSeconds(i, j);
+            });
+        });
+
+        describe('ofSeconds(long, long)', () => {
+            it('factory_seconds_long_long', () => {
+                for (let i = -2; i <= 2; i++) {
+                    for (let j = 0; j < 10; j++) {
+                        let t = Duration.ofSeconds(i, j);
+                        expect(t.seconds()).to.eql(i);
+                        expect(t.nano()).to.eql(j);
+                    }
+                    for (let j = -10; j < 0; j++) {
+                        let t = Duration.ofSeconds(i, j);
+                        expect(t.seconds()).to.eql(i - 1);
+                        expect(t.nano()).to.eql(j + 1000000000);
+                    }
+                    for (let j = 999999990; j < 1000000000; j++) {
+                        let t = Duration.ofSeconds(i, j);
+                        expect(t.seconds()).to.eql(i);
+                        expect(t.nano()).to.eql(j);
+                    }
+                    let t = Duration.ofSeconds(i);
                     expect(t.seconds()).to.eql(i);
-                    expect(t.nano()).to.eql(j);
+                    expect(t.nano()).to.eql(0);
                 }
-                let t = Duration.ofSeconds(i);
-                expect(t.seconds()).to.eql(i);
-                expect(t.nano()).to.eql(0);
-            }
+            });
+
+            it('factory_seconds_long_long_nanosNegativeAdjusted', () => {
+                let test = Duration.ofSeconds(2, -1);
+                expect(test.seconds()).to.eql(1);
+                expect(test.nano()).to.eql(999999999);
+            });
+
+            it('factory_seconds_long_long_tooBig', () => {
+                expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException);
+            });
         });
 
-        it('factory_seconds_long_long_nanosNegativeAdjusted', () => {
-            let test = Duration.ofSeconds(2, -1);
-            expect(test.seconds()).to.eql(1);
-            expect(test.nano()).to.eql(999999999);
+        describe('ofMillis(long)', () => {
+            var data_ofMillis;
+            before(() => {
+                data_ofMillis = [
+                    [0, 0, 0],
+                    [1, 0, 1000000],
+                    [2, 0, 2000000],
+                    [999, 0, 999000000],
+                    [1000, 1, 0],
+                    [1001, 1, 1000000],
+                    [-1, -1, 999000000],
+                    [-2, -1, 998000000],
+                    [-999, -1, 1000000],
+                    [-1000, -1, 0],
+                    [-1001, -2, 999000000]
+                ];
+            });
+
+            it('factory_millis_long', () => {
+                data_ofMillis.forEach((val) => {
+                    let [millis, expectedSeconds, expectedNano] = val;
+                    let test = Duration.ofMillis(millis);
+                    expect(test.seconds()).to.eql(expectedSeconds);
+                    expect(test.nano()).to.eql(expectedNano);
+                });
+            });
         });
 
-        it('factory_seconds_long_long_tooBig', () => {
-            expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException);
+        describe('ofNanos(long)', () => {
+            it('factory_nanos_nanos', () => {
+                let test = Duration.ofNanos(1);
+                expect(test.seconds()).to.eql(0);
+                expect(test.nano()).to.eql(1);
+            });
+            it('factory_nanos_nanosSecs', () => {
+                let test = Duration.ofNanos(1000000002);
+                expect(test.seconds()).to.eql(1);
+                expect(test.nano()).to.eql(2);
+            });
+            it('factory_nanos_nanos_negative', () => {
+                let test = Duration.ofNanos(-2000000001);
+                expect(test.seconds()).to.eql(-3);
+                expect(test.nano()).to.eql(999999999);
+            });
+            it('factory_nanos_nanos_max', () => {
+                let test = Duration.ofNanos(MAX_SAFE_INTEGER);
+                expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000));
+                expect(test.nano()).to.eql(MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000));
+            });
+            it('factory_nanos_nanos_min', () => {
+                let test = Duration.ofNanos(MIN_SAFE_INTEGER);
+                expect(test.seconds()).to.eql(MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1);
+                expect(test.nano()).to.eql(MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000);
+            });
         });
-    });
 
-    describe('ofMillis(long)', () => {
-        var data_ofMillis;
-        before(() => {
-            data_ofMillis = [
-                [0, 0, 0],
-                [1, 0, 1000000],
-                [2, 0, 2000000],
-                [999, 0, 999000000],
-                [1000, 1, 0],
-                [1001, 1, 1000000],
-                [-1, -1, 999000000],
-                [-2, -1, 998000000],
-                [-999, -1, 1000000],
-                [-1000, -1, 0],
-                [-1001, -2, 999000000]
+        describe('ofMinutes()', () => {
+            it('factory_minutes', () => {
+                let test = Duration.ofMinutes(2);
+                expect(test.seconds()).to.eql(120);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_minutes_max', () => {
+                let test = Duration.ofMinutes(MathUtil.intDiv(MAX_SAFE_INTEGER, 60));
+                expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_minutes_min', () => {
+                var minutes = MathUtil.intDiv(MIN_SAFE_INTEGER, 60) + 1;
+                let test = Duration.ofMinutes(minutes);
+                expect(test.seconds()).to.eql(minutes * 60);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_minutes_tooBig', () => {
+                expect(() => Duration.ofMinutes(MathUtil.intDiv(MAX_SAFE_INTEGER, 60) + 1)).to.throw(ArithmeticException);
+            });
+            it('factory_minutes_tooSmall', () => {
+                expect(() => Duration.ofMinutes(MathUtil.intDiv(MIN_SAFE_INTEGER, 60) - 1)).to.throw(ArithmeticException);
+            });
+        });
+
+        describe('ofHours()', () => {
+            const SECONDS_PER_HOUR = 3600;
+            it('factory_hours', () => {
+                let test = Duration.ofHours(2);
+                expect(test.seconds()).to.eql(2 * SECONDS_PER_HOUR);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_hours_max', () => {
+                let test = Duration.ofHours(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR));
+                expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) * SECONDS_PER_HOUR);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_hours_min', () => {
+                var hours = MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) + 1;
+                let test = Duration.ofHours(hours);
+                expect(test.seconds()).to.eql(hours * SECONDS_PER_HOUR);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_hours_tooBig', () => {
+                expect(() => Duration.ofHours(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) + 1)).to.throw(ArithmeticException);
+            });
+            it('factory_hours_tooSmall', () => {
+                expect(() => Duration.ofHours(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) - 1)).to.throw(ArithmeticException);
+            });
+        });
+
+        describe('ofDays()', () => {
+            const SECONDS_PER_DAY = 86400;
+            it('factory_days', () => {
+                let test = Duration.ofDays(2);
+                expect(test.seconds()).to.eql(2 * SECONDS_PER_DAY);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_days_max', () => {
+                let test = Duration.ofDays(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY));
+                expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) * SECONDS_PER_DAY);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_days_min', () => {
+                var days = MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) + 1;
+                let test = Duration.ofDays(days);
+                expect(test.seconds()).to.eql(days * SECONDS_PER_DAY);
+                expect(test.nano()).to.eql(0);
+            });
+            it('factory_days_tooBig', () => {
+                expect(() => Duration.ofDays(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) + 1)).to.throw(ArithmeticException);
+            });
+            it('factory_days_tooSmall', () => {
+                expect(() => Duration.ofDays(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) - 1)).to.throw(ArithmeticException);
+            });
+        });
+
+        describe('of(long,TemporalUnit)', () => {
+            let data_of_long_TemporalUnit = [
+                [0, ChronoUnit.NANOS, 0, 0],
+                [0, ChronoUnit.MICROS, 0, 0],
+                [0, ChronoUnit.MILLIS, 0, 0],
+                [0, ChronoUnit.SECONDS, 0, 0],
+                [0, ChronoUnit.MINUTES, 0, 0],
+                [0, ChronoUnit.HOURS, 0, 0],
+                [0, ChronoUnit.HALF_DAYS, 0, 0],
+                [0, ChronoUnit.DAYS, 0, 0],
+                [1, ChronoUnit.NANOS, 0, 1],
+                [1, ChronoUnit.MICROS, 0, 1000],
+                [1, ChronoUnit.MILLIS, 0, 1000000],
+                [1, ChronoUnit.SECONDS, 1, 0],
+                [1, ChronoUnit.MINUTES, 60, 0],
+                [1, ChronoUnit.HOURS, 3600, 0],
+                [1, ChronoUnit.HALF_DAYS, 43200, 0],
+                [1, ChronoUnit.DAYS, 86400, 0],
+                [3, ChronoUnit.NANOS, 0, 3],
+                [3, ChronoUnit.MICROS, 0, 3000],
+                [3, ChronoUnit.MILLIS, 0, 3000000],
+                [3, ChronoUnit.SECONDS, 3, 0],
+                [3, ChronoUnit.MINUTES, 3 * 60, 0],
+                [3, ChronoUnit.HOURS, 3 * 3600, 0],
+                [3, ChronoUnit.HALF_DAYS, 3 * 43200, 0],
+                [3, ChronoUnit.DAYS, 3 * 86400, 0],
+                [-1, ChronoUnit.NANOS, -1, 999999999],
+                [-1, ChronoUnit.MICROS, -1, 999999000],
+                [-1, ChronoUnit.MILLIS, -1, 999000000],
+                [-1, ChronoUnit.SECONDS, -1, 0],
+                [-1, ChronoUnit.MINUTES, -60, 0],
+                [-1, ChronoUnit.HOURS, -3600, 0],
+                [-1, ChronoUnit.HALF_DAYS, -43200, 0],
+                [-1, ChronoUnit.DAYS, -86400, 0],
+                [-3, ChronoUnit.NANOS, -1, 999999997],
+                [-3, ChronoUnit.MICROS, -1, 999997000],
+                [-3, ChronoUnit.MILLIS, -1, 997000000],
+                [-3, ChronoUnit.SECONDS, -3, 0],
+                [-3, ChronoUnit.MINUTES, -3 * 60, 0],
+                [-3, ChronoUnit.HOURS, -3 * 3600, 0],
+                [-3, ChronoUnit.HALF_DAYS, -3 * 43200, 0],
+                [-3, ChronoUnit.DAYS, -3 * 86400, 0],
+                [MAX_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000)],
+                [MIN_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1, MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000],
+                [MAX_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000) * 1000],
+                [MIN_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000000) + 1000000) * 1000],
+                [MAX_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000],
+                [MIN_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000) + 1000) * 1000000],
+                [MAX_SAFE_INTEGER, ChronoUnit.SECONDS, MAX_SAFE_INTEGER, 0],
+                [MIN_SAFE_INTEGER, ChronoUnit.SECONDS, MIN_SAFE_INTEGER, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MIN_SAFE_INTEGER, 60) * 60, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MAX_SAFE_INTEGER, 3600) * 3600, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MIN_SAFE_INTEGER, 3600) * 3600, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MAX_SAFE_INTEGER, 43200) * 43200, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MIN_SAFE_INTEGER, 43200) * 43200, 0]
             ];
-        });
 
-        it('factory_millis_long', () => {
-            data_ofMillis.forEach((val) => {
-                let [millis, expectedSeconds, expectedNano] = val;
-                let test = Duration.ofMillis(millis);
-                expect(test.seconds()).to.eql(expectedSeconds);
-                expect(test.nano()).to.eql(expectedNano);
+            let data_of_long_TemporalUnit_outOfRange = [
+                [MAX_SAFE_INTEGER / 60 + 1, ChronoUnit.MINUTES],
+                [MIN_SAFE_INTEGER / 60 - 1, ChronoUnit.MINUTES],
+                [MAX_SAFE_INTEGER / 3600 + 1, ChronoUnit.HOURS],
+                [MIN_SAFE_INTEGER / 3600 - 1, ChronoUnit.HOURS],
+                [MAX_SAFE_INTEGER / 43200 + 1, ChronoUnit.HALF_DAYS],
+                [MIN_SAFE_INTEGER / 43200 - 1, ChronoUnit.HALF_DAYS]
+            ];
+
+
+            it('factory_of_longTemporalUnit', () => {
+                data_of_long_TemporalUnit.forEach((val) => {
+                    let [amount, unit, expectedSeconds, expectedNanos] = val;
+                    let test = Duration.of(amount, unit);
+                    expect(test.seconds()).to.eql(expectedSeconds);
+                    expect(test.nano()).to.eql(expectedNanos);
+                });
             });
-        });
-    });
 
-    describe('ofNanos(long)', () => {
-        it('factory_nanos_nanos', () => {
-            let test = Duration.ofNanos(1);
-            expect(test.seconds()).to.eql(0);
-            expect(test.nano()).to.eql(1);
-        });
-        it('factory_nanos_nanosSecs', () => {
-            let test = Duration.ofNanos(1000000002);
-            expect(test.seconds()).to.eql(1);
-            expect(test.nano()).to.eql(2);
-        });
-        it('factory_nanos_nanos_negative', () => {
-            let test = Duration.ofNanos(-2000000001);
-            expect(test.seconds()).to.eql(-3);
-            expect(test.nano()).to.eql(999999999);
-        });
-        it('factory_nanos_nanos_max', () => {
-            let test = Duration.ofNanos(MAX_SAFE_INTEGER);
-            expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000));
-            expect(test.nano()).to.eql(MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000));
-        });
-        it('factory_nanos_nanos_min', () => {
-            let test = Duration.ofNanos(MIN_SAFE_INTEGER);
-            expect(test.seconds()).to.eql(MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1);
-            expect(test.nano()).to.eql(MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000);
-        });
-    });
-
-    describe('ofMinutes()', () => {
-        it('factory_minutes', () => {
-            let test = Duration.ofMinutes(2);
-            expect(test.seconds()).to.eql(120);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_minutes_max', () => {
-            let test = Duration.ofMinutes(MathUtil.intDiv(MAX_SAFE_INTEGER, 60));
-            expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_minutes_min', () => {
-            var minutes = MathUtil.intDiv(MIN_SAFE_INTEGER, 60) + 1;
-            let test = Duration.ofMinutes(minutes);
-            expect(test.seconds()).to.eql(minutes * 60);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_minutes_tooBig', () => {
-            expect(() => Duration.ofMinutes(MathUtil.intDiv(MAX_SAFE_INTEGER, 60) + 1)).to.throw(ArithmeticException);
-        });
-        it('factory_minutes_tooSmall', () => {
-            expect(() => Duration.ofMinutes(MathUtil.intDiv(MIN_SAFE_INTEGER, 60) - 1)).to.throw(ArithmeticException);
-        });
-    });
-
-    describe('ofHours()', () => {
-        const SECONDS_PER_HOUR = 3600;
-        it('factory_hours', () => {
-            let test = Duration.ofHours(2);
-            expect(test.seconds()).to.eql(2 * SECONDS_PER_HOUR);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_hours_max', () => {
-            let test = Duration.ofHours(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR));
-            expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) * SECONDS_PER_HOUR);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_hours_min', () => {
-            var hours = MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) + 1;
-            let test = Duration.ofHours(hours);
-            expect(test.seconds()).to.eql(hours * SECONDS_PER_HOUR);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_hours_tooBig', () => {
-            expect(() => Duration.ofHours(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR) + 1)).to.throw(ArithmeticException);
-        });
-        it('factory_hours_tooSmall', () => {
-            expect(() => Duration.ofHours(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) - 1)).to.throw(ArithmeticException);
-        });
-    });
-
-    describe('ofDays()', () => {
-        const SECONDS_PER_DAY = 86400;
-        it('factory_days', () => {
-            let test = Duration.ofDays(2);
-            expect(test.seconds()).to.eql(2 * SECONDS_PER_DAY);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_days_max', () => {
-            let test = Duration.ofDays(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY));
-            expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) * SECONDS_PER_DAY);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_days_min', () => {
-            var days = MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) + 1;
-            let test = Duration.ofDays(days);
-            expect(test.seconds()).to.eql(days * SECONDS_PER_DAY);
-            expect(test.nano()).to.eql(0);
-        });
-        it('factory_days_tooBig', () => {
-            expect(() => Duration.ofDays(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY) + 1)).to.throw(ArithmeticException);
-        });
-        it('factory_days_tooSmall', () => {
-            expect(() => Duration.ofDays(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY) - 1)).to.throw(ArithmeticException);
-        });
-    });
-
-    describe('of(long,TemporalUnit)', () => {
-        let data_of_long_TemporalUnit = [
-            [0, ChronoUnit.NANOS, 0, 0],
-            [0, ChronoUnit.MICROS, 0, 0],
-            [0, ChronoUnit.MILLIS, 0, 0],
-            [0, ChronoUnit.SECONDS, 0, 0],
-            [0, ChronoUnit.MINUTES, 0, 0],
-            [0, ChronoUnit.HOURS, 0, 0],
-            [0, ChronoUnit.HALF_DAYS, 0, 0],
-            [0, ChronoUnit.DAYS, 0, 0],
-            [1, ChronoUnit.NANOS, 0, 1],
-            [1, ChronoUnit.MICROS, 0, 1000],
-            [1, ChronoUnit.MILLIS, 0, 1000000],
-            [1, ChronoUnit.SECONDS, 1, 0],
-            [1, ChronoUnit.MINUTES, 60, 0],
-            [1, ChronoUnit.HOURS, 3600, 0],
-            [1, ChronoUnit.HALF_DAYS, 43200, 0],
-            [1, ChronoUnit.DAYS, 86400, 0],
-            [3, ChronoUnit.NANOS, 0, 3],
-            [3, ChronoUnit.MICROS, 0, 3000],
-            [3, ChronoUnit.MILLIS, 0, 3000000],
-            [3, ChronoUnit.SECONDS, 3, 0],
-            [3, ChronoUnit.MINUTES, 3 * 60, 0],
-            [3, ChronoUnit.HOURS, 3 * 3600, 0],
-            [3, ChronoUnit.HALF_DAYS, 3 * 43200, 0],
-            [3, ChronoUnit.DAYS, 3 * 86400, 0],
-            [-1, ChronoUnit.NANOS, -1, 999999999],
-            [-1, ChronoUnit.MICROS, -1, 999999000],
-            [-1, ChronoUnit.MILLIS, -1, 999000000],
-            [-1, ChronoUnit.SECONDS, -1, 0],
-            [-1, ChronoUnit.MINUTES, -60, 0],
-            [-1, ChronoUnit.HOURS, -3600, 0],
-            [-1, ChronoUnit.HALF_DAYS, -43200, 0],
-            [-1, ChronoUnit.DAYS, -86400, 0],
-            [-3, ChronoUnit.NANOS, -1, 999999997],
-            [-3, ChronoUnit.MICROS, -1, 999997000],
-            [-3, ChronoUnit.MILLIS, -1, 997000000],
-            [-3, ChronoUnit.SECONDS, -3, 0],
-            [-3, ChronoUnit.MINUTES, -3 * 60, 0],
-            [-3, ChronoUnit.HOURS, -3 * 3600, 0],
-            [-3, ChronoUnit.HALF_DAYS, -3 * 43200, 0],
-            [-3, ChronoUnit.DAYS, -3 * 86400, 0],
-            [MAX_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000)],
-            [MIN_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1, MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000],
-            [MAX_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000) * 1000],
-            [MIN_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000000) + 1000000) * 1000],
-            [MAX_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000],
-            [MIN_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000) + 1000) * 1000000],
-            [MAX_SAFE_INTEGER, ChronoUnit.SECONDS, MAX_SAFE_INTEGER, 0],
-            [MIN_SAFE_INTEGER, ChronoUnit.SECONDS, MIN_SAFE_INTEGER, 0],
-            [MathUtil.intDiv(MAX_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60, 0],
-            [MathUtil.intDiv(MIN_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MIN_SAFE_INTEGER, 60) * 60, 0],
-            [MathUtil.intDiv(MAX_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MAX_SAFE_INTEGER, 3600) * 3600, 0],
-            [MathUtil.intDiv(MIN_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MIN_SAFE_INTEGER, 3600) * 3600, 0],
-            [MathUtil.intDiv(MAX_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MAX_SAFE_INTEGER, 43200) * 43200, 0],
-            [MathUtil.intDiv(MIN_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MIN_SAFE_INTEGER, 43200) * 43200, 0]
-        ];
-
-        let data_of_long_TemporalUnit_outOfRange = [
-            [MAX_SAFE_INTEGER / 60 + 1, ChronoUnit.MINUTES],
-            [MIN_SAFE_INTEGER / 60 - 1, ChronoUnit.MINUTES],
-            [MAX_SAFE_INTEGER / 3600 + 1, ChronoUnit.HOURS],
-            [MIN_SAFE_INTEGER / 3600 - 1, ChronoUnit.HOURS],
-            [MAX_SAFE_INTEGER / 43200 + 1, ChronoUnit.HALF_DAYS],
-            [MIN_SAFE_INTEGER / 43200 - 1, ChronoUnit.HALF_DAYS]
-        ];
-
-
-        it('factory_of_longTemporalUnit', () => {
-            data_of_long_TemporalUnit.forEach((val) => {
-                let [amount, unit, expectedSeconds, expectedNanos] = val;
-                let test = Duration.of(amount, unit);
-                expect(test.seconds()).to.eql(expectedSeconds);
-                expect(test.nano()).to.eql(expectedNanos);
+            it('factory_of_longTemporalUnit_outOfRange', () => {
+                data_of_long_TemporalUnit_outOfRange.forEach((val) => {
+                    let [amount, unit] = val;
+                    expect(() => Duration.of(amount, unit)).to.throw(ArithmeticException);
+                });
             });
-        });
 
-        it('factory_of_longTemporalUnit_outOfRange', () => {
-            data_of_long_TemporalUnit_outOfRange.forEach((val) => {
-                let [amount, unit] = val;
-                expect(() => Duration.of(amount, unit)).to.throw(ArithmeticException);
+            it('factory_of_longTemporalUnit_estimatedUnit', () => {
+                expect(() => Duration.of(2, ChronoUnit.WEEKS)).to.throw(UnsupportedTemporalTypeException);
             });
-        });
 
-        it('factory_of_longTemporalUnit_estimatedUnit', () => {
-            expect(() => Duration.of(2, ChronoUnit.WEEKS)).to.throw(UnsupportedTemporalTypeException);
-        });
+            it('factory_of_longTemporalUnit_null', () => {
+                expect(() => Duration.of(1, null)).to.throw(NullPointerException);
+            });
 
-        it('factory_of_longTemporalUnit_null', () => {
-            expect(() => Duration.of(1, null)).to.throw(NullPointerException);
         });
-
     });
 
     describe('between()', () => {
@@ -350,296 +352,494 @@ describe('org.threeten.bp.TestDuration', () => {
         });
     });
 
-    describe('plusDuration()', () => {
-        let data_plus = [
-            [MIN_SAFE_INTEGER, 0, MAX_SAFE_INTEGER, 0, 0, 0],
+    describe('plus', () => {
+        describe('plusDuration()', () => {
+            let data_plus = [
+                [MIN_SAFE_INTEGER, 0, MAX_SAFE_INTEGER, 0, 0, 0],
 
-            [-4, 666666667, -4, 666666667, -7, 333333334],
-            [-4, 666666667, -3,         0, -7, 666666667],
-            [-4, 666666667, -2,         0, -6, 666666667],
-            [-4, 666666667, -1,         0, -5, 666666667],
-            [-4, 666666667, -1, 333333334, -4,         1],
-            [-4, 666666667, -1, 666666667, -4, 333333334],
-            [-4, 666666667, -1, 999999999, -4, 666666666],
-            [-4, 666666667,  0,         0, -4, 666666667],
-            [-4, 666666667,  0,         1, -4, 666666668],
-            [-4, 666666667,  0, 333333333, -3,         0],
-            [-4, 666666667,  0, 666666666, -3, 333333333],
-            [-4, 666666667,  1,         0, -3, 666666667],
-            [-4, 666666667,  2,         0, -2, 666666667],
-            [-4, 666666667,  3,         0, -1, 666666667],
-            [-4, 666666667,  3, 333333333,  0,         0],
+                [-4, 666666667, -4, 666666667, -7, 333333334],
+                [-4, 666666667, -3, 0, -7, 666666667],
+                [-4, 666666667, -2, 0, -6, 666666667],
+                [-4, 666666667, -1, 0, -5, 666666667],
+                [-4, 666666667, -1, 333333334, -4, 1],
+                [-4, 666666667, -1, 666666667, -4, 333333334],
+                [-4, 666666667, -1, 999999999, -4, 666666666],
+                [-4, 666666667, 0, 0, -4, 666666667],
+                [-4, 666666667, 0, 1, -4, 666666668],
+                [-4, 666666667, 0, 333333333, -3, 0],
+                [-4, 666666667, 0, 666666666, -3, 333333333],
+                [-4, 666666667, 1, 0, -3, 666666667],
+                [-4, 666666667, 2, 0, -2, 666666667],
+                [-4, 666666667, 3, 0, -1, 666666667],
+                [-4, 666666667, 3, 333333333, 0, 0],
 
-            [-3, 0, -4, 666666667, -7, 666666667],
-            [-3, 0, -3,         0, -6,         0],
-            [-3, 0, -2,         0, -5,         0],
-            [-3, 0, -1,         0, -4,         0],
-            [-3, 0, -1, 333333334, -4, 333333334],
-            [-3, 0, -1, 666666667, -4, 666666667],
-            [-3, 0, -1, 999999999, -4, 999999999],
-            [-3, 0,  0,         0, -3,         0],
-            [-3, 0,  0,         1, -3,         1],
-            [-3, 0,  0, 333333333, -3, 333333333],
-            [-3, 0,  0, 666666666, -3, 666666666],
-            [-3, 0,  1,         0, -2,         0],
-            [-3, 0,  2,         0, -1,         0],
-            [-3, 0,  3,         0,  0,         0],
-            [-3, 0,  3, 333333333,  0, 333333333],
+                [-3, 0, -4, 666666667, -7, 666666667],
+                [-3, 0, -3, 0, -6, 0],
+                [-3, 0, -2, 0, -5, 0],
+                [-3, 0, -1, 0, -4, 0],
+                [-3, 0, -1, 333333334, -4, 333333334],
+                [-3, 0, -1, 666666667, -4, 666666667],
+                [-3, 0, -1, 999999999, -4, 999999999],
+                [-3, 0, 0, 0, -3, 0],
+                [-3, 0, 0, 1, -3, 1],
+                [-3, 0, 0, 333333333, -3, 333333333],
+                [-3, 0, 0, 666666666, -3, 666666666],
+                [-3, 0, 1, 0, -2, 0],
+                [-3, 0, 2, 0, -1, 0],
+                [-3, 0, 3, 0, 0, 0],
+                [-3, 0, 3, 333333333, 0, 333333333],
 
-            [-2, 0, -4, 666666667, -6, 666666667],
-            [-2, 0, -3,         0, -5,         0],
-            [-2, 0, -2,         0, -4,         0],
-            [-2, 0, -1,         0, -3,         0],
-            [-2, 0, -1, 333333334, -3, 333333334],
-            [-2, 0, -1, 666666667, -3, 666666667],
-            [-2, 0, -1, 999999999, -3, 999999999],
-            [-2, 0,  0,         0, -2,         0],
-            [-2, 0,  0,         1, -2,         1],
-            [-2, 0,  0, 333333333, -2, 333333333],
-            [-2, 0,  0, 666666666, -2, 666666666],
-            [-2, 0,  1,         0, -1,         0],
-            [-2, 0,  2,         0,  0,         0],
-            [-2, 0,  3,         0,  1,         0],
-            [-2, 0,  3, 333333333,  1, 333333333],
+                [-2, 0, -4, 666666667, -6, 666666667],
+                [-2, 0, -3, 0, -5, 0],
+                [-2, 0, -2, 0, -4, 0],
+                [-2, 0, -1, 0, -3, 0],
+                [-2, 0, -1, 333333334, -3, 333333334],
+                [-2, 0, -1, 666666667, -3, 666666667],
+                [-2, 0, -1, 999999999, -3, 999999999],
+                [-2, 0, 0, 0, -2, 0],
+                [-2, 0, 0, 1, -2, 1],
+                [-2, 0, 0, 333333333, -2, 333333333],
+                [-2, 0, 0, 666666666, -2, 666666666],
+                [-2, 0, 1, 0, -1, 0],
+                [-2, 0, 2, 0, 0, 0],
+                [-2, 0, 3, 0, 1, 0],
+                [-2, 0, 3, 333333333, 1, 333333333],
 
-            [-1, 0, -4, 666666667, -5, 666666667],
-            [-1, 0, -3,         0, -4,         0],
-            [-1, 0, -2,         0, -3,         0],
-            [-1, 0, -1,         0, -2,         0],
-            [-1, 0, -1, 333333334, -2, 333333334],
-            [-1, 0, -1, 666666667, -2, 666666667],
-            [-1, 0, -1, 999999999, -2, 999999999],
-            [-1, 0,  0,         0, -1,         0],
-            [-1, 0,  0,         1, -1,         1],
-            [-1, 0,  0, 333333333, -1, 333333333],
-            [-1, 0,  0, 666666666, -1, 666666666],
-            [-1, 0,  1,         0,  0,         0],
-            [-1, 0,  2,         0,  1,         0],
-            [-1, 0,  3,         0,  2,         0],
-            [-1, 0,  3, 333333333,  2, 333333333],
+                [-1, 0, -4, 666666667, -5, 666666667],
+                [-1, 0, -3, 0, -4, 0],
+                [-1, 0, -2, 0, -3, 0],
+                [-1, 0, -1, 0, -2, 0],
+                [-1, 0, -1, 333333334, -2, 333333334],
+                [-1, 0, -1, 666666667, -2, 666666667],
+                [-1, 0, -1, 999999999, -2, 999999999],
+                [-1, 0, 0, 0, -1, 0],
+                [-1, 0, 0, 1, -1, 1],
+                [-1, 0, 0, 333333333, -1, 333333333],
+                [-1, 0, 0, 666666666, -1, 666666666],
+                [-1, 0, 1, 0, 0, 0],
+                [-1, 0, 2, 0, 1, 0],
+                [-1, 0, 3, 0, 2, 0],
+                [-1, 0, 3, 333333333, 2, 333333333],
 
-            [-1, 666666667, -4, 666666667, -4, 333333334],
-            [-1, 666666667, -3,         0, -4, 666666667],
-            [-1, 666666667, -2,         0, -3, 666666667],
-            [-1, 666666667, -1,         0, -2, 666666667],
-            [-1, 666666667, -1, 333333334, -1,         1],
-            [-1, 666666667, -1, 666666667, -1, 333333334],
-            [-1, 666666667, -1, 999999999, -1, 666666666],
-            [-1, 666666667,  0,         0, -1, 666666667],
-            [-1, 666666667,  0,         1, -1, 666666668],
-            [-1, 666666667,  0, 333333333,  0,         0],
-            [-1, 666666667,  0, 666666666,  0, 333333333],
-            [-1, 666666667,  1,         0,  0, 666666667],
-            [-1, 666666667,  2,         0,  1, 666666667],
-            [-1, 666666667,  3,         0,  2, 666666667],
-            [-1, 666666667,  3, 333333333,  3,         0],
+                [-1, 666666667, -4, 666666667, -4, 333333334],
+                [-1, 666666667, -3, 0, -4, 666666667],
+                [-1, 666666667, -2, 0, -3, 666666667],
+                [-1, 666666667, -1, 0, -2, 666666667],
+                [-1, 666666667, -1, 333333334, -1, 1],
+                [-1, 666666667, -1, 666666667, -1, 333333334],
+                [-1, 666666667, -1, 999999999, -1, 666666666],
+                [-1, 666666667, 0, 0, -1, 666666667],
+                [-1, 666666667, 0, 1, -1, 666666668],
+                [-1, 666666667, 0, 333333333, 0, 0],
+                [-1, 666666667, 0, 666666666, 0, 333333333],
+                [-1, 666666667, 1, 0, 0, 666666667],
+                [-1, 666666667, 2, 0, 1, 666666667],
+                [-1, 666666667, 3, 0, 2, 666666667],
+                [-1, 666666667, 3, 333333333, 3, 0],
 
-            [0, 0, -4, 666666667, -4, 666666667],
-            [0, 0, -3,         0, -3,         0],
-            [0, 0, -2,         0, -2,         0],
-            [0, 0, -1,         0, -1,         0],
-            [0, 0, -1, 333333334, -1, 333333334],
-            [0, 0, -1, 666666667, -1, 666666667],
-            [0, 0, -1, 999999999, -1, 999999999],
-            [0, 0,  0,         0,  0,         0],
-            [0, 0,  0,         1,  0,         1],
-            [0, 0,  0, 333333333,  0, 333333333],
-            [0, 0,  0, 666666666,  0, 666666666],
-            [0, 0,  1,         0,  1,         0],
-            [0, 0,  2,         0,  2,         0],
-            [0, 0,  3,         0,  3,         0],
-            [0, 0,  3, 333333333,  3, 333333333],
+                [0, 0, -4, 666666667, -4, 666666667],
+                [0, 0, -3, 0, -3, 0],
+                [0, 0, -2, 0, -2, 0],
+                [0, 0, -1, 0, -1, 0],
+                [0, 0, -1, 333333334, -1, 333333334],
+                [0, 0, -1, 666666667, -1, 666666667],
+                [0, 0, -1, 999999999, -1, 999999999],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 0, 1],
+                [0, 0, 0, 333333333, 0, 333333333],
+                [0, 0, 0, 666666666, 0, 666666666],
+                [0, 0, 1, 0, 1, 0],
+                [0, 0, 2, 0, 2, 0],
+                [0, 0, 3, 0, 3, 0],
+                [0, 0, 3, 333333333, 3, 333333333],
 
-            [0, 333333333, -4, 666666667, -3,         0],
-            [0, 333333333, -3,         0, -3, 333333333],
-            [0, 333333333, -2,         0, -2, 333333333],
-            [0, 333333333, -1,         0, -1, 333333333],
-            [0, 333333333, -1, 333333334, -1, 666666667],
-            [0, 333333333, -1, 666666667,  0,         0],
-            [0, 333333333, -1, 999999999,  0, 333333332],
-            [0, 333333333,  0,         0,  0, 333333333],
-            [0, 333333333,  0,         1,  0, 333333334],
-            [0, 333333333,  0, 333333333,  0, 666666666],
-            [0, 333333333,  0, 666666666,  0, 999999999],
-            [0, 333333333,  1,         0,  1, 333333333],
-            [0, 333333333,  2,         0,  2, 333333333],
-            [0, 333333333,  3,         0,  3, 333333333],
-            [0, 333333333,  3, 333333333,  3, 666666666],
+                [0, 333333333, -4, 666666667, -3, 0],
+                [0, 333333333, -3, 0, -3, 333333333],
+                [0, 333333333, -2, 0, -2, 333333333],
+                [0, 333333333, -1, 0, -1, 333333333],
+                [0, 333333333, -1, 333333334, -1, 666666667],
+                [0, 333333333, -1, 666666667, 0, 0],
+                [0, 333333333, -1, 999999999, 0, 333333332],
+                [0, 333333333, 0, 0, 0, 333333333],
+                [0, 333333333, 0, 1, 0, 333333334],
+                [0, 333333333, 0, 333333333, 0, 666666666],
+                [0, 333333333, 0, 666666666, 0, 999999999],
+                [0, 333333333, 1, 0, 1, 333333333],
+                [0, 333333333, 2, 0, 2, 333333333],
+                [0, 333333333, 3, 0, 3, 333333333],
+                [0, 333333333, 3, 333333333, 3, 666666666],
 
-            [1, 0, -4, 666666667, -3, 666666667],
-            [1, 0, -3,         0, -2,         0],
-            [1, 0, -2,         0, -1,         0],
-            [1, 0, -1,         0,  0,         0],
-            [1, 0, -1, 333333334,  0, 333333334],
-            [1, 0, -1, 666666667,  0, 666666667],
-            [1, 0, -1, 999999999,  0, 999999999],
-            [1, 0,  0,         0,  1,         0],
-            [1, 0,  0,         1,  1,         1],
-            [1, 0,  0, 333333333,  1, 333333333],
-            [1, 0,  0, 666666666,  1, 666666666],
-            [1, 0,  1,         0,  2,         0],
-            [1, 0,  2,         0,  3,         0],
-            [1, 0,  3,         0,  4,         0],
-            [1, 0,  3, 333333333,  4, 333333333],
+                [1, 0, -4, 666666667, -3, 666666667],
+                [1, 0, -3, 0, -2, 0],
+                [1, 0, -2, 0, -1, 0],
+                [1, 0, -1, 0, 0, 0],
+                [1, 0, -1, 333333334, 0, 333333334],
+                [1, 0, -1, 666666667, 0, 666666667],
+                [1, 0, -1, 999999999, 0, 999999999],
+                [1, 0, 0, 0, 1, 0],
+                [1, 0, 0, 1, 1, 1],
+                [1, 0, 0, 333333333, 1, 333333333],
+                [1, 0, 0, 666666666, 1, 666666666],
+                [1, 0, 1, 0, 2, 0],
+                [1, 0, 2, 0, 3, 0],
+                [1, 0, 3, 0, 4, 0],
+                [1, 0, 3, 333333333, 4, 333333333],
 
-            [2, 0, -4, 666666667, -2, 666666667],
-            [2, 0, -3,         0, -1,         0],
-            [2, 0, -2,         0,  0,         0],
-            [2, 0, -1,         0,  1,         0],
-            [2, 0, -1, 333333334,  1, 333333334],
-            [2, 0, -1, 666666667,  1, 666666667],
-            [2, 0, -1, 999999999,  1, 999999999],
-            [2, 0,  0,         0,  2,         0],
-            [2, 0,  0,         1,  2,         1],
-            [2, 0,  0, 333333333,  2, 333333333],
-            [2, 0,  0, 666666666,  2, 666666666],
-            [2, 0,  1,         0,  3,         0],
-            [2, 0,  2,         0,  4,         0],
-            [2, 0,  3,         0,  5,         0],
-            [2, 0,  3, 333333333,  5, 333333333],
+                [2, 0, -4, 666666667, -2, 666666667],
+                [2, 0, -3, 0, -1, 0],
+                [2, 0, -2, 0, 0, 0],
+                [2, 0, -1, 0, 1, 0],
+                [2, 0, -1, 333333334, 1, 333333334],
+                [2, 0, -1, 666666667, 1, 666666667],
+                [2, 0, -1, 999999999, 1, 999999999],
+                [2, 0, 0, 0, 2, 0],
+                [2, 0, 0, 1, 2, 1],
+                [2, 0, 0, 333333333, 2, 333333333],
+                [2, 0, 0, 666666666, 2, 666666666],
+                [2, 0, 1, 0, 3, 0],
+                [2, 0, 2, 0, 4, 0],
+                [2, 0, 3, 0, 5, 0],
+                [2, 0, 3, 333333333, 5, 333333333],
 
-            [3, 0, -4, 666666667, -1, 666666667],
-            [3, 0, -3,         0,  0,         0],
-            [3, 0, -2,         0,  1,         0],
-            [3, 0, -1,         0,  2,         0],
-            [3, 0, -1, 333333334,  2, 333333334],
-            [3, 0, -1, 666666667,  2, 666666667],
-            [3, 0, -1, 999999999,  2, 999999999],
-            [3, 0,  0,         0,  3,         0],
-            [3, 0,  0,         1,  3,         1],
-            [3, 0,  0, 333333333,  3, 333333333],
-            [3, 0,  0, 666666666,  3, 666666666],
-            [3, 0,  1,         0,  4,         0],
-            [3, 0,  2,         0,  5,         0],
-            [3, 0,  3,         0,  6,         0],
-            [3, 0,  3, 333333333,  6, 333333333],
+                [3, 0, -4, 666666667, -1, 666666667],
+                [3, 0, -3, 0, 0, 0],
+                [3, 0, -2, 0, 1, 0],
+                [3, 0, -1, 0, 2, 0],
+                [3, 0, -1, 333333334, 2, 333333334],
+                [3, 0, -1, 666666667, 2, 666666667],
+                [3, 0, -1, 999999999, 2, 999999999],
+                [3, 0, 0, 0, 3, 0],
+                [3, 0, 0, 1, 3, 1],
+                [3, 0, 0, 333333333, 3, 333333333],
+                [3, 0, 0, 666666666, 3, 666666666],
+                [3, 0, 1, 0, 4, 0],
+                [3, 0, 2, 0, 5, 0],
+                [3, 0, 3, 0, 6, 0],
+                [3, 0, 3, 333333333, 6, 333333333],
 
-            [3, 333333333, -4, 666666667,  0,         0],
-            [3, 333333333, -3,         0,  0, 333333333],
-            [3, 333333333, -2,         0,  1, 333333333],
-            [3, 333333333, -1,         0,  2, 333333333],
-            [3, 333333333, -1, 333333334,  2, 666666667],
-            [3, 333333333, -1, 666666667,  3,         0],
-            [3, 333333333, -1, 999999999,  3, 333333332],
-            [3, 333333333,  0,         0,  3, 333333333],
-            [3, 333333333,  0,         1,  3, 333333334],
-            [3, 333333333,  0, 333333333,  3, 666666666],
-            [3, 333333333,  0, 666666666,  3, 999999999],
-            [3, 333333333,  1,         0,  4, 333333333],
-            [3, 333333333,  2,         0,  5, 333333333],
-            [3, 333333333,  3,         0,  6, 333333333],
-            [3, 333333333,  3, 333333333,  6, 666666666],
+                [3, 333333333, -4, 666666667, 0, 0],
+                [3, 333333333, -3, 0, 0, 333333333],
+                [3, 333333333, -2, 0, 1, 333333333],
+                [3, 333333333, -1, 0, 2, 333333333],
+                [3, 333333333, -1, 333333334, 2, 666666667],
+                [3, 333333333, -1, 666666667, 3, 0],
+                [3, 333333333, -1, 999999999, 3, 333333332],
+                [3, 333333333, 0, 0, 3, 333333333],
+                [3, 333333333, 0, 1, 3, 333333334],
+                [3, 333333333, 0, 333333333, 3, 666666666],
+                [3, 333333333, 0, 666666666, 3, 999999999],
+                [3, 333333333, 1, 0, 4, 333333333],
+                [3, 333333333, 2, 0, 5, 333333333],
+                [3, 333333333, 3, 0, 6, 333333333],
+                [3, 333333333, 3, 333333333, 6, 666666666],
 
-            [MAX_SAFE_INTEGER, 0, MIN_SAFE_INTEGER, 0, 0, 0]
-        ];
+                [MAX_SAFE_INTEGER, 0, MIN_SAFE_INTEGER, 0, 0, 0]
+            ];
 
-        it('plus', () => {
-            data_plus.forEach((val) => {
-                let [seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanos] = val;
-                let t = Duration.ofSeconds(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
-                expect(t.seconds()).to.eql(expectedSeconds);
-                expect(t.nano()).to.eql(expectedNanos);
+            it('plus', () => {
+                data_plus.forEach((val) => {
+                    let [seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofSeconds(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+
+            it('plusOverflowTooBig', () => {
+                expect(() => {
+                    Duration.ofSeconds(MAX_SAFE_INTEGER, 999999999).plus(Duration.ofSeconds(0, 1));
+                }).to.throw(ArithmeticException);
+            });
+
+            it('plusOverflowTooSmall', () => {
+                expect(() => {
+                    Duration.ofSeconds(MIN_SAFE_INTEGER).plus(Duration.ofSeconds(-1, 999999999));
+                }).to.throw(ArithmeticException);
             });
         });
 
-        it('plusOverflowTooBig', () => {
-            expect(() => {
-                Duration.ofSeconds(MAX_SAFE_INTEGER, 999999999).plus(Duration.ofSeconds(0, 1));
-            }).to.throw(ArithmeticException);
-        });
-
-        it('plusOverflowTooSmall', () => {
-            expect(() => {
-                Duration.ofSeconds(MIN_SAFE_INTEGER).plus(Duration.ofSeconds(-1, 999999999));
-            }).to.throw(ArithmeticException);
-        });
-    });
-
-    describe('plusAmountUnit()', () => {
-        it('plus_longTemporalUnit_seconds', () => {
-            let t = Duration.ofSeconds(1);
-            t = t.plus(1, ChronoUnit.SECONDS);
-            expect(t.seconds()).to.eql(2);
-            expect(t.nano()).to.eql(0);
-        });
-
-        it('plus_longTemporalUnit_millis', () => {
-            let t = Duration.ofSeconds(1);
-            t = t.plus(1, ChronoUnit.MILLIS);
-            expect(t.seconds()).to.eql(1);
-            expect(t.nano()).to.eql(1000000);
-        });
-
-        it('plus_longTemporalUnit_micros', () => {
-            let t = Duration.ofSeconds(1);
-            t = t.plus(1, ChronoUnit.MICROS);
-            expect(t.seconds()).to.eql(1);
-            expect(t.nano()).to.eql(1000);
-        });
-
-        it('plus_longTemporalUnit_nanos', () => {
-            let t = Duration.ofSeconds(1);
-            t = t.plus(1, ChronoUnit.NANOS);
-            expect(t.seconds()).to.eql(1);
-            expect(t.nano()).to.eql(1);
-        });
-
-        it('plus_longTemporalUnit_null', () => {
-            let t = Duration.ofSeconds(1);
-            expect(() => {
-                t.plus(1, null);
-            }).to.throw(NullPointerException);
-        });
-
-    });
-
-    describe('plusSeconds()', () => {
-        let data_plusSeconds = [
-            [0, 0, 0, 0, 0],
-            [0, 0, 1, 1, 0],
-            [0, 0, -1, -1, 0],
-            [0, 0, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER, 0],
-            [0, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER, 0],
-            [1, 0, 0, 1, 0],
-            [1, 0, 1, 2, 0],
-            [1, 0, -1, 0, 0],
-            [1, 0, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 0],
-            [1, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 0],
-            [1, 1, 0, 1, 1],
-            [1, 1, 1, 2, 1],
-            [1, 1, -1, 0, 1],
-            [1, 1, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 1],
-            [1, 1, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 1],
-            [-1, 1, 0, -1, 1],
-            [-1, 1, 1, 0, 1],
-            [-1, 1, -1, -2, 1],
-            [-1, 1, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER - 1, 1],
-            [-1, 1, MIN_SAFE_INTEGER + 1, MIN_SAFE_INTEGER, 1]
-        ];
-
-        it('plusSeconds_long', () => {
-            data_plusSeconds.forEach((val) => {
-                let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
-                let t = Duration.ofSeconds(seconds, nanos).plusSeconds(amount);
-                expect(t.seconds()).to.eql(expectedSeconds);
-                expect(t.nano()).to.eql(expectedNanos);
+        describe('plusAmountUnit()', () => {
+            it('plus_longTemporalUnit_seconds', () => {
+                let t = Duration.ofSeconds(1);
+                t = t.plus(1, ChronoUnit.SECONDS);
+                expect(t.seconds()).to.eql(2);
+                expect(t.nano()).to.eql(0);
             });
+
+            it('plus_longTemporalUnit_millis', () => {
+                let t = Duration.ofSeconds(1);
+                t = t.plus(1, ChronoUnit.MILLIS);
+                expect(t.seconds()).to.eql(1);
+                expect(t.nano()).to.eql(1000000);
+            });
+
+            it('plus_longTemporalUnit_micros', () => {
+                let t = Duration.ofSeconds(1);
+                t = t.plus(1, ChronoUnit.MICROS);
+                expect(t.seconds()).to.eql(1);
+                expect(t.nano()).to.eql(1000);
+            });
+
+            it('plus_longTemporalUnit_nanos', () => {
+                let t = Duration.ofSeconds(1);
+                t = t.plus(1, ChronoUnit.NANOS);
+                expect(t.seconds()).to.eql(1);
+                expect(t.nano()).to.eql(1);
+            });
+
+            it('plus_longTemporalUnit_null', () => {
+                let t = Duration.ofSeconds(1);
+                expect(() => {
+                    t.plus(1, null);
+                }).to.throw(NullPointerException);
+            });
+
         });
 
-        it('plusSeconds_long_overflowTooBig', () => {
-            let t = Duration.ofSeconds(1);
-            expect(() => {
-                t.plusSeconds(MAX_SAFE_INTEGER);
-            }).to.throw(ArithmeticException);
+        describe('plusSeconds()', () => {
+            let data_plusSeconds = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 1, 0],
+                [0, 0, -1, -1, 0],
+                [0, 0, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER, 0],
+                [0, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER, 0],
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 2, 0],
+                [1, 0, -1, 0, 0],
+                [1, 0, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 0],
+                [1, 0, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 0],
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 2, 1],
+                [1, 1, -1, 0, 1],
+                [1, 1, MAX_SAFE_INTEGER - 1, MAX_SAFE_INTEGER, 1],
+                [1, 1, MIN_SAFE_INTEGER, MIN_SAFE_INTEGER + 1, 1],
+                [-1, 1, 0, -1, 1],
+                [-1, 1, 1, 0, 1],
+                [-1, 1, -1, -2, 1],
+                [-1, 1, MAX_SAFE_INTEGER, MAX_SAFE_INTEGER - 1, 1],
+                [-1, 1, MIN_SAFE_INTEGER + 1, MIN_SAFE_INTEGER, 1]
+            ];
+
+            it('plusSeconds_long', () => {
+                data_plusSeconds.forEach((val) => {
+                    let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofSeconds(seconds, nanos).plusSeconds(amount);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+
+            it('plusSeconds_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(1);
+                expect(() => {
+                    t.plusSeconds(MAX_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+
+            it('plusSeconds_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(-1);
+                expect(() => {
+                    t.plusSeconds(MIN_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+
         });
 
-        it('plusSeconds_long_overflowTooSmall', () => {
-            let t = Duration.ofSeconds(-1);
-            expect(() => {
-                t.plusSeconds(MIN_SAFE_INTEGER);
-            }).to.throw(ArithmeticException);
-        });
+        describe('plusMillis()', () => {
+            let data_plusMillis = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 1000000],
+                [0, 0, 999, 0, 999000000],
+                [0, 0, 1000, 1, 0],
+                [0, 0, 1001, 1, 1000000],
+                [0, 0, 1999, 1, 999000000],
+                [0, 0, 2000, 2, 0],
+                [0, 0, -1, -1, 999000000],
+                [0, 0, -999, -1, 1000000],
+                [0, 0, -1000, -1, 0],
+                [0, 0, -1001, -2, 999000000],
+                [0, 0, -1999, -2, 1000000],
 
+                [0, 1, 0, 0, 1],
+                [0, 1, 1, 0, 1000001],
+                [0, 1, 998, 0, 998000001],
+                [0, 1, 999, 0, 999000001],
+                [0, 1, 1000, 1, 1],
+                [0, 1, 1998, 1, 998000001],
+                [0, 1, 1999, 1, 999000001],
+                [0, 1, 2000, 2, 1],
+                [0, 1, -1, -1, 999000001],
+                [0, 1, -2, -1, 998000001],
+                [0, 1, -1000, -1, 1],
+                [0, 1, -1001, -2, 999000001],
+
+                [0, 1000000, 0, 0, 1000000],
+                [0, 1000000, 1, 0, 2000000],
+                [0, 1000000, 998, 0, 999000000],
+                [0, 1000000, 999, 1, 0],
+                [0, 1000000, 1000, 1, 1000000],
+                [0, 1000000, 1998, 1, 999000000],
+                [0, 1000000, 1999, 2, 0],
+                [0, 1000000, 2000, 2, 1000000],
+                [0, 1000000, -1, 0, 0],
+                [0, 1000000, -2, -1, 999000000],
+                [0, 1000000, -999, -1, 2000000],
+                [0, 1000000, -1000, -1, 1000000],
+                [0, 1000000, -1001, -1, 0],
+                [0, 1000000, -1002, -2, 999000000],
+
+                [0, 999999999, 0, 0, 999999999],
+                [0, 999999999, 1, 1, 999999],
+                [0, 999999999, 999, 1, 998999999],
+                [0, 999999999, 1000, 1, 999999999],
+                [0, 999999999, 1001, 2, 999999],
+                [0, 999999999, -1, 0, 998999999],
+                [0, 999999999, -1000, -1, 999999999],
+                [0, 999999999, -1001, -1, 998999999]
+            ];
+
+            it('plusMillis_long', () => {
+                data_plusMillis.forEach((val) => {
+                    let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofSeconds(seconds, nanos).plusMillis(amount);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+
+            it('plusMillis_long_oneMore', () => {
+                data_plusMillis.forEach((val) => {
+                    let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofSeconds(seconds + 1, nanos).plusMillis(amount);
+                    expect(t.seconds()).to.eql(expectedSeconds + 1);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+
+            it('plusMillis_long_max', () => {
+                let t = Duration.ofSeconds(MAX_SAFE_INTEGER, 998999999).plusMillis(1);
+                expect(t.seconds()).to.eql(MAX_SAFE_INTEGER);
+                expect(t.nano()).to.eql(999999999);
+            });
+
+            it('plusMillis_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(MAX_SAFE_INTEGER, 999000000);
+                expect(() => {
+                    t.plusMillis(1);
+                }).to.throw(ArithmeticException);
+            });
+
+            it('plusMillis_long_min', () => {
+                let t = Duration.ofSeconds(MIN_SAFE_INTEGER, 1000000).plusMillis(-1);
+                expect(t.seconds()).to.eql(MIN_SAFE_INTEGER);
+                expect(t.nano()).to.eql(0);
+            });
+
+            it('plusMillis_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+                expect(() => {
+                    t.plusMillis(-1);
+                }).to.throw(ArithmeticException);
+            });
+
+        });
+        describe('plusNanos()', () => {
+            let data_plusNanos = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 1],
+                [0, 0, 999999999, 0, 999999999],
+                [0, 0, 1000000000, 1, 0],
+                [0, 0, 1000000001, 1, 1],
+                [0, 0, 1999999999, 1, 999999999],
+                [0, 0, 2000000000, 2, 0],
+                [0, 0, -1, -1, 999999999],
+                [0, 0, -999999999, -1, 1],
+                [0, 0, -1000000000, -1, 0],
+                [0, 0, -1000000001, -2, 999999999],
+                [0, 0, -1999999999, -2, 1],
+
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 1, 1],
+                [1, 0, 999999999, 1, 999999999],
+                [1, 0, 1000000000, 2, 0],
+                [1, 0, 1000000001, 2, 1],
+                [1, 0, 1999999999, 2, 999999999],
+                [1, 0, 2000000000, 3, 0],
+                [1, 0, -1, 0, 999999999],
+                [1, 0, -999999999, 0, 1],
+                [1, 0, -1000000000, 0, 0],
+                [1, 0, -1000000001, -1, 999999999],
+                [1, 0, -1999999999, -1, 1],
+
+                [-1, 0, 0, -1, 0],
+                [-1, 0, 1, -1, 1],
+                [-1, 0, 999999999, -1, 999999999],
+                [-1, 0, 1000000000, 0, 0],
+                [-1, 0, 1000000001, 0, 1],
+                [-1, 0, 1999999999, 0, 999999999],
+                [-1, 0, 2000000000, 1, 0],
+                [-1, 0, -1, -2, 999999999],
+                [-1, 0, -999999999, -2, 1],
+                [-1, 0, -1000000000, -2, 0],
+                [-1, 0, -1000000001, -3, 999999999],
+                [-1, 0, -1999999999, -3, 1],
+
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 1, 2],
+                [1, 1, 999999998, 1, 999999999],
+                [1, 1, 999999999, 2, 0],
+                [1, 1, 1000000000, 2, 1],
+                [1, 1, 1999999998, 2, 999999999],
+                [1, 1, 1999999999, 3, 0],
+                [1, 1, 2000000000, 3, 1],
+                [1, 1, -1, 1, 0],
+                [1, 1, -2, 0, 999999999],
+                [1, 1, -1000000000, 0, 1],
+                [1, 1, -1000000001, 0, 0],
+                [1, 1, -1000000002, -1, 999999999],
+                [1, 1, -2000000000, -1, 1],
+
+                [1, 999999999, 0, 1, 999999999],
+                [1, 999999999, 1, 2, 0],
+                [1, 999999999, 999999999, 2, 999999998],
+                [1, 999999999, 1000000000, 2, 999999999],
+                [1, 999999999, 1000000001, 3, 0],
+                [1, 999999999, -1, 1, 999999998],
+                [1, 999999999, -1000000000, 0, 999999999],
+                [1, 999999999, -1000000001, 0, 999999998],
+                [1, 999999999, -1999999999, 0, 0],
+                [1, 999999999, -2000000000, -1, 999999999],
+
+                [MAX_SAFE_INTEGER, 0, 999999999, MAX_SAFE_INTEGER, 999999999],
+                [MAX_SAFE_INTEGER - 1, 0, 1999999999, MAX_SAFE_INTEGER, 999999999],
+                [MIN_SAFE_INTEGER, 1, -1, MIN_SAFE_INTEGER, 0],
+                [MIN_SAFE_INTEGER + 1, 1, -1000000001, MIN_SAFE_INTEGER, 0]
+            ];
+
+            it('plusNanos_long', () => {
+                data_plusNanos.forEach((val) => {
+                    let [seconds, nanos, amount, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofSeconds(seconds, nanos).plusNanos(amount);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+
+            it('plusNanos_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(MAX_SAFE_INTEGER, 999999999);
+                expect(() => {
+                    t.plusNanos(1);
+                }).to.throw(ArithmeticException);
+            });
+
+            it('plusNanos_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+                expect(() => {
+                    t.plusNanos(-1);
+                }).to.throw(ArithmeticException);
+            });
+
+        });
     });
 
 });
