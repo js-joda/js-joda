@@ -1,7 +1,7 @@
 import {requireNonNull} from './assert';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
-import {DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
+import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
 import {LocalTime} from './LocalTime';
 import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
 
@@ -895,7 +895,7 @@ export class Duration
         if (divisor == 1) {
             return this;
         }
-        return create(toSeconds().divide(BigDecimal.valueOf(divisor), RoundingMode.DOWN));
+        return Duration.create(this.toSeconds() / divisor);
     }
 
     /**
