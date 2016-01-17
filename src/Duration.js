@@ -1,4 +1,5 @@
 import {requireNonNull} from './assert';
+import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
 import {LocalTime} from './LocalTime';
@@ -225,19 +226,21 @@ export class Duration
      * @throws ArithmeticException if the calculation exceeds the capacity of {@code Duration}
      */
     static between(startInclusive, endExclusive) {
-        var secs = startInclusive.until(endExclusive, SECONDS);
+        requireNonNull(startInclusive, 'startInclusive');
+        requireNonNull(endExclusive, 'endExclusive');
+        var secs = startInclusive.until(endExclusive, ChronoUnit.SECONDS);
         var nanos = 0;
-        if (startInclusive.isSupported(NANO_OF_SECOND) && endExclusive.isSupported(NANO_OF_SECOND)) {
+        if (startInclusive.isSupported(ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(ChronoField.NANO_OF_SECOND)) {
             try {
-                let startNos = startInclusive.getLong(NANO_OF_SECOND);
-                nanos = endExclusive.getLong(NANO_OF_SECOND) - startNos;
+                let startNos = startInclusive.getLong(ChronoField.NANO_OF_SECOND);
+                nanos = endExclusive.getLong(ChronoField.NANO_OF_SECOND) - startNos;
                 if (secs > 0 && nanos < 0) {
                     nanos += LocalTime.NANOS_PER_SECOND;
                 } else if (secs < 0 && nanos > 0) {
                     nanos -= LocalTime.NANOS_PER_SECOND;
                 } else if (secs == 0 && nanos != 0) {
                     // two possible meanings for result, so recalculate secs
-                    let adjustedEnd = endExclusive.with(LocalTime.NANO_OF_SECOND, startNos);
+                    let adjustedEnd = endExclusive.with(ChronoField.NANO_OF_SECOND, startNos);
                     secs = startInclusive.until(adjustedEnd, ChronoUnit.SECONDS);
                 }
             } catch (e) {

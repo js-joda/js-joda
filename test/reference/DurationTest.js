@@ -5,6 +5,7 @@ import {ArithmeticException, NullPointerException, UnsupportedTemporalTypeExcept
 // there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
+import {Instant} from '../../src/Instant';
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../../src/MathUtil';
 
 describe('org.threeten.bp.TestDuration', () => {
@@ -25,7 +26,7 @@ describe('org.threeten.bp.TestDuration', () => {
             }
         });
     });
-    
+
     describe('ofSeconds(long, long)', () => {
         it('factory_seconds_long_long', () => {
             for (let i = -2; i <= 2; i++) {
@@ -60,7 +61,7 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => Duration.ofSeconds(Number.MAX_VALUE, 1000000000)).to.throw(ArithmeticException);
         });
     });
-    
+
     describe('ofMillis(long)', () => {
         var data_ofMillis;
         before(() => {
@@ -116,7 +117,7 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(test.nano()).to.eql(MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000);
         });
     });
-    
+
     describe('ofMinutes()', () => {
         it('factory_minutes', () => {
             let test = Duration.ofMinutes(2);
@@ -124,13 +125,13 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(test.nano()).to.eql(0);
         });
         it('factory_minutes_max', () => {
-            let test = Duration.ofMinutes( MathUtil.intDiv(MAX_SAFE_INTEGER, 60));
+            let test = Duration.ofMinutes(MathUtil.intDiv(MAX_SAFE_INTEGER, 60));
             expect(test.seconds()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60);
             expect(test.nano()).to.eql(0);
         });
         it('factory_minutes_min', () => {
             var minutes = MathUtil.intDiv(MIN_SAFE_INTEGER, 60) + 1;
-            let test = Duration.ofMinutes( minutes);
+            let test = Duration.ofMinutes(minutes);
             expect(test.seconds()).to.eql(minutes * 60);
             expect(test.nano()).to.eql(0);
         });
@@ -167,7 +168,7 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => Duration.ofHours(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR) - 1)).to.throw(ArithmeticException);
         });
     });
-    
+
     describe('ofDays()', () => {
         const SECONDS_PER_DAY = 86400;
         it('factory_days', () => {
@@ -196,61 +197,61 @@ describe('org.threeten.bp.TestDuration', () => {
 
     describe('of(long,TemporalUnit)', () => {
         let data_of_long_TemporalUnit = [
-                [0, ChronoUnit.NANOS, 0, 0],
-                [0, ChronoUnit.MICROS, 0, 0],
-                [0, ChronoUnit.MILLIS, 0, 0],
-                [0, ChronoUnit.SECONDS, 0, 0],
-                [0, ChronoUnit.MINUTES, 0, 0],
-                [0, ChronoUnit.HOURS, 0, 0],
-                [0, ChronoUnit.HALF_DAYS, 0, 0],
-                [0, ChronoUnit.DAYS, 0, 0],
-                [1, ChronoUnit.NANOS, 0, 1],
-                [1, ChronoUnit.MICROS, 0, 1000],
-                [1, ChronoUnit.MILLIS, 0, 1000000],
-                [1, ChronoUnit.SECONDS, 1, 0],
-                [1, ChronoUnit.MINUTES, 60, 0],
-                [1, ChronoUnit.HOURS, 3600, 0],
-                [1, ChronoUnit.HALF_DAYS, 43200, 0],
-                [1, ChronoUnit.DAYS, 86400, 0],
-                [3, ChronoUnit.NANOS, 0, 3],
-                [3, ChronoUnit.MICROS, 0, 3000],
-                [3, ChronoUnit.MILLIS, 0, 3000000],
-                [3, ChronoUnit.SECONDS, 3, 0],
-                [3, ChronoUnit.MINUTES, 3 * 60, 0],
-                [3, ChronoUnit.HOURS, 3 * 3600, 0],
-                [3, ChronoUnit.HALF_DAYS, 3 * 43200, 0],
-                [3, ChronoUnit.DAYS, 3 * 86400, 0],
-                [-1, ChronoUnit.NANOS, -1, 999999999],
-                [-1, ChronoUnit.MICROS, -1, 999999000],
-                [-1, ChronoUnit.MILLIS, -1, 999000000],
-                [-1, ChronoUnit.SECONDS, -1, 0],
-                [-1, ChronoUnit.MINUTES, -60, 0],
-                [-1, ChronoUnit.HOURS, -3600, 0],
-                [-1, ChronoUnit.HALF_DAYS, -43200, 0],
-                [-1, ChronoUnit.DAYS, -86400, 0],
-                [-3, ChronoUnit.NANOS, -1, 999999997],
-                [-3, ChronoUnit.MICROS, -1, 999997000],
-                [-3, ChronoUnit.MILLIS, -1, 997000000],
-                [-3, ChronoUnit.SECONDS, -3, 0],
-                [-3, ChronoUnit.MINUTES, -3 * 60, 0],
-                [-3, ChronoUnit.HOURS, -3 * 3600, 0],
-                [-3, ChronoUnit.HALF_DAYS, -3 * 43200, 0],
-                [-3, ChronoUnit.DAYS, -3 * 86400, 0],
-                [MAX_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000)],
-                [MIN_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1, MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000],
-                [MAX_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000) * 1000],
-                [MIN_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000000) + 1000000) * 1000],
-                [MAX_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000],
-                [MIN_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000) + 1000) * 1000000],
-                [MAX_SAFE_INTEGER, ChronoUnit.SECONDS, MAX_SAFE_INTEGER, 0],
-                [MIN_SAFE_INTEGER, ChronoUnit.SECONDS, MIN_SAFE_INTEGER, 0],
-                [MathUtil.intDiv(MAX_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60, 0],
-                [MathUtil.intDiv(MIN_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MIN_SAFE_INTEGER, 60) * 60, 0],
-                [MathUtil.intDiv(MAX_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MAX_SAFE_INTEGER, 3600) * 3600, 0],
-                [MathUtil.intDiv(MIN_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MIN_SAFE_INTEGER, 3600) * 3600, 0],
-                [MathUtil.intDiv(MAX_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MAX_SAFE_INTEGER, 43200) * 43200, 0],
-                [MathUtil.intDiv(MIN_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MIN_SAFE_INTEGER, 43200) * 43200, 0]
-            ];
+            [0, ChronoUnit.NANOS, 0, 0],
+            [0, ChronoUnit.MICROS, 0, 0],
+            [0, ChronoUnit.MILLIS, 0, 0],
+            [0, ChronoUnit.SECONDS, 0, 0],
+            [0, ChronoUnit.MINUTES, 0, 0],
+            [0, ChronoUnit.HOURS, 0, 0],
+            [0, ChronoUnit.HALF_DAYS, 0, 0],
+            [0, ChronoUnit.DAYS, 0, 0],
+            [1, ChronoUnit.NANOS, 0, 1],
+            [1, ChronoUnit.MICROS, 0, 1000],
+            [1, ChronoUnit.MILLIS, 0, 1000000],
+            [1, ChronoUnit.SECONDS, 1, 0],
+            [1, ChronoUnit.MINUTES, 60, 0],
+            [1, ChronoUnit.HOURS, 3600, 0],
+            [1, ChronoUnit.HALF_DAYS, 43200, 0],
+            [1, ChronoUnit.DAYS, 86400, 0],
+            [3, ChronoUnit.NANOS, 0, 3],
+            [3, ChronoUnit.MICROS, 0, 3000],
+            [3, ChronoUnit.MILLIS, 0, 3000000],
+            [3, ChronoUnit.SECONDS, 3, 0],
+            [3, ChronoUnit.MINUTES, 3 * 60, 0],
+            [3, ChronoUnit.HOURS, 3 * 3600, 0],
+            [3, ChronoUnit.HALF_DAYS, 3 * 43200, 0],
+            [3, ChronoUnit.DAYS, 3 * 86400, 0],
+            [-1, ChronoUnit.NANOS, -1, 999999999],
+            [-1, ChronoUnit.MICROS, -1, 999999000],
+            [-1, ChronoUnit.MILLIS, -1, 999000000],
+            [-1, ChronoUnit.SECONDS, -1, 0],
+            [-1, ChronoUnit.MINUTES, -60, 0],
+            [-1, ChronoUnit.HOURS, -3600, 0],
+            [-1, ChronoUnit.HALF_DAYS, -43200, 0],
+            [-1, ChronoUnit.DAYS, -86400, 0],
+            [-3, ChronoUnit.NANOS, -1, 999999997],
+            [-3, ChronoUnit.MICROS, -1, 999997000],
+            [-3, ChronoUnit.MILLIS, -1, 997000000],
+            [-3, ChronoUnit.SECONDS, -3, 0],
+            [-3, ChronoUnit.MINUTES, -3 * 60, 0],
+            [-3, ChronoUnit.HOURS, -3 * 3600, 0],
+            [-3, ChronoUnit.HALF_DAYS, -3 * 43200, 0],
+            [-3, ChronoUnit.DAYS, -3 * 86400, 0],
+            [MAX_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000000)],
+            [MIN_SAFE_INTEGER, ChronoUnit.NANOS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000000) - 1, MathUtil.intMod(MIN_SAFE_INTEGER, 1000000000) + 1000000000],
+            [MAX_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000000) * 1000],
+            [MIN_SAFE_INTEGER, ChronoUnit.MICROS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000000) + 1000000) * 1000],
+            [MAX_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000],
+            [MIN_SAFE_INTEGER, ChronoUnit.MILLIS, MathUtil.intDiv(MIN_SAFE_INTEGER, 1000) - 1, (MathUtil.intMod(MIN_SAFE_INTEGER, 1000) + 1000) * 1000000],
+            [MAX_SAFE_INTEGER, ChronoUnit.SECONDS, MAX_SAFE_INTEGER, 0],
+            [MIN_SAFE_INTEGER, ChronoUnit.SECONDS, MIN_SAFE_INTEGER, 0],
+            [MathUtil.intDiv(MAX_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MAX_SAFE_INTEGER, 60) * 60, 0],
+            [MathUtil.intDiv(MIN_SAFE_INTEGER, 60), ChronoUnit.MINUTES, MathUtil.intDiv(MIN_SAFE_INTEGER, 60) * 60, 0],
+            [MathUtil.intDiv(MAX_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MAX_SAFE_INTEGER, 3600) * 3600, 0],
+            [MathUtil.intDiv(MIN_SAFE_INTEGER, 3600), ChronoUnit.HOURS, MathUtil.intDiv(MIN_SAFE_INTEGER, 3600) * 3600, 0],
+            [MathUtil.intDiv(MAX_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MAX_SAFE_INTEGER, 43200) * 43200, 0],
+            [MathUtil.intDiv(MIN_SAFE_INTEGER, 43200), ChronoUnit.HALF_DAYS, MathUtil.intDiv(MIN_SAFE_INTEGER, 43200) * 43200, 0]
+        ];
 
         let data_of_long_TemporalUnit_outOfRange = [
             [MAX_SAFE_INTEGER / 60 + 1, ChronoUnit.MINUTES],
@@ -284,6 +285,42 @@ describe('org.threeten.bp.TestDuration', () => {
 
         it('factory_of_longTemporalUnit_null', () => {
             expect(() => Duration.of(1, null)).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('between()', () => {
+        let data_between_Instant_Instant = [
+            [0, 0, 0, 0, 0, 0],
+            [3, 0, 7, 0, 4, 0],
+            [3, 20, 7, 50, 4, 30],
+            [3, 80, 7, 50, 3, 999999970],
+            [7, 0, 3, 0, -4, 0]
+        ];
+
+        it('factory_between_Instant_Instant', () => {
+            data_between_Instant_Instant.forEach((val) => {
+                let [secs1, nanos1, secs2, nanos2, expectedSeconds, expectedNanos] = val;
+                let start = Instant.ofEpochSecond(secs1, nanos1);
+                let end = Instant.ofEpochSecond(secs2, nanos2);
+                let t = Duration.between(start, end);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('factory_between_Instant_Instant_startNull', () => {
+            let end = Instant.ofEpochSecond(1);
+            expect(() => {
+                Duration.between(null, end);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_between_Instant_Instant_endNull', () => {
+            let start = Instant.ofEpochSecond(1);
+            expect(() => {
+                Duration.between(start, null);
+            }).to.throw(NullPointerException);
         });
 
     });
