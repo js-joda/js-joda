@@ -1475,7 +1475,8 @@ describe('org.threeten.bp.TestDuration', () => {
     describe('dividedBy()', () => {
         let data_dividedBy = [
             [-4, 666666667, -3, 1, 111111111],
-            [-4, 666666667, -2, 1, 666666667],  // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [-4, 666666667, -2, 1, 666666667],  // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with
+                                                // ROUND_DOWN :/
             [-4, 666666667, -1, 3, 333333333],
             [-4, 666666667, 1, -4, 666666667],
             [-4, 666666667, 2, -2, 333333334],
@@ -1552,7 +1553,8 @@ describe('org.threeten.bp.TestDuration', () => {
             [3, 333333333, -2, -2, 333333334],
             [3, 333333333, -1, -4, 666666667],
             [3, 333333333, 1, 3, 333333333],
-            [3, 333333333, 2, 1, 666666667], // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [3, 333333333, 2, 1, 666666667], // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with
+                                             // ROUND_DOWN :/
             [3, 333333333, 3, 1, 111111111]
         ];
 
@@ -1566,8 +1568,7 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
         it('dividedByZero', () => {
-            data_dividedBy.forEach((val, index) => {
-                console.log(index);
+            data_dividedBy.forEach((val) => {
                 let [seconds, nanos, divisor, expectedSeconds, expectedNanos] = val;
                 let t = Duration.ofSeconds(seconds, nanos)
                 expect(() => {
@@ -1582,4 +1583,45 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
     });
+
+    describe('negated()', ()=> {
+        it('test_negated', () => {
+            expect(Duration.ofSeconds(0).negated()).to.eql(Duration.ofSeconds(0));
+            expect(Duration.ofSeconds(12).negated()).to.eql(Duration.ofSeconds(-12));
+            expect(Duration.ofSeconds(-12).negated()).to.eql(Duration.ofSeconds(12));
+            expect(Duration.ofSeconds(12, 20).negated()).to.eql(Duration.ofSeconds(-12, -20));
+            expect(Duration.ofSeconds(12, -20).negated()).to.eql(Duration.ofSeconds(-12, 20));
+            expect(Duration.ofSeconds(-12, -20).negated()).to.eql(Duration.ofSeconds(12, 20));
+            expect(Duration.ofSeconds(-12, 20).negated()).to.eql(Duration.ofSeconds(12, -20));
+            expect(Duration.ofSeconds(MAX_SAFE_INTEGER).negated()).to.eql(Duration.ofSeconds(-MAX_SAFE_INTEGER));
+        });
+
+        it('test_negated_overflow', () => {
+            expect(() => {
+                Duration.ofSeconds(MIN_SAFE_INTEGER).negated();
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+    
+    describe('abs()', ()=> {
+        it('test_abs', () => {
+            expect(Duration.ofSeconds(0).abs()).to.eql(Duration.ofSeconds(0));
+            expect(Duration.ofSeconds(12).abs()).to.eql(Duration.ofSeconds(12));
+            expect(Duration.ofSeconds(-12).abs()).to.eql(Duration.ofSeconds(12));
+            expect(Duration.ofSeconds(12, 20).abs()).to.eql(Duration.ofSeconds(12, 20));
+            expect(Duration.ofSeconds(12, -20).abs()).to.eql(Duration.ofSeconds(12, -20));
+            expect(Duration.ofSeconds(-12, -20).abs()).to.eql(Duration.ofSeconds(12, 20));
+            expect(Duration.ofSeconds(-12, 20).abs()).to.eql(Duration.ofSeconds(12, -20));
+            expect(Duration.ofSeconds(MAX_SAFE_INTEGER).abs()).to.eql(Duration.ofSeconds(MAX_SAFE_INTEGER));
+        });
+
+        it('test_abs_overflow', () => {
+            expect(() => {
+                Duration.ofSeconds(MIN_SAFE_INTEGER).negated();
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+    
 });

@@ -922,7 +922,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     negated() {
-        return multipliedBy(-1);
+        return this.multipliedBy(-1);
     }
 
     /**
@@ -937,7 +937,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     abs() {
-        return isNegative() ? negated() : this;
+        return this.isNegative() ? this.negated() : this;
     }
 
     //-------------------------------------------------------------------------
