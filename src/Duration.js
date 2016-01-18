@@ -1022,7 +1022,7 @@ export class Duration
      * @return the number of days in the duration, may be negative
      */
     toDays() {
-        return seconds / SECONDS_PER_DAY;
+        return this._seconds / LocalTime.SECONDS_PER_DAY;
     }
 
     /**
@@ -1036,7 +1036,7 @@ export class Duration
      * @return {Number} the number of hours in the duration, may be negative
      */
     toHours() {
-        return this._seconds / SECONDS_PER_HOUR;
+        return this._seconds / LocalTime.SECONDS_PER_HOUR;
     }
 
     /**
@@ -1050,7 +1050,7 @@ export class Duration
      * @return {Number} the number of minutes in the duration, may be negative
      */
     toMinutes() {
-        return this._seconds / SECONDS_PER_MINUTE;
+        return this._seconds / LocalTime.SECONDS_PER_MINUTE;
     }
 
     /**
@@ -1067,8 +1067,8 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     toMillis() {
-        var millis = MathUtil.safeMultiply(this._seconds, 1000);
-        millis = MathUtil.addExact(millis, this._nanos / 1000000);
+        var millis = Math.round(MathUtil.safeMultiply(this._seconds, 1000));
+        millis = MathUtil.safeAdd(millis, MathUtil.intDiv(this._nanos, 1000000));
         return millis;
     }
 
@@ -1082,8 +1082,8 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     toNanos() {
-        var totalNanos = MathUtil.safeMultiply(seconds, LocalTime.NANOS_PER_SECOND);
-        totalNanos = MathUtil.addExact(totalNanos, nanos);
+        var totalNanos = MathUtil.safeMultiply(this._seconds, LocalTime.NANOS_PER_SECOND);
+        totalNanos = MathUtil.safeAdd(totalNanos, this._nanos);
         return totalNanos;
     }
 

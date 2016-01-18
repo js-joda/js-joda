@@ -1623,5 +1623,45 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
     });
+
+    describe('toNanos()', ()=> {
+        it('test_toNanos', () => {
+            let test = Duration.ofSeconds(321, 123456789);
+            expect(test.toNanos()).to.eql(321123456789);
+        });
+
+        it('test_toNanos_max', () => {
+            let test = Duration.ofSeconds(0, MAX_SAFE_INTEGER);
+            expect(test.toNanos()).to.eql(MAX_SAFE_INTEGER);
+        });
+
+        it('test_abs_overflow', () => {
+            let test = Duration.ofSeconds(0, MAX_SAFE_INTEGER).plusNanos(1);
+            expect(() => {
+                test.toNanos();
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+    
+    describe('toMillis()', ()=> {
+        it('test_toMillis', () => {
+            let test = Duration.ofSeconds(321, 123456789);
+            expect(test.toMillis()).to.eql(321000 + 123);
+        });
+
+        it('test_toMillis_max', () => {
+            let test = Duration.ofSeconds(MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000);
+            expect(test.toMillis()).to.eql(MAX_SAFE_INTEGER);
+        });
+
+        it('test_abs_overflow', () => {
+            let test = Duration.ofSeconds(MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), (MathUtil.intMod(MAX_SAFE_INTEGER, 1000) + 1) * 1000000);
+            expect(() => {
+                test.toMillis();
+            }).to.throw(ArithmeticException);
+        });
+
+    });
     
 });
