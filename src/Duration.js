@@ -1,4 +1,4 @@
-import {requireNonNull} from './assert';
+import {assert, requireNonNull} from './assert';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
@@ -1097,6 +1097,8 @@ export class Duration
      * @return {Number} the comparator value, negative if less, positive if greater
      */
     compareTo(otherDuration) {
+        requireNonNull(otherDuration, 'otherDuration');
+        assert(otherDuration instanceof Duration,  'otherDuration must be a Duration');
         var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
         if (cmp != 0) {
             return cmp;
@@ -1119,7 +1121,7 @@ export class Duration
         }
         if (otherDuration instanceof Duration) {
             return this.seconds() == otherDuration.seconds() &&
-                   this.nanos() == otherDuration.nanos();
+                   this.nano() == otherDuration.nano();
         }
         return false;
     }
@@ -1148,12 +1150,12 @@ export class Duration
      * @return an ISO-8601 representation of this duration, not null
      */
     toString() {
-        if (this === ZERO) {
+        if (this === Duration.ZERO) {
             return 'PT0S';
         }
-        var hours = seconds / SECONDS_PER_HOUR;
-        var minutes = (int) ((seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
-        var secs = (int) (seconds % SECONDS_PER_MINUTE);
+        var hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
+        var minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
+        var secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
         var rval = 'PT';
         if (hours != 0) {
             rval += hours + 'H';
@@ -1161,32 +1163,32 @@ export class Duration
         if (minutes != 0) {
             rval += minutes + 'M';
         }
-        if (secs == 0 && nanos == 0 && rval.length() > 2) {
+        if (secs == 0 && this._nanos == 0 && rval.length > 2) {
             return rval;
         }
-        if (secs < 0 && nanos > 0) {
+        if (secs < 0 && this._nanos > 0) {
             if (secs == -1) {
-                buf.append('-0');
+                rval += '-0';
             } else {
-                buf.append(secs + 1);
+                rval += secs + 1;
             }
         } else {
-            buf.append(secs);
+            rval += secs;
         }
-        if (nanos > 0) {
-            var pos = buf.length();
+        if (this._nanos > 0) {
+            var pos = rval.length;
             if (secs < 0) {
-                buf.append(2 * LocalTime.NANOS_PER_SECOND - nanos);
+                rval += 2 * LocalTime.NANOS_PER_SECOND - this._nanos;
             } else {
-                buf.append(nanos + LocalTime.NANOS_PER_SECOND);
+                rval += this._nanos + LocalTime.NANOS_PER_SECOND;
             }
-            while (buf.charAt(buf.length() - 1) == '0') {
-                buf.setLength(buf.length() - 1);
+            while (rval.charAt(rval.length - 1) == '0') {
+                rval = rval.slice(0, rval.length);
             }
-            buf.setCharAt(pos, '.');
+            rval[pos] = '.';
         }
-        buf.append('S');
-        return buf.toString();
+        rval += 'S';
+        return rval;
     }
 
     //-----------------------------------------------------------------------

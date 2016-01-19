@@ -1023,7 +1023,7 @@ describe('org.threeten.bp.TestDuration', () => {
                 [3, 333333333, 3, 0, 0, 333333333],
                 [3, 333333333, 3, 333333333, 0, 0],
 
-                [MAX_SAFE_INTEGER, 0, MAX_SAFE_INTEGER, 0, 0, 0],
+                [MAX_SAFE_INTEGER, 0, MAX_SAFE_INTEGER, 0, 0, 0]
             ];
 
             it('minus', () => {
@@ -1185,7 +1185,7 @@ describe('org.threeten.bp.TestDuration', () => {
                 [0, 999999999, 1001, -1, 998999999],
                 [0, 999999999, -1, 1, 999999],
                 [0, 999999999, -1000, 1, 999999999],
-                [0, 999999999, -1001, 2, 999999],
+                [0, 999999999, -1001, 2, 999999]
             ];
 
             it('minusMillis_long', () => {
@@ -1312,7 +1312,7 @@ describe('org.threeten.bp.TestDuration', () => {
                 [MAX_SAFE_INTEGER, 0, -999999999, MAX_SAFE_INTEGER, 999999999],
                 [MAX_SAFE_INTEGER - 1, 0, -1999999999, MAX_SAFE_INTEGER, 999999999],
                 [MIN_SAFE_INTEGER, 1, 1, MIN_SAFE_INTEGER, 0],
-                [MIN_SAFE_INTEGER + 1, 1, 1000000001, MIN_SAFE_INTEGER, 0],
+                [MIN_SAFE_INTEGER + 1, 1, 1000000001, MIN_SAFE_INTEGER, 0]
             ];
 
             it('minusNanos_long', () => {
@@ -1569,8 +1569,8 @@ describe('org.threeten.bp.TestDuration', () => {
 
         it('dividedByZero', () => {
             data_dividedBy.forEach((val) => {
-                let [seconds, nanos, divisor, expectedSeconds, expectedNanos] = val;
-                let t = Duration.ofSeconds(seconds, nanos)
+                let [seconds, nanos] = val;
+                let t = Duration.ofSeconds(seconds, nanos);
                 expect(() => {
                     t.dividedBy(0);
                 }).to.throw(ArithmeticException);
@@ -1660,6 +1660,56 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => {
                 test.toMillis();
             }).to.throw(ArithmeticException);
+        });
+
+    });
+
+    describe('compareTo()', ()=> {
+        let data_compareTo = [
+            Duration.ofSeconds(-2, 0),
+            Duration.ofSeconds(-2, 999999998),
+            Duration.ofSeconds(-2, 999999999),
+            Duration.ofSeconds(-1, 0),
+            Duration.ofSeconds(-1, 1),
+            Duration.ofSeconds(-1, 999999998),
+            Duration.ofSeconds(-1, 999999999),
+            Duration.ofSeconds(0, 0),
+            Duration.ofSeconds(0, 1),
+            Duration.ofSeconds(0, 2),
+            Duration.ofSeconds(0, 999999999),
+            Duration.ofSeconds(1, 0),
+            Duration.ofSeconds(2, 0)
+        ];
+
+        it('test_comparisons', () => {
+            data_compareTo.forEach((valA, indexA) => {
+                data_compareTo.forEach((valB, indexB) => {
+                    if (indexA < indexB) {
+                        expect(valA.compareTo(valB) < 0, valA + ' <=> ' + valB).to.eql(true);
+                        expect(valA.equals(valB), valA + ' <=> ' + valB).to.eql(false);
+                    } else if (indexA > indexB) {
+                        expect(valA.compareTo(valB) > 0, valA + ' <=> ' + valB).to.eql(true);
+                        expect(valA.equals(valB), valA + ' <=> ' + valB).to.eql(false);
+                    } else {
+                        expect(valA.compareTo(valB), valA + ' <=> ' + valB).to.eql(0);
+                        expect(valA.equals(valB), valA + ' <=> ' + valB).to.eql(true);
+                    }
+                });
+            });
+        });
+
+        it('test_compareTo_ObjectNull', () => {
+            let test = Duration.ofSeconds(0);
+            expect(() => {
+                test.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('compareToNonDuration', () => {
+            let test = Duration.ofSeconds(0);
+            expect(() => {
+                test.compareTo({});
+            }).to.throw(Error);
         });
 
     });
