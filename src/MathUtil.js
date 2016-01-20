@@ -37,10 +37,18 @@ export class MathUtil {
     
     static safeAdd(x, y) {
         if (x === 0) {
-            return y;
+            let r = y;
+            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER) {
+                throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+            }
+            return r;
         }
         if (y === 0) {
-            return x;
+            let r = x;
+            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER) {
+                throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+            }
+            return r;
         }
         if (x === undefined || y === undefined) {
             throw new ArithmeticException('Invalid addition using undefined as argument');
@@ -59,10 +67,18 @@ export class MathUtil {
     
     static safeSubtract(x, y) {
         if (x === 0) {
-            return y;
+            let r = y;
+            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER) {
+                throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+            }
+            return r;
         }
         if (y === 0) {
-            return x;
+            let r = x;
+            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER) {
+                throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+            }
+            return r;
         }
         if (x === undefined || y === undefined) {
             throw new ArithmeticException('Invalid subtraction using undefined as argument');

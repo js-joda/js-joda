@@ -1,4 +1,5 @@
 import {Duration} from '../Duration';
+import {Year} from '../Year';
 
 /**
  * A standard set of date periods units.
@@ -323,11 +324,11 @@ ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', Duration.ofSeconds(31556952 *
  * Unit that represents the concept of an era.
  * The ISO calendar system doesn't have eras thus it is impossible to add
  * an era to a date or date-time.
- * The estimated duration of the era is artificially defined as {@code 1,000,000,000 Years}.
+ * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
  * <p>
  * When used with other calendar systems there are no restrictions on the unit.
  */
-ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * 1000000000));
+ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * (Year.MAX_VALUE + 1)));
 /**
  * Artificial unit that represents the concept of forever.
  * This is primarily used with {@link TemporalField} to represent unbounded fields

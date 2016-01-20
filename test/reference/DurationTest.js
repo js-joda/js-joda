@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {ArithmeticException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
+import {ArithmeticException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
 //yuck... circular dependency between ChronoUnit and Duration... for the Duration import to work we must import ChronoUnit first :/ ...
 // there MUST be a better way to do this??
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
@@ -289,6 +289,169 @@ describe('org.threeten.bp.TestDuration', () => {
             });
 
         });
+    });
+
+    describe('parse(String)', () => {
+        let data_parse = [
+            ['PT0S', 0, 0],
+
+            ['PT1S', 1, 0],
+            ['PT12S', 12, 0],
+            ['PT123456789S', 123456789, 0],
+            ['PT' + MAX_SAFE_INTEGER + 'S', MAX_SAFE_INTEGER, 0],
+
+            ['PT+1S', 1, 0],
+            ['PT+12S', 12, 0],
+            ['PT-1S', -1, 0],
+            ['PT-12S', -12, 0],
+            ['PT-123456789S', -123456789, 0],
+            ['PT' + MIN_SAFE_INTEGER + 'S', MIN_SAFE_INTEGER, 0],
+
+            ['PT0.1S', 0, 100000000],
+            ['PT1.1S', 1, 100000000],
+            ['PT1.12S', 1, 120000000],
+            ['PT1.123S', 1, 123000000],
+            ['PT1.1234S', 1, 123400000],
+            ['PT1.12345S', 1, 123450000],
+            ['PT1.123456S', 1, 123456000],
+            ['PT1.1234567S', 1, 123456700],
+            ['PT1.12345678S', 1, 123456780],
+            ['PT1.123456789S', 1, 123456789],
+
+            ['PT-0.1S', -1, 1000000000 - 100000000],
+            ['PT-1.1S', -2, 1000000000 - 100000000],
+            ['PT-1.12S', -2, 1000000000 - 120000000],
+            ['PT-1.123S', -2, 1000000000 - 123000000],
+            ['PT-1.1234S', -2, 1000000000 - 123400000],
+            ['PT-1.12345S', -2, 1000000000 - 123450000],
+            ['PT-1.123456S', -2, 1000000000 - 123456000],
+            ['PT-1.1234567S', -2, 1000000000 - 123456700],
+            ['PT-1.12345678S', -2, 1000000000 - 123456780],
+            ['PT-1.123456789S', -2, 1000000000 - 123456789],
+
+            ['PT' + MAX_SAFE_INTEGER + '.123456789S', MAX_SAFE_INTEGER, 123456789],
+            ['PT' + MIN_SAFE_INTEGER + '.000000000S', MIN_SAFE_INTEGER, 0],
+
+            ['PT12M', 12 * 60, 0],
+            ['PT12M0.35S', 12 * 60, 350000000],
+            ['PT12M1.35S', 12 * 60 + 1, 350000000],
+            ['PT12M-0.35S', 12 * 60 - 1, 1000000000 - 350000000],
+            ['PT12M-1.35S', 12 * 60 - 2, 1000000000 - 350000000],
+
+            ['PT12H', 12 * 3600, 0],
+            ['PT12H0.35S', 12 * 3600, 350000000],
+            ['PT12H1.35S', 12 * 3600 + 1, 350000000],
+            ['PT12H-0.35S', 12 * 3600 - 1, 1000000000 - 350000000],
+            ['PT12H-1.35S', 12 * 3600 - 2, 1000000000 - 350000000],
+
+            ['P12D', 12 * 24 * 3600, 0],
+            ['P12DT0.35S', 12 * 24 * 3600, 350000000],
+            ['P12DT1.35S', 12 * 24 * 3600 + 1, 350000000],
+            ['P12DT-0.35S', 12 * 24 * 3600 - 1, 1000000000 - 350000000],
+            ['P12DT-1.35S', 12 * 24 * 3600 - 2, 1000000000 - 350000000]
+        ];
+
+        it('factory_parse', () => {
+            data_parse.forEach((val) => {
+                let [text, expectedSeconds, expectedNanos] = val;
+                let t = Duration.parse(text);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('factory_parse_ignoreCase', () => {
+            data_parse.forEach((val) => {
+                let [text, expectedSeconds, expectedNanos] = val;
+                let t = Duration.parse(text.toLowerCase());
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('factory_parse_comma', () => {
+            data_parse.forEach((val) => {
+                let [text, expectedSeconds, expectedNanos] = val;
+                let t = Duration.parse(text.replace('.', ','));
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        let data_parseFailures = [
+            '',
+            'PTS',
+            'AT0S',
+            'PA0S',
+            'PT0A',
+
+            'PT+S',
+            'PT-S',
+            'PT.S',
+            'PTAS',
+
+            'PT-.S',
+            'PT+.S',
+
+            'PT1ABC2S',
+            'PT1.1ABC2S',
+
+            'PT123456789123456789123456789S',
+            'PT0.1234567891S',
+            'PT.1S',
+
+            'PT2.-3',
+            'PT-2.-3',
+            'PT2.+3',
+            'PT-2.+3'
+        ];
+
+        it('factory_parseFailures', () => {
+            data_parseFailures.forEach((val) => {
+                expect(() => {
+                    Duration.parse(val);
+                }).to.throw(DateTimeParseException);
+            });
+        });
+
+        it('factory_parseFailures_comma', () => {
+            data_parseFailures.forEach((val) => {
+                expect(() => {
+                    Duration.parse(val.replace('.', ','));
+                }).to.throw(DateTimeParseException);
+            });
+        });
+
+        it('factory_parse_tooBig', () => {
+            expect(() => {
+                Duration.parse('PT' + MAX_SAFE_INTEGER + '1S');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_tooBig_decimal', () => {
+            expect(() => {
+                Duration.parse('PT' + MAX_SAFE_INTEGER + '1.1S');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_tooSmall', () => {
+            expect(() => {
+                Duration.parse('PT' + MIN_SAFE_INTEGER + '1S');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_tooSmall_decimal', () => {
+            expect(() => {
+                Duration.parse('PT' + MIN_SAFE_INTEGER + '1.1S');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_null', () => {
+            expect(() => {
+                Duration.parse(null);
+            }).to.throw(NullPointerException);
+        });
+
     });
 
     describe('between()', () => {

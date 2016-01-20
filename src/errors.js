@@ -11,13 +11,12 @@ export class DateTimeException extends ExtendableError {
 }
 
 export class DateTimeParseException extends ExtendableError {
-    constructor(message = 'DateTimeParseException', text = '', index = 0) {
-        super(message + ': ' + text + ', at index: ' + index);
-    }
-    
-    initCause(exception) {
-        // TODO: can we add the cause to the stacktrace??
-        this._cause = exception;
+    constructor(message = 'DateTimeParseException', text = '', index = 0, cause = null) {
+        let msg = message + ': ' + text + ', at index: ' + index;
+        if (cause !== null && cause instanceof Error) {
+            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+        }
+        super(msg);
     }
 }
 

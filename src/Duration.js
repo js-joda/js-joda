@@ -296,34 +296,32 @@ export class Duration
      * @throws DateTimeParseException if the text cannot be parsed to a duration
      */
     static parse(text) {
-        //Jdk8Methods.requireNonNull(text, "text");
+        requireNonNull(text, 'text');
         /**
          * The pattern for parsing.
          */
         const PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
-        var matches = PATTERN.match(text);
+        var matches = PATTERN.exec(text);
         if (matches !== null) {
-            // to match the group numbers of the JDK code, we remove the first array element (the complete match)
-            matches.shift();
             // check for letter T but no time sections
-            if ('T'.equals(matches[3]) == false) {
-                var negate = '-'.equals(matches[1]);
+            if ('T' === matches[3] == false) {
+                var negate = '-' === matches[1];
                 var dayMatch = matches[2];
                 var hourMatch = matches[4];
                 var minuteMatch = matches[5];
                 var secondMatch = matches[6];
                 var fractionMatch = matches[7];
                 if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-                    var daysAsSecs = parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, 'days');
-                    var hoursAsSecs = parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
-                    var minsAsSecs = parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
-                    var seconds = parseNumber(text, secondMatch, 1, 'seconds');
+                    var daysAsSecs = Duration._parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, 'days');
+                    var hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
+                    var minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
+                    var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
                     var negativeSecs = secondMatch != null && secondMatch.charAt(0) == '-';
-                    var nanos = parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
+                    var nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
                         return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
                     } catch (ex) {
-                        throw new DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0).initCause(ex);
+                        throw new DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
                     }
                 }
             }
@@ -331,7 +329,7 @@ export class Duration
         throw new DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
     }
 
-    static parseNumber(text, parsed, multiplier, errorText) {
+    static _parseNumber(text, parsed, multiplier, errorText) {
         // regex limits to [-+]?[0-9]+
         if (parsed == null) {
             return 0;
@@ -340,23 +338,23 @@ export class Duration
             if (parsed.startsWith('+')) {
                 parsed = parsed.substring(1);
             }
-            var val = Long.parseLong(parsed);
+            var val = parseFloat(parsed);
             return MathUtil.safeMultiply(val, multiplier);
         } catch (ex) {
-            throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0).initCause(ex);
+            throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
         }
     }
 
-    static parseFraction(text, parsed, negate) {
+    static _parseFraction(text, parsed, negate) {
         // regex limits to [0-9]{0,9}
-        if (parsed == null || parsed.length() == 0) {
+        if (parsed == null || parsed.length == 0) {
             return 0;
         }
         try {
             parsed = (parsed + '000000000').substring(0, 9);
-            return Integer.parseInt(parsed) * negate;
+            return parseFloat(parsed) * negate;
         } catch (ex) {
-            throw new DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0).initCause(ex);
+            throw new DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
         }
     }
 
@@ -364,6 +362,7 @@ export class Duration
     /**
      * to handle function overriding this function accepts any number of arguments, checks their type and delegates to the appropriate function
      *
+     * @return {Duration}
      */
     static create() {
         if (arguments.length == 1) {
@@ -371,7 +370,7 @@ export class Duration
         } else if (arguments.length == 2) {
             return Duration.createSecondsNanos(arguments[0], arguments[1]);
         } else {
-            return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4])
+            return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
         }
     }
 
@@ -1177,7 +1176,7 @@ export class Duration
         }
         if (this._nanos > 0) {
             rval += '.';
-            let nanoString
+            let nanoString;
             if (secs < 0) {
                 nanoString = '' + (2 * LocalTime.NANOS_PER_SECOND - this._nanos);
             } else {
