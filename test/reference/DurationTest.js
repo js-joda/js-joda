@@ -1713,5 +1713,87 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
     });
+
+    describe('equals()', ()=> {
+
+        it('test_equals', () => {
+            let test5a = Duration.ofSeconds(5, 20);
+            let test5b = Duration.ofSeconds(5, 20);
+            let test5n = Duration.ofSeconds(5, 30);
+            let test6 = Duration.ofSeconds(6, 20);
+
+            expect(test5a.equals(test5a)).to.eql(true);
+            expect(test5a.equals(test5b)).to.eql(true);
+            expect(test5a.equals(test5n)).to.eql(false);
+            expect(test5a.equals(test6)).to.eql(false);
+
+            expect(test5b.equals(test5a)).to.eql(true);
+            expect(test5b.equals(test5b)).to.eql(true);
+            expect(test5b.equals(test5n)).to.eql(false);
+            expect(test5b.equals(test6)).to.eql(false);
+
+            expect(test5n.equals(test5a)).to.eql(false);
+            expect(test5n.equals(test5b)).to.eql(false);
+            expect(test5n.equals(test5n)).to.eql(true);
+            expect(test5n.equals(test6)).to.eql(false);
+
+            expect(test6.equals(test5a)).to.eql(false);
+            expect(test6.equals(test5b)).to.eql(false);
+            expect(test6.equals(test5n)).to.eql(false);
+            expect(test6.equals(test6)).to.eql(true);
+        });
+
+        it('test_equals_null', () => {
+            let test5 = Duration.ofSeconds(5, 20);
+            expect(test5.equals(null)).to.eql(false);
+        });
+
+        it('test_equals_otherClass', () => {
+            let test5 = Duration.ofSeconds(5, 20);
+            expect(test5.equals({})).to.eql(false);
+        });
+
+    });
+
+    describe('toString()', () => {
+        let data_toString = [
+            [0, 0, 'PT0S'],
+            [0, 1, 'PT0.000000001S'],
+            [0, 10, 'PT0.00000001S'],
+            [0, 100, 'PT0.0000001S'],
+            [0, 1000, 'PT0.000001S'],
+            [0, 10000, 'PT0.00001S'],
+            [0, 100000, 'PT0.0001S'],
+            [0, 1000000, 'PT0.001S'],
+            [0, 10000000, 'PT0.01S'],
+            [0, 100000000, 'PT0.1S'],
+            [0, 120000000, 'PT0.12S'],
+            [0, 123000000, 'PT0.123S'],
+            [0, 123400000, 'PT0.1234S'],
+            [0, 123450000, 'PT0.12345S'],
+            [0, 123456000, 'PT0.123456S'],
+            [0, 123456700, 'PT0.1234567S'],
+            [0, 123456780, 'PT0.12345678S'],
+            [0, 123456789, 'PT0.123456789S'],
+            [1, 0, 'PT1S'],
+            [-1, 0, 'PT-1S'],
+            [-1, 1000, 'PT-0.999999S'],
+            [-1, 900000000, 'PT-0.1S'],
+
+            [60, 0, 'PT1M'],
+            [3600, 0, 'PT1H'],
+            [7261, 0, 'PT2H1M1S'],
+            [MAX_SAFE_INTEGER, 0, 'PT2501999792983H36M31S'],
+            [MIN_SAFE_INTEGER, 0, 'PT-2501999792983H-36M-31S']
+        ];
+
+        it('test_toString', () => {
+            data_toString.forEach((val) => {
+                let [seconds, nanos, expected] = val;
+                let t = Duration.ofSeconds(seconds, nanos);
+                expect(t.toString()).to.eql(expected);
+            });
+        });
+    });
     
 });

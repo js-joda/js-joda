@@ -1176,16 +1176,19 @@ export class Duration
             rval += secs;
         }
         if (this._nanos > 0) {
-            var pos = rval.length;
+            rval += '.';
+            let nanoString
             if (secs < 0) {
-                rval += 2 * LocalTime.NANOS_PER_SECOND - this._nanos;
+                nanoString = '' + (2 * LocalTime.NANOS_PER_SECOND - this._nanos);
             } else {
-                rval += this._nanos + LocalTime.NANOS_PER_SECOND;
+                nanoString = '' + (LocalTime.NANOS_PER_SECOND + this._nanos);
             }
+            // remove the leading '1'
+            nanoString = nanoString.slice(1, nanoString.length);
+            rval += nanoString;
             while (rval.charAt(rval.length - 1) == '0') {
-                rval = rval.slice(0, rval.length);
+                rval = rval.slice(0, rval.length - 1);
             }
-            rval[pos] = '.';
         }
         rval += 'S';
         return rval;
