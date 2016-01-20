@@ -335,7 +335,7 @@ export class Duration
             return 0;
         }
         try {
-            if (parsed.startsWith('+')) {
+            if (parsed[0] === '+') {
                 parsed = parsed.substring(1);
             }
             var val = parseFloat(parsed);
