@@ -1,5 +1,5 @@
-import {Instant} from './Instant'
-import {ZoneOffset} from './ZoneOffset'
+import {Instant} from './Instant';
+import {ZoneOffset} from './ZoneOffset';
 
 /**
  * A clock providing access to the current instant, date and time using a time-zone.
@@ -107,7 +107,7 @@ export class Clock {
       *  the Java epoch of 1970-01-01T00:00Z (UTC), not null
       */
     millis(){
-        throw new TypeError('millis() function is not implemented')
+        throw new TypeError('millis() function is not implemented');
     }
 
     /**
@@ -118,7 +118,7 @@ export class Clock {
      * @return the current instant from this clock, not null
      */
     instant(){
-        throw new TypeError('instant() function is not implemented')
+        throw new TypeError('instant() function is not implemented');
     }
 
     /**
@@ -129,7 +129,7 @@ export class Clock {
      * Until we to not have a tzdb, we leave this question open
      */
     offset(){
-        throw new TypeError('offset() function is not implemented')
+        throw new TypeError('offset() function is not implemented');
     }
 }
 
@@ -153,7 +153,7 @@ class SystemClock extends Clock {
  */
 class SystemUTCClock extends SystemClock{
     toString(){
-        return "SystemClock[UTC]";
+        return 'SystemClock[UTC]';
     }
 }
 
@@ -168,7 +168,7 @@ class SystemDefaultClock extends SystemClock{
     }
 
     toString(){
-        return "SystemClock[default]";
+        return 'SystemClock[default]';
     }
 }
 
@@ -192,7 +192,7 @@ class FixedClock extends Clock{
     }
 
     toString(){
-        return "FixedClock[]";
+        return 'FixedClock[]';
     }
 }
 
