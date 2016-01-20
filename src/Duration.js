@@ -199,8 +199,8 @@ export class Duration
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
-        Jdk8Methods.requireNonNull(amount, 'amount');
-        var duration = ZERO;
+        requireNonNull(amount, 'amount');
+        var duration = Duration.ZERO;
         amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
         });
@@ -432,10 +432,10 @@ export class Duration
      * @throws UnsupportedTemporalTypeException if the unit is not supported
      */
     get(unit) {
-        if (unit === SECONDS) {
-            return seconds;
-        } else if (unit === NANOS) {
-            return nanos;
+        if (unit === ChronoUnit.SECONDS) {
+            return this._seconds;
+        } else if (unit === ChronoUnit.NANOS) {
+            return this._nanos;
         } else {
             throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
         }
@@ -522,7 +522,7 @@ export class Duration
      * @return {@code Duration} based on this period with the requested seconds, not null
      */
     withSeconds(seconds) {
-        return create(seconds, this._nanos);
+        return Duration.create(seconds, this._nanos);
     }
 
     /**
@@ -538,8 +538,8 @@ export class Duration
      * @throws DateTimeException if the nano-of-second is invalid
      */
     withNanos(nanoOfSecond) {
-        NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
-        return create(this._seconds, nanoOfSecond);
+        ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
+        return Duration.create(this._seconds, nanoOfSecond);
     }
 
     //-----------------------------------------------------------------------
@@ -629,7 +629,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDays(daysToAdd) {
-        return this.plusSecondsNanos(MathUtil.safeMultiply(daysToAdd, SECONDS_PER_DAY), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(daysToAdd, LocalTime.SECONDS_PER_DAY), 0);
     }
 
     /**
@@ -642,7 +642,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusHours(hoursToAdd) {
-        return this.plusSecondsNanos(MathUtil.safeMultiply(hoursToAdd, SECONDS_PER_HOUR), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(hoursToAdd, LocalTime.SECONDS_PER_HOUR), 0);
     }
 
     /**
@@ -655,7 +655,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusMinutes(minutesToAdd) {
-        return this.plusSecondsNanos(MathUtil.safeMultiply(minutesToAdd, SECONDS_PER_MINUTE), 0);
+        return this.plusSecondsNanos(MathUtil.safeMultiply(minutesToAdd, LocalTime.SECONDS_PER_MINUTE), 0);
     }
 
     /**
@@ -966,10 +966,10 @@ export class Duration
      */
     addTo(temporal) {
         if (this._seconds != 0) {
-            temporal = temporal.plus(this._seconds, SECONDS);
+            temporal = temporal.plus(this._seconds, ChronoUnit.SECONDS);
         }
         if (this._nanos != 0) {
-            temporal = temporal.plus(this._nanos, NANOS);
+            temporal = temporal.plus(this._nanos, ChronoUnit.NANOS);
         }
         return temporal;
     }
@@ -1000,10 +1000,10 @@ export class Duration
      */
     subtractFrom(temporal) {
         if (this._seconds != 0) {
-            temporal = temporal.minus(this._seconds, SECONDS);
+            temporal = temporal.minus(this._seconds, ChronoUnit.SECONDS);
         }
         if (this._nanos != 0) {
-            temporal = temporal.minus(nanos, NANOS);
+            temporal = temporal.minus(this._nanos, ChronoUnit.NANOS);
         }
         return temporal;
     }
@@ -1191,24 +1191,6 @@ export class Duration
         }
         rval += 'S';
         return rval;
-    }
-
-    //-----------------------------------------------------------------------
-    /**
-     * Writes the object using a
-     * <a href="../../serialized-form.html#java.time.Ser">dedicated serialized form</a>.
-     * @serialData
-     * <pre>
-     *  out.writeByte(1);  // identifies a Duration
-     *  out.writeLong(seconds);
-     *  out.writeInt(nanos);
-     * </pre>
-     *
-     * @return {Ser} the instance of {@code Ser}, not null
-     */
-    writeReplace() {
-        // TODO: Ser
-        return new Ser(Ser.DURATION_TYPE, this);
     }
 
 }
