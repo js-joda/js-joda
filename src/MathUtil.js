@@ -1,3 +1,8 @@
+/**
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+ */
 import {ArithmeticException} from './errors';
 
 export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Math.pow(2, 53) - 1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
