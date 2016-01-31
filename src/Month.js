@@ -105,7 +105,7 @@ export class Month extends TemporalAccessor {
         if (field === ChronoField.MONTH_OF_YEAR) {
             return this.value();
         }
-        return range(field).checkValidIntValue(getLong(field), field);
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
     }
 
     /**
@@ -353,8 +353,7 @@ export class Month extends TemporalAccessor {
      * 
      * @returns {String}
      */
-    toString(leapYear) {
-        var leap = leapYear ? 1 : 0;
+    toString() {
         switch (this) {
             case Month.JANUARY:
                 return 'JANUARY';
@@ -392,8 +391,8 @@ export class Month extends TemporalAccessor {
      **/
     static of(month) {
         if (month < 1 || month > 12) {
-           assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
-       }
+            assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
+        }
         return MONTHS[month-1];
     }
 }
