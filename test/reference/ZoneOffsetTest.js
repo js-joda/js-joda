@@ -2,9 +2,7 @@ import {expect} from 'chai';
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
-import {isCoverageTestRunner} from '../testUtils';
-
-describe('ZoneOffset', () => {
+describe('org.threeten.bp.TestZoneOffset', () => {
     describe('constant', () => {
         it('test_constant_UTC', () => {
             var test = ZoneOffset.UTC;
@@ -224,7 +222,7 @@ describe('ZoneOffset', () => {
         });
 
     });
- });
+});
 
 function doTestOffset(offset, hours, minutes, seconds) {
     expect(offset.totalSeconds()).to.equal(hours * 60 * 60 + minutes * 60 + seconds);
@@ -256,4 +254,4 @@ function doTestOffset(offset, hours, minutes, seconds) {
     }
     //assertEquals(ZoneOffset.of(id), offset);
     //assertEquals(offset.toString(), id);
-};
+}

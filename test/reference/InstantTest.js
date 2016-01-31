@@ -1,4 +1,5 @@
 import {expect} from 'chai';
+import {ChronoField} from '../../src/temporal/ChronoField';
 import {Clock} from '../../src/Clock';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Instant} from '../../src/Instant';
@@ -8,7 +9,14 @@ import {DateTimeException} from '../../src/errors';
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
 
-describe('tck.java.time.TCKInstant', () => {
+describe('org.threeten.bp.TestInstant', () => {
+    
+    var TEST_12345_123456789;
+    
+    before(() => {
+        TEST_12345_123456789 = Instant.ofEpochSecond(12345, 123456789);
+    });
+    
     function check(instant, epochSecs, nos) {
         expect(instant.epochSecond()).to.equal(epochSecs);
         expect(instant.nano()).to.equal(nos);
@@ -243,7 +251,7 @@ describe('tck.java.time.TCKInstant', () => {
             var instant = Instant.ofEpochSecond(seconds, nanos).plusSeconds(otherSeconds).plusNanos(otherNanos);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
-        };
+        }
 
         it('plus_longTemporalUnit_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
@@ -287,7 +295,7 @@ describe('tck.java.time.TCKInstant', () => {
                 [-1, 1, MIN_SECOND + 1, MIN_SECOND, 1],
 
                 [MAX_SECOND, 2, -MAX_SECOND, 0, 2],
-                [MIN_SECOND, 2, -MIN_SECOND, 0, 2],
+                [MIN_SECOND, 2, -MIN_SECOND, 0, 2]
             ];
 
         });
@@ -304,7 +312,7 @@ describe('tck.java.time.TCKInstant', () => {
             instant = instant.plusSeconds(amount);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
-        };
+        }
 
         it('plusSeconds_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(1, 0);
@@ -396,7 +404,7 @@ describe('tck.java.time.TCKInstant', () => {
                 [MIN_SECOND + 1, 1, -1000000001, MIN_SECOND, 0],
 
                 [0, 0, MAX_SECOND, MathUtil.intDiv(MAX_SECOND, 1000000000), (MAX_SECOND % 1000000000)],
-                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000],
+                [0, 0, MIN_SECOND, MathUtil.intDiv(MIN_SECOND, 1000000000) - 1, (MIN_SECOND % 1000000000) + 1000000000]
             ];
 
         });
@@ -411,9 +419,9 @@ describe('tck.java.time.TCKInstant', () => {
         function plusNanos(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
             var instant = Instant.ofEpochSecond(seconds, nanos);
             instant = instant.plusNanos(amount);
-            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
-            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
-        };
+            expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
+            expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
+        }
 
         it('plusNanos_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
@@ -456,7 +464,7 @@ describe('tck.java.time.TCKInstant', () => {
                 [MIN_SECOND, 2, MIN_SECOND, 0, 2],
                 [MIN_SECOND + 1, 2, MIN_SECOND, 1, 2],
                 [MAX_SECOND - 1, 2, MAX_SECOND, -1, 2],
-                [MAX_SECOND, 2, MAX_SECOND, 0, 2],
+                [MAX_SECOND, 2, MAX_SECOND, 0, 2]
             ];
 
         });
@@ -471,9 +479,9 @@ describe('tck.java.time.TCKInstant', () => {
         function minusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
             var instant = Instant.ofEpochSecond(seconds, nanos);
             instant = instant.minusSeconds(amount);
-            expect(instant.epochSecond(), "epochSecond").to.equal(expectedSeconds);
-            expect(instant.nano(), "nano").to.equal(expectedNanoOfSecond);
-        };
+            expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
+            expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
+        }
 
         it('minusSeconds_long_overflowTooBig', () => {
             var instant = Instant.ofEpochSecond(1, 0);
@@ -516,5 +524,23 @@ describe('tck.java.time.TCKInstant', () => {
             }
         });
     });
+    
+    describe('get(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.get(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.get(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.get(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+        });
+
+        it('test_getLong_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.getLong(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.getLong(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.getLong(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+            expect(test.getLong(ChronoField.INSTANT_SECONDS)).to.eql(12345);
+        });
+    });
+
 });
 

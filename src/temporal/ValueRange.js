@@ -1,5 +1,5 @@
 import {assert} from '../assert';
-import {DateTimeException} from '../errors'
+import {DateTimeException} from '../errors';
 
 /**
  * The range of valid values for a date-time field.
@@ -21,12 +21,12 @@ import {DateTimeException} from '../errors'
 export class ValueRange {
 
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
-        assert(!(minSmallest > minLargest), "Smallest minimum value '" + minSmallest +
-            "' must be less than largest minimum value '" + minLargest + "'");
-        assert(!(maxSmallest > maxLargest), "Smallest maximum value '" + maxSmallest +
-            "' must be less than largest maximum value '" + maxLargest + "'");
-        assert(!(minLargest > maxLargest), "Minimum value '" + minLargest +
-            "' must be less than maximum value '" + maxLargest + "'");
+        assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest +
+            '\' must be less than largest minimum value \'' + minLargest + '\'');
+        assert(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest +
+            '\' must be less than largest maximum value \'' + maxLargest + '\'');
+        assert(!(minLargest > maxLargest), 'Minimum value \'' + minLargest +
+            '\' must be less than maximum value \'' + maxLargest + '\'');
 
         this.minimum = function () {
             return minSmallest;
@@ -50,9 +50,9 @@ export class ValueRange {
         var msg;
         if (!this.isValidValue(value)) {
             if (field != null) {
-                msg = ("Invalid value for " + field + " (valid values " + (this.toString()) + "): ") + value;
+                msg = ('Invalid value for ' + field + ' (valid values ' + (this.toString()) + '): ') + value;
             } else {
-                msg = ("Invalid value (valid values " + (this.toString()) + "): ") + value;
+                msg = ('Invalid value (valid values ' + (this.toString()) + '): ') + value;
             }
             return assert(false, msg, DateTimeException);
         }
@@ -69,9 +69,9 @@ export class ValueRange {
      */
 
     toString() {
-        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? "/" + (this.largestMinimum()) : "");
-        str += " - ";
-        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? "/" + (this.maximum()) : "");
+        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + (this.largestMinimum()) : '');
+        str += ' - ';
+        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + (this.maximum()) : '');
         return str;
     }
 
@@ -114,7 +114,7 @@ export class ValueRange {
         } else if (arguments.length === 4) {
             return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
         } else {
-            return assert(false, "Invalid number of arguments " + arguments.length);
+            return assert(false, 'Invalid number of arguments ' + arguments.length);
         }
     }
 }

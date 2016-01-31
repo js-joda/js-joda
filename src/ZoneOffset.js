@@ -1,5 +1,5 @@
 import {DateTimeException} from './errors';
-import {LocalTime} from './LocalTime'
+import {LocalTime} from './LocalTime';
 
 const MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
 var SECONDS_CACHE = {};
@@ -25,7 +25,7 @@ export class ZoneOffset {
      */
     equals(obj) {
         if (this === obj) {
-           return true;
+            return true;
         }
         if (obj instanceof ZoneOffset) {
             return this._totalSeconds === obj._totalSeconds;
@@ -35,36 +35,36 @@ export class ZoneOffset {
 
     static validateTotalSeconds(totalSeconds){
         if (Math.abs(totalSeconds) > MAX_SECONDS) {
-            throw new DateTimeException("Zone offset not in valid range: -18:00 to +18:00");
+            throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
         }
     }
 
     static validate(hours, minutes, seconds) {
         if (hours < -18 || hours > 18) {
-            throw new DateTimeException("Zone offset hours not in valid range: value " + hours +
-                    " is not in the range -18 to 18");
+            throw new DateTimeException('Zone offset hours not in valid range: value ' + hours +
+                    ' is not in the range -18 to 18');
         }
         if (hours > 0) {
             if (minutes < 0 || seconds < 0) {
-                throw new DateTimeException("Zone offset minutes and seconds must be positive because hours is positive");
+                throw new DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
             }
         } else if (hours < 0) {
             if (minutes > 0 || seconds > 0) {
-                throw new DateTimeException("Zone offset minutes and seconds must be negative because hours is negative");
+                throw new DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
             }
         } else if ((minutes > 0 && seconds < 0) || (minutes < 0 && seconds > 0)) {
-            throw new DateTimeException("Zone offset minutes and seconds must have the same sign");
+            throw new DateTimeException('Zone offset minutes and seconds must have the same sign');
         }
         if (Math.abs(minutes) > 59) {
-            throw new DateTimeException("Zone offset minutes not in valid range: abs(value) " +
-                    Math.abs(minutes) + " is not in the range 0 to 59");
+            throw new DateTimeException('Zone offset minutes not in valid range: abs(value) ' +
+                    Math.abs(minutes) + ' is not in the range 0 to 59');
         }
         if (Math.abs(seconds) > 59) {
-            throw new DateTimeException("Zone offset seconds not in valid range: abs(value) " +
-                    Math.abs(seconds) + " is not in the range 0 to 59");
+            throw new DateTimeException('Zone offset seconds not in valid range: abs(value) ' +
+                    Math.abs(seconds) + ' is not in the range 0 to 59');
         }
         if (Math.abs(hours) == 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
-            throw new DateTimeException("Zone offset not in valid range: -18:00 to +18:00");
+            throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
         }
     }
 

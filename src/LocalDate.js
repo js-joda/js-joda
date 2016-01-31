@@ -4,7 +4,7 @@ import { MathUtil } from './MathUtil';
 import {DateTimeException} from './errors';
 
 import { IsoChronology } from './chrono/IsoChronology';
-import {DAY_OF_MONTH, MONTH_OF_YEAR, YEAR } from './temporal/ChronoField';
+import {ChronoField} from './temporal/ChronoField';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
@@ -79,7 +79,7 @@ export class LocalDate {
      * @return {number} gets the year
      */
     year() {
-        return this._year
+        return this._year;
     }
 
     /**
@@ -87,7 +87,7 @@ export class LocalDate {
      * @return {number} gets the month
      */
     monthValue() {
-        return this._month
+        return this._month;
     }
     
     month() {
@@ -99,7 +99,7 @@ export class LocalDate {
      * @return {number} gets the day of month
      */
     dayOfMonth() {
-        return this._day
+        return this._day;
     }
 
     /**
@@ -123,7 +123,7 @@ export class LocalDate {
         }
         var mjDay = this.toEpochDay() + daysToAdd;
         return LocalDate.ofEpochDay(mjDay);
-    };
+    }
 
     /*
      * Returns a copy of this LocalDate with the specified number of days subtracted.
@@ -141,8 +141,8 @@ export class LocalDate {
      * @throws AssertionError if the result exceeds the supported date range
      */
     minusDays(daysToSubtract) {
-        return this.plusDays(daysToSubtract * -1)
-    };
+        return this.plusDays(daysToSubtract * -1);
+    }
 
     /**
      * Converts this date to the Epoch Day.
@@ -238,29 +238,29 @@ export class LocalDate {
         var absYear = Math.abs(yearValue);
 
         if (absYear < 1000) {
-          if (yearValue < 0) {
-            yearString = "-" + ("" + (yearValue - 10000)).slice(-4);
-          } else {
-            yearString = ("" + (yearValue + 10000)).slice(-4);
-          }
+            if (yearValue < 0) {
+                yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+            } else {
+                yearString = ('' + (yearValue + 10000)).slice(-4);
+            }
         } else {
-          if (yearValue > 9999) {
-            yearString = "+" + yearValue;
-          } else {
-            yearString = "" + yearValue;
-          }
+            if (yearValue > 9999) {
+                yearString = '+' + yearValue;
+            } else {
+                yearString = '' + yearValue;
+            }
         }
 
         if (monthValue < 10) {
-          monthString = "-0" + monthValue;
+            monthString = '-0' + monthValue;
         } else {
-          monthString = "-" + monthValue;
+            monthString = '-' + monthValue;
         }
 
         if (dayValue < 10) {
-          dayString = "-0" + dayValue;
+            dayString = '-0' + dayValue;
         } else {
-          dayString = "-" + dayValue;
+            dayString = '-' + dayValue;
         }
 
         return yearString + monthString + dayString;
@@ -302,7 +302,7 @@ export class LocalDate {
         yearEst += MathUtil.intDiv(marchMonth0, 10);
         year = yearEst;
         return new LocalDate(year, month, dom);
-    };
+    }
     
     /**
      * Obtains an instance of {@code LocalDate} from a year and day-of-year.
@@ -317,11 +317,11 @@ export class LocalDate {
      *  or if the day-of-year is invalid for the year
      */
     static ofYearDay(year, dayOfYear) {
-        YEAR.checkValidValue(year);
-        //TODO: DAY_OF_YEAR.checkValidValue(dayOfYear);
+        ChronoField.YEAR.checkValidValue(year);
+        //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
         var leap = IsoChronology.isLeapYear(year);
         if (dayOfYear === 366 && leap === false) {
-            assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
+            assert(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', DateTimeException);
         }
         var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
         var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
@@ -374,9 +374,9 @@ export class LocalDate {
      */
     static validate(year, month, dayOfMonth) {
         var dom;
-        YEAR.checkValidValue(year);
-        MONTH_OF_YEAR.checkValidValue(month);
-        DAY_OF_MONTH.checkValidValue(dayOfMonth);
+        ChronoField.YEAR.checkValidValue(year);
+        ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+        ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth > 28) {
             dom = 31;
             switch (month) {
@@ -391,13 +391,13 @@ export class LocalDate {
             }
             if (dayOfMonth > dom) {
                 if (dayOfMonth === 29) {
-                    assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year", DateTimeException);
+                    assert(false, 'Invalid date \'February 29\' as \'' + year + '\' is not a leap year', DateTimeException);
                 } else {
-                    assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'", DateTimeException);
+                    assert(false, 'Invalid date \'' + year + '\' \'' + month + '\' \'' + dayOfMonth + '\'', DateTimeException);
                 }
             }
         }
-    };
+    }
 
 }
 

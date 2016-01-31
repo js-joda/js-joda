@@ -1,11 +1,15 @@
-import {DateTimeException} from './errors'
-import {MathUtil} from './MathUtil'
-import {Clock} from './Clock'
-import {LocalTime} from './LocalTime'
+import {ChronoField} from './temporal/ChronoField';
+import {ChronoUnit} from './temporal/ChronoUnit';
+import {Clock} from './Clock';
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import {LocalTime} from './LocalTime';
+import {MathUtil} from './MathUtil';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 
 // TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
 const MIN_SECONDS = -31619087596800; // -999999-01-01
 const MAX_SECONDS = 31494784694400; // 999999-12-31
+const NANOS_PER_MILLI = 1000000;
 
 /**
  * An instantaneous point on the time-line.
@@ -98,9 +102,10 @@ const MAX_SECONDS = 31494784694400; // 999999-12-31
  * {@code ZonedDateTime} and {@code Duration}.
  *
  */
-export class Instant {
-
+export class Instant extends TemporalAccessor {
+    
     constructor(seconds, nanoOfSecond){
+        super();
         Instant.validate(seconds, nanoOfSecond);
         this._seconds = seconds;
         this._nanos = nanoOfSecond;
@@ -116,7 +121,7 @@ export class Instant {
      * @return the seconds from the epoch of 1970-01-01T00:00:00Z
      */
     epochSecond(){
-        return this._seconds
+        return this._seconds;
     }
 
     /**
@@ -141,7 +146,7 @@ export class Instant {
      * @return the nanoseconds within the second, always positive, never exceeds 999,999,999
      */
     nano(){
-        return this._nanos
+        return this._nanos;
     }
 
     /**
@@ -231,9 +236,220 @@ export class Instant {
         }
         if(otherInstant instanceof Instant){
             return this.epochSecond() === otherInstant.epochSecond() &&
-                this.nano() === otherInstant.nano()
+                this.nano() === otherInstant.nano();
         }
         return false;
+    }
+    
+    /**
+     * Calculates the period between this instant and another instant in
+     * terms of the specified unit.
+     * <p>
+     * This calculates the period between two instants in terms of a single unit.
+     * The start and end points are {@code this} and the specified instant.
+     * The result will be negative if the end is before the start.
+     * The calculation returns a whole number, representing the number of
+     * complete units between the two instants.
+     * The {@code Temporal} passed to this method is converted to a
+     * {@code Instant} using {@link #from(TemporalAccessor)}.
+     * For example, the period in days between two dates can be calculated
+     * using {@code startInstant.until(endInstant, SECONDS)}.
+     * <p>
+     * This method operates in association with {@link TemporalUnit#between}.
+     * The result of this method is a {@code long} representing the amount of
+     * the specified unit. By contrast, the result of {@code between} is an
+     * object that can be used directly in addition/subtraction:
+     * <pre>
+     *   long period = start.until(end, SECONDS);   // this method
+     *   dateTime.plus(SECONDS.between(start, end));      // use in plus/minus
+     * </pre>
+     * <p>
+     * The calculation is implemented in this method for {@link ChronoUnit}.
+     * The units {@code NANOS}, {@code MICROS}, {@code MILLIS}, {@code SECONDS},
+     * {@code MINUTES}, {@code HOURS}, {@code HALF_DAYS} and {@code DAYS}
+     * are supported. Other {@code ChronoUnit} values will throw an exception.
+     * <p>
+     * If the unit is not a {@code ChronoUnit}, then the result of this method
+     * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
+     * passing {@code this} as the first argument and the input temporal as
+     * the second argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} endExclusive  the end date, which is converted to an {@code Instant}, not null
+     * @param {TemporalUnit} unit  the unit to measure the period in, not null
+     * @return {Number} the amount of the period between this date and the end date
+     * @throws DateTimeException if the period cannot be calculated
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    until(endExclusive, unit) {
+        let end = Instant.from(endExclusive);
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.NANOS: return this._nanosUntil(end);
+                case ChronoUnit.MICROS: return this._nanosUntil(end) / 1000;
+                case ChronoUnit.MILLIS: return MathUtil.safeSubtract(end.toEpochMilli(), this.toEpochMilli());
+                case ChronoUnit.SECONDS: return this._secondsUntil(end);
+                case ChronoUnit.MINUTES: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_MINUTE);
+                case ChronoUnit.HOURS: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_HOUR);
+                case ChronoUnit.HALF_DAYS: return MathUtil.intDiv(this._secondsUntil(end), (12 * LocalTime.SECONDS_PER_HOUR));
+                case ChronoUnit.DAYS: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_DAY);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.between(this, end);
+    }
+
+    _nanosUntil(end) {
+        let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        let totalNanos = MathUtil.safeMultiply(secsDiff, LocalTime.NANOS_PER_SECOND);
+        return MathUtil.safeAdd(totalNanos, end.nano() - this.nano());
+    }
+
+    _secondsUntil(end) {
+        let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        let nanosDiff = end.nano() - this.nano();
+        if (secsDiff > 0 && nanosDiff < 0) {
+            secsDiff--;
+        } else if (secsDiff < 0 && nanosDiff > 0) {
+            secsDiff++;
+        }
+        return secsDiff;
+    }
+
+    /**
+     * Gets the value of the specified field from this instant as an {@code int}.
+     * <p>
+     * This queries this instant for the value for the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this date-time, except {@code INSTANT_SECONDS} which is too
+     * large to fit in an {@code int} and throws a {@code DateTimeException}.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {Number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        if (field instanceof ChronoField) {
+            switch (field) {
+                case ChronoField.NANO_OF_SECOND: return this._nanos;
+                case ChronoField.MICRO_OF_SECOND: return MathUtil.intDiv(this._nanos, 1000);
+                case ChronoField.MILLI_OF_SECOND: return MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+                case ChronoField.INSTANT_SECONDS:
+                    ChronoField.INSTANT_SECONDS.checkValidIntValue(this._seconds);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return this.range(field).checkValidIntValue(field.getFrom(this), field);
+    }
+
+    /**
+     * Gets the value of the specified field from this instant as a {@code long}.
+     * <p>
+     * This queries this instant for the value for the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this date-time.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {Number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    getLong(field) {
+        if (field instanceof ChronoField) {
+            switch (field) {
+                case ChronoField.NANO_OF_SECOND: return this._nanos;
+                case ChronoField.MICRO_OF_SECOND: return MathUtil.intDiv(this._nanos, 1000);
+                case ChronoField.MILLI_OF_SECOND: return MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+                case ChronoField.INSTANT_SECONDS: return this._seconds;
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.getFrom(this);
+    }
+    
+    /**
+     * Checks if the specified field is supported.
+     * <p>
+     * This checks if this instant can be queried for the specified field.
+     * If false, then calling the {@link #range(TemporalField) range} and
+     * {@link #get(TemporalField) get} methods will throw an exception.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The supported fields are:
+     * <ul>
+     * <li>{@code NANO_OF_SECOND}
+     * <li>{@code MICRO_OF_SECOND}
+     * <li>{@code MILLI_OF_SECOND}
+     * <li>{@code INSTANT_SECONDS}
+     * </ul>
+     * All other {@code ChronoField} instances will return false.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField, TemporalUnit} fieldOrUnit  the field to check, null returns false
+     * @return true if the field is supported on this instant, false if not
+     */
+    isSupported(fieldOrUnit) {
+        if (fieldOrUnit instanceof ChronoField) {
+            return fieldOrUnit === ChronoField.INSTANT_SECONDS || fieldOrUnit === ChronoField.NANO_OF_SECOND || fieldOrUnit === ChronoField.MICRO_OF_SECOND || fieldOrUnit === ChronoField.MILLI_OF_SECOND;
+        }
+        if (fieldOrUnit instanceof ChronoUnit) {
+            return fieldOrUnit.isTimeBased() || fieldOrUnit === ChronoUnit.DAYS;
+        }
+        return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+    }
+
+    /**
+     * Obtains an instance of {@code Instant} from a temporal object.
+     * <p>
+     * A {@code TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@code Instant}.
+     * <p>
+     * The conversion extracts the {@link ChronoField#INSTANT_SECONDS INSTANT_SECONDS}
+     * and {@link ChronoField#NANO_OF_SECOND NANO_OF_SECOND} fields.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used as a query via method reference, {@code Instant::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {Instant} the instant, not null
+     * @throws DateTimeException if unable to convert to an {@code Instant}
+     */
+    static from(temporal) {
+        try {
+            let instantSecs = temporal.getLong(ChronoField.INSTANT_SECONDS);
+            let nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
+            return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
+        } catch (ex) {
+            throw new DateTimeException('Unable to obtain Instant from TemporalAccessor: ' +
+                    temporal + ', type ' + typeof temporal, ex);
+        }
     }
 
     /**
@@ -276,7 +492,7 @@ export class Instant {
 
     static validate(seconds, nanoOfSecond){
         if (seconds < MIN_SECONDS || seconds > MAX_SECONDS) {
-            throw new DateTimeException("Instant exceeds minimum or maximum instant")
+            throw new DateTimeException('Instant exceeds minimum or maximum instant');
         }
     }
 }
