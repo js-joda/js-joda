@@ -60,25 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	
-	var _LocalDate = __webpack_require__(1);
-	
-	Object.defineProperty(exports, 'LocalDate', {
-	  enumerable: true,
-	  get: function get() {
-	    return _LocalDate.LocalDate;
-	  }
-	});
-	
-	var _Instant = __webpack_require__(12);
-	
-	Object.defineProperty(exports, 'Instant', {
-	  enumerable: true,
-	  get: function get() {
-	    return _Instant.Instant;
-	  }
-	});
-	
-	var _Clock = __webpack_require__(11);
+	var _Clock = __webpack_require__(1);
 	
 	Object.defineProperty(exports, 'Clock', {
 	  enumerable: true,
@@ -87,7 +69,85 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(18);
+	var _Duration = __webpack_require__(12);
+	
+	Object.defineProperty(exports, 'Duration', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Duration.Duration;
+	  }
+	});
+	
+	var _errors = __webpack_require__(5);
+	
+	Object.defineProperty(exports, 'DateTimeException', {
+	  enumerable: true,
+	  get: function get() {
+	    return _errors.DateTimeException;
+	  }
+	});
+	Object.defineProperty(exports, 'DateTimeParseException', {
+	  enumerable: true,
+	  get: function get() {
+	    return _errors.DateTimeParseException;
+	  }
+	});
+	
+	var _Instant = __webpack_require__(2);
+	
+	Object.defineProperty(exports, 'Instant', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Instant.Instant;
+	  }
+	});
+	
+	var _LocalDate = __webpack_require__(17);
+	
+	Object.defineProperty(exports, 'LocalDate', {
+	  enumerable: true,
+	  get: function get() {
+	    return _LocalDate.LocalDate;
+	  }
+	});
+	
+	var _LocalTime = __webpack_require__(13);
+	
+	Object.defineProperty(exports, 'LocalTime', {
+	  enumerable: true,
+	  get: function get() {
+	    return _LocalTime.LocalTime;
+	  }
+	});
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	Object.defineProperty(exports, 'MathUtil', {
+	  enumerable: true,
+	  get: function get() {
+	    return _MathUtil.MathUtil;
+	  }
+	});
+	
+	var _Month = __webpack_require__(19);
+	
+	Object.defineProperty(exports, 'Month', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Month.Month;
+	  }
+	});
+	
+	var _Year = __webpack_require__(10);
+	
+	Object.defineProperty(exports, 'Year', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Year.Year;
+	  }
+	});
+	
+	var _ZoneOffset = __webpack_require__(16);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -102,1235 +162,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.LocalDate = undefined;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _MathUtil = __webpack_require__(5);
-	
-	var _errors = __webpack_require__(3);
-	
-	var _IsoChronology = __webpack_require__(6);
-	
-	var _ChronoField = __webpack_require__(7);
-	
-	var _Clock = __webpack_require__(11);
-	
-	var _Month = __webpack_require__(19);
-	
-	var _Year = __webpack_require__(10);
-	
-	var _LocalTime = __webpack_require__(15);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * The number of days in a 400 year cycle.
-	 */
-	var DAYS_PER_CYCLE = 146097;
-	
-	/**
-	 * The number of days from year zero to year 1970.
-	 * There are five 400 year cycles from year zero to 2000.
-	 * There are 7 leap years from 1970 to 2000.
-	 */
-	var DAYS_0000_TO_1970 = DAYS_PER_CYCLE * 5 - (30 * 365 + 7);
-	
-	/**
-	 * A date without a time-zone in the ISO-8601 calendar system,
-	 * such as 2007-12-03.
-	 *
-	 * LocalDate is an immutable date-time object that represents a date,
-	 * often viewed as year-month-day. Other date fields, such as day-of-year,
-	 * day-of-week and week-of-year, can also be accessed.
-	 * For example, the value "2nd October 2007" can be stored in a LocalDate.
-	 *
-	 * This class does not store or represent a time or time-zone.
-	 * Instead, it is a description of the date, as used for birthdays.
-	 * It cannot represent an instant on the time-line without additional information
-	 * such as an offset or time-zone.
-	 */
-	
-	var LocalDate = exports.LocalDate = (function () {
-	
-	    /**
-	     *
-	     * @param {number} year
-	     * @param {Month, number} month
-	     * @param {number} dayOfMonth
-	     */
-	
-	    function LocalDate(year, month, dayOfMonth) {
-	        _classCallCheck(this, LocalDate);
-	
-	        if (month instanceof _Month.Month) {
-	            month = month.value();
-	        }
-	        LocalDate.validate(year, month, dayOfMonth);
-	        this._year = year;
-	        this._month = month;
-	        this._day = dayOfMonth;
-	    }
-	
-	    /**
-	     * Obtains an instance of {@code LocalDate} from a year, month and day.
-	     * <p>
-	     * This returns a {@code LocalDate} with the specified year, month and day-of-month.
-	     * The day must be valid for the year and month, otherwise an exception will be thrown.
-	     *
-	     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-	     * @param {Month, number} month  the month-of-year to represent, from 1 (January) to 12 (December)
-	     * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
-	     * @return LocalDate the local date, not null
-	     * @throws DateTimeException if the value of any field is out of range,
-	     *  or if the day-of-month is invalid for the month-year
-	     */
-	
-	    _createClass(LocalDate, [{
-	        key: 'year',
-	
-	        /**
-	         *
-	         * @return {number} gets the year
-	         */
-	        value: function year() {
-	            return this._year;
-	        }
-	
-	        /**
-	         *
-	         * @return {number} gets the month
-	         */
-	
-	    }, {
-	        key: 'monthValue',
-	        value: function monthValue() {
-	            return this._month;
-	        }
-	    }, {
-	        key: 'month',
-	        value: function month() {
-	            return _Month.Month.of(this._month);
-	        }
-	
-	        /**
-	         *
-	         * @return {number} gets the day of month
-	         */
-	
-	    }, {
-	        key: 'dayOfMonth',
-	        value: function dayOfMonth() {
-	            return this._day;
-	        }
-	
-	        /**
-	         * Returns a copy of this LocalDate with the specified number of days added.
-	         * 
-	         * This method adds the specified amount to the days field incrementing the
-	         * month and year fields as necessary to ensure the result remains valid.
-	         * The result is only invalid if the maximum/minimum year is exceeded.
-	         * 
-	         * For example, 2008-12-31 plus one day would result in 2009-01-01.
-	         * 
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} daysToAdd - the days to add, may be negative
-	         * @return {LocalDate} a LocalDate based on this date with the days added, not null
-	         * @throws AssertionError if the result exceeds the supported date range
-	         */
-	
-	    }, {
-	        key: 'plusDays',
-	        value: function plusDays(daysToAdd) {
-	            if (daysToAdd === 0) {
-	                return this;
-	            }
-	            var mjDay = this.toEpochDay() + daysToAdd;
-	            return LocalDate.ofEpochDay(mjDay);
-	        }
-	
-	        /*
-	         * Returns a copy of this LocalDate with the specified number of days subtracted.
-	         * 
-	         * This method subtracts the specified amount from the days field decrementing the
-	         * month and year fields as necessary to ensure the result remains valid.
-	         * The result is only invalid if the maximum/minimum year is exceeded.
-	         * 
-	         * For example, 2009-01-01 minus one day would result in 2008-12-31.
-	         * 
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} daysToSubtract - the days to subtract, may be negative
-	         * @return {LocalDate} a LocalDate based on this date with the days subtracted, not null
-	         * @throws AssertionError if the result exceeds the supported date range
-	         */
-	
-	    }, {
-	        key: 'minusDays',
-	        value: function minusDays(daysToSubtract) {
-	            return this.plusDays(daysToSubtract * -1);
-	        }
-	
-	        /**
-	         * Converts this date to the Epoch Day.
-	         *
-	         * The Epoch Day count is a simple incrementing count of days where day 0 is 1970-01-01 (ISO).
-	         * This definition is the same for all chronologies, enabling conversion.
-	         *
-	         * @return {number} the Epoch Day equivalent to this date
-	         */
-	
-	    }, {
-	        key: 'toEpochDay',
-	        value: function toEpochDay() {
-	            var y = this.year();
-	            var m = this.monthValue();
-	            var total = 0;
-	            total += 365 * y;
-	            if (y >= 0) {
-	                total += _MathUtil.MathUtil.intDiv(y + 3, 4) - _MathUtil.MathUtil.intDiv(y + 99, 100) + _MathUtil.MathUtil.intDiv(y + 399, 400);
-	            } else {
-	                total -= _MathUtil.MathUtil.intDiv(y, -4) - _MathUtil.MathUtil.intDiv(y, -100) + _MathUtil.MathUtil.intDiv(y, -400);
-	            }
-	            total += _MathUtil.MathUtil.intDiv(367 * m - 362, 12);
-	            total += this.dayOfMonth() - 1;
-	            if (m > 2) {
-	                total--;
-	                if (!_IsoChronology.IsoChronology.isLeapYear(y)) {
-	                    total--;
-	                }
-	            }
-	            return total - DAYS_0000_TO_1970;
-	        }
-	
-	        /**
-	         * Obtains the current date from the system clock in the default time-zone or
-	         * if specified, the current date from the specified clock.
-	         *
-	         * This will query the specified clock to obtain the current date - today.
-	         * Using this method allows the use of an alternate clock for testing.
-	         *
-	         * @param clock  the clock to use, if null, the system clock and default time-zone is used.
-	         * @return the current date, not null
-	         */
-	
-	    }, {
-	        key: 'equals',
-	
-	        /**
-	         * Checks if this date is equal to another date.
-	         *
-	         * Compares this LocalDate with another ensuring that the date is the same.
-	         *
-	         * Only objects of type LocalDate are compared, other types return false.
-	         *
-	         * @param otherDate  the object to check, null returns false
-	         * @return true if this is equal to the other date
-	         */
-	        value: function equals(otherDate) {
-	            if (this === otherDate) {
-	                return true;
-	            }
-	            if (otherDate instanceof LocalDate) {
-	                return this._compareTo(otherDate) === 0;
-	            }
-	            return false;
-	        }
-	    }, {
-	        key: '_compareTo',
-	        value: function _compareTo(otherDate) {
-	            var cmp = this.year() - otherDate.year();
-	            if (cmp === 0) {
-	                cmp = this.monthValue() - otherDate.monthValue();
-	                if (cmp === 0) {
-	                    cmp = this.dayOfMonth() - otherDate.dayOfMonth();
-	                }
-	            }
-	            return cmp;
-	        }
-	
-	        /**
-	         * Outputs this date as a String, such as 2007-12-03.
-	         * The output will be in the ISO-8601 format uuuu-MM-dd.
-	         *
-	         * @return {string} a string representation of this date, not null
-	         */
-	
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            var dayString, monthString, yearString;
-	
-	            var yearValue = this.year();
-	            var monthValue = this.monthValue();
-	            var dayValue = this.dayOfMonth();
-	
-	            var absYear = Math.abs(yearValue);
-	
-	            if (absYear < 1000) {
-	                if (yearValue < 0) {
-	                    yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
-	                } else {
-	                    yearString = ('' + (yearValue + 10000)).slice(-4);
-	                }
-	            } else {
-	                if (yearValue > 9999) {
-	                    yearString = '+' + yearValue;
-	                } else {
-	                    yearString = '' + yearValue;
-	                }
-	            }
-	
-	            if (monthValue < 10) {
-	                monthString = '-0' + monthValue;
-	            } else {
-	                monthString = '-' + monthValue;
-	            }
-	
-	            if (dayValue < 10) {
-	                dayString = '-0' + dayValue;
-	            } else {
-	                dayString = '-' + dayValue;
-	            }
-	
-	            return yearString + monthString + dayString;
-	        }
-	
-	        /**
-	         * Obtains an instance of LocalDate from the epoch day count.
-	         *
-	         * This returns a LocalDate with the specified epoch-day.
-	         * The {@link ChronoField#EPOCH_DAY EPOCH_DAY} is a simple incrementing count
-	         * of days where day 0 is 1970-01-01. Negative numbers represent earlier days.
-	         *
-	         * @param {number} epochDay - the Epoch Day to convert, based on the epoch 1970-01-01
-	         * @return {LocalDate} the local date, not null
-	         * @throws AssertionError if the epoch days exceeds the supported date range
-	         */
-	
-	    }, {
-	        key: 'withDayOfMonth',
-	
-	        /**
-	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
-	         * <p>
-	         * If the resulting date is invalid, an exception is thrown.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
-	         * @return {LocalDate} based on this date with the requested day, not null
-	         * @throws DateTimeException if the day-of-month value is invalid,
-	         *  or if the day-of-month is invalid for the month-year
-	         */
-	        value: function withDayOfMonth(dayOfMonth) {
-	            if (this._day === dayOfMonth) {
-	                return this;
-	            }
-	            return LocalDate.of(this._year, this._month, dayOfMonth);
-	        }
-	
-	        /**
-	         * Returns a copy of this {@code LocalDate} with the month-of-year altered.
-	         * <p>
-	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
-	         * @return {@code LocalDate} based on this date with the requested month, not null
-	         * @throws DateTimeException if the month-of-year value is invalid
-	         */
-	
-	    }, {
-	        key: 'withMonth',
-	        value: function withMonth(month) {
-	            if (this._month === month) {
-	                return this;
-	            }
-	            return LocalDate.of(this._year, month, this._day);
-	        }
-	
-	        /**
-	         * @private
-	         */
-	
-	    }], [{
-	        key: 'of',
-	        value: function of(year, month, dayOfMonth) {
-	            return new LocalDate(year, month, dayOfMonth);
-	        }
-	    }, {
-	        key: 'now',
-	        value: function now() {
-	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
-	
-	            var now = clock.instant();
-	            var offset = clock.offset(now);
-	            var epochSec = now.epochSecond() + offset.totalSeconds();
-	            var epochDay = _MathUtil.MathUtil.floorDiv(epochSec, _LocalTime.LocalTime.SECONDS_PER_DAY);
-	            return LocalDate.ofEpochDay(epochDay);
-	        }
-	    }, {
-	        key: 'ofEpochDay',
-	        value: function ofEpochDay(epochDay) {
-	            var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
-	            zeroDay = epochDay + DAYS_0000_TO_1970;
-	            zeroDay -= 60;
-	            adjust = 0;
-	            if (zeroDay < 0) {
-	                adjustCycles = _MathUtil.MathUtil.intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
-	                adjust = adjustCycles * 400;
-	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
-	            }
-	            yearEst = _MathUtil.MathUtil.intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
-	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
-	            if (doyEst < 0) {
-	                yearEst--;
-	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
-	            }
-	            yearEst += adjust;
-	            marchDoy0 = doyEst;
-	            marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
-	            month = (marchMonth0 + 2) % 12 + 1;
-	            dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
-	            yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
-	            year = yearEst;
-	            return new LocalDate(year, month, dom);
-	        }
-	
-	        /**
-	         * Obtains an instance of {@code LocalDate} from a year and day-of-year.
-	         * <p>
-	         * This returns a {@code LocalDate} with the specified year and day-of-year.
-	         * The day-of-year must be valid for the year, otherwise an exception will be thrown.
-	         *
-	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-	         * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
-	         * @return LocalDate the local date, not null
-	         * @throws DateTimeException if the value of any field is out of range,
-	         *  or if the day-of-year is invalid for the year
-	         */
-	
-	    }, {
-	        key: 'ofYearDay',
-	        value: function ofYearDay(year, dayOfYear) {
-	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
-	            //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
-	            var leap = _IsoChronology.IsoChronology.isLeapYear(year);
-	            if (dayOfYear === 366 && leap === false) {
-	                (0, _assert.assert)(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
-	            }
-	            var moy = _Month.Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
-	            var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
-	            if (dayOfYear > monthEnd) {
-	                moy = moy.plus(1);
-	            }
-	            var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
-	            return new LocalDate(year, moy.value(), dom);
-	        }
-	    }, {
-	        key: 'validate',
-	        value: function validate(year, month, dayOfMonth) {
-	            var dom;
-	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
-	            _ChronoField.ChronoField.MONTH_OF_YEAR.checkValidValue(month);
-	            _ChronoField.ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
-	            if (dayOfMonth > 28) {
-	                dom = 31;
-	                switch (month) {
-	                    case 2:
-	                        dom = _IsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28;
-	                        break;
-	                    case 4:
-	                    case 6:
-	                    case 9:
-	                    case 11:
-	                        dom = 30;
-	                }
-	                if (dayOfMonth > dom) {
-	                    if (dayOfMonth === 29) {
-	                        (0, _assert.assert)(false, 'Invalid date \'February 29\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
-	                    } else {
-	                        (0, _assert.assert)(false, 'Invalid date \'' + year + '\' \'' + month + '\' \'' + dayOfMonth + '\'', _errors.DateTimeException);
-	                    }
-	                }
-	            }
-	        }
-	    }]);
-	
-	    return LocalDate;
-	})();
-	
-	/**
-	 * The minimum supported {@code LocalDate}
-	 * This could be used by an application as a "far past" date.
-	 */
-	
-	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
-	/**
-	 * The maximum supported {@code LocalDate}
-	 * This could be used by an application as a "far future" date.
-	 */
-	LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.assert = assert;
-	exports.requireNonNull = requireNonNull;
-	
-	var _errors = __webpack_require__(3);
-	
-	function assert(assertion, msg, error) {
-	    if (!assertion) {
-	        if (error) {
-	            throw new error(msg);
-	        } else {
-	            throw new Error(msg);
-	        }
-	    }
-	}
-	
-	function requireNonNull(value, parameterName) {
-	    if (value == null) {
-	        throw new _errors.NullPointerException(parameterName + ' must not be null');
-	    }
-	    return value;
-	}
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.NullPointerException = exports.ArithmeticException = exports.UnsupportedTemporalTypeException = exports.DateTimeParseException = exports.DateTimeException = undefined;
-	
-	var _es6Error = __webpack_require__(4);
-	
-	var _es6Error2 = _interopRequireDefault(_es6Error);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var DateTimeException = exports.DateTimeException = (function (_ExtendableError) {
-	    _inherits(DateTimeException, _ExtendableError);
-	
-	    function DateTimeException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeException' : arguments[0];
-	        var cause = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-	
-	        _classCallCheck(this, DateTimeException);
-	
-	        var msg = message;
-	        if (cause !== null && cause instanceof Error) {
-	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	        }
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeException).call(this, msg));
-	    }
-	
-	    return DateTimeException;
-	})(_es6Error2.default);
-	
-	var DateTimeParseException = exports.DateTimeParseException = (function (_ExtendableError2) {
-	    _inherits(DateTimeParseException, _ExtendableError2);
-	
-	    function DateTimeParseException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeParseException' : arguments[0];
-	        var text = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
-	        var index = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var cause = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
-	
-	        _classCallCheck(this, DateTimeParseException);
-	
-	        var msg = message + ': ' + text + ', at index: ' + index;
-	        if (cause !== null && cause instanceof Error) {
-	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	        }
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeParseException).call(this, msg));
-	    }
-	
-	    return DateTimeParseException;
-	})(_es6Error2.default);
-	
-	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = (function (_ExtendableError3) {
-	    _inherits(UnsupportedTemporalTypeException, _ExtendableError3);
-	
-	    function UnsupportedTemporalTypeException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'UnsupportedTemporalTypeException' : arguments[0];
-	
-	        _classCallCheck(this, UnsupportedTemporalTypeException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UnsupportedTemporalTypeException).call(this, message));
-	    }
-	
-	    return UnsupportedTemporalTypeException;
-	})(_es6Error2.default);
-	
-	var ArithmeticException = exports.ArithmeticException = (function (_ExtendableError4) {
-	    _inherits(ArithmeticException, _ExtendableError4);
-	
-	    function ArithmeticException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'ArithmeticException' : arguments[0];
-	
-	        _classCallCheck(this, ArithmeticException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ArithmeticException).call(this, message));
-	    }
-	
-	    return ArithmeticException;
-	})(_es6Error2.default);
-	
-	var NullPointerException = exports.NullPointerException = (function (_ExtendableError5) {
-	    _inherits(NullPointerException, _ExtendableError5);
-	
-	    function NullPointerException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'NullPointerException' : arguments[0];
-	
-	        _classCallCheck(this, NullPointerException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(NullPointerException).call(this, message));
-	    }
-	
-	    return NullPointerException;
-	})(_es6Error2.default);
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ExtendableError = (function (_Error) {
-	  _inherits(ExtendableError, _Error);
-	
-	  function ExtendableError() {
-	    var message = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-	
-	    _classCallCheck(this, ExtendableError);
-	
-	    _get(Object.getPrototypeOf(ExtendableError.prototype), 'constructor', this).call(this, message);
-	
-	    // extending Error is weird and does not propagate `message`
-	    Object.defineProperty(this, 'message', {
-	      enumerable: false,
-	      value: message
-	    });
-	
-	    Object.defineProperty(this, 'name', {
-	      enumerable: false,
-	      value: this.constructor.name
-	    });
-	
-	    if (Error.hasOwnProperty('captureStackTrace')) {
-	      Error.captureStackTrace(this, this.constructor);
-	      return;
-	    }
-	
-	    Object.defineProperty(this, 'stack', {
-	      enumerable: false,
-	      value: new Error(message).stack
-	    });
-	  }
-	
-	  return ExtendableError;
-	})(Error);
-	
-	exports['default'] = ExtendableError;
-	module.exports = exports['default'];
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.MathUtil = exports.MIN_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = undefined;
-	
-	var _errors = __webpack_require__(3);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var MAX_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Math.pow(2, 53) - 1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
-	var MIN_SAFE_INTEGER = exports.MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER ? Number.MIN_SAFE_INTEGER : -(Math.pow(2, 53) - 1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
-	
-	/**
-	 * Math helper with static function for integer operations
-	 */
-	
-	var MathUtil = exports.MathUtil = (function () {
-	    function MathUtil() {
-	        _classCallCheck(this, MathUtil);
-	    }
-	
-	    _createClass(MathUtil, null, [{
-	        key: 'intDiv',
-	        value: function intDiv(x, y) {
-	            var r = x / y;
-	            if (r < 0) {
-	                return Math.ceil(r);
-	            } else {
-	                return Math.floor(r);
-	            }
-	        }
-	    }, {
-	        key: 'intMod',
-	        value: function intMod(x, y) {
-	            var r = x - MathUtil.intDiv(x, y) * y;
-	            if (r < 0) {
-	                return Math.ceil(r);
-	            } else {
-	                return Math.floor(r);
-	            }
-	        }
-	    }, {
-	        key: 'floorDiv',
-	        value: function floorDiv(x, y) {
-	            var r = Math.floor(x / y);
-	            return r;
-	        }
-	    }, {
-	        key: 'floorMod',
-	        value: function floorMod(x, y) {
-	            var r = x - MathUtil.floorDiv(x, y) * y;
-	            return r;
-	        }
-	    }, {
-	        key: 'safeAdd',
-	        value: function safeAdd(x, y) {
-	            if (x === 0) {
-	                var _r = y;
-	                if (_r > MAX_SAFE_INTEGER || _r < MIN_SAFE_INTEGER) {
-	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	                }
-	                return _r;
-	            }
-	            if (y === 0) {
-	                var _r2 = x;
-	                if (_r2 > MAX_SAFE_INTEGER || _r2 < MIN_SAFE_INTEGER) {
-	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	                }
-	                return _r2;
-	            }
-	            if (x === undefined || y === undefined) {
-	                throw new _errors.ArithmeticException('Invalid addition using undefined as argument');
-	            }
-	            if (isNaN(x) || isNaN(y)) {
-	                throw new _errors.ArithmeticException('Invalid addition using NaN as argument');
-	            }
-	            var r = x + y;
-	            // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
-	            // TODO: is this correct and complete?
-	            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER || r === x || r === y) {
-	                throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	            }
-	            return r;
-	        }
-	    }, {
-	        key: 'safeSubtract',
-	        value: function safeSubtract(x, y) {
-	            if (x === 0) {
-	                var _r3 = y;
-	                if (_r3 > MAX_SAFE_INTEGER || _r3 < MIN_SAFE_INTEGER) {
-	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	                }
-	                return _r3;
-	            }
-	            if (y === 0) {
-	                var _r4 = x;
-	                if (_r4 > MAX_SAFE_INTEGER || _r4 < MIN_SAFE_INTEGER) {
-	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	                }
-	                return _r4;
-	            }
-	            if (x === undefined || y === undefined) {
-	                throw new _errors.ArithmeticException('Invalid subtraction using undefined as argument');
-	            }
-	            if (isNaN(x) || isNaN(y)) {
-	                throw new _errors.ArithmeticException('Invalid subtraction using NaN as argument');
-	            }
-	            var r = x - y;
-	            // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
-	            // TODO: is this correct and complete?
-	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r === x || r === y) {
-	                throw new _errors.ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER!');
-	            }
-	            return r;
-	        }
-	    }, {
-	        key: 'safeMultiply',
-	        value: function safeMultiply(x, y) {
-	            if (x == 1) {
-	                return y;
-	            }
-	            if (y == 1) {
-	                return x;
-	            }
-	            if (x == 0 || y == 0) {
-	                return 0;
-	            }
-	            var r = x * y;
-	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y != x || x == MIN_SAFE_INTEGER && y == -1 || y == MIN_SAFE_INTEGER && x == -1) {
-	                throw new _errors.ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
-	            }
-	            return r;
-	        }
-	
-	        /**
-	         * Compares two Numbers.
-	         *
-	         * @param {Number} a  the first value
-	         * @param {Number} b  the second value
-	         * @return {Number} the result
-	         */
-	
-	    }, {
-	        key: 'compareNumbers',
-	        value: function compareNumbers(a, b) {
-	            if (a < b) {
-	                return -1;
-	            }
-	            if (a > b) {
-	                return 1;
-	            }
-	            return 0;
-	        }
-	    }]);
-	
-	    return MathUtil;
-	})();
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var IsoChronology = exports.IsoChronology = (function () {
-	    function IsoChronology() {
-	        _classCallCheck(this, IsoChronology);
-	    }
-	
-	    _createClass(IsoChronology, null, [{
-	        key: "isLeapYear",
-	
-	        /**
-	         * Checks if the year is a leap year, according to the ISO proleptic
-	         * calendar system rules.
-	         *
-	         * This method applies the current rules for leap years across the whole time-line.
-	         * In general, a year is a leap year if it is divisible by four without
-	         * remainder. However, years divisible by 100, are not leap years, with
-	         * the exception of years divisible by 400 which are.
-	         *
-	         * For example, 1904 is a leap year it is divisible by 4.
-	         * 1900 was not a leap year as it is divisible by 100, however 2000 was a
-	         * leap year as it is divisible by 400.
-	         *
-	         * The calculation is proleptic - applying the same rules into the far future and far past.
-	         * This is historically inaccurate, but is correct for the ISO-8601 standard.
-	         *
-	         * @param {number} prolepticYear - the ISO proleptic year to check
-	         * @return true if the year is leap, false otherwise
-	         */
-	        value: function isLeapYear(prolepticYear) {
-	            return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
-	        }
-	    }]);
-	
-	    return IsoChronology;
-	})();
-	
-	IsoChronology.INSTANCE = new IsoChronology();
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ChronoField = undefined;
-	
-	var _MathUtil = __webpack_require__(5);
-	
-	var _TemporalField2 = __webpack_require__(8);
-	
-	var _ValueRange = __webpack_require__(9);
-	
-	var _Year = __webpack_require__(10);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ChronoField = exports.ChronoField = (function (_TemporalField) {
-	    _inherits(ChronoField, _TemporalField);
-	
-	    function ChronoField(name, baseUnit, rangeUnit, range, displayNameKey) {
-	        _classCallCheck(this, ChronoField);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoField).call(this));
-	
-	        _this.name = function () {
-	            return name;
-	        };
-	        _this.baseUnit = function () {
-	            return baseUnit;
-	        };
-	        _this.rangeUnit = function () {
-	            return rangeUnit;
-	        };
-	        _this.range = function () {
-	            return range;
-	        };
-	        _this.displayNameKey = function () {
-	            return displayNameKey;
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(ChronoField, [{
-	        key: 'checkValidValue',
-	        value: function checkValidValue(value) {
-	            return this.range().checkValidValue(value, this.name());
-	        }
-	
-	        /**
-	         * Get the range of valid values for this field using the temporal object to
-	         * refine the result.
-	         * <p>
-	         * This uses the temporal object to find the range of valid values for the field.
-	         * This is similar to {@link #range()}, however this method refines the result
-	         * using the temporal. For example, if the field is {@code DAY_OF_MONTH} the
-	         * {@code range} method is not accurate as there are four possible month lengths,
-	         * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
-	         * accurate, returning just one of those four options.
-	         * <p>
-	         * There are two equivalent ways of using this method.
-	         * The first is to invoke this method directly.
-	         * The second is to use {@link TemporalAccessor#range(TemporalField)}:
-	         * <pre>
-	         *   // these two lines are equivalent, but the second approach is recommended
-	         *   temporal = thisField.rangeRefinedBy(temporal);
-	         *   temporal = temporal.range(thisField);
-	         * </pre>
-	         * It is recommended to use the second approach, {@code range(TemporalField)},
-	         * as it is a lot clearer to read in code.
-	         * <p>
-	         * Implementations should perform any queries or calculations using the fields
-	         * available in {@link ChronoField}.
-	         * If the field is not supported a {@code DateTimeException} must be thrown.
-	         *
-	         * @param {TemporalAccessor} temporal  the temporal object used to refine the result, not null
-	         * @return {Va;lueRange} the range of valid values for this field, not null
-	         * @throws DateTimeException if the range for the field cannot be obtained
-	         */
-	
-	    }, {
-	        key: 'rangeRefinedBy',
-	        value: function rangeRefinedBy(temporal) {
-	            return temporal.range(this);
-	        }
-	    }]);
-	
-	    return ChronoField;
-	})(_TemporalField2.TemporalField);
-	
-	// TODO: why can't we use ChronoUnit.NANOS, ... in these initializers??
-	//ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
-	
-	ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', null, null, _ValueRange.ValueRange.of(0, 999999999));
-	
-	ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', null, null, _ValueRange.ValueRange.of(0, 999999));
-	
-	ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', null, null, _ValueRange.ValueRange.of(0, 999));
-	
-	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', null, null, _ValueRange.ValueRange.of(1, 28, 31), 'day');
-	
-	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', null, null, _ValueRange.ValueRange.of(1, 12), 'month');
-	
-	ChronoField.YEAR = new ChronoField('Year', null, null, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
-	
-	ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', null, null, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var TemporalField = exports.TemporalField = function TemporalField() {
-	    _classCallCheck(this, TemporalField);
-	};
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ValueRange = undefined;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _errors = __webpack_require__(3);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * The range of valid values for a date-time field.
-	 * 
-	 * All TemporalField instances have a valid range of values.
-	 * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
-	 * This class captures that valid range.
-	 * 
-	 * It is important to be aware of the limitations of this class.
-	 * Only the minimum and maximum values are provided.
-	 * It is possible for there to be invalid values within the outer range.
-	 * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
-	 * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
-	 * 
-	 * Instances of this class are not tied to a specific field.
-	 *
-	 */
-	
-	var ValueRange = exports.ValueRange = (function () {
-	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
-	        _classCallCheck(this, ValueRange);
-	
-	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'');
-	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'');
-	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'');
-	
-	        this.minimum = function () {
-	            return minSmallest;
-	        };
-	        this.largestMinimum = function () {
-	            return minLargest;
-	        };
-	        this.maximum = function () {
-	            return maxLargest;
-	        };
-	        this.smallestMaximum = function () {
-	            return maxSmallest;
-	        };
-	    }
-	
-	    _createClass(ValueRange, [{
-	        key: 'isValidValue',
-	        value: function isValidValue(value) {
-	            return this.minimum() <= value && value <= this.maximum();
-	        }
-	    }, {
-	        key: 'checkValidValue',
-	        value: function checkValidValue(value, field) {
-	            var msg;
-	            if (!this.isValidValue(value)) {
-	                if (field != null) {
-	                    msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
-	                } else {
-	                    msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
-	                }
-	                return (0, _assert.assert)(false, msg, _errors.DateTimeException);
-	            }
-	        }
-	
-	        /*
-	         * Outputs this range as a String.
-	         * 
-	         * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
-	         * where the largestMin or smallestMax sections may be omitted, together
-	         * with associated slash, if they are the same as the min or max.
-	         *
-	         * @return {string} a string representation of this range, not null
-	         */
-	
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
-	            str += ' - ';
-	            str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
-	            return str;
-	        }
-	
-	        /*
-	         * called with 2 params: Obtains a fixed value range.
-	         *
-	         * This factory obtains a range where the minimum and maximum values are fixed.
-	         * For example, the ISO month-of-year always runs from 1 to 12.
-	         *
-	         * @param min  the minimum value
-	         * @param max  the maximum value
-	         * @return the ValueRange for min, max, not null
-	          * called with 3 params: Obtains a variable value range.
-	         *
-	         * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
-	         * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
-	         *
-	         * @param min  the minimum value
-	         * @param maxSmallest  the smallest maximum value
-	         * @param maxLargest  the largest maximum value
-	         * @return the ValueRange for min, smallest max, largest max, not null
-	          * called with 4 params: Obtains a fully variable value range.
-	         *
-	         * This factory obtains a range where both the minimum and maximum value may vary.
-	         *
-	         * @param minSmallest  the smallest minimum value
-	         * @param minLargest  the largest minimum value
-	         * @param maxSmallest  the smallest maximum value
-	         * @param maxLargest  the largest maximum value
-	         * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
-	         */
-	
-	    }], [{
-	        key: 'of',
-	        value: function of() {
-	            if (arguments.length === 2) {
-	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
-	            } else if (arguments.length === 3) {
-	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
-	            } else if (arguments.length === 4) {
-	                return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
-	            } else {
-	                return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length);
-	            }
-	        }
-	    }]);
-	
-	    return ValueRange;
-	})();
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
-	 * <p>
-	 * {@code Year} is an immutable date-time object that represents a year.
-	 * Any field that can be derived from a year can be obtained.
-	 * <p>
-	 * <b>Note that years in the ISO chronology only align with years in the
-	 * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
-	 * modern Gregorian/ISO rules until 1920.
-	 * As such, historical years must be treated with caution.</b>
-	 * <p>
-	 * This class does not store or represent a month, day, time or time-zone.
-	 * For example, the value "2007" can be stored in a {@code Year}.
-	 * <p>
-	 * Years represented by this class follow the ISO-8601 standard and use
-	 * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
-	 * <p>
-	 * The ISO-8601 calendar system is the modern civil calendar system used today
-	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
-	 * system, in which today's rules for leap years are applied for all time.
-	 * For most applications written today, the ISO-8601 rules are entirely suitable.
-	 * However, any application that makes use of historical dates, and requires them
-	 * to be accurate will find the ISO-8601 approach unsuitable.
-	 *
-	 */
-	
-	var Year = exports.Year = function Year() {
-	  _classCallCheck(this, Year);
-	};
-	
-	/**
-	 * The minimum supported year
-	 */
-	
-	Year.MIN_VALUE = -999999;
-	/**
-	 * The maximum supported year
-	 */
-	Year.MAX_VALUE = 999999;
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Clock = undefined;
 	
-	var _Instant = __webpack_require__(12);
+	var _Instant = __webpack_require__(2);
 	
-	var _ZoneOffset = __webpack_require__(18);
+	var _ZoneOffset = __webpack_require__(16);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -1616,7 +461,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(Clock);
 
 /***/ },
-/* 12 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1628,19 +473,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Instant = undefined;
 	
-	var _ChronoField = __webpack_require__(7);
+	var _ChronoField = __webpack_require__(3);
 	
-	var _ChronoUnit = __webpack_require__(13);
+	var _ChronoUnit = __webpack_require__(11);
 	
-	var _Clock = __webpack_require__(11);
+	var _Clock = __webpack_require__(1);
 	
-	var _errors = __webpack_require__(3);
+	var _errors = __webpack_require__(5);
 	
-	var _LocalTime = __webpack_require__(15);
+	var _LocalTime = __webpack_require__(13);
 	
-	var _MathUtil = __webpack_require__(5);
+	var _MathUtil = __webpack_require__(4);
 	
-	var _TemporalAccessor2 = __webpack_require__(16);
+	var _TemporalAccessor2 = __webpack_require__(14);
 	
 	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 	
@@ -1648,7 +493,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
 	var MIN_SECONDS = -31619087596800; // -999999-01-01
@@ -2223,7 +1072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
 
 /***/ },
-/* 13 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2231,11 +1080,728 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ChronoField = undefined;
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	var _TemporalField2 = __webpack_require__(7);
+	
+	var _ValueRange = __webpack_require__(8);
+	
+	var _Year = __webpack_require__(10);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ChronoField = exports.ChronoField = (function (_TemporalField) {
+	    _inherits(ChronoField, _TemporalField);
+	
+	    function ChronoField(name, baseUnit, rangeUnit, range, displayNameKey) {
+	        _classCallCheck(this, ChronoField);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoField).call(this));
+	
+	        _this.name = function () {
+	            return name;
+	        };
+	        _this.baseUnit = function () {
+	            return baseUnit;
+	        };
+	        _this.rangeUnit = function () {
+	            return rangeUnit;
+	        };
+	        _this.range = function () {
+	            return range;
+	        };
+	        _this.displayNameKey = function () {
+	            return displayNameKey;
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(ChronoField, [{
+	        key: 'checkValidValue',
+	        value: function checkValidValue(value) {
+	            return this.range().checkValidValue(value, this.name());
+	        }
+	
+	        /**
+	         * Get the range of valid values for this field using the temporal object to
+	         * refine the result.
+	         * <p>
+	         * This uses the temporal object to find the range of valid values for the field.
+	         * This is similar to {@link #range()}, however this method refines the result
+	         * using the temporal. For example, if the field is {@code DAY_OF_MONTH} the
+	         * {@code range} method is not accurate as there are four possible month lengths,
+	         * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
+	         * accurate, returning just one of those four options.
+	         * <p>
+	         * There are two equivalent ways of using this method.
+	         * The first is to invoke this method directly.
+	         * The second is to use {@link TemporalAccessor#range(TemporalField)}:
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   temporal = thisField.rangeRefinedBy(temporal);
+	         *   temporal = temporal.range(thisField);
+	         * </pre>
+	         * It is recommended to use the second approach, {@code range(TemporalField)},
+	         * as it is a lot clearer to read in code.
+	         * <p>
+	         * Implementations should perform any queries or calculations using the fields
+	         * available in {@link ChronoField}.
+	         * If the field is not supported a {@code DateTimeException} must be thrown.
+	         *
+	         * @param {TemporalAccessor} temporal  the temporal object used to refine the result, not null
+	         * @return {Va;lueRange} the range of valid values for this field, not null
+	         * @throws DateTimeException if the range for the field cannot be obtained
+	         */
+	
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            return temporal.range(this);
+	        }
+	    }]);
+	
+	    return ChronoField;
+	})(_TemporalField2.TemporalField);
+	
+	// TODO: why can't we use ChronoUnit.NANOS, ... in these initializers??
+	//ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
+	
+	ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', null, null, _ValueRange.ValueRange.of(0, 999999999));
+	
+	ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', null, null, _ValueRange.ValueRange.of(0, 999999));
+	
+	ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', null, null, _ValueRange.ValueRange.of(0, 999));
+	
+	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', null, null, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+	
+	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', null, null, _ValueRange.ValueRange.of(1, 12), 'month');
+	
+	ChronoField.YEAR = new ChronoField('Year', null, null, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
+	
+	ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', null, null, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.MathUtil = exports.MIN_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = undefined;
+	
+	var _errors = __webpack_require__(5);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MAX_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Math.pow(2, 53) - 1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
+	var MIN_SAFE_INTEGER = exports.MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER ? Number.MIN_SAFE_INTEGER : -(Math.pow(2, 53) - 1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
+	
+	/**
+	 * Math helper with static function for integer operations
+	 */
+	
+	var MathUtil = exports.MathUtil = (function () {
+	    function MathUtil() {
+	        _classCallCheck(this, MathUtil);
+	    }
+	
+	    _createClass(MathUtil, null, [{
+	        key: 'intDiv',
+	        value: function intDiv(x, y) {
+	            var r = x / y;
+	            if (r < 0) {
+	                return Math.ceil(r);
+	            } else {
+	                return Math.floor(r);
+	            }
+	        }
+	    }, {
+	        key: 'intMod',
+	        value: function intMod(x, y) {
+	            var r = x - MathUtil.intDiv(x, y) * y;
+	            if (r < 0) {
+	                return Math.ceil(r);
+	            } else {
+	                return Math.floor(r);
+	            }
+	        }
+	    }, {
+	        key: 'floorDiv',
+	        value: function floorDiv(x, y) {
+	            var r = Math.floor(x / y);
+	            return r;
+	        }
+	    }, {
+	        key: 'floorMod',
+	        value: function floorMod(x, y) {
+	            var r = x - MathUtil.floorDiv(x, y) * y;
+	            return r;
+	        }
+	    }, {
+	        key: 'safeAdd',
+	        value: function safeAdd(x, y) {
+	            if (x === 0) {
+	                var _r = y;
+	                if (_r > MAX_SAFE_INTEGER || _r < MIN_SAFE_INTEGER) {
+	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	                }
+	                return _r;
+	            }
+	            if (y === 0) {
+	                var _r2 = x;
+	                if (_r2 > MAX_SAFE_INTEGER || _r2 < MIN_SAFE_INTEGER) {
+	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	                }
+	                return _r2;
+	            }
+	            if (x === undefined || y === undefined) {
+	                throw new _errors.ArithmeticException('Invalid addition using undefined as argument');
+	            }
+	            if (isNaN(x) || isNaN(y)) {
+	                throw new _errors.ArithmeticException('Invalid addition using NaN as argument');
+	            }
+	            var r = x + y;
+	            // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
+	            // TODO: is this correct and complete?
+	            if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER || r === x || r === y) {
+	                throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	            }
+	            return r;
+	        }
+	    }, {
+	        key: 'safeSubtract',
+	        value: function safeSubtract(x, y) {
+	            if (x === 0) {
+	                var _r3 = y;
+	                if (_r3 > MAX_SAFE_INTEGER || _r3 < MIN_SAFE_INTEGER) {
+	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	                }
+	                return _r3;
+	            }
+	            if (y === 0) {
+	                var _r4 = x;
+	                if (_r4 > MAX_SAFE_INTEGER || _r4 < MIN_SAFE_INTEGER) {
+	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	                }
+	                return _r4;
+	            }
+	            if (x === undefined || y === undefined) {
+	                throw new _errors.ArithmeticException('Invalid subtraction using undefined as argument');
+	            }
+	            if (isNaN(x) || isNaN(y)) {
+	                throw new _errors.ArithmeticException('Invalid subtraction using NaN as argument');
+	            }
+	            var r = x - y;
+	            // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
+	            // TODO: is this correct and complete?
+	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r === x || r === y) {
+	                throw new _errors.ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER!');
+	            }
+	            return r;
+	        }
+	    }, {
+	        key: 'safeMultiply',
+	        value: function safeMultiply(x, y) {
+	            if (x == 1) {
+	                return y;
+	            }
+	            if (y == 1) {
+	                return x;
+	            }
+	            if (x == 0 || y == 0) {
+	                return 0;
+	            }
+	            var r = x * y;
+	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y != x || x == MIN_SAFE_INTEGER && y == -1 || y == MIN_SAFE_INTEGER && x == -1) {
+	                throw new _errors.ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
+	            }
+	            return r;
+	        }
+	
+	        /**
+	         * Compares two Numbers.
+	         *
+	         * @param {Number} a  the first value
+	         * @param {Number} b  the second value
+	         * @return {Number} the result
+	         */
+	
+	    }, {
+	        key: 'compareNumbers',
+	        value: function compareNumbers(a, b) {
+	            if (a < b) {
+	                return -1;
+	            }
+	            if (a > b) {
+	                return 1;
+	            }
+	            return 0;
+	        }
+	    }]);
+	
+	    return MathUtil;
+	})();
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.NullPointerException = exports.ArithmeticException = exports.UnsupportedTemporalTypeException = exports.DateTimeParseException = exports.DateTimeException = undefined;
+	
+	var _es6Error = __webpack_require__(6);
+	
+	var _es6Error2 = _interopRequireDefault(_es6Error);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var DateTimeException = exports.DateTimeException = (function (_ExtendableError) {
+	    _inherits(DateTimeException, _ExtendableError);
+	
+	    function DateTimeException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeException' : arguments[0];
+	        var cause = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	
+	        _classCallCheck(this, DateTimeException);
+	
+	        var msg = message;
+	        if (cause !== null && cause instanceof Error) {
+	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+	        }
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeException).call(this, msg));
+	    }
+	
+	    return DateTimeException;
+	})(_es6Error2.default);
+	
+	var DateTimeParseException = exports.DateTimeParseException = (function (_ExtendableError2) {
+	    _inherits(DateTimeParseException, _ExtendableError2);
+	
+	    function DateTimeParseException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeParseException' : arguments[0];
+	        var text = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+	        var index = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var cause = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+	
+	        _classCallCheck(this, DateTimeParseException);
+	
+	        var msg = message + ': ' + text + ', at index: ' + index;
+	        if (cause !== null && cause instanceof Error) {
+	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+	        }
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeParseException).call(this, msg));
+	    }
+	
+	    return DateTimeParseException;
+	})(_es6Error2.default);
+	
+	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = (function (_ExtendableError3) {
+	    _inherits(UnsupportedTemporalTypeException, _ExtendableError3);
+	
+	    function UnsupportedTemporalTypeException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'UnsupportedTemporalTypeException' : arguments[0];
+	
+	        _classCallCheck(this, UnsupportedTemporalTypeException);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UnsupportedTemporalTypeException).call(this, message));
+	    }
+	
+	    return UnsupportedTemporalTypeException;
+	})(_es6Error2.default);
+	
+	var ArithmeticException = exports.ArithmeticException = (function (_ExtendableError4) {
+	    _inherits(ArithmeticException, _ExtendableError4);
+	
+	    function ArithmeticException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'ArithmeticException' : arguments[0];
+	
+	        _classCallCheck(this, ArithmeticException);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ArithmeticException).call(this, message));
+	    }
+	
+	    return ArithmeticException;
+	})(_es6Error2.default);
+	
+	var NullPointerException = exports.NullPointerException = (function (_ExtendableError5) {
+	    _inherits(NullPointerException, _ExtendableError5);
+	
+	    function NullPointerException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'NullPointerException' : arguments[0];
+	
+	        _classCallCheck(this, NullPointerException);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(NullPointerException).call(this, message));
+	    }
+	
+	    return NullPointerException;
+	})(_es6Error2.default);
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ExtendableError = (function (_Error) {
+	  _inherits(ExtendableError, _Error);
+	
+	  function ExtendableError() {
+	    var message = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+	
+	    _classCallCheck(this, ExtendableError);
+	
+	    _get(Object.getPrototypeOf(ExtendableError.prototype), 'constructor', this).call(this, message);
+	
+	    // extending Error is weird and does not propagate `message`
+	    Object.defineProperty(this, 'message', {
+	      enumerable: false,
+	      value: message
+	    });
+	
+	    Object.defineProperty(this, 'name', {
+	      enumerable: false,
+	      value: this.constructor.name
+	    });
+	
+	    if (Error.hasOwnProperty('captureStackTrace')) {
+	      Error.captureStackTrace(this, this.constructor);
+	      return;
+	    }
+	
+	    Object.defineProperty(this, 'stack', {
+	      enumerable: false,
+	      value: new Error(message).stack
+	    });
+	  }
+	
+	  return ExtendableError;
+	})(Error);
+	
+	exports['default'] = ExtendableError;
+	module.exports = exports['default'];
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var TemporalField = exports.TemporalField = function TemporalField() {
+	    _classCallCheck(this, TemporalField);
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ValueRange = undefined;
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * The range of valid values for a date-time field.
+	 * 
+	 * All TemporalField instances have a valid range of values.
+	 * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
+	 * This class captures that valid range.
+	 * 
+	 * It is important to be aware of the limitations of this class.
+	 * Only the minimum and maximum values are provided.
+	 * It is possible for there to be invalid values within the outer range.
+	 * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
+	 * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
+	 * 
+	 * Instances of this class are not tied to a specific field.
+	 *
+	 */
+	
+	var ValueRange = exports.ValueRange = (function () {
+	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
+	        _classCallCheck(this, ValueRange);
+	
+	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'');
+	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'');
+	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'');
+	
+	        this.minimum = function () {
+	            return minSmallest;
+	        };
+	        this.largestMinimum = function () {
+	            return minLargest;
+	        };
+	        this.maximum = function () {
+	            return maxLargest;
+	        };
+	        this.smallestMaximum = function () {
+	            return maxSmallest;
+	        };
+	    }
+	
+	    _createClass(ValueRange, [{
+	        key: 'isValidValue',
+	        value: function isValidValue(value) {
+	            return this.minimum() <= value && value <= this.maximum();
+	        }
+	    }, {
+	        key: 'checkValidValue',
+	        value: function checkValidValue(value, field) {
+	            var msg;
+	            if (!this.isValidValue(value)) {
+	                if (field != null) {
+	                    msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
+	                } else {
+	                    msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
+	                }
+	                return (0, _assert.assert)(false, msg, _errors.DateTimeException);
+	            }
+	        }
+	
+	        /*
+	         * Outputs this range as a String.
+	         * 
+	         * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
+	         * where the largestMin or smallestMax sections may be omitted, together
+	         * with associated slash, if they are the same as the min or max.
+	         *
+	         * @return {string} a string representation of this range, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
+	            str += ' - ';
+	            str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
+	            return str;
+	        }
+	
+	        /*
+	         * called with 2 params: Obtains a fixed value range.
+	         *
+	         * This factory obtains a range where the minimum and maximum values are fixed.
+	         * For example, the ISO month-of-year always runs from 1 to 12.
+	         *
+	         * @param min  the minimum value
+	         * @param max  the maximum value
+	         * @return the ValueRange for min, max, not null
+	          * called with 3 params: Obtains a variable value range.
+	         *
+	         * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
+	         * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
+	         *
+	         * @param min  the minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return the ValueRange for min, smallest max, largest max, not null
+	          * called with 4 params: Obtains a fully variable value range.
+	         *
+	         * This factory obtains a range where both the minimum and maximum value may vary.
+	         *
+	         * @param minSmallest  the smallest minimum value
+	         * @param minLargest  the largest minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
+	         */
+	
+	    }], [{
+	        key: 'of',
+	        value: function of() {
+	            if (arguments.length === 2) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
+	            } else if (arguments.length === 3) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
+	            } else if (arguments.length === 4) {
+	                return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
+	            } else {
+	                return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length);
+	            }
+	        }
+	    }]);
+	
+	    return ValueRange;
+	})();
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.assert = assert;
+	exports.requireNonNull = requireNonNull;
+	
+	var _errors = __webpack_require__(5);
+	
+	function assert(assertion, msg, error) {
+	    if (!assertion) {
+	        if (error) {
+	            throw new error(msg);
+	        } else {
+	            throw new Error(msg);
+	        }
+	    }
+	} /**
+	   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	   */
+	
+	function requireNonNull(value, parameterName) {
+	    if (value == null) {
+	        throw new _errors.NullPointerException(parameterName + ' must not be null');
+	    }
+	    return value;
+	}
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	/**
+	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
+	 * <p>
+	 * {@code Year} is an immutable date-time object that represents a year.
+	 * Any field that can be derived from a year can be obtained.
+	 * <p>
+	 * <b>Note that years in the ISO chronology only align with years in the
+	 * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
+	 * modern Gregorian/ISO rules until 1920.
+	 * As such, historical years must be treated with caution.</b>
+	 * <p>
+	 * This class does not store or represent a month, day, time or time-zone.
+	 * For example, the value "2007" can be stored in a {@code Year}.
+	 * <p>
+	 * Years represented by this class follow the ISO-8601 standard and use
+	 * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
+	 * <p>
+	 * The ISO-8601 calendar system is the modern civil calendar system used today
+	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	 * system, in which today's rules for leap years are applied for all time.
+	 * For most applications written today, the ISO-8601 rules are entirely suitable.
+	 * However, any application that makes use of historical dates, and requires them
+	 * to be accurate will find the ISO-8601 approach unsuitable.
+	 *
+	 */
+	
+	var Year = exports.Year = function Year() {
+	  _classCallCheck(this, Year);
+	};
+	
+	/**
+	 * The minimum supported year
+	 */
+	
+	Year.MIN_VALUE = -999999;
+	/**
+	 * The maximum supported year
+	 */
+	Year.MAX_VALUE = 999999;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+	
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.ChronoUnit = undefined;
 	
-	var _Duration = __webpack_require__(14);
+	var _Duration = __webpack_require__(12);
 	
 	var _Year = __webpack_require__(10);
 	
@@ -2613,29 +2179,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
 
 /***/ },
-/* 14 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Duration = undefined;
 	
-	var _assert = __webpack_require__(2);
+	var _assert = __webpack_require__(9);
 	
-	var _ChronoField = __webpack_require__(7);
+	var _ChronoField = __webpack_require__(3);
 	
-	var _ChronoUnit = __webpack_require__(13);
+	var _ChronoUnit = __webpack_require__(11);
 	
-	var _errors = __webpack_require__(3);
+	var _errors = __webpack_require__(5);
 	
-	var _LocalTime = __webpack_require__(15);
+	var _LocalTime = __webpack_require__(13);
 	
-	var _MathUtil = __webpack_require__(5);
+	var _MathUtil = __webpack_require__(4);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4013,7 +3583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Duration.ZERO = new Duration(0, 0);
 
 /***/ },
-/* 15 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4023,6 +3593,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
 	
 	var LocalTime = exports.LocalTime = function LocalTime() {
 	  _classCallCheck(this, LocalTime);
@@ -4039,23 +3615,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	LocalTime.NANOS_PER_SECOND = 1000000000;
 
 /***/ },
-/* 16 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.TemporalAccessor = undefined;
 	
-	var _ChronoField = __webpack_require__(7);
+	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalQueries = __webpack_require__(17);
+	var _TemporalQueries = __webpack_require__(15);
 	
-	var _errors = __webpack_require__(3);
+	var _errors = __webpack_require__(5);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4154,7 +3734,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.TemporalAccessor = TemporalAccessor;
 
 /***/ },
-/* 17 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4167,6 +3747,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
 	/**
 	 * Common implementations of {@code TemporalQuery}.
 	 * <p>
@@ -4488,21 +4073,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 18 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.ZoneOffset = undefined;
 	
-	var _errors = __webpack_require__(3);
+	var _errors = __webpack_require__(5);
 	
-	var _LocalTime = __webpack_require__(15);
+	var _LocalTime = __webpack_require__(13);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4626,6 +4215,551 @@ return /******/ (function(modules) { // webpackBootstrap
 	ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(MAX_SECONDS);
 
 /***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.LocalDate = undefined;
+	
+	var _assert = __webpack_require__(9);
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _IsoChronology = __webpack_require__(18);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _Clock = __webpack_require__(1);
+	
+	var _Month = __webpack_require__(19);
+	
+	var _Year = __webpack_require__(10);
+	
+	var _LocalTime = __webpack_require__(13);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * The number of days in a 400 year cycle.
+	 */
+	var DAYS_PER_CYCLE = 146097;
+	
+	/**
+	 * The number of days from year zero to year 1970.
+	 * There are five 400 year cycles from year zero to 2000.
+	 * There are 7 leap years from 1970 to 2000.
+	 */
+	var DAYS_0000_TO_1970 = DAYS_PER_CYCLE * 5 - (30 * 365 + 7);
+	
+	/**
+	 * A date without a time-zone in the ISO-8601 calendar system,
+	 * such as 2007-12-03.
+	 *
+	 * LocalDate is an immutable date-time object that represents a date,
+	 * often viewed as year-month-day. Other date fields, such as day-of-year,
+	 * day-of-week and week-of-year, can also be accessed.
+	 * For example, the value "2nd October 2007" can be stored in a LocalDate.
+	 *
+	 * This class does not store or represent a time or time-zone.
+	 * Instead, it is a description of the date, as used for birthdays.
+	 * It cannot represent an instant on the time-line without additional information
+	 * such as an offset or time-zone.
+	 */
+	
+	var LocalDate = exports.LocalDate = (function () {
+	
+	    /**
+	     *
+	     * @param {number} year
+	     * @param {Month, number} month
+	     * @param {number} dayOfMonth
+	     */
+	
+	    function LocalDate(year, month, dayOfMonth) {
+	        _classCallCheck(this, LocalDate);
+	
+	        if (month instanceof _Month.Month) {
+	            month = month.value();
+	        }
+	        LocalDate.validate(year, month, dayOfMonth);
+	        this._year = year;
+	        this._month = month;
+	        this._day = dayOfMonth;
+	    }
+	
+	    /**
+	     * Obtains an instance of {@code LocalDate} from a year, month and day.
+	     * <p>
+	     * This returns a {@code LocalDate} with the specified year, month and day-of-month.
+	     * The day must be valid for the year and month, otherwise an exception will be thrown.
+	     *
+	     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+	     * @param {Month, number} month  the month-of-year to represent, from 1 (January) to 12 (December)
+	     * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
+	     * @return LocalDate the local date, not null
+	     * @throws DateTimeException if the value of any field is out of range,
+	     *  or if the day-of-month is invalid for the month-year
+	     */
+	
+	    _createClass(LocalDate, [{
+	        key: 'year',
+	
+	        /**
+	         *
+	         * @return {number} gets the year
+	         */
+	        value: function year() {
+	            return this._year;
+	        }
+	
+	        /**
+	         *
+	         * @return {number} gets the month
+	         */
+	
+	    }, {
+	        key: 'monthValue',
+	        value: function monthValue() {
+	            return this._month;
+	        }
+	    }, {
+	        key: 'month',
+	        value: function month() {
+	            return _Month.Month.of(this._month);
+	        }
+	
+	        /**
+	         *
+	         * @return {number} gets the day of month
+	         */
+	
+	    }, {
+	        key: 'dayOfMonth',
+	        value: function dayOfMonth() {
+	            return this._day;
+	        }
+	
+	        /**
+	         * Returns a copy of this LocalDate with the specified number of days added.
+	         * 
+	         * This method adds the specified amount to the days field incrementing the
+	         * month and year fields as necessary to ensure the result remains valid.
+	         * The result is only invalid if the maximum/minimum year is exceeded.
+	         * 
+	         * For example, 2008-12-31 plus one day would result in 2009-01-01.
+	         * 
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} daysToAdd - the days to add, may be negative
+	         * @return {LocalDate} a LocalDate based on this date with the days added, not null
+	         * @throws AssertionError if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'plusDays',
+	        value: function plusDays(daysToAdd) {
+	            if (daysToAdd === 0) {
+	                return this;
+	            }
+	            var mjDay = this.toEpochDay() + daysToAdd;
+	            return LocalDate.ofEpochDay(mjDay);
+	        }
+	
+	        /*
+	         * Returns a copy of this LocalDate with the specified number of days subtracted.
+	         * 
+	         * This method subtracts the specified amount from the days field decrementing the
+	         * month and year fields as necessary to ensure the result remains valid.
+	         * The result is only invalid if the maximum/minimum year is exceeded.
+	         * 
+	         * For example, 2009-01-01 minus one day would result in 2008-12-31.
+	         * 
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} daysToSubtract - the days to subtract, may be negative
+	         * @return {LocalDate} a LocalDate based on this date with the days subtracted, not null
+	         * @throws AssertionError if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'minusDays',
+	        value: function minusDays(daysToSubtract) {
+	            return this.plusDays(daysToSubtract * -1);
+	        }
+	
+	        /**
+	         * Converts this date to the Epoch Day.
+	         *
+	         * The Epoch Day count is a simple incrementing count of days where day 0 is 1970-01-01 (ISO).
+	         * This definition is the same for all chronologies, enabling conversion.
+	         *
+	         * @return {number} the Epoch Day equivalent to this date
+	         */
+	
+	    }, {
+	        key: 'toEpochDay',
+	        value: function toEpochDay() {
+	            var y = this.year();
+	            var m = this.monthValue();
+	            var total = 0;
+	            total += 365 * y;
+	            if (y >= 0) {
+	                total += _MathUtil.MathUtil.intDiv(y + 3, 4) - _MathUtil.MathUtil.intDiv(y + 99, 100) + _MathUtil.MathUtil.intDiv(y + 399, 400);
+	            } else {
+	                total -= _MathUtil.MathUtil.intDiv(y, -4) - _MathUtil.MathUtil.intDiv(y, -100) + _MathUtil.MathUtil.intDiv(y, -400);
+	            }
+	            total += _MathUtil.MathUtil.intDiv(367 * m - 362, 12);
+	            total += this.dayOfMonth() - 1;
+	            if (m > 2) {
+	                total--;
+	                if (!_IsoChronology.IsoChronology.isLeapYear(y)) {
+	                    total--;
+	                }
+	            }
+	            return total - DAYS_0000_TO_1970;
+	        }
+	
+	        /**
+	         * Obtains the current date from the system clock in the default time-zone or
+	         * if specified, the current date from the specified clock.
+	         *
+	         * This will query the specified clock to obtain the current date - today.
+	         * Using this method allows the use of an alternate clock for testing.
+	         *
+	         * @param clock  the clock to use, if null, the system clock and default time-zone is used.
+	         * @return the current date, not null
+	         */
+	
+	    }, {
+	        key: 'equals',
+	
+	        /**
+	         * Checks if this date is equal to another date.
+	         *
+	         * Compares this LocalDate with another ensuring that the date is the same.
+	         *
+	         * Only objects of type LocalDate are compared, other types return false.
+	         *
+	         * @param otherDate  the object to check, null returns false
+	         * @return true if this is equal to the other date
+	         */
+	        value: function equals(otherDate) {
+	            if (this === otherDate) {
+	                return true;
+	            }
+	            if (otherDate instanceof LocalDate) {
+	                return this._compareTo(otherDate) === 0;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: '_compareTo',
+	        value: function _compareTo(otherDate) {
+	            var cmp = this.year() - otherDate.year();
+	            if (cmp === 0) {
+	                cmp = this.monthValue() - otherDate.monthValue();
+	                if (cmp === 0) {
+	                    cmp = this.dayOfMonth() - otherDate.dayOfMonth();
+	                }
+	            }
+	            return cmp;
+	        }
+	
+	        /**
+	         * Outputs this date as a String, such as 2007-12-03.
+	         * The output will be in the ISO-8601 format uuuu-MM-dd.
+	         *
+	         * @return {string} a string representation of this date, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var dayString, monthString, yearString;
+	
+	            var yearValue = this.year();
+	            var monthValue = this.monthValue();
+	            var dayValue = this.dayOfMonth();
+	
+	            var absYear = Math.abs(yearValue);
+	
+	            if (absYear < 1000) {
+	                if (yearValue < 0) {
+	                    yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+	                } else {
+	                    yearString = ('' + (yearValue + 10000)).slice(-4);
+	                }
+	            } else {
+	                if (yearValue > 9999) {
+	                    yearString = '+' + yearValue;
+	                } else {
+	                    yearString = '' + yearValue;
+	                }
+	            }
+	
+	            if (monthValue < 10) {
+	                monthString = '-0' + monthValue;
+	            } else {
+	                monthString = '-' + monthValue;
+	            }
+	
+	            if (dayValue < 10) {
+	                dayString = '-0' + dayValue;
+	            } else {
+	                dayString = '-' + dayValue;
+	            }
+	
+	            return yearString + monthString + dayString;
+	        }
+	
+	        /**
+	         * Obtains an instance of LocalDate from the epoch day count.
+	         *
+	         * This returns a LocalDate with the specified epoch-day.
+	         * The {@link ChronoField#EPOCH_DAY EPOCH_DAY} is a simple incrementing count
+	         * of days where day 0 is 1970-01-01. Negative numbers represent earlier days.
+	         *
+	         * @param {number} epochDay - the Epoch Day to convert, based on the epoch 1970-01-01
+	         * @return {LocalDate} the local date, not null
+	         * @throws AssertionError if the epoch days exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'withDayOfMonth',
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+	         * <p>
+	         * If the resulting date is invalid, an exception is thrown.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+	         * @return {LocalDate} based on this date with the requested day, not null
+	         * @throws DateTimeException if the day-of-month value is invalid,
+	         *  or if the day-of-month is invalid for the month-year
+	         */
+	        value: function withDayOfMonth(dayOfMonth) {
+	            if (this._day === dayOfMonth) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, this._month, dayOfMonth);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the month-of-year altered.
+	         * <p>
+	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+	         * @return {@code LocalDate} based on this date with the requested month, not null
+	         * @throws DateTimeException if the month-of-year value is invalid
+	         */
+	
+	    }, {
+	        key: 'withMonth',
+	        value: function withMonth(month) {
+	            if (this._month === month) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, month, this._day);
+	        }
+	
+	        /**
+	         * @private
+	         */
+	
+	    }], [{
+	        key: 'of',
+	        value: function of(year, month, dayOfMonth) {
+	            return new LocalDate(year, month, dayOfMonth);
+	        }
+	    }, {
+	        key: 'now',
+	        value: function now() {
+	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
+	
+	            var now = clock.instant();
+	            var offset = clock.offset(now);
+	            var epochSec = now.epochSecond() + offset.totalSeconds();
+	            var epochDay = _MathUtil.MathUtil.floorDiv(epochSec, _LocalTime.LocalTime.SECONDS_PER_DAY);
+	            return LocalDate.ofEpochDay(epochDay);
+	        }
+	    }, {
+	        key: 'ofEpochDay',
+	        value: function ofEpochDay(epochDay) {
+	            var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
+	            zeroDay = epochDay + DAYS_0000_TO_1970;
+	            zeroDay -= 60;
+	            adjust = 0;
+	            if (zeroDay < 0) {
+	                adjustCycles = _MathUtil.MathUtil.intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+	                adjust = adjustCycles * 400;
+	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
+	            }
+	            yearEst = _MathUtil.MathUtil.intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
+	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
+	            if (doyEst < 0) {
+	                yearEst--;
+	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
+	            }
+	            yearEst += adjust;
+	            marchDoy0 = doyEst;
+	            marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
+	            month = (marchMonth0 + 2) % 12 + 1;
+	            dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
+	            yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
+	            year = yearEst;
+	            return new LocalDate(year, month, dom);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a year and day-of-year.
+	         * <p>
+	         * This returns a {@code LocalDate} with the specified year and day-of-year.
+	         * The day-of-year must be valid for the year, otherwise an exception will be thrown.
+	         *
+	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+	         * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
+	         * @return LocalDate the local date, not null
+	         * @throws DateTimeException if the value of any field is out of range,
+	         *  or if the day-of-year is invalid for the year
+	         */
+	
+	    }, {
+	        key: 'ofYearDay',
+	        value: function ofYearDay(year, dayOfYear) {
+	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
+	            //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
+	            var leap = _IsoChronology.IsoChronology.isLeapYear(year);
+	            if (dayOfYear === 366 && leap === false) {
+	                (0, _assert.assert)(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
+	            }
+	            var moy = _Month.Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
+	            var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
+	            if (dayOfYear > monthEnd) {
+	                moy = moy.plus(1);
+	            }
+	            var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
+	            return new LocalDate(year, moy.value(), dom);
+	        }
+	    }, {
+	        key: 'validate',
+	        value: function validate(year, month, dayOfMonth) {
+	            var dom;
+	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
+	            _ChronoField.ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+	            _ChronoField.ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
+	            if (dayOfMonth > 28) {
+	                dom = 31;
+	                switch (month) {
+	                    case 2:
+	                        dom = _IsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28;
+	                        break;
+	                    case 4:
+	                    case 6:
+	                    case 9:
+	                    case 11:
+	                        dom = 30;
+	                }
+	                if (dayOfMonth > dom) {
+	                    if (dayOfMonth === 29) {
+	                        (0, _assert.assert)(false, 'Invalid date \'February 29\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
+	                    } else {
+	                        (0, _assert.assert)(false, 'Invalid date \'' + year + '\' \'' + month + '\' \'' + dayOfMonth + '\'', _errors.DateTimeException);
+	                    }
+	                }
+	            }
+	        }
+	    }]);
+	
+	    return LocalDate;
+	})();
+	
+	/**
+	 * The minimum supported {@code LocalDate}
+	 * This could be used by an application as a "far past" date.
+	 */
+	
+	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
+	/**
+	 * The maximum supported {@code LocalDate}
+	 * This could be used by an application as a "far future" date.
+	 */
+	LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var IsoChronology = exports.IsoChronology = (function () {
+	  function IsoChronology() {
+	    _classCallCheck(this, IsoChronology);
+	  }
+	
+	  _createClass(IsoChronology, null, [{
+	    key: "isLeapYear",
+	
+	    /**
+	     * Checks if the year is a leap year, according to the ISO proleptic
+	     * calendar system rules.
+	     *
+	     * This method applies the current rules for leap years across the whole time-line.
+	     * In general, a year is a leap year if it is divisible by four without
+	     * remainder. However, years divisible by 100, are not leap years, with
+	     * the exception of years divisible by 400 which are.
+	     *
+	     * For example, 1904 is a leap year it is divisible by 4.
+	     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+	     * leap year as it is divisible by 400.
+	     *
+	     * The calculation is proleptic - applying the same rules into the far future and far past.
+	     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+	     *
+	     * @param {number} prolepticYear - the ISO proleptic year to check
+	     * @return true if the year is leap, false otherwise
+	     */
+	    value: function isLeapYear(prolepticYear) {
+	      return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
+	    }
+	  }]);
+	
+	  return IsoChronology;
+	})();
+	
+	IsoChronology.INSTANCE = new IsoChronology();
+
+/***/ },
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4640,25 +4774,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Month = undefined;
 	
-	var _assert = __webpack_require__(2);
+	var _assert = __webpack_require__(9);
 	
-	var _ChronoField = __webpack_require__(7);
+	var _ChronoField = __webpack_require__(3);
 	
-	var _ChronoUnit = __webpack_require__(13);
+	var _ChronoUnit = __webpack_require__(11);
 	
-	var _errors = __webpack_require__(3);
+	var _errors = __webpack_require__(5);
 	
-	var _IsoChronology = __webpack_require__(6);
+	var _IsoChronology = __webpack_require__(18);
 	
-	var _TemporalAccessor2 = __webpack_require__(16);
+	var _TemporalAccessor2 = __webpack_require__(14);
 	
-	var _TemporalQueries = __webpack_require__(17);
+	var _TemporalQueries = __webpack_require__(15);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	/**
 	 * A month-of-year, such as 'July'.
