@@ -84,7 +84,7 @@ Any further timezone converting and localization is not part of the first milest
 
 ## License
 
-+ js-joda is released under the [BSD 3-clause license](LICENSE.md):
++ js-joda is released under the [BSD 3-clause license](LICENSE):
 
 + our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
 
