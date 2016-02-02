@@ -41,9 +41,9 @@ export class TemporalAccessor {
      * @throws ArithmeticException if numeric overflow occurs
      */
     query(query) {
-        if (query == TemporalQueries.zoneId()
-                || query == TemporalQueries.chronology()
-                || query == TemporalQueries.precision()) {
+        if (query === TemporalQueries.zoneId()
+                || query === TemporalQueries.chronology()
+                || query === TemporalQueries.precision()) {
             return null;
         }
         return query.queryFrom(this);
