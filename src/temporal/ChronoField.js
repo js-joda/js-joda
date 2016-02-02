@@ -67,6 +67,9 @@ export class ChronoField extends TemporalField {
         return temporal.range(this);
     }
 
+    toString(){
+        return this.name();
+    }
 }
 
 // TODO: why can't we use ChronoUnit.NANOS, ... in these initializers??
