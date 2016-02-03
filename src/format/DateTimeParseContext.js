@@ -76,10 +76,10 @@ class Parsed extends TemporalAccessor {
     }
 
     query(query) {
-        if (query == TemporalQueries.chronology()) {
+        if (query === TemporalQueries.chronology()) {
             return this.chrono;
         }
-        if (query == TemporalQueries.zoneId() || query == TemporalQueries.zone()) {
+        if (query === TemporalQueries.zoneId() || query === TemporalQueries.zone()) {
             return this.zone;
         }
         return super.query(query);
