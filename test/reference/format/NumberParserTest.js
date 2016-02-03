@@ -65,7 +65,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
         });
 
         function test_parse_fresh(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue) {
-            console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
+            // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
             var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
             var pp = new NumberPrinterParser(DAY_OF_MONTH, minWidth, maxWidth, signStyle);
             if (subsequentWidth > 0) {
