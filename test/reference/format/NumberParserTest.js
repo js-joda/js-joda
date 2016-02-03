@@ -3,6 +3,8 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+import {expect} from 'chai';
+
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
@@ -17,6 +19,29 @@ const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 
 describe('org.threeten.bp.TestNumberParser', () => {
+    describe('parseError', () => {
+        it('test_parse_error', () => {
+            var dataProviderErrorData = [
+                [new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER), '12', -1, Error],
+                [new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER), '12', 3, Error]
+            ];
+            for(var i=0; i < dataProviderErrorData.length; i++){
+                test_parse_error.apply(this, dataProviderErrorData[i]);
+            }
+        });
+
+        function test_parse_error(pp, text, pos, expectedError){
+            // console.log(pp, text, pos, expectedError);
+            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+
+            expect(() => {
+                pp.parse(parseContext, text, pos);
+            }).to.throw(expectedError);
+
+            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+        }
+    });
     describe('parseData', () => {
         var dataProviderParseData;
         beforeEach(() => {

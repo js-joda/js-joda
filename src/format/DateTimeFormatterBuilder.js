@@ -4,8 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {SignStyle} from './SignStyle';
+import {assert} from '../assert';
 import {ArithmeticException} from '../errors';
+
+import {SignStyle} from './SignStyle';
 
 export class DateTimeFormatterBuilder{
 
@@ -60,6 +62,7 @@ class NumberPrinterParser {
         if (position === length) {
             return ~position;
         }
+        assert(position>=0 && position<length);
         var sign = text.charAt(position);  // IOOBE if invalid position
         var negative = false;
         var positive = false;
