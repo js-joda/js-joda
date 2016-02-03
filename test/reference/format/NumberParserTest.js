@@ -20,6 +20,7 @@ const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const DAY_OF_WEEK = ChronoField.DAY_OF_WEEK;
 
 describe('org.threeten.bp.TestNumberParser', () => {
+
     describe('parseError', () => {
         it('test_parse_error', () => {
             var dataProviderErrorData = [
@@ -43,6 +44,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
             assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
         }
     });
+
     describe('parseData', () => {
         var dataProviderParseData;
         beforeEach(() => {
@@ -136,6 +138,119 @@ describe('org.threeten.bp.TestNumberParser', () => {
             }
         }
 
+    });
+
+    describe('parseSignsStrict', () => {
+        var provider_parseSignsStrict = [
+            // basics
+            ['0', 1, 2, SignStyle.NEVER, 1, 0],
+            ['1', 1, 2, SignStyle.NEVER, 1, 1],
+            ['2', 1, 2, SignStyle.NEVER, 1, 2],
+            ['3', 1, 2, SignStyle.NEVER, 1, 3],
+            ['4', 1, 2, SignStyle.NEVER, 1, 4],
+            ['5', 1, 2, SignStyle.NEVER, 1, 5],
+            ['6', 1, 2, SignStyle.NEVER, 1, 6],
+            ['7', 1, 2, SignStyle.NEVER, 1, 7],
+            ['8', 1, 2, SignStyle.NEVER, 1, 8],
+            ['9', 1, 2, SignStyle.NEVER, 1, 9],
+            ['10', 1, 2, SignStyle.NEVER, 2, 10],
+            ['100', 1, 2, SignStyle.NEVER, 2, 10],
+            ['100', 1, 3, SignStyle.NEVER, 3, 100],
+
+            // never
+            ['0', 1, 2, SignStyle.NEVER, 1, 0],
+            ['5', 1, 2, SignStyle.NEVER, 1, 5],
+            ['50', 1, 2, SignStyle.NEVER, 2, 50],
+            ['500', 1, 2, SignStyle.NEVER, 2, 50],
+            ['-0', 1, 2, SignStyle.NEVER, ~0, null],
+            ['-5', 1, 2, SignStyle.NEVER, ~0, null],
+            ['-50', 1, 2, SignStyle.NEVER, ~0, null],
+            ['-500', 1, 2, SignStyle.NEVER, ~0, null],
+            ['-AAA', 1, 2, SignStyle.NEVER, ~0, null],
+            ['+0', 1, 2, SignStyle.NEVER, ~0, null],
+            ['+5', 1, 2, SignStyle.NEVER, ~0, null],
+            ['+50', 1, 2, SignStyle.NEVER, ~0, null],
+            ['+500', 1, 2, SignStyle.NEVER, ~0, null],
+            ['+AAA', 1, 2, SignStyle.NEVER, ~0, null],
+
+            // not negative
+            ['0', 1, 2, SignStyle.NOT_NEGATIVE, 1, 0],
+            ['5', 1, 2, SignStyle.NOT_NEGATIVE, 1, 5],
+            ['50', 1, 2, SignStyle.NOT_NEGATIVE, 2, 50],
+            ['500', 1, 2, SignStyle.NOT_NEGATIVE, 2, 50],
+            ['-0', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['-5', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['-50', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['-500', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['-AAA', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['+0', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['+5', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['+50', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['+500', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+            ['+AAA', 1, 2, SignStyle.NOT_NEGATIVE, ~0, null],
+
+            // normal
+            ['0', 1, 2, SignStyle.NORMAL, 1, 0],
+            ['5', 1, 2, SignStyle.NORMAL, 1, 5],
+            ['50', 1, 2, SignStyle.NORMAL, 2, 50],
+            ['500', 1, 2, SignStyle.NORMAL, 2, 50],
+            ['-0', 1, 2, SignStyle.NORMAL, ~0, null],
+            ['-5', 1, 2, SignStyle.NORMAL, 2, -5],
+            ['-50', 1, 2, SignStyle.NORMAL, 3, -50],
+            ['-500', 1, 2, SignStyle.NORMAL, 3, -50],
+            ['-AAA', 1, 2, SignStyle.NORMAL, ~1, null],
+            ['+0', 1, 2, SignStyle.NORMAL, ~0, null],
+            ['+5', 1, 2, SignStyle.NORMAL, ~0, null],
+            ['+50', 1, 2, SignStyle.NORMAL, ~0, null],
+            ['+500', 1, 2, SignStyle.NORMAL, ~0, null],
+            ['+AAA', 1, 2, SignStyle.NORMAL, ~0, null],
+
+            // always
+            ['0', 1, 2, SignStyle.ALWAYS, ~0, null],
+            ['5', 1, 2, SignStyle.ALWAYS, ~0, null],
+            ['50', 1, 2, SignStyle.ALWAYS, ~0, null],
+            ['500', 1, 2, SignStyle.ALWAYS, ~0, null],
+            ['-0', 1, 2, SignStyle.ALWAYS, ~0, null],
+            ['-5', 1, 2, SignStyle.ALWAYS, 2, -5],
+            ['-50', 1, 2, SignStyle.ALWAYS, 3, -50],
+            ['-500', 1, 2, SignStyle.ALWAYS, 3, -50],
+            ['-AAA', 1, 2, SignStyle.ALWAYS, ~1, null],
+            ['+0', 1, 2, SignStyle.ALWAYS, 2, 0],
+            ['+5', 1, 2, SignStyle.ALWAYS, 2, 5],
+            ['+50', 1, 2, SignStyle.ALWAYS, 3, 50],
+            ['+500', 1, 2, SignStyle.ALWAYS, 3, 50],
+            ['+AAA', 1, 2, SignStyle.ALWAYS, ~1, null],
+
+            // exceeds pad
+            ['0', 1, 2, SignStyle.EXCEEDS_PAD, 1, 0],
+            ['5', 1, 2, SignStyle.EXCEEDS_PAD, 1, 5],
+            ['50', 1, 2, SignStyle.EXCEEDS_PAD, ~0, null],
+            ['500', 1, 2, SignStyle.EXCEEDS_PAD, ~0, null],
+            ['-0', 1, 2, SignStyle.EXCEEDS_PAD, ~0, null],
+            ['-5', 1, 2, SignStyle.EXCEEDS_PAD, 2, -5],
+            ['-50', 1, 2, SignStyle.EXCEEDS_PAD, 3, -50],
+            ['-500', 1, 2, SignStyle.EXCEEDS_PAD, 3, -50],
+            ['-AAA', 1, 2, SignStyle.EXCEEDS_PAD, ~1, null],
+            ['+0', 1, 2, SignStyle.EXCEEDS_PAD, ~0, null],
+            ['+5', 1, 2, SignStyle.EXCEEDS_PAD, ~0, null],
+            ['+50', 1, 2, SignStyle.EXCEEDS_PAD, 3, 50],
+            ['+500', 1, 2, SignStyle.EXCEEDS_PAD, 3, 50],
+            ['+AAA', 1, 2, SignStyle.EXCEEDS_PAD, ~1, null]
+        ];
+
+        it('test_parseSignsStrict', () => {
+            for(var i=0; i < provider_parseSignsStrict.length; i++){
+                test_parseSignsStrict.apply(this, provider_parseSignsStrict[i]);
+            }
+        });
+
+        function test_parseSignsStrict(input, min, max, style, parseLen, parseVal){
+            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+            var pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
+            var newPos = pp.parse(parseContext, input, 0);
+            assertEquals(newPos, parseLen);
+            assertParsed(parseContext, DAY_OF_MONTH, (parseVal != null ? parseVal : null));
+        }
     });
 
     function assertParsed(context, temporalField, value) {
