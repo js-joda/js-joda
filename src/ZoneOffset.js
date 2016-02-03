@@ -68,7 +68,7 @@ export class ZoneOffset {
             throw new DateTimeException('Zone offset seconds not in valid range: abs(value) ' +
                     Math.abs(seconds) + ' is not in the range 0 to 59');
         }
-        if (Math.abs(hours) == 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
+        if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
             throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
         }
     }

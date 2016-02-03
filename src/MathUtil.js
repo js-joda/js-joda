@@ -101,17 +101,17 @@ export class MathUtil {
     }
 
     static safeMultiply(x, y) {
-        if (x == 1) {
+        if (x === 1) {
             return y;
         }
-        if (y == 1) {
+        if (y === 1) {
             return x;
         }
-        if (x == 0 || y == 0) {
+        if (x === 0 || y === 0) {
             return 0;
         }
         let r = x * y;
-        if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y != x || (x == MIN_SAFE_INTEGER && y == -1) || (y == MIN_SAFE_INTEGER && x == -1)) {
+        if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r / y !== x || (x === MIN_SAFE_INTEGER && y === -1) || (y === MIN_SAFE_INTEGER && x === -1)) {
             throw new ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
         }
         return r;

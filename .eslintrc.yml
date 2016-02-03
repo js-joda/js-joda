@@ -12,6 +12,9 @@ rules:
   semi:
     - 2
     - always
+  eqeqeq: 
+    - 2
+    - smart
 env:
   es6: true
   browser: true

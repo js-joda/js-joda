@@ -217,7 +217,7 @@ export class Instant extends TemporalAccessor {
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     _plus(secondsToAdd, nanosToAdd) {
-        if ((secondsToAdd | nanosToAdd) == 0) {
+        if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
         var epochSec = this._seconds + secondsToAdd;

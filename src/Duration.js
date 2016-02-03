@@ -243,7 +243,7 @@ export class Duration
                     nanos += LocalTime.NANOS_PER_SECOND;
                 } else if (secs < 0 && nanos > 0) {
                     nanos -= LocalTime.NANOS_PER_SECOND;
-                } else if (secs == 0 && nanos != 0) {
+                } else if (secs === 0 && nanos !== 0) {
                     // two possible meanings for result, so recalculate secs
                     let adjustedEnd = endExclusive.with(ChronoField.NANO_OF_SECOND, startNos);
                     secs = startInclusive.until(adjustedEnd, ChronoUnit.SECONDS);
@@ -309,7 +309,7 @@ export class Duration
         var matches = PATTERN.exec(text);
         if (matches !== null) {
             // check for letter T but no time sections
-            if ('T' === matches[3] == false) {
+            if ('T' === matches[3] === false) {
                 var negate = '-' === matches[1];
                 var dayMatch = matches[2];
                 var hourMatch = matches[4];
@@ -321,7 +321,7 @@ export class Duration
                     var hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
                     var minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
                     var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
-                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) == '-';
+                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
                     var nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
                         return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
@@ -352,7 +352,7 @@ export class Duration
 
     static _parseFraction(text, parsed, negate) {
         // regex limits to [0-9]{0,9}
-        if (parsed == null || parsed.length == 0) {
+        if (parsed == null || parsed.length === 0) {
             return 0;
         }
         try {
@@ -370,9 +370,9 @@ export class Duration
      * @return {Duration}
      */
     static create() {
-        if (arguments.length == 1) {
+        if (arguments.length === 1) {
             return Duration.createSeconds(arguments[0]);
-        } else if (arguments.length == 2) {
+        } else if (arguments.length === 2) {
             return Duration.createSecondsNanos(arguments[0], arguments[1]);
         } else {
             return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
@@ -394,7 +394,7 @@ export class Duration
      * @param {Number} nanoAdjustment  the nanosecond adjustment within the second, from 0 to 999,999,999
      */
     static createSecondsNanos(seconds = 0, nanoAdjustment = 0) {
-        if ((seconds | nanoAdjustment) == 0) {
+        if ((seconds | nanoAdjustment) === 0) {
             return Duration.ZERO;
         }
         // if seconds is a float, we need to adjust the nanos from it as well
@@ -461,7 +461,7 @@ export class Duration
      * @return {boolean} true if this duration has a total length equal to zero
      */
     isZero() {
-        return (this._seconds | this._nanos) == 0;
+        return (this._seconds | this._nanos) === 0;
     }
 
     /**
@@ -601,13 +601,13 @@ export class Duration
      */
     plusAmountUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
-        if (unit == ChronoUnit.DAYS) {
+        if (unit === ChronoUnit.DAYS) {
             return this.plusSecondsNanos(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY), 0);
         }
         if (unit.isDurationEstimated()) {
             throw new UnsupportedTemporalTypeException('Unit must not have an estimated duration');
         }
-        if (amountToAdd == 0) {
+        if (amountToAdd === 0) {
             return this;
         }
         if (unit instanceof ChronoUnit) {
@@ -713,7 +713,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusSecondsNanos(secondsToAdd, nanosToAdd) {
-        if ((secondsToAdd | nanosToAdd) == 0) {
+        if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
         var epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
@@ -757,7 +757,7 @@ export class Duration
     minusDuration(duration) {
         var secsToSubtract = duration.seconds();
         var nanosToSubtract = duration.nano();
-        if (secsToSubtract == MIN_SAFE_INTEGER) {
+        if (secsToSubtract === MIN_SAFE_INTEGER) {
             return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
         }
         return this.plus(-secsToSubtract, -nanosToSubtract);
@@ -779,7 +779,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusAmountUnit(amountToSubtract, unit) {
-        return (amountToSubtract == MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
+        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 
     //-----------------------------------------------------------------------
@@ -793,7 +793,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDays(daysToSubtract) {
-        return (daysToSubtract == MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract));
+        return (daysToSubtract === MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract));
     }
 
     /**
@@ -806,7 +806,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusHours(hoursToSubtract) {
-        return (hoursToSubtract == MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract));
+        return (hoursToSubtract === MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract));
     }
 
     /**
@@ -821,7 +821,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMinutes(minutesToSubtract) {
-        return (minutesToSubtract == MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract));
+        return (minutesToSubtract === MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract));
     }
 
     /**
@@ -834,7 +834,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusSeconds(secondsToSubtract) {
-        return (secondsToSubtract == MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract));
+        return (secondsToSubtract === MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract));
     }
 
     /**
@@ -847,7 +847,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMillis(millisToSubtract) {
-        return (millisToSubtract == MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract));
+        return (millisToSubtract === MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract));
     }
 
     /**
@@ -860,7 +860,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusNanos(nanosToSubtract) {
-        return (nanosToSubtract == MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract));
+        return (nanosToSubtract === MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract));
     }
 
     //-----------------------------------------------------------------------
@@ -874,10 +874,10 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     multipliedBy(multiplicand) {
-        if (multiplicand == 0) {
+        if (multiplicand === 0) {
             return Duration.ZERO;
         }
-        if (multiplicand == 1) {
+        if (multiplicand === 1) {
             return this;
         }
         return Duration.create(MathUtil.safeMultiply(this.toSeconds(), multiplicand));
@@ -893,10 +893,10 @@ export class Duration
      * @throws ArithmeticException if the divisor is zero or if numeric overflow occurs
      */
     dividedBy(divisor) {
-        if (divisor == 0) {
+        if (divisor === 0) {
             throw new ArithmeticException('Cannot divide by zero');
         }
-        if (divisor == 1) {
+        if (divisor === 1) {
             return this;
         }
         return Duration.create(this.toSeconds() / divisor);
@@ -970,10 +970,10 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     addTo(temporal) {
-        if (this._seconds != 0) {
+        if (this._seconds !== 0) {
             temporal = temporal.plus(this._seconds, ChronoUnit.SECONDS);
         }
-        if (this._nanos != 0) {
+        if (this._nanos !== 0) {
             temporal = temporal.plus(this._nanos, ChronoUnit.NANOS);
         }
         return temporal;
@@ -1004,10 +1004,10 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     subtractFrom(temporal) {
-        if (this._seconds != 0) {
+        if (this._seconds !== 0) {
             temporal = temporal.minus(this._seconds, ChronoUnit.SECONDS);
         }
-        if (this._nanos != 0) {
+        if (this._nanos !== 0) {
             temporal = temporal.minus(this._nanos, ChronoUnit.NANOS);
         }
         return temporal;
@@ -1104,7 +1104,7 @@ export class Duration
         requireNonNull(otherDuration, 'otherDuration');
         assert(otherDuration instanceof Duration,  'otherDuration must be a Duration');
         var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
-        if (cmp != 0) {
+        if (cmp !== 0) {
             return cmp;
         }
         return this._nanos - otherDuration.nano();
@@ -1124,8 +1124,8 @@ export class Duration
             return true;
         }
         if (otherDuration instanceof Duration) {
-            return this.seconds() == otherDuration.seconds() &&
-                   this.nano() == otherDuration.nano();
+            return this.seconds() === otherDuration.seconds() &&
+                   this.nano() === otherDuration.nano();
         }
         return false;
     }
@@ -1161,17 +1161,17 @@ export class Duration
         var minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
         var secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
         var rval = 'PT';
-        if (hours != 0) {
+        if (hours !== 0) {
             rval += hours + 'H';
         }
-        if (minutes != 0) {
+        if (minutes !== 0) {
             rval += minutes + 'M';
         }
-        if (secs == 0 && this._nanos == 0 && rval.length > 2) {
+        if (secs === 0 && this._nanos === 0 && rval.length > 2) {
             return rval;
         }
         if (secs < 0 && this._nanos > 0) {
-            if (secs == -1) {
+            if (secs === -1) {
                 rval += '-0';
             } else {
                 rval += secs + 1;
@@ -1190,7 +1190,7 @@ export class Duration
             // remove the leading '1'
             nanoString = nanoString.slice(1, nanoString.length);
             rval += nanoString;
-            while (rval.charAt(rval.length - 1) == '0') {
+            while (rval.charAt(rval.length - 1) === '0') {
                 rval = rval.slice(0, rval.length - 1);
             }
         }
