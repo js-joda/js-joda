@@ -123,7 +123,9 @@ class NumberPrinterParser {
             if (total === 0 && context.isStrict()) {
                 return ~(position - 1);  // minus zero not allowed
             }
-            total = -total;
+            if(total !== 0) {
+                total = -total;
+            }
         } else if (this._signStyle === SignStyle.EXCEEDS_PAD && context.isStrict()) {
             let parseLen = pos - position;
             if (positive) {
