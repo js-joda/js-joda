@@ -1,6 +1,7 @@
 export class DecimalStyle {
     constructor(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {
         this._zeroDigit = zeroChar;
+        this._zeroDigitCharCode = zeroChar.charCodeAt(0);
         this._positiveSign = positiveSignChar;
         this._negativeSign = negativeSignChar;
         this._decimalSeparator = decimalPointChar;
@@ -23,7 +24,7 @@ export class DecimalStyle {
     }
 
     convertToDigit(char){
-        var val = char * 1;
+        var val = char.charCodeAt(0) - this._zeroDigitCharCode;
         return (val >= 0 && val <= 9) ? val : -1;
     }
 }

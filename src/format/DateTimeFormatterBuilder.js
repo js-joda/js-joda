@@ -24,14 +24,30 @@ const EXCEED_POINTS = [
     1000000000
 ];
 
+const MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript
+
 class NumberPrinterParser {
 
+    /**
+     * Constructor.
+     *
+     * @param field  the field to print, not null
+     * @param minWidth  the minimum field width, from 1 to 19
+     * @param maxWidth  the maximum field width, from minWidth to 19
+     * @param signStyle  the positive/negative sign style, not null
+     * @param subsequentWidth  the width of subsequent non-negative numbers, 0 or greater,
+     *  -1 if fixed width due to active adjacent parsing
+     */
     constructor(field, minWidth, maxWidth, signStyle, subsequentWidth=0){
         this._field = field;
         this._minWidth = minWidth;
         this._maxWidth = maxWidth;
         this._signStyle = signStyle;
         this._subsequentWidth = subsequentWidth;
+    }
+
+    withSubsequentWidth(subsequentWidth) {
+        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);
     }
 
     _isFixedWidth() {
@@ -84,7 +100,7 @@ class NumberPrinterParser {
                     }
                     break;
                 }
-                if ((pos - position) > 15) {
+                if ((pos - position) > MAX_WIDTH) {
                     throw new ArithmeticException('number text exceeds length')
                 } else {
                     total = total * 10 + digit;
@@ -134,7 +150,7 @@ class NumberPrinterParser {
     }
  
     toString() {
-        if (this._minWidth == 1 && this._maxWidth == 19 && this._signStyle == SignStyle.NORMAL) {
+        if (this._minWidth == 1 && this._maxWidth == MAX_WIDTH && this._signStyle == SignStyle.NORMAL) {
             return 'Value(' + this._field + ')';
         }
         if (this._minWidth == this._maxWidth && this._signStyle == SignStyle.NOT_NEGATIVE) {
@@ -144,3 +160,5 @@ class NumberPrinterParser {
     }
     
 }
+
+DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;

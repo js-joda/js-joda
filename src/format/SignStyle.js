@@ -31,6 +31,7 @@ export class SignStyle {
 }
 
 SignStyle.NORMAL = new SignStyle();
+SignStyle.NEVER = new SignStyle();
 SignStyle.ALWAYS = new SignStyle();
 SignStyle.EXCEEDS_PAD = new SignStyle();
 SignStyle.NOT_NEGATIVE = new SignStyle();
