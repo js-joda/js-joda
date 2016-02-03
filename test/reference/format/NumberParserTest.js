@@ -17,6 +17,7 @@ import {assertEquals} from '../../testUtils';
 
 const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
+const DAY_OF_WEEK = ChronoField.DAY_OF_WEEK;
 
 describe('org.threeten.bp.TestNumberParser', () => {
     describe('parseError', () => {
@@ -114,6 +115,27 @@ describe('org.threeten.bp.TestNumberParser', () => {
                 assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
             }
         }
+
+        it('test_parse_textField', () => {
+            for(var i=0; i < dataProviderParseData.length; i++){
+                test_parse_textField.apply(this, dataProviderParseData[i]);
+            }
+        });
+
+        function test_parse_textField(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue){
+            // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
+            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+            var pp = new NumberPrinterParser(DAY_OF_WEEK, minWidth, maxWidth, signStyle);
+            if (subsequentWidth > 0) {
+                pp = pp.withSubsequentWidth(subsequentWidth);
+            }
+            var newPos = pp.parse(parseContext, text, pos);
+            assertEquals(newPos, expectedPos);
+            if (expectedPos > 0) {
+                assertParsed(parseContext, DAY_OF_WEEK, expectedValue);
+            }
+        }
+
     });
 
     function assertParsed(context, temporalField, value) {
