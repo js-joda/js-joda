@@ -53,7 +53,7 @@ class NumberPrinterParser {
     }
 
     _isFixedWidth() {
-        return this._subsequentWidth == -1 ||
+        return this._subsequentWidth === -1 ||
                 (this._subsequentWidth > 0 && this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE);
     }
 
@@ -66,20 +66,20 @@ class NumberPrinterParser {
         var sign = text.charAt(position);  // IOOBE if invalid position
         var negative = false;
         var positive = false;
-        if (sign == context.symbols().positiveSign()) {
-            if (this._signStyle.parse(true, context.isStrict(), this._minWidth == this._maxWidth) == false) {
+        if (sign === context.symbols().positiveSign()) {
+            if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {
                 return ~position;
             }
             positive = true;
             position++;
-        } else if (sign == context.symbols().negativeSign()) {
-            if (this._signStyle.parse(false, context.isStrict(), this._minWidth == this._maxWidth) == false) {
+        } else if (sign === context.symbols().negativeSign()) {
+            if (this._signStyle.parse(false, context.isStrict(), this._minWidth === this._maxWidth) === false) {
                 return ~position;
             }
             negative = true;
             position++;
         } else {
-            if (this._signStyle == SignStyle.ALWAYS && context.isStrict()) {
+            if (this._signStyle === SignStyle.ALWAYS && context.isStrict()) {
                 return ~position;
             }
         }
@@ -104,12 +104,12 @@ class NumberPrinterParser {
                     break;
                 }
                 if ((pos - position) > MAX_WIDTH) {
-                    throw new ArithmeticException('number text exceeds length')
+                    throw new ArithmeticException('number text exceeds length');
                 } else {
                     total = total * 10 + digit;
                 }
             }
-            if (this._subsequentWidth > 0 && pass == 0) {
+            if (this._subsequentWidth > 0 && pass === 0) {
                 // re-parse now we know the correct width
                 let parseLen = pos - position;
                 effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);
@@ -120,11 +120,11 @@ class NumberPrinterParser {
             }
         }
         if (negative) {
-            if (total == 0 && context.isStrict()) {
+            if (total === 0 && context.isStrict()) {
                 return ~(position - 1);  // minus zero not allowed
             }
             total = -total;
-        } else if (this._signStyle == SignStyle.EXCEEDS_PAD && context.isStrict()) {
+        } else if (this._signStyle === SignStyle.EXCEEDS_PAD && context.isStrict()) {
             let parseLen = pos - position;
             if (positive) {
                 if (parseLen <= this._minWidth) {
@@ -153,10 +153,10 @@ class NumberPrinterParser {
     }
  
     toString() {
-        if (this._minWidth == 1 && this._maxWidth == MAX_WIDTH && this._signStyle == SignStyle.NORMAL) {
+        if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {
             return 'Value(' + this._field + ')';
         }
-        if (this._minWidth == this._maxWidth && this._signStyle == SignStyle.NOT_NEGATIVE) {
+        if (this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE) {
             return 'Value(' + this._field + ',' + this._minWidth + ')';
         }
         return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';
