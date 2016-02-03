@@ -68,6 +68,15 @@ describe('org.threeten.bp.TestNumberParser', () => {
                 [2, 2, SignStyle.NEVER, 1, '1-2', 0, ~0, 0],
                 [1, 15, SignStyle.NORMAL, 0, '-00000000000000', 0, ~0, 0],
                 [1, 15, SignStyle.NORMAL, 0, '-000000000000000', 0, ~0, 0],
+                // parse reserving space 1 (adjacent-parsing)
+                [1, 1, SignStyle.NEVER, 1, '12', 0, 1, 1],
+                [1, 15, SignStyle.NEVER, 1, '12', 0, 1, 1],
+                [1, 15, SignStyle.NEVER, 1, '12345', 0, 4, 1234],
+                [1, 15, SignStyle.NEVER, 1, '12345678901', 0, 10, 1234567890],
+                [1, 14, SignStyle.NEVER, 1, '123456789012345678901234567890', 0, 14, 12345678901234],
+                [1, 15, SignStyle.NEVER, 1, '1', 0, 1, 1],  // error from next field
+                [2, 2, SignStyle.NEVER, 1, '12', 0, 2, 12],  // error from next field
+                [2, 15, SignStyle.NEVER, 1, '1', 0, ~0, 0],
                 // parse reserving space 2 (adjacent-parsing)
                 [1, 1, SignStyle.NEVER, 2, '123', 0, 1, 1],
                 [1, 15, SignStyle.NEVER, 2, '123', 0, 1, 1],
