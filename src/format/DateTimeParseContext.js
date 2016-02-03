@@ -20,11 +20,15 @@ export class DateTimeParseContext{
         return this._strict;
     }
 
+    setStrict(strict){
+        this._strict = strict;
+    }
+
     setParsedField(field, value, errorPos, successPos){
         var currentParsedFieldValues = this.currentParsed().fieldValues;
         var old = currentParsedFieldValues[field];
         currentParsedFieldValues[field] = value;
-        return (old != null && old != value) ? ~errorPos : successPos;
+        return (old != null && old !== value) ? ~errorPos : successPos;
     }
 
     getParsed(field) {
