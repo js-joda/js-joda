@@ -76,8 +76,16 @@ export class ChronoField extends TemporalField {
         return temporal.range(this);
     }
 
+    getFrom(temporal) {
+        return temporal.getLong(this);
+    }
+
     toString(){
         return this.name();
+    }
+
+    equals(other){
+        return this === other;
     }
 }
 
