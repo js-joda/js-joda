@@ -41,3 +41,13 @@ export class MockFieldValue extends TemporalAccessor {
     }
 
 }
+
+export class EMPTY extends TemporalAccessor{
+    isSupported() {
+        return true;
+    }
+
+    getLong() {
+        throw new DateTimeException('Mock');
+    }
+}

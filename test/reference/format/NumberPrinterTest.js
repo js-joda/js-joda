@@ -12,7 +12,6 @@ import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
 import {SignStyle} from '../../../src/format/SignStyle';
 import {ChronoField} from '../../../src/temporal/ChronoField';
-import {TemporalAccessor} from '../../../src/temporal/TemporalAccessor';
 import {DateTimeException} from '../../../src/errors';
 import {LocalDate} from '../../../src/LocalDate';
 
@@ -21,17 +20,7 @@ const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const HOUR_OF_DAY = ChronoField.HOUR_OF_DAY;
 
-import {MockFieldValue} from '../temporal/MockFieldValue';
-
-class EMPTY extends TemporalAccessor{
-    isSupported() {
-        return true;
-    }
-
-    getLong() {
-        throw new DateTimeException('Mock');
-    }
-}
+import {MockFieldValue, EMPTY} from '../temporal/MockFieldValue';
 
 describe('org.threeten.bp.format.TestNumberPrinter', () => {
     var printEmptyContext, printContext;
