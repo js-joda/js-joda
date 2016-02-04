@@ -10,25 +10,34 @@ import {Year} from '../Year';
 
 export class ChronoField extends TemporalField {
 
-    constructor(name, baseUnit, rangeUnit, range, displayNameKey) {
+    constructor(name, baseUnit, rangeUnit, range) {
         super();
-        this.name = function () {
-            return name;
-        };
-        this.baseUnit = function () {
-            return baseUnit;
-        };
-        this.rangeUnit = function () {
-            return rangeUnit;
-        };
-        this.range = function () {
-            return range;
-        };
-        this.displayNameKey = function () {
-            return displayNameKey;
-        };
-    }
+        this._name = name;
+        this._baseUnit = baseUnit;
+        this._rangeUnit = rangeUnit;
+        this._range = range;
+    }        
 
+    name(){
+        return this._name;    
+    }
+    
+    baseUnit(){
+        return this._baseUnit;    
+    }
+    
+    rangeUnit(){
+        return this._rangeUnit;    
+    }
+    
+    range(){
+        return this._range;    
+    }
+    
+    displayName(){
+        return this.toString();    
+    }
+    
     checkValidValue(value) {
         return this.range().checkValidValue(value, this.name());
     }
