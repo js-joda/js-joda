@@ -211,6 +211,35 @@ class NumberPrinterParser {
     
 }
 
+/**
+* Prints or parses a string literal.
+*/
+class StringLiteralPrinterParser {
+
+        constructor(literal) {
+            this._literal = literal;
+        }
+
+        print(buf) {
+            buf.append(this._literal);
+            return true;
+        }
+
+        parse(context, text, position) {
+            var length = text.length;
+            assert(!(position > length || position < 0));
+
+            if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {
+                return ~position;
+            }
+            return position + this._literal.length;
+        }
+
+        toString() {
+            return '\'' + this._literal + '\'';
+        }
+    }
+
 class StringBuilder {
     constructor(){
         this._str = '';
@@ -226,4 +255,5 @@ class StringBuilder {
 }
 
 DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
+DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
 DateTimeFormatterBuilder.StringBuilder = StringBuilder;
