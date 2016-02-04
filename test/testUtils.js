@@ -2,7 +2,7 @@
  * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import {expect, assert} from 'chai';
 
 export function assertEquals(expected, actual, message){
     if(expected != null || actual != null) {
@@ -16,6 +16,10 @@ export function assertEquals(expected, actual, message){
             expect(actual).to.be.null;
         }
     }
+}
+
+export function fail(message){
+    assert(false, message);
 }
 
 export function isCoverageTestRunner(){
