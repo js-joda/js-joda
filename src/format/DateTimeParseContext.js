@@ -8,6 +8,8 @@ export class DateTimeParseContext{
         this._locale = locale;
         this._symbols = symbols;
         this._chronology = chronology;
+
+        this._caseSensitive = true;
         this._strict = true;
         this._parsed = [new Parsed()];
     }
@@ -22,6 +24,53 @@ export class DateTimeParseContext{
 
     setStrict(strict){
         this._strict = strict;
+    }
+
+    /**
+     * Checks if parsing is case sensitive.
+     *
+     * @return true if parsing is case sensitive, false if case insensitive
+     */
+    isCaseSensitive() {
+        return this._caseSensitive;
+    }
+
+    /**
+     * Sets whether the parsing is case sensitive or not.
+     *
+     * @param caseSensitive  changes the parsing to be case sensitive or not from now on
+     */
+    setCaseSensitive(caseSensitive) {
+        this._caseSensitive = caseSensitive;
+    }
+
+    /**
+     * Helper to compare two {@code CharSequence} instances.
+     * This uses {@link #isCaseSensitive()}.
+     *
+     * @param cs1  the first character sequence, not null
+     * @param offset1  the offset into the first sequence, valid
+     * @param cs2  the second character sequence, not null
+     * @param offset2  the offset into the second sequence, valid
+     * @param length  the length to check, valid
+     * @return true if equal
+     */
+    subSequenceEquals(cs1, offset1, cs2, offset2, length) {
+        if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
+            return false;
+        }
+        if (! this.isCaseSensitive()) {
+            cs1 = cs1.toLowerCase();
+            cs2 = cs2.toLowerCase();
+        }
+        for (let i = 0; i < length; i++) {
+            let ch1 = cs1[offset1 + i];
+            let ch2 = cs2[offset2 + i];
+            if (ch1 !== ch2) {
+                return false;
+            }
+        }
+        return true;
     }
 
     setParsedField(field, value, errorPos, successPos){
