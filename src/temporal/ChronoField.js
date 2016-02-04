@@ -4,6 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
+import {ChronoUnit} from './ChronoUnit';
 import { TemporalField } from './TemporalField';
 import { ValueRange } from './ValueRange';
 import {Year} from '../Year';
@@ -89,21 +90,19 @@ export class ChronoField extends TemporalField {
     }
 }
 
-// TODO: why can't we use ChronoUnit.NANOS, ... in these initializers??
-//ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
-ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', null, null, ValueRange.of(0, 999999999));
+ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
 
-ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', null, null, ValueRange.of(0, 999999));
+ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', ChronoUnit.MICROS, ChronoUnit.SECONDS, ValueRange.of(0, 999999));
 
-ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', null, null, ValueRange.of(0, 999));
+ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', ChronoUnit.MILLIS, ChronoUnit.SECONDS, ValueRange.of(0, 999));
 
-ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', null, null, ValueRange.of(1, 28, 31), 'day');
+ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', ChronoUnit.DAYS, ChronoUnit.MONTHS, ValueRange.of(1, 28, 31), 'day');
 
-ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', null, null, ValueRange.of(1, 12), 'month');
+ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', ChronoUnit.MONTHS, ChronoUnit.YEARS, ValueRange.of(1, 12), 'month');
 
-ChronoField.YEAR = new ChronoField('Year', null, null, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), 'year');
+ChronoField.YEAR = new ChronoField('Year', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), 'year');
 
-ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', null, null, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));
+ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));
     
 
 
