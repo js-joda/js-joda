@@ -5,7 +5,7 @@
  */
 
 import {assert} from '../assert';
-import {ArithmeticException} from '../errors';
+import {ArithmeticException, DateTimeException} from '../errors';
 
 import {SignStyle} from './SignStyle';
 
@@ -55,6 +55,51 @@ class NumberPrinterParser {
     _isFixedWidth() {
         return this._subsequentWidth === -1 ||
                 (this._subsequentWidth > 0 && this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE);
+    }
+
+    print(context, buf) {
+        var value = context.getValue(this._field);
+        if (value == null) {
+            return false;
+        }
+        var symbols = context.symbols();
+        var str = '' + Math.abs(value);
+        if (str.length > this._maxWidth) {
+            throw new DateTimeException('Field ' + this._field +
+                ' cannot be printed as the value ' + value +
+                ' exceeds the maximum print width of ' + this._maxWidth);
+        }
+        str = symbols.convertNumberToI18N(str);
+
+        if (value >= 0) {
+            switch (this._signStyle) {
+                case SignStyle.EXCEEDS_PAD:
+                    if (this._minWidth < MAX_WIDTH && value >= EXCEED_POINTS[this._minWidth]) {
+                        buf.append(symbols.positiveSign());
+                    }
+                    break;
+                case SignStyle.ALWAYS:
+                    buf.append(symbols.positiveSign());
+                    break;
+            }
+        } else {
+            switch (this._signStyle) {
+                case SignStyle.NORMAL:
+                case SignStyle.EXCEEDS_PAD:
+                case SignStyle.ALWAYS:
+                    buf.append(symbols.negativeSign());
+                    break;
+                case SignStyle.NOT_NEGATIVE:
+                    throw new DateTimeException('Field ' + this._field +
+                        ' cannot be printed as the value ' + value +
+                        ' cannot be negative according to the SignStyle');
+            }
+        }
+        for (let i = 0; i < this._minWidth - str.length; i++) {
+            buf.append(symbols.zeroDigit());
+        }
+        buf.append(str);
+        return true;
     }
 
     parse(context, text, position){
@@ -166,4 +211,19 @@ class NumberPrinterParser {
     
 }
 
+class StringBuilder {
+    constructor(){
+        this._str = '';
+    }
+
+    append(str){
+        this._str += str;
+    }
+
+    toString() {
+        return this._str;
+    }
+}
+
 DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
+DateTimeFormatterBuilder.StringBuilder = StringBuilder;
