@@ -220,7 +220,7 @@ class StringLiteralPrinterParser {
             this._literal = literal;
         }
 
-        print(buf) {
+        print(context, buf) {
             buf.append(this._literal);
             return true;
         }
