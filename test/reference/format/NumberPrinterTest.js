@@ -5,7 +5,7 @@
  */
 
 import {expect} from 'chai';
-import {assertEquals} from '../../testUtils';
+import {assertEquals, fail} from '../../testUtils';
 
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
@@ -19,6 +19,7 @@ import {LocalDate} from '../../../src/LocalDate';
 const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
 const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
+const HOUR_OF_DAY = ChronoField.HOUR_OF_DAY;
 
 import {MockFieldValue} from '../temporal/MockFieldValue';
 
@@ -165,7 +166,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
             try {
                 pp.print(printContext, buf);
                 if (result == null || value < 0) {
-                    expect(false, 'Expected exception catched unexpected').to.be.true;
+                    fail('Expected exception catched unexpected');
                 }
                 assertEquals(buf.toString(), result);
             } catch (ex) {
@@ -176,134 +177,136 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                 }
             }
         }
+
+        it('test_pad_NEVER', () => {
+            for(let i=0; i < provider_pad.length; i++){
+                init();
+                test_pad_NEVER.apply(this, provider_pad[i]);
+            }
+        });
+
+        function test_pad_NEVER(minPad, maxPad, value, result) {
+            // console.log(minPad, maxPad, value, result);
+            printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
+            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NEVER);
+            try {
+                pp.print(printContext, buf);
+                if (result == null) {
+                    fail('Expected exception');
+                }
+                assertEquals(buf.toString(), result);
+            } catch (ex) {
+                if(!(ex instanceof DateTimeException)){
+                    throw ex;
+                }
+                if (result != null) {
+                    throw ex;
+                }
+                expect(ex.message).to.contain(DAY_OF_MONTH.toString());
+            }
+        }
+
+        it('test_pad_NORMAL', () => {
+            for(let i=0; i < provider_pad.length; i++){
+                init();
+                test_pad_NORMAL.apply(this, provider_pad[i]);
+            }
+        });
+
+        function test_pad_NORMAL(minPad, maxPad, value,  result){
+            // console.log(minPad, maxPad, value, result);
+            printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
+            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NORMAL);
+            try {
+                pp.print(printContext, buf);
+                if (result == null) {
+                    fail('Expected exception');
+                }
+                assertEquals(buf.toString(), (value < 0 ? '-' + result : result));
+            } catch (ex) {
+                if(!(ex instanceof DateTimeException)){
+                    throw ex;
+                }
+                if (result != null) {
+                    throw ex;
+                }
+                expect(ex.message).to.contain(DAY_OF_MONTH.toString());
+            }
+        }
+
+        it('test_pad_ALWAYS', () => {
+            for(let i=0; i < provider_pad.length; i++){
+                init();
+                test_pad_ALWAYS.apply(this, provider_pad[i]);
+            }
+        });
+
+        function test_pad_ALWAYS(minPad, maxPad, value,  result){
+            // console.log(minPad, maxPad, value, result);
+            printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
+            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.ALWAYS);
+            try {
+                pp.print(printContext, buf);
+                if (result == null) {
+                    fail('Expected exception');
+                }
+                assertEquals(buf.toString(), (value < 0 ? '-' + result : '+' + result));
+            } catch (ex) {
+                if(!(ex instanceof DateTimeException)){
+                    throw ex;
+                }
+                if (result != null) {
+                    throw ex;
+                }
+                expect(ex.message).to.contain(DAY_OF_MONTH.toString());
+            }
+        }
+
+        it('test_pad_EXCEEDS_PAD', () => {
+            for(let i=0; i < provider_pad.length; i++){
+                init();
+                test_pad_EXCEEDS_PAD.apply(this, provider_pad[i]);
+            }
+        });
+
+        function test_pad_EXCEEDS_PAD(minPad, maxPad, value,  result){
+            // console.log(minPad, maxPad, value, result);
+            printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
+            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.EXCEEDS_PAD);
+            try {
+                pp.print(printContext, buf);
+                if (result == null) {
+                    fail('Expected exception');
+                }
+                if (result.length > minPad || value < 0) {
+                    result = (value < 0 ? '-' + result : '+' + result);
+                }
+                assertEquals(buf.toString(), result);
+            } catch (ex) {
+                if(!(ex instanceof DateTimeException)){
+                    throw ex;
+                }
+                if (result != null) {
+                    throw ex;
+                }
+                expect(ex.message).to.contain(DAY_OF_MONTH.toString());
+            }
+        }
     });
     
-    it('', () => {
-
+    it('test_toString1', () => {
+        var pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 15, SignStyle.NORMAL);
+        assertEquals(pp.toString(), 'Value(HourOfDay)');
     });
 
-    it('', () => {
+    it('test_toString2', () => {
+        var pp = new NumberPrinterParser(HOUR_OF_DAY, 2, 2, SignStyle.NOT_NEGATIVE);
+        assertEquals(pp.toString(), 'Value(HourOfDay,2)');
+    });
 
+    it('test_toString3', () => {
+        var pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 2, SignStyle.NOT_NEGATIVE);
+        assertEquals(pp.toString(), 'Value(HourOfDay,1,2,NOT_NEGATIVE)');
     });
 });
 
-/**
- @Test
- public class TestNumberPrinter extends AbstractTestPrinterParser {
-
-     //-----------------------------------------------------------------------
-
-
-     @Test(dataProvider="Pad")
-     public void test_pad_NOT_NEGATIVE(int minPad, int maxPad, long value, String result) throws Exception {
-         printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-         NumberPrinterParser pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NOT_NEGATIVE);
-         try {
-             pp.print(printContext, buf);
-             if (result == null || value < 0) {
-                 fail("Expected exception");
-             }
-             assertEquals(buf.toString(), result);
-         } catch (DateTimeException ex) {
-             if (result == null || value < 0) {
-                 assertEquals(ex.getMessage().contains(DAY_OF_MONTH.toString()), true);
-             } else {
-                 throw ex;
-             }
-         }
-     }
-
-     @Test(dataProvider="Pad")
-     public void test_pad_NEVER(int minPad, int maxPad, long value, String result) throws Exception {
-         printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-         NumberPrinterParser pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NEVER);
-         try {
-             pp.print(printContext, buf);
-             if (result == null) {
-                 fail("Expected exception");
-             }
-             assertEquals(buf.toString(), result);
-         } catch (DateTimeException ex) {
-             if (result != null) {
-                 throw ex;
-             }
-             assertEquals(ex.getMessage().contains(DAY_OF_MONTH.toString()), true);
-         }
-     }
-
-     @Test(dataProvider="Pad")
-     public void test_pad_NORMAL(int minPad, int maxPad, long value, String result) throws Exception {
-         printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-         NumberPrinterParser pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NORMAL);
-         try {
-             pp.print(printContext, buf);
-             if (result == null) {
-                 fail("Expected exception");
-             }
-             assertEquals(buf.toString(), (value < 0 ? "-" + result : result));
-         } catch (DateTimeException ex) {
-             if (result != null) {
-                 throw ex;
-             }
-             assertEquals(ex.getMessage().contains(DAY_OF_MONTH.toString()), true);
-         }
-     }
-
-     @Test(dataProvider="Pad")
-     public void test_pad_ALWAYS(int minPad, int maxPad, long value, String result) throws Exception {
-         printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-         NumberPrinterParser pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.ALWAYS);
-         try {
-             pp.print(printContext, buf);
-             if (result == null) {
-                 fail("Expected exception");
-             }
-             assertEquals(buf.toString(), (value < 0 ? "-" + result : "+" + result));
-         } catch (DateTimeException ex) {
-             if (result != null) {
-                 throw ex;
-             }
-             assertEquals(ex.getMessage().contains(DAY_OF_MONTH.toString()), true);
-         }
-     }
-
-     @Test(dataProvider="Pad")
-     public void test_pad_EXCEEDS_PAD(int minPad, int maxPad, long value, String result) throws Exception {
-         printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-         NumberPrinterParser pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.EXCEEDS_PAD);
-         try {
-             pp.print(printContext, buf);
-             if (result == null) {
-                 fail("Expected exception");
-                 return;  // unreachable
-             }
-             if (result.length() > minPad || value < 0) {
-                 result = (value < 0 ? "-" + result : "+" + result);
-             }
-             assertEquals(buf.toString(), result);
-         } catch (DateTimeException ex) {
-             if (result != null) {
-                 throw ex;
-             }
-             assertEquals(ex.getMessage().contains(DAY_OF_MONTH.toString()), true);
-         }
-     }
-
-     //-----------------------------------------------------------------------
-     public void test_toString1() throws Exception {
-         NumberPrinterParser pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 19, SignStyle.NORMAL);
-         assertEquals(pp.toString(), "Value(HourOfDay)");
-     }
-
-     public void test_toString2() throws Exception {
-         NumberPrinterParser pp = new NumberPrinterParser(HOUR_OF_DAY, 2, 2, SignStyle.NOT_NEGATIVE);
-         assertEquals(pp.toString(), "Value(HourOfDay,2)");
-     }
-
-     public void test_toString3() throws Exception {
-         NumberPrinterParser pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 2, SignStyle.NOT_NEGATIVE);
-         assertEquals(pp.toString(), "Value(HourOfDay,1,2,NOT_NEGATIVE)");
-     }
-
- }
-*/
