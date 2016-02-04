@@ -6,10 +6,11 @@
 import {assert} from './assert';
 
 import { MathUtil } from './MathUtil';
-import {DateTimeException} from './errors';
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 
 import { IsoChronology } from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
@@ -44,7 +45,7 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  * such as an offset or time-zone.
  */
 
-export class LocalDate {
+export class LocalDate extends TemporalAccessor {
 
     /**
      *
@@ -53,6 +54,7 @@ export class LocalDate {
      * @param {number} dayOfMonth
      */
     constructor(year, month, dayOfMonth){
+        super();
         if (month instanceof Month) {
             month = month.value();
         }
@@ -105,6 +107,39 @@ export class LocalDate {
      */
     dayOfMonth() {
         return this._day;
+    }
+
+    get(field) {
+        if (field instanceof ChronoField) {
+            return this._get0(field);
+        }
+        return super.get(field);
+    }
+
+    getLong(field) {
+        if (field instanceof ChronoField) {
+            return this._get0(field);
+        }
+        return field.getFrom(this);
+    }
+
+    _get0(field) {
+        switch (field) {
+            // case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().getValue();
+            // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((day - 1) % 7) + 1;
+            // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
+            case ChronoField.DAY_OF_MONTH: return this._day;
+            // case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
+            // case ChronoField.EPOCH_DAY: return this.toEpochDay();
+            // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
+            // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
+            case ChronoField.MONTH_OF_YEAR: return this._month;
+            // case ChronoField.PROLEPTIC_MONTH: this.prolepticMonth();
+            // case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
+            case ChronoField.YEAR: return this._year;
+            // case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
+        }
+        throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
     }
 
     /**
