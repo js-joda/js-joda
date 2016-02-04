@@ -5,6 +5,10 @@
  */
 
 export class SignStyle {
+    constructor(name){
+        this._name = name;
+    }
+
     /**
      * Parse helper.
      *
@@ -28,10 +32,17 @@ export class SignStyle {
 
     }
 
+    equals(other){
+        return this === other;
+    }
+
+    toString(){
+        return this._name;
+    }
 }
 
-SignStyle.NORMAL = new SignStyle();
-SignStyle.NEVER = new SignStyle();
-SignStyle.ALWAYS = new SignStyle();
-SignStyle.EXCEEDS_PAD = new SignStyle();
-SignStyle.NOT_NEGATIVE = new SignStyle();
+SignStyle.NORMAL = new SignStyle('NORMAL');
+SignStyle.NEVER = new SignStyle('NEVER');
+SignStyle.ALWAYS = new SignStyle('ALWAYS');
+SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
+SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
