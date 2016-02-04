@@ -20,6 +20,15 @@ const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const DAY_OF_WEEK = ChronoField.DAY_OF_WEEK;
 
 describe('org.threeten.bp.TestNumberParser', () => {
+    var parseContext;
+
+    beforeEach(() => {
+        init();
+    });
+
+    function init(){
+        parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+    }
 
     describe('parseError', () => {
         it('test_parse_error', () => {
@@ -28,14 +37,13 @@ describe('org.threeten.bp.TestNumberParser', () => {
                 [new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER), '12', 3, Error]
             ];
             for(var i=0; i < dataProviderErrorData.length; i++){
+                init();
                 test_parse_error.apply(this, dataProviderErrorData[i]);
             }
         });
 
         function test_parse_error(pp, text, pos, expectedError){
             // console.log(pp, text, pos, expectedError);
-            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-
             expect(() => {
                 pp.parse(parseContext, text, pos);
             }).to.throw(expectedError);
@@ -96,14 +104,13 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         it('test_parse_fresh', () => {
             for(var i=0; i < dataProviderParseData.length; i++){
-                var parseData = dataProviderParseData[i];
-                test_parse_fresh.apply(this, parseData);
+                init();
+                test_parse_fresh.apply(this, dataProviderParseData[i]);
             }
         });
 
         function test_parse_fresh(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue) {
             // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
-            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
             var pp = new NumberPrinterParser(DAY_OF_MONTH, minWidth, maxWidth, signStyle);
             if (subsequentWidth > 0) {
                 pp = pp.withSubsequentWidth(subsequentWidth);
@@ -120,13 +127,13 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         it('test_parse_textField', () => {
             for(var i=0; i < dataProviderParseData.length; i++){
+                init();
                 test_parse_textField.apply(this, dataProviderParseData[i]);
             }
         });
 
         function test_parse_textField(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue){
             // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
-            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
             var pp = new NumberPrinterParser(DAY_OF_WEEK, minWidth, maxWidth, signStyle);
             if (subsequentWidth > 0) {
                 pp = pp.withSubsequentWidth(subsequentWidth);
@@ -240,12 +247,12 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         it('test_parseSignsStrict', () => {
             for(var i=0; i < provider_parseSignsStrict.length; i++){
+                init();
                 test_parseSignsStrict.apply(this, provider_parseSignsStrict[i]);
             }
         });
 
         function test_parseSignsStrict(input, min, max, style, parseLen, parseVal){
-            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
             var pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
             var newPos = pp.parse(parseContext, input, 0);
             assertEquals(newPos, parseLen);
@@ -347,13 +354,13 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         it('test_parseSignsStrict', () => {
             for(var i=0; i < provider_parseSignsLenient.length; i++){
+                init();
                 test_parseSignsLenient.apply(this, provider_parseSignsLenient[i]);
             }
         });
 
         function test_parseSignsLenient(input, min, max, style, parseLen, parseVal){
             // console.log(input, min, max, style, parseLen, parseVal);
-            var parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
             parseContext.setStrict(false);
             var pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
             var newPos = pp.parse(parseContext, input, 0);
