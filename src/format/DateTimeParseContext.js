@@ -73,6 +73,33 @@ export class DateTimeParseContext{
         return true;
     }
 
+    /**
+     * Helper to compare two {@code char}.
+     * This uses {@link #isCaseSensitive()}.
+     *
+     * @param ch1  the first character
+     * @param ch2  the second character
+     * @return true if equal
+     */
+    charEquals(ch1, ch2) {
+        if (this.isCaseSensitive()) {
+            return ch1 === ch2;
+        }
+        return this.charEqualsIgnoreCase(ch1, ch2);
+    }
+
+    /**
+     * Compares two characters ignoring case.
+     *
+     * @param c1  the first
+     * @param c2  the second
+     * @return true if equal
+     */
+    charEqualsIgnoreCase(c1, c2) {
+        return c1 === c2 ||
+                c1.toLowerCase() === c2.toLowerCase();
+    }
+
     setParsedField(field, value, errorPos, successPos){
         var currentParsedFieldValues = this.currentParsed().fieldValues;
         var old = currentParsedFieldValues[field];
