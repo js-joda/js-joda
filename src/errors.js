@@ -36,6 +36,12 @@ export class ArithmeticException extends ExtendableError {
     }
 }
 
+export class IllegalArgumentException extends ExtendableError {
+    constructor(message = 'IllegalArgumentException') {
+        super(message);
+    }
+}
+
 export class NullPointerException extends ExtendableError {
     constructor(message = 'NullPointerException') {
         super(message);
