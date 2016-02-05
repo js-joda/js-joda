@@ -4,11 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-export class SignStyle {
-    constructor(name){
-        this._name = name;
-    }
+import {Enum} from '../Enum';
 
+export class SignStyle extends Enum{
     /**
      * Parse helper.
      *
@@ -30,14 +28,6 @@ export class SignStyle {
                 return !strict && !fixedWidth;
         }
 
-    }
-
-    equals(other){
-        return this === other;
-    }
-
-    toString(){
-        return this._name;
     }
 }
 

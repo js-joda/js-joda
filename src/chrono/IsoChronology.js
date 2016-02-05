@@ -3,7 +3,10 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-export class IsoChronology {
+
+import {Enum} from '../Enum';
+
+export class IsoChronology extends Enum{
     /**
      * Checks if the year is a leap year, according to the ISO proleptic
      * calendar system rules.
@@ -28,5 +31,5 @@ export class IsoChronology {
     }
 }
 
-IsoChronology.INSTANCE = new IsoChronology();
+IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
 
