@@ -25,7 +25,6 @@
   "author": "pithu",
   "homepage": "https://pithu.github.com/js-joda",
   "devDependencies": {
-    "babel": "^6.3.26",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
