@@ -24,7 +24,7 @@ export class DateTimeParseException extends ExtendableError {
     }
 }
 
-export class UnsupportedTemporalTypeException extends ExtendableError {
+export class UnsupportedTemporalTypeException extends DateTimeException {
     constructor(message = 'UnsupportedTemporalTypeException') {
         super(message);
     }
