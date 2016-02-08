@@ -471,7 +471,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
     query(query) {
-        assert(query != null, NullPointerException);
+        assert(query != null, '', NullPointerException);
         if (query === TemporalQueries.localDate()) {
             return this;
         }
