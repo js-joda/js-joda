@@ -3,6 +3,11 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
+import {Enum} from '../Enum';
+
+import {ChronoField} from './ChronoField';
+
 /**
  * Common implementations of {@code TemporalQuery}.
  * <p>
@@ -225,31 +230,31 @@ export class TemporalQueries {
  * TODO: maybe should be moved to a separate file?
  * @param queryFromFunction
  */
-function createTemporalQuery(queryFromFunction) {
-    class TemporalQuery {
+export function createTemporalQuery(name, queryFromFunction) {
+    class TemporalQuery extends Enum {
     }
     TemporalQuery.prototype.queryFrom = queryFromFunction;   
-    return new TemporalQuery();
+    return new TemporalQuery(name);
 }
 //-----------------------------------------------------------------------
 /**
  * A strict query for the {@code ZoneId}.
  */
-TemporalQueries.ZONE_ID = createTemporalQuery((temporal) => {
+TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', (temporal) => {
     return temporal.query(TemporalQueries.ZONE_ID);
 });
 
 /**
  * A query for the {@code Chronology}.
  */
-TemporalQueries.CHRONO = createTemporalQuery((temporal) => {
+TemporalQueries.CHRONO = createTemporalQuery('CHRONO', (temporal) => {
     return temporal.query(TemporalQueries.CHRONO);
 });
 
 /**
  * A query for the smallest supported unit.
  */
-TemporalQueries.PRECISION = createTemporalQuery((temporal) => {
+TemporalQueries.PRECISION = createTemporalQuery('PRECISION', (temporal) => {
     return temporal.query(TemporalQueries.PRECISION);
 });
 
@@ -257,8 +262,8 @@ TemporalQueries.PRECISION = createTemporalQuery((temporal) => {
 /**
  * A query for {@code ZoneOffset} returning null if not found.
  */
-TemporalQueries.OFFSET = createTemporalQuery((temporal) => {
-    if (temporal.isSupported(TemporalQueries.OFFSET_SECONDS)) {
+TemporalQueries.OFFSET = createTemporalQuery('OFFSET', (temporal) => {
+    if (temporal.isSupported(ChronoField.OFFSET_SECONDS)) {
         return ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
     }
     return null;
@@ -267,7 +272,7 @@ TemporalQueries.OFFSET = createTemporalQuery((temporal) => {
 /**
  * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
  */
-TemporalQueries.ZONE = createTemporalQuery((temporal) => {
+TemporalQueries.ZONE = createTemporalQuery('ZONE', (temporal) => {
     var zone = temporal.query(TemporalQueries.ZONE_ID);
     return (zone != null ? zone : temporal.query(TemporalQueries.OFFSET));
 });
@@ -275,8 +280,8 @@ TemporalQueries.ZONE = createTemporalQuery((temporal) => {
 /**
  * A query for {@code LocalDate} returning null if not found.
  */
-TemporalQueries.LOCAL_DATE = createTemporalQuery((temporal) => {
-    if (temporal.isSupported(TemporalQueries.EPOCH_DAY)) {
+TemporalQueries.LOCAL_DATE = createTemporalQuery('LOCAL_DATE', (temporal) => {
+    if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
         return LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
     }
     return null;
@@ -285,8 +290,8 @@ TemporalQueries.LOCAL_DATE = createTemporalQuery((temporal) => {
 /**
  * A query for {@code LocalTime} returning null if not found.
  */
-TemporalQueries.LOCAL_TIME = createTemporalQuery((temporal) => {
-    if (temporal.isSupported(TemporalQueries.NANO_OF_DAY)) {
+TemporalQueries.LOCAL_TIME = createTemporalQuery('LOCAL_TIME', (temporal) => {
+    if (temporal.isSupported(ChronoField.NANO_OF_DAY)) {
         return LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
     }
     return null;
