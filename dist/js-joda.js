@@ -129,7 +129,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Month = __webpack_require__(19);
+	var _Month = __webpack_require__(20);
 	
 	Object.defineProperty(exports, 'Month', {
 	  enumerable: true,
@@ -162,12 +162,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -1402,7 +1401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.NullPointerException = exports.ArithmeticException = exports.UnsupportedTemporalTypeException = exports.DateTimeParseException = exports.DateTimeException = undefined;
+	exports.NullPointerException = exports.IllegalArgumentException = exports.ArithmeticException = exports.UnsupportedTemporalTypeException = exports.DateTimeParseException = exports.DateTimeException = undefined;
 	
 	var _es6Error = __webpack_require__(6);
 	
@@ -1487,8 +1486,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ArithmeticException;
 	})(_es6Error2.default);
 	
-	var NullPointerException = exports.NullPointerException = (function (_ExtendableError5) {
-	    _inherits(NullPointerException, _ExtendableError5);
+	var IllegalArgumentException = exports.IllegalArgumentException = (function (_ExtendableError5) {
+	    _inherits(IllegalArgumentException, _ExtendableError5);
+	
+	    function IllegalArgumentException() {
+	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'IllegalArgumentException' : arguments[0];
+	
+	        _classCallCheck(this, IllegalArgumentException);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IllegalArgumentException).call(this, message));
+	    }
+	
+	    return IllegalArgumentException;
+	})(_es6Error2.default);
+	
+	var NullPointerException = exports.NullPointerException = (function (_ExtendableError6) {
+	    _inherits(NullPointerException, _ExtendableError6);
 	
 	    function NullPointerException() {
 	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'NullPointerException' : arguments[0];
@@ -4274,7 +4287,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _Month = __webpack_require__(19);
+	var _Month = __webpack_require__(20);
 	
 	var _Year = __webpack_require__(11);
 	
@@ -4786,31 +4799,40 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 18 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.IsoChronology = undefined;
+	
+	var _Enum2 = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	var IsoChronology = exports.IsoChronology = (function () {
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var IsoChronology = exports.IsoChronology = (function (_Enum) {
+	  _inherits(IsoChronology, _Enum);
+	
 	  function IsoChronology() {
 	    _classCallCheck(this, IsoChronology);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IsoChronology).apply(this, arguments));
 	  }
 	
 	  _createClass(IsoChronology, null, [{
-	    key: "isLeapYear",
+	    key: 'isLeapYear',
 	
 	    /**
 	     * Checks if the year is a leap year, according to the ISO proleptic
@@ -4837,12 +4859,56 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 	
 	  return IsoChronology;
-	})();
+	})(_Enum2.Enum);
 	
-	IsoChronology.INSTANCE = new IsoChronology();
+	IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
 
 /***/ },
 /* 19 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	/***
+	 * Base class for a pseudo enum
+	 */
+	
+	var Enum = exports.Enum = (function () {
+	    function Enum(name) {
+	        _classCallCheck(this, Enum);
+	
+	        this._name = name;
+	    }
+	
+	    _createClass(Enum, [{
+	        key: "equals",
+	        value: function equals(other) {
+	            return this === other;
+	        }
+	    }, {
+	        key: "toString",
+	        value: function toString() {
+	            return this._name;
+	        }
+	    }]);
+	
+	    return Enum;
+	})();
+
+/***/ },
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
