@@ -20,7 +20,8 @@ const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const HOUR_OF_DAY = ChronoField.HOUR_OF_DAY;
 
-import {MockFieldValue, EMPTY} from '../temporal/MockFieldValue';
+import {MockFieldValue} from '../temporal/MockFieldValue';
+import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestNumberPrinter', () => {
     var printEmptyContext, printContext;

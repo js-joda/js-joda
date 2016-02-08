@@ -1,0 +1,18 @@
+/**
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {DateTimeException} from '../../../src/errors';
+import {TemporalAccessor} from '../../../src/temporal/TemporalAccessor';
+
+export class EMPTY extends TemporalAccessor{
+    isSupported() {
+        return true;
+    }
+
+    getLong() {
+        throw new DateTimeException('Mock');
+    }
+}
