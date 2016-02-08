@@ -226,6 +226,7 @@ export class TemporalQueries {
  * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
  * as the queryFrom() function.
  * TODO: maybe should be moved to a separate file?
+ * @param name
  * @param queryFromFunction
  */
 export function createTemporalQuery(name, queryFromFunction) {
