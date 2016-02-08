@@ -42,7 +42,30 @@ export class ChronoField extends TemporalField {
     checkValidValue(value) {
         return this.range().checkValidValue(value, this.name());
     }
-    
+
+    /**
+     * Checks if this field represents a component of a date.
+     *
+     * @return true if it is a component of a date
+     */
+    isDateBased() {
+        var dateBased =
+            //this === ChronoField.DAY_OF_WEEK ||
+            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
+            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
+            this === ChronoField.DAY_OF_MONTH ||
+            this === ChronoField.DAY_OF_YEAR ||
+            this === ChronoField.EPOCH_DAY ||
+            //this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
+            //this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
+            this === ChronoField.MONTH_OF_YEAR ||
+            //this === ChronoField.EPOCH_MONTH ||
+            //this === ChronoField.YEAR_OF_ERA ||
+            this === ChronoField.YEAR ||
+            this === ChronoField.ERA;
+        return dateBased;
+    }
+
     /**
      * Get the range of valid values for this field using the temporal object to
      * refine the result.
@@ -111,6 +134,8 @@ ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', ChronoUnit.DAYS, ChronoUn
 ChronoField.EPOCH_DAY = new ChronoField('EpochDay', ChronoUnit.DAYS, ChronoUnit.FOREVER, ValueRange.of(Math.floor(Year.MIN_VALUE * 365.25), Math.floor(Year.MAX_VALUE * 365.25)));
 
 ChronoField.YEAR = new ChronoField('Year', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(Year.MIN_VALUE, Year.MAX_VALUE), 'year');
+
+ChronoField.ERA = new ChronoField('Era', ChronoUnit.ERAS, ChronoUnit.FOREVER, ValueRange.of(0, 1));
 
 ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));
     
