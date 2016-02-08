@@ -6,16 +6,19 @@
 import {assert} from './assert';
 
 import { MathUtil } from './MathUtil';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException} from './errors';
 
 import { IsoChronology } from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
-import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {ChronoLocalDate} from './chrono/ChronoLocalDate';
+import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
+
+import './temporal/TemporalQueriesPattern';
 
 /**
  * The number of days in a 400 year cycle.
@@ -45,7 +48,7 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  * such as an offset or time-zone.
  */
 
-export class LocalDate extends TemporalAccessor {
+export class LocalDate extends ChronoLocalDate{
 
     /**
      *
@@ -109,11 +112,22 @@ export class LocalDate extends TemporalAccessor {
         return this._day;
     }
 
+    /**
+     * Gets the chronology of this date, which is the ISO calendar system.
+     * <p>
+     * The {@code Chronology} represents the calendar system in use.
+     * The ISO-8601 calendar system is the modern civil calendar system used today
+     * in most of the world. It is equivalent to the proleptic Gregorian calendar
+     * system, in which todays's rules for leap years are applied for all time.
+     *
+     * @return the ISO chronology, not null
+     */
+    chronology() {
+        return IsoChronology.INSTANCE;
+    }
+
     get(field) {
-        if (field instanceof ChronoField) {
-            return this._get0(field);
-        }
-        return super.get(field);
+        return this.getLong(field);
     }
 
     getLong(field) {
@@ -371,7 +385,97 @@ export class LocalDate extends TemporalAccessor {
         var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
         return new LocalDate(year, moy.value(), dom);
     }
-    
+
+    /**
+     * Checks if the specified field is supported.
+     * <p>
+     * This checks if this date can be queried for the specified field.
+     * If false, then calling the {@link #range(TemporalField) range} and
+     * {@link #get(TemporalField) get} methods will throw an exception.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this date-time.
+     * The supported fields are:
+     * <ul>
+     * <li>{@code DAY_OF_WEEK}
+     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
+     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
+     * <li>{@code DAY_OF_MONTH}
+     * <li>{@code DAY_OF_YEAR}
+     * <li>{@code EPOCH_DAY}
+     * <li>{@code ALIGNED_WEEK_OF_MONTH}
+     * <li>{@code ALIGNED_WEEK_OF_YEAR}
+     * <li>{@code MONTH_OF_YEAR}
+     * <li>{@code EPOCH_MONTH}
+     * <li>{@code YEAR_OF_ERA}
+     * <li>{@code YEAR}
+     * <li>{@code ERA}
+     * </ul>
+     * All other {@code ChronoField} instances will return false.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param field  the field to check, null returns false
+     * @return true if the field is supported on this date, false if not
+     */
+    isSupported(field) {
+        return super.isSupported(field);
+    }
+
+    /**
+     * Obtains an instance of {@code LocalDate} from a temporal object.
+     * <p>
+     * A {@code TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@code LocalDate}.
+     * <p>
+     * The conversion uses the {@link TemporalQueries#localDate()} query, which relies
+     * on extracting the {@link ChronoField#EPOCH_DAY EPOCH_DAY} field.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used as a query via method reference, {@code LocalDate::from}.
+     *
+     * @param temporal  the temporal object to convert, not null
+     * @return the local date, not null
+     * @throws DateTimeException if unable to convert to a {@code LocalDate}
+     */
+    static from(temporal) {
+        assert(temporal != null, '', NullPointerException);
+        var date = temporal.query(TemporalQueries.localDate());
+        if (date == null) {
+            throw new DateTimeException(
+                `Unable to obtain LocalDate from TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`);
+        }
+        return date;
+    }
+
+    /**
+     * Queries this date using the specified query.
+     *
+     * This queries this date using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     *
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param query  the query to invoke, not null
+     * @return the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        if (query === TemporalQueries.localDate()) {
+            return this;
+        }
+        return super.query(query);
+    }
+
     /**
      * Returns a copy of this {@code LocalDate} with the day-of-month altered.
      * <p>
@@ -451,3 +555,9 @@ LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
  * This could be used by an application as a "far future" date.
  */
 LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
+
+LocalDate.FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
+    return LocalDate.from(temporal);
+});
+
+
