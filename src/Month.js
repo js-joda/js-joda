@@ -10,6 +10,7 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {IsoChronology} from './chrono/IsoChronology';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
+import './temporal/TemporalQueriesPattern';
 
 /**
  * A month-of-year, such as 'July'.
