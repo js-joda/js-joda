@@ -6,6 +6,11 @@ import {NullPointerException} from './errors';
 
 export function assert(assertion, msg, error) {
     if(!assertion){
+        if(arguments.length === 2){
+            error = msg;
+            msg = null;
+        }
+
         if (error) {
             throw new error(msg);
         } else {
