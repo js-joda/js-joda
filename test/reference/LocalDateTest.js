@@ -4,13 +4,22 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
+import {assertEquals} from '../testUtils';
+
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
-import {DateTimeException} from '../../src/errors';
+import {DateTimeException, NullPointerException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Year} from '../../src/Year';
+
+import {IsoChronology} from '../../src/chrono/IsoChronology';
+import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
 describe('org.threeten.bp.TestLocalDate', () => {
     var TEST_2007_07_15;
@@ -45,10 +54,10 @@ describe('org.threeten.bp.TestLocalDate', () => {
     }
 
     function isIsoLeap(year) {
-        if (year % 4 != 0) {
+        if (year % 4 !== 0) {
             return false;
         }
-        if (year % 100 == 0 && year % 400 != 0) {
+        if (year % 100 === 0 && year % 400 !== 0) {
             return false;
         }
         return true;
@@ -62,7 +71,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             return date.withDayOfMonth(newDayOfMonth);
         }
         date = date.withDayOfMonth(1);
-        if (date.month() == Month.DECEMBER) {
+        if (date.month() === Month.DECEMBER) {
             date = date.withYear(date.year() + 1);
         }
         return date.withMonth(date.month().plus(1));
@@ -74,7 +83,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             return date.withDayOfMonth(newDayOfMonth);
         }
         date = date.with(date.getMonth().minus(1));
-        if (date.month() == Month.DECEMBER) {
+        if (date.month() === Month.DECEMBER) {
             date = date.withYear(date.getYear() - 1);
         }
         return date.withDayOfMonth(date.getMonth().length(isIsoLeap(date.getYear())));
@@ -226,8 +235,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
             expect(LocalDate.ofEpochDay(0)).to.eql(LocalDate.of(1970, 1, 1));
             expect(LocalDate.ofEpochDay(date_0000_01_01)).to.eql(LocalDate.of(0, 1, 1));
             expect(LocalDate.ofEpochDay(date_0000_01_01 - 1)).to.eql(LocalDate.of(-1, 12, 31));
-            //expect(LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MAX_VALUE, 12, 31));
-            //expect(LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MIN_VALUE, 1, 1));
+            expect(LocalDate.ofEpochDay(MAX_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MAX_VALUE, 12, 31));
+            expect(LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS)).to.eql(LocalDate.of(Year.MIN_VALUE, 1, 1));
         });
 
         it('factory_ofEpochDay_aboveMax', () => {
@@ -241,6 +250,82 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS - 1);
             }).to.throw(DateTimeException);
         });
+    });
+
+    describe('from', () => {
+
+        it('test_factory_CalendricalObject', () => {
+            assertEquals(LocalDate.from(LocalDate.of(2007, 7, 15)), LocalDate.of(2007, 7, 15));
+            // TODO assertEquals(LocalDate.from(LocalDateTime.of(2007, 7, 15, 12, 30)), LocalDate.of(2007, 7, 15));
+        });
+
+        it('test_factory_CalendricalObject_invalid_noDerive', () => {
+            expect(() => {
+                LocalDate.from(Month.JANUARY);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_factory_CalendricalObject_null', () => {
+            expect(() => {
+                LocalDate.from(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    describe('get/ getLong(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            var test = LocalDate.of(2008, 6, 30);
+            assertEquals(test.get(ChronoField.YEAR), 2008);
+            assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
+            assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
+            //assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
+            //assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
+            //assertEquals(test.get(ChronoField.YEAR_OF_ERA), 2008);
+            //assertEquals(test.get(ChronoField.ERA), 1);
+            //assertEquals(test.getLong(ChronoField.PROLEPTIC_MONTH), 2008 * 12 + 6 - 1);
+
+            // missing in threetenbp impl
+            assertEquals(test.getLong(ChronoField.EPOCH_DAY), 14060);
+        });
+
+        it('test_get_TemporalField_null', () => {
+            expect(() => {
+                TEST_2007_07_15.get(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_TemporalField_invalidField', () => {
+            expect(() => {
+                TEST_2007_07_15.get(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_TemporalField_timeField', () => {
+            expect(() => {
+                TEST_2007_07_15.get(ChronoField.HOUR_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+
+    describe('query(TemporalQuery)', () => {
+        it('test_query', () => {
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.localDate()), TEST_2007_07_15);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.localTime()), null);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.offset()), null);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.precision()), ChronoUnit.DAYS);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.zone()), null);
+            assertEquals(TEST_2007_07_15.query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_2007_07_15.query(null);
+            }).to.throw(NullPointerException);
+        });
+
     });
 
     describe('now()', () => {

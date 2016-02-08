@@ -131,6 +131,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     getLong(field) {
+        assert(field != null, '', NullPointerException);
         if (field instanceof ChronoField) {
             return this._get0(field);
         }
@@ -144,7 +145,7 @@ export class LocalDate extends ChronoLocalDate{
             // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
             case ChronoField.DAY_OF_MONTH: return this._day;
             // case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
-            // case ChronoField.EPOCH_DAY: return this.toEpochDay();
+            case ChronoField.EPOCH_DAY: return this.toEpochDay();
             // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
             // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
             case ChronoField.MONTH_OF_YEAR: return this._month;
@@ -470,6 +471,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
     query(query) {
+        assert(query != null, NullPointerException);
         if (query === TemporalQueries.localDate()) {
             return this;
         }
