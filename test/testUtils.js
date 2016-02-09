@@ -18,6 +18,10 @@ export function assertEquals(expected, actual, message){
     }
 }
 
+export function assertNotNull(object, message){
+    expect(object, message).to.be.not.null;
+}
+
 export function fail(message){
     assert(false, message);
 }
