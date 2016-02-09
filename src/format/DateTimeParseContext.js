@@ -1,18 +1,44 @@
+/*
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
 import {assert} from '../assert';
+
+import {DateTimeBuilder} from './DateTimeBuilder';
+import {EnumMap} from './EnumMap';
+
+import {IsoChronology} from '../chrono/IsoChronology';
 import {TemporalAccessor} from '../temporal/TemporalAccessor';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 export class DateTimeParseContext{
 
-    constructor(locale, symbols, chronology){
-        this._locale = locale;
-        this._symbols = symbols;
-        this._chronology = chronology;
+    constructor(){
+        if(arguments.length === 1){
+            this._constructorFormatter.apply(this, arguments);
+        } else {
+            this._constructorParam.apply(this, arguments);
+        }
 
         this._caseSensitive = true;
         this._strict = true;
-        this._parsed = [new Parsed()];
+        this._parsed = [new Parsed(this)];
     }
+
+    _constructorParam(locale, symbols, chronology){
+        this._locale = locale;
+        this._symbols = symbols;
+        this._overrideChronology = chronology;
+    }
+
+    _constructorFormatter(formatter){
+        this._locale = formatter.locale();
+        this._symbols = formatter.decimalStyle();
+        this._overrideChronology = formatter.chronology();
+    }
+
 
     symbols(){
         return this._symbols;
@@ -102,13 +128,13 @@ export class DateTimeParseContext{
 
     setParsedField(field, value, errorPos, successPos){
         var currentParsedFieldValues = this.currentParsed().fieldValues;
-        var old = currentParsedFieldValues[field];
-        currentParsedFieldValues[field] = value;
+        var old = currentParsedFieldValues.get(field);
+        currentParsedFieldValues.set(field, value);
         return (old != null && old !== value) ? ~errorPos : successPos;
     }
 
     getParsed(field) {
-        return this.currentParsed().fieldValues[field];
+        return this.currentParsed().fieldValues.get(field);
     }
 
     toParsed() {
@@ -119,24 +145,40 @@ export class DateTimeParseContext{
         return this._parsed[this._parsed.length - 1];
     }
 
+    /**
+     * Gets the effective chronology during parsing.
+     *
+     * @return the effective parsing chronology, not null
+     */
+    getEffectiveChronology() {
+        var chrono = this.currentParsed().chrono;
+        if (chrono == null) {
+            chrono = this._overrideChronology;
+            if (chrono == null) {
+                chrono = IsoChronology.INSTANCE;
+            }
+        }
+        return chrono;
+    }
+
+
 }
 
 class Parsed extends TemporalAccessor {
-    constructor(){
+    constructor(dateTimeParseContext){
         super();
         this.chrono = null;
         this.zone = null;
-        this.fieldValues = {};
+        this.fieldValues = new EnumMap();
         this.leapSecond = false;
+        this.dateTimeParseContext = dateTimeParseContext;
     }
 
     copy() {
         var cloned = new Parsed();
         cloned.chrono = this.chrono;
         cloned.zone = this.zone;
-        for(let field in this.fieldValues) {
-            cloned.fieldValues[field] = this.fieldValues[field];
-        }
+        cloned.fieldValues.putAll(this.fieldValues);
         cloned.leapSecond = this.leapSecond;
         return cloned;
     }
@@ -146,11 +188,11 @@ class Parsed extends TemporalAccessor {
     }
 
     isSupported(field) {
-        return this.fieldValues[field] == null;
+        return this.fieldValues.containsKey(field);
     }
 
     get(field) {
-        var val = this.fieldValues[field];
+        var val = this.fieldValues.get(field);
         assert(val != null);
         return val;
     }
@@ -165,4 +207,17 @@ class Parsed extends TemporalAccessor {
         return super.query(query);
     }
 
+    toBuilder() {
+        var builder = new DateTimeBuilder();
+        builder.fieldValues.putAll(this.fieldValues);
+        builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
+        if (this.zone != null) {
+            builder.zone = this.zone;
+        } else {
+            builder.zone = this.overrideZone;
+        }
+        builder.leapSecond = this.leapSecond;
+        builder.excessDays = this.excessDays;
+        return builder;
+    }
 }

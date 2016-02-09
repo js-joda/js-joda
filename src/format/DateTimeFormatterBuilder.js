@@ -436,7 +436,7 @@ class CompositePrinterParser {
         try {
             for (let i=0; i<this._printerParsers.length; i++) {
                 let pp = this._printerParsers[i];
-                if (pp.print(context, buf) == false) {
+                if (pp.print(context, buf) === false) {
                     buf.setLength(length);  // reset buffer
                     return true;
                 }

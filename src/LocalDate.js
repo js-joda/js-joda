@@ -12,6 +12,7 @@ import { IsoChronology } from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoLocalDate} from './chrono/ChronoLocalDate';
 import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
+import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {Clock} from './Clock';
 import {Month} from './Month';
@@ -244,6 +245,21 @@ export class LocalDate extends ChronoLocalDate{
         var epochSec = now.epochSecond() + offset.totalSeconds();
         var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
         return LocalDate.ofEpochDay(epochDay);
+    }
+
+    /**
+     * Obtains an instance of {@code LocalDate} from a text string using a specific formatter.
+     *
+     * The text is parsed using the formatter, returning a date.
+     *
+     * @param text  the text to parse, not null
+     * @param formatter  the formatter to use, default is DateTimeFormatter.ISO_LOCAL_DATE
+     * @return the parsed local date, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE()){
+        assert(formatter != null, 'formatter', NullPointerException);
+        return formatter.parse(text, LocalDate.FROM);
     }
 
     /**

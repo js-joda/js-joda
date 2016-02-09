@@ -4,13 +4,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
-import {assertEquals} from '../testUtils';
+import {assertEquals, assertNotNull} from '../testUtils';
 
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Year} from '../../src/Year';
 
@@ -271,6 +271,118 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }).to.throw(NullPointerException);
         });
     });
+
+    function provider_sampleToString() {
+        return [
+            [2008, 7, 5, '2008-07-05'],
+            [2007, 12, 31, '2007-12-31'],
+            [999, 12, 31, '0999-12-31'],
+            [-1, 1, 2, '-0001-01-02'],
+            [9999, 12, 31, '9999-12-31'],
+            [-9999, 12, 31, '-9999-12-31'],
+            [10000, 1, 1, '+10000-01-01'],
+            [-10000, 1, 1, '-10000-01-01'],
+            [999999, 1, 1, '+999999-01-01'],
+            [-999999, 1, 1, '-999999-01-01']
+        ];
+    }
+    
+    function provider_sampleBadParse() {
+        return [
+            ['2008/07/05'],
+            ['10000-01-01'],
+            ['2008-1-1'],
+            ['2008--01'],
+            ['ABCD-02-01'],
+            ['2008-AB-01'],
+            ['2008-02-AB'],
+            ['-0000-02-01'],
+            ['2008-02-01Z'],
+            ['2008-02-01+01:00'],
+            ['2008-02-01+01:00[Europe/Paris]']
+        ];
+    }
+    
+    describe('parse()', () => {
+        it('factory_parse_validText', () => {
+            var sampleToString = provider_sampleToString();
+            sampleToString.forEach((sample) => {
+                factory_parse_validText.apply(this, sample);
+            });
+
+        });
+
+        function factory_parse_validText(y, m, d, parsable){
+            // console.log(y, m, d, parsable);
+            var t = LocalDate.parse(parsable);
+            assertNotNull(t, parsable);
+            assertEquals(t.year(), y, parsable);
+            assertEquals(t.month().value(), m, parsable);
+            assertEquals(t.dayOfMonth(), d, parsable);
+        }
+
+        it('factory_parse_invalidText', () => {
+            var sampleBadParse = provider_sampleBadParse();
+            sampleBadParse.forEach((sample) => {
+                expect(() => {
+                    factory_parse_invalidText.apply(this, sample);
+                }).to.throw(DateTimeParseException);
+            });
+
+        });
+
+        function factory_parse_invalidText(unparsable) {
+            // console.log(unparsable);
+            LocalDate.parse(unparsable);
+        }
+
+        it('factory_parse_illegalValue', () => {
+            expect(() => {
+                LocalDate.parse('2008-06-32');
+            }).to.throw(DateTimeParseException);
+
+        });
+
+        it('factory_parse_invalidValue', () => {
+            expect(() => {
+                LocalDate.parse('2008-06-31');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_nullText', () => {
+            expect(() => {
+                LocalDate.parse(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_undefinedText', () => {
+            expect(() => {
+                LocalDate.parse();
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    /**
+    describe('parse(DateTimeFormatter)', () => {
+        @Test
+        public void factory_parse_formatter() {
+            DateTimeFormatter f = DateTimeFormatter.ofPattern('u M d');
+            LocalDate test = LocalDate.parse('2010 12 3', f);
+            assertEquals(test, LocalDate.of(2010, 12, 3));
+        }
+
+        @Test(expectedExceptions=NullPointerException.class)
+        public void factory_parse_formatter_nullText() {
+            DateTimeFormatter f = DateTimeFormatter.ofPattern('u M d');
+            LocalDate.parse((String) null, f);
+        }
+
+        @Test(expectedExceptions=NullPointerException.class)
+        public void factory_parse_formatter_nullFormatter() {
+            LocalDate.parse('ANY', null);
+        }
+    });
+     */
 
     describe('get/ getLong(TemporalField)', () => {
         it('test_get_TemporalField', () => {
