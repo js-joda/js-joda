@@ -693,6 +693,18 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * A hash code for this date.
+     *
+     * @return a suitable hash code
+     */
+    hashCode() {
+        var yearValue = this._year;
+        var monthValue = this._month;
+        var dayValue = this._day;
+        return (yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6) + (dayValue));
+    }
+
+    /**
      * Outputs this date as a String, such as 2007-12-03.
      * The output will be in the ISO-8601 format uuuu-MM-dd.
      *

@@ -635,62 +635,95 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
 
     });
+
+    function provider_sampleDates() {
+        return [
+            [2008, 7, 5],
+            [2007, 7, 5],
+            [2006, 7, 5],
+            [2005, 7, 5],
+            [2004, 1, 1],
+            [-1, 1, 2]
+        ];
+    }
+
+    describe('equals()', function () {
+        it('test_equals_true', function () {
+            provider_sampleDates().forEach((sampleDate) => {
+                test_equals_true.apply(this, sampleDate);
+            });
+        });
+
+        function test_equals_true(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            var b = LocalDate.of(y, m, d);
+            assertEquals(a.equals(b), true);
+        }
+
+        it('test_equals_false_year_differs', function () {
+            provider_sampleDates().forEach((sampleDate) => {
+                test_equals_false_year_differs.apply(this, sampleDate);
+            });
+        });
+
+        function test_equals_false_year_differs(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            var b = LocalDate.of(y + 1, m, d);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_false_month_differs', function () {
+            provider_sampleDates().forEach((sampleDate) => {
+                test_equals_false_month_differs.apply(this, sampleDate);
+            });
+        });
+
+        function test_equals_false_month_differs(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            var b = LocalDate.of(y, m + 1, d);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_false_day_differs', function () {
+            provider_sampleDates().forEach((sampleDate) => {
+                test_equals_false_day_differs.apply(this, sampleDate);
+            });
+        });
+
+        function test_equals_false_day_differs(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            var b = LocalDate.of(y, m, d + 1);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_itself_true', function () {
+            assertEquals(TEST_2007_07_15.equals(TEST_2007_07_15), true);
+        });
+
+        it('test_equals_string_false', function () {
+            assertEquals(TEST_2007_07_15.equals('2007-07-15'), false);
+        });
+
+        it('test_equals_null_false', function () {
+            assertEquals(TEST_2007_07_15.equals(null), false);
+        });
+    });
+
+    describe('hashCode()', function () {
+        it('test_hashCode', function () {
+            provider_sampleDates().forEach((sampleDate) => {
+                test_hashCode.apply(this, sampleDate);
+            });
+        });
+
+        function test_hashCode(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            assertEquals(a.hashCode(), a.hashCode());
+            var b = LocalDate.of(y, m, d);
+            assertEquals(a.hashCode(), b.hashCode());
+        }
+    });
     /**
-
-
-    //-----------------------------------------------------------------------
-    // equals()
-    //-----------------------------------------------------------------------
-    @Test(dataProvider="sampleDates" )
-    public void test_equals_true(int y, int m, int d) {
-        LocalDate a = LocalDate.of(y, m, d);
-        LocalDate b = LocalDate.of(y, m, d);
-        assertEquals(a.equals(b), true);
-    }
-    @Test(dataProvider="sampleDates")
-    public void test_equals_false_year_differs(int y, int m, int d) {
-        LocalDate a = LocalDate.of(y, m, d);
-        LocalDate b = LocalDate.of(y + 1, m, d);
-        assertEquals(a.equals(b), false);
-    }
-    @Test(dataProvider="sampleDates")
-    public void test_equals_false_month_differs(int y, int m, int d) {
-        LocalDate a = LocalDate.of(y, m, d);
-        LocalDate b = LocalDate.of(y, m + 1, d);
-        assertEquals(a.equals(b), false);
-    }
-    @Test(dataProvider="sampleDates")
-    public void test_equals_false_day_differs(int y, int m, int d) {
-        LocalDate a = LocalDate.of(y, m, d);
-        LocalDate b = LocalDate.of(y, m, d + 1);
-        assertEquals(a.equals(b), false);
-    }
-
-    @Test
-    public void test_equals_itself_true() {
-        assertEquals(TEST_2007_07_15.equals(TEST_2007_07_15), true);
-    }
-
-    @Test
-    public void test_equals_string_false() {
-        assertEquals(TEST_2007_07_15.equals("2007-07-15"), false);
-    }
-
-    @Test
-    public void test_equals_null_false() {
-        assertEquals(TEST_2007_07_15.equals(null), false);
-    }
-
-    //-----------------------------------------------------------------------
-    // hashCode()
-    //-----------------------------------------------------------------------
-    @Test(dataProvider="sampleDates")
-    public void test_hashCode(int y, int m, int d) {
-        LocalDate a = LocalDate.of(y, m, d);
-        assertEquals(a.hashCode(), a.hashCode());
-        LocalDate b = LocalDate.of(y, m, d);
-        assertEquals(a.hashCode(), b.hashCode());
-    }
 
     //-----------------------------------------------------------------------
     // toString()
