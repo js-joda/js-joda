@@ -723,34 +723,22 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(a.hashCode(), b.hashCode());
         }
     });
+
+    describe('toString()', function () {
+        it('test_toString', function () {
+            provider_sampleToString().forEach((sampleDate) => {
+                test_toString.apply(this, sampleDate);
+            });
+        });
+
+        function test_toString(y, m, d, expected) {
+            var t = LocalDate.of(y, m, d);
+            var str = t.toString();
+            assertEquals(str, expected);
+        }
+    });
+
     /**
-
-    //-----------------------------------------------------------------------
-    // toString()
-    //-----------------------------------------------------------------------
-    @DataProvider(name="sampleToString")
-    Object[][] provider_sampleToString() {
-        return new Object[][] {
-            {2008, 7, 5, "2008-07-05"},
-            {2007, 12, 31, "2007-12-31"},
-            {999, 12, 31, "0999-12-31"},
-            {-1, 1, 2, "-0001-01-02"},
-            {9999, 12, 31, "9999-12-31"},
-            {-9999, 12, 31, "-9999-12-31"},
-            {10000, 1, 1, "+10000-01-01"},
-            {-10000, 1, 1, "-10000-01-01"},
-            {12345678, 1, 1, "+12345678-01-01"},
-            {-12345678, 1, 1, "-12345678-01-01"},
-        };
-    }
-
-    @Test(dataProvider="sampleToString")
-    public void test_toString(int y, int m, int d, String expected) {
-        LocalDate t = LocalDate.of(y, m, d);
-        String str = t.toString();
-        assertEquals(str, expected);
-    }
-
     //-----------------------------------------------------------------------
     // format(DateTimeFormatter)
     //-----------------------------------------------------------------------
