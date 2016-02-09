@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDate = __webpack_require__(17);
+	var _LocalDate = __webpack_require__(18);
 	
 	Object.defineProperty(exports, 'LocalDate', {
 	  enumerable: true,
@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(16);
+	var _ZoneOffset = __webpack_require__(17);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -162,20 +162,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Clock = undefined;
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
 	var _Instant = __webpack_require__(2);
 	
-	var _ZoneOffset = __webpack_require__(16);
+	var _ZoneOffset = __webpack_require__(17);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -223,13 +224,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Clock = exports.Clock = (function () {
+	var Clock = exports.Clock = function () {
 	    function Clock() {
 	        _classCallCheck(this, Clock);
 	    }
 	
 	    _createClass(Clock, [{
 	        key: 'millis',
+	
 	
 	        /**
 	          * Gets the current millisecond instant of the clock.
@@ -337,9 +339,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Clock;
-	})();
+	}();
 	
-	var SystemClock = (function (_Clock) {
+	var SystemClock = function (_Clock) {
 	    _inherits(SystemClock, _Clock);
 	
 	    function SystemClock() {
@@ -366,14 +368,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return SystemClock;
-	})(Clock);
+	}(Clock);
 	
 	/**
 	 * Implementation of a clock that always returns the latest time from
 	 * {@link Date#getTime()}.
 	 */
 	
-	var SystemUTCClock = (function (_SystemClock) {
+	
+	var SystemUTCClock = function (_SystemClock) {
 	    _inherits(SystemUTCClock, _SystemClock);
 	
 	    function SystemUTCClock() {
@@ -390,14 +393,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return SystemUTCClock;
-	})(SystemClock);
+	}(SystemClock);
 	
 	/**
 	 * Implementation of a clock that always returns the latest time from
 	 * sytem default Zone {@link Date#getTime()} and {@link Date#getTimeZoneOffset()}.
 	 */
 	
-	var SystemDefaultClock = (function (_SystemClock2) {
+	
+	var SystemDefaultClock = function (_SystemClock2) {
 	    _inherits(SystemDefaultClock, _SystemClock2);
 	
 	    function SystemDefaultClock() {
@@ -420,14 +424,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return SystemDefaultClock;
-	})(SystemClock);
+	}(SystemClock);
 	
 	/**
 	 * Implementation of a clock that always returns the same instant.
 	 * This is typically used for testing.
 	 */
 	
-	var FixedClock = (function (_Clock2) {
+	
+	var FixedClock = function (_Clock2) {
 	    _inherits(FixedClock, _Clock2);
 	
 	    function FixedClock(fixedInstant, zoneOffset) {
@@ -458,7 +463,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return FixedClock;
-	})(Clock);
+	}(Clock);
 
 /***/ },
 /* 2 */
@@ -466,12 +471,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Instant = undefined;
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _ChronoField = __webpack_require__(3);
 	
@@ -487,8 +494,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TemporalAccessor2 = __webpack_require__(14);
 	
-	function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -498,6 +503,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
 	
 	// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
 	var MIN_SECONDS = -31619087596800; // -999999-01-01
@@ -596,7 +602,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Instant = exports.Instant = (function (_TemporalAccessor) {
+	var Instant = exports.Instant = function (_TemporalAccessor) {
 	    _inherits(Instant, _TemporalAccessor);
 	
 	    function Instant(seconds, nanoOfSecond) {
@@ -619,6 +625,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *
 	     * @return the seconds from the epoch of 1970-01-01T00:00:00Z
 	     */
+	
 	
 	    _createClass(Instant, [{
 	        key: 'epochSecond',
@@ -669,6 +676,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    }, {
 	        key: 'plusSeconds',
+	
 	
 	        /**
 	         * Returns a copy of this instant with the specified duration in seconds added.
@@ -1065,7 +1073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Instant;
-	})(_TemporalAccessor2.TemporalAccessor);
+	}(_TemporalAccessor2.TemporalAccessor);
 	
 	Instant.EPOCH = new Instant(0, 0);
 	Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
@@ -1077,12 +1085,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.ChronoField = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _MathUtil = __webpack_require__(4);
 	
@@ -1104,7 +1112,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var ChronoField = exports.ChronoField = (function (_TemporalField) {
+	
+	var ChronoField = exports.ChronoField = function (_TemporalField) {
 	    _inherits(ChronoField, _TemporalField);
 	
 	    function ChronoField(name, baseUnit, rangeUnit, range) {
@@ -1151,6 +1160,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
+	         * Checks if this field represents a component of a date.
+	         *
+	         * @return true if it is a component of a date
+	         */
+	
+	    }, {
+	        key: 'isDateBased',
+	        value: function isDateBased() {
+	            var dateBased =
+	            //this === ChronoField.DAY_OF_WEEK ||
+	            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
+	            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
+	            this === ChronoField.DAY_OF_MONTH || this === ChronoField.DAY_OF_YEAR || this === ChronoField.EPOCH_DAY ||
+	            //this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
+	            //this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
+	            this === ChronoField.MONTH_OF_YEAR ||
+	            //this === ChronoField.EPOCH_MONTH ||
+	            //this === ChronoField.YEAR_OF_ERA ||
+	            this === ChronoField.YEAR || this === ChronoField.ERA;
+	            return dateBased;
+	        }
+	
+	        /**
 	         * Get the range of valid values for this field using the temporal object to
 	         * refine the result.
 	         * <p>
@@ -1186,6 +1218,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function rangeRefinedBy(temporal) {
 	            return temporal.range(this);
 	        }
+	
+	        /**
+	         * Checks that the specified value is valid and fits in an {@code int}.
+	         * <p>
+	         * This validates that the value is within the outer range of valid values
+	         * returned by {@link #range()}.
+	         * It also checks that all valid values are within the bounds of an {@code int}.
+	         * <p>
+	         * This method checks against the range of the field in the ISO-8601 calendar system.
+	         * This range may be incorrect for other calendar systems.
+	         * Use {@link Chronology#range(ChronoField)} to access the correct range
+	         * for a different calendar system.
+	         *
+	         * @param value  the value to check
+	         * @return the value that was passed in
+	         */
+	
+	    }, {
+	        key: 'checkValidIntValue',
+	        value: function checkValidIntValue(value) {
+	            return this.range().checkValidIntValue(value, this);
+	        }
 	    }, {
 	        key: 'getFrom',
 	        value: function getFrom(temporal) {
@@ -1204,21 +1258,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return ChronoField;
-	})(_TemporalField2.TemporalField);
+	}(_TemporalField2.TemporalField);
 	
 	ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
+	
+	ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
 	
 	ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
 	
 	ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
 	
+	ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
+	
 	ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
+	
+	ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
 	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
 	
 	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
 	
+	ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
+	
+	ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
+	
 	ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
+	
+	ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
 	
 	ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
 
@@ -1228,16 +1294,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.MathUtil = exports.MIN_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
 	
 	var _errors = __webpack_require__(5);
 	
@@ -1250,7 +1317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Math helper with static function for integer operations
 	 */
 	
-	var MathUtil = exports.MathUtil = (function () {
+	var MathUtil = exports.MathUtil = function () {
 	    function MathUtil() {
 	        _classCallCheck(this, MathUtil);
 	    }
@@ -1390,7 +1457,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return MathUtil;
-	})();
+	}();
+	
+	MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
+	MathUtil.MIN_SAFE_INTEGER = MIN_SAFE_INTEGER;
 
 /***/ },
 /* 5 */
@@ -1418,7 +1488,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var DateTimeException = exports.DateTimeException = (function (_ExtendableError) {
+	
+	var DateTimeException = exports.DateTimeException = function (_ExtendableError) {
 	    _inherits(DateTimeException, _ExtendableError);
 	
 	    function DateTimeException() {
@@ -1435,9 +1506,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return DateTimeException;
-	})(_es6Error2.default);
+	}(_es6Error2.default);
 	
-	var DateTimeParseException = exports.DateTimeParseException = (function (_ExtendableError2) {
+	var DateTimeParseException = exports.DateTimeParseException = function (_ExtendableError2) {
 	    _inherits(DateTimeParseException, _ExtendableError2);
 	
 	    function DateTimeParseException() {
@@ -1456,10 +1527,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return DateTimeParseException;
-	})(_es6Error2.default);
+	}(_es6Error2.default);
 	
-	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = (function (_ExtendableError3) {
-	    _inherits(UnsupportedTemporalTypeException, _ExtendableError3);
+	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = function (_DateTimeException) {
+	    _inherits(UnsupportedTemporalTypeException, _DateTimeException);
 	
 	    function UnsupportedTemporalTypeException() {
 	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'UnsupportedTemporalTypeException' : arguments[0];
@@ -1470,10 +1541,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return UnsupportedTemporalTypeException;
-	})(_es6Error2.default);
+	}(DateTimeException);
 	
-	var ArithmeticException = exports.ArithmeticException = (function (_ExtendableError4) {
-	    _inherits(ArithmeticException, _ExtendableError4);
+	var ArithmeticException = exports.ArithmeticException = function (_ExtendableError3) {
+	    _inherits(ArithmeticException, _ExtendableError3);
 	
 	    function ArithmeticException() {
 	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'ArithmeticException' : arguments[0];
@@ -1484,10 +1555,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return ArithmeticException;
-	})(_es6Error2.default);
+	}(_es6Error2.default);
 	
-	var IllegalArgumentException = exports.IllegalArgumentException = (function (_ExtendableError5) {
-	    _inherits(IllegalArgumentException, _ExtendableError5);
+	var IllegalArgumentException = exports.IllegalArgumentException = function (_ExtendableError4) {
+	    _inherits(IllegalArgumentException, _ExtendableError4);
 	
 	    function IllegalArgumentException() {
 	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'IllegalArgumentException' : arguments[0];
@@ -1498,10 +1569,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return IllegalArgumentException;
-	})(_es6Error2.default);
+	}(_es6Error2.default);
 	
-	var NullPointerException = exports.NullPointerException = (function (_ExtendableError6) {
-	    _inherits(NullPointerException, _ExtendableError6);
+	var NullPointerException = exports.NullPointerException = function (_ExtendableError5) {
+	    _inherits(NullPointerException, _ExtendableError5);
 	
 	    function NullPointerException() {
 	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'NullPointerException' : arguments[0];
@@ -1512,7 +1583,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    return NullPointerException;
-	})(_es6Error2.default);
+	}(_es6Error2.default);
 
 /***/ },
 /* 6 */
@@ -1574,16 +1645,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.ChronoUnit = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
 	
 	var _Duration = __webpack_require__(8);
 	
@@ -1604,7 +1676,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var ChronoUnit /*implements TemporalUnit*/ = exports.ChronoUnit = (function () {
+	var ChronoUnit /*implements TemporalUnit*/ = exports.ChronoUnit = function () {
 	
 	  /**
 	   * 
@@ -1628,6 +1700,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	   *
 	   * @return {Duration} the estimated duration of this unit, not null
 	   */
+	
 	
 	  _createClass(ChronoUnit, [{
 	    key: 'duration',
@@ -1847,11 +1920,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 	
 	  return ChronoUnit;
-	})();
+	}();
 	/**
 	 * Unit that represents the concept of a nanosecond, the smallest supported unit of time.
 	 * For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
 	 */
+	
 	
 	ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
 	/**
@@ -1968,16 +2042,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Duration = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
 	
 	var _assert = __webpack_require__(9);
 	
@@ -2020,7 +2095,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	
 	var Duration
-	/*implements TemporalAmount, Comparable<Duration>, Serializable */ = exports.Duration = (function () {
+	/*implements TemporalAmount, Comparable<Duration>, Serializable */ = exports.Duration = function () {
 	
 	    /**
 	     * Constructs an instance of {@code Duration} using seconds and nanoseconds.
@@ -2051,8 +2126,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @throws ArithmeticException if the input days exceeds the capacity of {@code Duration}
 	     */
 	
+	
 	    _createClass(Duration, [{
 	        key: 'get',
+	
 	
 	        //-----------------------------------------------------------------------
 	        /**
@@ -3359,10 +3436,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Duration;
-	})();
+	}();
 	/**
 	 * Constant for a duration of zero.
 	 */
+	
 	
 	Duration.ZERO = new Duration(0, 0);
 
@@ -3392,6 +3470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	   */
+	
 	
 	function requireNonNull(value, parameterName) {
 	    if (value == null) {
@@ -3483,6 +3562,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * The minimum supported year
 	 */
 	
+	
 	Year.MIN_VALUE = -999999;
 	/**
 	 * The maximum supported year
@@ -3517,20 +3597,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.ValueRange = undefined;
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
 	var _assert = __webpack_require__(9);
 	
 	var _errors = __webpack_require__(5);
+	
+	var _MathUtil = __webpack_require__(4);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3551,7 +3634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var ValueRange = exports.ValueRange = (function () {
+	var ValueRange = exports.ValueRange = function () {
 	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
 	        _classCallCheck(this, ValueRange);
 	
@@ -3559,21 +3642,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'');
 	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'');
 	
-	        this.minimum = function () {
-	            return minSmallest;
-	        };
-	        this.largestMinimum = function () {
-	            return minLargest;
-	        };
-	        this.maximum = function () {
-	            return maxLargest;
-	        };
-	        this.smallestMaximum = function () {
-	            return maxSmallest;
-	        };
+	        this._minSmallest = minSmallest;
+	        this._minLargest = minLargest;
+	        this._maxLargest = maxLargest;
+	        this._maxSmallest = maxSmallest;
 	    }
 	
 	    _createClass(ValueRange, [{
+	        key: 'minimum',
+	        value: function minimum() {
+	            return this._minSmallest;
+	        }
+	    }, {
+	        key: 'largestMinimum',
+	        value: function largestMinimum() {
+	            return this._minLargest;
+	        }
+	    }, {
+	        key: 'maximum',
+	        value: function maximum() {
+	            return this._maxLargest;
+	        }
+	    }, {
+	        key: 'smallestMaximum',
+	        value: function smallestMaximum() {
+	            return this._maxSmallest;
+	        }
+	    }, {
 	        key: 'isValidValue',
 	        value: function isValidValue(value) {
 	            return this.minimum() <= value && value <= this.maximum();
@@ -3590,6 +3685,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	                return (0, _assert.assert)(false, msg, _errors.DateTimeException);
 	            }
+	        }
+	
+	        /**
+	         * Checks that the specified value is valid and fits in an {@code int}.
+	         * <p>
+	         * This validates that the value is within the valid range of values and that
+	         * all valid values are within the bounds of an {@code int}.
+	         * The field is only used to improve the error message.
+	         *
+	         * @param value  the value to check
+	         * @param field  the field being checked, may be null
+	         * @return the value that was passed in
+	         * @see #isValidIntValue(long)
+	         */
+	
+	    }, {
+	        key: 'checkValidIntValue',
+	        value: function checkValidIntValue(value, field) {
+	            if (this.isValidIntValue(value) === false) {
+	                throw new _errors.DateTimeException('Invalid int value for ' + field + ': ' + value);
+	            }
+	            return value;
+	        }
+	
+	        /**
+	         * Checks if the value is within the valid range and that all values
+	         * in the range fit in an {@code int}.
+	         * <p>
+	         * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+	         *
+	         * @param value  the value to check
+	         * @return true if the value is valid and fits in an {@code int}
+	         */
+	
+	    }, {
+	        key: 'isValidIntValue',
+	        value: function isValidIntValue(value) {
+	            return this.isIntValue() && this.isValidValue(value);
+	        }
+	
+	        /**
+	         * Checks if all values in the range fit in an {@code int}.
+	         * <p>
+	         * This checks that all valid values are within the bounds of an {@code int}.
+	         * <p>
+	         * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
+	         * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
+	         * <p>
+	         * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+	         *
+	         * @return boolean if a valid value always fits in an {@code int}
+	         */
+	
+	    }, {
+	        key: 'isIntValue',
+	        value: function isIntValue() {
+	            return this.minimum() >= _MathUtil.MathUtil.MIN_SAFE_INTEGER && this.maximum() <= _MathUtil.MathUtil.MAX_SAFE_INTEGER;
 	        }
 	
 	        /*
@@ -3656,7 +3808,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return ValueRange;
-	})();
+	}();
 
 /***/ },
 /* 14 */
@@ -3664,16 +3816,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.TemporalAccessor = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
 	
 	var _ChronoField = __webpack_require__(3);
 	
@@ -3683,7 +3836,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var TemporalAccessor = (function () {
+	var TemporalAccessor = function () {
 	    function TemporalAccessor() {
 	        _classCallCheck(this, TemporalAccessor);
 	    }
@@ -3773,29 +3926,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return TemporalAccessor;
-	})();
+	}();
 
 	exports.TemporalAccessor = TemporalAccessor;
 
 /***/ },
 /* 15 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
+	exports.TemporalQueries = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	exports.createTemporalQuery = createTemporalQuery;
+	
+	var _Enum2 = __webpack_require__(16);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
 	/**
 	 * Common implementations of {@code TemporalQuery}.
 	 * <p>
@@ -3819,319 +3980,315 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var TemporalQueries = exports.TemporalQueries = (function () {
-	    function TemporalQueries() {
-	        _classCallCheck(this, TemporalQueries);
+	var TemporalQueries = exports.TemporalQueries = function () {
+	  function TemporalQueries() {
+	    _classCallCheck(this, TemporalQueries);
+	  }
+	
+	  _createClass(TemporalQueries, null, [{
+	    key: 'zoneId',
+	
+	
+	    /**
+	     * A strict query for the {@code ZoneId}.
+	     * <p>
+	     * This queries a {@code TemporalAccessor} for the zone.
+	     * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
+	     * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
+	     * Thus a {@link ZonedDateTime} will return the result of
+	     * {@code getZone()}, but an {@link OffsetDateTime} will
+	     * return null.
+	     * <p>
+	     * In most cases, applications should use {@link #ZONE} as this query is too strict.
+	     * <p>
+	     * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
+	     * {@code LocalDate} returns null<br>
+	     * {@code LocalTime} returns null<br>
+	     * {@code LocalDateTime} returns null<br>
+	     * {@code ZonedDateTime} returns the associated zone<br>
+	     * {@code OffsetTime} returns null<br>
+	     * {@code OffsetDateTime} returns null<br>
+	     * {@code ChronoLocalDate} returns null<br>
+	     * {@code ChronoLocalDateTime} returns null<br>
+	     * {@code ChronoZonedDateTime} returns the associated zone<br>
+	     * {@code Era} returns null<br>
+	     * {@code DayOfWeek} returns null<br>
+	     * {@code Month} returns null<br>
+	     * {@code Year} returns null<br>
+	     * {@code YearMonth} returns null<br>
+	     * {@code MonthDay} returns null<br>
+	     * {@code ZoneOffset} returns null<br>
+	     * {@code Instant} returns null<br>
+	     *
+	     * @return a query that can obtain the zone ID of a temporal, not null
+	     */
+	    value: function zoneId() {
+	      return TemporalQueries.ZONE_ID;
 	    }
 	
-	    _createClass(TemporalQueries, null, [{
-	        key: "zoneId",
+	    /**
+	     * A query for the {@code Chronology}.
+	     * <p>
+	     * This queries a {@code TemporalAccessor} for the chronology.
+	     * If the target {@code TemporalAccessor} represents a date, or part of a date,
+	     * then it should return the chronology that the date is expressed in.
+	     * As a result of this definition, objects only representing time, such as
+	     * {@code LocalTime}, will return null.
+	     * <p>
+	     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
+	     * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code LocalTime} returns null (does not represent a date)<br>
+	     * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code OffsetTime} returns null (does not represent a date)<br>
+	     * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code ChronoLocalDate} returns the associated chronology<br>
+	     * {@code ChronoLocalDateTime} returns the associated chronology<br>
+	     * {@code ChronoZonedDateTime} returns the associated chronology<br>
+	     * {@code Era} returns the associated chronology<br>
+	     * {@code DayOfWeek} returns null (shared across chronologies)<br>
+	     * {@code Month} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code Year} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>
+	     * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>
+	     * {@code ZoneOffset} returns null (does not represent a date)<br>
+	     * {@code Instant} returns null (does not represent a date)<br>
+	     * <p>
+	     * The method {@link Chronology#from(TemporalAccessor)} can be used as a
+	     * {@code TemporalQuery}
+	     * That method is equivalent to this query, except that it throws an
+	     * exception if a chronology cannot be obtained.
+	     *
+	     * @return a query that can obtain the chronology of a temporal, not null
+	     */
 	
-	        /**
-	         * A strict query for the {@code ZoneId}.
-	         * <p>
-	         * This queries a {@code TemporalAccessor} for the zone.
-	         * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
-	         * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
-	         * Thus a {@link ZonedDateTime} will return the result of
-	         * {@code getZone()}, but an {@link OffsetDateTime} will
-	         * return null.
-	         * <p>
-	         * In most cases, applications should use {@link #ZONE} as this query is too strict.
-	         * <p>
-	         * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
-	         * {@code LocalDate} returns null<br>
-	         * {@code LocalTime} returns null<br>
-	         * {@code LocalDateTime} returns null<br>
-	         * {@code ZonedDateTime} returns the associated zone<br>
-	         * {@code OffsetTime} returns null<br>
-	         * {@code OffsetDateTime} returns null<br>
-	         * {@code ChronoLocalDate} returns null<br>
-	         * {@code ChronoLocalDateTime} returns null<br>
-	         * {@code ChronoZonedDateTime} returns the associated zone<br>
-	         * {@code Era} returns null<br>
-	         * {@code DayOfWeek} returns null<br>
-	         * {@code Month} returns null<br>
-	         * {@code Year} returns null<br>
-	         * {@code YearMonth} returns null<br>
-	         * {@code MonthDay} returns null<br>
-	         * {@code ZoneOffset} returns null<br>
-	         * {@code Instant} returns null<br>
-	         *
-	         * @return a query that can obtain the zone ID of a temporal, not null
-	         */
-	        value: function zoneId() {
-	            return TemporalQueries.ZONE_ID;
-	        }
+	  }, {
+	    key: 'chronology',
+	    value: function chronology() {
+	      return TemporalQueries.CHRONO;
+	    }
 	
-	        /**
-	         * A query for the {@code Chronology}.
-	         * <p>
-	         * This queries a {@code TemporalAccessor} for the chronology.
-	         * If the target {@code TemporalAccessor} represents a date, or part of a date,
-	         * then it should return the chronology that the date is expressed in.
-	         * As a result of this definition, objects only representing time, such as
-	         * {@code LocalTime}, will return null.
-	         * <p>
-	         * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-	         * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code LocalTime} returns null (does not represent a date)<br>
-	         * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code OffsetTime} returns null (does not represent a date)<br>
-	         * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code ChronoLocalDate} returns the associated chronology<br>
-	         * {@code ChronoLocalDateTime} returns the associated chronology<br>
-	         * {@code ChronoZonedDateTime} returns the associated chronology<br>
-	         * {@code Era} returns the associated chronology<br>
-	         * {@code DayOfWeek} returns null (shared across chronologies)<br>
-	         * {@code Month} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code Year} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>
-	         * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>
-	         * {@code ZoneOffset} returns null (does not represent a date)<br>
-	         * {@code Instant} returns null (does not represent a date)<br>
-	         * <p>
-	         * The method {@link Chronology#from(TemporalAccessor)} can be used as a
-	         * {@code TemporalQuery}
-	         * That method is equivalent to this query, except that it throws an
-	         * exception if a chronology cannot be obtained.
-	         *
-	         * @return a query that can obtain the chronology of a temporal, not null
-	         */
+	    /**
+	     * A query for the smallest supported unit.
+	     * <p>
+	     * This queries a {@code TemporalAccessor} for the time precision.
+	     * If the target {@code TemporalAccessor} represents a consistent or complete date-time,
+	     * date or time then this must return the smallest precision actually supported.
+	     * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}
+	     * are defined to always return ignoring the precision, thus this is the only
+	     * way to find the actual smallest supported unit.
+	     * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}
+	     * it would return a precision of {@code MILLIS}.
+	     * <p>
+	     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
+	     * {@code LocalDate} returns {@code DAYS}<br>
+	     * {@code LocalTime} returns {@code NANOS}<br>
+	     * {@code LocalDateTime} returns {@code NANOS}<br>
+	     * {@code ZonedDateTime} returns {@code NANOS}<br>
+	     * {@code OffsetTime} returns {@code NANOS}<br>
+	     * {@code OffsetDateTime} returns {@code NANOS}<br>
+	     * {@code ChronoLocalDate} returns {@code DAYS}<br>
+	     * {@code ChronoLocalDateTime} returns {@code NANOS}<br>
+	     * {@code ChronoZonedDateTime} returns {@code NANOS}<br>
+	     * {@code Era} returns {@code ERAS}<br>
+	     * {@code DayOfWeek} returns {@code DAYS}<br>
+	     * {@code Month} returns {@code MONTHS}<br>
+	     * {@code Year} returns {@code YEARS}<br>
+	     * {@code YearMonth} returns {@code MONTHS}<br>
+	     * {@code MonthDay} returns null (does not represent a complete date or time)<br>
+	     * {@code ZoneOffset} returns null (does not represent a date or time)<br>
+	     * {@code Instant} returns {@code NANOS}<br>
+	     *
+	     * @return a query that can obtain the precision of a temporal, not null
+	     */
 	
-	    }, {
-	        key: "chronology",
-	        value: function chronology() {
-	            return TemporalQueries.CHRONO;
-	        }
+	  }, {
+	    key: 'precision',
+	    value: function precision() {
+	      return TemporalQueries.PRECISION;
+	    }
 	
-	        /**
-	         * A query for the smallest supported unit.
-	         * <p>
-	         * This queries a {@code TemporalAccessor} for the time precision.
-	         * If the target {@code TemporalAccessor} represents a consistent or complete date-time,
-	         * date or time then this must return the smallest precision actually supported.
-	         * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}
-	         * are defined to always return ignoring the precision, thus this is the only
-	         * way to find the actual smallest supported unit.
-	         * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}
-	         * it would return a precision of {@code MILLIS}.
-	         * <p>
-	         * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-	         * {@code LocalDate} returns {@code DAYS}<br>
-	         * {@code LocalTime} returns {@code NANOS}<br>
-	         * {@code LocalDateTime} returns {@code NANOS}<br>
-	         * {@code ZonedDateTime} returns {@code NANOS}<br>
-	         * {@code OffsetTime} returns {@code NANOS}<br>
-	         * {@code OffsetDateTime} returns {@code NANOS}<br>
-	         * {@code ChronoLocalDate} returns {@code DAYS}<br>
-	         * {@code ChronoLocalDateTime} returns {@code NANOS}<br>
-	         * {@code ChronoZonedDateTime} returns {@code NANOS}<br>
-	         * {@code Era} returns {@code ERAS}<br>
-	         * {@code DayOfWeek} returns {@code DAYS}<br>
-	         * {@code Month} returns {@code MONTHS}<br>
-	         * {@code Year} returns {@code YEARS}<br>
-	         * {@code YearMonth} returns {@code MONTHS}<br>
-	         * {@code MonthDay} returns null (does not represent a complete date or time)<br>
-	         * {@code ZoneOffset} returns null (does not represent a date or time)<br>
-	         * {@code Instant} returns {@code NANOS}<br>
-	         *
-	         * @return a query that can obtain the precision of a temporal, not null
-	         */
+	    /**
+	     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+	     * <p>
+	     * This queries a {@code TemporalAccessor} for the zone.
+	     * It first tries to obtain the zone, using {@link #zoneId()}.
+	     * If that is not found it tries to obtain the {@link #offset()}.
+	     * <p>
+	     * In most cases, applications should use this query rather than {@code #zoneId()}.
+	     * <p>
+	     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
+	     * field and uses it to create a {@code ZoneOffset}.
+	     * <p>
+	     * The method {@link ZoneId#from(TemporalAccessor)} can be used as a
+	     * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.
+	     * That method is equivalent to this query, except that it throws an
+	     * exception if a zone cannot be obtained.
+	     *
+	     * @return a query that can obtain the zone ID or offset of a temporal, not null
+	     */
 	
-	    }, {
-	        key: "precision",
-	        value: function precision() {
-	            return TemporalQueries.PRECISION;
-	        }
+	  }, {
+	    key: 'zone',
+	    value: function zone() {
+	      return TemporalQueries.ZONE;
+	    }
 	
-	        /**
-	         * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
-	         * <p>
-	         * This queries a {@code TemporalAccessor} for the zone.
-	         * It first tries to obtain the zone, using {@link #zoneId()}.
-	         * If that is not found it tries to obtain the {@link #offset()}.
-	         * <p>
-	         * In most cases, applications should use this query rather than {@code #zoneId()}.
-	         * <p>
-	         * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
-	         * field and uses it to create a {@code ZoneOffset}.
-	         * <p>
-	         * The method {@link ZoneId#from(TemporalAccessor)} can be used as a
-	         * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.
-	         * That method is equivalent to this query, except that it throws an
-	         * exception if a zone cannot be obtained.
-	         *
-	         * @return a query that can obtain the zone ID or offset of a temporal, not null
-	         */
+	    /**
+	     * A query for {@code ZoneOffset} returning null if not found.
+	     * <p>
+	     * This returns a {@code TemporalQuery} that can be used to query a temporal
+	     * object for the offset. The query will return null if the temporal
+	     * object cannot supply an offset.
+	     * <p>
+	     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
+	     * field and uses it to create a {@code ZoneOffset}.
+	     * <p>
+	     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
+	     * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
+	     * This query and {@code ZoneOffset::from} will return the same result if the
+	     * temporal object contains an offset. If the temporal object does not contain
+	     * an offset, then the method reference will throw an exception, whereas this
+	     * query will return null.
+	     *
+	     * @return a query that can obtain the offset of a temporal, not null
+	     */
 	
-	    }, {
-	        key: "zone",
-	        value: function zone() {
-	            return TemporalQueries.ZONE;
-	        }
+	  }, {
+	    key: 'offset',
+	    value: function offset() {
+	      return TemporalQueries.OFFSET;
+	    }
 	
-	        /**
-	         * A query for {@code ZoneOffset} returning null if not found.
-	         * <p>
-	         * This returns a {@code TemporalQuery} that can be used to query a temporal
-	         * object for the offset. The query will return null if the temporal
-	         * object cannot supply an offset.
-	         * <p>
-	         * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
-	         * field and uses it to create a {@code ZoneOffset}.
-	         * <p>
-	         * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
-	         * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
-	         * This query and {@code ZoneOffset::from} will return the same result if the
-	         * temporal object contains an offset. If the temporal object does not contain
-	         * an offset, then the method reference will throw an exception, whereas this
-	         * query will return null.
-	         *
-	         * @return a query that can obtain the offset of a temporal, not null
-	         */
+	    /**
+	     * A query for {@code LocalDate} returning null if not found.
+	     * <p>
+	     * This returns a {@code TemporalQuery} that can be used to query a temporal
+	     * object for the local date. The query will return null if the temporal
+	     * object cannot supply a local date.
+	     * <p>
+	     * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
+	     * field and uses it to create a {@code LocalDate}.
+	     *
+	     * @return a query that can obtain the date of a temporal, not null
+	     */
 	
-	    }, {
-	        key: "offset",
-	        value: function offset() {
-	            return TemporalQueries.OFFSET;
-	        }
+	  }, {
+	    key: 'localDate',
+	    value: function localDate() {
+	      return TemporalQueries.LOCAL_DATE;
+	    }
 	
-	        /**
-	         * A query for {@code LocalDate} returning null if not found.
-	         * <p>
-	         * This returns a {@code TemporalQuery} that can be used to query a temporal
-	         * object for the local date. The query will return null if the temporal
-	         * object cannot supply a local date.
-	         * <p>
-	         * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
-	         * field and uses it to create a {@code LocalDate}.
-	         *
-	         * @return a query that can obtain the date of a temporal, not null
-	         */
+	    /**
+	     * A query for {@code LocalTime} returning null if not found.
+	     * <p>
+	     * This returns a {@code TemporalQuery} that can be used to query a temporal
+	     * object for the local time. The query will return null if the temporal
+	     * object cannot supply a local time.
+	     * <p>
+	     * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
+	     * field and uses it to create a {@code LocalTime}.
+	     *
+	     * @return a query that can obtain the time of a temporal, not null
+	     */
 	
-	    }, {
-	        key: "localDate",
-	        value: function localDate() {
-	            return TemporalQueries.LOCAL_DATE;
-	        }
+	  }, {
+	    key: 'localTime',
+	    value: function localTime() {
+	      return TemporalQueries.LOCAL_TIME;
+	    }
+	  }]);
 	
-	        /**
-	         * A query for {@code LocalTime} returning null if not found.
-	         * <p>
-	         * This returns a {@code TemporalQuery} that can be used to query a temporal
-	         * object for the local time. The query will return null if the temporal
-	         * object cannot supply a local time.
-	         * <p>
-	         * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
-	         * field and uses it to create a {@code LocalTime}.
-	         *
-	         * @return a query that can obtain the time of a temporal, not null
-	         */
-	
-	    }, {
-	        key: "localTime",
-	        value: function localTime() {
-	            return TemporalQueries.LOCAL_TIME;
-	        }
-	    }]);
-	
-	    return TemporalQueries;
-	})();
+	  return TemporalQueries;
+	}();
 	
 	/** 
 	 * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
 	 * as the queryFrom() function.
 	 * TODO: maybe should be moved to a separate file?
+	 * @param name
 	 * @param queryFromFunction
 	 */
 	
-	function createTemporalQuery(queryFromFunction) {
-	    var TemporalQuery = function TemporalQuery() {
-	        _classCallCheck(this, TemporalQuery);
-	    };
 	
-	    TemporalQuery.prototype.queryFrom = queryFromFunction;
-	    return new TemporalQuery();
+	function createTemporalQuery(name, queryFromFunction) {
+	  var TemporalQuery = function (_Enum) {
+	    _inherits(TemporalQuery, _Enum);
+	
+	    function TemporalQuery() {
+	      _classCallCheck(this, TemporalQuery);
+	
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(TemporalQuery).apply(this, arguments));
+	    }
+	
+	    return TemporalQuery;
+	  }(_Enum2.Enum);
+	
+	  TemporalQuery.prototype.queryFrom = queryFromFunction;
+	  return new TemporalQuery(name);
 	}
-	//-----------------------------------------------------------------------
-	/**
-	 * A strict query for the {@code ZoneId}.
-	 */
-	TemporalQueries.ZONE_ID = createTemporalQuery(function (temporal) {
-	    return temporal.query(TemporalQueries.ZONE_ID);
-	});
-	
-	/**
-	 * A query for the {@code Chronology}.
-	 */
-	TemporalQueries.CHRONO = createTemporalQuery(function (temporal) {
-	    return temporal.query(TemporalQueries.CHRONO);
-	});
-	
-	/**
-	 * A query for the smallest supported unit.
-	 */
-	TemporalQueries.PRECISION = createTemporalQuery(function (temporal) {
-	    return temporal.query(TemporalQueries.PRECISION);
-	});
-	
-	//-----------------------------------------------------------------------
-	/**
-	 * A query for {@code ZoneOffset} returning null if not found.
-	 */
-	TemporalQueries.OFFSET = createTemporalQuery(function (temporal) {
-	    if (temporal.isSupported(TemporalQueries.OFFSET_SECONDS)) {
-	        return ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
-	    }
-	    return null;
-	});
-	
-	/**
-	 * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
-	 */
-	TemporalQueries.ZONE = createTemporalQuery(function (temporal) {
-	    var zone = temporal.query(TemporalQueries.ZONE_ID);
-	    return zone != null ? zone : temporal.query(TemporalQueries.OFFSET);
-	});
-	
-	/**
-	 * A query for {@code LocalDate} returning null if not found.
-	 */
-	TemporalQueries.LOCAL_DATE = createTemporalQuery(function (temporal) {
-	    if (temporal.isSupported(TemporalQueries.EPOCH_DAY)) {
-	        return LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
-	    }
-	    return null;
-	});
-	
-	/**
-	 * A query for {@code LocalTime} returning null if not found.
-	 */
-	TemporalQueries.LOCAL_TIME = createTemporalQuery(function (temporal) {
-	    if (temporal.isSupported(TemporalQueries.NANO_OF_DAY)) {
-	        return LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
-	    }
-	    return null;
-	});
 
 /***/ },
 /* 16 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	/***
+	 * Base class for a pseudo enum
+	 */
+	
+	var Enum = exports.Enum = function () {
+	    function Enum(name) {
+	        _classCallCheck(this, Enum);
+	
+	        this._name = name;
+	    }
+	
+	    _createClass(Enum, [{
+	        key: "equals",
+	        value: function equals(other) {
+	            return this === other;
+	        }
+	    }, {
+	        key: "toString",
+	        value: function toString() {
+	            return this._name;
+	        }
+	    }]);
+	
+	    return Enum;
+	}();
+
+/***/ },
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.ZoneOffset = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
 	
 	var _errors = __webpack_require__(5);
 	
@@ -4142,7 +4299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
 	var SECONDS_CACHE = {};
 	
-	var ZoneOffset = exports.ZoneOffset = (function () {
+	var ZoneOffset = exports.ZoneOffset = function () {
 	    function ZoneOffset(totalSeconds) {
 	        _classCallCheck(this, ZoneOffset);
 	
@@ -4252,26 +4409,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return ZoneOffset;
-	})();
+	}();
 	
 	ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
 	ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-MAX_SECONDS);
 	ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(MAX_SECONDS);
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.LocalDate = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
 	var _assert = __webpack_require__(9);
 	
@@ -4279,11 +4436,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _IsoChronology = __webpack_require__(18);
+	var _IsoChronology = __webpack_require__(19);
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalAccessor2 = __webpack_require__(14);
+	var _ChronoLocalDate2 = __webpack_require__(23);
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	var _DateTimeFormatter = __webpack_require__(24);
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -4292,6 +4453,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _Year = __webpack_require__(11);
 	
 	var _LocalTime = __webpack_require__(10);
+	
+	__webpack_require__(21);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4302,6 +4465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
 	
 	/**
 	 * The number of days in a 400 year cycle.
@@ -4330,8 +4494,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * such as an offset or time-zone.
 	 */
 	
-	var LocalDate = exports.LocalDate = (function (_TemporalAccessor) {
-	    _inherits(LocalDate, _TemporalAccessor);
+	var LocalDate = function (_ChronoLocalDate) {
+	    _inherits(LocalDate, _ChronoLocalDate);
 	
 	    /**
 	     *
@@ -4369,8 +4533,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *  or if the day-of-month is invalid for the month-year
 	     */
 	
+	
 	    _createClass(LocalDate, [{
 	        key: 'year',
+	
 	
 	        /**
 	         *
@@ -4406,17 +4572,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function dayOfMonth() {
 	            return this._day;
 	        }
+	
+	        /**
+	         * Gets the chronology of this date, which is the ISO calendar system.
+	         * <p>
+	         * The {@code Chronology} represents the calendar system in use.
+	         * The ISO-8601 calendar system is the modern civil calendar system used today
+	         * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	         * system, in which todays's rules for leap years are applied for all time.
+	         *
+	         * @return the ISO chronology, not null
+	         */
+	
+	    }, {
+	        key: 'chronology',
+	        value: function chronology() {
+	            return _IsoChronology.IsoChronology.INSTANCE;
+	        }
 	    }, {
 	        key: 'get',
 	        value: function get(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                return this._get0(field);
-	            }
-	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'get', this).call(this, field);
+	            return this.getLong(field);
 	        }
 	    }, {
 	        key: 'getLong',
 	        value: function getLong(field) {
+	            (0, _assert.assert)(field != null, '', _errors.NullPointerException);
 	            if (field instanceof _ChronoField.ChronoField) {
 	                return this._get0(field);
 	            }
@@ -4432,7 +4613,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case _ChronoField.ChronoField.DAY_OF_MONTH:
 	                    return this._day;
 	                // case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
-	                // case ChronoField.EPOCH_DAY: return this.toEpochDay();
+	                case _ChronoField.ChronoField.EPOCH_DAY:
+	                    return this.toEpochDay();
 	                // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
 	                // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
 	                case _ChronoField.ChronoField.MONTH_OF_YEAR:
@@ -4540,6 +4722,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'equals',
 	
+	
 	        /**
 	         * Checks if this date is equal to another date.
 	         *
@@ -4632,7 +4815,94 @@ return /******/ (function(modules) { // webpackBootstrap
 	         */
 	
 	    }, {
-	        key: 'withDayOfMonth',
+	        key: 'isSupported',
+	
+	
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this date can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The {@link #isSupported(TemporalField) supported fields} will return valid
+	         * values based on this date-time.
+	         * The supported fields are:
+	         * <ul>
+	         * <li>{@code DAY_OF_WEEK}
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
+	         * <li>{@code DAY_OF_MONTH}
+	         * <li>{@code DAY_OF_YEAR}
+	         * <li>{@code EPOCH_DAY}
+	         * <li>{@code ALIGNED_WEEK_OF_MONTH}
+	         * <li>{@code ALIGNED_WEEK_OF_YEAR}
+	         * <li>{@code MONTH_OF_YEAR}
+	         * <li>{@code EPOCH_MONTH}
+	         * <li>{@code YEAR_OF_ERA}
+	         * <li>{@code YEAR}
+	         * <li>{@code ERA}
+	         * </ul>
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param field  the field to check, null returns false
+	         * @return true if the field is supported on this date, false if not
+	         */
+	        value: function isSupported(field) {
+	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'isSupported', this).call(this, field);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a temporal object.
+	         * <p>
+	         * A {@code TemporalAccessor} represents some form of date and time information.
+	         * This factory converts the arbitrary temporal object to an instance of {@code LocalDate}.
+	         * <p>
+	         * The conversion uses the {@link TemporalQueries#localDate()} query, which relies
+	         * on extracting the {@link ChronoField#EPOCH_DAY EPOCH_DAY} field.
+	         * <p>
+	         * This method matches the signature of the functional interface {@link TemporalQuery}
+	         * allowing it to be used as a query via method reference, {@code LocalDate::from}.
+	         *
+	         * @param temporal  the temporal object to convert, not null
+	         * @return the local date, not null
+	         * @throws DateTimeException if unable to convert to a {@code LocalDate}
+	         */
+	
+	    }, {
+	        key: 'query',
+	
+	
+	        /**
+	         * Queries this date using the specified query.
+	         *
+	         * This queries this date using the specified query strategy object.
+	         * The {@code TemporalQuery} object defines the logic to be used to
+	         * obtain the result. Read the documentation of the query to understand
+	         * what the result of this method will be.
+	         *
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	         * specified query passing {@code this} as the argument.
+	         *
+	         * @param query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query (defined by the query)
+	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	         */
+	        value: function query(_query) {
+	            (0, _assert.assert)(_query != null, '', _errors.NullPointerException);
+	            if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return this;
+	            }
+	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'query', this).call(this, _query);
+	        }
 	
 	        /**
 	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
@@ -4646,6 +4916,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @throws DateTimeException if the day-of-month value is invalid,
 	         *  or if the day-of-month is invalid for the month-year
 	         */
+	
+	    }, {
+	        key: 'withDayOfMonth',
 	        value: function withDayOfMonth(dayOfMonth) {
 	            if (this._day === dayOfMonth) {
 	                return this;
@@ -4693,6 +4966,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var epochSec = now.epochSecond() + offset.totalSeconds();
 	            var epochDay = _MathUtil.MathUtil.floorDiv(epochSec, _LocalTime.LocalTime.SECONDS_PER_DAY);
 	            return LocalDate.ofEpochDay(epochDay);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a text string using a specific formatter.
+	         *
+	         * The text is parsed using the formatter, returning a date.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param formatter  the formatter to use, default is DateTimeFormatter.ISO_LOCAL_DATE
+	         * @return the parsed local date, not null
+	         * @throws DateTimeParseException if the text cannot be parsed
+	         */
+	
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE() : arguments[1];
+	
+	            (0, _assert.assert)(formatter != null, 'formatter', _errors.NullPointerException);
+	            return formatter.parse(text, LocalDate.FROM);
 	        }
 	    }, {
 	        key: 'ofEpochDay',
@@ -4753,6 +5046,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new LocalDate(year, moy.value(), dom);
 	        }
 	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            (0, _assert.assert)(temporal != null, '', _errors.NullPointerException);
+	            var date = temporal.query(_TemporalQueries.TemporalQueries.localDate());
+	            if (date == null) {
+	                throw new _errors.DateTimeException('Unable to obtain LocalDate from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+	            }
+	            return date;
+	        }
+	    }, {
 	        key: 'validate',
 	        value: function validate(year, month, dayOfMonth) {
 	            var dom;
@@ -4783,34 +5086,50 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return LocalDate;
-	})(_TemporalAccessor2.TemporalAccessor);
+	}(_ChronoLocalDate2.ChronoLocalDate);
 	
 	/**
 	 * The minimum supported {@code LocalDate}
 	 * This could be used by an application as a "far past" date.
 	 */
 	
+	
+	exports.LocalDate = LocalDate;
 	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
 	/**
 	 * The maximum supported {@code LocalDate}
 	 * This could be used by an application as a "far future" date.
 	 */
 	LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
+	
+	LocalDate.FROM = (0, _TemporalQueries.createTemporalQuery)('LocalDate.FROM', function (temporal) {
+	    return LocalDate.from(temporal);
+	});
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	exports.IsoChronology = undefined;
 	
-	var _Enum2 = __webpack_require__(19);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _Enum2 = __webpack_require__(16);
+	
+	var _LocalDate = __webpack_require__(18);
+	
+	var _Month = __webpack_require__(20);
+	
+	var _Year = __webpack_require__(11);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ResolverStyle = __webpack_require__(22);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4822,90 +5141,214 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var IsoChronology = exports.IsoChronology = (function (_Enum) {
-	  _inherits(IsoChronology, _Enum);
+	var EPOCH_DAY = _ChronoField.ChronoField.EPOCH_DAY;
+	var YEAR = _ChronoField.ChronoField.YEAR;
+	var MONTH_OF_YEAR = _ChronoField.ChronoField.MONTH_OF_YEAR;
+	var DAY_OF_MONTH = _ChronoField.ChronoField.DAY_OF_MONTH;
 	
-	  function IsoChronology() {
-	    _classCallCheck(this, IsoChronology);
+	var IsoChronology = exports.IsoChronology = function (_Enum) {
+	    _inherits(IsoChronology, _Enum);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IsoChronology).apply(this, arguments));
-	  }
+	    function IsoChronology() {
+	        _classCallCheck(this, IsoChronology);
 	
-	  _createClass(IsoChronology, null, [{
-	    key: 'isLeapYear',
-	
-	    /**
-	     * Checks if the year is a leap year, according to the ISO proleptic
-	     * calendar system rules.
-	     *
-	     * This method applies the current rules for leap years across the whole time-line.
-	     * In general, a year is a leap year if it is divisible by four without
-	     * remainder. However, years divisible by 100, are not leap years, with
-	     * the exception of years divisible by 400 which are.
-	     *
-	     * For example, 1904 is a leap year it is divisible by 4.
-	     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
-	     * leap year as it is divisible by 400.
-	     *
-	     * The calculation is proleptic - applying the same rules into the far future and far past.
-	     * This is historically inaccurate, but is correct for the ISO-8601 standard.
-	     *
-	     * @param {number} prolepticYear - the ISO proleptic year to check
-	     * @return true if the year is leap, false otherwise
-	     */
-	    value: function isLeapYear(prolepticYear) {
-	      return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
-	    }
-	  }]);
-	
-	  return IsoChronology;
-	})(_Enum2.Enum);
-	
-	IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
-
-/***/ },
-/* 19 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	/***
-	 * Base class for a pseudo enum
-	 */
-	
-	var Enum = exports.Enum = (function () {
-	    function Enum(name) {
-	        _classCallCheck(this, Enum);
-	
-	        this._name = name;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IsoChronology).apply(this, arguments));
 	    }
 	
-	    _createClass(Enum, [{
-	        key: "equals",
-	        value: function equals(other) {
-	            return this === other;
+	    _createClass(IsoChronology, [{
+	        key: 'resolveDate',
+	        value: function resolveDate(fieldValues, resolverStyle) {
+	            if (fieldValues.containsKey(EPOCH_DAY)) {
+	                return _LocalDate.LocalDate.ofEpochDay(fieldValues.remove(EPOCH_DAY));
+	            }
+	
+	            // normalize fields
+	            /*
+	                    var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
+	                    if (prolepticMonth != null) {
+	                        if (resolverStyle != ResolverStyle.LENIENT) {
+	                            PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+	                        }
+	                        updateResolveMap(fieldValues, MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
+	                        updateResolveMap(fieldValues, YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
+	                    }
+	            */
+	
+	            // eras
+	            /*
+	                    Long yoeLong = fieldValues.remove(YEAR_OF_ERA);
+	                    if (yoeLong != null) {
+	                        if (resolverStyle != ResolverStyle.LENIENT) {
+	                            YEAR_OF_ERA.checkValidValue(yoeLong);
+	                        }
+	                        Long era = fieldValues.remove(ERA);
+	                        if (era == null) {
+	                            Long year = fieldValues.get(YEAR);
+	                            if (resolverStyle == ResolverStyle.STRICT) {
+	                                // do not invent era if strict, but do cross-check with year
+	                                if (year != null) {
+	                                    updateResolveMap(fieldValues, YEAR, (year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+	                                } else {
+	                                    // reinstate the field removed earlier, no cross-check issues
+	                                    fieldValues.put(YEAR_OF_ERA, yoeLong);
+	                                }
+	                            } else {
+	                                // invent era
+	                                updateResolveMap(fieldValues, YEAR, (year == null || year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+	                            }
+	                        } else if (era.longValue() == 1L) {
+	                            updateResolveMap(fieldValues, YEAR, yoeLong);
+	                        } else if (era.longValue() == 0L) {
+	                            updateResolveMap(fieldValues, YEAR, Jdk8Methods.safeSubtract(1, yoeLong));
+	                        } else {
+	                            throw new DateTimeException("Invalid value for era: " + era);
+	                        }
+	                    } else if (fieldValues.containsKey(ERA)) {
+	                        ERA.checkValidValue(fieldValues.get(ERA));  // always validated
+	                    }
+	            */
+	
+	            // build date
+	            if (fieldValues.containsKey(YEAR)) {
+	                if (fieldValues.containsKey(MONTH_OF_YEAR)) {
+	                    if (fieldValues.containsKey(DAY_OF_MONTH)) {
+	                        var y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                        var moy = fieldValues.remove(MONTH_OF_YEAR);
+	                        var dom = fieldValues.remove(DAY_OF_MONTH);
+	                        if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                            var months = moy - 1;
+	                            var days = dom - 1;
+	                            return _LocalDate.LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
+	                        } else if (resolverStyle === _ResolverStyle.ResolverStyle.SMART) {
+	                            DAY_OF_MONTH.checkValidValue(dom);
+	                            if (moy === 4 || moy === 6 || moy === 9 || moy === 11) {
+	                                dom = Math.min(dom, 30);
+	                            } else if (moy === 2) {
+	                                dom = Math.min(dom, _Month.Month.FEBRUARY.length(_Year.Year.isLeap(y)));
+	                            }
+	                            return _LocalDate.LocalDate.of(y, moy, dom);
+	                        } else {
+	                            return _LocalDate.LocalDate.of(y, moy, dom);
+	                        }
+	                    }
+	                    /*
+	                                    if (fieldValues.containsKey(ALIGNED_WEEK_OF_MONTH)) {
+	                                        if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_MONTH)) {
+	                                            int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                                            if (resolverStyle == ResolverStyle.LENIENT) {
+	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
+	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
+	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+	                                            }
+	                                            int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
+	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+	                                            int ad = ALIGNED_DAY_OF_WEEK_IN_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH));
+	                                            LocalDate date = LocalDate.of(y, moy, 1).plusDays((aw - 1) * 7 + (ad - 1));
+	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                            }
+	                                            return date;
+	                                        }
+	                                        if (fieldValues.containsKey(DAY_OF_WEEK)) {
+	                                            int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                                            if (resolverStyle == ResolverStyle.LENIENT) {
+	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
+	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+	                                            }
+	                                            int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
+	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+	                                            int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+	                                            LocalDate date = LocalDate.of(y, moy, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                            }
+	                                            return date;
+	                                        }
+	                                    }
+	                    */
+	                }
+	                /*
+	                            if (fieldValues.containsKey(DAY_OF_YEAR)) {
+	                                int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                                if (resolverStyle == ResolverStyle.LENIENT) {
+	                                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
+	                                    return LocalDate.ofYearDay(y, 1).plusDays(days);
+	                                }
+	                                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
+	                                return LocalDate.ofYearDay(y, doy);
+	                            }
+	                */
+	                /*
+	                            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
+	                                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+	                                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                                    if (resolverStyle == ResolverStyle.LENIENT) {
+	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+	                                    }
+	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+	                                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
+	                                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
+	                                        throw new DateTimeException("Strict mode rejected date parsed to a different year");
+	                                    }
+	                                    return date;
+	                                }
+	                                if (fieldValues.containsKey(DAY_OF_WEEK)) {
+	                                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+	                                    if (resolverStyle == ResolverStyle.LENIENT) {
+	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+	                                    }
+	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+	                                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+	                                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
+	                                        throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                    }
+	                                    return date;
+	                                }
+	                            }
+	                */
+	            }
+	            return null;
 	        }
-	    }, {
-	        key: "toString",
-	        value: function toString() {
-	            return this._name;
+	    }], [{
+	        key: 'isLeapYear',
+	
+	        /**
+	         * Checks if the year is a leap year, according to the ISO proleptic
+	         * calendar system rules.
+	         *
+	         * This method applies the current rules for leap years across the whole time-line.
+	         * In general, a year is a leap year if it is divisible by four without
+	         * remainder. However, years divisible by 100, are not leap years, with
+	         * the exception of years divisible by 400 which are.
+	         *
+	         * For example, 1904 is a leap year it is divisible by 4.
+	         * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+	         * leap year as it is divisible by 400.
+	         *
+	         * The calculation is proleptic - applying the same rules into the far future and far past.
+	         * This is historically inaccurate, but is correct for the ISO-8601 standard.
+	         *
+	         * @param {number} prolepticYear - the ISO proleptic year to check
+	         * @return true if the year is leap, false otherwise
+	         */
+	        value: function isLeapYear(prolepticYear) {
+	            return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
 	        }
 	    }]);
 	
-	    return Enum;
-	})();
+	    return IsoChronology;
+	}(_Enum2.Enum);
+	
+	IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
 
 /***/ },
 /* 20 */
@@ -4913,14 +5356,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.Month = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
 	var _assert = __webpack_require__(9);
 	
@@ -4930,11 +5373,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _IsoChronology = __webpack_require__(18);
+	var _IsoChronology = __webpack_require__(19);
 	
 	var _TemporalAccessor2 = __webpack_require__(14);
 	
 	var _TemporalQueries = __webpack_require__(15);
+	
+	__webpack_require__(21);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4945,6 +5390,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
 	
 	/**
 	 * A month-of-year, such as 'July'.
@@ -4964,7 +5410,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Month = (function (_TemporalAccessor) {
+	var Month = function (_TemporalAccessor) {
 	    _inherits(Month, _TemporalAccessor);
 	
 	    /**
@@ -4985,6 +5431,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *
 	     * @return {number} gets the value
 	     */
+	
 	
 	    _createClass(Month, [{
 	        key: 'value',
@@ -5380,9 +5827,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Month;
-	})(_TemporalAccessor2.TemporalAccessor);
+	}(_TemporalAccessor2.TemporalAccessor);
 	
 	exports.Month = Month;
+	
 	
 	Month.JANUARY = new Month(1);
 	Month.FEBRUARY = new Month(2);
@@ -5398,6 +5846,2412 @@ return /******/ (function(modules) { // webpackBootstrap
 	Month.DECEMBER = new Month(12);
 	
 	var MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _LocalDate = __webpack_require__(18);
+	
+	var _LocalTime = __webpack_require__(10);
+	
+	var _ZoneOffset = __webpack_require__(17);
+	
+	//-----------------------------------------------------------------------
+	/**
+	 * A strict query for the {@code ZoneId}.
+	 */
+	_TemporalQueries.TemporalQueries.ZONE_ID = (0, _TemporalQueries.createTemporalQuery)('ZONE_ID', function (temporal) {
+	    return temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
+	});
+	
+	/**
+	 * A query for the {@code Chronology}.
+	 */
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	_TemporalQueries.TemporalQueries.CHRONO = (0, _TemporalQueries.createTemporalQuery)('CHRONO', function (temporal) {
+	    return temporal.query(_TemporalQueries.TemporalQueries.CHRONO);
+	});
+	
+	/**
+	 * A query for the smallest supported unit.
+	 */
+	_TemporalQueries.TemporalQueries.PRECISION = (0, _TemporalQueries.createTemporalQuery)('PRECISION', function (temporal) {
+	    return temporal.query(_TemporalQueries.TemporalQueries.PRECISION);
+	});
+	
+	//-----------------------------------------------------------------------
+	/**
+	 * A query for {@code ZoneOffset} returning null if not found.
+	 */
+	_TemporalQueries.TemporalQueries.OFFSET = (0, _TemporalQueries.createTemporalQuery)('OFFSET', function (temporal) {
+	    if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
+	        return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(_TemporalQueries.TemporalQueries.OFFSET_SECONDS));
+	    }
+	    return null;
+	});
+	
+	/**
+	 * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+	 */
+	_TemporalQueries.TemporalQueries.ZONE = (0, _TemporalQueries.createTemporalQuery)('ZONE', function (temporal) {
+	    var zone = temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
+	    return zone != null ? zone : temporal.query(_TemporalQueries.TemporalQueries.OFFSET);
+	});
+	
+	/**
+	 * A query for {@code LocalDate} returning null if not found.
+	 */
+	_TemporalQueries.TemporalQueries.LOCAL_DATE = (0, _TemporalQueries.createTemporalQuery)('LOCAL_DATE', function (temporal) {
+	    if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
+	        return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(_TemporalQueries.TemporalQueries.EPOCH_DAY));
+	    }
+	    return null;
+	});
+	
+	/**
+	 * A query for {@code LocalTime} returning null if not found.
+	 */
+	_TemporalQueries.TemporalQueries.LOCAL_TIME = (0, _TemporalQueries.createTemporalQuery)('LOCAL_TIME', function (temporal) {
+	    if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
+	        return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(_TemporalQueries.TemporalQueries.NANO_OF_DAY));
+	    }
+	    return null;
+	});
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ResolverStyle = undefined;
+	
+	var _Enum2 = __webpack_require__(16);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Enumeration of different ways to resolve dates and times.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Parsing a text string occurs in two phases.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 1 is a basic text parse according to the fields added to the builder.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 2 resolves the parsed field-value pairs into date and/or time objects.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This style is used to control how phase 2, resolving, happens.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
+	  _inherits(ResolverStyle, _Enum);
+	
+	  function ResolverStyle() {
+	    _classCallCheck(this, ResolverStyle);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResolverStyle).apply(this, arguments));
+	  }
+	
+	  return ResolverStyle;
+	}(_Enum2.Enum);
+	
+	/**
+	 * Style to resolve dates and times strictly.
+	 * 
+	 * Using strict resolution will ensure that all parsed values are within
+	 * the outer range of valid values for the field. Individual fields may
+	 * be further processed for strictness.
+	 * 
+	 * For example, resolving year-month and day-of-month in the ISO calendar
+	 * system using strict mode will ensure that the day-of-month is valid
+	 * for the year-month, rejecting invalid values.
+	 */
+	
+	
+	ResolverStyle.STRICT = new ResolverStyle('STRICT');
+	/**
+	 * Style to resolve dates and times in a smart, or intelligent, manner.
+	 * 
+	 * Using smart resolution will perform the sensible default for each
+	 * field, which may be the same as strict, the same as lenient, or a third
+	 * behavior. Individual fields will interpret this differently.
+	 * 
+	 * For example, resolving year-month and day-of-month in the ISO calendar
+	 * system using smart mode will ensure that the day-of-month is from
+	 * 1 to 31, converting any value beyond the last valid day-of-month to be
+	 * the last valid day-of-month.
+	 */
+	ResolverStyle.SMART = new ResolverStyle('SMART');
+	/**
+	 * Style to resolve dates and times leniently.
+	 * 
+	 * Using lenient resolution will resolve the values in an appropriate
+	 * lenient manner. Individual fields will interpret this differently.
+	 * 
+	 * For example, lenient mode allows the month in the ISO calendar system
+	 * to be outside the range 1 to 12.
+	 * For example, month 15 is treated as being 3 months after month 12.
+	 */
+	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ChronoLocalDate = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ChronoUnit = __webpack_require__(7);
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	var _TemporalAccessor2 = __webpack_require__(14);
+	
+	var _LocalDate = __webpack_require__(18);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ChronoLocalDate = function (_TemporalAccessor) {
+	    _inherits(ChronoLocalDate, _TemporalAccessor);
+	
+	    function ChronoLocalDate() {
+	        _classCallCheck(this, ChronoLocalDate);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoLocalDate).apply(this, arguments));
+	    }
+	
+	    _createClass(ChronoLocalDate, [{
+	        key: 'isSupported',
+	        value: function isSupported(fieldOrUnit) {
+	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
+	                return fieldOrUnit.isDateBased();
+	            } else if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
+	                return fieldOrUnit.isDateBased();
+	            }
+	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chronology();
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.DAYS;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return _LocalDate.LocalDate.ofEpochDay(this.toEpochDay());
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return null;
+	            }
+	            return _get(Object.getPrototypeOf(ChronoLocalDate.prototype), 'query', this).call(this, _query);
+	        }
+	    }]);
+	
+	    return ChronoLocalDate;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+	exports.ChronoLocalDate = ChronoLocalDate;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeFormatter = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _ParsePosition = __webpack_require__(25);
+	
+	var _DateTimeParseContext = __webpack_require__(26);
+	
+	var _DateTimeFormatterBuilder = __webpack_require__(29);
+	
+	var _SignStyle = __webpack_require__(31);
+	
+	var _ResolverStyle = __webpack_require__(22);
+	
+	var _IsoChronology = __webpack_require__(19);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var DateTimeFormatter = exports.DateTimeFormatter = function () {
+	
+	    //-----------------------------------------------------------------------
+	    /**
+	     * Constructor.
+	     *
+	     * @param printerParser  the printer/parser to use, not null
+	     * @param locale  the locale to use, not null
+	     * @param decimalStyle  the decimal style to use, not null
+	     * @param resolverStyle  the resolver style to use, not null
+	     * @param resolverFields  the fields to use during resolving, null for all fields
+	     * @param chrono  the chronology to use, null for no override
+	     * @param zone  the zone to use, null for no override
+	     */
+	
+	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono, zone) {
+	        _classCallCheck(this, DateTimeFormatter);
+	
+	        (0, _assert.assert)(printerParser != null);
+	        (0, _assert.assert)(decimalStyle != null);
+	        (0, _assert.assert)(resolverStyle != null);
+	        /**
+	         * The printer and/or parser to use, not null.
+	         */
+	        this._printerParser = printerParser;
+	        /**
+	         * The locale to use for formatting. // nyi
+	         */
+	        this._locale = locale;
+	        /**
+	         * The symbols to use for formatting, not null.
+	         */
+	        this._decimalStyle = decimalStyle;
+	        /**
+	         * The resolver style to use, not null.
+	         */
+	        this._resolverStyle = resolverStyle;
+	        /**
+	         * The fields to use in resolving, null for all fields.
+	         */
+	        this._resolverFields = resolverFields;
+	        /**
+	         * The chronology to use for formatting, null for no override.
+	         */
+	        this._chrono = chrono;
+	        /**
+	         * The zone to use for formatting, null for no override. // nyi
+	         */
+	        this._zone = zone;
+	    }
+	
+	    _createClass(DateTimeFormatter, [{
+	        key: 'locale',
+	        value: function locale() {
+	            return this._locale;
+	        }
+	    }, {
+	        key: 'decimalStyle',
+	        value: function decimalStyle() {
+	            return this._decimalStyle;
+	        }
+	    }, {
+	        key: 'chronology',
+	        value: function chronology() {
+	            return this._chrono;
+	        }
+	
+	        /**
+	         * Returns a copy of this formatter with a new override chronology.
+	         *
+	         * This returns a formatter with similar state to this formatter but
+	         * with the override chronology set.
+	         * By default, a formatter has no override chronology, returning null.
+	         *
+	         * If an override is added, then any date that is printed or parsed will be affected.
+	         *
+	         * When printing, if the {@code Temporal} object contains a date then it will
+	         * be converted to a date in the override chronology.
+	         * Any time or zone will be retained unless overridden.
+	         * The converted result will behave in a manner equivalent to an implementation
+	         * of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.
+	         *
+	         * When parsing, the override chronology will be used to interpret the
+	         * {@linkplain ChronoField fields} into a date unless the
+	         * formatter directly parses a valid chronology.
+	         *
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param chrono  the new chronology, not null
+	         * @return a formatter based on this formatter with the requested override chronology, not null
+	         */
+	
+	    }, {
+	        key: 'withChronology',
+	        value: function withChronology(chrono) {
+	            if (this._chrono != null && this._chrono.equals(chrono)) {
+	                return this;
+	            }
+	            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
+	        }
+	
+	        /**
+	         * not yet supported
+	         * @returns {DateTimeFormatter}
+	         */
+	
+	    }, {
+	        key: 'withLocal',
+	        value: function withLocal() {
+	            return this;
+	        }
+	
+	        /**
+	         * Fully parses the text producing a temporal object.
+	         *
+	         * This parses the entire text producing a temporal object.
+	         * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
+	         * The result of this method is {@code TemporalAccessor} which has been resolved,
+	         * applying basic validation checks to help ensure a valid date-time.
+	         *
+	         * If the parse completes without reading the entire length of the text,
+	         * or a problem occurs during parsing or merging, then an exception is thrown.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param type the type to extract, not null
+	        * @return the parsed temporal object, not null
+	         * @throws DateTimeParseException if unable to parse the requested result
+	         */
+	
+	    }, {
+	        key: 'parse',
+	        value: function parse(text, type) {
+	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
+	            (0, _assert.assert)(type != null, 'type', _errors.NullPointerException);
+	            try {
+	                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+	                return builder.build(type);
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeParseException) {
+	                    throw ex;
+	                } else {
+	                    throw this._createError(text, ex);
+	                }
+	            }
+	        }
+	    }, {
+	        key: '_createError',
+	        value: function _createError(text, ex) {
+	            var abbr = '';
+	            if (text.length > 64) {
+	                abbr = text.subString(0, 64) + '...';
+	            } else {
+	                abbr = text;
+	            }
+	            return new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
+	        }
+	
+	        /**
+	         * Parses the text to a builder.
+	         * <p>
+	         * This parses to a {@code DateTimeBuilder} ensuring that the text is fully parsed.
+	         * This method throws {@link DateTimeParseException} if unable to parse, or
+	         * some other {@code DateTimeException} if another date/time problem occurs.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param position  the position to parse from, updated with length parsed
+	         *  and the index of any error, null if parsing whole string
+	         * @return the engine representing the result of the parse, not null
+	         * @throws DateTimeParseException if the parse fails
+	         */
+	
+	    }, {
+	        key: '_parseToBuilder',
+	        value: function _parseToBuilder(text, position) {
+	            var pos = position != null ? position : new _ParsePosition.ParsePosition(0);
+	            var result = this._parseUnresolved0(text, pos);
+	            if (result == null || pos.getErrorIndex() >= 0 || position == null && pos.getIndex() < text.length) {
+	                var abbr = '';
+	                if (text.length > 64) {
+	                    abbr = text.substr(0, 64).toString() + '...';
+	                } else {
+	                    abbr = text;
+	                }
+	                if (pos.getErrorIndex() >= 0) {
+	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
+	                } else {
+	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
+	                }
+	            }
+	            return result.toBuilder();
+	        }
+	
+	        /**
+	         * Parses the text using this formatter, without resolving the result, intended
+	         * for advanced use cases.
+	         * <p>
+	         * Parsing is implemented as a two-phase operation.
+	         * First, the text is parsed using the layout defined by the formatter, producing
+	         * a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
+	         * Second, the parsed data is <em>resolved</em>, by validating, combining and
+	         * simplifying the various fields into more useful ones.
+	         * This method performs the parsing stage but not the resolving stage.
+	         * <p>
+	         * The result of this method is {@code TemporalAccessor} which represents the
+	         * data as seen in the input. Values are not validated, thus parsing a date string
+	         * of '2012-00-65' would result in a temporal with three fields - year of '2012',
+	         * month of '0' and day-of-month of '65'.
+	         * <p>
+	         * The text will be parsed from the specified start {@code ParsePosition}.
+	         * The entire length of the text does not have to be parsed, the {@code ParsePosition}
+	         * will be updated with the index at the end of parsing.
+	         * <p>
+	         * Errors are returned using the error index field of the {@code ParsePosition}
+	         * instead of {@code DateTimeParseException}.
+	         * The returned error index will be set to an index indicative of the error.
+	         * Callers must check for errors before using the context.
+	         * <p>
+	         * If the formatter parses the same field more than once with different values,
+	         * the result will be an error.
+	         * <p>
+	         * This method is intended for advanced use cases that need access to the
+	         * internal state during parsing. Typical application code should use
+	         * {@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param position  the position to parse from, updated with length parsed
+	         *  and the index of any error, not null
+	         * @return the parsed text, null if the parse results in an error
+	         * @throws DateTimeException if some problem occurs during parsing
+	         * @throws IndexOutOfBoundsException if the position is invalid
+	         */
+	
+	    }, {
+	        key: 'parseUnresolved',
+	        value: function parseUnresolved(text, position) {
+	            return this._parseUnresolved0(text, position);
+	        }
+	    }, {
+	        key: '_parseUnresolved0',
+	        value: function _parseUnresolved0(text, position) {
+	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
+	            (0, _assert.assert)(position != null, 'position', _errors.NullPointerException);
+	            var context = new _DateTimeParseContext.DateTimeParseContext(this);
+	            var pos = position.getIndex();
+	            pos = this._printerParser.parse(context, text, pos);
+	            if (pos < 0) {
+	                position.setErrorIndex(~pos); // index not updated from input
+	                return null;
+	            }
+	            position.setIndex(pos); // errorIndex not updated from input
+	            return context.toParsed();
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var pattern = this._printerParser.toString();
+	            return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
+	        }
+	    }]);
+	
+	    return DateTimeFormatter;
+	}();
+	
+	var ISO_LOCAL_DATE_INSTANCE;
+	DateTimeFormatter.ISO_LOCAL_DATE = function () {
+	    if (ISO_LOCAL_DATE_INSTANCE == null) {
+	        ISO_LOCAL_DATE_INSTANCE = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendValue(_ChronoField.ChronoField.YEAR, 4, 10, _SignStyle.SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(_ChronoField.ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(_ChronoField.ChronoField.DAY_OF_MONTH, 2).toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
+	    }
+	    return ISO_LOCAL_DATE_INSTANCE;
+	};
+
+/***/ },
+/* 25 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var ParsePosition = exports.ParsePosition = function () {
+	    function ParsePosition(index) {
+	        _classCallCheck(this, ParsePosition);
+	
+	        this._index = index;
+	        this._errorIndex = -1;
+	    }
+	
+	    _createClass(ParsePosition, [{
+	        key: "getIndex",
+	        value: function getIndex() {
+	            return this._index;
+	        }
+	    }, {
+	        key: "setIndex",
+	        value: function setIndex(index) {
+	            this._index = index;
+	        }
+	    }, {
+	        key: "getErrorIndex",
+	        value: function getErrorIndex() {
+	            return this._errorIndex;
+	        }
+	    }, {
+	        key: "setErrorIndex",
+	        value: function setErrorIndex(errorIndex) {
+	            this._errorIndex = errorIndex;
+	        }
+	    }]);
+	
+	    return ParsePosition;
+	}();
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeParseContext = undefined;
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(9);
+	
+	var _DateTimeBuilder = __webpack_require__(27);
+	
+	var _EnumMap = __webpack_require__(28);
+	
+	var _IsoChronology = __webpack_require__(19);
+	
+	var _TemporalAccessor2 = __webpack_require__(14);
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var DateTimeParseContext = exports.DateTimeParseContext = function () {
+	    function DateTimeParseContext() {
+	        _classCallCheck(this, DateTimeParseContext);
+	
+	        if (arguments.length === 1) {
+	            this._constructorFormatter.apply(this, arguments);
+	        } else {
+	            this._constructorParam.apply(this, arguments);
+	        }
+	
+	        this._caseSensitive = true;
+	        this._strict = true;
+	        this._parsed = [new Parsed(this)];
+	    }
+	
+	    _createClass(DateTimeParseContext, [{
+	        key: '_constructorParam',
+	        value: function _constructorParam(locale, symbols, chronology) {
+	            this._locale = locale;
+	            this._symbols = symbols;
+	            this._overrideChronology = chronology;
+	        }
+	    }, {
+	        key: '_constructorFormatter',
+	        value: function _constructorFormatter(formatter) {
+	            this._locale = formatter.locale();
+	            this._symbols = formatter.decimalStyle();
+	            this._overrideChronology = formatter.chronology();
+	        }
+	    }, {
+	        key: 'symbols',
+	        value: function symbols() {
+	            return this._symbols;
+	        }
+	    }, {
+	        key: 'isStrict',
+	        value: function isStrict() {
+	            return this._strict;
+	        }
+	    }, {
+	        key: 'setStrict',
+	        value: function setStrict(strict) {
+	            this._strict = strict;
+	        }
+	
+	        /**
+	         * Checks if parsing is case sensitive.
+	         *
+	         * @return true if parsing is case sensitive, false if case insensitive
+	         */
+	
+	    }, {
+	        key: 'isCaseSensitive',
+	        value: function isCaseSensitive() {
+	            return this._caseSensitive;
+	        }
+	
+	        /**
+	         * Sets whether the parsing is case sensitive or not.
+	         *
+	         * @param caseSensitive  changes the parsing to be case sensitive or not from now on
+	         */
+	
+	    }, {
+	        key: 'setCaseSensitive',
+	        value: function setCaseSensitive(caseSensitive) {
+	            this._caseSensitive = caseSensitive;
+	        }
+	
+	        /**
+	         * Helper to compare two {@code CharSequence} instances.
+	         * This uses {@link #isCaseSensitive()}.
+	         *
+	         * @param cs1  the first character sequence, not null
+	         * @param offset1  the offset into the first sequence, valid
+	         * @param cs2  the second character sequence, not null
+	         * @param offset2  the offset into the second sequence, valid
+	         * @param length  the length to check, valid
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'subSequenceEquals',
+	        value: function subSequenceEquals(cs1, offset1, cs2, offset2, length) {
+	            if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
+	                return false;
+	            }
+	            if (!this.isCaseSensitive()) {
+	                cs1 = cs1.toLowerCase();
+	                cs2 = cs2.toLowerCase();
+	            }
+	            for (var i = 0; i < length; i++) {
+	                var ch1 = cs1[offset1 + i];
+	                var ch2 = cs2[offset2 + i];
+	                if (ch1 !== ch2) {
+	                    return false;
+	                }
+	            }
+	            return true;
+	        }
+	
+	        /**
+	         * Helper to compare two {@code char}.
+	         * This uses {@link #isCaseSensitive()}.
+	         *
+	         * @param ch1  the first character
+	         * @param ch2  the second character
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'charEquals',
+	        value: function charEquals(ch1, ch2) {
+	            if (this.isCaseSensitive()) {
+	                return ch1 === ch2;
+	            }
+	            return this.charEqualsIgnoreCase(ch1, ch2);
+	        }
+	
+	        /**
+	         * Compares two characters ignoring case.
+	         *
+	         * @param c1  the first
+	         * @param c2  the second
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'charEqualsIgnoreCase',
+	        value: function charEqualsIgnoreCase(c1, c2) {
+	            return c1 === c2 || c1.toLowerCase() === c2.toLowerCase();
+	        }
+	    }, {
+	        key: 'setParsedField',
+	        value: function setParsedField(field, value, errorPos, successPos) {
+	            var currentParsedFieldValues = this.currentParsed().fieldValues;
+	            var old = currentParsedFieldValues.get(field);
+	            currentParsedFieldValues.set(field, value);
+	            return old != null && old !== value ? ~errorPos : successPos;
+	        }
+	    }, {
+	        key: 'getParsed',
+	        value: function getParsed(field) {
+	            return this.currentParsed().fieldValues.get(field);
+	        }
+	    }, {
+	        key: 'toParsed',
+	        value: function toParsed() {
+	            return this.currentParsed();
+	        }
+	    }, {
+	        key: 'currentParsed',
+	        value: function currentParsed() {
+	            return this._parsed[this._parsed.length - 1];
+	        }
+	
+	        /**
+	         * Gets the effective chronology during parsing.
+	         *
+	         * @return the effective parsing chronology, not null
+	         */
+	
+	    }, {
+	        key: 'getEffectiveChronology',
+	        value: function getEffectiveChronology() {
+	            var chrono = this.currentParsed().chrono;
+	            if (chrono == null) {
+	                chrono = this._overrideChronology;
+	                if (chrono == null) {
+	                    chrono = _IsoChronology.IsoChronology.INSTANCE;
+	                }
+	            }
+	            return chrono;
+	        }
+	    }]);
+	
+	    return DateTimeParseContext;
+	}();
+	
+	var Parsed = function (_TemporalAccessor) {
+	    _inherits(Parsed, _TemporalAccessor);
+	
+	    function Parsed(dateTimeParseContext) {
+	        _classCallCheck(this, Parsed);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Parsed).call(this));
+	
+	        _this.chrono = null;
+	        _this.zone = null;
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	        _this.leapSecond = false;
+	        _this.dateTimeParseContext = dateTimeParseContext;
+	        return _this;
+	    }
+	
+	    _createClass(Parsed, [{
+	        key: 'copy',
+	        value: function copy() {
+	            var cloned = new Parsed();
+	            cloned.chrono = this.chrono;
+	            cloned.zone = this.zone;
+	            cloned.fieldValues.putAll(this.fieldValues);
+	            cloned.leapSecond = this.leapSecond;
+	            return cloned;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this.fieldValues + ', ' + this.chrono + ', ' + this.zone;
+	        }
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            return this.fieldValues.containsKey(field);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            var val = this.fieldValues.get(field);
+	            (0, _assert.assert)(val != null);
+	            return val;
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            }
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone()) {
+	                return this.zone;
+	            }
+	            return _get(Object.getPrototypeOf(Parsed.prototype), 'query', this).call(this, _query);
+	        }
+	    }, {
+	        key: 'toBuilder',
+	        value: function toBuilder() {
+	            var builder = new _DateTimeBuilder.DateTimeBuilder();
+	            builder.fieldValues.putAll(this.fieldValues);
+	            builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
+	            if (this.zone != null) {
+	                builder.zone = this.zone;
+	            } else {
+	                builder.zone = this.overrideZone;
+	            }
+	            builder.leapSecond = this.leapSecond;
+	            builder.excessDays = this.excessDays;
+	            return builder;
+	        }
+	    }]);
+	
+	    return Parsed;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeBuilder = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _errors = __webpack_require__(5);
+	
+	var _EnumMap = __webpack_require__(28);
+	
+	var _IsoChronology = __webpack_require__(19);
+	
+	var _ChronoLocalDate = __webpack_require__(23);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _TemporalAccessor2 = __webpack_require__(14);
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	var _LocalTime = __webpack_require__(10);
+	
+	var _LocalDate = __webpack_require__(18);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	//import {ZoneOffset} from '../ZoneOffset';
+	
+	/**
+	 * Builder that can holds date and time fields and related date and time objects.
+	 * <p>
+	 * The builder is used to hold onto different elements of date and time.
+	 * It is designed as two separate maps:
+	 * <p><ul>
+	 * <li>from {@link TemporalField} to {@code long} value, where the value may be
+	 * outside the valid range for the field
+	 * <li>from {@code Class} to {@link TemporalAccessor}, holding larger scale objects
+	 * like {@code LocalDateTime}.
+	 * </ul><p>
+	 *
+	 * <h3>Specification for implementors</h3>
+	 * This class is mutable and not thread-safe.
+	 * It should only be used from a single thread.
+	 */
+	
+	var DateTimeBuilder = function (_TemporalAccessor) {
+	    _inherits(DateTimeBuilder, _TemporalAccessor);
+	
+	    function DateTimeBuilder() {
+	        _classCallCheck(this, DateTimeBuilder);
+	
+	        /**
+	         * The map of other fields.
+	         */
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeBuilder).call(this));
+	
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	        /**
+	         * The chronology.
+	         */
+	        _this.chrono = null;
+	        /**
+	         * The zone.
+	         */
+	        _this.zone = null;
+	        /**
+	         * The date.
+	         */
+	        _this.date = null;
+	        /**
+	         * The time.
+	         */
+	        _this.time = null;
+	        /**
+	         * The leap second flag.
+	         */
+	        _this.leapSecond = false;
+	        /**
+	         * The excess days.
+	         */
+	        _this.excessDays = null;
+	        return _this;
+	    }
+	
+	    /**
+	     * Resolves the builder, evaluating the date and time.
+	     * <p>
+	     * This examines the contents of the builder and resolves it to produce the best
+	     * available date and time, throwing an exception if a problem occurs.
+	     * Calling this method changes the state of the builder.
+	     *
+	     * @param resolverStyle how to resolve
+	     * @param resolverFields
+	    * @return {@code this}, for method chaining
+	     */
+	
+	
+	    _createClass(DateTimeBuilder, [{
+	        key: 'resolve',
+	        value: function resolve(resolverStyle, resolverFields) {
+	            if (resolverFields != null) {
+	                this.fieldValues.retainAll(resolverFields);
+	            }
+	            // handle standard fields
+	            // this._mergeInstantFields();
+	            this._mergeDate(resolverStyle);
+	            //mergeTime(resolverStyle);
+	            //if (resolveFields(resolverStyle)) {
+	            //    mergeInstantFields();
+	            //    mergeDate(resolverStyle);
+	            //    mergeTime(resolverStyle);
+	            //}
+	            //resolveTimeInferZeroes(resolverStyle);
+	            //crossCheck();
+	            //if (excessDays != null && excessDays.isZero() == false && date != null && time != null) {
+	            //    date = date.plus(excessDays);
+	            //    excessDays = Period.ZERO;
+	            //}
+	            //resolveFractional();
+	            //resolveInstant();
+	            return this;
+	        }
+	    }, {
+	        key: '_mergeDate',
+	        value: function _mergeDate(resolverStyle) {
+	            //if (this.chrono instanceof IsoChronology) {
+	            this._checkDate(_IsoChronology.IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
+	            //} else {
+	            //    if (this.fieldValues.containsKey(ChronoField.EPOCH_DAY)) {
+	            //        this._checkDate(LocalDate.ofEpochDay(this.fieldValues.remove(ChronoField.EPOCH_DAY)));
+	            //        return;
+	            //    }
+	            //}
+	        }
+	    }, {
+	        key: '_checkDate',
+	        value: function _checkDate(date) {
+	            if (date != null) {
+	                this._addObject(date);
+	                for (var field in this.fieldValues.keySet()) {
+	                    if (field instanceof _ChronoField.ChronoField) {
+	                        if (field.isDateBased()) {
+	                            var val1;
+	                            try {
+	                                val1 = date.getLong(field);
+	                            } catch (ex) {
+	                                if (ex instanceof _errors.DateTimeException) {
+	                                    continue;
+	                                } else {
+	                                    throw ex;
+	                                }
+	                            }
+	                            var val2 = this.fieldValues.get(field);
+	                            if (val1 !== val2) {
+	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }, {
+	        key: '_addObject',
+	        value: function _addObject(dateOrTime) {
+	            if (dateOrTime instanceof _ChronoLocalDate.ChronoLocalDate) {
+	                this.date = dateOrTime;
+	            } else if (dateOrTime instanceof _LocalTime.LocalTime) {
+	                this.time = dateOrTime;
+	            }
+	        }
+	
+	        /**
+	         * Builds the specified type from the values in this builder.
+	         *
+	         * This attempts to build the specified type from this builder.
+	         * If the builder cannot return the type, an exception is thrown.
+	         *
+	         * @param type  the type to invoke {@code from} on, not null
+	         * @return the extracted value, not null
+	         * @throws DateTimeException if an error occurs
+	         */
+	
+	    }, {
+	        key: 'build',
+	        value: function build(type) {
+	            return type.queryFrom(this);
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId()) {
+	                return this.zone;
+	            } else if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return this.date != null ? _LocalDate.LocalDate.from(this.date) : null;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
+	                return this.time;
+	            } else if (_query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return _query.queryFrom(this);
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return null; // not a complete date/time
+	            }
+	            // inline TemporalAccessor.super.query(query) as an optimization
+	            // non-JDK classes are not permitted to make this optimization
+	            return _query.queryFrom(this);
+	        }
+	    }]);
+	
+	    return DateTimeBuilder;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+	exports.DateTimeBuilder = DateTimeBuilder;
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var EnumMap = exports.EnumMap = function () {
+	    function EnumMap() {
+	        _classCallCheck(this, EnumMap);
+	
+	        this._map = {};
+	    }
+	
+	    _createClass(EnumMap, [{
+	        key: "putAll",
+	        value: function putAll(otherMap) {
+	            for (var key in otherMap._map) {
+	                this._map[key] = otherMap._map[key];
+	            }
+	            return this;
+	        }
+	    }, {
+	        key: "containsKey",
+	        value: function containsKey(key) {
+	            return this._map.hasOwnProperty(key.name());
+	        }
+	    }, {
+	        key: "get",
+	        value: function get(key) {
+	            return this._map[key.name()];
+	        }
+	    }, {
+	        key: "set",
+	        value: function set(key, val) {
+	            this._map[key.name()] = val;
+	            return this;
+	        }
+	    }, {
+	        key: "retainAll",
+	        value: function retainAll(keyList) {
+	            var map = {};
+	            for (var i = 0; i < keyList.length; i++) {
+	                var key = keyList[i].name();
+	                map[key] = this._map[key];
+	            }
+	            this._map = map;
+	            return this;
+	        }
+	
+	        /**
+	         * due to the bad performance of delete we just set the key entry to undefined.
+	         *
+	         * this might lead to issues with "null" entries. Calling clear in the end might solve the issue
+	         * @param key
+	         * @returns {*}
+	         */
+	
+	    }, {
+	        key: "remove",
+	        value: function remove(key) {
+	            var keyName = key.name();
+	            var val = this._map[keyName];
+	            this._map[keyName] = undefined;
+	            return val;
+	        }
+	    }, {
+	        key: "keySet",
+	        value: function keySet() {
+	            return this._map;
+	        }
+	    }, {
+	        key: "clear",
+	        value: function clear() {
+	            this._map = {};
+	        }
+	    }]);
+	
+	    return EnumMap;
+	}();
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeFormatterBuilder = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _Enum2 = __webpack_require__(16);
+	
+	var _DateTimeFormatter = __webpack_require__(24);
+	
+	var _DecimalStyle = __webpack_require__(30);
+	
+	var _SignStyle = __webpack_require__(31);
+	
+	var _ResolverStyle = __webpack_require__(22);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript
+	
+	var DateTimeFormatterBuilder = exports.DateTimeFormatterBuilder = function () {
+	    function DateTimeFormatterBuilder() {
+	        _classCallCheck(this, DateTimeFormatterBuilder);
+	
+	        /**
+	         * The currently active builder, used by the outermost builder.
+	         */
+	        this._active = this;
+	        /**
+	         * The parent builder, null for the outermost builder.
+	         */
+	        this._parent = null;
+	
+	        /**
+	         * The list of printers that will be used.
+	         */
+	        this._printerParsers = [];
+	
+	        /**
+	         * Whether this builder produces an optional formatter.
+	         */
+	        this._optional = false;
+	        /**
+	         * The width to pad the next field to.
+	         */
+	        this._padNextWidth = 0;
+	
+	        /**
+	         * The character to pad the next field with.
+	         */
+	        this._padNextChar = null;
+	
+	        /**
+	         * The index of the last variable width value parser.
+	         */
+	        this._valueParserIndex = -1;
+	    }
+	
+	    /**
+	     * Changes the parse style to be case sensitive for the remainder of the formatter.
+	     * 
+	     * Parsing can be case sensitive or insensitive - by default it is case sensitive.
+	     * This method allows the case sensitivity setting of parsing to be changed.
+	     * 
+	     * Calling this method changes the state of the builder such that all
+	     * subsequent builder method calls will parse text in case sensitive mode.
+	     * See {@link #parseCaseInsensitive} for the opposite setting.
+	     * The parse case sensitive/insensitive methods may be called at any point
+	     * in the builder, thus the parser can swap between case parsing modes
+	     * multiple times during the parse.
+	     * 
+	     * Since the default is case sensitive, this method should only be used after
+	     * a previous call to {@code #parseCaseInsensitive}.
+	     *
+	     * @return this, for chaining, not null
+	     */
+	
+	
+	    _createClass(DateTimeFormatterBuilder, [{
+	        key: 'parseCaseSensitive',
+	        value: function parseCaseSensitive() {
+	            this._appendInternalPrinterParser(SettingsParser.SENSITIVE);
+	            return this;
+	        }
+	
+	        /**
+	         * Changes the parse style to be case insensitive for the remainder of the formatter.
+	         * 
+	         * Parsing can be case sensitive or insensitive - by default it is case sensitive.
+	         * This method allows the case sensitivity setting of parsing to be changed.
+	         * 
+	         * Calling this method changes the state of the builder such that all
+	         * subsequent builder method calls will parse text in case sensitive mode.
+	         * See {@link #parseCaseSensitive()} for the opposite setting.
+	         * The parse case sensitive/insensitive methods may be called at any point
+	         * in the builder, thus the parser can swap between case parsing modes
+	         * multiple times during the parse.
+	         *
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: 'parseCaseInsensitive',
+	        value: function parseCaseInsensitive() {
+	            this._appendInternalPrinterParser(SettingsParser.INSENSITIVE);
+	            return this;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Changes the parse style to be strict for the remainder of the formatter.
+	         * 
+	         * Parsing can be strict or lenient - by default its strict.
+	         * This controls the degree of flexibility in matching the text and sign styles.
+	         * 
+	         * When used, this method changes the parsing to be strict from this point onwards.
+	         * As strict is the default, this is normally only needed after calling {@link #parseLenient()}.
+	         * The change will remain in force until the end of the formatter that is eventually
+	         * constructed or until {@code parseLenient} is called.
+	         *
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: 'parseStrict',
+	        value: function parseStrict() {
+	            this._appendInternalPrinterParser(SettingsParser.STRICT);
+	            return this;
+	        }
+	
+	        /**
+	         * Changes the parse style to be lenient for the remainder of the formatter.
+	         * Note that case sensitivity is set separately to this method.
+	         * 
+	         * Parsing can be strict or lenient - by default its strict.
+	         * This controls the degree of flexibility in matching the text and sign styles.
+	         * Applications calling this method should typically also call {@link #parseCaseInsensitive()}.
+	         * 
+	         * When used, this method changes the parsing to be strict from this point onwards.
+	         * The change will remain in force until the end of the formatter that is eventually
+	         * constructed or until {@code parseStrict} is called.
+	         *
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: 'parseLenient',
+	        value: function parseLenient() {
+	            this._appendInternalPrinterParser(SettingsParser.LENIENT);
+	            return this;
+	        }
+	
+	        /**
+	         * appendValue function overloading
+	         */
+	
+	    }, {
+	        key: 'appendValue',
+	        value: function appendValue() {
+	            if (arguments.length === 1) {
+	                return this._appendValue1.apply(this, arguments);
+	            } else if (arguments.length === 2) {
+	                return this._appendValue2.apply(this, arguments);
+	            } else {
+	                return this._appendValue4.apply(this, arguments);
+	            }
+	        }
+	
+	        /**
+	         * Appends the value of a date-time field to the formatter using a normal
+	         * output style.
+	         * 
+	         * The value of the field will be output during a print.
+	         * If the value cannot be obtained then an exception will be thrown.
+	         * 
+	         * The value will be printed as per the normal print of an integer value.
+	         * Only negative numbers will be signed. No padding will be added.
+	         * 
+	         * The parser for a variable width value such as this normally behaves greedily,
+	         * requiring one digit, but accepting as many digits as possible.
+	         * This behavior can be affected by 'adjacent value parsing'.
+	         * See {@link #appendValue(TemporalField, int)} for full details.
+	         *
+	         * @param field  the field to append, not null
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: '_appendValue1',
+	        value: function _appendValue1(field) {
+	            (0, _assert.assert)(field != null);
+	            this._appendValuePrinterParser(new NumberPrinterParser(field, 1, MAX_WIDTH, _SignStyle.SignStyle.NORMAL));
+	            return this;
+	        }
+	
+	        /**
+	         * Appends the value of a date-time field to the formatter using a fixed
+	         * width, zero-padded approach.
+	         * 
+	         * The value of the field will be output during a print.
+	         * If the value cannot be obtained then an exception will be thrown.
+	         * 
+	         * The value will be zero-padded on the left. If the size of the value
+	         * means that it cannot be printed within the width then an exception is thrown.
+	         * If the value of the field is negative then an exception is thrown during printing.
+	         * 
+	         * This method supports a special technique of parsing known as 'adjacent value parsing'.
+	         * This technique solves the problem where a variable length value is followed by one or more
+	         * fixed length values. The standard parser is greedy, and thus it would normally
+	         * steal the digits that are needed by the fixed width value parsers that follow the
+	         * variable width one.
+	         * 
+	         * No action is required to initiate 'adjacent value parsing'.
+	         * When a call to {@code appendValue} with a variable width is made, the builder
+	         * enters adjacent value parsing setup mode. If the immediately subsequent method
+	         * call or calls on the same builder are to this method, then the parser will reserve
+	         * space so that the fixed width values can be parsed.
+	         * 
+	         * For example, consider {@code builder.appendValue(YEAR).appendValue(MONTH_OF_YEAR, 2);}
+	         * The year is a variable width parse of between 1 and 19 digits.
+	         * The month is a fixed width parse of 2 digits.
+	         * Because these were appended to the same builder immediately after one another,
+	         * the year parser will reserve two digits for the month to parse.
+	         * Thus, the text '201106' will correctly parse to a year of 2011 and a month of 6.
+	         * Without adjacent value parsing, the year would greedily parse all six digits and leave
+	         * nothing for the month.
+	         * 
+	         * Adjacent value parsing applies to each set of fixed width not-negative values in the parser
+	         * that immediately follow any kind of variable width value.
+	         * Calling any other append method will end the setup of adjacent value parsing.
+	         * Thus, in the unlikely event that you need to avoid adjacent value parsing behavior,
+	         * simply add the {@code appendValue} to another {@code DateTimeFormatterBuilder}
+	         * and add that to this builder.
+	         * 
+	         * If adjacent parsing is active, then parsing must match exactly the specified
+	         * number of digits in both strict and lenient modes.
+	         * In addition, no positive or negative sign is permitted.
+	         *
+	         * @param field  the field to append, not null
+	         * @param width  the width of the printed field, from 1 to 19
+	         * @return this, for chaining, not null
+	         * @throws IllegalArgumentException if the width is invalid
+	         */
+	
+	    }, {
+	        key: '_appendValue2',
+	        value: function _appendValue2(field, width) {
+	            (0, _assert.assert)(field != null);
+	            if (width < 1 || width > MAX_WIDTH) {
+	                throw new _errors.IllegalArgumentException('The width must be from 1 to ' + MAX_WIDTH + ' inclusive but was ' + width);
+	            }
+	            var pp = new NumberPrinterParser(field, width, width, _SignStyle.SignStyle.NOT_NEGATIVE);
+	            this._appendValuePrinterParser(pp);
+	            return this;
+	        }
+	
+	        /**
+	         * Appends the value of a date-time field to the formatter providing full
+	         * control over printing.
+	         * 
+	         * The value of the field will be output during a print.
+	         * If the value cannot be obtained then an exception will be thrown.
+	         * 
+	         * This method provides full control of the numeric formatting, including
+	         * zero-padding and the positive/negative sign.
+	         * 
+	         * The parser for a variable width value such as this normally behaves greedily,
+	         * accepting as many digits as possible.
+	         * This behavior can be affected by 'adjacent value parsing'.
+	         * See {@link #appendValue(TemporalField, int)} for full details.
+	         * 
+	         * In strict parsing mode, the minimum number of parsed digits is {@code minWidth}.
+	         * In lenient parsing mode, the minimum number of parsed digits is one.
+	         * 
+	         * If this method is invoked with equal minimum and maximum widths and a sign style of
+	         * {@code NOT_NEGATIVE} then it delegates to {@code appendValue(TemporalField,int)}.
+	         * In this scenario, the printing and parsing behavior described there occur.
+	         *
+	         * @param field  the field to append, not null
+	         * @param minWidth  the minimum field width of the printed field, from 1 to 19
+	         * @param maxWidth  the maximum field width of the printed field, from 1 to 19
+	         * @param signStyle  the positive/negative output style, not null
+	         * @return this, for chaining, not null
+	         * @throws IllegalArgumentException if the widths are invalid
+	         */
+	
+	    }, {
+	        key: '_appendValue4',
+	        value: function _appendValue4(field, minWidth, maxWidth, signStyle) {
+	            (0, _assert.assert)(field != null);
+	            if (minWidth === maxWidth && signStyle === _SignStyle.SignStyle.NOT_NEGATIVE) {
+	                return this._appendValue2(field, maxWidth);
+	            }
+	            if (minWidth < 1 || minWidth > MAX_WIDTH) {
+	                throw new _errors.IllegalArgumentException('The minimum width must be from 1 to ' + MAX_WIDTH + ' inclusive but was ' + minWidth);
+	            }
+	            if (maxWidth < 1 || maxWidth > MAX_WIDTH) {
+	                throw new _errors.IllegalArgumentException('The minimum width must be from 1 to ' + MAX_WIDTH + ' inclusive but was ' + maxWidth);
+	            }
+	            if (maxWidth < minWidth) {
+	                throw new _errors.IllegalArgumentException('The maximum width must exceed or equal the minimum width but ' + maxWidth + ' < ' + minWidth);
+	            }
+	            var pp = new NumberPrinterParser(field, minWidth, maxWidth, signStyle);
+	            this._appendValuePrinterParser(pp);
+	            return this;
+	        }
+	
+	        /**
+	         * Appends a fixed width printer-parser.
+	         *
+	         * @param width  the width
+	         * @param pp  the printer-parser, not null
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: '_appendValuePrinterParser',
+	        value: function _appendValuePrinterParser(pp) {
+	            (0, _assert.assert)(pp != null);
+	            if (this._active._valueParserIndex >= 0 && this._active._printerParsers[this._active._valueParserIndex] instanceof NumberPrinterParser) {
+	                var activeValueParser = this._active._valueParserIndex;
+	
+	                // adjacent parsing mode, update setting in previous parsers
+	                var basePP = this._active._printerParsers[activeValueParser];
+	                if (pp.minWidth() === pp.maxWidth() && pp.signStyle() === _SignStyle.SignStyle.NOT_NEGATIVE) {
+	                    // Append the width to the subsequentWidth of the active parser
+	                    basePP = basePP.withSubsequentWidth(pp.maxWidth());
+	                    // Append the new parser as a fixed width
+	                    this._appendInternal(pp.withFixedWidth());
+	                    // Retain the previous active parser
+	                    this._active._valueParserIndex = activeValueParser;
+	                } else {
+	                    // Modify the active parser to be fixed width
+	                    basePP = basePP.withFixedWidth();
+	                    // The new parser becomes the mew active parser
+	                    this._active._valueParserIndex = this._appendInternal(pp);
+	                }
+	                // Replace the modified parser with the updated one
+	                this._active._printerParsers[activeValueParser] = basePP;
+	            } else {
+	                // The new Parser becomes the active parser
+	                this._active._valueParserIndex = this._appendInternal(pp);
+	            }
+	            return this;
+	        }
+	
+	        /**
+	         * Appends a printer and/or parser to the internal list handling padding.
+	         *
+	         * @param pp  the printer-parser to add, not null
+	         * @return the index into the active parsers list
+	         */
+	
+	    }, {
+	        key: '_appendInternal',
+	        value: function _appendInternal(pp) {
+	            (0, _assert.assert)(pp != null);
+	            if (this._active._padNextWidth > 0) {
+	                if (pp != null) {
+	                    pp = new PadPrinterParserDecorator(pp, this._active._padNextWidth, this._active._padNextChar);
+	                }
+	                this._active._padNextWidth = 0;
+	                this._active._padNextChar = 0;
+	            }
+	            this._active._printerParsers.push(pp);
+	            this._active._valueParserIndex = -1;
+	            return this._active._printerParsers.length - 1;
+	        }
+	
+	        /**
+	         * Appends a string literal to the formatter.
+	         * 
+	         * This string will be output during a print.
+	         * 
+	         * If the literal is empty, nothing is added to the formatter.
+	         *
+	         * @param literal  the literal to append, not null
+	         * @return this, for chaining, not null
+	         */
+	
+	    }, {
+	        key: 'appendLiteral',
+	        value: function appendLiteral(literal) {
+	            (0, _assert.assert)(literal != null);
+	            this._appendInternalPrinterParser(new StringLiteralPrinterParser(literal));
+	            return this;
+	        }
+	
+	        /**
+	         * Appends a printer and/or parser to the internal list handling padding.
+	         *
+	         * @param pp  the printer-parser to add, not null
+	         * @return the index into the active parsers list
+	         */
+	
+	    }, {
+	        key: '_appendInternalPrinterParser',
+	        value: function _appendInternalPrinterParser(pp) {
+	            (0, _assert.assert)(pp != null);
+	            if (this._active._padNextWidth > 0) {
+	                if (pp != null) {
+	                    pp = new PadPrinterParserDecorator(pp, this._active._padNextWidth, this._active._padNextChar);
+	                }
+	                this._active._padNextWidth = 0;
+	                this._active._padNextChar = 0;
+	            }
+	            this._active._printerParsers.push(pp);
+	            this._active._valueParserIndex = -1;
+	            return this._active._printerParsers.length - 1;
+	        }
+	
+	        /**
+	         * Completes this builder by creating the DateTimeFormatter.
+	         * 
+	         * This will create a formatter with the specified locale.
+	         * Numbers will be printed and parsed using the standard non-localized set of symbols.
+	         * 
+	         * Calling this method will end any open optional sections by repeatedly
+	         * calling {@link #optionalEnd()} before creating the formatter.
+	         * 
+	         * This builder can still be used after creating the formatter if desired,
+	         * although the state may have been changed by calls to {@code optionalEnd}.
+	         *
+	         * @param resolverStyle  the new resolver style
+	         * @return the created formatter, not null
+	         */
+	
+	    }, {
+	        key: 'toFormatter',
+	        value: function toFormatter() {
+	            var resolverStyle = arguments.length <= 0 || arguments[0] === undefined ? _ResolverStyle.ResolverStyle.SMART : arguments[0];
+	
+	            while (this._active._parent != null) {
+	                this.optionalEnd();
+	            }
+	            var pp = new CompositePrinterParser(this._printerParsers, false);
+	            return new _DateTimeFormatter.DateTimeFormatter(pp, null, _DecimalStyle.DecimalStyle.STANDARD, resolverStyle, null, null, null);
+	        }
+	    }]);
+	
+	    return DateTimeFormatterBuilder;
+	}();
+	
+	var EXCEED_POINTS = [0, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000];
+	
+	var CompositePrinterParser = function () {
+	    function CompositePrinterParser(printerParsers, optional) {
+	        _classCallCheck(this, CompositePrinterParser);
+	
+	        this._printerParsers = printerParsers;
+	        this._optional = optional;
+	    }
+	
+	    /**
+	     * Returns a copy of this printer-parser with the optional flag changed.
+	     *
+	     * @param optional  the optional flag to set in the copy
+	     * @return the new printer-parser, not null
+	     */
+	
+	
+	    _createClass(CompositePrinterParser, [{
+	        key: 'withOptional',
+	        value: function withOptional(optional) {
+	            if (optional === this._optional) {
+	                return this;
+	            }
+	            return new CompositePrinterParser(this._printerParsers, optional);
+	        }
+	    }, {
+	        key: 'print',
+	        value: function print(context, buf) {
+	            var length = buf.length();
+	            if (this._optional) {
+	                context.startOptional();
+	            }
+	            try {
+	                for (var i = 0; i < this._printerParsers.length; i++) {
+	                    var pp = this._printerParsers[i];
+	                    if (pp.print(context, buf) === false) {
+	                        buf.setLength(length); // reset buffer
+	                        return true;
+	                    }
+	                }
+	            } finally {
+	                if (this._optional) {
+	                    context.endOptional();
+	                }
+	            }
+	            return true;
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            if (this._optional) {
+	                context.startOptional();
+	                var pos = position;
+	                for (var i = 0; i < this._printerParsers.length; i++) {
+	                    var pp = this._printerParsers[i];
+	                    pos = pp.parse(context, text, pos);
+	                    if (pos < 0) {
+	                        context.endOptional(false);
+	                        return position; // return original position
+	                    }
+	                }
+	                context.endOptional(true);
+	                return pos;
+	            } else {
+	                for (var i = 0; i < this._printerParsers.length; i++) {
+	                    var pp = this._printerParsers[i];
+	                    position = pp.parse(context, text, position);
+	                    if (position < 0) {
+	                        break;
+	                    }
+	                }
+	                return position;
+	            }
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var buf = '';
+	            if (this._printerParsers != null) {
+	                buf += this._optional ? '[' : '(';
+	                for (var i = 0; i < this._printerParsers.length; i++) {
+	                    var pp = this._printerParsers[i];
+	                    buf += pp.toString();
+	                }
+	                buf += this._optional ? ']' : ')';
+	            }
+	            return buf;
+	        }
+	    }]);
+	
+	    return CompositePrinterParser;
+	}();
+	
+	var SettingsParser = function (_Enum) {
+	    _inherits(SettingsParser, _Enum);
+	
+	    function SettingsParser() {
+	        _classCallCheck(this, SettingsParser);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SettingsParser).apply(this, arguments));
+	    }
+	
+	    _createClass(SettingsParser, [{
+	        key: 'print',
+	        value: function print(context, buf) {
+	            return true; // nothing to do here
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            // using ordinals to avoid javac synthetic inner class
+	            switch (this) {
+	                case SettingsParser.SENSITIVE:
+	                    context.setCaseSensitive(true);break;
+	                case SettingsParser.INSENSITIVE:
+	                    context.setCaseSensitive(false);break;
+	                case SettingsParser.STRICT:
+	                    context.setStrict(true);break;
+	                case SettingsParser.LENIENT:
+	                    context.setStrict(false);break;
+	            }
+	            return position;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            // using ordinals to avoid javac synthetic inner class
+	            switch (this) {
+	                case SettingsParser.SENSITIVE:
+	                    return 'ParseCaseSensitive(true)';
+	                case SettingsParser.INSENSITIVE:
+	                    return 'ParseCaseSensitive(false)';
+	                case SettingsParser.STRICT:
+	                    return 'ParseStrict(true)';
+	                case SettingsParser.LENIENT:
+	                    return 'ParseStrict(false)';
+	            }
+	        }
+	    }]);
+	
+	    return SettingsParser;
+	}(_Enum2.Enum);
+	
+	SettingsParser.SENSITIVE = new SettingsParser('SENSITIVE');
+	SettingsParser.INSENSITIVE = new SettingsParser('INSENSITIVE');
+	SettingsParser.STRICT = new SettingsParser('STRICT');
+	SettingsParser.LENIENT = new SettingsParser('LENIENT');
+	
+	var NumberPrinterParser = function () {
+	
+	    /**
+	     * Constructor.
+	     *
+	     * @param field  the field to print, not null
+	     * @param minWidth  the minimum field width, from 1 to 19
+	     * @param maxWidth  the maximum field width, from minWidth to 19
+	     * @param signStyle  the positive/negative sign style, not null
+	     * @param subsequentWidth  the width of subsequent non-negative numbers, 0 or greater,
+	     *  -1 if fixed width due to active adjacent parsing
+	     */
+	
+	    function NumberPrinterParser(field, minWidth, maxWidth, signStyle) {
+	        var subsequentWidth = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
+	
+	        _classCallCheck(this, NumberPrinterParser);
+	
+	        this._field = field;
+	        this._minWidth = minWidth;
+	        this._maxWidth = maxWidth;
+	        this._signStyle = signStyle;
+	        this._subsequentWidth = subsequentWidth;
+	    }
+	
+	    _createClass(NumberPrinterParser, [{
+	        key: 'field',
+	        value: function field() {
+	            return this._field;
+	        }
+	    }, {
+	        key: 'minWidth',
+	        value: function minWidth() {
+	            return this._minWidth;
+	        }
+	    }, {
+	        key: 'maxWidth',
+	        value: function maxWidth() {
+	            return this._maxWidth;
+	        }
+	    }, {
+	        key: 'signStyle',
+	        value: function signStyle() {
+	            return this._signStyle;
+	        }
+	    }, {
+	        key: 'withSubsequentWidth',
+	        value: function withSubsequentWidth(subsequentWidth) {
+	            return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);
+	        }
+	    }, {
+	        key: '_isFixedWidth',
+	        value: function _isFixedWidth() {
+	            return this._subsequentWidth === -1 || this._subsequentWidth > 0 && this._minWidth === this._maxWidth && this._signStyle === _SignStyle.SignStyle.NOT_NEGATIVE;
+	        }
+	    }, {
+	        key: 'print',
+	        value: function print(context, buf) {
+	            var value = context.getValue(this._field);
+	            if (value == null) {
+	                return false;
+	            }
+	            var symbols = context.symbols();
+	            var str = '' + Math.abs(value);
+	            if (str.length > this._maxWidth) {
+	                throw new _errors.DateTimeException('Field ' + this._field + ' cannot be printed as the value ' + value + ' exceeds the maximum print width of ' + this._maxWidth);
+	            }
+	            str = symbols.convertNumberToI18N(str);
+	
+	            if (value >= 0) {
+	                switch (this._signStyle) {
+	                    case _SignStyle.SignStyle.EXCEEDS_PAD:
+	                        if (this._minWidth < MAX_WIDTH && value >= EXCEED_POINTS[this._minWidth]) {
+	                            buf.append(symbols.positiveSign());
+	                        }
+	                        break;
+	                    case _SignStyle.SignStyle.ALWAYS:
+	                        buf.append(symbols.positiveSign());
+	                        break;
+	                }
+	            } else {
+	                switch (this._signStyle) {
+	                    case _SignStyle.SignStyle.NORMAL:
+	                    case _SignStyle.SignStyle.EXCEEDS_PAD:
+	                    case _SignStyle.SignStyle.ALWAYS:
+	                        buf.append(symbols.negativeSign());
+	                        break;
+	                    case _SignStyle.SignStyle.NOT_NEGATIVE:
+	                        throw new _errors.DateTimeException('Field ' + this._field + ' cannot be printed as the value ' + value + ' cannot be negative according to the SignStyle');
+	                }
+	            }
+	            for (var i = 0; i < this._minWidth - str.length; i++) {
+	                buf.append(symbols.zeroDigit());
+	            }
+	            buf.append(str);
+	            return true;
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            var length = text.length;
+	            if (position === length) {
+	                return ~position;
+	            }
+	            (0, _assert.assert)(position >= 0 && position < length);
+	            var sign = text.charAt(position); // IOOBE if invalid position
+	            var negative = false;
+	            var positive = false;
+	            if (sign === context.symbols().positiveSign()) {
+	                if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {
+	                    return ~position;
+	                }
+	                positive = true;
+	                position++;
+	            } else if (sign === context.symbols().negativeSign()) {
+	                if (this._signStyle.parse(false, context.isStrict(), this._minWidth === this._maxWidth) === false) {
+	                    return ~position;
+	                }
+	                negative = true;
+	                position++;
+	            } else {
+	                if (this._signStyle === _SignStyle.SignStyle.ALWAYS && context.isStrict()) {
+	                    return ~position;
+	                }
+	            }
+	            var effMinWidth = context.isStrict() || this._isFixedWidth() ? this._minWidth : 1;
+	            var minEndPos = position + effMinWidth;
+	            if (minEndPos > length) {
+	                return ~position;
+	            }
+	            var effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);
+	            var total = 0;
+	            var pos = position;
+	            for (var pass = 0; pass < 2; pass++) {
+	                var maxEndPos = Math.min(pos + effMaxWidth, length);
+	                while (pos < maxEndPos) {
+	                    var ch = text.charAt(pos++);
+	                    var digit = context.symbols().convertToDigit(ch);
+	                    if (digit < 0) {
+	                        pos--;
+	                        if (pos < minEndPos) {
+	                            return ~position; // need at least min width digits
+	                        }
+	                        break;
+	                    }
+	                    if (pos - position > MAX_WIDTH) {
+	                        throw new _errors.ArithmeticException('number text exceeds length');
+	                    } else {
+	                        total = total * 10 + digit;
+	                    }
+	                }
+	                if (this._subsequentWidth > 0 && pass === 0) {
+	                    // re-parse now we know the correct width
+	                    var parseLen = pos - position;
+	                    effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);
+	                    pos = position;
+	                    total = 0;
+	                } else {
+	                    break;
+	                }
+	            }
+	            if (negative) {
+	                if (total === 0 && context.isStrict()) {
+	                    return ~(position - 1); // minus zero not allowed
+	                }
+	                if (total !== 0) {
+	                    total = -total;
+	                }
+	            } else if (this._signStyle === _SignStyle.SignStyle.EXCEEDS_PAD && context.isStrict()) {
+	                var parseLen = pos - position;
+	                if (positive) {
+	                    if (parseLen <= this._minWidth) {
+	                        return ~(position - 1); // '+' only parsed if minWidth exceeded
+	                    }
+	                } else {
+	                        if (parseLen > this._minWidth) {
+	                            return ~position; // '+' must be parsed if minWidth exceeded
+	                        }
+	                    }
+	            }
+	            return this._setValue(context, total, position, pos);
+	        }
+	
+	        /**
+	         * Stores the value.
+	         *
+	         * @param context  the context to store into, not null
+	         * @param value  the value
+	         * @param errorPos  the position of the field being parsed
+	         * @param successPos  the position after the field being parsed
+	         * @return the new position
+	         */
+	
+	    }, {
+	        key: '_setValue',
+	        value: function _setValue(context, value, errorPos, successPos) {
+	            return context.setParsedField(this._field, value, errorPos, successPos);
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === _SignStyle.SignStyle.NORMAL) {
+	                return 'Value(' + this._field + ')';
+	            }
+	            if (this._minWidth === this._maxWidth && this._signStyle === _SignStyle.SignStyle.NOT_NEGATIVE) {
+	                return 'Value(' + this._field + ',' + this._minWidth + ')';
+	            }
+	            return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';
+	        }
+	    }]);
+	
+	    return NumberPrinterParser;
+	}();
+	
+	/**
+	 * Pads the output to a fixed width.
+	 */
+	
+	
+	var PadPrinterParserDecorator = function () {
+	
+	    /**
+	     * Constructor.
+	     *
+	     * @param printerParser  the printer, not null
+	     * @param padWidth  the width to pad to, 1 or greater
+	     * @param padChar  the pad character
+	     */
+	
+	    function PadPrinterParserDecorator(printerParser, padWidth, padChar) {
+	        _classCallCheck(this, PadPrinterParserDecorator);
+	
+	        // input checked by DateTimeFormatterBuilder
+	        this._printerParser = printerParser;
+	        this._padWidth = padWidth;
+	        this._padChar = padChar;
+	    }
+	
+	    _createClass(PadPrinterParserDecorator, [{
+	        key: 'print',
+	        value: function print(context, buf) {
+	            var preLen = buf.length();
+	            if (this._printerParser.print(context, buf) === false) {
+	                return false;
+	            }
+	            var len = buf.length() - preLen;
+	            if (len > this._padWidth) {
+	                throw new _errors.DateTimeException('Cannot print as output of ' + len + ' characters exceeds pad width of ' + this._padWidth);
+	            }
+	            for (var i = 0; i < this._padWidth - len; i++) {
+	                buf.insert(preLen, this._padChar);
+	            }
+	            return true;
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            // cache context before changed by decorated parser
+	            var strict = context.isStrict();
+	            var caseSensitive = context.isCaseSensitive();
+	            // parse
+	            (0, _assert.assert)(!(position > text.length));
+	            if (position === text.length) {
+	                return ~position; // no more characters in the string
+	            }
+	            var endPos = position + this._padWidth;
+	            if (endPos > text.length) {
+	                if (strict) {
+	                    return ~position; // not enough characters in the string to meet the parse width
+	                }
+	                endPos = text.length;
+	            }
+	            var pos = position;
+	            while (pos < endPos && (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {
+	                pos++;
+	            }
+	            text = text.substring(0, endPos);
+	            var resultPos = this._printerParser.parse(context, text, pos);
+	            if (resultPos !== endPos && strict) {
+	                return ~(position + pos); // parse of decorated field didn't parse to the end
+	            }
+	            return resultPos;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return 'Pad(' + this._printerParser + ',' + this._padWidth + (this._padChar === ' ' ? ')' : ',\'' + this._padChar + '\')');
+	        }
+	    }]);
+	
+	    return PadPrinterParserDecorator;
+	}();
+	
+	/**
+	* Prints or parses a string literal.
+	*/
+	
+	
+	var StringLiteralPrinterParser = function () {
+	    function StringLiteralPrinterParser(literal) {
+	        _classCallCheck(this, StringLiteralPrinterParser);
+	
+	        this._literal = literal;
+	    }
+	
+	    _createClass(StringLiteralPrinterParser, [{
+	        key: 'print',
+	        value: function print(context, buf) {
+	            buf.append(this._literal);
+	            return true;
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            var length = text.length;
+	            (0, _assert.assert)(!(position > length || position < 0));
+	
+	            if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {
+	                return ~position;
+	            }
+	            return position + this._literal.length;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return '\'' + this._literal + '\'';
+	        }
+	    }]);
+	
+	    return StringLiteralPrinterParser;
+	}();
+	
+	var StringBuilder = function () {
+	    function StringBuilder() {
+	        _classCallCheck(this, StringBuilder);
+	
+	        this._str = '';
+	    }
+	
+	    _createClass(StringBuilder, [{
+	        key: 'append',
+	        value: function append(str) {
+	            this._str += str;
+	        }
+	    }, {
+	        key: 'insert',
+	        value: function insert(offset, str) {
+	            this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
+	        }
+	    }, {
+	        key: 'length',
+	        value: function length() {
+	            return this._str.length;
+	        }
+	    }, {
+	        key: 'setLength',
+	        value: function setLength(length) {
+	            this._str = this._str.slice(0, length);
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this._str;
+	        }
+	    }]);
+	
+	    return StringBuilder;
+	}();
+	
+	DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
+	DateTimeFormatterBuilder.SettingsParser = SettingsParser;
+	DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
+	DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
+	DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
+	DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
+	DateTimeFormatterBuilder.StringBuilder = StringBuilder;
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var DecimalStyle = exports.DecimalStyle = function () {
+	    function DecimalStyle(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {
+	        _classCallCheck(this, DecimalStyle);
+	
+	        this._zeroDigit = zeroChar;
+	        this._zeroDigitCharCode = zeroChar.charCodeAt(0);
+	        this._positiveSign = positiveSignChar;
+	        this._negativeSign = negativeSignChar;
+	        this._decimalSeparator = decimalPointChar;
+	    }
+	
+	    _createClass(DecimalStyle, [{
+	        key: 'positiveSign',
+	        value: function positiveSign() {
+	            return this._positiveSign;
+	        }
+	    }, {
+	        key: 'withPositiveSign',
+	        value: function withPositiveSign(positiveSign) {
+	            if (positiveSign === this._positiveSign) {
+	                return this;
+	            }
+	            return new DecimalStyle(this._zeroDigit, positiveSign, this._negativeSign, this._decimalSeparator);
+	        }
+	    }, {
+	        key: 'negativeSign',
+	        value: function negativeSign() {
+	            return this._negativeSign;
+	        }
+	    }, {
+	        key: 'withNegativeSign',
+	        value: function withNegativeSign(negativeSign) {
+	            if (negativeSign === this._negativeSign) {
+	                return this;
+	            }
+	            return new DecimalStyle(this._zeroDigit, this._positiveSign, negativeSign, this._decimalSeparator);
+	        }
+	    }, {
+	        key: 'zeroDigit',
+	        value: function zeroDigit() {
+	            return this._zeroDigit;
+	        }
+	    }, {
+	        key: 'withZeroDigit',
+	        value: function withZeroDigit(zeroDigit) {
+	            if (zeroDigit === this._zeroDigit) {
+	                return this;
+	            }
+	            return new DecimalStyle(zeroDigit, this._positiveSign, this._negativeSign, this._decimalSeparator);
+	        }
+	    }, {
+	        key: 'decimalSeparator',
+	        value: function decimalSeparator() {
+	            return this._decimalSeparator;
+	        }
+	    }, {
+	        key: 'withDecimalSeparator',
+	        value: function withDecimalSeparator(decimalSeparator) {
+	            if (decimalSeparator === this._decimalSeparator) {
+	                return this;
+	            }
+	            return new DecimalStyle(this._zeroDigit, this._positiveSign, this._negativeSign, decimalSeparator);
+	        }
+	    }, {
+	        key: 'convertToDigit',
+	        value: function convertToDigit(char) {
+	            var val = char.charCodeAt(0) - this._zeroDigitCharCode;
+	            return val >= 0 && val <= 9 ? val : -1;
+	        }
+	    }, {
+	        key: 'convertNumberToI18N',
+	        value: function convertNumberToI18N(numericText) {
+	            if (this._zeroDigit === '0') {
+	                return numericText;
+	            }
+	            var diff = this._zeroDigitCharCode - '0'.charCodeAt(0);
+	            var convertedText = '';
+	            for (var i = 0; i < numericText.length; i++) {
+	                convertedText += String.fromCharCode(numericText.charCodeAt(i) + diff);
+	            }
+	            return convertedText;
+	        }
+	    }, {
+	        key: 'equals',
+	        value: function equals(other) {
+	            if (this === other) {
+	                return true;
+	            }
+	            if (other instanceof DecimalStyle) {
+	                return this._zeroDigit === other._zeroDigit && this._positiveSign === other._positiveSign && this._negativeSign === other._negativeSign && this._decimalSeparator == other._decimalSeparator;
+	            }
+	            return false;
+	        }
+	    }, {
+	        key: 'hashCode',
+	        value: function hashCode() {
+	            return this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return 'DecimalStyle[' + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + ']';
+	        }
+	    }], [{
+	        key: 'of',
+	        value: function of() {
+	            throw new Error('not yet supported');
+	        }
+	    }, {
+	        key: 'availableLocales',
+	        value: function availableLocales() {
+	            throw new Error('not yet supported');
+	        }
+	    }]);
+	
+	    return DecimalStyle;
+	}();
+	
+	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.SignStyle = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _Enum2 = __webpack_require__(16);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SignStyle = exports.SignStyle = function (_Enum) {
+	    _inherits(SignStyle, _Enum);
+	
+	    function SignStyle() {
+	        _classCallCheck(this, SignStyle);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(SignStyle).apply(this, arguments));
+	    }
+	
+	    _createClass(SignStyle, [{
+	        key: 'parse',
+	
+	        /**
+	         * Parse helper.
+	         *
+	         * @param positive  true if positive sign parsed, false for negative sign
+	         * @param strict  true if strict, false if lenient
+	         * @param fixedWidth  true if fixed width, false if not
+	         * @return true if valid
+	         */
+	        value: function parse(positive, strict, fixedWidth) {
+	            switch (this) {
+	                case SignStyle.NORMAL:
+	                    // NORMAL
+	                    // valid if negative or (positive and lenient)
+	                    return !positive || !strict;
+	                case SignStyle.ALWAYS: // ALWAYS
+	                case SignStyle.EXCEEDS_PAD:
+	                    // EXCEEDS_PAD
+	                    return true;
+	                default:
+	                    // valid if lenient and not fixed width
+	                    return !strict && !fixedWidth;
+	            }
+	        }
+	    }]);
+	
+	    return SignStyle;
+	}(_Enum2.Enum);
+	
+	SignStyle.NORMAL = new SignStyle('NORMAL');
+	SignStyle.NEVER = new SignStyle('NEVER');
+	SignStyle.ALWAYS = new SignStyle('ALWAYS');
+	SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
+	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ }
 /******/ ])
