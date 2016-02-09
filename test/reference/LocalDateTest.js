@@ -534,9 +534,54 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     });
 
-    /**
     describe('get*()', () => {
+        it('test_get', function () {
+            provider_sampleDates().forEach((sampleDate) =>{
+                test_get.apply(this, sampleDate);
+            });
+        });
+
+        function test_get(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            assertEquals(a.year(), y);
+            assertEquals(a.month(), Month.of(m));
+            assertEquals(a.dayOfMonth(), d);
+        }
+
+        it('test_getDOY', function () {
+            provider_sampleDates().forEach((sampleDate) =>{
+                test_getDOY.apply(this, sampleDate);
+            });
+        });
+
+        function test_getDOY(y, m, d) {
+            var a = LocalDate.of(y, m, d);
+            var total = 0;
+            for (let i = 1; i < m; i++) {
+                total += Month.of(i).length(isIsoLeap(y));
+            }
+            var doy = total + d;
+            assertEquals(a.dayOfYear(), doy);
+        }
+
+/*
+        it('test_getDayOfWeek', function () {
+            var MONTH = Month.values();
+            var dow = DayOfWeek.MONDAY;
+            for (let m=0; m< MONTH.length; m++) {
+                var month = MONTH[m];
+                var length = month.length(false);
+                for (let i = 1; i <= length; i++) {
+                    var d = LocalDate.of(2007, month, i);
+                    assertEquals(d.dayOfWeek(), dow);
+                    dow = dow.plus(1);
+                }
+            }
+        });
+*/
     });
+
+/**
 
     describe('isLeapYear()', () => {
     });
@@ -598,7 +643,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('atStartOfDay()', () => {
     });
 
-     */
+ */
 
     describe('toEpochDay()', function () {
         this.timeout(10000);

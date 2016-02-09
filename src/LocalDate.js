@@ -137,6 +137,39 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+      * Gets the day-of-year field.
+      * <p>
+      * This method returns the primitive {@code int} value for the day-of-year.
+      *
+      * @return the day-of-year, from 1 to 365, or 366 in a leap year
+      */
+    dayOfYear() {
+        return this.month().firstDayOfYear(this.isLeapYear()) + this._day - 1;
+    }
+
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     * <p>
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     * <p>
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     * <p>
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @return true if the year is leap, false otherwise
+     */
+    isLeapYear() {
+        return IsoChronology.isLeapYear(this._year);
+    }
+
+    /**
      * Gets the chronology of this date, which is the ISO calendar system.
      * <p>
      * The {@code Chronology} represents the calendar system in use.
