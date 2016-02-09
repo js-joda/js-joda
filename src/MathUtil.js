@@ -136,3 +136,6 @@ export class MathUtil {
 
 }
 
+MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
+MathUtil.MIN_SAFE_INTEGER = MIN_SAFE_INTEGER;
+
