@@ -386,6 +386,13 @@ export class Month extends TemporalAccessor {
     }
 
     /**
+     * replacement for enum values
+     */
+    static values(){
+        return MONTHS;
+    }
+
+    /**
      *
      * @param {number} month
      * @return {Month} not null
