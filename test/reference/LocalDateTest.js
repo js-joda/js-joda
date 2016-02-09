@@ -513,9 +513,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 TEST_2007_07_15.get(ChronoField.HOUR_OF_DAY);
             }).to.throw(DateTimeException);
         });
-
     });
-
 
     describe('query(TemporalQuery)', () => {
         it('test_query', () => {
@@ -535,6 +533,72 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
     });
+
+    /**
+    describe('get*()', () => {
+    });
+
+    describe('isLeapYear()', () => {
+    });
+
+    describe('lengthOfMonth()', () => {
+    });
+
+    describe('lengthOfYear()', () => {
+    });
+
+    describe('with()', () => {
+    });
+
+    describe('with(DateTimeField,long)', () => {
+    });
+
+    describe('withYear()', () => {
+    });
+
+    describe('withMonth()', () => {
+    });
+
+    describe('withDayOfMonth()', () => {
+    });
+
+    describe('withDayOfYear(int)', () => {
+    });
+
+    describe('plus(Period)', () => {
+    });
+
+    describe('plus(long,PeriodUnit)', () => {
+    });
+
+    describe('plusYears()', () => {
+    });
+
+    describe('plusMonths()', () => {
+    });
+
+    describe('minus(Period)', () => {
+    });
+
+    describe('minus(long,PeriodUnit)', () => {
+    });
+
+    describe('minusYears()', () => {
+    });
+
+    describe('minusMonths()', () => {
+    });
+
+    describe('until()', () => {
+    });
+
+    describe('atTime()', () => {
+    });
+
+    describe('atStartOfDay()', () => {
+    });
+
+     */
 
     describe('toEpochDay()', function () {
         this.timeout(10000);
@@ -753,20 +817,20 @@ describe('org.threeten.bp.TestLocalDate', () => {
     });
 
     /**
-    //-----------------------------------------------------------------------
-    // format(DateTimeFormatter)
-    //-----------------------------------------------------------------------
-    @Test
-    public void test_format_formatter() {
-        DateTimeFormatter f = DateTimeFormatter.ofPattern("y M d");
-        String t = LocalDate.of(2010, 12, 3).format(f);
-        assertEquals(t, "2010 12 3");
-    }
+     *
+    describe('format(DateTimeFormatter)', function () {
+        @Test
+        public void test_format_formatter() {
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("y M d");
+            String t = LocalDate.of(2010, 12, 3).format(f);
+            assertEquals(t, "2010 12 3");
+        }
 
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_format_formatter_null() {
-        LocalDate.of(2010, 12, 3).format(null);
-    }
+        @Test(expectedExceptions=NullPointerException.class)
+        public void test_format_formatter_null() {
+            LocalDate.of(2010, 12, 3).format(null);
+        }
+    });
     */
 });
 
