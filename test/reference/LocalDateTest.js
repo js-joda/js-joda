@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
-import {assertEquals, assertNotNull} from '../testUtils';
+import {assertEquals, assertNotNull, assertTrue, assertFalse, isCoverageTestRunner} from '../testUtils';
 
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
@@ -82,11 +82,11 @@ describe('org.threeten.bp.TestLocalDate', () => {
         if (newDayOfMonth > 0) {
             return date.withDayOfMonth(newDayOfMonth);
         }
-        date = date.with(date.getMonth().minus(1));
+        date = date.withMonth(date.month().minus(1));
         if (date.month() === Month.DECEMBER) {
-            date = date.withYear(date.getYear() - 1);
+            date = date.withYear(date.year() - 1);
         }
-        return date.withDayOfMonth(date.getMonth().length(isIsoLeap(date.getYear())));
+        return date.withDayOfMonth(date.month().length(isIsoLeap(date.year())));
     }
 
     describe('constants', () => {
@@ -492,31 +492,246 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }
         });
 
-        it.skip('now_Clock_maxYear', () => {
+/*
+        it('now_Clock_maxYear', () => {
             var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
             var test = LocalDate.now(clock);
             expect(test.equals(MAX_DATE)).to.equal(true);
         });
 
-        it.skip('now_Clock_tooBig', () => {
+        it('now_Clock_tooBig', () => {
             var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
             expect(() => {
                 LocalDate.now(clock);
             }).to.throw(DateTimeException);
         });
 
-        it.skip('now_Clock_minYear', () => {
+        it('now_Clock_minYear', () => {
             var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
             var test = LocalDate.now(clock);
             expect(test.equals(MIN_DATE)).to.equal(true);
         });
 
-        it.skip('now_Clock_tooLow', () => {
+        it('now_Clock_tooLow', () => {
             var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
             expect(() => {
                 LocalDate.now(clock);
             }).to.throw(DateTimeException);
         });
+*/
+
     });
+
+    describe('toEpochDay()', function () {
+        this.timeout(10000);
+
+        var date_0000_01_01 = -678941 - 40587;
+        var nextSteps = isCoverageTestRunner() ? date_0000_01_01 + (2*356) : 700000;
+        var previousSteps = isCoverageTestRunner() ? date_0000_01_01 - (2*356) : -2000000;
+
+        it('test_toEpochDay', function () {
+            var test = LocalDate.of(0, 1, 1);
+            for (let i = date_0000_01_01; i < nextSteps; i++) {
+                assertEquals(test.toEpochDay(), i);
+                test = next(test);
+            }
+            test = LocalDate.of(0, 1, 1);
+            for (let i = date_0000_01_01; i > previousSteps; i--) {
+                assertEquals(test.toEpochDay(), i);
+                test = previous(test);
+            }
+
+            assertEquals(LocalDate.of(1858, 11, 17).toEpochDay(), -40587);
+            assertEquals(LocalDate.of(1, 1, 1).toEpochDay(), -678575 - 40587);
+            assertEquals(LocalDate.of(1995, 9, 27).toEpochDay(), 49987 - 40587);
+            assertEquals(LocalDate.of(1970, 1, 1).toEpochDay(), 0);
+            assertEquals(LocalDate.of(-1, 12, 31).toEpochDay(), -678942 - 40587);
+        });
+    });
+
+    describe('compareTo()', function () {
+        it('test_comparisons', function () {
+            doTest_comparisons_LocalDate([
+                LocalDate.of(Year.MIN_VALUE, 1, 1),
+                LocalDate.of(Year.MIN_VALUE, 12, 31),
+                LocalDate.of(-1, 1, 1),
+                LocalDate.of(-1, 12, 31),
+                LocalDate.of(0, 1, 1),
+                LocalDate.of(0, 12, 31),
+                LocalDate.of(1, 1, 1),
+                LocalDate.of(1, 12, 31),
+                LocalDate.of(2006, 1, 1),
+                LocalDate.of(2006, 12, 31),
+                LocalDate.of(2007, 1, 1),
+                LocalDate.of(2007, 12, 31),
+                LocalDate.of(2008, 1, 1),
+                LocalDate.of(2008, 2, 29),
+                LocalDate.of(2008, 12, 31),
+                LocalDate.of(Year.MAX_VALUE, 1, 1),
+                LocalDate.of(Year.MAX_VALUE, 12, 31)
+            ]);
+        });
+
+        function doTest_comparisons_LocalDate(localDates) {
+            for (let i = 0; i < localDates.length; i++) {
+                var a = localDates[i];
+                for (let j = 0; j < localDates.length; j++) {
+                    var b = localDates[j];
+                    if (i < j) {
+                        assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else if (i > j) {
+                        assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else {
+                        assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), true, a + ' <=> ' + b);
+                    }
+                }
+            }
+        }
+
+        it('test_compareTo_ObjectNull', function () {
+            expect(() => {
+                TEST_2007_07_15.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isBefore', function () {
+            assertTrue(TEST_2007_07_15.isBefore(LocalDate.of(2007, 7, 16)));
+            assertFalse(TEST_2007_07_15.isBefore(LocalDate.of(2007, 7, 14)));
+            assertFalse(TEST_2007_07_15.isBefore(TEST_2007_07_15));
+        });
+
+        it('test_isBefore_ObjectNull', function () {
+            expect(() => {
+                TEST_2007_07_15.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isAfter_ObjectNull', function () {
+            expect(() => {
+                TEST_2007_07_15.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isAfter', function () {
+            assertTrue(TEST_2007_07_15.isAfter(LocalDate.of(2007, 7, 14)));
+            assertFalse(TEST_2007_07_15.isAfter(LocalDate.of(2007, 7, 16)));
+            assertFalse(TEST_2007_07_15.isAfter(TEST_2007_07_15));
+        });
+
+        it('compareToNonLocalDate', function () {
+            expect(() => {
+                TEST_2007_07_15.compareTo({});
+            }).to.throw(DateTimeException);
+        });
+
+
+    });
+    /**
+
+
+    //-----------------------------------------------------------------------
+    // equals()
+    //-----------------------------------------------------------------------
+    @Test(dataProvider="sampleDates" )
+    public void test_equals_true(int y, int m, int d) {
+        LocalDate a = LocalDate.of(y, m, d);
+        LocalDate b = LocalDate.of(y, m, d);
+        assertEquals(a.equals(b), true);
+    }
+    @Test(dataProvider="sampleDates")
+    public void test_equals_false_year_differs(int y, int m, int d) {
+        LocalDate a = LocalDate.of(y, m, d);
+        LocalDate b = LocalDate.of(y + 1, m, d);
+        assertEquals(a.equals(b), false);
+    }
+    @Test(dataProvider="sampleDates")
+    public void test_equals_false_month_differs(int y, int m, int d) {
+        LocalDate a = LocalDate.of(y, m, d);
+        LocalDate b = LocalDate.of(y, m + 1, d);
+        assertEquals(a.equals(b), false);
+    }
+    @Test(dataProvider="sampleDates")
+    public void test_equals_false_day_differs(int y, int m, int d) {
+        LocalDate a = LocalDate.of(y, m, d);
+        LocalDate b = LocalDate.of(y, m, d + 1);
+        assertEquals(a.equals(b), false);
+    }
+
+    @Test
+    public void test_equals_itself_true() {
+        assertEquals(TEST_2007_07_15.equals(TEST_2007_07_15), true);
+    }
+
+    @Test
+    public void test_equals_string_false() {
+        assertEquals(TEST_2007_07_15.equals("2007-07-15"), false);
+    }
+
+    @Test
+    public void test_equals_null_false() {
+        assertEquals(TEST_2007_07_15.equals(null), false);
+    }
+
+    //-----------------------------------------------------------------------
+    // hashCode()
+    //-----------------------------------------------------------------------
+    @Test(dataProvider="sampleDates")
+    public void test_hashCode(int y, int m, int d) {
+        LocalDate a = LocalDate.of(y, m, d);
+        assertEquals(a.hashCode(), a.hashCode());
+        LocalDate b = LocalDate.of(y, m, d);
+        assertEquals(a.hashCode(), b.hashCode());
+    }
+
+    //-----------------------------------------------------------------------
+    // toString()
+    //-----------------------------------------------------------------------
+    @DataProvider(name="sampleToString")
+    Object[][] provider_sampleToString() {
+        return new Object[][] {
+            {2008, 7, 5, "2008-07-05"},
+            {2007, 12, 31, "2007-12-31"},
+            {999, 12, 31, "0999-12-31"},
+            {-1, 1, 2, "-0001-01-02"},
+            {9999, 12, 31, "9999-12-31"},
+            {-9999, 12, 31, "-9999-12-31"},
+            {10000, 1, 1, "+10000-01-01"},
+            {-10000, 1, 1, "-10000-01-01"},
+            {12345678, 1, 1, "+12345678-01-01"},
+            {-12345678, 1, 1, "-12345678-01-01"},
+        };
+    }
+
+    @Test(dataProvider="sampleToString")
+    public void test_toString(int y, int m, int d, String expected) {
+        LocalDate t = LocalDate.of(y, m, d);
+        String str = t.toString();
+        assertEquals(str, expected);
+    }
+
+    //-----------------------------------------------------------------------
+    // format(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    @Test
+    public void test_format_formatter() {
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("y M d");
+        String t = LocalDate.of(2010, 12, 3).format(f);
+        assertEquals(t, "2010 12 3");
+    }
+
+    @Test(expectedExceptions=NullPointerException.class)
+    public void test_format_formatter_null() {
+        LocalDate.of(2010, 12, 3).format(null);
+    }
+    */
 });
 

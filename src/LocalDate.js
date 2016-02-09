@@ -52,6 +52,29 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
 export class LocalDate extends ChronoLocalDate{
 
     /**
+     * Resolves the date, resolving days past the end of month.
+     *
+     * @param year  the year to represent, validated from MIN_YEAR to MAX_YEAR
+     * @param month  the month-of-year to represent, validated from 1 to 12
+     * @param day  the day-of-month to represent, validated from 1 to 31
+     * @return LocalDate resolved date, not null
+     */
+    static _resolvePreviousValid(year, month, day) {
+        switch (month) {
+            case 2:
+                day = Math.min(day, IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                day = Math.min(day, 30);
+                break;
+        }
+        return LocalDate.of(year, month, day);
+    }
+
+    /**
      *
      * @param {number} year
      * @param {Month, number} month
@@ -294,50 +317,6 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * Outputs this date as a String, such as 2007-12-03.
-     * The output will be in the ISO-8601 format uuuu-MM-dd.
-     *
-     * @return {string} a string representation of this date, not null
-     */
-    toString() {
-        var dayString, monthString, yearString;
-
-        var yearValue = this.year();
-        var monthValue = this.monthValue();
-        var dayValue = this.dayOfMonth();
-
-        var absYear = Math.abs(yearValue);
-
-        if (absYear < 1000) {
-            if (yearValue < 0) {
-                yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
-            } else {
-                yearString = ('' + (yearValue + 10000)).slice(-4);
-            }
-        } else {
-            if (yearValue > 9999) {
-                yearString = '+' + yearValue;
-            } else {
-                yearString = '' + yearValue;
-            }
-        }
-
-        if (monthValue < 10) {
-            monthString = '-0' + monthValue;
-        } else {
-            monthString = '-' + monthValue;
-        }
-
-        if (dayValue < 10) {
-            dayString = '-0' + dayValue;
-        } else {
-            dayString = '-' + dayValue;
-        }
-
-        return yearString + monthString + dayString;
-    }
-
-    /**
      * Obtains an instance of LocalDate from the epoch day count.
      *
      * This returns a LocalDate with the specified epoch-day.
@@ -495,24 +474,23 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * Returns a copy of this {@code LocalDate} with the day-of-month altered.
-     * <p>
-     * If the resulting date is invalid, an exception is thrown.
+     * Returns a copy of this date with the year altered.
+     * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
-     * @return {LocalDate} based on this date with the requested day, not null
-     * @throws DateTimeException if the day-of-month value is invalid,
-     *  or if the day-of-month is invalid for the month-year
+     * @param year  the year to set in the result, from MIN_YEAR to MAX_YEAR
+     * @return a {@code LocalDate} based on this date with the requested year, not null
+     * @throws DateTimeException if the year value is invalid
      */
-    withDayOfMonth(dayOfMonth) {
-        if (this._day === dayOfMonth) {
+    withYear(year) {
+        if (this._year === year) {
             return this;
         }
-        return LocalDate.of(this._year, this._month, dayOfMonth);
+        ChronoField.YEAR.checkValidValue(year);
+        return LocalDate._resolvePreviousValid(year, this._month, this._day);
     }
-    
+
     /**
      * Returns a copy of this {@code LocalDate} with the month-of-year altered.
      * <p>
@@ -529,6 +507,25 @@ export class LocalDate extends ChronoLocalDate{
             return this;
         }
         return LocalDate.of(this._year, month, this._day);
+    }
+
+    /**
+     * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+     * <p>
+     * If the resulting date is invalid, an exception is thrown.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+     * @return {LocalDate} based on this date with the requested day, not null
+     * @throws DateTimeException if the day-of-month value is invalid,
+     *  or if the day-of-month is invalid for the month-year
+     */
+    withDayOfMonth(dayOfMonth) {
+        if (this._day === dayOfMonth) {
+            return this;
+        }
+        return LocalDate.of(this._year, this._month, dayOfMonth);
     }
 
     /**
@@ -559,6 +556,184 @@ export class LocalDate extends ChronoLocalDate{
                 }
             }
         }
+    }
+
+    /**
+     * Compares this date to another date.
+     * <p>
+     * The comparison is primarily based on the date, from earliest to latest.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     * <p>
+     * If all the dates being compared are instances of {@code LocalDate},
+     * then the comparison will be entirely based on the date.
+     * If some dates being compared are in different chronologies, then the
+     * chronology is also considered, see {@link ChronoLocalDate#compareTo}.
+     *
+     * @param other  the other date to compare to, not null
+     * @return the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        assert(other != null, 'other', NullPointerException);
+        if (other instanceof LocalDate) {
+            return this._compareTo0(other);
+        }
+        throw new DateTimeException(`illegal argument for compareTo(): ${other}`); // super.compareTo(other);
+    }
+
+    _compareTo0(otherDate) {
+        var cmp = (this._year - otherDate._year);
+        if (cmp === 0) {
+            cmp = (this._month - otherDate._month);
+            if (cmp === 0) {
+                cmp = (this._day - otherDate._day);
+            }
+        }
+        return cmp;
+    }
+
+    /**
+     * Checks if this date is after the specified date.
+     * <p>
+     * This checks to see if this date represents a point on the
+     * local time-line after the other date.
+     * <pre>
+     *   LocalDate a = LocalDate.of(2012, 6, 30);
+     *   LocalDate b = LocalDate.of(2012, 7, 1);
+     *   a.isAfter(b) == false
+     *   a.isAfter(a) == false
+     *   b.isAfter(a) == true
+     * </pre>
+     * <p>
+     * This method only considers the position of the two dates on the local time-line.
+     * It does not take into account the chronology, or calendar system.
+     * This is different from the comparison in {@link #compareTo(ChronoLocalDate)},
+     * but is the same approach as {@link #DATE_COMPARATOR}.
+     *
+     * @param other  the other date to compare to, not null
+     * @return true if this date is after the specified date
+     */
+    isAfter(other) {
+        return this.compareTo(other) > 0;
+        // return super.isAfter(other) if not instanceof LocalDate
+    }
+
+    /**
+     * Checks if this date is before the specified date.
+     * <p>
+     * This checks to see if this date represents a point on the
+     * local time-line before the other date.
+     * <pre>
+     *   LocalDate a = LocalDate.of(2012, 6, 30);
+     *   LocalDate b = LocalDate.of(2012, 7, 1);
+     *   a.isBefore(b) == true
+     *   a.isBefore(a) == false
+     *   b.isBefore(a) == false
+     * </pre>
+     * <p>
+     * This method only considers the position of the two dates on the local time-line.
+     * It does not take into account the chronology, or calendar system.
+     * This is different from the comparison in {@link #compareTo(ChronoLocalDate)},
+     * but is the same approach as {@link #DATE_COMPARATOR}.
+     *
+     * @param other  the other date to compare to, not null
+     * @return true if this date is before the specified date
+     */
+    isBefore(other) {
+        return this.compareTo(other) < 0;
+        // return super.isBefore(other) if not instanceof LocalDate
+    }
+
+    /**
+     * Checks if this date is equal to the specified date.
+     * <p>
+     * This checks to see if this date represents the same point on the
+     * local time-line as the other date.
+     * <pre>
+     *   LocalDate a = LocalDate.of(2012, 6, 30);
+     *   LocalDate b = LocalDate.of(2012, 7, 1);
+     *   a.isEqual(b) == false
+     *   a.isEqual(a) == true
+     *   b.isEqual(a) == false
+     * </pre>
+     * <p>
+     * This method only considers the position of the two dates on the local time-line.
+     * It does not take into account the chronology, or calendar system.
+     * This is different from the comparison in {@link #compareTo(ChronoLocalDate)}
+     * but is the same approach as {@link #DATE_COMPARATOR}.
+     *
+     * @param other  the other date to compare to, not null
+     * @return true if this date is equal to the specified date
+     */
+    isEqual(other) {
+        return this.compareTo(other) === 0;
+        // return super.isEqual(other) if not instanceof LocalDate
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this date is equal to another date.
+     * <p>
+     * Compares this {@code LocalDate} with another ensuring that the date is the same.
+     * <p>
+     * Only objects of type {@code LocalDate} are compared, other types return false.
+     * To compare the dates of two {@code TemporalAccessor} instances, including dates
+     * in two different chronologies, use {@link ChronoField#EPOCH_DAY} as a comparator.
+     *
+     * @param obj  the object to check, null returns false
+     * @return true if this is equal to the other date
+     */
+    equals(obj) {
+        if (this === obj) {
+            return true;
+        }
+        if (obj instanceof LocalDate) {
+            return this._compareTo0(obj) === 0;
+        }
+        return false;
+    }
+
+    /**
+     * Outputs this date as a String, such as 2007-12-03.
+     * The output will be in the ISO-8601 format uuuu-MM-dd.
+     *
+     * @return {string} a string representation of this date, not null
+     */
+    toString() {
+        var dayString, monthString, yearString;
+
+        var yearValue = this.year();
+        var monthValue = this.monthValue();
+        var dayValue = this.dayOfMonth();
+
+        var absYear = Math.abs(yearValue);
+
+        if (absYear < 1000) {
+            if (yearValue < 0) {
+                yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+            } else {
+                yearString = ('' + (yearValue + 10000)).slice(-4);
+            }
+        } else {
+            if (yearValue > 9999) {
+                yearString = '+' + yearValue;
+            } else {
+                yearString = '' + yearValue;
+            }
+        }
+
+        if (monthValue < 10) {
+            monthString = '-0' + monthValue;
+        } else {
+            monthString = '-' + monthValue;
+        }
+
+        if (dayValue < 10) {
+            dayString = '-0' + dayValue;
+        } else {
+            dayString = '-' + dayValue;
+        }
+
+        return yearString + monthString + dayString;
     }
 
 }
