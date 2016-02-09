@@ -33,18 +33,26 @@ export class ValueRange {
         assert(!(minLargest > maxLargest), 'Minimum value \'' + minLargest +
             '\' must be less than maximum value \'' + maxLargest + '\'');
 
-        this.minimum = function () {
-            return minSmallest;
-        };
-        this.largestMinimum = function () {
-            return minLargest;
-        };
-        this.maximum = function () {
-            return maxLargest;
-        };
-        this.smallestMaximum = function () {
-            return maxSmallest;
-        };
+        this._minSmallest = minSmallest;
+        this._minLargest = minLargest;
+        this._maxLargest = maxLargest;
+        this._maxSmallest = maxSmallest;
+    }
+
+    minimum(){
+        return this._minSmallest;
+    }
+
+    largestMinimum(){
+        return this._minLargest;
+    }
+
+    maximum(){
+        return this._maxLargest;
+    }
+
+    smallestMaximum(){
+        return this._maxSmallest;
     }
 
     isValidValue(value) {
