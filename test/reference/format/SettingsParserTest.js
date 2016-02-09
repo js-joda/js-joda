@@ -17,7 +17,7 @@ import {LocalDate} from '../../../src/LocalDate';
 const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 const SettingsParser = DateTimeFormatterBuilder.SettingsParser;
 
-import {EMPTY} from '../temporal/MockFieldValue';
+import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestSettingsParser', () => {
     var parseContext;

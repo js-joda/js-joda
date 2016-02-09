@@ -17,7 +17,7 @@ const PadPrinterParserDecorator = DateTimeFormatterBuilder.PadPrinterParserDecor
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
 const CharLiteralPrinterParser = DateTimeFormatterBuilder.CharLiteralPrinterParser;
 const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
-import {EMPTY} from '../temporal/MockFieldValue';
+import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestPadPrinterDecorator', () => {
     var printEmptyContext, printContext;

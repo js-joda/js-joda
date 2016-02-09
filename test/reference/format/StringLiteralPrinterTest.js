@@ -14,7 +14,7 @@ import {LocalDate} from '../../../src/LocalDate';
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
 const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 
-import {EMPTY} from '../temporal/MockFieldValue';
+import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestStringLiteralPrinter', () => {
     var printEmptyContext, printContext, buf;
