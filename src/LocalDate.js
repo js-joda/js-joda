@@ -263,6 +263,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return the current date, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
+        assert(clock != null, 'clock', NullPointerException);
         var now = clock.instant();
         var offset = clock.offset(now);
         var epochSec = now.epochSecond() + offset.totalSeconds();
