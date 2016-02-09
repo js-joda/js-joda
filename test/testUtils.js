@@ -22,6 +22,18 @@ export function assertNotNull(object, message){
     expect(object, message).to.be.not.null;
 }
 
+export function assertTrue(condition, message) {
+    if(!condition) {
+        fail(`assertTrue: ${condition} not true, ${message}`);
+    }
+}
+
+export function assertFalse(condition, message) {
+    if(condition) {
+        fail(`assertFalse: ${condition} not true, ${message}`);
+    }
+}
+
 export function fail(message){
     assert(false, message);
 }
