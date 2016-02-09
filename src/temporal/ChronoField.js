@@ -100,6 +100,25 @@ export class ChronoField extends TemporalField {
         return temporal.range(this);
     }
 
+    /**
+     * Checks that the specified value is valid and fits in an {@code int}.
+     * <p>
+     * This validates that the value is within the outer range of valid values
+     * returned by {@link #range()}.
+     * It also checks that all valid values are within the bounds of an {@code int}.
+     * <p>
+     * This method checks against the range of the field in the ISO-8601 calendar system.
+     * This range may be incorrect for other calendar systems.
+     * Use {@link Chronology#range(ChronoField)} to access the correct range
+     * for a different calendar system.
+     *
+     * @param value  the value to check
+     * @return the value that was passed in
+     */
+    checkValidIntValue(value) {
+        return this.range().checkValidIntValue(value, this);
+    }
+
     getFrom(temporal) {
         return temporal.getLong(this);
     }
