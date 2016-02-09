@@ -6,6 +6,18 @@
 
 import {Enum} from '../Enum';
 
+import {LocalDate} from '../LocalDate';
+import {Month} from '../Month';
+import {Year} from '../Year';
+
+import {ChronoField} from '../temporal/ChronoField';
+import {ResolverStyle} from '../format/ResolverStyle';
+
+const EPOCH_DAY = ChronoField.EPOCH_DAY;
+const YEAR = ChronoField.YEAR;
+const MONTH_OF_YEAR = ChronoField.MONTH_OF_YEAR;
+const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
+
 export class IsoChronology extends Enum{
     /**
      * Checks if the year is a leap year, according to the ISO proleptic
@@ -29,6 +41,169 @@ export class IsoChronology extends Enum{
     static isLeapYear(prolepticYear) {
         return ((prolepticYear & 3) === 0) && ((prolepticYear % 100) !== 0 || (prolepticYear % 400) === 0);
     }
+
+    resolveDate(fieldValues, resolverStyle) {
+        if (fieldValues.containsKey(EPOCH_DAY)) {
+            return LocalDate.ofEpochDay(fieldValues.remove(EPOCH_DAY));
+        }
+
+        // normalize fields
+/*
+        var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
+        if (prolepticMonth != null) {
+            if (resolverStyle != ResolverStyle.LENIENT) {
+                PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+            }
+            updateResolveMap(fieldValues, MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
+            updateResolveMap(fieldValues, YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
+        }
+*/
+
+        // eras
+/*
+        Long yoeLong = fieldValues.remove(YEAR_OF_ERA);
+        if (yoeLong != null) {
+            if (resolverStyle != ResolverStyle.LENIENT) {
+                YEAR_OF_ERA.checkValidValue(yoeLong);
+            }
+            Long era = fieldValues.remove(ERA);
+            if (era == null) {
+                Long year = fieldValues.get(YEAR);
+                if (resolverStyle == ResolverStyle.STRICT) {
+                    // do not invent era if strict, but do cross-check with year
+                    if (year != null) {
+                        updateResolveMap(fieldValues, YEAR, (year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+                    } else {
+                        // reinstate the field removed earlier, no cross-check issues
+                        fieldValues.put(YEAR_OF_ERA, yoeLong);
+                    }
+                } else {
+                    // invent era
+                    updateResolveMap(fieldValues, YEAR, (year == null || year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+                }
+            } else if (era.longValue() == 1L) {
+                updateResolveMap(fieldValues, YEAR, yoeLong);
+            } else if (era.longValue() == 0L) {
+                updateResolveMap(fieldValues, YEAR, Jdk8Methods.safeSubtract(1, yoeLong));
+            } else {
+                throw new DateTimeException("Invalid value for era: " + era);
+            }
+        } else if (fieldValues.containsKey(ERA)) {
+            ERA.checkValidValue(fieldValues.get(ERA));  // always validated
+        }
+*/
+
+        // build date
+        if (fieldValues.containsKey(YEAR)) {
+            if (fieldValues.containsKey(MONTH_OF_YEAR)) {
+                if (fieldValues.containsKey(DAY_OF_MONTH)) {
+                    var y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                    var moy = fieldValues.remove(MONTH_OF_YEAR);
+                    var dom = fieldValues.remove(DAY_OF_MONTH);
+                    if (resolverStyle === ResolverStyle.LENIENT) {
+                        var months = moy - 1;
+                        var days = dom - 1;
+                        return LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
+                    } else if (resolverStyle === ResolverStyle.SMART){
+                        DAY_OF_MONTH.checkValidValue(dom);
+                        if (moy === 4 || moy === 6 || moy === 9 || moy === 11) {
+                            dom = Math.min(dom, 30);
+                        } else if (moy === 2) {
+                            dom = Math.min(dom, Month.FEBRUARY.length(Year.isLeap(y)));
+                        }
+                        return LocalDate.of(y, moy, dom);
+                    } else {
+                        return LocalDate.of(y, moy, dom);
+                    }
+                }
+/*
+                if (fieldValues.containsKey(ALIGNED_WEEK_OF_MONTH)) {
+                    if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_MONTH)) {
+                        int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                        if (resolverStyle == ResolverStyle.LENIENT) {
+                            long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
+                            long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+                            long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
+                            return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+                        }
+                        int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
+                        int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+                        int ad = ALIGNED_DAY_OF_WEEK_IN_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH));
+                        LocalDate date = LocalDate.of(y, moy, 1).plusDays((aw - 1) * 7 + (ad - 1));
+                        if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+                            throw new DateTimeException("Strict mode rejected date parsed to a different month");
+                        }
+                        return date;
+                    }
+                    if (fieldValues.containsKey(DAY_OF_WEEK)) {
+                        int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                        if (resolverStyle == ResolverStyle.LENIENT) {
+                            long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
+                            long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+                            long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+                            return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+                        }
+                        int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
+                        int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+                        int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+                        LocalDate date = LocalDate.of(y, moy, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+                        if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
+                            throw new DateTimeException("Strict mode rejected date parsed to a different month");
+                        }
+                        return date;
+                    }
+                }
+*/
+            }
+/*
+            if (fieldValues.containsKey(DAY_OF_YEAR)) {
+                int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                if (resolverStyle == ResolverStyle.LENIENT) {
+                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
+                    return LocalDate.ofYearDay(y, 1).plusDays(days);
+                }
+                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
+                return LocalDate.ofYearDay(y, doy);
+            }
+*/
+/*
+            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
+                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                    if (resolverStyle == ResolverStyle.LENIENT) {
+                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+                    }
+                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
+                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
+                        throw new DateTimeException("Strict mode rejected date parsed to a different year");
+                    }
+                    return date;
+                }
+                if (fieldValues.containsKey(DAY_OF_WEEK)) {
+                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
+                    if (resolverStyle == ResolverStyle.LENIENT) {
+                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+                    }
+                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
+                        throw new DateTimeException("Strict mode rejected date parsed to a different month");
+                    }
+                    return date;
+                }
+            }
+*/
+        }
+        return null;
+    }
+
 }
 
 IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
