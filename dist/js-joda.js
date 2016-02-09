@@ -4426,9 +4426,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.LocalDate = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _assert = __webpack_require__(9);
 	
@@ -4497,12 +4497,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	var LocalDate = function (_ChronoLocalDate) {
 	    _inherits(LocalDate, _ChronoLocalDate);
 	
-	    /**
-	     *
-	     * @param {number} year
-	     * @param {Month, number} month
-	     * @param {number} dayOfMonth
-	     */
+	    _createClass(LocalDate, null, [{
+	        key: '_resolvePreviousValid',
+	
+	
+	        /**
+	         * Resolves the date, resolving days past the end of month.
+	         *
+	         * @param year  the year to represent, validated from MIN_YEAR to MAX_YEAR
+	         * @param month  the month-of-year to represent, validated from 1 to 12
+	         * @param day  the day-of-month to represent, validated from 1 to 31
+	         * @return LocalDate resolved date, not null
+	         */
+	        value: function _resolvePreviousValid(year, month, day) {
+	            switch (month) {
+	                case 2:
+	                    day = Math.min(day, _IsoChronology.IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
+	                    break;
+	                case 4:
+	                case 6:
+	                case 9:
+	                case 11:
+	                    day = Math.min(day, 30);
+	                    break;
+	            }
+	            return LocalDate.of(year, month, day);
+	        }
+	
+	        /**
+	         *
+	         * @param {number} year
+	         * @param {Month, number} month
+	         * @param {number} dayOfMonth
+	         */
+	
+	    }]);
 	
 	    function LocalDate(year, month, dayOfMonth) {
 	        _classCallCheck(this, LocalDate);
@@ -4571,6 +4600,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'dayOfMonth',
 	        value: function dayOfMonth() {
 	            return this._day;
+	        }
+	
+	        /**
+	          * Gets the day-of-year field.
+	          * <p>
+	          * This method returns the primitive {@code int} value for the day-of-year.
+	          *
+	          * @return the day-of-year, from 1 to 365, or 366 in a leap year
+	          */
+	
+	    }, {
+	        key: 'dayOfYear',
+	        value: function dayOfYear() {
+	            return this.month().firstDayOfYear(this.isLeapYear()) + this._day - 1;
+	        }
+	
+	        /**
+	         * Checks if the year is a leap year, according to the ISO proleptic
+	         * calendar system rules.
+	         * <p>
+	         * This method applies the current rules for leap years across the whole time-line.
+	         * In general, a year is a leap year if it is divisible by four without
+	         * remainder. However, years divisible by 100, are not leap years, with
+	         * the exception of years divisible by 400 which are.
+	         * <p>
+	         * For example, 1904 is a leap year it is divisible by 4.
+	         * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+	         * leap year as it is divisible by 400.
+	         * <p>
+	         * The calculation is proleptic - applying the same rules into the far future and far past.
+	         * This is historically inaccurate, but is correct for the ISO-8601 standard.
+	         *
+	         * @return true if the year is leap, false otherwise
+	         */
+	
+	    }, {
+	        key: 'isLeapYear',
+	        value: function isLeapYear() {
+	            return _IsoChronology.IsoChronology.isLeapYear(this._year);
 	        }
 	
 	        /**
@@ -4756,53 +4824,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
-	         * Outputs this date as a String, such as 2007-12-03.
-	         * The output will be in the ISO-8601 format uuuu-MM-dd.
-	         *
-	         * @return {string} a string representation of this date, not null
-	         */
-	
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            var dayString, monthString, yearString;
-	
-	            var yearValue = this.year();
-	            var monthValue = this.monthValue();
-	            var dayValue = this.dayOfMonth();
-	
-	            var absYear = Math.abs(yearValue);
-	
-	            if (absYear < 1000) {
-	                if (yearValue < 0) {
-	                    yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
-	                } else {
-	                    yearString = ('' + (yearValue + 10000)).slice(-4);
-	                }
-	            } else {
-	                if (yearValue > 9999) {
-	                    yearString = '+' + yearValue;
-	                } else {
-	                    yearString = '' + yearValue;
-	                }
-	            }
-	
-	            if (monthValue < 10) {
-	                monthString = '-0' + monthValue;
-	            } else {
-	                monthString = '-' + monthValue;
-	            }
-	
-	            if (dayValue < 10) {
-	                dayString = '-0' + dayValue;
-	            } else {
-	                dayString = '-' + dayValue;
-	            }
-	
-	            return yearString + monthString + dayString;
-	        }
-	
-	        /**
 	         * Obtains an instance of LocalDate from the epoch day count.
 	         *
 	         * This returns a LocalDate with the specified epoch-day.
@@ -4905,25 +4926,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
-	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
-	         * <p>
-	         * If the resulting date is invalid, an exception is thrown.
+	         * Returns a copy of this date with the year altered.
+	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
 	         * <p>
 	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
-	         * @return {LocalDate} based on this date with the requested day, not null
-	         * @throws DateTimeException if the day-of-month value is invalid,
-	         *  or if the day-of-month is invalid for the month-year
+	         * @param year  the year to set in the result, from MIN_YEAR to MAX_YEAR
+	         * @return a {@code LocalDate} based on this date with the requested year, not null
+	         * @throws DateTimeException if the year value is invalid
 	         */
 	
 	    }, {
-	        key: 'withDayOfMonth',
-	        value: function withDayOfMonth(dayOfMonth) {
-	            if (this._day === dayOfMonth) {
+	        key: 'withYear',
+	        value: function withYear(year) {
+	            if (this._year === year) {
 	                return this;
 	            }
-	            return LocalDate.of(this._year, this._month, dayOfMonth);
+	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
+	            return LocalDate._resolvePreviousValid(year, this._month, this._day);
 	        }
 	
 	        /**
@@ -4948,9 +4968,243 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
+	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+	         * <p>
+	         * If the resulting date is invalid, an exception is thrown.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+	         * @return {LocalDate} based on this date with the requested day, not null
+	         * @throws DateTimeException if the day-of-month value is invalid,
+	         *  or if the day-of-month is invalid for the month-year
+	         */
+	
+	    }, {
+	        key: 'withDayOfMonth',
+	        value: function withDayOfMonth(dayOfMonth) {
+	            if (this._day === dayOfMonth) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, this._month, dayOfMonth);
+	        }
+	
+	        /**
 	         * @private
 	         */
 	
+	    }, {
+	        key: 'compareTo',
+	
+	
+	        /**
+	         * Compares this date to another date.
+	         * <p>
+	         * The comparison is primarily based on the date, from earliest to latest.
+	         * It is "consistent with equals", as defined by {@link Comparable}.
+	         * <p>
+	         * If all the dates being compared are instances of {@code LocalDate},
+	         * then the comparison will be entirely based on the date.
+	         * If some dates being compared are in different chronologies, then the
+	         * chronology is also considered, see {@link ChronoLocalDate#compareTo}.
+	         *
+	         * @param other  the other date to compare to, not null
+	         * @return the comparator value, negative if less, positive if greater
+	         */
+	        value: function compareTo(other) {
+	            (0, _assert.assert)(other != null, 'other', _errors.NullPointerException);
+	            if (other instanceof LocalDate) {
+	                return this._compareTo0(other);
+	            }
+	            throw new _errors.DateTimeException('illegal argument for compareTo(): ' + other); // super.compareTo(other);
+	        }
+	    }, {
+	        key: '_compareTo0',
+	        value: function _compareTo0(otherDate) {
+	            var cmp = this._year - otherDate._year;
+	            if (cmp === 0) {
+	                cmp = this._month - otherDate._month;
+	                if (cmp === 0) {
+	                    cmp = this._day - otherDate._day;
+	                }
+	            }
+	            return cmp;
+	        }
+	
+	        /**
+	         * Checks if this date is after the specified date.
+	         * <p>
+	         * This checks to see if this date represents a point on the
+	         * local time-line after the other date.
+	         * <pre>
+	         *   LocalDate a = LocalDate.of(2012, 6, 30);
+	         *   LocalDate b = LocalDate.of(2012, 7, 1);
+	         *   a.isAfter(b) == false
+	         *   a.isAfter(a) == false
+	         *   b.isAfter(a) == true
+	         * </pre>
+	         * <p>
+	         * This method only considers the position of the two dates on the local time-line.
+	         * It does not take into account the chronology, or calendar system.
+	         * This is different from the comparison in {@link #compareTo(ChronoLocalDate)},
+	         * but is the same approach as {@link #DATE_COMPARATOR}.
+	         *
+	         * @param other  the other date to compare to, not null
+	         * @return true if this date is after the specified date
+	         */
+	
+	    }, {
+	        key: 'isAfter',
+	        value: function isAfter(other) {
+	            return this.compareTo(other) > 0;
+	            // return super.isAfter(other) if not instanceof LocalDate
+	        }
+	
+	        /**
+	         * Checks if this date is before the specified date.
+	         * <p>
+	         * This checks to see if this date represents a point on the
+	         * local time-line before the other date.
+	         * <pre>
+	         *   LocalDate a = LocalDate.of(2012, 6, 30);
+	         *   LocalDate b = LocalDate.of(2012, 7, 1);
+	         *   a.isBefore(b) == true
+	         *   a.isBefore(a) == false
+	         *   b.isBefore(a) == false
+	         * </pre>
+	         * <p>
+	         * This method only considers the position of the two dates on the local time-line.
+	         * It does not take into account the chronology, or calendar system.
+	         * This is different from the comparison in {@link #compareTo(ChronoLocalDate)},
+	         * but is the same approach as {@link #DATE_COMPARATOR}.
+	         *
+	         * @param other  the other date to compare to, not null
+	         * @return true if this date is before the specified date
+	         */
+	
+	    }, {
+	        key: 'isBefore',
+	        value: function isBefore(other) {
+	            return this.compareTo(other) < 0;
+	            // return super.isBefore(other) if not instanceof LocalDate
+	        }
+	
+	        /**
+	         * Checks if this date is equal to the specified date.
+	         * <p>
+	         * This checks to see if this date represents the same point on the
+	         * local time-line as the other date.
+	         * <pre>
+	         *   LocalDate a = LocalDate.of(2012, 6, 30);
+	         *   LocalDate b = LocalDate.of(2012, 7, 1);
+	         *   a.isEqual(b) == false
+	         *   a.isEqual(a) == true
+	         *   b.isEqual(a) == false
+	         * </pre>
+	         * <p>
+	         * This method only considers the position of the two dates on the local time-line.
+	         * It does not take into account the chronology, or calendar system.
+	         * This is different from the comparison in {@link #compareTo(ChronoLocalDate)}
+	         * but is the same approach as {@link #DATE_COMPARATOR}.
+	         *
+	         * @param other  the other date to compare to, not null
+	         * @return true if this date is equal to the specified date
+	         */
+	
+	    }, {
+	        key: 'isEqual',
+	        value: function isEqual(other) {
+	            return this.compareTo(other) === 0;
+	            // return super.isEqual(other) if not instanceof LocalDate
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Checks if this date is equal to another date.
+	         * <p>
+	         * Compares this {@code LocalDate} with another ensuring that the date is the same.
+	         * <p>
+	         * Only objects of type {@code LocalDate} are compared, other types return false.
+	         * To compare the dates of two {@code TemporalAccessor} instances, including dates
+	         * in two different chronologies, use {@link ChronoField#EPOCH_DAY} as a comparator.
+	         *
+	         * @param obj  the object to check, null returns false
+	         * @return true if this is equal to the other date
+	         */
+	
+	    }, {
+	        key: 'equals',
+	        value: function equals(obj) {
+	            if (this === obj) {
+	                return true;
+	            }
+	            if (obj instanceof LocalDate) {
+	                return this._compareTo0(obj) === 0;
+	            }
+	            return false;
+	        }
+	
+	        /**
+	         * A hash code for this date.
+	         *
+	         * @return a suitable hash code
+	         */
+	
+	    }, {
+	        key: 'hashCode',
+	        value: function hashCode() {
+	            var yearValue = this._year;
+	            var monthValue = this._month;
+	            var dayValue = this._day;
+	            return yearValue & 0xFFFFF800 ^ (yearValue << 11) + (monthValue << 6) + dayValue;
+	        }
+	
+	        /**
+	         * Outputs this date as a String, such as 2007-12-03.
+	         * The output will be in the ISO-8601 format uuuu-MM-dd.
+	         *
+	         * @return {string} a string representation of this date, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var dayString, monthString, yearString;
+	
+	            var yearValue = this.year();
+	            var monthValue = this.monthValue();
+	            var dayValue = this.dayOfMonth();
+	
+	            var absYear = Math.abs(yearValue);
+	
+	            if (absYear < 1000) {
+	                if (yearValue < 0) {
+	                    yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+	                } else {
+	                    yearString = ('' + (yearValue + 10000)).slice(-4);
+	                }
+	            } else {
+	                if (yearValue > 9999) {
+	                    yearString = '+' + yearValue;
+	                } else {
+	                    yearString = '' + yearValue;
+	                }
+	            }
+	
+	            if (monthValue < 10) {
+	                monthString = '-0' + monthValue;
+	            } else {
+	                monthString = '-' + monthValue;
+	            }
+	
+	            if (dayValue < 10) {
+	                dayString = '-0' + dayValue;
+	            } else {
+	                dayString = '-' + dayValue;
+	            }
+	
+	            return yearString + monthString + dayString;
+	        }
 	    }], [{
 	        key: 'of',
 	        value: function of(year, month, dayOfMonth) {
@@ -4961,6 +5215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function now() {
 	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
 	
+	            (0, _assert.assert)(clock != null, 'clock', _errors.NullPointerException);
 	            var now = clock.instant();
 	            var offset = clock.offset(now);
 	            var epochSec = now.epochSecond() + offset.totalSeconds();
@@ -5811,12 +6066,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
+	         * replacement for enum values
+	         */
+	
+	    }], [{
+	        key: 'values',
+	        value: function values() {
+	            return MONTHS;
+	        }
+	
+	        /**
 	         *
 	         * @param {number} month
 	         * @return {Month} not null
 	         **/
 	
-	    }], [{
+	    }, {
 	        key: 'of',
 	        value: function of(month) {
 	            if (month < 1 || month > 12) {
