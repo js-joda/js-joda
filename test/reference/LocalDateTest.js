@@ -6,6 +6,8 @@
 import {expect} from 'chai';
 import {assertEquals, assertNotNull, assertTrue, assertFalse} from '../testUtils';
 
+import {MathUtil} from '../../src/MathUtil';
+
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
@@ -733,10 +735,66 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('plus(long,PeriodUnit)', () => {
     });
+*/
 
     describe('plusYears()', () => {
-    });
 
+        it('test_plusYears_long_normal', function () {
+            var t = TEST_2007_07_15.plusYears(1);
+            assertEquals(t, LocalDate.of(2008, 7, 15));
+        });
+
+        it('test_plusYears_long_negative', function () {
+            var t = TEST_2007_07_15.plusYears(-1);
+            assertEquals(t, LocalDate.of(2006, 7, 15));
+        });
+
+        it('test_plusYears_long_adjustDay', function () {
+            var t = LocalDate.of(2008, 2, 29).plusYears(1);
+            var expected = LocalDate.of(2009, 2, 28);
+            assertEquals(t, expected);
+        });
+
+        it('test_plusYears_long_big', function () {
+            var years = 20 + Year.MAX_VALUE;
+            var test = LocalDate.of(-40, 6, 1).plusYears(years);
+            assertEquals(test, LocalDate.of((-40 + years), 6, 1));
+        });
+
+        it('test_plusYears_long_invalidTooLarge', function () {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 6, 1);
+                test.plusYears(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusYears_long_invalidTooLargeMaxAddMax', function () {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.plusYears(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusYears_long_invalidTooLargeMaxAddMin', function () {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.plusYears(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusYears_long_invalidTooSmall_validInt', function () {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusYears_long_invalidTooSmall_invalidInt', function () {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plusYears(-10);
+            }).to.throw(DateTimeException);
+        });
+    });
+/**
     describe('plusMonths()', () => {
     });
 

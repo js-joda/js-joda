@@ -613,7 +613,36 @@ export class LocalDate extends ChronoLocalDate{
         return LocalDate.ofYearDay(this._year, dayOfYear);
     }
 
+    //-----------------------------------------------------------------------
     /**
+     * Returns a copy of this {@code LocalDate} with the specified period in years added.
+     * <p>
+     * This method adds the specified amount to the years field in three steps:
+     * <ol>
+     * <li>Add the input years to the year field</li>
+     * <li>Check if the resulting date would be invalid</li>
+     * <li>Adjust the day-of-month to the last valid day if necessary</li>
+     * </ol>
+     * <p>
+     * For example, 2008-02-29 (leap year) plus one year would result in the
+     * invalid date 2009-02-29 (standard year). Instead of returning an invalid
+     * result, the last valid day of the month, 2009-02-28, is selected instead.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param yearsToAdd  the years to add, may be negative
+     * @return a {@code LocalDate} based on this date with the years added, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    plusYears(yearsToAdd) {
+        if (yearsToAdd === 0) {
+            return this;
+        }
+        var newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
+        return LocalDate._resolvePreviousValid(newYear, this._month, this._day);
+    }
+
+   /**
      * @private
      */
     static validate(year, month, dayOfMonth) {
