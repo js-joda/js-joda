@@ -319,20 +319,24 @@ export class LocalDate extends ChronoLocalDate{
     _get0(field) {
         switch (field) {
             case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().value();
-            // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((day - 1) % 7) + 1;
-            // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
+            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((this._day - 1) % 7) + 1;
+            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
             case ChronoField.DAY_OF_MONTH: return this._day;
             case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
             case ChronoField.EPOCH_DAY: return this.toEpochDay();
-            // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
-            // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
+            case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
+            case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
             case ChronoField.MONTH_OF_YEAR: return this._month;
-            // case ChronoField.PROLEPTIC_MONTH: this.prolepticMonth();
+            case ChronoField.PROLEPTIC_MONTH: return this._prolepticMonth();
             case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
             case ChronoField.YEAR: return this._year;
             case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
         }
         throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+    }
+
+    _prolepticMonth() {
+        return (this._year * 12) + (this._month - 1);
     }
 
     /**
