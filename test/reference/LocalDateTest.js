@@ -1024,15 +1024,71 @@ describe('org.threeten.bp.TestLocalDate', () => {
     });
 
 /**
+
     describe('minus(Period)', () => {
+
     });
 
     describe('minus(long,PeriodUnit)', () => {
+
     });
+
+ */
 
     describe('minusYears()', () => {
+
+        it('test_minusYears_long_normal', () => {
+            var t = TEST_2007_07_15.minusYears(1);
+            assertEquals(t, LocalDate.of(2006, 7, 15));
+        });
+
+        it('test_minusYears_long_negative', () => {
+            var t = TEST_2007_07_15.minusYears(-1);
+            assertEquals(t, LocalDate.of(2008, 7, 15));
+        });
+
+        it('test_minusYears_long_adjustDay', () => {
+            var t = LocalDate.of(2008, 2, 29).minusYears(1);
+            var expected = LocalDate.of(2007, 2, 28);
+            assertEquals(t, expected);
+        });
+
+        it('test_minusYears_long_big', () => {
+            var years = 20 + Year.MAX_VALUE;
+            var test = LocalDate.of(40, 6, 1).minusYears(years);
+            assertEquals(test, LocalDate.of(40 - years, 6, 1));
+        });
+
+        it('test_minusYears_long_invalidTooLarge', () => {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 6, 1);
+                test.minusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_long_invalidTooLargeMaxAddMax', () => {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.minusYears(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_long_invalidTooLargeMaxAddMin', () => {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.minusYears(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_long_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).minusYears(1);
+            }).to.throw(DateTimeException);
+        });
+         
     });
 
+    /**
     describe('minusMonths()', () => {
     });
 

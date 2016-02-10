@@ -619,6 +619,74 @@ export class LocalDate extends ChronoLocalDate{
         return LocalDate.ofEpochDay(mjDay);
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a copy of this {@code LocalDate} with the specified period in years subtracted.
+     * <p>
+     * This method subtracts the specified amount from the years field in three steps:
+     * <ol>
+     * <li>Subtract the input years to the year field</li>
+     * <li>Check if the resulting date would be invalid</li>
+     * <li>Adjust the day-of-month to the last valid day if necessary</li>
+     * </ol>
+     * <p>
+     * For example, 2008-02-29 (leap year) minus one year would result in the
+     * invalid date 2007-02-29 (standard year). Instead of returning an invalid
+     * result, the last valid day of the month, 2007-02-28, is selected instead.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param yearsToSubtract  the years to subtract, may be negative
+     * @return a {@code LocalDate} based on this date with the years subtracted, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    minusYears(yearsToSubtract) {
+        return this.plusYears(yearsToSubtract * -1);
+    }
+
+    /**
+     * Returns a copy of this {@code LocalDate} with the specified period in months subtracted.
+     * <p>
+     * This method subtracts the specified amount from the months field in three steps:
+     * <ol>
+     * <li>Subtract the input months to the month-of-year field</li>
+     * <li>Check if the resulting date would be invalid</li>
+     * <li>Adjust the day-of-month to the last valid day if necessary</li>
+     * </ol>
+     * <p>
+     * For example, 2007-03-31 minus one month would result in the invalid date
+     * 2007-02-31. Instead of returning an invalid result, the last valid day
+     * of the month, 2007-02-28, is selected instead.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param monthsToSubtract  the months to subtract, may be negative
+     * @return a {@code LocalDate} based on this date with the months subtracted, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    minusMonths(monthsToSubtract) {
+        return this.plusMonths(monthsToSubtract * -1);
+    }
+
+    /**
+     * Returns a copy of this {@code LocalDate} with the specified period in weeks subtracted.
+     * <p>
+     * This method subtracts the specified amount in weeks from the days field decrementing
+     * the month and year fields as necessary to ensure the result remains valid.
+     * The result is only invalid if the maximum/minimum year is exceeded.
+     * <p>
+     * For example, 2009-01-07 minus one week would result in 2008-12-31.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param weeksToSubtract  the weeks to subtract, may be negative
+     * @return a {@code LocalDate} based on this date with the weeks subtracted, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    minusWeeks(weeksToSubtract) {
+        return this.plusWeeks(weeksToSubtract * -1);
+    }
+
     /*
      * Returns a copy of this LocalDate with the specified number of days subtracted.
      * 
