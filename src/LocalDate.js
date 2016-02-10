@@ -266,7 +266,7 @@ export class LocalDate extends ChronoLocalDate{
         if (daysToAdd === 0) {
             return this;
         }
-        var mjDay = this.toEpochDay() + daysToAdd;
+        var mjDay = MathUtil.safeAdd(this.toEpochDay(), daysToAdd);
         return LocalDate.ofEpochDay(mjDay);
     }
 
