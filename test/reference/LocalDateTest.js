@@ -494,9 +494,9 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
             assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
-            //assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
-            //assertEquals(test.get(ChronoField.YEAR_OF_ERA), 2008);
-            //assertEquals(test.get(ChronoField.ERA), 1);
+            assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
+            assertEquals(test.get(ChronoField.YEAR_OF_ERA), 2008);
+            assertEquals(test.get(ChronoField.ERA), 1);
             //assertEquals(test.getLong(ChronoField.PROLEPTIC_MONTH), 2008 * 12 + 6 - 1);
 
             // missing in threetenbp impl

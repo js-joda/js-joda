@@ -322,15 +322,15 @@ export class LocalDate extends ChronoLocalDate{
             // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((day - 1) % 7) + 1;
             // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
             case ChronoField.DAY_OF_MONTH: return this._day;
-            // case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
+            case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
             case ChronoField.EPOCH_DAY: return this.toEpochDay();
             // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
             // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
             case ChronoField.MONTH_OF_YEAR: return this._month;
             // case ChronoField.PROLEPTIC_MONTH: this.prolepticMonth();
-            // case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
+            case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
             case ChronoField.YEAR: return this._year;
-            // case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
+            case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
         }
         throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
     }
