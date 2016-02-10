@@ -15,6 +15,7 @@ import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {Clock} from './Clock';
+import {DayOfWeek} from './DayOfWeek';
 import {Month} from './Month';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
@@ -317,7 +318,7 @@ export class LocalDate extends ChronoLocalDate{
 
     _get0(field) {
         switch (field) {
-            // case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().getValue();
+            case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().value();
             // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((day - 1) % 7) + 1;
             // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
             case ChronoField.DAY_OF_MONTH: return this._day;
@@ -385,6 +386,24 @@ export class LocalDate extends ChronoLocalDate{
       */
     dayOfYear() {
         return this.month().firstDayOfYear(this.isLeapYear()) + this._day - 1;
+    }
+
+    /**
+     * Gets the day-of-week field, which is an enum {@code DayOfWeek}.
+     * <p>
+     * This method returns the enum {@link DayOfWeek} for the day-of-week.
+     * This avoids confusion as to what {@code int} values mean.
+     * If you need access to the primitive {@code int} value then the enum
+     * provides the {@link DayOfWeek#getValue() int value}.
+     * <p>
+     * Additional information can be obtained from the {@code DayOfWeek}.
+     * This includes textual names of the values.
+     *
+     * @return the day-of-week, not null
+     */
+    dayOfWeek() {
+        var dow0 = MathUtil.floorMod(this.toEpochDay() + 3, 7);
+        return DayOfWeek.of(dow0 + 1);
     }
 
     /**

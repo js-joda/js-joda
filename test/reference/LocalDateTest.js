@@ -14,6 +14,7 @@ import {
     ArithmeticException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {DayOfWeek} from '../../src/DayOfWeek';
 import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
@@ -492,7 +493,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(test.get(ChronoField.YEAR), 2008);
             assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
-            //assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
+            assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
             //assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
             //assertEquals(test.get(ChronoField.YEAR_OF_ERA), 2008);
             //assertEquals(test.get(ChronoField.ERA), 1);
@@ -570,7 +571,6 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(a.dayOfYear(), doy);
         }
 
-/*
         it('test_getDayOfWeek', function () {
             var MONTH = Month.values();
             var dow = DayOfWeek.MONDAY;
@@ -584,7 +584,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 }
             }
         });
-*/
+
     });
 
     describe('isLeapYear()', () => {
