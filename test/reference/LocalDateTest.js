@@ -598,10 +598,42 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(LocalDate.of(1900, 1, 1).isLeapYear(), false);
         });
     });
-/**
+
     describe('lengthOfMonth()', () => {
+
+        it('test_lengthOfMonth_notLeapYear', function () {
+            assertEquals(LocalDate.of(2007, 1, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 2, 1).lengthOfMonth(), 28);
+            assertEquals(LocalDate.of(2007, 3, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 4, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2007, 5, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 6, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2007, 7, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 8, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 9, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2007, 10, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2007, 11, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2007, 12, 1).lengthOfMonth(), 31);
+        });
+
+        it('test_lengthOfMonth_leapYear', function () {
+            assertEquals(LocalDate.of(2008, 1, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 2, 1).lengthOfMonth(), 29);
+            assertEquals(LocalDate.of(2008, 3, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 4, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2008, 5, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 6, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2008, 7, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 8, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 9, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2008, 10, 1).lengthOfMonth(), 31);
+            assertEquals(LocalDate.of(2008, 11, 1).lengthOfMonth(), 30);
+            assertEquals(LocalDate.of(2008, 12, 1).lengthOfMonth(), 31);
+
+        });
     });
 
+    /**
     describe('lengthOfYear()', () => {
     });
 

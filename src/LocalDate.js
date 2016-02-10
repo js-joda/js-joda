@@ -170,6 +170,28 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * Returns the length of the month represented by this date.
+     * <p>
+     * This returns the length of the month in days.
+     * For example, a date in January would return 31.
+     *
+     * @return the length of the month in days
+     */
+    lengthOfMonth() {
+        switch (this._month) {
+            case 2:
+                return (this.isLeapYear() ? 29 : 28);
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
      * Gets the chronology of this date, which is the ISO calendar system.
      * <p>
      * The {@code Chronology} represents the calendar system in use.
