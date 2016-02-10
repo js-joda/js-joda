@@ -872,84 +872,81 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     });
 
-    /**
     describe('plusWeeks()', () => {
 
-            it('test_plusWeeks_normal', () => {
-                 LocalDate t = TEST_2007_07_15.plusWeeks(1);
-                 assertEquals(t, LocalDate.of(2007, 7, 22));
-             });
+        it('test_plusWeeks_normal', () => {
+            var t = TEST_2007_07_15.plusWeeks(1);
+            assertEquals(t, LocalDate.of(2007, 7, 22));
+        });
 
-             it('test_plusWeeks_overMonths', () => {
-                 LocalDate t = TEST_2007_07_15.plusWeeks(9);
-                 assertEquals(t, LocalDate.of(2007, 9, 16));
-             });
+        it('test_plusWeeks_overMonths', () => {
+            var t = TEST_2007_07_15.plusWeeks(9);
+            assertEquals(t, LocalDate.of(2007, 9, 16));
+        });
 
-             it('test_plusWeeks_overYears', () => {
-                 LocalDate t = LocalDate.of(2006, 7, 16).plusWeeks(52);
-                 assertEquals(t, TEST_2007_07_15);
-             });
+        it('test_plusWeeks_overYears', () => {
+            var t = LocalDate.of(2006, 7, 16).plusWeeks(52);
+            assertEquals(t, TEST_2007_07_15);
+        });
 
-             it('test_plusWeeks_overLeapYears', () => {
-                 LocalDate t = TEST_2007_07_15.plusYears(-1).plusWeeks(104);
-                 assertEquals(t, LocalDate.of(2008, 7, 12));
-             });
+        it('test_plusWeeks_overLeapYears', () => {
+            var t = TEST_2007_07_15.plusYears(-1).plusWeeks(104);
+            assertEquals(t, LocalDate.of(2008, 7, 12));
+        });
 
-             it('test_plusWeeks_negative', () => {
-                 LocalDate t = TEST_2007_07_15.plusWeeks(-1);
-                 assertEquals(t, LocalDate.of(2007, 7, 8));
-             });
+        it('test_plusWeeks_negative', () => {
+            var t = TEST_2007_07_15.plusWeeks(-1);
+            assertEquals(t, LocalDate.of(2007, 7, 8));
+        });
 
-             it('test_plusWeeks_negativeAcrossYear', () => {
-                 LocalDate t = TEST_2007_07_15.plusWeeks(-28);
-                 assertEquals(t, LocalDate.of(2006, 12, 31));
-             });
+        it('test_plusWeeks_negativeAcrossYear', () => {
+            var t = TEST_2007_07_15.plusWeeks(-28);
+            assertEquals(t, LocalDate.of(2006, 12, 31));
+        });
 
-             it('test_plusWeeks_negativeOverYears', () => {
-                 LocalDate t = TEST_2007_07_15.plusWeeks(-104);
-                 assertEquals(t, LocalDate.of(2005, 7, 17));
-             });
+        it('test_plusWeeks_negativeOverYears', () => {
+            var t = TEST_2007_07_15.plusWeeks(-104);
+            assertEquals(t, LocalDate.of(2005, 7, 17));
+        });
 
-             it('test_plusWeeks_maximum', () => {
-                 LocalDate t = LocalDate.of(Year.MAX_VALUE, 12, 24).plusWeeks(1);
-                 LocalDate expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
-                 assertEquals(t, expected);
-             });
+        it('test_plusWeeks_maximum', () => {
+            var t = LocalDate.of(Year.MAX_VALUE, 12, 24).plusWeeks(1);
+            var expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+            assertEquals(t, expected);
+        });
 
-             it('test_plusWeeks_minimum', () => {
-                 LocalDate t = LocalDate.of(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
-                 LocalDate expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
-                 assertEquals(t, expected);
-             });
+        it('test_plusWeeks_minimum', () => {
+            var t = LocalDate.of(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
+            var expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+            assertEquals(t, expected);
+        });
 
-             it('test_plusWeeks_invalidTooLarge', () => {
-expect(() => {
-                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(1);
+        it('test_plusWeeks_invalidTooLarge', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(1);
 
-}).to.throw(DateTimeException);
-});
+            }).to.throw(DateTimeException);
+        });
 
-             it('test_plusWeeks_invalidTooSmall', () => {
-expect(() => {
-                 LocalDate.of(Year.MIN_VALUE, 1, 7).plusWeeks(
-}).to.throw(DateTimeException);
--1);
-             });
+        it('test_plusWeeks_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 7).plusWeeks(-1);
+            }).to.throw(DateTimeException);
 
-             it('test_plusWeeks_invalidMaxMinusMax', () => {
-expect(() => {
-                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(Long.MAX_VALUE);
+        });
 
-}).to.throw(ArithmeticException);
-});
+        it('test_plusWeeks_invalidMaxMinusMax', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
 
-             it('test_plusWeeks_invalidMaxMinusMin', () => {
-expect(() => {
-                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(Long.MIN_VALUE);
-
-}).to.throw(ArithmeticException);
-});
-*/
+        it('test_plusWeeks_invalidMaxMinusMin', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+    });
 
     describe('plusDays()', () => {
 

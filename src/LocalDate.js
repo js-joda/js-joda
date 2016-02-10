@@ -577,6 +577,26 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * Returns a copy of this {@code LocalDate} with the specified period in weeks added.
+     * <p>
+     * This method adds the specified amount in weeks to the days field incrementing
+     * the month and year fields as necessary to ensure the result remains valid.
+     * The result is only invalid if the maximum/minimum year is exceeded.
+     * <p>
+     * For example, 2008-12-31 plus one week would result in 2009-01-07.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param weeksToAdd  the weeks to add, may be negative
+     * @return a {@code LocalDate} based on this date with the weeks added, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    plusWeeks(weeksToAdd) {
+        return this.plusDays(MathUtil.safeMultiply(weeksToAdd, 7));
+    }
+
+
+    /**
      * Returns a copy of this LocalDate with the specified number of days added.
      * 
      * This method adds the specified amount to the days field incrementing the
