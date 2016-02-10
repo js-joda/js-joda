@@ -559,21 +559,21 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * Returns a copy of this {@code LocalDate} with the month-of-year altered.
-     * <p>
+     * Returns a copy of this date with the month-of-year altered.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
-     * @return {@code LocalDate} based on this date with the requested month, not null
+     * @param month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+     * @return a {@code LocalDate} based on this date with the requested month, not null
      * @throws DateTimeException if the month-of-year value is invalid
      */
     withMonth(month) {
-        if (this._month === month) {
+        if (this.month === month) {
             return this;
         }
-        return LocalDate.of(this._year, month, this._day);
+        ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+        return LocalDate._resolvePreviousValid(this._year, month, this._day);
     }
 
     /**

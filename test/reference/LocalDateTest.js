@@ -666,10 +666,27 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(t, expected);
         });
     });
-/**
+
     describe('withMonth()', () => {
+        it('test_withMonth_int_normal', function () {
+            var t = TEST_2007_07_15.withMonth(1);
+            assertEquals(t, LocalDate.of(2007, 1, 15));
+        });
+
+        it('test_withMonth_int_invalid', function () {
+            expect(() => {
+                TEST_2007_07_15.withMonth(13);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMonth_int_adjustDay', function () {
+            var t = LocalDate.of(2007, 12, 31).withMonth(11);
+            var expected = LocalDate.of(2007, 11, 30);
+            assertEquals(t, expected);
+        });
     });
 
+    /**
     describe('withDayOfMonth()', () => {
     });
 
