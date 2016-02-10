@@ -62,7 +62,7 @@ export class LocalDate extends ChronoLocalDate{
     static _resolvePreviousValid(year, month, day) {
         switch (month) {
             case 2:
-                day = Math.min(day, IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
+                day = Math.min(day, IsoChronology.isLeapYear(year) ? 29 : 28);
                 break;
             case 4:
             case 6:

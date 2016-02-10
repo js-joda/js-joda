@@ -647,10 +647,26 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('with(DateTimeField,long)', () => {
     });
-
+*/
     describe('withYear()', () => {
-    });
+        it('test_withYear_int_normal', function () {
+            var t = TEST_2007_07_15.withYear(2008);
+            assertEquals(t, LocalDate.of(2008, 7, 15));
+        });
 
+        it('test_withYear_int_invalid', function () {
+            expect(() => {
+                TEST_2007_07_15.withYear(Year.MIN_VALUE - 1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withYear_int_adjustDay', function () {
+            var t = LocalDate.of(2008, 2, 29).withYear(2007);
+            var expected = LocalDate.of(2007, 2, 28);
+            assertEquals(t, expected);
+        });
+    });
+/**
     describe('withMonth()', () => {
     });
 
