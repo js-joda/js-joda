@@ -471,11 +471,12 @@ export class LocalDate extends ChronoLocalDate{
      * @throws DateTimeException if the month-of-year value is invalid
      */
     withMonth(month) {
-        if (this.month === month) {
+        var m = (month instanceof Month) ? month.value() : month;
+        if (this._month === m) {
             return this;
         }
-        ChronoField.MONTH_OF_YEAR.checkValidValue(month);
-        return LocalDate._resolvePreviousValid(this._year, month, this._day);
+        ChronoField.MONTH_OF_YEAR.checkValidValue(m);
+        return LocalDate._resolvePreviousValid(this._year, m, this._day);
     }
 
     /**
