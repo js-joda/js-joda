@@ -794,10 +794,236 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }).to.throw(DateTimeException);
         });
     });
-/**
+
     describe('plusMonths()', () => {
+
+        it('test_plusMonths_long_normal', () => {
+            var t = TEST_2007_07_15.plusMonths(1);
+            assertEquals(t, LocalDate.of(2007, 8, 15));
+        });
+
+        it('test_plusMonths_long_overYears', () => {
+            var t = TEST_2007_07_15.plusMonths(25);
+            assertEquals(t, LocalDate.of(2009, 8, 15));
+        });
+
+        it('test_plusMonths_long_negative', () => {
+            var t = TEST_2007_07_15.plusMonths(-1);
+            assertEquals(t, LocalDate.of(2007, 6, 15));
+        });
+
+        it('test_plusMonths_long_negativeAcrossYear', () => {
+            var t = TEST_2007_07_15.plusMonths(-7);
+            assertEquals(t, LocalDate.of(2006, 12, 15));
+        });
+
+        it('test_plusMonths_long_negativeOverYears', () => {
+            var t = TEST_2007_07_15.plusMonths(-31);
+            assertEquals(t, LocalDate.of(2004, 12, 15));
+        });
+
+        it('test_plusMonths_long_adjustDayFromLeapYear', () => {
+            var t = LocalDate.of(2008, 2, 29).plusMonths(12);
+            var expected = LocalDate.of(2009, 2, 28);
+            assertEquals(t, expected);
+        });
+
+        it('test_plusMonths_long_adjustDayFromMonthLength', () => {
+            var t = LocalDate.of(2007, 3, 31).plusMonths(1);
+            var expected = LocalDate.of(2007, 4, 30);
+            assertEquals(t, expected);
+        });
+
+        it('test_plusMonths_long_big', () => {
+            var months = 12000468; // Integer.MAX_VALUE;
+            var test = LocalDate.of(-40, 6, 1).plusMonths(months);
+            assertEquals(test, LocalDate.of(999999,6,1));
+        });
+
+        it('test_plusMonths_long_invalidTooLarge', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 12, 1).plusMonths(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusMonths_long_invalidTooLargeMaxAddMax', () => {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.plusMonths(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusMonths_long_invalidTooLargeMaxAddMin', () => {
+            expect(() => {
+                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                test.plusMonths(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusMonths_long_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plusMonths(-1);
+            }).to.throw(DateTimeException);
+        });
+
     });
 
+    /**
+    describe('plusWeeks()', () => {
+            it('test_plusWeeks_normal', () => {
+                 LocalDate t = TEST_2007_07_15.plusWeeks(1);
+                 assertEquals(t, LocalDate.of(2007, 7, 22));
+             });
+
+             it('test_plusWeeks_overMonths', () => {
+                 LocalDate t = TEST_2007_07_15.plusWeeks(9);
+                 assertEquals(t, LocalDate.of(2007, 9, 16));
+             });
+
+             it('test_plusWeeks_overYears', () => {
+                 LocalDate t = LocalDate.of(2006, 7, 16).plusWeeks(52);
+                 assertEquals(t, TEST_2007_07_15);
+             });
+
+             it('test_plusWeeks_overLeapYears', () => {
+                 LocalDate t = TEST_2007_07_15.plusYears(-1).plusWeeks(104);
+                 assertEquals(t, LocalDate.of(2008, 7, 12));
+             });
+
+             it('test_plusWeeks_negative', () => {
+                 LocalDate t = TEST_2007_07_15.plusWeeks(-1);
+                 assertEquals(t, LocalDate.of(2007, 7, 8));
+             });
+
+             it('test_plusWeeks_negativeAcrossYear', () => {
+                 LocalDate t = TEST_2007_07_15.plusWeeks(-28);
+                 assertEquals(t, LocalDate.of(2006, 12, 31));
+             });
+
+             it('test_plusWeeks_negativeOverYears', () => {
+                 LocalDate t = TEST_2007_07_15.plusWeeks(-104);
+                 assertEquals(t, LocalDate.of(2005, 7, 17));
+             });
+
+             it('test_plusWeeks_maximum', () => {
+                 LocalDate t = LocalDate.of(Year.MAX_VALUE, 12, 24).plusWeeks(1);
+                 LocalDate expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+                 assertEquals(t, expected);
+             });
+
+             it('test_plusWeeks_minimum', () => {
+                 LocalDate t = LocalDate.of(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
+                 LocalDate expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+                 assertEquals(t, expected);
+             });
+
+             it('test_plusWeeks_invalidTooLarge', () => {
+expect(() => {
+                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(1);
+
+}).to.throw(DateTimeException);
+});
+
+             it('test_plusWeeks_invalidTooSmall', () => {
+expect(() => {
+                 LocalDate.of(Year.MIN_VALUE, 1, 7).plusWeeks(
+}).to.throw(DateTimeException);
+-1);
+             });
+
+             it('test_plusWeeks_invalidMaxMinusMax', () => {
+expect(() => {
+                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(Long.MAX_VALUE);
+
+}).to.throw(ArithmeticException);
+});
+
+             it('test_plusWeeks_invalidMaxMinusMin', () => {
+expect(() => {
+                 LocalDate.of(Year.MAX_VALUE, 12, 25).plusWeeks(Long.MIN_VALUE);
+
+}).to.throw(ArithmeticException);
+});
+
+             it('test_plusDays_normal', () => {
+                 LocalDate t = TEST_2007_07_15.plusDays(1);
+                 assertEquals(t, LocalDate.of(2007, 7, 16));
+             });
+
+             it('test_plusDays_overMonths', () => {
+                 LocalDate t = TEST_2007_07_15.plusDays(62);
+                 assertEquals(t, LocalDate.of(2007, 9, 15));
+             });
+
+             it('test_plusDays_overYears', () => {
+                 LocalDate t = LocalDate.of(2006, 7, 14).plusDays(366);
+                 assertEquals(t, TEST_2007_07_15);
+             });
+
+             it('test_plusDays_overLeapYears', () => {
+                 LocalDate t = TEST_2007_07_15.plusYears(-1).plusDays(365 + 366);
+                 assertEquals(t, LocalDate.of(2008, 7, 15));
+             });
+
+             it('test_plusDays_negative', () => {
+                 LocalDate t = TEST_2007_07_15.plusDays(-1);
+                 assertEquals(t, LocalDate.of(2007, 7, 14));
+             });
+
+             it('test_plusDays_negativeAcrossYear', () => {
+                 LocalDate t = TEST_2007_07_15.plusDays(-196);
+                 assertEquals(t, LocalDate.of(2006, 12, 31));
+             });
+
+             it('test_plusDays_negativeOverYears', () => {
+                 LocalDate t = TEST_2007_07_15.plusDays(-730);
+                 assertEquals(t, LocalDate.of(2005, 7, 15));
+             });
+
+             it('test_plusDays_maximum', () => {
+                 LocalDate t = LocalDate.of(Year.MAX_VALUE, 12, 30).plusDays(1);
+                 LocalDate expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+                 assertEquals(t, expected);
+             });
+
+             it('test_plusDays_minimum', () => {
+                 LocalDate t = LocalDate.of(Year.MIN_VALUE, 1, 2).plusDays(-1);
+                 LocalDate expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+                 assertEquals(t, expected);
+             });
+
+             it('test_plusDays_invalidTooLarge', () => {
+expect(() => {
+                 LocalDate.of(Year.MAX_VALUE, 12, 31).plusDays(1);
+
+}).to.throw(DateTimeException);
+});
+
+             it('test_plusDays_invalidTooSmall', () => {
+expect(() => {
+                 LocalDate.of(Year.MIN_VALUE, 1, 1).plusDays(
+}).to.throw(DateTimeException);
+-1);
+             });
+
+             it('test_plusDays_overflowTooLarge', () => {
+expect(() => {
+                 LocalDate.of(Year.MAX_VALUE, 12, 31).plusDays(Long.MAX_VALUE);
+
+}).to.throw(ArithmeticException);
+});
+
+             it('test_plusDays_overflowTooSmall', () => {
+expect(() => {
+                 LocalDate.of(Year.MIN_VALUE, 1, 1).plusDays(Long.MIN_VALUE);
+
+}).to.throw(ArithmeticException);
+});
+
+
+         */
+
+/**
     describe('minus(Period)', () => {
     });
 
@@ -1038,16 +1264,16 @@ describe('org.threeten.bp.TestLocalDate', () => {
     /**
      *
     describe('format(DateTimeFormatter)', function () {
-        @Test
-        public void test_format_formatter() {
+        it('test_format_formatter', () => {
             DateTimeFormatter f = DateTimeFormatter.ofPattern("y M d");
             String t = LocalDate.of(2010, 12, 3).format(f);
             assertEquals(t, "2010 12 3");
         }
 
-        @Test(expectedExceptions=NullPointerException.class)
-        public void test_format_formatter_null() {
-            LocalDate.of(2010, 12, 3).format(null);
+        it('test_format_formatter_null', () => {
+            expect(() => {
+                LocalDate.of(2010, 12, 3).format(null);
+            }).to.throw(NullPointerException);
         }
     });
     */

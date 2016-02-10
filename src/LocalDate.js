@@ -642,6 +642,37 @@ export class LocalDate extends ChronoLocalDate{
         return LocalDate._resolvePreviousValid(newYear, this._month, this._day);
     }
 
+    /**
+     * Returns a copy of this {@code LocalDate} with the specified period in months added.
+     * <p>
+     * This method adds the specified amount to the months field in three steps:
+     * <ol>
+     * <li>Add the input months to the month-of-year field</li>
+     * <li>Check if the resulting date would be invalid</li>
+     * <li>Adjust the day-of-month to the last valid day if necessary</li>
+     * </ol>
+     * <p>
+     * For example, 2007-03-31 plus one month would result in the invalid date
+     * 2007-04-31. Instead of returning an invalid result, the last valid day
+     * of the month, 2007-04-30, is selected instead.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param monthsToAdd  the months to add, may be negative
+     * @return a {@code LocalDate} based on this date with the months added, not null
+     * @throws DateTimeException if the result exceeds the supported date range
+     */
+    plusMonths(monthsToAdd) {
+        if (monthsToAdd === 0) {
+            return this;
+        }
+        var monthCount = this._year * 12 + (this._month - 1);
+        var calcMonths = monthCount + monthsToAdd;  // safe overflow
+        var newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
+        var newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
+        return LocalDate._resolvePreviousValid(newYear, newMonth, this._day);
+    }
+
    /**
      * @private
      */
