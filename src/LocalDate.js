@@ -596,6 +596,24 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * Returns a copy of this date with the day-of-year altered.
+     * If the resulting date is invalid, an exception is thrown.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param dayOfYear  the day-of-year to set in the result, from 1 to 365-366
+     * @return a {@code LocalDate} based on this date with the requested day, not null
+     * @throws DateTimeException if the day-of-year value is invalid
+     * @throws DateTimeException if the day-of-year is invalid for the year
+     */
+    withDayOfYear(dayOfYear) {
+        if (this.dayOfYear() === dayOfYear) {
+            return this;
+        }
+        return LocalDate.ofYearDay(this._year, dayOfYear);
+    }
+
+    /**
      * @private
      */
     static validate(year, month, dayOfMonth) {

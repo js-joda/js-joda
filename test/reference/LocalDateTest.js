@@ -704,10 +704,30 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }).to.throw(DateTimeException);
         });
     });
-/**
+
     describe('withDayOfYear(int)', () => {
+        it('test_withDayOfYear_normal', function () {
+            var t = TEST_2007_07_15.withDayOfYear(33);
+            assertEquals(t, LocalDate.of(2007, 2, 2));
+
+            t = LocalDate.of(2008, 7, 15).withDayOfYear(366);
+            assertEquals(t, LocalDate.of(2008, 12, 31));
+        });
+
+        it('test_withDayOfYear_illegal', function () {
+            expect(() => {
+                TEST_2007_07_15.withDayOfYear(367);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfYear_invalid', function () {
+            expect(() => {
+                TEST_2007_07_15.withDayOfYear(366);
+            }).to.throw(DateTimeException);
+        });
     });
 
+    /**
     describe('plus(Period)', () => {
     });
 

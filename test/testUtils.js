@@ -8,7 +8,7 @@ export function assertEquals(expected, actual, message){
     if(expected != null || actual != null) {
         if(expected != null) {
             if(typeof expected.equals === 'function'){
-                expect(expected.equals(actual), message).to.be.true;
+                expect(expected.equals(actual), message != null ? message : `${expected} not equals ${actual}`).to.be.true;
             } else {
                 expect(expected, message).to.eql(actual);
             }
