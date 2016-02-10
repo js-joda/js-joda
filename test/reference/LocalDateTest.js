@@ -633,9 +633,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-    /**
     describe('lengthOfYear()', () => {
+        it('test_lengthOfYear', function () {
+            assertEquals(LocalDate.of(2007, 1, 1).lengthOfYear(), 365);
+            assertEquals(LocalDate.of(2008, 1, 1).lengthOfYear(), 366);
+        });
     });
+
+    /**
 
     describe('with()', () => {
     });

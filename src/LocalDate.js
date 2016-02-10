@@ -192,6 +192,17 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * Returns the length of the year represented by this date.
+     * <p>
+     * This returns the length of the year in days, either 365 or 366.
+     *
+     * @return 366 if the year is leap, 365 otherwise
+     */
+    lengthOfYear() {
+        return (this.isLeapYear() ? 366 : 365);
+    }
+
+    /**
      * Gets the chronology of this date, which is the ISO calendar system.
      * <p>
      * The {@code Chronology} represents the calendar system in use.
