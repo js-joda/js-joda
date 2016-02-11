@@ -10,6 +10,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, NullPointerExceptio
 
 import { IsoChronology } from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
+import {ChronoUnit} from './temporal/ChronoUnit';
 import {ChronoLocalDate} from './chrono/ChronoLocalDate';
 import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
@@ -17,6 +18,7 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {Clock} from './Clock';
 import {DayOfWeek} from './DayOfWeek';
 import {Month} from './Month';
+import {Period} from './Period';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 
@@ -971,6 +973,140 @@ export class LocalDate extends ChronoLocalDate{
     adjustInto(temporal) {
         return super.adjustInto(temporal);
     }
+
+    /**
+     * until function overloading
+     */
+    until(p1, p2){
+        if(arguments.length < 2){
+            return this._until1(p1);
+        } else {
+            return this._until2(p1, p2);
+        }
+    }
+
+    /**
+     * Calculates the period between this date and another date in
+     * terms of the specified unit.
+     * <p>
+     * This calculates the period between two dates in terms of a single unit.
+     * The start and end points are {@code this} and the specified date.
+     * The result will be negative if the end is before the start.
+     * The {@code Temporal} passed to this method must be a {@code LocalDate}.
+     * For example, the period in days between two dates can be calculated
+     * using {@code startDate.until(endDate, DAYS)}.
+     * <p>
+     * The calculation returns a whole number, representing the number of
+     * complete units between the two dates.
+     * For example, the period in months between 2012-06-15 and 2012-08-14
+     * will only be one month as it is one day short of two months.
+     * <p>
+     * This method operates in association with {@link TemporalUnit#between}.
+     * The result of this method is a {@code long} representing the amount of
+     * the specified unit. By contrast, the result of {@code between} is an
+     * object that can be used directly in addition/subtraction:
+     * <pre>
+     *   long period = start.until(end, MONTHS);   // this method
+     *   dateTime.plus(MONTHS.between(start, end));      // use in plus/minus
+     * </pre>
+     * <p>
+     * The calculation is implemented in this method for {@link ChronoUnit}.
+     * The units {@code DAYS}, {@code WEEKS}, {@code MONTHS}, {@code YEARS},
+     * {@code DECADES}, {@code CENTURIES}, {@code MILLENNIA} and {@code ERAS}
+     * are supported. Other {@code ChronoUnit} values will throw an exception.
+     * <p>
+     * If the unit is not a {@code ChronoUnit}, then the result of this method
+     * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
+     * passing {@code this} as the first argument and the input temporal as
+     * the second argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param endExclusive  the end date, which is converted to a {@code LocalDate}, not null
+     * @param unit  the unit to measure the period in, not null
+     * @return the amount of the period between this date and the end date
+     * @throws DateTimeException if the period cannot be calculated
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _until2(endExclusive, unit) {
+        var end = LocalDate.from(endExclusive);
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.DAYS: return this.daysUntil(end);
+                case ChronoUnit.WEEKS: return this.daysUntil(end) / 7;
+                case ChronoUnit.MONTHS: return this.monthsUntil(end);
+                case ChronoUnit.YEARS: return this.monthsUntil(end) / 12;
+                case ChronoUnit.DECADES: return this.monthsUntil(end) / 120;
+                case ChronoUnit.CENTURIES: return this.monthsUntil(end) / 1200;
+                case ChronoUnit.MILLENNIA: return this.monthsUntil(end) / 12000;
+                case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.between(this, end);
+    }
+
+    daysUntil(end) {
+        return end.toEpochDay() - this.toEpochDay();  // no overflow
+    }
+
+    monthsUntil(end) {
+        var packed1 = this._prolepticMonth() * 32 + this.dayOfMonth();  // no overflow
+        var packed2 = end._prolepticMonth() * 32 + end.dayOfMonth();  // no overflow
+        return MathUtil.floorDiv((packed2 - packed1), 32);
+    }
+
+    /**
+     * Calculates the period between this date and another date as a {@code Period}.
+     * <p>
+     * This calculates the period between two dates in terms of years, months and days.
+     * The start and end points are {@code this} and the specified date.
+     * The result will be negative if the end is before the start.
+     * <p>
+     * The calculation is performed using the ISO calendar system.
+     * If necessary, the input date will be converted to ISO.
+     * <p>
+     * The start date is included, but the end date is not.
+     * The period is calculated by removing complete months, then calculating
+     * the remaining number of days, adjusting to ensure that both have the same sign.
+     * The number of months is then normalized into years and months based on a 12 month year.
+     * A month is considered to be complete if the end day-of-month is greater
+     * than or equal to the start day-of-month.
+     * For example, from {@code 2010-01-15} to {@code 2011-03-18} is "1 year, 2 months and 3 days".
+     * <p>
+     * The result of this method can be a negative period if the end is before the start.
+     * The negative sign will be the same in each of year, month and day.
+     * <p>
+     * There are two equivalent ways of using this method.
+     * The first is to invoke this method.
+     * The second is to use {@link Period#between(LocalDate, LocalDate)}:
+     * <pre>
+     *   // these two lines are equivalent
+     *   period = start.until(end);
+     *   period = Period.between(start, end);
+     * </pre>
+     * The choice should be made based on which makes the code more readable.
+     *
+     * @param endDate  the end date, exclusive, which may be in any chronology, not null
+     * @return the period between this date and the end date, not null
+     */
+    _until1(endDate) {
+        var end = LocalDate.from(endDate);
+        var totalMonths = end._prolepticMonth() - this._prolepticMonth();  // safe
+        var days = end._day - this._day;
+        if (totalMonths > 0 && days < 0) {
+            totalMonths--;
+            var calcDate = this.plusMonths(totalMonths);
+            days = (end.toEpochDay() - calcDate.toEpochDay());  // safe
+        } else if (totalMonths < 0 && days > 0) {
+            totalMonths++;
+            days -= end.lengthOfMonth();
+        }
+        var years = MathUtil.intDiv(totalMonths, 12);  // safe
+        var months = MathUtil.intMod(totalMonths, 12);  // safe
+        return Period.of(MathUtil.safeToInt(years), months, days);
+    }
+
 
     /**
      * Converts this date to the Epoch Day.

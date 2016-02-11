@@ -234,6 +234,8 @@ export class Period /* extends ChronoPeriod */ {
      * @see ChronoLocalDate#until(ChronoLocalDate)
      */
     static between(startDate, endDate) {
+        requireNonNull(startDate, 'startDate');
+        requireNonNull(endDate, 'endDate');
         requireInstance(startDate, LocalDate, 'startDate');
         requireInstance(endDate, LocalDate, 'endDate');
         return startDate.until(endDate);
@@ -336,7 +338,7 @@ export class Period /* extends ChronoPeriod */ {
         if ((years | months | days) === 0) {
             return Period.ZERO;
         }
-        return new Period(years, months, days);
+        return new Period(years, months, days, true);
     }
 
     /**
