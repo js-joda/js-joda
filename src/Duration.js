@@ -4,11 +4,14 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {assert, requireNonNull} from './assert';
+import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
+import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
+
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
-import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
+import {TemporalAmount} from './temporal/TemporalAmount';
+
 import {LocalTime} from './LocalTime';
-import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
 
 /**
  * A time-based amount of time, such as '34.5 seconds'.
@@ -35,7 +38,7 @@ import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
  * See {@link Instant} for a discussion as to the meaning of the second and time-scales.
  *
  */
-export class Duration
+export class Duration extends TemporalAmount
         /*implements TemporalAmount, Comparable<Duration>, Serializable */ {
 
     /**
@@ -46,7 +49,7 @@ export class Duration
      */
     //TODO: private ? 
     constructor(seconds, nanos) {
-        //super();
+        super();
         this._seconds = seconds;
         this._nanos = nanos;
     }
@@ -970,6 +973,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     addTo(temporal) {
+        requireNonNull(temporal, 'temporal');
         if (this._seconds !== 0) {
             temporal = temporal.plus(this._seconds, ChronoUnit.SECONDS);
         }
@@ -1004,6 +1008,7 @@ export class Duration
      * @throws ArithmeticException if numeric overflow occurs
      */
     subtractFrom(temporal) {
+        requireNonNull(temporal, 'temporal');
         if (this._seconds !== 0) {
             temporal = temporal.minus(this._seconds, ChronoUnit.SECONDS);
         }

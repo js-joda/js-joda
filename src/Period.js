@@ -46,6 +46,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException
 import {IsoChronology} from './chrono/IsoChronology';
 
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {TemporalAmount} from './temporal/TemporalAmount';
 
 import {LocalDate} from './LocalDate';
 
@@ -56,7 +57,7 @@ const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W
 
 const UNITS = [ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS];
     
-export class Period /* extends ChronoPeriod */ {
+export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     /**
      * do not call the constructor directly
@@ -68,6 +69,8 @@ export class Period /* extends ChronoPeriod */ {
      * @private
      */
     constructor(years, months, days, isPrivateCall){
+        super();
+
         Period._validate(years, months, days, isPrivateCall);
         /**
          * The number of years.
