@@ -875,7 +875,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             ];
         }
 
-        it.skip('test_subtractFrom', function () {
+        it('test_subtractFrom', function () {
             data_subtractFrom().forEach((data) => {
                 test_subtractFrom.apply(this, data);
             });
@@ -885,7 +885,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             assertEquals(period.subtractFrom(baseDate), expected);
         }
 
-        it.skip('test_subtractFrom_usingLocalDateMinus', function () {
+        it('test_subtractFrom_usingLocalDateMinus', function () {
             data_subtractFrom().forEach((data) => {
                 test_subtractFrom_usingLocalDateMinus.apply(this, data);
             });

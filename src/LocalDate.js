@@ -896,7 +896,56 @@ export class LocalDate extends ChronoLocalDate{
         return LocalDate.ofEpochDay(mjDay);
     }
 
-    //-----------------------------------------------------------------------
+    /**
+     * function overloading for minus
+     */
+    minus(p1, p2){
+        if(arguments.length < 2){
+            return this._minus1(p1);
+        } else {
+            return this._minus2(p1, p2);
+        }
+    }
+
+    /**
+     * Returns a copy of this date with the specified period subtracted.
+     * <p>
+     * This method returns a new date based on this date with the specified period subtracted.
+     * The amount is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link #minus(long, TemporalUnit)}.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param amount  the amount to subtract, not null
+     * @return a {@code LocalDate} based on this date with the subtraction made, not null
+     * @throws DateTimeException if the subtraction cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _minus1(amount) {
+        return amount.subtractFrom(this);
+    }
+
+    /**
+     * Returns a copy of this date with the specified period subtracted.
+     * <p>
+     * This method returns a new date based on this date with the specified period subtracted.
+     * This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
+     * The unit is responsible for the details of the calculation, including the resolution
+     * of any edge cases in the calculation.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param amountToSubtract  the amount of the unit to subtract from the result, may be negative
+     * @param unit  the unit of the period to subtract, not null
+     * @return a {@code LocalDate} based on this date with the specified period subtracted, not null
+     * @throws DateTimeException if the unit cannot be added to this type
+     */
+    _minus2(amountToSubtract, unit) {
+        return this._plus2(-1 * amountToSubtract, unit);
+    }
+
     /**
      * Returns a copy of this {@code LocalDate} with the specified period in years subtracted.
      * <p>
