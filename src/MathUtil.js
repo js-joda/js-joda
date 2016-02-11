@@ -14,7 +14,9 @@ export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER ? Number.MIN_SAFE_INTEGE
 export class MathUtil {
     static intDiv(x, y) {
         var r = x/y;
-        if(r < 0){
+        if(r === 0){
+            return 0;
+        } else if(r < 0){
             return Math.ceil(r);
         } else {
             return Math.floor(r);
@@ -23,7 +25,9 @@ export class MathUtil {
 
     static intMod(x, y) {
         var r = x - MathUtil.intDiv(x, y) * y;
-        if(r < 0){
+        if(r === 0){
+            return 0;
+        } else if(r < 0){
             return Math.ceil(r);
         } else {
             return Math.floor(r);
@@ -118,6 +122,9 @@ export class MathUtil {
     }
 
     static safeToInt(value) {
+        if(value === 0){
+            return 0;
+        }
         if (isNaN(value)) {
             throw new ArithmeticException('Invalid int value, using NaN as argument');
         }
