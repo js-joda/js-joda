@@ -185,63 +185,103 @@ describe('org.threeten.bp.TestPeriod', () => {
         });
 
     });
-/**
+
+    describe('parse()', function () {
+        
+        function data_parse() {
+            return [
+                //['P0D', Period.ZERO],
+                //['P0W', Period.ZERO],
+                //['P0M', Period.ZERO],
+                //['P0Y', Period.ZERO],
+                //
+                //['P0Y0D', Period.ZERO],
+                //['P0Y0W', Period.ZERO],
+                //['P0Y0M', Period.ZERO],
+                //['P0M0D', Period.ZERO],
+                //['P0M0W', Period.ZERO],
+                //['P0W0D', Period.ZERO],
+                
+                ['P1D', Period.ofDays(1)],
+                ['P2D', Period.ofDays(2)],
+                ['P-2D', Period.ofDays(-2)],
+                ['-P2D', Period.ofDays(-2)],
+                ['-P-2D', Period.ofDays(2)],
+                ['P' + Integer.MAX_VALUE + 'D', Period.ofDays(Integer.MAX_VALUE)],
+                ['P' + Integer.MIN_VALUE + 'D', Period.ofDays(Integer.MIN_VALUE)],
+                
+                ['P1W', Period.ofDays(7)],
+                ['P2W', Period.ofDays(14)],
+                ['P-2W', Period.ofDays(-14)],
+                ['-P2W', Period.ofDays(-14)],
+                ['-P-2W', Period.ofDays(14)],
+                
+                ['P1M', Period.ofMonths(1)],
+                ['P2M', Period.ofMonths(2)],
+                ['P-2M', Period.ofMonths(-2)],
+                ['-P2M', Period.ofMonths(-2)],
+                ['-P-2M', Period.ofMonths(2)],
+                ['P' + Integer.MAX_VALUE + 'M', Period.ofMonths(Integer.MAX_VALUE)],
+                ['P' + Integer.MIN_VALUE + 'M', Period.ofMonths(Integer.MIN_VALUE)],
+                
+                ['P1Y', Period.ofYears(1)],
+                ['P2Y', Period.ofYears(2)],
+                ['P-2Y', Period.ofYears(-2)],
+                ['-P2Y', Period.ofYears(-2)],
+                ['-P-2Y', Period.ofYears(2)],
+                ['P' + Integer.MAX_VALUE + 'Y', Period.ofYears(Integer.MAX_VALUE)],
+                ['P' + Integer.MIN_VALUE + 'Y', Period.ofYears(Integer.MIN_VALUE)],
+                
+                ['P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)]
+            ];
+        }
+
+        it('test_parse', function () {
+            data_parse().forEach((data) => {
+                test_parse.apply(this, data);
+            });
+        });
+
+        function test_parse(text, expected) {
+            // console.log(text, expected);
+            assertEquals(Period.parse(text), expected);
+        }
+
+        function data_toString() {
+            return [
+                [Period.ZERO, 'P0D'],
+                [Period.ofDays(0), 'P0D'],
+                [Period.ofYears(1), 'P1Y'],
+                [Period.ofMonths(1), 'P1M'],
+                [Period.ofDays(1), 'P1D'],
+                [Period.of(1, 2, 3), 'P1Y2M3D']
+            ];
+        }
+
+        it('test_parse_toString', function () {
+            data_toString().forEach((data) => {
+                test_parse_toString.apply(this, data);
+            });
+        });
+
+        function test_parse_toString(test, expected) {
+            // console.log(test, expected);
+            assertEquals(test, Period.parse(expected));
+        }
+
+        it('test_parse_nullText', () => {
+            expect(() => {
+                Period.parse(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+    /**
  * 
-
-
 
  //-----------------------------------------------------------------------
  // parse()
  //-----------------------------------------------------------------------
- @DataProvider(name='parse')
- Object[][] data_parse() {
-     return new Object[][] {
-         {'P0D', Period.ZERO},
-         {'P0W', Period.ZERO},
-         {'P0M', Period.ZERO},
-         {'P0Y', Period.ZERO},
-         
-         {'P0Y0D', Period.ZERO},
-         {'P0Y0W', Period.ZERO},
-         {'P0Y0M', Period.ZERO},
-         {'P0M0D', Period.ZERO},
-         {'P0M0W', Period.ZERO},
-         {'P0W0D', Period.ZERO},
-         
-         {'P1D', Period.ofDays(1)},
-         {'P2D', Period.ofDays(2)},
-         {'P-2D', Period.ofDays(-2)},
-         {'-P2D', Period.ofDays(-2)},
-         {'-P-2D', Period.ofDays(2)},
-         {'P' + Integer.MAX_VALUE + 'D', Period.ofDays(Integer.MAX_VALUE)},
-         {'P' + Integer.MIN_VALUE + 'D', Period.ofDays(Integer.MIN_VALUE)},
-         
-         {'P1W', Period.ofDays(7)},
-         {'P2W', Period.ofDays(14)},
-         {'P-2W', Period.ofDays(-14)},
-         {'-P2W', Period.ofDays(-14)},
-         {'-P-2W', Period.ofDays(14)},
-         
-         {'P1M', Period.ofMonths(1)},
-         {'P2M', Period.ofMonths(2)},
-         {'P-2M', Period.ofMonths(-2)},
-         {'-P2M', Period.ofMonths(-2)},
-         {'-P-2M', Period.ofMonths(2)},
-         {'P' + Integer.MAX_VALUE + 'M', Period.ofMonths(Integer.MAX_VALUE)},
-         {'P' + Integer.MIN_VALUE + 'M', Period.ofMonths(Integer.MIN_VALUE)},
-         
-         {'P1Y', Period.ofYears(1)},
-         {'P2Y', Period.ofYears(2)},
-         {'P-2Y', Period.ofYears(-2)},
-         {'-P2Y', Period.ofYears(-2)},
-         {'-P-2Y', Period.ofYears(2)},
-         {'P' + Integer.MAX_VALUE + 'Y', Period.ofYears(Integer.MAX_VALUE)},
-         {'P' + Integer.MIN_VALUE + 'Y', Period.ofYears(Integer.MIN_VALUE)},
-         
-         {'P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)},
-     };
- }
-
  @Test(dataProvider='parse')
  public void test_parse(String text, Period expected) {
      assertEquals(Period.parse(text), expected);

@@ -301,7 +301,7 @@ export class Period /* extends ChronoPeriod */ {
     static _parse(text){
         var matches = PATTERN.exec(text);
         if (matches != null) {
-            var negate = '-' === matches[1];
+            var negate = '-' === matches[1] ? -1 : 1;
             var yearMatch = matches[2];
             var monthMatch = matches[3];
             var weekMatch = matches[4];
@@ -886,7 +886,7 @@ export class Period /* extends ChronoPeriod */ {
                 buf += '' + this._years + 'Y';
             }
             if (this._months !== 0) {
-                buf += '' + this._months() + 'M';
+                buf += '' + this._months + 'M';
             }
             if (this._days !== 0) {
                 buf += '' + this._days + 'D';
