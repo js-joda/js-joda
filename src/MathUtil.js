@@ -117,6 +117,27 @@ export class MathUtil {
         return r;
     }
 
+    static safeToInt(value) {
+        if (isNaN(value)) {
+            throw new ArithmeticException('Invalid int value, using NaN as argument');
+        }
+        if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
+            throw new ArithmeticException('Calculation overflows an int: ' + value);
+        }
+        return value;
+    }
+
+    static parseInt(value) {
+        var int = parseInt(value);
+        if (isNaN(int)) {
+            throw new ArithmeticException('Invalid int value parse to NaN: ' + value);
+        }
+        if (int > MAX_SAFE_INTEGER || int < MIN_SAFE_INTEGER) {
+            throw new ArithmeticException('Calculation overflows an int: ' + value);
+        }
+        return int;
+    }
+
     /**
      * Compares two Numbers.
      *
