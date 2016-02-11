@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["jsjoda"] = factory();
+		exports["JSJoda"] = factory();
 	else
-		root["jsjoda"] = factory();
+		root["JSJoda"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -1268,25 +1268,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
 	
-	ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
-	
 	ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
 	
 	ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
-	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+	ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
-	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+	ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	
+	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
 	
 	ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
 	
 	ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
+	
+	ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
+	
+	ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
+	
+	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+	
+	ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE * 12, _Year.Year.MAX_VALUE * 12 + 11));
+	
+	ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _Year.Year.MAX_VALUE, _Year.Year.MAX_VALUE + 1));
 	
 	ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
 	
 	ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
 	
 	ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+	
+	ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
 
 /***/ },
 /* 4 */
@@ -4448,6 +4460,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Clock = __webpack_require__(1);
 	
+	var _DayOfWeek = __webpack_require__(32);
+	
 	var _Month = __webpack_require__(20);
 	
 	var _Year = __webpack_require__(11);
@@ -4498,8 +4512,168 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(LocalDate, _ChronoLocalDate);
 	
 	    _createClass(LocalDate, null, [{
-	        key: '_resolvePreviousValid',
+	        key: 'now',
 	
+	
+	        /**
+	         * Obtains the current date from the system clock in the default time-zone or
+	         * if specified, the current date from the specified clock.
+	         *
+	         * This will query the specified clock to obtain the current date - today.
+	         * Using this method allows the use of an alternate clock for testing.
+	         *
+	         * @param clock  the clock to use, if null, the system clock and default time-zone is used.
+	         * @return the current date, not null
+	         */
+	        value: function now() {
+	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
+	
+	            (0, _assert.assert)(clock != null, 'clock', _errors.NullPointerException);
+	            var now = clock.instant();
+	            var offset = clock.offset(now);
+	            var epochSec = now.epochSecond() + offset.totalSeconds();
+	            var epochDay = _MathUtil.MathUtil.floorDiv(epochSec, _LocalTime.LocalTime.SECONDS_PER_DAY);
+	            return LocalDate.ofEpochDay(epochDay);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a year, month and day.
+	         * <p>
+	         * This returns a {@code LocalDate} with the specified year, month and day-of-month.
+	         * The day must be valid for the year and month, otherwise an exception will be thrown.
+	         *
+	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+	         * @param {Month, number} month  the month-of-year to represent, from 1 (January) to 12 (December)
+	         * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
+	         * @return LocalDate the local date, not null
+	         * @throws DateTimeException if the value of any field is out of range,
+	         *  or if the day-of-month is invalid for the month-year
+	         */
+	
+	    }, {
+	        key: 'of',
+	        value: function of(year, month, dayOfMonth) {
+	            return new LocalDate(year, month, dayOfMonth);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a year and day-of-year.
+	         * <p>
+	         * This returns a {@code LocalDate} with the specified year and day-of-year.
+	         * The day-of-year must be valid for the year, otherwise an exception will be thrown.
+	         *
+	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
+	         * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
+	         * @return LocalDate the local date, not null
+	         * @throws DateTimeException if the value of any field is out of range,
+	         *  or if the day-of-year is invalid for the year
+	         */
+	
+	    }, {
+	        key: 'ofYearDay',
+	        value: function ofYearDay(year, dayOfYear) {
+	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
+	            //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
+	            var leap = _IsoChronology.IsoChronology.isLeapYear(year);
+	            if (dayOfYear === 366 && leap === false) {
+	                (0, _assert.assert)(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
+	            }
+	            var moy = _Month.Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
+	            var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
+	            if (dayOfYear > monthEnd) {
+	                moy = moy.plus(1);
+	            }
+	            var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
+	            return new LocalDate(year, moy.value(), dom);
+	        }
+	
+	        /**
+	         * Obtains an instance of LocalDate from the epoch day count.
+	         *
+	         * This returns a LocalDate with the specified epoch-day.
+	         * The {@link ChronoField#EPOCH_DAY EPOCH_DAY} is a simple incrementing count
+	         * of days where day 0 is 1970-01-01. Negative numbers represent earlier days.
+	         *
+	         * @param {number} epochDay - the Epoch Day to convert, based on the epoch 1970-01-01
+	         * @return {LocalDate} the local date, not null
+	         * @throws AssertionError if the epoch days exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'ofEpochDay',
+	        value: function ofEpochDay(epochDay) {
+	            var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
+	            zeroDay = epochDay + DAYS_0000_TO_1970;
+	            zeroDay -= 60;
+	            adjust = 0;
+	            if (zeroDay < 0) {
+	                adjustCycles = _MathUtil.MathUtil.intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
+	                adjust = adjustCycles * 400;
+	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
+	            }
+	            yearEst = _MathUtil.MathUtil.intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
+	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
+	            if (doyEst < 0) {
+	                yearEst--;
+	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
+	            }
+	            yearEst += adjust;
+	            marchDoy0 = doyEst;
+	            marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
+	            month = (marchMonth0 + 2) % 12 + 1;
+	            dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
+	            yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
+	            year = yearEst;
+	            return new LocalDate(year, month, dom);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a temporal object.
+	         * <p>
+	         * A {@code TemporalAccessor} represents some form of date and time information.
+	         * This factory converts the arbitrary temporal object to an instance of {@code LocalDate}.
+	         * <p>
+	         * The conversion uses the {@link TemporalQueries#localDate()} query, which relies
+	         * on extracting the {@link ChronoField#EPOCH_DAY EPOCH_DAY} field.
+	         * <p>
+	         * This method matches the signature of the functional interface {@link TemporalQuery}
+	         * allowing it to be used as a query via method reference, {@code LocalDate::from}.
+	         *
+	         * @param temporal  the temporal object to convert, not null
+	         * @return the local date, not null
+	         * @throws DateTimeException if unable to convert to a {@code LocalDate}
+	         */
+	
+	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            (0, _assert.assert)(temporal != null, '', _errors.NullPointerException);
+	            var date = temporal.query(_TemporalQueries.TemporalQueries.localDate());
+	            if (date == null) {
+	                throw new _errors.DateTimeException('Unable to obtain LocalDate from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+	            }
+	            return date;
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalDate} from a text string using a specific formatter.
+	         *
+	         * The text is parsed using the formatter, returning a date.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param formatter  the formatter to use, default is DateTimeFormatter.ISO_LOCAL_DATE
+	         * @return the parsed local date, not null
+	         * @throws DateTimeParseException if the text cannot be parsed
+	         */
+	
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE() : arguments[1];
+	
+	            (0, _assert.assert)(formatter != null, 'formatter', _errors.NullPointerException);
+	            return formatter.parse(text, LocalDate.FROM);
+	        }
 	
 	        /**
 	         * Resolves the date, resolving days past the end of month.
@@ -4509,10 +4683,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param day  the day-of-month to represent, validated from 1 to 31
 	         * @return LocalDate resolved date, not null
 	         */
+	
+	    }, {
+	        key: '_resolvePreviousValid',
 	        value: function _resolvePreviousValid(year, month, day) {
 	            switch (month) {
 	                case 2:
-	                    day = Math.min(day, _IsoChronology.IsoChronology.INSTANCE.isLeapYear(year) ? 29 : 28);
+	                    day = Math.min(day, _IsoChronology.IsoChronology.isLeapYear(year) ? 29 : 28);
 	                    break;
 	                case 4:
 	                case 6:
@@ -4541,7 +4718,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (month instanceof _Month.Month) {
 	            month = month.value();
 	        }
-	        LocalDate.validate(year, month, dayOfMonth);
+	        LocalDate._validate(year, month, dayOfMonth);
 	        _this._year = year;
 	        _this._month = month;
 	        _this._day = dayOfMonth;
@@ -4549,28 +4726,130 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    /**
-	     * Obtains an instance of {@code LocalDate} from a year, month and day.
-	     * <p>
-	     * This returns a {@code LocalDate} with the specified year, month and day-of-month.
-	     * The day must be valid for the year and month, otherwise an exception will be thrown.
-	     *
-	     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-	     * @param {Month, number} month  the month-of-year to represent, from 1 (January) to 12 (December)
-	     * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
-	     * @return LocalDate the local date, not null
-	     * @throws DateTimeException if the value of any field is out of range,
-	     *  or if the day-of-month is invalid for the month-year
-	     */
+	      * @private
+	      */
 	
 	
 	    _createClass(LocalDate, [{
-	        key: 'year',
+	        key: 'isSupported',
 	
+	
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this date can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The {@link #isSupported(TemporalField) supported fields} will return valid
+	         * values based on this date-time.
+	         * The supported fields are:
+	         * <ul>
+	         * <li>{@code DAY_OF_WEEK}
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
+	         * <li>{@code DAY_OF_MONTH}
+	         * <li>{@code DAY_OF_YEAR}
+	         * <li>{@code EPOCH_DAY}
+	         * <li>{@code ALIGNED_WEEK_OF_MONTH}
+	         * <li>{@code ALIGNED_WEEK_OF_YEAR}
+	         * <li>{@code MONTH_OF_YEAR}
+	         * <li>{@code EPOCH_MONTH}
+	         * <li>{@code YEAR_OF_ERA}
+	         * <li>{@code YEAR}
+	         * <li>{@code ERA}
+	         * </ul>
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param field  the field to check, null returns false
+	         * @return true if the field is supported on this date, false if not
+	         */
+	        value: function isSupported(field) {
+	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'isSupported', this).call(this, field);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            return this.getLong(field);
+	        }
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            (0, _assert.assert)(field != null, '', _errors.NullPointerException);
+	            if (field instanceof _ChronoField.ChronoField) {
+	                return this._get0(field);
+	            }
+	            return field.getFrom(this);
+	        }
+	    }, {
+	        key: '_get0',
+	        value: function _get0(field) {
+	            switch (field) {
+	                case _ChronoField.ChronoField.DAY_OF_WEEK:
+	                    return this.dayOfWeek().value();
+	                case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH:
+	                    return (this._day - 1) % 7 + 1;
+	                case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR:
+	                    return (this.dayOfYear() - 1) % 7 + 1;
+	                case _ChronoField.ChronoField.DAY_OF_MONTH:
+	                    return this._day;
+	                case _ChronoField.ChronoField.DAY_OF_YEAR:
+	                    return this.dayOfYear();
+	                case _ChronoField.ChronoField.EPOCH_DAY:
+	                    return this.toEpochDay();
+	                case _ChronoField.ChronoField.ALIGNED_WEEK_OF_MONTH:
+	                    return (this._day - 1) / 7 + 1;
+	                case _ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR:
+	                    return (this.dayOfYear() - 1) / 7 + 1;
+	                case _ChronoField.ChronoField.MONTH_OF_YEAR:
+	                    return this._month;
+	                case _ChronoField.ChronoField.PROLEPTIC_MONTH:
+	                    return this._prolepticMonth();
+	                case _ChronoField.ChronoField.YEAR_OF_ERA:
+	                    return this._year >= 1 ? this._year : 1 - this._year;
+	                case _ChronoField.ChronoField.YEAR:
+	                    return this._year;
+	                case _ChronoField.ChronoField.ERA:
+	                    return this._year >= 1 ? 1 : 0;
+	            }
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	    }, {
+	        key: '_prolepticMonth',
+	        value: function _prolepticMonth() {
+	            return this._year * 12 + (this._month - 1);
+	        }
+	
+	        /**
+	         * Gets the chronology of this date, which is the ISO calendar system.
+	         * <p>
+	         * The {@code Chronology} represents the calendar system in use.
+	         * The ISO-8601 calendar system is the modern civil calendar system used today
+	         * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	         * system, in which todays's rules for leap years are applied for all time.
+	         *
+	         * @return the ISO chronology, not null
+	         */
+	
+	    }, {
+	        key: 'chronology',
+	        value: function chronology() {
+	            return _IsoChronology.IsoChronology.INSTANCE;
+	        }
 	
 	        /**
 	         *
 	         * @return {number} gets the year
 	         */
+	
+	    }, {
+	        key: 'year',
 	        value: function year() {
 	            return this._year;
 	        }
@@ -4617,6 +4896,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
+	         * Gets the day-of-week field, which is an enum {@code DayOfWeek}.
+	         * <p>
+	         * This method returns the enum {@link DayOfWeek} for the day-of-week.
+	         * This avoids confusion as to what {@code int} values mean.
+	         * If you need access to the primitive {@code int} value then the enum
+	         * provides the {@link DayOfWeek#getValue() int value}.
+	         * <p>
+	         * Additional information can be obtained from the {@code DayOfWeek}.
+	         * This includes textual names of the values.
+	         *
+	         * @return the day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'dayOfWeek',
+	        value: function dayOfWeek() {
+	            var dow0 = _MathUtil.MathUtil.floorMod(this.toEpochDay() + 3, 7);
+	            return _DayOfWeek.DayOfWeek.of(dow0 + 1);
+	        }
+	
+	        /**
 	         * Checks if the year is a leap year, according to the ISO proleptic
 	         * calendar system rules.
 	         * <p>
@@ -4642,58 +4942,216 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
-	         * Gets the chronology of this date, which is the ISO calendar system.
+	         * Returns the length of the month represented by this date.
 	         * <p>
-	         * The {@code Chronology} represents the calendar system in use.
-	         * The ISO-8601 calendar system is the modern civil calendar system used today
-	         * in most of the world. It is equivalent to the proleptic Gregorian calendar
-	         * system, in which todays's rules for leap years are applied for all time.
+	         * This returns the length of the month in days.
+	         * For example, a date in January would return 31.
 	         *
-	         * @return the ISO chronology, not null
+	         * @return the length of the month in days
 	         */
 	
 	    }, {
-	        key: 'chronology',
-	        value: function chronology() {
-	            return _IsoChronology.IsoChronology.INSTANCE;
-	        }
-	    }, {
-	        key: 'get',
-	        value: function get(field) {
-	            return this.getLong(field);
-	        }
-	    }, {
-	        key: 'getLong',
-	        value: function getLong(field) {
-	            (0, _assert.assert)(field != null, '', _errors.NullPointerException);
-	            if (field instanceof _ChronoField.ChronoField) {
-	                return this._get0(field);
+	        key: 'lengthOfMonth',
+	        value: function lengthOfMonth() {
+	            switch (this._month) {
+	                case 2:
+	                    return this.isLeapYear() ? 29 : 28;
+	                case 4:
+	                case 6:
+	                case 9:
+	                case 11:
+	                    return 30;
+	                default:
+	                    return 31;
 	            }
-	            return field.getFrom(this);
 	        }
+	
+	        /**
+	         * Returns the length of the year represented by this date.
+	         * <p>
+	         * This returns the length of the year in days, either 365 or 366.
+	         *
+	         * @return 366 if the year is leap, 365 otherwise
+	         */
+	
 	    }, {
-	        key: '_get0',
-	        value: function _get0(field) {
-	            switch (field) {
-	                // case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().getValue();
-	                // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((day - 1) % 7) + 1;
-	                // case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
-	                case _ChronoField.ChronoField.DAY_OF_MONTH:
-	                    return this._day;
-	                // case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
-	                case _ChronoField.ChronoField.EPOCH_DAY:
-	                    return this.toEpochDay();
-	                // case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
-	                // case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
-	                case _ChronoField.ChronoField.MONTH_OF_YEAR:
-	                    return this._month;
-	                // case ChronoField.PROLEPTIC_MONTH: this.prolepticMonth();
-	                // case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
-	                case _ChronoField.ChronoField.YEAR:
-	                    return this._year;
-	                // case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
+	        key: 'lengthOfYear',
+	        value: function lengthOfYear() {
+	            return this.isLeapYear() ? 366 : 365;
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the year altered.
+	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param year  the year to set in the result, from MIN_YEAR to MAX_YEAR
+	         * @return a {@code LocalDate} based on this date with the requested year, not null
+	         * @throws DateTimeException if the year value is invalid
+	         */
+	
+	    }, {
+	        key: 'withYear',
+	        value: function withYear(year) {
+	            if (this._year === year) {
+	                return this;
 	            }
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
+	            return LocalDate._resolvePreviousValid(year, this._month, this._day);
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the month-of-year altered.
+	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
+	         *
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+	         * @return a {@code LocalDate} based on this date with the requested month, not null
+	         * @throws DateTimeException if the month-of-year value is invalid
+	         */
+	
+	    }, {
+	        key: 'withMonth',
+	        value: function withMonth(month) {
+	            var m = month instanceof _Month.Month ? month.value() : month;
+	            if (this._month === m) {
+	                return this;
+	            }
+	            _ChronoField.ChronoField.MONTH_OF_YEAR.checkValidValue(m);
+	            return LocalDate._resolvePreviousValid(this._year, m, this._day);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
+	         * <p>
+	         * If the resulting date is invalid, an exception is thrown.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+	         * @return {LocalDate} based on this date with the requested day, not null
+	         * @throws DateTimeException if the day-of-month value is invalid,
+	         *  or if the day-of-month is invalid for the month-year
+	         */
+	
+	    }, {
+	        key: 'withDayOfMonth',
+	        value: function withDayOfMonth(dayOfMonth) {
+	            if (this._day === dayOfMonth) {
+	                return this;
+	            }
+	            return LocalDate.of(this._year, this._month, dayOfMonth);
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the day-of-year altered.
+	         * If the resulting date is invalid, an exception is thrown.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param dayOfYear  the day-of-year to set in the result, from 1 to 365-366
+	         * @return a {@code LocalDate} based on this date with the requested day, not null
+	         * @throws DateTimeException if the day-of-year value is invalid
+	         * @throws DateTimeException if the day-of-year is invalid for the year
+	         */
+	
+	    }, {
+	        key: 'withDayOfYear',
+	        value: function withDayOfYear(dayOfYear) {
+	            if (this.dayOfYear() === dayOfYear) {
+	                return this;
+	            }
+	            return LocalDate.ofYearDay(this._year, dayOfYear);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in years added.
+	         * <p>
+	         * This method adds the specified amount to the years field in three steps:
+	         * <ol>
+	         * <li>Add the input years to the year field</li>
+	         * <li>Check if the resulting date would be invalid</li>
+	         * <li>Adjust the day-of-month to the last valid day if necessary</li>
+	         * </ol>
+	         * <p>
+	         * For example, 2008-02-29 (leap year) plus one year would result in the
+	         * invalid date 2009-02-29 (standard year). Instead of returning an invalid
+	         * result, the last valid day of the month, 2009-02-28, is selected instead.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param yearsToAdd  the years to add, may be negative
+	         * @return a {@code LocalDate} based on this date with the years added, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'plusYears',
+	        value: function plusYears(yearsToAdd) {
+	            if (yearsToAdd === 0) {
+	                return this;
+	            }
+	            var newYear = _ChronoField.ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd); // safe overflow
+	            return LocalDate._resolvePreviousValid(newYear, this._month, this._day);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in months added.
+	         * <p>
+	         * This method adds the specified amount to the months field in three steps:
+	         * <ol>
+	         * <li>Add the input months to the month-of-year field</li>
+	         * <li>Check if the resulting date would be invalid</li>
+	         * <li>Adjust the day-of-month to the last valid day if necessary</li>
+	         * </ol>
+	         * <p>
+	         * For example, 2007-03-31 plus one month would result in the invalid date
+	         * 2007-04-31. Instead of returning an invalid result, the last valid day
+	         * of the month, 2007-04-30, is selected instead.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param monthsToAdd  the months to add, may be negative
+	         * @return a {@code LocalDate} based on this date with the months added, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'plusMonths',
+	        value: function plusMonths(monthsToAdd) {
+	            if (monthsToAdd === 0) {
+	                return this;
+	            }
+	            var monthCount = this._year * 12 + (this._month - 1);
+	            var calcMonths = monthCount + monthsToAdd; // safe overflow
+	            var newYear = _ChronoField.ChronoField.YEAR.checkValidIntValue(_MathUtil.MathUtil.floorDiv(calcMonths, 12));
+	            var newMonth = _MathUtil.MathUtil.floorMod(calcMonths, 12) + 1;
+	            return LocalDate._resolvePreviousValid(newYear, newMonth, this._day);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in weeks added.
+	         * <p>
+	         * This method adds the specified amount in weeks to the days field incrementing
+	         * the month and year fields as necessary to ensure the result remains valid.
+	         * The result is only invalid if the maximum/minimum year is exceeded.
+	         * <p>
+	         * For example, 2008-12-31 plus one week would result in 2009-01-07.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param weeksToAdd  the weeks to add, may be negative
+	         * @return a {@code LocalDate} based on this date with the weeks added, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'plusWeeks',
+	        value: function plusWeeks(weeksToAdd) {
+	            return this.plusDays(_MathUtil.MathUtil.safeMultiply(weeksToAdd, 7));
 	        }
 	
 	        /**
@@ -4718,8 +5176,85 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (daysToAdd === 0) {
 	                return this;
 	            }
-	            var mjDay = this.toEpochDay() + daysToAdd;
+	            var mjDay = _MathUtil.MathUtil.safeAdd(this.toEpochDay(), daysToAdd);
 	            return LocalDate.ofEpochDay(mjDay);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in years subtracted.
+	         * <p>
+	         * This method subtracts the specified amount from the years field in three steps:
+	         * <ol>
+	         * <li>Subtract the input years to the year field</li>
+	         * <li>Check if the resulting date would be invalid</li>
+	         * <li>Adjust the day-of-month to the last valid day if necessary</li>
+	         * </ol>
+	         * <p>
+	         * For example, 2008-02-29 (leap year) minus one year would result in the
+	         * invalid date 2007-02-29 (standard year). Instead of returning an invalid
+	         * result, the last valid day of the month, 2007-02-28, is selected instead.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param yearsToSubtract  the years to subtract, may be negative
+	         * @return a {@code LocalDate} based on this date with the years subtracted, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'minusYears',
+	        value: function minusYears(yearsToSubtract) {
+	            return this.plusYears(yearsToSubtract * -1);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in months subtracted.
+	         * <p>
+	         * This method subtracts the specified amount from the months field in three steps:
+	         * <ol>
+	         * <li>Subtract the input months to the month-of-year field</li>
+	         * <li>Check if the resulting date would be invalid</li>
+	         * <li>Adjust the day-of-month to the last valid day if necessary</li>
+	         * </ol>
+	         * <p>
+	         * For example, 2007-03-31 minus one month would result in the invalid date
+	         * 2007-02-31. Instead of returning an invalid result, the last valid day
+	         * of the month, 2007-02-28, is selected instead.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param monthsToSubtract  the months to subtract, may be negative
+	         * @return a {@code LocalDate} based on this date with the months subtracted, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'minusMonths',
+	        value: function minusMonths(monthsToSubtract) {
+	            return this.plusMonths(monthsToSubtract * -1);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalDate} with the specified period in weeks subtracted.
+	         * <p>
+	         * This method subtracts the specified amount in weeks from the days field decrementing
+	         * the month and year fields as necessary to ensure the result remains valid.
+	         * The result is only invalid if the maximum/minimum year is exceeded.
+	         * <p>
+	         * For example, 2009-01-07 minus one week would result in 2008-12-31.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param weeksToSubtract  the weeks to subtract, may be negative
+	         * @return a {@code LocalDate} based on this date with the weeks subtracted, not null
+	         * @throws DateTimeException if the result exceeds the supported date range
+	         */
+	
+	    }, {
+	        key: 'minusWeeks',
+	        value: function minusWeeks(weeksToSubtract) {
+	            return this.plusWeeks(weeksToSubtract * -1);
 	        }
 	
 	        /*
@@ -4742,6 +5277,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'minusDays',
 	        value: function minusDays(daysToSubtract) {
 	            return this.plusDays(daysToSubtract * -1);
+	        }
+	
+	        /**
+	         * Queries this date using the specified query.
+	         *
+	         * This queries this date using the specified query strategy object.
+	         * The {@code TemporalQuery} object defines the logic to be used to
+	         * obtain the result. Read the documentation of the query to understand
+	         * what the result of this method will be.
+	         *
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	         * specified query passing {@code this} as the argument.
+	         *
+	         * @param query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query (defined by the query)
+	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	         */
+	
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            (0, _assert.assert)(_query != null, '', _errors.NullPointerException);
+	            if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return this;
+	            }
+	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'query', this).call(this, _query);
 	        }
 	
 	        /**
@@ -4777,227 +5340,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
-	         * Obtains the current date from the system clock in the default time-zone or
-	         * if specified, the current date from the specified clock.
-	         *
-	         * This will query the specified clock to obtain the current date - today.
-	         * Using this method allows the use of an alternate clock for testing.
-	         *
-	         * @param clock  the clock to use, if null, the system clock and default time-zone is used.
-	         * @return the current date, not null
-	         */
-	
-	    }, {
-	        key: 'equals',
-	
-	
-	        /**
-	         * Checks if this date is equal to another date.
-	         *
-	         * Compares this LocalDate with another ensuring that the date is the same.
-	         *
-	         * Only objects of type LocalDate are compared, other types return false.
-	         *
-	         * @param otherDate  the object to check, null returns false
-	         * @return true if this is equal to the other date
-	         */
-	        value: function equals(otherDate) {
-	            if (this === otherDate) {
-	                return true;
-	            }
-	            if (otherDate instanceof LocalDate) {
-	                return this._compareTo(otherDate) === 0;
-	            }
-	            return false;
-	        }
-	    }, {
-	        key: '_compareTo',
-	        value: function _compareTo(otherDate) {
-	            var cmp = this.year() - otherDate.year();
-	            if (cmp === 0) {
-	                cmp = this.monthValue() - otherDate.monthValue();
-	                if (cmp === 0) {
-	                    cmp = this.dayOfMonth() - otherDate.dayOfMonth();
-	                }
-	            }
-	            return cmp;
-	        }
-	
-	        /**
-	         * Obtains an instance of LocalDate from the epoch day count.
-	         *
-	         * This returns a LocalDate with the specified epoch-day.
-	         * The {@link ChronoField#EPOCH_DAY EPOCH_DAY} is a simple incrementing count
-	         * of days where day 0 is 1970-01-01. Negative numbers represent earlier days.
-	         *
-	         * @param {number} epochDay - the Epoch Day to convert, based on the epoch 1970-01-01
-	         * @return {LocalDate} the local date, not null
-	         * @throws AssertionError if the epoch days exceeds the supported date range
-	         */
-	
-	    }, {
-	        key: 'isSupported',
-	
-	
-	        /**
-	         * Checks if the specified field is supported.
-	         * <p>
-	         * This checks if this date can be queried for the specified field.
-	         * If false, then calling the {@link #range(TemporalField) range} and
-	         * {@link #get(TemporalField) get} methods will throw an exception.
-	         * <p>
-	         * If the field is a {@link ChronoField} then the query is implemented here.
-	         * The {@link #isSupported(TemporalField) supported fields} will return valid
-	         * values based on this date-time.
-	         * The supported fields are:
-	         * <ul>
-	         * <li>{@code DAY_OF_WEEK}
-	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
-	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
-	         * <li>{@code DAY_OF_MONTH}
-	         * <li>{@code DAY_OF_YEAR}
-	         * <li>{@code EPOCH_DAY}
-	         * <li>{@code ALIGNED_WEEK_OF_MONTH}
-	         * <li>{@code ALIGNED_WEEK_OF_YEAR}
-	         * <li>{@code MONTH_OF_YEAR}
-	         * <li>{@code EPOCH_MONTH}
-	         * <li>{@code YEAR_OF_ERA}
-	         * <li>{@code YEAR}
-	         * <li>{@code ERA}
-	         * </ul>
-	         * All other {@code ChronoField} instances will return false.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-	         * passing {@code this} as the argument.
-	         * Whether the field is supported is determined by the field.
-	         *
-	         * @param field  the field to check, null returns false
-	         * @return true if the field is supported on this date, false if not
-	         */
-	        value: function isSupported(field) {
-	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'isSupported', this).call(this, field);
-	        }
-	
-	        /**
-	         * Obtains an instance of {@code LocalDate} from a temporal object.
-	         * <p>
-	         * A {@code TemporalAccessor} represents some form of date and time information.
-	         * This factory converts the arbitrary temporal object to an instance of {@code LocalDate}.
-	         * <p>
-	         * The conversion uses the {@link TemporalQueries#localDate()} query, which relies
-	         * on extracting the {@link ChronoField#EPOCH_DAY EPOCH_DAY} field.
-	         * <p>
-	         * This method matches the signature of the functional interface {@link TemporalQuery}
-	         * allowing it to be used as a query via method reference, {@code LocalDate::from}.
-	         *
-	         * @param temporal  the temporal object to convert, not null
-	         * @return the local date, not null
-	         * @throws DateTimeException if unable to convert to a {@code LocalDate}
-	         */
-	
-	    }, {
-	        key: 'query',
-	
-	
-	        /**
-	         * Queries this date using the specified query.
-	         *
-	         * This queries this date using the specified query strategy object.
-	         * The {@code TemporalQuery} object defines the logic to be used to
-	         * obtain the result. Read the documentation of the query to understand
-	         * what the result of this method will be.
-	         *
-	         * The result of this method is obtained by invoking the
-	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-	         * specified query passing {@code this} as the argument.
-	         *
-	         * @param query  the query to invoke, not null
-	         * @return the query result, null may be returned (defined by the query)
-	         * @throws DateTimeException if unable to query (defined by the query)
-	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
-	         */
-	        value: function query(_query) {
-	            (0, _assert.assert)(_query != null, '', _errors.NullPointerException);
-	            if (_query === _TemporalQueries.TemporalQueries.localDate()) {
-	                return this;
-	            }
-	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'query', this).call(this, _query);
-	        }
-	
-	        /**
-	         * Returns a copy of this date with the year altered.
-	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param year  the year to set in the result, from MIN_YEAR to MAX_YEAR
-	         * @return a {@code LocalDate} based on this date with the requested year, not null
-	         * @throws DateTimeException if the year value is invalid
-	         */
-	
-	    }, {
-	        key: 'withYear',
-	        value: function withYear(year) {
-	            if (this._year === year) {
-	                return this;
-	            }
-	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
-	            return LocalDate._resolvePreviousValid(year, this._month, this._day);
-	        }
-	
-	        /**
-	         * Returns a copy of this {@code LocalDate} with the month-of-year altered.
-	         * <p>
-	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
-	         * @return {@code LocalDate} based on this date with the requested month, not null
-	         * @throws DateTimeException if the month-of-year value is invalid
-	         */
-	
-	    }, {
-	        key: 'withMonth',
-	        value: function withMonth(month) {
-	            if (this._month === month) {
-	                return this;
-	            }
-	            return LocalDate.of(this._year, month, this._day);
-	        }
-	
-	        /**
-	         * Returns a copy of this {@code LocalDate} with the day-of-month altered.
-	         * <p>
-	         * If the resulting date is invalid, an exception is thrown.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
-	         * @return {LocalDate} based on this date with the requested day, not null
-	         * @throws DateTimeException if the day-of-month value is invalid,
-	         *  or if the day-of-month is invalid for the month-year
-	         */
-	
-	    }, {
-	        key: 'withDayOfMonth',
-	        value: function withDayOfMonth(dayOfMonth) {
-	            if (this._day === dayOfMonth) {
-	                return this;
-	            }
-	            return LocalDate.of(this._year, this._month, dayOfMonth);
-	        }
-	
-	        /**
-	         * @private
-	         */
-	
-	    }, {
-	        key: 'compareTo',
-	
-	
-	        /**
 	         * Compares this date to another date.
 	         * <p>
 	         * The comparison is primarily based on the date, from earliest to latest.
@@ -5011,6 +5353,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param other  the other date to compare to, not null
 	         * @return the comparator value, negative if less, positive if greater
 	         */
+	
+	    }, {
+	        key: 'compareTo',
 	        value: function compareTo(other) {
 	            (0, _assert.assert)(other != null, 'other', _errors.NullPointerException);
 	            if (other instanceof LocalDate) {
@@ -5118,28 +5463,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // return super.isEqual(other) if not instanceof LocalDate
 	        }
 	
-	        //-----------------------------------------------------------------------
 	        /**
 	         * Checks if this date is equal to another date.
-	         * <p>
-	         * Compares this {@code LocalDate} with another ensuring that the date is the same.
-	         * <p>
-	         * Only objects of type {@code LocalDate} are compared, other types return false.
-	         * To compare the dates of two {@code TemporalAccessor} instances, including dates
-	         * in two different chronologies, use {@link ChronoField#EPOCH_DAY} as a comparator.
 	         *
-	         * @param obj  the object to check, null returns false
+	         * Compares this LocalDate with another ensuring that the date is the same.
+	         *
+	         * Only objects of type LocalDate are compared, other types return false.
+	         *
+	         * @param otherDate  the object to check, null returns false
 	         * @return true if this is equal to the other date
 	         */
 	
 	    }, {
 	        key: 'equals',
-	        value: function equals(obj) {
-	            if (this === obj) {
+	        value: function equals(otherDate) {
+	            if (this === otherDate) {
 	                return true;
 	            }
-	            if (obj instanceof LocalDate) {
-	                return this._compareTo0(obj) === 0;
+	            if (otherDate instanceof LocalDate) {
+	                return this._compareTo0(otherDate) === 0;
 	            }
 	            return false;
 	        }
@@ -5206,113 +5548,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return yearString + monthString + dayString;
 	        }
 	    }], [{
-	        key: 'of',
-	        value: function of(year, month, dayOfMonth) {
-	            return new LocalDate(year, month, dayOfMonth);
-	        }
-	    }, {
-	        key: 'now',
-	        value: function now() {
-	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
-	
-	            (0, _assert.assert)(clock != null, 'clock', _errors.NullPointerException);
-	            var now = clock.instant();
-	            var offset = clock.offset(now);
-	            var epochSec = now.epochSecond() + offset.totalSeconds();
-	            var epochDay = _MathUtil.MathUtil.floorDiv(epochSec, _LocalTime.LocalTime.SECONDS_PER_DAY);
-	            return LocalDate.ofEpochDay(epochDay);
-	        }
-	
-	        /**
-	         * Obtains an instance of {@code LocalDate} from a text string using a specific formatter.
-	         *
-	         * The text is parsed using the formatter, returning a date.
-	         *
-	         * @param text  the text to parse, not null
-	         * @param formatter  the formatter to use, default is DateTimeFormatter.ISO_LOCAL_DATE
-	         * @return the parsed local date, not null
-	         * @throws DateTimeParseException if the text cannot be parsed
-	         */
-	
-	    }, {
-	        key: 'parse',
-	        value: function parse(text) {
-	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE() : arguments[1];
-	
-	            (0, _assert.assert)(formatter != null, 'formatter', _errors.NullPointerException);
-	            return formatter.parse(text, LocalDate.FROM);
-	        }
-	    }, {
-	        key: 'ofEpochDay',
-	        value: function ofEpochDay(epochDay) {
-	            var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
-	            zeroDay = epochDay + DAYS_0000_TO_1970;
-	            zeroDay -= 60;
-	            adjust = 0;
-	            if (zeroDay < 0) {
-	                adjustCycles = _MathUtil.MathUtil.intDiv(zeroDay + 1, DAYS_PER_CYCLE) - 1;
-	                adjust = adjustCycles * 400;
-	                zeroDay += -adjustCycles * DAYS_PER_CYCLE;
-	            }
-	            yearEst = _MathUtil.MathUtil.intDiv(400 * zeroDay + 591, DAYS_PER_CYCLE);
-	            doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
-	            if (doyEst < 0) {
-	                yearEst--;
-	                doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
-	            }
-	            yearEst += adjust;
-	            marchDoy0 = doyEst;
-	            marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
-	            month = (marchMonth0 + 2) % 12 + 1;
-	            dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
-	            yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
-	            year = yearEst;
-	            return new LocalDate(year, month, dom);
-	        }
-	
-	        /**
-	         * Obtains an instance of {@code LocalDate} from a year and day-of-year.
-	         * <p>
-	         * This returns a {@code LocalDate} with the specified year and day-of-year.
-	         * The day-of-year must be valid for the year, otherwise an exception will be thrown.
-	         *
-	         * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-	         * @param {number} dayOfYear  the day-of-year to represent, from 1 to 366
-	         * @return LocalDate the local date, not null
-	         * @throws DateTimeException if the value of any field is out of range,
-	         *  or if the day-of-year is invalid for the year
-	         */
-	
-	    }, {
-	        key: 'ofYearDay',
-	        value: function ofYearDay(year, dayOfYear) {
-	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
-	            //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
-	            var leap = _IsoChronology.IsoChronology.isLeapYear(year);
-	            if (dayOfYear === 366 && leap === false) {
-	                (0, _assert.assert)(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', _errors.DateTimeException);
-	            }
-	            var moy = _Month.Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
-	            var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
-	            if (dayOfYear > monthEnd) {
-	                moy = moy.plus(1);
-	            }
-	            var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
-	            return new LocalDate(year, moy.value(), dom);
-	        }
-	    }, {
-	        key: 'from',
-	        value: function from(temporal) {
-	            (0, _assert.assert)(temporal != null, '', _errors.NullPointerException);
-	            var date = temporal.query(_TemporalQueries.TemporalQueries.localDate());
-	            if (date == null) {
-	                throw new _errors.DateTimeException('Unable to obtain LocalDate from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
-	            }
-	            return date;
-	        }
-	    }, {
-	        key: 'validate',
-	        value: function validate(year, month, dayOfMonth) {
+	        key: '_validate',
+	        value: function _validate(year, month, dayOfMonth) {
 	            var dom;
 	            _ChronoField.ChronoField.YEAR.checkValidValue(year);
 	            _ChronoField.ChronoField.MONTH_OF_YEAR.checkValidValue(month);
@@ -8517,6 +8754,448 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.ALWAYS = new SignStyle('ALWAYS');
 	SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DayOfWeek = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _errors = __webpack_require__(5);
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	var _assert = __webpack_require__(9);
+	
+	var _DateTimeFormatterBuilder = __webpack_require__(29);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ChronoUnit = __webpack_require__(7);
+	
+	var _TemporalAccessor2 = __webpack_require__(14);
+	
+	var _TemporalQueries = __webpack_require__(15);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var DayOfWeek = function (_TemporalAccessor) {
+	    _inherits(DayOfWeek, _TemporalAccessor);
+	
+	    function DayOfWeek(ordinal, name) {
+	        _classCallCheck(this, DayOfWeek);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DayOfWeek).call(this));
+	
+	        _this._ordinal = ordinal;
+	        _this._name = name;
+	        return _this;
+	    }
+	
+	    _createClass(DayOfWeek, [{
+	        key: 'ordinal',
+	        value: function ordinal() {
+	            return this._ordinal;
+	        }
+	    }, {
+	        key: 'name',
+	        value: function name() {
+	            return this._name;
+	        }
+	    }, {
+	        key: 'value',
+	
+	
+	        /**
+	         * Gets the day-of-week {@code int} value.
+	         * <p>
+	         * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
+	         * See {@link WeekFields#dayOfWeek} for localized week-numbering.
+	         *
+	         * @return the day-of-week, from 1 (Monday) to 7 (Sunday)
+	         */
+	        value: function value() {
+	            return this._ordinal + 1;
+	        }
+	
+	        /**
+	         * Gets the textual representation, such as 'Mon' or 'Friday'.
+	         * <p>
+	         * This returns the textual name used to identify the day-of-week.
+	         * The parameters control the length of the returned text and the locale.
+	         * <p>
+	         * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
+	         *
+	         * @param style  the length of the text required, not null
+	         * @param locale  the locale to use, not null
+	         * @return the text value of the day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'getDisplayName',
+	        value: function getDisplayName(style, locale) {
+	            return new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendText(_ChronoField.ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
+	        }
+	
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this day-of-week can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then
+	         * this method returns true.
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param field  the field to check, null returns false
+	         * @return true if the field is supported on this day-of-week, false if not
+	         */
+	
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                return field === _ChronoField.ChronoField.DAY_OF_WEEK;
+	            }
+	            return field != null && field.isSupportedBy(this);
+	        }
+	
+	        /**
+	         * Gets the range of valid values for the specified field.
+	         * <p>
+	         * The range object expresses the minimum and maximum valid values for a field.
+	         * This day-of-week is used to enhance the accuracy of the returned range.
+	         * If it is not possible to return the range, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * range of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the range can be obtained is determined by the field.
+	         *
+	         * @param field  the field to query the range for, not null
+	         * @return the range of valid values for the field, not null
+	         * @throws DateTimeException if the range for the field cannot be obtained
+	         */
+	
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return field.range();
+	            } else if (field instanceof _ChronoField.ChronoField) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.rangeRefinedBy(this);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this day-of-week as an {@code int}.
+	         * <p>
+	         * This queries this day-of-week for the value for the specified field.
+	         * The returned value will always be within the valid range of values for the field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * value of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field, within the valid range of values
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
+	         * @throws DateTimeException if the value is outside the range of valid values for the field
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return this.value();
+	            }
+	            return this.range(field).checkValidIntValue(this.getLong(field), field);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this day-of-week as a {@code long}.
+	         * <p>
+	         * This queries this day-of-week for the value for the specified field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * value of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return this.value();
+	            } else if (field instanceof _ChronoField.ChronoField) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.getFrom(this);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns the day-of-week that is the specified number of days after this one.
+	         * <p>
+	         * The calculation rolls around the end of the week from Sunday to Monday.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param days  the days to add, positive or negative
+	         * @return the resulting day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'plus',
+	        value: function plus(days) {
+	            var amount = _MathUtil.MathUtil.floorMod(days, 7);
+	            return ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+	        }
+	
+	        /**
+	         * Returns the day-of-week that is the specified number of days before this one.
+	         * <p>
+	         * The calculation rolls around the start of the year from Monday to Sunday.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param days  the days to subtract, positive or negative
+	         * @return the resulting day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus(days) {
+	            return this.plus(-1 * _MathUtil.MathUtil.floorMod(days, 7));
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Queries this day-of-week using the specified query.
+	         * <p>
+	         * This queries this day-of-week using the specified query strategy object.
+	         * The {@code TemporalQuery} object defines the logic to be used to
+	         * obtain the result. Read the documentation of the query to understand
+	         * what the result of this method will be.
+	         * <p>
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	         * specified query passing {@code this} as the argument.
+	         *
+	         * @param query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query (defined by the query)
+	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	         */
+	
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.DAYS;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return null;
+	            }
+	            (0, _assert.assert)(_query != null, 'query', _errors.NullPointerException);
+	            return _query.queryFrom(this);
+	        }
+	
+	        /**
+	         * Adjusts the specified temporal object to have this day-of-week.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with the day-of-week changed to be the same as this.
+	         * <p>
+	         * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+	         * passing {@link ChronoField#DAY_OF_WEEK} as the field.
+	         * Note that this adjusts forwards or backwards within a Monday to Sunday week.
+	         * See {@link WeekFields#dayOfWeek} for localized week start days.
+	         * See {@link TemporalAdjusters} for other adjusters
+	         * with more control, such as {@code next(MONDAY)}.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#with(TemporalAdjuster)}:
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   temporal = thisDayOfWeek.adjustInto(temporal);
+	         *   temporal = temporal.with(thisDayOfWeek);
+	         * </pre>
+	         * <p>
+	         * For example, given a date that is a Wednesday, the following are output:
+	         * <pre>
+	         *   dateOnWed.with(MONDAY);     // two days earlier
+	         *   dateOnWed.with(TUESDAY);    // one day earlier
+	         *   dateOnWed.with(WEDNESDAY);  // same date
+	         *   dateOnWed.with(THURSDAY);   // one day later
+	         *   dateOnWed.with(FRIDAY);     // two days later
+	         *   dateOnWed.with(SATURDAY);   // three days later
+	         *   dateOnWed.with(SUNDAY);     // four days later
+	         * </pre>
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param temporal  the target object to be adjusted, not null
+	         * @return the adjusted object, not null
+	         * @throws DateTimeException if unable to make the adjustment
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
+	        }
+	    }, {
+	        key: 'equal',
+	        value: function equal() {
+	            return this._name;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this._name;
+	        }
+	    }], [{
+	        key: 'values',
+	        value: function values() {
+	            return ENUMS;
+	        }
+	    }, {
+	        key: 'valueOf',
+	        value: function valueOf(name) {
+	            for (var ordinal = 0; ordinal < ENUMS.length; ordinal++) {
+	                if (ENUMS[ordinal].name() === name) {
+	                    break;
+	                }
+	            }
+	            return DayOfWeek.of(ordinal + 1);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code DayOfWeek} from an {@code int} value.
+	         * <p>
+	         * {@code DayOfWeek} is an enum representing the 7 days of the week.
+	         * This factory allows the enum to be obtained from the {@code int} value.
+	         * The {@code int} value follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
+	         *
+	         * @param dayOfWeek  the day-of-week to represent, from 1 (Monday) to 7 (Sunday)
+	         * @return the day-of-week singleton, not null
+	         * @throws DateTimeException if the day-of-week is invalid
+	         */
+	
+	    }, {
+	        key: 'of',
+	        value: function of(dayOfWeek) {
+	            if (dayOfWeek < 1 || dayOfWeek > 7) {
+	                throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
+	            }
+	            return ENUMS[dayOfWeek - 1];
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code DayOfWeek} from a temporal object.
+	         * <p>
+	         * A {@code TemporalAccessor} represents some form of date and time information.
+	         * This factory converts the arbitrary temporal object to an instance of {@code DayOfWeek}.
+	         * <p>
+	         * The conversion extracts the {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} field.
+	         * <p>
+	         * This method matches the signature of the functional interface {@link TemporalQuery}
+	         * allowing it to be used as a query via method reference, {@code DayOfWeek::from}.
+	         *
+	         * @param temporal  the temporal object to convert, not null
+	         * @return the day-of-week, not null
+	         * @throws DateTimeException if unable to convert to a {@code DayOfWeek}
+	         */
+	
+	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            (0, _assert.assert)(temporal != null, 'temporal', _errors.NullPointerException);
+	            if (temporal instanceof DayOfWeek) {
+	                return temporal;
+	            }
+	            try {
+	                return DayOfWeek.of(temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK));
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeException) {
+	                    throw new _errors.DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + temporal.name(), ex);
+	                } else {
+	                    throw ex;
+	                }
+	            }
+	        }
+	    }]);
+	
+	    return DayOfWeek;
+	}(_TemporalAccessor2.TemporalAccessor);
+	
+	exports.DayOfWeek = DayOfWeek;
+	
+	
+	DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
+	DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
+	DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
+	DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
+	DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
+	DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
+	DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
+	
+	DayOfWeek.FROM = (0, _TemporalQueries.createTemporalQuery)('DayOfWeek.FROM', function (temporal) {
+	    return DayOfWeek.from(temporal);
+	});
+	
+	var ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
 
 /***/ }
 /******/ ])

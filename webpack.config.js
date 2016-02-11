@@ -13,7 +13,7 @@ module.exports = {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda.min.js' : 'js-joda.js',
         libraryTarget: minify ? 'var' : 'umd',
-        library: 'jsjoda'
+        library: 'JSJoda'
     },
     module: {
         loaders: [{

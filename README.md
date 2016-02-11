@@ -61,7 +61,7 @@ Then add it as a script tag to your page
 
     <script src="js-joda.min.js"></script>
     <script>
-        var LocalDate = jsjoda.LocalDate;
+        var LocalDate = JSJoda.LocalDate;
         var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
     </script>
      
