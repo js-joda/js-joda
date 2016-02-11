@@ -2,7 +2,7 @@
  * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {NullPointerException} from './errors';
+import {NullPointerException, IllegalArgumentException} from './errors';
 
 export function assert(assertion, msg, error) {
     if(!assertion){
@@ -17,6 +17,13 @@ export function assert(assertion, msg, error) {
 export function requireNonNull(value, parameterName) {
     if (value == null) {
         throw new NullPointerException(parameterName + ' must not be null');
+    }
+    return value;
+}
+
+export function requireInstance(value, _class, parameterName) {
+    if (value instanceof _class) {
+        throw new IllegalArgumentException(parameterName + ' must instanceof ' + _class);
     }
     return value;
 }
