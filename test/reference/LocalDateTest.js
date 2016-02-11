@@ -784,17 +784,88 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/** TODO
-
     describe('plus(Period)', () => {
 
+        it('test_plus_Period_positiveMonths', () => {
+            var period = Period.ofMonths(7);
+            var t = TEST_2007_07_15.plus(period);
+            assertEquals(t, LocalDate.of(2008, 2, 15));
+        });
+
+        it('test_plus_Period_negativeDays', () => {
+            var period = Period.ofDays(-25);
+            var t = TEST_2007_07_15.plus(period);
+            assertEquals(t, LocalDate.of(2007, 6, 20));
+        });
+
+/* strange test
+        it('test_plus_Period_timeNotAllowed', () => {
+            expect(() => {
+                var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+                TEST_2007_07_15.plus(period);
+            }).to.throw(DateTimeException);
+        });
+*/
+
+        it('test_plus_Period_null', () => {
+            expect(() => {
+                TEST_2007_07_15.plus(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_plus_Period_invalidTooLarge', () => {
+            expect(() => {
+                var period = Period.ofYears(1);
+                LocalDate.of(Year.MAX_VALUE, 1, 1).plus(period);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_Period_invalidTooSmall', () => {
+            expect(() => {
+                var period = Period.ofYears(-1, ChronoUnit.YEARS);
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plus(period);
+            }).to.throw(DateTimeException);
+        });
     });
 
     describe('plus(long,PeriodUnit)', () => {
 
-    });
+        it('test_plus_longPeriodUnit_positiveMonths', () => {
+            var t = TEST_2007_07_15.plus(7, ChronoUnit.MONTHS);
+            assertEquals(t, LocalDate.of(2008, 2, 15));
+        });
 
- */
+        it('test_plus_longPeriodUnit_negativeDays', () => {
+            var t = TEST_2007_07_15.plus(-25, ChronoUnit.DAYS);
+            assertEquals(t, LocalDate.of(2007, 6, 20));
+        });
+
+        it('test_plus_longPeriodUnit_timeNotAllowed', () => {
+            expect(() => {
+                TEST_2007_07_15.plus(7, ChronoUnit.HOURS);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_longPeriodUnit_null', () => {
+            expect(() => {
+                TEST_2007_07_15.plus(1, null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_plus_longPeriodUnit_invalidTooLarge', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 1, 1).plus(1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_longPeriodUnit_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plus(-1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
+    });
 
     describe('plusYears()', () => {
 

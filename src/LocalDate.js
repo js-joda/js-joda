@@ -759,6 +759,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws ArithmeticException if numeric overflow occurs
      */
     _plus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
 
@@ -778,6 +779,8 @@ export class LocalDate extends ChronoLocalDate{
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _plus2(amountToAdd, unit) {
+        requireNonNull(amountToAdd, 'amountToAdd');
+        requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.DAYS: return this.plusDays(amountToAdd);
