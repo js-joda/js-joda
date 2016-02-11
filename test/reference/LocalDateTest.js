@@ -646,17 +646,63 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/**
-
     describe('with()', () => {
+        it('test_with_adjustment', () => {
+            var sample = LocalDate.of(2012, 3, 4);
+            var adjuster = {
+                adjustInto: () => {
+                    return sample;
+                }
+            };
+            assertEquals(TEST_2007_07_15.with(adjuster), sample);
+        });
+
+        it('test_with_adjustment_null', () => {
+            expect(() => {
+                TEST_2007_07_15.with(null);
+
+            }).to.throw(NullPointerException);
+        });
 
     });
 
     describe('with(DateTimeField,long)', () => {
 
+        it('test_with_DateTimeField_long_normal', () => {
+            var t = TEST_2007_07_15.with(ChronoField.YEAR, 2008);
+            assertEquals(t, LocalDate.of(2008, 7, 15));
+        });
+
+        it('test_with_DateTimeField_long_null', () => {
+            expect(() => {
+                TEST_2007_07_15.with(null, 1);
+
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_with_DateTimeField_long_invalidField', () => {
+            expect(() => {
+                TEST_2007_07_15.with(MockFieldNoValue.INSTANCE, 1);
+
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_with_DateTimeField_long_timeField', () => {
+            expect(() => {
+                TEST_2007_07_15.with(ChronoField.HOUR_OF_DAY, 1);
+
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_with_DateTimeField_long_invalidValue', () => {
+            expect(() => {
+                TEST_2007_07_15.with(ChronoField.DAY_OF_WEEK, -1);
+
+            }).to.throw(DateTimeException);
+        });
     });
 
- */
+
 
     describe('withYear()', () => {
         it('test_withYear_int_normal', function () {

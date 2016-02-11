@@ -6,7 +6,7 @@
 import {assert} from './assert';
 
 import { MathUtil } from './MathUtil';
-import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException} from './errors';
+import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException, IllegalArgumentException} from './errors';
 
 import { IsoChronology } from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
@@ -466,6 +466,196 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * function overloading for the with method.
+     *
+     * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster,
+     * otherwise a field and newValue argument is expected.
+     *
+     * @param fieldOrAdjuster
+     * @param newValue
+     */
+    with(fieldOrAdjuster, newValue){
+        if(arguments.length < 2){
+            return this._withTemporalAdjuster(fieldOrAdjuster);
+        } else {
+            return this._with2(fieldOrAdjuster, newValue);
+        }
+    }
+
+    /**
+     * Returns an adjusted copy of this date.
+     * <p>
+     * This returns a new {@code LocalDate}, based on this one, with the date adjusted.
+     * The adjustment takes place using the specified adjuster strategy object.
+     * Read the documentation of the adjuster to understand what adjustment will be made.
+     * <p>
+     * A simple adjuster might simply set the one of the fields, such as the year field.
+     * A more complex adjuster might set the date to the last day of the month.
+     * A selection of common adjustments is provided in {@link TemporalAdjusters}.
+     * These include finding the "last day of the month" and "next Wednesday".
+     * Key date-time classes also implement the {@code TemporalAdjuster} interface,
+     * such as {@link Month} and {@link MonthDay}.
+     * The adjuster is responsible for handling special cases, such as the varying
+     * lengths of month and leap years.
+     * <p>
+     * For example this code returns a date on the last day of July:
+     * <pre>
+     *  import static org.threeten.bp.Month.*;
+     *  import static org.threeten.bp.temporal.Adjusters.*;
+     *
+     *  result = localDate.with(JULY).with(lastDayOfMonth());
+     * </pre>
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+     * specified adjuster passing {@code this} as the argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param adjuster the adjuster to use, not null
+     * @return a {@code LocalDate} based on {@code this} with the adjustment made, not null
+     * @throws DateTimeException if the adjustment cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _withTemporalAdjuster(adjuster) {
+        assert(adjuster != null, 'adjuster', NullPointerException);
+        assert(typeof adjuster.adjustInto === 'function', adjuster + 'is mot an adjuster', IllegalArgumentException);
+        // optimizations
+        if (adjuster instanceof LocalDate) {
+            return adjuster;
+        }
+        return adjuster.adjustInto(this);
+    }
+
+    /**
+     * Returns a copy of this date with the specified field set to a new value.
+     * <p>
+     * This returns a new {@code LocalDate}, based on this one, with the value
+     * for the specified field changed.
+     * This can be used to change any supported field, such as the year, month or day-of-month.
+     * If it is not possible to set the value, because the field is not supported or for
+     * some other reason, an exception is thrown.
+     * <p>
+     * In some cases, changing the specified field can cause the resulting date to become invalid,
+     * such as changing the month from 31st January to February would make the day-of-month invalid.
+     * In cases like this, the field is responsible for resolving the date. Typically it will choose
+     * the previous valid date, which would be the last valid day of February in this example.
+     * <p>
+     * If the field is a {@link ChronoField} then the adjustment is implemented here.
+     * The supported fields behave as follows:
+     * <ul>
+     * <li>{@code DAY_OF_WEEK} -
+     *  Returns a {@code LocalDate} with the specified day-of-week.
+     *  The date is adjusted up to 6 days forward or backward within the boundary
+     *  of a Monday to Sunday week.
+     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH} -
+     *  Returns a {@code LocalDate} with the specified aligned-day-of-week.
+     *  The date is adjusted to the specified month-based aligned-day-of-week.
+     *  Aligned weeks are counted such that the first week of a given month starts
+     *  on the first day of that month.
+     *  This may cause the date to be moved up to 6 days into the following month.
+     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR} -
+     *  Returns a {@code LocalDate} with the specified aligned-day-of-week.
+     *  The date is adjusted to the specified year-based aligned-day-of-week.
+     *  Aligned weeks are counted such that the first week of a given year starts
+     *  on the first day of that year.
+     *  This may cause the date to be moved up to 6 days into the following year.
+     * <li>{@code DAY_OF_MONTH} -
+     *  Returns a {@code LocalDate} with the specified day-of-month.
+     *  The month and year will be unchanged. If the day-of-month is invalid for the
+     *  year and month, then a {@code DateTimeException} is thrown.
+     * <li>{@code DAY_OF_YEAR} -
+     *  Returns a {@code LocalDate} with the specified day-of-year.
+     *  The year will be unchanged. If the day-of-year is invalid for the
+     *  year, then a {@code DateTimeException} is thrown.
+     * <li>{@code EPOCH_DAY} -
+     *  Returns a {@code LocalDate} with the specified epoch-day.
+     *  This completely replaces the date and is equivalent to {@link #ofEpochDay(long)}.
+     * <li>{@code ALIGNED_WEEK_OF_MONTH} -
+     *  Returns a {@code LocalDate} with the specified aligned-week-of-month.
+     *  Aligned weeks are counted such that the first week of a given month starts
+     *  on the first day of that month.
+     *  This adjustment moves the date in whole week chunks to match the specified week.
+     *  The result will have the same day-of-week as this date.
+     *  This may cause the date to be moved into the following month.
+     * <li>{@code ALIGNED_WEEK_OF_YEAR} -
+     *  Returns a {@code LocalDate} with the specified aligned-week-of-year.
+     *  Aligned weeks are counted such that the first week of a given year starts
+     *  on the first day of that year.
+     *  This adjustment moves the date in whole week chunks to match the specified week.
+     *  The result will have the same day-of-week as this date.
+     *  This may cause the date to be moved into the following year.
+     * <li>{@code MONTH_OF_YEAR} -
+     *  Returns a {@code LocalDate} with the specified month-of-year.
+     *  The year will be unchanged. The day-of-month will also be unchanged,
+     *  unless it would be invalid for the new month and year. In that case, the
+     *  day-of-month is adjusted to the maximum valid value for the new month and year.
+     * <li>{@code PROLEPTIC_MONTH} -
+     *  Returns a {@code LocalDate} with the specified proleptic-month.
+     *  The day-of-month will be unchanged, unless it would be invalid for the new month
+     *  and year. In that case, the day-of-month is adjusted to the maximum valid value
+     *  for the new month and year.
+     * <li>{@code YEAR_OF_ERA} -
+     *  Returns a {@code LocalDate} with the specified year-of-era.
+     *  The era and month will be unchanged. The day-of-month will also be unchanged,
+     *  unless it would be invalid for the new month and year. In that case, the
+     *  day-of-month is adjusted to the maximum valid value for the new month and year.
+     * <li>{@code YEAR} -
+     *  Returns a {@code LocalDate} with the specified year.
+     *  The month will be unchanged. The day-of-month will also be unchanged,
+     *  unless it would be invalid for the new month and year. In that case, the
+     *  day-of-month is adjusted to the maximum valid value for the new month and year.
+     * <li>{@code ERA} -
+     *  Returns a {@code LocalDate} with the specified era.
+     *  The year-of-era and month will be unchanged. The day-of-month will also be unchanged,
+     *  unless it would be invalid for the new month and year. In that case, the
+     *  day-of-month is adjusted to the maximum valid value for the new month and year.
+     * </ul>
+     * <p>
+     * In all cases, if the new value is outside the valid range of values for the field
+     * then a {@code DateTimeException} will be thrown.
+     * <p>
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+     * passing {@code this} as the argument. In this case, the field determines
+     * whether and how to adjust the instant.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param field  the field to set in the result, not null
+     * @param newValue  the new value of the field in the result
+     * @return a {@code LocalDate} based on {@code this} with the specified field set, not null
+     * @throws DateTimeException if the field cannot be set
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _with2(field, newValue) {
+        assert(field != null, 'field', NullPointerException);
+        if (field instanceof ChronoField) {
+            var f = field;
+            f.checkValidValue(newValue);
+            switch (f) {
+                case ChronoField.DAY_OF_WEEK: return this.plusDays(newValue - this.getDayOfWeek().value());
+                case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return this.plusDays(newValue - this.getLong(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));
+                case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return this.plusDays(newValue - this.getLong(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+                case ChronoField.DAY_OF_MONTH: return this.withDayOfMonth(newValue);
+                case ChronoField.DAY_OF_YEAR: return this.withDayOfYear(newValue);
+                case ChronoField.EPOCH_DAY: return LocalDate.ofEpochDay(newValue);
+                case ChronoField.ALIGNED_WEEK_OF_MONTH: return this.plusWeeks(newValue - this.getLong(ChronoField.ALIGNED_WEEK_OF_MONTH));
+                case ChronoField.ALIGNED_WEEK_OF_YEAR: return this.plusWeeks(newValue - this.getLong(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                case ChronoField.MONTH_OF_YEAR: return this.withMonth(newValue);
+                case ChronoField.PROLEPTIC_MONTH: return this.plusMonths(newValue - this.getLong(ChronoField.PROLEPTIC_MONTH));
+                case ChronoField.YEAR_OF_ERA: return this.withYear((this._year >= 1 ? newValue : 1 - newValue));
+                case ChronoField.YEAR: return this.withYear(newValue);
+                case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
+    /**
      * Returns a copy of this date with the year altered.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
      * <p>
@@ -752,6 +942,34 @@ export class LocalDate extends ChronoLocalDate{
             return this;
         }
         return super.query(query);
+    }
+
+    /**
+     * Adjusts the specified temporal object to have the same date as this object.
+     * <p>
+     * This returns a temporal object of the same observable type as the input
+     * with the date changed to be the same as this.
+     * <p>
+     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * passing {@link ChronoField#EPOCH_DAY} as the field.
+     * <p>
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with(TemporalAdjuster)}:
+     * <pre>
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisLocalDate.adjustInto(temporal);
+     *   temporal = temporal.with(thisLocalDate);
+     * </pre>
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param temporal  the target object to be adjusted, not null
+     * @return the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        return super.adjustInto(temporal);
     }
 
     /**

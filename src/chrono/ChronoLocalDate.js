@@ -30,4 +30,7 @@ export class ChronoLocalDate extends TemporalAccessor {
         return super.query(query);
     }
 
+    adjustInto(temporal) {
+        return temporal.with(ChronoField.EPOCH_DAY, this.toEpochDay());
+    }
 }
