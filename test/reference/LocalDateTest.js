@@ -18,6 +18,7 @@ import {DayOfWeek} from '../../src/DayOfWeek';
 import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {Month} from '../../src/Month';
+import {Period} from '../../src/Period';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Year} from '../../src/Year';
 
@@ -1077,17 +1078,89 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/** TODO
-
     describe('minus(Period)', () => {
+
+        it('test_minus_Period_positiveMonths', () => {
+            var period = Period.ofMonths(7);
+            var t = TEST_2007_07_15.minus(period);
+            assertEquals(t, LocalDate.of(2006, 12, 15));
+        });
+
+        it('test_minus_Period_negativeDays', () => {
+            var period = Period.ofDays(-25);
+            var t = TEST_2007_07_15.minus(period);
+            assertEquals(t, LocalDate.of(2007, 8, 9));
+        });
+
+
+/* strange test
+        it('test_minus_Period_timeNotAllowed', () => {
+            expect(() => {
+                var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+                TEST_2007_07_15.minus(period);
+            }).to.throw(DateTimeException);
+        });
+*/
+
+        it('test_minus_Period_null', () => {
+            expect(() => {
+                TEST_2007_07_15.minus(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_minus_Period_invalidTooLarge', () => {
+            expect(() => {
+                var period = Period.ofYears(-1);
+                LocalDate.of(Year.MAX_VALUE, 1, 1).minus(period);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minus_Period_invalidTooSmall', () => {
+            expect(() => {
+                var period = Period.ofYears(1);
+                LocalDate.of(Year.MIN_VALUE, 1, 1).minus(period);
+            }).to.throw(DateTimeException);
+        });
 
     });
 
     describe('minus(long,PeriodUnit)', () => {
 
-    });
+        it('test_minus_longPeriodUnit_positiveMonths', () => {
+            var t = TEST_2007_07_15.minus(7, ChronoUnit.MONTHS);
+            assertEquals(t, LocalDate.of(2006, 12, 15));
+        });
 
- */
+        it('test_minus_longPeriodUnit_negativeDays', () => {
+            var t = TEST_2007_07_15.minus(-25, ChronoUnit.DAYS);
+            assertEquals(t, LocalDate.of(2007, 8, 9));
+        });
+
+        it('test_minus_longPeriodUnit_timeNotAllowed', () => {
+            expect(() => {
+                TEST_2007_07_15.minus(7, ChronoUnit.HOURS);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minus_longPeriodUnit_null', () => {
+            expect(() => {
+                TEST_2007_07_15.minus(1, null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_minus_longPeriodUnit_invalidTooLarge', () => {
+            expect(() => {
+                LocalDate.of(Year.MAX_VALUE, 1, 1).minus(-1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minus_longPeriodUnit_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).minus(1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
+    });
 
     describe('minusYears()', () => {
 

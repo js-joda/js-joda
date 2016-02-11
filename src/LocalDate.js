@@ -3,12 +3,12 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {assert} from './assert';
+import {assert, requireNonNull} from './assert';
 
-import { MathUtil } from './MathUtil';
+import {MathUtil} from './MathUtil';
 import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException, IllegalArgumentException} from './errors';
 
-import { IsoChronology } from './chrono/IsoChronology';
+import {IsoChronology} from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {ChronoLocalDate} from './chrono/ChronoLocalDate';
@@ -924,6 +924,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws ArithmeticException if numeric overflow occurs
      */
     _minus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -943,6 +944,8 @@ export class LocalDate extends ChronoLocalDate{
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _minus2(amountToSubtract, unit) {
+        requireNonNull(amountToSubtract, 'amountToSubtract');
+        requireNonNull(unit, 'unit');
         return this._plus2(-1 * amountToSubtract, unit);
     }
 
