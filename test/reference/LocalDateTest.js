@@ -112,7 +112,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/*
+/* TODO timezone milestone
     describe('now(ZoneId)', () => {
 
     });
@@ -162,7 +162,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }
         });
 
-/*
+/** TODO
         it('now_Clock_maxYear', () => {
             var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
             var test = LocalDate.now(clock);
@@ -465,7 +465,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-    /**
+    /** TODO
     describe('parse(DateTimeFormatter)', () => {
         @Test
         public void factory_parse_formatter() {
@@ -783,7 +783,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/**
+/** TODO
 
     describe('plus(Period)', () => {
 
@@ -1077,7 +1077,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/**
+/** TODO
 
     describe('minus(Period)', () => {
 
@@ -1366,7 +1366,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     });
 
-/**
+/** TODO
 
     describe('until()', () => {
 
@@ -1596,7 +1596,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         }
     });
 
-    /**
+    /** TODO
      *
     describe('format(DateTimeFormatter)', function () {
         it('test_format_formatter', () => {
