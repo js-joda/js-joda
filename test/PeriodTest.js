@@ -71,6 +71,7 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
     describe('between', function () {
+
         function data_between() {
             return [
                 [2010, 1, 1, 2010, 1, 1, 0, 0, 0],
@@ -187,6 +188,17 @@ describe('org.threeten.bp.TestPeriod', () => {
 
     });
 
+    function data_toString() {
+        return [
+            [Period.ZERO, 'P0D'],
+            [Period.ofDays(0), 'P0D'],
+            [Period.ofYears(1), 'P1Y'],
+            [Period.ofMonths(1), 'P1M'],
+            [Period.ofDays(1), 'P1D'],
+            [Period.of(1, 2, 3), 'P1Y2M3D']
+        ];
+    }
+
     describe('parse()', function () {
         
         function data_parse() {
@@ -246,17 +258,6 @@ describe('org.threeten.bp.TestPeriod', () => {
         function test_parse(text, expected) {
             // console.log(text, expected);
             assertEquals(Period.parse(text), expected);
-        }
-
-        function data_toString() {
-            return [
-                [Period.ZERO, 'P0D'],
-                [Period.ofDays(0), 'P0D'],
-                [Period.ofYears(1), 'P1Y'],
-                [Period.ofMonths(1), 'P1M'],
-                [Period.ofDays(1), 'P1D'],
-                [Period.of(1, 2, 3), 'P1Y2M3D']
-            ];
         }
 
         it('test_parse_toString', function () {
@@ -641,346 +642,341 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
 
-    /**
- * 
+    describe('multipliedBy()', () => {
 
+    });
 
-     describe('multipliedBy()', () => {
+    it('test_multipliedBy', () => {
+        var test = Period.of(1, 2, 3);
+        assertPeriod(test.multipliedBy(2), 2, 4, 6);
+        assertPeriod(test.multipliedBy(-3), -3, -6, -9);
+    });
 
-	});
+    it('test_multipliedBy_zeroBase', () => {
+        assertSame(Period.ZERO.multipliedBy(2), Period.ZERO);
+    });
 
-     it('test_multipliedBy', () => {
-         var test = Period.of(1, 2, 3);
-         assertPeriod(test.multipliedBy(2), 2, 4, 6);
-         assertPeriod(test.multipliedBy(-3), -3, -6, -9);
-     });
+    it('test_multipliedBy_zero', () => {
+        var test = Period.of(1, 2, 3);
+        assertSame(test.multipliedBy(0), Period.ZERO);
+    });
 
-     it('test_multipliedBy_zeroBase', () => {
-         assertSame(Period.ZERO.multipliedBy(2), Period.ZERO);
-     });
+    it('test_multipliedBy_one', () => {
+        var test = Period.of(1, 2, 3);
+        assertSame(test.multipliedBy(1), test);
+    });
 
-     it('test_multipliedBy_zero', () => {
-         var test = Period.of(1, 2, 3);
-         assertSame(test.multipliedBy(0), Period.ZERO);
-     });
-
-     it('test_multipliedBy_one', () => {
-         var test = Period.of(1, 2, 3);
-         assertSame(test.multipliedBy(1), test);
-     });
-
+    /*
      @Test(expectedExceptions=ArithmeticException.class)
      public void test_multipliedBy_overflowTooBig() {
-         var test = Period.ofYears(Integer.MAX_VALUE / 2 + 1);
-         test.multipliedBy(2);
+     var test = Period.ofYears(Integer.MAX_VALUE / 2 + 1);
+     test.multipliedBy(2);
      }
 
      @Test(expectedExceptions=ArithmeticException.class)
      public void test_multipliedBy_overflowTooSmall() {
-         var test = Period.ofYears(Integer.MIN_VALUE / 2 - 1);
-         test.multipliedBy(2);
+     var test = Period.ofYears(Integer.MIN_VALUE / 2 - 1);
+     test.multipliedBy(2);
      }
+     */
+
+    describe('negated()', () => {
+
+    });
+
+    it('test_negated', () => {
+        var test = Period.of(1, 2, 3);
+        assertPeriod(test.negated(), -1, -2, -3);
+    });
+
+    it('test_negated_zero', () => {
+        assertSame(Period.ZERO.negated(), Period.ZERO);
+    });
+
+    it('test_negated_max', () => {
+        assertPeriod(Period.ofYears(Integer.MAX_VALUE).negated(), -Integer.MAX_VALUE, 0, 0);
+    });
+
+    it('test_negated_overflow', () => {
+        expect(() => {
+            Period.ofYears(MathUtil.MIN_SAFE_INTEGER).negated();
+        }).to.throw(ArithmeticException);
+    });
+
+    describe('normalized()', () => {
+
+        function data_normalized() {
+            return [
+                [0, 0, 0, 0],
+                [1, 0, 1, 0],
+                [-1, 0, -1, 0],
+
+                [1, 1, 1, 1],
+                [1, 2, 1, 2],
+                [1, 11, 1, 11],
+                [1, 12, 2, 0],
+                [1, 13, 2, 1],
+                [1, 23, 2, 11],
+                [1, 24, 3, 0],
+                [1, 25, 3, 1],
+
+                [1, -1, 0, 11],
+                [1, -2, 0, 10],
+                [1, -11, 0, 1],
+                [1, -12, 0, 0],
+                [1, -13, 0, -1],
+                [1, -23, 0, -11],
+                [1, -24, -1, 0],
+                [1, -25, -1, -1],
+                [1, -35, -1, -11],
+                [1, -36, -2, 0],
+                [1, -37, -2, -1],
+
+                [-1, 1, 0, -11],
+                [-1, 11, 0, -1],
+                [-1, 12, 0, 0],
+                [-1, 13, 0, 1],
+                [-1, 23, 0, 11],
+                [-1, 24, 1, 0],
+                [-1, 25, 1, 1],
+
+                [-1, -1, -1, -1],
+                [-1, -11, -1, -11],
+                [-1, -12, -2, 0],
+                [-1, -13, -2, -1]
+            ];
+        }
+
+        it('test_normalized', function () {
+            data_normalized().forEach((data) => {
+                test_normalized.apply(this, data);
+            });
+        });
+
+        function test_normalized(inputYears, inputMonths, expectedYears, expectedMonths) {
+            assertPeriod(Period.of(inputYears, inputMonths, 0).normalized(), expectedYears, expectedMonths, 0);
+        }
+
+
+        it('test_normalizedMonthsISO_min', () => {
+            expect(() => {
+                var base = Period.of(MathUtil.MIN_SAFE_INTEGER, -12, 0);
+                base.normalized();
+            }).to.throw(ArithmeticException);
+        });
+
+        it('test_normalizedMonthsISO_max', () => {
+            expect(() => {
+                var base = Period.of(MathUtil.MAX_SAFE_INTEGER, 12, 0);
+                base.normalized();
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+
+
+    describe('addTo()', () => {
+
+        function data_addTo() {
+            return [
+                [pymd(0, 0, 0), date(2012, 6, 30), date(2012, 6, 30)],
+
+                [pymd(1, 0, 0), date(2012, 6, 10), date(2013, 6, 10)],
+                [pymd(0, 1, 0), date(2012, 6, 10), date(2012, 7, 10)],
+                [pymd(0, 0, 1), date(2012, 6, 10), date(2012, 6, 11)],
+
+                [pymd(-1, 0, 0), date(2012, 6, 10), date(2011, 6, 10)],
+                [pymd(0, -1, 0), date(2012, 6, 10), date(2012, 5, 10)],
+                [pymd(0, 0, -1), date(2012, 6, 10), date(2012, 6, 9)],
+
+                [pymd(1, 2, 3), date(2012, 6, 27), date(2013, 8, 30)],
+                [pymd(1, 2, 3), date(2012, 6, 28), date(2013, 8, 31)],
+                [pymd(1, 2, 3), date(2012, 6, 29), date(2013, 9, 1)],
+                [pymd(1, 2, 3), date(2012, 6, 30), date(2013, 9, 2)],
+                [pymd(1, 2, 3), date(2012, 7, 1), date(2013, 9, 4)],
+
+                [pymd(1, 0, 0), date(2011, 2, 28), date(2012, 2, 28)],
+                [pymd(4, 0, 0), date(2011, 2, 28), date(2015, 2, 28)],
+                [pymd(1, 0, 0), date(2012, 2, 29), date(2013, 2, 28)],
+                [pymd(4, 0, 0), date(2012, 2, 29), date(2016, 2, 29)],
+
+                [pymd(1, 1, 0), date(2011, 1, 29), date(2012, 2, 29)],
+                [pymd(1, 2, 0), date(2012, 2, 29), date(2013, 4, 29)]
+            ];
+        }
+
+        it.skip('test_addTo', function () {
+            data_addTo().forEach((data) => {
+                test_addTo.apply(this, data);
+            });
+        });
+
+        function test_addTo(period, baseDate, expected) {
+            console.log(period, baseDate, expected);
+            assertEquals(period.addTo(baseDate), expected);
+        }
+
+        it.skip('test_addTo_usingLocalDatePlus', function () {
+            data_addTo().forEach((data) => {
+                test_addTo_usingLocalDatePlus.apply(this, data);
+            });
+        });
+
+        function test_addTo_usingLocalDatePlus(period, baseDate, expected) {
+            console.log(period, baseDate, expected);
+            assertEquals(baseDate.plus(period), expected);
+        }
 
-     describe('negated()', () => {
-
-	});
-
-     it('test_negated', () => {
-         var test = Period.of(1, 2, 3);
-         assertPeriod(test.negated(), -1, -2, -3);
-     });
-
-     it('test_negated_zero', () => {
-         assertSame(Period.ZERO.negated(), Period.ZERO);
-     });
-
-     it('test_negated_max', () => {
-         assertPeriod(Period.ofYears(Integer.MAX_VALUE).negated(), -Integer.MAX_VALUE, 0, 0);
-     });
-
-     it('test_negated_overflow', () => {
- 	expect(() => {
-         Period.ofYears(Integer.MIN_VALUE).negated();
-
- 	}).to.throw(ArithmeticException);
- });
-
-     describe('normalized()', () => {
-
-	});
-
-     @DataProvider(name="normalized")
-     Object[][] data_normalized() {
-         return new Object[][] {
-             {0, 0,  0, 0},
-             {1, 0,  1, 0},
-             {-1, 0,  -1, 0},
-
-             {1, 1,  1, 1},
-             {1, 2,  1, 2},
-             {1, 11,  1, 11},
-             {1, 12,  2, 0},
-             {1, 13,  2, 1},
-             {1, 23,  2, 11},
-             {1, 24,  3, 0},
-             {1, 25,  3, 1},
-
-             {1, -1,  0, 11},
-             {1, -2,  0, 10},
-             {1, -11,  0, 1},
-             {1, -12,  0, 0},
-             {1, -13,  0, -1},
-             {1, -23,  0, -11},
-             {1, -24,  -1, 0},
-             {1, -25,  -1, -1},
-             {1, -35,  -1, -11},
-             {1, -36,  -2, 0},
-             {1, -37,  -2, -1},
-
-             {-1, 1,  0, -11},
-             {-1, 11,  0, -1},
-             {-1, 12,  0, 0},
-             {-1, 13,  0, 1},
-             {-1, 23,  0, 11},
-             {-1, 24,  1, 0},
-             {-1, 25,  1, 1},
-
-             {-1, -1,  -1, -1},
-             {-1, -11,  -1, -11},
-             {-1, -12,  -2, 0},
-             {-1, -13,  -2, -1},
-         };
-     }
-
-     @Test(dataProvider="normalized")
-     public void test_normalized(int inputYears, int inputMonths, int expectedYears, int expectedMonths) {
-         assertPeriod(Period.of(inputYears, inputMonths, 0).normalized(), expectedYears, expectedMonths, 0);
-     }
-
-     it('test_normalizedMonthsISO_min', () => {
- 	expect(() => {
-         var base = Period.of(Integer.MIN_VALUE, -12, 0);
-         base.normalized();
-
- 	}).to.throw(ArithmeticException);
- });
-
-     it('test_normalizedMonthsISO_max', () => {
- 	expect(() => {
-         var base = Period.of(Integer.MAX_VALUE, 12, 0);
-         base.normalized();
-
- 	}).to.throw(ArithmeticException);
- });
-
-     describe('addTo()', () => {
-
-	});
-
-     @DataProvider(name="addTo")
-     Object[][] data_addTo() {
-         return new Object[][] {
-             {pymd(0, 0, 0),  date(2012, 6, 30), date(2012, 6, 30)},
-
-             {pymd(1, 0, 0),  date(2012, 6, 10), date(2013, 6, 10)},
-             {pymd(0, 1, 0),  date(2012, 6, 10), date(2012, 7, 10)},
-             {pymd(0, 0, 1),  date(2012, 6, 10), date(2012, 6, 11)},
-
-             {pymd(-1, 0, 0),  date(2012, 6, 10), date(2011, 6, 10)},
-             {pymd(0, -1, 0),  date(2012, 6, 10), date(2012, 5, 10)},
-             {pymd(0, 0, -1),  date(2012, 6, 10), date(2012, 6, 9)},
-
-             {pymd(1, 2, 3),  date(2012, 6, 27), date(2013, 8, 30)},
-             {pymd(1, 2, 3),  date(2012, 6, 28), date(2013, 8, 31)},
-             {pymd(1, 2, 3),  date(2012, 6, 29), date(2013, 9, 1)},
-             {pymd(1, 2, 3),  date(2012, 6, 30), date(2013, 9, 2)},
-             {pymd(1, 2, 3),  date(2012, 7, 1), date(2013, 9, 4)},
-
-             {pymd(1, 0, 0),  date(2011, 2, 28), date(2012, 2, 28)},
-             {pymd(4, 0, 0),  date(2011, 2, 28), date(2015, 2, 28)},
-             {pymd(1, 0, 0),  date(2012, 2, 29), date(2013, 2, 28)},
-             {pymd(4, 0, 0),  date(2012, 2, 29), date(2016, 2, 29)},
-
-             {pymd(1, 1, 0),  date(2011, 1, 29), date(2012, 2, 29)},
-             {pymd(1, 2, 0),  date(2012, 2, 29), date(2013, 4, 29)},
-         };
-     }
-
-     @Test(dataProvider="addTo")
-     public void test_addTo(Period period, LocalDate baseDate, LocalDate expected) {
-         assertEquals(period.addTo(baseDate), expected);
-     }
-
-     @Test(dataProvider="addTo")
-     public void test_addTo_usingLocalDatePlus(Period period, LocalDate baseDate, LocalDate expected) {
-         assertEquals(baseDate.plus(period), expected);
-     }
-
-     it('test_addTo_nullZero', () => {
- 	expect(() => {
-         Period.ZERO.addTo(null);
-
- 	}).to.throw(NullPointerException);
- });
-
-     it('test_addTo_nullNonZero', () => {
- 	expect(() => {
-         Period.ofDays(2).addTo(null);
-
- 	}).to.throw(NullPointerException);
- });
-
-     describe('subtractFrom()', () => {
-
-	});
-
-     @DataProvider(name="subtractFrom")
-     Object[][] data_subtractFrom() {
-         return new Object[][] {
-             {pymd(0, 0, 0),  date(2012, 6, 30), date(2012, 6, 30)},
-
-             {pymd(1, 0, 0),  date(2012, 6, 10), date(2011, 6, 10)},
-             {pymd(0, 1, 0),  date(2012, 6, 10), date(2012, 5, 10)},
-             {pymd(0, 0, 1),  date(2012, 6, 10), date(2012, 6, 9)},
-
-             {pymd(-1, 0, 0),  date(2012, 6, 10), date(2013, 6, 10)},
-             {pymd(0, -1, 0),  date(2012, 6, 10), date(2012, 7, 10)},
-             {pymd(0, 0, -1),  date(2012, 6, 10), date(2012, 6, 11)},
-
-             {pymd(1, 2, 3),  date(2012, 8, 30), date(2011, 6, 27)},
-             {pymd(1, 2, 3),  date(2012, 8, 31), date(2011, 6, 27)},
-             {pymd(1, 2, 3),  date(2012, 9, 1), date(2011, 6, 28)},
-             {pymd(1, 2, 3),  date(2012, 9, 2), date(2011, 6, 29)},
-             {pymd(1, 2, 3),  date(2012, 9, 3), date(2011, 6, 30)},
-             {pymd(1, 2, 3),  date(2012, 9, 4), date(2011, 7, 1)},
-
-             {pymd(1, 0, 0),  date(2011, 2, 28), date(2010, 2, 28)},
-             {pymd(4, 0, 0),  date(2011, 2, 28), date(2007, 2, 28)},
-             {pymd(1, 0, 0),  date(2012, 2, 29), date(2011, 2, 28)},
-             {pymd(4, 0, 0),  date(2012, 2, 29), date(2008, 2, 29)},
-
-             {pymd(1, 1, 0),  date(2013, 3, 29), date(2012, 2, 29)},
-             {pymd(1, 2, 0),  date(2012, 2, 29), date(2010, 12, 29)},
-         };
-     }
-
-     @Test(dataProvider="subtractFrom")
-     public void test_subtractFrom(Period period, LocalDate baseDate, LocalDate expected) {
-         assertEquals(period.subtractFrom(baseDate), expected);
-     }
-
-     @Test(dataProvider="subtractFrom")
-     public void test_subtractFrom_usingLocalDateMinus(Period period, LocalDate baseDate, LocalDate expected) {
-         assertEquals(baseDate.minus(period), expected);
-     }
-
-     it('test_subtractFrom_nullZero', () => {
- 	expect(() => {
-         Period.ZERO.subtractFrom(null);
-
- 	}).to.throw(NullPointerException);
- });
-
-     it('test_subtractFrom_nullNonZero', () => {
- 	expect(() => {
-         Period.ofDays(2).subtractFrom(null);
-
- 	}).to.throw(NullPointerException);
- });
-
-     //-----------------------------------------------------------------------
-     // equals() / hashCode()
-     //-----------------------------------------------------------------------
-     it('test_equals', () => {
-         assertEquals(Period.of(1, 0, 0).equals(Period.ofYears(1)), true);
-         assertEquals(Period.of(0, 1, 0).equals(Period.ofMonths(1)), true);
-         assertEquals(Period.of(0, 0, 1).equals(Period.ofDays(1)), true);
-         assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 3)), true);
-
-         assertEquals(Period.ofYears(1).equals(Period.ofYears(1)), true);
-         assertEquals(Period.ofYears(1).equals(Period.ofYears(2)), false);
-
-         assertEquals(Period.ofMonths(1).equals(Period.ofMonths(1)), true);
-         assertEquals(Period.ofMonths(1).equals(Period.ofMonths(2)), false);
-
-         assertEquals(Period.ofDays(1).equals(Period.ofDays(1)), true);
-         assertEquals(Period.ofDays(1).equals(Period.ofDays(2)), false);
-
-         assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 3)), true);
-         assertEquals(Period.of(1, 2, 3).equals(Period.of(0, 2, 3)), false);
-         assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 0, 3)), false);
-         assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 0)), false);
-     });
-
-     it('test_equals_self', () => {
-         var test = Period.of(1, 2, 3);
-         assertEquals(test.equals(test), true);
-     });
-
-     it('test_equals_null', () => {
-         var test = Period.of(1, 2, 3);
-         assertEquals(test.equals(null), false);
-     });
-
-     public void test_equals_otherClass() {
-         var test = Period.of(1, 2, 3);
-         assertEquals(test.equals(""), false);
-     }
-
-     //-----------------------------------------------------------------------
-     it('test_hashCode', () => {
-         var test5 = Period.ofDays(5);
-         var test6 = Period.ofDays(6);
-         var test5M = Period.ofMonths(5);
-         var test5Y = Period.ofYears(5);
-         assertEquals(test5.hashCode() == test5.hashCode(), true);
-         assertEquals(test5.hashCode() == test6.hashCode(), false);
-         assertEquals(test5.hashCode() == test5M.hashCode(), false);
-         assertEquals(test5.hashCode() == test5Y.hashCode(), false);
-     });
-
-     describe('toString()', () => {
-
-	});
-
-     @DataProvider(name="toStringAndParse")
-     Object[][] data_toString() {
-         return new Object[][] {
-             {Period.ZERO, "P0D"},
-             {Period.ofDays(0), "P0D"},
-             {Period.ofYears(1), "P1Y"},
-             {Period.ofMonths(1), "P1M"},
-             {Period.ofDays(1), "P1D"},
-             {Period.of(1, 2, 3), "P1Y2M3D"},
-         };
-     }
-
-     @Test(dataProvider="toStringAndParse")
-     public void test_toString(Period input, String expected) {
-         assertEquals(input.toString(), expected);
-     }
-
-     //-----------------------------------------------------------------------
-     private void assertPeriod(Period test, int y, int mo, int d) {
-         assertEquals(test.getYears(), y, "years");
-         assertEquals(test.getMonths(), mo, "months");
-         assertEquals(test.getDays(), d, "days");
-     }
-
-     private static Period pymd(int y, int m, int d) {
-         return Period.of(y, m, d);
-     }
-
-     private static LocalDate date(int y, int m, int d) {
-         return LocalDate.of(y, m, d);
-     }
-
- }
-
-
- * 
- * 
-  */
+
+        it('test_addTo_nullZero', () => {
+            expect(() => {
+                Period.ZERO.addTo(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_addTo_nullNonZero', () => {
+            expect(() => {
+                Period.ofDays(2).addTo(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('subtractFrom()', () => {
+
+        function data_subtractFrom() {
+            return [
+                [pymd(0, 0, 0), date(2012, 6, 30), date(2012, 6, 30)],
+
+                [pymd(1, 0, 0), date(2012, 6, 10), date(2011, 6, 10)],
+                [pymd(0, 1, 0), date(2012, 6, 10), date(2012, 5, 10)],
+                [pymd(0, 0, 1), date(2012, 6, 10), date(2012, 6, 9)],
+
+                [pymd(-1, 0, 0), date(2012, 6, 10), date(2013, 6, 10)],
+                [pymd(0, -1, 0), date(2012, 6, 10), date(2012, 7, 10)],
+                [pymd(0, 0, -1), date(2012, 6, 10), date(2012, 6, 11)],
+
+                [pymd(1, 2, 3), date(2012, 8, 30), date(2011, 6, 27)],
+                [pymd(1, 2, 3), date(2012, 8, 31), date(2011, 6, 27)],
+                [pymd(1, 2, 3), date(2012, 9, 1), date(2011, 6, 28)],
+                [pymd(1, 2, 3), date(2012, 9, 2), date(2011, 6, 29)],
+                [pymd(1, 2, 3), date(2012, 9, 3), date(2011, 6, 30)],
+                [pymd(1, 2, 3), date(2012, 9, 4), date(2011, 7, 1)],
+
+                [pymd(1, 0, 0), date(2011, 2, 28), date(2010, 2, 28)],
+                [pymd(4, 0, 0), date(2011, 2, 28), date(2007, 2, 28)],
+                [pymd(1, 0, 0), date(2012, 2, 29), date(2011, 2, 28)],
+                [pymd(4, 0, 0), date(2012, 2, 29), date(2008, 2, 29)],
+
+                [pymd(1, 1, 0), date(2013, 3, 29), date(2012, 2, 29)],
+                [pymd(1, 2, 0), date(2012, 2, 29), date(2010, 12, 29)]
+            ];
+        }
+
+        it.skip('test_subtractFrom', function () {
+            data_subtractFrom().forEach((data) => {
+                test_subtractFrom.apply(this, data);
+            });
+        });
+
+        function test_subtractFrom(period, baseDate, expected) {
+            assertEquals(period.subtractFrom(baseDate), expected);
+        }
+
+        it.skip('test_subtractFrom_usingLocalDateMinus', function () {
+            data_subtractFrom().forEach((data) => {
+                test_subtractFrom_usingLocalDateMinus.apply(this, data);
+            });
+        });
+
+        function test_subtractFrom_usingLocalDateMinus(period, baseDate, expected) {
+            assertEquals(baseDate.minus(period), expected);
+        }
+
+
+        it('test_subtractFrom_nullZero', () => {
+            expect(() => {
+                Period.ZERO.subtractFrom(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_subtractFrom_nullNonZero', () => {
+            expect(() => {
+                Period.ofDays(2).subtractFrom(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('equals() / hashCode()', function () {
+
+        it('test_equals', () => {
+            assertEquals(Period.of(1, 0, 0).equals(Period.ofYears(1)), true);
+            assertEquals(Period.of(0, 1, 0).equals(Period.ofMonths(1)), true);
+            assertEquals(Period.of(0, 0, 1).equals(Period.ofDays(1)), true);
+            assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 3)), true);
+
+            assertEquals(Period.ofYears(1).equals(Period.ofYears(1)), true);
+            assertEquals(Period.ofYears(1).equals(Period.ofYears(2)), false);
+
+            assertEquals(Period.ofMonths(1).equals(Period.ofMonths(1)), true);
+            assertEquals(Period.ofMonths(1).equals(Period.ofMonths(2)), false);
+
+            assertEquals(Period.ofDays(1).equals(Period.ofDays(1)), true);
+            assertEquals(Period.ofDays(1).equals(Period.ofDays(2)), false);
+
+            assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 3)), true);
+            assertEquals(Period.of(1, 2, 3).equals(Period.of(0, 2, 3)), false);
+            assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 0, 3)), false);
+            assertEquals(Period.of(1, 2, 3).equals(Period.of(1, 2, 0)), false);
+        });
+
+        it('test_equals_self', () => {
+            var test = Period.of(1, 2, 3);
+            assertEquals(test.equals(test), true);
+        });
+
+        it('test_equals_null', () => {
+            var test = Period.of(1, 2, 3);
+            assertEquals(test.equals(null), false);
+        });
+
+        it('test_equals_otherClass', () => {
+            var test = Period.of(1, 2, 3);
+            assertEquals(test.equals(''), false);
+        });
+
+        //-----------------------------------------------------------------------
+        it('test_hashCode', () => {
+            var test5 = Period.ofDays(5);
+            var test6 = Period.ofDays(6);
+            var test5M = Period.ofMonths(5);
+            var test5Y = Period.ofYears(5);
+            assertEquals(test5.hashCode() === test5.hashCode(), true);
+            assertEquals(test5.hashCode() === test6.hashCode(), false);
+            assertEquals(test5.hashCode() === test5M.hashCode(), false);
+            assertEquals(test5.hashCode() === test5Y.hashCode(), false);
+        });
+
+    });
+
+    describe('toString()', () => {
+
+        it('test_toString', function () {
+            data_toString().forEach((data) => {
+                test_toString.apply(this, data);
+            });
+        });
+
+        function test_toString(input, expected) {
+            assertEquals(input.toString(), expected);
+        }
+
+    });
 
     //-----------------------------------------------------------------------
 

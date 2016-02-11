@@ -717,9 +717,9 @@ export class Period /* extends ChronoPeriod */ {
      */
     normalized() {
         var totalMonths = this.toTotalMonths();
-        var splitYears = totalMonths / 12;
-        var splitMonths = totalMonths % 12;  // no overflow
-        if (splitYears === this._years && this._splitMonths === this._months) {
+        var splitYears = MathUtil.intDiv(totalMonths, 12);
+        var splitMonths = MathUtil.intMod(totalMonths, 12);  // no overflow
+        if (splitYears === this._years && splitMonths === this._months) {
             return this;
         }
         return Period.create(MathUtil.safeToInt(splitYears), splitMonths, this._days);
@@ -865,7 +865,7 @@ export class Period /* extends ChronoPeriod */ {
      * @return a suitable hash code
      */
     hashCode() {
-        return this._years + this._months << 8 + this._days << 16;
+        return this._years + (this._months << 8) + (this._days << 16);
     }
 
     //-----------------------------------------------------------------------
