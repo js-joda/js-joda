@@ -805,25 +805,25 @@ describe('org.threeten.bp.TestPeriod', () => {
             ];
         }
 
-        it.skip('test_addTo', function () {
+        it('test_addTo', function () {
             data_addTo().forEach((data) => {
                 test_addTo.apply(this, data);
             });
         });
 
         function test_addTo(period, baseDate, expected) {
-            console.log(period, baseDate, expected);
+            // console.log(period, baseDate, expected);
             assertEquals(period.addTo(baseDate), expected);
         }
 
-        it.skip('test_addTo_usingLocalDatePlus', function () {
+        it('test_addTo_usingLocalDatePlus', function () {
             data_addTo().forEach((data) => {
                 test_addTo_usingLocalDatePlus.apply(this, data);
             });
         });
 
         function test_addTo_usingLocalDatePlus(period, baseDate, expected) {
-            console.log(period, baseDate, expected);
+            // console.log(period, baseDate, expected);
             assertEquals(baseDate.plus(period), expected);
         }
 

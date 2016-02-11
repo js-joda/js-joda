@@ -731,7 +731,69 @@ export class LocalDate extends ChronoLocalDate{
         return LocalDate.ofYearDay(this._year, dayOfYear);
     }
 
-    //-----------------------------------------------------------------------
+    /**
+     * function overloading for plus
+     */
+    plus(p1, p2){
+        if(arguments.length < 2){
+            return this._plus1(p1);
+        } else {
+            return this._plus2(p1, p2);
+        }
+    }
+
+    /**
+     * Returns a copy of this date with the specified period added.
+     * <p>
+     * This method returns a new date based on this date with the specified period added.
+     * The amount is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link #plus(long, TemporalUnit)}.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param amount  the amount to add, not null
+     * @return a {@code LocalDate} based on this date with the addition made, not null
+     * @throws DateTimeException if the addition cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _plus1(amount) {
+        return amount.addTo(this);
+    }
+
+    /**
+     * Returns a copy of this date with the specified period added.
+     * <p>
+     * This method returns a new date based on this date with the specified period added.
+     * This can be used to add any period that is defined by a unit, for example to add years, months or days.
+     * The unit is responsible for the details of the calculation, including the resolution
+     * of any edge cases in the calculation.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param amountToAdd  the amount of the unit to add to the result, may be negative
+     * @param unit  the unit of the period to add, not null
+     * @return a {@code LocalDate} based on this date with the specified period added, not null
+     * @throws DateTimeException if the unit cannot be added to this type
+     */
+    _plus2(amountToAdd, unit) {
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.DAYS: return this.plusDays(amountToAdd);
+                case ChronoUnit.WEEKS: return this.plusWeeks(amountToAdd);
+                case ChronoUnit.MONTHS: return this.plusMonths(amountToAdd);
+                case ChronoUnit.YEARS: return this.plusYears(amountToAdd);
+                case ChronoUnit.DECADES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 10));
+                case ChronoUnit.CENTURIES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 100));
+                case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
+                case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.addTo(this, amountToAdd);
+    }
+
     /**
      * Returns a copy of this {@code LocalDate} with the specified period in years added.
      * <p>
