@@ -32,7 +32,7 @@ export class DayOfWeek extends TemporalAccessor {
     }
 
     static values() {
-        return ENUMS;
+        return ENUMS.slice();
     }
 
     static valueOf(name) {

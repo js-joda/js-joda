@@ -389,7 +389,7 @@ export class Month extends TemporalAccessor {
      * replacement for enum values
      */
     static values(){
-        return MONTHS;
+        return MONTHS.slice();
     }
 
     /**
