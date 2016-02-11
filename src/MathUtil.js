@@ -80,7 +80,7 @@ export class MathUtil {
             if (r > MAX_SAFE_INTEGER || r < MIN_SAFE_INTEGER) {
                 throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
             }
-            return r;
+            return -1 * r;
         }
         if (y === 0) {
             let r = x;
@@ -98,8 +98,8 @@ export class MathUtil {
         let r = x - y;
         // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
         // TODO: is this correct and complete?
-        if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r === x || r === y) {
-            throw new ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER!');
+        if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER) {
+            throw new ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER! ' + x + '-' + y);
         }
         return r;
     }

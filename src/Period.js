@@ -606,9 +606,9 @@ export class Period /* extends ChronoPeriod */ {
     minus(amountToSubtract) {
         var amount = Period.from(amountToSubtract);
         return Period.create(
-                MathUtil.safeSubtract(this._years, amount.years),
-                MathUtil.safeSubtract(this._months, amount.months),
-                MathUtil.safeSubtract(this._days, amount.days));
+                MathUtil.safeSubtract(this._years, amount._years),
+                MathUtil.safeSubtract(this._months, amount._months),
+                MathUtil.safeSubtract(this._days, amount._days));
     }
 
     /**
