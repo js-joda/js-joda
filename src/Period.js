@@ -522,9 +522,9 @@ export class Period /* extends ChronoPeriod */ {
     plus(amountToAdd) {
         var amount = Period.from(amountToAdd);
         return Period.create(
-            MathUtil.safeAdd(this._years, amount.years),
-            MathUtil.safeAdd(this._months, amount.months),
-            MathUtil.safeAdd(this._days, amount.days));
+            MathUtil.safeAdd(this._years, amount._years),
+            MathUtil.safeAdd(this._months, amount._months),
+            MathUtil.safeAdd(this._days, amount._days));
     }
 
     /**

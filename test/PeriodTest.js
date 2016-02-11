@@ -8,7 +8,8 @@ import {expect} from 'chai';
 
 import {assertSame, assertEquals} from './testUtils';
 
-import {NullPointerException} from '../src/errors';
+import {NullPointerException, ArithmeticException} from '../src/errors';
+import {MathUtil} from '../src/MathUtil';
 
 import {LocalDate} from '../src/LocalDate';
 import {Period} from '../src/Period';
@@ -367,148 +368,156 @@ describe('org.threeten.bp.TestPeriod', () => {
 
     });
 
+    describe('plus(Period)', () => {
+
+        function data_plus() {
+            return [
+                [pymd(0, 0, 0), pymd(0, 0, 0), pymd(0, 0, 0)],
+                [pymd(0, 0, 0), pymd(5, 0, 0), pymd(5, 0, 0)],
+                [pymd(0, 0, 0), pymd(-5, 0, 0), pymd(-5, 0, 0)],
+                [pymd(0, 0, 0), pymd(0, 5, 0), pymd(0, 5, 0)],
+                [pymd(0, 0, 0), pymd(0, -5, 0), pymd(0, -5, 0)],
+                [pymd(0, 0, 0), pymd(0, 0, 5), pymd(0, 0, 5)],
+                [pymd(0, 0, 0), pymd(0, 0, -5), pymd(0, 0, -5)],
+                [pymd(0, 0, 0), pymd(2, 3, 4), pymd(2, 3, 4)],
+                [pymd(0, 0, 0), pymd(-2, -3, -4), pymd(-2, -3, -4)],
+   
+                [pymd(4, 5, 6), pymd(2, 3, 4), pymd(6, 8, 10)],
+                [pymd(4, 5, 6), pymd(-2, -3, -4), pymd(2, 2, 2)]
+            ];
+        }
+
+        it('test_plus', () => {
+            data_plus().forEach((data) => {
+                test_plus.apply(this, data);
+            });
+        });
+
+        function test_plus(base, add, expected) {
+            // console.log(base, add, expected);
+            assertEquals(base.plus(add), expected);
+        }
+        
+    });
+
+    describe('plusYears()', () => {
+
+        it('test_plusYears', () => {
+            var test = Period.of(1, 2, 3);
+            assertPeriod(test.plusYears(10), 11, 2, 3);
+            assertPeriod(test.plus(Period.ofYears(10)), 11, 2, 3);
+        });
+
+        it('test_plusYears_noChange', () => {
+            var test = Period.of(1, 2, 3);
+            assertSame(test.plusYears(0), test);
+            assertPeriod(test.plus(Period.ofYears(0)), 1, 2, 3);
+        });
+
+        it('test_plusYears_toZero', () => {
+            var test = Period.ofYears(-1);
+            assertSame(test.plusYears(1), Period.ZERO);
+            assertSame(test.plus(Period.ofYears(1)), Period.ZERO);
+        });
+
+        it('test_plusYears_overflowTooBig', () => {
+            expect(() => {
+                var test = Period.ofYears(MathUtil.MAX_SAFE_INTEGER);
+                test.plusYears(1);
+            }).to.throw(ArithmeticException);
+        });
+
+        it('test_plusYears_overflowTooSmall', () => {
+            expect(() => {
+                var test = Period.ofYears(MathUtil.MIN_SAFE_INTEGER);
+                test.plusYears(-1);
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+
+    describe('plusMonths()', () => {
+
+        it('test_plusMonths', () => {
+            var test = Period.of(1, 2, 3);
+            assertPeriod(test.plusMonths(10), 1, 12, 3);
+            assertPeriod(test.plus(Period.ofMonths(10)), 1, 12, 3);
+        });
+
+        it('test_plusMonths_noChange', () => {
+            var test = Period.of(1, 2, 3);
+            assertSame(test.plusMonths(0), test);
+            assertEquals(test.plus(Period.ofMonths(0)), test);
+        });
+
+        it('test_plusMonths_toZero', () => {
+            var test = Period.ofMonths(-1);
+            assertSame(test.plusMonths(1), Period.ZERO);
+            assertSame(test.plus(Period.ofMonths(1)), Period.ZERO);
+        });
+
+        it('test_plusMonths_overflowTooBig', () => {
+            expect(() => {
+                var test = Period.ofMonths(MathUtil.MAX_SAFE_INTEGER);
+                test.plusMonths(1);
+
+            }).to.throw(ArithmeticException);
+        });
+
+        it('test_plusMonths_overflowTooSmall', () => {
+            expect(() => {
+                var test = Period.ofMonths(MathUtil.MIN_SAFE_INTEGER);
+                test.plusMonths(-1);
+
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+
+    describe('plusDays()', () => {
+
+        it('test_plusDays', () => {
+            var test = Period.of(1, 2, 3);
+            assertPeriod(test.plusDays(10), 1, 2, 13);
+        });
+
+        it('test_plusDays_noChange', () => {
+            var test = Period.of(1, 2, 3);
+            assertSame(test.plusDays(0), test);
+        });
+
+        it('test_plusDays_toZero', () => {
+            var test = Period.ofDays(-1);
+            assertSame(test.plusDays(1), Period.ZERO);
+        });
+
+        it('test_plusDays_overflowTooBig', () => {
+            expect(() => {
+                var test = Period.ofDays(MathUtil.MAX_SAFE_INTEGER);
+                test.plusDays(1);
+
+            }).to.throw(ArithmeticException);
+        });
+
+        it('test_plusDays_overflowTooSmall', () => {
+            expect(() => {
+                var test = Period.ofDays(MathUtil.MIN_SAFE_INTEGER);
+                test.plusDays(-1);
+
+            }).to.throw(ArithmeticException);
+        });
+
+    });
+
 
     /**
  * 
 
 
-     //-----------------------------------------------------------------------
-     // plus(Period)
-     //-----------------------------------------------------------------------
-     @DataProvider(name="plus")
-     Object[][] data_plus() {
-         return new Object[][] {
-             {pymd(0, 0, 0), pymd(0, 0, 0), pymd(0, 0, 0)},
-             {pymd(0, 0, 0), pymd(5, 0, 0), pymd(5, 0, 0)},
-             {pymd(0, 0, 0), pymd(-5, 0, 0), pymd(-5, 0, 0)},
-             {pymd(0, 0, 0), pymd(0, 5, 0), pymd(0, 5, 0)},
-             {pymd(0, 0, 0), pymd(0, -5, 0), pymd(0, -5, 0)},
-             {pymd(0, 0, 0), pymd(0, 0, 5), pymd(0, 0, 5)},
-             {pymd(0, 0, 0), pymd(0, 0, -5), pymd(0, 0, -5)},
-             {pymd(0, 0, 0), pymd(2, 3, 4), pymd(2, 3, 4)},
-             {pymd(0, 0, 0), pymd(-2, -3, -4), pymd(-2, -3, -4)},
+     describe('minus(Period)', () => {
 
-             {pymd(4, 5, 6), pymd(2, 3, 4), pymd(6, 8, 10)},
-             {pymd(4, 5, 6), pymd(-2, -3, -4), pymd(2, 2, 2)},
-         };
-     }
+	});
 
-     @Test(dataProvider="plus")
-     public void test_plus(Period base, Period add, Period expected) {
-         assertEquals(base.plus(add), expected);
-     }
-
-     //-----------------------------------------------------------------------
-     // plusYears()
-     //-----------------------------------------------------------------------
-     it('test_plusYears', () => {
-         var test = Period.of(1, 2, 3);
-         assertPeriod(test.plusYears(10), 11, 2, 3);
-         assertPeriod(test.plus(Period.ofYears(10)), 11, 2, 3);
-     });
-
-     it('test_plusYears_noChange', () => {
-         var test = Period.of(1, 2, 3);
-         assertSame(test.plusYears(0), test);
-         assertPeriod(test.plus(Period.ofYears(0)), 1, 2, 3);
-     });
-
-     it('test_plusYears_toZero', () => {
-         var test = Period.ofYears(-1);
-         assertSame(test.plusYears(1), Period.ZERO);
-         assertSame(test.plus(Period.ofYears(1)), Period.ZERO);
-     });
-
-     it('test_plusYears_overflowTooBig', () => {
- 	expect(() => {
-         var test = Period.ofYears(Integer.MAX_VALUE);
-         test.plusYears(1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     it('test_plusYears_overflowTooSmall', () => {
- 	expect(() => {
-         var test = Period.ofYears(Integer.MIN_VALUE);
-         test.plusYears(-1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     //-----------------------------------------------------------------------
-     // plusMonths()
-     //-----------------------------------------------------------------------
-     it('test_plusMonths', () => {
-         var test = Period.of(1, 2, 3);
-         assertPeriod(test.plusMonths(10), 1, 12, 3);
-         assertPeriod(test.plus(Period.ofMonths(10)), 1, 12, 3);
-     });
-
-     it('test_plusMonths_noChange', () => {
-         var test = Period.of(1, 2, 3);
-         assertSame(test.plusMonths(0), test);
-         assertEquals(test.plus(Period.ofMonths(0)), test);
-     });
-
-     it('test_plusMonths_toZero', () => {
-         var test = Period.ofMonths(-1);
-         assertSame(test.plusMonths(1), Period.ZERO);
-         assertSame(test.plus(Period.ofMonths(1)), Period.ZERO);
-     });
-
-     it('test_plusMonths_overflowTooBig', () => {
- 	expect(() => {
-         var test = Period.ofMonths(Integer.MAX_VALUE);
-         test.plusMonths(1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     it('test_plusMonths_overflowTooSmall', () => {
- 	expect(() => {
-         var test = Period.ofMonths(Integer.MIN_VALUE);
-         test.plusMonths(-1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     //-----------------------------------------------------------------------
-     // plusDays()
-     //-----------------------------------------------------------------------
-     it('test_plusDays', () => {
-         var test = Period.of(1, 2, 3);
-         assertPeriod(test.plusDays(10), 1, 2, 13);
-     });
-
-     it('test_plusDays_noChange', () => {
-         var test = Period.of(1, 2, 3);
-         assertSame(test.plusDays(0), test);
-     });
-
-     it('test_plusDays_toZero', () => {
-         var test = Period.ofDays(-1);
-         assertSame(test.plusDays(1), Period.ZERO);
-     });
-
-     it('test_plusDays_overflowTooBig', () => {
- 	expect(() => {
-         var test = Period.ofDays(Integer.MAX_VALUE);
-         test.plusDays(1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     it('test_plusDays_overflowTooSmall', () => {
- 	expect(() => {
-         var test = Period.ofDays(Integer.MIN_VALUE);
-         test.plusDays(-1);
-
- 	}).to.throw(ArithmeticException);
- });
-
-     //-----------------------------------------------------------------------
-     // minus(Period)
-     //-----------------------------------------------------------------------
      @DataProvider(name="minus")
      Object[][] data_minus() {
          return new Object[][] {
@@ -532,9 +541,9 @@ describe('org.threeten.bp.TestPeriod', () => {
          assertEquals(base.minus(subtract), expected);
      }
 
-     //-----------------------------------------------------------------------
-     // minusYears()
-     //-----------------------------------------------------------------------
+     describe('minusYears()', () => {
+
+	});
      it('test_minusYears', () => {
          var test = Period.of(1, 2, 3);
          assertPeriod(test.minusYears(10), -9, 2, 3);
@@ -566,9 +575,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(ArithmeticException);
  });
 
-     //-----------------------------------------------------------------------
-     // minusMonths()
-     //-----------------------------------------------------------------------
+     describe('minusMonths()', () => {
+
+	});
+
      it('test_minusMonths', () => {
          var test = Period.of(1, 2, 3);
          assertPeriod(test.minusMonths(10), 1, -8, 3);
@@ -600,9 +610,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(ArithmeticException);
  });
 
-     //-----------------------------------------------------------------------
-     // minusDays()
-     //-----------------------------------------------------------------------
+     describe('minusDays()', () => {
+
+	});
+
      it('test_minusDays', () => {
          var test = Period.of(1, 2, 3);
          assertPeriod(test.minusDays(10), 1, 2, -7);
@@ -634,9 +645,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(ArithmeticException);
  });
 
-     //-----------------------------------------------------------------------
-     // multipliedBy()
-     //-----------------------------------------------------------------------
+     describe('multipliedBy()', () => {
+
+	});
+
      it('test_multipliedBy', () => {
          var test = Period.of(1, 2, 3);
          assertPeriod(test.multipliedBy(2), 2, 4, 6);
@@ -669,9 +681,10 @@ describe('org.threeten.bp.TestPeriod', () => {
          test.multipliedBy(2);
      }
 
-     //-----------------------------------------------------------------------
-     // negated()
-     //-----------------------------------------------------------------------
+     describe('negated()', () => {
+
+	});
+
      it('test_negated', () => {
          var test = Period.of(1, 2, 3);
          assertPeriod(test.negated(), -1, -2, -3);
@@ -692,9 +705,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(ArithmeticException);
  });
 
-     //-----------------------------------------------------------------------
-     // normalized()
-     //-----------------------------------------------------------------------
+     describe('normalized()', () => {
+
+	});
+
      @DataProvider(name="normalized")
      Object[][] data_normalized() {
          return new Object[][] {
@@ -759,9 +773,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(ArithmeticException);
  });
 
-     //-----------------------------------------------------------------------
-     // addTo()
-     //-----------------------------------------------------------------------
+     describe('addTo()', () => {
+
+	});
+
      @DataProvider(name="addTo")
      Object[][] data_addTo() {
          return new Object[][] {
@@ -815,9 +830,10 @@ describe('org.threeten.bp.TestPeriod', () => {
  	}).to.throw(NullPointerException);
  });
 
-     //-----------------------------------------------------------------------
-     // subtractFrom()
-     //-----------------------------------------------------------------------
+     describe('subtractFrom()', () => {
+
+	});
+
      @DataProvider(name="subtractFrom")
      Object[][] data_subtractFrom() {
          return new Object[][] {
@@ -923,9 +939,10 @@ describe('org.threeten.bp.TestPeriod', () => {
          assertEquals(test5.hashCode() == test5Y.hashCode(), false);
      });
 
-     //-----------------------------------------------------------------------
-     // toString()
-     //-----------------------------------------------------------------------
+     describe('toString()', () => {
+
+	});
+
      @DataProvider(name="toStringAndParse")
      Object[][] data_toString() {
          return new Object[][] {
