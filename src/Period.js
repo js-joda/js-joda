@@ -68,10 +68,14 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @param days
      * @private
      */
-    constructor(years, months, days, isPrivateCall){
+    constructor(years, months, days){
         super();
 
-        Period._validate(years, months, days, isPrivateCall);
+        if((years | months | days) === 0){
+            return Period.ZERO;
+        }
+
+        Period._validate(years, months, days);
         /**
          * The number of years.
          */
@@ -86,8 +90,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         this._days = days;
     }
 
-    static _validate(years, month, days, isPrivateCall){
-        assert(isPrivateCall === true, 'do not instantiate a Period directly, use Period.of*() instead');
+    static _validate(years, month, days){
         requireNonNull(years, 'years');
         requireNonNull(month, 'month');
         requireNonNull(days, 'days');
@@ -341,7 +344,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if ((years | months | days) === 0) {
             return Period.ZERO;
         }
-        return new Period(years, months, days, true);
+        return new Period(years, months, days);
     }
 
     /**
@@ -902,4 +905,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 /**
  * A constant for a period of zero.
  */
-Period.ZERO = new Period(0, 0, 0, true);
+Period.ZERO =  makeZeroPeriod();
+
+function makeZeroPeriod() {
+    var zero = Object.create(Period.prototype);
+    TemporalAmount.call(zero);
+    zero._years = 0;
+    zero._months = 0;
+    zero._days = 0;
+    return zero;
+}
