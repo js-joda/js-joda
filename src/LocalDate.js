@@ -50,8 +50,14 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  * Instead, it is a description of the date, as used for birthdays.
  * It cannot represent an instant on the time-line without additional information
  * such as an offset or time-zone.
+ *
+ * The ISO-8601 calendar system is the modern civil calendar system used today
+ * in most of the world. It is equivalent to the proleptic Gregorian calendar
+ * system, in which today's rules for leap years are applied for all time.
+ * For most applications written today, the ISO-8601 rules are entirely suitable.
+ * However, any application that makes use of historical dates, and requires them
+ * to be accurate will find the ISO-8601 approach unsuitable.
  */
-
 export class LocalDate extends ChronoLocalDate{
 
     /**
