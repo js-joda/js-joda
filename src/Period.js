@@ -40,7 +40,7 @@
  */
 
 import {MathUtil} from './MathUtil';
-import {assert, requireNonNull, requireInstance} from './assert';
+import {requireNonNull, requireInstance} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException} from './errors';
 
 import {IsoChronology} from './chrono/IsoChronology';
@@ -69,13 +69,12 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @private
      */
     constructor(years, months, days){
-        super();
-
         if((years | months | days) === 0){
             return Period.ZERO;
         }
-
         Period._validate(years, months, days);
+
+        super();
         /**
          * The number of years.
          */
@@ -341,22 +340,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @param days  the amount
      */
     static create(years, months, days) {
-        if ((years | months | days) === 0) {
-            return Period.ZERO;
-        }
         return new Period(years, months, days);
-    }
-
-    /**
-     * Resolves singletons.
-     *
-     * @return the resolved instance
-     */
-    _readResolve() {
-        if ((this._years | this._months | this._days) === 0) {
-            return Period.ZERO;
-        }
-        return this;
     }
 
     //-----------------------------------------------------------------------
