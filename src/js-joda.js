@@ -10,6 +10,7 @@ export { LocalDate } from './LocalDate';
 export { LocalTime } from './LocalTime';
 export { MathUtil } from './MathUtil';
 export { Month } from './Month';
+export { Period } from './Period';
 export { Year } from './Year';
 export { ZoneOffset } from './ZoneOffset';
 
