@@ -69,12 +69,11 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @private
      */
     constructor(years, months, days){
+        super();
         if((years | months | days) === 0){
             return Period.ZERO;
         }
         Period._validate(years, months, days);
-
-        super();
         /**
          * The number of years.
          */
