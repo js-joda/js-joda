@@ -4,11 +4,12 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-/*
+
 import {MathUtil} from './MathUtil';
 import {assert, requireNonNull} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
 
+/**
 import {Clock} from './Clock';
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
@@ -224,7 +225,7 @@ export class LocalTime /**extends TemporalAccessor */ /** implements Temporal, T
      * passing {@code this} as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param field  the field to check, null returns false
+     * @param fieldOrUnit  the field to check, null returns false
      * @return true if the field is supported on this time, false if not
      */
     isSupported(fieldOrUnit) {
@@ -908,7 +909,6 @@ export class LocalTime /**extends TemporalAccessor */ /** implements Temporal, T
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
      * specified query passing {@code this} as the argument.
      *
-     * @param <R> the type of the result
      * @param query  the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException if unable to query (defined by the query)
