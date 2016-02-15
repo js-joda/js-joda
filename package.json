@@ -14,6 +14,7 @@
     "test-browser": "./node_modules/.bin/karma start --single-run",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser -- --browsers \"Firefox,PhantomJS\" && npm run build-esdoc && npm run test-coverage",
     "build-esdoc": " ./node_modules/.bin/esdoc -c esdoc.json",
+    "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
     "build-readme2html": "mkdir -p build && ./node_modules/.bin/marked -i README.md -o build/README.hml && ./node_modules/.bin/marked -i CheatSheet.md -o build/CheatSheet.hml "
   },
