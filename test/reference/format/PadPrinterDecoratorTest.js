@@ -7,6 +7,8 @@
 import {expect} from 'chai';
 import {assertEquals} from '../../testUtils';
 
+import '../../_init';
+
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';

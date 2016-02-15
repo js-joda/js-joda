@@ -5,6 +5,8 @@
  */
 import {expect} from 'chai';
 
+import '../_init';
+
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {DateTimeException} from '../../src/errors';

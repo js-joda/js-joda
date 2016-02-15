@@ -502,6 +502,8 @@ export class Instant extends TemporalAccessor {
     }
 }
 
-Instant.EPOCH = new Instant(0,0);
-Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
-Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
+export function _init() {
+    Instant.EPOCH = new Instant(0, 0);
+    Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
+    Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
+}

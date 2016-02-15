@@ -6,6 +6,8 @@
 import {expect} from 'chai';
 import {assertEquals, assertNotNull, assertTrue, assertFalse} from '../testUtils';
 
+import '../_init';
+
 import {MathUtil} from '../../src/MathUtil';
 import {
     DateTimeException,

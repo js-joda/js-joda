@@ -14,3 +14,4 @@ export { Period } from './Period';
 export { Year } from './Year';
 export { ZoneOffset } from './ZoneOffset';
 
+import './_init';

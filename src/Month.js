@@ -10,7 +10,6 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {IsoChronology} from './chrono/IsoChronology';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
-import './temporal/TemporalQueriesPattern';
 
 /**
  * A month-of-year, such as 'July'.
@@ -389,7 +388,7 @@ export class Month extends TemporalAccessor {
      * replacement for enum values
      */
     static values(){
-        return MONTHS.slice();
+        return Month.MONTHS.slice();
     }
 
     /**
@@ -401,25 +400,26 @@ export class Month extends TemporalAccessor {
         if (month < 1 || month > 12) {
             assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
         }
-        return MONTHS[month-1];
+        return Month.MONTHS[month-1];
     }
 }
 
-Month.JANUARY = new Month(1);
-Month.FEBRUARY = new Month(2);
-Month.MARCH = new Month(3);
-Month.APRIL = new Month(4);
-Month.MAY = new Month(5);
-Month.JUNE = new Month(6);
-Month.JULY = new Month(7);
-Month.AUGUST = new Month(8);
-Month.SEPTEMBER = new Month(9);
-Month.OCTOBER = new Month(10);
-Month.NOVEMBER = new Month(11);
-Month.DECEMBER = new Month(12);
+export function _init() {
+    Month.JANUARY = new Month(1);
+    Month.FEBRUARY = new Month(2);
+    Month.MARCH = new Month(3);
+    Month.APRIL = new Month(4);
+    Month.MAY = new Month(5);
+    Month.JUNE = new Month(6);
+    Month.JULY = new Month(7);
+    Month.AUGUST = new Month(8);
+    Month.SEPTEMBER = new Month(9);
+    Month.OCTOBER = new Month(10);
+    Month.NOVEMBER = new Month(11);
+    Month.DECEMBER = new Month(12);
 
-var MONTHS = [
-    Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
-    Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
-];
-
+    Month.MONTHS = [
+        Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
+        Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
+    ];
+}

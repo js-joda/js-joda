@@ -6,6 +6,8 @@
 
 import {assertEquals} from '../../testUtils';
 
+import '../../_init';
+
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
 
 describe('org.threeten.bp.format.TestDecimalStyle', () => {

@@ -1204,7 +1204,10 @@ export class Duration extends TemporalAmount
     }
 
 }
-/**
- * Constant for a duration of zero.
- */
-Duration.ZERO = new Duration(0, 0);
+
+export function _init() {
+    /**
+     * Constant for a duration of zero.
+     */
+    Duration.ZERO = new Duration(0, 0);
+}

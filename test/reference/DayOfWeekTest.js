@@ -5,8 +5,9 @@
  */
 
 import {expect} from 'chai';
-
 import {assertEquals} from '../testUtils';
+
+import '../_init';
 
 import {DateTimeException, NullPointerException} from '../../src/errors';
 

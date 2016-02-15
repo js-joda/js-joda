@@ -55,8 +55,6 @@ import {LocalDate} from './LocalDate';
  */
 const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
 
-const UNITS = [ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS];
-    
 export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     /**
@@ -344,7 +342,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     units() {
-        return UNITS.slice();
+        return [ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS];
     }
 
     chronology() {
@@ -885,16 +883,18 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     }
 }
 
-/**
- * A constant for a period of zero.
- */
-Period.ZERO =  makeZeroPeriod();
+export function _init() {
+    /**
+     * A constant for a period of zero.
+     */
+    Period.ZERO = makeZeroPeriod();
 
-function makeZeroPeriod() {
-    var zero = Object.create(Period.prototype);
-    TemporalAmount.call(zero);
-    zero._years = 0;
-    zero._months = 0;
-    zero._days = 0;
-    return zero;
+    function makeZeroPeriod() {
+        var zero = Object.create(Period.prototype);
+        TemporalAmount.call(zero);
+        zero._years = 0;
+        zero._months = 0;
+        zero._days = 0;
+        return zero;
+    }
 }

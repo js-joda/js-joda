@@ -6,9 +6,6 @@
 import {DateTimeException} from './errors';
 import {LocalTime} from './LocalTime';
 
-const MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
-var SECONDS_CACHE = {};
-
 export class ZoneOffset {
     constructor(totalSeconds){
         ZoneOffset.validateTotalSeconds(totalSeconds);
@@ -39,7 +36,7 @@ export class ZoneOffset {
     }
 
     static validateTotalSeconds(totalSeconds){
-        if (Math.abs(totalSeconds) > MAX_SECONDS) {
+        if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
             throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
         }
     }
@@ -95,10 +92,10 @@ export class ZoneOffset {
     static ofTotalSeconds(totalSeconds) {
         if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
             var totalSecs = totalSeconds;
-            var result = SECONDS_CACHE[totalSecs];
+            var result = ZoneOffset.SECONDS_CACHE[totalSecs];
             if (result == null) {
                 result = new ZoneOffset(totalSeconds);
-                SECONDS_CACHE[totalSecs] = result;
+                ZoneOffset.SECONDS_CACHE[totalSecs] = result;
             }
             return result;
         } else {
@@ -108,6 +105,10 @@ export class ZoneOffset {
 
 }
 
-ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-MAX_SECONDS);
-ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(MAX_SECONDS);
+export function _init() {
+    ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
+    ZoneOffset.SECONDS_CACHE = {};
+    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+}

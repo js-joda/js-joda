@@ -5,6 +5,8 @@
  */
 import {expect} from 'chai';
 
+import '../../_init';
+
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';

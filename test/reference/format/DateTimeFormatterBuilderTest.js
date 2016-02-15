@@ -6,6 +6,8 @@
 import {expect} from 'chai';
 import {assertEquals} from '../../testUtils';
 
+import '../../_init';
+
 import {ChronoField} from '../../../src/temporal/ChronoField';
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 

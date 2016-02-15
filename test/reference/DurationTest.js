@@ -5,10 +5,9 @@
  */
 import {expect} from 'chai';
 
+import '../_init';
+
 import {ArithmeticException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
-//yuck... circular dependency between ChronoUnit and Duration... for the Duration import to work we must import ChronoUnit first :/ ...
-// there MUST be a better way to do this??
-import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
 import {Instant} from '../../src/Instant';

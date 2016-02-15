@@ -4,6 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
+import {assertEquals} from '../../testUtils';
+
+import '../../_init';
 
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
@@ -11,8 +14,6 @@ import {DecimalStyle} from '../../../src/format/DecimalStyle';
 import {SignStyle} from '../../../src/format/SignStyle';
 import {ChronoField} from '../../../src/temporal/ChronoField';
 import {IsoChronology} from '../../../src/chrono/IsoChronology';
-
-import {assertEquals} from '../../testUtils';
 
 const PadPrinterParserDecorator = DateTimeFormatterBuilder.PadPrinterParserDecorator;
 const CharLiteralPrinterParser = DateTimeFormatterBuilder.CharLiteralPrinterParser;

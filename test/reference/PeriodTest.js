@@ -5,14 +5,15 @@
  */
 
 import {expect} from 'chai';
+import {assertSame, assertEquals} from '../testUtils';
 
-import {assertSame, assertEquals} from './testUtils';
+import '../_init';
 
-import {NullPointerException, ArithmeticException} from '../src/errors';
-import {MathUtil} from '../src/MathUtil';
+import {NullPointerException, ArithmeticException} from '../../src/errors';
+import {MathUtil} from '../../src/MathUtil';
 
-import {LocalDate} from '../src/LocalDate';
-import {Period} from '../src/Period';
+import {LocalDate} from '../../src/LocalDate';
+import {Period} from '../../src/Period';
 
 const Integer = {
     MAX_VALUE: 2147483647,

@@ -32,12 +32,12 @@ export class DayOfWeek extends TemporalAccessor {
     }
 
     static values() {
-        return ENUMS.slice();
+        return DayOfWeek.ENUMS.slice();
     }
 
     static valueOf(name) {
-        for(var ordinal=0; ordinal < ENUMS.length; ordinal++){
-            if(ENUMS[ordinal].name() === name){
+        for(var ordinal=0; ordinal < DayOfWeek.ENUMS.length; ordinal++){
+            if(DayOfWeek.ENUMS[ordinal].name() === name){
                 break;
             }
         }
@@ -59,7 +59,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (dayOfWeek < 1 || dayOfWeek > 7) {
             throw new DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
         }
-        return ENUMS[dayOfWeek - 1];
+        return DayOfWeek.ENUMS[dayOfWeek - 1];
     }
     
     /**
@@ -253,7 +253,7 @@ export class DayOfWeek extends TemporalAccessor {
      */
     plus(days) {
         var amount = MathUtil.floorMod(days, 7);
-        return ENUMS[MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+        return DayOfWeek.ENUMS[MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
     }
 
     /**
@@ -352,25 +352,26 @@ export class DayOfWeek extends TemporalAccessor {
     }
 }
 
-DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
-DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
-DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
-DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
-DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
-DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
-DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
+export function _init() {
+    DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
+    DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
+    DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
+    DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
+    DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
+    DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
+    DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
 
-DayOfWeek.FROM = createTemporalQuery('DayOfWeek.FROM', (temporal) => {
-    return DayOfWeek.from(temporal);
-});
+    DayOfWeek.FROM = createTemporalQuery('DayOfWeek.FROM', (temporal) => {
+        return DayOfWeek.from(temporal);
+    });
 
-var ENUMS = [
-    DayOfWeek.MONDAY,
-    DayOfWeek.TUESDAY,
-    DayOfWeek.WEDNESDAY,
-    DayOfWeek.THURSDAY,
-    DayOfWeek.FRIDAY,
-    DayOfWeek.SATURDAY,
-    DayOfWeek.SUNDAY
-];
-
+    DayOfWeek.ENUMS = [
+        DayOfWeek.MONDAY,
+        DayOfWeek.TUESDAY,
+        DayOfWeek.WEDNESDAY,
+        DayOfWeek.THURSDAY,
+        DayOfWeek.FRIDAY,
+        DayOfWeek.SATURDAY,
+        DayOfWeek.SUNDAY
+    ];
+}

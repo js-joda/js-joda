@@ -32,11 +32,13 @@ export class Year {
     
 }
 
-/**
- * The minimum supported year
- */
-Year.MIN_VALUE = -999999;
-/**
- * The maximum supported year
- */
-Year.MAX_VALUE = 999999;
+export function _init() {
+    /**
+     * The minimum supported year
+     */
+    Year.MIN_VALUE = -999999;
+    /**
+     * The maximum supported year
+     */
+    Year.MAX_VALUE = 999999;
+}

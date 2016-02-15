@@ -258,16 +258,12 @@ export class DateTimeFormatter {
 
 }
 
-var ISO_LOCAL_DATE_INSTANCE;
-DateTimeFormatter.ISO_LOCAL_DATE = () => {
-    if (ISO_LOCAL_DATE_INSTANCE == null) {
-        ISO_LOCAL_DATE_INSTANCE = new DateTimeFormatterBuilder()
-            .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
-            .appendLiteral('-')
-            .appendValue(ChronoField.MONTH_OF_YEAR, 2)
-            .appendLiteral('-')
-            .appendValue(ChronoField.DAY_OF_MONTH, 2)
-            .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
-    }
-    return ISO_LOCAL_DATE_INSTANCE;
-};
+export function _init() {
+    DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendLiteral('-')
+        .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+        .appendLiteral('-')
+        .appendValue(ChronoField.DAY_OF_MONTH, 2)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+}

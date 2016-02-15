@@ -9,7 +9,6 @@ import {MathUtil} from './MathUtil';
 import {assert, requireNonNull} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
 
-/**
 import {Clock} from './Clock';
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
@@ -18,7 +17,6 @@ import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
-*/
 
 /**
  * A time without time-zone in the ISO-8601 calendar system,
@@ -41,7 +39,7 @@ import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
  * <h3>Specification for implementors</h3>
  * This class is immutable and thread-safe.
  */
-export class LocalTime /**extends TemporalAccessor */ /** implements Temporal, TemporalAdjuster */ {
+export class LocalTime extends TemporalAccessor /** implements Temporal, TemporalAdjuster */ {
     /**
      * Obtains the current time from the specified clock.
      * <p>
@@ -173,10 +171,10 @@ export class LocalTime /**extends TemporalAccessor */ /** implements Temporal, T
      * @param nanoOfSecond  the nano-of-second to represent, validated from 0 to 999,999,999
      */
     constructor(hour=0, minute=0, second=0, nanoOfSecond=0) {
-        // super();
+        super();
         LocalTime._validate(hour, minute, second, nanoOfSecond);
         if ((minute | second | nanoOfSecond) === 0) {
-            return HOURS[hour];
+            return LocalTime.HOURS[hour];
         }
         this._hour = hour;
         this._minute = minute;
@@ -1218,94 +1216,97 @@ export class LocalTime /**extends TemporalAccessor */ /** implements Temporal, T
     }
 }
 
-/**
- * Constants for the local time of each hour.
- */
-var HOURS = [];
-for(let i=0; i<24; i++){
-    HOURS[i] = makeLocalTimeConst(i);
+export function _init() {
+    /**
+     * Constants for the local time of each hour.
+     */
+    LocalTime.HOURS = [];
+    for (let i = 0; i < 24; i++) {
+        LocalTime.HOURS[i] = makeLocalTimeConst(i);
+    }
+
+    function makeLocalTimeConst(hour = 0, minute = 0, second = 0, nano = 0) {
+        var localTime = Object.create(LocalTime.prototype);
+        TemporalAccessor.call(localTime);
+        localTime._hour = hour;
+        localTime._minute = minute;
+        localTime._second = second;
+        localTime._nano = nano;
+        return localTime;
+    }
+
+    /**
+     * The minimum supported {@code LocalTime}, '00:00'.
+     * This is the time of midnight at the start of the day.
+     */
+    LocalTime.MIN = LocalTime.HOURS[0];
+    /**
+     * The maximum supported {@code LocalTime}, '23:59:59.999999999'.
+     * This is the time just before midnight at the end of the day.
+     */
+    LocalTime.MAX = makeLocalTimeConst(23, 59, 59, 999999999);
+    /**
+     * The time of midnight at the start of the day, '00:00'.
+     */
+    LocalTime.MIDNIGHT = LocalTime.HOURS[0];
+    /**
+     * The time of noon in the middle of the day, '12:00'.
+     */
+    LocalTime.NOON = LocalTime.HOURS[12];
+
+    var FROM;
+    LocalTime.FROM = () => {
+        return FROM || (FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
+            return LocalTime.from(temporal);
+        }));
+    };
+
+    /**
+     * Hours per day.
+     */
+    LocalTime.HOURS_PER_DAY = 24;
+    /**
+     * Minutes per hour.
+     */
+    LocalTime.MINUTES_PER_HOUR = 60;
+    /**
+     * Minutes per day.
+     */
+    LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+    /**
+     * Seconds per minute.
+     */
+    LocalTime.SECONDS_PER_MINUTE = 60;
+    /**
+     * Seconds per hour.
+     */
+    LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+    /**
+     * Seconds per day.
+     */
+    LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+    /**
+     * Milliseconds per day.
+     */
+    LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
+    /**
+     * Microseconds per day.
+     */
+    LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
+    /**
+     * Nanos per second.
+     */
+    LocalTime.NANOS_PER_SECOND = 1000000000;
+    /**
+     * Nanos per minute.
+     */
+    LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
+    /**
+     * Nanos per hour.
+     */
+    LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+    /**
+     * Nanos per day.
+     */
+    LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
 }
-
-function makeLocalTimeConst(hour=0, minute=0, second=0, nano=0){
-    var localTime = Object.create(LocalTime.prototype);
-    //TemporalAccessor.call(localTime);
-    localTime._hour = hour;
-    localTime._minute = minute;
-    localTime._second = second;
-    localTime._nano = nano;
-    return localTime;
-}
-
-/**
- * The minimum supported {@code LocalTime}, '00:00'.
- * This is the time of midnight at the start of the day.
- */
-LocalTime.MIN = HOURS[0];
-/**
- * The maximum supported {@code LocalTime}, '23:59:59.999999999'.
- * This is the time just before midnight at the end of the day.
- */
-LocalTime.MAX = makeLocalTimeConst(23, 59, 59, 999999999);
-/**
- * The time of midnight at the start of the day, '00:00'.
- */
-LocalTime.MIDNIGHT = HOURS[0];
-/**
- * The time of noon in the middle of the day, '12:00'.
- */
-LocalTime.NOON = HOURS[12];
-
-/*
-LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
-    return LocalTime.from(temporal);
-});
-*/
-
-/**
- * Hours per day.
- */
-LocalTime.HOURS_PER_DAY = 24;
-/**
- * Minutes per hour.
- */
-LocalTime.MINUTES_PER_HOUR = 60;
-/**
- * Minutes per day.
- */
-LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
-/**
- * Seconds per minute.
- */
-LocalTime.SECONDS_PER_MINUTE = 60;
-/**
- * Seconds per hour.
- */
-LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-/**
- * Seconds per day.
- */
-LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
-/**
- * Milliseconds per day.
- */
-LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
-/**
- * Microseconds per day.
- */
-LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
-/**
- * Nanos per second.
- */
-LocalTime.NANOS_PER_SECOND = 1000000000;
-/**
- * Nanos per minute.
- */
-LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
-/**
- * Nanos per hour.
- */
-LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-/**
- * Nanos per day.
- */
-LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;

@@ -4,6 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
+
+import '../_init';
+
 import {DateTimeException} from '../../src/errors';
 import {ZoneOffset} from '../../src/ZoneOffset';
 

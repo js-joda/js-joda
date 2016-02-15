@@ -22,8 +22,6 @@ import {Period} from './Period';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 
-import './temporal/TemporalQueriesPattern';
-
 /**
  * The number of days in a 400 year cycle.
  */
@@ -197,7 +195,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return the parsed local date, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE()){
+    static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE){
         assert(formatter != null, 'formatter', NullPointerException);
         return formatter.parse(text, LocalDate.FROM);
     }
@@ -1448,19 +1446,19 @@ export class LocalDate extends ChronoLocalDate{
     }
 }
 
-/**
- * The minimum supported {@code LocalDate}
- * This could be used by an application as a "far past" date.
- */
-LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
-/**
- * The maximum supported {@code LocalDate}
- * This could be used by an application as a "far future" date.
- */
-LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
+export function _init() {
+    /**
+     * The minimum supported {@code LocalDate}
+     * This could be used by an application as a "far past" date.
+     */
+    LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
+    /**
+     * The maximum supported {@code LocalDate}
+     * This could be used by an application as a "far future" date.
+     */
+    LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
 
-LocalDate.FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
-    return LocalDate.from(temporal);
-});
-
-
+    LocalDate.FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
+        return LocalDate.from(temporal);
+    });
+}
