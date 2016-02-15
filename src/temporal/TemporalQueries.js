@@ -64,7 +64,7 @@ export class TemporalQueries {
      * @return a query that can obtain the zone ID of a temporal, not null
      */
     static zoneId() {
-        return TemporalQueries.ZONE_ID;
+        return TemporalQueries.ZONE_ID();
     }
 
     /**
@@ -103,7 +103,7 @@ export class TemporalQueries {
      * @return a query that can obtain the chronology of a temporal, not null
      */
     static chronology() {
-        return TemporalQueries.CHRONO;
+        return TemporalQueries.CHRONO();
     }
 
     /**
@@ -140,7 +140,7 @@ export class TemporalQueries {
      * @return a query that can obtain the precision of a temporal, not null
      */
     static precision() {
-        return TemporalQueries.PRECISION;
+        return TemporalQueries.PRECISION();
     }
 
     /**
@@ -163,7 +163,7 @@ export class TemporalQueries {
      * @return a query that can obtain the zone ID or offset of a temporal, not null
      */
     static zone() {
-        return TemporalQueries.ZONE;
+        return TemporalQueries.ZONE();
     }
 
     /**
@@ -186,7 +186,7 @@ export class TemporalQueries {
      * @return a query that can obtain the offset of a temporal, not null
      */
     static offset() {
-        return TemporalQueries.OFFSET;
+        return TemporalQueries.OFFSET();
     }
 
     /**
@@ -202,7 +202,7 @@ export class TemporalQueries {
      * @return a query that can obtain the date of a temporal, not null
      */
     static localDate() {
-        return TemporalQueries.LOCAL_DATE;
+        return TemporalQueries.LOCAL_DATE();
     }
 
     /**
@@ -218,7 +218,7 @@ export class TemporalQueries {
      * @return a query that can obtain the time of a temporal, not null
      */
     static localTime() {
-        return TemporalQueries.LOCAL_TIME;
+        return TemporalQueries.LOCAL_TIME();
     }
 }
 

@@ -199,7 +199,7 @@ export class LocalDate extends ChronoLocalDate{
      */
     static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE()){
         assert(formatter != null, 'formatter', NullPointerException);
-        return formatter.parse(text, LocalDate.FROM);
+        return formatter.parse(text, LocalDate.FROM());
     }
 
     /**
@@ -1459,8 +1459,11 @@ LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
  */
 LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
 
-LocalDate.FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
-    return LocalDate.from(temporal);
-});
+var FROM;
+LocalDate.FROM = () => {
+    return FROM || (FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
+        return LocalDate.from(temporal);
+    }));
+};
 
 
