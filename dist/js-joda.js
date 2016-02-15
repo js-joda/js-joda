@@ -59,6 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.ZoneOffset = exports.Year = exports.Period = exports.Month = exports.MathUtil = exports.LocalTime = exports.LocalDate = exports.Instant = exports.DateTimeParseException = exports.DateTimeException = exports.Duration = exports.Clock = undefined;
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -102,7 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDate = __webpack_require__(18);
+	var _LocalDate = __webpack_require__(19);
 	
 	Object.defineProperty(exports, 'LocalDate', {
 	  enumerable: true,
@@ -111,7 +112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(11);
 	
 	Object.defineProperty(exports, 'LocalTime', {
 	  enumerable: true,
@@ -129,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Month = __webpack_require__(20);
+	var _Month = __webpack_require__(29);
 	
 	Object.defineProperty(exports, 'Month', {
 	  enumerable: true,
@@ -138,7 +139,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Year = __webpack_require__(11);
+	var _Period = __webpack_require__(30);
+	
+	Object.defineProperty(exports, 'Period', {
+	  enumerable: true,
+	  get: function get() {
+	    return _Period.Period;
+	  }
+	});
+	
+	var _Year = __webpack_require__(31);
 	
 	Object.defineProperty(exports, 'Year', {
 	  enumerable: true,
@@ -147,7 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(17);
+	var _ZoneOffset = __webpack_require__(22);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -155,6 +165,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _ZoneOffset.ZoneOffset;
 	  }
 	});
+
+	__webpack_require__(34);
 
 /***/ },
 /* 1 */
@@ -176,7 +188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Instant = __webpack_require__(2);
 	
-	var _ZoneOffset = __webpack_require__(17);
+	var _ZoneOffset = __webpack_require__(22);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -480,6 +492,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	exports._init = _init;
+	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
@@ -488,11 +502,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(11);
 	
 	var _MathUtil = __webpack_require__(4);
 	
-	var _TemporalAccessor2 = __webpack_require__(14);
+	var _TemporalAccessor2 = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1075,9 +1089,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Instant;
 	}(_TemporalAccessor2.TemporalAccessor);
 	
-	Instant.EPOCH = new Instant(0, 0);
-	Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
-	Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
+	function _init() {
+	    Instant.EPOCH = new Instant(0, 0);
+	    Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
+	    Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
+	}
 
 /***/ },
 /* 3 */
@@ -1092,15 +1108,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	exports._init = _init;
+	
 	var _MathUtil = __webpack_require__(4);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalField2 = __webpack_require__(12);
+	var _TemporalField2 = __webpack_require__(32);
 	
-	var _ValueRange = __webpack_require__(13);
+	var _ValueRange = __webpack_require__(33);
 	
-	var _Year = __webpack_require__(11);
+	var _Year = __webpack_require__(31);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1260,45 +1278,68 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ChronoField;
 	}(_TemporalField2.TemporalField);
 	
-	ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
+	function _init() {
 	
-	ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
+	    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
 	
-	ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
+	    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
 	
-	ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
+	    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
 	
-	ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
+	    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000 - 1));
 	
-	ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
 	
-	ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000 - 1));
 	
-	ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.MINUTES, _ValueRange.ValueRange.of(0, 59));
 	
-	ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+	    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 - 1));
 	
-	ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
+	    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.HOURS, _ValueRange.ValueRange.of(0, 59));
 	
-	ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
+	    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 24 * 60 - 1));
 	
-	ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
+	    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(0, 11));
 	
-	ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
+	    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(1, 12));
 	
-	ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+	    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
 	
-	ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE * 12, _Year.Year.MAX_VALUE * 12 + 11));
+	    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(1, 24));
 	
-	ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _Year.Year.MAX_VALUE, _Year.Year.MAX_VALUE + 1));
+	    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', _ChronoUnit.ChronoUnit.HALF_DAYS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 1));
 	
-	ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
+	    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
-	ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
-	ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
 	
-	ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
+	    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+	
+	    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
+	
+	    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
+	
+	    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
+	
+	    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
+	
+	    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+	
+	    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE * 12, _Year.Year.MAX_VALUE * 12 + 11));
+	
+	    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _Year.Year.MAX_VALUE, _Year.Year.MAX_VALUE + 1));
+	
+	    ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
+	
+	    ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
+	
+	    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+	
+	    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
+	}
 
 /***/ },
 /* 4 */
@@ -1338,7 +1379,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'intDiv',
 	        value: function intDiv(x, y) {
 	            var r = x / y;
-	            if (r < 0) {
+	            if (r === 0) {
+	                return 0;
+	            } else if (r < 0) {
 	                return Math.ceil(r);
 	            } else {
 	                return Math.floor(r);
@@ -1348,7 +1391,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'intMod',
 	        value: function intMod(x, y) {
 	            var r = x - MathUtil.intDiv(x, y) * y;
-	            if (r < 0) {
+	            if (r === 0) {
+	                return 0;
+	            } else if (r < 0) {
 	                return Math.ceil(r);
 	            } else {
 	                return Math.floor(r);
@@ -1405,7 +1450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (_r3 > MAX_SAFE_INTEGER || _r3 < MIN_SAFE_INTEGER) {
 	                    throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
 	                }
-	                return _r3;
+	                return -1 * _r3;
 	            }
 	            if (y === 0) {
 	                var _r4 = x;
@@ -1423,8 +1468,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var r = x - y;
 	            // detect overflow, since neither x nor y are 0 (checked above) r cannot be === x or === y
 	            // TODO: is this correct and complete?
-	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER || r === x || r === y) {
-	                throw new _errors.ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER!');
+	            if (r < MIN_SAFE_INTEGER || r > MAX_SAFE_INTEGER) {
+	                throw new _errors.ArithmeticException('Invalid subtraction beyond MIN_SAFE_INTEGER! ' + x + '-' + y);
 	            }
 	            return r;
 	        }
@@ -1446,6 +1491,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return r;
 	        }
+	    }, {
+	        key: 'safeToInt',
+	        value: function safeToInt(value) {
+	            if (value === 0) {
+	                return 0;
+	            }
+	            if (isNaN(value)) {
+	                throw new _errors.ArithmeticException('Invalid int value, using NaN as argument');
+	            }
+	            if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
+	                throw new _errors.ArithmeticException('Calculation overflows an int: ' + value);
+	            }
+	            return value;
+	        }
+	    }, {
+	        key: 'parseInt',
+	        value: function (_parseInt) {
+	            function parseInt(_x) {
+	                return _parseInt.apply(this, arguments);
+	            }
+	
+	            parseInt.toString = function () {
+	                return _parseInt.toString();
+	            };
+	
+	            return parseInt;
+	        }(function (value) {
+	            var int = parseInt(value);
+	            if (isNaN(int)) {
+	                throw new _errors.ArithmeticException('Invalid int value parse to NaN: ' + value);
+	            }
+	            if (int > MAX_SAFE_INTEGER || int < MIN_SAFE_INTEGER) {
+	                throw new _errors.ArithmeticException('Calculation overflows an int: ' + value);
+	            }
+	            return int;
+	        })
 	
 	        /**
 	         * Compares two Numbers.
@@ -1669,9 +1750,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
 	
+	exports._init = _init;
+	
 	var _Duration = __webpack_require__(8);
 	
-	var _Year = __webpack_require__(11);
+	var _Year = __webpack_require__(31);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1933,120 +2016,121 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  return ChronoUnit;
 	}();
-	/**
-	 * Unit that represents the concept of a nanosecond, the smallest supported unit of time.
-	 * For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
-	 */
 	
-	
-	ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
-	/**
-	 * Unit that represents the concept of a microsecond.
-	 * For the ISO calendar system, it is equal to the 1,000,000th part of the second unit.
-	 */
-	ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
-	/**
-	 * Unit that represents the concept of a millisecond.
-	 * For the ISO calendar system, it is equal to the 1000th part of the second unit.
-	 */
-	ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
-	/**
-	 * Unit that represents the concept of a second.
-	 * For the ISO calendar system, it is equal to the second in the SI system
-	 * of units, except around a leap-second.
-	 */
-	ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
-	/**
-	 * Unit that represents the concept of a minute.
-	 * For the ISO calendar system, it is equal to 60 seconds.
-	 */
-	ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
-	/**
-	 * Unit that represents the concept of an hour.
-	 * For the ISO calendar system, it is equal to 60 minutes.
-	 */
-	ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
-	/**
-	 * Unit that represents the concept of half a day, as used in AM/PM.
-	 * For the ISO calendar system, it is equal to 12 hours.
-	 */
-	ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
-	/**
-	 * Unit that represents the concept of a day.
-	 * For the ISO calendar system, it is the standard day from midnight to midnight.
-	 * The estimated duration of a day is {@code 24 Hours}.
-	 * <p>
-	 * When used with other calendar systems it must correspond to the day defined by
-	 * the rising and setting of the Sun on Earth. It is not required that days begin
-	 * at midnight - when converting between calendar systems, the date should be
-	 * equivalent at midday.
-	 */
-	ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
-	/**
-	 * Unit that represents the concept of a week.
-	 * For the ISO calendar system, it is equal to 7 days.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days.
-	 */
-	ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
-	/**
-	 * Unit that represents the concept of a month.
-	 * For the ISO calendar system, the length of the month varies by month-of-year.
-	 * The estimated duration of a month is one twelfth of {@code 365.2425 Days}.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days.
-	 */
-	ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
-	/**
-	 * Unit that represents the concept of a year.
-	 * For the ISO calendar system, it is equal to 12 months.
-	 * The estimated duration of a year is {@code 365.2425 Days}.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days
-	 * or months roughly equal to a year defined by the passage of the Earth around the Sun.
-	 */
-	ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
-	/**
-	 * Unit that represents the concept of a decade.
-	 * For the ISO calendar system, it is equal to 10 years.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days
-	 * and is normally an integral number of years.
-	 */
-	ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
-	/**
-	 * Unit that represents the concept of a century.
-	 * For the ISO calendar system, it is equal to 100 years.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days
-	 * and is normally an integral number of years.
-	 */
-	ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
-	/**
-	 * Unit that represents the concept of a millennium.
-	 * For the ISO calendar system, it is equal to 1000 years.
-	 * <p>
-	 * When used with other calendar systems it must correspond to an integral number of days
-	 * and is normally an integral number of years.
-	 */
-	ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
-	/**
-	 * Unit that represents the concept of an era.
-	 * The ISO calendar system doesn't have eras thus it is impossible to add
-	 * an era to a date or date-time.
-	 * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
-	 * <p>
-	 * When used with other calendar systems there are no restrictions on the unit.
-	 */
-	ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_Year.Year.MAX_VALUE + 1)));
-	/**
-	 * Artificial unit that represents the concept of forever.
-	 * This is primarily used with {@link TemporalField} to represent unbounded fields
-	 * such as the year or era.
-	 * The estimated duration of the era is artificially defined as the largest duration
-	 * supported by {@code Duration}.
-	 */
-	ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
+	function _init() {
+	  /**
+	   * Unit that represents the concept of a nanosecond, the smallest supported unit of time.
+	   * For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
+	   */
+	  ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
+	  /**
+	   * Unit that represents the concept of a microsecond.
+	   * For the ISO calendar system, it is equal to the 1,000,000th part of the second unit.
+	   */
+	  ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
+	  /**
+	   * Unit that represents the concept of a millisecond.
+	   * For the ISO calendar system, it is equal to the 1000th part of the second unit.
+	   */
+	  ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
+	  /**
+	   * Unit that represents the concept of a second.
+	   * For the ISO calendar system, it is equal to the second in the SI system
+	   * of units, except around a leap-second.
+	   */
+	  ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
+	  /**
+	   * Unit that represents the concept of a minute.
+	   * For the ISO calendar system, it is equal to 60 seconds.
+	   */
+	  ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
+	  /**
+	   * Unit that represents the concept of an hour.
+	   * For the ISO calendar system, it is equal to 60 minutes.
+	   */
+	  ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
+	  /**
+	   * Unit that represents the concept of half a day, as used in AM/PM.
+	   * For the ISO calendar system, it is equal to 12 hours.
+	   */
+	  ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
+	  /**
+	   * Unit that represents the concept of a day.
+	   * For the ISO calendar system, it is the standard day from midnight to midnight.
+	   * The estimated duration of a day is {@code 24 Hours}.
+	   * <p>
+	   * When used with other calendar systems it must correspond to the day defined by
+	   * the rising and setting of the Sun on Earth. It is not required that days begin
+	   * at midnight - when converting between calendar systems, the date should be
+	   * equivalent at midday.
+	   */
+	  ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
+	  /**
+	   * Unit that represents the concept of a week.
+	   * For the ISO calendar system, it is equal to 7 days.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days.
+	   */
+	  ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
+	  /**
+	   * Unit that represents the concept of a month.
+	   * For the ISO calendar system, the length of the month varies by month-of-year.
+	   * The estimated duration of a month is one twelfth of {@code 365.2425 Days}.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days.
+	   */
+	  ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
+	  /**
+	   * Unit that represents the concept of a year.
+	   * For the ISO calendar system, it is equal to 12 months.
+	   * The estimated duration of a year is {@code 365.2425 Days}.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days
+	   * or months roughly equal to a year defined by the passage of the Earth around the Sun.
+	   */
+	  ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
+	  /**
+	   * Unit that represents the concept of a decade.
+	   * For the ISO calendar system, it is equal to 10 years.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days
+	   * and is normally an integral number of years.
+	   */
+	  ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
+	  /**
+	   * Unit that represents the concept of a century.
+	   * For the ISO calendar system, it is equal to 100 years.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days
+	   * and is normally an integral number of years.
+	   */
+	  ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
+	  /**
+	   * Unit that represents the concept of a millennium.
+	   * For the ISO calendar system, it is equal to 1000 years.
+	   * <p>
+	   * When used with other calendar systems it must correspond to an integral number of days
+	   * and is normally an integral number of years.
+	   */
+	  ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
+	  /**
+	   * Unit that represents the concept of an era.
+	   * The ISO calendar system doesn't have eras thus it is impossible to add
+	   * an era to a date or date-time.
+	   * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
+	   * <p>
+	   * When used with other calendar systems there are no restrictions on the unit.
+	   */
+	  ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_Year.Year.MAX_VALUE + 1)));
+	  /**
+	   * Artificial unit that represents the concept of forever.
+	   * This is primarily used with {@link TemporalField} to represent unbounded fields
+	   * such as the year or era.
+	   * The estimated duration of the era is artificially defined as the largest duration
+	   * supported by {@code Duration}.
+	   */
+	  ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
+	}
 
 /***/ },
 /* 8 */
@@ -2059,26 +2143,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Duration = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	exports._init = _init;
 	
 	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _MathUtil = __webpack_require__(4);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _errors = __webpack_require__(5);
+	var _TemporalAmount2 = __webpack_require__(10);
 	
-	var _LocalTime = __webpack_require__(10);
-	
-	var _MathUtil = __webpack_require__(4);
+	var _LocalTime = __webpack_require__(11);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
 	
 	/**
 	 * A time-based amount of time, such as '34.5 seconds'.
@@ -2106,8 +2198,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 */
 	
-	var Duration
-	/*implements TemporalAmount, Comparable<Duration>, Serializable */ = exports.Duration = function () {
+	var Duration = exports.Duration = function (_TemporalAmount) {
+	    _inherits(Duration, _TemporalAmount);
 	
 	    /**
 	     * Constructs an instance of {@code Duration} using seconds and nanoseconds.
@@ -2120,9 +2212,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function Duration(seconds, nanos) {
 	        _classCallCheck(this, Duration);
 	
-	        //super();
-	        this._seconds = seconds;
-	        this._nanos = nanos;
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Duration).call(this));
+	
+	        _this._seconds = seconds;
+	        _this._nanos = nanos;
+	        return _this;
 	    }
 	
 	    //-----------------------------------------------------------------------
@@ -2787,6 +2881,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'addTo',
 	        value: function addTo(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
 	            if (this._seconds !== 0) {
 	                temporal = temporal.plus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
 	            }
@@ -2824,6 +2919,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'subtractFrom',
 	        value: function subtractFrom(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
 	            if (this._seconds !== 0) {
 	                temporal = temporal.minus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
 	            }
@@ -3448,13 +3544,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Duration;
-	}();
-	/**
-	 * Constant for a duration of zero.
-	 */
+	}(_TemporalAmount2.TemporalAmount
+	/*implements TemporalAmount, Comparable<Duration>, Serializable */);
 	
-	
-	Duration.ZERO = new Duration(0, 0);
+	function _init() {
+	    /**
+	     * Constant for a duration of zero.
+	     */
+	    Duration.ZERO = new Duration(0, 0);
+	}
 
 /***/ },
 /* 9 */
@@ -3467,6 +3565,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.assert = assert;
 	exports.requireNonNull = requireNonNull;
+	exports.requireInstance = requireInstance;
 	
 	var _errors = __webpack_require__(5);
 	
@@ -3490,6 +3589,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    return value;
 	}
+	
+	function requireInstance(value, _class, parameterName) {
+	    if (!(value instanceof _class)) {
+	        throw new _errors.IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class));
+	    }
+	    return value;
+	}
 
 /***/ },
 /* 10 */
@@ -3503,108 +3609,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	/**
+	/*
 	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	 */
 	
-	var LocalTime = exports.LocalTime = function LocalTime() {
-	  _classCallCheck(this, LocalTime);
+	var TemporalAmount = exports.TemporalAmount = function TemporalAmount() {
+	  _classCallCheck(this, TemporalAmount);
 	};
-	
-	LocalTime.HOURS_PER_DAY = 24;
-	LocalTime.MINUTES_PER_HOUR = 60;
-	LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
-	
-	LocalTime.SECONDS_PER_MINUTE = 60;
-	LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-	LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
-	
-	LocalTime.NANOS_PER_SECOND = 1000000000;
 
 /***/ },
 /* 11 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	/**
-	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
-	 * <p>
-	 * {@code Year} is an immutable date-time object that represents a year.
-	 * Any field that can be derived from a year can be obtained.
-	 * <p>
-	 * <b>Note that years in the ISO chronology only align with years in the
-	 * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
-	 * modern Gregorian/ISO rules until 1920.
-	 * As such, historical years must be treated with caution.</b>
-	 * <p>
-	 * This class does not store or represent a month, day, time or time-zone.
-	 * For example, the value "2007" can be stored in a {@code Year}.
-	 * <p>
-	 * Years represented by this class follow the ISO-8601 standard and use
-	 * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
-	 * <p>
-	 * The ISO-8601 calendar system is the modern civil calendar system used today
-	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
-	 * system, in which today's rules for leap years are applied for all time.
-	 * For most applications written today, the ISO-8601 rules are entirely suitable.
-	 * However, any application that makes use of historical dates, and requires them
-	 * to be accurate will find the ISO-8601 approach unsuitable.
-	 *
-	 */
-	
-	var Year = exports.Year = function Year() {
-	  _classCallCheck(this, Year);
-	};
-	
-	/**
-	 * The minimum supported year
-	 */
-	
-	
-	Year.MIN_VALUE = -999999;
-	/**
-	 * The maximum supported year
-	 */
-	Year.MAX_VALUE = 999999;
-
-/***/ },
-/* 12 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var TemporalField = exports.TemporalField = function TemporalField() {
-	    _classCallCheck(this, TemporalField);
-	};
-
-/***/ },
-/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3612,7 +3628,1575 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.ValueRange = undefined;
+	exports.LocalTime = undefined;
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports._init = _init;
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _Clock = __webpack_require__(1);
+	
+	var _DateTimeFormatter = __webpack_require__(12);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ChronoUnit = __webpack_require__(7);
+	
+	var _TemporalAccessor2 = __webpack_require__(23);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	/**
+	 * A time without time-zone in the ISO-8601 calendar system,
+	 * such as {@code 10:15:30}.
+	 * <p>
+	 * {@code LocalTime} is an immutable date-time object that represents a time,
+	 * often viewed as hour-minute-second.
+	 * Time is represented to nanosecond precision.
+	 * For example, the value '13:45.30.123456789' can be stored in a {@code LocalTime}.
+	 * <p>
+	 * It does not store or represent a date or time-zone.
+	 * Instead, it is a description of the local time as seen on a wall clock.
+	 * It cannot represent an instant on the time-line without additional information
+	 * such as an offset or time-zone.
+	 * <p>
+	 * The ISO-8601 calendar system is the modern civil calendar system used today
+	 * in most of the world. This API assumes that all calendar systems use the same
+	 * representation, this class, for time-of-day.
+	 *
+	 * <h3>Specification for implementors</h3>
+	 * This class is immutable and thread-safe.
+	 */
+	
+	var LocalTime = function (_TemporalAccessor) {
+	    _inherits(LocalTime, _TemporalAccessor);
+	
+	    _createClass(LocalTime, null, [{
+	        key: 'now',
+	
+	        /**
+	         * Obtains the current time from the specified clock.
+	         * <p>
+	         * This will query the specified clock to obtain the current time.
+	         * Using this method allows the use of an alternate clock for testing.
+	         * The alternate clock may be introduced using {@link Clock dependency injection}.
+	         *
+	         * @param clock  the clock to use, not null
+	         * @return the current time, not null
+	         */
+	        value: function now() {
+	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
+	
+	            (0, _assert.requireNonNull)(clock, 'clock');
+	            // inline OffsetTime factory to avoid creating object and InstantProvider checks
+	            var now = clock.instant(); // called once
+	            var offset = clock.offset(now);
+	            var secsOfDay = _MathUtil.MathUtil.intMod(now.epochSecond(), LocalTime.SECONDS_PER_DAY);
+	            secsOfDay = _MathUtil.MathUtil.intMod(secsOfDay + offset.totalSeconds(), LocalTime.SECONDS_PER_DAY);
+	            if (secsOfDay < 0) {
+	                secsOfDay += LocalTime.SECONDS_PER_DAY;
+	            }
+	            return LocalTime.ofSecondOfDay(secsOfDay, now.getNano());
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalTime} from an hour, minute, second and nanosecond.
+	         * <p>
+	         * This factory may return a cached value, but applications must not rely on this.
+	         *
+	         * @param hour  the hour-of-day to represent, from 0 to 23
+	         * @param minute  the minute-of-hour to represent, from 0 to 59
+	         * @param second  the second-of-minute to represent, from 0 to 59
+	         * @param nanoOfSecond  the nano-of-second to represent, from 0 to 999,999,999
+	         * @return the local time, not null
+	         * @throws DateTimeException if the value of any field is out of range
+	         */
+	
+	    }, {
+	        key: 'of',
+	        value: function of(hour, minute, second, nanoOfSecond) {
+	            return new LocalTime(hour, minute, second, nanoOfSecond);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalTime} from a second-of-day value, with
+	         * associated nanos of second.
+	         * <p>
+	         * This factory may return a cached value, but applications must not rely on this.
+	         *
+	         * @param secondOfDay  the second-of-day, from {@code 0} to {@code 24 * 60 * 60 - 1}
+	         * @param nanoOfSecond  the nano-of-second, from 0 to 999,999,999
+	         * @return the local time, not null
+	         * @throws DateTimeException if the either input value is invalid
+	         */
+	
+	    }, {
+	        key: 'ofSecondOfDay',
+	        value: function ofSecondOfDay() {
+	            var secondOfDay = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	            var nanoOfSecond = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	
+	            _ChronoField.ChronoField.SECOND_OF_DAY.checkValidValue(secondOfDay);
+	            _ChronoField.ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
+	            var hours = _MathUtil.MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_HOUR);
+	            secondOfDay -= hours * LocalTime.SECONDS_PER_HOUR;
+	            var minutes = _MathUtil.MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_MINUTE);
+	            secondOfDay -= minutes * LocalTime.SECONDS_PER_MINUTE;
+	            return new LocalTime(hours, minutes, secondOfDay, nanoOfSecond);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalTime} from a nanos-of-day value.
+	         * <p>
+	         * This factory may return a cached value, but applications must not rely on this.
+	         *
+	         * @param nanoOfDay  the nano of day, from {@code 0} to {@code 24 * 60 * 60 * 1,000,000,000 - 1}
+	         * @return the local time, not null
+	         * @throws DateTimeException if the nanos of day value is invalid
+	         */
+	
+	    }, {
+	        key: 'ofNanoOfDay',
+	        value: function ofNanoOfDay() {
+	            var nanoOfDay = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            _ChronoField.ChronoField.NANO_OF_DAY.checkValidValue(nanoOfDay);
+	            var hours = _MathUtil.MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
+	            nanoOfDay -= hours * LocalTime.NANOS_PER_HOUR;
+	            var minutes = _MathUtil.MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_MINUTE);
+	            nanoOfDay -= minutes * LocalTime.NANOS_PER_MINUTE;
+	            var seconds = _MathUtil.MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_SECOND);
+	            nanoOfDay -= seconds * LocalTime.NANOS_PER_SECOND;
+	            return new LocalTime(hours, minutes, seconds, nanoOfDay);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Obtains an instance of {@code LocalTime} from a temporal object.
+	         * <p>
+	         * A {@code TemporalAccessor} represents some form of date and time information.
+	         * This factory converts the arbitrary temporal object to an instance of {@code LocalTime}.
+	         * <p>
+	         * The conversion uses the {@link TemporalQueries#localTime()} query, which relies
+	         * on extracting the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY} field.
+	         * <p>
+	         * This method matches the signature of the functional interface {@link TemporalQuery}
+	         * allowing it to be used in queries via method reference, {@code LocalTime::from}.
+	         *
+	         * @param temporal  the temporal object to convert, not null
+	         * @return the local time, not null
+	         * @throws DateTimeException if unable to convert to a {@code LocalTime}
+	         */
+	
+	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            var time = temporal.query(_TemporalQueries.TemporalQueries.localTime());
+	            if (time == null) {
+	                throw new _errors.DateTimeException('Unable to obtain LocalTime from TemporalAccessor: ' + temporal + ', type ' + temporal.name());
+	            }
+	            return time;
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code LocalTime} from a text string using a specific formatter.
+	         * <p>
+	         * The text is parsed using the formatter, returning a time.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param formatter  the formatter to use, not null
+	         * @return the parsed local time, not null
+	         * @throws DateTimeParseException if the text cannot be parsed
+	         */
+	
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_TIME() : arguments[1];
+	
+	            (0, _assert.requireNonNull)(formatter, 'formatter');
+	            return formatter.parse(text, LocalTime.FROM);
+	        }
+	
+	        /**
+	         * Constructor, previously validated.
+	         *
+	         * @param hour  the hour-of-day to represent, validated from 0 to 23
+	         * @param minute  the minute-of-hour to represent, validated from 0 to 59
+	         * @param second  the second-of-minute to represent, validated from 0 to 59
+	         * @param nanoOfSecond  the nano-of-second to represent, validated from 0 to 999,999,999
+	         */
+	
+	    }]);
+	
+	    function LocalTime() {
+	        var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var minute = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var second = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var nanoOfSecond = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+	
+	        _classCallCheck(this, LocalTime);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LocalTime).call(this));
+	
+	        LocalTime._validate(hour, minute, second, nanoOfSecond);
+	        if ((minute | second | nanoOfSecond) === 0) {
+	            var _ret;
+	
+	            return _ret = LocalTime.HOURS[hour], _possibleConstructorReturn(_this, _ret);
+	        }
+	        _this._hour = hour;
+	        _this._minute = minute;
+	        _this._second = second;
+	        _this._nano = nanoOfSecond;
+	        return _this;
+	    }
+	
+	    _createClass(LocalTime, [{
+	        key: 'isSupported',
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this time can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The supported fields are:
+	         * <ul>
+	         * <li>{@code NANO_OF_SECOND}
+	         * <li>{@code NANO_OF_DAY}
+	         * <li>{@code MICRO_OF_SECOND}
+	         * <li>{@code MICRO_OF_DAY}
+	         * <li>{@code MILLI_OF_SECOND}
+	         * <li>{@code MILLI_OF_DAY}
+	         * <li>{@code SECOND_OF_MINUTE}
+	         * <li>{@code SECOND_OF_DAY}
+	         * <li>{@code MINUTE_OF_HOUR}
+	         * <li>{@code MINUTE_OF_DAY}
+	         * <li>{@code HOUR_OF_AMPM}
+	         * <li>{@code CLOCK_HOUR_OF_AMPM}
+	         * <li>{@code HOUR_OF_DAY}
+	         * <li>{@code CLOCK_HOUR_OF_DAY}
+	         * <li>{@code AMPM_OF_DAY}
+	         * </ul>
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param fieldOrUnit  the field to check, null returns false
+	         * @return true if the field is supported on this time, false if not
+	         */
+	        value: function isSupported(fieldOrUnit) {
+	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
+	                return fieldOrUnit.isTimeBased();
+	            } else if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
+	                return fieldOrUnit.isTimeBased();
+	            }
+	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+	        }
+	
+	        /**
+	         * Gets the range of valid values for the specified field.
+	         * <p>
+	         * The range object expresses the minimum and maximum valid values for a field.
+	         * This time is used to enhance the accuracy of the returned range.
+	         * If it is not possible to return the range, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The {@link #isSupported(TemporalField) supported fields} will return
+	         * appropriate range instances.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the range can be obtained is determined by the field.
+	         *
+	         * @param field  the field to query the range for, not null
+	         * @return the range of valid values for the field, not null
+	         * @throws DateTimeException if the range for the field cannot be obtained
+	         */
+	
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            (0, _assert.requireNonNull)(field);
+	            return _get(Object.getPrototypeOf(LocalTime.prototype), 'range', this).call(this, field);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this time as an {@code int}.
+	         * <p>
+	         * This queries this time for the value for the specified field.
+	         * The returned value will always be within the valid range of values for the field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The {@link #isSupported(TemporalField) supported fields} will return valid
+	         * values based on this time, except {@code NANO_OF_DAY} and {@code MICRO_OF_DAY}
+	         * which are too large to fit in an {@code int} and throw a {@code DateTimeException}.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            return this.getLong(field);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this time as a {@code long}.
+	         * <p>
+	         * This queries this time for the value for the specified field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the query is implemented here.
+	         * The {@link #isSupported(TemporalField) supported fields} will return valid
+	         * values based on this time.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                return this._get0(field);
+	            }
+	            return field.getFrom(this);
+	        }
+	    }, {
+	        key: '_get0',
+	        value: function _get0(field) {
+	            switch (field) {
+	                case _ChronoField.ChronoField.NANO_OF_SECOND:
+	                    return this._nano;
+	                case _ChronoField.ChronoField.NANO_OF_DAY:
+	                    return this.toNanoOfDay();
+	                case _ChronoField.ChronoField.MICRO_OF_SECOND:
+	                    return _MathUtil.MathUtil.intDiv(this._nano, 1000);
+	                case _ChronoField.ChronoField.MICRO_OF_DAY:
+	                    return _MathUtil.MathUtil.intDiv(this.toNanoOfDay(), 1000);
+	                case _ChronoField.ChronoField.MILLI_OF_SECOND:
+	                    return _MathUtil.MathUtil.intDiv(this._nano, 1000000);
+	                case _ChronoField.ChronoField.MILLI_OF_DAY:
+	                    return _MathUtil.MathUtil.intDiv(this.toNanoOfDay(), 1000000);
+	                case _ChronoField.ChronoField.SECOND_OF_MINUTE:
+	                    return this._second;
+	                case _ChronoField.ChronoField.SECOND_OF_DAY:
+	                    return this.toSecondOfDay();
+	                case _ChronoField.ChronoField.MINUTE_OF_HOUR:
+	                    return this._minute;
+	                case _ChronoField.ChronoField.MINUTE_OF_DAY:
+	                    return this._hour * 60 + this._minute;
+	                case _ChronoField.ChronoField.HOUR_OF_AMPM:
+	                    return this._hour % 12;
+	                case _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM:
+	                    var ham = _MathUtil.MathUtil.intMod(this._hour, 12);return ham % 12 === 0 ? 12 : ham;
+	                case _ChronoField.ChronoField.HOUR_OF_DAY:
+	                    return this._hour;
+	                case _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY:
+	                    return this._hour === 0 ? 24 : this._hour;
+	                case _ChronoField.ChronoField.AMPM_OF_DAY:
+	                    return this._hour / 12;
+	            }
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Gets the hour-of-day field.
+	         *
+	         * @return the hour-of-day, from 0 to 23
+	         */
+	
+	    }, {
+	        key: 'hour',
+	        value: function hour() {
+	            return this._hour;
+	        }
+	
+	        /**
+	         * Gets the minute-of-hour field.
+	         *
+	         * @return the minute-of-hour, from 0 to 59
+	         */
+	
+	    }, {
+	        key: 'minute',
+	        value: function minute() {
+	            return this._minute;
+	        }
+	
+	        /**
+	         * Gets the second-of-minute field.
+	         *
+	         * @return the second-of-minute, from 0 to 59
+	         */
+	
+	    }, {
+	        key: 'second',
+	        value: function second() {
+	            return this._second;
+	        }
+	
+	        /**
+	         * Gets the nano-of-second field.
+	         *
+	         * @return the nano-of-second, from 0 to 999,999,999
+	         */
+	
+	    }, {
+	        key: 'nano',
+	        value: function nano() {
+	            this._nano;
+	        }
+	
+	        /**
+	         * functional overloading for with
+	         */
+	
+	    }, {
+	        key: 'with',
+	        value: function _with() {
+	            if (arguments.length < 2) {
+	                return this._with1.apply(this, arguments);
+	            } else {
+	                return this._with2.apply(this, arguments);
+	            }
+	        }
+	
+	        /**
+	         * Returns an adjusted copy of this time.
+	         * <p>
+	         * This returns a new {@code LocalTime}, based on this one, with the time adjusted.
+	         * The adjustment takes place using the specified adjuster strategy object.
+	         * Read the documentation of the adjuster to understand what adjustment will be made.
+	         * <p>
+	         * A simple adjuster might simply set the one of the fields, such as the hour field.
+	         * A more complex adjuster might set the time to the last hour of the day.
+	         * <p>
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+	         * specified adjuster passing {@code this} as the argument.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param adjuster the adjuster to use, not null
+	         * @return a {@code LocalTime} based on {@code this} with the adjustment made, not null
+	         * @throws DateTimeException if the adjustment cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_with1',
+	        value: function _with1(adjuster) {
+	            // optimizations
+	            if (adjuster instanceof LocalTime) {
+	                return adjuster;
+	            }
+	            (0, _assert.assert)(typeof adjuster.adjustInto === 'function', 'adjuster', _errors.IllegalArgumentException);
+	            return adjuster.adjustInto(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this time with the specified field set to a new value.
+	         * <p>
+	         * This returns a new {@code LocalTime}, based on this one, with the value
+	         * for the specified field changed.
+	         * This can be used to change any supported field, such as the hour, minute or second.
+	         * If it is not possible to set the value, because the field is not supported or for
+	         * some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the adjustment is implemented here.
+	         * The supported fields behave as follows:
+	         * <ul>
+	         * <li>{@code NANO_OF_SECOND} -
+	         *  Returns a {@code LocalTime} with the specified nano-of-second.
+	         *  The hour, minute and second will be unchanged.
+	         * <li>{@code NANO_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified nano-of-day.
+	         *  This completely replaces the time and is equivalent to {@link #ofNanoOfDay(long)}.
+	         * <li>{@code MICRO_OF_SECOND} -
+	         *  Returns a {@code LocalTime} with the nano-of-second replaced by the specified
+	         *  micro-of-second multiplied by 1,000.
+	         *  The hour, minute and second will be unchanged.
+	         * <li>{@code MICRO_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified micro-of-day.
+	         *  This completely replaces the time and is equivalent to using {@link #ofNanoOfDay(long)}
+	         *  with the micro-of-day multiplied by 1,000.
+	         * <li>{@code MILLI_OF_SECOND} -
+	         *  Returns a {@code LocalTime} with the nano-of-second replaced by the specified
+	         *  milli-of-second multiplied by 1,000,000.
+	         *  The hour, minute and second will be unchanged.
+	         * <li>{@code MILLI_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified milli-of-day.
+	         *  This completely replaces the time and is equivalent to using {@link #ofNanoOfDay(long)}
+	         *  with the milli-of-day multiplied by 1,000,000.
+	         * <li>{@code SECOND_OF_MINUTE} -
+	         *  Returns a {@code LocalTime} with the specified second-of-minute.
+	         *  The hour, minute and nano-of-second will be unchanged.
+	         * <li>{@code SECOND_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified second-of-day.
+	         *  The nano-of-second will be unchanged.
+	         * <li>{@code MINUTE_OF_HOUR} -
+	         *  Returns a {@code LocalTime} with the specified minute-of-hour.
+	         *  The hour, second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code MINUTE_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified minute-of-day.
+	         *  The second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code HOUR_OF_AMPM} -
+	         *  Returns a {@code LocalTime} with the specified hour-of-am-pm.
+	         *  The AM/PM, minute-of-hour, second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code CLOCK_HOUR_OF_AMPM} -
+	         *  Returns a {@code LocalTime} with the specified clock-hour-of-am-pm.
+	         *  The AM/PM, minute-of-hour, second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code HOUR_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified hour-of-day.
+	         *  The minute-of-hour, second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code CLOCK_HOUR_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified clock-hour-of-day.
+	         *  The minute-of-hour, second-of-minute and nano-of-second will be unchanged.
+	         * <li>{@code AMPM_OF_DAY} -
+	         *  Returns a {@code LocalTime} with the specified AM/PM.
+	         *  The hour-of-am-pm, minute-of-hour, second-of-minute and nano-of-second will be unchanged.
+	         * </ul>
+	         * <p>
+	         * In all cases, if the new value is outside the valid range of values for the field
+	         * then a {@code DateTimeException} will be thrown.
+	         * <p>
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+	         * passing {@code this} as the argument. In this case, the field determines
+	         * whether and how to adjust the instant.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param field  the field to set in the result, not null
+	         * @param newValue  the new value of the field in the result
+	         * @return a {@code LocalTime} based on {@code this} with the specified field set, not null
+	         * @throws DateTimeException if the field cannot be set
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_with2',
+	        value: function _with2(field, newValue) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                field.checkValidValue(newValue);
+	                switch (field) {
+	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
+	                        return this.withNano(newValue);
+	                    case _ChronoField.ChronoField.NANO_OF_DAY:
+	                        return LocalTime.ofNanoOfDay(newValue);
+	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
+	                        return this.withNano(newValue * 1000);
+	                    case _ChronoField.ChronoField.MICRO_OF_DAY:
+	                        return LocalTime.ofNanoOfDay(newValue * 1000);
+	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
+	                        return this.withNano(newValue * 1000000);
+	                    case _ChronoField.ChronoField.MILLI_OF_DAY:
+	                        return LocalTime.ofNanoOfDay(newValue * 1000000);
+	                    case _ChronoField.ChronoField.SECOND_OF_MINUTE:
+	                        return this.withSecond(newValue);
+	                    case _ChronoField.ChronoField.SECOND_OF_DAY:
+	                        return this.plusSeconds(newValue - this.toSecondOfDay());
+	                    case _ChronoField.ChronoField.MINUTE_OF_HOUR:
+	                        return this.withMinute(newValue);
+	                    case _ChronoField.ChronoField.MINUTE_OF_DAY:
+	                        return this.plusMinutes(newValue - (this._hour * 60 + this._minute));
+	                    case _ChronoField.ChronoField.HOUR_OF_AMPM:
+	                        return this.plusHours(newValue - _MathUtil.MathUtil.intMod(this._hour, 12));
+	                    case _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM:
+	                        return this.plusHours((newValue === 12 ? 0 : newValue) - _MathUtil.MathUtil.intMod(this._hour, 12));
+	                    case _ChronoField.ChronoField.HOUR_OF_DAY:
+	                        return this.withHour(newValue);
+	                    case _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY:
+	                        return this.withHour(newValue === 24 ? 0 : newValue);
+	                    case _ChronoField.ChronoField.AMPM_OF_DAY:
+	                        return this.plusHours((newValue - _MathUtil.MathUtil.intDiv(this._hour, 12)) * 12);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.adjustInto(this, newValue);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the hour-of-day value altered.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param hour  the hour-of-day to set in the result, from 0 to 23
+	         * @return a {@code LocalTime} based on this time with the requested hour, not null
+	         * @throws DateTimeException if the hour value is invalid
+	         */
+	
+	    }, {
+	        key: 'withHour',
+	        value: function withHour() {
+	            var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            if (this._hour === hour) {
+	                return this;
+	            }
+	            return new LocalTime(hour, this._minute, this._second, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the minute-of-hour value altered.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param minute  the minute-of-hour to set in the result, from 0 to 59
+	         * @return a {@code LocalTime} based on this time with the requested minute, not null
+	         * @throws DateTimeException if the minute value is invalid
+	         */
+	
+	    }, {
+	        key: 'withMinute',
+	        value: function withMinute() {
+	            var minute = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            if (this._minute === minute) {
+	                return this;
+	            }
+	            return new LocalTime(this._hour, minute, this._second, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the second-of-minute value altered.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param second  the second-of-minute to set in the result, from 0 to 59
+	         * @return a {@code LocalTime} based on this time with the requested second, not null
+	         * @throws DateTimeException if the second value is invalid
+	         */
+	
+	    }, {
+	        key: 'withSecond',
+	        value: function withSecond() {
+	            var second = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	
+	            if (this._second === second) {
+	                return this;
+	            }
+	            return new LocalTime(this._hour, this._minute, second, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the nano-of-second value altered.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param nanoOfSecond  the nano-of-second to set in the result, from 0 to 999,999,999
+	         * @return a {@code LocalTime} based on this time with the requested nanosecond, not null
+	         * @throws DateTimeException if the nanos value is invalid
+	         */
+	
+	    }, {
+	        key: 'withNano',
+	        value: function withNano(nanoOfSecond) {
+	            if (this._nano === nanoOfSecond) {
+	                return this;
+	            }
+	            return new LocalTime(this._hour, this._minute, this._second, nanoOfSecond);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the time truncated.
+	         * <p>
+	         * Truncating the time returns a copy of the original time with fields
+	         * smaller than the specified unit set to zero.
+	         * For example, truncating with the {@link ChronoUnit#MINUTES minutes} unit
+	         * will set the second-of-minute and nano-of-second field to zero.
+	         * <p>
+	         * The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+	         * that divides into the length of a standard day without remainder.
+	         * This includes all supplied time units on {@link ChronoUnit} and
+	         * {@link ChronoUnit#DAYS DAYS}. Other units throw an exception.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param unit  the unit to truncate to, not null
+	         * @return a {@code LocalTime} based on this time with the time truncated, not null
+	         * @throws DateTimeException if unable to truncate
+	         */
+	
+	    }, {
+	        key: 'truncatedTo',
+	        value: function truncatedTo(unit) {
+	            if (unit === _ChronoUnit.ChronoUnit.NANOS) {
+	                return this;
+	            }
+	            var unitDur = unit.duration();
+	            if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
+	                throw new _errors.DateTimeException('Unit is too large to be used for truncation');
+	            }
+	            var dur = unitDur.nanos();
+	            if (_MathUtil.MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
+	                throw new _errors.DateTimeException('Unit must divide into a standard day without remainder');
+	            }
+	            var nod = this.toNanoOfDay();
+	            return this.ofNanoOfDay(_MathUtil.MathUtil.intDiv(nod, dur) * dur);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	
+	    }, {
+	        key: 'plus',
+	        value: function plus() {
+	            if (arguments.length < 2) {
+	                return this._plus1.apply(this, arguments);
+	            } else {
+	                return this._plus2.apply(this, arguments);
+	            }
+	        }
+	        /**
+	         * Returns a copy of this date with the specified period added.
+	         * <p>
+	         * This method returns a new time based on this time with the specified period added.
+	         * The amount is typically {@link Period} but may be any other type implementing
+	         * the {@link TemporalAmount} interface.
+	         * The calculation is delegated to the specified adjuster, which typically calls
+	         * back to {@link #plus(long, TemporalUnit)}.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amount  the amount to add, not null
+	         * @return a {@code LocalTime} based on this time with the addition made, not null
+	         * @throws DateTimeException if the addition cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_plus1',
+	        value: function _plus1(amount) {
+	            return amount.addTo(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this time with the specified period added.
+	         * <p>
+	         * This method returns a new time based on this time with the specified period added.
+	         * This can be used to add any period that is defined by a unit, for example to add hours, minutes or seconds.
+	         * The unit is responsible for the details of the calculation, including the resolution
+	         * of any edge cases in the calculation.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToAdd  the amount of the unit to add to the result, may be negative
+	         * @param unit  the unit of the period to add, not null
+	         * @return a {@code LocalTime} based on this time with the specified period added, not null
+	         * @throws DateTimeException if the unit cannot be added to this type
+	         */
+	
+	    }, {
+	        key: '_plus2',
+	        value: function _plus2(amountToAdd, unit) {
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.NANOS:
+	                        return this.plusNanos(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MICROS:
+	                        return this.plusNanos(_MathUtil.MathUtil.intMod(amountToAdd, LocalTime.MICROS_PER_DAY) * 1000);
+	                    case _ChronoUnit.ChronoUnit.MILLIS:
+	                        return this.plusNanos(_MathUtil.MathUtil.intMod(amountToAdd, LocalTime.MILLIS_PER_DAY) * 1000000);
+	                    case _ChronoUnit.ChronoUnit.SECONDS:
+	                        return this.plusSeconds(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MINUTES:
+	                        return this.plusMinutes(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.HOURS:
+	                        return this.plusHours(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.HALF_DAYS:
+	                        return this.plusHours(_MathUtil.MathUtil.intMod(amountToAdd, 2) * 12);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	            return unit.addTo(this, amountToAdd);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in hours added.
+	         * <p>
+	         * This adds the specified number of hours to this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param hoursToAdd  the hours to add, may be negative
+	         * @return a {@code LocalTime} based on this time with the hours added, not null
+	         */
+	
+	    }, {
+	        key: 'plusHours',
+	        value: function plusHours(hoursToAdd) {
+	            if (hoursToAdd === 0) {
+	                return this;
+	            }
+	
+	            var newHour = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(hoursToAdd, LocalTime.HOURS_PER_DAY) + this._hour + LocalTime.HOURS_PER_DAY, LocalTime.HOURS_PER_DAY);
+	            return new LocalTime(newHour, this._minute, this._second, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in minutes added.
+	         * <p>
+	         * This adds the specified number of minutes to this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param minutesToAdd  the minutes to add, may be negative
+	         * @return a {@code LocalTime} based on this time with the minutes added, not null
+	         */
+	
+	    }, {
+	        key: 'plusMinutes',
+	        value: function plusMinutes(minutesToAdd) {
+	            if (minutesToAdd === 0) {
+	                return this;
+	            }
+	            var mofd = this._hour * LocalTime.MINUTES_PER_HOUR + this._minute;
+	            var newMofd = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(minutesToAdd, LocalTime.MINUTES_PER_DAY) + mofd + LocalTime.MINUTES_PER_DAY, LocalTime.MINUTES_PER_DAY);
+	            if (mofd === newMofd) {
+	                return this;
+	            }
+	            var newHour = _MathUtil.MathUtil.intDiv(newMofd, LocalTime.MINUTES_PER_HOUR);
+	            var newMinute = _MathUtil.MathUtil.intMod(newMofd, LocalTime.MINUTES_PER_HOUR);
+	            return new LocalTime(newHour, newMinute, this._second, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in seconds added.
+	         * <p>
+	         * This adds the specified number of seconds to this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param secondstoAdd  the seconds to add, may be negative
+	         * @return a {@code LocalTime} based on this time with the seconds added, not null
+	         */
+	
+	    }, {
+	        key: 'plusSeconds',
+	        value: function plusSeconds(secondstoAdd) {
+	            if (secondstoAdd === 0) {
+	                return this;
+	            }
+	            var sofd = this._hour * LocalTime.SECONDS_PER_HOUR + this._minute * LocalTime.SECONDS_PER_MINUTE + this._second;
+	            var newSofd = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(secondstoAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY, LocalTime.SECONDS_PER_DAY);
+	            if (sofd === newSofd) {
+	                return this;
+	            }
+	            var newHour = _MathUtil.MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_HOUR);
+	            var newMinute = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+	            var newSecond = _MathUtil.MathUtil.intMod(newSofd, LocalTime.SECONDS_PER_MINUTE);
+	            return new LocalTime(newHour, newMinute, newSecond, this._nano);
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in nanoseconds added.
+	         * <p>
+	         * This adds the specified number of nanoseconds to this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param nanosToAdd  the nanos to add, may be negative
+	         * @return a {@code LocalTime} based on this time with the nanoseconds added, not null
+	         */
+	
+	    }, {
+	        key: 'plusNanos',
+	        value: function plusNanos(nanosToAdd) {
+	            if (nanosToAdd === 0) {
+	                return this;
+	            }
+	            var nofd = this.toNanoOfDay();
+	            var newNofd = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(nanosToAdd % LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY, LocalTime.NANOS_PER_DAY);
+	            if (nofd === newNofd) {
+	                return this;
+	            }
+	            var newHour = _MathUtil.MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_HOUR);
+	            var newMinute = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+	            var newSecond = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_SECOND), LocalTime.SECONDS_PER_MINUTE);
+	            var newNano = _MathUtil.MathUtil.intMod(newNofd, LocalTime.NANOS_PER_SECOND);
+	            return new LocalTime(newHour, newMinute, newSecond, newNano);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus() {
+	            if (arguments.length < 2) {
+	                return this._minus1.apply(this, arguments);
+	            } else {
+	                return this._minus2.apply(this, arguments);
+	            }
+	        }
+	        /**
+	         * Returns a copy of this time with the specified period subtracted.
+	         * <p>
+	         * This method returns a new time based on this time with the specified period subtracted.
+	         * The amount is typically {@link Period} but may be any other type implementing
+	         * the {@link TemporalAmount} interface.
+	         * The calculation is delegated to the specified adjuster, which typically calls
+	         * back to {@link #minus(long, TemporalUnit)}.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amount  the amount to subtract, not null
+	         * @return a {@code LocalTime} based on this time with the subtraction made, not null
+	         * @throws DateTimeException if the subtraction cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_minus1',
+	        value: function _minus1(amount) {
+	            return amount.subtractFrom(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this time with the specified period subtracted.
+	         * <p>
+	         * This method returns a new time based on this time with the specified period subtracted.
+	         * This can be used to subtract any period that is defined by a unit, for example to subtract hours, minutes or seconds.
+	         * The unit is responsible for the details of the calculation, including the resolution
+	         * of any edge cases in the calculation.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToSubtract  the amount of the unit to subtract from the result, may be negative
+	         * @param unit  the unit of the period to subtract, not null
+	         * @return a {@code LocalTime} based on this time with the specified period subtracted, not null
+	         * @throws DateTimeException if the unit cannot be added to this type
+	         */
+	
+	    }, {
+	        key: '_minus2',
+	        value: function _minus2(amountToSubtract, unit) {
+	            return this._plus2(-1 * amountToSubtract, unit);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in hours subtracted.
+	         * <p>
+	         * This subtracts the specified number of hours from this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param hoursToSubtract  the hours to subtract, may be negative
+	         * @return a {@code LocalTime} based on this time with the hours subtracted, not null
+	         */
+	
+	    }, {
+	        key: 'minusHours',
+	        value: function minusHours(hoursToSubtract) {
+	            return this.plusHours(-1 * _MathUtil.MathUtil.intMod(hoursToSubtract, LocalTime.HOURS_PER_DAY));
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in minutes subtracted.
+	         * <p>
+	         * This subtracts the specified number of minutes from this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param minutesToSubtract  the minutes to subtract, may be negative
+	         * @return a {@code LocalTime} based on this time with the minutes subtracted, not null
+	         */
+	
+	    }, {
+	        key: 'minusMinutes',
+	        value: function minusMinutes(minutesToSubtract) {
+	            return this.plusMinutes(-1 * _MathUtil.MathUtil.intMod(minutesToSubtract, LocalTime.MINUTES_PER_DAY));
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in seconds subtracted.
+	         * <p>
+	         * This subtracts the specified number of seconds from this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param secondsToSubtract  the seconds to subtract, may be negative
+	         * @return a {@code LocalTime} based on this time with the seconds subtracted, not null
+	         */
+	
+	    }, {
+	        key: 'minusSeconds',
+	        value: function minusSeconds(secondsToSubtract) {
+	            return this.plusSeconds(-1 * _MathUtil.MathUtil.intMod(secondsToSubtract, LocalTime.SECONDS_PER_DAY));
+	        }
+	
+	        /**
+	         * Returns a copy of this {@code LocalTime} with the specified period in nanoseconds subtracted.
+	         * <p>
+	         * This subtracts the specified number of nanoseconds from this time, returning a new time.
+	         * The calculation wraps around midnight.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param nanosToSubtract  the nanos to subtract, may be negative
+	         * @return a {@code LocalTime} based on this time with the nanoseconds subtracted, not null
+	         */
+	
+	    }, {
+	        key: 'minusNanos',
+	        value: function minusNanos(nanosToSubtract) {
+	            return this.plusNanos(-1 * _MathUtil.MathUtil.intMod(nanosToSubtract, LocalTime.NANOS_PER_DAY));
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Queries this time using the specified query.
+	         * <p>
+	         * This queries this time using the specified query strategy object.
+	         * The {@code TemporalQuery} object defines the logic to be used to
+	         * obtain the result. Read the documentation of the query to understand
+	         * what the result of this method will be.
+	         * <p>
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	         * specified query passing {@code this} as the argument.
+	         *
+	         * @param query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query (defined by the query)
+	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	         */
+	
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.NANOS;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
+	                return this;
+	            }
+	            // inline TemporalAccessor.super.query(query) as an optimization
+	            if (_query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset() || _query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return null;
+	            }
+	            return _query.queryFrom(this);
+	        }
+	
+	        /**
+	         * Adjusts the specified temporal object to have the same time as this object.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with the time changed to be the same as this.
+	         * <p>
+	         * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+	         * passing {@link ChronoField#NANO_OF_DAY} as the field.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#with(TemporalAdjuster)}:
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   temporal = thisLocalTime.adjustInto(temporal);
+	         *   temporal = temporal.with(thisLocalTime);
+	         * </pre>
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param temporal  the target object to be adjusted, not null
+	         * @return the adjusted object, not null
+	         * @throws DateTimeException if unable to make the adjustment
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return temporal.with(LocalTime.NANO_OF_DAY, this.toNanoOfDay());
+	        }
+	
+	        /**
+	         * Calculates the period between this time and another time in
+	         * terms of the specified unit.
+	         * <p>
+	         * This calculates the period between two times in terms of a single unit.
+	         * The start and end points are {@code this} and the specified time.
+	         * The result will be negative if the end is before the start.
+	         * The {@code Temporal} passed to this method must be a {@code LocalTime}.
+	         * For example, the period in hours between two times can be calculated
+	         * using {@code startTime.until(endTime, HOURS)}.
+	         * <p>
+	         * The calculation returns a whole number, representing the number of
+	         * complete units between the two times.
+	         * For example, the period in hours between 11:30 and 13:29 will only
+	         * be one hour as it is one minute short of two hours.
+	         * <p>
+	         * This method operates in association with {@link TemporalUnit#between}.
+	         * The result of this method is a {@code long} representing the amount of
+	         * the specified unit. By contrast, the result of {@code between} is an
+	         * object that can be used directly in addition/subtraction:
+	         * <pre>
+	         *   long period = start.until(end, HOURS);   // this method
+	         *   dateTime.plus(HOURS.between(start, end));      // use in plus/minus
+	         * </pre>
+	         * <p>
+	         * The calculation is implemented in this method for {@link ChronoUnit}.
+	         * The units {@code NANOS}, {@code MICROS}, {@code MILLIS}, {@code SECONDS},
+	         * {@code MINUTES}, {@code HOURS} and {@code HALF_DAYS} are supported.
+	         * Other {@code ChronoUnit} values will throw an exception.
+	         * <p>
+	         * If the unit is not a {@code ChronoUnit}, then the result of this method
+	         * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
+	         * passing {@code this} as the first argument and the input temporal as
+	         * the second argument.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param endExclusive  the end time, which is converted to a {@code LocalTime}, not null
+	         * @param unit  the unit to measure the period in, not null
+	         * @return the amount of the period between this time and the end time
+	         * @throws DateTimeException if the period cannot be calculated
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'until',
+	        value: function until(endExclusive, unit) {
+	            var end = LocalTime.from(endExclusive);
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                var nanosUntil = end.toNanoOfDay() - this.toNanoOfDay(); // no overflow
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.NANOS:
+	                        return nanosUntil;
+	                    case _ChronoUnit.ChronoUnit.MICROS:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, 1000);
+	                    case _ChronoUnit.ChronoUnit.MILLIS:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, 1000000);
+	                    case _ChronoUnit.ChronoUnit.SECONDS:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_SECOND);
+	                    case _ChronoUnit.ChronoUnit.MINUTES:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_MINUTE);
+	                    case _ChronoUnit.ChronoUnit.HOURS:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_HOUR);
+	                    case _ChronoUnit.ChronoUnit.HALF_DAYS:
+	                        return _MathUtil.MathUtil.intDiv(nanosUntil, 12 * LocalTime.NANOS_PER_HOUR);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	            return unit.between(this, end);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Combines this time with a date to create a {@code LocalDateTime}.
+	         * <p>
+	         * This returns a {@code LocalDateTime} formed from this time at the specified date.
+	         * All possible combinations of date and time are valid.
+	         *
+	         * @param date  the date to combine with, not null
+	         * @return the local date-time formed from this time and the specified date, not null
+	         */
+	
+	    }, {
+	        key: 'atDate',
+	        value: function atDate(date) {
+	            return LocalDateTime.of(date, this);
+	        }
+	
+	        /**
+	         * Combines this time with an offset to create an {@code OffsetTime}.
+	         * <p>
+	         * This returns an {@code OffsetTime} formed from this time at the specified offset.
+	         * All possible combinations of time and offset are valid.
+	         *
+	         * @param offset  the offset to combine with, not null
+	         * @return the offset time formed from this time and the specified offset, not null
+	         */
+	
+	    }, {
+	        key: 'atOffset',
+	        value: function atOffset(offset) {
+	            return OffsetTime.of(this, offset);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Extracts the time as seconds of day,
+	         * from {@code 0} to {@code 24 * 60 * 60 - 1}.
+	         *
+	         * @return the second-of-day equivalent to this time
+	         */
+	
+	    }, {
+	        key: 'toSecondOfDay',
+	        value: function toSecondOfDay() {
+	            var total = this._hour * LocalTime.SECONDS_PER_HOUR;
+	            total += this._minute * LocalTime.SECONDS_PER_MINUTE;
+	            total += this._second;
+	            return total;
+	        }
+	
+	        /**
+	         * Extracts the time as nanos of day,
+	         * from {@code 0} to {@code 24 * 60 * 60 * 1,000,000,000 - 1}.
+	         *
+	         * @return the nano of day equivalent to this time
+	         */
+	
+	    }, {
+	        key: 'toNanoOfDay',
+	        value: function toNanoOfDay() {
+	            var total = this._hour * LocalTime.NANOS_PER_HOUR;
+	            total += this._minute * LocalTime.NANOS_PER_MINUTE;
+	            total += this._second * LocalTime.NANOS_PER_SECOND;
+	            total += this._nano;
+	            return total;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Compares this {@code LocalTime} to another time.
+	         * <p>
+	         * The comparison is based on the time-line position of the local times within a day.
+	         * It is 'consistent with equals', as defined by {@link Comparable}.
+	         *
+	         * @param other  the other time to compare to, not null
+	         * @return the comparator value, negative if less, positive if greater
+	         * @throws NullPointerException if {@code other} is null
+	         */
+	
+	    }, {
+	        key: 'compareTo',
+	        value: function compareTo(other) {
+	            var cmp = _MathUtil.MathUtil.compareNumbers(this._hour, other.hour);
+	            if (cmp === 0) {
+	                cmp = _MathUtil.MathUtil.compareNumbers(this._minute, other.minute);
+	                if (cmp === 0) {
+	                    cmp = _MathUtil.MathUtil.compareNumbers(this._second, other.second);
+	                    if (cmp === 0) {
+	                        cmp = _MathUtil.MathUtil.compareNumbers(this._nano, other.nano);
+	                    }
+	                }
+	            }
+	            return cmp;
+	        }
+	
+	        /**
+	         * Checks if this {@code LocalTime} is after the specified time.
+	         * <p>
+	         * The comparison is based on the time-line position of the time within a day.
+	         *
+	         * @param other  the other time to compare to, not null
+	         * @return true if this is after the specified time
+	         * @throws NullPointerException if {@code other} is null
+	         */
+	
+	    }, {
+	        key: 'isAfter',
+	        value: function isAfter(other) {
+	            return this.compareTo(other) > 0;
+	        }
+	
+	        /**
+	         * Checks if this {@code LocalTime} is before the specified time.
+	         * <p>
+	         * The comparison is based on the time-line position of the time within a day.
+	         *
+	         * @param other  the other time to compare to, not null
+	         * @return true if this point is before the specified time
+	         * @throws NullPointerException if {@code other} is null
+	         */
+	
+	    }, {
+	        key: 'isBefore',
+	        value: function isBefore(other) {
+	            return this.compareTo(other) < 0;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Checks if this time is equal to another time.
+	         * <p>
+	         * The comparison is based on the time-line position of the time within a day.
+	         * <p>
+	         * Only objects of type {@code LocalTime} are compared, other types return false.
+	         * To compare the date of two {@code TemporalAccessor} instances, use
+	         * {@link ChronoField#NANO_OF_DAY} as a comparator.
+	         *
+	         * @param other  the object to check, null returns false
+	         * @return true if this is equal to the other time
+	         */
+	
+	    }, {
+	        key: 'equals',
+	        value: function equals(other) {
+	            if (this === other) {
+	                return true;
+	            }
+	            if (other instanceof LocalTime) {
+	                return this._hour === other._hour && this._minute === other._minute && this._second === other._second && this._nano === other._nano;
+	            }
+	            return false;
+	        }
+	
+	        /**
+	         * A hash code for this time.
+	         *
+	         * @return a suitable hash code
+	         */
+	
+	    }, {
+	        key: 'hashCode',
+	        value: function hashCode() {
+	            var nod = this.toNanoOfDay();
+	            return nod ^ nod >>> 32;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Outputs this time as a {@code String}, such as {@code 10:15}.
+	         * <p>
+	         * The output will be one of the following ISO-8601 formats:
+	         * <p><ul>
+	         * <li>{@code HH:mm}</li>
+	         * <li>{@code HH:mm:ss}</li>
+	         * <li>{@code HH:mm:ss.SSS}</li>
+	         * <li>{@code HH:mm:ss.SSSSSS}</li>
+	         * <li>{@code HH:mm:ss.SSSSSSSSS}</li>
+	         * </ul><p>
+	         * The format used will be the shortest that outputs the full value of
+	         * the time where the omitted parts are implied to be zero.
+	         *
+	         * @return a string representation of this time, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var buf = '';
+	            var hourValue = this._hour;
+	            var minuteValue = this._minute;
+	            var secondValue = this._second;
+	            var nanoValue = this._nano;
+	            buf += hourValue < 10 ? '0' : '';
+	            buf += hourValue;
+	            buf += minuteValue < 10 ? ':0' : ':';
+	            buf += minuteValue;
+	            if (secondValue > 0 || nanoValue > 0) {
+	                buf += secondValue < 10 ? ':0' : ':';
+	                buf += secondValue;
+	                if (nanoValue > 0) {
+	                    buf += '.';
+	                    if (_MathUtil.MathUtil.intMod(nanoValue, 1000000 === 0)) {
+	                        buf += ('' + (_MathUtil.MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
+	                    } else if (_MathUtil.MathUtil.intMod(nanoValue, 1000) === 0) {
+	                        buf += ('' + (_MathUtil.MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
+	                    } else {
+	                        buf += '' + (nanoValue + 1000000000).substring(1);
+	                    }
+	                }
+	            }
+	            return buf;
+	        }
+	
+	        /**
+	         * Outputs this time as a {@code String} using the formatter.
+	         * <p>
+	         * This time will be passed to the formatter
+	         * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
+	         *
+	         * @param formatter  the formatter to use, not null
+	         * @return the formatted time string, not null
+	         * @throws DateTimeException if an error occurs during printing
+	         */
+	
+	    }, {
+	        key: 'format',
+	        value: function format(formatter) {
+	            (0, _assert.requireNonNull)(formatter, 'formatter');
+	            return formatter.format(this);
+	        }
+	    }], [{
+	        key: '_validate',
+	        value: function _validate(hour, minute, second, nanoOfSecond) {
+	            _ChronoField.ChronoField.HOUR_OF_DAY.checkValidValue(hour);
+	            _ChronoField.ChronoField.MINUTE_OF_HOUR.checkValidValue(minute);
+	            _ChronoField.ChronoField.SECOND_OF_MINUTE.checkValidValue(second);
+	            _ChronoField.ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
+	        }
+	    }]);
+	
+	    return LocalTime;
+	}(_TemporalAccessor2.TemporalAccessor /** implements Temporal, TemporalAdjuster */);
+	
+	exports.LocalTime = LocalTime;
+	function _init() {
+	    /**
+	     * Constants for the local time of each hour.
+	     */
+	    LocalTime.HOURS = [];
+	    for (var i = 0; i < 24; i++) {
+	        LocalTime.HOURS[i] = makeLocalTimeConst(i);
+	    }
+	
+	    function makeLocalTimeConst() {
+	        var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var minute = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var second = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var nano = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+	
+	        var localTime = Object.create(LocalTime.prototype);
+	        _TemporalAccessor2.TemporalAccessor.call(localTime);
+	        localTime._hour = hour;
+	        localTime._minute = minute;
+	        localTime._second = second;
+	        localTime._nano = nano;
+	        return localTime;
+	    }
+	
+	    /**
+	     * The minimum supported {@code LocalTime}, '00:00'.
+	     * This is the time of midnight at the start of the day.
+	     */
+	    LocalTime.MIN = LocalTime.HOURS[0];
+	    /**
+	     * The maximum supported {@code LocalTime}, '23:59:59.999999999'.
+	     * This is the time just before midnight at the end of the day.
+	     */
+	    LocalTime.MAX = makeLocalTimeConst(23, 59, 59, 999999999);
+	    /**
+	     * The time of midnight at the start of the day, '00:00'.
+	     */
+	    LocalTime.MIDNIGHT = LocalTime.HOURS[0];
+	    /**
+	     * The time of noon in the middle of the day, '12:00'.
+	     */
+	    LocalTime.NOON = LocalTime.HOURS[12];
+	
+	    var FROM;
+	    LocalTime.FROM = function () {
+	        return FROM || (FROM = (0, _TemporalQueries.createTemporalQuery)('LocalTime.FROM', function (temporal) {
+	            return LocalTime.from(temporal);
+	        }));
+	    };
+	
+	    /**
+	     * Hours per day.
+	     */
+	    LocalTime.HOURS_PER_DAY = 24;
+	    /**
+	     * Minutes per hour.
+	     */
+	    LocalTime.MINUTES_PER_HOUR = 60;
+	    /**
+	     * Minutes per day.
+	     */
+	    LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+	    /**
+	     * Seconds per minute.
+	     */
+	    LocalTime.SECONDS_PER_MINUTE = 60;
+	    /**
+	     * Seconds per hour.
+	     */
+	    LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+	    /**
+	     * Seconds per day.
+	     */
+	    LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+	    /**
+	     * Milliseconds per day.
+	     */
+	    LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
+	    /**
+	     * Microseconds per day.
+	     */
+	    LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
+	    /**
+	     * Nanos per second.
+	     */
+	    LocalTime.NANOS_PER_SECOND = 1000000000;
+	    /**
+	     * Nanos per minute.
+	     */
+	    LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
+	    /**
+	     * Nanos per hour.
+	     */
+	    LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+	    /**
+	     * Nanos per day.
+	     */
+	    LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeFormatter = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
@@ -3620,206 +5204,346 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
+	exports._init = _init;
 	
 	var _assert = __webpack_require__(9);
 	
 	var _errors = __webpack_require__(5);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _ParsePosition = __webpack_require__(13);
+	
+	var _DateTimeParseContext = __webpack_require__(14);
+	
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
+	
+	var _SignStyle = __webpack_require__(27);
+	
+	var _ResolverStyle = __webpack_require__(28);
+	
+	var _IsoChronology = __webpack_require__(17);
+	
+	var _ChronoField = __webpack_require__(3);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	/**
-	 * The range of valid values for a date-time field.
-	 * 
-	 * All TemporalField instances have a valid range of values.
-	 * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
-	 * This class captures that valid range.
-	 * 
-	 * It is important to be aware of the limitations of this class.
-	 * Only the minimum and maximum values are provided.
-	 * It is possible for there to be invalid values within the outer range.
-	 * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
-	 * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
-	 * 
-	 * Instances of this class are not tied to a specific field.
-	 *
-	 */
+	var DateTimeFormatter = exports.DateTimeFormatter = function () {
 	
-	var ValueRange = exports.ValueRange = function () {
-	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
-	        _classCallCheck(this, ValueRange);
+	    //-----------------------------------------------------------------------
+	    /**
+	     * Constructor.
+	     *
+	     * @param printerParser  the printer/parser to use, not null
+	     * @param locale  the locale to use, not null
+	     * @param decimalStyle  the decimal style to use, not null
+	     * @param resolverStyle  the resolver style to use, not null
+	     * @param resolverFields  the fields to use during resolving, null for all fields
+	     * @param chrono  the chronology to use, null for no override
+	     * @param zone  the zone to use, null for no override
+	     */
 	
-	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'');
-	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'');
-	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'');
+	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono, zone) {
+	        _classCallCheck(this, DateTimeFormatter);
 	
-	        this._minSmallest = minSmallest;
-	        this._minLargest = minLargest;
-	        this._maxLargest = maxLargest;
-	        this._maxSmallest = maxSmallest;
+	        (0, _assert.assert)(printerParser != null);
+	        (0, _assert.assert)(decimalStyle != null);
+	        (0, _assert.assert)(resolverStyle != null);
+	        /**
+	         * The printer and/or parser to use, not null.
+	         */
+	        this._printerParser = printerParser;
+	        /**
+	         * The locale to use for formatting. // nyi
+	         */
+	        this._locale = locale;
+	        /**
+	         * The symbols to use for formatting, not null.
+	         */
+	        this._decimalStyle = decimalStyle;
+	        /**
+	         * The resolver style to use, not null.
+	         */
+	        this._resolverStyle = resolverStyle;
+	        /**
+	         * The fields to use in resolving, null for all fields.
+	         */
+	        this._resolverFields = resolverFields;
+	        /**
+	         * The chronology to use for formatting, null for no override.
+	         */
+	        this._chrono = chrono;
+	        /**
+	         * The zone to use for formatting, null for no override. // nyi
+	         */
+	        this._zone = zone;
 	    }
 	
-	    _createClass(ValueRange, [{
-	        key: 'minimum',
-	        value: function minimum() {
-	            return this._minSmallest;
+	    _createClass(DateTimeFormatter, [{
+	        key: 'locale',
+	        value: function locale() {
+	            return this._locale;
 	        }
 	    }, {
-	        key: 'largestMinimum',
-	        value: function largestMinimum() {
-	            return this._minLargest;
+	        key: 'decimalStyle',
+	        value: function decimalStyle() {
+	            return this._decimalStyle;
 	        }
 	    }, {
-	        key: 'maximum',
-	        value: function maximum() {
-	            return this._maxLargest;
+	        key: 'chronology',
+	        value: function chronology() {
+	            return this._chrono;
 	        }
+	
+	        /**
+	         * Returns a copy of this formatter with a new override chronology.
+	         *
+	         * This returns a formatter with similar state to this formatter but
+	         * with the override chronology set.
+	         * By default, a formatter has no override chronology, returning null.
+	         *
+	         * If an override is added, then any date that is printed or parsed will be affected.
+	         *
+	         * When printing, if the {@code Temporal} object contains a date then it will
+	         * be converted to a date in the override chronology.
+	         * Any time or zone will be retained unless overridden.
+	         * The converted result will behave in a manner equivalent to an implementation
+	         * of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.
+	         *
+	         * When parsing, the override chronology will be used to interpret the
+	         * {@linkplain ChronoField fields} into a date unless the
+	         * formatter directly parses a valid chronology.
+	         *
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param chrono  the new chronology, not null
+	         * @return a formatter based on this formatter with the requested override chronology, not null
+	         */
+	
 	    }, {
-	        key: 'smallestMaximum',
-	        value: function smallestMaximum() {
-	            return this._maxSmallest;
+	        key: 'withChronology',
+	        value: function withChronology(chrono) {
+	            if (this._chrono != null && this._chrono.equals(chrono)) {
+	                return this;
+	            }
+	            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
 	        }
+	
+	        /**
+	         * not yet supported
+	         * @returns {DateTimeFormatter}
+	         */
+	
 	    }, {
-	        key: 'isValidValue',
-	        value: function isValidValue(value) {
-	            return this.minimum() <= value && value <= this.maximum();
+	        key: 'withLocal',
+	        value: function withLocal() {
+	            return this;
 	        }
+	
+	        /**
+	         * Fully parses the text producing a temporal object.
+	         *
+	         * This parses the entire text producing a temporal object.
+	         * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
+	         * The result of this method is {@code TemporalAccessor} which has been resolved,
+	         * applying basic validation checks to help ensure a valid date-time.
+	         *
+	         * If the parse completes without reading the entire length of the text,
+	         * or a problem occurs during parsing or merging, then an exception is thrown.
+	         *
+	         * @param text  the text to parse, not null
+	         * @param type the type to extract, not null
+	        * @return the parsed temporal object, not null
+	         * @throws DateTimeParseException if unable to parse the requested result
+	         */
+	
 	    }, {
-	        key: 'checkValidValue',
-	        value: function checkValidValue(value, field) {
-	            var msg;
-	            if (!this.isValidValue(value)) {
-	                if (field != null) {
-	                    msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
+	        key: 'parse',
+	        value: function parse(text, type) {
+	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
+	            (0, _assert.assert)(type != null, 'type', _errors.NullPointerException);
+	            try {
+	                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+	                return builder.build(type);
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeParseException) {
+	                    throw ex;
 	                } else {
-	                    msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
+	                    throw this._createError(text, ex);
 	                }
-	                return (0, _assert.assert)(false, msg, _errors.DateTimeException);
 	            }
 	        }
-	
-	        /**
-	         * Checks that the specified value is valid and fits in an {@code int}.
-	         * <p>
-	         * This validates that the value is within the valid range of values and that
-	         * all valid values are within the bounds of an {@code int}.
-	         * The field is only used to improve the error message.
-	         *
-	         * @param value  the value to check
-	         * @param field  the field being checked, may be null
-	         * @return the value that was passed in
-	         * @see #isValidIntValue(long)
-	         */
-	
 	    }, {
-	        key: 'checkValidIntValue',
-	        value: function checkValidIntValue(value, field) {
-	            if (this.isValidIntValue(value) === false) {
-	                throw new _errors.DateTimeException('Invalid int value for ' + field + ': ' + value);
+	        key: '_createError',
+	        value: function _createError(text, ex) {
+	            var abbr = '';
+	            if (text.length > 64) {
+	                abbr = text.subString(0, 64) + '...';
+	            } else {
+	                abbr = text;
 	            }
-	            return value;
+	            return new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
 	        }
 	
 	        /**
-	         * Checks if the value is within the valid range and that all values
-	         * in the range fit in an {@code int}.
+	         * Parses the text to a builder.
 	         * <p>
-	         * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+	         * This parses to a {@code DateTimeBuilder} ensuring that the text is fully parsed.
+	         * This method throws {@link DateTimeParseException} if unable to parse, or
+	         * some other {@code DateTimeException} if another date/time problem occurs.
 	         *
-	         * @param value  the value to check
-	         * @return true if the value is valid and fits in an {@code int}
+	         * @param text  the text to parse, not null
+	         * @param position  the position to parse from, updated with length parsed
+	         *  and the index of any error, null if parsing whole string
+	         * @return the engine representing the result of the parse, not null
+	         * @throws DateTimeParseException if the parse fails
 	         */
 	
 	    }, {
-	        key: 'isValidIntValue',
-	        value: function isValidIntValue(value) {
-	            return this.isIntValue() && this.isValidValue(value);
+	        key: '_parseToBuilder',
+	        value: function _parseToBuilder(text, position) {
+	            var pos = position != null ? position : new _ParsePosition.ParsePosition(0);
+	            var result = this._parseUnresolved0(text, pos);
+	            if (result == null || pos.getErrorIndex() >= 0 || position == null && pos.getIndex() < text.length) {
+	                var abbr = '';
+	                if (text.length > 64) {
+	                    abbr = text.substr(0, 64).toString() + '...';
+	                } else {
+	                    abbr = text;
+	                }
+	                if (pos.getErrorIndex() >= 0) {
+	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
+	                } else {
+	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
+	                }
+	            }
+	            return result.toBuilder();
 	        }
 	
 	        /**
-	         * Checks if all values in the range fit in an {@code int}.
+	         * Parses the text using this formatter, without resolving the result, intended
+	         * for advanced use cases.
 	         * <p>
-	         * This checks that all valid values are within the bounds of an {@code int}.
+	         * Parsing is implemented as a two-phase operation.
+	         * First, the text is parsed using the layout defined by the formatter, producing
+	         * a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
+	         * Second, the parsed data is <em>resolved</em>, by validating, combining and
+	         * simplifying the various fields into more useful ones.
+	         * This method performs the parsing stage but not the resolving stage.
 	         * <p>
-	         * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
-	         * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
+	         * The result of this method is {@code TemporalAccessor} which represents the
+	         * data as seen in the input. Values are not validated, thus parsing a date string
+	         * of '2012-00-65' would result in a temporal with three fields - year of '2012',
+	         * month of '0' and day-of-month of '65'.
 	         * <p>
-	         * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+	         * The text will be parsed from the specified start {@code ParsePosition}.
+	         * The entire length of the text does not have to be parsed, the {@code ParsePosition}
+	         * will be updated with the index at the end of parsing.
+	         * <p>
+	         * Errors are returned using the error index field of the {@code ParsePosition}
+	         * instead of {@code DateTimeParseException}.
+	         * The returned error index will be set to an index indicative of the error.
+	         * Callers must check for errors before using the context.
+	         * <p>
+	         * If the formatter parses the same field more than once with different values,
+	         * the result will be an error.
+	         * <p>
+	         * This method is intended for advanced use cases that need access to the
+	         * internal state during parsing. Typical application code should use
+	         * {@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.
 	         *
-	         * @return boolean if a valid value always fits in an {@code int}
+	         * @param text  the text to parse, not null
+	         * @param position  the position to parse from, updated with length parsed
+	         *  and the index of any error, not null
+	         * @return the parsed text, null if the parse results in an error
+	         * @throws DateTimeException if some problem occurs during parsing
+	         * @throws IndexOutOfBoundsException if the position is invalid
 	         */
 	
 	    }, {
-	        key: 'isIntValue',
-	        value: function isIntValue() {
-	            return this.minimum() >= _MathUtil.MathUtil.MIN_SAFE_INTEGER && this.maximum() <= _MathUtil.MathUtil.MAX_SAFE_INTEGER;
+	        key: 'parseUnresolved',
+	        value: function parseUnresolved(text, position) {
+	            return this._parseUnresolved0(text, position);
 	        }
-	
-	        /*
-	         * Outputs this range as a String.
-	         * 
-	         * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
-	         * where the largestMin or smallestMax sections may be omitted, together
-	         * with associated slash, if they are the same as the min or max.
-	         *
-	         * @return {string} a string representation of this range, not null
-	         */
-	
+	    }, {
+	        key: '_parseUnresolved0',
+	        value: function _parseUnresolved0(text, position) {
+	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
+	            (0, _assert.assert)(position != null, 'position', _errors.NullPointerException);
+	            var context = new _DateTimeParseContext.DateTimeParseContext(this);
+	            var pos = position.getIndex();
+	            pos = this._printerParser.parse(context, text, pos);
+	            if (pos < 0) {
+	                position.setErrorIndex(~pos); // index not updated from input
+	                return null;
+	            }
+	            position.setIndex(pos); // errorIndex not updated from input
+	            return context.toParsed();
+	        }
 	    }, {
 	        key: 'toString',
 	        value: function toString() {
-	            var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
-	            str += ' - ';
-	            str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
-	            return str;
-	        }
-	
-	        /*
-	         * called with 2 params: Obtains a fixed value range.
-	         *
-	         * This factory obtains a range where the minimum and maximum values are fixed.
-	         * For example, the ISO month-of-year always runs from 1 to 12.
-	         *
-	         * @param min  the minimum value
-	         * @param max  the maximum value
-	         * @return the ValueRange for min, max, not null
-	          * called with 3 params: Obtains a variable value range.
-	         *
-	         * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
-	         * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
-	         *
-	         * @param min  the minimum value
-	         * @param maxSmallest  the smallest maximum value
-	         * @param maxLargest  the largest maximum value
-	         * @return the ValueRange for min, smallest max, largest max, not null
-	          * called with 4 params: Obtains a fully variable value range.
-	         *
-	         * This factory obtains a range where both the minimum and maximum value may vary.
-	         *
-	         * @param minSmallest  the smallest minimum value
-	         * @param minLargest  the largest minimum value
-	         * @param maxSmallest  the smallest maximum value
-	         * @param maxLargest  the largest maximum value
-	         * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
-	         */
-	
-	    }], [{
-	        key: 'of',
-	        value: function of() {
-	            if (arguments.length === 2) {
-	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
-	            } else if (arguments.length === 3) {
-	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
-	            } else if (arguments.length === 4) {
-	                return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
-	            } else {
-	                return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length);
-	            }
+	            var pattern = this._printerParser.toString();
+	            return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
 	        }
 	    }]);
 	
-	    return ValueRange;
+	    return DateTimeFormatter;
+	}();
+	
+	function _init() {
+	    DateTimeFormatter.ISO_LOCAL_DATE = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendValue(_ChronoField.ChronoField.YEAR, 4, 10, _SignStyle.SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(_ChronoField.ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(_ChronoField.ChronoField.DAY_OF_MONTH, 2).toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
+	}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var ParsePosition = exports.ParsePosition = function () {
+	    function ParsePosition(index) {
+	        _classCallCheck(this, ParsePosition);
+	
+	        this._index = index;
+	        this._errorIndex = -1;
+	    }
+	
+	    _createClass(ParsePosition, [{
+	        key: "getIndex",
+	        value: function getIndex() {
+	            return this._index;
+	        }
+	    }, {
+	        key: "setIndex",
+	        value: function setIndex(index) {
+	            this._index = index;
+	        }
+	    }, {
+	        key: "getErrorIndex",
+	        value: function getErrorIndex() {
+	            return this._errorIndex;
+	        }
+	    }, {
+	        key: "setErrorIndex",
+	        value: function setErrorIndex(errorIndex) {
+	            this._errorIndex = errorIndex;
+	        }
+	    }]);
+	
+	    return ParsePosition;
 	}();
 
 /***/ },
@@ -3831,116 +5555,286 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.TemporalAccessor = undefined;
+	exports.DateTimeParseContext = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
+	var _assert = __webpack_require__(9);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _DateTimeBuilder = __webpack_require__(15);
 	
-	var _TemporalQueries = __webpack_require__(15);
+	var _EnumMap = __webpack_require__(16);
 	
-	var _errors = __webpack_require__(5);
+	var _IsoChronology = __webpack_require__(17);
+	
+	var _TemporalAccessor2 = __webpack_require__(23);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var TemporalAccessor = function () {
-	    function TemporalAccessor() {
-	        _classCallCheck(this, TemporalAccessor);
+	var DateTimeParseContext = exports.DateTimeParseContext = function () {
+	    function DateTimeParseContext() {
+	        _classCallCheck(this, DateTimeParseContext);
+	
+	        if (arguments.length === 1) {
+	            this._constructorFormatter.apply(this, arguments);
+	        } else {
+	            this._constructorParam.apply(this, arguments);
+	        }
+	
+	        this._caseSensitive = true;
+	        this._strict = true;
+	        this._parsed = [new Parsed(this)];
 	    }
 	
-	    _createClass(TemporalAccessor, [{
-	        key: 'query',
-	
-	        /**
-	         * Queries this date-time.
-	         * <p>
-	         * This queries this date-time using the specified query strategy object.
-	         * <p>
-	         * Queries are a key tool for extracting information from date-times.
-	         * They exists to externalize the process of querying, permitting different
-	         * approaches, as per the strategy design pattern.
-	         * Examples might be a query that checks if the date is the day before February 29th
-	         * in a leap year, or calculates the number of days to your next birthday.
-	         * <p>
-	         * The most common query implementations are method references, such as
-	         * {@code LocalDate::from} and {@code ZoneId::from}.
-	         * Further implementations are on {@link TemporalQueries}.
-	         * Queries may also be defined by applications.
-	         *
-	         * @implSpec
-	         * Implementations of this method must behave as follows:
-	         * <pre>
-	            if (query == TemporalQueries.zoneId()
-	                || query == TemporalQueries.chronology()
-	                || query == TemporalQueries.precision()) {
-	                    return null;
-	            }
-	            return query.queryFrom(this);
-	         * </pre>
-	         *
-	         * @param {TemporalQuery} query  the query to invoke, not null
-	         * @return the query result, null may be returned (defined by the query)
-	         * @throws DateTimeException if unable to query
-	         * @throws ArithmeticException if numeric overflow occurs
-	         */
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
-	                return null;
-	            }
-	            return _query.queryFrom(this);
+	    _createClass(DateTimeParseContext, [{
+	        key: '_constructorParam',
+	        value: function _constructorParam(locale, symbols, chronology) {
+	            this._locale = locale;
+	            this._symbols = symbols;
+	            this._overrideChronology = chronology;
+	        }
+	    }, {
+	        key: '_constructorFormatter',
+	        value: function _constructorFormatter(formatter) {
+	            this._locale = formatter.locale();
+	            this._symbols = formatter.decimalStyle();
+	            this._overrideChronology = formatter.chronology();
+	        }
+	    }, {
+	        key: 'symbols',
+	        value: function symbols() {
+	            return this._symbols;
+	        }
+	    }, {
+	        key: 'isStrict',
+	        value: function isStrict() {
+	            return this._strict;
+	        }
+	    }, {
+	        key: 'setStrict',
+	        value: function setStrict(strict) {
+	            this._strict = strict;
 	        }
 	
 	        /**
-	         * Gets the range of valid values for the specified field.
-	         * <p>
-	         * All fields can be expressed as a {@code long} integer.
-	         * This method returns an object that describes the valid range for that value.
-	         * The value of this temporal object is used to enhance the accuracy of the returned range.
-	         * If the date-time cannot return the range, because the field is unsupported or for
-	         * some other reason, an exception will be thrown.
-	         * <p>
-	         * Note that the result only describes the minimum and maximum valid values
-	         * and it is important not to read too much into them. For example, there
-	         * could be values within the range that are invalid for the field.
+	         * Checks if parsing is case sensitive.
 	         *
-	         * <h3>Specification for implementors</h3>
-	         * Implementations must check and handle all fields defined in {@link ChronoField}.
-	         * If the field is supported, then the range of the field must be returned.
-	         * If unsupported, then a {@code DateTimeException} must be thrown.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}
-	         * passing {@code this} as the argument.
-	         * <p>
-	         * Implementations must not alter either this object.
-	         *
-	         * @param {TemporalField} field  the field to query the range for, not null
-	         * @return {ValueRange} the range of valid values for the field, not null
-	         * @throws DateTimeException if the range for the field cannot be obtained
+	         * @return true if parsing is case sensitive, false if case insensitive
 	         */
 	
 	    }, {
-	        key: 'range',
-	        value: function range(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                if (this.isSupported(field)) {
-	                    return field.range();
-	                }
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        key: 'isCaseSensitive',
+	        value: function isCaseSensitive() {
+	            return this._caseSensitive;
+	        }
+	
+	        /**
+	         * Sets whether the parsing is case sensitive or not.
+	         *
+	         * @param caseSensitive  changes the parsing to be case sensitive or not from now on
+	         */
+	
+	    }, {
+	        key: 'setCaseSensitive',
+	        value: function setCaseSensitive(caseSensitive) {
+	            this._caseSensitive = caseSensitive;
+	        }
+	
+	        /**
+	         * Helper to compare two {@code CharSequence} instances.
+	         * This uses {@link #isCaseSensitive()}.
+	         *
+	         * @param cs1  the first character sequence, not null
+	         * @param offset1  the offset into the first sequence, valid
+	         * @param cs2  the second character sequence, not null
+	         * @param offset2  the offset into the second sequence, valid
+	         * @param length  the length to check, valid
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'subSequenceEquals',
+	        value: function subSequenceEquals(cs1, offset1, cs2, offset2, length) {
+	            if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
+	                return false;
 	            }
-	            return field.rangeRefinedBy(this);
+	            if (!this.isCaseSensitive()) {
+	                cs1 = cs1.toLowerCase();
+	                cs2 = cs2.toLowerCase();
+	            }
+	            for (var i = 0; i < length; i++) {
+	                var ch1 = cs1[offset1 + i];
+	                var ch2 = cs2[offset2 + i];
+	                if (ch1 !== ch2) {
+	                    return false;
+	                }
+	            }
+	            return true;
+	        }
+	
+	        /**
+	         * Helper to compare two {@code char}.
+	         * This uses {@link #isCaseSensitive()}.
+	         *
+	         * @param ch1  the first character
+	         * @param ch2  the second character
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'charEquals',
+	        value: function charEquals(ch1, ch2) {
+	            if (this.isCaseSensitive()) {
+	                return ch1 === ch2;
+	            }
+	            return this.charEqualsIgnoreCase(ch1, ch2);
+	        }
+	
+	        /**
+	         * Compares two characters ignoring case.
+	         *
+	         * @param c1  the first
+	         * @param c2  the second
+	         * @return true if equal
+	         */
+	
+	    }, {
+	        key: 'charEqualsIgnoreCase',
+	        value: function charEqualsIgnoreCase(c1, c2) {
+	            return c1 === c2 || c1.toLowerCase() === c2.toLowerCase();
+	        }
+	    }, {
+	        key: 'setParsedField',
+	        value: function setParsedField(field, value, errorPos, successPos) {
+	            var currentParsedFieldValues = this.currentParsed().fieldValues;
+	            var old = currentParsedFieldValues.get(field);
+	            currentParsedFieldValues.set(field, value);
+	            return old != null && old !== value ? ~errorPos : successPos;
+	        }
+	    }, {
+	        key: 'getParsed',
+	        value: function getParsed(field) {
+	            return this.currentParsed().fieldValues.get(field);
+	        }
+	    }, {
+	        key: 'toParsed',
+	        value: function toParsed() {
+	            return this.currentParsed();
+	        }
+	    }, {
+	        key: 'currentParsed',
+	        value: function currentParsed() {
+	            return this._parsed[this._parsed.length - 1];
+	        }
+	
+	        /**
+	         * Gets the effective chronology during parsing.
+	         *
+	         * @return the effective parsing chronology, not null
+	         */
+	
+	    }, {
+	        key: 'getEffectiveChronology',
+	        value: function getEffectiveChronology() {
+	            var chrono = this.currentParsed().chrono;
+	            if (chrono == null) {
+	                chrono = this._overrideChronology;
+	                if (chrono == null) {
+	                    chrono = _IsoChronology.IsoChronology.INSTANCE;
+	                }
+	            }
+	            return chrono;
 	        }
 	    }]);
 	
-	    return TemporalAccessor;
+	    return DateTimeParseContext;
 	}();
-
-	exports.TemporalAccessor = TemporalAccessor;
+	
+	var Parsed = function (_TemporalAccessor) {
+	    _inherits(Parsed, _TemporalAccessor);
+	
+	    function Parsed(dateTimeParseContext) {
+	        _classCallCheck(this, Parsed);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Parsed).call(this));
+	
+	        _this.chrono = null;
+	        _this.zone = null;
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	        _this.leapSecond = false;
+	        _this.dateTimeParseContext = dateTimeParseContext;
+	        return _this;
+	    }
+	
+	    _createClass(Parsed, [{
+	        key: 'copy',
+	        value: function copy() {
+	            var cloned = new Parsed();
+	            cloned.chrono = this.chrono;
+	            cloned.zone = this.zone;
+	            cloned.fieldValues.putAll(this.fieldValues);
+	            cloned.leapSecond = this.leapSecond;
+	            return cloned;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this.fieldValues + ', ' + this.chrono + ', ' + this.zone;
+	        }
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            return this.fieldValues.containsKey(field);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            var val = this.fieldValues.get(field);
+	            (0, _assert.assert)(val != null);
+	            return val;
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            }
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone()) {
+	                return this.zone;
+	            }
+	            return _get(Object.getPrototypeOf(Parsed.prototype), 'query', this).call(this, _query);
+	        }
+	    }, {
+	        key: 'toBuilder',
+	        value: function toBuilder() {
+	            var builder = new _DateTimeBuilder.DateTimeBuilder();
+	            builder.fieldValues.putAll(this.fieldValues);
+	            builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
+	            if (this.zone != null) {
+	                builder.zone = this.zone;
+	            } else {
+	                builder.zone = this.overrideZone;
+	            }
+	            builder.leapSecond = this.leapSecond;
+	            builder.excessDays = this.excessDays;
+	            return builder;
+	        }
+	    }]);
+	
+	    return Parsed;
+	}(_TemporalAccessor2.TemporalAccessor);
 
 /***/ },
 /* 15 */
@@ -3949,299 +5843,567 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
-	exports.TemporalQueries = undefined;
+	exports.DateTimeBuilder = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	exports.createTemporalQuery = createTemporalQuery;
+	var _errors = __webpack_require__(5);
 	
-	var _Enum2 = __webpack_require__(16);
+	var _EnumMap = __webpack_require__(16);
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var _IsoChronology = __webpack_require__(17);
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	var _ChronoLocalDate = __webpack_require__(20);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _TemporalAccessor2 = __webpack_require__(23);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	var _LocalTime = __webpack_require__(11);
+	
+	var _LocalDate = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	//import {ZoneOffset} from '../ZoneOffset';
+	
 	/**
-	 * Common implementations of {@code TemporalQuery}.
+	 * Builder that can holds date and time fields and related date and time objects.
 	 * <p>
-	 * This class provides common implementations of {@link TemporalQuery}.
-	 * These queries are primarily used as optimizations, allowing the internals
-	 * of other objects to be extracted effectively. Note that application code
-	 * can also use the {@code from(TemporalAccessor)} method on most temporal
-	 * objects as a method reference matching the query interface, such as
-	 * {@code LocalDate::from} and {@code ZoneId::from}.
-	 * <p>
-	 * There are two equivalent ways of using a {@code TemporalQuery}.
-	 * The first is to invoke the method on the interface directly.
-	 * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:
-	 * <pre>
-	 *   // these two lines are equivalent, but the second approach is recommended
-	 *   dateTime = query.queryFrom(dateTime);
-	 *   dateTime = dateTime.query(query);
-	 * </pre>
-	 * It is recommended to use the second approach, {@code query(TemporalQuery)},
-	 * as it is a lot clearer to read in code.
+	 * The builder is used to hold onto different elements of date and time.
+	 * It is designed as two separate maps:
+	 * <p><ul>
+	 * <li>from {@link TemporalField} to {@code long} value, where the value may be
+	 * outside the valid range for the field
+	 * <li>from {@code Class} to {@link TemporalAccessor}, holding larger scale objects
+	 * like {@code LocalDateTime}.
+	 * </ul><p>
 	 *
+	 * <h3>Specification for implementors</h3>
+	 * This class is mutable and not thread-safe.
+	 * It should only be used from a single thread.
 	 */
 	
-	var TemporalQueries = exports.TemporalQueries = function () {
-	  function TemporalQueries() {
-	    _classCallCheck(this, TemporalQueries);
-	  }
+	var DateTimeBuilder = function (_TemporalAccessor) {
+	    _inherits(DateTimeBuilder, _TemporalAccessor);
 	
-	  _createClass(TemporalQueries, null, [{
-	    key: 'zoneId',
+	    function DateTimeBuilder() {
+	        _classCallCheck(this, DateTimeBuilder);
 	
+	        /**
+	         * The map of other fields.
+	         */
 	
-	    /**
-	     * A strict query for the {@code ZoneId}.
-	     * <p>
-	     * This queries a {@code TemporalAccessor} for the zone.
-	     * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
-	     * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
-	     * Thus a {@link ZonedDateTime} will return the result of
-	     * {@code getZone()}, but an {@link OffsetDateTime} will
-	     * return null.
-	     * <p>
-	     * In most cases, applications should use {@link #ZONE} as this query is too strict.
-	     * <p>
-	     * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
-	     * {@code LocalDate} returns null<br>
-	     * {@code LocalTime} returns null<br>
-	     * {@code LocalDateTime} returns null<br>
-	     * {@code ZonedDateTime} returns the associated zone<br>
-	     * {@code OffsetTime} returns null<br>
-	     * {@code OffsetDateTime} returns null<br>
-	     * {@code ChronoLocalDate} returns null<br>
-	     * {@code ChronoLocalDateTime} returns null<br>
-	     * {@code ChronoZonedDateTime} returns the associated zone<br>
-	     * {@code Era} returns null<br>
-	     * {@code DayOfWeek} returns null<br>
-	     * {@code Month} returns null<br>
-	     * {@code Year} returns null<br>
-	     * {@code YearMonth} returns null<br>
-	     * {@code MonthDay} returns null<br>
-	     * {@code ZoneOffset} returns null<br>
-	     * {@code Instant} returns null<br>
-	     *
-	     * @return a query that can obtain the zone ID of a temporal, not null
-	     */
-	    value: function zoneId() {
-	      return TemporalQueries.ZONE_ID;
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeBuilder).call(this));
+	
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	        /**
+	         * The chronology.
+	         */
+	        _this.chrono = null;
+	        /**
+	         * The zone.
+	         */
+	        _this.zone = null;
+	        /**
+	         * The date.
+	         */
+	        _this.date = null;
+	        /**
+	         * The time.
+	         */
+	        _this.time = null;
+	        /**
+	         * The leap second flag.
+	         */
+	        _this.leapSecond = false;
+	        /**
+	         * The excess days.
+	         */
+	        _this.excessDays = null;
+	        return _this;
 	    }
 	
 	    /**
-	     * A query for the {@code Chronology}.
+	     * Resolves the builder, evaluating the date and time.
 	     * <p>
-	     * This queries a {@code TemporalAccessor} for the chronology.
-	     * If the target {@code TemporalAccessor} represents a date, or part of a date,
-	     * then it should return the chronology that the date is expressed in.
-	     * As a result of this definition, objects only representing time, such as
-	     * {@code LocalTime}, will return null.
-	     * <p>
-	     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-	     * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code LocalTime} returns null (does not represent a date)<br>
-	     * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code OffsetTime} returns null (does not represent a date)<br>
-	     * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code ChronoLocalDate} returns the associated chronology<br>
-	     * {@code ChronoLocalDateTime} returns the associated chronology<br>
-	     * {@code ChronoZonedDateTime} returns the associated chronology<br>
-	     * {@code Era} returns the associated chronology<br>
-	     * {@code DayOfWeek} returns null (shared across chronologies)<br>
-	     * {@code Month} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code Year} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>
-	     * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>
-	     * {@code ZoneOffset} returns null (does not represent a date)<br>
-	     * {@code Instant} returns null (does not represent a date)<br>
-	     * <p>
-	     * The method {@link Chronology#from(TemporalAccessor)} can be used as a
-	     * {@code TemporalQuery}
-	     * That method is equivalent to this query, except that it throws an
-	     * exception if a chronology cannot be obtained.
+	     * This examines the contents of the builder and resolves it to produce the best
+	     * available date and time, throwing an exception if a problem occurs.
+	     * Calling this method changes the state of the builder.
 	     *
-	     * @return a query that can obtain the chronology of a temporal, not null
+	     * @param resolverStyle how to resolve
+	     * @param resolverFields
+	    * @return {@code this}, for method chaining
 	     */
 	
-	  }, {
-	    key: 'chronology',
-	    value: function chronology() {
-	      return TemporalQueries.CHRONO;
-	    }
 	
-	    /**
-	     * A query for the smallest supported unit.
-	     * <p>
-	     * This queries a {@code TemporalAccessor} for the time precision.
-	     * If the target {@code TemporalAccessor} represents a consistent or complete date-time,
-	     * date or time then this must return the smallest precision actually supported.
-	     * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}
-	     * are defined to always return ignoring the precision, thus this is the only
-	     * way to find the actual smallest supported unit.
-	     * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}
-	     * it would return a precision of {@code MILLIS}.
-	     * <p>
-	     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-	     * {@code LocalDate} returns {@code DAYS}<br>
-	     * {@code LocalTime} returns {@code NANOS}<br>
-	     * {@code LocalDateTime} returns {@code NANOS}<br>
-	     * {@code ZonedDateTime} returns {@code NANOS}<br>
-	     * {@code OffsetTime} returns {@code NANOS}<br>
-	     * {@code OffsetDateTime} returns {@code NANOS}<br>
-	     * {@code ChronoLocalDate} returns {@code DAYS}<br>
-	     * {@code ChronoLocalDateTime} returns {@code NANOS}<br>
-	     * {@code ChronoZonedDateTime} returns {@code NANOS}<br>
-	     * {@code Era} returns {@code ERAS}<br>
-	     * {@code DayOfWeek} returns {@code DAYS}<br>
-	     * {@code Month} returns {@code MONTHS}<br>
-	     * {@code Year} returns {@code YEARS}<br>
-	     * {@code YearMonth} returns {@code MONTHS}<br>
-	     * {@code MonthDay} returns null (does not represent a complete date or time)<br>
-	     * {@code ZoneOffset} returns null (does not represent a date or time)<br>
-	     * {@code Instant} returns {@code NANOS}<br>
-	     *
-	     * @return a query that can obtain the precision of a temporal, not null
-	     */
+	    _createClass(DateTimeBuilder, [{
+	        key: 'resolve',
+	        value: function resolve(resolverStyle, resolverFields) {
+	            if (resolverFields != null) {
+	                this.fieldValues.retainAll(resolverFields);
+	            }
+	            // handle standard fields
+	            // this._mergeInstantFields();
+	            this._mergeDate(resolverStyle);
+	            //mergeTime(resolverStyle);
+	            //if (resolveFields(resolverStyle)) {
+	            //    mergeInstantFields();
+	            //    mergeDate(resolverStyle);
+	            //    mergeTime(resolverStyle);
+	            //}
+	            //resolveTimeInferZeroes(resolverStyle);
+	            //crossCheck();
+	            //if (excessDays != null && excessDays.isZero() == false && date != null && time != null) {
+	            //    date = date.plus(excessDays);
+	            //    excessDays = Period.ZERO;
+	            //}
+	            //resolveFractional();
+	            //resolveInstant();
+	            return this;
+	        }
+	    }, {
+	        key: '_mergeDate',
+	        value: function _mergeDate(resolverStyle) {
+	            //if (this.chrono instanceof IsoChronology) {
+	            this._checkDate(_IsoChronology.IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
+	            //} else {
+	            //    if (this.fieldValues.containsKey(ChronoField.EPOCH_DAY)) {
+	            //        this._checkDate(LocalDate.ofEpochDay(this.fieldValues.remove(ChronoField.EPOCH_DAY)));
+	            //        return;
+	            //    }
+	            //}
+	        }
+	    }, {
+	        key: '_checkDate',
+	        value: function _checkDate(date) {
+	            if (date != null) {
+	                this._addObject(date);
+	                for (var field in this.fieldValues.keySet()) {
+	                    if (field instanceof _ChronoField.ChronoField) {
+	                        if (field.isDateBased()) {
+	                            var val1;
+	                            try {
+	                                val1 = date.getLong(field);
+	                            } catch (ex) {
+	                                if (ex instanceof _errors.DateTimeException) {
+	                                    continue;
+	                                } else {
+	                                    throw ex;
+	                                }
+	                            }
+	                            var val2 = this.fieldValues.get(field);
+	                            if (val1 !== val2) {
+	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }, {
+	        key: '_addObject',
+	        value: function _addObject(dateOrTime) {
+	            if (dateOrTime instanceof _ChronoLocalDate.ChronoLocalDate) {
+	                this.date = dateOrTime;
+	            } else if (dateOrTime instanceof _LocalTime.LocalTime) {
+	                this.time = dateOrTime;
+	            }
+	        }
 	
-	  }, {
-	    key: 'precision',
-	    value: function precision() {
-	      return TemporalQueries.PRECISION;
-	    }
+	        /**
+	         * Builds the specified type from the values in this builder.
+	         *
+	         * This attempts to build the specified type from this builder.
+	         * If the builder cannot return the type, an exception is thrown.
+	         *
+	         * @param type  the type to invoke {@code from} on, not null
+	         * @return the extracted value, not null
+	         * @throws DateTimeException if an error occurs
+	         */
 	
-	    /**
-	     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
-	     * <p>
-	     * This queries a {@code TemporalAccessor} for the zone.
-	     * It first tries to obtain the zone, using {@link #zoneId()}.
-	     * If that is not found it tries to obtain the {@link #offset()}.
-	     * <p>
-	     * In most cases, applications should use this query rather than {@code #zoneId()}.
-	     * <p>
-	     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
-	     * field and uses it to create a {@code ZoneOffset}.
-	     * <p>
-	     * The method {@link ZoneId#from(TemporalAccessor)} can be used as a
-	     * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.
-	     * That method is equivalent to this query, except that it throws an
-	     * exception if a zone cannot be obtained.
-	     *
-	     * @return a query that can obtain the zone ID or offset of a temporal, not null
-	     */
+	    }, {
+	        key: 'build',
+	        value: function build(type) {
+	            return type.queryFrom(this);
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId()) {
+	                return this.zone;
+	            } else if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return this.date != null ? _LocalDate.LocalDate.from(this.date) : null;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
+	                return this.time;
+	            } else if (_query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return _query.queryFrom(this);
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return null; // not a complete date/time
+	            }
+	            // inline TemporalAccessor.super.query(query) as an optimization
+	            // non-JDK classes are not permitted to make this optimization
+	            return _query.queryFrom(this);
+	        }
+	    }]);
 	
-	  }, {
-	    key: 'zone',
-	    value: function zone() {
-	      return TemporalQueries.ZONE;
-	    }
-	
-	    /**
-	     * A query for {@code ZoneOffset} returning null if not found.
-	     * <p>
-	     * This returns a {@code TemporalQuery} that can be used to query a temporal
-	     * object for the offset. The query will return null if the temporal
-	     * object cannot supply an offset.
-	     * <p>
-	     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
-	     * field and uses it to create a {@code ZoneOffset}.
-	     * <p>
-	     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
-	     * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
-	     * This query and {@code ZoneOffset::from} will return the same result if the
-	     * temporal object contains an offset. If the temporal object does not contain
-	     * an offset, then the method reference will throw an exception, whereas this
-	     * query will return null.
-	     *
-	     * @return a query that can obtain the offset of a temporal, not null
-	     */
-	
-	  }, {
-	    key: 'offset',
-	    value: function offset() {
-	      return TemporalQueries.OFFSET;
-	    }
-	
-	    /**
-	     * A query for {@code LocalDate} returning null if not found.
-	     * <p>
-	     * This returns a {@code TemporalQuery} that can be used to query a temporal
-	     * object for the local date. The query will return null if the temporal
-	     * object cannot supply a local date.
-	     * <p>
-	     * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
-	     * field and uses it to create a {@code LocalDate}.
-	     *
-	     * @return a query that can obtain the date of a temporal, not null
-	     */
-	
-	  }, {
-	    key: 'localDate',
-	    value: function localDate() {
-	      return TemporalQueries.LOCAL_DATE;
-	    }
-	
-	    /**
-	     * A query for {@code LocalTime} returning null if not found.
-	     * <p>
-	     * This returns a {@code TemporalQuery} that can be used to query a temporal
-	     * object for the local time. The query will return null if the temporal
-	     * object cannot supply a local time.
-	     * <p>
-	     * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
-	     * field and uses it to create a {@code LocalTime}.
-	     *
-	     * @return a query that can obtain the time of a temporal, not null
-	     */
-	
-	  }, {
-	    key: 'localTime',
-	    value: function localTime() {
-	      return TemporalQueries.LOCAL_TIME;
-	    }
-	  }]);
-	
-	  return TemporalQueries;
-	}();
-	
-	/** 
-	 * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
-	 * as the queryFrom() function.
-	 * TODO: maybe should be moved to a separate file?
-	 * @param name
-	 * @param queryFromFunction
-	 */
-	
-	
-	function createTemporalQuery(name, queryFromFunction) {
-	  var TemporalQuery = function (_Enum) {
-	    _inherits(TemporalQuery, _Enum);
-	
-	    function TemporalQuery() {
-	      _classCallCheck(this, TemporalQuery);
-	
-	      return _possibleConstructorReturn(this, Object.getPrototypeOf(TemporalQuery).apply(this, arguments));
-	    }
-	
-	    return TemporalQuery;
-	  }(_Enum2.Enum);
-	
-	  TemporalQuery.prototype.queryFrom = queryFromFunction;
-	  return new TemporalQuery(name);
-	}
+	    return DateTimeBuilder;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
 /* 16 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var EnumMap = exports.EnumMap = function () {
+	    function EnumMap() {
+	        _classCallCheck(this, EnumMap);
+	
+	        this._map = {};
+	    }
+	
+	    _createClass(EnumMap, [{
+	        key: "putAll",
+	        value: function putAll(otherMap) {
+	            for (var key in otherMap._map) {
+	                this._map[key] = otherMap._map[key];
+	            }
+	            return this;
+	        }
+	    }, {
+	        key: "containsKey",
+	        value: function containsKey(key) {
+	            return this._map.hasOwnProperty(key.name());
+	        }
+	    }, {
+	        key: "get",
+	        value: function get(key) {
+	            return this._map[key.name()];
+	        }
+	    }, {
+	        key: "set",
+	        value: function set(key, val) {
+	            this._map[key.name()] = val;
+	            return this;
+	        }
+	    }, {
+	        key: "retainAll",
+	        value: function retainAll(keyList) {
+	            var map = {};
+	            for (var i = 0; i < keyList.length; i++) {
+	                var key = keyList[i].name();
+	                map[key] = this._map[key];
+	            }
+	            this._map = map;
+	            return this;
+	        }
+	
+	        /**
+	         * due to the bad performance of delete we just set the key entry to undefined.
+	         *
+	         * this might lead to issues with "null" entries. Calling clear in the end might solve the issue
+	         * @param key
+	         * @returns {*}
+	         */
+	
+	    }, {
+	        key: "remove",
+	        value: function remove(key) {
+	            var keyName = key.name();
+	            var val = this._map[keyName];
+	            this._map[keyName] = undefined;
+	            return val;
+	        }
+	    }, {
+	        key: "keySet",
+	        value: function keySet() {
+	            return this._map;
+	        }
+	    }, {
+	        key: "clear",
+	        value: function clear() {
+	            this._map = {};
+	        }
+	    }]);
+	
+	    return EnumMap;
+	}();
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.IsoChronology = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports._init = _init;
+	
+	var _Enum2 = __webpack_require__(18);
+	
+	var _LocalDate = __webpack_require__(19);
+	
+	var _Month = __webpack_require__(29);
+	
+	var _Year = __webpack_require__(31);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ResolverStyle = __webpack_require__(28);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var IsoChronology = exports.IsoChronology = function (_Enum) {
+	    _inherits(IsoChronology, _Enum);
+	
+	    function IsoChronology() {
+	        _classCallCheck(this, IsoChronology);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IsoChronology).apply(this, arguments));
+	    }
+	
+	    _createClass(IsoChronology, [{
+	        key: 'resolveDate',
+	        value: function resolveDate(fieldValues, resolverStyle) {
+	            if (fieldValues.containsKey(_ChronoField.ChronoField.EPOCH_DAY)) {
+	                return _LocalDate.LocalDate.ofEpochDay(fieldValues.remove(_ChronoField.ChronoField.EPOCH_DAY));
+	            }
+	
+	            // normalize fields
+	            /*
+	                    var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
+	                    if (prolepticMonth != null) {
+	                        if (resolverStyle != ResolverStyle.LENIENT) {
+	                            PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+	                        }
+	                        updateResolveMap(fieldValues, ChronoField.MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
+	                        updateResolveMap(fieldValues, ChronoField.YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
+	                    }
+	            */
+	
+	            // eras
+	            /*
+	                    Long yoeLong = fieldValues.remove(YEAR_OF_ERA);
+	                    if (yoeLong != null) {
+	                        if (resolverStyle != ResolverStyle.LENIENT) {
+	                            YEAR_OF_ERA.checkValidValue(yoeLong);
+	                        }
+	                        Long era = fieldValues.remove(ERA);
+	                        if (era == null) {
+	                            Long year = fieldValues.get(ChronoField.YEAR);
+	                            if (resolverStyle == ResolverStyle.STRICT) {
+	                                // do not invent era if strict, but do cross-check with year
+	                                if (year != null) {
+	                                    updateResolveMap(fieldValues, ChronoField.YEAR, (year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+	                                } else {
+	                                    // reinstate the field removed earlier, no cross-check issues
+	                                    fieldValues.put(YEAR_OF_ERA, yoeLong);
+	                                }
+	                            } else {
+	                                // invent era
+	                                updateResolveMap(fieldValues, ChronoField.YEAR, (year == null || year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+	                            }
+	                        } else if (era.longValue() == 1L) {
+	                            updateResolveMap(fieldValues, ChronoField.YEAR, yoeLong);
+	                        } else if (era.longValue() == 0L) {
+	                            updateResolveMap(fieldValues, ChronoField.YEAR, Jdk8Methods.safeSubtract(1, yoeLong));
+	                        } else {
+	                            throw new DateTimeException("Invalid value for era: " + era);
+	                        }
+	                    } else if (fieldValues.containsKey(ERA)) {
+	                        ERA.checkValidValue(fieldValues.get(ERA));  // always validated
+	                    }
+	            */
+	
+	            // build date
+	            if (fieldValues.containsKey(_ChronoField.ChronoField.YEAR)) {
+	                if (fieldValues.containsKey(_ChronoField.ChronoField.MONTH_OF_YEAR)) {
+	                    if (fieldValues.containsKey(_ChronoField.ChronoField.DAY_OF_MONTH)) {
+	                        var y = _ChronoField.ChronoField.YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.YEAR));
+	                        var moy = fieldValues.remove(_ChronoField.ChronoField.MONTH_OF_YEAR);
+	                        var dom = fieldValues.remove(_ChronoField.ChronoField.DAY_OF_MONTH);
+	                        if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                            var months = moy - 1;
+	                            var days = dom - 1;
+	                            return _LocalDate.LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
+	                        } else if (resolverStyle === _ResolverStyle.ResolverStyle.SMART) {
+	                            _ChronoField.ChronoField.DAY_OF_MONTH.checkValidValue(dom);
+	                            if (moy === 4 || moy === 6 || moy === 9 || moy === 11) {
+	                                dom = Math.min(dom, 30);
+	                            } else if (moy === 2) {
+	                                dom = Math.min(dom, _Month.Month.FEBRUARY.length(_Year.Year.isLeap(y)));
+	                            }
+	                            return _LocalDate.LocalDate.of(y, moy, dom);
+	                        } else {
+	                            return _LocalDate.LocalDate.of(y, moy, dom);
+	                        }
+	                    }
+	                    /*
+	                                    if (fieldValues.containsKey(ALIGNED_WEEK_OF_MONTH)) {
+	                                        if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_MONTH)) {
+	                                            int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+	                                            if (resolverStyle == ResolverStyle.LENIENT) {
+	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(ChronoField.MONTH_OF_YEAR), 1);
+	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
+	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+	                                            }
+	                                            int moy = ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.MONTH_OF_YEAR));
+	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+	                                            int ad = ALIGNED_DAY_OF_WEEK_IN_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH));
+	                                            LocalDate date = LocalDate.of(y, moy, 1).plusDays((aw - 1) * 7 + (ad - 1));
+	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.MONTH_OF_YEAR) != moy) {
+	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                            }
+	                                            return date;
+	                                        }
+	                                        if (fieldValues.containsKey(DAY_OF_WEEK)) {
+	                                            int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+	                                            if (resolverStyle == ResolverStyle.LENIENT) {
+	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(ChronoField.MONTH_OF_YEAR), 1);
+	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
+	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
+	                                            }
+	                                            int moy = ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.MONTH_OF_YEAR));
+	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
+	                                            int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+	                                            LocalDate date = LocalDate.of(y, moy, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.MONTH_OF_YEAR) != moy) {
+	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                            }
+	                                            return date;
+	                                        }
+	                                    }
+	                    */
+	                }
+	                /*
+	                            if (fieldValues.containsKey(DAY_OF_YEAR)) {
+	                                int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+	                                if (resolverStyle == ResolverStyle.LENIENT) {
+	                                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
+	                                    return LocalDate.ofYearDay(y, 1).plusDays(days);
+	                                }
+	                                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
+	                                return LocalDate.ofYearDay(y, doy);
+	                            }
+	                */
+	                /*
+	                            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
+	                                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+	                                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+	                                    if (resolverStyle == ResolverStyle.LENIENT) {
+	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+	                                    }
+	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+	                                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
+	                                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.YEAR) != y) {
+	                                        throw new DateTimeException("Strict mode rejected date parsed to a different year");
+	                                    }
+	                                    return date;
+	                                }
+	                                if (fieldValues.containsKey(DAY_OF_WEEK)) {
+	                                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+	                                    if (resolverStyle == ResolverStyle.LENIENT) {
+	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
+	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
+	                                    }
+	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
+	                                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
+	                                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
+	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.YEAR) != y) {
+	                                        throw new DateTimeException("Strict mode rejected date parsed to a different month");
+	                                    }
+	                                    return date;
+	                                }
+	                            }
+	                */
+	            }
+	            return null;
+	        }
+	    }], [{
+	        key: 'isLeapYear',
+	
+	        /**
+	         * Checks if the year is a leap year, according to the ISO proleptic
+	         * calendar system rules.
+	         *
+	         * This method applies the current rules for leap years across the whole time-line.
+	         * In general, a year is a leap year if it is divisible by four without
+	         * remainder. However, years divisible by 100, are not leap years, with
+	         * the exception of years divisible by 400 which are.
+	         *
+	         * For example, 1904 is a leap year it is divisible by 4.
+	         * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+	         * leap year as it is divisible by 400.
+	         *
+	         * The calculation is proleptic - applying the same rules into the far future and far past.
+	         * This is historically inaccurate, but is correct for the ISO-8601 standard.
+	         *
+	         * @param {number} prolepticYear - the ISO proleptic year to check
+	         * @return true if the year is leap, false otherwise
+	         */
+	        value: function isLeapYear(prolepticYear) {
+	            return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
+	        }
+	    }]);
+	
+	    return IsoChronology;
+	}(_Enum2.Enum);
+	
+	function _init() {
+	    IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
+	}
+
+/***/ },
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4285,150 +6447,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ZoneOffset = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	
-	var _errors = __webpack_require__(5);
-	
-	var _LocalTime = __webpack_require__(10);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
-	var SECONDS_CACHE = {};
-	
-	var ZoneOffset = exports.ZoneOffset = function () {
-	    function ZoneOffset(totalSeconds) {
-	        _classCallCheck(this, ZoneOffset);
-	
-	        ZoneOffset.validateTotalSeconds(totalSeconds);
-	        this._totalSeconds = totalSeconds;
-	    }
-	
-	    _createClass(ZoneOffset, [{
-	        key: 'totalSeconds',
-	        value: function totalSeconds() {
-	            return this._totalSeconds;
-	        }
-	
-	        /**
-	         * Checks if this offset is equal to another offset.
-	         *
-	         * The comparison is based on the amount of the offset in seconds.
-	         * This is equivalent to a comparison by ID.
-	         *
-	         * @param obj  the object to check, null returns false
-	         * @return true if this is equal to the other offset
-	         */
-	
-	    }, {
-	        key: 'equals',
-	        value: function equals(obj) {
-	            if (this === obj) {
-	                return true;
-	            }
-	            if (obj instanceof ZoneOffset) {
-	                return this._totalSeconds === obj._totalSeconds;
-	            }
-	            return false;
-	        }
-	    }], [{
-	        key: 'validateTotalSeconds',
-	        value: function validateTotalSeconds(totalSeconds) {
-	            if (Math.abs(totalSeconds) > MAX_SECONDS) {
-	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	            }
-	        }
-	    }, {
-	        key: 'validate',
-	        value: function validate(hours, minutes, seconds) {
-	            if (hours < -18 || hours > 18) {
-	                throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
-	            }
-	            if (hours > 0) {
-	                if (minutes < 0 || seconds < 0) {
-	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
-	                }
-	            } else if (hours < 0) {
-	                if (minutes > 0 || seconds > 0) {
-	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
-	                }
-	            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
-	                throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
-	            }
-	            if (Math.abs(minutes) > 59) {
-	                throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
-	            }
-	            if (Math.abs(seconds) > 59) {
-	                throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
-	            }
-	            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
-	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	            }
-	        }
-	    }, {
-	        key: 'ofHours',
-	        value: function ofHours(hours) {
-	            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
-	        }
-	    }, {
-	        key: 'ofHoursMinutes',
-	        value: function ofHoursMinutes(hours, minutes) {
-	            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
-	        }
-	    }, {
-	        key: 'ofHoursMinutesSeconds',
-	        value: function ofHoursMinutesSeconds(hours, minutes, seconds) {
-	            ZoneOffset.validate(hours, minutes, seconds);
-	            var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
-	            return ZoneOffset.ofTotalSeconds(totalSeconds);
-	        }
-	    }, {
-	        key: 'ofTotalMinutes',
-	        value: function ofTotalMinutes(totalMinutes) {
-	            var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
-	            return ZoneOffset.ofTotalSeconds(totalSeconds);
-	        }
-	    }, {
-	        key: 'ofTotalSeconds',
-	        value: function ofTotalSeconds(totalSeconds) {
-	            if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
-	                var totalSecs = totalSeconds;
-	                var result = SECONDS_CACHE[totalSecs];
-	                if (result == null) {
-	                    result = new ZoneOffset(totalSeconds);
-	                    SECONDS_CACHE[totalSecs] = result;
-	                }
-	                return result;
-	            } else {
-	                return new ZoneOffset(totalSeconds);
-	            }
-	        }
-	    }]);
-	
-	    return ZoneOffset;
-	}();
-	
-	ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-	ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-MAX_SECONDS);
-	ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(MAX_SECONDS);
-
-/***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4442,33 +6461,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	exports._init = _init;
+	
 	var _assert = __webpack_require__(9);
 	
 	var _MathUtil = __webpack_require__(4);
 	
 	var _errors = __webpack_require__(5);
 	
-	var _IsoChronology = __webpack_require__(19);
+	var _IsoChronology = __webpack_require__(17);
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _ChronoLocalDate2 = __webpack_require__(23);
+	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(15);
+	var _ChronoLocalDate2 = __webpack_require__(20);
 	
-	var _DateTimeFormatter = __webpack_require__(24);
+	var _TemporalQueries = __webpack_require__(21);
+	
+	var _DateTimeFormatter = __webpack_require__(12);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _DayOfWeek = __webpack_require__(32);
+	var _DayOfWeek = __webpack_require__(24);
 	
-	var _Month = __webpack_require__(20);
+	var _Month = __webpack_require__(29);
 	
-	var _Year = __webpack_require__(11);
+	var _Period = __webpack_require__(30);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _Year = __webpack_require__(31);
 	
-	__webpack_require__(21);
+	var _LocalTime = __webpack_require__(11);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4506,6 +6529,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Instead, it is a description of the date, as used for birthdays.
 	 * It cannot represent an instant on the time-line without additional information
 	 * such as an offset or time-zone.
+	 *
+	 * The ISO-8601 calendar system is the modern civil calendar system used today
+	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	 * system, in which today's rules for leap years are applied for all time.
+	 * For most applications written today, the ISO-8601 rules are entirely suitable.
+	 * However, any application that makes use of historical dates, and requires them
+	 * to be accurate will find the ISO-8601 approach unsuitable.
 	 */
 	
 	var LocalDate = function (_ChronoLocalDate) {
@@ -4669,7 +6699,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'parse',
 	        value: function parse(text) {
-	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE() : arguments[1];
+	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE : arguments[1];
 	
 	            (0, _assert.assert)(formatter != null, 'formatter', _errors.NullPointerException);
 	            return formatter.parse(text, LocalDate.FROM);
@@ -4981,6 +7011,218 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        /**
+	         * function overloading for the with method.
+	         *
+	         * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster,
+	         * otherwise a field and newValue argument is expected.
+	         *
+	         * @param fieldOrAdjuster
+	         * @param newValue
+	         */
+	
+	    }, {
+	        key: 'with',
+	        value: function _with(fieldOrAdjuster, newValue) {
+	            if (arguments.length < 2) {
+	                return this._withTemporalAdjuster(fieldOrAdjuster);
+	            } else {
+	                return this._with2(fieldOrAdjuster, newValue);
+	            }
+	        }
+	
+	        /**
+	         * Returns an adjusted copy of this date.
+	         * <p>
+	         * This returns a new {@code LocalDate}, based on this one, with the date adjusted.
+	         * The adjustment takes place using the specified adjuster strategy object.
+	         * Read the documentation of the adjuster to understand what adjustment will be made.
+	         * <p>
+	         * A simple adjuster might simply set the one of the fields, such as the year field.
+	         * A more complex adjuster might set the date to the last day of the month.
+	         * A selection of common adjustments is provided in {@link TemporalAdjusters}.
+	         * These include finding the "last day of the month" and "next Wednesday".
+	         * Key date-time classes also implement the {@code TemporalAdjuster} interface,
+	         * such as {@link Month} and {@link MonthDay}.
+	         * The adjuster is responsible for handling special cases, such as the varying
+	         * lengths of month and leap years.
+	         * <p>
+	         * For example this code returns a date on the last day of July:
+	         * <pre>
+	         *  import static org.threeten.bp.Month.*;
+	         *  import static org.threeten.bp.temporal.Adjusters.*;
+	         *
+	         *  result = localDate.with(JULY).with(lastDayOfMonth());
+	         * </pre>
+	         * <p>
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+	         * specified adjuster passing {@code this} as the argument.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param adjuster the adjuster to use, not null
+	         * @return a {@code LocalDate} based on {@code this} with the adjustment made, not null
+	         * @throws DateTimeException if the adjustment cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_withTemporalAdjuster',
+	        value: function _withTemporalAdjuster(adjuster) {
+	            (0, _assert.assert)(adjuster != null, 'adjuster', _errors.NullPointerException);
+	            (0, _assert.assert)(typeof adjuster.adjustInto === 'function', adjuster + 'is mot an adjuster', _errors.IllegalArgumentException);
+	            // optimizations
+	            if (adjuster instanceof LocalDate) {
+	                return adjuster;
+	            }
+	            return adjuster.adjustInto(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the specified field set to a new value.
+	         * <p>
+	         * This returns a new {@code LocalDate}, based on this one, with the value
+	         * for the specified field changed.
+	         * This can be used to change any supported field, such as the year, month or day-of-month.
+	         * If it is not possible to set the value, because the field is not supported or for
+	         * some other reason, an exception is thrown.
+	         * <p>
+	         * In some cases, changing the specified field can cause the resulting date to become invalid,
+	         * such as changing the month from 31st January to February would make the day-of-month invalid.
+	         * In cases like this, the field is responsible for resolving the date. Typically it will choose
+	         * the previous valid date, which would be the last valid day of February in this example.
+	         * <p>
+	         * If the field is a {@link ChronoField} then the adjustment is implemented here.
+	         * The supported fields behave as follows:
+	         * <ul>
+	         * <li>{@code DAY_OF_WEEK} -
+	         *  Returns a {@code LocalDate} with the specified day-of-week.
+	         *  The date is adjusted up to 6 days forward or backward within the boundary
+	         *  of a Monday to Sunday week.
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH} -
+	         *  Returns a {@code LocalDate} with the specified aligned-day-of-week.
+	         *  The date is adjusted to the specified month-based aligned-day-of-week.
+	         *  Aligned weeks are counted such that the first week of a given month starts
+	         *  on the first day of that month.
+	         *  This may cause the date to be moved up to 6 days into the following month.
+	         * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR} -
+	         *  Returns a {@code LocalDate} with the specified aligned-day-of-week.
+	         *  The date is adjusted to the specified year-based aligned-day-of-week.
+	         *  Aligned weeks are counted such that the first week of a given year starts
+	         *  on the first day of that year.
+	         *  This may cause the date to be moved up to 6 days into the following year.
+	         * <li>{@code DAY_OF_MONTH} -
+	         *  Returns a {@code LocalDate} with the specified day-of-month.
+	         *  The month and year will be unchanged. If the day-of-month is invalid for the
+	         *  year and month, then a {@code DateTimeException} is thrown.
+	         * <li>{@code DAY_OF_YEAR} -
+	         *  Returns a {@code LocalDate} with the specified day-of-year.
+	         *  The year will be unchanged. If the day-of-year is invalid for the
+	         *  year, then a {@code DateTimeException} is thrown.
+	         * <li>{@code EPOCH_DAY} -
+	         *  Returns a {@code LocalDate} with the specified epoch-day.
+	         *  This completely replaces the date and is equivalent to {@link #ofEpochDay(long)}.
+	         * <li>{@code ALIGNED_WEEK_OF_MONTH} -
+	         *  Returns a {@code LocalDate} with the specified aligned-week-of-month.
+	         *  Aligned weeks are counted such that the first week of a given month starts
+	         *  on the first day of that month.
+	         *  This adjustment moves the date in whole week chunks to match the specified week.
+	         *  The result will have the same day-of-week as this date.
+	         *  This may cause the date to be moved into the following month.
+	         * <li>{@code ALIGNED_WEEK_OF_YEAR} -
+	         *  Returns a {@code LocalDate} with the specified aligned-week-of-year.
+	         *  Aligned weeks are counted such that the first week of a given year starts
+	         *  on the first day of that year.
+	         *  This adjustment moves the date in whole week chunks to match the specified week.
+	         *  The result will have the same day-of-week as this date.
+	         *  This may cause the date to be moved into the following year.
+	         * <li>{@code MONTH_OF_YEAR} -
+	         *  Returns a {@code LocalDate} with the specified month-of-year.
+	         *  The year will be unchanged. The day-of-month will also be unchanged,
+	         *  unless it would be invalid for the new month and year. In that case, the
+	         *  day-of-month is adjusted to the maximum valid value for the new month and year.
+	         * <li>{@code PROLEPTIC_MONTH} -
+	         *  Returns a {@code LocalDate} with the specified proleptic-month.
+	         *  The day-of-month will be unchanged, unless it would be invalid for the new month
+	         *  and year. In that case, the day-of-month is adjusted to the maximum valid value
+	         *  for the new month and year.
+	         * <li>{@code YEAR_OF_ERA} -
+	         *  Returns a {@code LocalDate} with the specified year-of-era.
+	         *  The era and month will be unchanged. The day-of-month will also be unchanged,
+	         *  unless it would be invalid for the new month and year. In that case, the
+	         *  day-of-month is adjusted to the maximum valid value for the new month and year.
+	         * <li>{@code YEAR} -
+	         *  Returns a {@code LocalDate} with the specified year.
+	         *  The month will be unchanged. The day-of-month will also be unchanged,
+	         *  unless it would be invalid for the new month and year. In that case, the
+	         *  day-of-month is adjusted to the maximum valid value for the new month and year.
+	         * <li>{@code ERA} -
+	         *  Returns a {@code LocalDate} with the specified era.
+	         *  The year-of-era and month will be unchanged. The day-of-month will also be unchanged,
+	         *  unless it would be invalid for the new month and year. In that case, the
+	         *  day-of-month is adjusted to the maximum valid value for the new month and year.
+	         * </ul>
+	         * <p>
+	         * In all cases, if the new value is outside the valid range of values for the field
+	         * then a {@code DateTimeException} will be thrown.
+	         * <p>
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+	         * passing {@code this} as the argument. In this case, the field determines
+	         * whether and how to adjust the instant.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param field  the field to set in the result, not null
+	         * @param newValue  the new value of the field in the result
+	         * @return a {@code LocalDate} based on {@code this} with the specified field set, not null
+	         * @throws DateTimeException if the field cannot be set
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_with2',
+	        value: function _with2(field, newValue) {
+	            (0, _assert.assert)(field != null, 'field', _errors.NullPointerException);
+	            if (field instanceof _ChronoField.ChronoField) {
+	                var f = field;
+	                f.checkValidValue(newValue);
+	                switch (f) {
+	                    case _ChronoField.ChronoField.DAY_OF_WEEK:
+	                        return this.plusDays(newValue - this.getDayOfWeek().value());
+	                    case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH:
+	                        return this.plusDays(newValue - this.getLong(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));
+	                    case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR:
+	                        return this.plusDays(newValue - this.getLong(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+	                    case _ChronoField.ChronoField.DAY_OF_MONTH:
+	                        return this.withDayOfMonth(newValue);
+	                    case _ChronoField.ChronoField.DAY_OF_YEAR:
+	                        return this.withDayOfYear(newValue);
+	                    case _ChronoField.ChronoField.EPOCH_DAY:
+	                        return LocalDate.ofEpochDay(newValue);
+	                    case _ChronoField.ChronoField.ALIGNED_WEEK_OF_MONTH:
+	                        return this.plusWeeks(newValue - this.getLong(_ChronoField.ChronoField.ALIGNED_WEEK_OF_MONTH));
+	                    case _ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR:
+	                        return this.plusWeeks(newValue - this.getLong(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR));
+	                    case _ChronoField.ChronoField.MONTH_OF_YEAR:
+	                        return this.withMonth(newValue);
+	                    case _ChronoField.ChronoField.PROLEPTIC_MONTH:
+	                        return this.plusMonths(newValue - this.getLong(_ChronoField.ChronoField.PROLEPTIC_MONTH));
+	                    case _ChronoField.ChronoField.YEAR_OF_ERA:
+	                        return this.withYear(this._year >= 1 ? newValue : 1 - newValue);
+	                    case _ChronoField.ChronoField.YEAR:
+	                        return this.withYear(newValue);
+	                    case _ChronoField.ChronoField.ERA:
+	                        return this.getLong(_ChronoField.ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.adjustInto(this, newValue);
+	        }
+	
+	        /**
 	         * Returns a copy of this date with the year altered.
 	         * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
 	         * <p>
@@ -5066,7 +7308,89 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return LocalDate.ofYearDay(this._year, dayOfYear);
 	        }
 	
-	        //-----------------------------------------------------------------------
+	        /**
+	         * function overloading for plus
+	         */
+	
+	    }, {
+	        key: 'plus',
+	        value: function plus(p1, p2) {
+	            if (arguments.length < 2) {
+	                return this._plus1(p1);
+	            } else {
+	                return this._plus2(p1, p2);
+	            }
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the specified period added.
+	         * <p>
+	         * This method returns a new date based on this date with the specified period added.
+	         * The amount is typically {@link Period} but may be any other type implementing
+	         * the {@link TemporalAmount} interface.
+	         * The calculation is delegated to the specified adjuster, which typically calls
+	         * back to {@link #plus(long, TemporalUnit)}.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amount  the amount to add, not null
+	         * @return a {@code LocalDate} based on this date with the addition made, not null
+	         * @throws DateTimeException if the addition cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_plus1',
+	        value: function _plus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            return amount.addTo(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the specified period added.
+	         * <p>
+	         * This method returns a new date based on this date with the specified period added.
+	         * This can be used to add any period that is defined by a unit, for example to add years, months or days.
+	         * The unit is responsible for the details of the calculation, including the resolution
+	         * of any edge cases in the calculation.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToAdd  the amount of the unit to add to the result, may be negative
+	         * @param unit  the unit of the period to add, not null
+	         * @return a {@code LocalDate} based on this date with the specified period added, not null
+	         * @throws DateTimeException if the unit cannot be added to this type
+	         */
+	
+	    }, {
+	        key: '_plus2',
+	        value: function _plus2(amountToAdd, unit) {
+	            (0, _assert.requireNonNull)(amountToAdd, 'amountToAdd');
+	            (0, _assert.requireNonNull)(unit, 'unit');
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.DAYS:
+	                        return this.plusDays(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.WEEKS:
+	                        return this.plusWeeks(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MONTHS:
+	                        return this.plusMonths(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.YEARS:
+	                        return this.plusYears(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.DECADES:
+	                        return this.plusYears(_MathUtil.MathUtil.safeMultiply(amountToAdd, 10));
+	                    case _ChronoUnit.ChronoUnit.CENTURIES:
+	                        return this.plusYears(_MathUtil.MathUtil.safeMultiply(amountToAdd, 100));
+	                    case _ChronoUnit.ChronoUnit.MILLENNIA:
+	                        return this.plusYears(_MathUtil.MathUtil.safeMultiply(amountToAdd, 1000));
+	                    case _ChronoUnit.ChronoUnit.ERAS:
+	                        return this.with(_ChronoField.ChronoField.ERA, _MathUtil.MathUtil.safeAdd(this.getLong(_ChronoField.ChronoField.ERA), amountToAdd));
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	            return unit.addTo(this, amountToAdd);
+	        }
+	
 	        /**
 	         * Returns a copy of this {@code LocalDate} with the specified period in years added.
 	         * <p>
@@ -5180,7 +7504,68 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return LocalDate.ofEpochDay(mjDay);
 	        }
 	
-	        //-----------------------------------------------------------------------
+	        /**
+	         * function overloading for minus
+	         */
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus(p1, p2) {
+	            if (arguments.length < 2) {
+	                return this._minus1(p1);
+	            } else {
+	                return this._minus2(p1, p2);
+	            }
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the specified period subtracted.
+	         * <p>
+	         * This method returns a new date based on this date with the specified period subtracted.
+	         * The amount is typically {@link Period} but may be any other type implementing
+	         * the {@link TemporalAmount} interface.
+	         * The calculation is delegated to the specified adjuster, which typically calls
+	         * back to {@link #minus(long, TemporalUnit)}.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amount  the amount to subtract, not null
+	         * @return a {@code LocalDate} based on this date with the subtraction made, not null
+	         * @throws DateTimeException if the subtraction cannot be made
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_minus1',
+	        value: function _minus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            return amount.subtractFrom(this);
+	        }
+	
+	        /**
+	         * Returns a copy of this date with the specified period subtracted.
+	         * <p>
+	         * This method returns a new date based on this date with the specified period subtracted.
+	         * This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
+	         * The unit is responsible for the details of the calculation, including the resolution
+	         * of any edge cases in the calculation.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToSubtract  the amount of the unit to subtract from the result, may be negative
+	         * @param unit  the unit of the period to subtract, not null
+	         * @return a {@code LocalDate} based on this date with the specified period subtracted, not null
+	         * @throws DateTimeException if the unit cannot be added to this type
+	         */
+	
+	    }, {
+	        key: '_minus2',
+	        value: function _minus2(amountToSubtract, unit) {
+	            (0, _assert.requireNonNull)(amountToSubtract, 'amountToSubtract');
+	            (0, _assert.requireNonNull)(unit, 'unit');
+	            return this._plus2(-1 * amountToSubtract, unit);
+	        }
+	
 	        /**
 	         * Returns a copy of this {@code LocalDate} with the specified period in years subtracted.
 	         * <p>
@@ -5305,6 +7690,189 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this;
 	            }
 	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'query', this).call(this, _query);
+	        }
+	
+	        /**
+	         * Adjusts the specified temporal object to have the same date as this object.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with the date changed to be the same as this.
+	         * <p>
+	         * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+	         * passing {@link ChronoField#EPOCH_DAY} as the field.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#with(TemporalAdjuster)}:
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   temporal = thisLocalDate.adjustInto(temporal);
+	         *   temporal = temporal.with(thisLocalDate);
+	         * </pre>
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param temporal  the target object to be adjusted, not null
+	         * @return the adjusted object, not null
+	         * @throws DateTimeException if unable to make the adjustment
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return _get(Object.getPrototypeOf(LocalDate.prototype), 'adjustInto', this).call(this, temporal);
+	        }
+	
+	        /**
+	         * until function overloading
+	         */
+	
+	    }, {
+	        key: 'until',
+	        value: function until(p1, p2) {
+	            if (arguments.length < 2) {
+	                return this._until1(p1);
+	            } else {
+	                return this._until2(p1, p2);
+	            }
+	        }
+	
+	        /**
+	         * Calculates the period between this date and another date in
+	         * terms of the specified unit.
+	         * <p>
+	         * This calculates the period between two dates in terms of a single unit.
+	         * The start and end points are {@code this} and the specified date.
+	         * The result will be negative if the end is before the start.
+	         * The {@code Temporal} passed to this method must be a {@code LocalDate}.
+	         * For example, the period in days between two dates can be calculated
+	         * using {@code startDate.until(endDate, DAYS)}.
+	         * <p>
+	         * The calculation returns a whole number, representing the number of
+	         * complete units between the two dates.
+	         * For example, the period in months between 2012-06-15 and 2012-08-14
+	         * will only be one month as it is one day short of two months.
+	         * <p>
+	         * This method operates in association with {@link TemporalUnit#between}.
+	         * The result of this method is a {@code long} representing the amount of
+	         * the specified unit. By contrast, the result of {@code between} is an
+	         * object that can be used directly in addition/subtraction:
+	         * <pre>
+	         *   long period = start.until(end, MONTHS);   // this method
+	         *   dateTime.plus(MONTHS.between(start, end));      // use in plus/minus
+	         * </pre>
+	         * <p>
+	         * The calculation is implemented in this method for {@link ChronoUnit}.
+	         * The units {@code DAYS}, {@code WEEKS}, {@code MONTHS}, {@code YEARS},
+	         * {@code DECADES}, {@code CENTURIES}, {@code MILLENNIA} and {@code ERAS}
+	         * are supported. Other {@code ChronoUnit} values will throw an exception.
+	         * <p>
+	         * If the unit is not a {@code ChronoUnit}, then the result of this method
+	         * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
+	         * passing {@code this} as the first argument and the input temporal as
+	         * the second argument.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param endExclusive  the end date, which is converted to a {@code LocalDate}, not null
+	         * @param unit  the unit to measure the period in, not null
+	         * @return the amount of the period between this date and the end date
+	         * @throws DateTimeException if the period cannot be calculated
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: '_until2',
+	        value: function _until2(endExclusive, unit) {
+	            var end = LocalDate.from(endExclusive);
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.DAYS:
+	                        return this.daysUntil(end);
+	                    case _ChronoUnit.ChronoUnit.WEEKS:
+	                        return this.daysUntil(end) / 7;
+	                    case _ChronoUnit.ChronoUnit.MONTHS:
+	                        return this.monthsUntil(end);
+	                    case _ChronoUnit.ChronoUnit.YEARS:
+	                        return this.monthsUntil(end) / 12;
+	                    case _ChronoUnit.ChronoUnit.DECADES:
+	                        return this.monthsUntil(end) / 120;
+	                    case _ChronoUnit.ChronoUnit.CENTURIES:
+	                        return this.monthsUntil(end) / 1200;
+	                    case _ChronoUnit.ChronoUnit.MILLENNIA:
+	                        return this.monthsUntil(end) / 12000;
+	                    case _ChronoUnit.ChronoUnit.ERAS:
+	                        return end.getLong(_ChronoField.ChronoField.ERA) - this.getLong(_ChronoField.ChronoField.ERA);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	            return unit.between(this, end);
+	        }
+	    }, {
+	        key: 'daysUntil',
+	        value: function daysUntil(end) {
+	            return end.toEpochDay() - this.toEpochDay(); // no overflow
+	        }
+	    }, {
+	        key: 'monthsUntil',
+	        value: function monthsUntil(end) {
+	            var packed1 = this._prolepticMonth() * 32 + this.dayOfMonth(); // no overflow
+	            var packed2 = end._prolepticMonth() * 32 + end.dayOfMonth(); // no overflow
+	            return _MathUtil.MathUtil.floorDiv(packed2 - packed1, 32);
+	        }
+	
+	        /**
+	         * Calculates the period between this date and another date as a {@code Period}.
+	         * <p>
+	         * This calculates the period between two dates in terms of years, months and days.
+	         * The start and end points are {@code this} and the specified date.
+	         * The result will be negative if the end is before the start.
+	         * <p>
+	         * The calculation is performed using the ISO calendar system.
+	         * If necessary, the input date will be converted to ISO.
+	         * <p>
+	         * The start date is included, but the end date is not.
+	         * The period is calculated by removing complete months, then calculating
+	         * the remaining number of days, adjusting to ensure that both have the same sign.
+	         * The number of months is then normalized into years and months based on a 12 month year.
+	         * A month is considered to be complete if the end day-of-month is greater
+	         * than or equal to the start day-of-month.
+	         * For example, from {@code 2010-01-15} to {@code 2011-03-18} is "1 year, 2 months and 3 days".
+	         * <p>
+	         * The result of this method can be a negative period if the end is before the start.
+	         * The negative sign will be the same in each of year, month and day.
+	         * <p>
+	         * There are two equivalent ways of using this method.
+	         * The first is to invoke this method.
+	         * The second is to use {@link Period#between(LocalDate, LocalDate)}:
+	         * <pre>
+	         *   // these two lines are equivalent
+	         *   period = start.until(end);
+	         *   period = Period.between(start, end);
+	         * </pre>
+	         * The choice should be made based on which makes the code more readable.
+	         *
+	         * @param endDate  the end date, exclusive, which may be in any chronology, not null
+	         * @return the period between this date and the end date, not null
+	         */
+	
+	    }, {
+	        key: '_until1',
+	        value: function _until1(endDate) {
+	            var end = LocalDate.from(endDate);
+	            var totalMonths = end._prolepticMonth() - this._prolepticMonth(); // safe
+	            var days = end._day - this._day;
+	            if (totalMonths > 0 && days < 0) {
+	                totalMonths--;
+	                var calcDate = this.plusMonths(totalMonths);
+	                days = end.toEpochDay() - calcDate.toEpochDay(); // safe
+	            } else if (totalMonths < 0 && days > 0) {
+	                    totalMonths++;
+	                    days -= end.lengthOfMonth();
+	                }
+	            var years = _MathUtil.MathUtil.intDiv(totalMonths, 12); // safe
+	            var months = _MathUtil.MathUtil.intMod(totalMonths, 12); // safe
+	            return _Period.Period.of(_MathUtil.MathUtil.safeToInt(years), months, days);
 	        }
 	
 	        /**
@@ -5580,939 +8148,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return LocalDate;
 	}(_ChronoLocalDate2.ChronoLocalDate);
 	
-	/**
-	 * The minimum supported {@code LocalDate}
-	 * This could be used by an application as a "far past" date.
-	 */
-	
-	
 	exports.LocalDate = LocalDate;
-	LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
-	/**
-	 * The maximum supported {@code LocalDate}
-	 * This could be used by an application as a "far future" date.
-	 */
-	LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
+	function _init() {
+	    /**
+	     * The minimum supported {@code LocalDate}
+	     * This could be used by an application as a "far past" date.
+	     */
+	    LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
+	    /**
+	     * The maximum supported {@code LocalDate}
+	     * This could be used by an application as a "far future" date.
+	     */
+	    LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
 	
-	LocalDate.FROM = (0, _TemporalQueries.createTemporalQuery)('LocalDate.FROM', function (temporal) {
-	    return LocalDate.from(temporal);
-	});
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.IsoChronology = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _Enum2 = __webpack_require__(16);
-	
-	var _LocalDate = __webpack_require__(18);
-	
-	var _Month = __webpack_require__(20);
-	
-	var _Year = __webpack_require__(11);
-	
-	var _ChronoField = __webpack_require__(3);
-	
-	var _ResolverStyle = __webpack_require__(22);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var EPOCH_DAY = _ChronoField.ChronoField.EPOCH_DAY;
-	var YEAR = _ChronoField.ChronoField.YEAR;
-	var MONTH_OF_YEAR = _ChronoField.ChronoField.MONTH_OF_YEAR;
-	var DAY_OF_MONTH = _ChronoField.ChronoField.DAY_OF_MONTH;
-	
-	var IsoChronology = exports.IsoChronology = function (_Enum) {
-	    _inherits(IsoChronology, _Enum);
-	
-	    function IsoChronology() {
-	        _classCallCheck(this, IsoChronology);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IsoChronology).apply(this, arguments));
-	    }
-	
-	    _createClass(IsoChronology, [{
-	        key: 'resolveDate',
-	        value: function resolveDate(fieldValues, resolverStyle) {
-	            if (fieldValues.containsKey(EPOCH_DAY)) {
-	                return _LocalDate.LocalDate.ofEpochDay(fieldValues.remove(EPOCH_DAY));
-	            }
-	
-	            // normalize fields
-	            /*
-	                    var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
-	                    if (prolepticMonth != null) {
-	                        if (resolverStyle != ResolverStyle.LENIENT) {
-	                            PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
-	                        }
-	                        updateResolveMap(fieldValues, MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
-	                        updateResolveMap(fieldValues, YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
-	                    }
-	            */
-	
-	            // eras
-	            /*
-	                    Long yoeLong = fieldValues.remove(YEAR_OF_ERA);
-	                    if (yoeLong != null) {
-	                        if (resolverStyle != ResolverStyle.LENIENT) {
-	                            YEAR_OF_ERA.checkValidValue(yoeLong);
-	                        }
-	                        Long era = fieldValues.remove(ERA);
-	                        if (era == null) {
-	                            Long year = fieldValues.get(YEAR);
-	                            if (resolverStyle == ResolverStyle.STRICT) {
-	                                // do not invent era if strict, but do cross-check with year
-	                                if (year != null) {
-	                                    updateResolveMap(fieldValues, YEAR, (year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
-	                                } else {
-	                                    // reinstate the field removed earlier, no cross-check issues
-	                                    fieldValues.put(YEAR_OF_ERA, yoeLong);
-	                                }
-	                            } else {
-	                                // invent era
-	                                updateResolveMap(fieldValues, YEAR, (year == null || year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
-	                            }
-	                        } else if (era.longValue() == 1L) {
-	                            updateResolveMap(fieldValues, YEAR, yoeLong);
-	                        } else if (era.longValue() == 0L) {
-	                            updateResolveMap(fieldValues, YEAR, Jdk8Methods.safeSubtract(1, yoeLong));
-	                        } else {
-	                            throw new DateTimeException("Invalid value for era: " + era);
-	                        }
-	                    } else if (fieldValues.containsKey(ERA)) {
-	                        ERA.checkValidValue(fieldValues.get(ERA));  // always validated
-	                    }
-	            */
-	
-	            // build date
-	            if (fieldValues.containsKey(YEAR)) {
-	                if (fieldValues.containsKey(MONTH_OF_YEAR)) {
-	                    if (fieldValues.containsKey(DAY_OF_MONTH)) {
-	                        var y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                        var moy = fieldValues.remove(MONTH_OF_YEAR);
-	                        var dom = fieldValues.remove(DAY_OF_MONTH);
-	                        if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
-	                            var months = moy - 1;
-	                            var days = dom - 1;
-	                            return _LocalDate.LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
-	                        } else if (resolverStyle === _ResolverStyle.ResolverStyle.SMART) {
-	                            DAY_OF_MONTH.checkValidValue(dom);
-	                            if (moy === 4 || moy === 6 || moy === 9 || moy === 11) {
-	                                dom = Math.min(dom, 30);
-	                            } else if (moy === 2) {
-	                                dom = Math.min(dom, _Month.Month.FEBRUARY.length(_Year.Year.isLeap(y)));
-	                            }
-	                            return _LocalDate.LocalDate.of(y, moy, dom);
-	                        } else {
-	                            return _LocalDate.LocalDate.of(y, moy, dom);
-	                        }
-	                    }
-	                    /*
-	                                    if (fieldValues.containsKey(ALIGNED_WEEK_OF_MONTH)) {
-	                                        if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_MONTH)) {
-	                                            int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                                            if (resolverStyle == ResolverStyle.LENIENT) {
-	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
-	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
-	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH), 1);
-	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
-	                                            }
-	                                            int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
-	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
-	                                            int ad = ALIGNED_DAY_OF_WEEK_IN_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_MONTH));
-	                                            LocalDate date = LocalDate.of(y, moy, 1).plusDays((aw - 1) * 7 + (ad - 1));
-	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
-	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
-	                                            }
-	                                            return date;
-	                                        }
-	                                        if (fieldValues.containsKey(DAY_OF_WEEK)) {
-	                                            int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                                            if (resolverStyle == ResolverStyle.LENIENT) {
-	                                                long months = Jdk8Methods.safeSubtract(fieldValues.remove(MONTH_OF_YEAR), 1);
-	                                                long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_MONTH), 1);
-	                                                long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
-	                                                return LocalDate.of(y, 1, 1).plusMonths(months).plusWeeks(weeks).plusDays(days);
-	                                            }
-	                                            int moy = MONTH_OF_YEAR.checkValidIntValue(fieldValues.remove(MONTH_OF_YEAR));
-	                                            int aw = ALIGNED_WEEK_OF_MONTH.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_MONTH));
-	                                            int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
-	                                            LocalDate date = LocalDate.of(y, moy, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
-	                                            if (resolverStyle == ResolverStyle.STRICT && date.get(MONTH_OF_YEAR) != moy) {
-	                                                throw new DateTimeException("Strict mode rejected date parsed to a different month");
-	                                            }
-	                                            return date;
-	                                        }
-	                                    }
-	                    */
-	                }
-	                /*
-	                            if (fieldValues.containsKey(DAY_OF_YEAR)) {
-	                                int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                                if (resolverStyle == ResolverStyle.LENIENT) {
-	                                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
-	                                    return LocalDate.ofYearDay(y, 1).plusDays(days);
-	                                }
-	                                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
-	                                return LocalDate.ofYearDay(y, doy);
-	                            }
-	                */
-	                /*
-	                            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
-	                                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
-	                                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                                    if (resolverStyle == ResolverStyle.LENIENT) {
-	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
-	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
-	                                    }
-	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-	                                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
-	                                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
-	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
-	                                        throw new DateTimeException("Strict mode rejected date parsed to a different year");
-	                                    }
-	                                    return date;
-	                                }
-	                                if (fieldValues.containsKey(DAY_OF_WEEK)) {
-	                                    int y = YEAR.checkValidIntValue(fieldValues.remove(YEAR));
-	                                    if (resolverStyle == ResolverStyle.LENIENT) {
-	                                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-	                                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
-	                                        return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
-	                                    }
-	                                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-	                                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
-	                                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
-	                                    if (resolverStyle == ResolverStyle.STRICT && date.get(YEAR) != y) {
-	                                        throw new DateTimeException("Strict mode rejected date parsed to a different month");
-	                                    }
-	                                    return date;
-	                                }
-	                            }
-	                */
-	            }
-	            return null;
-	        }
-	    }], [{
-	        key: 'isLeapYear',
-	
-	        /**
-	         * Checks if the year is a leap year, according to the ISO proleptic
-	         * calendar system rules.
-	         *
-	         * This method applies the current rules for leap years across the whole time-line.
-	         * In general, a year is a leap year if it is divisible by four without
-	         * remainder. However, years divisible by 100, are not leap years, with
-	         * the exception of years divisible by 400 which are.
-	         *
-	         * For example, 1904 is a leap year it is divisible by 4.
-	         * 1900 was not a leap year as it is divisible by 100, however 2000 was a
-	         * leap year as it is divisible by 400.
-	         *
-	         * The calculation is proleptic - applying the same rules into the far future and far past.
-	         * This is historically inaccurate, but is correct for the ISO-8601 standard.
-	         *
-	         * @param {number} prolepticYear - the ISO proleptic year to check
-	         * @return true if the year is leap, false otherwise
-	         */
-	        value: function isLeapYear(prolepticYear) {
-	            return (prolepticYear & 3) === 0 && (prolepticYear % 100 !== 0 || prolepticYear % 400 === 0);
-	        }
-	    }]);
-	
-	    return IsoChronology;
-	}(_Enum2.Enum);
-	
-	IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
+	    LocalDate.FROM = (0, _TemporalQueries.createTemporalQuery)('LocalDate.FROM', function (temporal) {
+	        return LocalDate.from(temporal);
+	    });
+	}
 
 /***/ },
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Month = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
-	var _assert = __webpack_require__(9);
-	
-	var _ChronoField = __webpack_require__(3);
-	
-	var _ChronoUnit = __webpack_require__(7);
-	
-	var _errors = __webpack_require__(5);
-	
-	var _IsoChronology = __webpack_require__(19);
-	
-	var _TemporalAccessor2 = __webpack_require__(14);
-	
-	var _TemporalQueries = __webpack_require__(15);
-	
-	__webpack_require__(21);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	
-	/**
-	 * A month-of-year, such as 'July'.
-	 * <p>
-	 * {@code Month} is representing the 12 months of the year -
-	 * January, February, March, April, May, June, July, August, September, October,
-	 * November and December.
-	 * <p>
-	 * In addition to the textual name, each month-of-year has an {@code int} value.
-	 * The {@code int} value follows normal usage and the ISO-8601 standard,
-	 * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
-	 * rather than the {@code int} value to ensure code clarity.
-	 * <p>
-	 * This class represents a common concept that is found in many calendar systems.
-	 * As such, this class may be used by any calendar system that has the month-of-year
-	 * concept defined exactly equivalent to the ISO-8601 calendar system.
-	 *
-	 */
-	
-	var Month = function (_TemporalAccessor) {
-	    _inherits(Month, _TemporalAccessor);
-	
-	    /**
-	     *
-	     * @param {number} value
-	     */
-	
-	    function Month(value) {
-	        _classCallCheck(this, Month);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Month).call(this));
-	
-	        _this._value = value;
-	        return _this;
-	    }
-	
-	    /**
-	     *
-	     * @return {number} gets the value
-	     */
-	
-	
-	    _createClass(Month, [{
-	        key: 'value',
-	        value: function value() {
-	            return this._value;
-	        }
-	
-	        /**
-	         * Checks if the specified field is supported.
-	         * <p>
-	         * This checks if this month-of-year can be queried for the specified field.
-	         * If false, then calling the {@link #range(TemporalField) range} and
-	         * {@link #get(TemporalField) get} methods will throw an exception.
-	         * <p>
-	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then
-	         * this method returns true.
-	         * All other {@code ChronoField} instances will return false.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-	         * passing {@code this} as the argument.
-	         * Whether the field is supported is determined by the field.
-	         *
-	         * @param {TemporalField} field  the field to check, null returns false
-	         * @return {boolean} true if the field is supported on this month-of-year, false if not
-	         */
-	
-	    }, {
-	        key: 'isSupported',
-	        value: function isSupported(field) {
-	            if (null === field) {
-	                return false;
-	            }
-	            if (field instanceof _ChronoField.ChronoField) {
-	                return field === _ChronoField.ChronoField.MONTH_OF_YEAR;
-	            }
-	            return field != null && field.isSupportedBy(this);
-	        }
-	
-	        /**
-	         * Gets the value of the specified field from this month-of-year as an {@code int}.
-	         * <p>
-	         * This queries this month for the value of the specified field.
-	         * The returned value will always be within the valid range of values for the field.
-	         * If it is not possible to return the value, because the field is not supported
-	         * or for some other reason, an exception is thrown.
-	         * <p>
-	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
-	         * value of the month-of-year, from 1 to 12, will be returned.
-	         * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-	         * passing {@code this} as the argument. Whether the value can be obtained,
-	         * and what the value represents, is determined by the field.
-	         *
-	         * @param {TemporalField} field  the field to get, not null
-	         * @return {Number} the value for the field, within the valid range of values
-	         * @throws DateTimeException if a value for the field cannot be obtained or
-	         *         the value is outside the range of valid values for the field
-	         * @throws UnsupportedTemporalTypeException if the field is not supported or
-	         *         the range of values exceeds an {@code int}
-	         * @throws ArithmeticException if numeric overflow occurs
-	         */
-	
-	    }, {
-	        key: 'get',
-	        value: function get(field) {
-	            if (field === _ChronoField.ChronoField.MONTH_OF_YEAR) {
-	                return this.value();
-	            }
-	            return this.range(field).checkValidIntValue(this.getLong(field), field);
-	        }
-	
-	        /**
-	         * Gets the value of the specified field from this month-of-year as a {@code long}.
-	         * <p>
-	         * This queries this month for the value of the specified field.
-	         * If it is not possible to return the value, because the field is not supported
-	         * or for some other reason, an exception is thrown.
-	         * <p>
-	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
-	         * value of the month-of-year, from 1 to 12, will be returned.
-	         * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-	         * passing {@code this} as the argument. Whether the value can be obtained,
-	         * and what the value represents, is determined by the field.
-	         *
-	         * @param {TemporalField} field  the field to get, not null
-	         * @return {Number} the value for the field
-	         * @throws DateTimeException if a value for the field cannot be obtained
-	         * @throws UnsupportedTemporalTypeException if the field is not supported
-	         * @throws ArithmeticException if numeric overflow occurs
-	         */
-	
-	    }, {
-	        key: 'getLong',
-	        value: function getLong(field) {
-	            if (field === _ChronoField.ChronoField.MONTH_OF_YEAR) {
-	                return this.value();
-	            } else if (field instanceof _ChronoField.ChronoField) {
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	            }
-	            return field.getFrom(this);
-	        }
-	
-	        /**
-	         * Returns the month-of-year that is the specified number of months after this one.
-	         * <p>
-	         * The calculation rolls around the end of the year from December to January.
-	         * The specified period may be negative.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} months  the months to add, positive or negative
-	         * @return {Month} the resulting month, not null
-	         */
-	
-	    }, {
-	        key: 'plus',
-	        value: function plus(months) {
-	            var amount = Math.floor(months % 12) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
-	            var newMonthVal = (this.value() + amount) % 12;
-	            /* December is 12, not 0, but 12 % 12 = 0 */
-	            newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
-	            return Month.of(newMonthVal);
-	        }
-	
-	        /**
-	         * Returns the month-of-year that is the specified number of months before this one.
-	         * <p>
-	         * The calculation rolls around the start of the year from January to December.
-	         * The specified period may be negative.
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param {number} months  the months to subtract, positive or negative
-	         * @return {Month} the resulting month, not null
-	         */
-	
-	    }, {
-	        key: 'minus',
-	        value: function minus(months) {
-	            return this.plus(-(months % 12));
-	        }
-	
-	        /**
-	         * Gets the length of this month in days.
-	         * <p>
-	         * This takes a flag to determine whether to return the length for a leap year or not.
-	         * <p>
-	         * February has 28 days in a standard year and 29 days in a leap year.
-	         * April, June, September and November have 30 days.
-	         * All other months have 31 days.
-	         *
-	         * @param {boolean} leapYear  true if the length is required for a leap year
-	         * @return {number} the length of this month in days, from 28 to 31
-	         */
-	
-	    }, {
-	        key: 'length',
-	        value: function length(leapYear) {
-	            switch (this) {
-	                case Month.FEBRUARY:
-	                    return leapYear ? 29 : 28;
-	                case Month.APRIL:
-	                case Month.JUNE:
-	                case Month.SEPTEMBER:
-	                case Month.NOVEMBER:
-	                    return 30;
-	                default:
-	                    return 31;
-	            }
-	        }
-	
-	        /**
-	         * Gets the minimum length of this month in days.
-	         * <p>
-	         * February has a minimum length of 28 days.
-	         * April, June, September and November have 30 days.
-	         * All other months have 31 days.
-	         *
-	         * @return {number} the minimum length of this month in days, from 28 to 31
-	         */
-	
-	    }, {
-	        key: 'minLength',
-	        value: function minLength() {
-	            switch (this) {
-	                case Month.FEBRUARY:
-	                    return 28;
-	                case Month.APRIL:
-	                case Month.JUNE:
-	                case Month.SEPTEMBER:
-	                case Month.NOVEMBER:
-	                    return 30;
-	                default:
-	                    return 31;
-	            }
-	        }
-	
-	        /**
-	         * Gets the maximum length of this month in days.
-	         * <p>
-	         * February has a maximum length of 29 days.
-	         * April, June, September and November have 30 days.
-	         * All other months have 31 days.
-	         *
-	         * @return {number} the maximum length of this month in days, from 29 to 31
-	         */
-	
-	    }, {
-	        key: 'maxLength',
-	        value: function maxLength() {
-	            switch (this) {
-	                case Month.FEBRUARY:
-	                    return 29;
-	                case Month.APRIL:
-	                case Month.JUNE:
-	                case Month.SEPTEMBER:
-	                case Month.NOVEMBER:
-	                    return 30;
-	                default:
-	                    return 31;
-	            }
-	        }
-	
-	        /**
-	         * Gets the day-of-year corresponding to the first day of this month.
-	         * <p>
-	         * This returns the day-of-year that this month begins on, using the leap
-	         * year flag to determine the length of February.
-	         *
-	         * @param {boolean} leapYear  true if the length is required for a leap year
-	         * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
-	         */
-	
-	    }, {
-	        key: 'firstDayOfYear',
-	        value: function firstDayOfYear(leapYear) {
-	            var leap = leapYear ? 1 : 0;
-	            switch (this) {
-	                case Month.JANUARY:
-	                    return 1;
-	                case Month.FEBRUARY:
-	                    return 32;
-	                case Month.MARCH:
-	                    return 60 + leap;
-	                case Month.APRIL:
-	                    return 91 + leap;
-	                case Month.MAY:
-	                    return 121 + leap;
-	                case Month.JUNE:
-	                    return 152 + leap;
-	                case Month.JULY:
-	                    return 182 + leap;
-	                case Month.AUGUST:
-	                    return 213 + leap;
-	                case Month.SEPTEMBER:
-	                    return 244 + leap;
-	                case Month.OCTOBER:
-	                    return 274 + leap;
-	                case Month.NOVEMBER:
-	                    return 305 + leap;
-	                case Month.DECEMBER:
-	                default:
-	                    return 335 + leap;
-	            }
-	        }
-	
-	        /**
-	         * Gets the month corresponding to the first month of this quarter.
-	         * <p>
-	         * The year can be divided into four quarters.
-	         * This method returns the first month of the quarter for the base month.
-	         * January, February and March return January.
-	         * April, May and June return April.
-	         * July, August and September return July.
-	         * October, November and December return October.
-	         *
-	         * @return {Month} the first month of the quarter corresponding to this month, not null
-	         */
-	
-	    }, {
-	        key: 'firstMonthOfQuarter',
-	        value: function firstMonthOfQuarter() {
-	            switch (this) {
-	                case Month.JANUARY:
-	                case Month.FEBRUARY:
-	                case Month.MARCH:
-	                    return Month.JANUARY;
-	                case Month.APRIL:
-	                case Month.MAY:
-	                case Month.JUNE:
-	                    return Month.APRIL;
-	                case Month.JULY:
-	                case Month.AUGUST:
-	                case Month.SEPTEMBER:
-	                    return Month.JULY;
-	                case Month.OCTOBER:
-	                case Month.NOVEMBER:
-	                case Month.DECEMBER:
-	                default:
-	                    return Month.OCTOBER;
-	            }
-	        }
-	
-	        /**
-	        * Queries this month-of-year using the specified query.
-	        * <p>
-	        * This queries this month-of-year using the specified query strategy object.
-	        * The {@code TemporalQuery} object defines the logic to be used to
-	        * obtain the result. Read the documentation of the query to understand
-	        * what the result of this method will be.
-	        * <p>
-	        * The result of this method is obtained by invoking the
-	        * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-	        * specified query passing {@code this} as the argument.
-	        *
-	        * @param {TemporalQuery} query  the query to invoke, not null
-	        * @return the query result, null may be returned (defined by the query)
-	        * @throws DateTimeException if unable to query (defined by the query)
-	        * @throws ArithmeticException if numeric overflow occurs (defined by the query)
-	        */
-	
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            (0, _assert.assert)(_query != null, 'query() parameter must not be null', _errors.DateTimeException);
-	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return _IsoChronology.IsoChronology.INSTANCE;
-	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	                return _ChronoUnit.ChronoUnit.MONTHS;
-	            }
-	            return _get(Object.getPrototypeOf(Month.prototype), 'query', this).call(this, _query);
-	        }
-	
-	        /**
-	         * toString implementation... in JDK this is inherited from the Enum class
-	         * 
-	         * @returns {String}
-	         */
-	
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            switch (this) {
-	                case Month.JANUARY:
-	                    return 'JANUARY';
-	                case Month.FEBRUARY:
-	                    return 'FEBRUARY';
-	                case Month.MARCH:
-	                    return 'MARCH';
-	                case Month.APRIL:
-	                    return 'APRIL';
-	                case Month.MAY:
-	                    return 'MAY';
-	                case Month.JUNE:
-	                    return 'JUNE';
-	                case Month.JULY:
-	                    return 'JULY';
-	                case Month.AUGUST:
-	                    return 'AUGUST';
-	                case Month.SEPTEMBER:
-	                    return 'SEPTEMBER';
-	                case Month.OCTOBER:
-	                    return 'OCTOBER';
-	                case Month.NOVEMBER:
-	                    return 'NOVEMBER';
-	                case Month.DECEMBER:
-	                    return 'DECEMBER';
-	                default:
-	                    return 'unknown Month, value: ' + this.value();
-	            }
-	        }
-	
-	        /**
-	         * replacement for enum values
-	         */
-	
-	    }], [{
-	        key: 'values',
-	        value: function values() {
-	            return MONTHS;
-	        }
-	
-	        /**
-	         *
-	         * @param {number} month
-	         * @return {Month} not null
-	         **/
-	
-	    }, {
-	        key: 'of',
-	        value: function of(month) {
-	            if (month < 1 || month > 12) {
-	                (0, _assert.assert)(false, 'Invalid value for MonthOfYear: ' + month, _errors.DateTimeException);
-	            }
-	            return MONTHS[month - 1];
-	        }
-	    }]);
-	
-	    return Month;
-	}(_TemporalAccessor2.TemporalAccessor);
-	
-	exports.Month = Month;
-	
-	
-	Month.JANUARY = new Month(1);
-	Month.FEBRUARY = new Month(2);
-	Month.MARCH = new Month(3);
-	Month.APRIL = new Month(4);
-	Month.MAY = new Month(5);
-	Month.JUNE = new Month(6);
-	Month.JULY = new Month(7);
-	Month.AUGUST = new Month(8);
-	Month.SEPTEMBER = new Month(9);
-	Month.OCTOBER = new Month(10);
-	Month.NOVEMBER = new Month(11);
-	Month.DECEMBER = new Month(12);
-	
-	var MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _TemporalQueries = __webpack_require__(15);
-	
-	var _ChronoField = __webpack_require__(3);
-	
-	var _LocalDate = __webpack_require__(18);
-	
-	var _LocalTime = __webpack_require__(10);
-	
-	var _ZoneOffset = __webpack_require__(17);
-	
-	//-----------------------------------------------------------------------
-	/**
-	 * A strict query for the {@code ZoneId}.
-	 */
-	_TemporalQueries.TemporalQueries.ZONE_ID = (0, _TemporalQueries.createTemporalQuery)('ZONE_ID', function (temporal) {
-	    return temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
-	});
-	
-	/**
-	 * A query for the {@code Chronology}.
-	 */
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	_TemporalQueries.TemporalQueries.CHRONO = (0, _TemporalQueries.createTemporalQuery)('CHRONO', function (temporal) {
-	    return temporal.query(_TemporalQueries.TemporalQueries.CHRONO);
-	});
-	
-	/**
-	 * A query for the smallest supported unit.
-	 */
-	_TemporalQueries.TemporalQueries.PRECISION = (0, _TemporalQueries.createTemporalQuery)('PRECISION', function (temporal) {
-	    return temporal.query(_TemporalQueries.TemporalQueries.PRECISION);
-	});
-	
-	//-----------------------------------------------------------------------
-	/**
-	 * A query for {@code ZoneOffset} returning null if not found.
-	 */
-	_TemporalQueries.TemporalQueries.OFFSET = (0, _TemporalQueries.createTemporalQuery)('OFFSET', function (temporal) {
-	    if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
-	        return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(_TemporalQueries.TemporalQueries.OFFSET_SECONDS));
-	    }
-	    return null;
-	});
-	
-	/**
-	 * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
-	 */
-	_TemporalQueries.TemporalQueries.ZONE = (0, _TemporalQueries.createTemporalQuery)('ZONE', function (temporal) {
-	    var zone = temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
-	    return zone != null ? zone : temporal.query(_TemporalQueries.TemporalQueries.OFFSET);
-	});
-	
-	/**
-	 * A query for {@code LocalDate} returning null if not found.
-	 */
-	_TemporalQueries.TemporalQueries.LOCAL_DATE = (0, _TemporalQueries.createTemporalQuery)('LOCAL_DATE', function (temporal) {
-	    if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
-	        return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(_TemporalQueries.TemporalQueries.EPOCH_DAY));
-	    }
-	    return null;
-	});
-	
-	/**
-	 * A query for {@code LocalTime} returning null if not found.
-	 */
-	_TemporalQueries.TemporalQueries.LOCAL_TIME = (0, _TemporalQueries.createTemporalQuery)('LOCAL_TIME', function (temporal) {
-	    if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
-	        return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(_TemporalQueries.TemporalQueries.NANO_OF_DAY));
-	    }
-	    return null;
-	});
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.ResolverStyle = undefined;
-	
-	var _Enum2 = __webpack_require__(16);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Enumeration of different ways to resolve dates and times.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Parsing a text string occurs in two phases.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 1 is a basic text parse according to the fields added to the builder.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 2 resolves the parsed field-value pairs into date and/or time objects.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This style is used to control how phase 2, resolving, happens.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	
-	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
-	  _inherits(ResolverStyle, _Enum);
-	
-	  function ResolverStyle() {
-	    _classCallCheck(this, ResolverStyle);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResolverStyle).apply(this, arguments));
-	  }
-	
-	  return ResolverStyle;
-	}(_Enum2.Enum);
-	
-	/**
-	 * Style to resolve dates and times strictly.
-	 * 
-	 * Using strict resolution will ensure that all parsed values are within
-	 * the outer range of valid values for the field. Individual fields may
-	 * be further processed for strictness.
-	 * 
-	 * For example, resolving year-month and day-of-month in the ISO calendar
-	 * system using strict mode will ensure that the day-of-month is valid
-	 * for the year-month, rejecting invalid values.
-	 */
-	
-	
-	ResolverStyle.STRICT = new ResolverStyle('STRICT');
-	/**
-	 * Style to resolve dates and times in a smart, or intelligent, manner.
-	 * 
-	 * Using smart resolution will perform the sensible default for each
-	 * field, which may be the same as strict, the same as lenient, or a third
-	 * behavior. Individual fields will interpret this differently.
-	 * 
-	 * For example, resolving year-month and day-of-month in the ISO calendar
-	 * system using smart mode will ensure that the day-of-month is from
-	 * 1 to 31, converting any value beyond the last valid day-of-month to be
-	 * the last valid day-of-month.
-	 */
-	ResolverStyle.SMART = new ResolverStyle('SMART');
-	/**
-	 * Style to resolve dates and times leniently.
-	 * 
-	 * Using lenient resolution will resolve the values in an appropriate
-	 * lenient manner. Individual fields will interpret this differently.
-	 * 
-	 * For example, lenient mode allows the month in the ISO calendar system
-	 * to be outside the range 1 to 12.
-	 * For example, month 15 is treated as being 3 months after month 12.
-	 */
-	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
-
-/***/ },
-/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6530,11 +8185,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(15);
+	var _TemporalQueries = __webpack_require__(21);
 	
-	var _TemporalAccessor2 = __webpack_require__(14);
+	var _TemporalAccessor2 = __webpack_require__(23);
 	
-	var _LocalDate = __webpack_require__(18);
+	var _LocalDate = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -6575,12 +8230,653 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return _get(Object.getPrototypeOf(ChronoLocalDate.prototype), 'query', this).call(this, _query);
 	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return temporal.with(_ChronoField.ChronoField.EPOCH_DAY, this.toEpochDay());
+	        }
 	    }]);
 	
 	    return ChronoLocalDate;
 	}(_TemporalAccessor2.TemporalAccessor);
 
 	exports.ChronoLocalDate = ChronoLocalDate;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.TemporalQueries = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	exports.createTemporalQuery = createTemporalQuery;
+	exports._init = _init;
+	
+	var _Enum2 = __webpack_require__(18);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _LocalDate = __webpack_require__(19);
+	
+	var _LocalTime = __webpack_require__(11);
+	
+	var _ZoneOffset = __webpack_require__(22);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * Common implementations of {@code TemporalQuery}.
+	 * <p>
+	 * This class provides common implementations of {@link TemporalQuery}.
+	 * These queries are primarily used as optimizations, allowing the internals
+	 * of other objects to be extracted effectively. Note that application code
+	 * can also use the {@code from(TemporalAccessor)} method on most temporal
+	 * objects as a method reference matching the query interface, such as
+	 * {@code LocalDate::from} and {@code ZoneId::from}.
+	 * <p>
+	 * There are two equivalent ways of using a {@code TemporalQuery}.
+	 * The first is to invoke the method on the interface directly.
+	 * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:
+	 * <pre>
+	 *   // these two lines are equivalent, but the second approach is recommended
+	 *   dateTime = query.queryFrom(dateTime);
+	 *   dateTime = dateTime.query(query);
+	 * </pre>
+	 * It is recommended to use the second approach, {@code query(TemporalQuery)},
+	 * as it is a lot clearer to read in code.
+	 *
+	 */
+	
+	var TemporalQueries = exports.TemporalQueries = function () {
+	    function TemporalQueries() {
+	        _classCallCheck(this, TemporalQueries);
+	    }
+	
+	    _createClass(TemporalQueries, null, [{
+	        key: 'zoneId',
+	
+	
+	        /**
+	         * A strict query for the {@code ZoneId}.
+	         * <p>
+	         * This queries a {@code TemporalAccessor} for the zone.
+	         * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
+	         * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
+	         * Thus a {@link ZonedDateTime} will return the result of
+	         * {@code getZone()}, but an {@link OffsetDateTime} will
+	         * return null.
+	         * <p>
+	         * In most cases, applications should use {@link #ZONE} as this query is too strict.
+	         * <p>
+	         * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
+	         * {@code LocalDate} returns null<br>
+	         * {@code LocalTime} returns null<br>
+	         * {@code LocalDateTime} returns null<br>
+	         * {@code ZonedDateTime} returns the associated zone<br>
+	         * {@code OffsetTime} returns null<br>
+	         * {@code OffsetDateTime} returns null<br>
+	         * {@code ChronoLocalDate} returns null<br>
+	         * {@code ChronoLocalDateTime} returns null<br>
+	         * {@code ChronoZonedDateTime} returns the associated zone<br>
+	         * {@code Era} returns null<br>
+	         * {@code DayOfWeek} returns null<br>
+	         * {@code Month} returns null<br>
+	         * {@code Year} returns null<br>
+	         * {@code YearMonth} returns null<br>
+	         * {@code MonthDay} returns null<br>
+	         * {@code ZoneOffset} returns null<br>
+	         * {@code Instant} returns null<br>
+	         *
+	         * @return a query that can obtain the zone ID of a temporal, not null
+	         */
+	        value: function zoneId() {
+	            return TemporalQueries.ZONE_ID;
+	        }
+	
+	        /**
+	         * A query for the {@code Chronology}.
+	         * <p>
+	         * This queries a {@code TemporalAccessor} for the chronology.
+	         * If the target {@code TemporalAccessor} represents a date, or part of a date,
+	         * then it should return the chronology that the date is expressed in.
+	         * As a result of this definition, objects only representing time, such as
+	         * {@code LocalTime}, will return null.
+	         * <p>
+	         * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
+	         * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code LocalTime} returns null (does not represent a date)<br>
+	         * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code OffsetTime} returns null (does not represent a date)<br>
+	         * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code ChronoLocalDate} returns the associated chronology<br>
+	         * {@code ChronoLocalDateTime} returns the associated chronology<br>
+	         * {@code ChronoZonedDateTime} returns the associated chronology<br>
+	         * {@code Era} returns the associated chronology<br>
+	         * {@code DayOfWeek} returns null (shared across chronologies)<br>
+	         * {@code Month} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code Year} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>
+	         * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>
+	         * {@code ZoneOffset} returns null (does not represent a date)<br>
+	         * {@code Instant} returns null (does not represent a date)<br>
+	         * <p>
+	         * The method {@link Chronology#from(TemporalAccessor)} can be used as a
+	         * {@code TemporalQuery}
+	         * That method is equivalent to this query, except that it throws an
+	         * exception if a chronology cannot be obtained.
+	         *
+	         * @return a query that can obtain the chronology of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'chronology',
+	        value: function chronology() {
+	            return TemporalQueries.CHRONO;
+	        }
+	
+	        /**
+	         * A query for the smallest supported unit.
+	         * <p>
+	         * This queries a {@code TemporalAccessor} for the time precision.
+	         * If the target {@code TemporalAccessor} represents a consistent or complete date-time,
+	         * date or time then this must return the smallest precision actually supported.
+	         * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}
+	         * are defined to always return ignoring the precision, thus this is the only
+	         * way to find the actual smallest supported unit.
+	         * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}
+	         * it would return a precision of {@code MILLIS}.
+	         * <p>
+	         * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
+	         * {@code LocalDate} returns {@code DAYS}<br>
+	         * {@code LocalTime} returns {@code NANOS}<br>
+	         * {@code LocalDateTime} returns {@code NANOS}<br>
+	         * {@code ZonedDateTime} returns {@code NANOS}<br>
+	         * {@code OffsetTime} returns {@code NANOS}<br>
+	         * {@code OffsetDateTime} returns {@code NANOS}<br>
+	         * {@code ChronoLocalDate} returns {@code DAYS}<br>
+	         * {@code ChronoLocalDateTime} returns {@code NANOS}<br>
+	         * {@code ChronoZonedDateTime} returns {@code NANOS}<br>
+	         * {@code Era} returns {@code ERAS}<br>
+	         * {@code DayOfWeek} returns {@code DAYS}<br>
+	         * {@code Month} returns {@code MONTHS}<br>
+	         * {@code Year} returns {@code YEARS}<br>
+	         * {@code YearMonth} returns {@code MONTHS}<br>
+	         * {@code MonthDay} returns null (does not represent a complete date or time)<br>
+	         * {@code ZoneOffset} returns null (does not represent a date or time)<br>
+	         * {@code Instant} returns {@code NANOS}<br>
+	         *
+	         * @return a query that can obtain the precision of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'precision',
+	        value: function precision() {
+	            return TemporalQueries.PRECISION;
+	        }
+	
+	        /**
+	         * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+	         * <p>
+	         * This queries a {@code TemporalAccessor} for the zone.
+	         * It first tries to obtain the zone, using {@link #zoneId()}.
+	         * If that is not found it tries to obtain the {@link #offset()}.
+	         * <p>
+	         * In most cases, applications should use this query rather than {@code #zoneId()}.
+	         * <p>
+	         * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
+	         * field and uses it to create a {@code ZoneOffset}.
+	         * <p>
+	         * The method {@link ZoneId#from(TemporalAccessor)} can be used as a
+	         * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.
+	         * That method is equivalent to this query, except that it throws an
+	         * exception if a zone cannot be obtained.
+	         *
+	         * @return a query that can obtain the zone ID or offset of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'zone',
+	        value: function zone() {
+	            return TemporalQueries.ZONE;
+	        }
+	
+	        /**
+	         * A query for {@code ZoneOffset} returning null if not found.
+	         * <p>
+	         * This returns a {@code TemporalQuery} that can be used to query a temporal
+	         * object for the offset. The query will return null if the temporal
+	         * object cannot supply an offset.
+	         * <p>
+	         * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
+	         * field and uses it to create a {@code ZoneOffset}.
+	         * <p>
+	         * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
+	         * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
+	         * This query and {@code ZoneOffset::from} will return the same result if the
+	         * temporal object contains an offset. If the temporal object does not contain
+	         * an offset, then the method reference will throw an exception, whereas this
+	         * query will return null.
+	         *
+	         * @return a query that can obtain the offset of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'offset',
+	        value: function offset() {
+	            return TemporalQueries.OFFSET;
+	        }
+	
+	        /**
+	         * A query for {@code LocalDate} returning null if not found.
+	         * <p>
+	         * This returns a {@code TemporalQuery} that can be used to query a temporal
+	         * object for the local date. The query will return null if the temporal
+	         * object cannot supply a local date.
+	         * <p>
+	         * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
+	         * field and uses it to create a {@code LocalDate}.
+	         *
+	         * @return a query that can obtain the date of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'localDate',
+	        value: function localDate() {
+	            return TemporalQueries.LOCAL_DATE;
+	        }
+	
+	        /**
+	         * A query for {@code LocalTime} returning null if not found.
+	         * <p>
+	         * This returns a {@code TemporalQuery} that can be used to query a temporal
+	         * object for the local time. The query will return null if the temporal
+	         * object cannot supply a local time.
+	         * <p>
+	         * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
+	         * field and uses it to create a {@code LocalTime}.
+	         *
+	         * @return a query that can obtain the time of a temporal, not null
+	         */
+	
+	    }, {
+	        key: 'localTime',
+	        value: function localTime() {
+	            return TemporalQueries.LOCAL_TIME;
+	        }
+	    }]);
+	
+	    return TemporalQueries;
+	}();
+	
+	/** 
+	 * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
+	 * as the queryFrom() function.
+	 * TODO: maybe should be moved to a separate file?
+	 * @param name
+	 * @param queryFromFunction
+	 */
+	
+	
+	function createTemporalQuery(name, queryFromFunction) {
+	    var TemporalQuery = function (_Enum) {
+	        _inherits(TemporalQuery, _Enum);
+	
+	        function TemporalQuery() {
+	            _classCallCheck(this, TemporalQuery);
+	
+	            return _possibleConstructorReturn(this, Object.getPrototypeOf(TemporalQuery).apply(this, arguments));
+	        }
+	
+	        return TemporalQuery;
+	    }(_Enum2.Enum);
+	
+	    TemporalQuery.prototype.queryFrom = queryFromFunction;
+	    return new TemporalQuery(name);
+	}
+	
+	function _init() {
+	    //-----------------------------------------------------------------------
+	    /**
+	     * A strict query for the {@code ZoneId}.
+	     */
+	    TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', function (temporal) {
+	        return temporal.query(TemporalQueries.ZONE_ID);
+	    });
+	
+	    /**
+	     * A query for the {@code Chronology}.
+	     */
+	    TemporalQueries.CHRONO = createTemporalQuery('CHRONO', function (temporal) {
+	        return temporal.query(TemporalQueries.CHRONO);
+	    });
+	
+	    /**
+	     * A query for the smallest supported unit.
+	     */
+	    TemporalQueries.PRECISION = createTemporalQuery('PRECISION', function (temporal) {
+	        return temporal.query(TemporalQueries.PRECISION);
+	    });
+	
+	    //-----------------------------------------------------------------------
+	    /**
+	     * A query for {@code ZoneOffset} returning null if not found.
+	     */
+	    TemporalQueries.OFFSET = createTemporalQuery('OFFSET', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
+	            return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
+	        }
+	        return null;
+	    });
+	
+	    /**
+	     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+	     */
+	    TemporalQueries.ZONE = createTemporalQuery('ZONE', function (temporal) {
+	        var zone = temporal.query(TemporalQueries.ZONE_ID);
+	        return zone != null ? zone : temporal.query(TemporalQueries.OFFSET);
+	    });
+	
+	    /**
+	     * A query for {@code LocalDate} returning null if not found.
+	     */
+	    TemporalQueries.LOCAL_DATE = createTemporalQuery('LOCAL_DATE', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
+	            return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
+	        }
+	        return null;
+	    });
+	
+	    /**
+	     * A query for {@code LocalTime} returning null if not found.
+	     */
+	    TemporalQueries.LOCAL_TIME = createTemporalQuery('LOCAL_TIME', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
+	            return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
+	        }
+	        return null;
+	    });
+	}
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ZoneOffset = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	exports._init = _init;
+	
+	var _errors = __webpack_require__(5);
+	
+	var _LocalTime = __webpack_require__(11);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var ZoneOffset = exports.ZoneOffset = function () {
+	    function ZoneOffset(totalSeconds) {
+	        _classCallCheck(this, ZoneOffset);
+	
+	        ZoneOffset.validateTotalSeconds(totalSeconds);
+	        this._totalSeconds = totalSeconds;
+	    }
+	
+	    _createClass(ZoneOffset, [{
+	        key: 'totalSeconds',
+	        value: function totalSeconds() {
+	            return this._totalSeconds;
+	        }
+	
+	        /**
+	         * Checks if this offset is equal to another offset.
+	         *
+	         * The comparison is based on the amount of the offset in seconds.
+	         * This is equivalent to a comparison by ID.
+	         *
+	         * @param obj  the object to check, null returns false
+	         * @return true if this is equal to the other offset
+	         */
+	
+	    }, {
+	        key: 'equals',
+	        value: function equals(obj) {
+	            if (this === obj) {
+	                return true;
+	            }
+	            if (obj instanceof ZoneOffset) {
+	                return this._totalSeconds === obj._totalSeconds;
+	            }
+	            return false;
+	        }
+	    }], [{
+	        key: 'validateTotalSeconds',
+	        value: function validateTotalSeconds(totalSeconds) {
+	            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
+	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	            }
+	        }
+	    }, {
+	        key: 'validate',
+	        value: function validate(hours, minutes, seconds) {
+	            if (hours < -18 || hours > 18) {
+	                throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+	            }
+	            if (hours > 0) {
+	                if (minutes < 0 || seconds < 0) {
+	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
+	                }
+	            } else if (hours < 0) {
+	                if (minutes > 0 || seconds > 0) {
+	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
+	                }
+	            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
+	                throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
+	            }
+	            if (Math.abs(minutes) > 59) {
+	                throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
+	            }
+	            if (Math.abs(seconds) > 59) {
+	                throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
+	            }
+	            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
+	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	            }
+	        }
+	    }, {
+	        key: 'ofHours',
+	        value: function ofHours(hours) {
+	            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
+	        }
+	    }, {
+	        key: 'ofHoursMinutes',
+	        value: function ofHoursMinutes(hours, minutes) {
+	            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
+	        }
+	    }, {
+	        key: 'ofHoursMinutesSeconds',
+	        value: function ofHoursMinutesSeconds(hours, minutes, seconds) {
+	            ZoneOffset.validate(hours, minutes, seconds);
+	            var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
+	            return ZoneOffset.ofTotalSeconds(totalSeconds);
+	        }
+	    }, {
+	        key: 'ofTotalMinutes',
+	        value: function ofTotalMinutes(totalMinutes) {
+	            var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
+	            return ZoneOffset.ofTotalSeconds(totalSeconds);
+	        }
+	    }, {
+	        key: 'ofTotalSeconds',
+	        value: function ofTotalSeconds(totalSeconds) {
+	            if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
+	                var totalSecs = totalSeconds;
+	                var result = ZoneOffset.SECONDS_CACHE[totalSecs];
+	                if (result == null) {
+	                    result = new ZoneOffset(totalSeconds);
+	                    ZoneOffset.SECONDS_CACHE[totalSecs] = result;
+	                }
+	                return result;
+	            } else {
+	                return new ZoneOffset(totalSeconds);
+	            }
+	        }
+	    }]);
+	
+	    return ZoneOffset;
+	}();
+	
+	function _init() {
+	    ZoneOffset.MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
+	    ZoneOffset.SECONDS_CACHE = {};
+	    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+	    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+	    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+	}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.TemporalAccessor = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	var _errors = __webpack_require__(5);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var TemporalAccessor = function () {
+	    function TemporalAccessor() {
+	        _classCallCheck(this, TemporalAccessor);
+	    }
+	
+	    _createClass(TemporalAccessor, [{
+	        key: 'query',
+	
+	        /**
+	         * Queries this date-time.
+	         * <p>
+	         * This queries this date-time using the specified query strategy object.
+	         * <p>
+	         * Queries are a key tool for extracting information from date-times.
+	         * They exists to externalize the process of querying, permitting different
+	         * approaches, as per the strategy design pattern.
+	         * Examples might be a query that checks if the date is the day before February 29th
+	         * in a leap year, or calculates the number of days to your next birthday.
+	         * <p>
+	         * The most common query implementations are method references, such as
+	         * {@code LocalDate::from} and {@code ZoneId::from}.
+	         * Further implementations are on {@link TemporalQueries}.
+	         * Queries may also be defined by applications.
+	         *
+	         * @implSpec
+	         * Implementations of this method must behave as follows:
+	         * <pre>
+	            if (query == TemporalQueries.zoneId()
+	                || query == TemporalQueries.chronology()
+	                || query == TemporalQueries.precision()) {
+	                    return null;
+	            }
+	            return query.queryFrom(this);
+	         * </pre>
+	         *
+	         * @param {TemporalQuery} query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
+	                return null;
+	            }
+	            return _query.queryFrom(this);
+	        }
+	
+	        /**
+	         * Gets the range of valid values for the specified field.
+	         * <p>
+	         * All fields can be expressed as a {@code long} integer.
+	         * This method returns an object that describes the valid range for that value.
+	         * The value of this temporal object is used to enhance the accuracy of the returned range.
+	         * If the date-time cannot return the range, because the field is unsupported or for
+	         * some other reason, an exception will be thrown.
+	         * <p>
+	         * Note that the result only describes the minimum and maximum valid values
+	         * and it is important not to read too much into them. For example, there
+	         * could be values within the range that are invalid for the field.
+	         *
+	         * <h3>Specification for implementors</h3>
+	         * Implementations must check and handle all fields defined in {@link ChronoField}.
+	         * If the field is supported, then the range of the field must be returned.
+	         * If unsupported, then a {@code DateTimeException} must be thrown.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}
+	         * passing {@code this} as the argument.
+	         * <p>
+	         * Implementations must not alter either this object.
+	         *
+	         * @param {TemporalField} field  the field to query the range for, not null
+	         * @return {ValueRange} the range of valid values for the field, not null
+	         * @throws DateTimeException if the range for the field cannot be obtained
+	         */
+	
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                if (this.isSupported(field)) {
+	                    return field.range();
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.rangeRefinedBy(this);
+	        }
+	    }]);
+	
+	    return TemporalAccessor;
+	}();
+
+	exports.TemporalAccessor = TemporalAccessor;
 
 /***/ },
 /* 24 */
@@ -6591,973 +8887,443 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.DateTimeFormatter = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	var _assert = __webpack_require__(9);
-	
-	var _errors = __webpack_require__(5);
-	
-	var _ParsePosition = __webpack_require__(25);
-	
-	var _DateTimeParseContext = __webpack_require__(26);
-	
-	var _DateTimeFormatterBuilder = __webpack_require__(29);
-	
-	var _SignStyle = __webpack_require__(31);
-	
-	var _ResolverStyle = __webpack_require__(22);
-	
-	var _IsoChronology = __webpack_require__(19);
-	
-	var _ChronoField = __webpack_require__(3);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var DateTimeFormatter = exports.DateTimeFormatter = function () {
-	
-	    //-----------------------------------------------------------------------
-	    /**
-	     * Constructor.
-	     *
-	     * @param printerParser  the printer/parser to use, not null
-	     * @param locale  the locale to use, not null
-	     * @param decimalStyle  the decimal style to use, not null
-	     * @param resolverStyle  the resolver style to use, not null
-	     * @param resolverFields  the fields to use during resolving, null for all fields
-	     * @param chrono  the chronology to use, null for no override
-	     * @param zone  the zone to use, null for no override
-	     */
-	
-	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono, zone) {
-	        _classCallCheck(this, DateTimeFormatter);
-	
-	        (0, _assert.assert)(printerParser != null);
-	        (0, _assert.assert)(decimalStyle != null);
-	        (0, _assert.assert)(resolverStyle != null);
-	        /**
-	         * The printer and/or parser to use, not null.
-	         */
-	        this._printerParser = printerParser;
-	        /**
-	         * The locale to use for formatting. // nyi
-	         */
-	        this._locale = locale;
-	        /**
-	         * The symbols to use for formatting, not null.
-	         */
-	        this._decimalStyle = decimalStyle;
-	        /**
-	         * The resolver style to use, not null.
-	         */
-	        this._resolverStyle = resolverStyle;
-	        /**
-	         * The fields to use in resolving, null for all fields.
-	         */
-	        this._resolverFields = resolverFields;
-	        /**
-	         * The chronology to use for formatting, null for no override.
-	         */
-	        this._chrono = chrono;
-	        /**
-	         * The zone to use for formatting, null for no override. // nyi
-	         */
-	        this._zone = zone;
-	    }
-	
-	    _createClass(DateTimeFormatter, [{
-	        key: 'locale',
-	        value: function locale() {
-	            return this._locale;
-	        }
-	    }, {
-	        key: 'decimalStyle',
-	        value: function decimalStyle() {
-	            return this._decimalStyle;
-	        }
-	    }, {
-	        key: 'chronology',
-	        value: function chronology() {
-	            return this._chrono;
-	        }
-	
-	        /**
-	         * Returns a copy of this formatter with a new override chronology.
-	         *
-	         * This returns a formatter with similar state to this formatter but
-	         * with the override chronology set.
-	         * By default, a formatter has no override chronology, returning null.
-	         *
-	         * If an override is added, then any date that is printed or parsed will be affected.
-	         *
-	         * When printing, if the {@code Temporal} object contains a date then it will
-	         * be converted to a date in the override chronology.
-	         * Any time or zone will be retained unless overridden.
-	         * The converted result will behave in a manner equivalent to an implementation
-	         * of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.
-	         *
-	         * When parsing, the override chronology will be used to interpret the
-	         * {@linkplain ChronoField fields} into a date unless the
-	         * formatter directly parses a valid chronology.
-	         *
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param chrono  the new chronology, not null
-	         * @return a formatter based on this formatter with the requested override chronology, not null
-	         */
-	
-	    }, {
-	        key: 'withChronology',
-	        value: function withChronology(chrono) {
-	            if (this._chrono != null && this._chrono.equals(chrono)) {
-	                return this;
-	            }
-	            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
-	        }
-	
-	        /**
-	         * not yet supported
-	         * @returns {DateTimeFormatter}
-	         */
-	
-	    }, {
-	        key: 'withLocal',
-	        value: function withLocal() {
-	            return this;
-	        }
-	
-	        /**
-	         * Fully parses the text producing a temporal object.
-	         *
-	         * This parses the entire text producing a temporal object.
-	         * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-	         * The result of this method is {@code TemporalAccessor} which has been resolved,
-	         * applying basic validation checks to help ensure a valid date-time.
-	         *
-	         * If the parse completes without reading the entire length of the text,
-	         * or a problem occurs during parsing or merging, then an exception is thrown.
-	         *
-	         * @param text  the text to parse, not null
-	         * @param type the type to extract, not null
-	        * @return the parsed temporal object, not null
-	         * @throws DateTimeParseException if unable to parse the requested result
-	         */
-	
-	    }, {
-	        key: 'parse',
-	        value: function parse(text, type) {
-	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
-	            (0, _assert.assert)(type != null, 'type', _errors.NullPointerException);
-	            try {
-	                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
-	                return builder.build(type);
-	            } catch (ex) {
-	                if (ex instanceof _errors.DateTimeParseException) {
-	                    throw ex;
-	                } else {
-	                    throw this._createError(text, ex);
-	                }
-	            }
-	        }
-	    }, {
-	        key: '_createError',
-	        value: function _createError(text, ex) {
-	            var abbr = '';
-	            if (text.length > 64) {
-	                abbr = text.subString(0, 64) + '...';
-	            } else {
-	                abbr = text;
-	            }
-	            return new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
-	        }
-	
-	        /**
-	         * Parses the text to a builder.
-	         * <p>
-	         * This parses to a {@code DateTimeBuilder} ensuring that the text is fully parsed.
-	         * This method throws {@link DateTimeParseException} if unable to parse, or
-	         * some other {@code DateTimeException} if another date/time problem occurs.
-	         *
-	         * @param text  the text to parse, not null
-	         * @param position  the position to parse from, updated with length parsed
-	         *  and the index of any error, null if parsing whole string
-	         * @return the engine representing the result of the parse, not null
-	         * @throws DateTimeParseException if the parse fails
-	         */
-	
-	    }, {
-	        key: '_parseToBuilder',
-	        value: function _parseToBuilder(text, position) {
-	            var pos = position != null ? position : new _ParsePosition.ParsePosition(0);
-	            var result = this._parseUnresolved0(text, pos);
-	            if (result == null || pos.getErrorIndex() >= 0 || position == null && pos.getIndex() < text.length) {
-	                var abbr = '';
-	                if (text.length > 64) {
-	                    abbr = text.substr(0, 64).toString() + '...';
-	                } else {
-	                    abbr = text;
-	                }
-	                if (pos.getErrorIndex() >= 0) {
-	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
-	                } else {
-	                    throw new _errors.DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
-	                }
-	            }
-	            return result.toBuilder();
-	        }
-	
-	        /**
-	         * Parses the text using this formatter, without resolving the result, intended
-	         * for advanced use cases.
-	         * <p>
-	         * Parsing is implemented as a two-phase operation.
-	         * First, the text is parsed using the layout defined by the formatter, producing
-	         * a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
-	         * Second, the parsed data is <em>resolved</em>, by validating, combining and
-	         * simplifying the various fields into more useful ones.
-	         * This method performs the parsing stage but not the resolving stage.
-	         * <p>
-	         * The result of this method is {@code TemporalAccessor} which represents the
-	         * data as seen in the input. Values are not validated, thus parsing a date string
-	         * of '2012-00-65' would result in a temporal with three fields - year of '2012',
-	         * month of '0' and day-of-month of '65'.
-	         * <p>
-	         * The text will be parsed from the specified start {@code ParsePosition}.
-	         * The entire length of the text does not have to be parsed, the {@code ParsePosition}
-	         * will be updated with the index at the end of parsing.
-	         * <p>
-	         * Errors are returned using the error index field of the {@code ParsePosition}
-	         * instead of {@code DateTimeParseException}.
-	         * The returned error index will be set to an index indicative of the error.
-	         * Callers must check for errors before using the context.
-	         * <p>
-	         * If the formatter parses the same field more than once with different values,
-	         * the result will be an error.
-	         * <p>
-	         * This method is intended for advanced use cases that need access to the
-	         * internal state during parsing. Typical application code should use
-	         * {@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.
-	         *
-	         * @param text  the text to parse, not null
-	         * @param position  the position to parse from, updated with length parsed
-	         *  and the index of any error, not null
-	         * @return the parsed text, null if the parse results in an error
-	         * @throws DateTimeException if some problem occurs during parsing
-	         * @throws IndexOutOfBoundsException if the position is invalid
-	         */
-	
-	    }, {
-	        key: 'parseUnresolved',
-	        value: function parseUnresolved(text, position) {
-	            return this._parseUnresolved0(text, position);
-	        }
-	    }, {
-	        key: '_parseUnresolved0',
-	        value: function _parseUnresolved0(text, position) {
-	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
-	            (0, _assert.assert)(position != null, 'position', _errors.NullPointerException);
-	            var context = new _DateTimeParseContext.DateTimeParseContext(this);
-	            var pos = position.getIndex();
-	            pos = this._printerParser.parse(context, text, pos);
-	            if (pos < 0) {
-	                position.setErrorIndex(~pos); // index not updated from input
-	                return null;
-	            }
-	            position.setIndex(pos); // errorIndex not updated from input
-	            return context.toParsed();
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            var pattern = this._printerParser.toString();
-	            return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
-	        }
-	    }]);
-	
-	    return DateTimeFormatter;
-	}();
-	
-	var ISO_LOCAL_DATE_INSTANCE;
-	DateTimeFormatter.ISO_LOCAL_DATE = function () {
-	    if (ISO_LOCAL_DATE_INSTANCE == null) {
-	        ISO_LOCAL_DATE_INSTANCE = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendValue(_ChronoField.ChronoField.YEAR, 4, 10, _SignStyle.SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(_ChronoField.ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(_ChronoField.ChronoField.DAY_OF_MONTH, 2).toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
-	    }
-	    return ISO_LOCAL_DATE_INSTANCE;
-	};
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
+	exports.DayOfWeek = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var ParsePosition = exports.ParsePosition = function () {
-	    function ParsePosition(index) {
-	        _classCallCheck(this, ParsePosition);
-	
-	        this._index = index;
-	        this._errorIndex = -1;
-	    }
-	
-	    _createClass(ParsePosition, [{
-	        key: "getIndex",
-	        value: function getIndex() {
-	            return this._index;
-	        }
-	    }, {
-	        key: "setIndex",
-	        value: function setIndex(index) {
-	            this._index = index;
-	        }
-	    }, {
-	        key: "getErrorIndex",
-	        value: function getErrorIndex() {
-	            return this._errorIndex;
-	        }
-	    }, {
-	        key: "setErrorIndex",
-	        value: function setErrorIndex(errorIndex) {
-	            this._errorIndex = errorIndex;
-	        }
-	    }]);
-	
-	    return ParsePosition;
-	}();
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.DateTimeParseContext = undefined;
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	var _assert = __webpack_require__(9);
-	
-	var _DateTimeBuilder = __webpack_require__(27);
-	
-	var _EnumMap = __webpack_require__(28);
-	
-	var _IsoChronology = __webpack_require__(19);
-	
-	var _TemporalAccessor2 = __webpack_require__(14);
-	
-	var _TemporalQueries = __webpack_require__(15);
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var DateTimeParseContext = exports.DateTimeParseContext = function () {
-	    function DateTimeParseContext() {
-	        _classCallCheck(this, DateTimeParseContext);
-	
-	        if (arguments.length === 1) {
-	            this._constructorFormatter.apply(this, arguments);
-	        } else {
-	            this._constructorParam.apply(this, arguments);
-	        }
-	
-	        this._caseSensitive = true;
-	        this._strict = true;
-	        this._parsed = [new Parsed(this)];
-	    }
-	
-	    _createClass(DateTimeParseContext, [{
-	        key: '_constructorParam',
-	        value: function _constructorParam(locale, symbols, chronology) {
-	            this._locale = locale;
-	            this._symbols = symbols;
-	            this._overrideChronology = chronology;
-	        }
-	    }, {
-	        key: '_constructorFormatter',
-	        value: function _constructorFormatter(formatter) {
-	            this._locale = formatter.locale();
-	            this._symbols = formatter.decimalStyle();
-	            this._overrideChronology = formatter.chronology();
-	        }
-	    }, {
-	        key: 'symbols',
-	        value: function symbols() {
-	            return this._symbols;
-	        }
-	    }, {
-	        key: 'isStrict',
-	        value: function isStrict() {
-	            return this._strict;
-	        }
-	    }, {
-	        key: 'setStrict',
-	        value: function setStrict(strict) {
-	            this._strict = strict;
-	        }
-	
-	        /**
-	         * Checks if parsing is case sensitive.
-	         *
-	         * @return true if parsing is case sensitive, false if case insensitive
-	         */
-	
-	    }, {
-	        key: 'isCaseSensitive',
-	        value: function isCaseSensitive() {
-	            return this._caseSensitive;
-	        }
-	
-	        /**
-	         * Sets whether the parsing is case sensitive or not.
-	         *
-	         * @param caseSensitive  changes the parsing to be case sensitive or not from now on
-	         */
-	
-	    }, {
-	        key: 'setCaseSensitive',
-	        value: function setCaseSensitive(caseSensitive) {
-	            this._caseSensitive = caseSensitive;
-	        }
-	
-	        /**
-	         * Helper to compare two {@code CharSequence} instances.
-	         * This uses {@link #isCaseSensitive()}.
-	         *
-	         * @param cs1  the first character sequence, not null
-	         * @param offset1  the offset into the first sequence, valid
-	         * @param cs2  the second character sequence, not null
-	         * @param offset2  the offset into the second sequence, valid
-	         * @param length  the length to check, valid
-	         * @return true if equal
-	         */
-	
-	    }, {
-	        key: 'subSequenceEquals',
-	        value: function subSequenceEquals(cs1, offset1, cs2, offset2, length) {
-	            if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
-	                return false;
-	            }
-	            if (!this.isCaseSensitive()) {
-	                cs1 = cs1.toLowerCase();
-	                cs2 = cs2.toLowerCase();
-	            }
-	            for (var i = 0; i < length; i++) {
-	                var ch1 = cs1[offset1 + i];
-	                var ch2 = cs2[offset2 + i];
-	                if (ch1 !== ch2) {
-	                    return false;
-	                }
-	            }
-	            return true;
-	        }
-	
-	        /**
-	         * Helper to compare two {@code char}.
-	         * This uses {@link #isCaseSensitive()}.
-	         *
-	         * @param ch1  the first character
-	         * @param ch2  the second character
-	         * @return true if equal
-	         */
-	
-	    }, {
-	        key: 'charEquals',
-	        value: function charEquals(ch1, ch2) {
-	            if (this.isCaseSensitive()) {
-	                return ch1 === ch2;
-	            }
-	            return this.charEqualsIgnoreCase(ch1, ch2);
-	        }
-	
-	        /**
-	         * Compares two characters ignoring case.
-	         *
-	         * @param c1  the first
-	         * @param c2  the second
-	         * @return true if equal
-	         */
-	
-	    }, {
-	        key: 'charEqualsIgnoreCase',
-	        value: function charEqualsIgnoreCase(c1, c2) {
-	            return c1 === c2 || c1.toLowerCase() === c2.toLowerCase();
-	        }
-	    }, {
-	        key: 'setParsedField',
-	        value: function setParsedField(field, value, errorPos, successPos) {
-	            var currentParsedFieldValues = this.currentParsed().fieldValues;
-	            var old = currentParsedFieldValues.get(field);
-	            currentParsedFieldValues.set(field, value);
-	            return old != null && old !== value ? ~errorPos : successPos;
-	        }
-	    }, {
-	        key: 'getParsed',
-	        value: function getParsed(field) {
-	            return this.currentParsed().fieldValues.get(field);
-	        }
-	    }, {
-	        key: 'toParsed',
-	        value: function toParsed() {
-	            return this.currentParsed();
-	        }
-	    }, {
-	        key: 'currentParsed',
-	        value: function currentParsed() {
-	            return this._parsed[this._parsed.length - 1];
-	        }
-	
-	        /**
-	         * Gets the effective chronology during parsing.
-	         *
-	         * @return the effective parsing chronology, not null
-	         */
-	
-	    }, {
-	        key: 'getEffectiveChronology',
-	        value: function getEffectiveChronology() {
-	            var chrono = this.currentParsed().chrono;
-	            if (chrono == null) {
-	                chrono = this._overrideChronology;
-	                if (chrono == null) {
-	                    chrono = _IsoChronology.IsoChronology.INSTANCE;
-	                }
-	            }
-	            return chrono;
-	        }
-	    }]);
-	
-	    return DateTimeParseContext;
-	}();
-	
-	var Parsed = function (_TemporalAccessor) {
-	    _inherits(Parsed, _TemporalAccessor);
-	
-	    function Parsed(dateTimeParseContext) {
-	        _classCallCheck(this, Parsed);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Parsed).call(this));
-	
-	        _this.chrono = null;
-	        _this.zone = null;
-	        _this.fieldValues = new _EnumMap.EnumMap();
-	        _this.leapSecond = false;
-	        _this.dateTimeParseContext = dateTimeParseContext;
-	        return _this;
-	    }
-	
-	    _createClass(Parsed, [{
-	        key: 'copy',
-	        value: function copy() {
-	            var cloned = new Parsed();
-	            cloned.chrono = this.chrono;
-	            cloned.zone = this.zone;
-	            cloned.fieldValues.putAll(this.fieldValues);
-	            cloned.leapSecond = this.leapSecond;
-	            return cloned;
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            return this.fieldValues + ', ' + this.chrono + ', ' + this.zone;
-	        }
-	    }, {
-	        key: 'isSupported',
-	        value: function isSupported(field) {
-	            return this.fieldValues.containsKey(field);
-	        }
-	    }, {
-	        key: 'get',
-	        value: function get(field) {
-	            var val = this.fieldValues.get(field);
-	            (0, _assert.assert)(val != null);
-	            return val;
-	        }
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return this.chrono;
-	            }
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone()) {
-	                return this.zone;
-	            }
-	            return _get(Object.getPrototypeOf(Parsed.prototype), 'query', this).call(this, _query);
-	        }
-	    }, {
-	        key: 'toBuilder',
-	        value: function toBuilder() {
-	            var builder = new _DateTimeBuilder.DateTimeBuilder();
-	            builder.fieldValues.putAll(this.fieldValues);
-	            builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
-	            if (this.zone != null) {
-	                builder.zone = this.zone;
-	            } else {
-	                builder.zone = this.overrideZone;
-	            }
-	            builder.leapSecond = this.leapSecond;
-	            builder.excessDays = this.excessDays;
-	            return builder;
-	        }
-	    }]);
-	
-	    return Parsed;
-	}(_TemporalAccessor2.TemporalAccessor);
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.DateTimeBuilder = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	exports._init = _init;
 	
 	var _errors = __webpack_require__(5);
 	
-	var _EnumMap = __webpack_require__(28);
+	var _MathUtil = __webpack_require__(4);
 	
-	var _IsoChronology = __webpack_require__(19);
+	var _assert = __webpack_require__(9);
 	
-	var _ChronoLocalDate = __webpack_require__(23);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalAccessor2 = __webpack_require__(14);
+	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(15);
+	var _TemporalAccessor2 = __webpack_require__(23);
 	
-	var _LocalTime = __webpack_require__(10);
-	
-	var _LocalDate = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(21);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	//import {ZoneOffset} from '../ZoneOffset';
+	var DayOfWeek = function (_TemporalAccessor) {
+	    _inherits(DayOfWeek, _TemporalAccessor);
 	
-	/**
-	 * Builder that can holds date and time fields and related date and time objects.
-	 * <p>
-	 * The builder is used to hold onto different elements of date and time.
-	 * It is designed as two separate maps:
-	 * <p><ul>
-	 * <li>from {@link TemporalField} to {@code long} value, where the value may be
-	 * outside the valid range for the field
-	 * <li>from {@code Class} to {@link TemporalAccessor}, holding larger scale objects
-	 * like {@code LocalDateTime}.
-	 * </ul><p>
-	 *
-	 * <h3>Specification for implementors</h3>
-	 * This class is mutable and not thread-safe.
-	 * It should only be used from a single thread.
-	 */
+	    function DayOfWeek(ordinal, name) {
+	        _classCallCheck(this, DayOfWeek);
 	
-	var DateTimeBuilder = function (_TemporalAccessor) {
-	    _inherits(DateTimeBuilder, _TemporalAccessor);
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DayOfWeek).call(this));
 	
-	    function DateTimeBuilder() {
-	        _classCallCheck(this, DateTimeBuilder);
-	
-	        /**
-	         * The map of other fields.
-	         */
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeBuilder).call(this));
-	
-	        _this.fieldValues = new _EnumMap.EnumMap();
-	        /**
-	         * The chronology.
-	         */
-	        _this.chrono = null;
-	        /**
-	         * The zone.
-	         */
-	        _this.zone = null;
-	        /**
-	         * The date.
-	         */
-	        _this.date = null;
-	        /**
-	         * The time.
-	         */
-	        _this.time = null;
-	        /**
-	         * The leap second flag.
-	         */
-	        _this.leapSecond = false;
-	        /**
-	         * The excess days.
-	         */
-	        _this.excessDays = null;
+	        _this._ordinal = ordinal;
+	        _this._name = name;
 	        return _this;
 	    }
 	
-	    /**
-	     * Resolves the builder, evaluating the date and time.
-	     * <p>
-	     * This examines the contents of the builder and resolves it to produce the best
-	     * available date and time, throwing an exception if a problem occurs.
-	     * Calling this method changes the state of the builder.
-	     *
-	     * @param resolverStyle how to resolve
-	     * @param resolverFields
-	    * @return {@code this}, for method chaining
-	     */
+	    _createClass(DayOfWeek, [{
+	        key: 'ordinal',
+	        value: function ordinal() {
+	            return this._ordinal;
+	        }
+	    }, {
+	        key: 'name',
+	        value: function name() {
+	            return this._name;
+	        }
+	    }, {
+	        key: 'value',
 	
 	
-	    _createClass(DateTimeBuilder, [{
-	        key: 'resolve',
-	        value: function resolve(resolverStyle, resolverFields) {
-	            if (resolverFields != null) {
-	                this.fieldValues.retainAll(resolverFields);
-	            }
-	            // handle standard fields
-	            // this._mergeInstantFields();
-	            this._mergeDate(resolverStyle);
-	            //mergeTime(resolverStyle);
-	            //if (resolveFields(resolverStyle)) {
-	            //    mergeInstantFields();
-	            //    mergeDate(resolverStyle);
-	            //    mergeTime(resolverStyle);
-	            //}
-	            //resolveTimeInferZeroes(resolverStyle);
-	            //crossCheck();
-	            //if (excessDays != null && excessDays.isZero() == false && date != null && time != null) {
-	            //    date = date.plus(excessDays);
-	            //    excessDays = Period.ZERO;
-	            //}
-	            //resolveFractional();
-	            //resolveInstant();
-	            return this;
-	        }
-	    }, {
-	        key: '_mergeDate',
-	        value: function _mergeDate(resolverStyle) {
-	            //if (this.chrono instanceof IsoChronology) {
-	            this._checkDate(_IsoChronology.IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
-	            //} else {
-	            //    if (this.fieldValues.containsKey(ChronoField.EPOCH_DAY)) {
-	            //        this._checkDate(LocalDate.ofEpochDay(this.fieldValues.remove(ChronoField.EPOCH_DAY)));
-	            //        return;
-	            //    }
-	            //}
-	        }
-	    }, {
-	        key: '_checkDate',
-	        value: function _checkDate(date) {
-	            if (date != null) {
-	                this._addObject(date);
-	                for (var field in this.fieldValues.keySet()) {
-	                    if (field instanceof _ChronoField.ChronoField) {
-	                        if (field.isDateBased()) {
-	                            var val1;
-	                            try {
-	                                val1 = date.getLong(field);
-	                            } catch (ex) {
-	                                if (ex instanceof _errors.DateTimeException) {
-	                                    continue;
-	                                } else {
-	                                    throw ex;
-	                                }
-	                            }
-	                            var val2 = this.fieldValues.get(field);
-	                            if (val1 !== val2) {
-	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
-	                            }
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	    }, {
-	        key: '_addObject',
-	        value: function _addObject(dateOrTime) {
-	            if (dateOrTime instanceof _ChronoLocalDate.ChronoLocalDate) {
-	                this.date = dateOrTime;
-	            } else if (dateOrTime instanceof _LocalTime.LocalTime) {
-	                this.time = dateOrTime;
-	            }
+	        /**
+	         * Gets the day-of-week {@code int} value.
+	         * <p>
+	         * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
+	         * See {@link WeekFields#dayOfWeek} for localized week-numbering.
+	         *
+	         * @return the day-of-week, from 1 (Monday) to 7 (Sunday)
+	         */
+	        value: function value() {
+	            return this._ordinal + 1;
 	        }
 	
 	        /**
-	         * Builds the specified type from the values in this builder.
+	         * Gets the textual representation, such as 'Mon' or 'Friday'.
+	         * <p>
+	         * This returns the textual name used to identify the day-of-week.
+	         * The parameters control the length of the returned text and the locale.
+	         * <p>
+	         * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
 	         *
-	         * This attempts to build the specified type from this builder.
-	         * If the builder cannot return the type, an exception is thrown.
-	         *
-	         * @param type  the type to invoke {@code from} on, not null
-	         * @return the extracted value, not null
-	         * @throws DateTimeException if an error occurs
+	         * @param style  the length of the text required, not null
+	         * @param locale  the locale to use, not null
+	         * @return the text value of the day-of-week, not null
 	         */
 	
 	    }, {
-	        key: 'build',
-	        value: function build(type) {
-	            return type.queryFrom(this);
+	        key: 'getDisplayName',
+	        value: function getDisplayName(style, locale) {
+	            return new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendText(_ChronoField.ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
 	        }
+	
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this day-of-week can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then
+	         * this method returns true.
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param field  the field to check, null returns false
+	         * @return true if the field is supported on this day-of-week, false if not
+	         */
+	
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                return field === _ChronoField.ChronoField.DAY_OF_WEEK;
+	            }
+	            return field != null && field.isSupportedBy(this);
+	        }
+	
+	        /**
+	         * Gets the range of valid values for the specified field.
+	         * <p>
+	         * The range object expresses the minimum and maximum valid values for a field.
+	         * This day-of-week is used to enhance the accuracy of the returned range.
+	         * If it is not possible to return the range, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * range of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the range can be obtained is determined by the field.
+	         *
+	         * @param field  the field to query the range for, not null
+	         * @return the range of valid values for the field, not null
+	         * @throws DateTimeException if the range for the field cannot be obtained
+	         */
+	
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return field.range();
+	            } else if (field instanceof _ChronoField.ChronoField) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.rangeRefinedBy(this);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this day-of-week as an {@code int}.
+	         * <p>
+	         * This queries this day-of-week for the value for the specified field.
+	         * The returned value will always be within the valid range of values for the field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * value of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field, within the valid range of values
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
+	         * @throws DateTimeException if the value is outside the range of valid values for the field
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return this.value();
+	            }
+	            return this.range(field).checkValidIntValue(this.getLong(field), field);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this day-of-week as a {@code long}.
+	         * <p>
+	         * This queries this day-of-week for the value for the specified field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
+	         * value of the day-of-week, from 1 to 7, will be returned.
+	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param field  the field to get, not null
+	         * @return the value for the field
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	                return this.value();
+	            } else if (field instanceof _ChronoField.ChronoField) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.getFrom(this);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns the day-of-week that is the specified number of days after this one.
+	         * <p>
+	         * The calculation rolls around the end of the week from Sunday to Monday.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param days  the days to add, positive or negative
+	         * @return the resulting day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'plus',
+	        value: function plus(days) {
+	            var amount = _MathUtil.MathUtil.floorMod(days, 7);
+	            return DayOfWeek.ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+	        }
+	
+	        /**
+	         * Returns the day-of-week that is the specified number of days before this one.
+	         * <p>
+	         * The calculation rolls around the start of the year from Monday to Sunday.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param days  the days to subtract, positive or negative
+	         * @return the resulting day-of-week, not null
+	         */
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus(days) {
+	            return this.plus(-1 * _MathUtil.MathUtil.floorMod(days, 7));
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Queries this day-of-week using the specified query.
+	         * <p>
+	         * This queries this day-of-week using the specified query strategy object.
+	         * The {@code TemporalQuery} object defines the logic to be used to
+	         * obtain the result. Read the documentation of the query to understand
+	         * what the result of this method will be.
+	         * <p>
+	         * The result of this method is obtained by invoking the
+	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	         * specified query passing {@code this} as the argument.
+	         *
+	         * @param query  the query to invoke, not null
+	         * @return the query result, null may be returned (defined by the query)
+	         * @throws DateTimeException if unable to query (defined by the query)
+	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	         */
+	
 	    }, {
 	        key: 'query',
 	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId()) {
-	                return this.zone;
-	            } else if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return this.chrono;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
-	                return this.date != null ? _LocalDate.LocalDate.from(this.date) : null;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
-	                return this.time;
-	            } else if (_query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
-	                return _query.queryFrom(this);
-	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	                return null; // not a complete date/time
+	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.DAYS;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return null;
 	            }
-	            // inline TemporalAccessor.super.query(query) as an optimization
-	            // non-JDK classes are not permitted to make this optimization
+	            (0, _assert.assert)(_query != null, 'query', _errors.NullPointerException);
 	            return _query.queryFrom(this);
-	        }
-	    }]);
-	
-	    return DateTimeBuilder;
-	}(_TemporalAccessor2.TemporalAccessor);
-
-	exports.DateTimeBuilder = DateTimeBuilder;
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var EnumMap = exports.EnumMap = function () {
-	    function EnumMap() {
-	        _classCallCheck(this, EnumMap);
-	
-	        this._map = {};
-	    }
-	
-	    _createClass(EnumMap, [{
-	        key: "putAll",
-	        value: function putAll(otherMap) {
-	            for (var key in otherMap._map) {
-	                this._map[key] = otherMap._map[key];
-	            }
-	            return this;
-	        }
-	    }, {
-	        key: "containsKey",
-	        value: function containsKey(key) {
-	            return this._map.hasOwnProperty(key.name());
-	        }
-	    }, {
-	        key: "get",
-	        value: function get(key) {
-	            return this._map[key.name()];
-	        }
-	    }, {
-	        key: "set",
-	        value: function set(key, val) {
-	            this._map[key.name()] = val;
-	            return this;
-	        }
-	    }, {
-	        key: "retainAll",
-	        value: function retainAll(keyList) {
-	            var map = {};
-	            for (var i = 0; i < keyList.length; i++) {
-	                var key = keyList[i].name();
-	                map[key] = this._map[key];
-	            }
-	            this._map = map;
-	            return this;
 	        }
 	
 	        /**
-	         * due to the bad performance of delete we just set the key entry to undefined.
+	         * Adjusts the specified temporal object to have this day-of-week.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with the day-of-week changed to be the same as this.
+	         * <p>
+	         * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+	         * passing {@link ChronoField#DAY_OF_WEEK} as the field.
+	         * Note that this adjusts forwards or backwards within a Monday to Sunday week.
+	         * See {@link WeekFields#dayOfWeek} for localized week start days.
+	         * See {@link TemporalAdjusters} for other adjusters
+	         * with more control, such as {@code next(MONDAY)}.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#with(TemporalAdjuster)}:
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   temporal = thisDayOfWeek.adjustInto(temporal);
+	         *   temporal = temporal.with(thisDayOfWeek);
+	         * </pre>
+	         * <p>
+	         * For example, given a date that is a Wednesday, the following are output:
+	         * <pre>
+	         *   dateOnWed.with(MONDAY);     // two days earlier
+	         *   dateOnWed.with(TUESDAY);    // one day earlier
+	         *   dateOnWed.with(WEDNESDAY);  // same date
+	         *   dateOnWed.with(THURSDAY);   // one day later
+	         *   dateOnWed.with(FRIDAY);     // two days later
+	         *   dateOnWed.with(SATURDAY);   // three days later
+	         *   dateOnWed.with(SUNDAY);     // four days later
+	         * </pre>
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * this might lead to issues with "null" entries. Calling clear in the end might solve the issue
-	         * @param key
-	         * @returns {*}
+	         * @param temporal  the target object to be adjusted, not null
+	         * @return the adjusted object, not null
+	         * @throws DateTimeException if unable to make the adjustment
+	         * @throws ArithmeticException if numeric overflow occurs
 	         */
 	
 	    }, {
-	        key: "remove",
-	        value: function remove(key) {
-	            var keyName = key.name();
-	            var val = this._map[keyName];
-	            this._map[keyName] = undefined;
-	            return val;
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
 	        }
 	    }, {
-	        key: "keySet",
-	        value: function keySet() {
-	            return this._map;
+	        key: 'equal',
+	        value: function equal() {
+	            return this._name;
 	        }
 	    }, {
-	        key: "clear",
-	        value: function clear() {
-	            this._map = {};
+	        key: 'toString',
+	        value: function toString() {
+	            return this._name;
+	        }
+	    }], [{
+	        key: 'values',
+	        value: function values() {
+	            return DayOfWeek.ENUMS.slice();
+	        }
+	    }, {
+	        key: 'valueOf',
+	        value: function valueOf(name) {
+	            for (var ordinal = 0; ordinal < DayOfWeek.ENUMS.length; ordinal++) {
+	                if (DayOfWeek.ENUMS[ordinal].name() === name) {
+	                    break;
+	                }
+	            }
+	            return DayOfWeek.of(ordinal + 1);
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code DayOfWeek} from an {@code int} value.
+	         * <p>
+	         * {@code DayOfWeek} is an enum representing the 7 days of the week.
+	         * This factory allows the enum to be obtained from the {@code int} value.
+	         * The {@code int} value follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
+	         *
+	         * @param dayOfWeek  the day-of-week to represent, from 1 (Monday) to 7 (Sunday)
+	         * @return the day-of-week singleton, not null
+	         * @throws DateTimeException if the day-of-week is invalid
+	         */
+	
+	    }, {
+	        key: 'of',
+	        value: function of(dayOfWeek) {
+	            if (dayOfWeek < 1 || dayOfWeek > 7) {
+	                throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
+	            }
+	            return DayOfWeek.ENUMS[dayOfWeek - 1];
+	        }
+	
+	        /**
+	         * Obtains an instance of {@code DayOfWeek} from a temporal object.
+	         * <p>
+	         * A {@code TemporalAccessor} represents some form of date and time information.
+	         * This factory converts the arbitrary temporal object to an instance of {@code DayOfWeek}.
+	         * <p>
+	         * The conversion extracts the {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} field.
+	         * <p>
+	         * This method matches the signature of the functional interface {@link TemporalQuery}
+	         * allowing it to be used as a query via method reference, {@code DayOfWeek::from}.
+	         *
+	         * @param temporal  the temporal object to convert, not null
+	         * @return the day-of-week, not null
+	         * @throws DateTimeException if unable to convert to a {@code DayOfWeek}
+	         */
+	
+	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            (0, _assert.assert)(temporal != null, 'temporal', _errors.NullPointerException);
+	            if (temporal instanceof DayOfWeek) {
+	                return temporal;
+	            }
+	            try {
+	                return DayOfWeek.of(temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK));
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeException) {
+	                    throw new _errors.DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + temporal.name(), ex);
+	                } else {
+	                    throw ex;
+	                }
+	            }
 	        }
 	    }]);
 	
-	    return EnumMap;
-	}();
+	    return DayOfWeek;
+	}(_TemporalAccessor2.TemporalAccessor);
+	
+	exports.DayOfWeek = DayOfWeek;
+	function _init() {
+	    DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
+	    DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
+	    DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
+	    DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
+	    DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
+	    DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
+	    DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
+	
+	    DayOfWeek.FROM = (0, _TemporalQueries.createTemporalQuery)('DayOfWeek.FROM', function (temporal) {
+	        return DayOfWeek.from(temporal);
+	    });
+	
+	    DayOfWeek.ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
+	}
 
 /***/ },
-/* 29 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7577,15 +9343,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _Enum2 = __webpack_require__(16);
+	var _Enum2 = __webpack_require__(18);
 	
-	var _DateTimeFormatter = __webpack_require__(24);
+	var _DateTimeFormatter = __webpack_require__(12);
 	
-	var _DecimalStyle = __webpack_require__(30);
+	var _DecimalStyle = __webpack_require__(26);
 	
-	var _SignStyle = __webpack_require__(31);
+	var _SignStyle = __webpack_require__(27);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(28);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -8545,7 +10311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DateTimeFormatterBuilder.StringBuilder = StringBuilder;
 
 /***/ },
-/* 30 */
+/* 26 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8685,7 +10451,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 31 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8697,7 +10463,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Enum2 = __webpack_require__(16);
+	var _Enum2 = __webpack_require__(18);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -8756,7 +10522,86 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 32 */
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ResolverStyle = undefined;
+	
+	var _Enum2 = __webpack_require__(18);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Enumeration of different ways to resolve dates and times.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Parsing a text string occurs in two phases.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 1 is a basic text parse according to the fields added to the builder.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Phase 2 resolves the parsed field-value pairs into date and/or time objects.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * This style is used to control how phase 2, resolving, happens.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
+	  _inherits(ResolverStyle, _Enum);
+	
+	  function ResolverStyle() {
+	    _classCallCheck(this, ResolverStyle);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResolverStyle).apply(this, arguments));
+	  }
+	
+	  return ResolverStyle;
+	}(_Enum2.Enum);
+	
+	/**
+	 * Style to resolve dates and times strictly.
+	 * 
+	 * Using strict resolution will ensure that all parsed values are within
+	 * the outer range of valid values for the field. Individual fields may
+	 * be further processed for strictness.
+	 * 
+	 * For example, resolving year-month and day-of-month in the ISO calendar
+	 * system using strict mode will ensure that the day-of-month is valid
+	 * for the year-month, rejecting invalid values.
+	 */
+	
+	
+	ResolverStyle.STRICT = new ResolverStyle('STRICT');
+	/**
+	 * Style to resolve dates and times in a smart, or intelligent, manner.
+	 * 
+	 * Using smart resolution will perform the sensible default for each
+	 * field, which may be the same as strict, the same as lenient, or a third
+	 * behavior. Individual fields will interpret this differently.
+	 * 
+	 * For example, resolving year-month and day-of-month in the ISO calendar
+	 * system using smart mode will ensure that the day-of-month is from
+	 * 1 to 31, converting any value beyond the last valid day-of-month to be
+	 * the last valid day-of-month.
+	 */
+	ResolverStyle.SMART = new ResolverStyle('SMART');
+	/**
+	 * Style to resolve dates and times leniently.
+	 * 
+	 * Using lenient resolution will resolve the values in an appropriate
+	 * lenient manner. Individual fields will interpret this differently.
+	 * 
+	 * For example, lenient mode allows the month in the ISO calendar system
+	 * to be outside the range 1 to 12.
+	 * For example, month 15 is treated as being 3 months after month 12.
+	 */
+	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
+
+/***/ },
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8764,25 +10609,532 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.DayOfWeek = undefined;
+	exports.Month = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _errors = __webpack_require__(5);
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
-	var _MathUtil = __webpack_require__(4);
+	exports._init = _init;
 	
 	var _assert = __webpack_require__(9);
-	
-	var _DateTimeFormatterBuilder = __webpack_require__(29);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAccessor2 = __webpack_require__(14);
+	var _errors = __webpack_require__(5);
 	
-	var _TemporalQueries = __webpack_require__(15);
+	var _IsoChronology = __webpack_require__(17);
+	
+	var _TemporalAccessor2 = __webpack_require__(23);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	/**
+	 * A month-of-year, such as 'July'.
+	 * <p>
+	 * {@code Month} is representing the 12 months of the year -
+	 * January, February, March, April, May, June, July, August, September, October,
+	 * November and December.
+	 * <p>
+	 * In addition to the textual name, each month-of-year has an {@code int} value.
+	 * The {@code int} value follows normal usage and the ISO-8601 standard,
+	 * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
+	 * rather than the {@code int} value to ensure code clarity.
+	 * <p>
+	 * This class represents a common concept that is found in many calendar systems.
+	 * As such, this class may be used by any calendar system that has the month-of-year
+	 * concept defined exactly equivalent to the ISO-8601 calendar system.
+	 *
+	 */
+	
+	var Month = function (_TemporalAccessor) {
+	    _inherits(Month, _TemporalAccessor);
+	
+	    /**
+	     *
+	     * @param {number} value
+	     */
+	
+	    function Month(value) {
+	        _classCallCheck(this, Month);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Month).call(this));
+	
+	        _this._value = value;
+	        return _this;
+	    }
+	
+	    /**
+	     *
+	     * @return {number} gets the value
+	     */
+	
+	
+	    _createClass(Month, [{
+	        key: 'value',
+	        value: function value() {
+	            return this._value;
+	        }
+	
+	        /**
+	         * Checks if the specified field is supported.
+	         * <p>
+	         * This checks if this month-of-year can be queried for the specified field.
+	         * If false, then calling the {@link #range(TemporalField) range} and
+	         * {@link #get(TemporalField) get} methods will throw an exception.
+	         * <p>
+	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then
+	         * this method returns true.
+	         * All other {@code ChronoField} instances will return false.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+	         * passing {@code this} as the argument.
+	         * Whether the field is supported is determined by the field.
+	         *
+	         * @param {TemporalField} field  the field to check, null returns false
+	         * @return {boolean} true if the field is supported on this month-of-year, false if not
+	         */
+	
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            if (null === field) {
+	                return false;
+	            }
+	            if (field instanceof _ChronoField.ChronoField) {
+	                return field === _ChronoField.ChronoField.MONTH_OF_YEAR;
+	            }
+	            return field != null && field.isSupportedBy(this);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this month-of-year as an {@code int}.
+	         * <p>
+	         * This queries this month for the value of the specified field.
+	         * The returned value will always be within the valid range of values for the field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+	         * value of the month-of-year, from 1 to 12, will be returned.
+	         * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param {TemporalField} field  the field to get, not null
+	         * @return {Number} the value for the field, within the valid range of values
+	         * @throws DateTimeException if a value for the field cannot be obtained or
+	         *         the value is outside the range of valid values for the field
+	         * @throws UnsupportedTemporalTypeException if the field is not supported or
+	         *         the range of values exceeds an {@code int}
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            if (field === _ChronoField.ChronoField.MONTH_OF_YEAR) {
+	                return this.value();
+	            }
+	            return this.range(field).checkValidIntValue(this.getLong(field), field);
+	        }
+	
+	        /**
+	         * Gets the value of the specified field from this month-of-year as a {@code long}.
+	         * <p>
+	         * This queries this month for the value of the specified field.
+	         * If it is not possible to return the value, because the field is not supported
+	         * or for some other reason, an exception is thrown.
+	         * <p>
+	         * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+	         * value of the month-of-year, from 1 to 12, will be returned.
+	         * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+	         * <p>
+	         * If the field is not a {@code ChronoField}, then the result of this method
+	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+	         * passing {@code this} as the argument. Whether the value can be obtained,
+	         * and what the value represents, is determined by the field.
+	         *
+	         * @param {TemporalField} field  the field to get, not null
+	         * @return {Number} the value for the field
+	         * @throws DateTimeException if a value for the field cannot be obtained
+	         * @throws UnsupportedTemporalTypeException if the field is not supported
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            if (field === _ChronoField.ChronoField.MONTH_OF_YEAR) {
+	                return this.value();
+	            } else if (field instanceof _ChronoField.ChronoField) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.getFrom(this);
+	        }
+	
+	        /**
+	         * Returns the month-of-year that is the specified number of months after this one.
+	         * <p>
+	         * The calculation rolls around the end of the year from December to January.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} months  the months to add, positive or negative
+	         * @return {Month} the resulting month, not null
+	         */
+	
+	    }, {
+	        key: 'plus',
+	        value: function plus(months) {
+	            var amount = Math.floor(months % 12) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
+	            var newMonthVal = (this.value() + amount) % 12;
+	            /* December is 12, not 0, but 12 % 12 = 0 */
+	            newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
+	            return Month.of(newMonthVal);
+	        }
+	
+	        /**
+	         * Returns the month-of-year that is the specified number of months before this one.
+	         * <p>
+	         * The calculation rolls around the start of the year from January to December.
+	         * The specified period may be negative.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param {number} months  the months to subtract, positive or negative
+	         * @return {Month} the resulting month, not null
+	         */
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus(months) {
+	            return this.plus(-(months % 12));
+	        }
+	
+	        /**
+	         * Gets the length of this month in days.
+	         * <p>
+	         * This takes a flag to determine whether to return the length for a leap year or not.
+	         * <p>
+	         * February has 28 days in a standard year and 29 days in a leap year.
+	         * April, June, September and November have 30 days.
+	         * All other months have 31 days.
+	         *
+	         * @param {boolean} leapYear  true if the length is required for a leap year
+	         * @return {number} the length of this month in days, from 28 to 31
+	         */
+	
+	    }, {
+	        key: 'length',
+	        value: function length(leapYear) {
+	            switch (this) {
+	                case Month.FEBRUARY:
+	                    return leapYear ? 29 : 28;
+	                case Month.APRIL:
+	                case Month.JUNE:
+	                case Month.SEPTEMBER:
+	                case Month.NOVEMBER:
+	                    return 30;
+	                default:
+	                    return 31;
+	            }
+	        }
+	
+	        /**
+	         * Gets the minimum length of this month in days.
+	         * <p>
+	         * February has a minimum length of 28 days.
+	         * April, June, September and November have 30 days.
+	         * All other months have 31 days.
+	         *
+	         * @return {number} the minimum length of this month in days, from 28 to 31
+	         */
+	
+	    }, {
+	        key: 'minLength',
+	        value: function minLength() {
+	            switch (this) {
+	                case Month.FEBRUARY:
+	                    return 28;
+	                case Month.APRIL:
+	                case Month.JUNE:
+	                case Month.SEPTEMBER:
+	                case Month.NOVEMBER:
+	                    return 30;
+	                default:
+	                    return 31;
+	            }
+	        }
+	
+	        /**
+	         * Gets the maximum length of this month in days.
+	         * <p>
+	         * February has a maximum length of 29 days.
+	         * April, June, September and November have 30 days.
+	         * All other months have 31 days.
+	         *
+	         * @return {number} the maximum length of this month in days, from 29 to 31
+	         */
+	
+	    }, {
+	        key: 'maxLength',
+	        value: function maxLength() {
+	            switch (this) {
+	                case Month.FEBRUARY:
+	                    return 29;
+	                case Month.APRIL:
+	                case Month.JUNE:
+	                case Month.SEPTEMBER:
+	                case Month.NOVEMBER:
+	                    return 30;
+	                default:
+	                    return 31;
+	            }
+	        }
+	
+	        /**
+	         * Gets the day-of-year corresponding to the first day of this month.
+	         * <p>
+	         * This returns the day-of-year that this month begins on, using the leap
+	         * year flag to determine the length of February.
+	         *
+	         * @param {boolean} leapYear  true if the length is required for a leap year
+	         * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
+	         */
+	
+	    }, {
+	        key: 'firstDayOfYear',
+	        value: function firstDayOfYear(leapYear) {
+	            var leap = leapYear ? 1 : 0;
+	            switch (this) {
+	                case Month.JANUARY:
+	                    return 1;
+	                case Month.FEBRUARY:
+	                    return 32;
+	                case Month.MARCH:
+	                    return 60 + leap;
+	                case Month.APRIL:
+	                    return 91 + leap;
+	                case Month.MAY:
+	                    return 121 + leap;
+	                case Month.JUNE:
+	                    return 152 + leap;
+	                case Month.JULY:
+	                    return 182 + leap;
+	                case Month.AUGUST:
+	                    return 213 + leap;
+	                case Month.SEPTEMBER:
+	                    return 244 + leap;
+	                case Month.OCTOBER:
+	                    return 274 + leap;
+	                case Month.NOVEMBER:
+	                    return 305 + leap;
+	                case Month.DECEMBER:
+	                default:
+	                    return 335 + leap;
+	            }
+	        }
+	
+	        /**
+	         * Gets the month corresponding to the first month of this quarter.
+	         * <p>
+	         * The year can be divided into four quarters.
+	         * This method returns the first month of the quarter for the base month.
+	         * January, February and March return January.
+	         * April, May and June return April.
+	         * July, August and September return July.
+	         * October, November and December return October.
+	         *
+	         * @return {Month} the first month of the quarter corresponding to this month, not null
+	         */
+	
+	    }, {
+	        key: 'firstMonthOfQuarter',
+	        value: function firstMonthOfQuarter() {
+	            switch (this) {
+	                case Month.JANUARY:
+	                case Month.FEBRUARY:
+	                case Month.MARCH:
+	                    return Month.JANUARY;
+	                case Month.APRIL:
+	                case Month.MAY:
+	                case Month.JUNE:
+	                    return Month.APRIL;
+	                case Month.JULY:
+	                case Month.AUGUST:
+	                case Month.SEPTEMBER:
+	                    return Month.JULY;
+	                case Month.OCTOBER:
+	                case Month.NOVEMBER:
+	                case Month.DECEMBER:
+	                default:
+	                    return Month.OCTOBER;
+	            }
+	        }
+	
+	        /**
+	        * Queries this month-of-year using the specified query.
+	        * <p>
+	        * This queries this month-of-year using the specified query strategy object.
+	        * The {@code TemporalQuery} object defines the logic to be used to
+	        * obtain the result. Read the documentation of the query to understand
+	        * what the result of this method will be.
+	        * <p>
+	        * The result of this method is obtained by invoking the
+	        * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+	        * specified query passing {@code this} as the argument.
+	        *
+	        * @param {TemporalQuery} query  the query to invoke, not null
+	        * @return the query result, null may be returned (defined by the query)
+	        * @throws DateTimeException if unable to query (defined by the query)
+	        * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+	        */
+	
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            (0, _assert.assert)(_query != null, 'query() parameter must not be null', _errors.DateTimeException);
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return _IsoChronology.IsoChronology.INSTANCE;
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.MONTHS;
+	            }
+	            return _get(Object.getPrototypeOf(Month.prototype), 'query', this).call(this, _query);
+	        }
+	
+	        /**
+	         * toString implementation... in JDK this is inherited from the Enum class
+	         * 
+	         * @returns {String}
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            switch (this) {
+	                case Month.JANUARY:
+	                    return 'JANUARY';
+	                case Month.FEBRUARY:
+	                    return 'FEBRUARY';
+	                case Month.MARCH:
+	                    return 'MARCH';
+	                case Month.APRIL:
+	                    return 'APRIL';
+	                case Month.MAY:
+	                    return 'MAY';
+	                case Month.JUNE:
+	                    return 'JUNE';
+	                case Month.JULY:
+	                    return 'JULY';
+	                case Month.AUGUST:
+	                    return 'AUGUST';
+	                case Month.SEPTEMBER:
+	                    return 'SEPTEMBER';
+	                case Month.OCTOBER:
+	                    return 'OCTOBER';
+	                case Month.NOVEMBER:
+	                    return 'NOVEMBER';
+	                case Month.DECEMBER:
+	                    return 'DECEMBER';
+	                default:
+	                    return 'unknown Month, value: ' + this.value();
+	            }
+	        }
+	
+	        /**
+	         * replacement for enum values
+	         */
+	
+	    }], [{
+	        key: 'values',
+	        value: function values() {
+	            return Month.MONTHS.slice();
+	        }
+	
+	        /**
+	         *
+	         * @param {number} month
+	         * @return {Month} not null
+	         **/
+	
+	    }, {
+	        key: 'of',
+	        value: function of(month) {
+	            if (month < 1 || month > 12) {
+	                (0, _assert.assert)(false, 'Invalid value for MonthOfYear: ' + month, _errors.DateTimeException);
+	            }
+	            return Month.MONTHS[month - 1];
+	        }
+	    }]);
+	
+	    return Month;
+	}(_TemporalAccessor2.TemporalAccessor);
+	
+	exports.Month = Month;
+	function _init() {
+	    Month.JANUARY = new Month(1);
+	    Month.FEBRUARY = new Month(2);
+	    Month.MARCH = new Month(3);
+	    Month.APRIL = new Month(4);
+	    Month.MAY = new Month(5);
+	    Month.JUNE = new Month(6);
+	    Month.JULY = new Month(7);
+	    Month.AUGUST = new Month(8);
+	    Month.SEPTEMBER = new Month(9);
+	    Month.OCTOBER = new Month(10);
+	    Month.NOVEMBER = new Month(11);
+	    Month.DECEMBER = new Month(12);
+	
+	    Month.MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
+	}
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Period = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports._init = _init;
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _IsoChronology = __webpack_require__(17);
+	
+	var _ChronoUnit = __webpack_require__(7);
+	
+	var _TemporalAmount2 = __webpack_require__(10);
+	
+	var _LocalDate = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -8794,408 +11146,1369 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var DayOfWeek = function (_TemporalAccessor) {
-	    _inherits(DayOfWeek, _TemporalAccessor);
+	/**
+	 * A date-based amount of time, such as '2 years, 3 months and 4 days'.
+	 * <p>
+	 * This class models a quantity or amount of time in terms of years, months and days.
+	 * See {@link Duration} for the time-based equivalent to this class.
+	 * <p>
+	 * Durations and period differ in their treatment of daylight savings time
+	 * when added to {@link ZonedDateTime}. A {@code Duration} will add an exact
+	 * number of seconds, thus a duration of one day is always exactly 24 hours.
+	 * By contrast, a {@code Period} will add a conceptual day, trying to maintain
+	 * the local time.
+	 * <p>
+	 * For example, consider adding a period of one day and a duration of one day to
+	 * 18:00 on the evening before a daylight savings gap. The {@code Period} will add
+	 * the conceptual day and result in a {@code ZonedDateTime} at 18:00 the following day.
+	 * By contrast, the {@code Duration} will add exactly 24 hours, resulting in a
+	 * {@code ZonedDateTime} at 19:00 the following day (assuming a one hour DST gap).
+	 * <p>
+	 * The supported units of a period are {@link ChronoUnit#YEARS YEARS},
+	 * {@link ChronoUnit#MONTHS MONTHS} and {@link ChronoUnit#DAYS DAYS}.
+	 * All three fields are always present, but may be set to zero.
+	 * <p>
+	 * The period may be used with any calendar system.
+	 * The meaning of a 'year' or 'month' is only applied when the object is added to a date.
+	 * <p>
+	 * The period is modeled as a directed amount of time, meaning that individual parts of the
+	 * period may be negative.
+	 * <p>
+	 * The months and years fields may be {@linkplain #normalized() normalized}.
+	 * The normalization assumes a 12 month year, so is not appropriate for all calendar systems.
+	 *
+	 * <h3>Specification for implementors</h3>
+	 * This class is immutable and thread-safe.
+	 */
 	
-	    function DayOfWeek(ordinal, name) {
-	        _classCallCheck(this, DayOfWeek);
+	/**
+	 * The pattern for parsing.
+	 */
+	var PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
 	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DayOfWeek).call(this));
+	var Period = exports.Period = function (_TemporalAmount) {
+	    _inherits(Period, _TemporalAmount);
 	
-	        _this._ordinal = ordinal;
-	        _this._name = name;
+	    /**
+	     * do not call the constructor directly
+	     * use a factory method instead
+	     *
+	     * @param years
+	     * @param months
+	     * @param days
+	     * @private
+	     */
+	
+	    function Period(years, months, days) {
+	        _classCallCheck(this, Period);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Period).call(this));
+	
+	        if ((years | months | days) === 0) {
+	            var _ret;
+	
+	            return _ret = Period.ZERO, _possibleConstructorReturn(_this, _ret);
+	        }
+	        Period._validate(years, months, days);
+	        /**
+	         * The number of years.
+	         */
+	        _this._years = years;
+	        /**
+	         * The number of months.
+	         */
+	        _this._months = months;
+	        /**
+	         * The number of days.
+	         */
+	        _this._days = days;
 	        return _this;
 	    }
 	
-	    _createClass(DayOfWeek, [{
-	        key: 'ordinal',
-	        value: function ordinal() {
-	            return this._ordinal;
+	    _createClass(Period, [{
+	        key: 'units',
+	
+	
+	        //-----------------------------------------------------------------------
+	        value: function units() {
+	            return [_ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.DAYS];
 	        }
 	    }, {
-	        key: 'name',
-	        value: function name() {
-	            return this._name;
+	        key: 'chronology',
+	        value: function chronology() {
+	            return _IsoChronology.IsoChronology.INSTANCE;
 	        }
-	    }, {
-	        key: 'value',
-	
-	
-	        /**
-	         * Gets the day-of-week {@code int} value.
-	         * <p>
-	         * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
-	         * See {@link WeekFields#dayOfWeek} for localized week-numbering.
-	         *
-	         * @return the day-of-week, from 1 (Monday) to 7 (Sunday)
-	         */
-	        value: function value() {
-	            return this._ordinal + 1;
-	        }
-	
-	        /**
-	         * Gets the textual representation, such as 'Mon' or 'Friday'.
-	         * <p>
-	         * This returns the textual name used to identify the day-of-week.
-	         * The parameters control the length of the returned text and the locale.
-	         * <p>
-	         * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
-	         *
-	         * @param style  the length of the text required, not null
-	         * @param locale  the locale to use, not null
-	         * @return the text value of the day-of-week, not null
-	         */
-	
-	    }, {
-	        key: 'getDisplayName',
-	        value: function getDisplayName(style, locale) {
-	            return new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendText(_ChronoField.ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
-	        }
-	
-	        /**
-	         * Checks if the specified field is supported.
-	         * <p>
-	         * This checks if this day-of-week can be queried for the specified field.
-	         * If false, then calling the {@link #range(TemporalField) range} and
-	         * {@link #get(TemporalField) get} methods will throw an exception.
-	         * <p>
-	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then
-	         * this method returns true.
-	         * All other {@code ChronoField} instances will return false.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-	         * passing {@code this} as the argument.
-	         * Whether the field is supported is determined by the field.
-	         *
-	         * @param field  the field to check, null returns false
-	         * @return true if the field is supported on this day-of-week, false if not
-	         */
-	
-	    }, {
-	        key: 'isSupported',
-	        value: function isSupported(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                return field === _ChronoField.ChronoField.DAY_OF_WEEK;
-	            }
-	            return field != null && field.isSupportedBy(this);
-	        }
-	
-	        /**
-	         * Gets the range of valid values for the specified field.
-	         * <p>
-	         * The range object expresses the minimum and maximum valid values for a field.
-	         * This day-of-week is used to enhance the accuracy of the returned range.
-	         * If it is not possible to return the range, because the field is not supported
-	         * or for some other reason, an exception is thrown.
-	         * <p>
-	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
-	         * range of the day-of-week, from 1 to 7, will be returned.
-	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-	         * passing {@code this} as the argument.
-	         * Whether the range can be obtained is determined by the field.
-	         *
-	         * @param field  the field to query the range for, not null
-	         * @return the range of valid values for the field, not null
-	         * @throws DateTimeException if the range for the field cannot be obtained
-	         */
-	
-	    }, {
-	        key: 'range',
-	        value: function range(field) {
-	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	                return field.range();
-	            } else if (field instanceof _ChronoField.ChronoField) {
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	            }
-	            return field.rangeRefinedBy(this);
-	        }
-	
-	        /**
-	         * Gets the value of the specified field from this day-of-week as an {@code int}.
-	         * <p>
-	         * This queries this day-of-week for the value for the specified field.
-	         * The returned value will always be within the valid range of values for the field.
-	         * If it is not possible to return the value, because the field is not supported
-	         * or for some other reason, an exception is thrown.
-	         * <p>
-	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
-	         * value of the day-of-week, from 1 to 7, will be returned.
-	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-	         * passing {@code this} as the argument. Whether the value can be obtained,
-	         * and what the value represents, is determined by the field.
-	         *
-	         * @param field  the field to get, not null
-	         * @return the value for the field, within the valid range of values
-	         * @throws DateTimeException if a value for the field cannot be obtained
-	         * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
-	         * @throws DateTimeException if the value is outside the range of valid values for the field
-	         * @throws ArithmeticException if numeric overflow occurs
-	         */
-	
 	    }, {
 	        key: 'get',
-	        value: function get(field) {
-	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	                return this.value();
+	        value: function get(unit) {
+	            if (unit === _ChronoUnit.ChronoUnit.YEARS) {
+	                return this._years;
 	            }
-	            return this.range(field).checkValidIntValue(this.getLong(field), field);
-	        }
-	
-	        /**
-	         * Gets the value of the specified field from this day-of-week as a {@code long}.
-	         * <p>
-	         * This queries this day-of-week for the value for the specified field.
-	         * If it is not possible to return the value, because the field is not supported
-	         * or for some other reason, an exception is thrown.
-	         * <p>
-	         * If the field is {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} then the
-	         * value of the day-of-week, from 1 to 7, will be returned.
-	         * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-	         * <p>
-	         * If the field is not a {@code ChronoField}, then the result of this method
-	         * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-	         * passing {@code this} as the argument. Whether the value can be obtained,
-	         * and what the value represents, is determined by the field.
-	         *
-	         * @param field  the field to get, not null
-	         * @return the value for the field
-	         * @throws DateTimeException if a value for the field cannot be obtained
-	         * @throws ArithmeticException if numeric overflow occurs
-	         */
-	
-	    }, {
-	        key: 'getLong',
-	        value: function getLong(field) {
-	            if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	                return this.value();
-	            } else if (field instanceof _ChronoField.ChronoField) {
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            if (unit === _ChronoUnit.ChronoUnit.MONTHS) {
+	                return this._months;
 	            }
-	            return field.getFrom(this);
+	            if (unit === _ChronoUnit.ChronoUnit.DAYS) {
+	                return this._days;
+	            }
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
 	        }
 	
 	        //-----------------------------------------------------------------------
 	        /**
-	         * Returns the day-of-week that is the specified number of days after this one.
+	         * Checks if all three units of this period are zero.
 	         * <p>
-	         * The calculation rolls around the end of the week from Sunday to Monday.
-	         * The specified period may be negative.
+	         * A zero period has the value zero for the years, months and days units.
+	         *
+	         * @return true if this period is zero-length
+	         */
+	
+	    }, {
+	        key: 'isZero',
+	        value: function isZero() {
+	            return this === Period.ZERO;
+	        }
+	
+	        /**
+	         * Checks if any of the three units of this period are negative.
+	         * <p>
+	         * This checks whether the years, months or days units are less than zero.
+	         *
+	         * @return true if any unit of this period is negative
+	         */
+	
+	    }, {
+	        key: 'isNegative',
+	        value: function isNegative() {
+	            return this._years < 0 || this._months < 0 || this._days < 0;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Gets the amount of years of this period.
+	         * <p>
+	         * This returns the years unit.
+	         * <p>
+	         * The months unit is not normalized with the years unit.
+	         * This means that a period of '15 months' is different to a period
+	         * of '1 year and 3 months'.
+	         *
+	         * @return the amount of years of this period, may be negative
+	         */
+	
+	    }, {
+	        key: 'years',
+	        value: function years() {
+	            return this._years;
+	        }
+	
+	        /**
+	         * Gets the amount of months of this period.
+	         * <p>
+	         * This returns the months unit.
+	         * <p>
+	         * The months unit is not normalized with the years unit.
+	         * This means that a period of '15 months' is different to a period
+	         * of '1 year and 3 months'.
+	         *
+	         * @return the amount of months of this period, may be negative
+	         */
+	
+	    }, {
+	        key: 'months',
+	        value: function months() {
+	            return this._months;
+	        }
+	
+	        /**
+	         * Gets the amount of days of this period.
+	         * <p>
+	         * This returns the days unit.
+	         *
+	         * @return the amount of days of this period, may be negative
+	         */
+	
+	    }, {
+	        key: 'days',
+	        value: function days() {
+	            return this._days;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this period with the specified amount of years.
+	         * <p>
+	         * This sets the amount of the years unit in a copy of this period.
+	         * The months and days units are unaffected.
+	         * <p>
+	         * The months unit is not normalized with the years unit.
+	         * This means that a period of '15 months' is different to a period
+	         * of '1 year and 3 months'.
 	         * <p>
 	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @param days  the days to add, positive or negative
-	         * @return the resulting day-of-week, not null
+	         * @param years  the years to represent, may be negative
+	         * @return a {@code Period} based on this period with the requested years, not null
+	         */
+	
+	    }, {
+	        key: 'withYears',
+	        value: function withYears(years) {
+	            if (years === this._years) {
+	                return this;
+	            }
+	            return Period.create(years, this._months, this._days);
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified amount of months.
+	         * <p>
+	         * This sets the amount of the months unit in a copy of this period.
+	         * The years and days units are unaffected.
+	         * <p>
+	         * The months unit is not normalized with the years unit.
+	         * This means that a period of '15 months' is different to a period
+	         * of '1 year and 3 months'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param months  the months to represent, may be negative
+	         * @return a {@code Period} based on this period with the requested months, not null
+	         */
+	
+	    }, {
+	        key: 'withMonths',
+	        value: function withMonths(months) {
+	            if (months === this._months) {
+	                return this;
+	            }
+	            return Period.create(this._years, months, this._days);
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified amount of days.
+	         * <p>
+	         * This sets the amount of the days unit in a copy of this period.
+	         * The years and months units are unaffected.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param days  the days to represent, may be negative
+	         * @return a {@code Period} based on this period with the requested days, not null
+	         */
+	
+	    }, {
+	        key: 'withDays',
+	        value: function withDays(days) {
+	            if (days === this._days) {
+	                return this;
+	            }
+	            return Period.create(this._years, this._months, days);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this period with the specified amount added.
+	         * <p>
+	         * This input amount is converted to a {@code Period} using {@code from(TemporalAmount)}.
+	         * This operates separately on the years, months and days.
+	         * <p>
+	         * For example, '1 year, 6 months and 3 days' plus '2 years, 2 months and 2 days'
+	         * returns '3 years, 8 months and 5 days'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToAdd  the period to add, not null
+	         * @return a {@code Period} based on this period with the requested period added, not null
+	         * @throws ArithmeticException if numeric overflow occurs
 	         */
 	
 	    }, {
 	        key: 'plus',
-	        value: function plus(days) {
-	            var amount = _MathUtil.MathUtil.floorMod(days, 7);
-	            return ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+	        value: function plus(amountToAdd) {
+	            var amount = Period.from(amountToAdd);
+	            return Period.create(_MathUtil.MathUtil.safeAdd(this._years, amount._years), _MathUtil.MathUtil.safeAdd(this._months, amount._months), _MathUtil.MathUtil.safeAdd(this._days, amount._days));
 	        }
 	
 	        /**
-	         * Returns the day-of-week that is the specified number of days before this one.
+	         * Returns a copy of this period with the specified years added.
 	         * <p>
-	         * The calculation rolls around the start of the year from Monday to Sunday.
-	         * The specified period may be negative.
+	         * This adds the amount to the years unit in a copy of this period.
+	         * The months and days units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' plus 2 years returns '3 years, 6 months and 3 days'.
 	         * <p>
 	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @param days  the days to subtract, positive or negative
-	         * @return the resulting day-of-week, not null
-	         */
-	
-	    }, {
-	        key: 'minus',
-	        value: function minus(days) {
-	            return this.plus(-1 * _MathUtil.MathUtil.floorMod(days, 7));
-	        }
-	
-	        //-----------------------------------------------------------------------
-	        /**
-	         * Queries this day-of-week using the specified query.
-	         * <p>
-	         * This queries this day-of-week using the specified query strategy object.
-	         * The {@code TemporalQuery} object defines the logic to be used to
-	         * obtain the result. Read the documentation of the query to understand
-	         * what the result of this method will be.
-	         * <p>
-	         * The result of this method is obtained by invoking the
-	         * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-	         * specified query passing {@code this} as the argument.
-	         *
-	         * @param query  the query to invoke, not null
-	         * @return the query result, null may be returned (defined by the query)
-	         * @throws DateTimeException if unable to query (defined by the query)
-	         * @throws ArithmeticException if numeric overflow occurs (defined by the query)
-	         */
-	
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	                return _ChronoUnit.ChronoUnit.DAYS;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
-	                return null;
-	            }
-	            (0, _assert.assert)(_query != null, 'query', _errors.NullPointerException);
-	            return _query.queryFrom(this);
-	        }
-	
-	        /**
-	         * Adjusts the specified temporal object to have this day-of-week.
-	         * <p>
-	         * This returns a temporal object of the same observable type as the input
-	         * with the day-of-week changed to be the same as this.
-	         * <p>
-	         * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
-	         * passing {@link ChronoField#DAY_OF_WEEK} as the field.
-	         * Note that this adjusts forwards or backwards within a Monday to Sunday week.
-	         * See {@link WeekFields#dayOfWeek} for localized week start days.
-	         * See {@link TemporalAdjusters} for other adjusters
-	         * with more control, such as {@code next(MONDAY)}.
-	         * <p>
-	         * In most cases, it is clearer to reverse the calling pattern by using
-	         * {@link Temporal#with(TemporalAdjuster)}:
-	         * <pre>
-	         *   // these two lines are equivalent, but the second approach is recommended
-	         *   temporal = thisDayOfWeek.adjustInto(temporal);
-	         *   temporal = temporal.with(thisDayOfWeek);
-	         * </pre>
-	         * <p>
-	         * For example, given a date that is a Wednesday, the following are output:
-	         * <pre>
-	         *   dateOnWed.with(MONDAY);     // two days earlier
-	         *   dateOnWed.with(TUESDAY);    // one day earlier
-	         *   dateOnWed.with(WEDNESDAY);  // same date
-	         *   dateOnWed.with(THURSDAY);   // one day later
-	         *   dateOnWed.with(FRIDAY);     // two days later
-	         *   dateOnWed.with(SATURDAY);   // three days later
-	         *   dateOnWed.with(SUNDAY);     // four days later
-	         * </pre>
-	         * <p>
-	         * This instance is immutable and unaffected by this method call.
-	         *
-	         * @param temporal  the target object to be adjusted, not null
-	         * @return the adjusted object, not null
-	         * @throws DateTimeException if unable to make the adjustment
+	         * @param yearsToAdd  the years to add, positive or negative
+	         * @return a {@code Period} based on this period with the specified years added, not null
 	         * @throws ArithmeticException if numeric overflow occurs
 	         */
 	
 	    }, {
-	        key: 'adjustInto',
-	        value: function adjustInto(temporal) {
-	            return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
-	        }
-	    }, {
-	        key: 'equal',
-	        value: function equal() {
-	            return this._name;
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            return this._name;
-	        }
-	    }], [{
-	        key: 'values',
-	        value: function values() {
-	            return ENUMS;
-	        }
-	    }, {
-	        key: 'valueOf',
-	        value: function valueOf(name) {
-	            for (var ordinal = 0; ordinal < ENUMS.length; ordinal++) {
-	                if (ENUMS[ordinal].name() === name) {
-	                    break;
-	                }
+	        key: 'plusYears',
+	        value: function plusYears(yearsToAdd) {
+	            if (yearsToAdd === 0) {
+	                return this;
 	            }
-	            return DayOfWeek.of(ordinal + 1);
+	            return Period.create(_MathUtil.MathUtil.safeToInt(_MathUtil.MathUtil.safeAdd(this._years, yearsToAdd)), this._months, this._days);
 	        }
 	
 	        /**
-	         * Obtains an instance of {@code DayOfWeek} from an {@code int} value.
+	         * Returns a copy of this period with the specified months added.
 	         * <p>
-	         * {@code DayOfWeek} is an enum representing the 7 days of the week.
-	         * This factory allows the enum to be obtained from the {@code int} value.
-	         * The {@code int} value follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
+	         * This adds the amount to the months unit in a copy of this period.
+	         * The years and days units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' plus 2 months returns '1 year, 8 months and 3 days'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
 	         *
-	         * @param dayOfWeek  the day-of-week to represent, from 1 (Monday) to 7 (Sunday)
-	         * @return the day-of-week singleton, not null
-	         * @throws DateTimeException if the day-of-week is invalid
+	         * @param monthsToAdd  the months to add, positive or negative
+	         * @return a {@code Period} based on this period with the specified months added, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'plusMonths',
+	        value: function plusMonths(monthsToAdd) {
+	            if (monthsToAdd === 0) {
+	                return this;
+	            }
+	            return Period.create(this._years, _MathUtil.MathUtil.safeToInt(_MathUtil.MathUtil.safeAdd(this._months, monthsToAdd)), this._days);
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified days added.
+	         * <p>
+	         * This adds the amount to the days unit in a copy of this period.
+	         * The years and months units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' plus 2 days returns '1 year, 6 months and 5 days'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param daysToAdd  the days to add, positive or negative
+	         * @return a {@code Period} based on this period with the specified days added, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'plusDays',
+	        value: function plusDays(daysToAdd) {
+	            if (daysToAdd === 0) {
+	                return this;
+	            }
+	            return Period.create(this._years, this._months, _MathUtil.MathUtil.safeToInt(_MathUtil.MathUtil.safeAdd(this._days, daysToAdd)));
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this period with the specified amount subtracted.
+	         * <p>
+	         * This input amount is converted to a {@code Period} using {@code from(TemporalAmount)}.
+	         * This operates separately on the years, months and days.
+	         * <p>
+	         * For example, '1 year, 6 months and 3 days' minus '2 years, 2 months and 2 days'
+	         * returns '-1 years, 4 months and 1 day'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param amountToSubtract  the period to subtract, not null
+	         * @return a {@code Period} based on this period with the requested period subtracted, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'minus',
+	        value: function minus(amountToSubtract) {
+	            var amount = Period.from(amountToSubtract);
+	            return Period.create(_MathUtil.MathUtil.safeSubtract(this._years, amount._years), _MathUtil.MathUtil.safeSubtract(this._months, amount._months), _MathUtil.MathUtil.safeSubtract(this._days, amount._days));
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified years subtracted.
+	         * <p>
+	         * This subtracts the amount from the years unit in a copy of this period.
+	         * The months and days units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' minus 2 years returns '-1 years, 6 months and 3 days'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param yearsToSubtract  the years to subtract, positive or negative
+	         * @return a {@code Period} based on this period with the specified years subtracted, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'minusYears',
+	        value: function minusYears(yearsToSubtract) {
+	            return this.plusYears(-1 * yearsToSubtract);
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified months subtracted.
+	         * <p>
+	         * This subtracts the amount from the months unit in a copy of this period.
+	         * The years and days units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' minus 2 months returns '1 year, 4 months and 3 days'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param monthsToSubtract  the years to subtract, positive or negative
+	         * @return a {@code Period} based on this period with the specified months subtracted, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'minusMonths',
+	        value: function minusMonths(monthsToSubtract) {
+	            return this.plusMonths(-1 * monthsToSubtract);
+	        }
+	
+	        /**
+	         * Returns a copy of this period with the specified days subtracted.
+	         * <p>
+	         * This subtracts the amount from the days unit in a copy of this period.
+	         * The years and months units are unaffected.
+	         * For example, '1 year, 6 months and 3 days' minus 2 days returns '1 year, 6 months and 1 day'.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param daysToSubtract  the months to subtract, positive or negative
+	         * @return a {@code Period} based on this period with the specified days subtracted, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'minusDays',
+	        value: function minusDays(daysToSubtract) {
+	            return this.plusDays(-1 * daysToSubtract);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a new instance with each element in this period multiplied
+	         * by the specified scalar.
+	         * <p>
+	         * This simply multiplies each field, years, months, days and normalized time,
+	         * by the scalar. No normalization is performed.
+	         *
+	         * @param scalar  the scalar to multiply by, not null
+	         * @return a {@code Period} based on this period with the amounts multiplied by the scalar, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'multipliedBy',
+	        value: function multipliedBy(scalar) {
+	            if (this === Period.ZERO || scalar === 1) {
+	                return this;
+	            }
+	            return Period.create(_MathUtil.MathUtil.safeMultiply(this._years, scalar), _MathUtil.MathUtil.safeMultiply(this._months, scalar), _MathUtil.MathUtil.safeMultiply(this._days, scalar));
+	        }
+	
+	        /**
+	         * Returns a new instance with each amount in this period negated.
+	         *
+	         * @return a {@code Period} based on this period with the amounts negated, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'negated',
+	        value: function negated() {
+	            return this.multipliedBy(-1);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Returns a copy of this period with the years and months normalized
+	         * using a 12 month year.
+	         * <p>
+	         * This normalizes the years and months units, leaving the days unit unchanged.
+	         * The months unit is adjusted to have an absolute value less than 11,
+	         * with the years unit being adjusted to compensate. For example, a period of
+	         * '1 Year and 15 months' will be normalized to '2 years and 3 months'.
+	         * <p>
+	         * The sign of the years and months units will be the same after normalization.
+	         * For example, a period of '1 year and -25 months' will be normalized to
+	         * '-1 year and -1 month'.
+	         * <p>
+	         * This normalization uses a 12 month year which is not valid for all calendar systems.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @return a {@code Period} based on this period with excess months normalized to years, not null
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'normalized',
+	        value: function normalized() {
+	            var totalMonths = this.toTotalMonths();
+	            var splitYears = _MathUtil.MathUtil.intDiv(totalMonths, 12);
+	            var splitMonths = _MathUtil.MathUtil.intMod(totalMonths, 12); // no overflow
+	            if (splitYears === this._years && splitMonths === this._months) {
+	                return this;
+	            }
+	            return Period.create(_MathUtil.MathUtil.safeToInt(splitYears), splitMonths, this._days);
+	        }
+	
+	        /**
+	         * Gets the total number of months in this period using a 12 month year.
+	         * <p>
+	         * This returns the total number of months in the period by multiplying the
+	         * number of years by 12 and adding the number of months.
+	         * <p>
+	         * This uses a 12 month year which is not valid for all calendar systems.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @return the total number of months in the period, may be negative
+	         */
+	
+	    }, {
+	        key: 'toTotalMonths',
+	        value: function toTotalMonths() {
+	            return this._years * 12 + this._months; // no overflow
+	        }
+	
+	        //-------------------------------------------------------------------------
+	        /**
+	         * Adds this period to the specified temporal object.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with this period added.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#plus(TemporalAmount)}.
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   dateTime = thisPeriod.addTo(dateTime);
+	         *   dateTime = dateTime.plus(thisPeriod);
+	         * </pre>
+	         * <p>
+	         * The calculation will add the years, then months, then days.
+	         * Only non-zero amounts will be added.
+	         * If the date-time has a calendar system with a fixed number of months in a
+	         * year, then the years and months will be combined before being added.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param temporal  the temporal object to adjust, not null
+	         * @return an object of the same type with the adjustment made, not null
+	         * @throws DateTimeException if unable to add
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'addTo',
+	        value: function addTo(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            if (this._years !== 0) {
+	                if (this._months !== 0) {
+	                    temporal = temporal.plus(this.toTotalMonths(), _ChronoUnit.ChronoUnit.MONTHS);
+	                } else {
+	                    temporal = temporal.plus(this._years, _ChronoUnit.ChronoUnit.YEARS);
+	                }
+	            } else if (this._months !== 0) {
+	                temporal = temporal.plus(this._months, _ChronoUnit.ChronoUnit.MONTHS);
+	            }
+	            if (this._days !== 0) {
+	                temporal = temporal.plus(this._days, _ChronoUnit.ChronoUnit.DAYS);
+	            }
+	            return temporal;
+	        }
+	
+	        /**
+	         * Subtracts this period from the specified temporal object.
+	         * <p>
+	         * This returns a temporal object of the same observable type as the input
+	         * with this period subtracted.
+	         * <p>
+	         * In most cases, it is clearer to reverse the calling pattern by using
+	         * {@link Temporal#minus(TemporalAmount)}.
+	         * <pre>
+	         *   // these two lines are equivalent, but the second approach is recommended
+	         *   dateTime = thisPeriod.subtractFrom(dateTime);
+	         *   dateTime = dateTime.minus(thisPeriod);
+	         * </pre>
+	         * <p>
+	         * The calculation operates as follows.
+	         * First, the chronology of the temporal is checked to ensure it is ISO chronology or null.
+	         * Second, if the months are zero, the years are added if non-zero, otherwise
+	         * the combination of years and months is added if non-zero.
+	         * Finally, any days are added.
+	         * 
+	         * The calculation will subtract the years, then months, then days.
+	         * Only non-zero amounts will be subtracted.
+	         * If the date-time has a calendar system with a fixed number of months in a
+	         * year, then the years and months will be combined before being subtracted.
+	         * <p>
+	         * This instance is immutable and unaffected by this method call.
+	         *
+	         * @param temporal  the temporal object to adjust, not null
+	         * @return an object of the same type with the adjustment made, not null
+	         * @throws DateTimeException if unable to subtract
+	         * @throws ArithmeticException if numeric overflow occurs
+	         */
+	
+	    }, {
+	        key: 'subtractFrom',
+	        value: function subtractFrom(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            if (this._years !== 0) {
+	                if (this._months !== 0) {
+	                    temporal = temporal.minus(this.toTotalMonths(), _ChronoUnit.ChronoUnit.MONTHS);
+	                } else {
+	                    temporal = temporal.minus(this._years, _ChronoUnit.ChronoUnit.YEARS);
+	                }
+	            } else if (this._months !== 0) {
+	                temporal = temporal.minus(this._months, _ChronoUnit.ChronoUnit.MONTHS);
+	            }
+	            if (this._days !== 0) {
+	                temporal = temporal.minus(this._days, _ChronoUnit.ChronoUnit.DAYS);
+	            }
+	            return temporal;
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Checks if this period is equal to another period.
+	         * <p>
+	         * The comparison is based on the amounts held in the period.
+	         * To be equal, the years, months and days units must be individually equal.
+	         * Note that this means that a period of '15 Months' is not equal to a period
+	         * of '1 Year and 3 Months'.
+	         *
+	         * @param obj  the object to check, null returns false
+	         * @return true if this is equal to the other period
+	         */
+	
+	    }, {
+	        key: 'equals',
+	        value: function equals(obj) {
+	            if (this === obj) {
+	                return true;
+	            }
+	            if (obj instanceof Period) {
+	                var other = obj;
+	                return this._years === other._years && this._months === other._months && this._days === other._days;
+	            }
+	            return false;
+	        }
+	
+	        /**
+	         * A hash code for this period.
+	         *
+	         * @return a suitable hash code
+	         */
+	
+	    }, {
+	        key: 'hashCode',
+	        value: function hashCode() {
+	            return this._years + (this._months << 8) + (this._days << 16);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Outputs this period as a {@code String}, such as {@code P6Y3M1D}.
+	         * <p>
+	         * The output will be in the ISO-8601 period format.
+	         * A zero period will be represented as zero days, 'P0D'.
+	         *
+	         * @return a string representation of this period, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            if (this === Period.ZERO) {
+	                return 'P0D';
+	            } else {
+	                var buf = 'P';
+	                if (this._years !== 0) {
+	                    buf += '' + this._years + 'Y';
+	                }
+	                if (this._months !== 0) {
+	                    buf += '' + this._months + 'M';
+	                }
+	                if (this._days !== 0) {
+	                    buf += '' + this._days + 'D';
+	                }
+	                return buf;
+	            }
+	        }
+	    }], [{
+	        key: '_validate',
+	        value: function _validate(years, month, days) {
+	            (0, _assert.requireNonNull)(years, 'years');
+	            (0, _assert.requireNonNull)(month, 'month');
+	            (0, _assert.requireNonNull)(days, 'days');
+	            _MathUtil.MathUtil.safeToInt(years);
+	            _MathUtil.MathUtil.safeToInt(month);
+	            _MathUtil.MathUtil.safeToInt(days);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Obtains a {@code Period} representing a number of years.
+	         * <p>
+	         * The resulting period will have the specified years.
+	         * The months and days units will be zero.
+	         *
+	         * @param years  the number of years, positive or negative
+	         * @return the period of years, not null
+	         */
+	
+	    }, {
+	        key: 'ofYears',
+	        value: function ofYears(years) {
+	            return Period.create(years, 0, 0);
+	        }
+	
+	        /**
+	         * Obtains a {@code Period} representing a number of months.
+	         * <p>
+	         * The resulting period will have the specified months.
+	         * The years and days units will be zero.
+	         *
+	         * @param months  the number of months, positive or negative
+	         * @return the period of months, not null
+	         */
+	
+	    }, {
+	        key: 'ofMonths',
+	        value: function ofMonths(months) {
+	            return Period.create(0, months, 0);
+	        }
+	
+	        /**
+	         * Obtains a {@code Period} representing a number of weeks.
+	         * <p>
+	         * The resulting period will have days equal to the weeks multiplied by seven.
+	         * The years and months units will be zero.
+	         *
+	         * @param weeks  the number of weeks, positive or negative
+	         * @return the period of days, not null
+	         */
+	
+	    }, {
+	        key: 'ofWeeks',
+	        value: function ofWeeks(weeks) {
+	            return Period.create(0, 0, _MathUtil.MathUtil.safeMultiply(weeks, 7));
+	        }
+	
+	        /**
+	         * Obtains a {@code Period} representing a number of days.
+	         * <p>
+	         * The resulting period will have the specified days.
+	         * The years and months units will be zero.
+	         *
+	         * @param days  the number of days, positive or negative
+	         * @return the period of days, not null
+	         */
+	
+	    }, {
+	        key: 'ofDays',
+	        value: function ofDays(days) {
+	            return Period.create(0, 0, days);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Obtains a {@code Period} representing a number of years, months and days.
+	         * <p>
+	         * This creates an instance based on years, months and days.
+	         *
+	         * @param years  the amount of years, may be negative
+	         * @param months  the amount of months, may be negative
+	         * @param days  the amount of days, may be negative
+	         * @return the period of years, months and days, not null
 	         */
 	
 	    }, {
 	        key: 'of',
-	        value: function of(dayOfWeek) {
-	            if (dayOfWeek < 1 || dayOfWeek > 7) {
-	                throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
-	            }
-	            return ENUMS[dayOfWeek - 1];
+	        value: function of(years, months, days) {
+	            return Period.create(years, months, days);
 	        }
 	
+	        //-----------------------------------------------------------------------
 	        /**
-	         * Obtains an instance of {@code DayOfWeek} from a temporal object.
+	         * Obtains an instance of {@code Period} from a temporal amount.
 	         * <p>
-	         * A {@code TemporalAccessor} represents some form of date and time information.
-	         * This factory converts the arbitrary temporal object to an instance of {@code DayOfWeek}.
+	         * This obtains a period based on the specified amount.
+	         * A {@code TemporalAmount} represents an  amount of time, which may be
+	         * date-based or time-based, which this factory extracts to a {@code Period}.
 	         * <p>
-	         * The conversion extracts the {@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} field.
+	         * The conversion loops around the set of units from the amount and uses
+	         * the {@link ChronoUnit#YEARS YEARS}, {@link ChronoUnit#MONTHS MONTHS}
+	         * and {@link ChronoUnit#DAYS DAYS} units to create a period.
+	         * If any other units are found then an exception is thrown.
 	         * <p>
-	         * This method matches the signature of the functional interface {@link TemporalQuery}
-	         * allowing it to be used as a query via method reference, {@code DayOfWeek::from}.
+	         * If the amount is a {@code ChronoPeriod} then it must use the ISO chronology.
 	         *
-	         * @param temporal  the temporal object to convert, not null
-	         * @return the day-of-week, not null
-	         * @throws DateTimeException if unable to convert to a {@code DayOfWeek}
+	         * @param amount  the temporal amount to convert, not null
+	         * @return the equivalent period, not null
+	         * @throws DateTimeException if unable to convert to a {@code Period}
+	         * @throws ArithmeticException if the amount of years, months or days exceeds an int
 	         */
 	
 	    }, {
 	        key: 'from',
-	        value: function from(temporal) {
-	            (0, _assert.assert)(temporal != null, 'temporal', _errors.NullPointerException);
-	            if (temporal instanceof DayOfWeek) {
-	                return temporal;
+	        value: function from(amount) {
+	            if (amount instanceof Period) {
+	                return amount;
 	            }
+	            /*
+	                    if (amount instanceof ChronoPeriod) {
+	                        if (IsoChronology.INSTANCE !== amount.chronology()) {
+	                            throw new DateTimeException('Period requires ISO chronology: ' + amount);
+	                        }
+	                    }
+	            */
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            var years = 0;
+	            var months = 0;
+	            var days = 0;
+	            var units = amount.units();
+	            for (var i = 0; i < units.length; i++) {
+	                var unit = units[i];
+	                var unitAmount = amount.get(unit);
+	                if (unit === _ChronoUnit.ChronoUnit.YEARS) {
+	                    years = _MathUtil.MathUtil.safeToInt(unitAmount);
+	                } else if (unit === _ChronoUnit.ChronoUnit.MONTHS) {
+	                    months = _MathUtil.MathUtil.safeToInt(unitAmount);
+	                } else if (unit === _ChronoUnit.ChronoUnit.DAYS) {
+	                    days = _MathUtil.MathUtil.safeToInt(unitAmount);
+	                } else {
+	                    throw new _errors.DateTimeException('Unit must be Years, Months or Days, but was ' + unit);
+	                }
+	            }
+	            return Period.create(years, months, days);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Obtains a {@code Period} consisting of the number of years, months,
+	         * and days between two dates.
+	         * <p>
+	         * The start date is included, but the end date is not.
+	         * The period is calculated by removing complete months, then calculating
+	         * the remaining number of days, adjusting to ensure that both have the same sign.
+	         * The number of months is then split into years and months based on a 12 month year.
+	         * A month is considered if the end day-of-month is greater than or equal to the start day-of-month.
+	         * For example, from {@code 2010-01-15} to {@code 2011-03-18} is one year, two months and three days.
+	         * <p>
+	         * The result of this method can be a negative period if the end is before the start.
+	         * The negative sign will be the same in each of year, month and day.
+	         *
+	         * @param startDate  the start date, inclusive, not null
+	         * @param endDate  the end date, exclusive, not null
+	         * @return the period between this date and the end date, not null
+	         * @see ChronoLocalDate#until(ChronoLocalDate)
+	         */
+	
+	    }, {
+	        key: 'between',
+	        value: function between(startDate, endDate) {
+	            (0, _assert.requireNonNull)(startDate, 'startDate');
+	            (0, _assert.requireNonNull)(endDate, 'endDate');
+	            (0, _assert.requireInstance)(startDate, _LocalDate.LocalDate, 'startDate');
+	            (0, _assert.requireInstance)(endDate, _LocalDate.LocalDate, 'endDate');
+	            return startDate.until(endDate);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Obtains a {@code Period} from a text string such as {@code PnYnMnD}.
+	         * <p>
+	         * This will parse the string produced by {@code toString()} which is
+	         * based on the ISO-8601 period formats {@code PnYnMnD} and {@code PnW}.
+	         * <p>
+	         * The string starts with an optional sign, denoted by the ASCII negative
+	         * or positive symbol. If negative, the whole period is negated.
+	         * The ASCII letter 'P' is next in upper or lower case.
+	         * There are then four sections, each consisting of a number and a suffix.
+	         * At least one of the four sections must be present.
+	         * The sections have suffixes in ASCII of 'Y', 'M', 'W' and 'D' for
+	         * years, months, weeks and days, accepted in upper or lower case.
+	         * The suffixes must occur in order.
+	         * The number part of each section must consist of ASCII digits.
+	         * The number may be prefixed by the ASCII negative or positive symbol.
+	         * The number must parse to an {@code int}.
+	         * <p>
+	         * The leading plus/minus sign, and negative values for other units are
+	         * not part of the ISO-8601 standard. In addition, ISO-8601 does not
+	         * permit mixing between the {@code PnYnMnD} and {@code PnW} formats.
+	         * Any week-based input is multiplied by 7 and treated as a number of days.
+	         * <p>
+	         * For example, the following are valid inputs:
+	         * <pre>
+	         *   'P2Y'             -- Period.ofYears(2)
+	         *   'P3M'             -- Period.ofMonths(3)
+	         *   'P4W'             -- Period.ofWeeks(4)
+	         *   'P5D'             -- Period.ofDays(5)
+	         *   'P1Y2M3D'         -- Period.of(1, 2, 3)
+	         *   'P1Y2M3W4D'       -- Period.of(1, 2, 25)
+	         *   'P-1Y2M'          -- Period.of(-1, 2, 0)
+	         *   '-P1Y2M'          -- Period.of(-1, -2, 0)
+	         * </pre>
+	         *
+	         * @param text  the text to parse, not null
+	         * @return the parsed period, not null
+	         * @throws DateTimeParseException if the text cannot be parsed to a period
+	         */
+	
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            (0, _assert.requireNonNull)(text, 'text');
 	            try {
-	                return DayOfWeek.of(temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK));
+	                return Period._parse(text);
 	            } catch (ex) {
-	                if (ex instanceof _errors.DateTimeException) {
-	                    throw new _errors.DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + temporal.name(), ex);
+	                if (ex instanceof _errors.ArithmeticException) {
+	                    throw new _errors.DateTimeParseException('Text cannot be parsed to a Period', text, 0, ex);
 	                } else {
 	                    throw ex;
 	                }
 	            }
 	        }
+	
+	        /**
+	         * because functions that containing a try/ catch block cant be optimized,
+	         * we put the code in a sub function.
+	         */
+	
+	    }, {
+	        key: '_parse',
+	        value: function _parse(text) {
+	            var matches = PATTERN.exec(text);
+	            if (matches != null) {
+	                var negate = '-' === matches[1] ? -1 : 1;
+	                var yearMatch = matches[2];
+	                var monthMatch = matches[3];
+	                var weekMatch = matches[4];
+	                var dayMatch = matches[5];
+	                if (yearMatch != null || monthMatch != null || weekMatch != null || dayMatch != null) {
+	                    var years = Period._parseNumber(text, yearMatch, negate);
+	                    var months = Period._parseNumber(text, monthMatch, negate);
+	                    var weeks = Period._parseNumber(text, weekMatch, negate);
+	                    var days = Period._parseNumber(text, dayMatch, negate);
+	                    days = _MathUtil.MathUtil.safeAdd(days, _MathUtil.MathUtil.safeMultiply(weeks, 7));
+	                    return Period.create(years, months, days);
+	                }
+	            }
+	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Period', text, 0);
+	        }
+	    }, {
+	        key: '_parseNumber',
+	        value: function _parseNumber(text, str, negate) {
+	            if (str == null) {
+	                return 0;
+	            }
+	            var val = _MathUtil.MathUtil.parseInt(str);
+	            return _MathUtil.MathUtil.safeMultiply(val, negate);
+	        }
+	
+	        //-----------------------------------------------------------------------
+	        /**
+	         * Creates an instance.
+	         *
+	         * @param years  the amount
+	         * @param months  the amount
+	         * @param days  the amount
+	         */
+	
+	    }, {
+	        key: 'create',
+	        value: function create(years, months, days) {
+	            return new Period(years, months, days);
+	        }
 	    }]);
 	
-	    return DayOfWeek;
-	}(_TemporalAccessor2.TemporalAccessor);
+	    return Period;
+	}(_TemporalAmount2.TemporalAmount /* extends ChronoPeriod */);
 	
-	exports.DayOfWeek = DayOfWeek;
+	function _init() {
+	    /**
+	     * A constant for a period of zero.
+	     */
+	    Period.ZERO = makeZeroPeriod();
 	
+	    function makeZeroPeriod() {
+	        var zero = Object.create(Period.prototype);
+	        _TemporalAmount2.TemporalAmount.call(zero);
+	        zero._years = 0;
+	        zero._months = 0;
+	        zero._days = 0;
+	        return zero;
+	    }
+	}
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	"use strict";
 	
-	DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
-	DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
-	DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
-	DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
-	DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
-	DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
-	DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports._init = _init;
 	
-	DayOfWeek.FROM = (0, _TemporalQueries.createTemporalQuery)('DayOfWeek.FROM', function (temporal) {
-	    return DayOfWeek.from(temporal);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	/**
+	 * A year in the ISO-8601 calendar system, such as {@code 2007}.
+	 * <p>
+	 * {@code Year} is an immutable date-time object that represents a year.
+	 * Any field that can be derived from a year can be obtained.
+	 * <p>
+	 * <b>Note that years in the ISO chronology only align with years in the
+	 * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
+	 * modern Gregorian/ISO rules until 1920.
+	 * As such, historical years must be treated with caution.</b>
+	 * <p>
+	 * This class does not store or represent a month, day, time or time-zone.
+	 * For example, the value "2007" can be stored in a {@code Year}.
+	 * <p>
+	 * Years represented by this class follow the ISO-8601 standard and use
+	 * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
+	 * <p>
+	 * The ISO-8601 calendar system is the modern civil calendar system used today
+	 * in most of the world. It is equivalent to the proleptic Gregorian calendar
+	 * system, in which today's rules for leap years are applied for all time.
+	 * For most applications written today, the ISO-8601 rules are entirely suitable.
+	 * However, any application that makes use of historical dates, and requires them
+	 * to be accurate will find the ISO-8601 approach unsuitable.
+	 *
+	 */
+	
+	var Year = exports.Year = function Year() {
+	  _classCallCheck(this, Year);
+	};
+	
+	function _init() {
+	  /**
+	   * The minimum supported year
+	   */
+	  Year.MIN_VALUE = -999999;
+	  /**
+	   * The maximum supported year
+	   */
+	  Year.MAX_VALUE = 999999;
+	}
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
 	
-	var ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var TemporalField = exports.TemporalField = function TemporalField() {
+	    _classCallCheck(this, TemporalField);
+	};
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ValueRange = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	var _assert = __webpack_require__(9);
+	
+	var _errors = __webpack_require__(5);
+	
+	var _MathUtil = __webpack_require__(4);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * The range of valid values for a date-time field.
+	 * 
+	 * All TemporalField instances have a valid range of values.
+	 * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
+	 * This class captures that valid range.
+	 * 
+	 * It is important to be aware of the limitations of this class.
+	 * Only the minimum and maximum values are provided.
+	 * It is possible for there to be invalid values within the outer range.
+	 * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
+	 * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
+	 * 
+	 * Instances of this class are not tied to a specific field.
+	 *
+	 */
+	
+	var ValueRange = exports.ValueRange = function () {
+	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
+	        _classCallCheck(this, ValueRange);
+	
+	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'');
+	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'');
+	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'');
+	
+	        this._minSmallest = minSmallest;
+	        this._minLargest = minLargest;
+	        this._maxLargest = maxLargest;
+	        this._maxSmallest = maxSmallest;
+	    }
+	
+	    _createClass(ValueRange, [{
+	        key: 'minimum',
+	        value: function minimum() {
+	            return this._minSmallest;
+	        }
+	    }, {
+	        key: 'largestMinimum',
+	        value: function largestMinimum() {
+	            return this._minLargest;
+	        }
+	    }, {
+	        key: 'maximum',
+	        value: function maximum() {
+	            return this._maxLargest;
+	        }
+	    }, {
+	        key: 'smallestMaximum',
+	        value: function smallestMaximum() {
+	            return this._maxSmallest;
+	        }
+	    }, {
+	        key: 'isValidValue',
+	        value: function isValidValue(value) {
+	            return this.minimum() <= value && value <= this.maximum();
+	        }
+	    }, {
+	        key: 'checkValidValue',
+	        value: function checkValidValue(value, field) {
+	            var msg;
+	            if (!this.isValidValue(value)) {
+	                if (field != null) {
+	                    msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
+	                } else {
+	                    msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
+	                }
+	                return (0, _assert.assert)(false, msg, _errors.DateTimeException);
+	            }
+	        }
+	
+	        /**
+	         * Checks that the specified value is valid and fits in an {@code int}.
+	         * <p>
+	         * This validates that the value is within the valid range of values and that
+	         * all valid values are within the bounds of an {@code int}.
+	         * The field is only used to improve the error message.
+	         *
+	         * @param value  the value to check
+	         * @param field  the field being checked, may be null
+	         * @return the value that was passed in
+	         * @see #isValidIntValue(long)
+	         */
+	
+	    }, {
+	        key: 'checkValidIntValue',
+	        value: function checkValidIntValue(value, field) {
+	            if (this.isValidIntValue(value) === false) {
+	                throw new _errors.DateTimeException('Invalid int value for ' + field + ': ' + value);
+	            }
+	            return value;
+	        }
+	
+	        /**
+	         * Checks if the value is within the valid range and that all values
+	         * in the range fit in an {@code int}.
+	         * <p>
+	         * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+	         *
+	         * @param value  the value to check
+	         * @return true if the value is valid and fits in an {@code int}
+	         */
+	
+	    }, {
+	        key: 'isValidIntValue',
+	        value: function isValidIntValue(value) {
+	            return this.isIntValue() && this.isValidValue(value);
+	        }
+	
+	        /**
+	         * Checks if all values in the range fit in an {@code int}.
+	         * <p>
+	         * This checks that all valid values are within the bounds of an {@code int}.
+	         * <p>
+	         * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
+	         * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
+	         * <p>
+	         * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+	         *
+	         * @return boolean if a valid value always fits in an {@code int}
+	         */
+	
+	    }, {
+	        key: 'isIntValue',
+	        value: function isIntValue() {
+	            return this.minimum() >= _MathUtil.MathUtil.MIN_SAFE_INTEGER && this.maximum() <= _MathUtil.MathUtil.MAX_SAFE_INTEGER;
+	        }
+	
+	        /*
+	         * Outputs this range as a String.
+	         * 
+	         * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
+	         * where the largestMin or smallestMax sections may be omitted, together
+	         * with associated slash, if they are the same as the min or max.
+	         *
+	         * @return {string} a string representation of this range, not null
+	         */
+	
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
+	            str += ' - ';
+	            str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
+	            return str;
+	        }
+	
+	        /*
+	         * called with 2 params: Obtains a fixed value range.
+	         *
+	         * This factory obtains a range where the minimum and maximum values are fixed.
+	         * For example, the ISO month-of-year always runs from 1 to 12.
+	         *
+	         * @param min  the minimum value
+	         * @param max  the maximum value
+	         * @return the ValueRange for min, max, not null
+	          * called with 3 params: Obtains a variable value range.
+	         *
+	         * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
+	         * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
+	         *
+	         * @param min  the minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return the ValueRange for min, smallest max, largest max, not null
+	          * called with 4 params: Obtains a fully variable value range.
+	         *
+	         * This factory obtains a range where both the minimum and maximum value may vary.
+	         *
+	         * @param minSmallest  the smallest minimum value
+	         * @param minLargest  the largest minimum value
+	         * @param maxSmallest  the smallest maximum value
+	         * @param maxLargest  the largest maximum value
+	         * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
+	         */
+	
+	    }], [{
+	        key: 'of',
+	        value: function of() {
+	            if (arguments.length === 2) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
+	            } else if (arguments.length === 3) {
+	                return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
+	            } else if (arguments.length === 4) {
+	                return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
+	            } else {
+	                return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length);
+	            }
+	        }
+	    }]);
+	
+	    return ValueRange;
+	}();
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _DayOfWeek = __webpack_require__(24);
+	
+	var _Duration = __webpack_require__(8);
+	
+	var _Instant = __webpack_require__(2);
+	
+	var _LocalDate = __webpack_require__(19);
+	
+	var _LocalTime = __webpack_require__(11);
+	
+	var _Month = __webpack_require__(29);
+	
+	var _Period = __webpack_require__(30);
+	
+	var _Year = __webpack_require__(31);
+	
+	var _ZoneOffset = __webpack_require__(22);
+	
+	var _IsoChronology = __webpack_require__(17);
+	
+	var _DateTimeFormatter = __webpack_require__(12);
+	
+	var _ChronoField = __webpack_require__(3);
+	
+	var _ChronoUnit = __webpack_require__(7);
+	
+	var _TemporalQueries = __webpack_require__(21);
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var isInit = false;
+	
+	function init() {
+	
+	    if (isInit) {
+	        return;
+	    }
+	
+	    isInit = true;
+	
+	    (0, _Year._init)();
+	    (0, _Duration._init)();
+	    (0, _LocalTime._init)();
+	    (0, _ChronoUnit._init)();
+	    (0, _ChronoField._init)();
+	    (0, _TemporalQueries._init)();
+	    (0, _DayOfWeek._init)();
+	    (0, _Instant._init)();
+	    (0, _LocalDate._init)();
+	    (0, _Month._init)();
+	    (0, _Period._init)();
+	    (0, _ZoneOffset._init)();
+	    (0, _IsoChronology._init)();
+	    (0, _DateTimeFormatter._init)();
+	}
+	
+	init();
 
 /***/ }
 /******/ ])
