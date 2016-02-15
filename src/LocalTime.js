@@ -1255,12 +1255,11 @@ LocalTime.MIDNIGHT = HOURS[0];
  */
 LocalTime.NOON = HOURS[12];
 
-var FROM;
-LocalTime.FROM = () => {
-    return FROM || (FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
-        return LocalTime.from(temporal);
-    }));
-};
+/*
+LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
+    return LocalTime.from(temporal);
+});
+*/
 
 /**
  * Hours per day.

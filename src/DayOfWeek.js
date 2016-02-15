@@ -360,13 +360,9 @@ DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
 DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
 DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
 
-var FROM;
-DayOfWeek.FROM = () => {
-    return FROM || (FROM = createTemporalQuery('DayOfWeek.FROM', (temporal) => {
-        return DayOfWeek.from(temporal);
-    }));
-}
-
+DayOfWeek.FROM = createTemporalQuery('DayOfWeek.FROM', (temporal) => {
+    return DayOfWeek.from(temporal);
+});
 
 var ENUMS = [
     DayOfWeek.MONDAY,
