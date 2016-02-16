@@ -27,11 +27,19 @@ module.exports = {
     },
     plugins: minify ? [
         new webpack.optimize.UglifyJsPlugin({
-            comments: false
+            comments: false,
+            compress: {
+                warnings: false
+            }
         }),
         new webpack.BannerPlugin(
             fs.readFileSync('./src/license-preample.js', 'utf8'),
             {raw: true}
         )
-    ] : []
+    ] : [
+        new webpack.BannerPlugin(
+                fs.readFileSync('./src/license-preample.js', 'utf8'),
+                {raw: true}
+        )
+    ]
 };
