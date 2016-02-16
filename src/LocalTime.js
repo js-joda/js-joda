@@ -142,7 +142,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
         var time = temporal.query(TemporalQueries.localTime());
         if (time == null) {
             throw new DateTimeException('Unable to obtain LocalTime from TemporalAccessor: ' +
-                    temporal + ', type ' + temporal.name());
+                    temporal + ', type ' + temporal);
         }
         return time;
     }

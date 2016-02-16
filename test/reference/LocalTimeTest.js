@@ -7,6 +7,7 @@ import {MathUtil} from '../../src/MathUtil';
 import {DateTimeException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {ZoneOffset} from '../../src/ZoneOffset';
@@ -359,92 +360,33 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
+    describe('from()', () => {
+
+        it('factory_from_DateTimeAccessor', () => {
+            assertEquals(LocalTime.from(LocalTime.of(17, 30)), LocalTime.of(17, 30));
+            // TODO assertEquals(LocalTime.from(LocalDateTime.of(2012, 5, 1, 17, 30)), LocalTime.of(17, 30));
+        });
+
+        it('factory_from_DateTimeAccessor_invalid_noDerive', () => {
+            expect(() => {
+                LocalTime.from(LocalDate.of(2007, 7, 15));
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_from_DateTimeAccessor_null', () => {
+            expect(() => {
+                LocalTime.from(null);
+            }).to.throw(NullPointerException);
+
+        });
+
+});
+
+
+
 });
 
 /**
-public class TestLocalTime extends AbstractDateTimeTest {
-
-    private static final TemporalUnit[] INVALID_UNITS;
-    static {
-        EnumSet<ChronoUnit> set = EnumSet.range(WEEKS, FOREVER);
-        INVALID_UNITS = (TemporalUnit[]) set.toArray(new TemporalUnit[set.size()]);
-    }
-
-    //-----------------------------------------------------------------------
-    @Override
-    protected List<TemporalAccessor> samples() {
-        TemporalAccessor[] array = {TEST_12_30_40_987654321, LocalTime.MIN, LocalTime.MAX, LocalTime.MIDNIGHT, LocalTime.NOON};
-        return Arrays.asList(array);
-    }
-
-    @Override
-    protected List<TemporalField> validFields() {
-        TemporalField[] array = {
-            NANO_OF_SECOND,
-            NANO_OF_DAY,
-            MICRO_OF_SECOND,
-            MICRO_OF_DAY,
-            MILLI_OF_SECOND,
-            MILLI_OF_DAY,
-            SECOND_OF_MINUTE,
-            SECOND_OF_DAY,
-            MINUTE_OF_HOUR,
-            MINUTE_OF_DAY,
-            CLOCK_HOUR_OF_AMPM,
-            HOUR_OF_AMPM,
-            CLOCK_HOUR_OF_DAY,
-            HOUR_OF_DAY,
-            AMPM_OF_DAY,
-        };
-        return Arrays.asList(array);
-    }
-
-    @Override
-    protected List<TemporalField> invalidFields() {
-        List<TemporalField> list = new ArrayList<TemporalField>(Arrays.<TemporalField>asList(ChronoField.values()));
-        list.removeAll(validFields());
-        list.add(JulianFields.JULIAN_DAY);
-        list.add(JulianFields.MODIFIED_JULIAN_DAY);
-        list.add(JulianFields.RATA_DIE);
-        return list;
-    }
-
-    //-----------------------------------------------------------------------
-    @Test
-    public void test_serialization_format() throws ClassNotFoundException, IOException {
-        assertEqualsSerialisedForm(LocalTime.of(22, 17, 59, 460 * 1000000));
-    }
-
-    @Test
-    public void test_serialization() throws IOException, ClassNotFoundException {
-        assertSerializable(TEST_12_30_40_987654321);
-    }
-
-
-    describe('from()', () => {
-
-	});
-
-    @Test
-    it('factory_from_DateTimeAccessor', () => {
-        assertEquals(LocalTime.from(LocalTime.of(17, 30)), LocalTime.of(17, 30));
-        assertEquals(LocalTime.from(LocalDateTime.of(2012, 5, 1, 17, 30)), LocalTime.of(17, 30));
-    });
-
-    it('factory_from_DateTimeAccessor_invalid_noDerive', () => {
-	expect(() => {
-        LocalTime.from(LocalDate.of(2007, 7, 15));
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_from_DateTimeAccessor_null', () => {
-	expect(() => {
-        LocalTime.from((TemporalAccessor) null);
-    
-	}).to.throw(NullPointerException);
-});
-
     describe('parse()', () => {
 
 	});
