@@ -6,7 +6,7 @@
 
 
 import {MathUtil} from './MathUtil';
-import {assert, requireNonNull} from './assert';
+import {assert, requireNonNull, requireInstance} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
 
 import {Clock} from './Clock';
@@ -1092,13 +1092,15 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws NullPointerException if {@code other} is null
      */
     compareTo(other) {
-        var cmp = MathUtil.compareNumbers(this._hour, other.hour);
+        requireNonNull(other, 'other');
+        requireInstance(other, LocalTime, 'other');
+        var cmp = MathUtil.compareNumbers(this._hour, other._hour);
         if (cmp === 0) {
-            cmp = MathUtil.compareNumbers(this._minute, other.minute);
+            cmp = MathUtil.compareNumbers(this._minute, other._minute);
             if (cmp === 0) {
-                cmp = MathUtil.compareNumbers(this._second, other.second);
+                cmp = MathUtil.compareNumbers(this._second, other._second);
                 if (cmp === 0) {
-                    cmp = MathUtil.compareNumbers(this._nano, other.nano);
+                    cmp = MathUtil.compareNumbers(this._nano, other._nano);
                 }
             }
         }

@@ -4,7 +4,11 @@ import {assertEquals, assertTrue, assertNotNull, isCoverageTestRunner} from '../
 import '../_init';
 
 import {MathUtil} from '../../src/MathUtil';
-import {DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
+import {
+    DateTimeException, DateTimeParseException,
+    NullPointerException, UnsupportedTemporalTypeException,
+    IllegalArgumentException
+} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Duration} from '../../src/Duration';
@@ -1885,94 +1889,89 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-    /**
-
     describe('compareTo()', () => {
 
-	});
+        it('test_comparisons', () => {
+            doTest_comparisons_LocalTime(
+                LocalTime.MIDNIGHT,
+                LocalTime.of(0, 0, 0, 999999999),
+                LocalTime.of(0, 0, 59, 0),
+                LocalTime.of(0, 0, 59, 999999999),
+                LocalTime.of(0, 59, 0, 0),
+                LocalTime.of(0, 59, 0, 999999999),
+                LocalTime.of(0, 59, 59, 0),
+                LocalTime.of(0, 59, 59, 999999999),
+                LocalTime.NOON,
+                LocalTime.of(12, 0, 0, 999999999),
+                LocalTime.of(12, 0, 59, 0),
+                LocalTime.of(12, 0, 59, 999999999),
+                LocalTime.of(12, 59, 0, 0),
+                LocalTime.of(12, 59, 0, 999999999),
+                LocalTime.of(12, 59, 59, 0),
+                LocalTime.of(12, 59, 59, 999999999),
+                LocalTime.of(23, 0, 0, 0),
+                LocalTime.of(23, 0, 0, 999999999),
+                LocalTime.of(23, 0, 59, 0),
+                LocalTime.of(23, 0, 59, 999999999),
+                LocalTime.of(23, 59, 0, 0),
+                LocalTime.of(23, 59, 0, 999999999),
+                LocalTime.of(23, 59, 59, 0),
+                LocalTime.of(23, 59, 59, 999999999)
+            );
+        });
 
-    @Test
-    it('test_comparisons', () => {
-        doTest_comparisons_LocalTime(
-            LocalTime.MIDNIGHT,
-            LocalTime.of(0, 0, 0, 999999999),
-            LocalTime.of(0, 0, 59, 0),
-            LocalTime.of(0, 0, 59, 999999999),
-            LocalTime.of(0, 59, 0, 0),
-            LocalTime.of(0, 59, 0, 999999999),
-            LocalTime.of(0, 59, 59, 0),
-            LocalTime.of(0, 59, 59, 999999999),
-            LocalTime.NOON,
-            LocalTime.of(12, 0, 0, 999999999),
-            LocalTime.of(12, 0, 59, 0),
-            LocalTime.of(12, 0, 59, 999999999),
-            LocalTime.of(12, 59, 0, 0),
-            LocalTime.of(12, 59, 0, 999999999),
-            LocalTime.of(12, 59, 59, 0),
-            LocalTime.of(12, 59, 59, 999999999),
-            LocalTime.of(23, 0, 0, 0),
-            LocalTime.of(23, 0, 0, 999999999),
-            LocalTime.of(23, 0, 59, 0),
-            LocalTime.of(23, 0, 59, 999999999),
-            LocalTime.of(23, 59, 0, 0),
-            LocalTime.of(23, 59, 0, 999999999),
-            LocalTime.of(23, 59, 59, 0),
-            LocalTime.of(23, 59, 59, 999999999)
-        );
-    });
-
-    void doTest_comparisons_LocalTime(LocalTime... localTimes) {
-        for (var i = 0; i < localTimes.length; i++) {
-            var a = localTimes[i];
-            for (var j = 0; j < localTimes.length; j++) {
-                var b = localTimes[j];
-                if (i < j) {
-                    assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
-                } else if (i > j) {
-                    assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
-                } else {
-                    assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), true, a + ' <=> ' + b);
+        function doTest_comparisons_LocalTime(...localTimes) {
+            for (let i = 0; i < localTimes.length; i++) {
+                var a = localTimes[i];
+                for (let j = 0; j < localTimes.length; j++) {
+                    var b = localTimes[j];
+                    if (i < j) {
+                        assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else if (i > j) {
+                        assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else {
+                        assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), true, a + ' <=> ' + b);
+                    }
                 }
             }
         }
-    }
 
-    it('test_compareTo_ObjectNull', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.compareTo(null);
-    
-	}).to.throw(NullPointerException);
-});
+        it('test_compareTo_ObjectNull', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
 
-    it('test_isBefore_ObjectNull', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.isBefore(null);
-    
-	}).to.throw(NullPointerException);
-});
+        it('test_isBefore_ObjectNull', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
 
-    it('test_isAfter_ObjectNull', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.isAfter(null);
-    
-	}).to.throw(NullPointerException);
-});
+        it('test_isAfter_ObjectNull', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
 
-    @Test(expectedExceptions=ClassCastException.class)
-    @SuppressWarnings({'unchecked', 'rawtypes'})
-    it('compareToNonLocalTime', () => {
-       var c = TEST_12_30_40_987654321;
-       c.compareTo(new Object());
+        it('compareToNonLocalTime', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.compareTo({});
+            }).to.throw(IllegalArgumentException);
+        });
+
     });
+
+    /**
 
     describe('equals()', () => {
 
