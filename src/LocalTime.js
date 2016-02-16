@@ -817,6 +817,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      */
 
     _minus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -836,6 +837,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _minus2(amountToSubtract, unit) {
+        requireNonNull(unit, 'unit');
         return this._plus2(-1 * amountToSubtract, unit);
     }
 
