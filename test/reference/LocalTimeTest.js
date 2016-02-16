@@ -4,7 +4,7 @@ import {assertEquals, assertTrue} from '../testUtils';
 import '../_init';
 
 import {MathUtil} from '../../src/MathUtil';
-import {NullPointerException} from '../../src/errors';
+import {DateTimeException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {LocalTime} from '../../src/LocalTime';
@@ -71,10 +71,10 @@ describe('org.threeten.bp.TestLocalTime', function () {
             var diff = Math.abs(test.toNanoOfDay() - expected.toNanoOfDay());
             assertTrue(diff < 100000000);  // less than 0.1 secs
         });
-    
-	});
 
-/**
+    });
+
+/** TODO timezone
     describe('now(ZoneId)', () => {
         it('now_ZoneId_nullZoneId', () => {
             expect(() => {
@@ -149,9 +149,216 @@ describe('org.threeten.bp.TestLocalTime', function () {
             assertEquals(test.second(), 0);
             assertEquals(test.nano(), 0);
         });
-    
-	});
-    
+
+    });
+
+    describe('of() factories', function () {
+
+        it('factory_time_2ints', () => {
+            var test = LocalTime.of(12, 30);
+            check(test, 12, 30, 0, 0);
+        });
+
+        it('factory_time_2ints_hourTooLow', () => {
+            expect(() => {
+                LocalTime.of(-1, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_2ints_hourTooHigh', () => {
+            expect(() => {
+                LocalTime.of(24, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_2ints_minuteTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_2ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_time_3ints', () => {
+            var test = LocalTime.of(12, 30, 40);
+            check(test, 12, 30, 40, 0);
+        });
+
+        it('factory_time_3ints_hourTooLow', () => {
+            expect(() => {
+                LocalTime.of(-1, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_3ints_hourTooHigh', () => {
+            expect(() => {
+                LocalTime.of(24, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_3ints_minuteTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, -1, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_3ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 60, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_3ints_secondTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, 0, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_3ints_secondTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 0, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_time_4ints', () => {
+            var test = LocalTime.of(12, 30, 40, 987654321);
+            check(test, 12, 30, 40, 987654321);
+            test = LocalTime.of(12, 0, 40, 987654321);
+            check(test, 12, 0, 40, 987654321);
+        });
+
+        it('factory_time_4ints_hourTooLow', () => {
+            expect(() => {
+                LocalTime.of(-1, 0, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_hourTooHigh', () => {
+            expect(() => {
+                LocalTime.of(24, 0, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_minuteTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, -1, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 60, 0, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_secondTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, 0, -1, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_secondTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 0, 60, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_nanoTooLow', () => {
+            expect(() => {
+                LocalTime.of(0, 0, 0, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_time_4ints_nanoTooHigh', () => {
+            expect(() => {
+                LocalTime.of(0, 0, 0, 1000000000);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+
+    describe('ofSecondOfDay(long)', () => {
+
+        it('factory_ofSecondOfDay()', () => {
+            var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23);
+            check(localTime, 2, 17, 23, 0);
+        });
+
+        it('factory_ofSecondOfDay_tooLow', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofSecondOfDay_tooHigh', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(24 * 60 * 60);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('ofSecondOfDay(long, int)', function () {
+
+        it('factory_ofSecondOfDay_long_int()', () => {
+            var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23, 987);
+            check(localTime, 2, 17, 23, 987);
+        });
+
+        it('factory_ofSecondOfDay_long_int_tooLowSecs', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(-1, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofSecondOfDay_long_int_tooHighSecs', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(24 * 60 * 60, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofSecondOfDay_long_int_tooLowNanos', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(0, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofSecondOfDay_long_int_tooHighNanos', () => {
+            expect(() => {
+                LocalTime.ofSecondOfDay(0, 1000000000);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('ofNanoOfDay(long)', () => {
+
+        it('factory_ofNanoOfDay()', () => {
+            var localTime = LocalTime.ofNanoOfDay(60 * 60 * 1000000000 + 17);
+            check(localTime, 1, 0, 0, 17);
+        });
+
+        it('factory_ofNanoOfDay_tooLow', () => {
+            expect(() => {
+                LocalTime.ofNanoOfDay(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofNanoOfDay_tooHigh()', () => {
+            expect(() => {
+                LocalTime.ofNanoOfDay(24 * 60 * 60 * 1000000000);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
 });
 
 /**
@@ -213,244 +420,6 @@ public class TestLocalTime extends AbstractDateTimeTest {
         assertSerializable(TEST_12_30_40_987654321);
     }
 
-    //-----------------------------------------------------------------------
-    private void check(LocalTime time, int h, int m, int s, int n) {
-        assertEquals(time.getHour(), h);
-        assertEquals(time.getMinute(), m);
-        assertEquals(time.getSecond(), s);
-        assertEquals(time.getNano(), n);
-    }
-
-
-    //-----------------------------------------------------------------------
-    // of() factories
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_time_2ints', () => {
-        var test = LocalTime.of(12, 30);
-        check(test, 12, 30, 0, 0);
-    });
-
-    it('factory_time_2ints_hourTooLow', () => {
-	expect(() => {
-        LocalTime.of(-1, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_2ints_hourTooHigh', () => {
-	expect(() => {
-        LocalTime.of(24, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_2ints_minuteTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, -1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_2ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 60);
-    
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_time_3ints', () => {
-        var test = LocalTime.of(12, 30, 40);
-        check(test, 12, 30, 40, 0);
-    });
-
-    it('factory_time_3ints_hourTooLow', () => {
-	expect(() => {
-        LocalTime.of(-1, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_3ints_hourTooHigh', () => {
-	expect(() => {
-        LocalTime.of(24, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_3ints_minuteTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, -1, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_3ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 60, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_3ints_secondTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, 0, -1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_3ints_secondTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 0, 60);
-    
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_time_4ints', () => {
-        var test = LocalTime.of(12, 30, 40, 987654321);
-        check(test, 12, 30, 40, 987654321);
-        test = LocalTime.of(12, 0, 40, 987654321);
-        check(test, 12, 0, 40, 987654321);
-    });
-
-    it('factory_time_4ints_hourTooLow', () => {
-	expect(() => {
-        LocalTime.of(-1, 0, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_hourTooHigh', () => {
-	expect(() => {
-        LocalTime.of(24, 0, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_minuteTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, -1, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 60, 0, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_secondTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, 0, -1, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_secondTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 0, 60, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_nanoTooLow', () => {
-	expect(() => {
-        LocalTime.of(0, 0, 0, -1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_time_4ints_nanoTooHigh', () => {
-	expect(() => {
-        LocalTime.of(0, 0, 0, 1000000000);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('ofSecondOfDay(long)', () => {
-
-	});
-
-    @Test
-    public void factory_ofSecondOfDay() {
-        var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23);
-        check(localTime, 2, 17, 23, 0);
-    }
-
-    it('factory_ofSecondOfDay_tooLow', () => {
-	expect(() => {
-        LocalTime.ofSecondOfDay(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    @Test(expectedExceptions=DateTimeException.class)
-    public void factory_ofSecondOfDay_tooHigh() {
-        LocalTime.ofSecondOfDay(24 * 60 * 60);
-    }
-
-    //-----------------------------------------------------------------------
-    // ofSecondOfDay(long, int)
-    //-----------------------------------------------------------------------
-    @Test
-    public void factory_ofSecondOfDay_long_int() {
-        var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23, 987);
-        check(localTime, 2, 17, 23, 987);
-    }
-
-    it('factory_ofSecondOfDay_long_int_tooLowSecs', () => {
-	expect(() => {
-        LocalTime.ofSecondOfDay(-1, 0);
-    
-	}).to.throw(DateTimeException);
-});
-
-    @Test(expectedExceptions=DateTimeException.class)
-    public void factory_ofSecondOfDay_long_int_tooHighSecs() {
-        LocalTime.ofSecondOfDay(24 * 60 * 60, 0);
-    }
-
-    it('factory_ofSecondOfDay_long_int_tooLowNanos', () => {
-	expect(() => {
-        LocalTime.ofSecondOfDay(0, -1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_ofSecondOfDay_long_int_tooHighNanos', () => {
-	expect(() => {
-        LocalTime.ofSecondOfDay(0, 1000000000);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('ofNanoOfDay(long)', () => {
-
-	});
-
-    @Test
-    public void factory_ofNanoOfDay() {
-        var localTime = LocalTime.ofNanoOfDay(60 * 60 * 1000000000L + 17);
-        check(localTime, 1, 0, 0, 17);
-    }
-
-    it('factory_ofNanoOfDay_tooLow', () => {
-	expect(() => {
-        LocalTime.ofNanoOfDay(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    @Test(expectedExceptions=DateTimeException.class)
-    public void factory_ofNanoOfDay_tooHigh() {
-        LocalTime.ofNanoOfDay(24 * 60 * 60 * 1000000000L);
-    }
 
     describe('from()', () => {
 
