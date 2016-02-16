@@ -1971,57 +1971,83 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-    /**
-
     describe('equals()', () => {
 
-	});
+        it('test_equals_true', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_equals_true.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleTimes')
-    public void test_equals_true(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s, n);
-        assertEquals(a.equals(b), true);
-    }
-    @Test(dataProvider='sampleTimes')
-    public void test_equals_false_hour_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h + 1, m, s, n);
-        assertEquals(a.equals(b), false);
-    }
-    @Test(dataProvider='sampleTimes')
-    public void test_equals_false_minute_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m + 1, s, n);
-        assertEquals(a.equals(b), false);
-    }
-    @Test(dataProvider='sampleTimes')
-    public void test_equals_false_second_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s + 1, n);
-        assertEquals(a.equals(b), false);
-    }
-    @Test(dataProvider='sampleTimes')
-    public void test_equals_false_nano_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s, n + 1);
-        assertEquals(a.equals(b), false);
-    }
+        function test_equals_true(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s, n);
+            assertEquals(a.equals(b), true);
+        }
 
-    @Test
-    it('test_equals_itself_true', () => {
-        assertEquals(TEST_12_30_40_987654321.equals(TEST_12_30_40_987654321), true);
+        it('test_equals_false_hour_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_equals_false_hour_differs.apply(this, data);
+            });
+        });
+
+        function test_equals_false_hour_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h + 1, m, s, n);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_false_minute_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_equals_false_minute_differs.apply(this, data);
+            });
+        });
+
+        function test_equals_false_minute_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m + 1, s, n);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_false_second_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_equals_false_second_differs.apply(this, data);
+            });
+        });
+
+        function test_equals_false_second_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s + 1, n);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_false_nano_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_equals_false_nano_differs.apply(this, data);
+            });
+        });
+
+        function test_equals_false_nano_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s, n + 1);
+            assertEquals(a.equals(b), false);
+        }
+
+        it('test_equals_itself_true', () => {
+            assertEquals(TEST_12_30_40_987654321.equals(TEST_12_30_40_987654321), true);
+        });
+
+        it('test_equals_string_false()', () => {
+            assertEquals(TEST_12_30_40_987654321.equals('2007-07-15'), false);
+        });
+
+        it('test_equals_null_false', () => {
+            assertEquals(TEST_12_30_40_987654321.equals(null), false);
+        });
+
     });
 
-    @Test
-    public void test_equals_string_false() {
-        assertEquals(TEST_12_30_40_987654321.equals('2007-07-15'), false);
-    }
-
-    @Test
-    it('test_equals_null_false', () => {
-        assertEquals(TEST_12_30_40_987654321.equals(null), false);
-    });
+    /**
 
     describe('hashCode()', () => {
 
