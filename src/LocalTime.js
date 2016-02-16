@@ -374,7 +374,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @return the nano-of-second, from 0 to 999,999,999
      */
     nano() {
-        this._nano;
+        return this._nano;
     }
 
     /**
