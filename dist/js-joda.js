@@ -520,8 +520,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
-	var MIN_SECONDS = -31619087596800; // -999999-01-01
-	var MAX_SECONDS = 31494784694400; // 999999-12-31
+	var MIN_SECONDS = -31619087596800; // -999999-01-01T00:00:00
+	var MAX_SECONDS = 31494784780799; // +999999-12-31T23:59:59
 	var NANOS_PER_MILLI = 1000000;
 	
 	/**
@@ -3036,7 +3036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'compareTo',
 	        value: function compareTo(otherDuration) {
 	            (0, _assert.requireNonNull)(otherDuration, 'otherDuration');
-	            (0, _assert.assert)(otherDuration instanceof Duration, 'otherDuration must be a Duration');
+	            (0, _assert.requireInstance)(otherDuration, Duration, 'otherDuration');
 	            var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
 	            if (cmp !== 0) {
 	                return cmp;
@@ -3714,7 +3714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (secsOfDay < 0) {
 	                secsOfDay += LocalTime.SECONDS_PER_DAY;
 	            }
-	            return LocalTime.ofSecondOfDay(secsOfDay, now.getNano());
+	            return LocalTime.ofSecondOfDay(secsOfDay, now.nano());
 	        }
 	
 	        /**
@@ -3812,7 +3812,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            (0, _assert.requireNonNull)(temporal, 'temporal');
 	            var time = temporal.query(_TemporalQueries.TemporalQueries.localTime());
 	            if (time == null) {
-	                throw new _errors.DateTimeException('Unable to obtain LocalTime from TemporalAccessor: ' + temporal + ', type ' + temporal.name());
+	                throw new _errors.DateTimeException('Unable to obtain LocalTime from TemporalAccessor: ' + temporal + ', type ' + temporal);
 	            }
 	            return time;
 	        }
@@ -3831,7 +3831,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'parse',
 	        value: function parse(text) {
-	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_TIME() : arguments[1];
+	            var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_TIME : arguments[1];
 	
 	            (0, _assert.requireNonNull)(formatter, 'formatter');
 	            return formatter.parse(text, LocalTime.FROM);
@@ -4007,6 +4007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'getLong',
 	        value: function getLong(field) {
+	            (0, _assert.requireNonNull)(field, 'field');
 	            if (field instanceof _ChronoField.ChronoField) {
 	                return this._get0(field);
 	            }
@@ -4096,7 +4097,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'nano',
 	        value: function nano() {
-	            this._nano;
+	            return this._nano;
 	        }
 	
 	        /**
@@ -4138,6 +4139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_with1',
 	        value: function _with1(adjuster) {
+	            (0, _assert.requireNonNull)(adjuster, 'adjuster');
 	            // optimizations
 	            if (adjuster instanceof LocalTime) {
 	                return adjuster;
@@ -4231,6 +4233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_with2',
 	        value: function _with2(field, newValue) {
+	            (0, _assert.requireNonNull)(field, 'field');
 	            if (field instanceof _ChronoField.ChronoField) {
 	                field.checkValidValue(newValue);
 	                switch (field) {
@@ -4377,6 +4380,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'truncatedTo',
 	        value: function truncatedTo(unit) {
+	            (0, _assert.requireNonNull)(unit, 'unit');
 	            if (unit === _ChronoUnit.ChronoUnit.NANOS) {
 	                return this;
 	            }
@@ -4384,12 +4388,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
 	                throw new _errors.DateTimeException('Unit is too large to be used for truncation');
 	            }
-	            var dur = unitDur.nanos();
+	            var dur = unitDur.toNanos();
 	            if (_MathUtil.MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
 	                throw new _errors.DateTimeException('Unit must divide into a standard day without remainder');
 	            }
 	            var nod = this.toNanoOfDay();
-	            return this.ofNanoOfDay(_MathUtil.MathUtil.intDiv(nod, dur) * dur);
+	            return LocalTime.ofNanoOfDay(_MathUtil.MathUtil.intDiv(nod, dur) * dur);
 	        }
 	
 	        //-----------------------------------------------------------------------
@@ -4423,6 +4427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_plus1',
 	        value: function _plus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
 	            return amount.addTo(this);
 	        }
 	
@@ -4445,6 +4450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_plus2',
 	        value: function _plus2(amountToAdd, unit) {
+	            (0, _assert.requireNonNull)(unit, 'unit');
 	            if (unit instanceof _ChronoUnit.ChronoUnit) {
 	                switch (unit) {
 	                    case _ChronoUnit.ChronoUnit.NANOS:
@@ -4567,7 +4573,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                return this;
 	            }
 	            var nofd = this.toNanoOfDay();
-	            var newNofd = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(nanosToAdd % LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY, LocalTime.NANOS_PER_DAY);
+	            var newNofd = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY, LocalTime.NANOS_PER_DAY);
 	            if (nofd === newNofd) {
 	                return this;
 	            }
@@ -4609,6 +4615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_minus1',
 	        value: function _minus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
 	            return amount.subtractFrom(this);
 	        }
 	
@@ -4631,6 +4638,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: '_minus2',
 	        value: function _minus2(amountToSubtract, unit) {
+	            (0, _assert.requireNonNull)(unit, 'unit');
 	            return this._plus2(-1 * amountToSubtract, unit);
 	        }
 	
@@ -4729,6 +4737,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'query',
 	        value: function query(_query) {
+	            (0, _assert.requireNonNull)(_query, 'query');
 	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
 	                return _ChronoUnit.ChronoUnit.NANOS;
 	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
@@ -4925,13 +4934,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'compareTo',
 	        value: function compareTo(other) {
-	            var cmp = _MathUtil.MathUtil.compareNumbers(this._hour, other.hour);
+	            (0, _assert.requireNonNull)(other, 'other');
+	            (0, _assert.requireInstance)(other, LocalTime, 'other');
+	            var cmp = _MathUtil.MathUtil.compareNumbers(this._hour, other._hour);
 	            if (cmp === 0) {
-	                cmp = _MathUtil.MathUtil.compareNumbers(this._minute, other.minute);
+	                cmp = _MathUtil.MathUtil.compareNumbers(this._minute, other._minute);
 	                if (cmp === 0) {
-	                    cmp = _MathUtil.MathUtil.compareNumbers(this._second, other.second);
+	                    cmp = _MathUtil.MathUtil.compareNumbers(this._second, other._second);
 	                    if (cmp === 0) {
-	                        cmp = _MathUtil.MathUtil.compareNumbers(this._nano, other.nano);
+	                        cmp = _MathUtil.MathUtil.compareNumbers(this._nano, other._nano);
 	                    }
 	                }
 	            }
@@ -5006,7 +5017,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'hashCode',
 	        value: function hashCode() {
 	            var nod = this.toNanoOfDay();
-	            return nod ^ nod >>> 32;
+	            return nod ^ nod >>> 24;
 	        }
 	
 	        //-----------------------------------------------------------------------
@@ -5044,12 +5055,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                buf += secondValue;
 	                if (nanoValue > 0) {
 	                    buf += '.';
-	                    if (_MathUtil.MathUtil.intMod(nanoValue, 1000000 === 0)) {
+	                    if (_MathUtil.MathUtil.intMod(nanoValue, 1000000) === 0) {
 	                        buf += ('' + (_MathUtil.MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
 	                    } else if (_MathUtil.MathUtil.intMod(nanoValue, 1000) === 0) {
 	                        buf += ('' + (_MathUtil.MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
 	                    } else {
-	                        buf += '' + (nanoValue + 1000000000).substring(1);
+	                        buf += ('' + (nanoValue + 1000000000)).substring(1);
 	                    }
 	                }
 	            }
@@ -7925,11 +7936,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'compareTo',
 	        value: function compareTo(other) {
-	            (0, _assert.assert)(other != null, 'other', _errors.NullPointerException);
+	            (0, _assert.requireNonNull)(other, 'other');
+	            (0, _assert.requireInstance)(other, LocalDate, 'other');
 	            if (other instanceof LocalDate) {
 	                return this._compareTo0(other);
 	            }
-	            throw new _errors.DateTimeException('illegal argument for compareTo(): ' + other); // super.compareTo(other);
+	            // super.compareTo(other);
 	        }
 	    }, {
 	        key: '_compareTo0',
@@ -9123,7 +9135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'plus',
 	        value: function plus(days) {
 	            var amount = _MathUtil.MathUtil.floorMod(days, 7);
-	            return DayOfWeek.ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+	            return ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
 	        }
 	
 	        /**
@@ -9233,13 +9245,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }], [{
 	        key: 'values',
 	        value: function values() {
-	            return DayOfWeek.ENUMS.slice();
+	            return ENUMS.slice();
 	        }
 	    }, {
 	        key: 'valueOf',
 	        value: function valueOf(name) {
-	            for (var ordinal = 0; ordinal < DayOfWeek.ENUMS.length; ordinal++) {
-	                if (DayOfWeek.ENUMS[ordinal].name() === name) {
+	            for (var ordinal = 0; ordinal < ENUMS.length; ordinal++) {
+	                if (ENUMS[ordinal].name() === name) {
 	                    break;
 	                }
 	            }
@@ -9264,7 +9276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (dayOfWeek < 1 || dayOfWeek > 7) {
 	                throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
 	            }
-	            return DayOfWeek.ENUMS[dayOfWeek - 1];
+	            return ENUMS[dayOfWeek - 1];
 	        }
 	
 	        /**
@@ -9306,6 +9318,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAccessor2.TemporalAccessor);
 	
 	exports.DayOfWeek = DayOfWeek;
+	
+	
+	var ENUMS;
+	
 	function _init() {
 	    DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
 	    DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
@@ -9319,7 +9335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return DayOfWeek.from(temporal);
 	    });
 	
-	    DayOfWeek.ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
+	    ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
 	}
 
 /***/ },
@@ -11067,7 +11083,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }], [{
 	        key: 'values',
 	        value: function values() {
-	            return Month.MONTHS.slice();
+	            return MONTHS.slice();
 	        }
 	
 	        /**
@@ -11082,7 +11098,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (month < 1 || month > 12) {
 	                (0, _assert.assert)(false, 'Invalid value for MonthOfYear: ' + month, _errors.DateTimeException);
 	            }
-	            return Month.MONTHS[month - 1];
+	            return MONTHS[month - 1];
 	        }
 	    }]);
 	
@@ -11090,6 +11106,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAccessor2.TemporalAccessor);
 	
 	exports.Month = Month;
+	
+	
+	var MONTHS;
+	
 	function _init() {
 	    Month.JANUARY = new Month(1);
 	    Month.FEBRUARY = new Month(2);
@@ -11104,7 +11124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Month.NOVEMBER = new Month(11);
 	    Month.DECEMBER = new Month(12);
 	
-	    Month.MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
+	    MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
 	}
 
 /***/ },
