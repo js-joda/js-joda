@@ -157,7 +157,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @return the parsed local time, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static parse(text, formatter=DateTimeFormatter.ISO_LOCAL_TIME()) {
+    static parse(text, formatter=DateTimeFormatter.ISO_LOCAL_TIME) {
         requireNonNull(formatter, 'formatter');
         return formatter.parse(text, LocalTime.FROM);
     }

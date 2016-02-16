@@ -1,10 +1,10 @@
 import {expect} from 'chai';
-import {assertEquals, assertTrue} from '../testUtils';
+import {assertEquals, assertTrue, assertNotNull} from '../testUtils';
 
 import '../_init';
 
 import {MathUtil} from '../../src/MathUtil';
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {LocalDate} from '../../src/LocalDate';
@@ -84,7 +84,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
         
         it('now_ZoneId()', () => {
-            var zone = ZoneId.of("UTC+01:02:03");
+            var zone = ZoneId.of('UTC+01:02:03');
             var expected = LocalTime.now(Clock.system(zone));
             var test = LocalTime.now(zone);
             for (var i = 0; i < 100; i++) {
@@ -380,91 +380,136 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         });
 
-});
+    });
 
+    function provider_sampleToString() {
+        return [
+            [0, 0, 0, 0, '00:00'],
+            [1, 0, 0, 0, '01:00'],
+            [23, 0, 0, 0, '23:00'],
+            [0, 1, 0, 0, '00:01'],
+            [12, 30, 0, 0, '12:30'],
+            [23, 59, 0, 0, '23:59'],
+            [0, 0, 1, 0, '00:00:01'],
+            [0, 0, 59, 0, '00:00:59'],
+            [0, 0, 0, 100000000, '00:00:00.100'],
+            [0, 0, 0, 10000000, '00:00:00.010'],
+            [0, 0, 0, 1000000, '00:00:00.001'],
+            [0, 0, 0, 100000, '00:00:00.000100'],
+            [0, 0, 0, 10000, '00:00:00.000010'],
+            [0, 0, 0, 1000, '00:00:00.000001'],
+            [0, 0, 0, 100, '00:00:00.000000100'],
+            [0, 0, 0, 10, '00:00:00.000000010'],
+            [0, 0, 0, 1, '00:00:00.000000001'],
+            [0, 0, 0, 999999999, '00:00:00.999999999'],
+            [0, 0, 0, 99999999, '00:00:00.099999999'],
+            [0, 0, 0, 9999999, '00:00:00.009999999'],
+            [0, 0, 0, 999999, '00:00:00.000999999'],
+            [0, 0, 0, 99999, '00:00:00.000099999'],
+            [0, 0, 0, 9999, '00:00:00.000009999'],
+            [0, 0, 0, 999, '00:00:00.000000999'],
+            [0, 0, 0, 99, '00:00:00.000000099'],
+            [0, 0, 0, 9, '00:00:00.000000009']
+        ];
+    }
+
+    function provider_sampleBadParse() {
+        return [
+            ['00;00'],
+            ['12-00'],
+            ['-01:00'],
+            ['00:00:00-09'],
+            ['00:00:00,09'],
+            ['00:00:abs'],
+            ['11'],
+            ['11:30+01:00'],
+            ['11:30+01:00[Europe/Paris]']
+        ];
+    }
+
+    describe.skip('parse()', () => {
+
+        it('factory_parse_validText', () => {
+            provider_sampleToString().forEach((data) => {
+                factory_parse_validText.apply(this, data);
+            });
+        });
+
+        function factory_parse_validText(h, m, s, n, parsable) {
+            var t = LocalTime.parse(parsable);
+            assertNotNull(t, parsable);
+            assertEquals(t.getHour(), h);
+            assertEquals(t.getMinute(), m);
+            assertEquals(t.getSecond(), s);
+            assertEquals(t.getNano(), n);
+        }
+
+        it('factory_parse_invalidText', () => {
+            provider_sampleBadParse().forEach((data) => {
+                factory_parse_invalidText.apply(this, data);
+            });
+        });
+
+        function factory_parse_invalidText(unparsable) {
+            expect(() => {
+                LocalTime.parse(unparsable);
+            }).to.throw(DateTimeParseException);
+        }
+
+        it('factory_parse_illegalHour', function () {
+            expect(() => {
+                LocalTime.parse('25:00');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_illegalMinute', function () {
+            expect(() => {
+                LocalTime.parse('12:60');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_illegalSecond', function () {
+            expect(() => {
+                LocalTime.parse('12:12:60');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_nullTest', function () {
+            expect(() => {
+                LocalTime.parse(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+/* TODO parser
+    describe('parse(DateTimeFormatter)', () => {
+
+        it('factory_parse_formatter()', () => {
+            var f = DateTimeFormatter.ofPattern('H m s');
+            var test = LocalTime.parse('14 30 40', f);
+            assertEquals(test, LocalTime.of(14, 30, 40));
+        });
+
+        it('factory_parse_formatter_nullText()', () => {
+            expect(() => {
+                var f = DateTimeFormatter.ofPattern('H m s');
+                LocalTime.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_formatter_nullFormatter()', () => {
+            expect(() => {
+                LocalTime.parse('ANY', null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+*/
 
 
 });
 
 /**
-    describe('parse()', () => {
-
-	});
-
-    @Test(dataProvider = "sampleToString")
-    public void factory_parse_validText(int h, int m, int s, int n, String parsable) {
-        var t = LocalTime.parse(parsable);
-        assertNotNull(t, parsable);
-        assertEquals(t.getHour(), h);
-        assertEquals(t.getMinute(), m);
-        assertEquals(t.getSecond(), s);
-        assertEquals(t.getNano(), n);
-    }
-
-    @DataProvider(name="sampleBadParse")
-    Object[][] provider_sampleBadParse() {
-        return new Object[][]{
-                {"00;00"},
-                {"12-00"},
-                {"-01:00"},
-                {"00:00:00-09"},
-                {"00:00:00,09"},
-                {"00:00:abs"},
-                {"11"},
-                {"11:30+01:00"},
-                {"11:30+01:00[Europe/Paris]"},
-        };
-    }
-
-    @Test(dataProvider = "sampleBadParse", expectedExceptions={DateTimeParseException.class})
-    public void factory_parse_invalidText(String unparsable) {
-        LocalTime.parse(unparsable);
-    }
-
-    //-----------------------------------------------------------------------s
-    @Test(expectedExceptions=DateTimeParseException.class)
-    public void factory_parse_illegalHour() {
-        LocalTime.parse("25:00");
-    }
-
-    @Test(expectedExceptions=DateTimeParseException.class)
-    public void factory_parse_illegalMinute() {
-        LocalTime.parse("12:60");
-    }
-
-    @Test(expectedExceptions=DateTimeParseException.class)
-    public void factory_parse_illegalSecond() {
-        LocalTime.parse("12:12:60");
-    }
-
-    //-----------------------------------------------------------------------s
-    @Test(expectedExceptions = {NullPointerException.class})
-    it('factory_parse_nullTest', () => {
-        LocalTime.parse((String) null);
-    });
-
-    describe('parse(DateTimeFormatter)', () => {
-
-	});
-
-    @Test
-    public void factory_parse_formatter() {
-        var f = DateTimeFormatter.ofPattern("H m s");
-        var test = LocalTime.parse("14 30 40", f);
-        assertEquals(test, LocalTime.of(14, 30, 40));
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void factory_parse_formatter_nullText() {
-        var f = DateTimeFormatter.ofPattern("H m s");
-        LocalTime.parse((String) null, f);
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void factory_parse_formatter_nullFormatter() {
-        LocalTime.parse("ANY", null);
-    }
-
     describe('get(TemporalField)', () => {
 
 	});
@@ -580,7 +625,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     //-----------------------------------------------------------------------
     // get*()
     //-----------------------------------------------------------------------
-    @DataProvider(name="sampleTimes")
+    @DataProvider(name='sampleTimes')
     Object[][] provider_sampleTimes() {
         return new Object[][] {
             {0, 0, 0, 0},
@@ -603,7 +648,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     }
 
     //-----------------------------------------------------------------------
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_get(int h, int m, int s, int ns) {
         var a = LocalTime.of(h, m, s, ns);
         assertEquals(a.getHour(), h);
@@ -826,7 +871,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     var NINETY_MINS = new TemporalUnit() {
         @Override
         public String toString() {
-            return "NinetyMins";
+            return 'NinetyMins';
         }
         @Override
         public Duration getDuration() {
@@ -861,7 +906,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     var NINETY_FIVE_MINS = new TemporalUnit() {
         @Override
         public String toString() {
-            return "NinetyFiveMins";
+            return 'NinetyFiveMins';
         }
         @Override
         public Duration getDuration() {
@@ -893,7 +938,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         }
     };
 
-    @DataProvider(name="truncatedToValid")
+    @DataProvider(name='truncatedToValid')
     Object[][] data_truncatedToValid() {
         return new Object[][] {
             {LocalTime.of(1, 2, 3, 123456789), NANOS, LocalTime.of(1, 2, 3, 123456789)},
@@ -910,12 +955,12 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(groups={"tck"}, dataProvider="truncatedToValid")
+    @Test(groups={'tck'}, dataProvider='truncatedToValid')
     public void test_truncatedTo_valid(LocalTime input, TemporalUnit unit, LocalTime expected) {
         assertEquals(input.truncatedTo(unit), expected);
     }
 
-    @DataProvider(name="truncatedToInvalid")
+    @DataProvider(name='truncatedToInvalid')
     Object[][] data_truncatedToInvalid() {
         return new Object[][] {
             {LocalTime.of(1, 2, 3, 123456789), NINETY_FIVE_MINS},
@@ -925,12 +970,12 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(groups={"tck"}, dataProvider="truncatedToInvalid", expectedExceptions=DateTimeException.class)
+    @Test(groups={'tck'}, dataProvider='truncatedToInvalid', expectedExceptions=DateTimeException.class)
     public void test_truncatedTo_invalid(LocalTime input, TemporalUnit unit) {
         input.truncatedTo(unit);
     }
 
-    @Test(expectedExceptions=NullPointerException.class, groups={"tck"})
+    @Test(expectedExceptions=NullPointerException.class, groups={'tck'})
     it('test_truncatedTo_null', () => {
         TEST_12_30_40_987654321.truncatedTo(null);
     });
@@ -1008,7 +1053,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         for (TemporalUnit unit : INVALID_UNITS) {
             try {
                 TEST_12_30_40_987654321.plus(1, unit);
-                fail("Unit should not be allowed " + unit);
+                fail('Unit should not be allowed ' + unit);
             } catch (DateTimeException ex) {
                 // expected
             }
@@ -1227,7 +1272,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         }
     }
 
-    @DataProvider(name="plusSeconds_fromZero")
+    @DataProvider(name='plusSeconds_fromZero')
     Iterator<Object[]> plusSeconds_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 30;
@@ -1268,7 +1313,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(dataProvider="plusSeconds_fromZero")
+    @Test(dataProvider='plusSeconds_fromZero')
     public void test_plusSeconds_fromZero(int seconds, int hour, int min, int sec) {
         var base = LocalTime.MIDNIGHT;
         var t = base.plusSeconds(seconds);
@@ -1335,7 +1380,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         }
     }
 
-    @DataProvider(name="plusNanos_fromZero")
+    @DataProvider(name='plusNanos_fromZero')
     Iterator<Object[]> plusNanos_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 7500000000L;
@@ -1382,7 +1427,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(dataProvider="plusNanos_fromZero")
+    @Test(dataProvider='plusNanos_fromZero')
     public void test_plusNanos_fromZero(long nanoseconds, int hour, int min, int sec, int nanos) {
         var base = LocalTime.MIDNIGHT;
         var t = base.plusNanos(nanoseconds);
@@ -1504,7 +1549,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         for (TemporalUnit unit : INVALID_UNITS) {
             try {
                 TEST_12_30_40_987654321.minus(1, unit);
-                fail("Unit should not be allowed " + unit);
+                fail('Unit should not be allowed ' + unit);
             } catch (DateTimeException ex) {
                 // expected
             }
@@ -1692,7 +1737,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         }
     }
 
-    @DataProvider(name="minusSeconds_fromZero")
+    @DataProvider(name='minusSeconds_fromZero')
     Iterator<Object[]> minusSeconds_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 30;
@@ -1733,7 +1778,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(dataProvider="minusSeconds_fromZero")
+    @Test(dataProvider='minusSeconds_fromZero')
     public void test_minusSeconds_fromZero(int seconds, int hour, int min, int sec) {
         var base = LocalTime.MIDNIGHT;
         var t = base.minusSeconds(seconds);
@@ -1815,7 +1860,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         }
     }
 
-    @DataProvider(name="minusNanos_fromZero")
+    @DataProvider(name='minusNanos_fromZero')
     Iterator<Object[]> minusNanos_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 7500000000L;
@@ -1862,7 +1907,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         };
     }
 
-    @Test(dataProvider="minusNanos_fromZero")
+    @Test(dataProvider='minusNanos_fromZero')
     public void test_minusNanos_fromZero(long nanoseconds, int hour, int min, int sec, int nanos) {
         var base = LocalTime.MIDNIGHT;
         var t = base.minusNanos(nanoseconds);
@@ -1901,36 +1946,36 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
 	});
 
-    @DataProvider(name="until")
+    @DataProvider(name='until')
     Object[][] provider_until() {
         return new Object[][]{
-                {"00:00", "00:00", NANOS, 0},
-                {"00:00", "00:00", MICROS, 0},
-                {"00:00", "00:00", MILLIS, 0},
-                {"00:00", "00:00", SECONDS, 0},
-                {"00:00", "00:00", MINUTES, 0},
-                {"00:00", "00:00", HOURS, 0},
-                {"00:00", "00:00", HALF_DAYS, 0},
+                {'00:00', '00:00', NANOS, 0},
+                {'00:00', '00:00', MICROS, 0},
+                {'00:00', '00:00', MILLIS, 0},
+                {'00:00', '00:00', SECONDS, 0},
+                {'00:00', '00:00', MINUTES, 0},
+                {'00:00', '00:00', HOURS, 0},
+                {'00:00', '00:00', HALF_DAYS, 0},
                 
-                {"00:00", "00:00:01", NANOS, 1000000000},
-                {"00:00", "00:00:01", MICROS, 1000000},
-                {"00:00", "00:00:01", MILLIS, 1000},
-                {"00:00", "00:00:01", SECONDS, 1},
-                {"00:00", "00:00:01", MINUTES, 0},
-                {"00:00", "00:00:01", HOURS, 0},
-                {"00:00", "00:00:01", HALF_DAYS, 0},
+                {'00:00', '00:00:01', NANOS, 1000000000},
+                {'00:00', '00:00:01', MICROS, 1000000},
+                {'00:00', '00:00:01', MILLIS, 1000},
+                {'00:00', '00:00:01', SECONDS, 1},
+                {'00:00', '00:00:01', MINUTES, 0},
+                {'00:00', '00:00:01', HOURS, 0},
+                {'00:00', '00:00:01', HALF_DAYS, 0},
                 
-                {"00:00", "00:01", NANOS, 60000000000L},
-                {"00:00", "00:01", MICROS, 60000000},
-                {"00:00", "00:01", MILLIS, 60000},
-                {"00:00", "00:01", SECONDS, 60},
-                {"00:00", "00:01", MINUTES, 1},
-                {"00:00", "00:01", HOURS, 0},
-                {"00:00", "00:01", HALF_DAYS, 0},
+                {'00:00', '00:01', NANOS, 60000000000L},
+                {'00:00', '00:01', MICROS, 60000000},
+                {'00:00', '00:01', MILLIS, 60000},
+                {'00:00', '00:01', SECONDS, 60},
+                {'00:00', '00:01', MINUTES, 1},
+                {'00:00', '00:01', HOURS, 0},
+                {'00:00', '00:01', HALF_DAYS, 0},
         };
     }
 
-    @Test(dataProvider = "until")
+    @Test(dataProvider = 'until')
     public void test_until(String startStr, String endStr, TemporalUnit unit, long expected) {
         var start = LocalTime.parse(startStr);
         var end = LocalTime.parse(endStr);
@@ -2049,20 +2094,20 @@ describe('org.threeten.bp.TestLocalTime', function () {
             for (var j = 0; j < localTimes.length; j++) {
                 var b = localTimes[j];
                 if (i < j) {
-                    assertTrue(a.compareTo(b) < 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), true, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), false, a + " <=> " + b);
-                    assertEquals(a.equals(b), false, a + " <=> " + b);
+                    assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
                 } else if (i > j) {
-                    assertTrue(a.compareTo(b) > 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), false, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), true, a + " <=> " + b);
-                    assertEquals(a.equals(b), false, a + " <=> " + b);
+                    assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
                 } else {
-                    assertEquals(a.compareTo(b), 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), false, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), false, a + " <=> " + b);
-                    assertEquals(a.equals(b), true, a + " <=> " + b);
+                    assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), true, a + ' <=> ' + b);
                 }
             }
         }
@@ -2090,7 +2135,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 });
 
     @Test(expectedExceptions=ClassCastException.class)
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({'unchecked', 'rawtypes'})
     it('compareToNonLocalTime', () => {
        var c = TEST_12_30_40_987654321;
        c.compareTo(new Object());
@@ -2100,31 +2145,31 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
 	});
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_equals_true(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s, n);
         assertEquals(a.equals(b), true);
     }
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_equals_false_hour_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h + 1, m, s, n);
         assertEquals(a.equals(b), false);
     }
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_equals_false_minute_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m + 1, s, n);
         assertEquals(a.equals(b), false);
     }
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_equals_false_second_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s + 1, n);
         assertEquals(a.equals(b), false);
     }
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_equals_false_nano_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s, n + 1);
@@ -2138,7 +2183,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     public void test_equals_string_false() {
-        assertEquals(TEST_12_30_40_987654321.equals("2007-07-15"), false);
+        assertEquals(TEST_12_30_40_987654321.equals('2007-07-15'), false);
     }
 
     @Test
@@ -2150,35 +2195,35 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
 	});
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_hashCode_same(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s, n);
         assertEquals(a.hashCode(), b.hashCode());
     }
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_hashCode_hour_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h + 1, m, s, n);
         assertEquals(a.hashCode() == b.hashCode(), false);
     }
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_hashCode_minute_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m + 1, s, n);
         assertEquals(a.hashCode() == b.hashCode(), false);
     }
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_hashCode_second_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s + 1, n);
         assertEquals(a.hashCode() == b.hashCode(), false);
     }
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_hashCode_nano_differs(int h, int m, int s, int n) {
         var a = LocalTime.of(h, m, s, n);
         var b = LocalTime.of(h, m, s, n + 1);
@@ -2189,39 +2234,39 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
 	});
 
-    @DataProvider(name="sampleToString")
+    @DataProvider(name='sampleToString')
     Object[][] provider_sampleToString() {
         return new Object[][] {
-            {0, 0, 0, 0, "00:00"},
-            {1, 0, 0, 0, "01:00"},
-            {23, 0, 0, 0, "23:00"},
-            {0, 1, 0, 0, "00:01"},
-            {12, 30, 0, 0, "12:30"},
-            {23, 59, 0, 0, "23:59"},
-            {0, 0, 1, 0, "00:00:01"},
-            {0, 0, 59, 0, "00:00:59"},
-            {0, 0, 0, 100000000, "00:00:00.100"},
-            {0, 0, 0, 10000000, "00:00:00.010"},
-            {0, 0, 0, 1000000, "00:00:00.001"},
-            {0, 0, 0, 100000, "00:00:00.000100"},
-            {0, 0, 0, 10000, "00:00:00.000010"},
-            {0, 0, 0, 1000, "00:00:00.000001"},
-            {0, 0, 0, 100, "00:00:00.000000100"},
-            {0, 0, 0, 10, "00:00:00.000000010"},
-            {0, 0, 0, 1, "00:00:00.000000001"},
-            {0, 0, 0, 999999999, "00:00:00.999999999"},
-            {0, 0, 0, 99999999, "00:00:00.099999999"},
-            {0, 0, 0, 9999999, "00:00:00.009999999"},
-            {0, 0, 0, 999999, "00:00:00.000999999"},
-            {0, 0, 0, 99999, "00:00:00.000099999"},
-            {0, 0, 0, 9999, "00:00:00.000009999"},
-            {0, 0, 0, 999, "00:00:00.000000999"},
-            {0, 0, 0, 99, "00:00:00.000000099"},
-            {0, 0, 0, 9, "00:00:00.000000009"},
+            {0, 0, 0, 0, '00:00'},
+            {1, 0, 0, 0, '01:00'},
+            {23, 0, 0, 0, '23:00'},
+            {0, 1, 0, 0, '00:01'},
+            {12, 30, 0, 0, '12:30'},
+            {23, 59, 0, 0, '23:59'},
+            {0, 0, 1, 0, '00:00:01'},
+            {0, 0, 59, 0, '00:00:59'},
+            {0, 0, 0, 100000000, '00:00:00.100'},
+            {0, 0, 0, 10000000, '00:00:00.010'},
+            {0, 0, 0, 1000000, '00:00:00.001'},
+            {0, 0, 0, 100000, '00:00:00.000100'},
+            {0, 0, 0, 10000, '00:00:00.000010'},
+            {0, 0, 0, 1000, '00:00:00.000001'},
+            {0, 0, 0, 100, '00:00:00.000000100'},
+            {0, 0, 0, 10, '00:00:00.000000010'},
+            {0, 0, 0, 1, '00:00:00.000000001'},
+            {0, 0, 0, 999999999, '00:00:00.999999999'},
+            {0, 0, 0, 99999999, '00:00:00.099999999'},
+            {0, 0, 0, 9999999, '00:00:00.009999999'},
+            {0, 0, 0, 999999, '00:00:00.000999999'},
+            {0, 0, 0, 99999, '00:00:00.000099999'},
+            {0, 0, 0, 9999, '00:00:00.000009999'},
+            {0, 0, 0, 999, '00:00:00.000000999'},
+            {0, 0, 0, 99, '00:00:00.000000099'},
+            {0, 0, 0, 9, '00:00:00.000000009'},
         };
     }
 
-    @Test(dataProvider="sampleToString")
+    @Test(dataProvider='sampleToString')
     public void test_toString(int h, int m, int s, int n, String expected) {
         var t = LocalTime.of(h, m, s, n);
         var str = t.toString();
@@ -2234,9 +2279,9 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     public void test_format_formatter() {
-        var f = DateTimeFormatter.ofPattern("H m s");
+        var f = DateTimeFormatter.ofPattern('H m s');
         var t = LocalTime.of(11, 30, 45).format(f);
-        assertEquals(t, "11 30 45");
+        assertEquals(t, '11 30 45');
     }
 
     it('test_format_formatter_null', () => {
