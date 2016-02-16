@@ -3,7 +3,7 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {assert, requireNonNull} from './assert';
+import {assert, requireNonNull, requireInstance} from './assert';
 
 import {MathUtil} from './MathUtil';
 import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException, IllegalArgumentException} from './errors';
@@ -1273,11 +1273,12 @@ export class LocalDate extends ChronoLocalDate{
      * @return the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
-        assert(other != null, 'other', NullPointerException);
+        requireNonNull(other, 'other');
+        requireInstance(other, LocalDate, 'other');
         if (other instanceof LocalDate) {
             return this._compareTo0(other);
         }
-        throw new DateTimeException(`illegal argument for compareTo(): ${other}`); // super.compareTo(other);
+        // super.compareTo(other);
     }
 
     _compareTo0(otherDate) {

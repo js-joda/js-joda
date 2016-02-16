@@ -3,7 +3,7 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {assert, requireNonNull} from './assert';
+import {requireNonNull, requireInstance} from './assert';
 import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from './errors';
 import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
 
@@ -1107,7 +1107,7 @@ export class Duration extends TemporalAmount
      */
     compareTo(otherDuration) {
         requireNonNull(otherDuration, 'otherDuration');
-        assert(otherDuration instanceof Duration,  'otherDuration must be a Duration');
+        requireInstance(otherDuration, Duration, 'otherDuration');
         var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
         if (cmp !== 0) {
             return cmp;

@@ -13,7 +13,9 @@ import {
     DateTimeException,
     DateTimeParseException,
     NullPointerException,
-    ArithmeticException} from '../../src/errors';
+    ArithmeticException,
+    IllegalArgumentException
+} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {DayOfWeek} from '../../src/DayOfWeek';
@@ -1634,7 +1636,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         it('compareToNonLocalDate', function () {
             expect(() => {
                 TEST_2007_07_15.compareTo({});
-            }).to.throw(DateTimeException);
+            }).to.throw(IllegalArgumentException);
         });
 
 
