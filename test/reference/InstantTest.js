@@ -40,7 +40,7 @@ describe('org.threeten.bp.TestInstant', () => {
             check(Instant.MIN, -31619087596800, 0);
         });
         it('MAX', () => {
-            check(Instant.MAX, 31494784694400, 999999999);
+            check(Instant.MAX, 31494784780799, 999999999);
         });
     });
 
