@@ -411,6 +411,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws ArithmeticException if numeric overflow occurs
      */
     _with1(adjuster) {
+        requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
             return adjuster;
@@ -501,6 +502,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws ArithmeticException if numeric overflow occurs
      */
     _with2(field, newValue) {
+        requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             field.checkValidValue(newValue);
             switch (field) {
