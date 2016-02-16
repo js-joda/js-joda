@@ -1199,7 +1199,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
             buf += secondValue;
             if (nanoValue > 0) {
                 buf += '.';
-                if(MathUtil.intMod(nanoValue, 1000000 === 0)) {
+                if(MathUtil.intMod(nanoValue, 1000000) === 0) {
                     buf += ('' + (MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
                 } else if (MathUtil.intMod(nanoValue, 1000) === 0) {
                     buf += ('' + (MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);

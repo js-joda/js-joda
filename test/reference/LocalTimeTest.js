@@ -2111,50 +2111,25 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-    /**
-
     describe('toString()', () => {
 
-	});
+        it('test_toString', function () {
+            provider_sampleToString().forEach((data) => {
+                test_toString.apply(this, data);
+            });
+        });
 
-    @DataProvider(name='sampleToString')
-    Object[][] provider_sampleToString() {
-        return new Object[][] {
-            {0, 0, 0, 0, '00:00'},
-            {1, 0, 0, 0, '01:00'},
-            {23, 0, 0, 0, '23:00'},
-            {0, 1, 0, 0, '00:01'},
-            {12, 30, 0, 0, '12:30'},
-            {23, 59, 0, 0, '23:59'},
-            {0, 0, 1, 0, '00:00:01'},
-            {0, 0, 59, 0, '00:00:59'},
-            {0, 0, 0, 100000000, '00:00:00.100'},
-            {0, 0, 0, 10000000, '00:00:00.010'},
-            {0, 0, 0, 1000000, '00:00:00.001'},
-            {0, 0, 0, 100000, '00:00:00.000100'},
-            {0, 0, 0, 10000, '00:00:00.000010'},
-            {0, 0, 0, 1000, '00:00:00.000001'},
-            {0, 0, 0, 100, '00:00:00.000000100'},
-            {0, 0, 0, 10, '00:00:00.000000010'},
-            {0, 0, 0, 1, '00:00:00.000000001'},
-            {0, 0, 0, 999999999, '00:00:00.999999999'},
-            {0, 0, 0, 99999999, '00:00:00.099999999'},
-            {0, 0, 0, 9999999, '00:00:00.009999999'},
-            {0, 0, 0, 999999, '00:00:00.000999999'},
-            {0, 0, 0, 99999, '00:00:00.000099999'},
-            {0, 0, 0, 9999, '00:00:00.000009999'},
-            {0, 0, 0, 999, '00:00:00.000000999'},
-            {0, 0, 0, 99, '00:00:00.000000099'},
-            {0, 0, 0, 9, '00:00:00.000000009'},
-        };
-    }
+        function test_toString(h, m, s, n, expected) {
+            // console.log(h, m, s, n, expected);
+            var t = LocalTime.of(h, m, s, n);
+            var str = t.toString();
+            assertEquals(str, expected);
+        }
 
-    @Test(dataProvider='sampleToString')
-    public void test_toString(int h, int m, int s, int n, String expected) {
-        var t = LocalTime.of(h, m, s, n);
-        var str = t.toString();
-        assertEquals(str, expected);
-    }
+    });
+
+
+    /**
 
     describe('format(DateTimeFormatter)', () => {
 
