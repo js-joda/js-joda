@@ -12,8 +12,8 @@ import {MathUtil} from './MathUtil';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 
 // TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
-const MIN_SECONDS = -31619087596800; // -999999-01-01
-const MAX_SECONDS = 31494784694400; // 999999-12-31
+const MIN_SECONDS = -31619087596800; // -999999-01-01T00:00:00
+const MAX_SECONDS = 31494784780799; // +999999-12-31T23:59:59
 const NANOS_PER_MILLI = 1000000;
 
 /**

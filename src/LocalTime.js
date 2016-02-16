@@ -60,7 +60,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
         if (secsOfDay < 0) {
             secsOfDay += LocalTime.SECONDS_PER_DAY;
         }
-        return LocalTime.ofSecondOfDay(secsOfDay, now.getNano());
+        return LocalTime.ofSecondOfDay(secsOfDay, now.nano());
     }
 
     /**

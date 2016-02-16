@@ -1,8 +1,15 @@
-import {assertEquals} from '../testUtils';
+import {expect} from 'chai';
+import {assertEquals, assertTrue} from '../testUtils';
 
 import '../_init';
 
+import {MathUtil} from '../../src/MathUtil';
+import {NullPointerException} from '../../src/errors';
+
+import {Clock} from '../../src/Clock';
 import {LocalTime} from '../../src/LocalTime';
+import {Instant} from '../../src/Instant';
+import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestLocalTime', function () {
     var TEST_12_30_40_987654321;
@@ -55,6 +62,96 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
     });
+    
+    describe('now()', () => {
+
+        it('now()', () => {
+            var expected = LocalTime.now(Clock.systemDefaultZone());
+            var test = LocalTime.now();
+            var diff = Math.abs(test.toNanoOfDay() - expected.toNanoOfDay());
+            assertTrue(diff < 100000000);  // less than 0.1 secs
+        });
+    
+	});
+
+/**
+    describe('now(ZoneId)', () => {
+        it('now_ZoneId_nullZoneId', () => {
+            expect(() => {
+                LocalTime.now(null);
+            }).to.throw(NullPointerException);
+        });
+        
+        it('now_ZoneId()', () => {
+            var zone = ZoneId.of("UTC+01:02:03");
+            var expected = LocalTime.now(Clock.system(zone));
+            var test = LocalTime.now(zone);
+            for (var i = 0; i < 100; i++) {
+                if (expected.equals(test)) {
+                    return;
+                }
+                expected = LocalTime.now(Clock.system(zone));
+                test = LocalTime.now(zone);
+            }
+            assertEquals(test, expected);
+        });
+    
+	});
+*/
+
+    describe('now(Clock)', () => {
+
+        it('now_Clock_nullClock', () => {
+            expect(() => {
+                LocalTime.now(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('now_Clock_allSecsInDay()', () => {
+            for (var i = 0; i < (2 * 24 * 60 * 60); i++) {
+                var instant = Instant.ofEpochSecond(i, 8);
+                var clock = Clock.fixed(instant, ZoneOffset.UTC);
+                var test = LocalTime.now(clock);
+                assertEquals(test.hour(), MathUtil.intMod(MathUtil.intDiv(i, (60 * 60)), 24));
+                assertEquals(test.minute(), MathUtil.intMod(MathUtil.intDiv(i, 60), 60));
+                assertEquals(test.second(), i % 60);
+                assertEquals(test.nano(), 8);
+            }
+        });
+        
+        it('now_Clock_beforeEpoch()', () => {
+            for (let i =-1; i >= -(24 * 60 * 60); i--) {
+                var instant = Instant.ofEpochSecond(i, 8);
+                var clock = Clock.fixed(instant, ZoneOffset.UTC);
+                var test = LocalTime.now(clock);
+                assertEquals(test.hour(), MathUtil.intMod(MathUtil.intDiv((i + 24 * 60 * 60), (60 * 60)), 24));
+                assertEquals(test.minute(), (MathUtil.intDiv((i + 24 * 60 * 60), 60) % 60));
+                assertEquals(test.second(), (i + 24 * 60 * 60) % 60);
+                assertEquals(test.nano(), 8);
+            }
+        });
+    
+        //-----------------------------------------------------------------------
+        it('now_Clock_max', () => {
+            var clock = Clock.fixed(Instant.MAX, ZoneOffset.UTC);
+            var test = LocalTime.now(clock);
+            assertEquals(test.hour(), 23);
+            assertEquals(test.minute(), 59);
+            assertEquals(test.second(), 59);
+            assertEquals(test.nano(), 999999999);
+        });
+        
+        it('now_Clock_min', () => {
+            var clock = Clock.fixed(Instant.MIN, ZoneOffset.UTC);
+            var test = LocalTime.now(clock);
+            assertEquals(test.hour(), 0);
+            assertEquals(test.minute(), 0);
+            assertEquals(test.second(), 0);
+            assertEquals(test.nano(), 0);
+        });
+    
+	});
+    
 });
 
 /**
@@ -124,146 +221,6 @@ public class TestLocalTime extends AbstractDateTimeTest {
         assertEquals(time.getNano(), n);
     }
 
-    //-----------------------------------------------------------------------
-    @Test
-    it('constant_MIDNIGHT', () => {
-        check(LocalTime.MIDNIGHT, 0, 0, 0, 0);
-    });
-
-    @Test
-    it('constant_MIDNIGHT_equal', () => {
-        assertEquals(LocalTime.MIDNIGHT, LocalTime.MIDNIGHT);
-        assertEquals(LocalTime.MIDNIGHT, LocalTime.of(0, 0));
-    });
-
-    @Test
-    it('constant_MIDDAY', () => {
-        check(LocalTime.NOON, 12, 0, 0, 0);
-    });
-
-    @Test
-    it('constant_MIDDAY_equal', () => {
-        assertEquals(LocalTime.NOON, LocalTime.NOON);
-        assertEquals(LocalTime.NOON, LocalTime.of(12, 0));
-    });
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('constant_MIN_TIME', () => {
-        check(LocalTime.MIN, 0, 0, 0, 0);
-    });
-
-    @Test
-    it('constant_MIN_TIME_equal', () => {
-        assertEquals(LocalTime.MIN, LocalTime.of(0, 0));
-    });
-
-    @Test
-    it('constant_MAX_TIME', () => {
-        check(LocalTime.MAX, 23, 59, 59, 999999999);
-    });
-
-    @Test
-    it('constant_MAX_TIME_equal', () => {
-        assertEquals(LocalTime.NOON, LocalTime.NOON);
-        assertEquals(LocalTime.NOON, LocalTime.of(12, 0));
-    });
-
-    describe('now()', () => {
-
-	});
-
-    @Test
-    public void now() {
-        var expected = LocalTime.now(Clock.systemDefaultZone());
-        var test = LocalTime.now();
-        var diff = Math.abs(test.toNanoOfDay() - expected.toNanoOfDay());
-        assertTrue(diff < 100000000);  // less than 0.1 secs
-    }
-
-    describe('now(ZoneId)', () => {
-
-	});
-
-    it('now_ZoneId_nullZoneId', () => {
-	expect(() => {
-        LocalTime.now((ZoneId) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    @Test
-    public void now_ZoneId() {
-        var zone = ZoneId.of("UTC+01:02:03");
-        var expected = LocalTime.now(Clock.system(zone));
-        var test = LocalTime.now(zone);
-        for (var i = 0; i < 100; i++) {
-            if (expected.equals(test)) {
-                return;
-            }
-            expected = LocalTime.now(Clock.system(zone));
-            test = LocalTime.now(zone);
-        }
-        assertEquals(test, expected);
-    }
-
-    describe('now(Clock)', () => {
-
-	});
-
-    it('now_Clock_nullClock', () => {
-	expect(() => {
-        LocalTime.now((Clock) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    @Test
-    public void now_Clock_allSecsInDay() {
-        for (var i = 0; i < (2 * 24 * 60 * 60); i++) {
-            var instant = Instant.ofEpochSecond(i, 8);
-            var clock = Clock.fixed(instant, ZoneOffset.UTC);
-            var test = LocalTime.now(clock);
-            assertEquals(test.getHour(), (i / (60 * 60)) % 24);
-            assertEquals(test.getMinute(), (i / 60) % 60);
-            assertEquals(test.getSecond(), i % 60);
-            assertEquals(test.getNano(), 8);
-        }
-    }
-
-    @Test
-    public void now_Clock_beforeEpoch() {
-        for (int i =-1; i >= -(24 * 60 * 60); i--) {
-            var instant = Instant.ofEpochSecond(i, 8);
-            var clock = Clock.fixed(instant, ZoneOffset.UTC);
-            var test = LocalTime.now(clock);
-            assertEquals(test.getHour(), ((i + 24 * 60 * 60) / (60 * 60)) % 24);
-            assertEquals(test.getMinute(), ((i + 24 * 60 * 60) / 60) % 60);
-            assertEquals(test.getSecond(), (i + 24 * 60 * 60) % 60);
-            assertEquals(test.getNano(), 8);
-        }
-    }
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('now_Clock_max', () => {
-        var clock = Clock.fixed(Instant.MAX, ZoneOffset.UTC);
-        var test = LocalTime.now(clock);
-        assertEquals(test.getHour(), 23);
-        assertEquals(test.getMinute(), 59);
-        assertEquals(test.getSecond(), 59);
-        assertEquals(test.getNano(), 999999999);
-    });
-
-    @Test
-    it('now_Clock_min', () => {
-        var clock = Clock.fixed(Instant.MIN, ZoneOffset.UTC);
-        var test = LocalTime.now(clock);
-        assertEquals(test.getHour(), 0);
-        assertEquals(test.getMinute(), 0);
-        assertEquals(test.getSecond(), 0);
-        assertEquals(test.getNano(), 0);
-    });
 
     //-----------------------------------------------------------------------
     // of() factories
