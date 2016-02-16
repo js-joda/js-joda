@@ -123,7 +123,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             }).to.throw(NullPointerException);
         });
 
-        var delta = isCoverageTestRunner() ? 13 : 3;
+        var delta = isCoverageTestRunner() ? 137 : 3;
         it('now_Clock_allSecsInDay()', () => {
             for (var i = 0; i < (2 * 24 * 60 * 60); i += delta) {
                 var instant = Instant.ofEpochSecond(i, 8);
