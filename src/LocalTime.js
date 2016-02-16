@@ -613,6 +613,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws DateTimeException if unable to truncate
      */
     truncatedTo(unit) {
+        requireNonNull(unit, 'unit');
         if (unit === ChronoUnit.NANOS) {
             return this;
         }
@@ -620,12 +621,12 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
         if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
             throw new DateTimeException('Unit is too large to be used for truncation');
         }
-        var dur = unitDur.nanos();
+        var dur = unitDur.toNanos();
         if (MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
         var nod = this.toNanoOfDay();
-        return this.ofNanoOfDay(MathUtil.intDiv(nod, dur) * dur);
+        return LocalTime.ofNanoOfDay(MathUtil.intDiv(nod, dur) * dur);
     }
 
     //-----------------------------------------------------------------------

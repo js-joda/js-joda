@@ -7,6 +7,7 @@ import {MathUtil} from '../../src/MathUtil';
 import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {Duration} from '../../src/Duration';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
@@ -833,125 +834,121 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
+    describe('truncated(TemporalUnit)', () => {
+
+        class NINETY_MINS_TemporalUnit {
+            toString() {
+                return 'NinetyMins';
+            }
+
+            duration() {
+                return Duration.ofMinutes(90);
+            }
+
+            isDurationEstimated() {
+                return false;
+            }
+
+            isDateBased() {
+                return false;
+            }
+
+            isTimeBased() {
+                return true;
+            }
+
+            isSupportedBy() {
+                return false;
+            }
+        }
+
+        class NINETY_FIVE_MINS_TemporalUnit {
+            toString() {
+                return 'NinetyFiveMins';
+            }
+
+            duration() {
+                return Duration.ofMinutes(95);
+            }
+
+            isDurationEstimated() {
+                return false;
+            }
+
+            isDateBased() {
+                return false;
+            }
+
+            isTimeBased() {
+                return true;
+            }
+
+            isSupportedBy() {
+                return false;
+            }
+        }
+
+        var NINETY_MINS = new NINETY_MINS_TemporalUnit();
+        var NINETY_FIVE_MINS = new NINETY_FIVE_MINS_TemporalUnit();
+
+        function data_truncatedToValid() {
+            return [
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.NANOS, LocalTime.of(1, 2, 3, 123456789)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.MICROS, LocalTime.of(1, 2, 3, 123456000)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.MILLIS, LocalTime.of(1, 2, 3, 123000000)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.SECONDS, LocalTime.of(1, 2, 3)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.MINUTES, LocalTime.of(1, 2)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.HOURS, LocalTime.of(1, 0)],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.DAYS, LocalTime.MIDNIGHT],
+
+                [LocalTime.of(1, 1, 1, 123456789), NINETY_MINS, LocalTime.of(0, 0)],
+                [LocalTime.of(2, 1, 1, 123456789), NINETY_MINS, LocalTime.of(1, 30)],
+                [LocalTime.of(3, 1, 1, 123456789), NINETY_MINS, LocalTime.of(3, 0)]
+            ];
+        }
+
+        it('test_truncatedTo_valid', () => {
+            data_truncatedToValid().forEach((data) => {
+                test_truncatedTo_valid.apply(this, data);
+            });
+        });
+
+        function test_truncatedTo_valid(input, unit, expected) {
+            assertEquals(input.truncatedTo(unit), expected);
+        }
+
+        function data_truncatedToInvalid() {
+            return [
+                [LocalTime.of(1, 2, 3, 123456789), NINETY_FIVE_MINS],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.WEEKS],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.MONTHS],
+                [LocalTime.of(1, 2, 3, 123456789), ChronoUnit.YEARS]
+            ];
+        }
+
+        it('test_truncatedTo_invalid', () => {
+            data_truncatedToInvalid().forEach((data) => {
+                test_truncatedTo_invalid.apply(this, data);
+            });
+        });
+
+        function test_truncatedTo_invalid(input, unit) {
+            expect(() => {
+                input.truncatedTo(unit);
+            }).to.throw(DateTimeException);
+        }
+
+        it('test_truncatedTo_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.truncatedTo(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 /**
-    describe('truncated(TemporalUnit)', () => {
-
-	});
-
-    var NINETY_MINS = new TemporalUnit() {
-        @Override
-        public String toString() {
-            return 'NinetyMins';
-        }
-        @Override
-        public Duration getDuration() {
-            return Duration.ofMinutes(90);
-        }
-        @Override
-        public boolean isDurationEstimated() {
-            return false;
-        }
-        @Override
-        public boolean isDateBased() {
-            return false;
-        }
-        @Override
-        public boolean isTimeBased() {
-            return true;
-        }
-        @Override
-        public boolean isSupportedBy(Temporal temporal) {
-            return false;
-        }
-        @Override
-        public <R extends Temporal> R addTo(R r, long l) {
-            throw new UnsupportedOperationException();
-        }
-        @Override
-        public long between(Temporal r, Temporal r2) {
-            throw new UnsupportedOperationException();
-        }
-    };
-
-    var NINETY_FIVE_MINS = new TemporalUnit() {
-        @Override
-        public String toString() {
-            return 'NinetyFiveMins';
-        }
-        @Override
-        public Duration getDuration() {
-            return Duration.ofMinutes(95);
-        }
-        @Override
-        public boolean isDurationEstimated() {
-            return false;
-        }
-        @Override
-        public boolean isDateBased() {
-            return false;
-        }
-        @Override
-        public boolean isTimeBased() {
-            return true;
-        }
-        @Override
-        public boolean isSupportedBy(Temporal temporal) {
-            return false;
-        }
-        @Override
-        public <R extends Temporal> R addTo(R r, long l) {
-            throw new UnsupportedOperationException();
-        }
-        @Override
-        public long between(Temporal r, Temporal r2) {
-            throw new UnsupportedOperationException();
-        }
-    };
-
-    @DataProvider(name='truncatedToValid')
-    Object[][] data_truncatedToValid() {
-        return new Object[][] {
-            {LocalTime.of(1, 2, 3, 123456789), NANOS, LocalTime.of(1, 2, 3, 123456789)},
-            {LocalTime.of(1, 2, 3, 123456789), MICROS, LocalTime.of(1, 2, 3, 123456000)},
-            {LocalTime.of(1, 2, 3, 123456789), MILLIS, LocalTime.of(1, 2, 3, 123000000)},
-            {LocalTime.of(1, 2, 3, 123456789), SECONDS, LocalTime.of(1, 2, 3)},
-            {LocalTime.of(1, 2, 3, 123456789), MINUTES, LocalTime.of(1, 2)},
-            {LocalTime.of(1, 2, 3, 123456789), HOURS, LocalTime.of(1, 0)},
-            {LocalTime.of(1, 2, 3, 123456789), DAYS, LocalTime.MIDNIGHT},
-
-            {LocalTime.of(1, 1, 1, 123456789), NINETY_MINS, LocalTime.of(0, 0)},
-            {LocalTime.of(2, 1, 1, 123456789), NINETY_MINS, LocalTime.of(1, 30)},
-            {LocalTime.of(3, 1, 1, 123456789), NINETY_MINS, LocalTime.of(3, 0)},
-        };
-    }
-
-    @Test(groups={'tck'}, dataProvider='truncatedToValid')
-    public void test_truncatedTo_valid(LocalTime input, TemporalUnit unit, LocalTime expected) {
-        assertEquals(input.truncatedTo(unit), expected);
-    }
-
-    @DataProvider(name='truncatedToInvalid')
-    Object[][] data_truncatedToInvalid() {
-        return new Object[][] {
-            {LocalTime.of(1, 2, 3, 123456789), NINETY_FIVE_MINS},
-            {LocalTime.of(1, 2, 3, 123456789), WEEKS},
-            {LocalTime.of(1, 2, 3, 123456789), MONTHS},
-            {LocalTime.of(1, 2, 3, 123456789), YEARS},
-        };
-    }
-
-    @Test(groups={'tck'}, dataProvider='truncatedToInvalid', expectedExceptions=DateTimeException.class)
-    public void test_truncatedTo_invalid(LocalTime input, TemporalUnit unit) {
-        input.truncatedTo(unit);
-    }
-
-    @Test(expectedExceptions=NullPointerException.class, groups={'tck'})
-    it('test_truncatedTo_null', () => {
-        TEST_12_30_40_987654321.truncatedTo(null);
-    });
-
     describe('plus(PlusAdjuster)', () => {
 
 	});
