@@ -1164,7 +1164,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      */
     hashCode() {
         var nod = this.toNanoOfDay();
-        return (nod ^ (nod >>> 32));
+        return (nod ^ (nod >>> 24));
     }
 
     //-----------------------------------------------------------------------

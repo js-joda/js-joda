@@ -2047,46 +2047,71 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-    /**
-
     describe('hashCode()', () => {
 
-	});
+        it('test_hashCode_same', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_hashCode_same.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleTimes')
-    public void test_hashCode_same(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s, n);
-        assertEquals(a.hashCode(), b.hashCode());
-    }
+        function test_hashCode_same(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s, n);
+            assertEquals(a.hashCode(), b.hashCode());
+        }
 
-    @Test(dataProvider='sampleTimes')
-    public void test_hashCode_hour_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h + 1, m, s, n);
-        assertEquals(a.hashCode() === b.hashCode(), false);
-    }
+        it('test_hashCode_hour_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_hashCode_hour_differs.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleTimes')
-    public void test_hashCode_minute_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m + 1, s, n);
-        assertEquals(a.hashCode() === b.hashCode(), false);
-    }
+        function test_hashCode_hour_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h + 1, m, s, n);
+            assertEquals(a.hashCode() === b.hashCode(), false);
+        }
 
-    @Test(dataProvider='sampleTimes')
-    public void test_hashCode_second_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s + 1, n);
-        assertEquals(a.hashCode() === b.hashCode(), false);
-    }
+        it('test_hashCode_minute_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_hashCode_minute_differs.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleTimes')
-    public void test_hashCode_nano_differs(int h, int m, int s, int n) {
-        var a = LocalTime.of(h, m, s, n);
-        var b = LocalTime.of(h, m, s, n + 1);
-        assertEquals(a.hashCode() === b.hashCode(), false);
-    }
+        function test_hashCode_minute_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m + 1, s, n);
+            assertEquals(a.hashCode() === b.hashCode(), false);
+        }
+
+        it('test_hashCode_second_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_hashCode_second_differs.apply(this, data);
+            });
+        });
+
+        function test_hashCode_second_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s + 1, n);
+            assertEquals(a.hashCode() === b.hashCode(), false);
+        }
+
+        it('test_hashCode_nano_differs', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_hashCode_nano_differs.apply(this, data);
+            });
+        });
+
+        function test_hashCode_nano_differs(h, m, s, n) {
+            var a = LocalTime.of(h, m, s, n);
+            var b = LocalTime.of(h, m, s, n + 1);
+            assertEquals(a.hashCode() === b.hashCode(), false);
+        }
+
+    });
+
+    /**
 
     describe('toString()', () => {
 
