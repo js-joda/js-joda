@@ -1765,120 +1765,127 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-});
 
- /**
-    describe('until()', () => {
+    // TODO parser
 
-	});
+    describe.skip('until()', () => {
 
-    @DataProvider(name='until')
-    Object[][] provider_until() {
-        return new Object[][]{
-                {'00:00', '00:00', NANOS, 0},
-                {'00:00', '00:00', MICROS, 0},
-                {'00:00', '00:00', MILLIS, 0},
-                {'00:00', '00:00', SECONDS, 0},
-                {'00:00', '00:00', MINUTES, 0},
-                {'00:00', '00:00', HOURS, 0},
-                {'00:00', '00:00', HALF_DAYS, 0},
-                
-                {'00:00', '00:00:01', NANOS, 1000000000},
-                {'00:00', '00:00:01', MICROS, 1000000},
-                {'00:00', '00:00:01', MILLIS, 1000},
-                {'00:00', '00:00:01', SECONDS, 1},
-                {'00:00', '00:00:01', MINUTES, 0},
-                {'00:00', '00:00:01', HOURS, 0},
-                {'00:00', '00:00:01', HALF_DAYS, 0},
-                
-                {'00:00', '00:01', NANOS, 60000000000L},
-                {'00:00', '00:01', MICROS, 60000000},
-                {'00:00', '00:01', MILLIS, 60000},
-                {'00:00', '00:01', SECONDS, 60},
-                {'00:00', '00:01', MINUTES, 1},
-                {'00:00', '00:01', HOURS, 0},
-                {'00:00', '00:01', HALF_DAYS, 0},
-        };
-    }
+        function provider_until() {
+            return [
+                    ['00:00', '00:00', ChronoUnit.NANOS, 0],
+                    ['00:00', '00:00', ChronoUnit.MICROS, 0],
+                    ['00:00', '00:00', ChronoUnit.MILLIS, 0],
+                    ['00:00', '00:00', ChronoUnit.SECONDS, 0],
+                    ['00:00', '00:00', ChronoUnit.MINUTES, 0],
+                    ['00:00', '00:00', ChronoUnit.HOURS, 0],
+                    ['00:00', '00:00', ChronoUnit.HALF_DAYS, 0],
 
-    @Test(dataProvider = 'until')
-    public void test_until(String startStr, String endStr, TemporalUnit unit, long expected) {
-        var start = LocalTime.parse(startStr);
-        var end = LocalTime.parse(endStr);
-        assertEquals(start.until(end, unit), expected);
-        assertEquals(end.until(start, unit), -expected);
-    }
+                    ['00:00', '00:00:01', ChronoUnit.NANOS, 1000000000],
+                    ['00:00', '00:00:01', ChronoUnit.MICROS, 1000000],
+                    ['00:00', '00:00:01', ChronoUnit.MILLIS, 1000],
+                    ['00:00', '00:00:01', ChronoUnit.SECONDS, 1],
+                    ['00:00', '00:00:01', ChronoUnit.MINUTES, 0],
+                    ['00:00', '00:00:01', ChronoUnit.HOURS, 0],
+                    ['00:00', '00:00:01', ChronoUnit.HALF_DAYS, 0],
 
-    describe('atDate()', () => {
+                    ['00:00', '00:01', ChronoUnit.NANOS, 60000000000],
+                    ['00:00', '00:01', ChronoUnit.MICROS, 60000000],
+                    ['00:00', '00:01', ChronoUnit.MILLIS, 60000],
+                    ['00:00', '00:01', ChronoUnit.SECONDS, 60],
+                    ['00:00', '00:01', ChronoUnit.MINUTES, 1],
+                    ['00:00', '00:01', ChronoUnit.HOURS, 0],
+                    ['00:00', '00:01', ChronoUnit.HALF_DAYS, 0]
+            ];
+        }
 
-	});
+        it('test_until', function () {
+            provider_until().forEach((data) => {
+                test_until.apply(this, data);
+            });
+        });
 
-    @Test
-    it('test_atDate', () => {
-        var t = LocalTime.of(11, 30);
-        assertEquals(t.atDate(LocalDate.of(2012, 6, 30)), LocalDateTime.of(2012, 6, 30, 11, 30));
+        function test_until(startStr, endStr, unit, expected) {
+            var start = LocalTime.parse(startStr);
+            var end = LocalTime.parse(endStr);
+            assertEquals(start.until(end, unit), expected);
+            assertEquals(end.until(start, unit), -expected);
+        }
+
     });
 
-    it('test_atDate_nullDate', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.atDate((LocalDate) null);
-    
-	}).to.throw(NullPointerException);
-});
+    // TODO LocalDateTime
+    describe.skip('atDate()', () => {
+
+        it('test_atDate', () => {
+            var t = LocalTime.of(11, 30);
+            assertEquals(t.atDate(LocalDate.of(2012, 6, 30)), LocalDateTime.of(2012, 6, 30, 11, 30));
+        });
+
+        it('test_atDate_nullDate', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.atDate(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
 
     describe('toSecondOfDay()', () => {
 
-	});
+        let delta = isCoverageTestRunner() ? 97 : 7;
 
-    @Test
-    public void test_toSecondOfDay() {
-        var t = LocalTime.of(0, 0);
-        for (var i = 0; i < 24 * 60 * 60; i++) {
-            assertEquals(t.toSecondOfDay(), i);
-            t = t.plusSeconds(1);
-        }
-    }
+        it('test_toSecondOfDay()', () => {
+            var t = LocalTime.of(0, 0);
+            for (var i = 0; i < 24 * 60 * 60; i+=delta) {
+                assertEquals(t.toSecondOfDay(), i);
+                t = t.plusSeconds(delta);
+            }
+        });
 
-    @Test
-    public void test_toSecondOfDay_fromNanoOfDay_symmetry() {
-        var t = LocalTime.of(0, 0);
-        for (var i = 0; i < 24 * 60 * 60; i++) {
-            assertEquals(LocalTime.ofSecondOfDay(t.toSecondOfDay()), t);
-            t = t.plusSeconds(1);
-        }
-    }
+        it('test_toSecondOfDay_fromNanoOfDay_symmetry()', () => {
+            var t = LocalTime.of(0, 0);
+            for (var i = 0; i < 24 * 60 * 60; i+=delta) {
+                assertEquals(LocalTime.ofSecondOfDay(t.toSecondOfDay()), t);
+                t = t.plusSeconds(delta);
+            }
+        });
+
+    });
 
     describe('toNanoOfDay()', () => {
 
-	});
+        let delta = isCoverageTestRunner() ? 997 : 167;
 
-    @Test
-    public void test_toNanoOfDay() {
-        var t = LocalTime.of(0, 0);
-        for (var i = 0; i < 1000000; i++) {
-            assertEquals(t.toNanoOfDay(), i);
-            t = t.plusNanos(1);
-        }
-        t = LocalTime.of(0, 0);
-        for (var i = 1; i <= 1000000; i++) {
-            t = t.minusNanos(1);
-            assertEquals(t.toNanoOfDay(), 24 * 60 * 60 * 1000000000L - i);
-        }
-    }
+        it('test_toNanoOfDay()', () => {
+            var t = LocalTime.of(0, 0);
+            var nanosOfDay = 24 * 60 * 60 * 1000000000;
 
-    @Test
-    public void test_toNanoOfDay_fromNanoOfDay_symmetry() {
-        var t = LocalTime.of(0, 0);
-        for (var i = 0; i < 1000000; i++) {
-            assertEquals(LocalTime.ofNanoOfDay(t.toNanoOfDay()), t);
-            t = t.plusNanos(1);
-        }
-        t = LocalTime.of(0, 0);
-        for (var i = 1; i <= 1000000; i++) {
-            t = t.minusNanos(1);
-            assertEquals(LocalTime.ofNanoOfDay(t.toNanoOfDay()), t);
-        }
-    }
+            for (let i = 0; i < 1000000; i+=delta) {
+                assertEquals(t.toNanoOfDay(), i);
+                t = t.plusNanos(delta);
+            }
+            t = LocalTime.of(0, 0);
+            for (let i = delta; i <= 1000000; i+=delta) {
+                t = t.minusNanos(delta);
+                assertEquals(t.toNanoOfDay(), nanosOfDay - i);
+            }
+        });
+
+        it('test_toNanoOfDay_fromNanoOfDay_symmetry()', () => {
+            var t = LocalTime.of(0, 0);
+            for (let i = 0; i < 1000000; i+=delta) {
+                assertEquals(LocalTime.ofNanoOfDay(t.toNanoOfDay()), t);
+                t = t.plusNanos(delta);
+            }
+            t = LocalTime.of(0, 0);
+            for (let i = 1; i <= 1000000; i+=delta) {
+                t = t.minusNanos(delta);
+                assertEquals(LocalTime.ofNanoOfDay(t.toNanoOfDay()), t);
+            }
+        });
+
+    });
+
+    /**
 
     describe('compareTo()', () => {
 
@@ -2119,3 +2126,5 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
 }
 */
+
+});
