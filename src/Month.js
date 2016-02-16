@@ -388,7 +388,7 @@ export class Month extends TemporalAccessor {
      * replacement for enum values
      */
     static values(){
-        return Month.MONTHS.slice();
+        return MONTHS.slice();
     }
 
     /**
@@ -400,9 +400,11 @@ export class Month extends TemporalAccessor {
         if (month < 1 || month > 12) {
             assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
         }
-        return Month.MONTHS[month-1];
+        return MONTHS[month-1];
     }
 }
+
+var MONTHS;
 
 export function _init() {
     Month.JANUARY = new Month(1);
@@ -418,7 +420,7 @@ export function _init() {
     Month.NOVEMBER = new Month(11);
     Month.DECEMBER = new Month(12);
 
-    Month.MONTHS = [
+    MONTHS = [
         Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
         Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
     ];

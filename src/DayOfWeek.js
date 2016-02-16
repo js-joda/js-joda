@@ -32,12 +32,12 @@ export class DayOfWeek extends TemporalAccessor {
     }
 
     static values() {
-        return DayOfWeek.ENUMS.slice();
+        return ENUMS.slice();
     }
 
     static valueOf(name) {
-        for(var ordinal=0; ordinal < DayOfWeek.ENUMS.length; ordinal++){
-            if(DayOfWeek.ENUMS[ordinal].name() === name){
+        for(var ordinal=0; ordinal < ENUMS.length; ordinal++){
+            if(ENUMS[ordinal].name() === name){
                 break;
             }
         }
@@ -59,7 +59,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (dayOfWeek < 1 || dayOfWeek > 7) {
             throw new DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
         }
-        return DayOfWeek.ENUMS[dayOfWeek - 1];
+        return ENUMS[dayOfWeek - 1];
     }
     
     /**
@@ -253,7 +253,7 @@ export class DayOfWeek extends TemporalAccessor {
      */
     plus(days) {
         var amount = MathUtil.floorMod(days, 7);
-        return DayOfWeek.ENUMS[MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+        return ENUMS[MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
     }
 
     /**
@@ -352,6 +352,8 @@ export class DayOfWeek extends TemporalAccessor {
     }
 }
 
+var ENUMS;
+
 export function _init() {
     DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
     DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
@@ -365,7 +367,7 @@ export function _init() {
         return DayOfWeek.from(temporal);
     });
 
-    DayOfWeek.ENUMS = [
+    ENUMS = [
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,
         DayOfWeek.WEDNESDAY,
