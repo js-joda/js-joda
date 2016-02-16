@@ -313,6 +313,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws ArithmeticException if numeric overflow occurs
      */
     getLong(field) {
+        requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             return this._get0(field);
         }

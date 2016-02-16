@@ -12,6 +12,10 @@ import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {ChronoField} from '../../src/temporal/ChronoField';
+
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+
 describe('org.threeten.bp.TestLocalTime', function () {
     var TEST_12_30_40_987654321;
 
@@ -506,100 +510,92 @@ describe('org.threeten.bp.TestLocalTime', function () {
     });
 */
 
+    describe('get(TemporalField)', () => {
+
+        it('test_get_TemporalField()', () => {
+            var test = TEST_12_30_40_987654321;
+            assertEquals(test.get(ChronoField.HOUR_OF_DAY), 12);
+            assertEquals(test.get(ChronoField.MINUTE_OF_HOUR), 30);
+            assertEquals(test.get(ChronoField.SECOND_OF_MINUTE), 40);
+            assertEquals(test.get(ChronoField.NANO_OF_SECOND), 987654321);
+
+            assertEquals(test.get(ChronoField.SECOND_OF_DAY), 12 * 3600 + 30 * 60 + 40);
+            assertEquals(test.get(ChronoField.MINUTE_OF_DAY), 12 * 60 + 30);
+            assertEquals(test.get(ChronoField.HOUR_OF_AMPM), 0);
+            assertEquals(test.get(ChronoField.CLOCK_HOUR_OF_AMPM), 12);
+            assertEquals(test.get(ChronoField.CLOCK_HOUR_OF_DAY), 12);
+            assertEquals(test.get(ChronoField.AMPM_OF_DAY), 1);
+        });
+
+/* invalid test in javascript version
+        it('test_get_TemporalField_tooBig', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.get(ChronoField.NANO_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+*/
+
+        it('test_get_TemporalField_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.get(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_TemporalField_invalidField', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.get(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_TemporalField_dateField', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.get(ChronoField.DAY_OF_MONTH);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('getLong(TemporalField)', () => {
+
+        it('test_getLong_TemporalField()', () => {
+            var test = TEST_12_30_40_987654321;
+            assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
+            assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
+            assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
+            assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
+
+            assertEquals(test.getLong(ChronoField.NANO_OF_DAY), ((12 * 3600 + 30 * 60 + 40) * 1000000000) + 987654321);
+            assertEquals(test.getLong(ChronoField.SECOND_OF_DAY), 12 * 3600 + 30 * 60 + 40);
+            assertEquals(test.getLong(ChronoField.MINUTE_OF_DAY), 12 * 60 + 30);
+            assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
+            assertEquals(test.getLong(ChronoField.CLOCK_HOUR_OF_AMPM), 12);
+            assertEquals(test.getLong(ChronoField.CLOCK_HOUR_OF_DAY), 12);
+            assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
+        });
+
+        it('test_getLong_TemporalField_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_getLong_TemporalField_invalidField', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_getLong_TemporalField_dateField', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.getLong(ChronoField.DAY_OF_MONTH);
+            }).to.throw(DateTimeException);
+        });
+
+    });
 
 });
 
 /**
-    describe('get(TemporalField)', () => {
-
-	});
-
-    @Test
-    public void test_get_TemporalField() {
-        var test = TEST_12_30_40_987654321;
-        assertEquals(test.get(ChronoField.HOUR_OF_DAY), 12);
-        assertEquals(test.get(ChronoField.MINUTE_OF_HOUR), 30);
-        assertEquals(test.get(ChronoField.SECOND_OF_MINUTE), 40);
-        assertEquals(test.get(ChronoField.NANO_OF_SECOND), 987654321);
-
-        assertEquals(test.get(ChronoField.SECOND_OF_DAY), 12 * 3600 + 30 * 60 + 40);
-        assertEquals(test.get(ChronoField.MINUTE_OF_DAY), 12 * 60 + 30);
-        assertEquals(test.get(ChronoField.HOUR_OF_AMPM), 0);
-        assertEquals(test.get(ChronoField.CLOCK_HOUR_OF_AMPM), 12);
-        assertEquals(test.get(ChronoField.CLOCK_HOUR_OF_DAY), 12);
-        assertEquals(test.get(ChronoField.AMPM_OF_DAY), 1);
-    }
-
-    it('test_get_TemporalField_tooBig', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.get(NANO_OF_DAY);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_get_TemporalField_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.get((TemporalField) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    it('test_get_TemporalField_invalidField', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.get(MockFieldNoValue.INSTANCE);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_get_TemporalField_dateField', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.get(ChronoField.DAY_OF_MONTH);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('getLong(TemporalField)', () => {
-
-	});
-
-    @Test
-    public void test_getLong_TemporalField() {
-        var test = TEST_12_30_40_987654321;
-        assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
-        assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
-        assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
-        assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
-
-        assertEquals(test.getLong(ChronoField.NANO_OF_DAY), ((12 * 3600 + 30 * 60 + 40) * 1000000000L) + 987654321);
-        assertEquals(test.getLong(ChronoField.SECOND_OF_DAY), 12 * 3600 + 30 * 60 + 40);
-        assertEquals(test.getLong(ChronoField.MINUTE_OF_DAY), 12 * 60 + 30);
-        assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
-        assertEquals(test.getLong(ChronoField.CLOCK_HOUR_OF_AMPM), 12);
-        assertEquals(test.getLong(ChronoField.CLOCK_HOUR_OF_DAY), 12);
-        assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
-    }
-
-    it('test_getLong_TemporalField_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.getLong((TemporalField) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    it('test_getLong_TemporalField_invalidField', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.getLong(MockFieldNoValue.INSTANCE);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_getLong_TemporalField_dateField', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.getLong(ChronoField.DAY_OF_MONTH);
-    
-	}).to.throw(DateTimeException);
-});
-
     describe('query(TemporalQuery)', () => {
 
 	});
