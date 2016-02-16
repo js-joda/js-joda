@@ -615,251 +615,48 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
+    function provider_sampleTimes() {
+        return [
+            [0, 0, 0, 0],
+            [0, 0, 0, 1],
+            [0, 0, 1, 0],
+            [0, 0, 1, 1],
+            [0, 1, 0, 0],
+            [0, 1, 0, 1],
+            [0, 1, 1, 0],
+            [0, 1, 1, 1],
+            [1, 0, 0, 0],
+            [1, 0, 0, 1],
+            [1, 0, 1, 0],
+            [1, 0, 1, 1],
+            [1, 1, 0, 0],
+            [1, 1, 0, 1],
+            [1, 1, 1, 0],
+            [1, 1, 1, 1]
+        ];
+    }
+
+    describe('get*()', function () {
+
+        it('', () => {
+            provider_sampleTimes().forEach((data) => {
+                test_get.apply(this, data);
+            });
+        });
+
+        function test_get(h, m, s, ns) {
+            var a = LocalTime.of(h, m, s, ns);
+            assertEquals(a.hour(), h);
+            assertEquals(a.minute(), m);
+            assertEquals(a.second(), s);
+            assertEquals(a.nano(), ns);
+        }
+
+    });
+
 });
 
 /**
-    //-----------------------------------------------------------------------
-    // get*()
-    //-----------------------------------------------------------------------
-    @DataProvider(name='sampleTimes')
-    Object[][] provider_sampleTimes() {
-        return new Object[][] {
-            {0, 0, 0, 0},
-            {0, 0, 0, 1},
-            {0, 0, 1, 0},
-            {0, 0, 1, 1},
-            {0, 1, 0, 0},
-            {0, 1, 0, 1},
-            {0, 1, 1, 0},
-            {0, 1, 1, 1},
-            {1, 0, 0, 0},
-            {1, 0, 0, 1},
-            {1, 0, 1, 0},
-            {1, 0, 1, 1},
-            {1, 1, 0, 0},
-            {1, 1, 0, 1},
-            {1, 1, 1, 0},
-            {1, 1, 1, 1},
-        };
-    }
-
-    //-----------------------------------------------------------------------
-    @Test(dataProvider='sampleTimes')
-    public void test_get(int h, int m, int s, int ns) {
-        var a = LocalTime.of(h, m, s, ns);
-        assertEquals(a.getHour(), h);
-        assertEquals(a.getMinute(), m);
-        assertEquals(a.getSecond(), s);
-        assertEquals(a.getNano(), ns);
-    }
-
-    describe('with()', () => {
-
-	});
-
-    @Test
-    public void test_with_adjustment() {
-        final var sample = LocalTime.of(23, 5);
-        var adjuster = new TemporalAdjuster() {
-            @Override
-            public Temporal adjustInto(Temporal dateTime) {
-                return sample;
-            }
-        };
-        assertEquals(TEST_12_30_40_987654321.with(adjuster), sample);
-    }
-
-    it('test_with_adjustment_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.with((TemporalAdjuster) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    describe('withHour()', () => {
-
-	});
-
-    @Test
-    public void test_withHour_normal() {
-        var t = TEST_12_30_40_987654321;
-        for (var i = 0; i < 24; i++) {
-            t = t.withHour(i);
-            assertEquals(t.getHour(), i);
-        }
-    }
-
-    @Test
-    it('test_withHour_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.withHour(12);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_withHour_toMidnight_equal', () => {
-        var t = LocalTime.of(1, 0).withHour(0);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_withHour_toMidday_equal', () => {
-        var t = LocalTime.of(1, 0).withHour(12);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    it('test_withHour_hourTooLow', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withHour(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withHour_hourTooHigh', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withHour(24);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('withMinute()', () => {
-
-	});
-
-    @Test
-    public void test_withMinute_normal() {
-        var t = TEST_12_30_40_987654321;
-        for (var i = 0; i < 60; i++) {
-            t = t.withMinute(i);
-            assertEquals(t.getMinute(), i);
-        }
-    }
-
-    @Test
-    it('test_withMinute_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.withMinute(30);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_withMinute_toMidnight_equal', () => {
-        var t = LocalTime.of(0, 1).withMinute(0);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_withMinute_toMidday_equals', () => {
-        var t = LocalTime.of(12, 1).withMinute(0);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    it('test_withMinute_minuteTooLow', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withMinute(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withMinute_minuteTooHigh', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withMinute(60);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('withSecond()', () => {
-
-	});
-
-    @Test
-    public void test_withSecond_normal() {
-        var t = TEST_12_30_40_987654321;
-        for (var i = 0; i < 60; i++) {
-            t = t.withSecond(i);
-            assertEquals(t.getSecond(), i);
-        }
-    }
-
-    @Test
-    it('test_withSecond_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.withSecond(40);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_withSecond_toMidnight_equal', () => {
-        var t = LocalTime.of(0, 0, 1).withSecond(0);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_withSecond_toMidday_equal', () => {
-        var t = LocalTime.of(12, 0, 1).withSecond(0);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    it('test_withSecond_secondTooLow', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withSecond(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withSecond_secondTooHigh', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withSecond(60);
-    
-	}).to.throw(DateTimeException);
-});
-
-    describe('withNano()', () => {
-
-	});
-
-    @Test
-    it('test_withNanoOfSecond_normal', () => {
-        var t = TEST_12_30_40_987654321;
-        t = t.withNano(1);
-        assertEquals(t.getNano(), 1);
-        t = t.withNano(10);
-        assertEquals(t.getNano(), 10);
-        t = t.withNano(100);
-        assertEquals(t.getNano(), 100);
-        t = t.withNano(999999999);
-        assertEquals(t.getNano(), 999999999);
-    });
-
-    @Test
-    it('test_withNanoOfSecond_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.withNano(987654321);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_withNanoOfSecond_toMidnight_equal', () => {
-        var t = LocalTime.of(0, 0, 0, 1).withNano(0);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_withNanoOfSecond_toMidday_equal', () => {
-        var t = LocalTime.of(12, 0, 0, 1).withNano(0);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    it('test_withNanoOfSecond_nanoTooLow', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withNano(-1);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withNanoOfSecond_nanoTooHigh', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.withNano(1000000000);
-    
-	}).to.throw(DateTimeException);
-});
-
     describe('truncated(TemporalUnit)', () => {
 
 	});
