@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {assertEquals, assertTrue, assertNotNull} from '../testUtils';
+import {assertEquals, assertTrue, assertNotNull, isCoverageTestRunner} from '../testUtils';
 
 import '../_init';
 
@@ -119,8 +119,9 @@ describe('org.threeten.bp.TestLocalTime', function () {
             }).to.throw(NullPointerException);
         });
 
+        var delta = isCoverageTestRunner() ? 13 : 1;
         it('now_Clock_allSecsInDay()', () => {
-            for (var i = 0; i < (2 * 24 * 60 * 60); i++) {
+            for (var i = 0; i < (2 * 24 * 60 * 60); i += delta) {
                 var instant = Instant.ofEpochSecond(i, 8);
                 var clock = Clock.fixed(instant, ZoneOffset.UTC);
                 var test = LocalTime.now(clock);
@@ -132,7 +133,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
         
         it('now_Clock_beforeEpoch()', () => {
-            for (let i =-1; i >= -(24 * 60 * 60); i--) {
+            for (let i =-1; i >= -(24 * 60 * 60); i -= delta) {
                 var instant = Instant.ofEpochSecond(i, 8);
                 var clock = Clock.fixed(instant, ZoneOffset.UTC);
                 var test = LocalTime.now(clock);
@@ -1075,7 +1076,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             }).to.throw(NullPointerException);
         });
 
-	});
+    });
 
     describe('plusHours()', () => {
 
@@ -1124,7 +1125,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             assertEquals(t, LocalTime.of(2, 30).plusHours(hours));
         });
 
-	});
+    });
 
     describe('plusMinutes()', () => {
 
@@ -1194,7 +1195,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             assertEquals(t, LocalTime.of(2, 30).plusMinutes(mins));
         });
 
-	});
+    });
 
     describe('plusSeconds()', () => {
 
