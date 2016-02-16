@@ -33,12 +33,12 @@ module.exports = {
             }
         }),
         new webpack.BannerPlugin(
-            fs.readFileSync('./src/license-preample.js', 'utf8'),
+            fs.readFileSync('./src/license-preamble.js', 'utf8'),
             {raw: true}
         )
     ] : [
         new webpack.BannerPlugin(
-                fs.readFileSync('./src/license-preample.js', 'utf8'),
+                fs.readFileSync('./src/license-preamble.js', 'utf8'),
                 {raw: true}
         )
     ]
