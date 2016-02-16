@@ -13,6 +13,8 @@ import {Instant} from '../../src/Instant';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
@@ -593,31 +595,29 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
+    describe('query(TemporalQuery)', () => {
+
+        it('test_query', () => {
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.chronology()), null);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.localDate()), null);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.localTime()), TEST_12_30_40_987654321);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.offset()), null);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.precision()), ChronoUnit.NANOS);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.zone()), null);
+            assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.query(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 /**
-    describe('query(TemporalQuery)', () => {
-
-	});
-
-    @Test
-    it('test_query', () => {
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.chronology()), null);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.localDate()), null);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.localTime()), TEST_12_30_40_987654321);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.offset()), null);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.precision()), ChronoUnit.NANOS);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.zone()), null);
-        assertEquals(TEST_12_30_40_987654321.query(TemporalQueries.zoneId()), null);
-    });
-
-    it('test_query_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.query(null);
-    
-	}).to.throw(NullPointerException);
-});
-
     //-----------------------------------------------------------------------
     // get*()
     //-----------------------------------------------------------------------

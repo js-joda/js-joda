@@ -914,6 +914,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
     query(query) {
+        requireNonNull(query, 'query');
         if (query === TemporalQueries.precision()) {
             return ChronoUnit.NANOS;
         } else if (query === TemporalQueries.localTime()) {
@@ -1194,7 +1195,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
                 } else if (MathUtil.intMod(nanoValue, 1000) === 0) {
                     buf += ('' + (MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
                 } else {
-                    buf += ('' + (nanoValue + 1000000000).substring(1));
+                    buf += ('' + (nanoValue + 1000000000)).substring(1);
                 }
             }
         }
