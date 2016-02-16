@@ -655,6 +655,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws ArithmeticException if numeric overflow occurs
      */
     _plus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
 
@@ -674,6 +675,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _plus2(amountToAdd, unit) {
+        requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
@@ -778,7 +780,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
             return this;
         }
         var nofd = this.toNanoOfDay();
-        var newNofd = MathUtil.intMod((MathUtil.intMod(nanosToAdd % LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY), LocalTime.NANOS_PER_DAY);
+        var newNofd = MathUtil.intMod((MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY), LocalTime.NANOS_PER_DAY);
         if (nofd === newNofd) {
             return this;
         }

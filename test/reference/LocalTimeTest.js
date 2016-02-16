@@ -4,13 +4,14 @@ import {assertEquals, assertTrue, assertNotNull} from '../testUtils';
 import '../_init';
 
 import {MathUtil} from '../../src/MathUtil';
-import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Duration} from '../../src/Duration';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
+import {Period} from '../../src/Period';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
@@ -21,9 +22,12 @@ import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
 describe('org.threeten.bp.TestLocalTime', function () {
     var TEST_12_30_40_987654321;
+    var INVALID_UNITS;
+
 
     beforeEach(function () {
         TEST_12_30_40_987654321 = LocalTime.of(12, 30, 40, 987654321);
+        INVALID_UNITS = [ChronoUnit.WEEKS, ChronoUnit.MONTHS, ChronoUnit.YEARS, ChronoUnit.ERAS];
     });
 
     function check(time, h, m, s, n) {
@@ -946,491 +950,420 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-});
-
-/**
-    describe('plus(PlusAdjuster)', () => {
-
-	});
-
-    @Test
-    it('test_plus_Adjuster_positiveHours', () => {
-        var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
-        var t = TEST_12_30_40_987654321.plus(period);
-        assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
-    });
-
-    @Test
-    it('test_plus_Adjuster_negativeMinutes', () => {
-        var period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
-        var t = TEST_12_30_40_987654321.plus(period);
-        assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
-    });
-
-    @Test
-    it('test_plus_Adjuster_zero', () => {
-        var period = Period.ZERO;
-        var t = TEST_12_30_40_987654321.plus(period);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_plus_Adjuster_wrap', () => {
-        var p = Duration.ofHours(1);
-        var t = LocalTime.of(23, 30).plus(p);
-        assertEquals(t, LocalTime.of(0, 30));
-    });
-
-    it('test_plus_Adjuster_dateNotAllowed', () => {
-	expect(() => {
-        var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
-        TEST_12_30_40_987654321.plus(period);
-    
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plus_Adjuster_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.plus((TemporalAmount) null);
-    
-	}).to.throw(NullPointerException);
-});
-
-    //-----------------------------------------------------------------------
-    // plus(long,PeriodUnit)
-    //-----------------------------------------------------------------------
-    @Test
-    it('test_plus_longPeriodUnit_positiveHours', () => {
-        var t = TEST_12_30_40_987654321.plus(7, ChronoUnit.HOURS);
-        assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
-    });
-
-    @Test
-    it('test_plus_longPeriodUnit_negativeMinutes', () => {
-        var t = TEST_12_30_40_987654321.plus(-25, ChronoUnit.MINUTES);
-        assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
-    });
-
-    @Test
-    it('test_plus_longPeriodUnit_zero', () => {
-        var t = TEST_12_30_40_987654321.plus(0, ChronoUnit.MINUTES);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    public void test_plus_long_unit_invalidUnit() {
-        for (TemporalUnit unit : INVALID_UNITS) {
-            try {
-                TEST_12_30_40_987654321.plus(1, unit);
-                fail('Unit should not be allowed ' + unit);
-            } catch (DateTimeException ex) {
-                // expected
-            }
+    class MockSimplePeriod{
+        constructor(amount, unit){
+            this._amount = amount;
+            this._unit = unit;
+        }
+        static of(amount, unit){
+            return new MockSimplePeriod(amount, unit);
+        }
+        addTo(dateTime) {
+            return dateTime.plus(this._amount, this._unit);
         }
     }
 
-    it('test_plus_long_multiples', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.plus(0, DAYS);
-    
-	}).to.throw(UnsupportedTemporalTypeException);
-});
+    describe('plus(PlusAdjuster)', () => {
 
-    it('test_plus_longPeriodUnit_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.plus(1, (TemporalUnit) null);
+        it('test_plus_Adjuster_positiveHours', () => {
+            var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+            var t = TEST_12_30_40_987654321.plus(period);
+            assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
+        });
+
+        it('test_plus_Adjuster_negativeMinutes', () => {
+            var period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
+            var t = TEST_12_30_40_987654321.plus(period);
+            assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
+        });
+
+        it('test_plus_Adjuster_zero', () => {
+            var period = Period.ZERO;
+            var t = TEST_12_30_40_987654321.plus(period);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plus_Adjuster_dateNotAllowed', () => {
+            expect(() => {
+                var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+                TEST_12_30_40_987654321.plus(period);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_Adjuster_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.plus(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_plus_Adjuster_wrap', () => {
+            var p = Duration.ofHours(1);
+            var t = LocalTime.of(23, 30).plus(p);
+            assertEquals(t, LocalTime.of(0, 30));
+        });
+
+    });
+
+    describe('plus(long,PeriodUnit)', function () {
+
+        it('test_plus_longPeriodUnit_positiveHours', () => {
+            var t = TEST_12_30_40_987654321.plus(7, ChronoUnit.HOURS);
+            assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
+        });
+
+        it('test_plus_longPeriodUnit_negativeMinutes', () => {
+            var t = TEST_12_30_40_987654321.plus(-25, ChronoUnit.MINUTES);
+            assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
+        });
+
+        it('test_plus_longPeriodUnit_zero', () => {
+            var t = TEST_12_30_40_987654321.plus(0, ChronoUnit.MINUTES);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plus_long_unit_invalidUnit()', () => {
+            for (let i = 0; i < INVALID_UNITS.length; i++) {
+                var unit = INVALID_UNITS[i];
+                expect(() => {
+                    TEST_12_30_40_987654321.plus(1, unit);
+                }).to.throw(DateTimeException);
+            }
+        });
+
+        it('test_plus_long_multiples', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.plus(0, ChronoUnit.DAYS);
+            }).to.throw(UnsupportedTemporalTypeException);
+        });
+
+        it('test_plus_longPeriodUnit_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.plus(1, null);
+            }).to.throw(NullPointerException);
+        });
     
-	}).to.throw(NullPointerException);
-});
+    });
 
     describe('plus(adjuster)', () => {
 
+        it('test_plus_adjuster', () => {
+            var p = Duration.ofSeconds(62, 3);
+            var t = TEST_12_30_40_987654321.plus(p);
+            assertEquals(t, LocalTime.of(12, 31, 42, 987654324));
+        });
+
+        it('test_plus_adjuster_big', () => {
+            var p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
+            var t = TEST_12_30_40_987654321.plus(p);
+            assertEquals(t, TEST_12_30_40_987654321.plusNanos(MathUtil.MAX_SAFE_INTEGER));
+        });
+
+        it('test_plus_adjuster_zero_equal', () => {
+            var t = TEST_12_30_40_987654321.plus(Period.ZERO);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plus_adjuster_wrap', () => {
+            var p = Duration.ofHours(1);
+            var t = LocalTime.of(23, 30).plus(p);
+            assertEquals(t, LocalTime.of(0, 30));
+        });
+
+        it('test_plus_adjuster_null', () => {
+            expect(() => {
+                TEST_12_30_40_987654321.plus(null);
+            }).to.throw(NullPointerException);
+        });
+
 	});
-
-    @Test
-    it('test_plus_adjuster', () => {
-        var p = Duration.ofSeconds(62, 3);
-        var t = TEST_12_30_40_987654321.plus(p);
-        assertEquals(t, LocalTime.of(12, 31, 42, 987654324));
-    });
-
-    @Test
-    it('test_plus_adjuster_big', () => {
-        var p = Duration.ofNanos(Long.MAX_VALUE);
-        var t = TEST_12_30_40_987654321.plus(p);
-        assertEquals(t, TEST_12_30_40_987654321.plusNanos(Long.MAX_VALUE));
-    });
-
-    @Test
-    it('test_plus_adjuster_zero_equal', () => {
-        var t = TEST_12_30_40_987654321.plus(Period.ZERO);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_plus_adjuster_wrap', () => {
-        var p = Duration.ofHours(1);
-        var t = LocalTime.of(23, 30).plus(p);
-        assertEquals(t, LocalTime.of(0, 30));
-    });
-
-    it('test_plus_adjuster_null', () => {
-	expect(() => {
-        TEST_12_30_40_987654321.plus((TemporalAmount) null);
-    
-	}).to.throw(NullPointerException);
-});
 
     describe('plusHours()', () => {
 
+        it('test_plusHours_one()', () => {
+            var t = LocalTime.MIDNIGHT;
+            for (var i = 0; i < 50; i++) {
+                t = t.plusHours(1);
+                assertEquals(t.hour(), (i + 1) % 24);
+            }
+        });
+
+        it('test_plusHours_fromZero()', () => {
+            var base = LocalTime.MIDNIGHT;
+            for (var i = -50; i < 50; i++) {
+                var t = base.plusHours(i);
+                assertEquals(t.hour(), (i + 72) % 24);
+            }
+        });
+
+        it('test_plusHours_fromOne()', () => {
+            var base = LocalTime.of(1, 0);
+            for (var i = -50; i < 50; i++) {
+                var t = base.plusHours(i);
+                assertEquals(t.hour(), (1 + i + 72) % 24);
+            }
+        });
+
+        it('test_plusHours_noChange_equal', () => {
+            var t = TEST_12_30_40_987654321.plusHours(0);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plusHours_toMidnight_equal', () => {
+            var t = LocalTime.of(23, 0).plusHours(1);
+            assertEquals(t, LocalTime.MIDNIGHT);
+        });
+
+        it('test_plusHours_toMidday_equal', () => {
+            var t = LocalTime.of(11, 0).plusHours(1);
+            assertEquals(t, LocalTime.NOON);
+        });
+
+        it('test_plusHours_big()', () => {
+            var t = LocalTime.of(2, 30).plusHours(MathUtil.MAX_SAFE_INTEGER);
+            var hours = (MathUtil.MAX_SAFE_INTEGER % 24);
+            assertEquals(t, LocalTime.of(2, 30).plusHours(hours));
+        });
+
 	});
-
-    @Test
-    public void test_plusHours_one() {
-        var t = LocalTime.MIDNIGHT;
-        for (var i = 0; i < 50; i++) {
-            t = t.plusHours(1);
-            assertEquals(t.hour(), (i + 1) % 24);
-        }
-    }
-
-    @Test
-    public void test_plusHours_fromZero() {
-        var base = LocalTime.MIDNIGHT;
-        for (var i = -50; i < 50; i++) {
-            var t = base.plusHours(i);
-            assertEquals(t.hour(), (i + 72) % 24);
-        }
-    }
-
-    @Test
-    public void test_plusHours_fromOne() {
-        var base = LocalTime.of(1, 0);
-        for (var i = -50; i < 50; i++) {
-            var t = base.plusHours(i);
-            assertEquals(t.hour(), (1 + i + 72) % 24);
-        }
-    }
-
-    @Test
-    it('test_plusHours_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.plusHours(0);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_plusHours_toMidnight_equal', () => {
-        var t = LocalTime.of(23, 0).plusHours(1);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_plusHours_toMidday_equal', () => {
-        var t = LocalTime.of(11, 0).plusHours(1);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    @Test
-    public void test_plusHours_big() {
-        var t = LocalTime.of(2, 30).plusHours(Long.MAX_VALUE);
-        var hours = (int) (Long.MAX_VALUE % 24L);
-        assertEquals(t, LocalTime.of(2, 30).plusHours(hours));
-    }
 
     describe('plusMinutes()', () => {
 
+        it('test_plusMinutes_one()', () => {
+            var t = LocalTime.MIDNIGHT;
+            var hour = 0;
+            var min = 0;
+            for (var i = 0; i < 70; i++) {
+                t = t.plusMinutes(1);
+                min++;
+                if (min == 60) {
+                    hour++;
+                    min = 0;
+                }
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+            }
+        });
+
+        it('test_plusMinutes_fromZero()', () => {
+            var base = LocalTime.MIDNIGHT;
+            var hour;
+            var min;
+            for (let i = -70; i < 70; i++) {
+                var t = base.plusMinutes(i);
+                if (i < -60) {
+                    hour = 22;
+                    min = i + 120;
+                } else if (i < 0) {
+                    hour = 23;
+                    min = i + 60;
+                } else if (i >= 60) {
+                    hour = 1;
+                    min = i - 60;
+                } else {
+                    hour = 0;
+                    min = i;
+                }
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+            }
+        });
+
+        it('test_plusMinutes_noChange_equal', () => {
+            var t = TEST_12_30_40_987654321.plusMinutes(0);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plusMinutes_noChange_oneDay_equal()', () => {
+            var t = TEST_12_30_40_987654321.plusMinutes(24 * 60);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
+
+        it('test_plusMinutes_toMidnight_equal', () => {
+            var t = LocalTime.of(23, 59).plusMinutes(1);
+            assertEquals(t, LocalTime.MIDNIGHT);
+        });
+
+        it('test_plusMinutes_toMidday_equal', () => {
+            var t = LocalTime.of(11, 59).plusMinutes(1);
+            assertEquals(t, LocalTime.NOON);
+        });
+
+        it('test_plusMinutes_big()', () => {
+            var t = LocalTime.of(2, 30).plusMinutes(MathUtil.MAX_SAFE_INTEGER);
+            var mins = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60));
+            assertEquals(t, LocalTime.of(2, 30).plusMinutes(mins));
+        });
+
 	});
-
-    @Test
-    public void test_plusMinutes_one() {
-        var t = LocalTime.MIDNIGHT;
-        var hour = 0;
-        var min = 0;
-        for (var i = 0; i < 70; i++) {
-            t = t.plusMinutes(1);
-            min++;
-            if (min == 60) {
-                hour++;
-                min = 0;
-            }
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-        }
-    }
-
-    @Test
-    public void test_plusMinutes_fromZero() {
-        var base = LocalTime.MIDNIGHT;
-        int hour;
-        int min;
-        for (var i = -70; i < 70; i++) {
-            var t = base.plusMinutes(i);
-            if (i < -60) {
-                hour = 22;
-                min = i + 120;
-            } else if (i < 0) {
-                hour = 23;
-                min = i + 60;
-            } else if (i >= 60) {
-                hour = 1;
-                min = i - 60;
-            } else {
-                hour = 0;
-                min = i;
-            }
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-        }
-    }
-
-    @Test
-    it('test_plusMinutes_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.plusMinutes(0);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
-
-    @Test
-    public void test_plusMinutes_noChange_oneDay_equal() {
-        var t = TEST_12_30_40_987654321.plusMinutes(24 * 60);
-        assertEquals(t, TEST_12_30_40_987654321);
-    }
-
-    @Test
-    it('test_plusMinutes_toMidnight_equal', () => {
-        var t = LocalTime.of(23, 59).plusMinutes(1);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_plusMinutes_toMidday_equal', () => {
-        var t = LocalTime.of(11, 59).plusMinutes(1);
-        assertEquals(t, LocalTime.NOON);
-    });
-
-    @Test
-    public void test_plusMinutes_big() {
-        var t = LocalTime.of(2, 30).plusMinutes(Long.MAX_VALUE);
-        var mins = (int) (Long.MAX_VALUE % (24L * 60L));
-        assertEquals(t, LocalTime.of(2, 30).plusMinutes(mins));
-    }
 
     describe('plusSeconds()', () => {
 
-	});
-
-    @Test
-    public void test_plusSeconds_one() {
-        var t = LocalTime.MIDNIGHT;
-        var hour = 0;
-        var min = 0;
-        var sec = 0;
-        for (var i = 0; i < 3700; i++) {
-            t = t.plusSeconds(1);
-            sec++;
-            if (sec == 60) {
-                min++;
-                sec = 0;
+        it('test_plusSeconds_one()', () => {
+            var t = LocalTime.MIDNIGHT;
+            var hour = 0;
+            var min = 0;
+            var sec = 0;
+            for (var i = 0; i < 3700; i++) {
+                t = t.plusSeconds(1);
+                sec++;
+                if (sec === 60) {
+                    min++;
+                    sec = 0;
+                }
+                if (min === 60) {
+                    hour++;
+                    min = 0;
+                }
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+                assertEquals(t.second(), sec);
             }
-            if (min == 60) {
-                hour++;
-                min = 0;
-            }
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-            assertEquals(t.second(), sec);
-        }
-    }
+        });
 
-    @DataProvider(name='plusSeconds_fromZero')
-    Iterator<Object[]> plusSeconds_fromZero() {
-        return new Iterator<Object[]>() {
-            var delta = 30;
+        it('test_plusSeconds_fromZero', () => {
+            var base = LocalTime.MIDNIGHT;
             var i = -3660;
+            var delta = 30;
             var hour = 22;
             var min = 59;
             var sec = 0;
+            var iEnd = 3660;
 
-            public boolean hasNext() {
-                return i <= 3660;
-            }
-
-            public Object[] next() {
-                final Object[] ret = new Object[] {i, hour, min, sec};
+            while(i <= iEnd){
                 i += delta;
                 sec += delta;
-
                 if (sec >= 60) {
                     min++;
                     sec -= 60;
-
-                    if (min == 60) {
+                    if (min === 60) {
                         hour++;
                         min = 0;
-
-                        if (hour == 24) {
+                        if (hour === 24) {
                             hour = 0;
                         }
                     }
                 }
-
-                return ret;
+                var t = base.plusSeconds(i);
+                assertEquals(hour, t.hour());
+                assertEquals(min, t.minute());
+                assertEquals(sec, t.second());
             }
+        });
 
-            it('remove', () => {
-                throw new UnsupportedOperationException();
-            });
-        };
-    }
+        it('test_plusSeconds_noChange_equal', () => {
+            var t = TEST_12_30_40_987654321.plusSeconds(0);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
 
-    @Test(dataProvider='plusSeconds_fromZero')
-    public void test_plusSeconds_fromZero(int seconds, int hour, int min, int sec) {
-        var base = LocalTime.MIDNIGHT;
-        var t = base.plusSeconds(seconds);
+        it('test_plusSeconds_noChange_oneDay_equal()', () => {
+            var t = TEST_12_30_40_987654321.plusSeconds(24 * 60 * 60);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
 
-        assertEquals(hour, t.hour());
-        assertEquals(min, t.minute());
-        assertEquals(sec, t.second());
-    }
+        it('test_plusSeconds_toMidnight_equal', () => {
+            var t = LocalTime.of(23, 59, 59).plusSeconds(1);
+            assertEquals(t, LocalTime.MIDNIGHT);
+        });
 
-    @Test
-    it('test_plusSeconds_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.plusSeconds(0);
-        assertEquals(t, TEST_12_30_40_987654321);
-    });
+        it('test_plusSeconds_toMidday_equal', () => {
+            var t = LocalTime.of(11, 59, 59).plusSeconds(1);
+            assertEquals(t, LocalTime.NOON);
+        });
 
-    @Test
-    public void test_plusSeconds_noChange_oneDay_equal() {
-        var t = TEST_12_30_40_987654321.plusSeconds(24 * 60 * 60);
-        assertEquals(t, TEST_12_30_40_987654321);
-    }
-
-    @Test
-    it('test_plusSeconds_toMidnight_equal', () => {
-        var t = LocalTime.of(23, 59, 59).plusSeconds(1);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_plusSeconds_toMidday_equal', () => {
-        var t = LocalTime.of(11, 59, 59).plusSeconds(1);
-        assertEquals(t, LocalTime.NOON);
     });
 
     describe('plusNanos()', () => {
 
-	});
+        it('test_plusNanos_halfABillion()', () => {
+            var t = LocalTime.MIDNIGHT;
+            var hour = 0;
+            var min = 0;
+            var sec = 0;
+            var nanos = 0;
+            for (let i = 0; i < 3700 * 1000000000; i += 500000000) {
+                t = t.plusNanos(500000000);
+                nanos += 500000000;
+                if (nanos === 1000000000) {
+                    sec++;
+                    nanos = 0;
+                }
+                if (sec === 60) {
+                    min++;
+                    sec = 0;
+                }
+                if (min === 60) {
+                    hour++;
+                    min = 0;
+                }
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+                assertEquals(t.second(), sec);
+                assertEquals(t.nano(), nanos);
+            }
+        });
 
-    @Test
-    public void test_plusNanos_halfABillion() {
-        var t = LocalTime.MIDNIGHT;
-        var hour = 0;
-        var min = 0;
-        var sec = 0;
-        var nanos = 0;
-        for (var i = 0; i < 3700 * 1000000000L; i+= 500000000) {
-            t = t.plusNanos(500000000);
-            nanos += 500000000;
-            if (nanos == 1000000000) {
-                sec++;
-                nanos = 0;
-            }
-            if (sec == 60) {
-                min++;
-                sec = 0;
-            }
-            if (min == 60) {
-                hour++;
-                min = 0;
-            }
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-            assertEquals(t.second(), sec);
-            assertEquals(t.nano(), nanos);
-        }
-    }
-
-    @DataProvider(name='plusNanos_fromZero')
-    Iterator<Object[]> plusNanos_fromZero() {
-        return new Iterator<Object[]>() {
-            var delta = 7500000000L;
-            var i = -3660 * 1000000000L;
+        it('test_plusNanos_fromZero', () => {
+            var base = LocalTime.MIDNIGHT;
+            var delta = 7500000000;
+            var i = -3660 * 1000000000;
             var hour = 22;
             var min = 59;
             var sec = 0;
             var nanos = 0;
+            var iEnd = 3660 * 1000000000;
 
-            public boolean hasNext() {
-                return i <= 3660 * 1000000000L;
-            }
-
-            public Object[] next() {
-                final Object[] ret = new Object[] {i, hour, min, sec, (int)nanos};
+            while (i <= iEnd) {
                 i += delta;
                 nanos += delta;
-
-                if (nanos >= 1000000000L) {
-                    sec += nanos / 1000000000L;
-                    nanos %= 1000000000L;
-
+                if (nanos >= 1000000000) {
+                    sec += MathUtil.intDiv(nanos, 1000000000);
+                    nanos = MathUtil.intMod(nanos, 1000000000);
                     if (sec >= 60) {
                         min++;
                         sec %= 60;
-
-                        if (min == 60) {
+                        if (min === 60) {
                             hour++;
                             min = 0;
-
-                            if (hour == 24) {
+                            if (hour === 24) {
                                 hour = 0;
                             }
                         }
                     }
                 }
+                var t = base.plusNanos(i);
 
-                return ret;
+                assertEquals(hour, t.hour());
+                assertEquals(min, t.minute());
+                assertEquals(sec, t.second());
+                assertEquals(nanos, t.nano());
             }
+        });
 
-            it('remove', () => {
-                throw new UnsupportedOperationException();
-            });
-        };
-    }
+        it('test_plusNanos_noChange_equal', () => {
+            var t = TEST_12_30_40_987654321.plusNanos(0);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
 
-    @Test(dataProvider='plusNanos_fromZero')
-    public void test_plusNanos_fromZero(long nanoseconds, int hour, int min, int sec, int nanos) {
-        var base = LocalTime.MIDNIGHT;
-        var t = base.plusNanos(nanoseconds);
+        it('test_plusNanos_noChange_oneDay_equal()', () => {
+            var t = TEST_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000);
+            assertEquals(t, TEST_12_30_40_987654321);
+        });
 
-        assertEquals(hour, t.hour());
-        assertEquals(min, t.minute());
-        assertEquals(sec, t.second());
-        assertEquals(nanos, t.nano());
-    }
+        it('test_plusNanos_toMidnight_equal', () => {
+            var t = LocalTime.of(23, 59, 59, 999999999).plusNanos(1);
+            assertEquals(t, LocalTime.MIDNIGHT);
+        });
 
-    @Test
-    it('test_plusNanos_noChange_equal', () => {
-        var t = TEST_12_30_40_987654321.plusNanos(0);
-        assertEquals(t, TEST_12_30_40_987654321);
+        it('test_plusNanos_toMidday_equal', () => {
+            var t = LocalTime.of(11, 59, 59, 999999999).plusNanos(1);
+            assertEquals(t, LocalTime.NOON);
+        });
+
     });
 
-    @Test
-    public void test_plusNanos_noChange_oneDay_equal() {
-        var t = TEST_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000L);
-        assertEquals(t, TEST_12_30_40_987654321);
-    }
+});
 
-    @Test
-    it('test_plusNanos_toMidnight_equal', () => {
-        var t = LocalTime.of(23, 59, 59, 999999999).plusNanos(1);
-        assertEquals(t, LocalTime.MIDNIGHT);
-    });
-
-    @Test
-    it('test_plusNanos_toMidday_equal', () => {
-        var t = LocalTime.of(11, 59, 59, 999999999).plusNanos(1);
-        assertEquals(t, LocalTime.NOON);
-    });
-
+/**
     describe('minus(MinusAdjuster)', () => {
 
 	});
@@ -1458,14 +1391,14 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     it('test_minus_Adjuster_big1', () => {
-        var p = Duration.ofNanos(Long.MAX_VALUE);
+        var p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
         var t = TEST_12_30_40_987654321.minus(p);
-        assertEquals(t, TEST_12_30_40_987654321.minusNanos(Long.MAX_VALUE));
+        assertEquals(t, TEST_12_30_40_987654321.minusNanos(MathUtil.MAX_SAFE_INTEGER));
     });
 
     @Test
     it('test_minus_Adjuster_zero', () => {
-        var p = Period.ZERO;
+        var p = MockSimplePeriod.ZERO;
         var t = TEST_12_30_40_987654321.minus(p);
         assertEquals(t, TEST_12_30_40_987654321);
     });
@@ -1590,8 +1523,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     public void test_minusHours_big() {
-        var t = LocalTime.of(2, 30).minusHours(Long.MAX_VALUE);
-        var hours = (int) (Long.MAX_VALUE % 24L);
+        var t = LocalTime.of(2, 30).minusHours(MathUtil.MAX_SAFE_INTEGER);
+        var hours = (int) (MathUtil.MAX_SAFE_INTEGER % 24L);
         assertEquals(t, LocalTime.of(2, 30).minusHours(hours));
     }
 
@@ -1669,8 +1602,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     public void test_minusMinutes_big() {
-        var t = LocalTime.of(2, 30).minusMinutes(Long.MAX_VALUE);
-        var mins = (int) (Long.MAX_VALUE % (24L * 60L));
+        var t = LocalTime.of(2, 30).minusMinutes(MathUtil.MAX_SAFE_INTEGER);
+        var mins = (int) (MathUtil.MAX_SAFE_INTEGER % (24L * 60L));
         assertEquals(t, LocalTime.of(2, 30).minusMinutes(mins));
     }
 
@@ -1783,8 +1716,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     @Test
     public void test_minusSeconds_big() {
-        var t = LocalTime.of(2, 30).minusSeconds(Long.MAX_VALUE);
-        var secs = (int) (Long.MAX_VALUE % (24L * 60L * 60L));
+        var t = LocalTime.of(2, 30).minusSeconds(MathUtil.MAX_SAFE_INTEGER);
+        var secs = (int) (MathUtil.MAX_SAFE_INTEGER % (24L * 60L * 60L));
         assertEquals(t, LocalTime.of(2, 30).minusSeconds(secs));
     }
 
