@@ -2129,27 +2129,21 @@ describe('org.threeten.bp.TestLocalTime', function () {
     });
 
 
-    /**
-
+/* TODO parser
     describe('format(DateTimeFormatter)', () => {
 
-	});
+        it('test_format_formatter()', () => {
+            var f = DateTimeFormatter.ofPattern('H m s');
+            var t = LocalTime.of(11, 30, 45).format(f);
+            assertEquals(t, '11 30 45');
+        });
 
-    @Test
-    public void test_format_formatter() {
-        var f = DateTimeFormatter.ofPattern('H m s');
-        var t = LocalTime.of(11, 30, 45).format(f);
-        assertEquals(t, '11 30 45');
-    }
+        it('test_format_formatter_null', () => {
+            expect(() => {
+                LocalTime.of(11, 30, 45).format(null);
+            }).to.throw(NullPointerException);
+        });
 
-    it('test_format_formatter_null', () => {
-	expect(() => {
-        LocalTime.of(11, 30, 45).format(null);
-    
-	}).to.throw(NullPointerException);
-});
-
-}
+    });
 */
-
 });
