@@ -986,9 +986,9 @@ export class LocalDateTime extends TemporalAccessor
     //-----------------------------------------------------------------------
     minus(){
         if(arguments.length === 1){
-            this._minus1.apply(this, arguments);
+            return this._minus1.apply(this, arguments);
         } else {
-            this._minus2.apply(this, arguments);
+            return this._minus2.apply(this, arguments);
         }
     }
     /**
@@ -1002,12 +1002,13 @@ export class LocalDateTime extends TemporalAccessor
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amount  the amount to subtract, not null
-     * @return a {@code LocalDateTime} based on this date-time with the subtraction made, not null
+     * @param {TemporalAmount} amount  the amount to subtract, not null
+     * @return {LocalDateTime} based on this date-time with the subtraction made, not null
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
     _minus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -1027,6 +1028,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _minus2(amountToSubtract, unit) {
+        requireNonNull(unit, 'unit');
         return this._plus2(-1 * amountToSubtract, unit);
     }
 
