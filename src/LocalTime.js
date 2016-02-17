@@ -141,8 +141,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
         requireNonNull(temporal, 'temporal');
         var time = temporal.query(TemporalQueries.localTime());
         if (time == null) {
-            throw new DateTimeException('Unable to obtain LocalTime from TemporalAccessor: ' +
-                    temporal + ', type ' + temporal);
+            throw new DateTimeException(`Unable to obtain LocalTime TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
         return time;
     }
@@ -383,7 +382,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      */
     with(){
         if(arguments.length < 2){
-            return this._with1.apply(this, arguments);
+            return this._withTemporalAdjuster.apply(this, arguments);
         } else {
             return this._with2.apply(this, arguments);
         }
@@ -410,7 +409,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    _with1(adjuster) {
+    _withTemporalAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
