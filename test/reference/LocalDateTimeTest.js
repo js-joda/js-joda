@@ -5,7 +5,7 @@
  */
 
 import {expect} from 'chai';
-import {assertEquals, assertTrue, isCoverageTestRunner} from '../testUtils';
+import {assertEquals, assertTrue, assertSame, isCoverageTestRunner} from '../testUtils';
 
 import '../_init';
 
@@ -15,6 +15,7 @@ import {DateTimeException, DateTimeParseException, NullPointerException} from '.
 import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
+import {DayOfWeek} from '../../src/DayOfWeek';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
@@ -100,6 +101,16 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         // list = ChronoField.values();
         // list.removeAll(validFields());
         // return list;
+    }
+
+    function isIsoLeap(year) {
+        if (year % 4 !== 0) {
+            return false;
+        }
+        if (year % 100 === 0 && year % 400 !== 0) {
+            return false;
+        }
+        return true;
     }
 
     //-----------------------------------------------------------------------
@@ -930,94 +941,110 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    //-----------------------------------------------------------------------
+    function provider_sampleDates() {
+        return [
+            [2008, 7, 5],
+            [2007, 7, 5],
+            [2006, 7, 5],
+            [2005, 7, 5],
+            [2004, 1, 1],
+            [-1, 1, 2]
+        ];
+    }
+
+    function provider_sampleTimes() {
+        return [
+            [0, 0, 0, 0],
+            [0, 0, 0, 1],
+            [0, 0, 1, 0],
+            [0, 0, 1, 1],
+            [0, 1, 0, 0],
+            [0, 1, 0, 1],
+            [0, 1, 1, 0],
+            [0, 1, 1, 1],
+            [1, 0, 0, 0],
+            [1, 0, 0, 1],
+            [1, 0, 1, 0],
+            [1, 0, 1, 1],
+            [1, 1, 0, 0],
+            [1, 1, 0, 1],
+            [1, 1, 1, 0],
+            [1, 1, 1, 1]
+        ];
+    }
+
+    describe('get*()', function () {
+
+        it('test_get_dates', function () {
+            provider_sampleDates().forEach((data) => {
+                test_get_dates.apply(this, data);
+            });
+        });
+
+        function test_get_dates(y, m, d) {
+            var a = LocalDateTime.of(y, m, d, 12, 30);
+            assertEquals(a.year(), y);
+            assertEquals(a.month(), Month.of(m));
+            assertEquals(a.dayOfMonth(), d);
+        }
+
+        it('test_getDOY', function () {
+            provider_sampleDates().forEach((data) => {
+                test_getDOY.apply(this, data);
+            });
+        });
+
+        function test_getDOY(y, m, d) {
+            var a = LocalDateTime.of(y, m, d, 12 ,30);
+            var total = 0;
+            for (var i = 1; i < m; i++) {
+                total += Month.of(i).length(isIsoLeap(y));
+            }
+            var doy = total + d;
+            assertEquals(a.dayOfYear(), doy);
+        }
+
+        it('test_get_times', function () {
+            provider_sampleTimes().forEach((data) => {
+                test_get_times.apply(this, data);
+            });
+        });
+
+        function test_get_times(h, m, s, ns) {
+            var a = LocalDateTime.of(TEST_2007_07_15_12_30_40_987654321.toLocalDate(), LocalTime.of(h, m, s, ns));
+            assertEquals(a.hour(), h);
+            assertEquals(a.minute(), m);
+            assertEquals(a.second(), s);
+            assertEquals(a.nano(), ns);
+        }
+
+    });
+
+    describe('getDayOfWeek()', () => {
+
+        it('test_getDayOfWeek()', () => {
+            var dow = DayOfWeek.MONDAY;
+            var MONTH = Month.values();
+            for (let j=0; j < MONTH.length; j++) {
+                var month = MONTH[j];
+                var length = month.length(false);
+                for (let i = 1; i <= length; i++) {
+                    var d = LocalDateTime.of(LocalDate.of(2007, month, i),
+                            TEST_2007_07_15_12_30_40_987654321.toLocalTime());
+                    assertSame(d.dayOfWeek(), dow);
+                    dow = dow.plus(1);
+                }
+            }
+        });
+
+    });
+
 });
 
 
 /**
 
-    //-----------------------------------------------------------------------
-    @DataProvider(name='sampleDates')
-    Object[][] provider_sampleDates() {
-        return new Object[][] {
-            {2008, 7, 5},
-            {2007, 7, 5},
-            {2006, 7, 5},
-            {2005, 7, 5},
-            {2004, 1, 1},
-            {-1, 1, 2},
-        };
-    }
-
-    @DataProvider(name='sampleTimes')
-    Object[][] provider_sampleTimes() {
-        return new Object[][] {
-            {0, 0, 0, 0},
-            {0, 0, 0, 1},
-            {0, 0, 1, 0},
-            {0, 0, 1, 1},
-            {0, 1, 0, 0},
-            {0, 1, 0, 1},
-            {0, 1, 1, 0},
-            {0, 1, 1, 1},
-            {1, 0, 0, 0},
-            {1, 0, 0, 1},
-            {1, 0, 1, 0},
-            {1, 0, 1, 1},
-            {1, 1, 0, 0},
-            {1, 1, 0, 1},
-            {1, 1, 1, 0},
-            {1, 1, 1, 1},
-        };
-    }
-
-    //-----------------------------------------------------------------------
-    // get*()
-    //-----------------------------------------------------------------------
-    @Test(dataProvider='sampleDates')
-    public void test_get_dates(int y, int m, int d) {
-        var a = LocalDateTime.of(y, m, d, 12, 30);
-        assertEquals(a.year(), y);
-        assertEquals(a.month(), Month.of(m));
-        assertEquals(a.dayOfMonth(), d);
-    }
-
-    @Test(dataProvider='sampleDates')
-    public void test_getDOY(int y, int m, int d) {
-        var a = LocalDateTime.of(y, m, d, 12 ,30);
-        var total = 0;
-        for (var i = 1; i < m; i++) {
-            total += Month.of(i).length(isIsoLeap(y));
-        }
-        var doy = total + d;
-        assertEquals(a.getDayOfYear(), doy);
-    }
-
-    @Test(dataProvider='sampleTimes')
-    public void test_get_times(int h, int m, int s, int ns) {
-        var a = LocalDateTime.of(TEST_2007_07_15_12_30_40_987654321.toLocalDate(), LocalTime.of(h, m, s, ns));
-        assertEquals(a.hour(), h);
-        assertEquals(a.minute(), m);
-        assertEquals(a.second(), s);
-        assertEquals(a.nano(), ns);
-    }
-
-    describe('getDayOfWeek()', () => {
-
-	});
-
-    @Test
-    public void test_getDayOfWeek() {
-        var dow = DayOfWeek.MONDAY;
-        for (Month month : Month.values()) {
-            var length = month.length(false);
-            for (var i = 1; i <= length; i++) {
-                var d = LocalDateTime.of(LocalDate.of(2007, month, i),
-                        TEST_2007_07_15_12_30_40_987654321.toLocalTime());
-                assertSame(d.getDayOfWeek(), dow);
-                dow = dow.plus(1);
-            }
-        }
-    }
 
     describe('with()', () => {
 
