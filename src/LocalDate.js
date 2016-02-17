@@ -523,12 +523,12 @@ export class LocalDate extends ChronoLocalDate{
      * @throws ArithmeticException if numeric overflow occurs
      */
     _withTemporalAdjuster(adjuster) {
-        assert(adjuster != null, 'adjuster', NullPointerException);
-        assert(typeof adjuster.adjustInto === 'function', adjuster + 'is mot an adjuster', IllegalArgumentException);
+        requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
             return adjuster;
         }
+        assert(typeof adjuster.adjustInto === 'function', 'adjuster', IllegalArgumentException);
         return adjuster.adjustInto(this);
     }
 
