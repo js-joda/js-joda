@@ -140,8 +140,8 @@ export class LocalDateTime extends TemporalAccessor
      * which is simple as there is only one valid offset for each instant.
      * Then, the instant and offset are used to calculate the local date-time.
      *
-     * @param instant  the instant to create the date-time from, not null
-     * @param zone  the time-zone, which may be an offset, not null
+     * @param {Instant} instant  the instant to create the date-time from, not null
+     * @param {ZoneId} zone  the time-zone, which may be an offset, not null
      * @return the local date-time, not null
      * @throws DateTimeException if the result exceeds the supported range
      */

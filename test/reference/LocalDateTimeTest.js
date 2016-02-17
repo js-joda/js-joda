@@ -24,10 +24,10 @@ import {ChronoField} from '../../src/temporal/ChronoField';
 
 describe('org.threeten.bp.TestLocalDateTime', () => {
 
+    var OFFSET_PONE;
+    var OFFSET_PTWO;
+    var OFFSET_MTWO;
     /*
-     private static final var OFFSET_PONE = ZoneOffset.ofHours(1);
-     private static final var OFFSET_PTWO = ZoneOffset.ofHours(2);
-     private static final var OFFSET_MTWO = ZoneOffset.ofHours(-2);
      private static final var ZONE_PARIS = ZoneId.of("Europe/Paris");
      private static final var ZONE_GAZA = ZoneId.of("Asia/Gaza");
      */
@@ -38,6 +38,9 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     //var MIN_INSTANT;
 
     beforeEach('setUp', () => {
+        OFFSET_PONE = ZoneOffset.ofHours(1);
+        OFFSET_PTWO = ZoneOffset.ofHours(2);
+        OFFSET_MTWO = ZoneOffset.ofHours(-2);
         MAX_DATE_TIME = LocalDateTime.MAX;
         MIN_DATE_TIME = LocalDateTime.MIN;
         //MAX_INSTANT = MAX_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
@@ -673,113 +676,108 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    describe('ofInstant()', () => {
+
+/* TODO timezone
+        it('factory_ofInstant_zone()', () => {
+            var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), ZONE_PARIS);
+            assertEquals(test, LocalDateTime.of(1970, 1, 2, 2, 2, 4, 500));  // offset +01:00
+        });
+
+        it('factory_ofInstant_offset', () => {
+            var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), OFFSET_MTWO);
+            assertEquals(test, LocalDateTime.of(1970, 1, 1, 23, 2, 4, 500));
+        });
+    
+        it('factory_ofInstant_offsetBeforeEpoch', () => {
+            var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(-86400 + 4, 500), OFFSET_PTWO);
+            assertEquals(test, LocalDateTime.of(1969, 12, 31, 2, 0, 4, 500));
+        });
+    
+*/
+
+        it('factory_ofInstant_instantTooBig', () => {
+            expect(() => {
+                LocalDateTime.ofInstant(Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER), OFFSET_PONE);
+            }).to.throw(DateTimeException);
+        });
+    
+        it('factory_ofInstant_instantTooSmall', () => {
+            expect(() => {
+                LocalDateTime.ofInstant(Instant.ofEpochSecond(MathUtil.MIN_SAFE_INTEGER), OFFSET_PONE);
+            }).to.throw(DateTimeException);
+        });
+    
+/*
+        it('factory_ofInstant_nullInstant', () => {
+            expect(() => {
+                LocalDateTime.ofInstant(null, ZONE_GAZA);
+            }).to.throw(NullPointerException);
+        });
+*/
+
+        it('factory_ofInstant_nullZone', () => {
+            expect(() => {
+                LocalDateTime.ofInstant(Instant.EPOCH, null);
+            }).to.throw(NullPointerException);
+        });
+    
+    });
+
+    describe('ofEpochSecond()', () => {
+
+        it('factory_ofEpochSecond_longOffset_afterEpoch()', () => {
+            var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
+            for (var i = 0; i < 100000; i++) {
+                var test = LocalDateTime.ofEpochSecond(i, 500, OFFSET_PTWO);
+                assertEquals(test, base.plusSeconds(i));
+            }
+        });
+
+        it('factory_ofEpochSecond_longOffset_beforeEpoch()', () => {
+            var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
+            for (var i = 0; i < 100000; i++) {
+                var test = LocalDateTime.ofEpochSecond(-i, 500, OFFSET_PTWO);
+                assertEquals(test, base.minusSeconds(i));
+            }
+        });
+
+        it('factory_ofEpochSecond_longOffset_tooBig()', () => {
+            expect(() => {
+                LocalDateTime.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER, 500, OFFSET_PONE);  // TODO: better test
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofEpochSecond_longOffset_tooSmall()', () => {
+            expect(() => {
+                LocalDateTime.ofEpochSecond(MathUtil.MIN_SAFE_INTEGER, 500, OFFSET_PONE);  // TODO: better test
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofEpochSecond_badNanos_toBig', () => {
+            expect(() => {
+                LocalDateTime.ofEpochSecond(0, 1000000000, OFFSET_PONE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofEpochSecond_badNanos_toSmall', () => {
+            expect(() => {
+                LocalDateTime.ofEpochSecond(0, -1, OFFSET_PONE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofEpochSecond_longOffset_nullOffset', () => {
+            expect(() => {
+                LocalDateTime.ofEpochSecond(0, 500, null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 /**
-    describe('ofInstant()', () => {
-
-	});
-
-    @Test
-    public void factory_ofInstant_zone() {
-        var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), ZONE_PARIS);
-        assertEquals(test, LocalDateTime.of(1970, 1, 2, 2, 2, 4, 500));  // offset +01:00
-    }
-
-    @Test
-    it('factory_ofInstant_offset', () => {
-        var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), OFFSET_MTWO);
-        assertEquals(test, LocalDateTime.of(1970, 1, 1, 23, 2, 4, 500));
-    });
-
-    @Test
-    it('factory_ofInstant_offsetBeforeEpoch', () => {
-        var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(-86400 + 4, 500), OFFSET_PTWO);
-        assertEquals(test, LocalDateTime.of(1969, 12, 31, 2, 0, 4, 500));
-    });
-
-    it('factory_ofInstant_instantTooBig', () => {
-	expect(() => {
-        LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.MAX_VALUE), OFFSET_PONE) ;
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_ofInstant_instantTooSmall', () => {
-	expect(() => {
-        LocalDateTime.ofInstant(Instant.ofEpochSecond(Long.MIN_VALUE), OFFSET_PONE) ;
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_ofInstant_nullInstant', () => {
-	expect(() => {
-        LocalDateTime.ofInstant((Instant) null, ZONE_GAZA);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('factory_ofInstant_nullZone', () => {
-	expect(() => {
-        LocalDateTime.ofInstant(Instant.EPOCH, (ZoneId) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    describe('ofEpochSecond()', () => {
-
-	});
-
-    @Test
-    public void factory_ofEpochSecond_longOffset_afterEpoch() {
-        var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
-        for (var i = 0; i < 100000; i++) {
-            var test = LocalDateTime.ofEpochSecond(i, 500, OFFSET_PTWO);
-            assertEquals(test, base.plusSeconds(i));
-        }
-    }
-
-    @Test
-    public void factory_ofEpochSecond_longOffset_beforeEpoch() {
-        var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
-        for (var i = 0; i < 100000; i++) {
-            var test = LocalDateTime.ofEpochSecond(-i, 500, OFFSET_PTWO);
-            assertEquals(test, base.minusSeconds(i));
-        }
-    }
-
-    @Test(expectedExceptions=DateTimeException.class)
-    public void factory_ofEpochSecond_longOffset_tooBig() {
-        LocalDateTime.ofEpochSecond(Long.MAX_VALUE, 500, OFFSET_PONE);  // TODO: better test
-    }
-
-    @Test(expectedExceptions=DateTimeException.class)
-    public void factory_ofEpochSecond_longOffset_tooSmall() {
-        LocalDateTime.ofEpochSecond(Long.MIN_VALUE, 500, OFFSET_PONE);  // TODO: better test
-    }
-
-    it('factory_ofEpochSecond_badNanos_toBig', () => {
-	expect(() => {
-        LocalDateTime.ofEpochSecond(0, 1000000000, OFFSET_PONE);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_ofEpochSecond_badNanos_toSmall', () => {
-	expect(() => {
-        LocalDateTime.ofEpochSecond(0, -1, OFFSET_PONE);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_ofEpochSecond_longOffset_nullOffset', () => {
-	expect(() => {
-        LocalDateTime.ofEpochSecond(0L, 500, null);
-
-	}).to.throw(NullPointerException);
-});
-
     describe('from()', () => {
 
 	});
