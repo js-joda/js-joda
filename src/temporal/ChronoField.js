@@ -46,24 +46,49 @@ export class ChronoField extends TemporalField {
     /**
      * Checks if this field represents a component of a date.
      *
-     * @return true if it is a component of a date
+     * @return {boolean} true if it is a component of a date
      */
     isDateBased() {
         var dateBased =
-            //this === ChronoField.DAY_OF_WEEK ||
-            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
-            //this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
+            this === ChronoField.DAY_OF_WEEK ||
+            this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
+            this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
             this === ChronoField.DAY_OF_MONTH ||
             this === ChronoField.DAY_OF_YEAR ||
             this === ChronoField.EPOCH_DAY ||
-            //this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
-            //this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
+            this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
+            this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
             this === ChronoField.MONTH_OF_YEAR ||
             //this === ChronoField.EPOCH_MONTH ||
-            //this === ChronoField.YEAR_OF_ERA ||
+            this === ChronoField.YEAR_OF_ERA ||
             this === ChronoField.YEAR ||
             this === ChronoField.ERA;
         return dateBased;
+    }
+
+    /**
+     * Checks if this field represents a component of a time.
+     *
+     * @return {boolean} true if it is a component of a time
+     */
+    isTimeBased() {
+        var timeBased =
+            this === ChronoField.NANO_OF_SECOND     ||
+            this === ChronoField.NANO_OF_DAY        ||
+            this === ChronoField.MICRO_OF_SECOND    ||
+            this === ChronoField.MICRO_OF_DAY       ||
+            this === ChronoField.MILLI_OF_SECOND    ||
+            this === ChronoField.MILLI_OF_DAY       ||
+            this === ChronoField.SECOND_OF_MINUTE   ||
+            this === ChronoField.SECOND_OF_DAY      ||
+            this === ChronoField.MINUTE_OF_HOUR     ||
+            this === ChronoField.MINUTE_OF_DAY      ||
+            this === ChronoField.HOUR_OF_AMPM       ||
+            this === ChronoField.CLOCK_HOUR_OF_AMPM ||
+            this === ChronoField.HOUR_OF_DAY        ||
+            this === ChronoField.CLOCK_HOUR_OF_DAY  ||
+            this === ChronoField.AMPM_OF_DAY;
+        return timeBased;
     }
 
     /**

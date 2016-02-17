@@ -9,6 +9,8 @@ import {assertEquals, assertTrue, isCoverageTestRunner} from '../testUtils';
 
 import '../_init';
 
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+
 import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 import {MathUtil} from '../../src/MathUtil';
 
@@ -872,46 +874,43 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     });
 */
 
+    describe('get(DateTimeField)', () => {
+
+        it('test_get_DateTimeField', () => {
+            var test = LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321);
+            assertEquals(test.getLong(ChronoField.YEAR), 2008);
+            assertEquals(test.getLong(ChronoField.MONTH_OF_YEAR), 6);
+            assertEquals(test.getLong(ChronoField.DAY_OF_MONTH), 30);
+            assertEquals(test.getLong(ChronoField.DAY_OF_WEEK), 1);
+            assertEquals(test.getLong(ChronoField.DAY_OF_YEAR), 182);
+
+            assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
+            assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
+            assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
+            assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
+            assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
+            assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
+        });
+
+        it('test_get_DateTimeField_null', () => {
+            expect(() => {
+                var test = LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321);
+                test.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_DateTimeField_invalidField', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
 });
 
 
 /**
-    describe('get(DateTimeField)', () => {
-
-	});
-
-    @Test
-    it('test_get_DateTimeField', () => {
-        var test = LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321);
-        assertEquals(test.getLong(ChronoField.YEAR), 2008);
-        assertEquals(test.getLong(ChronoField.MONTH_OF_YEAR), 6);
-        assertEquals(test.getLong(ChronoField.DAY_OF_MONTH), 30);
-        assertEquals(test.getLong(ChronoField.DAY_OF_WEEK), 1);
-        assertEquals(test.getLong(ChronoField.DAY_OF_YEAR), 182);
-
-        assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
-        assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
-        assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
-        assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
-        assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
-        assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
-    });
-
-    it('test_get_DateTimeField_null', () => {
-	expect(() => {
-        var test = LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321);
-        test.getLong((TemporalField) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('test_get_DateTimeField_invalidField', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.getLong(MockFieldNoValue.INSTANCE);
-
-	}).to.throw(DateTimeException);
-});
-
     describe('query(TemporalQuery)', () => {
 
 	});

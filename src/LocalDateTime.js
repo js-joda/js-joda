@@ -397,6 +397,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws ArithmeticException if numeric overflow occurs
      */
     getLong(field) {
+        requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             return (field.isTimeBased() ? this._time.getLong(field) : this._date.getLong(field));
         }
