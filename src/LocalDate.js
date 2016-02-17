@@ -64,8 +64,8 @@ export class LocalDate extends ChronoLocalDate{
      * This will query the specified clock to obtain the current date - today.
      * Using this method allows the use of an alternate clock for testing.
      *
-     * @param clock  the clock to use, if null, the system clock and default time-zone is used.
-     * @return the current date, not null
+     * @param {Clock} clock  the clock to use, if null, the system clock and default time-zone is used.
+     * @return {LocalDate} the current date, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
         assert(clock != null, 'clock', NullPointerException);
