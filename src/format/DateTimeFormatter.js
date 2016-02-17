@@ -259,6 +259,7 @@ export class DateTimeFormatter {
 }
 
 export function _init() {
+
     DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()
         .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
         .appendLiteral('-')
@@ -266,4 +267,23 @@ export function _init() {
         .appendLiteral('-')
         .appendValue(ChronoField.DAY_OF_MONTH, 2)
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.HOUR_OF_DAY, 2)
+        .appendLiteral(':')
+        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
+        //.optionalStart()
+        .appendLiteral(':')
+        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+        //.optionalStart()
+        //.appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)
+        .toFormatter(ResolverStyle.STRICT);
+
+    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        //.append(DateTimeFormatter.ISO_LOCAL_DATE)
+        .appendLiteral('T')
+        //.append(DateTimeFormatter.ISO_LOCAL_TIME)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
 }
