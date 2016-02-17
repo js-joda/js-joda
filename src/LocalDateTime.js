@@ -77,13 +77,13 @@ export class LocalDateTime extends TemporalAccessor
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock dependency injection}.
      *
-     * @param clock  the clock to use, defaults to Clock.systemDefaultZone()
-     * @return the current date-time, not null
+     * @param {Clock} clock  the clock to use, defaults to Clock.systemDefaultZone()
+     * @return {LocalDateTime} the current date-time, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
         requireNonNull(clock, 'clock');
         var now = clock.instant();  // called once
-        var offset = clock.offset(); // getZone().getRules().getOffset(now);
+        var offset = clock.offset(now); // getZone().getRules().getOffset(now);
         return LocalDateTime.ofEpochSecond(now.epochSecond(), now.nano(), offset);
     }
 
@@ -170,8 +170,8 @@ export class LocalDateTime extends TemporalAccessor
     static ofEpochSecond(epochSecond, nanoOfSecond, offset) {
         requireNonNull(offset, 'offset');
         var localSecond = epochSecond + offset.totalSeconds();  // overflow caught later
-        var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.LocalTime.SECONDS_PER_DAY);
-        var secsOfDay = MathUtil.floorMod(localSecond, LocalTime.LocalTime.SECONDS_PER_DAY);
+        var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
+        var secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
         var date = LocalDate.ofEpochDay(localEpochDay);
         var time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
         return new LocalDateTime(date, time);
