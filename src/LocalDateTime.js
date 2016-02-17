@@ -89,10 +89,10 @@ export class LocalDateTime extends TemporalAccessor
 
     //-----------------------------------------------------------------------
     static of(){
-        if (arguments.length === 2 && arguments[0] instanceof LocalDate){
-            LocalDateTime._ofDateAndTime.apply(this, arguments);
+        if (arguments.length === 2 && (arguments[0] instanceof LocalDate || arguments[1] instanceof LocalTime)){
+            return LocalDateTime._ofDateAndTime.apply(this, arguments);
         } else {
-            LocalDateTime._of.apply(this, arguments);
+            return LocalDateTime._of.apply(this, arguments);
         }
     }
     /**
@@ -112,7 +112,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws DateTimeException if the value of any field is out of range
      * @throws DateTimeException if the day-of-month is invalid for the month-year
      */
-    static _of(year=0, month=1, dayOfMonth=1, hour=0, minute=0, second=0, nanoOfSecond=0) {
+    static _of(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
         var date = LocalDate.of(year, month, dayOfMonth);
         var time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);

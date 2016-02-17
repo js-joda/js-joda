@@ -13,6 +13,7 @@ import {DateTimeException, NullPointerException} from '../../src/errors';
 import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
+import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
@@ -236,517 +237,446 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 */
 
+    describe('of() factories', function () {
+
+        it('factory_of_4intsMonth', () => {
+            var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30);
+            check(dateTime, 2007, 7, 15, 12, 30, 0, 0);
+        });
+
+        it('factory_of_4intsMonth_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, Month.JULY, 15, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_nullMonth', () => {
+            expect(() => {
+                LocalDateTime.of(2007, null, 15, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, -1, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 32, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, -1, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 24, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, -1);
+
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_4intsMonth_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_of_5intsMonth', () => {
+            var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40);
+            check(dateTime, 2007, 7, 15, 12, 30, 40, 0);
+        });
+
+        it('factory_of_5intsMonth_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, Month.JULY, 15, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_nullMonth', () => {
+            expect(() => {
+                LocalDateTime.of(2007, null, 15, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, -1, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 32, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, -1, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 24, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, -1, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 60, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_secondTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5intsMonth_secondTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_of_6intsMonth', () => {
+            var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, 987654321);
+            check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('factory_of_6intsMonth_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, Month.JULY, 15, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_nullMonth', () => {
+            expect(() => {
+                LocalDateTime.of(2007, null, 15, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, -1, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 32, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, -1, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 24, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, -1, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 60, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_secondTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, -1, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_secondTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 60, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_nanoTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6intsMonth_nanoTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, 1000000000);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_of_5ints', () => {
+            var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30);
+            check(dateTime, 2007, 7, 15, 12, 30, 0, 0);
+        });
+
+        it('factory_of_5ints_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, 7, 15, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_monthTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 0, 15, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_monthTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 13, 15, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, -1, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 32, 12, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, -1, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 24, 30);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_5ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_of_6ints', () => {
+            var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30, 40);
+            check(dateTime, 2007, 7, 15, 12, 30, 40, 0);
+        });
+
+        it('factory_of_6ints_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, 7, 15, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_monthTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 0, 15, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_monthTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 13, 15, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, -1, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 32, 12, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, -1, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 24, 30, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, -1, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 60, 40);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_secondTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_6ints_secondTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, 60);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_of_7ints', () => {
+            var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
+            check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('factory_of_7ints_yearTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(MathUtil.MIN_SAFE_INTEGER, 7, 15, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_monthTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 0, 15, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_monthTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 13, 15, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_dayTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, -1, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_dayTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 32, 12, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_hourTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, -1, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_hourTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 24, 30, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_minuteTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, -1, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_minuteTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 60, 40, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_secondTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, -1, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_secondTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, 60, 987654321);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_nanoTooLow', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, 40, -1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_of_7ints_nanoTooHigh', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 15, 12, 30, 40, 1000000000);
+            }).to.throw(DateTimeException);
+        });
+    
+        //-----------------------------------------------------------------------
+        it('factory_of_LocalDate_LocalTime', () => {
+            var dateTime = LocalDateTime.of(LocalDate.of(2007, 7, 15), LocalTime.of(12, 30, 40, 987654321));
+            check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('factory_of_LocalDate_LocalTime_nullLocalDate', () => {
+            expect(() => {
+                LocalDateTime.of(null, LocalTime.of(12, 30, 40, 987654321));
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_of_LocalDate_LocalTime_nullLocalTime', () => {
+            expect(() => {
+                LocalDateTime.of(LocalDate.of(2007, 7, 15), null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 /**
-    //-----------------------------------------------------------------------
-    // of() factories
-    //-----------------------------------------------------------------------
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_4intsMonth', () => {
-        var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30);
-        check(dateTime, 2007, 7, 15, 12, 30, 0, 0);
-    });
-
-    it('factory_of_4intsMonth_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, Month.JULY, 15, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_nullMonth', () => {
-	expect(() => {
-        LocalDateTime.of(2007, null, 15, 12, 30);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('factory_of_4intsMonth_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, -1, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 32, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, -1, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 24, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_4intsMonth_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 60);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_5intsMonth', () => {
-        var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40);
-        check(dateTime, 2007, 7, 15, 12, 30, 40, 0);
-    });
-
-    it('factory_of_5intsMonth_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, Month.JULY, 15, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_nullMonth', () => {
-	expect(() => {
-        LocalDateTime.of(2007, null, 15, 12, 30, 40);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('factory_of_5intsMonth_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, -1, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 32, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, -1, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 24, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, -1, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 60, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_secondTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5intsMonth_secondTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 60);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_6intsMonth', () => {
-        var dateTime = LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, 987654321);
-        check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    it('factory_of_6intsMonth_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, Month.JULY, 15, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_nullMonth', () => {
-	expect(() => {
-        LocalDateTime.of(2007, null, 15, 12, 30, 40, 987654321);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('factory_of_6intsMonth_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, -1, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 32, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, -1, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 24, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, -1, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 60, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_secondTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, -1, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_secondTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 60, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_nanoTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6intsMonth_nanoTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, Month.JULY, 15, 12, 30, 40, 1000000000);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_5ints', () => {
-        var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30);
-        check(dateTime, 2007, 7, 15, 12, 30, 0, 0);
-    });
-
-    it('factory_of_5ints_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, 7, 15, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_monthTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 0, 15, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_monthTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 13, 15, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, -1, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 32, 12, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, -1, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 24, 30);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_5ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 60);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_6ints', () => {
-        var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30, 40);
-        check(dateTime, 2007, 7, 15, 12, 30, 40, 0);
-    });
-
-    it('factory_of_6ints_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, 7, 15, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_monthTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 0, 15, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_monthTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 13, 15, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, -1, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 32, 12, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, -1, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 24, 30, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, -1, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 60, 40);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_secondTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_6ints_secondTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, 60);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_7ints', () => {
-        var dateTime = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
-        check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    it('factory_of_7ints_yearTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(Integer.MIN_VALUE, 7, 15, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_monthTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 0, 15, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_monthTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 13, 15, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_dayTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, -1, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_dayTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 32, 12, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_hourTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, -1, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_hourTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 24, 30, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_minuteTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, -1, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_minuteTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 60, 40, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_secondTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, -1, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_secondTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, 60, 987654321);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_nanoTooLow', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, 40, -1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('factory_of_7ints_nanoTooHigh', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 7, 15, 12, 30, 40, 1000000000);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    @Test
-    it('factory_of_LocalDate_LocalTime', () => {
-        var dateTime = LocalDateTime.of(LocalDate.of(2007, 7, 15), LocalTime.of(12, 30, 40, 987654321));
-        check(dateTime, 2007, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    it('factory_of_LocalDate_LocalTime_nullLocalDate', () => {
-	expect(() => {
-        LocalDateTime.of(null, LocalTime.of(12, 30, 40, 987654321));
-
-	}).to.throw(NullPointerException);
-});
-
-    it('factory_of_LocalDate_LocalTime_nullLocalTime', () => {
-	expect(() => {
-        LocalDateTime.of(LocalDate.of(2007, 7, 15), null);
-
-	}).to.throw(NullPointerException);
-});
-
     describe('ofInstant()', () => {
 
 	});
