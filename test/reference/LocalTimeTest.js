@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {assertEquals, assertTrue, assertNotNull, isCoverageTestRunner} from '../testUtils';
+import {MockSimplePeriod} from './MockSimplePeriod';
 
 import '../_init';
 
@@ -954,22 +955,6 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
     });
-
-    class MockSimplePeriod{
-        constructor(amount, unit){
-            this._amount = amount;
-            this._unit = unit;
-        }
-        static of(amount, unit){
-            return new MockSimplePeriod(amount, unit);
-        }
-        addTo(dateTime) {
-            return dateTime.plus(this._amount, this._unit);
-        }
-        subtractFrom(dateTime) {
-            return dateTime.minus(this._amount, this._unit);
-        }
-    }
 
     describe('plus(PlusAdjuster)', () => {
 

@@ -6,16 +6,19 @@
 
 import {expect} from 'chai';
 import {assertEquals, assertTrue, assertSame, isCoverageTestRunner} from '../testUtils';
+import {MockSimplePeriod} from './MockSimplePeriod';
 
 import '../_init';
 
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
-import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException,
+    NullPointerException, ArithmeticException} from '../../src/errors';
 import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
 import {DayOfWeek} from '../../src/DayOfWeek';
+import {Duration} from '../../src/Duration';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
@@ -1057,6 +1060,19 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             }).to.throw(NullPointerException);
         });
 
+        // missing in threeten bp ?
+        it('test_with_LocaleDate()', () => {
+            var expected = LocalDateTime.of(2009,12,24,12,30,40,987654321);
+            var actual = TEST_2007_07_15_12_30_40_987654321.with(LocalDate.of(2009,12,24));
+            assertEquals(expected, actual);
+        });
+
+        // missing in threeten bp ?
+        it('test_with_LocaleTime()', () => {
+            var expected = LocalDateTime.of(2007,7,15,23,55,0,0);
+            var actual = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.of(23,55,0));
+            assertEquals(expected, actual);
+        });
     });
 
     describe('withYear()', () => {
@@ -1243,607 +1259,545 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-});
-
-
-/**
-
-
     describe('plus(adjuster)', () => {
 
-	});
+        it('test_plus_adjuster', () => {
+            var p = Duration.ofSeconds(62, 3);
+            var t = TEST_2007_07_15_12_30_40_987654321.plus(p);
+            assertEquals(t, LocalDateTime.of(2007, 7, 15, 12, 31, 42, 987654324));
+        });
 
-    @Test
-    it('test_plus_adjuster', () => {
-        var p = Duration.ofSeconds(62, 3);
-        var t = TEST_2007_07_15_12_30_40_987654321.plus(p);
-        assertEquals(t, LocalDateTime.of(2007, 7, 15, 12, 31, 42, 987654324));
+        it('test_plus_adjuster_null', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.plus(null);
+            }).to.throw(NullPointerException);
+        });
+
     });
-
-    it('test_plus_adjuster_null', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.plus(null);
-
-	}).to.throw(NullPointerException);
-});
 
     describe('plus(Period)', () => {
 
-	});
+        it('test_plus_Period_positiveMonths', () => {
+            var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+            var t = TEST_2007_07_15_12_30_40_987654321.plus(period);
+            assertEquals(t, LocalDateTime.of(2008, 2, 15, 12, 30, 40, 987654321));
+        });
 
-    @Test
-    it('test_plus_Period_positiveMonths', () => {
-        var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
-        var t = TEST_2007_07_15_12_30_40_987654321.plus(period);
-        assertEquals(t, LocalDateTime.of(2008, 2, 15, 12, 30, 40, 987654321));
+        it('test_plus_Period_negativeDays', () => {
+            var period = MockSimplePeriod.of(-25, ChronoUnit.DAYS);
+            var t = TEST_2007_07_15_12_30_40_987654321.plus(period);
+            assertEquals(t, LocalDateTime.of(2007, 6, 20, 12, 30, 40, 987654321));
+        });
+
+        it('test_plus_Period_null', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.plus(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_plus_Period_invalidTooLarge', () => {
+            expect(() => {
+                var period = MockSimplePeriod.of(1, ChronoUnit.YEARS);
+                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(period);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_Period_invalidTooSmall', () => {
+            expect(() => {
+                var period = MockSimplePeriod.of(-1, ChronoUnit.YEARS);
+                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(period);
+            }).to.throw(DateTimeException);
+        });
+
     });
 
-    @Test
-    it('test_plus_Period_negativeDays', () => {
-        var period = MockSimplePeriod.of(-25, ChronoUnit.DAYS);
-        var t = TEST_2007_07_15_12_30_40_987654321.plus(period);
-        assertEquals(t, LocalDateTime.of(2007, 6, 20, 12, 30, 40, 987654321));
+    describe('plus(long,PeriodUnit)', function () {
+
+        it('test_plus_longPeriodUnit_positiveMonths', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plus(7, ChronoUnit.MONTHS);
+            assertEquals(t, LocalDateTime.of(2008, 2, 15, 12, 30, 40, 987654321));
+        });
+
+        it('test_plus_longPeriodUnit_negativeDays', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plus(-25, ChronoUnit.DAYS);
+            assertEquals(t, LocalDateTime.of(2007, 6, 20, 12, 30, 40, 987654321));
+        });
+
+        it('test_plus_longPeriodUnit_null', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.plus(1, null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_plus_longPeriodUnit_invalidTooLarge', () => {
+            expect(() => {
+                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plus_longPeriodUnit_invalidTooSmall', () => {
+            expect(() => {
+                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(-1, ChronoUnit.YEARS);
+            }).to.throw(DateTimeException);
+        });
+
     });
-
-    it('test_plus_Period_null', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.plus((MockSimplePeriod) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('test_plus_Period_invalidTooLarge', () => {
-	expect(() => {
-        var period = MockSimplePeriod.of(1, ChronoUnit.YEARS);
-        LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(period);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plus_Period_invalidTooSmall', () => {
-	expect(() => {
-        var period = MockSimplePeriod.of(-1, ChronoUnit.YEARS);
-        LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(period);
-
-	}).to.throw(DateTimeException);
-});
-
-    //-----------------------------------------------------------------------
-    // plus(long,PeriodUnit)
-    //-----------------------------------------------------------------------
-    @Test
-    it('test_plus_longPeriodUnit_positiveMonths', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plus(7, ChronoUnit.MONTHS);
-        assertEquals(t, LocalDateTime.of(2008, 2, 15, 12, 30, 40, 987654321));
-    });
-
-    @Test
-    it('test_plus_longPeriodUnit_negativeDays', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plus(-25, ChronoUnit.DAYS);
-        assertEquals(t, LocalDateTime.of(2007, 6, 20, 12, 30, 40, 987654321));
-    });
-
-    it('test_plus_longPeriodUnit_null', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.plus(1, (TemporalUnit) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    it('test_plus_longPeriodUnit_invalidTooLarge', () => {
-	expect(() => {
-        LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(1, ChronoUnit.YEARS);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plus_longPeriodUnit_invalidTooSmall', () => {
-	expect(() => {
-        LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(-1, ChronoUnit.YEARS);
-
-	}).to.throw(DateTimeException);
-});
 
     describe('plusYears()', () => {
 
-	});
+        it('test_plusYears_int_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusYears(1);
+            check(t, 2008, 7, 15, 12, 30, 40, 987654321);
+        });
 
-    @Test
-    it('test_plusYears_int_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusYears(1);
-        check(t, 2008, 7, 15, 12, 30, 40, 987654321);
+        it('test_plusYears_int_negative', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1);
+            check(t, 2006, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusYears_int_adjustDay', () => {
+            var t = createDateMidnight(2008, 2, 29).plusYears(1);
+            check(t, 2009, 2, 28, 0, 0, 0, 0);
+        });
+
+        it('test_plusYears_int_invalidTooLarge', () => {
+            expect(() => {
+                createDateMidnight(Year.MAX_VALUE, 1, 1).plusYears(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusYears_int_invalidTooSmall', () => {
+            expect(() => {
+                LocalDate.of(Year.MIN_VALUE, 1, 1).plusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+
     });
-
-    @Test
-    it('test_plusYears_int_negative', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1);
-        check(t, 2006, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusYears_int_adjustDay', () => {
-        var t = createDateMidnight(2008, 2, 29).plusYears(1);
-        check(t, 2009, 2, 28, 0, 0, 0, 0);
-    });
-
-    it('test_plusYears_int_invalidTooLarge', () => {
-	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 1, 1).plusYears(1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plusYears_int_invalidTooSmall', () => {
-	expect(() => {
-        LocalDate.of(Year.MIN_VALUE, 1, 1).plusYears(-1);
-
-	}).to.throw(DateTimeException);
-});
 
     describe('plusMonths()', () => {
 
-	});
+        it('test_plusMonths_int_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(1);
+            check(t, 2007, 8, 15, 12, 30, 40, 987654321);
+        });
 
-    @Test
-    it('test_plusMonths_int_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(1);
-        check(t, 2007, 8, 15, 12, 30, 40, 987654321);
+        it('test_plusMonths_int_overYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(25);
+            check(t, 2009, 8, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusMonths_int_negative', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-1);
+            check(t, 2007, 6, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusMonths_int_negativeAcrossYear', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-7);
+            check(t, 2006, 12, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusMonths_int_negativeOverYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-31);
+            check(t, 2004, 12, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusMonths_int_adjustDayFromLeapYear', () => {
+            var t = createDateMidnight(2008, 2, 29).plusMonths(12);
+            check(t, 2009, 2, 28, 0, 0, 0, 0);
+        });
+
+        it('test_plusMonths_int_adjustDayFromMonthLength', () => {
+            var t = createDateMidnight(2007, 3, 31).plusMonths(1);
+            check(t, 2007, 4, 30, 0, 0, 0, 0);
+        });
+
+        it('test_plusMonths_int_invalidTooLarge', () => {
+            expect(() => {
+                createDateMidnight(Year.MAX_VALUE, 12, 1).plusMonths(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusMonths_int_invalidTooSmall', () => {
+            expect(() => {
+                createDateMidnight(Year.MIN_VALUE, 1, 1).plusMonths(-1);
+            }).to.throw(DateTimeException);
+        });
+
     });
-
-    @Test
-    it('test_plusMonths_int_overYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(25);
-        check(t, 2009, 8, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusMonths_int_negative', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-1);
-        check(t, 2007, 6, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusMonths_int_negativeAcrossYear', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-7);
-        check(t, 2006, 12, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusMonths_int_negativeOverYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMonths(-31);
-        check(t, 2004, 12, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusMonths_int_adjustDayFromLeapYear', () => {
-        var t = createDateMidnight(2008, 2, 29).plusMonths(12);
-        check(t, 2009, 2, 28, 0, 0, 0, 0);
-    });
-
-    @Test
-    it('test_plusMonths_int_adjustDayFromMonthLength', () => {
-        var t = createDateMidnight(2007, 3, 31).plusMonths(1);
-        check(t, 2007, 4, 30, 0, 0, 0, 0);
-    });
-
-    it('test_plusMonths_int_invalidTooLarge', () => {
-	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 12, 1).plusMonths(1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plusMonths_int_invalidTooSmall', () => {
-	expect(() => {
-        createDateMidnight(Year.MIN_VALUE, 1, 1).plusMonths(-1);
-
-	}).to.throw(DateTimeException);
-});
 
     describe('plusWeeks()', () => {
 
-	});
-
-    @DataProvider(name='samplePlusWeeksSymmetry')
-    Object[][] provider_samplePlusWeeksSymmetry() {
-        return new Object[][] {
-            {createDateMidnight(-1, 1, 1)},
-            {createDateMidnight(-1, 2, 28)},
-            {createDateMidnight(-1, 3, 1)},
-            {createDateMidnight(-1, 12, 31)},
-            {createDateMidnight(0, 1, 1)},
-            {createDateMidnight(0, 2, 28)},
-            {createDateMidnight(0, 2, 29)},
-            {createDateMidnight(0, 3, 1)},
-            {createDateMidnight(0, 12, 31)},
-            {createDateMidnight(2007, 1, 1)},
-            {createDateMidnight(2007, 2, 28)},
-            {createDateMidnight(2007, 3, 1)},
-            {createDateMidnight(2007, 12, 31)},
-            {createDateMidnight(2008, 1, 1)},
-            {createDateMidnight(2008, 2, 28)},
-            {createDateMidnight(2008, 2, 29)},
-            {createDateMidnight(2008, 3, 1)},
-            {createDateMidnight(2008, 12, 31)},
-            {createDateMidnight(2099, 1, 1)},
-            {createDateMidnight(2099, 2, 28)},
-            {createDateMidnight(2099, 3, 1)},
-            {createDateMidnight(2099, 12, 31)},
-            {createDateMidnight(2100, 1, 1)},
-            {createDateMidnight(2100, 2, 28)},
-            {createDateMidnight(2100, 3, 1)},
-            {createDateMidnight(2100, 12, 31)},
-        };
-    }
-
-    @Test(dataProvider='samplePlusWeeksSymmetry')
-    public void test_plusWeeks_symmetry(LocalDateTime reference) {
-        for (var weeks = 0; weeks < 365 * 8; weeks++) {
-            var t = reference.plusWeeks(weeks).plusWeeks(-weeks);
-            assertEquals(t, reference);
-
-            t = reference.plusWeeks(-weeks).plusWeeks(weeks);
-            assertEquals(t, reference);
+        function provider_samplePlusWeeksSymmetry() {
+            return [
+                [createDateMidnight(-1, 1, 1)],
+                [createDateMidnight(-1, 2, 28)],
+                [createDateMidnight(-1, 3, 1)],
+                [createDateMidnight(-1, 12, 31)],
+                [createDateMidnight(0, 1, 1)],
+                [createDateMidnight(0, 2, 28)],
+                [createDateMidnight(0, 2, 29)],
+                [createDateMidnight(0, 3, 1)],
+                [createDateMidnight(0, 12, 31)],
+                [createDateMidnight(2007, 1, 1)],
+                [createDateMidnight(2007, 2, 28)],
+                [createDateMidnight(2007, 3, 1)],
+                [createDateMidnight(2007, 12, 31)],
+                [createDateMidnight(2008, 1, 1)],
+                [createDateMidnight(2008, 2, 28)],
+                [createDateMidnight(2008, 2, 29)],
+                [createDateMidnight(2008, 3, 1)],
+                [createDateMidnight(2008, 12, 31)],
+                [createDateMidnight(2099, 1, 1)],
+                [createDateMidnight(2099, 2, 28)],
+                [createDateMidnight(2099, 3, 1)],
+                [createDateMidnight(2099, 12, 31)],
+                [createDateMidnight(2100, 1, 1)],
+                [createDateMidnight(2100, 2, 28)],
+                [createDateMidnight(2100, 3, 1)],
+                [createDateMidnight(2100, 12, 31)]
+            ];
         }
-    }
 
-    @Test
-    it('test_plusWeeks_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(1);
-        check(t, 2007, 7, 22, 12, 30, 40, 987654321);
+        it('test_plusWeeks_symmetry', function () {
+            provider_samplePlusWeeksSymmetry().forEach((data) => {
+                test_plusWeeks_symmetry.apply(this, data);
+            });
+        });
+
+        function test_plusWeeks_symmetry(reference) {
+            for (var weeks = 0; weeks < 365 * 8; weeks++) {
+                var t = reference.plusWeeks(weeks).plusWeeks(-weeks);
+                assertEquals(t, reference);
+
+                t = reference.plusWeeks(-weeks).plusWeeks(weeks);
+                assertEquals(t, reference);
+            }
+        }
+
+        it('test_plusWeeks_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(1);
+            check(t, 2007, 7, 22, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_overMonths', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(9);
+            check(t, 2007, 9, 16, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_overYears', () => {
+            var t = LocalDateTime.of(2006, 7, 16, 12, 30, 40, 987654321).plusWeeks(52);
+            assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
+        });
+
+        it('test_plusWeeks_overLeapYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1).plusWeeks(104);
+            check(t, 2008, 7, 12, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_negative', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-1);
+            check(t, 2007, 7, 8, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_negativeAcrossYear', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-28);
+            check(t, 2006, 12, 31, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_negativeOverYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-104);
+            check(t, 2005, 7, 17, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusWeeks_maximum', () => {
+            var t = createDateMidnight(Year.MAX_VALUE, 12, 24).plusWeeks(1);
+            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+        });
+
+        it('test_plusWeeks_minimum', () => {
+            var t = createDateMidnight(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
+            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+        });
+
+        it('test_plusWeeks_invalidTooLarge', () => {
+            expect(() => {
+                createDateMidnight(Year.MAX_VALUE, 12, 25).plusWeeks(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusWeeks_invalidTooSmall', () => {
+            expect(() => {
+                createDateMidnight(Year.MIN_VALUE, 1, 7).plusWeeks(-1);
+            }).to.throw(DateTimeException);
+        });
+
     });
-
-    @Test
-    it('test_plusWeeks_overMonths', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(9);
-        check(t, 2007, 9, 16, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_overYears', () => {
-        var t = LocalDateTime.of(2006, 7, 16, 12, 30, 40, 987654321).plusWeeks(52);
-        assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_overLeapYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1).plusWeeks(104);
-        check(t, 2008, 7, 12, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_negative', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-1);
-        check(t, 2007, 7, 8, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_negativeAcrossYear', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-28);
-        check(t, 2006, 12, 31, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_negativeOverYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusWeeks(-104);
-        check(t, 2005, 7, 17, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusWeeks_maximum', () => {
-        var t = createDateMidnight(Year.MAX_VALUE, 12, 24).plusWeeks(1);
-        check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
-    });
-
-    @Test
-    it('test_plusWeeks_minimum', () => {
-        var t = createDateMidnight(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
-        check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
-    });
-
-    it('test_plusWeeks_invalidTooLarge', () => {
-	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 12, 25).plusWeeks(1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plusWeeks_invalidTooSmall', () => {
-	expect(() => {
-        createDateMidnight(Year.MIN_VALUE, 1, 7).plusWeeks(-1);
-
-	}).to.throw(DateTimeException);
-});
 
     describe('plusDays()', () => {
 
-	});
-
-    @DataProvider(name='samplePlusDaysSymmetry')
-    Object[][] provider_samplePlusDaysSymmetry() {
-        return new Object[][] {
-            {createDateMidnight(-1, 1, 1)},
-            {createDateMidnight(-1, 2, 28)},
-            {createDateMidnight(-1, 3, 1)},
-            {createDateMidnight(-1, 12, 31)},
-            {createDateMidnight(0, 1, 1)},
-            {createDateMidnight(0, 2, 28)},
-            {createDateMidnight(0, 2, 29)},
-            {createDateMidnight(0, 3, 1)},
-            {createDateMidnight(0, 12, 31)},
-            {createDateMidnight(2007, 1, 1)},
-            {createDateMidnight(2007, 2, 28)},
-            {createDateMidnight(2007, 3, 1)},
-            {createDateMidnight(2007, 12, 31)},
-            {createDateMidnight(2008, 1, 1)},
-            {createDateMidnight(2008, 2, 28)},
-            {createDateMidnight(2008, 2, 29)},
-            {createDateMidnight(2008, 3, 1)},
-            {createDateMidnight(2008, 12, 31)},
-            {createDateMidnight(2099, 1, 1)},
-            {createDateMidnight(2099, 2, 28)},
-            {createDateMidnight(2099, 3, 1)},
-            {createDateMidnight(2099, 12, 31)},
-            {createDateMidnight(2100, 1, 1)},
-            {createDateMidnight(2100, 2, 28)},
-            {createDateMidnight(2100, 3, 1)},
-            {createDateMidnight(2100, 12, 31)},
-        };
-    }
-
-    @Test(dataProvider='samplePlusDaysSymmetry')
-    public void test_plusDays_symmetry(LocalDateTime reference) {
-        for (var days = 0; days < 365 * 8; days++) {
-            var t = reference.plusDays(days).plusDays(-days);
-            assertEquals(t, reference);
-
-            t = reference.plusDays(-days).plusDays(days);
-            assertEquals(t, reference);
+        function provider_samplePlusDaysSymmetry() {
+            return [
+                [createDateMidnight(-1, 1, 1)],
+                [createDateMidnight(-1, 2, 28)],
+                [createDateMidnight(-1, 3, 1)],
+                [createDateMidnight(-1, 12, 31)],
+                [createDateMidnight(0, 1, 1)],
+                [createDateMidnight(0, 2, 28)],
+                [createDateMidnight(0, 2, 29)],
+                [createDateMidnight(0, 3, 1)],
+                [createDateMidnight(0, 12, 31)],
+                [createDateMidnight(2007, 1, 1)],
+                [createDateMidnight(2007, 2, 28)],
+                [createDateMidnight(2007, 3, 1)],
+                [createDateMidnight(2007, 12, 31)],
+                [createDateMidnight(2008, 1, 1)],
+                [createDateMidnight(2008, 2, 28)],
+                [createDateMidnight(2008, 2, 29)],
+                [createDateMidnight(2008, 3, 1)],
+                [createDateMidnight(2008, 12, 31)],
+                [createDateMidnight(2099, 1, 1)],
+                [createDateMidnight(2099, 2, 28)],
+                [createDateMidnight(2099, 3, 1)],
+                [createDateMidnight(2099, 12, 31)],
+                [createDateMidnight(2100, 1, 1)],
+                [createDateMidnight(2100, 2, 28)],
+                [createDateMidnight(2100, 3, 1)],
+                [createDateMidnight(2100, 12, 31)]
+            ];
         }
-    }
 
-    @Test
-    it('test_plusDays_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusDays(1);
-        check(t, 2007, 7, 16, 12, 30, 40, 987654321);
+        it('test_plusDays_symmetry', function () {
+            provider_samplePlusDaysSymmetry().forEach((data) => {
+                test_plusDays_symmetry.apply(this, data);
+            });
+        });
+
+        function test_plusDays_symmetry(reference) {
+            for (var days = 0; days < 365 * 8; days++) {
+                var t = reference.plusDays(days).plusDays(-days);
+                assertEquals(t, reference);
+
+                t = reference.plusDays(-days).plusDays(days);
+                assertEquals(t, reference);
+            }
+        }
+
+        it('test_plusDays_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusDays(1);
+            check(t, 2007, 7, 16, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_overMonths', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusDays(62);
+            check(t, 2007, 9, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_overYears', () => {
+            var t = LocalDateTime.of(2006, 7, 14, 12, 30, 40, 987654321).plusDays(366);
+            assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
+        });
+
+        it('test_plusDays_overLeapYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1).plusDays(365 + 366);
+            check(t, 2008, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_negative', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-1);
+            check(t, 2007, 7, 14, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_negativeAcrossYear', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-196);
+            check(t, 2006, 12, 31, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_negativeOverYears', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-730);
+            check(t, 2005, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_plusDays_maximum', () => {
+            var t = createDateMidnight(Year.MAX_VALUE, 12, 30).plusDays(1);
+            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+        });
+
+        it('test_plusDays_minimum', () => {
+            var t = createDateMidnight(Year.MIN_VALUE, 1, 2).plusDays(-1);
+            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+        });
+
+        it('test_plusDays_invalidTooLarge', () => {
+            expect(() => {
+                createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusDays_invalidTooSmall', () => {
+            expect(() => {
+                createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_plusDays_overflowTooLarge', () => {
+            expect(() => {
+                createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
+        it('test_plusDays_overflowTooSmall', () => {
+            expect(() => {
+                createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(ArithmeticException);
+        });
+
     });
-
-    @Test
-    it('test_plusDays_overMonths', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusDays(62);
-        check(t, 2007, 9, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusDays_overYears', () => {
-        var t = LocalDateTime.of(2006, 7, 14, 12, 30, 40, 987654321).plusDays(366);
-        assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
-    });
-
-    @Test
-    it('test_plusDays_overLeapYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusYears(-1).plusDays(365 + 366);
-        check(t, 2008, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusDays_negative', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-1);
-        check(t, 2007, 7, 14, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusDays_negativeAcrossYear', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-196);
-        check(t, 2006, 12, 31, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusDays_negativeOverYears', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusDays(-730);
-        check(t, 2005, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    @Test
-    it('test_plusDays_maximum', () => {
-        var t = createDateMidnight(Year.MAX_VALUE, 12, 30).plusDays(1);
-        check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
-    });
-
-    @Test
-    it('test_plusDays_minimum', () => {
-        var t = createDateMidnight(Year.MIN_VALUE, 1, 2).plusDays(-1);
-        check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
-    });
-
-    it('test_plusDays_invalidTooLarge', () => {
-	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plusDays_invalidTooSmall', () => {
-	expect(() => {
-        createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(-1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_plusDays_overflowTooLarge', () => {
-	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(Long.MAX_VALUE);
-
-	}).to.throw(ArithmeticException);
-});
-
-    it('test_plusDays_overflowTooSmall', () => {
-	expect(() => {
-        createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(Long.MIN_VALUE);
-
-	}).to.throw(ArithmeticException);
-});
 
     describe('plusHours()', () => {
 
-	});
+        it('test_plusHours_one()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = t.toLocalDate();
 
-    @Test
-    public void test_plusHours_one() {
-        var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = t.toLocalDate();
+            for (var i = 0; i < 50; i++) {
+                t = t.plusHours(1);
 
-        for (var i = 0; i < 50; i++) {
-            t = t.plusHours(1);
+                if (MathUtil.intMod((i + 1), 24) === 0) {
+                    d = d.plusDays(1);
+                }
 
-            if ((i + 1) % 24 == 0) {
-                d = d.plusDays(1);
+                assertEquals(t.toLocalDate(), d);
+                assertEquals(t.hour(), MathUtil.intMod((i + 1), 24));
             }
+        });
 
-            assertEquals(t.toLocalDate(), d);
-            assertEquals(t.hour(), (i + 1) % 24);
-        }
-    }
+        it('test_plusHours_fromZero()', () => {
+            var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = base.toLocalDate().minusDays(3);
+            var t = LocalTime.of(21, 0);
 
-    @Test
-    public void test_plusHours_fromZero() {
-        var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = base.toLocalDate().minusDays(3);
-        var t = LocalTime.of(21, 0);
+            for (var i = -50; i < 50; i++) {
+                var dt = base.plusHours(i);
+                t = t.plusHours(1);
 
-        for (var i = -50; i < 50; i++) {
-            var dt = base.plusHours(i);
-            t = t.plusHours(1);
+                if (t.hour() === 0) {
+                    d = d.plusDays(1);
+                }
 
-            if (t.hour() == 0) {
-                d = d.plusDays(1);
+                assertEquals(dt.toLocalDate(), d);
+                assertEquals(dt.toLocalTime(), t);
             }
+        });
 
-            assertEquals(dt.toLocalDate(), d);
-            assertEquals(dt.toLocalTime(), t);
-        }
-    }
+        it('test_plusHours_fromOne()', () => {
+            var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.of(1, 0));
+            var d = base.toLocalDate().minusDays(3);
+            var t = LocalTime.of(22, 0);
 
-    @Test
-    public void test_plusHours_fromOne() {
-        var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.of(1, 0));
-        var d = base.toLocalDate().minusDays(3);
-        var t = LocalTime.of(22, 0);
+            for (var i = -50; i < 50; i++) {
+                var dt = base.plusHours(i);
 
-        for (var i = -50; i < 50; i++) {
-            var dt = base.plusHours(i);
+                t = t.plusHours(1);
 
-            t = t.plusHours(1);
+                if (t.hour() === 0) {
+                    d = d.plusDays(1);
+                }
 
-            if (t.hour() == 0) {
-                d = d.plusDays(1);
+                assertEquals(dt.toLocalDate(), d);
+                assertEquals(dt.toLocalTime(), t);
             }
+        });
 
-            assertEquals(dt.toLocalDate(), d);
-            assertEquals(dt.toLocalTime(), t);
-        }
-    }
+    });
 
     describe('plusMinutes()', () => {
 
-	});
+        it('test_plusMinutes_one()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = t.toLocalDate();
 
-    @Test
-    public void test_plusMinutes_one() {
-        var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = t.toLocalDate();
+            var hour = 0;
+            var min = 0;
 
-        var hour = 0;
-        var min = 0;
+            for (var i = 0; i < 70; i++) {
+                t = t.plusMinutes(1);
+                min++;
+                if (min === 60) {
+                    hour++;
+                    min = 0;
+                }
 
-        for (var i = 0; i < 70; i++) {
-            t = t.plusMinutes(1);
-            min++;
-            if (min == 60) {
-                hour++;
-                min = 0;
+                assertEquals(t.toLocalDate(), d);
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
             }
+        });
 
-            assertEquals(t.toLocalDate(), d);
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-        }
-    }
+        it('test_plusMinutes_fromZero()', () => {
+            var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = base.toLocalDate().minusDays(1);
+            var t = LocalTime.of(22, 49);
 
-    @Test
-    public void test_plusMinutes_fromZero() {
-        var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = base.toLocalDate().minusDays(1);
-        var t = LocalTime.of(22, 49);
+            for (var i = -70; i < 70; i++) {
+                var dt = base.plusMinutes(i);
+                t = t.plusMinutes(1);
 
-        for (var i = -70; i < 70; i++) {
-            var dt = base.plusMinutes(i);
-            t = t.plusMinutes(1);
+                if (t === LocalTime.MIDNIGHT) {
+                    d = d.plusDays(1);
+                }
 
-            if (t == LocalTime.MIDNIGHT) {
-                d = d.plusDays(1);
+                assertEquals(dt.toLocalDate(), d, String.valueOf(i));
+                assertEquals(dt.toLocalTime(), t, String.valueOf(i));
             }
+        });
 
-            assertEquals(dt.toLocalDate(), d, String.valueOf(i));
-            assertEquals(dt.toLocalTime(), t, String.valueOf(i));
-        }
-    }
+        it('test_plusMinutes_noChange_oneDay', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusMinutes(24 * 60);
+            assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
+        });
 
-    @Test
-    it('test_plusMinutes_noChange_oneDay', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusMinutes(24 * 60);
-        assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
     });
 
     describe('plusSeconds()', () => {
 
-	});
+        it('test_plusSeconds_one()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = t.toLocalDate();
 
-    @Test
-    public void test_plusSeconds_one() {
-        var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = t.toLocalDate();
+            var hour = 0;
+            var min = 0;
+            var sec = 0;
 
-        var hour = 0;
-        var min = 0;
-        var sec = 0;
+            for (var i = 0; i < 3700; i++) {
+                t = t.plusSeconds(1);
+                sec++;
+                if (sec === 60) {
+                    min++;
+                    sec = 0;
+                }
+                if (min === 60) {
+                    hour++;
+                    min = 0;
+                }
 
-        for (var i = 0; i < 3700; i++) {
-            t = t.plusSeconds(1);
-            sec++;
-            if (sec == 60) {
-                min++;
-                sec = 0;
+                assertEquals(t.toLocalDate(), d);
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+                assertEquals(t.second(), sec);
             }
-            if (min == 60) {
-                hour++;
-                min = 0;
-            }
+        });
 
-            assertEquals(t.toLocalDate(), d);
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-            assertEquals(t.second(), sec);
-        }
-    }
 
-    @DataProvider(name='plusSeconds_fromZero')
-    Iterator<Object[]> plusSeconds_fromZero() {
-        return new Iterator<Object[]>() {
+        it('test_plusSeconds_fromZero', () => {
+            var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
             var delta = 30;
-
             var i = -3660;
             var date = TEST_2007_07_15_12_30_40_987654321.toLocalDate().minusDays(1);
             var hour = 22;
             var min = 59;
             var sec = 0;
-
-            public boolean hasNext() {
-                return i <= 3660;
-            }
-
-            public Object[] next() {
-                final Object[] ret = new Object[] {i, date, hour, min, sec};
+            var iEnd = 3660;
+            while (i <= iEnd) {
                 i += delta;
                 sec += delta;
 
@@ -1851,157 +1805,130 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
                     min++;
                     sec -= 60;
 
-                    if (min == 60) {
+                    if (min === 60) {
                         hour++;
                         min = 0;
 
-                        if (hour == 24) {
+                        if (hour === 24) {
                             hour = 0;
                         }
                     }
                 }
 
-                if (i == 0) {
+                if (i === 0) {
                     date = date.plusDays(1);
                 }
 
-                return ret;
+                var seconds = i;
+                var t = base.plusSeconds(seconds);
+
+                assertEquals(date, t.toLocalDate());
+                assertEquals(hour, t.hour());
+                assertEquals(min, t.minute());
+                assertEquals(sec, t.second());
             }
+        });
 
-            it('remove', () => {
-                throw new UnsupportedOperationException();
-            });
-        };
-    }
+        it('test_plusSeconds_noChange_oneDay', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusSeconds(24 * 60 * 60);
+            assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
+        });
 
-    @Test(dataProvider='plusSeconds_fromZero')
-    public void test_plusSeconds_fromZero(int seconds, LocalDate date, int hour, int min, int sec) {
-        var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var t = base.plusSeconds(seconds);
-
-        assertEquals(date, t.toLocalDate());
-        assertEquals(hour, t.hour());
-        assertEquals(min, t.minute());
-        assertEquals(sec, t.second());
-    }
-
-    @Test
-    it('test_plusSeconds_noChange_oneDay', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusSeconds(24 * 60 * 60);
-        assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
     });
 
     describe('plusNanos()', () => {
 
-	});
+        it('test_plusNanos_halfABillion()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var d = t.toLocalDate();
 
-    @Test
-    public void test_plusNanos_halfABillion() {
-        var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var d = t.toLocalDate();
+            var hour = 0;
+            var min = 0;
+            var sec = 0;
+            var nanos = 0;
 
-        var hour = 0;
-        var min = 0;
-        var sec = 0;
-        var nanos = 0;
+            for (var i = 0; i < 3700 * 1000000000; i += 500000000) {
+                t = t.plusNanos(500000000);
+                nanos += 500000000;
+                if (nanos === 1000000000) {
+                    sec++;
+                    nanos = 0;
+                }
+                if (sec === 60) {
+                    min++;
+                    sec = 0;
+                }
+                if (min === 60) {
+                    hour++;
+                    min = 0;
+                }
 
-        for (var i = 0; i < 3700 * 1000000000L; i+= 500000000) {
-            t = t.plusNanos(500000000);
-            nanos += 500000000;
-            if (nanos == 1000000000) {
-                sec++;
-                nanos = 0;
+                assertEquals(t.toLocalDate(), d, String.valueOf(i));
+                assertEquals(t.hour(), hour);
+                assertEquals(t.minute(), min);
+                assertEquals(t.second(), sec);
+                assertEquals(t.nano(), nanos);
             }
-            if (sec == 60) {
-                min++;
-                sec = 0;
-            }
-            if (min == 60) {
-                hour++;
-                min = 0;
-            }
+        });
 
-            assertEquals(t.toLocalDate(), d, String.valueOf(i));
-            assertEquals(t.hour(), hour);
-            assertEquals(t.minute(), min);
-            assertEquals(t.second(), sec);
-            assertEquals(t.nano(), nanos);
-        }
-    }
 
-    @DataProvider(name='plusNanos_fromZero')
-    Iterator<Object[]> plusNanos_fromZero() {
-        return new Iterator<Object[]>() {
-            var delta = 7500000000L;
-
-            var i = -3660 * 1000000000L;
+        it('test_plusNanos_fromZero', () => {
+            var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
+            var delta = 7500000000;
+            var i = -3660 * 1000000000;
             var date = TEST_2007_07_15_12_30_40_987654321.toLocalDate().minusDays(1);
             var hour = 22;
             var min = 59;
             var sec = 0;
             var nanos = 0;
-
-            public boolean hasNext() {
-                return i <= 3660 * 1000000000L;
-            }
-
-            public Object[] next() {
-                final Object[] ret = new Object[] {i, date, hour, min, sec, (int)nanos};
+            var iEnd = 3660 * 1000000000;
+            while (i <= iEnd) {
                 i += delta;
                 nanos += delta;
-
-                if (nanos >= 1000000000L) {
-                    sec += nanos / 1000000000L;
-                    nanos %= 1000000000L;
+                if (nanos >= 1000000000) {
+                    sec += MathUtil.intDiv(nanos, 1000000000);
+                    nanos = MathUtil.intMod(nanos, 1000000000);
 
                     if (sec >= 60) {
                         min++;
-                        sec %= 60;
+                        sec = MathUtil.intMod(sec, 60);
 
-                        if (min == 60) {
+                        if (min === 60) {
                             hour++;
                             min = 0;
 
-                            if (hour == 24) {
+                            if (hour === 24) {
                                 hour = 0;
                                 date = date.plusDays(1);
                             }
                         }
                     }
                 }
-
-                return ret;
+                var nanoseconds = i;
+                var t = base.plusNanos(nanoseconds);
+                assertEquals(date, t.toLocalDate());
+                assertEquals(hour, t.hour());
+                assertEquals(min, t.minute());
+                assertEquals(sec, t.second());
+                assertEquals(nanos, t.nano());
             }
+        });
 
-            it('remove', () => {
-                throw new UnsupportedOperationException();
-            });
-        };
-    }
+        it('test_plusNanos_noChange_oneDay', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000);
+            assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
+        });
 
-    @Test(dataProvider='plusNanos_fromZero')
-    public void test_plusNanos_fromZero(long nanoseconds, LocalDate date, int hour, int min, int sec, int nanos) {
-        var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-        var t = base.plusNanos(nanoseconds);
-
-        assertEquals(date, t.toLocalDate());
-        assertEquals(hour, t.hour());
-        assertEquals(min, t.minute());
-        assertEquals(sec, t.second());
-        assertEquals(nanos, t.nano());
-    }
-
-    @Test
-    it('test_plusNanos_noChange_oneDay', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000L);
-        assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().plusDays(1));
     });
+
+});
+
+/**
 
     describe('minus(adjuster)', () => {
 
 	});
 
-    @Test
     it('test_minus_adjuster', () => {
         var p = Duration.ofSeconds(62, 3);
         var t = TEST_2007_07_15_12_30_40_987654321.minus(p);
@@ -2019,14 +1946,12 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     it('test_minus_Period_positiveMonths', () => {
         var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
         var t = TEST_2007_07_15_12_30_40_987654321.minus(period);
         assertEquals(t, LocalDateTime.of(2006, 12, 15, 12, 30, 40, 987654321));
     });
 
-    @Test
     it('test_minus_Period_negativeDays', () => {
         var period = MockSimplePeriod.of(-25, ChronoUnit.DAYS);
         var t = TEST_2007_07_15_12_30_40_987654321.minus(period);
@@ -2059,13 +1984,11 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     //-----------------------------------------------------------------------
     // minus(long,PeriodUnit)
     //-----------------------------------------------------------------------
-    @Test
     it('test_minus_longPeriodUnit_positiveMonths', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minus(7, ChronoUnit.MONTHS);
         assertEquals(t, LocalDateTime.of(2006, 12, 15, 12, 30, 40, 987654321));
     });
 
-    @Test
     it('test_minus_longPeriodUnit_negativeDays', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minus(-25, ChronoUnit.DAYS);
         assertEquals(t, LocalDateTime.of(2007, 8, 9, 12, 30, 40, 987654321));
@@ -2096,19 +2019,16 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     it('test_minusYears_int_normal', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusYears(1);
         check(t, 2006, 7, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusYears_int_negative', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusYears(-1);
         check(t, 2008, 7, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusYears_int_adjustDay', () => {
         var t = createDateMidnight(2008, 2, 29).minusYears(1);
         check(t, 2007, 2, 28, 0, 0, 0, 0);
@@ -2132,43 +2052,36 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     it('test_minusMonths_int_normal', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMonths(1);
         check(t, 2007, 6, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusMonths_int_overYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMonths(25);
         check(t, 2005, 6, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusMonths_int_negative', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMonths(-1);
         check(t, 2007, 8, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusMonths_int_negativeAcrossYear', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMonths(-7);
         check(t, 2008, 2, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusMonths_int_negativeOverYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMonths(-31);
         check(t, 2010, 2, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusMonths_int_adjustDayFromLeapYear', () => {
         var t = createDateMidnight(2008, 2, 29).minusMonths(12);
         check(t, 2007, 2, 28, 0, 0, 0, 0);
     });
 
-    @Test
     it('test_minusMonths_int_adjustDayFromMonthLength', () => {
         var t = createDateMidnight(2007, 3, 31).minusMonths(1);
         check(t, 2007, 2, 28, 0, 0, 0, 0);
@@ -2235,55 +2148,46 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     it('test_minusWeeks_normal', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusWeeks(1);
         check(t, 2007, 7, 8, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_overMonths', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusWeeks(9);
         check(t, 2007, 5, 13, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_overYears', () => {
         var t = LocalDateTime.of(2008, 7, 13, 12, 30, 40, 987654321).minusWeeks(52);
         assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
     });
 
-    @Test
     it('test_minusWeeks_overLeapYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusYears(-1).minusWeeks(104);
         check(t, 2006, 7, 18, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_negative', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusWeeks(-1);
         check(t, 2007, 7, 22, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_negativeAcrossYear', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusWeeks(-28);
         check(t, 2008, 1, 27, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_negativeOverYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusWeeks(-104);
         check(t, 2009, 7, 12, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusWeeks_maximum', () => {
         var t = createDateMidnight(Year.MAX_VALUE, 12, 24).minusWeeks(-1);
         check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
     });
 
-    @Test
     it('test_minusWeeks_minimum', () => {
         var t = createDateMidnight(Year.MIN_VALUE, 1, 8).minusWeeks(1);
         check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
@@ -2350,55 +2254,46 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     it('test_minusDays_normal', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusDays(1);
         check(t, 2007, 7, 14, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusDays_overMonths', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusDays(62);
         check(t, 2007, 5, 14, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusDays_overYears', () => {
         var t = LocalDateTime.of(2008, 7, 16, 12, 30, 40, 987654321).minusDays(367);
         assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
     });
 
-    @Test
     it('test_minusDays_overLeapYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.plusYears(2).minusDays(365 + 366);
         assertEquals(t, TEST_2007_07_15_12_30_40_987654321);
     });
 
-    @Test
     it('test_minusDays_negative', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusDays(-1);
         check(t, 2007, 7, 16, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusDays_negativeAcrossYear', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusDays(-169);
         check(t, 2007, 12, 31, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusDays_negativeOverYears', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusDays(-731);
         check(t, 2009, 7, 15, 12, 30, 40, 987654321);
     });
 
-    @Test
     it('test_minusDays_maximum', () => {
         var t = createDateMidnight(Year.MAX_VALUE, 12, 30).minusDays(-1);
         check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
     });
 
-    @Test
     it('test_minusDays_minimum', () => {
         var t = createDateMidnight(Year.MIN_VALUE, 1, 2).minusDays(1);
         check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
@@ -2420,14 +2315,14 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     it('test_minusDays_overflowTooLarge', () => {
 	expect(() => {
-        createDateMidnight(Year.MAX_VALUE, 12, 31).minusDays(Long.MIN_VALUE);
+        createDateMidnight(Year.MAX_VALUE, 12, 31).minusDays(MathUtil.MIN_SAFE_INTEGER);
 
 	}).to.throw(ArithmeticException);
 });
 
     it('test_minusDays_overflowTooSmall', () => {
 	expect(() => {
-        createDateMidnight(Year.MIN_VALUE, 1, 1).minusDays(Long.MAX_VALUE);
+        createDateMidnight(Year.MIN_VALUE, 1, 1).minusDays(MathUtil.MAX_SAFE_INTEGER);
 
 	}).to.throw(ArithmeticException);
 });
@@ -2436,7 +2331,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_minusHours_one() {
         LocalDateTime t =TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = t.toLocalDate();
@@ -2453,7 +2347,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     public void test_minusHours_fromZero() {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = base.toLocalDate().plusDays(2);
@@ -2472,7 +2365,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     public void test_minusHours_fromOne() {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.of(1, 0));
         var d = base.toLocalDate().plusDays(2);
@@ -2496,7 +2388,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_minusMinutes_one() {
         var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = t.toLocalDate().minusDays(1);
@@ -2521,7 +2412,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     public void test_minusMinutes_fromZero() {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = base.toLocalDate().minusDays(1);
@@ -2540,7 +2430,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     it('test_minusMinutes_noChange_oneDay', () => {
         var t = TEST_2007_07_15_12_30_40_987654321.minusMinutes(24 * 60);
         assertEquals(t.toLocalDate(), TEST_2007_07_15_12_30_40_987654321.toLocalDate().minusDays(1));
@@ -2550,7 +2439,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_minusSeconds_one() {
         var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = t.toLocalDate().minusDays(1);
@@ -2645,7 +2533,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_minusNanos_halfABillion() {
         var t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var d = t.toLocalDate().minusDays(1);
@@ -2819,27 +2706,23 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     it('test_atZone', () => {
         var t = LocalDateTime.of(2008, 6, 30, 11, 30);
         assertEquals(t.atZone(ZONE_PARIS),
                 ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), ZONE_PARIS));
     });
 
-    @Test
     it('test_atZone_Offset', () => {
         var t = LocalDateTime.of(2008, 6, 30, 11, 30);
         assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
     });
 
-    @Test
     it('test_atZone_dstGap', () => {
         var t = LocalDateTime.of(2007, 4, 1, 0, 0);
         assertEquals(t.atZone(ZONE_GAZA),
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
     });
 
-    @Test
     it('test_atZone_dstOverlap', () => {
         var t = LocalDateTime.of(2007, 10, 28, 2, 30);
         assertEquals(t.atZone(ZONE_PARIS),
@@ -2858,7 +2741,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_toEpochSecond_afterEpoch() {
         for (var i = -5; i < 5; i++) {
             var offset = ZoneOffset.ofHours(i);
@@ -2869,7 +2751,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @Test
     public void test_toEpochSecond_beforeEpoch() {
         for (var i = 0; i < 100000; i++) {
             var a = LocalDateTime.of(1970, 1, 1, 0, 0).minusSeconds(i);
@@ -2881,7 +2762,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     it('test_comparisons', () => {
         test_comparisons_LocalDateTime(
             LocalDate.of(Year.MIN_VALUE, 1, 1),
@@ -3085,17 +2965,14 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         assertFalse(a.equals(b));
     }
 
-    @Test
     it('test_equals_itself_true', () => {
         assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(TEST_2007_07_15_12_30_40_987654321), true);
     });
 
-    @Test
     public void test_equals_string_false() {
         assertEquals(TEST_2007_07_15_12_30_40_987654321.equals('2007-07-15T12:30:40.987654321'), false);
     }
 
-    @Test
     it('test_equals_null_false', () => {
         assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(null), false);
     });
@@ -3127,7 +3004,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test
     public void test_format_formatter() {
         var f = DateTimeFormatter.ofPattern('y M d H m s');
         var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);

@@ -580,9 +580,9 @@ export class LocalDateTime extends TemporalAccessor
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
-            return this._with2(adjuster, this._time);
+            return this._withDateTime(adjuster, this._time);
         } else if (adjuster instanceof LocalTime) {
-            return this._with2(this._date, adjuster);
+            return this._withDateTime(this._date, adjuster);
         } else if (adjuster instanceof LocalDateTime) {
             return adjuster;
         }
@@ -781,9 +781,9 @@ export class LocalDateTime extends TemporalAccessor
     //-----------------------------------------------------------------------
     plus(){
         if(arguments.length === 1){
-            this._plus1.apply(this, arguments);
+            return this._plus1.apply(this, arguments);
         } else {
-            this._plus2.apply(this, arguments);
+            return this._plus2.apply(this, arguments);
         }
     }
     /**
@@ -797,12 +797,13 @@ export class LocalDateTime extends TemporalAccessor
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amount  the amount to add, not null
-     * @return a {@code LocalDateTime} based on this date-time with the addition made, not null
+     * @param {TemporalAmount} amount  the amount to add, not null
+     * @return {LocalDateTime} based on this date-time with the addition made, not null
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
     _plus1(amount) {
+        requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
 
@@ -822,6 +823,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws DateTimeException if the unit cannot be added to this type
      */
     _plus2(amountToAdd, unit) {
+        requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
@@ -939,7 +941,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusHours(hours) {
-        return this._this._plusWithOverflow(this._date, hours, 0, 0, 0, 1);
+        return this._plusWithOverflow(this._date, hours, 0, 0, 0, 1);
     }
 
     /**
@@ -1160,8 +1162,8 @@ export class LocalDateTime extends TemporalAccessor
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param nanos  the nanos to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the nanoseconds subtracted, not null
+     * @param {Number} nanos  the nanos to subtract, may be negative
+     * @return {LocalDateTime} based on this date-time with the nanoseconds subtracted, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
     minusNanos(nanos) {
@@ -1174,13 +1176,13 @@ export class LocalDateTime extends TemporalAccessor
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param newDate  the new date to base the calculation on, not null
-     * @param hours  the hours to add, may be negative
-     * @param minutes the minutes to add, may be negative
-     * @param seconds the seconds to add, may be negative
-     * @param nanos the nanos to add, may be negative
-     * @param sign  the sign to determine add or subtract
-     * @return the combined result, not null
+     * @param {LocalDate} newDate  the new date to base the calculation on, not null
+     * @param {Number} hours  the hours to add, may be negative
+     * @param {Number} minutes the minutes to add, may be negative
+     * @param {Number} seconds the seconds to add, may be negative
+     * @param {Number} nanos the nanos to add, may be negative
+     * @param {Number} sign  the sign to determine add or subtract
+     * @return {LocalDateTime} the combined result, not null
      */
     _plusWithOverflow(newDate, hours, minutes, seconds, nanos, sign) {
         // 9223372036854775808 long, 2147483648 int
