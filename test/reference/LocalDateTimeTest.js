@@ -21,6 +21,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {Month} from '../../src/Month';
+import {Year} from '../../src/Year';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
@@ -1040,242 +1041,213 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    describe('with()', () => {
+
+        it('test_with_adjustment()', () => {
+            var sample = LocalDateTime.of(2012, 3, 4, 23, 5);
+            var adjuster = {
+                adjustInto: () => { return sample; }
+            };
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.with(adjuster), sample);
+        });
+
+        it('test_with_adjustment_null', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.with(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('withYear()', () => {
+
+        it('test_withYear_int_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.withYear(2008);
+            check(t, 2008, 7, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_withYear_int_invalid', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withYear(Year.MIN_VALUE - 1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withYear_int_adjustDay', () => {
+            var t = LocalDateTime.of(2008, 2, 29, 12, 30).withYear(2007);
+            var expected = LocalDateTime.of(2007, 2, 28, 12, 30);
+            assertEquals(t, expected);
+        });
+
+    });
+
+    describe('withMonth()', () => {
+
+        it('test_withMonth_int_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.withMonth(1);
+            check(t, 2007, 1, 15, 12, 30, 40, 987654321);
+        });
+
+        it('test_withMonth_int_invalid', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withMonth(13);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMonth_int_adjustDay', () => {
+            var t = LocalDateTime.of(2007, 12, 31, 12, 30).withMonth(11);
+            var expected = LocalDateTime.of(2007, 11, 30, 12, 30);
+            assertEquals(t, expected);
+        });
+
+    });
+
+    describe('withDayOfMonth()', () => {
+
+        it('test_withDayOfMonth_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.withDayOfMonth(1);
+            check(t, 2007, 7, 1, 12, 30, 40, 987654321);
+        });
+
+        it('test_withDayOfMonth_invalid', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 11, 30, 12, 30).withDayOfMonth(32);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfMonth_invalidCombination', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 11, 30, 12, 30).withDayOfMonth(31);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withDayOfYear(int)', () => {
+
+        it('test_withDayOfYear_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321.withDayOfYear(33);
+            assertEquals(t, LocalDateTime.of(2007, 2, 2, 12, 30, 40, 987654321));
+        });
+
+        it('test_withDayOfYear_illegal', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withDayOfYear(367);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfYear_invalid', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withDayOfYear(366);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withHour()', () => {
+
+        it('test_withHour_normal()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321;
+            for (var i = 0; i < 24; i++) {
+                t = t.withHour(i);
+                assertEquals(t.hour(), i);
+            }
+        });
+
+        it('test_withHour_hourTooLow', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withHour(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withHour_hourTooHigh', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withHour(24);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withMinute()', () => {
+
+        it('test_withMinute_normal()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321;
+            for (var i = 0; i < 60; i++) {
+                t = t.withMinute(i);
+                assertEquals(t.minute(), i);
+            }
+        });
+
+        it('test_withMinute_minuteTooLow', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withMinute(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMinute_minuteTooHigh', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withMinute(60);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withSecond()', () => {
+
+        it('test_withSecond_normal()', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321;
+            for (var i = 0; i < 60; i++) {
+                t = t.withSecond(i);
+                assertEquals(t.second(), i);
+            }
+        });
+
+        it('test_withSecond_secondTooLow', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withSecond(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withSecond_secondTooHigh', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withSecond(60);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withNano()', () => {
+
+        it('test_withNanoOfSecond_normal', () => {
+            var t = TEST_2007_07_15_12_30_40_987654321;
+            t = t.withNano(1);
+            assertEquals(t.nano(), 1);
+            t = t.withNano(10);
+            assertEquals(t.nano(), 10);
+            t = t.withNano(100);
+            assertEquals(t.nano(), 100);
+            t = t.withNano(999999999);
+            assertEquals(t.nano(), 999999999);
+        });
+
+        it('test_withNanoOfSecond_nanoTooLow', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withNano(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withNanoOfSecond_nanoTooHigh', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.withNano(1000000000);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
 });
 
 
 /**
 
-
-    describe('with()', () => {
-
-	});
-
-    @Test
-    public void test_with_adjustment() {
-        final var sample = LocalDateTime.of(2012, 3, 4, 23, 5);
-        var adjuster = new TemporalAdjuster() {
-            @Override
-            public Temporal adjustInto(Temporal dateTime) {
-                return sample;
-            }
-        };
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.with(adjuster), sample);
-    }
-
-    it('test_with_adjustment_null', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.with((TemporalAdjuster) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    describe('withYear()', () => {
-
-	});
-
-    @Test
-    it('test_withYear_int_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.withYear(2008);
-        check(t, 2008, 7, 15, 12, 30, 40, 987654321);
-    });
-
-    it('test_withYear_int_invalid', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withYear(Year.MIN_VALUE - 1);
-
-	}).to.throw(DateTimeException);
-});
-
-    @Test
-    it('test_withYear_int_adjustDay', () => {
-        var t = LocalDateTime.of(2008, 2, 29, 12, 30).withYear(2007);
-        var expected = LocalDateTime.of(2007, 2, 28, 12, 30);
-        assertEquals(t, expected);
-    });
-
-    describe('withMonth()', () => {
-
-	});
-
-    @Test
-    it('test_withMonth_int_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.withMonth(1);
-        check(t, 2007, 1, 15, 12, 30, 40, 987654321);
-    });
-
-    it('test_withMonth_int_invalid', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withMonth(13);
-
-	}).to.throw(DateTimeException);
-});
-
-    @Test
-    it('test_withMonth_int_adjustDay', () => {
-        var t = LocalDateTime.of(2007, 12, 31, 12, 30).withMonth(11);
-        var expected = LocalDateTime.of(2007, 11, 30, 12, 30);
-        assertEquals(t, expected);
-    });
-
-    describe('withDayOfMonth()', () => {
-
-	});
-
-    @Test
-    it('test_withDayOfMonth_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.withDayOfMonth(1);
-        check(t, 2007, 7, 1, 12, 30, 40, 987654321);
-    });
-
-    it('test_withDayOfMonth_invalid', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 11, 30, 12, 30).withDayOfMonth(32);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withDayOfMonth_invalidCombination', () => {
-	expect(() => {
-        LocalDateTime.of(2007, 11, 30, 12, 30).withDayOfMonth(31);
-
-	}).to.throw(DateTimeException);
-});
-
-    describe('withDayOfYear(int)', () => {
-
-	});
-
-    @Test
-    it('test_withDayOfYear_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321.withDayOfYear(33);
-        assertEquals(t, LocalDateTime.of(2007, 2, 2, 12, 30, 40, 987654321));
-    });
-
-    it('test_withDayOfYear_illegal', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withDayOfYear(367);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withDayOfYear_invalid', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withDayOfYear(366);
-
-	}).to.throw(DateTimeException);
-});
-
-    describe('withHour()', () => {
-
-	});
-
-    @Test
-    public void test_withHour_normal() {
-        var t = TEST_2007_07_15_12_30_40_987654321;
-        for (var i = 0; i < 24; i++) {
-            t = t.withHour(i);
-            assertEquals(t.hour(), i);
-        }
-    }
-
-    it('test_withHour_hourTooLow', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withHour(-1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withHour_hourTooHigh', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withHour(24);
-
-	}).to.throw(DateTimeException);
-});
-
-    describe('withMinute()', () => {
-
-	});
-
-    @Test
-    public void test_withMinute_normal() {
-        var t = TEST_2007_07_15_12_30_40_987654321;
-        for (var i = 0; i < 60; i++) {
-            t = t.withMinute(i);
-            assertEquals(t.minute(), i);
-        }
-    }
-
-    it('test_withMinute_minuteTooLow', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withMinute(-1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withMinute_minuteTooHigh', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withMinute(60);
-
-	}).to.throw(DateTimeException);
-});
-
-    describe('withSecond()', () => {
-
-	});
-
-    @Test
-    public void test_withSecond_normal() {
-        var t = TEST_2007_07_15_12_30_40_987654321;
-        for (var i = 0; i < 60; i++) {
-            t = t.withSecond(i);
-            assertEquals(t.second(), i);
-        }
-    }
-
-    it('test_withSecond_secondTooLow', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withSecond(-1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withSecond_secondTooHigh', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withSecond(60);
-
-	}).to.throw(DateTimeException);
-});
-
-    describe('withNano()', () => {
-
-	});
-
-    @Test
-    it('test_withNanoOfSecond_normal', () => {
-        var t = TEST_2007_07_15_12_30_40_987654321;
-        t = t.withNano(1);
-        assertEquals(t.nano(), 1);
-        t = t.withNano(10);
-        assertEquals(t.nano(), 10);
-        t = t.withNano(100);
-        assertEquals(t.nano(), 100);
-        t = t.withNano(999999999);
-        assertEquals(t.nano(), 999999999);
-    });
-
-    it('test_withNanoOfSecond_nanoTooLow', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withNano(-1);
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_withNanoOfSecond_nanoTooHigh', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.withNano(1000000000);
-
-	}).to.throw(DateTimeException);
-});
 
     describe('plus(adjuster)', () => {
 

@@ -529,9 +529,9 @@ export class LocalDateTime extends TemporalAccessor
 
     with(){
         if(arguments.length === 1){
-            this._withTemporalAdjuster.apply(this, arguments);
+            return this._withTemporalAdjuster.apply(this, arguments);
         } else {
-            this._with2.apply(this, arguments);
+            return this._with2.apply(this, arguments);
         }
     }
     /**
