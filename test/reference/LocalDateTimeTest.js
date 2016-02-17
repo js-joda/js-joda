@@ -9,7 +9,7 @@ import {assertEquals, assertTrue, isCoverageTestRunner} from '../testUtils';
 
 import '../_init';
 
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
@@ -20,6 +20,7 @@ import {Instant} from '../../src/Instant';
 import {Month} from '../../src/Month';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 
 describe('org.threeten.bp.TestLocalDateTime', () => {
@@ -28,8 +29,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     var OFFSET_PTWO;
     var OFFSET_MTWO;
     /*
-     private static final var ZONE_PARIS = ZoneId.of("Europe/Paris");
-     private static final var ZONE_GAZA = ZoneId.of("Asia/Gaza");
+     private static final var ZONE_PARIS = ZoneId.of('Europe/Paris');
+     private static final var ZONE_GAZA = ZoneId.of('Asia/Gaza');
      */
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
     var MAX_DATE_TIME;
@@ -138,7 +139,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
          });
 
          it('now_ZoneId()', () => {
-             var zone = ZoneId.of("UTC+01:02:03");
+             var zone = ZoneId.of('UTC+01:02:03');
              var expected = LocalDateTime.now(Clock.system(zone));
              var test = LocalDateTime.now(zone);
              for (var i = 0; i < 100; i++) {
@@ -206,7 +207,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
                 assertEquals(test.toLocalTime(), expected);
             }
         });
-	});
+    });
 
 
     //-----------------------------------------------------------------------
@@ -774,90 +775,107 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    describe('from()', () => {
+
+        it('test_from_Accessor', () => {
+            var base = LocalDateTime.of(2007, 7, 15, 17, 30);
+            assertEquals(LocalDateTime.from(base), base);
+            // TODO timezone assertEquals(LocalDateTime.from(ZonedDateTime.of(base, ZoneOffset.ofHours(2))), base);
+        });
+
+        it('test_from_Accessor_invalid_noDerive', () => {
+            expect(() => {
+                LocalDateTime.from(LocalTime.of(12, 30));
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_from_Accessor_null', () => {
+            expect(() => {
+                LocalDateTime.from(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    function provider_sampleToString() {
+        return [
+            [2008, 7, 5, 2, 1, 0, 0, '2008-07-05T02:01'],
+            [2007, 12, 31, 23, 59, 1, 0, '2007-12-31T23:59:01'],
+            [999, 12, 31, 23, 59, 59, 990000000, '0999-12-31T23:59:59.990'],
+            [-1, 1, 2, 23, 59, 59, 999990000, '-0001-01-02T23:59:59.999990'],
+            [-2008, 1, 2, 23, 59, 59, 999999990, '-2008-01-02T23:59:59.999999990']
+        ];
+    }
+
+    
+/* TODO parser
+    describe('parse()', () => {
+
+        it('test_parse', function () {
+            provider_sampleToString().forEach((data) => {
+                test_parse.apply(this, data);
+            });
+        });
+
+        function test_parse(y, month, d, h, m, s, n, text) {
+            var t = LocalDateTime.parse(text);
+            assertEquals(t.year(), y);
+            assertEquals(t.month().getValue(), month);
+            assertEquals(t.dayOfMonth(), d);
+            assertEquals(t.hour(), h);
+            assertEquals(t.minute(), m);
+            assertEquals(t.second(), s);
+            assertEquals(t.nano(), n);
+        }
+
+        it('factory_parse_illegalValue()', () => {
+            expect(() => {
+                LocalDateTime.parse('2008-06-32T11:15');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_invalidValue()', () => {
+            expect(() => {
+                LocalDateTime.parse('2008-06-31T11:15');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_nullText', () => {
+            expect(() => {
+                LocalDateTime.parse(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('parse(DateTimeFormatter)', () => {
+
+        it('factory_parse_formatter()', () => {
+            var f = DateTimeFormatter.ofPattern('u M d H m s');
+            var test = LocalDateTime.parse('2010 12 3 11 30 45', f);
+            assertEquals(test, LocalDateTime.of(2010, 12, 3, 11, 30, 45));
+        });
+
+        it('factory_parse_formatter_nullText', () => {
+            expect(() => {
+                var f = DateTimeFormatter.ofPattern('u M d H m s');
+                LocalDateTime.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_formatter_nullFormatter', () => {
+            expect(() => {
+                LocalDateTime.parse('ANY', null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+*/
+
 });
 
 
 /**
-    describe('from()', () => {
-
-	});
-
-    @Test
-    it('test_from_Accessor', () => {
-        var base = LocalDateTime.of(2007, 7, 15, 17, 30);
-        assertEquals(LocalDateTime.from(base), base);
-        assertEquals(LocalDateTime.from(ZonedDateTime.of(base, ZoneOffset.ofHours(2))), base);
-    });
-
-    it('test_from_Accessor_invalid_noDerive', () => {
-	expect(() => {
-        LocalDateTime.from(LocalTime.of(12, 30));
-
-	}).to.throw(DateTimeException);
-});
-
-    it('test_from_Accessor_null', () => {
-	expect(() => {
-        LocalDateTime.from((TemporalAccessor) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    describe('parse()', () => {
-
-	});
-
-    @Test(dataProvider="sampleToString")
-    public void test_parse(int y, int month, int d, int h, int m, int s, int n, String text) {
-        var t = LocalDateTime.parse(text);
-        assertEquals(t.year(), y);
-        assertEquals(t.month().getValue(), month);
-        assertEquals(t.dayOfMonth(), d);
-        assertEquals(t.hour(), h);
-        assertEquals(t.minute(), m);
-        assertEquals(t.second(), s);
-        assertEquals(t.nano(), n);
-    }
-
-    @Test(expectedExceptions=DateTimeParseException.class)
-    public void factory_parse_illegalValue() {
-        LocalDateTime.parse("2008-06-32T11:15");
-    }
-
-    @Test(expectedExceptions=DateTimeParseException.class)
-    public void factory_parse_invalidValue() {
-        LocalDateTime.parse("2008-06-31T11:15");
-    }
-
-    it('factory_parse_nullText', () => {
-	expect(() => {
-        LocalDateTime.parse((String) null);
-
-	}).to.throw(NullPointerException);
-});
-
-    describe('parse(DateTimeFormatter)', () => {
-
-	});
-
-    @Test
-    public void factory_parse_formatter() {
-        var f = DateTimeFormatter.ofPattern("u M d H m s");
-        var test = LocalDateTime.parse("2010 12 3 11 30 45", f);
-        assertEquals(test, LocalDateTime.of(2010, 12, 3, 11, 30, 45));
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void factory_parse_formatter_nullText() {
-        var f = DateTimeFormatter.ofPattern("u M d H m s");
-        LocalDateTime.parse((String) null, f);
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void factory_parse_formatter_nullFormatter() {
-        LocalDateTime.parse("ANY", null);
-    }
-
     describe('get(DateTimeField)', () => {
 
 	});
@@ -917,7 +935,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 });
 
     //-----------------------------------------------------------------------
-    @DataProvider(name="sampleDates")
+    @DataProvider(name='sampleDates')
     Object[][] provider_sampleDates() {
         return new Object[][] {
             {2008, 7, 5},
@@ -929,7 +947,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @DataProvider(name="sampleTimes")
+    @DataProvider(name='sampleTimes')
     Object[][] provider_sampleTimes() {
         return new Object[][] {
             {0, 0, 0, 0},
@@ -954,7 +972,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     //-----------------------------------------------------------------------
     // get*()
     //-----------------------------------------------------------------------
-    @Test(dataProvider="sampleDates")
+    @Test(dataProvider='sampleDates')
     public void test_get_dates(int y, int m, int d) {
         var a = LocalDateTime.of(y, m, d, 12, 30);
         assertEquals(a.year(), y);
@@ -962,7 +980,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         assertEquals(a.dayOfMonth(), d);
     }
 
-    @Test(dataProvider="sampleDates")
+    @Test(dataProvider='sampleDates')
     public void test_getDOY(int y, int m, int d) {
         var a = LocalDateTime.of(y, m, d, 12 ,30);
         var total = 0;
@@ -973,7 +991,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         assertEquals(a.getDayOfYear(), doy);
     }
 
-    @Test(dataProvider="sampleTimes")
+    @Test(dataProvider='sampleTimes')
     public void test_get_times(int h, int m, int s, int ns) {
         var a = LocalDateTime.of(TEST_2007_07_15_12_30_40_987654321.toLocalDate(), LocalTime.of(h, m, s, ns));
         assertEquals(a.hour(), h);
@@ -1426,7 +1444,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="samplePlusWeeksSymmetry")
+    @DataProvider(name='samplePlusWeeksSymmetry')
     Object[][] provider_samplePlusWeeksSymmetry() {
         return new Object[][] {
             {createDateMidnight(-1, 1, 1)},
@@ -1458,7 +1476,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="samplePlusWeeksSymmetry")
+    @Test(dataProvider='samplePlusWeeksSymmetry')
     public void test_plusWeeks_symmetry(LocalDateTime reference) {
         for (var weeks = 0; weeks < 365 * 8; weeks++) {
             var t = reference.plusWeeks(weeks).plusWeeks(-weeks);
@@ -1541,7 +1559,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="samplePlusDaysSymmetry")
+    @DataProvider(name='samplePlusDaysSymmetry')
     Object[][] provider_samplePlusDaysSymmetry() {
         return new Object[][] {
             {createDateMidnight(-1, 1, 1)},
@@ -1573,7 +1591,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="samplePlusDaysSymmetry")
+    @Test(dataProvider='samplePlusDaysSymmetry')
     public void test_plusDays_symmetry(LocalDateTime reference) {
         for (var days = 0; days < 365 * 8; days++) {
             var t = reference.plusDays(days).plusDays(-days);
@@ -1809,7 +1827,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @DataProvider(name="plusSeconds_fromZero")
+    @DataProvider(name='plusSeconds_fromZero')
     Iterator<Object[]> plusSeconds_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 30;
@@ -1856,7 +1874,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="plusSeconds_fromZero")
+    @Test(dataProvider='plusSeconds_fromZero')
     public void test_plusSeconds_fromZero(int seconds, LocalDate date, int hour, int min, int sec) {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var t = base.plusSeconds(seconds);
@@ -1911,7 +1929,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @DataProvider(name="plusNanos_fromZero")
+    @DataProvider(name='plusNanos_fromZero')
     Iterator<Object[]> plusNanos_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 7500000000L;
@@ -1961,7 +1979,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="plusNanos_fromZero")
+    @Test(dataProvider='plusNanos_fromZero')
     public void test_plusNanos_fromZero(long nanoseconds, LocalDate date, int hour, int min, int sec, int nanos) {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var t = base.plusNanos(nanoseconds);
@@ -2174,7 +2192,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="sampleMinusWeeksSymmetry")
+    @DataProvider(name='sampleMinusWeeksSymmetry')
     Object[][] provider_sampleMinusWeeksSymmetry() {
         return new Object[][] {
             {createDateMidnight(-1, 1, 1)},
@@ -2206,7 +2224,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="sampleMinusWeeksSymmetry")
+    @Test(dataProvider='sampleMinusWeeksSymmetry')
     public void test_minusWeeks_symmetry(LocalDateTime reference) {
         for (var weeks = 0; weeks < 365 * 8; weeks++) {
             var t = reference.minusWeeks(weeks).minusWeeks(-weeks);
@@ -2289,7 +2307,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="sampleMinusDaysSymmetry")
+    @DataProvider(name='sampleMinusDaysSymmetry')
     Object[][] provider_sampleMinusDaysSymmetry() {
         return new Object[][] {
             {createDateMidnight(-1, 1, 1)},
@@ -2321,7 +2339,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="sampleMinusDaysSymmetry")
+    @Test(dataProvider='sampleMinusDaysSymmetry')
     public void test_minusDays_symmetry(LocalDateTime reference) {
         for (var days = 0; days < 365 * 8; days++) {
             var t = reference.minusDays(days).minusDays(-days);
@@ -2565,7 +2583,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @DataProvider(name="minusSeconds_fromZero")
+    @DataProvider(name='minusSeconds_fromZero')
     Iterator<Object[]> minusSeconds_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 30;
@@ -2612,7 +2630,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="minusSeconds_fromZero")
+    @Test(dataProvider='minusSeconds_fromZero')
     public void test_minusSeconds_fromZero(int seconds, LocalDate date, int hour, int min, int sec) {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var t = base.minusSeconds(seconds);
@@ -2668,7 +2686,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
     }
 
-    @DataProvider(name="minusNanos_fromZero")
+    @DataProvider(name='minusNanos_fromZero')
     Iterator<Object[]> minusNanos_fromZero() {
         return new Iterator<Object[]>() {
             var delta = 7500000000L;
@@ -2718,7 +2736,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="minusNanos_fromZero")
+    @Test(dataProvider='minusNanos_fromZero')
     public void test_minusNanos_fromZero(long nanoseconds, LocalDate date, int hour, int min, int sec, int nanos) {
         var base = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
         var t = base.minusNanos(nanoseconds);
@@ -2734,63 +2752,63 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="until")
+    @DataProvider(name='until')
     Object[][] provider_until() {
         return new Object[][]{
-                {"2012-06-15T00:00", "2012-06-15T00:00", NANOS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", MICROS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", MILLIS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", SECONDS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", MINUTES, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", HOURS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00", HALF_DAYS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', NANOS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', MICROS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', MILLIS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', SECONDS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', MINUTES, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', HOURS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00', HALF_DAYS, 0},
 
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", NANOS, 1000000000},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", MICROS, 1000000},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", MILLIS, 1000},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", SECONDS, 1},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", MINUTES, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", HOURS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:00:01", HALF_DAYS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', NANOS, 1000000000},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', MICROS, 1000000},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', MILLIS, 1000},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', SECONDS, 1},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', MINUTES, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', HOURS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:00:01', HALF_DAYS, 0},
 
-                {"2012-06-15T00:00", "2012-06-15T00:01", NANOS, 60000000000L},
-                {"2012-06-15T00:00", "2012-06-15T00:01", MICROS, 60000000},
-                {"2012-06-15T00:00", "2012-06-15T00:01", MILLIS, 60000},
-                {"2012-06-15T00:00", "2012-06-15T00:01", SECONDS, 60},
-                {"2012-06-15T00:00", "2012-06-15T00:01", MINUTES, 1},
-                {"2012-06-15T00:00", "2012-06-15T00:01", HOURS, 0},
-                {"2012-06-15T00:00", "2012-06-15T00:01", HALF_DAYS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:01', NANOS, 60000000000L},
+                {'2012-06-15T00:00', '2012-06-15T00:01', MICROS, 60000000},
+                {'2012-06-15T00:00', '2012-06-15T00:01', MILLIS, 60000},
+                {'2012-06-15T00:00', '2012-06-15T00:01', SECONDS, 60},
+                {'2012-06-15T00:00', '2012-06-15T00:01', MINUTES, 1},
+                {'2012-06-15T00:00', '2012-06-15T00:01', HOURS, 0},
+                {'2012-06-15T00:00', '2012-06-15T00:01', HALF_DAYS, 0},
 
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:39.499", SECONDS, -1},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:39.500", SECONDS, -1},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:39.501", SECONDS, 0},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:40.499", SECONDS, 0},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:40.500", SECONDS, 0},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:40.501", SECONDS, 0},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:41.499", SECONDS, 0},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:41.500", SECONDS, 1},
-                {"2012-06-15T12:30:40.500", "2012-06-15T12:30:41.501", SECONDS, 1},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.499', SECONDS, -1},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.500', SECONDS, -1},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.501', SECONDS, 0},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.499', SECONDS, 0},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.500', SECONDS, 0},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.501', SECONDS, 0},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.499', SECONDS, 0},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.500', SECONDS, 1},
+                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.501', SECONDS, 1},
 
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:39.499", SECONDS, 86400 - 2},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:39.500", SECONDS, 86400 - 1},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:39.501", SECONDS, 86400 - 1},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:40.499", SECONDS, 86400 - 1},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:40.500", SECONDS, 86400 + 0},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:40.501", SECONDS, 86400 + 0},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:41.499", SECONDS, 86400 + 0},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:41.500", SECONDS, 86400 + 1},
-                {"2012-06-15T12:30:40.500", "2012-06-16T12:30:41.501", SECONDS, 86400 + 1},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.499', SECONDS, 86400 - 2},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.500', SECONDS, 86400 - 1},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.501', SECONDS, 86400 - 1},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.499', SECONDS, 86400 - 1},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.500', SECONDS, 86400 + 0},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.501', SECONDS, 86400 + 0},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.499', SECONDS, 86400 + 0},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.500', SECONDS, 86400 + 1},
+                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.501', SECONDS, 86400 + 1},
         };
     }
 
-    @Test(dataProvider = "until")
+    @Test(dataProvider = 'until')
     public void test_until(String startStr, String endStr, TemporalUnit unit, long expected) {
         var start = LocalDateTime.parse(startStr);
         var end = LocalDateTime.parse(endStr);
         assertEquals(start.until(end, unit), expected);
     }
 
-    @Test(dataProvider = "until")
+    @Test(dataProvider = 'until')
     public void test_until_reveresed(String startStr, String endStr, TemporalUnit unit, long expected) {
         var start = LocalDateTime.parse(startStr);
         var end = LocalDateTime.parse(endStr);
@@ -2925,20 +2943,20 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             for (var j = 0; j < localDateTimes.length; j++) {
                 var b = localDateTimes[j];
                 if (i < j) {
-                    assertTrue(a.compareTo(b) < 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), true, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), false, a + " <=> " + b);
-                    assertEquals(a.equals(b), false, a + " <=> " + b);
+                    assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
                 } else if (i > j) {
-                    assertTrue(a.compareTo(b) > 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), false, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), true, a + " <=> " + b);
-                    assertEquals(a.equals(b), false, a + " <=> " + b);
+                    assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
                 } else {
-                    assertEquals(a.compareTo(b), 0, a + " <=> " + b);
-                    assertEquals(a.isBefore(b), false, a + " <=> " + b);
-                    assertEquals(a.isAfter(b), false, a + " <=> " + b);
-                    assertEquals(a.equals(b), true, a + " <=> " + b);
+                    assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                    assertEquals(a.equals(b), true, a + ' <=> ' + b);
                 }
             }
         }
@@ -2966,7 +2984,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 });
 
     @Test(expectedExceptions=ClassCastException.class)
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings({'unchecked', 'rawtypes'})
     it('compareToNonLocalDateTime', () => {
        var c = TEST_2007_07_15_12_30_40_987654321;
        c.compareTo(new Object());
@@ -2976,7 +2994,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="sampleDateTimes")
+    @DataProvider(name='sampleDateTimes')
     Iterator<Object[]> provider_sampleDateTimes() {
         return new Iterator<Object[]>() {
             Object[][] sampleDates = provider_sampleDates();
@@ -3011,56 +3029,56 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         };
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_true(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d, h, mi, s, n);
         assertTrue(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_year_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y + 1, m, d, h, mi, s, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_month_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m + 1, d, h, mi, s, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_day_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d + 1, h, mi, s, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_hour_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d, h + 1, mi, s, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_minute_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d, h, mi + 1, s, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_second_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d, h, mi, s + 1, n);
         assertFalse(a.equals(b));
     }
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_equals_false_nano_differs(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         var b = LocalDateTime.of(y, m, d, h, mi, s, n + 1);
@@ -3074,7 +3092,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     @Test
     public void test_equals_string_false() {
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.equals("2007-07-15T12:30:40.987654321"), false);
+        assertEquals(TEST_2007_07_15_12_30_40_987654321.equals('2007-07-15T12:30:40.987654321'), false);
     }
 
     @Test
@@ -3086,7 +3104,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @Test(dataProvider="sampleDateTimes")
+    @Test(dataProvider='sampleDateTimes')
     public void test_hashCode(int y, int m, int d, int h, int mi, int s, int n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         assertEquals(a.hashCode(), a.hashCode());
@@ -3098,18 +3116,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    @DataProvider(name="sampleToString")
-    Object[][] provider_sampleToString() {
-        return new Object[][] {
-            {2008, 7, 5, 2, 1, 0, 0, "2008-07-05T02:01"},
-            {2007, 12, 31, 23, 59, 1, 0, "2007-12-31T23:59:01"},
-            {999, 12, 31, 23, 59, 59, 990000000, "0999-12-31T23:59:59.990"},
-            {-1, 1, 2, 23, 59, 59, 999990000, "-0001-01-02T23:59:59.999990"},
-            {-2008, 1, 2, 23, 59, 59, 999999990, "-2008-01-02T23:59:59.999999990"},
-        };
-    }
-
-    @Test(dataProvider="sampleToString")
+    @Test(dataProvider='sampleToString')
     public void test_toString(int y, int m, int d, int h, int mi, int s, int n, String expected) {
         var t = LocalDateTime.of(y, m, d, h, mi, s, n);
         var str = t.toString();
@@ -3122,9 +3129,9 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     @Test
     public void test_format_formatter() {
-        var f = DateTimeFormatter.ofPattern("y M d H m s");
+        var f = DateTimeFormatter.ofPattern('y M d H m s');
         var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);
-        assertEquals(t, "2010 12 3 11 30 45");
+        assertEquals(t, '2010 12 3 11 30 45');
     }
 
     it('test_format_formatter_null', () => {

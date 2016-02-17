@@ -194,6 +194,7 @@ export class LocalDateTime extends TemporalAccessor
      * @throws DateTimeException if unable to convert to a {@code LocalDateTime}
      */
     static from(temporal) {
+        requireNonNull(temporal, 'temporal');
         if (temporal instanceof LocalDateTime) {
             return temporal;
         //} else if (temporal instanceof ZonedDateTime) {
