@@ -13,7 +13,8 @@ import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
-import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
+import {TemporalQueries} from './temporal/TemporalQueries';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 
 export class DayOfWeek extends TemporalAccessor {
     

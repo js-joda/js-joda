@@ -12,7 +12,8 @@ import {IsoChronology} from './chrono/IsoChronology';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {ChronoLocalDate} from './chrono/ChronoLocalDate';
-import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
+import {TemporalQueries} from './temporal/TemporalQueries';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {Clock} from './Clock';

@@ -16,7 +16,8 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
-import {TemporalQueries, createTemporalQuery} from './temporal/TemporalQueries';
+import {TemporalQueries} from './temporal/TemporalQueries';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 
 /**
  * A time without time-zone in the ISO-8601 calendar system,

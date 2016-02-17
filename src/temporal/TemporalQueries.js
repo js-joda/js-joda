@@ -4,9 +4,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {Enum} from '../Enum';
-
 import {ChronoField} from './ChronoField';
+import {createTemporalQuery} from './TemporalQuery';
 
 import {LocalDate} from '../LocalDate';
 import {LocalTime} from '../LocalTime';
@@ -226,20 +225,6 @@ export class TemporalQueries {
     static localTime() {
         return TemporalQueries.LOCAL_TIME;
     }
-}
-
-/** 
- * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
- * as the queryFrom() function.
- * TODO: maybe should be moved to a separate file?
- * @param name
- * @param queryFromFunction
- */
-export function createTemporalQuery(name, queryFromFunction) {
-    class TemporalQuery extends Enum {
-    }
-    TemporalQuery.prototype.queryFrom = queryFromFunction;   
-    return new TemporalQuery(name);
 }
 
 export function _init() {
