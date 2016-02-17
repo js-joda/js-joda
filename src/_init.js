@@ -8,6 +8,7 @@ import {_init as DurationInit} from './Duration';
 import {_init as InstantInit} from './Instant';
 import {_init as LocalDateInit} from './LocalDate';
 import {_init as LocalTimeInit} from './LocalTime';
+import {_init as LocalDateTimeInit} from './LocalDateTime';
 import {_init as MonthInit} from './Month';
 import {_init as PeriodInit} from './Period';
 import {_init as YearInit} from './Year';
@@ -37,6 +38,7 @@ function init() {
     DayOfWeekInit();
     InstantInit();
     LocalDateInit();
+    LocalDateTimeInit();
     MonthInit();
     PeriodInit();
     ZoneOffsetInit();

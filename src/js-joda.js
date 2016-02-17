@@ -8,6 +8,7 @@ export { DateTimeException, DateTimeParseException } from './errors';
 export { Instant } from './Instant';
 export { LocalDate } from './LocalDate';
 export { LocalTime } from './LocalTime';
+export { LocalDateTime } from './LocalDateTime';
 export { MathUtil } from './MathUtil';
 export { Month } from './Month';
 export { Period } from './Period';
