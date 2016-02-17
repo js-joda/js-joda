@@ -89,7 +89,7 @@ export class Clock {
      *
      * @param fixedInstant  the instant to use as the clock, not null
      * @param zoneOffset  the zoneOffset to use as zone Offset, not null
-     * @return a clock that always returns the same instant, not null
+     * @return {Clock} a clock that always returns the same instant, not null
      */
     static fixed(fixedInstant, zoneOffset) {
         return new FixedClock(fixedInstant, zoneOffset);
