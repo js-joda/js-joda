@@ -1216,15 +1216,29 @@ export class LocalDateTime extends TemporalAccessor
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
      * specified query passing {@code this} as the argument.
      *
-     * @param query  the query to invoke, not null
+     * @param {TemporalQuery} query  the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws DateTimeException if unable to query (defined by the query)
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
     query(query) {
+        requireNonNull(query, 'query');
         if (query === TemporalQueries.localDate()) {
             return this.toLocalDate();
         }
+        // from org.threeten.bp.chrono.ChronoLocalDateTime
+        if (query === TemporalQueries.chronology()) {
+            return this.toLocalDate().chronology();
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.NANOS;
+        //} else if (query === TemporalQueries.localDate()) {
+        //    return LocalDate.ofEpochDay(this.toLocalDate().toEpochDay());
+        } else if (query === TemporalQueries.localTime()) {
+            return this.toLocalTime();
+        } else if (query === TemporalQueries.zone() || query === TemporalQueries.zoneId() || query === TemporalQueries.offset()) {
+            return null;
+        }
+        //
         return super.query(query);
     }
 

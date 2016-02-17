@@ -22,8 +22,11 @@ import {Instant} from '../../src/Instant';
 import {Month} from '../../src/Month';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 describe('org.threeten.bp.TestLocalDateTime', () => {
 
@@ -907,31 +910,30 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    describe('query(TemporalQuery)', () => {
+
+        it('test_query', () => {
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.localDate()), TEST_2007_07_15_12_30_40_987654321.toLocalDate());
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.localTime()), TEST_2007_07_15_12_30_40_987654321.toLocalTime());
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.offset()), null);
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.precision()), ChronoUnit.NANOS);
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.zone()), null);
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.query(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 /**
-    describe('query(TemporalQuery)', () => {
-
-	});
-
-    @Test
-    it('test_query', () => {
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.localDate()), TEST_2007_07_15_12_30_40_987654321.toLocalDate());
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.localTime()), TEST_2007_07_15_12_30_40_987654321.toLocalTime());
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.offset()), null);
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.precision()), ChronoUnit.NANOS);
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.zone()), null);
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.query(TemporalQueries.zoneId()), null);
-    });
-
-    it('test_query_null', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.query(null);
-
-	}).to.throw(NullPointerException);
-});
 
     //-----------------------------------------------------------------------
     @DataProvider(name='sampleDates')
