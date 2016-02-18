@@ -105,7 +105,7 @@ export class TemporalQueries {
      * That method is equivalent to this query, except that it throws an
      * exception if a chronology cannot be obtained.
      *
-     * @return a query that can obtain the chronology of a temporal, not null
+     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null
      */
     static chronology() {
         return TemporalQueries.CHRONO;
