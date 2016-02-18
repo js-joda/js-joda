@@ -5,7 +5,7 @@
  */
 
 import {assert} from '../assert';
-import {ArithmeticException, DateTimeException, IllegalArgumentException} from '../errors';
+import {ArithmeticException, DateTimeException, IllegalArgumentException, IllegalStateException} from '../errors';
 
 import {Enum} from '../Enum';
 
@@ -314,6 +314,110 @@ export class DateTimeFormatterBuilder {
         return this;
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Appends the fractional value of a date-time field to the formatter.
+     * <p>
+     * The fractional value of the field will be output including the
+     * preceding decimal point. The preceding value is not output.
+     * For example, the second-of-minute value of 15 would be output as {@code .25}.
+     * <p>
+     * The width of the printed fraction can be controlled. Setting the
+     * minimum width to zero will cause no output to be generated.
+     * The printed fraction will have the minimum width necessary between
+     * the minimum and maximum widths - trailing zeroes are omitted.
+     * No rounding occurs due to the maximum width - digits are simply dropped.
+     * <p>
+     * When parsing in strict mode, the number of parsed digits must be between
+     * the minimum and maximum width. When parsing in lenient mode, the minimum
+     * width is considered to be zero and the maximum is nine.
+     * <p>
+     * If the value cannot be obtained then an exception will be thrown.
+     * If the value is negative an exception will be thrown.
+     * If the field does not have a fixed set of valid values then an
+     * exception will be thrown.
+     * If the field value in the date-time to be printed is invalid it
+     * cannot be printed and an exception will be thrown.
+     *
+     * @param {TemporalField} field  the field to append, not null
+     * @param {Number} minWidth  the minimum width of the field excluding the decimal point, from 0 to 9
+     * @param {Number} maxWidth  the maximum width of the field excluding the decimal point, from 1 to 9
+     * @param {boolean} decimalPoint  whether to output the localized decimal point symbol
+     * @return this, for chaining, not null
+     * @throws IllegalArgumentException if the field has a variable set of valid values or
+     *  either width is invalid
+     */
+    appendFraction(field, minWidth, maxWidth, decimalPoint) {
+        this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint));
+        return this;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Mark the start of an optional section.
+     * <p>
+     * The output of printing can include optional sections, which may be nested.
+     * An optional section is started by calling this method and ended by calling
+     * {@link #optionalEnd()} or by ending the build process.
+     * <p>
+     * All elements in the optional section are treated as optional.
+     * During printing, the section is only output if data is available in the
+     * {@code TemporalAccessor} for all the elements in the section.
+     * During parsing, the whole section may be missing from the parsed string.
+     * <p>
+     * For example, consider a builder setup as
+     * {@code builder.appendValue(HOUR_OF_DAY,2).optionalStart().appendValue(MINUTE_OF_HOUR,2)}.
+     * The optional section ends automatically at the end of the builder.
+     * During printing, the minute will only be output if its value can be obtained from the date-time.
+     * During parsing, the input will be successfully parsed whether the minute is present or not.
+     *
+     * @return this, for chaining, not null
+     */
+    optionalStart() {
+        this._active.valueParserIndex = -1;
+        this._active = new DateTimeFormatterBuilder(this._active, true);
+        return this;
+    }
+
+    /**
+     * Ends an optional section.
+     * <p>
+     * The output of printing can include optional sections, which may be nested.
+     * An optional section is started by calling {@link #optionalStart()} and ended
+     * using this method (or at the end of the builder).
+     * <p>
+     * Calling this method without having previously called {@code optionalStart}
+     * will throw an exception.
+     * Calling this method immediately after calling {@code optionalStart} has no effect
+     * on the formatter other than ending the (empty) optional section.
+     * <p>
+     * All elements in the optional section are treated as optional.
+     * During printing, the section is only output if data is available in the
+     * {@code TemporalAccessor} for all the elements in the section.
+     * During parsing, the whole section may be missing from the parsed string.
+     * <p>
+     * For example, consider a builder setup as
+     * {@code builder.appendValue(HOUR_OF_DAY,2).optionalStart().appendValue(MINUTE_OF_HOUR,2).optionalEnd()}.
+     * During printing, the minute will only be output if its value can be obtained from the date-time.
+     * During parsing, the input will be successfully parsed whether the minute is present or not.
+     *
+     * @return this, for chaining, not null
+     * @throws IllegalStateException if there was no previous call to {@code optionalStart}
+     */
+    optionalEnd() {
+        if (this._active.parent == null) {
+            throw new IllegalStateException('Cannot call optionalEnd() as there was no previous call to optionalStart()');
+        }
+        if (this._active.printerParsers.size() > 0) {
+            var cpp = new CompositePrinterParser(this._active.printerParsers, this._active.optional);
+            this._active = this._active.parent;
+            this._appendInternal(cpp);
+        } else {
+            this._active = this._active.parent;
+        }
+        return this;
+    }
+
     /**
      * Appends a printer and/or parser to the internal list handling padding.
      *
@@ -489,6 +593,75 @@ class CompositePrinterParser {
     }
 }
 
+/**
+ * Pads the output to a fixed width.
+ */
+class PadPrinterParserDecorator {
+
+    /**
+     * Constructor.
+     *
+     * @param printerParser  the printer, not null
+     * @param padWidth  the width to pad to, 1 or greater
+     * @param padChar  the pad character
+     */
+    constructor(printerParser, padWidth, padChar) {
+        // input checked by DateTimeFormatterBuilder
+        this._printerParser = printerParser;
+        this._padWidth = padWidth;
+        this._padChar = padChar;
+    }
+
+    print(context, buf) {
+        var preLen = buf.length();
+        if (this._printerParser.print(context, buf) === false) {
+            return false;
+        }
+        var len = buf.length() - preLen;
+        if (len > this._padWidth) {
+            throw new DateTimeException(
+                `Cannot print as output of ${len} characters exceeds pad width of ${this._padWidth}`);
+        }
+        for (let i = 0; i < this._padWidth - len; i++) {
+            buf.insert(preLen, this._padChar);
+        }
+        return true;
+    }
+
+    parse(context, text, position) {
+        // cache context before changed by decorated parser
+        var strict = context.isStrict();
+        var caseSensitive = context.isCaseSensitive();
+        // parse
+        assert(!(position > text.length));
+        if (position === text.length) {
+            return ~position;  // no more characters in the string
+        }
+        var endPos = position + this._padWidth;
+        if (endPos > text.length) {
+            if (strict) {
+                return ~position;  // not enough characters in the string to meet the parse width
+            }
+            endPos = text.length;
+        }
+        var pos = position;
+        while (pos < endPos &&
+                (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {
+            pos++;
+        }
+        text = text.substring(0, endPos);
+        var resultPos = this._printerParser.parse(context, text, pos);
+        if (resultPos !== endPos && strict) {
+            return ~(position + pos);  // parse of decorated field didn't parse to the end
+        }
+        return resultPos;
+    }
+
+    toString() {
+        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : ',\'' + this._padChar + '\')')}`;
+    }
+}
+
 class SettingsParser extends Enum {
 
     print(context, buf) {
@@ -516,11 +689,40 @@ class SettingsParser extends Enum {
         }
     }
 }
+
 SettingsParser.SENSITIVE = new SettingsParser('SENSITIVE');
 SettingsParser.INSENSITIVE = new SettingsParser('INSENSITIVE');
 SettingsParser.STRICT = new SettingsParser('STRICT');
 SettingsParser.LENIENT = new SettingsParser('LENIENT');
 
+/**
+* Prints or parses a string literal.
+*/
+class StringLiteralPrinterParser {
+
+    constructor(literal) {
+        this._literal = literal;
+    }
+
+    print(context, buf) {
+        buf.append(this._literal);
+        return true;
+    }
+
+    parse(context, text, position) {
+        var length = text.length;
+        assert(!(position > length || position < 0));
+
+        if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {
+            return ~position;
+        }
+        return position + this._literal.length;
+    }
+
+    toString() {
+        return '\'' + this._literal + '\'';
+    }
+}
 
 class NumberPrinterParser {
 
@@ -684,7 +886,7 @@ class NumberPrinterParser {
         }
         return this._setValue(context, total, position, pos);
     }
-    
+
     /**
      * Stores the value.
      *
@@ -697,7 +899,7 @@ class NumberPrinterParser {
     _setValue(context, value, errorPos, successPos) {
         return context.setParsedField(this._field, value, errorPos, successPos);
     }
- 
+
     toString() {
         if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {
             return 'Value(' + this._field + ')';
@@ -707,106 +909,8 @@ class NumberPrinterParser {
         }
         return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';
     }
-    
+
 }
-
-/**
- * Pads the output to a fixed width.
- */
-class PadPrinterParserDecorator {
-
-    /**
-     * Constructor.
-     *
-     * @param printerParser  the printer, not null
-     * @param padWidth  the width to pad to, 1 or greater
-     * @param padChar  the pad character
-     */
-    constructor(printerParser, padWidth, padChar) {
-        // input checked by DateTimeFormatterBuilder
-        this._printerParser = printerParser;
-        this._padWidth = padWidth;
-        this._padChar = padChar;
-    }
-
-    print(context, buf) {
-        var preLen = buf.length();
-        if (this._printerParser.print(context, buf) === false) {
-            return false;
-        }
-        var len = buf.length() - preLen;
-        if (len > this._padWidth) {
-            throw new DateTimeException(
-                `Cannot print as output of ${len} characters exceeds pad width of ${this._padWidth}`);
-        }
-        for (let i = 0; i < this._padWidth - len; i++) {
-            buf.insert(preLen, this._padChar);
-        }
-        return true;
-    }
-
-    parse(context, text, position) {
-        // cache context before changed by decorated parser
-        var strict = context.isStrict();
-        var caseSensitive = context.isCaseSensitive();
-        // parse
-        assert(!(position > text.length));
-        if (position === text.length) {
-            return ~position;  // no more characters in the string
-        }
-        var endPos = position + this._padWidth;
-        if (endPos > text.length) {
-            if (strict) {
-                return ~position;  // not enough characters in the string to meet the parse width
-            }
-            endPos = text.length;
-        }
-        var pos = position;
-        while (pos < endPos &&
-                (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {
-            pos++;
-        }
-        text = text.substring(0, endPos);
-        var resultPos = this._printerParser.parse(context, text, pos);
-        if (resultPos !== endPos && strict) {
-            return ~(position + pos);  // parse of decorated field didn't parse to the end
-        }
-        return resultPos;
-    }
-
-    toString() {
-        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : ',\'' + this._padChar + '\')')}`;
-    }
-}
-
-/**
-* Prints or parses a string literal.
-*/
-class StringLiteralPrinterParser {
-
-        constructor(literal) {
-            this._literal = literal;
-        }
-
-        print(context, buf) {
-            buf.append(this._literal);
-            return true;
-        }
-
-        parse(context, text, position) {
-            var length = text.length;
-            assert(!(position > length || position < 0));
-
-            if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {
-                return ~position;
-            }
-            return position + this._literal.length;
-        }
-
-        toString() {
-            return '\'' + this._literal + '\'';
-        }
-    }
 
 class StringBuilder {
     constructor(){
