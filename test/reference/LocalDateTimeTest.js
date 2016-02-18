@@ -2985,27 +2985,27 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+    describe('hashCode()', () => {
+
+        it('test_hashCode', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_hashCode.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider='sampleDateTimes')
+        function test_hashCode(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            assertEquals(a.hashCode(), a.hashCode());
+            var b = LocalDateTime.of(y, m, d, h, mi, s, n);
+            assertEquals(a.hashCode(), b.hashCode());
+        }
+
+    });
+
 });
 
 /**
-
-    describe('hashCode()', () => {
-
-	});
-
- it('test_hashCode', function () {
-     provider_sampleDateTimes().forEach((data) => {
-         test_hashCode.apply(this, data);
-     });
- });
-
-    //@Test(dataProvider='sampleDateTimes')
-    function test_hashCode(y, m, d, h, mi, s, n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        assertEquals(a.hashCode(), a.hashCode());
-        var b = LocalDateTime.of(y, m, d, h, mi, s, n);
-        assertEquals(a.hashCode(), b.hashCode());
-    }
 
     describe('toString()', () => {
 
