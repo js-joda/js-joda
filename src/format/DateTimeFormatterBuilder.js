@@ -913,7 +913,12 @@ class NumberPrinterParser {
 }
 
 //-----------------------------------------------------------------------
+
+import {MathUtil} from '../MathUtil';
+
 /**
+ * TODO optimize FractionPrinterParser, fix documentation
+ *
  * Prints and parses a numeric date-time field with optional padding.
  */
 class FractionPrinterParser {
@@ -953,8 +958,7 @@ class FractionPrinterParser {
             return false;
         }
         var symbols = context.symbols();
-        var fraction = this.convertToFraction(value);
-        if (fraction.scale() === 0) {  // scale is zero if value is zero
+        if (value === 0) {  // scale is zero if value is zero
             if (this.minWidth > 0) {
                 if (this.decimalPoint) {
                     buf.append(symbols.decimalSeparator());
@@ -964,9 +968,15 @@ class FractionPrinterParser {
                 }
             }
         } else {
-            var outputScale = Math.min(Math.max(fraction.scale(), this.minWidth), this.maxWidth);
-            fraction = fraction.setScale(outputScale, RoundingMode.FLOOR);
-            var str = fraction.toPlainString().substring(2);
+            var fraction = this.convertToFraction(value, symbols.zeroDigit());
+            var outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);
+            fraction = fraction.substr(0, outputScale);
+            if(fraction * 1 > 0 ) {
+                while (fraction.length > this.minWidth && fraction[fraction.length - 1] === '0') {
+                    fraction = fraction.substr(0, fraction.length - 1);
+                }
+            }
+            var str = fraction;
             str = symbols.convertNumberToI18N(str);
             if (this.decimalPoint) {
                 buf.append(symbols.decimalSeparator());
@@ -1028,18 +1038,20 @@ class FractionPrinterParser {
      * assuming the standard definition of 60 seconds in a minute.
      *
      * @param {Number} value  the value to convert, must be valid for this rule
-     * @return {BigDecimal} the value as a fraction within the range, from 0 to 1, not null
-     * @throws DateTimeException if the value cannot be converted to a fraction
+     * @return {String} the value as a fraction within the range, from 0 to 1, not null
      */
-    convertToFraction(value) {
+    convertToFraction(value, zeroDigit) {
         var range = this.field.range();
         range.checkValidValue(value, this.field);
-        var minBD = BigDecimal.valueOf(range.getMinimum());
-        var rangeBD = BigDecimal.valueOf(range.getMaximum()).subtract(minBD).add(BigDecimal.ONE);
-        var valueBD = BigDecimal.valueOf(value).subtract(minBD);
-        var fraction = valueBD.divide(rangeBD, 9, RoundingMode.FLOOR);
-        // stripTrailingZeros bug
-        return fraction.compareTo(BigDecimal.ZERO) === 0 ? BigDecimal.ZERO : fraction.stripTrailingZeros();
+        var _min = range.minimum();
+        var _range = range.maximum() - _min + 1;
+        var _value = value - _min;
+        var _scaled = Math.floor((_value / _range) * 1000000000);
+        var fraction = '' + _scaled;
+        while(fraction.length < 9){
+            fraction = zeroDigit + fraction;
+        }
+        return fraction;
     }
 
     /**
@@ -1060,8 +1072,8 @@ class FractionPrinterParser {
      */
     convertFromFraction(fraction) {
         var range = this.field.range();
-        var minBD = BigDecimal.valueOf(range.getMinimum());
-        var rangeBD = BigDecimal.valueOf(range.getMaximum()).subtract(minBD).add(BigDecimal.ONE);
+        var minBD = BigDecimal.valueOf(range.minimum());
+        var rangeBD = BigDecimal.valueOf(range.maximum()).subtract(minBD).add(BigDecimal.ONE);
         var valueBD = fraction.multiply(rangeBD).setScale(0, RoundingMode.FLOOR).add(minBD);
         return valueBD.longValueExact();
     }
@@ -1102,7 +1114,26 @@ class StringBuilder {
 
 class BigDecimal {
 
+    constructor(val=0, scale=0, prec=1){
+        this.scale = scale;
+        this.precision = prec;
+        this.val = val;
+    }
+
+    static valueOf(val=0){
+        if (val===0) {
+            return BigDecimal.ZERO;
+        } else if (val===1){
+            return BigDecimal.ONE;
+        } else {
+            return new BigDecimal(val, 0, 0);
+        }
+    }
+
 }
+
+BigDecimal.ZERO = new BigDecimal(0,0,1);
+BigDecimal.ONE = new BigDecimal(1,0,1);
 
 const RoundingMode = {
     FLOOR: 1
