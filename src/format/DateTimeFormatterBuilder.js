@@ -474,6 +474,22 @@ export class DateTimeFormatterBuilder {
         return this._active._printerParsers.length - 1;
     }
     
+    //-----------------------------------------------------------------------
+    /**
+     * Appends all the elements of a formatter to the builder.
+     * <p>
+     * This method has the same effect as appending each of the constituent
+     * parts of the formatter directly to this builder.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to add, not null
+     * @return this, for chaining, not null
+     */
+    append(formatter) {
+        requireNonNull(formatter, 'formatter');
+        this._appendInternal(formatter.toPrinterParser(false));
+        return this;
+    }
+
     /**
      * Completes this builder by creating the DateTimeFormatter.
      * 
@@ -522,8 +538,8 @@ class CompositePrinterParser {
     /**
      * Returns a copy of this printer-parser with the optional flag changed.
      *
-     * @param optional  the optional flag to set in the copy
-     * @return the new printer-parser, not null
+     * @param {boolean} optional  the optional flag to set in the copy
+     * @return {CompositePrinterParser} the new printer-parser, not null
      */
     withOptional(optional) {
         if (optional === this._optional) {

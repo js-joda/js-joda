@@ -250,6 +250,15 @@ export class DateTimeFormatter {
         return context.toParsed();
     }
 
+    /**
+     * Returns the formatter as a composite printer parser.
+     *
+     * @param {boolean} optional  whether the printer/parser should be optional
+     * @return {CompositePrinterParser} the printer/parser, not null
+     */
+    toPrinterParser(optional) {
+        return this._printerParser.withOptional(optional);
+    }
 
     toString() {
         var pattern = this._printerParser.toString();
@@ -281,9 +290,9 @@ export function _init() {
 
     DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()
         .parseCaseInsensitive()
-        //.append(DateTimeFormatter.ISO_LOCAL_DATE)
+        .append(DateTimeFormatter.ISO_LOCAL_DATE)
         .appendLiteral('T')
-        //.append(DateTimeFormatter.ISO_LOCAL_TIME)
+        .append(DateTimeFormatter.ISO_LOCAL_TIME)
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
 
 }
