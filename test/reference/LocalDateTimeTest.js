@@ -13,7 +13,7 @@ import '../_init';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
 import {DateTimeException, DateTimeParseException,
-    NullPointerException, ArithmeticException} from '../../src/errors';
+    NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
 import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
@@ -2601,240 +2601,252 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-});
-
-/**
-
+/* TODO parser
     describe('until()', () => {
 
-	});
+        //@DataProvider(name='until')
+        function provider_until() {
+            return [
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.NANOS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MICROS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MILLIS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MINUTES, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HOURS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HALF_DAYS, 0],
 
-    @DataProvider(name='until')
-    Object[][] provider_until() {
-        return new Object[][]{
-                {'2012-06-15T00:00', '2012-06-15T00:00', NANOS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', MICROS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', MILLIS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', SECONDS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', MINUTES, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', HOURS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00', HALF_DAYS, 0},
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.NANOS, 1000000000],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MICROS, 1000000],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MILLIS, 1000],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.SECONDS, 1],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MINUTES, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HOURS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HALF_DAYS, 0],
 
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', NANOS, 1000000000},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', MICROS, 1000000},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', MILLIS, 1000},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', SECONDS, 1},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', MINUTES, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', HOURS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:00:01', HALF_DAYS, 0},
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.NANOS, 60000000000],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MICROS, 60000000],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MILLIS, 60000],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.SECONDS, 60],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MINUTES, 1],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HOURS, 0],
+                    ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HALF_DAYS, 0],
 
-                {'2012-06-15T00:00', '2012-06-15T00:01', NANOS, 60000000000L},
-                {'2012-06-15T00:00', '2012-06-15T00:01', MICROS, 60000000},
-                {'2012-06-15T00:00', '2012-06-15T00:01', MILLIS, 60000},
-                {'2012-06-15T00:00', '2012-06-15T00:01', SECONDS, 60},
-                {'2012-06-15T00:00', '2012-06-15T00:01', MINUTES, 1},
-                {'2012-06-15T00:00', '2012-06-15T00:01', HOURS, 0},
-                {'2012-06-15T00:00', '2012-06-15T00:01', HALF_DAYS, 0},
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.499', ChronoUnit.SECONDS, -1],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.500', ChronoUnit.SECONDS, -1],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.501', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.499', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.500', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.501', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.499', ChronoUnit.SECONDS, 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.500', ChronoUnit.SECONDS, 1],
+                    ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.501', ChronoUnit.SECONDS, 1],
 
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.499', SECONDS, -1},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.500', SECONDS, -1},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:39.501', SECONDS, 0},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.499', SECONDS, 0},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.500', SECONDS, 0},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:40.501', SECONDS, 0},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.499', SECONDS, 0},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.500', SECONDS, 1},
-                {'2012-06-15T12:30:40.500', '2012-06-15T12:30:41.501', SECONDS, 1},
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.499', ChronoUnit.SECONDS, 86400 - 2],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.500', ChronoUnit.SECONDS, 86400 - 1],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.501', ChronoUnit.SECONDS, 86400 - 1],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.499', ChronoUnit.SECONDS, 86400 - 1],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.500', ChronoUnit.SECONDS, 86400 + 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.501', ChronoUnit.SECONDS, 86400 + 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.499', ChronoUnit.SECONDS, 86400 + 0],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.500', ChronoUnit.SECONDS, 86400 + 1],
+                    ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.501', ChronoUnit.SECONDS, 86400 + 1]
+            ];
+        }
 
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.499', SECONDS, 86400 - 2},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.500', SECONDS, 86400 - 1},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:39.501', SECONDS, 86400 - 1},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.499', SECONDS, 86400 - 1},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.500', SECONDS, 86400 + 0},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:40.501', SECONDS, 86400 + 0},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.499', SECONDS, 86400 + 0},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.500', SECONDS, 86400 + 1},
-                {'2012-06-15T12:30:40.500', '2012-06-16T12:30:41.501', SECONDS, 86400 + 1},
-        };
-    }
+        it('test_until', function () {
+            provider_until().forEach((data) => {
+                test_until.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider = 'until')
-    public void test_until(String startStr, String endStr, TemporalUnit unit, long expected) {
-        var start = LocalDateTime.parse(startStr);
-        var end = LocalDateTime.parse(endStr);
-        assertEquals(start.until(end, unit), expected);
-    }
+        // @Test(dataProvider = 'until')
+        function test_until(startStr, endStr, unit, expected) {
+            var start = LocalDateTime.parse(startStr);
+            var end = LocalDateTime.parse(endStr);
+            assertEquals(start.until(end, unit), expected);
+        }
 
-    @Test(dataProvider = 'until')
-    public void test_until_reveresed(String startStr, String endStr, TemporalUnit unit, long expected) {
-        var start = LocalDateTime.parse(startStr);
-        var end = LocalDateTime.parse(endStr);
-        assertEquals(end.until(start, unit), -expected);
-    }
+        it('test_until_reveresed', function () {
+            provider_until().forEach((data) => {
+                test_until_reveresed.apply(this, data);
+            });
+        });
 
+        // @Test(dataProvider = 'until')
+        function test_until_reveresed(startStr, endStr, unit, expected) {
+            var start = LocalDateTime.parse(startStr);
+            var end = LocalDateTime.parse(endStr);
+            assertEquals(end.until(start, unit), -expected);
+        }
+
+    });
+*/
+
+/* TODO timezone
     describe('atZone()', () => {
 
+        it('test_atZone', () => {
+            var t = LocalDateTime.of(2008, 6, 30, 11, 30);
+            assertEquals(t.atZone(ZONE_PARIS),
+                ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), ZONE_PARIS));
+        });
+
+        it('test_atZone_Offset', () => {
+            var t = LocalDateTime.of(2008, 6, 30, 11, 30);
+            assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
+        });
+
+        it('test_atZone_dstGap', () => {
+            var t = LocalDateTime.of(2007, 4, 1, 0, 0);
+            assertEquals(t.atZone(ZONE_GAZA),
+                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
+        });
+
+        it('test_atZone_dstOverlap', () => {
+            var t = LocalDateTime.of(2007, 10, 28, 2, 30);
+            assertEquals(t.atZone(ZONE_PARIS),
+                ZonedDateTime.ofStrict(LocalDateTime.of(2007, 10, 28, 2, 30), OFFSET_PTWO, ZONE_PARIS));
+        });
+
+        it('test_atZone_nullTimeZone', () => {
+            expect(() => {
+                var t = LocalDateTime.of(2008, 6, 30, 11, 30);
+                t.atZone(null);
+            }).to.throw(NullPointerException);
+        });
+
 	});
 
-    it('test_atZone', () => {
-        var t = LocalDateTime.of(2008, 6, 30, 11, 30);
-        assertEquals(t.atZone(ZONE_PARIS),
-                ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), ZONE_PARIS));
-    });
-
-    it('test_atZone_Offset', () => {
-        var t = LocalDateTime.of(2008, 6, 30, 11, 30);
-        assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
-    });
-
-    it('test_atZone_dstGap', () => {
-        var t = LocalDateTime.of(2007, 4, 1, 0, 0);
-        assertEquals(t.atZone(ZONE_GAZA),
-                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
-    });
-
-    it('test_atZone_dstOverlap', () => {
-        var t = LocalDateTime.of(2007, 10, 28, 2, 30);
-        assertEquals(t.atZone(ZONE_PARIS),
-                ZonedDateTime.ofStrict(LocalDateTime.of(2007, 10, 28, 2, 30), OFFSET_PTWO, ZONE_PARIS));
-    });
-
-    it('test_atZone_nullTimeZone', () => {
-	expect(() => {
-        var t = LocalDateTime.of(2008, 6, 30, 11, 30);
-        t.atZone((ZoneId) null);
-	}).to.throw(NullPointerException);
-});
-
+*/
     describe('toEpochSecond()', () => {
 
-	});
-
-    public void test_toEpochSecond_afterEpoch() {
-        for (var i = -5; i < 5; i++) {
-            var offset = ZoneOffset.ofHours(i);
-            for (var j = 0; j < 100000; j++) {
-                var a = LocalDateTime.of(1970, 1, 1, 0, 0).plusSeconds(j);
-                assertEquals(a.toEpochSecond(offset), j - i * 3600);
+        it('test_toEpochSecond_afterEpoch()', () => {
+            for (var i = -5; i < 5; i++) {
+                var offset = ZoneOffset.ofHours(i);
+                for (var j = 0; j < 100000; j++) {
+                    var a = LocalDateTime.of(1970, 1, 1, 0, 0).plusSeconds(j);
+                    assertEquals(a.toEpochSecond(offset), j - i * 3600);
+                }
             }
-        }
-    }
+        });
 
-    public void test_toEpochSecond_beforeEpoch() {
-        for (var i = 0; i < 100000; i++) {
-            var a = LocalDateTime.of(1970, 1, 1, 0, 0).minusSeconds(i);
-            assertEquals(a.toEpochSecond(ZoneOffset.UTC), -i);
-        }
-    }
+        it('test_toEpochSecond_beforeEpoch()', () => {
+            for (var i = 0; i < 100000; i++) {
+                var a = LocalDateTime.of(1970, 1, 1, 0, 0).minusSeconds(i);
+                assertEquals(a.toEpochSecond(ZoneOffset.UTC), MathUtil.safeToInt(-i));
+            }
+        });
+
+    });
 
     describe('compareTo()', () => {
 
-	});
+        it('test_comparisons', () => {
+            test_comparisons_LocalDateTime1(
+                LocalDate.of(Year.MIN_VALUE, 1, 1),
+                LocalDate.of(Year.MIN_VALUE, 12, 31),
+                LocalDate.of(-1, 1, 1),
+                LocalDate.of(-1, 12, 31),
+                LocalDate.of(0, 1, 1),
+                LocalDate.of(0, 12, 31),
+                LocalDate.of(1, 1, 1),
+                LocalDate.of(1, 12, 31),
+                LocalDate.of(2008, 1, 1),
+                LocalDate.of(2008, 2, 29),
+                LocalDate.of(2008, 12, 31),
+                LocalDate.of(Year.MAX_VALUE, 1, 1),
+                LocalDate.of(Year.MAX_VALUE, 12, 31)
+            );
+        });
 
-    it('test_comparisons', () => {
-        test_comparisons_LocalDateTime(
-            LocalDate.of(Year.MIN_VALUE, 1, 1),
-            LocalDate.of(Year.MIN_VALUE, 12, 31),
-            LocalDate.of(-1, 1, 1),
-            LocalDate.of(-1, 12, 31),
-            LocalDate.of(0, 1, 1),
-            LocalDate.of(0, 12, 31),
-            LocalDate.of(1, 1, 1),
-            LocalDate.of(1, 12, 31),
-            LocalDate.of(2008, 1, 1),
-            LocalDate.of(2008, 2, 29),
-            LocalDate.of(2008, 12, 31),
-            LocalDate.of(Year.MAX_VALUE, 1, 1),
-            LocalDate.of(Year.MAX_VALUE, 12, 31)
-        );
-    });
-
-    void test_comparisons_LocalDateTime(LocalDate... localDates) {
-        test_comparisons_LocalDateTime(
-            localDates,
-            LocalTime.MIDNIGHT,
-            LocalTime.of(0, 0, 0, 999999999),
-            LocalTime.of(0, 0, 59, 0),
-            LocalTime.of(0, 0, 59, 999999999),
-            LocalTime.of(0, 59, 0, 0),
-            LocalTime.of(0, 59, 59, 999999999),
-            LocalTime.NOON,
-            LocalTime.of(12, 0, 0, 999999999),
-            LocalTime.of(12, 0, 59, 0),
-            LocalTime.of(12, 0, 59, 999999999),
-            LocalTime.of(12, 59, 0, 0),
-            LocalTime.of(12, 59, 59, 999999999),
-            LocalTime.of(23, 0, 0, 0),
-            LocalTime.of(23, 0, 0, 999999999),
-            LocalTime.of(23, 0, 59, 0),
-            LocalTime.of(23, 0, 59, 999999999),
-            LocalTime.of(23, 59, 0, 0),
-            LocalTime.of(23, 59, 59, 999999999)
-        );
-    }
-
-    void test_comparisons_LocalDateTime(LocalDate[] localDates, LocalTime... localTimes) {
-        LocalDateTime[] localDateTimes = new LocalDateTime[localDates.length * localTimes.length];
-        var i = 0;
-
-        for (LocalDate localDate : localDates) {
-            for (LocalTime localTime : localTimes) {
-                localDateTimes[i++] = LocalDateTime.of(localDate, localTime);
-            }
+        function test_comparisons_LocalDateTime1(...localDates) {
+            test_comparisons_LocalDateTime2(
+                localDates,
+                LocalTime.MIDNIGHT,
+                LocalTime.of(0, 0, 0, 999999999),
+                LocalTime.of(0, 0, 59, 0),
+                LocalTime.of(0, 0, 59, 999999999),
+                LocalTime.of(0, 59, 0, 0),
+                LocalTime.of(0, 59, 59, 999999999),
+                LocalTime.NOON,
+                LocalTime.of(12, 0, 0, 999999999),
+                LocalTime.of(12, 0, 59, 0),
+                LocalTime.of(12, 0, 59, 999999999),
+                LocalTime.of(12, 59, 0, 0),
+                LocalTime.of(12, 59, 59, 999999999),
+                LocalTime.of(23, 0, 0, 0),
+                LocalTime.of(23, 0, 0, 999999999),
+                LocalTime.of(23, 0, 59, 0),
+                LocalTime.of(23, 0, 59, 999999999),
+                LocalTime.of(23, 59, 0, 0),
+                LocalTime.of(23, 59, 59, 999999999)
+            );
         }
 
-        doTest_comparisons_LocalDateTime(localDateTimes);
-    }
+        function test_comparisons_LocalDateTime2(localDates, ...localTimes) {
+            var localDateTimes = [];
+            for (let i=0; i<localDates.length; i++) {
+                for (let j=0; j<localTimes.length; j++) {
+                    localDateTimes.push(LocalDateTime.of(localDates[i], localTimes[j]));
+                }
+            }
+            doTest_comparisons_LocalDateTime(localDateTimes);
+        }
 
-    void doTest_comparisons_LocalDateTime(LocalDateTime[] localDateTimes) {
-        for (var i = 0; i < localDateTimes.length; i++) {
-            var a = localDateTimes[i];
-            for (var j = 0; j < localDateTimes.length; j++) {
-                var b = localDateTimes[j];
-                if (i < j) {
-                    assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
-                } else if (i > j) {
-                    assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), false, a + ' <=> ' + b);
-                } else {
-                    assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
-                    assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
-                    assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
-                    assertEquals(a.equals(b), true, a + ' <=> ' + b);
+        function doTest_comparisons_LocalDateTime(localDateTimes) {
+            for (var i = 0; i < localDateTimes.length; i++) {
+                var a = localDateTimes[i];
+                for (var j = 0; j < localDateTimes.length; j++) {
+                    var b = localDateTimes[j];
+                    if (i < j) {
+                        assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else if (i > j) {
+                        assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else {
+                        assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), true, a + ' <=> ' + b);
+                    }
                 }
             }
         }
-    }
 
-    it('test_compareTo_ObjectNull', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.compareTo(null);
-	}).to.throw(NullPointerException);
-});
+        it('test_compareTo_ObjectNull', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
 
-    it('test_isBefore_ObjectNull', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.isBefore(null);
-	}).to.throw(NullPointerException);
-});
+        it('test_isBefore_ObjectNull', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
 
-    it('test_isAfter_ObjectNull', () => {
-	expect(() => {
-        TEST_2007_07_15_12_30_40_987654321.isAfter(null);
-	}).to.throw(NullPointerException);
-});
+        it('test_isAfter_ObjectNull', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
 
-    @Test(expectedExceptions=ClassCastException.class)
-    @SuppressWarnings({'unchecked', 'rawtypes'})
-    it('compareToNonLocalDateTime', () => {
-       var c = TEST_2007_07_15_12_30_40_987654321;
-       c.compareTo(new Object());
+        it('compareToNonLocalDateTime', () => {
+            expect(() => {
+                TEST_2007_07_15_12_30_40_987654321.compareTo({});
+            }).to.throw(IllegalArgumentException);
+        });
+
     });
+
+});
+
+/**
 
     describe('equals()', () => {
 
@@ -2935,7 +2947,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(TEST_2007_07_15_12_30_40_987654321), true);
     });
 
-    public void test_equals_string_false() {
+    it('test_equals_string_false()', () => {
         assertEquals(TEST_2007_07_15_12_30_40_987654321.equals('2007-07-15T12:30:40.987654321'), false);
     }
 
@@ -2970,7 +2982,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-    public void test_format_formatter() {
+    it('test_format_formatter()', () => {
         var f = DateTimeFormatter.ofPattern('y M d H m s');
         var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);
         assertEquals(t, '2010 12 3 11 30 45');

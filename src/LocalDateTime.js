@@ -16,10 +16,10 @@ import {LocalTime} from './LocalTime';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
-import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
+import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
 
 /**
  * A date-time without a time-zone in the ISO-8601 calendar system,
@@ -48,7 +48,7 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  * <h3>Specification for implementors</h3>
  * This class is immutable and thread-safe.
  */
-export class LocalDateTime extends TemporalAccessor
+export class LocalDateTime extends ChronoLocalDateTime
         /** extends ChronoLocalDateTime<LocalDate>
         implements Temporal, TemporalAdjuster, Serializable */ {
 
@@ -1231,19 +1231,6 @@ export class LocalDateTime extends TemporalAccessor
         if (query === TemporalQueries.localDate()) {
             return this.toLocalDate();
         }
-        // from org.threeten.bp.chrono.ChronoLocalDateTime
-        if (query === TemporalQueries.chronology()) {
-            return this.toLocalDate().chronology();
-        } else if (query === TemporalQueries.precision()) {
-            return ChronoUnit.NANOS;
-        //} else if (query === TemporalQueries.localDate()) {
-        //    return LocalDate.ofEpochDay(this.toLocalDate().toEpochDay());
-        } else if (query === TemporalQueries.localTime()) {
-            return this.toLocalTime();
-        } else if (query === TemporalQueries.zone() || query === TemporalQueries.zoneId() || query === TemporalQueries.offset()) {
-            return null;
-        }
-        //
         return super.query(query);
     }
 
@@ -1461,10 +1448,15 @@ export class LocalDateTime extends TemporalAccessor
      * @return the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, LocalDateTime, 'other');
+        return this._compareTo0(other);
+/*
         if (other instanceof LocalDateTime) {
             return this._compareTo0(other);
         }
         return super.compareTo(other);
+*/
     }
 
     _compareTo0(other) {
@@ -1497,10 +1489,15 @@ export class LocalDateTime extends TemporalAccessor
      * @return {boolean} true if this date-time is after the specified date-time
      */
     isAfter(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, LocalDateTime, 'other');
+        return this._compareTo0(other) > 0;
+/*
         if (other instanceof LocalDateTime) {
             return this._compareTo0(other) > 0;
         }
         return super.isAfter(other);
+*/
     }
 
     /**
@@ -1525,10 +1522,15 @@ export class LocalDateTime extends TemporalAccessor
      * @return {boolean} true if this date-time is before the specified date-time
      */
     isBefore(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, LocalDateTime, 'other');
+        return this._compareTo0(other) < 0;
+/*
         if (other instanceof LocalDateTime) {
             return this._compareTo0(other) < 0;
         }
         return super.isBefore(other);
+*/
     }
 
     /**
