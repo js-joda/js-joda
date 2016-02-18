@@ -5,7 +5,7 @@
  */
 
 import {expect} from 'chai';
-import {assertEquals, assertTrue, assertSame, isCoverageTestRunner} from '../testUtils';
+import {assertEquals, assertSame, assertTrue, assertFalse, isCoverageTestRunner} from '../testUtils';
 import {MockSimplePeriod} from './MockSimplePeriod';
 
 import '../_init';
@@ -2844,123 +2844,163 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-});
+    // DataProvider(name='sampleDateTimes')
+    function provider_sampleDateTimes() {
+        var sampleDateTimes = [];
+        var sampleDates = provider_sampleDates();
+        var sampleTimes = provider_sampleTimes();
+        var datesIndex = 0;
+        var timesIndex = 0;
 
-/**
+        while(datesIndex < sampleDates.length){
+            var sampleDate = sampleDates[datesIndex];
+            var sampleTime = sampleTimes[timesIndex];
+            sampleDateTimes.push(sampleDate.concat(sampleTime));
+            if (++timesIndex === sampleTimes.length) {
+                datesIndex++;
+                timesIndex = 0;
+            }
+        }
+
+        return sampleDateTimes;
+    }
 
     describe('equals()', () => {
 
-	});
-
-    @DataProvider(name='sampleDateTimes')
-    Iterator<Object[]> provider_sampleDateTimes() {
-        return new Iterator<Object[]>() {
-            Object[][] sampleDates = provider_sampleDates();
-            Object[][] sampleTimes = provider_sampleTimes();
-            var datesIndex = 0;
-            var timesIndex = 0;
-
-            public boolean hasNext() {
-                return datesIndex < sampleDates.length;
-            }
-
-            public Object[] next() {
-                Object[] sampleDate = sampleDates[datesIndex];
-                Object[] sampleTime = sampleTimes[timesIndex];
-
-                Object[] ret = new Object[sampleDate.length + sampleTime.length];
-
-                System.arraycopy(sampleDate, 0, ret, 0, sampleDate.length);
-                System.arraycopy(sampleTime, 0, ret, sampleDate.length, sampleTime.length);
-
-                if (++timesIndex == sampleTimes.length) {
-                    datesIndex++;
-                    timesIndex = 0;
-                }
-
-                return ret;
-            }
-
-            it('remove', () => {
-                throw new UnsupportedOperationException();
+        it('test_equals_true', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_true.apply(this, data);
             });
-        };
-    }
+        });
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_true(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d, h, mi, s, n);
-        assertTrue(a.equals(b));
-    }
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_true(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d, h, mi, s, n);
+            assertTrue(a.equals(b));
+        }
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_year_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y + 1, m, d, h, mi, s, n);
-        assertFalse(a.equals(b));
-    }
+        it('test_equals_false_year_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_year_differs.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_month_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m + 1, d, h, mi, s, n);
-        assertFalse(a.equals(b));
-    }
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_year_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y + 1, m, d, h, mi, s, n);
+            assertFalse(a.equals(b));
+        }
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_day_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d + 1, h, mi, s, n);
-        assertFalse(a.equals(b));
-    }
+        it('test_equals_false_month_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_month_differs.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_hour_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d, h + 1, mi, s, n);
-        assertFalse(a.equals(b));
-    }
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_month_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m + 1, d, h, mi, s, n);
+            assertFalse(a.equals(b));
+        }
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_minute_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d, h, mi + 1, s, n);
-        assertFalse(a.equals(b));
-    }
+        it('test_equals_false_day_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_day_differs.apply(this, data);
+            });
+        });
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_second_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d, h, mi, s + 1, n);
-        assertFalse(a.equals(b));
-    }
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_day_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d + 1, h, mi, s, n);
+            assertFalse(a.equals(b));
+        }
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_equals_false_nano_differs(int y, int m, int d, int h, int mi, int s, int n) {
-        var a = LocalDateTime.of(y, m, d, h, mi, s, n);
-        var b = LocalDateTime.of(y, m, d, h, mi, s, n + 1);
-        assertFalse(a.equals(b));
-    }
+        it('test_equals_false_hour_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_hour_differs.apply(this, data);
+            });
+        });
 
-    it('test_equals_itself_true', () => {
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(TEST_2007_07_15_12_30_40_987654321), true);
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_hour_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d, h + 1, mi, s, n);
+            assertFalse(a.equals(b));
+        }
+
+        it('test_equals_false_minute_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_minute_differs.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_minute_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d, h, mi + 1, s, n);
+            assertFalse(a.equals(b));
+        }
+
+        it('test_equals_false_second_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_second_differs.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_second_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d, h, mi, s + 1, n);
+            assertFalse(a.equals(b));
+        }
+
+        it('test_equals_false_nano_differs', function () {
+            provider_sampleDateTimes().forEach((data) => {
+                test_equals_false_nano_differs.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider='sampleDateTimes')
+        function test_equals_false_nano_differs(y, m, d, h, mi, s, n) {
+            var a = LocalDateTime.of(y, m, d, h, mi, s, n);
+            var b = LocalDateTime.of(y, m, d, h, mi, s, n + 1);
+            assertFalse(a.equals(b));
+        }
+
+        it('test_equals_itself_true', () => {
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(TEST_2007_07_15_12_30_40_987654321), true);
+        });
+
+        it('test_equals_string_false()', () => {
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.equals('2007-07-15T12:30:40.987654321'), false);
+        });
+
+        it('test_equals_null_false', () => {
+            assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(null), false);
+        });
+
     });
 
-    it('test_equals_string_false()', () => {
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.equals('2007-07-15T12:30:40.987654321'), false);
-    }
+});
 
-    it('test_equals_null_false', () => {
-        assertEquals(TEST_2007_07_15_12_30_40_987654321.equals(null), false);
-    });
+/**
 
     describe('hashCode()', () => {
 
 	});
 
-    @Test(dataProvider='sampleDateTimes')
-    public void test_hashCode(int y, int m, int d, int h, int mi, int s, int n) {
+ it('test_hashCode', function () {
+     provider_sampleDateTimes().forEach((data) => {
+         test_hashCode.apply(this, data);
+     });
+ });
+
+    //@Test(dataProvider='sampleDateTimes')
+    function test_hashCode(y, m, d, h, mi, s, n) {
         var a = LocalDateTime.of(y, m, d, h, mi, s, n);
         assertEquals(a.hashCode(), a.hashCode());
         var b = LocalDateTime.of(y, m, d, h, mi, s, n);
@@ -2972,7 +3012,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 	});
 
     @Test(dataProvider='sampleToString')
-    public void test_toString(int y, int m, int d, int h, int mi, int s, int n, String expected) {
+    function test_toString(y, m, d, h, mi, s, n, expected) {
         var t = LocalDateTime.of(y, m, d, h, mi, s, n);
         var str = t.toString();
         assertEquals(str, expected);
