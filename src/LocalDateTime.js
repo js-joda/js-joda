@@ -1622,6 +1622,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @throws DateTimeException if an error occurs during printing
      */
     format(formatter) {
+        requireNonNull(formatter, 'formatter');
         return formatter.format(this);
     }
 
