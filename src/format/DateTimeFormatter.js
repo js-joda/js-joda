@@ -272,11 +272,11 @@ export function _init() {
         .appendValue(ChronoField.HOUR_OF_DAY, 2)
         .appendLiteral(':')
         .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
-        //.optionalStart()
+        .optionalStart()
         .appendLiteral(':')
         .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
-        //.optionalStart()
-        //.appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)
+        .optionalStart()
+        .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)
         .toFormatter(ResolverStyle.STRICT);
 
     DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()

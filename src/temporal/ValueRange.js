@@ -40,6 +40,19 @@ export class ValueRange {
         this._maxSmallest = maxSmallest;
     }
 
+    /**
+     * Is the value range fixed and fully known.
+     * <p>
+     * For example, the ISO day-of-month runs from 1 to between 28 and 31.
+     * Since there is uncertainty about the maximum value, the range is not fixed.
+     * However, for the month of January, the range is always 1 to 31, thus it is fixed.
+     *
+     * @return {boolean} true if the set of values is fixed
+     */
+    isFixed() {
+        return this._minSmallest === this._minLargest && this._maxSmallest === this._maxLargest;
+    }
+
     minimum(){
         return this._minSmallest;
     }

@@ -42,6 +42,12 @@ export class IllegalArgumentException extends ExtendableError {
     }
 }
 
+export class IllegalStateException extends ExtendableError {
+    constructor(message = 'IllegalStateException') {
+        super(message);
+    }
+}
+
 export class NullPointerException extends ExtendableError {
     constructor(message = 'NullPointerException') {
         super(message);

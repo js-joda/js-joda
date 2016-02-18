@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../assert';
+import {assert, requireNonNull} from '../assert';
 import {ArithmeticException, DateTimeException, IllegalArgumentException, IllegalStateException} from '../errors';
 
 import {Enum} from '../Enum';
@@ -664,7 +664,7 @@ class PadPrinterParserDecorator {
 
 class SettingsParser extends Enum {
 
-    print(context, buf) {
+    print(/*context, buf*/) {
         return true;  // nothing to do here
     }
 
@@ -912,6 +912,167 @@ class NumberPrinterParser {
 
 }
 
+//-----------------------------------------------------------------------
+/**
+ * Prints and parses a numeric date-time field with optional padding.
+ */
+class FractionPrinterParser {
+
+    /**
+     * Constructor.
+     *
+     * @param {TemporalField} field  the field to output, not null
+     * @param {Number} minWidth  the minimum width to output, from 0 to 9
+     * @param {Number} maxWidth  the maximum width to output, from 0 to 9
+     * @param {boolean} decimalPoint  whether to output the localized decimal point symbol
+     */
+    constructor(field, minWidth, maxWidth, decimalPoint) {
+        requireNonNull(field, 'field');
+        if (field.range().isFixed() === false) {
+            throw new IllegalArgumentException('Field must have a fixed set of values: ' + field);
+        }
+        if (minWidth < 0 || minWidth > 9) {
+            throw new IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was ' + minWidth);
+        }
+        if (maxWidth < 1 || maxWidth > 9) {
+            throw new IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was ' + maxWidth);
+        }
+        if (maxWidth < minWidth) {
+            throw new IllegalArgumentException('Maximum width must exceed or equal the minimum width but ' +
+                    maxWidth + ' < ' + minWidth);
+        }
+        this.field = field;
+        this.minWidth = minWidth;
+        this.maxWidth = maxWidth;
+        this.decimalPoint = decimalPoint;
+    }
+
+    print(context, buf) {
+        var value = context.getValue(this.field);
+        if (value === null) {
+            return false;
+        }
+        var symbols = context.symbols();
+        var fraction = this.convertToFraction(value);
+        if (fraction.scale() === 0) {  // scale is zero if value is zero
+            if (this.minWidth > 0) {
+                if (this.decimalPoint) {
+                    buf.append(symbols.decimalSeparator());
+                }
+                for (let i = 0; i < this.minWidth; i++) {
+                    buf.append(symbols.zeroDigit());
+                }
+            }
+        } else {
+            var outputScale = Math.min(Math.max(fraction.scale(), this.minWidth), this.maxWidth);
+            fraction = fraction.setScale(outputScale, RoundingMode.FLOOR);
+            var str = fraction.toPlainString().substring(2);
+            str = symbols.convertNumberToI18N(str);
+            if (this.decimalPoint) {
+                buf.append(symbols.decimalSeparator());
+            }
+            buf.append(str);
+        }
+        return true;
+    }
+
+    parse(context, text, position) {
+        var effectiveMin = (context.isStrict() ? this.minWidth : 0);
+        var effectiveMax = (context.isStrict() ? this.maxWidth : 9);
+        var length = text.length();
+        if (position === length) {
+            // valid if whole field is optional, invalid if minimum width
+            return (effectiveMin > 0 ? ~position : position);
+        }
+        if (this.decimalPoint) {
+            if (text[position] !== context.symbols().decimalSeparator()) {
+                // valid if whole field is optional, invalid if minimum width
+                return (effectiveMin > 0 ? ~position : position);
+            }
+            position++;
+        }
+        var minEndPos = position + effectiveMin;
+        if (minEndPos > length) {
+            return ~position;  // need at least min width digits
+        }
+        var maxEndPos = Math.min(position + effectiveMax, length);
+        var total = 0;  // can use int because we are only parsing up to 9 digits
+        var pos = position;
+        while (pos < maxEndPos) {
+            var ch = text.charAt(pos++);
+            var digit = context.symbols().convertToDigit(ch);
+            if (digit < 0) {
+                if (pos < minEndPos) {
+                    return ~position;  // need at least min width digits
+                }
+                pos--;
+                break;
+            }
+            total = total * 10 + digit;
+        }
+        var fraction = new BigDecimal(total).movePointLeft(pos - position);
+        var value = this.convertFromFraction(fraction);
+        return context.setParsedField(this.field, value, position, pos);
+    }
+
+    /**
+     * Converts a value for this field to a fraction between 0 and 1.
+     * <p>
+     * The fractional value is between 0 (inclusive) and 1 (exclusive).
+     * It can only be returned if the {@link TemporalField#range() value range} is fixed.
+     * The fraction is obtained by calculation from the field range using 9 decimal
+     * places and a rounding mode of {@link RoundingMode#FLOOR FLOOR}.
+     * The calculation is inaccurate if the values do not run continuously from smallest to largest.
+     * <p>
+     * For example, the second-of-minute value of 15 would be returned as 0.25,
+     * assuming the standard definition of 60 seconds in a minute.
+     *
+     * @param {Number} value  the value to convert, must be valid for this rule
+     * @return {BigDecimal} the value as a fraction within the range, from 0 to 1, not null
+     * @throws DateTimeException if the value cannot be converted to a fraction
+     */
+    convertToFraction(value) {
+        var range = this.field.range();
+        range.checkValidValue(value, this.field);
+        var minBD = BigDecimal.valueOf(range.getMinimum());
+        var rangeBD = BigDecimal.valueOf(range.getMaximum()).subtract(minBD).add(BigDecimal.ONE);
+        var valueBD = BigDecimal.valueOf(value).subtract(minBD);
+        var fraction = valueBD.divide(rangeBD, 9, RoundingMode.FLOOR);
+        // stripTrailingZeros bug
+        return fraction.compareTo(BigDecimal.ZERO) === 0 ? BigDecimal.ZERO : fraction.stripTrailingZeros();
+    }
+
+    /**
+     * Converts a fraction from 0 to 1 for this field to a value.
+     * <p>
+     * The fractional value must be between 0 (inclusive) and 1 (exclusive).
+     * It can only be returned if the {@link TemporalField#range() value range} is fixed.
+     * The value is obtained by calculation from the field range and a rounding
+     * mode of {@link RoundingMode#FLOOR FLOOR}.
+     * The calculation is inaccurate if the values do not run continuously from smallest to largest.
+     * <p>
+     * For example, the fractional second-of-minute of 0.25 would be converted to 15,
+     * assuming the standard definition of 60 seconds in a minute.
+     *
+     * @param {BigDecimal} fraction  the fraction to convert, not null
+     * @return {Number} the value of the field, valid for this rule
+     * @throws DateTimeException if the value cannot be converted
+     */
+    convertFromFraction(fraction) {
+        var range = this.field.range();
+        var minBD = BigDecimal.valueOf(range.getMinimum());
+        var rangeBD = BigDecimal.valueOf(range.getMaximum()).subtract(minBD).add(BigDecimal.ONE);
+        var valueBD = fraction.multiply(rangeBD).setScale(0, RoundingMode.FLOOR).add(minBD);
+        return valueBD.longValueExact();
+    }
+
+    toString() {
+        var decimal = (this.decimalPoint ? ',DecimalPoint' : '');
+        return 'Fraction(' + this.field + ',' + this.minWidth + ',' + this.maxWidth + decimal + ')';
+    }
+}
+
+
 class StringBuilder {
     constructor(){
         this._str = '';
@@ -939,10 +1100,19 @@ class StringBuilder {
     }
 }
 
+class BigDecimal {
+
+}
+
+const RoundingMode = {
+    FLOOR: 1
+};
+
 DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
-DateTimeFormatterBuilder.SettingsParser = SettingsParser;
-DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
-DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
-DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
 DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
+DateTimeFormatterBuilder.SettingsParser = SettingsParser;
+DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
+DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
+DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
+DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
 DateTimeFormatterBuilder.StringBuilder = StringBuilder;
