@@ -747,9 +747,11 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     describe('ofEpochSecond()', () => {
 
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
         it('factory_ofEpochSecond_longOffset_afterEpoch()', () => {
             var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
-            for (var i = 0; i < 100000; i++) {
+            for (var i = 0; i < 100000; i+=delta) {
                 var test = LocalDateTime.ofEpochSecond(i, 500, OFFSET_PTWO);
                 assertEquals(test, base.plusSeconds(i));
             }
@@ -757,7 +759,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('factory_ofEpochSecond_longOffset_beforeEpoch()', () => {
             var base = LocalDateTime.of(1970, 1, 1, 2, 0, 0, 500);
-            for (var i = 0; i < 100000; i++) {
+            for (var i = 0; i < 100000; i+=delta) {
                 var test = LocalDateTime.ofEpochSecond(-i, 500, OFFSET_PTWO);
                 assertEquals(test, base.minusSeconds(i));
             }
@@ -1427,6 +1429,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     describe('plusWeeks()', () => {
 
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
         function provider_samplePlusWeeksSymmetry() {
             return [
                 [createDateMidnight(-1, 1, 1)],
@@ -1465,7 +1469,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         function test_plusWeeks_symmetry(reference) {
-            for (var weeks = 0; weeks < 365 * 8; weeks++) {
+            for (var weeks = 0; weeks < 365 * 8; weeks+=delta) {
                 var t = reference.plusWeeks(weeks).plusWeeks(-weeks);
                 assertEquals(t, reference);
 
@@ -1566,6 +1570,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             ];
         }
 
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
         it('test_plusDays_symmetry', function () {
             provider_samplePlusDaysSymmetry().forEach((data) => {
                 test_plusDays_symmetry.apply(this, data);
@@ -1573,7 +1579,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         function test_plusDays_symmetry(reference) {
-            for (var days = 0; days < 365 * 8; days++) {
+            for (var days = 0; days < 365 * 8; days+=delta) {
                 var t = reference.plusDays(days).plusDays(-days);
                 assertEquals(t, reference);
 
@@ -2121,6 +2127,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             ];
         }
 
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
         it('test_minusWeeks_symmetry', function () {
             provider_sampleMinusWeeksSymmetry().forEach((data) => {
                 test_minusWeeks_symmetry.apply(this, data);
@@ -2129,7 +2137,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         // @Test(dataProvider='sampleMinusWeeksSymmetry')
         function test_minusWeeks_symmetry(reference) {
-            for (var weeks = 0; weeks < 365 * 8; weeks++) {
+            for (var weeks = 0; weeks < 365 * 8; weeks+=delta) {
                 var t = reference.minusWeeks(weeks).minusWeeks(-weeks);
                 assertEquals(t, reference);
 
@@ -2231,7 +2239,9 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             ];
         }
 
-        it('test_minusWeeks_symmetry', function () {
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
+        it('test_minusDays_symmetry', function () {
             provider_sampleMinusDaysSymmetry().forEach((data) => {
                 test_minusDays_symmetry.apply(this, data);
             });
@@ -2239,7 +2249,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         // @Test(dataProvider='sampleMinusDaysSymmetry')
         function test_minusDays_symmetry(reference) {
-            for (var days = 0; days < 365 * 8; days++) {
+            for (var days = 0; days < 365 * 8; days+=delta) {
                 var t = reference.minusDays(days).minusDays(-days);
                 assertEquals(t, reference);
 
@@ -2720,10 +2730,12 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 */
     describe('toEpochSecond()', () => {
 
+        var delta = isCoverageTestRunner() ? 937 : 97;
+
         it('test_toEpochSecond_afterEpoch()', () => {
             for (var i = -5; i < 5; i++) {
                 var offset = ZoneOffset.ofHours(i);
-                for (var j = 0; j < 100000; j++) {
+                for (var j = 0; j < 100000; j+=delta) {
                     var a = LocalDateTime.of(1970, 1, 1, 0, 0).plusSeconds(j);
                     assertEquals(a.toEpochSecond(offset), j - i * 3600);
                 }
@@ -2731,7 +2743,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         it('test_toEpochSecond_beforeEpoch()', () => {
-            for (var i = 0; i < 100000; i++) {
+            for (var i = 0; i < 100000; i+=delta) {
                 var a = LocalDateTime.of(1970, 1, 1, 0, 0).minusSeconds(i);
                 assertEquals(a.toEpochSecond(ZoneOffset.UTC), MathUtil.safeToInt(-i));
             }
@@ -2793,8 +2805,10 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             doTest_comparisons_LocalDateTime(localDateTimes);
         }
 
+        var delta = isCoverageTestRunner() ? 100 : 2;
+
         function doTest_comparisons_LocalDateTime(localDateTimes) {
-            for (var i = 0; i < localDateTimes.length; i++) {
+            for (var i = 0; i < localDateTimes.length; i+=delta) {
                 var a = localDateTimes[i];
                 for (var j = 0; j < localDateTimes.length; j++) {
                     var b = localDateTimes[j];
