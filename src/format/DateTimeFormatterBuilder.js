@@ -989,7 +989,7 @@ class FractionPrinterParser {
     parse(context, text, position) {
         var effectiveMin = (context.isStrict() ? this.minWidth : 0);
         var effectiveMax = (context.isStrict() ? this.maxWidth : 9);
-        var length = text.length();
+        var length = text.length;
         if (position === length) {
             // valid if whole field is optional, invalid if minimum width
             return (effectiveMin > 0 ? ~position : position);
@@ -1020,7 +1020,9 @@ class FractionPrinterParser {
             }
             total = total * 10 + digit;
         }
-        var fraction = new BigDecimal(total).movePointLeft(pos - position);
+        var moveLeft = pos - position;
+        var scale = Math.pow(10, moveLeft);
+        var fraction = total/scale;
         var value = this.convertFromFraction(fraction);
         return context.setParsedField(this.field, value, position, pos);
     }
@@ -1066,16 +1068,16 @@ class FractionPrinterParser {
      * For example, the fractional second-of-minute of 0.25 would be converted to 15,
      * assuming the standard definition of 60 seconds in a minute.
      *
-     * @param {BigDecimal} fraction  the fraction to convert, not null
+     * @param {Number} fraction  the fraction to convert, not null
      * @return {Number} the value of the field, valid for this rule
      * @throws DateTimeException if the value cannot be converted
      */
     convertFromFraction(fraction) {
         var range = this.field.range();
-        var minBD = BigDecimal.valueOf(range.minimum());
-        var rangeBD = BigDecimal.valueOf(range.maximum()).subtract(minBD).add(BigDecimal.ONE);
-        var valueBD = fraction.multiply(rangeBD).setScale(0, RoundingMode.FLOOR).add(minBD);
-        return valueBD.longValueExact();
+        var _min = range.minimum();
+        var _range = range.maximum() - _min + 1;
+        var _value = fraction * _range + _min;
+        return Math.floor(_value);
     }
 
     toString() {
@@ -1111,33 +1113,6 @@ class StringBuilder {
         return this._str;
     }
 }
-
-class BigDecimal {
-
-    constructor(val=0, scale=0, prec=1){
-        this.scale = scale;
-        this.precision = prec;
-        this.val = val;
-    }
-
-    static valueOf(val=0){
-        if (val===0) {
-            return BigDecimal.ZERO;
-        } else if (val===1){
-            return BigDecimal.ONE;
-        } else {
-            return new BigDecimal(val, 0, 0);
-        }
-    }
-
-}
-
-BigDecimal.ZERO = new BigDecimal(0,0,1);
-BigDecimal.ONE = new BigDecimal(1,0,1);
-
-const RoundingMode = {
-    FLOOR: 1
-};
 
 DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
 DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
