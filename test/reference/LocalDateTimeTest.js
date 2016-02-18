@@ -2805,7 +2805,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             doTest_comparisons_LocalDateTime(localDateTimes);
         }
 
-        var delta = isCoverageTestRunner() ? 100 : 2;
+        var delta = isCoverageTestRunner() ? 100 : 11;
 
         function doTest_comparisons_LocalDateTime(localDateTimes) {
             for (var i = 0; i < localDateTimes.length; i+=delta) {
