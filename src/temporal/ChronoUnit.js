@@ -3,6 +3,9 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
+import {MathUtil} from '../MathUtil';
+
 import {Duration} from '../Duration';
 import {Year} from '../Year';
 
@@ -343,5 +346,5 @@ export function _init() {
      * The estimated duration of the era is artificially defined as the largest duration
      * supported by {@code Duration}.
      */
-    ChronoUnit.FOREVER = new ChronoUnit('Forever', Duration.ofSeconds(Number.MAX_SAFE_INTEGER, 999999999));
+    ChronoUnit.FOREVER = new ChronoUnit('Forever', Duration.ofSeconds(MathUtil.MAX_SAFE_INTEGER, 999999999));
 }
