@@ -1265,12 +1265,9 @@ export function _init() {
      */
     LocalTime.NOON = LocalTime.HOURS[12];
 
-    var FROM;
-    LocalTime.FROM = () => {
-        return FROM || (FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
-            return LocalTime.from(temporal);
-        }));
-    };
+    LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
+        return LocalTime.from(temporal);
+    });
 
     /**
      * Hours per day.
