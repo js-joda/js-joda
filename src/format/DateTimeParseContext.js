@@ -52,6 +52,27 @@ export class DateTimeParseContext{
         this._strict = strict;
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Starts the parsing of an optional segment of the input.
+     */
+    startOptional() {
+        this._parsed.push(this.currentParsed().copy());
+    }
+
+    /**
+     * Ends the parsing of an optional segment of the input.
+     *
+     * @param {boolean} successful  whether the optional segment was successfully parsed
+     */
+    endOptional(successful) {
+        if (successful) {
+            this._parsed.splice(this._parsed.length - 2, 1);
+        } else {
+            this._parsed.splice(this._parsed.length - 1, 1);
+        }
+    }
+
     /**
      * Checks if parsing is case sensitive.
      *
@@ -180,6 +201,7 @@ class Parsed extends TemporalAccessor {
         cloned.zone = this.zone;
         cloned.fieldValues.putAll(this.fieldValues);
         cloned.leapSecond = this.leapSecond;
+        cloned.dateTimeParseContext = this.dateTimeParseContext;
         return cloned;
     }
 

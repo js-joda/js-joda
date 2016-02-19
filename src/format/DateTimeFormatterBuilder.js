@@ -18,7 +18,13 @@ const MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in jav
 
 export class DateTimeFormatterBuilder {
 
-    constructor(){
+    /**
+     * Constructs a new instance of the builder.
+     *
+     * @param {DateTimeFormatterBuilder} parent  the parent builder, not null
+     * @param {boolean} optional  whether the formatter is optional, not null
+     */
+    constructor(parent=null, optional=false){
         /**
          * The currently active builder, used by the outermost builder.
          */
@@ -26,7 +32,7 @@ export class DateTimeFormatterBuilder {
         /**
          * The parent builder, null for the outermost builder.
          */
-        this._parent = null;
+        this._parent = parent;
 
         /**
          * The list of printers that will be used.
@@ -36,7 +42,7 @@ export class DateTimeFormatterBuilder {
         /**
          * Whether this builder produces an optional formatter.
          */
-        this._optional = false;
+        this._optional = optional;
         /**
          * The width to pad the next field to.
          */
@@ -371,7 +377,7 @@ export class DateTimeFormatterBuilder {
      * During printing, the minute will only be output if its value can be obtained from the date-time.
      * During parsing, the input will be successfully parsed whether the minute is present or not.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     optionalStart() {
         this._active.valueParserIndex = -1;
@@ -401,19 +407,19 @@ export class DateTimeFormatterBuilder {
      * During printing, the minute will only be output if its value can be obtained from the date-time.
      * During parsing, the input will be successfully parsed whether the minute is present or not.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      * @throws IllegalStateException if there was no previous call to {@code optionalStart}
      */
     optionalEnd() {
-        if (this._active.parent == null) {
+        if (this._active._parent == null) {
             throw new IllegalStateException('Cannot call optionalEnd() as there was no previous call to optionalStart()');
         }
-        if (this._active.printerParsers.size() > 0) {
-            var cpp = new CompositePrinterParser(this._active.printerParsers, this._active.optional);
-            this._active = this._active.parent;
+        if (this._active._printerParsers.length > 0) {
+            var cpp = new CompositePrinterParser(this._active._printerParsers, this._active._optional);
+            this._active = this._active._parent;
             this._appendInternal(cpp);
         } else {
-            this._active = this._active.parent;
+            this._active = this._active._parent;
         }
         return this;
     }
