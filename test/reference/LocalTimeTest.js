@@ -1756,9 +1756,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     });
 
 
-    // TODO parser
-
-    describe.skip('until()', () => {
+    describe('until()', () => {
 
         function provider_until() {
             return [
@@ -1798,7 +1796,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             var start = LocalTime.parse(startStr);
             var end = LocalTime.parse(endStr);
             assertEquals(start.until(end, unit), expected);
-            assertEquals(end.until(start, unit), -expected);
+            assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
         }
 
     });
