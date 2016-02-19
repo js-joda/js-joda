@@ -1343,7 +1343,7 @@ export class LocalDateTime extends ChronoLocalDateTime
                         return MathUtil.safeAdd(amount, MathUtil.intDiv(timeUntil, LocalTime.NANOS_PER_HOUR));
                     case ChronoUnit.HALF_DAYS:
                         amount = MathUtil.safeMultiply(amount, 2);
-                        return MathUtil.safeAdd(amount, timeUntil / (LocalTime.NANOS_PER_HOUR * 12));
+                        return MathUtil.safeAdd(amount, MathUtil.intDiv(timeUntil, (LocalTime.NANOS_PER_HOUR * 12)));
                 }
                 throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
             }

@@ -2612,7 +2612,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-/* TODO parser
     describe('until()', () => {
 
         //@DataProvider(name='until')
@@ -2672,6 +2671,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         // @Test(dataProvider = 'until')
         function test_until(startStr, endStr, unit, expected) {
+            // console.log(startStr, endStr, unit.toString(), expected);
             var start = LocalDateTime.parse(startStr);
             var end = LocalDateTime.parse(endStr);
             assertEquals(start.until(end, unit), expected);
@@ -2685,13 +2685,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         // @Test(dataProvider = 'until')
         function test_until_reveresed(startStr, endStr, unit, expected) {
+            // console.log(startStr, endStr, unit.toString(), expected);
             var start = LocalDateTime.parse(startStr);
             var end = LocalDateTime.parse(endStr);
-            assertEquals(end.until(start, unit), -expected);
+            assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
         }
 
     });
-*/
 
 /* TODO timezone
     describe('atZone()', () => {

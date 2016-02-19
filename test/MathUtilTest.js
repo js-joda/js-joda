@@ -7,6 +7,8 @@ import {expect} from 'chai';
 import {ArithmeticException} from '../src/errors';
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../src/MathUtil';
 
+// TODO more tests
+
 describe('MathUtil', () => {
     describe('intDiv', () => {
 
