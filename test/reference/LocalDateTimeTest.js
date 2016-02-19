@@ -28,7 +28,7 @@ import {Year} from '../../src/Year';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+// import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
@@ -37,33 +37,36 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     var OFFSET_PONE;
     var OFFSET_PTWO;
-    var OFFSET_MTWO;
+    //var OFFSET_MTWO;
     /*
      private static final var ZONE_PARIS = ZoneId.of('Europe/Paris');
      private static final var ZONE_GAZA = ZoneId.of('Asia/Gaza');
      */
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
-    var MAX_DATE_TIME;
-    var MIN_DATE_TIME;
+    //var MAX_DATE_TIME;
+    //var MIN_DATE_TIME;
     //var MAX_INSTANT;
     //var MIN_INSTANT;
 
     beforeEach('setUp', () => {
         OFFSET_PONE = ZoneOffset.ofHours(1);
         OFFSET_PTWO = ZoneOffset.ofHours(2);
-        OFFSET_MTWO = ZoneOffset.ofHours(-2);
-        MAX_DATE_TIME = LocalDateTime.MAX;
-        MIN_DATE_TIME = LocalDateTime.MIN;
+        //OFFSET_MTWO = ZoneOffset.ofHours(-2);
+        //MAX_DATE_TIME = LocalDateTime.MAX;
+        //MIN_DATE_TIME = LocalDateTime.MIN;
         //MAX_INSTANT = MAX_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
         //MIN_INSTANT = MIN_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
     });
 
+/*
     function samples() {
         return [
             TEST_2007_07_15_12_30_40_987654321, LocalDateTime.MAX, LocalDateTime.MIN
         ];
     }
+*/
 
+/*
     function validFields() {
         return [
             ChronoField.NANO_OF_SECOND,
@@ -99,13 +102,16 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             //JulianFields.RATA_DIE,
         ];
     }
+*/
 
+/*
     function invalidFields() {
         throw Error('todo');
         // list = ChronoField.values();
         // list.removeAll(validFields());
         // return list;
     }
+*/
 
     function isIsoLeap(year) {
         if (year % 4 !== 0) {
@@ -729,7 +735,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             }).to.throw(DateTimeException);
         });
     
-/*
+/* TODO timezone
         it('factory_ofInstant_nullInstant', () => {
             expect(() => {
                 LocalDateTime.ofInstant(null, ZONE_GAZA);
@@ -870,7 +876,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-/**
+/** TODO parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
