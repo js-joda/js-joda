@@ -5,8 +5,8 @@
  */
 import {ArithmeticException} from './errors';
 
-export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Math.pow(2, 53) - 1; // Number.MAX_SAFE_INTEGER not defined in #@#$%! PhantomJS
-export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER ? Number.MIN_SAFE_INTEGER : -(Math.pow(2, 53) - 1); // Number.MIN_SAFE_INTEGER not defined in #@#$%! PhantomJS
+export const MAX_SAFE_INTEGER = 9007199254740991;
+export const MIN_SAFE_INTEGER = -9007199254740991;
 
 /**
  * Math helper with static function for integer operations
@@ -106,7 +106,7 @@ export class MathUtil {
 
     static verifyInt(value){
         if (value == null) {
-            throw new ArithmeticException('Invalid subtraction using null or undefined as argument');
+            throw new ArithmeticException(`Invalid value: '${value}', using null or undefined as argument`);
         }
         if (isNaN(value)) {
             throw new ArithmeticException('Invalid int value, using NaN as argument');
