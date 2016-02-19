@@ -830,7 +830,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     }
 
     
-/* TODO parser
     describe('parse()', () => {
 
         it('test_parse', function () {
@@ -840,9 +839,10 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         function test_parse(y, month, d, h, m, s, n, text) {
+            // console.log(y, month, d, h, m, s, n, text);
             var t = LocalDateTime.parse(text);
             assertEquals(t.year(), y);
-            assertEquals(t.month().getValue(), month);
+            assertEquals(t.month().value(), month);
             assertEquals(t.dayOfMonth(), d);
             assertEquals(t.hour(), h);
             assertEquals(t.minute(), m);
@@ -870,6 +870,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
+/**
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
