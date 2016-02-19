@@ -7,39 +7,36 @@ import {expect} from 'chai';
 import {ArithmeticException} from '../src/errors';
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../src/MathUtil';
 
-// TODO more tests
-
 describe('MathUtil', () => {
-    describe('intDiv', () => {
+    describe('div/ mod', () => {
 
-        it('testIntDiv', () => {
-            testIntDiv(4, 3, 1);
-            testIntDiv(3, 3, 1);
-            testIntDiv(2, 3, 0);
-            testIntDiv(1, 3, 0);
-            testIntDiv(0, 3, 0);
-            testIntDiv(4, -3, -1);
-            testIntDiv(3, -3, -1);
-            testIntDiv(2, -3, 0);
-            testIntDiv(1, -3, 0);
-            testIntDiv(0, -3, 0);
-            testIntDiv(-1, 3, 0);
-            testIntDiv(-2, 3, 0);
-            testIntDiv(-3, 3, -1);
-            testIntDiv(-4, 3, -1);
-            testIntDiv(-1, -3, 0);
-            testIntDiv(-2, -3, 0);
-            testIntDiv(-3, -3, 1);
-            testIntDiv(-4, -3, 1);
+        it('testIntDivMod', () => {
+            testIntDivMod(4, 3, 1  , 1 );
+            testIntDivMod(3, 3, 1  , 0 );
+            testIntDivMod(2, 3, 0  , 2 );
+            testIntDivMod(1, 3, 0  , 1 );
+            testIntDivMod(0, 3, 0  , 0 );
+            testIntDivMod(4, -3, -1, 1 );
+            testIntDivMod(3, -3, -1, 0 );
+            testIntDivMod(2, -3, 0 , 2 );
+            testIntDivMod(1, -3, 0 , 1 );
+            testIntDivMod(0, -3, 0 , 0 );
+            testIntDivMod(-1, 3, 0 , -1);
+            testIntDivMod(-2, 3, 0 , -2);
+            testIntDivMod(-3, 3, -1, 0 );
+            testIntDivMod(-4, 3, -1, -1);
+            testIntDivMod(-1, -3, 0, -1);
+            testIntDivMod(-2, -3, 0, -2);
+            testIntDivMod(-3, -3, 1, 0 );
+            testIntDivMod(-4, -3, 1, -1);
         });
 
-        function testIntDiv(x, y, divExpected) {
-            var result = MathUtil.intDiv(x, y);
-            expect(result, `testIntDiv: ${x}, ${y}, ${divExpected}`).to.equal(divExpected);
+        function testIntDivMod(x, y, divExpected, modExpected) {
+            var resultDiv = MathUtil.intDiv(x, y);
+            var resultMod = MathUtil.intMod(x, y);
+            expect(resultDiv, `testIntDiv: ${x}, ${y}, ${divExpected}`).to.equal(divExpected);
+            expect(resultMod, `testIntMod: ${x}, ${y}, ${modExpected}`).to.equal(modExpected);
         }
-    });
-
-    describe('floorDiv and floorMod methods', () => {
 
         it('testFloorDivMod', () => {
             testFloorDivMod(4, 3, 1, 1);
@@ -103,15 +100,14 @@ describe('MathUtil', () => {
 
     });
 
-    describe('safeAdd', () => {
+    describe('safeAdd/Subtract/Multiply', () => {
 
         it('testSafeAdd', () => {
             testSafeAdd(1, 1, 2);
-            testSafeAdd(Number.MAX_SAFE_INTEGER, 1, ArithmeticException);
-            // TODO: fails in phantomjs since MAX_SAFE_INTEGER-1 is NaN :(
-            //testSafeAdd(Number.MAX_SAFE_INTEGER-1, 1, Number.MAX_SAFE_INTEGER);
-            testSafeAdd(Number.MAX_SAFE_INTEGER-1, 2, ArithmeticException);
-
+            testSafeAdd(MAX_SAFE_INTEGER, 1, ArithmeticException);
+            testSafeAdd(MAX_SAFE_INTEGER-1, 1, MAX_SAFE_INTEGER);
+            testSafeAdd(MAX_SAFE_INTEGER-1, 2, ArithmeticException);
+            // TODO more
         });
 
         function testSafeAdd(x, y, expected) {
@@ -123,5 +119,40 @@ describe('MathUtil', () => {
                 expect(result, `testSafeAdd: ${x}, ${y}, ${expected}`).to.equal(expected);
             }
         }
+
+        it('safeSubtract', function () {
+            // TODO
+        });
+
+        it('safeMultiply', function () {
+            // TODO
+        });
+
+    });
+
+    describe('safe*/ verify', function () {
+
+        it('parseInt', function () {
+            // TODO
+        });
+
+        it('safeToInt', function () {
+            // TODO
+        });
+
+        it('verifyInt', function () {
+            // TODO
+        });
+
+        it('safeZero', function () {
+            // TODO
+        });
+
+    });
+
+    describe('compare', function () {
+        it('compareNumbers', function () {
+            // TODO
+        });
     });
 });
