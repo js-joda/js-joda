@@ -1044,8 +1044,7 @@ class FractionPrinterParser {
         }
         var moveLeft = pos - position;
         var scale = Math.pow(10, moveLeft);
-        var fraction = total/scale;
-        var value = this.convertFromFraction(fraction);
+        var value = this.convertFromFraction(total, scale);
         return context.setParsedField(this.field, value, position, pos);
     }
 
@@ -1070,7 +1069,7 @@ class FractionPrinterParser {
         var _min = range.minimum();
         var _range = range.maximum() - _min + 1;
         var _value = value - _min;
-        var _scaled = Math.floor((_value / _range) * 1000000000);
+        var _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
         var fraction = '' + _scaled;
         while(fraction.length < 9){
             fraction = zeroDigit + fraction;
@@ -1094,12 +1093,12 @@ class FractionPrinterParser {
      * @return {Number} the value of the field, valid for this rule
      * @throws DateTimeException if the value cannot be converted
      */
-    convertFromFraction(fraction) {
+    convertFromFraction(total, scale) {
         var range = this.field.range();
         var _min = range.minimum();
         var _range = range.maximum() - _min + 1;
-        var _value = fraction * _range + _min;
-        return Math.floor(_value);
+        var _value = MathUtil.intDiv((total * _range), scale);
+        return _value;
     }
 
     toString() {
