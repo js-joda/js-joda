@@ -1049,16 +1049,6 @@ class FractionPrinterParser {
     }
 
     /**
-     * Converts a value for this field to a fraction between 0 and 1.
-     * <p>
-     * The fractional value is between 0 (inclusive) and 1 (exclusive).
-     * It can only be returned if the {@link TemporalField#range() value range} is fixed.
-     * The fraction is obtained by calculation from the field range using 9 decimal
-     * places and a rounding mode of {@link RoundingMode#FLOOR FLOOR}.
-     * The calculation is inaccurate if the values do not run continuously from smallest to largest.
-     * <p>
-     * For example, the second-of-minute value of 15 would be returned as 0.25,
-     * assuming the standard definition of 60 seconds in a minute.
      *
      * @param {Number} value  the value to convert, must be valid for this rule
      * @return {String} the value as a fraction within the range, from 0 to 1, not null
@@ -1078,16 +1068,6 @@ class FractionPrinterParser {
     }
 
     /**
-     * Converts a fraction from 0 to 1 for this field to a value.
-     * <p>
-     * The fractional value must be between 0 (inclusive) and 1 (exclusive).
-     * It can only be returned if the {@link TemporalField#range() value range} is fixed.
-     * The value is obtained by calculation from the field range and a rounding
-     * mode of {@link RoundingMode#FLOOR FLOOR}.
-     * The calculation is inaccurate if the values do not run continuously from smallest to largest.
-     * <p>
-     * For example, the fractional second-of-minute of 0.25 would be converted to 15,
-     * assuming the standard definition of 60 seconds in a minute.
      *
      * @param {Number} fraction  the fraction to convert, not null
      * @return {Number} the value of the field, valid for this rule
