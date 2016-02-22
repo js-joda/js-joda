@@ -22,23 +22,23 @@ export function assertSame(expected, actual, message){
     expect(expected === actual, message != null ? message : `${expected} !== ${actual}`).to.be.true;
 }
 
-export function assertNotNull(object, message){
+export function assertNotNull(object, message=''){
     expect(object==null, message).to.be.false;
 }
 
-export function assertTrue(condition, message) {
+export function assertTrue(condition, message='') {
     if(!condition) {
         fail(`assertTrue: ${condition} not true, ${message}`);
     }
 }
 
-export function assertFalse(condition, message) {
+export function assertFalse(condition, message='') {
     if(condition) {
         fail(`assertFalse: ${condition} not true, ${message}`);
     }
 }
 
-export function fail(message){
+export function fail(message=''){
     assert(false, message);
 }
 
