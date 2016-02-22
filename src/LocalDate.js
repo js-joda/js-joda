@@ -22,6 +22,7 @@ import {Month} from './Month';
 import {Period} from './Period';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
+import {LocalDateTime} from './LocalDateTime';
 
 /**
  * The number of days in a 400 year cycle.
@@ -1228,6 +1229,120 @@ export class LocalDate extends ChronoLocalDate{
         return Period.of(MathUtil.safeToInt(years), months, days);
     }
 
+
+    //-----------------------------------------------------------------------
+    /*
+        atTime function overloading
+        @return {LocalDateTime} the local date-time formed from this date and the specified params
+     */
+    atTime(){
+        if(arguments.length===1){
+            return this._atTime1.apply(this, arguments);
+        } else {
+            return this._atTime4.apply(this, arguments);
+        }
+    }
+    
+    /**
+     * Combines this date with a time to create a {@code LocalDateTime}.
+     * <p>
+     * This returns a {@code LocalDateTime} formed from this date at the specified time.
+     * All possible combinations of date and time are valid.
+     *
+     * @param {LocalTime} time  the time to combine with, not null
+     * @return {LocalDateTime} the local date-time formed from this date and the specified time, not null
+     */
+    _atTime1(time) {
+        return LocalDateTime.of(this, time);
+    }
+
+    /**
+     * Combines this date with a time to create a {@code LocalDateTime}.
+     * <p>
+     * This returns a {@code LocalDateTime} formed from this date at the
+     * specified hour, minute, second and nanosecond.
+     * The individual time fields must be within their valid range.
+     * All possible combinations of date and time are valid.
+     *
+     * @param hour  the hour-of-day to use, from 0 to 23
+     * @param minute  the minute-of-hour to use, from 0 to 59
+     * @param second  the second-of-minute to represent, from 0 to 59
+     * @param nanoOfSecond  the nano-of-second to represent, from 0 to 999,999,999
+     * @return {LocalDateTime} the local date-time formed from this date and the specified time, not null
+     * @throws DateTimeException if the value of any field is out of range
+     */
+    _atTime4(hour, minute, second=0, nanoOfSecond=0) {
+        return this._atTime1(LocalTime.of(hour, minute, second, nanoOfSecond));
+    }
+
+    /**
+     * Combines this date with an offset time to create an {@code OffsetDateTime}.
+     * <p>
+     * This returns an {@code OffsetDateTime} formed from this date at the specified time.
+     * All possible combinations of date and time are valid.
+     *
+     * @param {OffsetTime} time  the time to combine with, not null
+     * @return {OffsetDateTime} the offset date-time formed from this date and the specified time, not null
+     */
+/*
+    _atTimeOffsetTime(time) { // atTime(offsetTime)
+        return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()), time.getOffset());
+    }
+*/
+
+    /**
+     * Combines this date with the time of midnight to create a {@code LocalDateTime}
+     * at the start of this date.
+     * <p>
+     * This returns a {@code LocalDateTime} formed from this date at the time of
+     * midnight, 00:00, at the start of this date.
+     *
+     * @return {LocalDateTime} the local date-time of midnight at the start of this date, not null
+     */
+    atStartOfDay() {
+        return LocalDateTime.of(this, LocalTime.MIDNIGHT);
+    }
+
+    /**
+     * Combines this date with a time-zone to create a {@code ZonedDateTime}
+     * at the start of the day
+     * <p>
+     * This returns a {@code ZonedDateTime} formed from this date at the
+     * specified zone, with the time set to be the earliest valid time according
+     * to the rules in the time-zone.
+     * <p>
+     * Time-zone rules, such as daylight savings, mean that not every local date-time
+     * is valid for the specified zone, thus the local date-time may not be midnight.
+     * <p>
+     * In most cases, there is only one valid offset for a local date-time.
+     * In the case of an overlap, there are two valid offsets, and the earlier one is used,
+     * corresponding to the first occurrence of midnight on the date.
+     * In the case of a gap, the zoned date-time will represent the instant just after the gap.
+     * <p>
+     * If the zone ID is a {@link ZoneOffset}, then the result always has a time of midnight.
+     * <p>
+     * To convert to a specific time in a given time-zone call {@link #atTime(LocalTime)}
+     * followed by {@link LocalDateTime#atZone(ZoneId)}.
+     *
+     * @param {ZoneId} zone  the zone ID to use, not null
+     * @return {ZonedDateTime} the zoned date-time formed from this date and the earliest valid time for the zone, not null
+     */
+/*
+    _atStartOfDayZonedDateTime(zone) {   //atStartOfDay(zoneId)
+        requireNonNull(zone, 'zone');
+        // need to handle case where there is a gap from 11:30 to 00:30
+        // standard ZDT factory would result in 01:00 rather than 00:30
+        var ldt = this.atTime(LocalTime.MIDNIGHT);
+        if (zone instanceof ZoneOffset === false) {
+            var rules = zone.getRules();
+            var trans = rules.getTransition(ldt);
+            if (trans != null && trans.isGap()) {
+                ldt = trans.getDateTimeAfter();
+            }
+        }
+        return ZonedDateTime.of(ldt, zone);
+    }
+*/
 
     /**
      * Converts this date to the Epoch Day.
