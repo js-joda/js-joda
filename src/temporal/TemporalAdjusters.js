@@ -393,7 +393,7 @@ class DayOfWeekInMonth extends TemporalAdjuster {
             dowDiff += (this._ordinal - 1) * 7;  // safe from overflow
             return temp.plus(dowDiff, ChronoUnit.DAYS);
         } else {
-            let temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).getMaximum());
+            let temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).maximum());
             let curDow = temp.get(ChronoField.DAY_OF_WEEK);
             let daysDiff = this._dowValue - curDow;
             daysDiff = (daysDiff === 0 ? 0 : (daysDiff > 0 ? daysDiff - 7 : daysDiff));
