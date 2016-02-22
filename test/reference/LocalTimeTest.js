@@ -14,6 +14,7 @@ import {
 import {Clock} from '../../src/Clock';
 import {Duration} from '../../src/Duration';
 import {LocalDate} from '../../src/LocalDate';
+import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {Period} from '../../src/Period';
@@ -381,7 +382,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         it('factory_from_DateTimeAccessor', () => {
             assertEquals(LocalTime.from(LocalTime.of(17, 30)), LocalTime.of(17, 30));
-            // TODO assertEquals(LocalTime.from(LocalDateTime.of(2012, 5, 1, 17, 30)), LocalTime.of(17, 30));
+            assertEquals(LocalTime.from(LocalDateTime.of(2012, 5, 1, 17, 30)), LocalTime.of(17, 30));
         });
 
         it('factory_from_DateTimeAccessor_invalid_noDerive', () => {
@@ -1801,8 +1802,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-    // TODO LocalDateTime
-    describe.skip('atDate()', () => {
+    describe('atDate()', () => {
 
         it('test_atDate', () => {
             var t = LocalTime.of(11, 30);

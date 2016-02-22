@@ -10,6 +10,7 @@ import {assert, requireNonNull, requireInstance} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
 
 import {Clock} from './Clock';
+import {LocalDateTime} from './LocalDateTime';
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
