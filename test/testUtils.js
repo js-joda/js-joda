@@ -23,7 +23,7 @@ export function assertSame(expected, actual, message){
 }
 
 export function assertNotNull(object, message){
-    expect(object, message).to.be.not.null;
+    expect(object==null, message).to.be.false;
 }
 
 export function assertTrue(condition, message) {

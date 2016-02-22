@@ -1,8 +1,11 @@
 import {expect, AssertionError} from 'chai';
 
-import {assertEquals} from './testUtils';
+import {
+    assertEquals, assertSame, assertTrue, assertFalse, assertNotNull, fail
+} from './testUtils';
 
 describe('testUtils', () =>{
+    
     class A {
         constructor(val) {
             this.val = val;
@@ -17,29 +20,26 @@ describe('testUtils', () =>{
             return false;
         }
     }
+    
     it('assertEquals', () =>{
+        testAssertEquals(null, 1, false);
+        testAssertEquals(1, null, false);
+        testAssertEquals(undefined, 1, false);
+        testAssertEquals(1, undefined, false);
+        testAssertEquals(null, undefined, true);
+        testAssertEquals(undefined, null, true);
+        testAssertEquals(1, 1, true);
+        testAssertEquals(1, 2, false);
+        testAssertEquals([1,2], [1,2], true);
+        testAssertEquals([1,2], [2,1], false);
+        testAssertEquals(new A(1), new A(1), true);
+        testAssertEquals(new A(1), new A(2), false);
+        testAssertEquals(new A(1), null, false);
+        testAssertEquals(null, new A(1), false);
+        testAssertEquals({}, new A(1), false);
+
         let a = new A('a');
-        let testData = [
-            [null, 1, false],
-            [1, null, false],
-            [undefined, 1, false],
-            [1, undefined, false],
-            [null, undefined, true],
-            [undefined, null, true],
-            [1, 1, true],
-            [1, 2, false],
-            [[1,2], [1,2], true],
-            [[1,2], [2,1], false],
-            [new A(1), new A(1), true],
-            [new A(1), new A(2), false],
-            [new A(1), null, false],
-            [null, new A(1), false],
-            [{}, new A(1), false],
-            [a, a, true]
-        ];
-        for(let i=0; i < testData.length; i++){
-            testAssertEquals.apply(this, testData[i]);
-        }
+        testAssertEquals(a, a, true);
     });
 
     function testAssertEquals(expected, actual, isEqual){
@@ -51,4 +51,49 @@ describe('testUtils', () =>{
             }).to.throw(AssertionError);
         }
     }
+
+    it('assertSame', function () {
+        testAssertSame({}, {}, false);
+        testAssertSame([], [], false);
+        testAssertSame(new A(1), new A(1), false);
+        testAssertSame(new A(1), new A(2), false);
+        testAssertSame(1, 1, true);
+
+        var a = new A('a');
+        testAssertSame(a, a, true);
+
+        a = [];
+        testAssertSame(a, a, true);
+    });
+
+    function testAssertSame(expected, actual, isEqual){
+        if(isEqual){
+            assertSame(expected, actual);
+        } else {
+            expect(() => {
+                assertSame(expected, actual);
+            }).to.throw(AssertionError);
+        }
+    }
+
+    it('assertNotNull', function () {
+        assertNotNull(false);
+        assertNotNull({});
+        expect(() => {assertNotNull();}).to.throw(AssertionError);
+        expect(() => {assertNotNull(null);}).to.throw(AssertionError);
+    });
+
+    it('assertTrue', function () {
+        assertTrue(true);
+        expect(() => {assertTrue(false);}).to.throw(AssertionError);
+    });
+
+    it('assertFalse', function () {
+        assertFalse(false);
+        expect(() => {assertFalse(true);}).to.throw(AssertionError);
+    });
+
+    it('fail', function () {
+        expect(() => {fail('fail message');}).to.throw(AssertionError);
+    });
 });
