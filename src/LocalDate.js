@@ -1154,12 +1154,12 @@ export class LocalDate extends ChronoLocalDate{
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.DAYS: return this.daysUntil(end);
-                case ChronoUnit.WEEKS: return this.daysUntil(end) / 7;
+                case ChronoUnit.WEEKS: return MathUtil.intDiv(this.daysUntil(end), 7);
                 case ChronoUnit.MONTHS: return this.monthsUntil(end);
-                case ChronoUnit.YEARS: return this.monthsUntil(end) / 12;
-                case ChronoUnit.DECADES: return this.monthsUntil(end) / 120;
-                case ChronoUnit.CENTURIES: return this.monthsUntil(end) / 1200;
-                case ChronoUnit.MILLENNIA: return this.monthsUntil(end) / 12000;
+                case ChronoUnit.YEARS: return MathUtil.intDiv(this.monthsUntil(end), 12);
+                case ChronoUnit.DECADES: return MathUtil.intDiv(this.monthsUntil(end), 120);
+                case ChronoUnit.CENTURIES: return MathUtil.intDiv(this.monthsUntil(end), 1200);
+                case ChronoUnit.MILLENNIA: return MathUtil.intDiv(this.monthsUntil(end), 12000);
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
             throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
@@ -1174,7 +1174,7 @@ export class LocalDate extends ChronoLocalDate{
     monthsUntil(end) {
         var packed1 = this._prolepticMonth() * 32 + this.dayOfMonth();  // no overflow
         var packed2 = end._prolepticMonth() * 32 + end.dayOfMonth();  // no overflow
-        return MathUtil.floorDiv((packed2 - packed1), 32);
+        return MathUtil.intDiv((packed2 - packed1), 32);
     }
 
     /**

@@ -1514,9 +1514,55 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     });
 
-/** TODO
-
     describe('until()', () => {
+
+        // @DataProvider(name="until")
+        function provider_until() {
+            return [
+                    ['2012-06-30', '2012-06-30', ChronoUnit.DAYS, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.WEEKS, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.MONTHS, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.YEARS, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.DECADES, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.CENTURIES, 0],
+                    ['2012-06-30', '2012-06-30', ChronoUnit.MILLENNIA, 0],
+
+                    ['2012-06-30', '2012-07-01', ChronoUnit.DAYS, 1],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.WEEKS, 0],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.MONTHS, 0],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.YEARS, 0],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.DECADES, 0],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.CENTURIES, 0],
+                    ['2012-06-30', '2012-07-01', ChronoUnit.MILLENNIA, 0],
+
+                    ['2012-06-30', '2012-07-07', ChronoUnit.DAYS, 7],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.WEEKS, 1],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.MONTHS, 0],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.YEARS, 0],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.DECADES, 0],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.CENTURIES, 0],
+                    ['2012-06-30', '2012-07-07', ChronoUnit.MILLENNIA, 0],
+
+                    ['2012-06-30', '2012-07-29', ChronoUnit.MONTHS, 0],
+                    ['2012-06-30', '2012-07-30', ChronoUnit.MONTHS, 1],
+                    ['2012-06-30', '2012-07-31', ChronoUnit.MONTHS, 1]
+            ];
+        }
+
+        it('test_until', function () {
+            provider_until().forEach((data) => {
+                test_until.apply(this, data);
+            });
+        });
+
+        // @Test(dataProvider = "until")
+        function test_until(startStr, endStr, unit, expected) {
+            // console.log(startStr, endStr, unit.toString(), expected);
+            var start = LocalDate.parse(startStr);
+            var end = LocalDate.parse(endStr);
+            assertEquals(start.until(end, unit), expected);
+            assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
+        }
 
     });
 
@@ -1528,7 +1574,260 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     });
 
- */
+    /*
+        describe('until()', () => {
+
+	});
+
+    @DataProvider(name="until")
+    Object[][] provider_until() {
+        return new Object[][]{
+                {"2012-06-30", "2012-06-30", DAYS, 0},
+                {"2012-06-30", "2012-06-30", WEEKS, 0},
+                {"2012-06-30", "2012-06-30", MONTHS, 0},
+                {"2012-06-30", "2012-06-30", YEARS, 0},
+                {"2012-06-30", "2012-06-30", DECADES, 0},
+                {"2012-06-30", "2012-06-30", CENTURIES, 0},
+                {"2012-06-30", "2012-06-30", MILLENNIA, 0},
+
+                {"2012-06-30", "2012-07-01", DAYS, 1},
+                {"2012-06-30", "2012-07-01", WEEKS, 0},
+                {"2012-06-30", "2012-07-01", MONTHS, 0},
+                {"2012-06-30", "2012-07-01", YEARS, 0},
+                {"2012-06-30", "2012-07-01", DECADES, 0},
+                {"2012-06-30", "2012-07-01", CENTURIES, 0},
+                {"2012-06-30", "2012-07-01", MILLENNIA, 0},
+
+                {"2012-06-30", "2012-07-07", DAYS, 7},
+                {"2012-06-30", "2012-07-07", WEEKS, 1},
+                {"2012-06-30", "2012-07-07", MONTHS, 0},
+                {"2012-06-30", "2012-07-07", YEARS, 0},
+                {"2012-06-30", "2012-07-07", DECADES, 0},
+                {"2012-06-30", "2012-07-07", CENTURIES, 0},
+                {"2012-06-30", "2012-07-07", MILLENNIA, 0},
+
+                {"2012-06-30", "2012-07-29", MONTHS, 0},
+                {"2012-06-30", "2012-07-30", MONTHS, 1},
+                {"2012-06-30", "2012-07-31", MONTHS, 1},
+        };
+    }
+
+    @Test(dataProvider = "until")
+    public void test_until(String startStr, String endStr, TemporalUnit unit, long expected) {
+        var start = LocalDate.parse(startStr);
+        var end = LocalDate.parse(endStr);
+        assertEquals(start.until(end, unit), expected);
+        assertEquals(end.until(start, unit), -expected);
+    }
+
+    describe('atTime()', () => {
+
+	});
+
+    @Test
+    it('test_atTime_LocalTime', () => {
+        var t = LocalDate.of(2008, 6, 30);
+        assertEquals(t.atTime(LocalTime.of(11, 30)), LocalDateTime.of(2008, 6, 30, 11, 30));
+    });
+
+    it('test_atTime_LocalTime_null', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime((LocalTime) null);
+
+	}).to.throw(NullPointerException);
+});
+
+    //-------------------------------------------------------------------------
+    @Test
+    it('test_atTime_int_int', () => {
+        var t = LocalDate.of(2008, 6, 30);
+        assertEquals(t.atTime(11, 30), LocalDateTime.of(2008, 6, 30, 11, 30));
+    });
+
+    it('test_atTime_int_int_hourTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(-1, 30);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_hourTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(24, 30);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_minuteTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, -1);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_minuteTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 60);
+
+	}).to.throw(DateTimeException);
+});
+
+    @Test
+    it('test_atTime_int_int_int', () => {
+        var t = LocalDate.of(2008, 6, 30);
+        assertEquals(t.atTime(11, 30, 40), LocalDateTime.of(2008, 6, 30, 11, 30, 40));
+    });
+
+    it('test_atTime_int_int_int_hourTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(-1, 30, 40);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_hourTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(24, 30, 40);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_minuteTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, -1, 40);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_minuteTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 60, 40);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_secondTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, -1);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_secondTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, 60);
+
+	}).to.throw(DateTimeException);
+});
+
+    @Test
+    it('test_atTime_int_int_int_int', () => {
+        var t = LocalDate.of(2008, 6, 30);
+        assertEquals(t.atTime(11, 30, 40, 50), LocalDateTime.of(2008, 6, 30, 11, 30, 40, 50));
+    });
+
+    it('test_atTime_int_int_int_int_hourTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(-1, 30, 40, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_hourTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(24, 30, 40, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_minuteTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, -1, 40, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_minuteTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 60, 40, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_secondTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, -1, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_secondTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, 60, 50);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_nanoTooSmall', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, 40, -1);
+
+	}).to.throw(DateTimeException);
+});
+
+    it('test_atTime_int_int_int_int_nanoTooBig', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atTime(11, 30, 40, 1000000000);
+
+	}).to.throw(DateTimeException);
+});
+
+    describe('atStartOfDay()', () => {
+
+	});
+
+    @Test
+    it('test_atStartOfDay', () => {
+        var t = LocalDate.of(2008, 6, 30);
+        assertEquals(t.atStartOfDay(ZONE_PARIS),
+                ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 0, 0), ZONE_PARIS));
+    });
+
+    @Test
+    it('test_atStartOfDay_dstGap', () => {
+        var t = LocalDate.of(2007, 4, 1);
+        assertEquals(t.atStartOfDay(ZONE_GAZA),
+                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
+    });
+
+    it('test_atStartOfDay_nullTimeZone', () => {
+	expect(() => {
+        var t = LocalDate.of(2008, 6, 30);
+        t.atStartOfDay((ZoneId) null);
+
+	}).to.throw(NullPointerException);
+});
+
+     */
 
     describe('toEpochDay()', function () {
         var date_0000_01_01 = -678941 - 40587;
