@@ -7,6 +7,8 @@
 import {expect} from 'chai';
 import {assertEquals} from '../../testUtils';
 
+import '../../_init';
+
 import {IllegalArgumentException} from '../../../src/errors';
 import {MathUtil} from '../../../src/MathUtil';
 import {ValueRange} from '../../../src/temporal/ValueRange';
