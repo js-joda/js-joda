@@ -14,6 +14,7 @@ import {ChronoUnit} from './temporal/ChronoUnit';
 import {ChronoLocalDate} from './chrono/ChronoLocalDate';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
+import {ValueRange} from './temporal/ValueRange';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {Clock} from './Clock';
@@ -309,6 +310,45 @@ export class LocalDate extends ChronoLocalDate{
      */
     isSupported(field) {
         return super.isSupported(field);
+    }
+
+    /**
+     * Gets the range of valid values for the specified field.
+     * <p>
+     * The range object expresses the minimum and maximum valid values for a field.
+     * This date is used to enhance the accuracy of the returned range.
+     * If it is not possible to return the range, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return
+     * appropriate range instances.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the range can be obtained is determined by the field.
+     *
+     * @param {TemporalField} field  the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws DateTimeException if the range for the field cannot be obtained
+     */
+    range(field) {
+        if (field instanceof ChronoField) {
+            if (field.isDateBased()) {
+                switch (field) {
+                    case ChronoField.DAY_OF_MONTH: return ValueRange.of(1, this.lengthOfMonth());
+                    case ChronoField.DAY_OF_YEAR: return ValueRange.of(1, this.lengthOfYear());
+                    case ChronoField.ALIGNED_WEEK_OF_MONTH: return ValueRange.of(1, this.month() === Month.FEBRUARY && this.isLeapYear() === false ? 4 : 5);
+                    case ChronoField.YEAR_OF_ERA:
+                        return (this._year <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1) : ValueRange.of(1, Year.MAX_VALUE));
+                }
+                return field.range();
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.rangeRefinedBy(this);
     }
 
     get(field) {
