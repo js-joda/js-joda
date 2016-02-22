@@ -3,8 +3,9 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {assert} from '../assert';
-import {DateTimeException} from '../errors';
+import {DateTimeException, IllegalArgumentException} from '../errors';
 import {MathUtil} from '../MathUtil';
 
 /**
@@ -28,11 +29,11 @@ export class ValueRange {
 
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
         assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest +
-            '\' must be less than largest minimum value \'' + minLargest + '\'');
+            '\' must be less than largest minimum value \'' + minLargest + '\'', IllegalArgumentException);
         assert(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest +
-            '\' must be less than largest maximum value \'' + maxLargest + '\'');
+            '\' must be less than largest maximum value \'' + maxLargest + '\'', IllegalArgumentException);
         assert(!(minLargest > maxLargest), 'Minimum value \'' + minLargest +
-            '\' must be less than maximum value \'' + maxLargest + '\'');
+            '\' must be less than maximum value \'' + maxLargest + '\'', IllegalArgumentException);
 
         this._minSmallest = minSmallest;
         this._minLargest = minLargest;
@@ -129,10 +130,42 @@ export class ValueRange {
      *
      * @return boolean if a valid value always fits in an {@code int}
      */
-    isIntValue() {
+    isIntValue() { // should be isSafeIntegerValue
         return this.minimum() >= MathUtil.MIN_SAFE_INTEGER && this.maximum() <= MathUtil.MAX_SAFE_INTEGER;
     }
 
+    /**
+     * Checks if this range is equal to another range.
+     * <p>
+     * The comparison is based on the four values, minimum, largest minimum,
+     * smallest maximum and maximum.
+     * Only objects of type {@code ValueRange} are compared, other types return false.
+     *
+     * @param other the object to check, null returns false
+     * @return {boolean} true if this is equal to the other range
+     */
+    equals(other) {
+        if (other === this) {
+            return true;
+        }
+        if (other instanceof ValueRange) {
+            return this._minSmallest === other._minSmallest && this._minLargest === other._minLargest &&
+                this._maxSmallest === other._maxSmallest && this._maxLargest === other._maxLargest;
+        }
+        return false;
+    }
+
+    /**
+     * A hash code for this range.
+     *
+     * @return {Number} a suitable hash code
+     */
+    hashCode() {
+        var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 +
+            this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
+        return (hash ^ (hash >>> 32));
+    }
+    
     /*
      * Outputs this range as a String.
      * 
@@ -142,7 +175,6 @@ export class ValueRange {
      *
      * @return {string} a string representation of this range, not null
      */
-
     toString() {
         var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + (this.largestMinimum()) : '');
         str += ' - ';
@@ -189,7 +221,7 @@ export class ValueRange {
         } else if (arguments.length === 4) {
             return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
         } else {
-            return assert(false, 'Invalid number of arguments ' + arguments.length);
+            return assert(false, 'Invalid number of arguments ' + arguments.length, IllegalArgumentException);
         }
     }
 }
