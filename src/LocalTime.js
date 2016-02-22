@@ -70,11 +70,11 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * <p>
      * This factory may return a cached value, but applications must not rely on this.
      *
-     * @param hour  the hour-of-day to represent, from 0 to 23
-     * @param minute  the minute-of-hour to represent, from 0 to 59
-     * @param second  the second-of-minute to represent, from 0 to 59
-     * @param nanoOfSecond  the nano-of-second to represent, from 0 to 999,999,999
-     * @return the local time, not null
+     * @param {Number} hour  the hour-of-day to represent, from 0 to 23
+     * @param {Number} minute  the minute-of-hour to represent, from 0 to 59
+     * @param {Number} second  the second-of-minute to represent, from 0 to 59
+     * @param {Number} nanoOfSecond  the nano-of-second to represent, from 0 to 999,999,999
+     * @return {LocalTime} the local time, not null
      * @throws DateTimeException if the value of any field is out of range
      */
     static of(hour, minute, second, nanoOfSecond) {
@@ -166,10 +166,10 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
     /**
      * Constructor, previously validated.
      *
-     * @param hour  the hour-of-day to represent, validated from 0 to 23
-     * @param minute  the minute-of-hour to represent, validated from 0 to 59
-     * @param second  the second-of-minute to represent, validated from 0 to 59
-     * @param nanoOfSecond  the nano-of-second to represent, validated from 0 to 999,999,999
+     * @param {Number} hour  the hour-of-day to represent, validated from 0 to 23
+     * @param {Number} minute  the minute-of-hour to represent, validated from 0 to 59
+     * @param {Number} second  the second-of-minute to represent, validated from 0 to 59
+     * @param {Number} nanoOfSecond  the nano-of-second to represent, validated from 0 to 999,999,999
      */
     constructor(hour=0, minute=0, second=0, nanoOfSecond=0) {
         super();
