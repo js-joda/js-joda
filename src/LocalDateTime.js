@@ -1368,10 +1368,11 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @param {ZoneOffset} offset  the offset to combine with, not null
      * @return the offset date-time formed from this date-time and the specified offset, not null
      */
-    atOffset(/* offset */) {
-        throw new Error('not yet implemented');
-        // return OffsetDateTime.of(this, offset);
+/*
+    atOffset(offset) {
+        return OffsetDateTime.of(this, offset);
     }
+*/
 
     /**
      * Combines this date-time with a time-zone to create a {@code ZonedDateTime}.
@@ -1402,10 +1403,11 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @param {ZoneId} zone  the time-zone to use, not null
      * @return the zoned date-time formed from this date-time, not null
      */
-    atZone(/* zone */) {
-        throw new Error('not yet implemented');
-        // return ZonedDateTime.of(this, zone);
+/*
+    atZone(zone) {
+        return ZonedDateTime.of(this, zone);
     }
+*/
 
     //-----------------------------------------------------------------------
     /**
