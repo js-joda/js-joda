@@ -157,3 +157,29 @@ d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-31
 d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
 
 ```
+
+### compare LocalDates
+
+```javascript
+
+var d1 = LocalDate.parse('2016-12-24');
+var d2 = d1.plusDays(2);
+
+d1.isAfter(d2);  // false
+d1.isBefore(d2); // true
+
+d1.isEqual(d2);  // false
+d1.isEqual(d1.plusDays(0));  // true
+
+d1.equals(d1.plusDays(0));   // true
+d1.equals(d1.plusDays(1));   // false
+
+d1.compareTo(d1) === 0; // true
+d1.compareTo(d2) < 0;   // true
+d2.compareTo(d1) > 0;   // true
+
+d1.hashCode(); // 4129560
+d2.hashCode(); // 4129562
+d1.hashCode() !== d2.hashCode(); // true
+
+```
