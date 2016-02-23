@@ -15,42 +15,45 @@ The API is using a consistent method prefixes.
 - minus - subtracts an amount from an object
 - to - converts this object to another type
 - at - combines this object with another, such as date.atTime(time)
-
 - instance variables getter omitting the get keyword  
-- the API is immutable, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.
+
+## Basic concepts
+
+- The API is immutable, an existing instance is never changed, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.
+- An existing instance is always valid. instead of returning null or invalid values, exceptions are thrown. 
 
 ## LocalDate
 
 A LocalDate represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
 
-### create a LocalDate
+### Create a LocalDate
 
 ```javascript
 
+// obtain the current date in the system default timezone, e.g. 2016-02-23
 LocalDate.now();
-// returns the current date in the system default timezone, e.g. 2016-02-23
 
+// obtain the current date in the utc timezone, e.g. 2016-02-23
 LocalDate.now(Clock.systemUTC()); 
-// returns the current date in the utc timezone, e.g. 2016-02-23
 
+// obtain an instance of LocalDate from an ISO8601 formatted text string
 LocalDate.parse('2016-02-23');
-// obtains an instance of LocalDate from an ISO8601 formatted text string
 
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
 LocalDate.of(2016, 2, 23) // 2016-02-23
-// obtains an instance of LocalDate from a year, month, and dayOfMonth value
 
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
 LocalDate.of(2016, Month.FEBRUARY, 23) // 2016-02-23
-// obtains an instance of LocalDate from a year, month, and dayOfMonth value
 
+// obtain an instance of LocalDate from am epochDay where day 0 is 1970-01-01
 LocalDate.ofEpochDay(-1) // 1969-12-31
-// obtains an instance of LocalDate from am epochDay where day 0 is 1970-01-01
 
+// obtain an instance of LocalDate from am epochDay where day 0 is 1970-01-01
 LocalDate.ofYearDay(2016, 54) // 2016-02-23
-// obtains an instance of LocalDate from am epochDay where day 0 is 1970-01-01
 
 ```
 
-### print a LocalDate
+### Print a LocalDate
 
 ```javascript
 
@@ -59,28 +62,64 @@ LocalDate.parse('2016-02-23').toString(); // '2016-02-23'
 
 ```
 
-### adding to/ subtracting from a LocalDate
+### Adding to/ subtracting from a LocalDate
  
 ```javascript
 
+// add/ subtract 366 days 
 LocalDate.parse('2016-02-23').plusDays(366); // '2017-02-23'
 LocalDate.parse('2016-02-23').minusDays(366); // '2015-02-22'
-// adds/ subtracts 366 days 
 
+// add/ subtract 12 months 
 LocalDate.parse('2016-02-23').plusMonths(12); // '2017-02-23'
 LocalDate.parse('2016-02-23').minusMonths(12); // '2015-02-23'
-// adds/ subtracts 12 months 
 
+// add/ subtract 4 weeks 
 LocalDate.parse('2016-02-23').plusWeeks(4); // '2016-03-22'
 LocalDate.parse('2016-02-23').minusWeeks(4); // '2016-01-26'
-// adds/ subtracts 4 weeks 
 
+// add/ subtract 1 year to the parsed LocalDate and returns a new instance
 LocalDate.parse('2016-02-23').plusYears(1); // '2017-02-23'
 LocalDate.parse('2016-02-23').minusYears(1); // '2015-02-23'
-// add/ subtract 1 year to the parsed LocalDate and returns a new instance
  
-LocalDate.parse('2016-02-23').plus(ChronoUnit.DECADES, 3); // '2036-02-23'
-LocalDate.parse('2016-02-23').minus(ChronoUnit.DECADES, 3); // '2086-02-23'
 // add/ subtract 30 years  
+LocalDate.parse('2016-02-23').plus(3, ChronoUnit.DECADES); // '2046-02-23'
+LocalDate.parse('2016-02-23').minus(3, ChronoUnit.DECADES); // '1986-02-23'
+
+// add subtract a Period of 3 Months and 3 Days
+LocalDate.parse('2016-02-23').plus(Period.ofMonths(3).plusDays(3))  // '2016-05-26'
+LocalDate.parse('2016-02-23').minus(Period.ofMonths(3).plusDays(3)) // '2015-11-20'
+
+```
+
+### Alter certain fields of a LocalDate
+
+```javascript
+
+var d = LocalDate.parse('2016-12-24');
+
+// set the day of month to 1
+d.withDayOfMonth(1); // '2016-12-01'
+
+// set month and the day of month to 1
+d.withMonth(1).withDayOfMonth(1); // '2016-01-01'
+
+// set month to November and the day of month to 1
+d.withMonth(Month.NOVEMBER).withDayOfMonth(1); // '2016-11-01'
+
+// set the year to beginning of era 
+d.withYear(1); // '0001-12-24'
+
+// get the last day of the current month
+LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
+
+// set the day of year
+d.withDayOfYear(42); // 2016-02-11
+
+// set the ALIGNED_WEEK_OF_YEAR to 51
+d.with(ChronoField.ALIGNED_WEEK_OF_YEAR, 51) // 2016-12-17
+
+// set by a TemporalAdjuster
+d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
 
 ```
