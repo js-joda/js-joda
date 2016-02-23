@@ -3,8 +3,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 export { Clock } from './Clock';
-export { Duration } from './Duration';
 export { DateTimeException, DateTimeParseException } from './errors';
+export { DayOfWeek } from './DayOfWeek';
+export { Duration } from './Duration';
 export { Instant } from './Instant';
 export { LocalDate } from './LocalDate';
 export { LocalTime } from './LocalTime';

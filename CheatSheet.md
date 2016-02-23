@@ -119,7 +119,13 @@ d.withDayOfYear(42); // 2016-02-11
 // set the ALIGNED_WEEK_OF_YEAR to 51
 d.with(ChronoField.ALIGNED_WEEK_OF_YEAR, 51) // 2016-12-17
 
-// set by a TemporalAdjuster
+// set by a TemporalAdjuster lastDayOfMonth
 d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
+
+// set by a TemporalAdjuster lastDayOfMonth
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-31
+
+// set by a TemporalAdjuster next or same weekday
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
 
 ```
