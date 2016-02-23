@@ -15,4 +15,8 @@ export { Period } from './Period';
 export { Year } from './Year';
 export { ZoneOffset } from './ZoneOffset';
 
+export {ChronoField} from './temporal/ChronoField';
+export {ChronoUnit} from './temporal/ChronoUnit';
+export {TemporalAdjusters} from './temporal/TemporalAdjusters';
+
 import './_init';
