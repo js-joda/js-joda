@@ -404,6 +404,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * TODO tests are missing for the ALIGNED_* ChronoFields
      * 
      * @param {!TemporalField} field
      * @returns {*}
@@ -412,13 +413,13 @@ export class LocalDate extends ChronoLocalDate{
     _get0(field) {
         switch (field) {
             case ChronoField.DAY_OF_WEEK: return this.dayOfWeek().value();
-            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return ((this._day - 1) % 7) + 1;
-            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return ((this.dayOfYear() - 1) % 7) + 1;
+            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return MathUtil.intMod((this._day - 1), 7) + 1;
+            case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return MathUtil.intMod((this.dayOfYear() - 1), 7) + 1;
             case ChronoField.DAY_OF_MONTH: return this._day;
             case ChronoField.DAY_OF_YEAR: return this.dayOfYear();
             case ChronoField.EPOCH_DAY: return this.toEpochDay();
-            case ChronoField.ALIGNED_WEEK_OF_MONTH: return ((this._day - 1) / 7) + 1;
-            case ChronoField.ALIGNED_WEEK_OF_YEAR: return ((this.dayOfYear() - 1) / 7) + 1;
+            case ChronoField.ALIGNED_WEEK_OF_MONTH: return MathUtil.intDiv((this._day - 1), 7) + 1;
+            case ChronoField.ALIGNED_WEEK_OF_YEAR: return MathUtil.intDiv((this.dayOfYear() - 1), 7) + 1;
             case ChronoField.MONTH_OF_YEAR: return this._month;
             case ChronoField.PROLEPTIC_MONTH: return this._prolepticMonth();
             case ChronoField.YEAR_OF_ERA: return (this._year >= 1 ? this._year : 1 - this._year);
