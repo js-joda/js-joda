@@ -36,6 +36,8 @@
  * <h3>Specification for implementors</h3>
  * This interface places no restrictions on the mutability of implementations,
  * however immutability is strongly recommended.
+ * 
+ * @interface
  */
 export class TemporalQuery  extends Enum {
     /**
