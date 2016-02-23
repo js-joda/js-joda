@@ -49,16 +49,44 @@ LocalDate.of(2016, Month.FEBRUARY, 23) // 2016-02-23
 LocalDate.ofEpochDay(-1) // 1969-12-31
 
 // obtain an instance of LocalDate from am epochDay where day 0 is 1970-01-01
-LocalDate.ofYearDay(2016, 54) // 2016-02-23
+LocalDate.ofYearDay(2016, 42) // 2016-02-11
 
 ```
 
-### Print a LocalDate
+### get values from LocalDate
 
 ```javascript
 
-LocalDate.parse('2016-02-23').toString(); // '2016-02-23'
-// returns a String in ISO8601 format
+var d = LocalDate.parse('2016-12-24');
+
+d.toString();   // '2016-12-24' ISO8601 format
+
+d.dayOfMonth(); // 24
+d.month();      // Month.DECEMBER
+d.monthValue(); // 12
+d.year();       // 2016
+
+d.dayOfWeek();         // DayOfWeek.SATURDAY
+d.dayOfWeek().value(); // 6
+d.dayOfYear();         // 359
+
+d.isLeapYear(); // true 2016 is a leap year
+d.plusYears(1).isLeapYear() // false
+
+// get the epoch day where 0 is 1970-01-01
+d.toEpochDay(); // 17159
+
+// get range of month
+d.lengthOfMonth() // 31
+d.range(ChronoField.DAY_OF_MONTH); // ValueRange(1 - 31)
+
+// get range of year
+d.lengthOfYear() // 366
+d.range(ChronoField.DAY_OF_YEAR);  // ValueRange(1 - 366)
+
+// get the day of week aligned to the first day of month
+d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 3
+d.withDayOfMonth(1).get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 1
 
 ```
 
