@@ -31,7 +31,7 @@ export class IsoChronology extends Enum{
      * This is historically inaccurate, but is correct for the ISO-8601 standard.
      *
      * @param {number} prolepticYear - the ISO proleptic year to check
-     * @return true if the year is leap, false otherwise
+     * @return {boolean} true if the year is leap, false otherwise
      */
     static isLeapYear(prolepticYear) {
         return ((prolepticYear & 3) === 0) && ((prolepticYear % 100) !== 0 || (prolepticYear % 400) === 0);

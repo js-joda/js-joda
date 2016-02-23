@@ -154,10 +154,10 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This creates an instance based on years, months and days.
      *
-     * @param years  the amount of years, may be negative
-     * @param months  the amount of months, may be negative
-     * @param days  the amount of days, may be negative
-     * @return the period of years, months and days, not null
+     * @param {!number} years  the amount of years, may be negative
+     * @param {!number} months  the amount of months, may be negative
+     * @param {!number} days  the amount of days, may be negative
+     * @return {Period} the period of years, months and days, not null
      */
     static of(years, months, days) {
         return Period.create(years, months, days);
