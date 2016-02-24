@@ -37,6 +37,75 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  * The ISO-8601 calendar system is the modern civil calendar system used today
  * in most of the world. This API assumes that all calendar systems use the same
  * representation, this class, for time-of-day.
+ *
+ * <h3>Static properties of Class {@link LocalTime}</h3>
+ *
+ * LocalTime.MIN
+ *
+ * The minimum supported {@link LocalTime}, '00:00'.
+ * This is the time of midnight at the start of the day.
+ *
+ * LocalTime.MAX
+ *
+ * The maximum supported {@link LocalTime}, '23:59:59.999999999'.
+ * This is the time just before midnight at the end of the day.
+ *
+ * LocalTime.MIDNIGHT
+ *
+ * The time of midnight at the start of the day, '00:00'.
+ *
+ * LocalTime.NOON
+ *
+ * The time of noon in the middle of the day, '12:00'.
+ *
+ * LocalTime.HOURS_PER_DAY
+ *
+ * Hours per day.
+ *
+ * LocalTime.MINUTES_PER_HOUR
+ *
+ * Minutes per hour.
+ *
+ * LocalTime.MINUTES_PER_DAY
+ *
+ * Minutes per day.
+ *
+ * LocalTime.SECONDS_PER_MINUTE
+ *
+ * Seconds per minute.
+ *
+ * LocalTime.SECONDS_PER_HOUR
+ *
+ * Seconds per hour.
+ *
+ * LocalTime.SECONDS_PER_DAY
+ *
+ * Seconds per day.
+ *
+ * LocalTime.MILLIS_PER_DAY
+ *
+ * Milliseconds per day.
+ *
+ * LocalTime.MICROS_PER_DAY
+ *
+ * Microseconds per day.
+ *
+ * LocalTime.NANOS_PER_SECOND
+ *
+ * Nanos per second.
+ *
+ * LocalTime.NANOS_PER_MINUTE
+ *
+ * Nanos per minute.
+ *
+ * LocalTime.NANOS_PER_HOUR
+ *
+ * Nanos per hour.
+ *
+ * LocalTime.NANOS_PER_DAY
+ *
+ * Nanos per day.
+ *
  */
 export class LocalTime extends TemporalAccessor /** implements Temporal, TemporalAdjuster */ {
     /**
