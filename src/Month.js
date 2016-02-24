@@ -27,6 +27,11 @@ import {TemporalQueries} from './temporal/TemporalQueries';
  * As such, this class may be used by any calendar system that has the month-of-year
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
+ * <h3>Static properties of Class {@link Month}</h3>
+ *
+ * Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
+ * Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
+ *
  */
 export class Month extends TemporalAccessor {
     
