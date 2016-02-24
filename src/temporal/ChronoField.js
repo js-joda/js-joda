@@ -9,36 +9,79 @@ import { TemporalField } from './TemporalField';
 import { ValueRange } from './ValueRange';
 import {Year} from '../Year';
 
+/**
+ * A standard set of fields.
+ * <p>
+ * This set of fields provide field-based access to manipulate a date, time or date-time.
+ * The standard set of fields can be extended by implementing {@link TemporalField}.
+ * <p>
+ * These fields are intended to be applicable in multiple calendar systems.
+ * For example, most non-ISO calendar systems define dates as a year, month and day,
+ * just with slightly different rules.
+ * The documentation of each field explains how it operates.
+ */
 export class ChronoField extends TemporalField {
 
+    /**
+     *
+     * @param {!string} name
+     * @param {!number} baseUnit
+     * @param {!number} rangeUnit
+     * @param {!ValueRange} range
+     */
     constructor(name, baseUnit, rangeUnit, range) {
         super();
         this._name = name;
         this._baseUnit = baseUnit;
         this._rangeUnit = rangeUnit;
         this._range = range;
-    }        
+    }
 
+    /**
+     *
+     * @returns {string}
+     */
     name(){
         return this._name;    
     }
-    
+
+    /**
+     *
+     * @returns {!number}
+     */
     baseUnit(){
         return this._baseUnit;    
     }
-    
+
+    /**
+     *
+     * @returns {!number}
+     */
     rangeUnit(){
         return this._rangeUnit;    
     }
-    
+
+    /**
+     *
+     * @returns {!ValueRange}
+     */
     range(){
         return this._range;    
     }
-    
+
+    /**
+     *
+     * @returns {string}
+     */
     displayName(){
         return this.toString();    
     }
-    
+
+    /**
+     *
+     * @param {number} value
+     * @returns {*}
+     */
     checkValidValue(value) {
         return this.range().checkValidValue(value, this.name());
     }
@@ -117,8 +160,8 @@ export class ChronoField extends TemporalField {
      * available in {@link ChronoField}.
      * If the field is not supported a {@code DateTimeException} must be thrown.
      *
-     * @param {TemporalAccessor} temporal  the temporal object used to refine the result, not null
-     * @return {Va;lueRange} the range of valid values for this field, not null
+     * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
+     * @return {ValueRange} the range of valid values for this field, not null
      * @throws DateTimeException if the range for the field cannot be obtained
      */
     rangeRefinedBy(temporal) {
@@ -137,21 +180,35 @@ export class ChronoField extends TemporalField {
      * Use {@link Chronology#range(ChronoField)} to access the correct range
      * for a different calendar system.
      *
-     * @param value  the value to check
-     * @return the value that was passed in
+     * @param {number} value - the value to check
+     * @return {number} the value that was passed in
      */
     checkValidIntValue(value) {
         return this.range().checkValidIntValue(value, this);
     }
 
+    /**
+     *
+     * @param {TemporalAccessor} temporal
+     * @returns {number}
+     */
     getFrom(temporal) {
         return temporal.getLong(this);
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     toString(){
         return this.name();
     }
 
+    /**
+     *
+     * @param {*} other
+     * @returns {boolean}
+     */
     equals(other){
         return this === other;
     }
