@@ -22,11 +22,16 @@ import {MathUtil} from '../MathUtil';
  * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
  * 
  * Instances of this class are not tied to a specific field.
- *
  */
-
 export class ValueRange {
 
+    /**
+     *
+     * @param {!number} minSmallest
+     * @param {!number} minLargest
+     * @param {!number} maxSmallest
+     * @param {!number} maxLargest
+     */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
         assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest +
             '\' must be less than largest minimum value \'' + minLargest + '\'', IllegalArgumentException);
@@ -54,26 +59,51 @@ export class ValueRange {
         return this._minSmallest === this._minLargest && this._maxSmallest === this._maxLargest;
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     minimum(){
         return this._minSmallest;
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     largestMinimum(){
         return this._minLargest;
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     maximum(){
         return this._maxLargest;
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     smallestMaximum(){
         return this._maxSmallest;
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
     isValidValue(value) {
         return (this.minimum() <= value && value <= this.maximum());
     }
 
+    /**
+     *
+     * @param {number} value
+     * @param {TemporalField} field
+     */
     checkValidValue(value, field) {
         var msg;
         if (!this.isValidValue(value)) {
@@ -93,9 +123,9 @@ export class ValueRange {
      * all valid values are within the bounds of an {@code int}.
      * The field is only used to improve the error message.
      *
-     * @param value  the value to check
-     * @param field  the field being checked, may be null
-     * @return the value that was passed in
+     * @param {number} value - the value to check
+     * @param {TemporalField} field - the field being checked, may be null
+     * @return {number} the value that was passed in
      * @see #isValidIntValue(long)
      */
     checkValidIntValue(value, field) {
@@ -111,7 +141,7 @@ export class ValueRange {
      * <p>
      * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
      *
-     * @param value  the value to check
+     * @param {number} value - the value to check
      * @return true if the value is valid and fits in an {@code int}
      */
     isValidIntValue(value) {
@@ -141,7 +171,7 @@ export class ValueRange {
      * smallest maximum and maximum.
      * Only objects of type {@code ValueRange} are compared, other types return false.
      *
-     * @param other the object to check, null returns false
+     * @param {*} other - the object to check, null returns false
      * @return {boolean} true if this is equal to the other range
      */
     equals(other) {
@@ -158,7 +188,7 @@ export class ValueRange {
     /**
      * A hash code for this range.
      *
-     * @return {Number} a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 +
@@ -210,9 +240,9 @@ export class ValueRange {
      * @param minLargest  the largest minimum value
      * @param maxSmallest  the smallest maximum value
      * @param maxLargest  the largest maximum value
+     *
      * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
      */
-
     static of() {
         if (arguments.length === 2) {
             return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
