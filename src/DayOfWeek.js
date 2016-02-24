@@ -16,6 +16,18 @@ import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
+/**
+ * <h3>Static properties of Class {@link DayOfWeek}</h3>
+ *
+ * DayOfWeek.MONDAY,
+ * DayOfWeek.TUESDAY,
+ * DayOfWeek.WEDNESDAY,
+ * DayOfWeek.THURSDAY,
+ * DayOfWeek.FRIDAY,
+ * DayOfWeek.SATURDAY,
+ * DayOfWeek.SUNDAY
+ *
+ */
 export class DayOfWeek extends TemporalAccessor {
     
     constructor(ordinal, name){
