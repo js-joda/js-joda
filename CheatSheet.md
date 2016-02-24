@@ -15,12 +15,12 @@ The API is using a consistent method prefixes.
 - minus - subtracts an amount from an object
 - to - converts this object to another type
 - at - combines this object with another, such as date.atTime(time)
-- instance variables getter omitting the get keyword  
+- getter for instance properties are omitting the get keyword, e.q. localDate.year()  
 
 ## Basic concepts
 
-- The API is immutable, an existing instance is never changed, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.
-- An existing instance is always valid. instead of returning null or invalid values, exceptions are thrown. 
+The API is immutable, an existing instance is never changed, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.
+An existing instance is always valid. Instead of returning null or invalid values, exceptions are thrown. 
 
 ## LocalDate
 
@@ -53,7 +53,7 @@ LocalDate.ofYearDay(2016, 42) // 2016-02-11
 
 ```
 
-### get values from LocalDate
+### Get values from LocalDate
 
 ```javascript
 
@@ -191,10 +191,13 @@ d1.hashCode() !== d2.hashCode(); // true
 var d1 = LocalDate.parse('2016-12-24');
 var d2 = d1.plusMonths(13).plusDays(42);
 
-d1.until(d2).toString();      // 'P1Y2M11D' output in ISO-8601 period format
-d1.until(d2).toTotalMonths(); // 14, until returns the period beetween the two dates, the period has in total 14 months
+// obtain the Period between the two dates                     
+d1.until(d2).toString();      // 'P1Y2M11D', output in ISO-8601 period format
+d1.until(d2).toTotalMonths(); // 14
 
-d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in days.
+// obtain the distance between the two dates with a certain precision
+d1.until(d2, ChronoUnit.MONTHS); // 14, returns the distance in total months.
+d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in total days.
 
 ```
 
