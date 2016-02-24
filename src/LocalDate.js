@@ -240,9 +240,9 @@ export class LocalDate extends ChronoLocalDate{
             month = month.value();
         }
         LocalDate._validate(year, month, dayOfMonth);
-        this._year = year;
-        this._month = month;
-        this._day = dayOfMonth;
+        this._year = MathUtil.safeZero(year);
+        this._month = MathUtil.safeZero(month);
+        this._day = MathUtil.safeZero(dayOfMonth);
     }
 
 
