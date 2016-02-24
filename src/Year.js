@@ -27,10 +27,20 @@
  * However, any application that makes use of historical dates, and requires them
  * to be accurate will find the ISO-8601 approach unsuitable.
  *
+ * <h3>Static properties of Class {@link LocalDate}</h3>
+ *
+ * Year.MIN_VALUE = -999.999;
+ *
+ * The minimum supported year. Theoretically the minimum could be -28.542.4812 years in javascript.
+ * approx LocalDateTime.ofEpochSecond(Number.MIN_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
+ *
+ * Year.MAX_VALUE = 999.999;
+ *
+ * The maximum supported year. Theoretically the maximum could be 285.428.751 years in javascript.
+ * approx LocalDateTime.ofEpochSecond(Number.MAX_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
+ *
  */
-export class Year {
-    
-}
+export class Year {}
 
 export function _init() {
     /**
