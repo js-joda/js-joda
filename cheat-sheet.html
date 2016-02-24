@@ -5,6 +5,12 @@
         <title>js-joda cheat sheet</title>
         <link rel="stylesheet" href="bundle.css">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <script src="//cdn.jsdelivr.net/js-joda/0.3.6/js-joda.min.js"></script>
+        <script>
+            // copy all js-joda classes to the global scope
+            for(var key in JSJoda) { this[key] = JSJoda[key]; }
+            var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+        </script>
     </head>
     <body>
         <div class="pageHeader">
@@ -23,21 +29,178 @@
         <div class="pageBody">
             <div class="content">
                 <!-- CheatSheet.md -->
-                <h1 id="js-joda-cheat-sheet">js-joda cheat sheet</h1>
+                <h1 id="js-joda-cheat-sheet">js-joda Cheat sheet</h1>
                 <p><a href="https://doc.esdoc.org/github.com/pithu/js-joda/">For a detailed API Reference refer to the ESDoc generated docs</a>  </p>
                 <h2 id="consistent-method-prefixes">Consistent method prefixes</h2>
                 <p>The API is using a consistent method prefixes.</p>
                 <ul>
                 <li>of - static factory method</li>
-                <li>parse - static factory method focussed on parsing</li>
+                <li>parse - static factory method focused on parsing</li>
                 <li>is - checks if something is true</li>
                 <li>with - the immutable equivalent of a setter</li>
                 <li>plus - adds an amount to an object</li>
                 <li>minus - subtracts an amount from an object</li>
                 <li>to - converts this object to another type</li>
                 <li>at - combines this object with another, such as date.atTime(time)</li>
+                <li>getter for instance properties are omitting the get keyword, e.q. localDate.year()</li>
                 </ul>
-                <h2 id="tbc">TBC</h2>            </div>
+                <h2 id="basic-concepts">Basic concepts</h2>
+                <p>The API is immutable, an existing instance is never changed, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.</p>
+                <p>An existing instance is always valid. Instead of returning null or invalid values, exceptions are thrown.</p>
+                <h2 id="localdate">LocalDate</h2>
+                <p>A LocalDate represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.</p>
+                <h3 id="create-a-localdate">Create a LocalDate</h3>
+                <pre><code class="lang-javascript">
+// obtain the current date in the system default timezone, e.g. 2016-02-23
+LocalDate.now();
+
+// obtain the current date in the utc timezone, e.g. 2016-02-23
+LocalDate.now(Clock.systemUTC());
+
+// obtain an instance of LocalDate from an ISO8601 formatted text string
+LocalDate.parse(&#39;2016-02-23&#39;);
+
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
+LocalDate.of(2016, 2, 23) // 2016-02-23
+
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
+LocalDate.of(2016, Month.FEBRUARY, 23) // 2016-02-23
+
+// obtain an instance of LocalDate from am epochDay where day 0 is 1970-01-01
+LocalDate.ofEpochDay(-1) // 1969-12-31
+
+// obtain an instance of LocalDate from am epochDay where day 0 is 1970-01-01
+LocalDate.ofYearDay(2016, 42) // 2016-02-11
+                </code></pre>
+                <h3 id="get-values-from-localdate">get values from LocalDate</h3>
+                <pre><code class="lang-javascript">
+var d = LocalDate.parse(&#39;2016-12-24&#39;);
+
+d.toString();   // &#39;2016-12-24&#39; ISO8601 format
+
+d.dayOfMonth(); // 24
+d.month();      // Month.DECEMBER
+d.monthValue(); // 12
+d.year();       // 2016
+
+d.dayOfWeek();         // DayOfWeek.SATURDAY
+d.dayOfWeek().value(); // 6
+d.dayOfYear();         // 359
+
+d.isLeapYear(); // true 2016 is a leap year
+d.plusYears(1).isLeapYear() // false
+
+// get the epoch day where 0 is 1970-01-01
+d.toEpochDay(); // 17159
+
+// get range of month
+d.lengthOfMonth() // 31
+d.range(ChronoField.DAY_OF_MONTH); // ValueRange(1 - 31)
+
+// get range of year
+d.lengthOfYear() // 366
+d.range(ChronoField.DAY_OF_YEAR);  // ValueRange(1 - 366)
+
+// get the day of week aligned to the first day of month
+d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 3
+d.withDayOfMonth(1).get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 1
+                </code></pre>
+                <h3 id="adding-to-subtracting-from-a-localdate">Adding to/ subtracting from a LocalDate</h3>
+                <pre><code class="lang-javascript">
+// add/ subtract 366 days
+LocalDate.parse(&#39;2016-02-23&#39;).plusDays(366); // &#39;2017-02-23&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minusDays(366); // &#39;2015-02-22&#39;
+
+// add/ subtract 12 months
+LocalDate.parse(&#39;2016-02-23&#39;).plusMonths(12); // &#39;2017-02-23&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minusMonths(12); // &#39;2015-02-23&#39;
+
+// add/ subtract 4 weeks
+LocalDate.parse(&#39;2016-02-23&#39;).plusWeeks(4); // &#39;2016-03-22&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minusWeeks(4); // &#39;2016-01-26&#39;
+
+// add/ subtract 1 year to the parsed LocalDate and returns a new instance
+LocalDate.parse(&#39;2016-02-23&#39;).plusYears(1); // &#39;2017-02-23&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minusYears(1); // &#39;2015-02-23&#39;
+
+// add/ subtract 30 years
+LocalDate.parse(&#39;2016-02-23&#39;).plus(3, ChronoUnit.DECADES); // &#39;2046-02-23&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minus(3, ChronoUnit.DECADES); // &#39;1986-02-23&#39;
+
+// add subtract a Period of 3 Months and 3 Days
+LocalDate.parse(&#39;2016-02-23&#39;).plus(Period.ofMonths(3).plusDays(3))  // &#39;2016-05-26&#39;
+LocalDate.parse(&#39;2016-02-23&#39;).minus(Period.ofMonths(3).plusDays(3)) // &#39;2015-11-20&#39;
+                </code></pre>
+                <h3 id="alter-certain-fields-of-a-localdate">Alter certain fields of a LocalDate</h3>
+                <pre><code class="lang-javascript">
+var d = LocalDate.parse(&#39;2016-12-24&#39;);
+
+// set the day of month to 1
+d.withDayOfMonth(1); // &#39;2016-12-01&#39;
+
+// set month and the day of month to 1
+d.withMonth(1).withDayOfMonth(1); // &#39;2016-01-01&#39;
+
+// set month to November and the day of month to 1
+d.withMonth(Month.NOVEMBER).withDayOfMonth(1); // &#39;2016-11-01&#39;
+
+// set the year to beginning of era
+d.withYear(1); // &#39;0001-12-24&#39;
+
+// get the last day of the current month
+LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
+
+// set the day of year
+d.withDayOfYear(42); // 2016-02-11
+
+// set the ALIGNED_WEEK_OF_YEAR to 51
+d.with(ChronoField.ALIGNED_WEEK_OF_YEAR, 51) // 2016-12-17
+
+// set by a TemporalAdjuster lastDayOfMonth
+d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
+
+// set by a TemporalAdjuster lastDayOfMonth
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-31
+
+// set by a TemporalAdjuster next or same weekday
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
+                </code></pre>
+                <h3 id="compare-localdates">compare LocalDates</h3>
+                <pre><code class="lang-javascript">
+var d1 = LocalDate.parse(&#39;2016-12-24&#39;);
+var d2 = d1.plusDays(2);
+
+d1.isAfter(d2);  // false
+d1.isBefore(d2); // true
+
+d1.isEqual(d2);  // false
+d1.isEqual(d1.plusDays(0));  // true
+
+d1.equals(d1.plusDays(0));   // true
+d1.equals(d1.plusDays(1));   // false
+
+d1.compareTo(d1) === 0; // true
+d1.compareTo(d2) &lt; 0;   // true
+d2.compareTo(d1) &gt; 0;   // true
+
+d1.hashCode(); // 4129560
+d2.hashCode(); // 4129562
+d1.hashCode() !== d2.hashCode(); // true
+                </code></pre>
+                <h3 id="distance-on-the-timeline">distance on the timeline</h3>
+                <pre><code class="lang-javascript">
+var d1 = LocalDate.parse('2016-12-24');
+var d2 = d1.plusMonths(13).plusDays(42);
+
+// obtain the Period between the two dates
+d1.until(d2).toString();      // 'P1Y2M11D', output in ISO-8601 period format
+d1.until(d2).toTotalMonths(); // 14
+
+// obtain the distance between the two dates with a certain precision
+d1.until(d2, ChronoUnit.MONTHS); // 14, returns the distance in total months.
+d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in total days.
+                </code></pre>
+            </div>
         </div>
     </body>
 </html>
