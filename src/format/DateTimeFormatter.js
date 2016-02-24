@@ -17,6 +17,17 @@ import {ResolverStyle} from './ResolverStyle';
 import {IsoChronology} from '../chrono/IsoChronology';
 import {ChronoField} from '../temporal/ChronoField';
 
+/**
+ *
+ * <h3>Static properties of Class {@link DateTimeFormatter}</h3>
+ *
+ * DateTimeFormatter.ISO_LOCAL_DATE
+ *
+ * DateTimeFormatter.ISO_LOCAL_TIME
+ *
+ * DateTimeFormatter.ISO_LOCAL_DATE_TIME
+ *
+ */
 export class DateTimeFormatter {
 
     //-----------------------------------------------------------------------
