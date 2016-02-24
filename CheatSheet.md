@@ -183,3 +183,19 @@ d2.hashCode(); // 4129562
 d1.hashCode() !== d2.hashCode(); // true
 
 ```
+
+### distance on the timeline
+
+```javascript
+
+var d1 = LocalDate.parse('2016-12-24');
+var d2 = d1.plusMonths(13).plusDays(42);
+
+d1.until(d2).toString();      // 'P1Y2M11D' output in ISO-8601 period format
+d1.until(d2).toTotalMonths(); // 14, until returns the period beetween the two dates, the period has in total 14 months
+
+d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in days.
+
+```
+
+
