@@ -30,6 +30,8 @@
  * <h3>Specification for implementors</h3>
  * This interface places no restrictions on the mutability of implementations,
  * however immutability is strongly recommended.
+ *
+ * @interface
  */
 export class TemporalAdjuster {
 
@@ -74,6 +76,8 @@ export class TemporalAdjuster {
      * @return {Temporal} an object of the same observable type with the adjustment made, not null
      * @throws DateTimeException if unable to make the adjustment
      * @throws ArithmeticException if numeric overflow occurs
+     *
+     * @abstract
      */
     adjustInto(temporal){
         throw Error('abstract');
