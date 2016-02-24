@@ -6,6 +6,19 @@
 import {DateTimeException} from './errors';
 import {LocalTime} from './LocalTime';
 
+/**
+ *
+ * <h3>Static properties of Class {@link LocalDate}</h3>
+ *
+ * ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
+ *
+ * ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+ *
+ * ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+ *
+ * ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+ *
+ */
 export class ZoneOffset {
     constructor(totalSeconds){
         ZoneOffset.validateTotalSeconds(totalSeconds);
