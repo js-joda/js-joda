@@ -37,6 +37,12 @@ import {LocalTime} from './LocalTime';
  * most applications.
  * See {@link Instant} for a discussion as to the meaning of the second and time-scales.
  *
+ * <h3>Static properties of Class {@link Duration}</h3>
+ *
+ * Duration.ZERO
+ *
+ * Constant for a duration of zero.
+ *
  */
 export class Duration extends TemporalAmount
         /*implements TemporalAmount, Comparable<Duration>, Serializable */ {
