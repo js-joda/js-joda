@@ -158,7 +158,7 @@ d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
 
 ```
 
-### compare LocalDates
+### Compare LocalDates
 
 ```javascript
 
@@ -184,7 +184,7 @@ d1.hashCode() !== d2.hashCode(); // true
 
 ```
 
-### distance on the timeline
+### Distance on the timeline
 
 ```javascript
 
