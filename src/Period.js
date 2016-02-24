@@ -4,6 +4,22 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {MathUtil} from './MathUtil';
+import {requireNonNull, requireInstance} from './assert';
+import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException} from './errors';
+
+import {IsoChronology} from './chrono/IsoChronology';
+
+import {ChronoUnit} from './temporal/ChronoUnit';
+import {TemporalAmount} from './temporal/TemporalAmount';
+
+import {LocalDate} from './LocalDate';
+
+/**
+ * The pattern for parsing.
+ */
+const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
+
 /**
  * A date-based amount of time, such as '2 years, 3 months and 4 days'.
  * <p>
@@ -35,26 +51,13 @@
  * The months and years fields may be {@linkplain #normalized() normalized}.
  * The normalization assumes a 12 month year, so is not appropriate for all calendar systems.
  *
- * <h3>Specification for implementors</h3>
- * This class is immutable and thread-safe.
+ * <h3>Static properties of Class {@link Period}</h3>
+ *
+ * Period.ZERO
+ *
+ * A constant for a period of zero.
+ *
  */
-
-import {MathUtil} from './MathUtil';
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException} from './errors';
-
-import {IsoChronology} from './chrono/IsoChronology';
-
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {TemporalAmount} from './temporal/TemporalAmount';
-
-import {LocalDate} from './LocalDate';
-
-/**
- * The pattern for parsing.
- */
-const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
-
 export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     /**
