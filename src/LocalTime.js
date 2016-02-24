@@ -1035,7 +1035,7 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAccessor} endExclusive - the end time, which is converted to a {@link LocalTime}, not null
-     * @param {ChronoUnit} unit - the unit to measure the period in, not null
+     * @param {TemporalUnit} unit - the unit to measure the period in, not null
      * @return {number} the amount of the period between this time and the end time
      * @throws {DateTimeException} if the period cannot be calculated
      * @throws {ArithmeticException} if numeric overflow occurs

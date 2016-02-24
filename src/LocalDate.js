@@ -833,7 +833,7 @@ export class LocalDate extends ChronoLocalDate{
      * Otherwise {@link LocalDate.plus2} is called.
      * 
      * @param {!(TemporalAmount|number)} p1
-     * @param {ChronoUnit} p2 - required if called with 2 arguments
+     * @param {TemporalUnit} p2 - required if called with 2 arguments
      * @return {LocalDate}
      */
     plus(p1, p2){
@@ -872,7 +872,7 @@ export class LocalDate extends ChronoLocalDate{
      * of any edge cases in the calculation.
      *
      * @param {!number} amountToAdd - the amount of the unit to add to the result, may be negative
-     * @param {!ChronoUnit} unit - the unit of the period to add, not null
+     * @param {!TemporalUnit} unit - the unit of the period to add, not null
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
@@ -998,7 +998,7 @@ export class LocalDate extends ChronoLocalDate{
       * Otherwise {@link LocalDate.minus2} is called.
       * 
       * @param {!(TemporalAmount|number)} p1
-      * @param {ChronoUnit} p2 - required if called with 2 arguments
+      * @param {TemporalUnit} p2 - required if called with 2 arguments
       * @return {LocalDate}
       */
     minus(p1, p2){
@@ -1037,7 +1037,7 @@ export class LocalDate extends ChronoLocalDate{
      * of any edge cases in the calculation.
      *
      * @param {!number} amountToSubtract - the amount of the unit to subtract from the result, may be negative
-     * @param {!ChronoUnit} unit  the unit of the period to subtract, not null
+     * @param {!TemporalUnit} unit  the unit of the period to subtract, not null
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
@@ -1183,7 +1183,7 @@ export class LocalDate extends ChronoLocalDate{
      * otherwise {@link LocalDate.until2}
      * 
      * @param {!TemporalAccessor} p1
-     * @param {ChronoUnit} p2 - not null if called with 2 arguments 
+     * @param {TemporalUnit} p2 - not null if called with 2 arguments
      * @return {number|Period}
      */
     until(p1, p2){
@@ -1230,7 +1230,7 @@ export class LocalDate extends ChronoLocalDate{
      * the second argument.
      *
      * @param {!TemporalAccessor} endExclusive - the end date, which is converted to a {@link LocalDate}, not null
-     * @param {!ChronoUnit} unit - the unit to measure the period in, not null
+     * @param {!TemporalUnit} unit - the unit to measure the period in, not null
      * @return {number} the amount of the period between this date and the end date
      * @throws {DateTimeException} if the period cannot be calculated
      * @throws {ArithmeticException} if numeric overflow occurs

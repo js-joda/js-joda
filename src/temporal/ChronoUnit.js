@@ -8,6 +8,7 @@ import {MathUtil} from '../MathUtil';
 
 import {Duration} from '../Duration';
 import {Year} from '../Year';
+import {TemporalUnit} from './TemporalUnit';
 
 /**
  * A standard set of date periods units.
@@ -19,9 +20,8 @@ import {Year} from '../Year';
  * For example, most non-ISO calendar systems define units of years, months and days,
  * just with slightly different rules.
  * The documentation of each unit explains how it operates.
- *
  */
-export class ChronoUnit /*implements TemporalUnit*/ {
+export class ChronoUnit extends TemporalUnit {
 
     /**
      * 
