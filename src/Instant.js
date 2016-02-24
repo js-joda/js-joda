@@ -11,9 +11,6 @@ import {LocalTime} from './LocalTime';
 import {MathUtil} from './MathUtil';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 
-// TODO verify the arbitrary values for min/ max seconds, set to 999_999 Years for now
-const MIN_SECONDS = -31619087596800; // -999999-01-01T00:00:00
-const MAX_SECONDS = 31494784780799; // +999999-12-31T23:59:59
 const NANOS_PER_MILLI = 1000000;
 
 /**
@@ -105,6 +102,18 @@ const NANOS_PER_MILLI = 1000000;
  * The Java time-scale is used for all date-time classes.
  * This includes {@code Instant}, {@code LocalDate}, {@code LocalTime}, {@code OffsetDateTime},
  * {@code ZonedDateTime} and {@code Duration}.
+ *
+ * <h3>Static properties of Class {@link Instant}</h3>
+ *
+ * Instant.EPOCH
+ *
+ * Instant.MIN
+ *
+ * Instant.MAX
+ *
+ * Instant.MIN_SECONDS
+ *
+ * Instant.MAX_SECONDS
  *
  */
 export class Instant extends TemporalAccessor {
@@ -496,14 +505,19 @@ export class Instant extends TemporalAccessor {
     }
 
     static validate(seconds, nanoOfSecond){
-        if (seconds < MIN_SECONDS || seconds > MAX_SECONDS) {
+        if (seconds < Instant.MIN_SECONDS || seconds > Instant.MAX_SECONDS) {
+            throw new DateTimeException('Instant exceeds minimum or maximum instant');
+        }
+        if (nanoOfSecond < 0 || nanoOfSecond > LocalTime.NANOS_PER_SECOND) {
             throw new DateTimeException('Instant exceeds minimum or maximum instant');
         }
     }
 }
 
 export function _init() {
+    Instant.MIN_SECONDS = -31619087596800; // -999999-01-01T00:00:00
+    Instant.MAX_SECONDS = 31494784780799; // +999999-12-31T23:59:59
     Instant.EPOCH = new Instant(0, 0);
-    Instant.MIN = Instant.ofEpochSecond(MIN_SECONDS, 0);
-    Instant.MAX = Instant.ofEpochSecond(MAX_SECONDS, 999999999);
+    Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);
+    Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999);
 }
