@@ -45,8 +45,22 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
  * However, any application that makes use of historical dates, and requires them
  * to be accurate will find the ISO-8601 approach unsuitable.
  *
- * <h3>Specification for implementors</h3>
- * This class is immutable and thread-safe.
+ * <h3>Static properties of Class {@link LocalTime}</h3>
+ *
+ * LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
+ *
+ * The minimum supported {@code LocalDateTime}, '-999999999-01-01T00:00:00'.
+ * This is the local date-time of midnight at the start of the minimum date.
+ * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.
+ * This could be used by an application as a 'far past' date-time.
+ *
+ * LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
+ *
+ * The maximum supported {@code LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
+ * This is the local date-time just before midnight at the end of the maximum date.
+ * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.
+ * This could be used by an application as a 'far future' date-time.
+ *
  */
 export class LocalDateTime extends ChronoLocalDateTime
         /** extends ChronoLocalDateTime<LocalDate>
