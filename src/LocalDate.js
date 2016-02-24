@@ -57,6 +57,19 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  * For most applications written today, the ISO-8601 rules are entirely suitable.
  * However, any application that makes use of historical dates, and requires them
  * to be accurate will find the ISO-8601 approach unsuitable.
+ *
+ * <h3>Static properties of Class {@link LocalDate}</h3>
+ *
+ * LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
+ *
+ * The minimum supported {@link LocalDate}
+ * This could be used by an application as a "far past" date.
+ *
+ * LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
+ *
+ * The maximum supported {@link LocalDate}
+ * This could be used by an application as a "far future" date.
+ *
  */
 export class LocalDate extends ChronoLocalDate{
 
