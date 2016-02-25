@@ -201,4 +201,31 @@ d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in total days.
 
 ```
 
+### Converting from and to other temporals
 
+```javascript
+
+// obtain a LocalDate from a LocalDateTime instance
+LocalDate.from(LocalDateTime.now()); // current LocalDate e.g. 2016-02-25
+LocalDateTime.now().toLocalDate(); // same
+
+var d1 = LocalDate.parse('2016-02-25');
+
+// obtain a LocalDateTime at a certain LocalTime
+d1.atStartOfDay(); // '2016-02-25T00:00'
+d1.atTime(LocalTime.of(11, 55)); // '2016-02-25T11:55'
+d1.atTime(LocalTime.NOON); // '2016-02-25T12:00'
+
+// TODO add Basic ZoneDateTime and add a Converterhelper 
+// obtain a LocalDate from an Instant
+// Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
+
+// obtain a LocalDate from a JavaScript Date
+// var javascriptDate = new Date();
+// Instant.ofEpochMilli(javascriptDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+
+// obtaim a LocalDate from a moment
+// var moment = moment();
+// Instant.ofEpochMilli(moment.toDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+
+```
