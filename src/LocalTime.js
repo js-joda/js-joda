@@ -405,11 +405,11 @@ export class LocalTime extends TemporalAccessor /** implements Temporal, Tempora
             case ChronoField.SECOND_OF_DAY: return this.toSecondOfDay();
             case ChronoField.MINUTE_OF_HOUR: return this._minute;
             case ChronoField.MINUTE_OF_DAY: return this._hour * 60 + this._minute;
-            case ChronoField.HOUR_OF_AMPM: return this._hour % 12;
+            case ChronoField.HOUR_OF_AMPM: return MathUtil.intMod(this._hour, 12);
             case ChronoField.CLOCK_HOUR_OF_AMPM: var ham = MathUtil.intMod(this._hour, 12); return (ham % 12 === 0 ? 12 : ham);
             case ChronoField.HOUR_OF_DAY: return this._hour;
             case ChronoField.CLOCK_HOUR_OF_DAY: return (this._hour === 0 ? 24 : this._hour);
-            case ChronoField.AMPM_OF_DAY: return this._hour / 12;
+            case ChronoField.AMPM_OF_DAY: return MathUtil.intDiv(this._hour, 12);
         }
         throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
     }
