@@ -25,12 +25,12 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
  * A date-time without a time-zone in the ISO-8601 calendar system,
  * such as {@code 2007-12-03T10:15:30}.
  * <p>
- * {@code LocalDateTime} is an immutable date-time object that represents a date-time,
+ * {@link LocalDateTime} is an immutable date-time object that represents a date-time,
  * often viewed as year-month-day-hour-minute-second. Other date and time fields,
  * such as day-of-year, day-of-week and week-of-year, can also be accessed.
  * Time is represented to nanosecond precision.
  * For example, the value '2nd October 2007 at 13:45.30.123456789' can be
- * stored in a {@code LocalDateTime}.
+ * stored in a {@link LocalDateTime}.
  * <p>
  * This class does not store or represent a time-zone.
  * Instead, it is a description of the date, as used for birthdays, combined with
@@ -47,16 +47,16 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
  *
  * <h3>Static properties of Class {@link LocalTime}</h3>
  *
- * LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
+ * LocalDateTime.MIN
  *
- * The minimum supported {@code LocalDateTime}, '-999999999-01-01T00:00:00'.
+ * The minimum supported {@link LocalDateTime}, '-999999999-01-01T00:00:00'.
  * This is the local date-time of midnight at the start of the minimum date.
  * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.
  * This could be used by an application as a 'far past' date-time.
  *
- * LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
+ * LocalDateTime.MAX
  *
- * The maximum supported {@code LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
+ * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
  * This is the local date-time just before midnight at the end of the maximum date.
  * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.
  * This could be used by an application as a 'far future' date-time.
@@ -76,8 +76,8 @@ export class LocalDateTime extends ChronoLocalDateTime
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param zone  the zone ID to use, not null
-     * @return the current date-time using the system clock, not null
+     * @param {ZoneId} zone - the zone ID to use, not null
+     * @return {LocalDateTime} the current date-time using the system clock, not null
      */
     /*
         static now(zone) {
@@ -92,7 +92,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock dependency injection}.
      *
-     * @param {Clock} clock  the clock to use, defaults to Clock.systemDefaultZone()
+     * @param {Clock} clock - the clock to use, defaults to Clock.systemDefaultZone()
      * @return {LocalDateTime} the current date-time, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
@@ -103,44 +103,54 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     //-----------------------------------------------------------------------
+    /**
+     * function overloading for {@link LocalDateTime.of}
+     * 
+     * if called with 2 arguments and first argument is an instance of LocalDate and second is an
+     * instance of LocalTime, then {@link LocalDateTime.ofDateAndTime} is executed.
+     * 
+     * Otherwise {@link LocalDateTime.ofNumbers} is executed.
+     * 
+     * @returns {LocalDateTime}
+     */
     static of(){
         if (arguments.length === 2 && (arguments[0] instanceof LocalDate || arguments[1] instanceof LocalTime)){
-            return LocalDateTime._ofDateAndTime.apply(this, arguments);
+            return LocalDateTime.ofDateAndTime.apply(this, arguments);
         } else {
-            return LocalDateTime._of.apply(this, arguments);
+            return LocalDateTime.ofNumbers.apply(this, arguments);
         }
     }
     /**
-     * Obtains an instance of {@code LocalDateTime} from year, month,
+     * Obtains an instance of {@link LocalDateTime} from year, month,
      * day, hour, minute, second and nanosecond.
      * <p>
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
-     * @param year  the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param month  the month-of-year to represent, from 1 to 12 or from a Month
-     * @param dayOfMonth  the day-of-month to represent, from 1 to 31
-     * @param hour  the hour-of-day to represent, from 0 to 23
-     * @param minute  the minute-of-hour to represent, from 0 to 59
-     * @param second  the second-of-minute to represent, from 0 to 59
-     * @param nanoOfSecond  the nano-of-second to represent, from 0 to 999,999,999
-     * @return the local date-time, not null
-     * @throws DateTimeException if the value of any field is out of range
-     * @throws DateTimeException if the day-of-month is invalid for the month-year
+     * @param {number} [year=0] - the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} [month=0] - the month-of-year to represent, from 1 to 12 or from a Month
+     * @param {number} [dayOfMonth=0] - the day-of-month to represent, from 1 to 31
+     * @param {number} [hour=0] - the hour-of-day to represent, from 0 to 23
+     * @param {number} [minute=0] - the minute-of-hour to represent, from 0 to 59
+     * @param {number} [second=0] - the second-of-minute to represent, from 0 to 59
+     * @param {number} [nanoOfSecond=0] - the nano-of-second to represent, from 0 to 999,999,999
+     * @return {LocalDateTime} the local date-time, not null
+     * @throws {DateTimeException} if the value of any field is out of range
+     * @throws {DateTimeException} if the day-of-month is invalid for the month-year
      */
-    static _of(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
+    static ofNumbers(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
         var date = LocalDate.of(year, month, dayOfMonth);
         var time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
     }
 
     /**
-     * Obtains an instance of {@code LocalDateTime} from a date and time.
+     * Obtains an instance of {@link LocalDateTime} from a date and time.
      *
-     * @param date  the local date, not null
-     * @param time  the local time, not null
-     * @return the local date-time, not null
+     * @param {!LocalDate} date - the local date, not null
+     * @param {!LocalTime} time - the local time, not null
+     * @return {LocalDateTime} the local date-time, not null
      */
-    static _ofDateAndTime(date, time) {
+    static ofDateAndTime(date, time) {
         requireNonNull(date, 'date');
         requireNonNull(time, 'time');
         return new LocalDateTime(date, time);
@@ -148,7 +158,7 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-------------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code LocalDateTime} from an {@code Instant} and zone ID.
+     * Obtains an instance of {@link LocalDateTime} from an {@link Instant} and zone ID.
      * <p>
      * This creates a local date-time based on the specified instant.
      * First, the offset from UTC/Greenwich is obtained using the zone ID and instant,
@@ -157,8 +167,8 @@ export class LocalDateTime extends ChronoLocalDateTime
      *
      * @param {Instant} instant  the instant to create the date-time from, not null
      * @param {ZoneId} zone  the time-zone, which may be an offset, not null
-     * @return the local date-time, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @return {LocalDateTime} the local date-time, not null
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
     static ofInstant(instant, zone) {
         requireNonNull(instant, 'instant');
@@ -169,20 +179,20 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Obtains an instance of {@code LocalDateTime} using seconds from the
+     * Obtains an instance of {@link LocalDateTime} using seconds from the
      * epoch of 1970-01-01T00:00:00Z.
      * <p>
-     * This allows the {@link ChronoField#INSTANT_SECONDS epoch-second} field
+     * This allows the {@link ChronoField.INSTANT_SECONDS} epoch-second field
      * to be converted to a local date-time. This is primarily intended for
      * low-level conversions rather than general application usage.
      *
-     * @param epochSecond  the number of seconds from the epoch of 1970-01-01T00:00:00Z
-     * @param nanoOfSecond  the nanosecond within the second, from 0 to 999,999,999
-     * @param offset  the zone offset, not null
-     * @return the local date-time, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @param {number} epochSecond - the number of seconds from the epoch of 1970-01-01T00:00:00Z
+     * @param {number} nanoOfSecond - the nanosecond within the second, from 0 to 999,999,999
+     * @param {ZoneOffset} offset - the zone offset, not null
+     * @return {LocalDateTime} the local date-time, not null
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
-    static ofEpochSecond(epochSecond, nanoOfSecond, offset) {
+    static ofEpochSecond(epochSecond=0, nanoOfSecond=0, offset) {
         requireNonNull(offset, 'offset');
         var localSecond = epochSecond + offset.totalSeconds();  // overflow caught later
         var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
@@ -194,19 +204,19 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code LocalDateTime} from a temporal object.
+     * Obtains an instance of {@link LocalDateTime} from a temporal object.
      * <p>
-     * A {@code TemporalAccessor} represents some form of date and time information.
-     * This factory converts the arbitrary temporal object to an instance of {@code LocalDateTime}.
+     * A {@link TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@link LocalDateTime}.
      * <p>
-     * The conversion extracts and combines {@code LocalDate} and {@code LocalTime}.
+     * The conversion extracts and combines {@link LocalDate} and {@link LocalTime}.
      * <p>
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used as a query via method reference, {@code LocalDateTime::from}.
      *
-     * @param temporal  the temporal object to convert, not null
-     * @return {LocalDateTime} the local date-time, not null
-     * @throws DateTimeException if unable to convert to a {@code LocalDateTime}
+     * @param {!TemporalAccessor} temporal - the temporal object to convert, not null
+     * @return {LocalDateTime} {LocalDateTime} the local date-time, not null
+     * @throws {DateTimeException} if unable to convert to a {@link LocalDateTime}
      */
     static from(temporal) {
         requireNonNull(temporal, 'temporal');
@@ -226,14 +236,15 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code LocalDateTime} from a text string using a specific formatter.
+     * Obtains an instance of {@link LocalDateTime} from a text string using a specific formatter.
      * <p>
      * The text is parsed using the formatter, returning a date-time.
      *
-     * @param text  the text to parse, not null
-     * @param formatter  the formatter to use, defaults to DateTimeFormatter.ISO_LOCAL_DATE_TIME
-     * @return the parsed local date-time, not null
-     * @throws DateTimeParseException if the text cannot be parsed
+     * @param {!string} text - the text to parse, not null
+     * @param {DateTimeFormatter} [formatter=DateTimeFormatter.ISO_LOCAL_DATE_TIME] - the formatter to use,
+     * defaults to DateTimeFormatter.ISO_LOCAL_DATE_TIME
+     * @return {LocalDateTime} the parsed local date-time, not null
+     * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME) {
         return formatter.parse(text, LocalDateTime.FROM);
@@ -243,8 +254,8 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Constructor.
      *
-     * @param date  the date part of the date-time, validated not null
-     * @param time  the time part of the date-time, validated not null
+     * @param {LocalDate} date - the date part of the date-time, validated not null
+     * @param {LocalTime} time - the time part of the date-time, validated not null
      */
     constructor(date, time) {
         super();
@@ -258,9 +269,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * Returns a copy of this date-time with the new date and time, checking
      * to see if a new object is in fact required.
      *
-     * @param newDate  the date of the new date-time, not null
-     * @param newTime  the time of the new date-time, not null
-     * @return the date-time, not null
+     * @param {LocalDate} newDate - the date of the new date-time, not null
+     * @param {LocalTime} newTime - the time of the new date-time, not null
+     * @return {LocalDateTime} the date-time, not null
      */
     _withDateTime(newDate, newTime) {
         if (this._date === newDate && this._time === newTime) {
@@ -274,50 +285,50 @@ export class LocalDateTime extends ChronoLocalDateTime
      * Checks if the specified field is supported.
      * <p>
      * This checks if this date-time can be queried for the specified field.
-     * If false, then calling the {@link #range(TemporalField) range} and
-     * {@link #get(TemporalField) get} methods will throw an exception.
+     * If false, then calling the {@link LocalDateTime.range} range and
+     * {@link LocalDateTime.get} get methods will throw an exception.
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
      * <ul>
-     * <li>{@code NANO_OF_SECOND}
-     * <li>{@code NANO_OF_DAY}
-     * <li>{@code MICRO_OF_SECOND}
-     * <li>{@code MICRO_OF_DAY}
-     * <li>{@code MILLI_OF_SECOND}
-     * <li>{@code MILLI_OF_DAY}
-     * <li>{@code SECOND_OF_MINUTE}
-     * <li>{@code SECOND_OF_DAY}
-     * <li>{@code MINUTE_OF_HOUR}
-     * <li>{@code MINUTE_OF_DAY}
-     * <li>{@code HOUR_OF_AMPM}
-     * <li>{@code CLOCK_HOUR_OF_AMPM}
-     * <li>{@code HOUR_OF_DAY}
-     * <li>{@code CLOCK_HOUR_OF_DAY}
-     * <li>{@code AMPM_OF_DAY}
-     * <li>{@code DAY_OF_WEEK}
-     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
-     * <li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
-     * <li>{@code DAY_OF_MONTH}
-     * <li>{@code DAY_OF_YEAR}
-     * <li>{@code EPOCH_DAY}
-     * <li>{@code ALIGNED_WEEK_OF_MONTH}
-     * <li>{@code ALIGNED_WEEK_OF_YEAR}
-     * <li>{@code MONTH_OF_YEAR}
-     * <li>{@code EPOCH_MONTH}
-     * <li>{@code YEAR_OF_ERA}
-     * <li>{@code YEAR}
-     * <li>{@code ERA}
+     * <li>{@link ChronoField.NANO_OF_SECOND}
+     * <li>{@link ChronoField.NANO_OF_DAY}
+     * <li>{@link ChronoField.MICRO_OF_SECOND}
+     * <li>{@link ChronoField.MICRO_OF_DAY}
+     * <li>{@link ChronoField.MILLI_OF_SECOND}
+     * <li>{@link ChronoField.MILLI_OF_DAY}
+     * <li>{@link ChronoField.SECOND_OF_MINUTE}
+     * <li>{@link ChronoField.SECOND_OF_DAY}
+     * <li>{@link ChronoField.MINUTE_OF_HOUR}
+     * <li>{@link ChronoField.MINUTE_OF_DAY}
+     * <li>{@link ChronoField.HOUR_OF_AMPM}
+     * <li>{@link ChronoField.CLOCK_HOUR_OF_AMPM}
+     * <li>{@link ChronoField.HOUR_OF_DAY}
+     * <li>{@link ChronoField.CLOCK_HOUR_OF_DAY}
+     * <li>{@link ChronoField.AMPM_OF_DAY}
+     * <li>{@link ChronoField.DAY_OF_WEEK}
+     * <li>{@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH}
+     * <li>{@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR}
+     * <li>{@link ChronoField.DAY_OF_MONTH}
+     * <li>{@link ChronoField.DAY_OF_YEAR}
+     * <li>{@link ChronoField.EPOCH_DAY}
+     * <li>{@link ChronoField.ALIGNED_WEEK_OF_MONTH}
+     * <li>{@link ChronoField.ALIGNED_WEEK_OF_YEAR}
+     * <li>{@link ChronoField.MONTH_OF_YEAR}
+     * <li>{@link ChronoField.EPOCH_MONTH}
+     * <li>{@link ChronoField.YEAR_OF_ERA}
+     * <li>{@link ChronoField.YEAR}
+     * <li>{@link ChronoField.ERA}
      * </ul>
-     * All other {@code ChronoField} instances will return false.
+     * All other {@link ChronoField} instances will return false.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing {@link this} as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param fieldOrUnit  the field to check, null returns false
-     * @return true if the field is supported on this date-time, false if not
+     * @param {TemporalField|TemporalUnit} fieldOrUnit - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this date-time, false if not
      */
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof ChronoField) {
@@ -339,16 +350,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link #isSupported(TemporalField) supported fields} will return
      * appropriate range instances.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
+     * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     * passing {@link this} as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param field  the field to query the range for, not null
-     * @return the range of valid values for the field, not null
-     * @throws DateTimeException if the range for the field cannot be obtained
+     * @param {!TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws {DateTimeException} if the range for the field cannot be obtained
      */
     range(field) {
         if (field instanceof ChronoField) {
@@ -358,7 +369,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Gets the value of the specified field from this date-time as an {@code int}.
+     * Gets the value of the specified field from this date-time as an {@link int}.
      * <p>
      * This queries this date-time for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
@@ -367,20 +378,20 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link #isSupported(TemporalField) supported fields} will return valid
-     * values based on this date-time, except {@code NANO_OF_DAY}, {@code MICRO_OF_DAY},
-     * {@code EPOCH_DAY} and {@code EPOCH_MONTH} which are too large to fit in
-     * an {@code int} and throw a {@code DateTimeException}.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * values based on this date-time, except {@link NANO_OF_DAY}, {@link MICRO_OF_DAY},
+     * {@link EPOCH_DAY} and {@link EPOCH_MONTH} which are too large to fit in
+     * an {@link int} and throw a {@link DateTimeException}.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
+     * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * passing {@link this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {!TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     get(field) {
         if (field instanceof ChronoField) {
@@ -390,7 +401,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Gets the value of the specified field from this date-time as a {@code long}.
+     * Gets the value of the specified field from this date-time as a {@link long}.
      * <p>
      * This queries this date-time for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
@@ -399,17 +410,17 @@ export class LocalDateTime extends ChronoLocalDateTime
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link #isSupported(TemporalField) supported fields} will return valid
      * values based on this date-time.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
+     * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * passing {@link this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {!TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     getLong(field) {
         requireNonNull(field, 'field');
@@ -423,12 +434,12 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the year field.
      * <p>
-     * This method returns the primitive {@code int} value for the year.
+     * This method returns the primitive {@link int} value for the year.
      * <p>
      * The year returned by this method is proleptic as per {@code get(YEAR)}.
      * To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.
      *
-     * @return the year, from MIN_YEAR to MAX_YEAR
+     * @return {number} the year, from MIN_YEAR to MAX_YEAR
      */
     year() {
         return this._date.year();
@@ -437,11 +448,11 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the month-of-year field from 1 to 12.
      * <p>
-     * This method returns the month as an {@code int} from 1 to 12.
+     * This method returns the month as an {@link int} from 1 to 12.
      * Application code is frequently clearer if the enum {@link Month}
      * is used by calling {@link #getMonth()}.
      *
-     * @return the month-of-year, from 1 to 12
+     * @return {number} the month-of-year, from 1 to 12
      * @see #getMonth()
      */
     monthValue() {
@@ -449,14 +460,14 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Gets the month-of-year field using the {@code Month} enum.
+     * Gets the month-of-year field using the {@link Month} enum.
      * <p>
      * This method returns the enum {@link Month} for the month.
-     * This avoids confusion as to what {@code int} values mean.
-     * If you need access to the primitive {@code int} value then the enum
+     * This avoids confusion as to what {@link int} values mean.
+     * If you need access to the primitive {@link int} value then the enum
      * provides the {@link Month#getValue() int value}.
      *
-     * @return the month-of-year, not null
+     * @return {Month} the month-of-year, not null
      * @see #getMonthValue()
      */
     month() {
@@ -466,9 +477,9 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the day-of-month field.
      * <p>
-     * This method returns the primitive {@code int} value for the day-of-month.
+     * This method returns the primitive {@link int} value for the day-of-month.
      *
-     * @return the day-of-month, from 1 to 31
+     * @return {number} the day-of-month, from 1 to 31
      */
     dayOfMonth() {
         return this._date.dayOfMonth();
@@ -477,26 +488,26 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the day-of-year field.
      * <p>
-     * This method returns the primitive {@code int} value for the day-of-year.
+     * This method returns the primitive {@link int} value for the day-of-year.
      *
-     * @return the day-of-year, from 1 to 365, or 366 in a leap year
+     * @return {number} the day-of-year, from 1 to 365, or 366 in a leap year
      */
     dayOfYear() {
         return this._date.dayOfYear();
     }
 
     /**
-     * Gets the day-of-week field, which is an enum {@code DayOfWeek}.
+     * Gets the day-of-week field, which is an enum {@link DayOfWeek}.
      * <p>
      * This method returns the enum {@link DayOfWeek} for the day-of-week.
-     * This avoids confusion as to what {@code int} values mean.
-     * If you need access to the primitive {@code int} value then the enum
+     * This avoids confusion as to what {@link int} values mean.
+     * If you need access to the primitive {@link int} value then the enum
      * provides the {@link DayOfWeek#getValue() int value}.
      * <p>
-     * Additional information can be obtained from the {@code DayOfWeek}.
+     * Additional information can be obtained from the {@link DayOfWeek}.
      * This includes textual names of the values.
      *
-     * @return the day-of-week, not null
+     * @return {number} the day-of-week, not null
      */
     dayOfWeek() {
         return this._date.dayOfWeek();
@@ -506,7 +517,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the hour-of-day field.
      *
-     * @return the hour-of-day, from 0 to 23
+     * @return {number} the hour-of-day, from 0 to 23
      */
     hour() {
         return this._time.hour();
@@ -515,7 +526,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the minute-of-hour field.
      *
-     * @return the minute-of-hour, from 0 to 59
+     * @return {number} the minute-of-hour, from 0 to 59
      */
     minute() {
         return this._time.minute();
@@ -524,7 +535,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the second-of-minute field.
      *
-     * @return the second-of-minute, from 0 to 59
+     * @return {number} the second-of-minute, from 0 to 59
      */
     second() {
         return this._time.second();
@@ -533,25 +544,35 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Gets the nano-of-second field.
      *
-     * @return the nano-of-second, from 0 to 999,999,999
+     * @return {number} the nano-of-second, from 0 to 999,999,999
      */
     nano() {
         return this._time.nano();
     }
 
     //-----------------------------------------------------------------------
-
-    with(){
+    /**
+     * function overloading for {@link LocalDateTime.with}
+     *
+     * if called with 1 argument, {@link LocalDateTime.withTemporalAdjuster} is applied,
+     * otherwise {@link LocalDateTime.with2}.
+     *
+     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
+     * @param {number} newValue - only require if first argument is a TemporalField
+     * @returns {LocalDateTime}
+     */
+    with(adjusterOrField, newValue){
         if(arguments.length === 1){
-            return this._withTemporalAdjuster.apply(this, arguments);
+            return this.withTemporalAdjuster(adjusterOrField);
         } else {
-            return this._with2.apply(this, arguments);
+            return this.with2(adjusterOrField, newValue);
         }
     }
+
     /**
      * Returns an adjusted copy of this date-time.
      * <p>
-     * This returns a new {@code LocalDateTime}, based on this one, with the date-time adjusted.
+     * This returns a new {@link LocalDateTime}, based on this one, with the date-time adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
      * <p>
@@ -559,7 +580,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * A more complex adjuster might set the date to the last day of the month.
      * A selection of common adjustments is provided in {@link TemporalAdjusters}.
      * These include finding the 'last day of the month' and 'next Wednesday'.
-     * Key date-time classes also implement the {@code TemporalAdjuster} interface,
+     * Key date-time classes also implement the {@link TemporalAdjuster} interface,
      * such as {@link Month} and {@link MonthDay MonthDay}.
      * The adjuster is responsible for handling special cases, such as the varying
      * lengths of month and leap years.
@@ -572,7 +593,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      *  result = localDateTime.with(JULY).with(lastDayOfMonth());
      * </pre>
      * <p>
-     * The classes {@link LocalDate} and {@link LocalTime} implement {@code TemporalAdjuster},
+     * The classes {@link LocalDate} and {@link LocalTime} implement {@link TemporalAdjuster},
      * thus this method can be used to change the date, time or offset:
      * <pre>
      *  result = localDateTime.with(date);
@@ -581,16 +602,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
-     * specified adjuster passing {@code this} as the argument.
+     * specified adjuster passing {@link this} as the argument.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param adjuster the adjuster to use, not null
-     * @return a {@code LocalDateTime} based on {@code this} with the adjustment made, not null
-     * @throws DateTimeException if the adjustment cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
+     * @return {LocalDateTime} a {@link LocalDateTime} based on {@link this} with the adjustment made, not null
+     * @throws {DateTimeException} if the adjustment cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
-    _withTemporalAdjuster(adjuster) {
+    withTemporalAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
@@ -607,7 +628,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Returns a copy of this date-time with the specified field set to a new value.
      * <p>
-     * This returns a new {@code LocalDateTime}, based on this one, with the value
+     * This returns a new {@link LocalDateTime}, based on this one, with the value
      * for the specified field changed.
      * This can be used to change any supported field, such as the year, month or day-of-month.
      * If it is not possible to set the value, because the field is not supported or for
@@ -622,22 +643,22 @@ export class LocalDateTime extends ChronoLocalDateTime
      * The {@link #isSupported(TemporalField) supported fields} will behave as per
      * the matching method on {@link LocalDate#with(TemporalField, long) LocalDate}
      * or {@link LocalTime#with(TemporalField, long) LocalTime}.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
+     * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
-     * passing {@code this} as the argument. In this case, the field determines
+     * passing {@link this} as the argument. In this case, the field determines
      * whether and how to adjust the instant.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param field  the field to set in the result, not null
-     * @param newValue  the new value of the field in the result
-     * @return a {@code LocalDateTime} based on {@code this} with the specified field set, not null
-     * @throws DateTimeException if the field cannot be set
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {TemporalField} field - the field to set in the result, not null
+     * @param {number} newValue - the new value of the field in the result
+     * @return {LocalDateTime} a {@link LocalDateTime} based on {@link this} with the specified field set, not null
+     * @throws {DateTimeException} if the field cannot be set
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
-    _with2(field, newValue) {
+    with2(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             if (field.isTimeBased()) {
@@ -651,61 +672,61 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the year altered.
+     * Returns a copy of this {@link LocalDateTime} with the year altered.
      * The time does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param year  the year to set in the result, from MIN_YEAR to MAX_YEAR
-     * @return a {@code LocalDateTime} based on this date-time with the requested year, not null
-     * @throws DateTimeException if the year value is invalid
+     * @param {number} year - the year to set in the result, from MIN_YEAR to MAX_YEAR
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested year, not null
+     * @throws {DateTimeException} if the year value is invalid
      */
     withYear(year) {
         return this._withDateTime(this._date.withYear(year), this._time);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the month-of-year altered.
+     * Returns a copy of this {@link LocalDateTime} with the month-of-year altered.
      * The time does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param month  the month-of-year to set in the result, from 1 (January) to 12 (December)
-     * @return a {@code LocalDateTime} based on this date-time with the requested month, not null
-     * @throws DateTimeException if the month-of-year value is invalid
+     * @param {!(number|Month)} month - the month-of-year to set in the result, from 1 (January) to 12 (December)
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested month, not null
+     * @throws {DateTimeException} if the month-of-year value is invalid
      */
     withMonth(month) {
         return this._withDateTime(this._date.withMonth(month), this._time);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the day-of-month altered.
-     * If the resulting {@code LocalDateTime} is invalid, an exception is thrown.
+     * Returns a copy of this {@link LocalDateTime} with the day-of-month altered.
+     * If the resulting {@link LocalDateTime} is invalid, an exception is thrown.
      * The time does not affect the calculation and will be the same in the result.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
-     * @return a {@code LocalDateTime} based on this date-time with the requested day, not null
-     * @throws DateTimeException if the day-of-month value is invalid
-     * @throws DateTimeException if the day-of-month is invalid for the month-year
+     * @param {number} dayOfMonth - the day-of-month to set in the result, from 1 to 28-31
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested day, not null
+     * @throws {DateTimeException} if the day-of-month value is invalid
+     * @throws {DateTimeException} if the day-of-month is invalid for the month-year
      */
     withDayOfMonth(dayOfMonth) {
         return this._withDateTime(this._date.withDayOfMonth(dayOfMonth), this._time);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the day-of-year altered.
-     * If the resulting {@code LocalDateTime} is invalid, an exception is thrown.
+     * Returns a copy of this {@link LocalDateTime} with the day-of-year altered.
+     * If the resulting {@link LocalDateTime} is invalid, an exception is thrown.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param dayOfYear  the day-of-year to set in the result, from 1 to 365-366
-     * @return a {@code LocalDateTime} based on this date with the requested day, not null
-     * @throws DateTimeException if the day-of-year value is invalid
-     * @throws DateTimeException if the day-of-year is invalid for the year
+     * @param {number} dayOfYear - the day-of-year to set in the result, from 1 to 365-366
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date with the requested day, not null
+     * @throws {DateTimeException} if the day-of-year value is invalid
+     * @throws {DateTimeException} if the day-of-year is invalid for the year
      */
     withDayOfYear(dayOfYear) {
         return this._withDateTime(this._date.withDayOfYear(dayOfYear), this._time);
@@ -713,13 +734,13 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the hour-of-day value altered.
+     * Returns a copy of this {@link LocalDateTime} with the hour-of-day value altered.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param hour  the hour-of-day to set in the result, from 0 to 23
-     * @return a {@code LocalDateTime} based on this date-time with the requested hour, not null
-     * @throws DateTimeException if the hour value is invalid
+     * @param {number} hour - the hour-of-day to set in the result, from 0 to 23
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested hour, not null
+     * @throws {DateTimeException} if the hour value is invalid
      */
     withHour(hour) {
         var newTime = this._time.withHour(hour);
@@ -727,13 +748,13 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the minute-of-hour value altered.
+     * Returns a copy of this {@link LocalDateTime} with the minute-of-hour value altered.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param minute  the minute-of-hour to set in the result, from 0 to 59
-     * @return a {@code LocalDateTime} based on this date-time with the requested minute, not null
-     * @throws DateTimeException if the minute value is invalid
+     * @param {number} minute - the minute-of-hour to set in the result, from 0 to 59
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested minute, not null
+     * @throws {DateTimeException} if the minute value is invalid
      */
     withMinute(minute) {
         var newTime = this._time.withMinute(minute);
@@ -741,13 +762,13 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the second-of-minute value altered.
+     * Returns a copy of this {@link LocalDateTime} with the second-of-minute value altered.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param second  the second-of-minute to set in the result, from 0 to 59
-     * @return a {@code LocalDateTime} based on this date-time with the requested second, not null
-     * @throws DateTimeException if the second value is invalid
+     * @param {number} second - the second-of-minute to set in the result, from 0 to 59
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested second, not null
+     * @throws {DateTimeException} if the second value is invalid
      */
     withSecond(second) {
         var newTime = this._time.withSecond(second);
@@ -755,13 +776,13 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the nano-of-second value altered.
+     * Returns a copy of this {@link LocalDateTime} with the nano-of-second value altered.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param nanoOfSecond  the nano-of-second to set in the result, from 0 to 999,999,999
-     * @return a {@code LocalDateTime} based on this date-time with the requested nanosecond, not null
-     * @throws DateTimeException if the nano value is invalid
+     * @param {number} nanoOfSecond - the nano-of-second to set in the result, from 0 to 999,999,999
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the requested nanosecond, not null
+     * @throws {DateTimeException} if the nano value is invalid
      */
     withNano(nanoOfSecond) {
         var newTime = this._time.withNano(nanoOfSecond);
@@ -770,7 +791,7 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the time truncated.
+     * Returns a copy of this {@link LocalDateTime} with the time truncated.
      * <p>
      * Truncation returns a copy of the original date-time with fields
      * smaller than the specified unit set to zero.
@@ -784,22 +805,33 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param unit  the unit to truncate to, not null
-     * @return a {@code LocalDateTime} based on this date-time with the time truncated, not null
-     * @throws DateTimeException if unable to truncate
+     * @param {TemporalUnit} unit - the unit to truncate to, not null
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the time truncated, not null
+     * @throws {DateTimeException} if unable to truncate
      */
     truncatedTo(unit) {
         return this._withDateTime(this._date, this._time.truncatedTo(unit));
     }
 
     //-----------------------------------------------------------------------
-    plus(){
+    /**
+     * function overloading for {@link LocalDateTime.plus}
+     *
+     * if called with 1 argument {@link LocalDateTime.plusTemporalAmount} is applied,
+     * otherwise {@link LocalDateTime.plus2}
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {LocalDateTime}
+     */
+    plus(amount, unit){
         if(arguments.length === 1){
-            return this._plus1.apply(this, arguments);
+            return this.plusTemporalAmount(amount);
         } else {
-            return this._plus2.apply(this, arguments);
+            return this.plus2(amount, unit);
         }
     }
+
     /**
      * Returns a copy of this date-time with the specified period added.
      * <p>
@@ -811,12 +843,12 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalAmount} amount  the amount to add, not null
+     * @param {TemporalAmount} amount - the amount to add, not null
      * @return {LocalDateTime} based on this date-time with the addition made, not null
-     * @throws DateTimeException if the addition cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the addition cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
-    _plus1(amount) {
+    plusTemporalAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -831,12 +863,12 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToAdd  the amount of the unit to add to the result, may be negative
-     * @param unit  the unit of the period to add, not null
-     * @return a {@code LocalDateTime} based on this date-time with the specified period added, not null
-     * @throws DateTimeException if the unit cannot be added to this type
+     * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
+     * @param {!TemporalUnit} unit - the unit of the period to add, not null
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period added, not null
+     * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    _plus2(amountToAdd, unit) {
+    plus2(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -855,7 +887,7 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in years added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in years added.
      * <p>
      * This method adds the specified amount to the years field in three steps:
      * <ol>
@@ -870,9 +902,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param years  the years to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the years added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} years - the years to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the years added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusYears(years) {
         var newDate = this._date.plusYears(years);
@@ -880,7 +912,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in months added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in months added.
      * <p>
      * This method adds the specified amount to the months field in three steps:
      * <ol>
@@ -895,9 +927,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param months  the months to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the months added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} months - the months to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the months added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusMonths(months) {
         var newDate = this._date.plusMonths(months);
@@ -905,7 +937,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in weeks added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in weeks added.
      * <p>
      * This method adds the specified amount in weeks to the days field incrementing
      * the month and year fields as necessary to ensure the result remains valid.
@@ -915,9 +947,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param weeks  the weeks to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the weeks added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} weeks - the weeks to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the weeks added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusWeeks(weeks) {
         var newDate = this._date.plusWeeks(weeks);
@@ -925,7 +957,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in days added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in days added.
      * <p>
      * This method adds the specified amount to the days field incrementing the
      * month and year fields as necessary to ensure the result remains valid.
@@ -935,9 +967,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param days  the days to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the days added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} days - the days to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the days added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusDays(days) {
         var newDate = this._date.plusDays(days);
@@ -946,65 +978,76 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in hours added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in hours added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param hours  the hours to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the hours added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} hours - the hours to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the hours added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusHours(hours) {
         return this._plusWithOverflow(this._date, hours, 0, 0, 0, 1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in minutes added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in minutes added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param minutes  the minutes to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the minutes added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} minutes - the minutes to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the minutes added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusMinutes(minutes) {
         return this._plusWithOverflow(this._date, 0, minutes, 0, 0, 1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in seconds added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in seconds added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param seconds  the seconds to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the seconds added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} seconds - the seconds to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the seconds added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusSeconds(seconds) {
         return this._plusWithOverflow(this._date, 0, 0, seconds, 0, 1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in nanoseconds added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in nanoseconds added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param nanos  the nanos to add, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the nanoseconds added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} nanos - the nanos to add, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the nanoseconds added, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusNanos(nanos) {
         return this._plusWithOverflow(this._date, 0, 0, 0, nanos, 1);
     }
 
     //-----------------------------------------------------------------------
-    minus(){
+    /**
+     * function overloading for {@link LocalDateTime.minus}
+     *
+     * if called with 1 argument {@link LocalDateTime.minusTemporalAmount} is applied,
+     * otherwise {@link LocalDateTime.minus2}
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {LocalDateTime}
+     */
+    minus(amount, unit){
         if(arguments.length === 1){
-            return this._minus1.apply(this, arguments);
+            return this.minusTemporalAmount(amount);
         } else {
-            return this._minus2.apply(this, arguments);
+            return this.minus2(amount, unit);
         }
     }
+
     /**
      * Returns a copy of this date-time with the specified period subtracted.
      * <p>
@@ -1016,12 +1059,12 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalAmount} amount  the amount to subtract, not null
+     * @param {TemporalAmount} amount - the amount to subtract, not null
      * @return {LocalDateTime} based on this date-time with the subtraction made, not null
-     * @throws DateTimeException if the subtraction cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the subtraction cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
-    _minus1(amount) {
+    minusTemporalAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -1036,19 +1079,19 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToSubtract  the amount of the unit to subtract from the result, may be negative
-     * @param unit  the unit of the period to subtract, not null
-     * @return a {@code LocalDateTime} based on this date-time with the specified period subtracted, not null
-     * @throws DateTimeException if the unit cannot be added to this type
+     * @param {number} amountToSubtract - the amount of the unit to subtract from the result, may be negative
+     * @param {TemporalUnit} unit - the unit of the period to subtract, not null
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period subtracted, not null
+     * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    _minus2(amountToSubtract, unit) {
+    minus2(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this._plus2(-1 * amountToSubtract, unit);
+        return this.plus2(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in years subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in years subtracted.
      * <p>
      * This method subtracts the specified amount from the years field in three steps:
      * <ol>
@@ -1063,16 +1106,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param years  the years to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the years subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} years - the years to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the years subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusYears(years) {
         return this.plusYears(-1 * years);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in months subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in months subtracted.
      * <p>
      * This method subtracts the specified amount from the months field in three steps:
      * <ol>
@@ -1087,16 +1130,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param months  the months to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the months subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} months - the months to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the months subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusMonths(months) {
         return this.plusMonths(-1 * months);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in weeks subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in weeks subtracted.
      * <p>
      * This method subtracts the specified amount in weeks from the days field decrementing
      * the month and year fields as necessary to ensure the result remains valid.
@@ -1106,16 +1149,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param weeks  the weeks to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the weeks subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} weeks - the weeks to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the weeks subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusWeeks(weeks) {
         return this.plusWeeks(-1 * weeks);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in days subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in days subtracted.
      * <p>
      * This method subtracts the specified amount from the days field incrementing the
      * month and year fields as necessary to ensure the result remains valid.
@@ -1125,9 +1168,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param days  the days to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the days subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} days - the days to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the days subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusDays(days) {
         return this.plusDays(-1 * days);
@@ -1135,52 +1178,52 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in hours subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in hours subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param hours  the hours to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the hours subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} hours - the hours to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the hours subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusHours(hours) {
         return this._plusWithOverflow(this._date, hours, 0, 0, 0, -1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in minutes subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in minutes subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param minutes  the minutes to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the minutes subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} minutes - the minutes to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the minutes subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusMinutes(minutes) {
         return this._plusWithOverflow(this._date, 0, minutes, 0, 0, -1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in seconds subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in seconds subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param seconds  the seconds to subtract, may be negative
-     * @return a {@code LocalDateTime} based on this date-time with the seconds subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @param {number} seconds - the seconds to subtract, may be negative
+     * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the seconds subtracted, not null
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusSeconds(seconds) {
         return this._plusWithOverflow(this._date, 0, 0, seconds, 0, -1);
     }
 
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period in nanoseconds subtracted.
+     * Returns a copy of this {@link LocalDateTime} with the specified period in nanoseconds subtracted.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Number} nanos  the nanos to subtract, may be negative
+     * @param {Number} nanos - the nanos to subtract, may be negative
      * @return {LocalDateTime} based on this date-time with the nanoseconds subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusNanos(nanos) {
         return this._plusWithOverflow(this._date, 0, 0, 0, nanos, -1);
@@ -1188,16 +1231,16 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code LocalDateTime} with the specified period added.
+     * Returns a copy of this {@link LocalDateTime} with the specified period added.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
      * @param {LocalDate} newDate  the new date to base the calculation on, not null
-     * @param {Number} hours  the hours to add, may be negative
-     * @param {Number} minutes the minutes to add, may be negative
-     * @param {Number} seconds the seconds to add, may be negative
-     * @param {Number} nanos the nanos to add, may be negative
-     * @param {Number} sign  the sign to determine add or subtract
+     * @param {Number} hours - the hours to add, may be negative
+     * @param {Number} minutes - the minutes to add, may be negative
+     * @param {Number} seconds - the seconds to add, may be negative
+     * @param {Number} nanos - the nanos to add, may be negative
+     * @param {Number} sign - the sign to determine add or subtract
      * @return {LocalDateTime} the combined result, not null
      */
     _plusWithOverflow(newDate, hours, minutes, seconds, nanos, sign) {
@@ -1227,18 +1270,18 @@ export class LocalDateTime extends ChronoLocalDateTime
      * Queries this date-time using the specified query.
      * <p>
      * This queries this date-time using the specified query strategy object.
-     * The {@code TemporalQuery} object defines the logic to be used to
+     * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
      * <p>
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-     * specified query passing {@code this} as the argument.
+     * specified query passing {@link this} as the argument.
      *
      * @param {TemporalQuery} query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
-     * @throws DateTimeException if unable to query (defined by the query)
-     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
     query(query) {
         requireNonNull(query, 'query');
@@ -1268,10 +1311,10 @@ export class LocalDateTime extends ChronoLocalDateTime
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the target object to be adjusted, not null
-     * @return the adjusted object, not null
-     * @throws DateTimeException if unable to make the adjustment
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {TemporalAdjuster} temporal - the target object to be adjusted, not null
+     * @return {LocalDateTime} the adjusted object, not null
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     adjustInto(temporal) {
         return super.adjustInto(temporal);
@@ -1282,9 +1325,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * terms of the specified unit.
      * <p>
      * This calculates the period between two date-times in terms of a single unit.
-     * The start and end points are {@code this} and the specified date-time.
+     * The start and end points are {@link this} and the specified date-time.
      * The result will be negative if the end is before the start.
-     * The {@code Temporal} passed to this method must be a {@code LocalDateTime}.
+     * The {@link Temporal} passed to this method must be a {@link LocalDateTime}.
      * For example, the period in days between two date-times can be calculated
      * using {@code startDateTime.until(endDateTime, DAYS)}.
      * <p>
@@ -1294,8 +1337,8 @@ export class LocalDateTime extends ChronoLocalDateTime
      * will only be one month as it is one minute short of two months.
      * <p>
      * This method operates in association with {@link TemporalUnit#between}.
-     * The result of this method is a {@code long} representing the amount of
-     * the specified unit. By contrast, the result of {@code between} is an
+     * The result of this method is a {@link long} representing the amount of
+     * the specified unit. By contrast, the result of {@link between} is an
      * object that can be used directly in addition/subtraction:
      * <pre>
      *   long period = start.until(end, MONTHS);   // this method
@@ -1303,24 +1346,24 @@ export class LocalDateTime extends ChronoLocalDateTime
      * </pre>
      * <p>
      * The calculation is implemented in this method for {@link ChronoUnit}.
-     * The units {@code NANOS}, {@code MICROS}, {@code MILLIS}, {@code SECONDS},
-     * {@code MINUTES}, {@code HOURS} and {@code HALF_DAYS}, {@code DAYS},
-     * {@code WEEKS}, {@code MONTHS}, {@code YEARS}, {@code DECADES},
-     * {@code CENTURIES}, {@code MILLENNIA} and {@code ERAS} are supported.
-     * Other {@code ChronoUnit} values will throw an exception.
+     * The units {@link NANOS}, {@link MICROS}, {@link MILLIS}, {@link SECONDS},
+     * {@link MINUTES}, {@link HOURS} and {@link HALF_DAYS}, {@link DAYS},
+     * {@link WEEKS}, {@link MONTHS}, {@link YEARS}, {@link DECADES},
+     * {@link CENTURIES}, {@link MILLENNIA} and {@link ERAS} are supported.
+     * Other {@link ChronoUnit} values will throw an exception.
      * <p>
-     * If the unit is not a {@code ChronoUnit}, then the result of this method
+     * If the unit is not a {@link ChronoUnit}, then the result of this method
      * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
-     * passing {@code this} as the first argument and the input temporal as
+     * passing {@link this} as the first argument and the input temporal as
      * the second argument.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param endExclusive  the end date-time, which is converted to a {@code LocalDateTime}, not null
-     * @param unit  the unit to measure the period in, not null
-     * @return the amount of the period between this date-time and the end date-time
-     * @throws DateTimeException if the period cannot be calculated
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {Temporal} endExclusive - the end date-time, which is converted to a {@link LocalDateTime}, not null
+     * @param {TemporalUnit} unit - the unit to measure the period in, not null
+     * @return {number} the amount of the period between this date-time and the end date-time
+     * @throws {DateTimeException} if the period cannot be calculated
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     until(endExclusive, unit) {
         var end = LocalDateTime.from(endExclusive);
@@ -1374,13 +1417,13 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Combines this date-time with an offset to create an {@code OffsetDateTime}.
+     * Combines this date-time with an offset to create an {@link OffsetDateTime}.
      * <p>
-     * This returns an {@code OffsetDateTime} formed from this date-time at the specified offset.
+     * This returns an {@link OffsetDateTime} formed from this date-time at the specified offset.
      * All possible combinations of date-time and offset are valid.
      *
      * @param {ZoneOffset} offset  the offset to combine with, not null
-     * @return the offset date-time formed from this date-time and the specified offset, not null
+     * @return {OffsetDateTime} the offset date-time formed from this date-time and the specified offset, not null
      */
 /*
     atOffset(offset) {
@@ -1389,9 +1432,9 @@ export class LocalDateTime extends ChronoLocalDateTime
 */
 
     /**
-     * Combines this date-time with a time-zone to create a {@code ZonedDateTime}.
+     * Combines this date-time with a time-zone to create a {@link ZonedDateTime}.
      * <p>
-     * This returns a {@code ZonedDateTime} formed from this date-time at the
+     * This returns a {@link ZonedDateTime} formed from this date-time at the
      * specified time-zone. The result will match this date-time as closely as possible.
      * Time-zone rules, such as daylight savings, mean that not every local date-time
      * is valid for the specified zone, thus the local date-time may be adjusted.
@@ -1415,7 +1458,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * {@link ZonedDateTime#ofStrict(LocalDateTime, ZoneOffset, ZoneId)}.
      *
      * @param {ZoneId} zone  the time-zone to use, not null
-     * @return the zoned date-time formed from this date-time, not null
+     * @return {ZonedDateTime} the zoned date-time formed from this date-time, not null
      */
 /*
     atZone(zone) {
@@ -1425,24 +1468,24 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Gets the {@code LocalDate} part of this date-time.
+     * Gets the {@link LocalDate} part of this date-time.
      * <p>
-     * This returns a {@code LocalDate} with the same year, month and day
+     * This returns a {@link LocalDate} with the same year, month and day
      * as this date-time.
      *
-     * @return the date part of this date-time, not null
+     * @return {LocalDate} the date part of this date-time, not null
      */
     toLocalDate() {
         return this._date;
     }
 
     /**
-     * Gets the {@code LocalTime} part of this date-time.
+     * Gets the {@link LocalTime} part of this date-time.
      * <p>
-     * This returns a {@code LocalTime} with the same hour, minute, second and
+     * This returns a {@link LocalTime} with the same hour, minute, second and
      * nanosecond as this date-time.
      *
-     * @return the time part of this date-time, not null
+     * @return {LocalTime} the time part of this date-time, not null
      */
     toLocalTime() {
         return this._time;
@@ -1455,13 +1498,13 @@ export class LocalDateTime extends ChronoLocalDateTime
      * The comparison is primarily based on the date-time, from earliest to latest.
      * It is 'consistent with equals', as defined by {@link Comparable}.
      * <p>
-     * If all the date-times being compared are instances of {@code LocalDateTime},
+     * If all the date-times being compared are instances of {@link LocalDateTime},
      * then the comparison will be entirely based on the date-time.
      * If some dates being compared are in different chronologies, then the
      * chronology is also considered, see {@link ChronoLocalDateTime#compareTo}.
      *
-     * @param other  the other date-time to compare to, not null
-     * @return the comparator value, negative if less, positive if greater
+     * @param {!LocalDateTime} other - the other date-time to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -1475,6 +1518,12 @@ export class LocalDateTime extends ChronoLocalDateTime
 */
     }
 
+    /**
+     *
+     * @param {!LocalDateTime} other
+     * @returns {number}
+     * @private
+     */
     _compareTo0(other) {
         var cmp = this._date.compareTo(other.toLocalDate());
         if (cmp === 0) {
@@ -1501,7 +1550,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
      * but is the same approach as {@link #DATE_TIME_COMPARATOR}.
      *
-     * @param other  the other date-time to compare to, not null
+     * @param {LocalDateTime} other - the other date-time to compare to, not null
      * @return {boolean} true if this date-time is after the specified date-time
      */
     isAfter(other) {
@@ -1534,7 +1583,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
      * but is the same approach as {@link #DATE_TIME_COMPARATOR}.
      *
-     * @param other  the other date-time to compare to, not null
+     * @param {LocalDateTime} other - the other date-time to compare to, not null
      * @return {boolean} true if this date-time is before the specified date-time
      */
     isBefore(other) {
@@ -1567,8 +1616,8 @@ export class LocalDateTime extends ChronoLocalDateTime
      * This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
      * but is the same approach as {@link #DATE_TIME_COMPARATOR}.
      *
-     * @param other  the other date-time to compare to, not null
-     * @return true if this date-time is equal to the specified date-time
+     * @param {*} other - the other date-time to compare to, not null
+     * @return {boolean} true if this date-time is equal to the specified date-time
      */
     isEqual(other) {
         if (other instanceof LocalDateTime) {
@@ -1581,10 +1630,10 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * Checks if this date-time is equal to another date-time.
      * <p>
-     * Compares this {@code LocalDateTime} with another ensuring that the date-time is the same.
-     * Only objects of type {@code LocalDateTime} are compared, other types return false.
+     * Compares this {@link LocalDateTime} with another ensuring that the date-time is the same.
+     * Only objects of type {@link LocalDateTime} are compared, other types return false.
      *
-     * @param other  the object to check, null returns false
+     * @param {*} other - the object to check, null returns false
      * @return {boolean} true if this is equal to the other date-time
      */
     equals(other) {
@@ -1600,7 +1649,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     /**
      * A hash code for this date-time.
      *
-     * @return a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._date.hashCode() ^ this._time.hashCode();
@@ -1608,7 +1657,7 @@ export class LocalDateTime extends ChronoLocalDateTime
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this date-time as a {@code String}, such as {@code 2007-12-03T10:15:30}.
+     * Outputs this date-time as a {@link String}, such as {@code 2007-12-03T10:15:30}.
      * <p>
      * The output will be one of the following ISO-8601 formats:
      * <p><ul>
@@ -1621,21 +1670,21 @@ export class LocalDateTime extends ChronoLocalDateTime
      * The format used will be the shortest that outputs the full value of
      * the time where the omitted parts are implied to be zero.
      *
-     * @return a string representation of this date-time, not null
+     * @return {string} a string representation of this date-time, not null
      */
     toString() {
         return this._date.toString() + 'T' + this._time.toString();
     }
 
     /**
-     * Outputs this date-time as a {@code String} using the formatter.
+     * Outputs this date-time as a {@link String} using the formatter.
      * <p>
      * This date-time will be passed to the formatter
      * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
      *
-     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @param {!DateTimeFormatter} formatter  the formatter to use, not null
      * @return {String} the formatted date-time string, not null
-     * @throws DateTimeException if an error occurs during printing
+     * @throws {DateTimeException} if an error occurs during printing
      */
     format(formatter) {
         requireNonNull(formatter, 'formatter');
@@ -1646,7 +1695,7 @@ export class LocalDateTime extends ChronoLocalDateTime
 
 export function _init(){
     /**
-     * The minimum supported {@code LocalDateTime}, '-999999999-01-01T00:00:00'.
+     * The minimum supported {@link LocalDateTime}, '-999999999-01-01T00:00:00'.
      * This is the local date-time of midnight at the start of the minimum date.
      * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.
      * This could be used by an application as a 'far past' date-time.
@@ -1654,7 +1703,7 @@ export function _init(){
     LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
 
     /**
-     * The maximum supported {@code LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
+     * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
      * This is the local date-time just before midnight at the end of the maximum date.
      * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.
      * This could be used by an application as a 'far future' date-time.
@@ -1664,5 +1713,4 @@ export function _init(){
     LocalDateTime.FROM = createTemporalQuery('LocalDateTime.FROM', (temporal) => {
         return LocalDateTime.from(temporal);
     });
-
 }
