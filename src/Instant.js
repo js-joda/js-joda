@@ -117,10 +117,16 @@ const NANOS_PER_MILLI = 1000000;
  *
  */
 export class Instant extends Temporal {
-    
+
+    /**
+     * 
+     * @param {number} seconds
+     * @param {number} nanoOfSecond
+     * @private
+     */
     constructor(seconds, nanoOfSecond){
         super();
-        Instant.validate(seconds, nanoOfSecond);
+        Instant._validate(seconds, nanoOfSecond);
         this._seconds = seconds;
         this._nanos = nanoOfSecond;
     }
@@ -132,7 +138,7 @@ export class Instant extends Temporal {
      * second 0 is 1970-01-01T00:00:00Z.
      * The nanosecond part of the day is returned by {@code getNanosOfSecond}.
      *
-     * @return the seconds from the epoch of 1970-01-01T00:00:00Z
+     * @return {number} the seconds from the epoch of 1970-01-01T00:00:00Z
      */
     epochSecond(){
         return this._seconds;
@@ -144,10 +150,10 @@ export class Instant extends Temporal {
      * The epoch milli second count is a simple incrementing count of milli seconds where
      * milli second 0 is 1970-01-01T00:00:00Z.
      *
-     * @return the milli seconds from the epoch of 1970-01-01T00:00:00Z
+     * @return {number} the milli seconds from the epoch of 1970-01-01T00:00:00Z
      */
     epochMilli(){
-        return this._seconds * 1000 + this._nanos / 1000000;
+        return this._seconds * 1000 + MathUtil.intDiv(this._nanos, 1000000);
     }
 
     /**
@@ -157,7 +163,7 @@ export class Instant extends Temporal {
      * The nanosecond-of-second value measures the total number of nanoseconds from
      * the second returned by {@code getEpochSecond}.
      *
-     * @return the nanoseconds within the second, always positive, never exceeds 999,999,999
+     * @return {number} the nanoseconds within the second, always positive, never exceeds 999,999,999
      */
     nano(){
         return this._nanos;
@@ -169,8 +175,8 @@ export class Instant extends Temporal {
      *
      * This will query the specified clock to obtain the current time.
      *
-     * @param clock  the clock to use, defaults to the system clock
-     * @return the current instant, not null
+     * @param {Clock} [clock=Clock.systemUTC()] - the clock to use, defaults to the system clock
+     * @return {Instant} the current instant, not null
      */
     static now(clock = Clock.systemUTC()){
         return clock.instant();
@@ -181,8 +187,8 @@ export class Instant extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param secondsToAdd  the seconds to add, positive or negative
-     * @return an {@code Instant} based on this instant with the specified seconds added, not null
+     * @param {number} secondsToAdd  the seconds to add, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified seconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     plusSeconds(secondsToAdd) {
@@ -194,8 +200,8 @@ export class Instant extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param secondsToSubtract  the seconds to subtract, positive or negative
-     * @return an {@code Instant} based on this instant with the specified seconds subtracted, not null
+     * @param {number} secondsToSubtract - the seconds to subtract, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified seconds subtracted, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     minusSeconds(secondsToSubtract) {
@@ -207,8 +213,8 @@ export class Instant extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param nanosToAdd  the nanoseconds to add, positive or negative
-     * @return an {@code Instant} based on this instant with the specified nanoseconds added, not null
+     * @param {number} nanosToAdd - the nanoseconds to add, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified nanoseconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     plusNanos(nanosToAdd) {
@@ -220,9 +226,9 @@ export class Instant extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param secondsToAdd  the seconds to add, positive or negative
-     * @param nanosToAdd  the nanos to add, positive or negative
-     * @return an {@code Instant} based on this instant with the specified seconds added, not null
+     * @param {number} secondsToAdd - the seconds to add, positive or negative
+     * @param {number} nanosToAdd - the nanos to add, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified seconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     _plus(secondsToAdd, nanosToAdd) {
@@ -241,8 +247,8 @@ export class Instant extends Temporal {
      * <p>
      * The comparison is based on the time-line position of the instants.
      *
-     * @param otherInstant  the other instant, null/ undefined returns false
-     * @return true if the other instant is equal to this one
+     * @param {*} otherInstant - the other instant, null/ undefined returns false
+     * @return {boolean} true if the other instant is equal to this one
      */
     equals(otherInstant) {
         if(this === otherInstant){
@@ -290,9 +296,9 @@ export class Instant extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} endExclusive  the end date, which is converted to an {@code Instant}, not null
-     * @param {TemporalUnit} unit  the unit to measure the period in, not null
-     * @return {Number} the amount of the period between this date and the end date
+     * @param {Temporal} endExclusive - the end date, which is converted to an {@code Instant}, not null
+     * @param {TemporalUnit} unit - the unit to measure the period in, not null
+     * @return {number} the amount of the period between this date and the end date
      * @throws DateTimeException if the period cannot be calculated
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -314,12 +320,24 @@ export class Instant extends Temporal {
         return unit.between(this, end);
     }
 
+    /**
+     *
+     * @param {Temporal} end
+     * @returns {number}
+     * @private
+     */
     _nanosUntil(end) {
         let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
         let totalNanos = MathUtil.safeMultiply(secsDiff, LocalTime.NANOS_PER_SECOND);
         return MathUtil.safeAdd(totalNanos, end.nano() - this.nano());
     }
 
+    /**
+     *
+     * @param {Temporal} end
+     * @returns {number}
+     * @private
+     */
     _secondsUntil(end) {
         let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
         let nanosDiff = end.nano() - this.nano();
@@ -350,8 +368,8 @@ export class Instant extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
-     * @return {Number} the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -386,8 +404,8 @@ export class Instant extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
-     * @return {Number} the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -426,8 +444,8 @@ export class Instant extends Temporal {
      * passing {@code this} as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param {TemporalField, TemporalUnit} fieldOrUnit  the field to check, null returns false
-     * @return true if the field is supported on this instant, false if not
+     * @param {TemporalField|TemporalUnit} fieldOrUnit - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this instant, false if not
      */
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof ChronoField) {
@@ -451,7 +469,7 @@ export class Instant extends Temporal {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used as a query via method reference, {@code Instant::from}.
      *
-     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {Instant} the instant, not null
      * @throws DateTimeException if unable to convert to an {@code Instant}
      */
@@ -470,9 +488,9 @@ export class Instant extends Temporal {
      * Obtains an instance of {@code Instant} using seconds from the
      * epoch of 1970-01-01T00:00:00Z.
      *
-     * @param epochSecond  the number of seconds from 1970-01-01T00:00:00Z
-     * @param nanoAdjustment nanoseconds start from the start of epochSecond, if null the nanosecond field is set to zero.
-     * @return an instant, not null
+     * @param {number} epochSecond - the number of seconds from 1970-01-01T00:00:00Z
+     * @param {number} nanoAdjustment nanoseconds start from the start of epochSecond, if null the nanosecond field is set to zero.
+     * @return {Instant} an instant, not null
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
     static ofEpochSecond(epochSecond, nanoAdjustment=0){
@@ -487,8 +505,8 @@ export class Instant extends Temporal {
      * <p>
      * The seconds and nanoseconds are extracted from the specified milliseconds.
      *
-     * @param epochMilli  the number of milliseconds from 1970-01-01T00:00:00Z
-     * @return an instant, not null
+     * @param {number} epochMilli - the number of milliseconds from 1970-01-01T00:00:00Z
+     * @return {Instant} an instant, not null
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
     static ofEpochMilli(epochMilli) {
@@ -497,6 +515,13 @@ export class Instant extends Temporal {
         return Instant._create(secs, mos * 1000000);
     }
 
+    /**
+     *
+     * @param {number} seconds
+     * @param {number} nanoOfSecond
+     * @returns {Instant}
+     * @private
+     */
     static _create(seconds, nanoOfSecond){
         if(seconds === 0 && nanoOfSecond === 0){
             return Instant.EPOCH;
@@ -504,7 +529,13 @@ export class Instant extends Temporal {
         return new Instant(seconds, nanoOfSecond);
     }
 
-    static validate(seconds, nanoOfSecond){
+    /**
+     *
+     * @param {number} seconds
+     * @param {number} nanoOfSecond
+     * @private
+     */
+    static _validate(seconds, nanoOfSecond){
         if (seconds < Instant.MIN_SECONDS || seconds > Instant.MAX_SECONDS) {
             throw new DateTimeException('Instant exceeds minimum or maximum instant');
         }
