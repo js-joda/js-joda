@@ -444,7 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Instant).call(this));
 	
-	        Instant.validate(seconds, nanoOfSecond);
+	        Instant._validate(seconds, nanoOfSecond);
 	        _this._seconds = seconds;
 	        _this._nanos = nanoOfSecond;
 	        return _this;
@@ -458,7 +458,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'epochMilli',
 	        value: function epochMilli() {
-	            return this._seconds * 1000 + this._nanos / 1000000;
+	            return this._seconds * 1000 + _MathUtil.MathUtil.intDiv(this._nanos, 1000000);
 	        }
 	    }, {
 	        key: 'nano',
@@ -639,8 +639,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new Instant(seconds, nanoOfSecond);
 	        }
 	    }, {
-	        key: 'validate',
-	        value: function validate(seconds, nanoOfSecond) {
+	        key: '_validate',
+	        value: function _validate(seconds, nanoOfSecond) {
 	            if (seconds < Instant.MIN_SECONDS || seconds > Instant.MAX_SECONDS) {
 	                throw new _errors.DateTimeException('Instant exceeds minimum or maximum instant');
 	            }
@@ -2815,14 +2815,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'of',
 	        value: function of() {
 	            if (arguments.length === 2 && (arguments[0] instanceof _LocalDate.LocalDate || arguments[1] instanceof _LocalTime.LocalTime)) {
-	                return LocalDateTime._ofDateAndTime.apply(this, arguments);
+	                return LocalDateTime.ofDateAndTime.apply(this, arguments);
 	            } else {
-	                return LocalDateTime._of.apply(this, arguments);
+	                return LocalDateTime.ofNumbers.apply(this, arguments);
 	            }
 	        }
 	    }, {
-	        key: '_of',
-	        value: function _of() {
+	        key: 'ofNumbers',
+	        value: function ofNumbers() {
 	            var year = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
 	            var month = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 	            var dayOfMonth = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
@@ -2836,8 +2836,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return new LocalDateTime(date, time);
 	        }
 	    }, {
-	        key: '_ofDateAndTime',
-	        value: function _ofDateAndTime(date, time) {
+	        key: 'ofDateAndTime',
+	        value: function ofDateAndTime(date, time) {
 	            (0, _assert.requireNonNull)(date, 'date');
 	            (0, _assert.requireNonNull)(time, 'time');
 	            return new LocalDateTime(date, time);
@@ -2853,7 +2853,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'ofEpochSecond',
-	        value: function ofEpochSecond(epochSecond, nanoOfSecond, offset) {
+	        value: function ofEpochSecond() {
+	            var epochSecond = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	            var nanoOfSecond = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	            var offset = arguments[2];
+	
 	            (0, _assert.requireNonNull)(offset, 'offset');
 	            var localSecond = epochSecond + offset.totalSeconds();
 	            var localEpochDay = _MathUtil.MathUtil.floorDiv(localSecond, _LocalTime.LocalTime.SECONDS_PER_DAY);
@@ -2993,16 +2997,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'with',
-	        value: function _with() {
+	        value: function _with(adjusterOrField, newValue) {
 	            if (arguments.length === 1) {
-	                return this._withTemporalAdjuster.apply(this, arguments);
+	                return this.withTemporalAdjuster(adjusterOrField);
 	            } else {
-	                return this._with2.apply(this, arguments);
+	                return this.with2(adjusterOrField, newValue);
 	            }
 	        }
 	    }, {
-	        key: '_withTemporalAdjuster',
-	        value: function _withTemporalAdjuster(adjuster) {
+	        key: 'withTemporalAdjuster',
+	        value: function withTemporalAdjuster(adjuster) {
 	            (0, _assert.requireNonNull)(adjuster, 'adjuster');
 	
 	            if (adjuster instanceof _LocalDate.LocalDate) {
@@ -3016,8 +3020,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return adjuster.adjustInto(this);
 	        }
 	    }, {
-	        key: '_with2',
-	        value: function _with2(field, newValue) {
+	        key: 'with2',
+	        value: function with2(field, newValue) {
 	            (0, _assert.requireNonNull)(field, 'field');
 	            if (field instanceof _ChronoField.ChronoField) {
 	                if (field.isTimeBased()) {
@@ -3079,22 +3083,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'plus',
-	        value: function plus() {
+	        value: function plus(amount, unit) {
 	            if (arguments.length === 1) {
-	                return this._plus1.apply(this, arguments);
+	                return this.plusTemporalAmount(amount);
 	            } else {
-	                return this._plus2.apply(this, arguments);
+	                return this.plus2(amount, unit);
 	            }
 	        }
 	    }, {
-	        key: '_plus1',
-	        value: function _plus1(amount) {
+	        key: 'plusTemporalAmount',
+	        value: function plusTemporalAmount(amount) {
 	            (0, _assert.requireNonNull)(amount, 'amount');
 	            return amount.addTo(this);
 	        }
 	    }, {
-	        key: '_plus2',
-	        value: function _plus2(amountToAdd, unit) {
+	        key: 'plus2',
+	        value: function plus2(amountToAdd, unit) {
 	            (0, _assert.requireNonNull)(unit, 'unit');
 	            if (unit instanceof _ChronoUnit.ChronoUnit) {
 	                switch (unit) {
@@ -3162,24 +3166,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }, {
 	        key: 'minus',
-	        value: function minus() {
+	        value: function minus(amount, unit) {
 	            if (arguments.length === 1) {
-	                return this._minus1.apply(this, arguments);
+	                return this.minusTemporalAmount(amount);
 	            } else {
-	                return this._minus2.apply(this, arguments);
+	                return this.minus2(amount, unit);
 	            }
 	        }
 	    }, {
-	        key: '_minus1',
-	        value: function _minus1(amount) {
+	        key: 'minusTemporalAmount',
+	        value: function minusTemporalAmount(amount) {
 	            (0, _assert.requireNonNull)(amount, 'amount');
 	            return amount.subtractFrom(this);
 	        }
 	    }, {
-	        key: '_minus2',
-	        value: function _minus2(amountToSubtract, unit) {
+	        key: 'minus2',
+	        value: function minus2(amountToSubtract, unit) {
 	            (0, _assert.requireNonNull)(unit, 'unit');
-	            return this._plus2(-1 * amountToSubtract, unit);
+	            return this.plus2(-1 * amountToSubtract, unit);
 	        }
 	    }, {
 	        key: 'minusYears',
@@ -4351,6 +4355,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(9);
 	
+	var _MathUtil = __webpack_require__(4);
+	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
@@ -4372,7 +4378,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
 	
 	var Month = function (_Temporal) {
 	    _inherits(Month, _Temporal);
@@ -4423,8 +4428,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'plus',
 	        value: function plus(months) {
-	            var amount = Math.floor(months % 12) + 12;
-	            var newMonthVal = (this.value() + amount) % 12;
+	            var amount = _MathUtil.MathUtil.intMod(months, 12) + 12;
+	            var newMonthVal = _MathUtil.MathUtil.intMod(this.value() + amount, 12);
 	
 	            newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
 	            return Month.of(newMonthVal);
@@ -4432,7 +4437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'minus',
 	        value: function minus(months) {
-	            return this.plus(-(months % 12));
+	            return this.plus(-1 * _MathUtil.MathUtil.intMod(months, 12));
 	        }
 	    }, {
 	        key: 'length',
@@ -4920,7 +4925,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function ZoneOffset(totalSeconds) {
 	        _classCallCheck(this, ZoneOffset);
 	
-	        ZoneOffset.validateTotalSeconds(totalSeconds);
+	        ZoneOffset._validateTotalSeconds(totalSeconds);
 	        this._totalSeconds = totalSeconds;
 	    }
 	
@@ -4941,15 +4946,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return false;
 	        }
 	    }], [{
-	        key: 'validateTotalSeconds',
-	        value: function validateTotalSeconds(totalSeconds) {
+	        key: '_validateTotalSeconds',
+	        value: function _validateTotalSeconds(totalSeconds) {
 	            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
 	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
 	            }
 	        }
 	    }, {
-	        key: 'validate',
-	        value: function validate(hours, minutes, seconds) {
+	        key: '_validate',
+	        value: function _validate(hours, minutes, seconds) {
 	            if (hours < -18 || hours > 18) {
 	                throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
 	            }
@@ -4987,7 +4992,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'ofHoursMinutesSeconds',
 	        value: function ofHoursMinutesSeconds(hours, minutes, seconds) {
-	            ZoneOffset.validate(hours, minutes, seconds);
+	            ZoneOffset._validate(hours, minutes, seconds);
 	            var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
 	            return ZoneOffset.ofTotalSeconds(totalSeconds);
 	        }
@@ -7877,9 +7882,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
 	        }
 	    }, {
-	        key: 'equal',
-	        value: function equal() {
-	            return this._name;
+	        key: 'equals',
+	        value: function equals(other) {
+	            return this === other;
 	        }
 	    }, {
 	        key: 'toString',
