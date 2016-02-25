@@ -20,41 +20,42 @@ import {LocalTime} from './LocalTime';
  *
  */
 export class ZoneOffset {
+    /**
+     * 
+     * @param {number} totalSeconds
+     */
     constructor(totalSeconds){
-        ZoneOffset.validateTotalSeconds(totalSeconds);
+        ZoneOffset._validateTotalSeconds(totalSeconds);
         this._totalSeconds = totalSeconds;
     }
 
+    /**
+     * 
+     * @returns {number}
+     */
     totalSeconds() {
         return this._totalSeconds;
     }
 
     /**
-     * Checks if this offset is equal to another offset.
-     *
-     * The comparison is based on the amount of the offset in seconds.
-     * This is equivalent to a comparison by ID.
-     *
-     * @param obj  the object to check, null returns false
-     * @return true if this is equal to the other offset
+     * 
+     * @param {number} totalSeconds
+     * @private
      */
-    equals(obj) {
-        if (this === obj) {
-            return true;
-        }
-        if (obj instanceof ZoneOffset) {
-            return this._totalSeconds === obj._totalSeconds;
-        }
-        return false;
-    }
-
-    static validateTotalSeconds(totalSeconds){
+    static _validateTotalSeconds(totalSeconds){
         if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
             throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
         }
     }
 
-    static validate(hours, minutes, seconds) {
+    /**
+     * 
+     * @param {number} hours
+     * @param {number} minutes
+     * @param {number} seconds
+     * @private
+     */
+    static _validate(hours, minutes, seconds) {
         if (hours < -18 || hours > 18) {
             throw new DateTimeException('Zone offset hours not in valid range: value ' + hours +
                     ' is not in the range -18 to 18');
@@ -83,25 +84,53 @@ export class ZoneOffset {
         }
     }
 
+    /**
+     * 
+     * @param {number} hours
+     * @returns {ZoneOffset}
+     */
     static ofHours(hours) {
         return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
     }
 
+    /**
+     * 
+     * @param {number} hours
+     * @param {number} minutes
+     * @returns {ZoneOffset}
+     */
     static ofHoursMinutes(hours, minutes) {
         return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
     }
 
+    /**
+     * 
+     * @param {number} hours
+     * @param {number} minutes
+     * @param {number} seconds
+     * @returns {ZoneOffset}
+     */
     static ofHoursMinutesSeconds(hours, minutes, seconds) {
-        ZoneOffset.validate(hours, minutes, seconds);
+        ZoneOffset._validate(hours, minutes, seconds);
         var totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
+    /**
+     * 
+     * @param {number} totalMinutes
+     * @returns {ZoneOffset}
+     */
     static ofTotalMinutes(totalMinutes) {
         var totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
+    /**
+     * 
+     * @param {number} totalSeconds
+     * @returns {ZoneOffset}
+     */
     static ofTotalSeconds(totalSeconds) {
         if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
             var totalSecs = totalSeconds;
@@ -116,6 +145,25 @@ export class ZoneOffset {
         }
     }
 
+    /**
+     * Checks if this offset is equal to another offset.
+     *
+     * The comparison is based on the amount of the offset in seconds.
+     * This is equivalent to a comparison by ID.
+     *
+     * @param {*} obj - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other offset
+     */
+    equals(obj) {
+        if (this === obj) {
+            return true;
+        }
+        if (obj instanceof ZoneOffset) {
+            return this._totalSeconds === obj._totalSeconds;
+        }
+        return false;
+    }
+    
 }
 
 export function _init() {
