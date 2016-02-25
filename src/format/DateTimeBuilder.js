@@ -35,11 +35,9 @@ import {Period} from '../Period';
  * like {@code LocalDateTime}.
  * </ul><p>
  *
- * <h3>Specification for implementors</h3>
- * This class is mutable and not thread-safe.
- * It should only be used from a single thread.
  */
 export class DateTimeBuilder extends Temporal {
+
     constructor(){
         super();
 
@@ -91,8 +89,8 @@ export class DateTimeBuilder extends Temporal {
      * If the field is already present and it has a different value to that specified, then
      * an exception is thrown.
      *
-     * @param {TemporalField} field  the field to add, not null
-     * @param {Number} value  the value to add, not null
+     * @param {TemporalField} field - the field to add, not null
+     * @param {Number} value - the value to add, not null
      * @return {DateTimeBuilder}, this for method chaining
      * @throws DateTimeException if the field is already present with a different value
      */
@@ -108,7 +106,7 @@ export class DateTimeBuilder extends Temporal {
     /**
      * @param {TemporalField} field
      * @param {Number} value
-     * @param {DateTimeBuilder} this
+     * @return {DateTimeBuilder}, this for method chaining
      */
     _putFieldValue0(field, value) {
         this.fieldValues.put(field, value);
@@ -122,8 +120,8 @@ export class DateTimeBuilder extends Temporal {
      * available date and time, throwing an exception if a problem occurs.
      * Calling this method changes the state of the builder.
      *
-     * @param resolverStyle how to resolve
-     * @param resolverFields
+     * @param {ResolverStyle} resolverStyle - how to resolve
+     * @param {Set<TemporalField>} resolverFields
      * @return {DateTimeBuilder} this, for method chaining
      */
     resolve(resolverStyle, resolverFields) {
@@ -150,6 +148,11 @@ export class DateTimeBuilder extends Temporal {
         return this;
     }
 
+    /**
+     *
+     * @param {ResolverStyle} resolverStyle
+     * @private
+     */
     _mergeDate(resolverStyle) {
         //if (this.chrono instanceof IsoChronology) {
         this._checkDate(IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
@@ -161,6 +164,11 @@ export class DateTimeBuilder extends Temporal {
         //}
     }
 
+    /**
+     *
+     * @param {LocalDate} date
+     * @private
+     */
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
@@ -187,6 +195,11 @@ export class DateTimeBuilder extends Temporal {
         }
     }
 
+    /**
+     *
+     * @param {ResolverStyle} resolverStyle
+     * @private
+     */
     _mergeTime(resolverStyle) {
         if (this.fieldValues.containsKey(ChronoField.CLOCK_HOUR_OF_DAY)) {
             let ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_DAY);
@@ -401,6 +414,11 @@ export class DateTimeBuilder extends Temporal {
         this.fieldValues.remove(ChronoField.NANO_OF_SECOND);
     }
 
+    /**
+     *
+     * @param {ChronoLocalDate|LocalTime} dateOrTime
+     * @private
+     */
     _addObject(dateOrTime) {
         if (dateOrTime instanceof ChronoLocalDate){
             this.date = dateOrTime;
@@ -415,14 +433,19 @@ export class DateTimeBuilder extends Temporal {
      * This attempts to build the specified type from this builder.
      * If the builder cannot return the type, an exception is thrown.
      *
-     * @param type  the type to invoke {@code from} on, not null
-     * @return the extracted value, not null
+     * @param {!TemporalQuery} type - the type to invoke {@code from} on, not null
+     * @return {*} the extracted value, not null
      * @throws DateTimeException if an error occurs
      */
     build(type) {
         return type.queryFrom(this);
     }
 
+    /**
+     *
+     * @param {!TemporalQuery} query
+     * @returns {*}
+     */
     query(query) {
         if (query === TemporalQueries.zoneId()) {
             return this.zone;
