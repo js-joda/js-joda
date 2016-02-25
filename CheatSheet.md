@@ -342,6 +342,20 @@ t.plusSeconds(1).with(nextEvenSecond) // '11:55:44'
 
 ```
 
+### truncate a LocalTime instance
+
+```javascript
+
+var t = LocalTime.parse('23:55:42.123')
+
+t.truncatedTo(ChronoUnit.SECONDS); // '23:55:42'
+t.truncatedTo(ChronoUnit.MINUTES); // '23:55:00'
+t.truncatedTo(ChronoUnit.HOURS);   // '23:00'
+t.truncatedTo(ChronoUnit.HALF_DAYS); // '12:00'
+t.truncatedTo(ChronoUnit.DAYS);      // '00:00'
+
+```
+
 ### Compare LocalTime instances
 
 ```javascript
