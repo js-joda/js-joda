@@ -3,7 +3,10 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {assert} from './assert';
+import {MathUtil} from './MathUtil';
+
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
@@ -14,7 +17,7 @@ import {TemporalQueries} from './temporal/TemporalQueries';
 /**
  * A month-of-year, such as 'July'.
  * <p>
- * {@code Month} is representing the 12 months of the year -
+ * {@link Month} is representing the 12 months of the year -
  * January, February, March, April, May, June, July, August, September, October,
  * November and December.
  * <p>
@@ -68,7 +71,7 @@ export class Month extends Temporal {
      * passing {@code this} as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param {TemporalField} field  the field to check, null returns false
+     * @param {TemporalField} field - the field to check, null returns false
      * @return {boolean} true if the field is supported on this month-of-year, false if not
      */
     isSupported(field) {
@@ -98,7 +101,7 @@ export class Month extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {Number} the value for the field, within the valid range of values
      * @throws DateTimeException if a value for the field cannot be obtained or
      *         the value is outside the range of valid values for the field
@@ -129,7 +132,7 @@ export class Month extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {Number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws UnsupportedTemporalTypeException if the field is not supported
@@ -152,12 +155,12 @@ export class Month extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} months  the months to add, positive or negative
+     * @param {number} months - the months to add, positive or negative
      * @return {Month} the resulting month, not null
      */
     plus(months) {
-        var amount = Math.floor((months % 12)) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
-        var newMonthVal = ((this.value() + amount) % 12);
+        var amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
+        var newMonthVal = MathUtil.intMod((this.value() + amount), 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
         return Month.of(newMonthVal);
@@ -171,11 +174,11 @@ export class Month extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} months  the months to subtract, positive or negative
+     * @param {number} months - the months to subtract, positive or negative
      * @return {Month} the resulting month, not null
      */
     minus(months) {
-        return this.plus(-(months % 12));
+        return this.plus(-1 * MathUtil.intMod(months, 12));
     }
 
     /**
@@ -187,7 +190,7 @@ export class Month extends Temporal {
      * April, June, September and November have 30 days.
      * All other months have 31 days.
      *
-     * @param {boolean} leapYear  true if the length is required for a leap year
+     * @param {boolean} leapYear - true if the length is required for a leap year
      * @return {number} the length of this month in days, from 28 to 31
      */
     length(leapYear) {
@@ -256,7 +259,7 @@ export class Month extends Temporal {
      * This returns the day-of-year that this month begins on, using the leap
      * year flag to determine the length of February.
      *
-     * @param {boolean} leapYear  true if the length is required for a leap year
+     * @param {boolean} leapYear - true if the length is required for a leap year
      * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
      */
     firstDayOfYear(leapYear) {
@@ -324,7 +327,7 @@ export class Month extends Temporal {
         }
     }
     
-        /**
+    /**
      * Queries this month-of-year using the specified query.
      * <p>
      * This queries this month-of-year using the specified query strategy object.
@@ -336,8 +339,8 @@ export class Month extends Temporal {
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
      * specified query passing {@code this} as the argument.
      *
-     * @param {TemporalQuery} query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
      * @throws DateTimeException if unable to query (defined by the query)
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
@@ -356,7 +359,7 @@ export class Month extends Temporal {
     /**
      * toString implementation... in JDK this is inherited from the Enum class
      * 
-     * @returns {String}
+     * @return {String}
      */
     toString() {
         switch (this) {
@@ -391,6 +394,7 @@ export class Month extends Temporal {
 
     /**
      * replacement for enum values
+     * @return {Month[]}
      */
     static values(){
         return MONTHS.slice();
