@@ -29,11 +29,11 @@ const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W
  * Durations and period differ in their treatment of daylight savings time
  * when added to {@link ZonedDateTime}. A {@code Duration} will add an exact
  * number of seconds, thus a duration of one day is always exactly 24 hours.
- * By contrast, a {@code Period} will add a conceptual day, trying to maintain
+ * By contrast, a {@link Period} will add a conceptual day, trying to maintain
  * the local time.
  * <p>
  * For example, consider adding a period of one day and a duration of one day to
- * 18:00 on the evening before a daylight savings gap. The {@code Period} will add
+ * 18:00 on the evening before a daylight savings gap. The {@link Period} will add
  * the conceptual day and result in a {@code ZonedDateTime} at 18:00 the following day.
  * By contrast, the {@code Duration} will add exactly 24 hours, resulting in a
  * {@code ZonedDateTime} at 19:00 the following day (assuming a one hour DST gap).
@@ -64,9 +64,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * do not call the constructor directly
      * use a factory method instead
      *
-     * @param years
-     * @param months
-     * @param days
+     * @param {number} years
+     * @param {number} months
+     * @param {number} days
      * @private
      */
     constructor(years, months, days){
@@ -100,52 +100,52 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Period} representing a number of years.
+     * Obtains a {@link Period} representing a number of years.
      * <p>
      * The resulting period will have the specified years.
      * The months and days units will be zero.
      *
-     * @param years  the number of years, positive or negative
-     * @return the period of years, not null
+     * @param {number} years - the number of years, positive or negative
+     * @return {Period} the period of years, not null
      */
     static ofYears(years) {
         return Period.create(years, 0, 0);
     }
 
     /**
-     * Obtains a {@code Period} representing a number of months.
+     * Obtains a {@link Period} representing a number of months.
      * <p>
      * The resulting period will have the specified months.
      * The years and days units will be zero.
      *
-     * @param months  the number of months, positive or negative
-     * @return the period of months, not null
+     * @param {number} months - the number of months, positive or negative
+     * @return {Period} the period of months, not null
      */
     static ofMonths(months) {
         return Period.create(0, months, 0);
     }
 
     /**
-     * Obtains a {@code Period} representing a number of weeks.
+     * Obtains a {@link Period} representing a number of weeks.
      * <p>
      * The resulting period will have days equal to the weeks multiplied by seven.
      * The years and months units will be zero.
      *
-     * @param weeks  the number of weeks, positive or negative
-     * @return the period of days, not null
+     * @param {number} weeks - the number of weeks, positive or negative
+     * @return {Period} the period of days, not null
      */
     static ofWeeks(weeks) {
         return Period.create(0, 0, MathUtil.safeMultiply(weeks, 7));
     }
 
     /**
-     * Obtains a {@code Period} representing a number of days.
+     * Obtains a {@link Period} representing a number of days.
      * <p>
      * The resulting period will have the specified days.
      * The years and months units will be zero.
      *
-     * @param days  the number of days, positive or negative
-     * @return the period of days, not null
+     * @param {number} days - the number of days, positive or negative
+     * @return {Period} the period of days, not null
      */
     static ofDays(days) {
         return Period.create(0, 0, days);
@@ -153,13 +153,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Period} representing a number of years, months and days.
+     * Obtains a {@link Period} representing a number of years, months and days.
      * <p>
      * This creates an instance based on years, months and days.
      *
-     * @param {!number} years  the amount of years, may be negative
-     * @param {!number} months  the amount of months, may be negative
-     * @param {!number} days  the amount of days, may be negative
+     * @param {!number} years - the amount of years, may be negative
+     * @param {!number} months - the amount of months, may be negative
+     * @param {!number} days - the amount of days, may be negative
      * @return {Period} the period of years, months and days, not null
      */
     static of(years, months, days) {
@@ -168,11 +168,11 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code Period} from a temporal amount.
+     * Obtains an instance of {@link Period} from a temporal amount.
      * <p>
      * This obtains a period based on the specified amount.
-     * A {@code TemporalAmount} represents an  amount of time, which may be
-     * date-based or time-based, which this factory extracts to a {@code Period}.
+     * A {@code TemporalAmount} represents an - amount of time, which may be
+     * date-based or time-based, which this factory extracts to a {@link Period}.
      * <p>
      * The conversion loops around the set of units from the amount and uses
      * the {@link ChronoUnit#YEARS YEARS}, {@link ChronoUnit#MONTHS MONTHS}
@@ -181,9 +181,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * If the amount is a {@code ChronoPeriod} then it must use the ISO chronology.
      *
-     * @param amount  the temporal amount to convert, not null
-     * @return the equivalent period, not null
-     * @throws DateTimeException if unable to convert to a {@code Period}
+     * @param {TemporalAmount} amount - the temporal amount to convert, not null
+     * @return {Period} the equivalent period, not null
+     * @throws DateTimeException if unable to convert to a {@link Period}
      * @throws ArithmeticException if the amount of years, months or days exceeds an int
      */
     static from(amount) {
@@ -220,7 +220,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Period} consisting of the number of years, months,
+     * Obtains a {@link Period} consisting of the number of years, months,
      * and days between two dates.
      * <p>
      * The start date is included, but the end date is not.
@@ -232,11 +232,12 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * The result of this method can be a negative period if the end is before the start.
      * The negative sign will be the same in each of year, month and day.
+
+     * see {@link ChronoLocalDate.until}
      *
-     * @param startDate  the start date, inclusive, not null
-     * @param endDate  the end date, exclusive, not null
-     * @return the period between this date and the end date, not null
-     * @see ChronoLocalDate#until(ChronoLocalDate)
+     * @param {LocalDate} startDate - the start date, inclusive, not null
+     * @param {LocalDate} endDate - the end date, exclusive, not null
+     * @return {Period} the period between this date and the end date, not null
      */
     static between(startDate, endDate) {
         requireNonNull(startDate, 'startDate');
@@ -248,7 +249,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@code Period} from a text string such as {@code PnYnMnD}.
+     * Obtains a {@link Period} from a text string such as {@code PnYnMnD}.
      * <p>
      * This will parse the string produced by {@code toString()} which is
      * based on the ISO-8601 period formats {@code PnYnMnD} and {@code PnW}.
@@ -282,8 +283,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      *   '-P1Y2M'          -- Period.of(-1, -2, 0)
      * </pre>
      *
-     * @param text  the text to parse, not null
-     * @return the parsed period, not null
+     * @param {string} text - the text to parse, not null
+     * @return {Period} the parsed period, not null
      * @throws DateTimeParseException if the text cannot be parsed to a period
      */
     static parse(text) {
@@ -335,23 +336,51 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     /**
      * Creates an instance.
      *
-     * @param years  the amount
-     * @param months  the amount
-     * @param days  the amount
+     * @param {number} years - the amount
+     * @param {number} months - the amount
+     * @param {number} days - the amount
+     * @return {Duration}
      */
     static create(years, months, days) {
         return new Period(years, months, days);
     }
 
     //-----------------------------------------------------------------------
+    /**
+     * Gets the list of units, from largest to smallest, that fully define this amount.
+     *
+     * @returns {ChronoUnit[]} list of units
+     */
     units() {
         return [ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS];
     }
 
+    /**
+     * Gets the chronology that defines the meaning of the supported units.
+     * <p>
+     * The period is defined by the chronology.
+     * It controls the supported units and restricts addition/subtraction
+     * to {@code ChronoLocalDate} instances of the same chronology.
+     *
+     * @return {IsoChronology} the chronology defining the period, not null
+     */
     chronology() {
         return IsoChronology.INSTANCE;
     }
 
+    /**
+     * Gets the value of the requested unit.
+     * <p>
+     * The supported units are chronology specific.
+     * They will typically be {@link ChronoUnit#YEARS YEARS},
+     * {@link ChronoUnit#MONTHS MONTHS} and {@link ChronoUnit#DAYS DAYS}.
+     * Requesting an unsupported unit will throw an exception.
+     *
+     * @param {TemporalUnit} unit the {@code TemporalUnit} for which to return the value
+     * @return {number} the long value of the unit
+     * @throws DateTimeException if the unit is not supported
+     * @throws UnsupportedTemporalTypeException if the unit is not supported
+     */
     get(unit) {
         if (unit === ChronoUnit.YEARS) {
             return this._years;
@@ -371,7 +400,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * A zero period has the value zero for the years, months and days units.
      *
-     * @return true if this period is zero-length
+     * @return {boolean} true if this period is zero-length
      */
     isZero() {
         return (this === Period.ZERO);
@@ -382,7 +411,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This checks whether the years, months or days units are less than zero.
      *
-     * @return true if any unit of this period is negative
+     * @return {boolean} true if any unit of this period is negative
      */
     isNegative() {
         return this._years < 0 || this._months < 0 || this._days < 0;
@@ -398,7 +427,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * This means that a period of '15 months' is different to a period
      * of '1 year and 3 months'.
      *
-     * @return the amount of years of this period, may be negative
+     * @return {number} the amount of years of this period, may be negative
      */
     years() {
         return this._years;
@@ -413,7 +442,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * This means that a period of '15 months' is different to a period
      * of '1 year and 3 months'.
      *
-     * @return the amount of months of this period, may be negative
+     * @return {number} the amount of months of this period, may be negative
      */
     months() {
         return this._months;
@@ -424,7 +453,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This returns the days unit.
      *
-     * @return the amount of days of this period, may be negative
+     * @return {number} the amount of days of this period, may be negative
      */
     days() {
         return this._days;
@@ -443,8 +472,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param years  the years to represent, may be negative
-     * @return a {@code Period} based on this period with the requested years, not null
+     * @param {number} years - the years to represent, may be negative
+     * @return {Period} a {@link Period} based on this period with the requested years, not null
      */
     withYears(years) {
         if (years === this._years) {
@@ -465,8 +494,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param months  the months to represent, may be negative
-     * @return a {@code Period} based on this period with the requested months, not null
+     * @param {number} months - the months to represent, may be negative
+     * @return {Period} a {@link Period} based on this period with the requested months, not null
      */
     withMonths(months) {
         if (months === this._months) {
@@ -483,8 +512,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param days  the days to represent, may be negative
-     * @return a {@code Period} based on this period with the requested days, not null
+     * @param {number} days - the days to represent, may be negative
+     * @return {Period} a {@link Period} based on this period with the requested days, not null
      */
     withDays(days) {
         if (days === this._days) {
@@ -497,7 +526,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     /**
      * Returns a copy of this period with the specified amount added.
      * <p>
-     * This input amount is converted to a {@code Period} using {@code from(TemporalAmount)}.
+     * This input amount is converted to a {@link Period} using {@code from(TemporalAmount)}.
      * This operates separately on the years, months and days.
      * <p>
      * For example, '1 year, 6 months and 3 days' plus '2 years, 2 months and 2 days'
@@ -505,8 +534,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToAdd  the period to add, not null
-     * @return a {@code Period} based on this period with the requested period added, not null
+     * @param {TemporalAmount} amountToAdd - the period to add, not null
+     * @return {Period} a {@link Period} based on this period with the requested period added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     plus(amountToAdd) {
@@ -526,8 +555,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param yearsToAdd  the years to add, positive or negative
-     * @return a {@code Period} based on this period with the specified years added, not null
+     * @param {number} yearsToAdd - the years to add, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified years added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusYears(yearsToAdd) {
@@ -546,8 +575,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param monthsToAdd  the months to add, positive or negative
-     * @return a {@code Period} based on this period with the specified months added, not null
+     * @param {number} monthsToAdd - the months to add, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified months added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusMonths(monthsToAdd) {
@@ -566,8 +595,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param daysToAdd  the days to add, positive or negative
-     * @return a {@code Period} based on this period with the specified days added, not null
+     * @param {number} daysToAdd - the days to add, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified days added, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDays(daysToAdd) {
@@ -581,7 +610,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     /**
      * Returns a copy of this period with the specified amount subtracted.
      * <p>
-     * This input amount is converted to a {@code Period} using {@code from(TemporalAmount)}.
+     * This input amount is converted to a {@link Period} using {@code from(TemporalAmount)}.
      * This operates separately on the years, months and days.
      * <p>
      * For example, '1 year, 6 months and 3 days' minus '2 years, 2 months and 2 days'
@@ -589,8 +618,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToSubtract  the period to subtract, not null
-     * @return a {@code Period} based on this period with the requested period subtracted, not null
+     * @param {TemporalAmount} amountToSubtract - the period to subtract, not null
+     * @return {Period} a {@link Period} based on this period with the requested period subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     minus(amountToSubtract) {
@@ -610,8 +639,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param yearsToSubtract  the years to subtract, positive or negative
-     * @return a {@code Period} based on this period with the specified years subtracted, not null
+     * @param {number} yearsToSubtract - the years to subtract, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified years subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusYears(yearsToSubtract) {
@@ -627,8 +656,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param monthsToSubtract  the years to subtract, positive or negative
-     * @return a {@code Period} based on this period with the specified months subtracted, not null
+     * @param {number} monthsToSubtract - the years to subtract, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified months subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMonths(monthsToSubtract) {
@@ -644,8 +673,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param daysToSubtract  the months to subtract, positive or negative
-     * @return a {@code Period} based on this period with the specified days subtracted, not null
+     * @param {number} daysToSubtract - the months to subtract, positive or negative
+     * @return {Period} a {@link Period} based on this period with the specified days subtracted, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDays(daysToSubtract) {
@@ -660,8 +689,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * This simply multiplies each field, years, months, days and normalized time,
      * by the scalar. No normalization is performed.
      *
-     * @param scalar  the scalar to multiply by, not null
-     * @return a {@code Period} based on this period with the amounts multiplied by the scalar, not null
+     * @param {number} scalar - the scalar to multiply by, not null
+     * @return {Period} a {@link Period} based on this period with the amounts multiplied by the scalar, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     multipliedBy(scalar) {
@@ -677,7 +706,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     /**
      * Returns a new instance with each amount in this period negated.
      *
-     * @return a {@code Period} based on this period with the amounts negated, not null
+     * @return {Period} a {@link Period} based on this period with the amounts negated, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     negated() {
@@ -702,7 +731,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @return a {@code Period} based on this period with excess months normalized to years, not null
+     * @return {Period} a {@link Period} based on this period with excess months normalized to years, not null
      * @throws ArithmeticException if numeric overflow occurs
      */
     normalized() {
@@ -725,7 +754,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @return the total number of months in the period, may be negative
+     * @return {number} the total number of months in the period, may be negative
      */
     toTotalMonths() {
         return this._years * 12 + this._months;  // no overflow
@@ -753,8 +782,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the temporal object to adjust, not null
-     * @return an object of the same type with the adjustment made, not null
+     * @param {Temporal} temporal - the temporal object to adjust, not null
+     * @return {Temporal} an object of the same type with the adjustment made, not null
      * @throws DateTimeException if unable to add
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -802,8 +831,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the temporal object to adjust, not null
-     * @return an object of the same type with the adjustment made, not null
+     * @param {Temporal} temporal - the temporal object to adjust, not null
+     * @return {Temporal} an object of the same type with the adjustment made, not null
      * @throws DateTimeException if unable to subtract
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -833,8 +862,8 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * Note that this means that a period of '15 Months' is not equal to a period
      * of '1 Year and 3 Months'.
      *
-     * @param obj  the object to check, null returns false
-     * @return true if this is equal to the other period
+     * @param {*} obj - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other period
      */
     equals(obj) {
         if (this === obj) {
@@ -852,7 +881,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     /**
      * A hash code for this period.
      *
-     * @return a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._years + (this._months << 8) + (this._days << 16);
@@ -865,7 +894,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * The output will be in the ISO-8601 period format.
      * A zero period will be represented as zero days, 'P0D'.
      *
-     * @return a string representation of this period, not null
+     * @return {string} a string representation of this period, not null
      */
     toString() {
         if (this === Period.ZERO) {
