@@ -12,6 +12,12 @@ export const MIN_SAFE_INTEGER = -9007199254740991;
  * Math helper with static function for integer operations
  */
 export class MathUtil {
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static intDiv(x, y) {
         var r = x/y;
         if(r === 0){
@@ -24,6 +30,12 @@ export class MathUtil {
         return MathUtil.safeZero(r);
     }
 
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static intMod(x, y) {
         var r = x - MathUtil.intDiv(x, y) * y;
         if(r === 0){
@@ -36,16 +48,34 @@ export class MathUtil {
         return MathUtil.safeZero(r);
     }
 
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static floorDiv(x, y){
         var r = Math.floor(x / y);
         return MathUtil.safeZero(r);
     }
 
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static floorMod(x, y){
         var r = x - MathUtil.floorDiv(x, y) * y;
         return MathUtil.safeZero(r);
     }
-    
+
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static safeAdd(x, y) {
         MathUtil.verifyInt(x);
         MathUtil.verifyInt(y);
@@ -61,7 +91,13 @@ export class MathUtil {
         }
         return r;
     }
-    
+
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static safeSubtract(x, y) {
         MathUtil.verifyInt(x);
         MathUtil.verifyInt(y);
@@ -75,6 +111,12 @@ export class MathUtil {
         return MathUtil.safeToInt(x - y);
     }
 
+    /**
+     * 
+     * @param {number} x
+     * @param {number} y
+     * @returns {number}
+     */
     static safeMultiply(x, y) {
         MathUtil.verifyInt(x);
         MathUtil.verifyInt(y);
@@ -94,16 +136,30 @@ export class MathUtil {
         return r;
     }
 
+    /**
+     * 
+     * @param {number} value
+     * @returns {number}
+     */
     static parseInt(value) {
         var r = parseInt(value);
         return MathUtil.safeToInt(r);
     }
 
+    /**
+     * 
+     * @param {number} value
+     * @returns {number}
+     */
     static safeToInt(value) {
         MathUtil.verifyInt(value);
         return MathUtil.safeZero(value);
     }
 
+    /**
+     * 
+     * @param {number} value
+     */
     static verifyInt(value){
         if (value == null) {
             throw new ArithmeticException(`Invalid value: '${value}', using null or undefined as argument`);
@@ -116,6 +172,11 @@ export class MathUtil {
         }
     }
 
+    /**
+     * 
+     * @param {number} value
+     * @returns {number}
+     */
     static safeZero(value){
         return value === 0 ? 0 : value;
     }
@@ -123,9 +184,9 @@ export class MathUtil {
     /**
      * Compares two Numbers.
      *
-     * @param {Number} a  the first value
-     * @param {Number} b  the second value
-     * @return {Number} the result
+     * @param {number} a  the first value
+     * @param {number} b  the second value
+     * @return {number} the result
      */
     static compareNumbers(a, b) {
         if (a < b) {
