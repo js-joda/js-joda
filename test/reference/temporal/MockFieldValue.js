@@ -6,12 +6,12 @@
 
 import {DateTimeException} from '../../../src/errors';
 import {ChronoField} from '../../../src/temporal/ChronoField';
-import {TemporalAccessor} from '../../../src/temporal/TemporalAccessor';
+import {Temporal} from '../../../src/temporal/Temporal';
 
 /**
  * Mock simple date-time with one field-value.
  */
-export class MockFieldValue extends TemporalAccessor {
+export class MockFieldValue extends Temporal {
 
     constructor(field, value) {
         super();

@@ -16,7 +16,7 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
-import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {Temporal} from './temporal/Temporal';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
@@ -107,7 +107,7 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  * Nanos per day.
  *
  */
-export class LocalTime extends TemporalAccessor /** implements Temporal, TemporalAdjuster */ {
+export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuster */ {
     /**
      * Obtains the current time from the specified clock.
      * <p>
@@ -1342,7 +1342,7 @@ export function _init() {
 
     function makeLocalTimeConst(hour = 0, minute = 0, second = 0, nano = 0) {
         var localTime = Object.create(LocalTime.prototype);
-        TemporalAccessor.call(localTime);
+        Temporal.call(localTime);
         localTime._hour = hour;
         localTime._minute = minute;
         localTime._second = second;

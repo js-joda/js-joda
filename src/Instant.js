@@ -9,7 +9,7 @@ import {Clock} from './Clock';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {LocalTime} from './LocalTime';
 import {MathUtil} from './MathUtil';
-import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {Temporal} from './temporal/Temporal';
 
 const NANOS_PER_MILLI = 1000000;
 
@@ -116,7 +116,7 @@ const NANOS_PER_MILLI = 1000000;
  * Instant.MAX_SECONDS
  *
  */
-export class Instant extends TemporalAccessor {
+export class Instant extends Temporal {
     
     constructor(seconds, nanoOfSecond){
         super();

@@ -14,7 +14,7 @@ import {ResolverStyle} from './ResolverStyle';
 import {IsoChronology} from '../chrono/IsoChronology';
 import {ChronoLocalDate} from '../chrono/ChronoLocalDate';
 import {ChronoField} from '../temporal/ChronoField';
-import {TemporalAccessor} from '../temporal/TemporalAccessor';
+import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {LocalTime} from '../LocalTime';
@@ -39,7 +39,7 @@ import {Period} from '../Period';
  * This class is mutable and not thread-safe.
  * It should only be used from a single thread.
  */
-export class DateTimeBuilder extends TemporalAccessor {
+export class DateTimeBuilder extends Temporal {
     constructor(){
         super();
 

@@ -5,9 +5,9 @@
  */
 
 import {DateTimeException} from '../../../src/errors';
-import {TemporalAccessor} from '../../../src/temporal/TemporalAccessor';
+import {Temporal} from '../../../src/temporal/Temporal';
 
-export class EMPTY extends TemporalAccessor{
+export class EMPTY extends Temporal{
     isSupported() {
         return true;
     }

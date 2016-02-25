@@ -10,7 +10,7 @@ import {DateTimeBuilder} from './DateTimeBuilder';
 import {EnumMap} from './EnumMap';
 
 import {IsoChronology} from '../chrono/IsoChronology';
-import {TemporalAccessor} from '../temporal/TemporalAccessor';
+import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 export class DateTimeParseContext{
@@ -185,7 +185,7 @@ export class DateTimeParseContext{
 
 }
 
-class Parsed extends TemporalAccessor {
+class Parsed extends Temporal {
     constructor(dateTimeParseContext){
         super();
         this.chrono = null;

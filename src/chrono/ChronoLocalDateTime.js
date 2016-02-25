@@ -9,7 +9,7 @@ import {MathUtil} from '../MathUtil';
 
 import {LocalDate} from '../LocalDate';
 import {ChronoUnit} from '../temporal/ChronoUnit';
-import {TemporalAccessor} from '../temporal/TemporalAccessor';
+import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 /**
@@ -44,7 +44,7 @@ import {TemporalQueries} from '../temporal/TemporalQueries';
  *
  * @param <D> the date type
  */
-export class ChronoLocalDateTime extends TemporalAccessor {
+export class ChronoLocalDateTime extends Temporal {
         /* <D extends ChronoLocalDate>
         extends DefaultInterfaceTemporal
         implements Temporal, TemporalAdjuster, Comparable<ChronoLocalDateTime<?>> */
