@@ -94,29 +94,31 @@ d.withDayOfMonth(1).get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 1
  
 ```javascript
 
+var d = LocalDate.parse('2016-02-23');
+
 // add/ subtract 366 days 
-LocalDate.parse('2016-02-23').plusDays(366); // '2017-02-23'
-LocalDate.parse('2016-02-23').minusDays(366); // '2015-02-22'
+d.plusDays(366); // '2017-02-23'
+d.minusDays(366); // '2015-02-22'
 
 // add/ subtract 12 months 
-LocalDate.parse('2016-02-23').plusMonths(12); // '2017-02-23'
-LocalDate.parse('2016-02-23').minusMonths(12); // '2015-02-23'
+d.plusMonths(12); // '2017-02-23'
+d.minusMonths(12); // '2015-02-23'
 
 // add/ subtract 4 weeks 
-LocalDate.parse('2016-02-23').plusWeeks(4); // '2016-03-22'
-LocalDate.parse('2016-02-23').minusWeeks(4); // '2016-01-26'
+d.plusWeeks(4); // '2016-03-22'
+d.minusWeeks(4); // '2016-01-26'
 
 // add/ subtract 1 year to the parsed LocalDate and returns a new instance
-LocalDate.parse('2016-02-23').plusYears(1); // '2017-02-23'
-LocalDate.parse('2016-02-23').minusYears(1); // '2015-02-23'
+d.plusYears(1); // '2017-02-23'
+d.minusYears(1); // '2015-02-23'
  
 // add/ subtract 30 years  
-LocalDate.parse('2016-02-23').plus(3, ChronoUnit.DECADES); // '2046-02-23'
-LocalDate.parse('2016-02-23').minus(3, ChronoUnit.DECADES); // '1986-02-23'
+d.plus(3, ChronoUnit.DECADES); // '2046-02-23'
+d.minus(3, ChronoUnit.DECADES); // '1986-02-23'
 
 // add subtract a Period of 3 Months and 3 Days
-LocalDate.parse('2016-02-23').plus(Period.ofMonths(3).plusDays(3))  // '2016-05-26'
-LocalDate.parse('2016-02-23').minus(Period.ofMonths(3).plusDays(3)) // '2015-11-20'
+d.plus(Period.ofMonths(3).plusDays(3))  // '2016-05-26'
+d.minus(Period.ofMonths(3).plusDays(3)) // '2015-11-20'
 
 ```
 
@@ -168,9 +170,7 @@ var d2 = d1.plusDays(2);
 d1.isAfter(d2);  // false
 d1.isBefore(d2); // true
 
-d1.isEqual(d2);  // false
-d1.isEqual(d1.plusDays(0));  // true
-
+d1.equals(d2);   // false
 d1.equals(d1.plusDays(0));   // true
 d1.equals(d1.plusDays(1));   // false
 
@@ -216,7 +216,8 @@ d1.atStartOfDay(); // '2016-02-25T00:00'
 d1.atTime(LocalTime.of(11, 55)); // '2016-02-25T11:55'
 d1.atTime(LocalTime.NOON); // '2016-02-25T12:00'
 
-// TODO add Basic ZoneDateTime and add a Converterhelper 
+// TODO milestone 1
+// add Basic ZoneDateTime and add a Converterhelper 
 // obtain a LocalDate from an Instant
 // Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
 
@@ -229,3 +230,154 @@ d1.atTime(LocalTime.NOON); // '2016-02-25T12:00'
 // Instant.ofEpochMilli(moment.toDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
 
 ```
+
+
+## LocalTime
+
+A LocalTime represents A time without time-zone in the ISO-8601 calendar system such as '10:15:30'
+
+### Create a LocalTime instance
+
+```javascript
+
+// obtain the current time in the system default timezone, e.g. '10:29:05.743'
+LocalTime.now();
+
+// obtain the current time in the utc timezone, e.g. '09:29:05.743'
+LocalTime.now(Clock.systemUTC()); 
+
+// obtain an instance of LocalTime from an ISO8601 formatted text string
+LocalTime.parse('09:42');      // '09:42'
+LocalTime.parse('09:42:42');   // '09:42:42'
+LocalTime.parse('09:42:42.123'); // '09:42:42.123'
+LocalTime.parse('09:42:42.123456789'); // '09:42:42.123456789'
+
+// obtain an instance of LocalDate from a hour, minute, second and nano value
+LocalTime.of(23, 55) // '23:55'
+LocalTime.of(23, 55, 42) // '23:55:42'
+LocalTime.of(23, 55, 42, 123000000) // '23:55:42.123'
+
+
+// obtain an instance of LoclTome from  second of day
+LocalTime.ofSecondOfDay(3666) // '01:01:06'
+
+```
+
+### Get values from LocalTime
+
+```javascript
+
+var t = LocalTime.parse('23:55:42.123');
+
+t.toString();   // '23:55:42.123' ISO8601 format
+
+t.hour();   // 23
+t.minute(); // 55
+t.second(); // 42
+t.nano();   // 123000000
+
+// get other time based fields
+t.get(ChronoField.SECOND_OF_DAY);   // 86142
+t.get(ChronoField.MILLI_OF_SECOND);   // 123
+t.get(ChronoField.HOUR_OF_AMPM);      // 11
+// any other time based ChronoField is allowed as param for get
+
+```
+
+### Adding to/ subtracting from a LocalTime instance
+ 
+```javascript
+
+var t = LocalTime.parse('11:55:42')
+
+// add/ subtract 12 hours 
+t.plusHours(12); // '23:55:42'
+t.minusHours(12); // '23:55:42'
+
+// add/ subtract 30 minutes 
+t.plusMinutes(30); // '12:25:42'
+t.minusMinutes(30); // '11:25:42'
+
+// add/ subtract 30 minutes 
+t.plusSeconds(30); // '11:56:12'
+t.minusSeconds(30); // '11:55:12'
+
+// add/ subtract 1.000.000 nanos (1 milli second) 
+t.plusNanos(1000000); // '11:56:42.001'
+t.minusNanos(1000000); // '11:55:41.999'
+
+// add/ subtract a time based unit
+t.plus(1, ChronoUnit.MILLIS); // '11:55:42.001'
+t.plus(1, ChronoUnit.HALF_DAYS); // '23:55:42'
+
+// add/ subtract a duration of 15 minutes
+t.plus(Duration.ofMinutes(15)); // '12:10:42'
+t.minus(Duration.ofMinutes(15)); // '11:40:42'
+
+```
+
+### Alter certain fields of a LocalTime instance
+
+```javascript
+
+var t = LocalTime.parse('11:55:42')
+
+// set the hour of day to 1
+t.withHour(1); // '01:55:42'
+
+// set the minute of hour to 1
+t.withMinute(1); // '11:01:42'
+
+// set the second of minute to 1
+t.withSecond(1); // '11:55:01'
+
+// set the MILLI_OF_SECOND to 51
+t.with(ChronoField.MILLI_OF_SECOND, 51) // '11:55:42.051'
+
+// set by a custom  TemporalAdjusters
+// sample of a custom adjuster that adjust to the next even second
+nextEvenSecond = { adjustInto: function(t){ return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1); } }
+t.with(nextEvenSecond) // '11:55:44'
+t.plusSeconds(1).with(nextEvenSecond) // '11:55:44'
+
+```
+
+### Compare LocalTime instances
+
+```javascript
+
+var t1 = LocalTime.parse('11:55:42')
+var t2 = t1.plusHours(2);
+
+t1.isAfter(t2);  // false
+t1.isBefore(t2); // true
+
+t1.equals(t1.plusHours(0));   // true
+t1.equals(t1.plusHours(1));   // false
+
+t1.compareTo(t1) === 0; // true
+t1.compareTo(t2) < 0;   // true
+t2.compareTo(t1) > 0;   // true
+
+t1.hashCode(); // 916974646
+t2.hashCode(); // -1743180648
+t1.hashCode() !== t2.hashCode(); // true
+
+```
+
+### Distance between times 
+
+```javascript
+
+var t1 = LocalTime.parse('11:00')
+var t2 = t1.plusHours(2).plusMinutes(42).plusSeconds(12);
+
+// obtain the duration between the two dates                     
+t1.until(t2, ChronoUnit.HOURS);    // 2
+t1.until(t2, ChronoUnit.MINUTES);  // 162
+t1.until(t2, ChronoUnit.SECONDS);  // 9732
+
+```
+
+
+
