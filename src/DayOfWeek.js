@@ -29,25 +29,48 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  *
  */
 export class DayOfWeek extends Temporal {
-    
+
+    /**
+     *
+     * @param {number} ordinal
+     * @param {string} name
+     * @private
+     */
     constructor(ordinal, name){
         super();
         this._ordinal = ordinal;
         this._name = name;
     }
 
+    /**
+     *
+     * @returns {number}
+     */
     ordinal(){
         return this._ordinal;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     name(){
         return this._name;
     }
 
+    /**
+     *
+     * @returns {DayOfWeek[]}
+     */
     static values() {
         return ENUMS.slice();
     }
 
+    /**
+     *
+     * @param {string} name
+     * @returns {DayOfWeek}
+     */
     static valueOf(name) {
         for(var ordinal=0; ordinal < ENUMS.length; ordinal++){
             if(ENUMS[ordinal].name() === name){
@@ -86,8 +109,8 @@ export class DayOfWeek extends Temporal {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used as a query via method reference, {@code DayOfWeek::from}.
      *
-     * @param temporal  the temporal object to convert, not null
-     * @return the day-of-week, not null
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
+     * @return {DayOfWeek} the day-of-week, not null
      * @throws DateTimeException if unable to convert to a {@code DayOfWeek}
      */
     static from(temporal) {
@@ -113,7 +136,7 @@ export class DayOfWeek extends Temporal {
      * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
      * See {@link WeekFields#dayOfWeek} for localized week-numbering.
      *
-     * @return the day-of-week, from 1 (Monday) to 7 (Sunday)
+     * @return {number} the day-of-week, from 1 (Monday) to 7 (Sunday)
      */
     value() {
         return this._ordinal + 1;
@@ -127,9 +150,9 @@ export class DayOfWeek extends Temporal {
      * <p>
      * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
      *
-     * @param style  the length of the text required, not null
-     * @param locale  the locale to use, not null
-     * @return the text value of the day-of-week, not null
+     * @param {TextStyle} style - the length of the text required, not null
+     * @param {Locale} locale - the locale to use, not null
+     * @return {string} the text value of the day-of-week, not null
      */
     getDisplayName(style, locale) {
         return new DateTimeFormatterBuilder().appendText(ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
@@ -151,8 +174,8 @@ export class DayOfWeek extends Temporal {
      * passing {@code this} as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param field  the field to check, null returns false
-     * @return true if the field is supported on this day-of-week, false if not
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this day-of-week, false if not
      */
     isSupported(field) {
         if (field instanceof ChronoField) {
@@ -178,8 +201,8 @@ export class DayOfWeek extends Temporal {
      * passing {@code this} as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param field  the field to query the range for, not null
-     * @return the range of valid values for the field, not null
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
      * @throws DateTimeException if the range for the field cannot be obtained
      */
     range(field) {
@@ -208,8 +231,8 @@ export class DayOfWeek extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field, within the valid range of values
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field, within the valid range of values
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
      * @throws DateTimeException if the value is outside the range of valid values for the field
@@ -238,8 +261,8 @@ export class DayOfWeek extends Temporal {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -261,8 +284,8 @@ export class DayOfWeek extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param days  the days to add, positive or negative
-     * @return the resulting day-of-week, not null
+     * @param {number} days - the days to add, positive or negative
+     * @return {DayOfWeek} the resulting day-of-week, not null
      */
     plus(days) {
         var amount = MathUtil.floorMod(days, 7);
@@ -277,8 +300,8 @@ export class DayOfWeek extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param days  the days to subtract, positive or negative
-     * @return the resulting day-of-week, not null
+     * @param {number} days - the days to subtract, positive or negative
+     * @return {DayOfWeek} the resulting day-of-week, not null
      */
     minus(days) {
         return this.plus(-1 * MathUtil.floorMod(days, 7));
@@ -297,8 +320,8 @@ export class DayOfWeek extends Temporal {
      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
      * specified query passing {@code this} as the argument.
      *
-     * @param query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
      * @throws DateTimeException if unable to query (defined by the query)
      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
      */
@@ -347,8 +370,8 @@ export class DayOfWeek extends Temporal {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the target object to be adjusted, not null
-     * @return the adjusted object, not null
+     * @param {TemporalAdjusters} temporal  the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
      * @throws DateTimeException if unable to make the adjustment
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -356,10 +379,18 @@ export class DayOfWeek extends Temporal {
         return temporal.with(ChronoField.DAY_OF_WEEK, this.value());
     }
 
-    equal(){
-        return this._name;
+    /**
+     *
+     * @returns {boolean}
+     */
+    equals(other){
+        return this === other;
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     toString(){
         return this._name;
     }
