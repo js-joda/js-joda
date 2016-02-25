@@ -90,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(35);
 	
 	Object.defineProperty(exports, 'DayOfWeek', {
 	  enumerable: true,
@@ -162,7 +162,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(31);
 	
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -171,7 +171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
 	Object.defineProperty(exports, 'Year', {
 	  enumerable: true,
@@ -180,7 +180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(21);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -207,7 +207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalAdjusters = __webpack_require__(38);
+	var _TemporalAdjusters = __webpack_require__(39);
 	
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -216,7 +216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	__webpack_require__(40);
+	__webpack_require__(41);
 
 /***/ },
 /* 1 */
@@ -238,7 +238,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Instant = __webpack_require__(2);
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(21);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -347,7 +347,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'offset',
 	        value: function offset(instant) {
 	            var offsetInMinutes = new Date().getTimezoneOffset(instant.epochMilli());
-	            return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes);
+	            return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
 	        }
 	    }, {
 	        key: 'toString',
@@ -421,7 +421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(4);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -436,8 +436,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var NANOS_PER_MILLI = 1000000;
 	
-	var Instant = exports.Instant = function (_TemporalAccessor) {
-	    _inherits(Instant, _TemporalAccessor);
+	var Instant = exports.Instant = function (_Temporal) {
+	    _inherits(Instant, _Temporal);
 	
 	    function Instant(seconds, nanoOfSecond) {
 	        _classCallCheck(this, Instant);
@@ -651,7 +651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Instant;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 	
 	function _init() {
 	    Instant.MIN_SECONDS = -31619087596800;
@@ -680,11 +680,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalField2 = __webpack_require__(37);
+	var _TemporalField2 = __webpack_require__(38);
 	
-	var _ValueRange = __webpack_require__(24);
+	var _ValueRange = __webpack_require__(25);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1235,9 +1235,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Duration = __webpack_require__(8);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
-	var _TemporalUnit2 = __webpack_require__(36);
+	var _TemporalUnit2 = __webpack_require__(37);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -2066,17 +2066,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalDateTime = __webpack_require__(12);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(20);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -2088,8 +2088,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var LocalTime = function (_TemporalAccessor) {
-	    _inherits(LocalTime, _TemporalAccessor);
+	var LocalTime = function (_Temporal) {
+	    _inherits(LocalTime, _Temporal);
 	
 	    _createClass(LocalTime, null, [{
 	        key: 'now',
@@ -2238,7 +2238,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case _ChronoField.ChronoField.MINUTE_OF_DAY:
 	                    return this._hour * 60 + this._minute;
 	                case _ChronoField.ChronoField.HOUR_OF_AMPM:
-	                    return this._hour % 12;
+	                    return _MathUtil.MathUtil.intMod(this._hour, 12);
 	                case _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM:
 	                    var ham = _MathUtil.MathUtil.intMod(this._hour, 12);return ham % 12 === 0 ? 12 : ham;
 	                case _ChronoField.ChronoField.HOUR_OF_DAY:
@@ -2246,7 +2246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY:
 	                    return this._hour === 0 ? 24 : this._hour;
 	                case _ChronoField.ChronoField.AMPM_OF_DAY:
-	                    return this._hour / 12;
+	                    return _MathUtil.MathUtil.intDiv(this._hour, 12);
 	            }
 	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
 	        }
@@ -2686,7 +2686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return LocalTime;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 	
 	exports.LocalTime = LocalTime;
 	function _init() {
@@ -2702,7 +2702,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var nano = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
 	
 	        var localTime = Object.create(LocalTime.prototype);
-	        _TemporalAccessor2.TemporalAccessor.call(localTime);
+	        _Temporal2.Temporal.call(localTime);
 	        localTime._hour = hour;
 	        localTime._minute = minute;
 	        localTime._second = second;
@@ -2776,17 +2776,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalTime = __webpack_require__(11);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(20);
 	
-	var _ChronoLocalDateTime2 = __webpack_require__(35);
+	var _ChronoLocalDateTime2 = __webpack_require__(36);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3422,25 +3422,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _ChronoLocalDate2 = __webpack_require__(23);
+	var _ChronoLocalDate2 = __webpack_require__(24);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(20);
 	
-	var _ValueRange = __webpack_require__(24);
+	var _ValueRange = __webpack_require__(25);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(35);
 	
 	var _Month = __webpack_require__(16);
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(31);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
 	var _LocalTime = __webpack_require__(11);
 	
@@ -4219,11 +4219,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Month = __webpack_require__(16);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4359,9 +4359,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _IsoChronology = __webpack_require__(14);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4374,8 +4374,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	
-	var Month = function (_TemporalAccessor) {
-	    _inherits(Month, _TemporalAccessor);
+	var Month = function (_Temporal) {
+	    _inherits(Month, _Temporal);
 	
 	    function Month(value) {
 	        _classCallCheck(this, Month);
@@ -4593,7 +4593,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Month;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 	
 	exports.Month = Month;
 	
@@ -4624,6 +4624,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Temporal = undefined;
+	
+	var _TemporalAccessor2 = __webpack_require__(18);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Temporal = exports.Temporal = function (_TemporalAccessor) {
+	  _inherits(Temporal, _TemporalAccessor);
+
+	  function Temporal() {
+	    _classCallCheck(this, Temporal);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Temporal).apply(this, arguments));
+	  }
+
+	  return Temporal;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.TemporalAccessor = undefined;
@@ -4637,7 +4672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	var _errors = __webpack_require__(5);
 	
@@ -4675,7 +4710,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.TemporalAccessor = TemporalAccessor;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4695,13 +4730,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(20);
 	
 	var _LocalDate = __webpack_require__(13);
 	
 	var _LocalTime = __webpack_require__(11);
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(21);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4791,7 +4826,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4856,7 +4891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4991,7 +5026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5020,7 +5055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5057,7 +5092,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5075,9 +5110,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
 	var _LocalDate = __webpack_require__(13);
 	
@@ -5091,8 +5126,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var ChronoLocalDate = function (_TemporalAccessor) {
-	    _inherits(ChronoLocalDate, _TemporalAccessor);
+	var ChronoLocalDate = function (_Temporal) {
+	    _inherits(ChronoLocalDate, _Temporal);
 	
 	    function ChronoLocalDate() {
 	        _classCallCheck(this, ChronoLocalDate);
@@ -5132,12 +5167,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return ChronoLocalDate;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 
 	exports.ChronoLocalDate = ChronoLocalDate;
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5280,7 +5315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5302,15 +5337,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _ParsePosition = __webpack_require__(26);
+	var _ParsePosition = __webpack_require__(27);
 	
-	var _DateTimeParseContext = __webpack_require__(27);
+	var _DateTimeParseContext = __webpack_require__(28);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	var _DateTimeFormatterBuilder = __webpack_require__(32);
 	
-	var _SignStyle = __webpack_require__(33);
+	var _SignStyle = __webpack_require__(34);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _IsoChronology = __webpack_require__(14);
 	
@@ -5462,7 +5497,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5515,7 +5550,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5535,15 +5570,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(9);
 	
-	var _DateTimeBuilder = __webpack_require__(28);
+	var _DateTimeBuilder = __webpack_require__(29);
 	
-	var _EnumMap = __webpack_require__(29);
+	var _EnumMap = __webpack_require__(30);
 	
 	var _IsoChronology = __webpack_require__(14);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -5691,8 +5726,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return DateTimeParseContext;
 	}();
 	
-	var Parsed = function (_TemporalAccessor) {
-	    _inherits(Parsed, _TemporalAccessor);
+	var Parsed = function (_Temporal) {
+	    _inherits(Parsed, _Temporal);
 	
 	    function Parsed(dateTimeParseContext) {
 	        _classCallCheck(this, Parsed);
@@ -5764,10 +5799,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return Parsed;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5785,25 +5820,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(4);
 	
-	var _EnumMap = __webpack_require__(29);
+	var _EnumMap = __webpack_require__(30);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _IsoChronology = __webpack_require__(14);
 	
-	var _ChronoLocalDate = __webpack_require__(23);
+	var _ChronoLocalDate = __webpack_require__(24);
 	
 	var _ChronoField = __webpack_require__(3);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	var _LocalTime = __webpack_require__(11);
 	
 	var _LocalDate = __webpack_require__(13);
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(31);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -5815,8 +5850,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var DateTimeBuilder = function (_TemporalAccessor) {
-	    _inherits(DateTimeBuilder, _TemporalAccessor);
+	var DateTimeBuilder = function (_Temporal) {
+	    _inherits(DateTimeBuilder, _Temporal);
 	
 	    function DateTimeBuilder() {
 	        _classCallCheck(this, DateTimeBuilder);
@@ -6136,12 +6171,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return DateTimeBuilder;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 
 	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6225,7 +6260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6652,7 +6687,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6674,13 +6709,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Enum2 = __webpack_require__(15);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
-	var _DecimalStyle = __webpack_require__(32);
+	var _DecimalStyle = __webpack_require__(33);
 	
-	var _SignStyle = __webpack_require__(33);
+	var _SignStyle = __webpack_require__(34);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _MathUtil = __webpack_require__(4);
 	
@@ -7505,7 +7540,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DateTimeFormatterBuilder.StringBuilder = StringBuilder;
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7645,7 +7680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7703,7 +7738,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7723,17 +7758,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(9);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	var _DateTimeFormatterBuilder = __webpack_require__(32);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(20);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7745,8 +7780,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var DayOfWeek = function (_TemporalAccessor) {
-	    _inherits(DayOfWeek, _TemporalAccessor);
+	var DayOfWeek = function (_Temporal) {
+	    _inherits(DayOfWeek, _Temporal);
 	
 	    function DayOfWeek(ordinal, name) {
 	        _classCallCheck(this, DayOfWeek);
@@ -7894,7 +7929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return DayOfWeek;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 	
 	exports.DayOfWeek = DayOfWeek;
 	
@@ -7918,7 +7953,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7940,9 +7975,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAccessor2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(17);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7954,8 +7989,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var ChronoLocalDateTime = function (_TemporalAccessor) {
-	    _inherits(ChronoLocalDateTime, _TemporalAccessor);
+	var ChronoLocalDateTime = function (_Temporal) {
+	    _inherits(ChronoLocalDateTime, _Temporal);
 	
 	    function ChronoLocalDateTime() {
 	        _classCallCheck(this, ChronoLocalDateTime);
@@ -8001,12 +8036,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }]);
 	
 	    return ChronoLocalDateTime;
-	}(_TemporalAccessor2.TemporalAccessor);
+	}(_Temporal2.Temporal);
 
 	exports.ChronoLocalDateTime = ChronoLocalDateTime;
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8028,7 +8063,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8050,7 +8085,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8070,7 +8105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(5);
 	
-	var _TemporalAdjuster4 = __webpack_require__(39);
+	var _TemporalAdjuster4 = __webpack_require__(40);
 	
 	var _ChronoField = __webpack_require__(3);
 	
@@ -8283,7 +8318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8318,12 +8353,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(35);
 	
 	var _Duration = __webpack_require__(8);
 	
@@ -8337,21 +8372,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Month = __webpack_require__(16);
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(31);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(22);
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(21);
 	
 	var _IsoChronology = __webpack_require__(14);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(3);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(19);
 	
 	var isInit = false; /*
 	                     * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
