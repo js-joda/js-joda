@@ -54,7 +54,7 @@ export class Clock {
      * This clock, rather than {@link #systemDefaultZone()}, should be used when
      * you need the current instant without the date or time.
      * <p>
-     * @return a clock that uses the system clock in the UTC zone, not null
+     * @return {Clock} a clock that uses the system clock in the UTC zone, not null
      */
     static systemUTC() {
         return new SystemUTCClock();
@@ -72,7 +72,7 @@ export class Clock {
      * without the date or time.
      * <p>
      *
-     * @return a clock that uses the system clock in the default zone, not null
+     * @return {Clock} a clock that uses the system clock in the default zone, not null
      * @see ZoneId#systemDefault()
      */
     static systemDefaultZone() {
@@ -87,8 +87,8 @@ export class Clock {
      * The main use case for this is in testing, where the fixed clock ensures
      * tests are not dependent on the current clock.
      *
-     * @param fixedInstant  the instant to use as the clock, not null
-     * @param zoneOffset  the zoneOffset to use as zone Offset, not null
+     * @param {Instant} fixedInstant  the instant to use as the clock, not null
+     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null
      * @return {Clock} a clock that always returns the same instant, not null
      */
     static fixed(fixedInstant, zoneOffset) {
@@ -120,7 +120,7 @@ export class Clock {
      * <p>
      * This returns an instant representing the current instant as defined by the clock.
      *
-     * @return the current instant from this clock, not null
+     * @return {Instant} the current instant from this clock, not null
      */
     instant(){
         throw new TypeError('instant() function is not implemented');
@@ -132,6 +132,8 @@ export class Clock {
      * it is not possible the get the system default ZoneId without guessing. If we would define ZoneRules, we had to
      * define something like a virtual, not standard ZoneId like "SystemDefault".
      * Until we to not have a tzdb, we leave this question open
+     *
+     * @return {number}
      */
     offset(){
         throw new TypeError('offset() function is not implemented');
