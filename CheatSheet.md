@@ -430,7 +430,7 @@ LocalDateTime.of(2016,2,29,12,55,42,9)  // "2016-02-29T12:55:42.000000009"
 
 ```
 
-### Get values from LocalTime
+### Get values from LocalDateTime
 
 ```javascript
 
