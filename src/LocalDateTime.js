@@ -1366,6 +1366,8 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @throws {ArithmeticException} if numeric overflow occurs
      */
     until(endExclusive, unit) {
+        requireNonNull(endExclusive, 'endExclusive');
+        requireNonNull(unit, 'unit');
         var end = LocalDateTime.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             if (unit.isTimeBased()) {
@@ -1404,10 +1406,11 @@ export class LocalDateTime extends ChronoLocalDateTime
                 }
                 throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
             }
-            var endDate = end.date;
-            if (endDate.isAfter(this._date) && end.time.isBefore(this._time)) {
+            var endDate = end._date;
+            var endTime = end._time;
+            if (endDate.isAfter(this._date) && endTime.isBefore(this._time)) {
                 endDate = endDate.minusDays(1);
-            } else if (endDate.isBefore(this._date) && end.time.isAfter(this._time)) {
+            } else if (endDate.isBefore(this._date) && endTime.isAfter(this._time)) {
                 endDate = endDate.plusDays(1);
             }
             return this._date.until(endDate, unit);
