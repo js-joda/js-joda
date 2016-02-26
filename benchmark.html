@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benchmark</title>
+</head>
+<body>
+
+    <h3>
+        Simple benchmark for parse, add a period and format a date with moment and js-joda
+    </h3>
+
+    <pre><div id="result"></div></pre>
+
+    <script src="//cdn.jsdelivr.net/js-joda/0.3.9/js-joda.min.js"></script>
+    <script src="//cdn.jsdelivr.net/momentjs/2.11.2/moment.min.js"></script>
+    <script src="//cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/benchmarkjs/2.1.0/benchmark.js"></script>
+    <script type="application/javascript">
+        function performBenchmark() {
+            var LocalDateTime = JSJoda.LocalDateTime;
+            var accessLoops = 10;
+
+            function testMomentParsePlus(){
+                var m = moment('2016-02-26T09:29:08.678');
+                var s = '';
+
+                for (var i = 0; i < accessLoops; i++) {
+                    m.add(1, 'months');
+                    s += m.toISOString();
+                }
+            }
+
+            function testJSJodaParsePlus(){
+                var d = LocalDateTime.parse('2016-02-26T09:29:08.678');
+                var s = '';
+
+                for (var i = 0; i < accessLoops; i++) {
+                    d = d.plusMonths(1);
+                    s += d.toString();
+                }
+            }
+
+            var suite = new Benchmark.Suite();
+            suite
+                .add('js-joda', testJSJodaParsePlus)
+                .add('moment', testMomentParsePlus)
+                .on('complete', function () {
+                    var resultStr = 'Fastest is ' + this.filter('fastest').map('name') + '\n\n';
+                    this.filter('successful').forEach(function (value) {
+                        resultStr += 'Result for ' + value.name + '\n';
+                        resultStr += JSON.stringify(_.pick(value, ['name', 'hz', 'count']), null, 4) + '\n';
+                    });
+                    console.log(resultStr);
+                    document.getElementById('result').textContent = resultStr;
+                })
+                .run();
+        }
+        performBenchmark();
+    </script>
+
+</body>
+</html>
