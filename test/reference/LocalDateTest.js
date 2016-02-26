@@ -506,7 +506,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(test.get(ChronoField.ERA), 1);
             assertEquals(test.getLong(ChronoField.PROLEPTIC_MONTH), 2008 * 12 + 6 - 1);
 
-            // missing in threetenbp impl
+            // TODO missing in threetenbp impl, like some other ChronoFields e.q. ALIGNED*
             assertEquals(test.getLong(ChronoField.EPOCH_DAY), 14060);
         });
 
