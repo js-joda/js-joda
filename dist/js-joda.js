@@ -3258,6 +3258,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'until',
 	        value: function until(endExclusive, unit) {
+	            (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	            (0, _assert.requireNonNull)(unit, 'unit');
 	            var end = LocalDateTime.from(endExclusive);
 	            if (unit instanceof _ChronoUnit.ChronoUnit) {
 	                if (unit.isTimeBased()) {
@@ -3296,10 +3298,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                    throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
 	                }
-	                var endDate = end.date;
-	                if (endDate.isAfter(this._date) && end.time.isBefore(this._time)) {
+	                var endDate = end._date;
+	                var endTime = end._time;
+	                if (endDate.isAfter(this._date) && endTime.isBefore(this._time)) {
 	                    endDate = endDate.minusDays(1);
-	                } else if (endDate.isBefore(this._date) && end.time.isAfter(this._time)) {
+	                } else if (endDate.isBefore(this._date) && endTime.isAfter(this._time)) {
 	                    endDate = endDate.plusDays(1);
 	                }
 	                return this._date.until(endDate, unit);
@@ -5412,8 +5415,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'parse',
 	        value: function parse(text, type) {
-	            (0, _assert.assert)(text != null, 'text', _errors.NullPointerException);
-	            (0, _assert.assert)(type != null, 'type', _errors.NullPointerException);
+	            (0, _assert.requireNonNull)(text, 'text');
+	            (0, _assert.requireNonNull)(type, 'type');
 	            try {
 	                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
 	                return builder.build(type);
