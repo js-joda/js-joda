@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../assert';
+import {assert, requireNonNull} from '../assert';
 
 import {DateTimeParseException, NullPointerException} from '../errors';
 
@@ -145,8 +145,8 @@ export class DateTimeFormatter {
      * @throws DateTimeParseException if unable to parse the requested result
      */
     parse(text, type) {
-        assert(text != null, 'text', NullPointerException);
-        assert(type != null, 'type', NullPointerException);
+        requireNonNull(text, 'text');
+        requireNonNull(type, 'type');
         try {
             var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
             return builder.build(type);
