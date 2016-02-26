@@ -5,11 +5,11 @@
         <title>js-joda cheat sheet</title>
         <link rel="stylesheet" href="bundle.css">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-        <script src="//cdn.jsdelivr.net/js-joda/0.3.8/js-joda.min.js"></script>
+        <script src="//cdn.jsdelivr.net/js-joda/latest/js-joda.js"></script>
         <script>
             // copy all js-joda classes to the global scope
             for(var key in JSJoda) { this[key] = JSJoda[key]; }
-            var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+            console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
         </script>
     </head>
     <body>
