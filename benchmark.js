@@ -13,7 +13,6 @@ function testMomentParsePlus() {
 		m.add(1, 'months');
 		s += m.toISOString();
 	}
-	// console.log(s);
 }
 
 function testJSJodaParsePlus() {
@@ -24,20 +23,25 @@ function testJSJodaParsePlus() {
 	        d = d.plusMonths(1);
 	        s += d.toString();
 	}
-	// console.log(s);
+}
+
+function logResult(){
+    var resultStr = 'Fastest is ' + this.filter('fastest').map('name') + '\n';
+    this.filter('successful').forEach(function (value) {
+        resultStr += 'Result for ' + value.name + '\n';
+        resultStr += JSON.stringify(_.pick(value, ['name', 'hz', 'count']), null, 4) + '\n';
+    });
+    console.log(resultStr)
+}
+
+function logFullResult(){
+    console.log(JSON.stringify(this, null, 4));
 }
 
 var suite = new Benchmark.Suite();
 suite
 	.add('moment', testMomentParsePlus)
 	.add('js-joda', testJSJodaParsePlus)
-	.on('complete', function() {
-        var resultStr = 'Fastest is ' + this.filter('fastest').map('name') + '\n';
-		this.filter('successful').forEach(function (value) {
-			resultStr += 'Result for ' + value.name + '\n';
-            resultStr += JSON.stringify(_.pick(value, ['name', 'hz', 'count']), null, 4) + '\n';
-		});
-        console.log(resultStr)
-	})
+	.on('complete', logResult)
 	.run();
 

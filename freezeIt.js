@@ -26,11 +26,12 @@ function freezeClassAndStaticClassProperties() {
 freezeClassAndStaticClassProperties();
 
 JSJoda.LocalTime.MIDNIGHT = JSJoda.LocalTime.of(12,1);
-JSJoda.LocalTime.NOON._hour = -1;
-JSJoda.Instant.MIN_SECONDS = 0;
-
 console.log(JSJoda.LocalTime.MIDNIGHT.toString());
+
+JSJoda.LocalTime.NOON._hour = -1;
 console.log(JSJoda.LocalTime.NOON.toString());
+
+JSJoda.Instant.MIN_SECONDS = 0;
 console.log(JSJoda.Instant.MIN_SECONDS);
 
 
