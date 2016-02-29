@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.TemporalAdjusters = exports.ChronoUnit = exports.ChronoField = exports.ZoneOffset = exports.Year = exports.Period = exports.Month = exports.MathUtil = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.ChronoUnit = exports.ChronoField = exports.ZoneOffset = exports.Year = exports.Period = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -74,7 +74,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
 	Object.defineProperty(exports, 'DateTimeException', {
 	  enumerable: true,
@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DayOfWeek = __webpack_require__(35);
+	var _DayOfWeek = __webpack_require__(34);
 	
 	Object.defineProperty(exports, 'DayOfWeek', {
 	  enumerable: true,
@@ -107,7 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Instant = __webpack_require__(2);
+	var _Instant = __webpack_require__(4);
 	
 	Object.defineProperty(exports, 'Instant', {
 	  enumerable: true,
@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
 	Object.defineProperty(exports, 'LocalDate', {
 	  enumerable: true,
@@ -125,7 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
 	Object.defineProperty(exports, 'LocalTime', {
 	  enumerable: true,
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDateTime = __webpack_require__(12);
+	var _LocalDateTime = __webpack_require__(11);
 	
 	Object.defineProperty(exports, 'LocalDateTime', {
 	  enumerable: true,
@@ -143,16 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _MathUtil = __webpack_require__(4);
-	
-	Object.defineProperty(exports, 'MathUtil', {
-	  enumerable: true,
-	  get: function get() {
-	    return _MathUtil.MathUtil;
-	  }
-	});
-	
-	var _Month = __webpack_require__(16);
+	var _Month = __webpack_require__(15);
 	
 	Object.defineProperty(exports, 'Month', {
 	  enumerable: true,
@@ -161,7 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(30);
 	
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -170,7 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
 	Object.defineProperty(exports, 'Year', {
 	  enumerable: true,
@@ -179,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(21);
+	var _ZoneOffset = __webpack_require__(20);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -188,7 +179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	Object.defineProperty(exports, 'ChronoField', {
 	  enumerable: true,
@@ -206,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalAdjusters = __webpack_require__(39);
+	var _TemporalAdjusters = __webpack_require__(38);
 	
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -214,8 +205,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _TemporalAdjusters.TemporalAdjusters;
 	  }
 	});
+	
+	var _TemporalQueries = __webpack_require__(18);
+	
+	Object.defineProperty(exports, 'TemporalQueries', {
+	  enumerable: true,
+	  get: function get() {
+	    return _TemporalQueries.TemporalQueries;
+	  }
+	});
+	
+	var _DateTimeFormatter = __webpack_require__(25);
+	
+	Object.defineProperty(exports, 'DateTimeFormatter', {
+	  enumerable: true,
+	  get: function get() {
+	    return _DateTimeFormatter.DateTimeFormatter;
+	  }
+	});
+	
+	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	
+	Object.defineProperty(exports, 'DateTimeFormatterBuilder', {
+	  enumerable: true,
+	  get: function get() {
+	    return _DateTimeFormatterBuilder.DateTimeFormatterBuilder;
+	  }
+	});
+	
+	var _ResolverStyle = __webpack_require__(22);
+	
+	Object.defineProperty(exports, 'ResolverStyle', {
+	  enumerable: true,
+	  get: function get() {
+	    return _ResolverStyle.ResolverStyle;
+	  }
+	});
 
-	__webpack_require__(41);
+	__webpack_require__(40);
 
 /***/ },
 /* 1 */
@@ -234,10 +261,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
+	var _assert = __webpack_require__(2);
 	
-	var _Instant = __webpack_require__(2);
+	var _Instant = __webpack_require__(4);
 	
-	var _ZoneOffset = __webpack_require__(21);
+	var _ZoneOffset = __webpack_require__(20);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -253,17 +281,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Clock, [{
 	        key: 'millis',
 	        value: function millis() {
-	            throw new TypeError('millis() function is not implemented');
+	            (0, _assert.abstractMethodFail)('millis');
 	        }
 	    }, {
 	        key: 'instant',
 	        value: function instant() {
-	            throw new TypeError('instant() function is not implemented');
+	            (0, _assert.abstractMethodFail)('instant');
 	        }
 	    }, {
 	        key: 'offset',
 	        value: function offset() {
-	            throw new TypeError('offset() function is not implemented');
+	            (0, _assert.abstractMethodFail)('offset');
 	        }
 	    }], [{
 	        key: 'systemUTC',
@@ -400,6 +428,117 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.assert = assert;
+	exports.requireNonNull = requireNonNull;
+	exports.requireInstance = requireInstance;
+	exports.abstractMethodFail = abstractMethodFail;
+	
+	var _errors = __webpack_require__(3);
+	
+	function assert(assertion, msg, error) {
+	    if (!assertion) {
+	        if (error) {
+	            throw new error(msg);
+	        } else {
+	            throw new Error(msg);
+	        }
+	    }
+	} /**
+	   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	   */
+	
+	
+	function requireNonNull(value, parameterName) {
+	    if (value == null) {
+	        throw new _errors.NullPointerException(parameterName + ' must not be null');
+	    }
+	    return value;
+	}
+	
+	function requireInstance(value, _class, parameterName) {
+	    if (!(value instanceof _class)) {
+	        throw new _errors.IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class));
+	    }
+	    return value;
+	}
+	
+	function abstractMethodFail(methodName) {
+	    throw new TypeError('abstract mehod ' + methodName + 'is not implemented');
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	function createErrorType(name, init) {
+	    var superErrorClass = arguments.length <= 2 || arguments[2] === undefined ? Error : arguments[2];
+	
+	    function E(message) {
+	        if (!Error.captureStackTrace) {
+	            this.stack = new Error().stack;
+	        } else {
+	            Error.captureStackTrace(this, this.constructor);
+	        }
+	        this.message = message;
+	        init && init.apply(this, arguments);
+	    }
+	    E.prototype = new superErrorClass();
+	    E.prototype.name = name;
+	    E.prototype.constructor = E;
+	    return E;
+	}
+	
+	var DateTimeException = exports.DateTimeException = createErrorType('DateTimeException', messageWithCause);
+	var DateTimeParseException = exports.DateTimeParseException = createErrorType('DateTimeParseException', messageForDateTimeParseException);
+	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = createErrorType('UnsupportedTemporalTypeException', null, DateTimeException);
+	var ArithmeticException = exports.ArithmeticException = createErrorType('ArithmeticException');
+	var IllegalArgumentException = exports.IllegalArgumentException = createErrorType('IllegalArgumentException');
+	var IllegalStateException = exports.IllegalStateException = createErrorType('IllegalStateException');
+	var NullPointerException = exports.NullPointerException = createErrorType('NullPointerException');
+	
+	function messageWithCause(message) {
+	    var cause = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	
+	    var msg = message || this.name;
+	    if (cause !== null && cause instanceof Error) {
+	        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+	    }
+	    this.message = msg;
+	}
+	
+	function messageForDateTimeParseException(message) {
+	    var text = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+	    var index = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	    var cause = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+	
+	    var msg = message || this.name;
+	    msg += ': ' + text + ', at index: ' + index;
+	    if (cause !== null && cause instanceof Error) {
+	        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+	    }
+	    this.message = msg;
+	}
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.Instant = undefined;
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -408,19 +547,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -661,7 +800,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 3 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -675,15 +814,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalField2 = __webpack_require__(38);
+	var _TemporalField2 = __webpack_require__(37);
 	
-	var _ValueRange = __webpack_require__(25);
+	var _ValueRange = __webpack_require__(24);
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -847,7 +986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -864,7 +1003,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1025,197 +1164,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	MathUtil.MIN_SAFE_INTEGER = MIN_SAFE_INTEGER;
 
 /***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.NullPointerException = exports.IllegalStateException = exports.IllegalArgumentException = exports.ArithmeticException = exports.UnsupportedTemporalTypeException = exports.DateTimeParseException = exports.DateTimeException = undefined;
-	
-	var _es6Error = __webpack_require__(6);
-	
-	var _es6Error2 = _interopRequireDefault(_es6Error);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	
-	var DateTimeException = exports.DateTimeException = function (_ExtendableError) {
-	    _inherits(DateTimeException, _ExtendableError);
-	
-	    function DateTimeException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeException' : arguments[0];
-	        var cause = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-	
-	        _classCallCheck(this, DateTimeException);
-	
-	        var msg = message;
-	        if (cause !== null && cause instanceof Error) {
-	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	        }
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeException).call(this, msg));
-	    }
-	
-	    return DateTimeException;
-	}(_es6Error2.default);
-	
-	var DateTimeParseException = exports.DateTimeParseException = function (_ExtendableError2) {
-	    _inherits(DateTimeParseException, _ExtendableError2);
-	
-	    function DateTimeParseException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'DateTimeParseException' : arguments[0];
-	        var text = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
-	        var index = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var cause = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
-	
-	        _classCallCheck(this, DateTimeParseException);
-	
-	        var msg = message + ': ' + text + ', at index: ' + index;
-	        if (cause !== null && cause instanceof Error) {
-	            msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	        }
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeParseException).call(this, msg));
-	    }
-	
-	    return DateTimeParseException;
-	}(_es6Error2.default);
-	
-	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = function (_DateTimeException) {
-	    _inherits(UnsupportedTemporalTypeException, _DateTimeException);
-	
-	    function UnsupportedTemporalTypeException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'UnsupportedTemporalTypeException' : arguments[0];
-	
-	        _classCallCheck(this, UnsupportedTemporalTypeException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UnsupportedTemporalTypeException).call(this, message));
-	    }
-	
-	    return UnsupportedTemporalTypeException;
-	}(DateTimeException);
-	
-	var ArithmeticException = exports.ArithmeticException = function (_ExtendableError3) {
-	    _inherits(ArithmeticException, _ExtendableError3);
-	
-	    function ArithmeticException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'ArithmeticException' : arguments[0];
-	
-	        _classCallCheck(this, ArithmeticException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ArithmeticException).call(this, message));
-	    }
-	
-	    return ArithmeticException;
-	}(_es6Error2.default);
-	
-	var IllegalArgumentException = exports.IllegalArgumentException = function (_ExtendableError4) {
-	    _inherits(IllegalArgumentException, _ExtendableError4);
-	
-	    function IllegalArgumentException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'IllegalArgumentException' : arguments[0];
-	
-	        _classCallCheck(this, IllegalArgumentException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IllegalArgumentException).call(this, message));
-	    }
-	
-	    return IllegalArgumentException;
-	}(_es6Error2.default);
-	
-	var IllegalStateException = exports.IllegalStateException = function (_ExtendableError5) {
-	    _inherits(IllegalStateException, _ExtendableError5);
-	
-	    function IllegalStateException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'IllegalStateException' : arguments[0];
-	
-	        _classCallCheck(this, IllegalStateException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(IllegalStateException).call(this, message));
-	    }
-	
-	    return IllegalStateException;
-	}(_es6Error2.default);
-	
-	var NullPointerException = exports.NullPointerException = function (_ExtendableError6) {
-	    _inherits(NullPointerException, _ExtendableError6);
-	
-	    function NullPointerException() {
-	        var message = arguments.length <= 0 || arguments[0] === undefined ? 'NullPointerException' : arguments[0];
-	
-	        _classCallCheck(this, NullPointerException);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(NullPointerException).call(this, message));
-	    }
-	
-	    return NullPointerException;
-	}(_es6Error2.default);
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var ExtendableError = (function (_Error) {
-	  _inherits(ExtendableError, _Error);
-	
-	  function ExtendableError() {
-	    var message = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-	
-	    _classCallCheck(this, ExtendableError);
-	
-	    _get(Object.getPrototypeOf(ExtendableError.prototype), 'constructor', this).call(this, message);
-	
-	    // extending Error is weird and does not propagate `message`
-	    Object.defineProperty(this, 'message', {
-	      enumerable: false,
-	      value: message
-	    });
-	
-	    Object.defineProperty(this, 'name', {
-	      enumerable: false,
-	      value: this.constructor.name
-	    });
-	
-	    if (Error.hasOwnProperty('captureStackTrace')) {
-	      Error.captureStackTrace(this, this.constructor);
-	      return;
-	    }
-	
-	    Object.defineProperty(this, 'stack', {
-	      enumerable: false,
-	      value: new Error(message).stack
-	    });
-	  }
-	
-	  return ExtendableError;
-	})(Error);
-	
-	exports['default'] = ExtendableError;
-	module.exports = exports['default'];
-
-/***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1230,13 +1178,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
 	var _Duration = __webpack_require__(8);
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
-	var _TemporalUnit2 = __webpack_require__(37);
+	var _TemporalUnit2 = __webpack_require__(36);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1374,19 +1322,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAmount2 = __webpack_require__(10);
+	var _TemporalAmount2 = __webpack_require__(9);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1980,66 +1928,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.assert = assert;
-	exports.requireNonNull = requireNonNull;
-	exports.requireInstance = requireInstance;
-	
-	var _errors = __webpack_require__(5);
-	
-	function assert(assertion, msg, error) {
-	    if (!assertion) {
-	        if (error) {
-	            throw new error(msg);
-	        } else {
-	            throw new Error(msg);
-	        }
-	    }
-	} /**
-	   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	   */
-	
-	
-	function requireNonNull(value, parameterName) {
-	    if (value == null) {
-	        throw new _errors.NullPointerException(parameterName + ' must not be null');
-	    }
-	    return value;
-	}
-	
-	function requireInstance(value, _class, parameterName) {
-	    if (!(value instanceof _class)) {
-	        throw new _errors.IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class));
-	    }
-	    return value;
-	}
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.TemporalAmount = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(2);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+	var TemporalAmount = exports.TemporalAmount = function () {
+	  function TemporalAmount() {
+	    _classCallCheck(this, TemporalAmount);
+	  }
 	
-	var TemporalAmount = exports.TemporalAmount = function TemporalAmount() {
-	  _classCallCheck(this, TemporalAmount);
-	};
+	  _createClass(TemporalAmount, [{
+	    key: 'get',
+	    value: function get(unit) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'getUnits',
+	    value: function getUnits() {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'addTo',
+	    value: function addTo(temporal) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'subtractFrom',
+	    value: function subtractFrom(temporal) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }]);
+	
+	  return TemporalAmount;
+	}();
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2055,27 +1989,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _LocalDateTime = __webpack_require__(12);
+	var _LocalDateTime = __webpack_require__(11);
 	
-	var _DateTimeFormatter = __webpack_require__(26);
+	var _DateTimeFormatter = __webpack_require__(25);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _TemporalQuery = __webpack_require__(20);
+	var _TemporalQuery = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -2747,7 +2681,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2763,29 +2697,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _DateTimeFormatter = __webpack_require__(26);
+	var _DateTimeFormatter = __webpack_require__(25);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _TemporalQuery = __webpack_require__(20);
+	var _TemporalQuery = __webpack_require__(19);
 	
-	var _ChronoLocalDateTime2 = __webpack_require__(36);
+	var _ChronoLocalDateTime2 = __webpack_require__(35);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3400,7 +3334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3416,41 +3350,41 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _ChronoLocalDate2 = __webpack_require__(24);
+	var _ChronoLocalDate2 = __webpack_require__(23);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _TemporalQuery = __webpack_require__(20);
+	var _TemporalQuery = __webpack_require__(19);
 	
-	var _ValueRange = __webpack_require__(25);
+	var _ValueRange = __webpack_require__(24);
 	
-	var _DateTimeFormatter = __webpack_require__(26);
+	var _DateTimeFormatter = __webpack_require__(25);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _DayOfWeek = __webpack_require__(35);
+	var _DayOfWeek = __webpack_require__(34);
 	
-	var _Month = __webpack_require__(16);
+	var _Month = __webpack_require__(15);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(30);
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _LocalDateTime = __webpack_require__(12);
+	var _LocalDateTime = __webpack_require__(11);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4205,7 +4139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4219,17 +4153,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _Enum2 = __webpack_require__(15);
+	var _Enum2 = __webpack_require__(14);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
-	var _Month = __webpack_require__(16);
+	var _Month = __webpack_require__(15);
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
-	var _ResolverStyle = __webpack_require__(23);
+	var _ResolverStyle = __webpack_require__(22);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4298,7 +4232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4339,7 +4273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4355,21 +4289,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4625,7 +4559,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4635,7 +4569,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Temporal = undefined;
 	
-	var _TemporalAccessor2 = __webpack_require__(18);
+	var _TemporalAccessor2 = __webpack_require__(17);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4660,7 +4594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAccessor2.TemporalAccessor);
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4677,11 +4611,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4717,7 +4651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.TemporalAccessor = TemporalAccessor;
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4735,15 +4669,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
-	var _TemporalQuery = __webpack_require__(20);
+	var _TemporalQuery = __webpack_require__(19);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _ZoneOffset = __webpack_require__(21);
+	var _ZoneOffset = __webpack_require__(20);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4833,7 +4767,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4847,19 +4781,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports.createTemporalQuery = createTemporalQuery;
 	
-	var _Enum2 = __webpack_require__(15);
+	var _assert = __webpack_require__(2);
+	
+	var _Enum2 = __webpack_require__(14);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
 	  _inherits(TemporalQuery, _Enum);
@@ -4873,7 +4807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(TemporalQuery, [{
 	    key: 'queryFrom',
 	    value: function queryFrom(temporal) {
-	      throw new Error('abstract class');
+	      (0, _assert.abstractMethodFail)('queryFrom');
 	    }
 	  }]);
 	
@@ -4898,7 +4832,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4917,9 +4851,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -5033,7 +4967,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5062,7 +4996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5072,13 +5006,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.ResolverStyle = undefined;
 	
-	var _Enum2 = __webpack_require__(15);
+	var _Enum2 = __webpack_require__(14);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
 	  _inherits(ResolverStyle, _Enum);
@@ -5099,7 +5037,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5113,15 +5051,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -5179,7 +5117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDate = ChronoLocalDate;
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5195,11 +5133,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -5322,7 +5260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5340,28 +5278,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _ParsePosition = __webpack_require__(27);
+	var _ParsePosition = __webpack_require__(26);
 	
-	var _DateTimeParseContext = __webpack_require__(28);
+	var _DateTimeParseContext = __webpack_require__(27);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(32);
+	var _DateTimeFormatterBuilder = __webpack_require__(31);
 	
-	var _SignStyle = __webpack_require__(34);
+	var _SignStyle = __webpack_require__(33);
 	
-	var _ResolverStyle = __webpack_require__(23);
+	var _ResolverStyle = __webpack_require__(22);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var DateTimeFormatter = exports.DateTimeFormatter = function () {
-	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono, zone) {
+	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
+	        var chrono = arguments.length <= 5 || arguments[5] === undefined ? _IsoChronology.IsoChronology.INSTANCE : arguments[5];
+	        var zone = arguments[6];
+	
 	        _classCallCheck(this, DateTimeFormatter);
 	
 	        (0, _assert.assert)(printerParser != null);
@@ -5504,7 +5445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5557,7 +5498,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5575,17 +5516,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _DateTimeBuilder = __webpack_require__(29);
+	var _DateTimeBuilder = __webpack_require__(28);
 	
-	var _EnumMap = __webpack_require__(30);
+	var _EnumMap = __webpack_require__(29);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -5809,7 +5750,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_Temporal2.Temporal);
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5821,31 +5762,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _EnumMap = __webpack_require__(30);
+	var _EnumMap = __webpack_require__(29);
 	
-	var _ResolverStyle = __webpack_require__(23);
+	var _ResolverStyle = __webpack_require__(22);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _ChronoLocalDate = __webpack_require__(24);
+	var _ChronoLocalDate = __webpack_require__(23);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(30);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -6079,7 +6020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
 	                if (hod != null) {
-	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && hod.longValue() === 24 && (moh == null || moh.longValue() === 0) && (som == null || som.longValue() === 0) && (nos == null || nos.longValue() === 0)) {
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && hod === 24 && (moh == null || moh === 0) && (som == null || som === 0) && (nos == null || nos === 0)) {
 	                        hod = 0;
 	                        this.excessDays = _Period.Period.ofDays(1);
 	                    }
@@ -6183,7 +6124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6267,7 +6208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6281,26 +6222,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalAmount2 = __webpack_require__(10);
+	var _TemporalAmount2 = __webpack_require__(9);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
@@ -6694,7 +6635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6710,21 +6651,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _Enum2 = __webpack_require__(15);
+	var _Enum2 = __webpack_require__(14);
 	
-	var _DateTimeFormatter = __webpack_require__(26);
+	var _DateTimeFormatter = __webpack_require__(25);
 	
-	var _DecimalStyle = __webpack_require__(33);
+	var _DecimalStyle = __webpack_require__(32);
 	
-	var _SignStyle = __webpack_require__(34);
+	var _SignStyle = __webpack_require__(33);
 	
-	var _ResolverStyle = __webpack_require__(23);
+	var _ResolverStyle = __webpack_require__(22);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -7547,7 +7488,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DateTimeFormatterBuilder.StringBuilder = StringBuilder;
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7687,7 +7628,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7699,7 +7640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Enum2 = __webpack_require__(15);
+	var _Enum2 = __webpack_require__(14);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7745,7 +7686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7759,30 +7700,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(32);
+	var _DateTimeFormatterBuilder = __webpack_require__(31);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
-	var _TemporalQuery = __webpack_require__(20);
+	var _TemporalQuery = __webpack_require__(19);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
@@ -7960,7 +7901,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7974,17 +7915,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _Temporal2 = __webpack_require__(17);
+	var _Temporal2 = __webpack_require__(16);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -8048,7 +7989,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDateTime = ChronoLocalDateTime;
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8070,7 +8011,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8092,7 +8033,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8108,17 +8049,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 	
-	var _assert = __webpack_require__(9);
+	var _assert = __webpack_require__(2);
 	
-	var _errors = __webpack_require__(5);
+	var _errors = __webpack_require__(3);
 	
-	var _TemporalAdjuster4 = __webpack_require__(40);
+	var _TemporalAdjuster4 = __webpack_require__(39);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _MathUtil = __webpack_require__(4);
+	var _MathUtil = __webpack_require__(6);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -8325,24 +8266,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 40 */
-/***/ function(module, exports) {
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.TemporalAdjuster = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(2);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
 	
 	var TemporalAdjuster = exports.TemporalAdjuster = function () {
 	  function TemporalAdjuster() {
@@ -8352,7 +8294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(TemporalAdjuster, [{
 	    key: 'adjustInto',
 	    value: function adjustInto(temporal) {
-	      throw Error('abstract');
+	      (0, _assert.abstractMethodFail)('adjustInto');
 	    }
 	  }]);
 	
@@ -8360,40 +8302,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _DayOfWeek = __webpack_require__(35);
+	var _DayOfWeek = __webpack_require__(34);
 	
 	var _Duration = __webpack_require__(8);
 	
-	var _Instant = __webpack_require__(2);
+	var _Instant = __webpack_require__(4);
 	
-	var _LocalDate = __webpack_require__(13);
+	var _LocalDate = __webpack_require__(12);
 	
-	var _LocalTime = __webpack_require__(11);
+	var _LocalTime = __webpack_require__(10);
 	
-	var _LocalDateTime = __webpack_require__(12);
+	var _LocalDateTime = __webpack_require__(11);
 	
-	var _Month = __webpack_require__(16);
+	var _Month = __webpack_require__(15);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(30);
 	
-	var _Year = __webpack_require__(22);
+	var _Year = __webpack_require__(21);
 	
-	var _ZoneOffset = __webpack_require__(21);
+	var _ZoneOffset = __webpack_require__(20);
 	
-	var _IsoChronology = __webpack_require__(14);
+	var _IsoChronology = __webpack_require__(13);
 	
-	var _DateTimeFormatter = __webpack_require__(26);
+	var _DateTimeFormatter = __webpack_require__(25);
 	
-	var _ChronoField = __webpack_require__(3);
+	var _ChronoField = __webpack_require__(5);
 	
 	var _ChronoUnit = __webpack_require__(7);
 	
-	var _TemporalQueries = __webpack_require__(19);
+	var _TemporalQueries = __webpack_require__(18);
 	
 	var isInit = false; /*
 	                     * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
