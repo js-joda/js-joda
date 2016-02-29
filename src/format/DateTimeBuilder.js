@@ -347,10 +347,10 @@ export class DateTimeBuilder extends Temporal {
         if (resolverStyle !== ResolverStyle.LENIENT) {
             if (hod != null) {
                 if (resolverStyle === ResolverStyle.SMART &&
-                                hod.longValue() === 24 && 
-                                (moh == null || moh.longValue() === 0) &&
-                                (som == null || som.longValue() === 0) &&
-                                (nos == null || nos.longValue() === 0)) {
+                                hod === 24 &&
+                                (moh == null || moh === 0) &&
+                                (som == null || som === 0) &&
+                                (nos == null || nos === 0)) {
                     hod = 0;
                     this.excessDays = Period.ofDays(1);
                 }
