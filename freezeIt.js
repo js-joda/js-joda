@@ -3,14 +3,15 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-var JSJoda = require('js-joda');
-
-function freezeClassAndStaticClassProperties() {
-    Object.getOwnPropertyNames(JSJoda).forEach(function (className){
+function freezeClassesAndStaticClassProperties(JSJodaModule) {
+    Object.getOwnPropertyNames(JSJodaModule).forEach(function (className){
         if (className.indexOf('_') === 0 || className[0] !== className[0].toUpperCase()){
             return;
         }
-        var JSJodaClass = JSJoda[className];
+        var JSJodaClass = JSJodaModule[className];
+        if(Object.isFrozen(JSJodaClass)){
+            return;
+        }
         Object.getOwnPropertyNames(JSJodaClass).forEach(function(classProp){
             if(JSJodaClass[classProp] instanceof JSJodaClass){
                 // console.log('about to freeze static instance: ' + className + '.' + classProp);
@@ -23,8 +24,12 @@ function freezeClassAndStaticClassProperties() {
 
 }
 
-freezeClassAndStaticClassProperties();
 
+var JSJoda = require('js-joda');
+
+freezeClassesAndStaticClassProperties(JSJoda);
+
+// modify static class properties
 JSJoda.LocalTime.MIDNIGHT = JSJoda.LocalTime.of(12,1);
 console.log(JSJoda.LocalTime.MIDNIGHT.toString());
 

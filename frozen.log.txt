@@ -1,0 +1,41 @@
+00:00
+12:00
+-31619087596800
+Fastest is testJSJodaPlus
+Result for testMomentParseDateTime
+{
+    "name": "testMomentParseDateTime",
+    "hz": 49174.27573095392,
+    "count": 2560
+}
+Result for testJSJodaParseDateTime
+{
+    "name": "testJSJodaParseDateTime",
+    "hz": 126513.68461137482,
+    "count": 7125
+}
+Result for testMomentParseDate
+{
+    "name": "testMomentParseDate",
+    "hz": 83673.28740473468,
+    "count": 5083
+}
+Result for testJSJodaParseDate
+{
+    "name": "testJSJodaParseDate",
+    "hz": 224427.02602781786,
+    "count": 12650
+}
+Result for testMomentPlus
+{
+    "name": "testMomentPlus",
+    "hz": 313965.56376223615,
+    "count": 17483
+}
+Result for testJSJodaPlus
+{
+    "name": "testJSJodaPlus",
+    "hz": 804331.2716495966,
+    "count": 43024
+}
+

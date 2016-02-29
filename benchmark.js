@@ -1,28 +1,40 @@
 var _ = require('lodash');
 var Benchmark = require('benchmark');
 var moment = require('moment');
-var LocalDateTime = require('js-joda').LocalDateTime;
+var JSJoda = require('js-joda');
 
-var accessLoops = 50;
+// require('./freezeit');
 
-function testMomentParsePlus() {
-	var m = moment('2016-02-26T09:29:08.678');
-	var s = '';
+var LocalDateTime = JSJoda.LocalDateTime;
+var LocalDate = JSJoda.LocalDate;
 
-	for(var i=0; i<accessLoops; i++){
-		m.add(1, 'months');
-		s += m.toISOString();
-	}
+
+function testMomentParseDateTime() {
+	return moment('2016-02-26T09:29:08.678');
 }
 
-function testJSJodaParsePlus() {
-	var d = LocalDateTime.parse('2016-02-26T09:29:08.678');
-	var s = '';
+function testJSJodaParseDateTime() {
+	return LocalDateTime.parse('2016-02-26T09:29:08.678');
+}
 
-	for(var i=0; i<accessLoops; i++){
-	        d = d.plusMonths(1);
-	        s += d.toString();
-	}
+function testMomentParseDate() {
+	return moment('2016-02-26');
+}
+
+function testJSJodaParseDate() {
+	return LocalDate.parse('2016-02-26');
+}
+
+var m = moment('2016-02-26T09:29:08');
+function testMomentPlus() {
+    m = m.add(30, 'days').add(30, 'hours');
+    return m;
+}
+
+var d = LocalDateTime.parse('2016-02-26T09:29:08');
+function testJSJodaPlus() {
+    d = d.plusDays(30).plusHours(30);
+    return d;
 }
 
 function logResult(){
@@ -40,8 +52,18 @@ function logFullResult(){
 
 var suite = new Benchmark.Suite();
 suite
-	.add('moment', testMomentParsePlus)
-	.add('js-joda', testJSJodaParsePlus)
+	.add('testMomentParseDateTime', testMomentParseDateTime)
+	.add('testJSJodaParseDateTime', testJSJodaParseDateTime)
+	.add('testMomentParseDate', testMomentParseDate)
+	.add('testJSJodaParseDate', testJSJodaParseDate)
+	.add('testMomentPlus', testMomentPlus)
+	.add('testJSJodaPlus', testJSJodaPlus)
 	.on('complete', logResult)
 	.run();
 
+//console.log(testMomentParseDateTime().toString());
+//console.log(testJSJodaParseDateTime().toString());
+//console.log(testMomentParseDate().toString());
+//console.log(testJSJodaParseDate().toString());
+//console.log(testMomentPlus().toString());
+//console.log(testJSJodaPlus().toString());
