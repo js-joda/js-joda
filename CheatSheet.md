@@ -3,6 +3,8 @@ js-joda Cheat sheet
 
 [For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/pithu/js-joda/)  
 
+Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://pithu.github.io/js-joda/cheat-sheet.html).
+
 ## Consistent method prefixes
 
 The API is using a consistent method prefixes.
@@ -620,6 +622,64 @@ dt1.until(dt2, ChronoUnit.SECONDS); // 220934532
 
 ```
 
-## Period and Duration
+## Period
 
-...
+Period is a date-based amount of time in the ISO-8601 calendar system, such as '2 years, 3 months and 4 days'.
+
+```javascript
+
+// parse and format ISO8601 period strings
+Period.parse('P1Y10M').toString(); // 'P1Y10M' 
+ 
+// obtain a Period of 10 years, 5 month and 30 days
+Period.of(10, 5, 30).toString(); // "P10Y5M30D"
+
+// 10 years
+Period.ofYears(10).toString(); // "P10Y"
+
+// add 45 days to a Period
+Period.ofYears(10).plusDays(45).toString(); // "P10Y45D"
+
+// normalize a Period of years and month
+Period.of(1, 37, 0).normalized().toString(); // "P4Y1M"
+
+// add/ subtract from a Period
+Period.ofYears(10).plusMonths(10).minusDays(42).toString(); // "P10Y10M-42D"
+
+// add a Period to LocalDate
+var p = Period.ofMonths(1);
+LocalDate.parse('2012-12-12').plus(p); // '2013-01-12';
+LocalDate.parse('2012-01-31').plus(p); // '2012-02-29';
+LocalDateTime.parse('2012-05-31T12:00').plus(p); // '2012-06-30T12:00';
+
+// calculate the Period between two Dates
+Period.between(LocalDate.parse('2012-06-30'), LocalDate.parse('2012-08-31')); // "P2M1D"
+
+```
+
+## Duration
+
+Duration is a time-based amount of time, such as '34.5 seconds'.
+
+```javascript
+
+// obtain a Duration of 10 hours
+Duration.ofHours(10).toString(); // "PT10H"
+
+// obtain a Duration of 10 days (10 x 24 hours)
+Duration.ofDays(10).toString(); // "PT240H"
+
+
+// add/ subtract a duration from a LocalDateTime
+var dt = LocalDateTime.parse('2012-12-24T12:00');
+
+dt.plus(Duration.ofHours(10).plusMinutes(30)).toString(); // '2012-12-24T22:30'
+dt.minus(Duration.ofHours(12).multipliedBy(10)).toString() // '2012-12-19T12:00'
+
+// calculate the durations beetween to time based temporals
+var dt1 = LocalDateTime.parse('2012-12-24T12:00');
+
+Duration.between(dt1, dt1.plusHours(10)).toString(); // "PT10H"
+
+```
+
