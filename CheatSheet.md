@@ -703,8 +703,9 @@ LocalDate.parse('2012-12-24').with(nextOrSameEvenDay); // '2012-12-24'
 
 ### Custom temporal fields and temporal units 
 
-a good point to start is temporal/IsoFields as an example how to implement fields and units for an ISO week based year.
- // TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.
+a good point to start is temporal/IsoFields as an example how to implement custom fields and units. 
+IsoFields implements fields and units for an ISO week based year.
+// TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.
  
 ### Custom formatter and queries
 
@@ -715,11 +716,11 @@ the temporal query returns either a LocalDate or a LocalDateTime, depending on t
 ```javascript
 
 // build a custom date time formatter where the time field is optional
-var b = new DateTimeFormatterBuilder().parseCaseInsensitive() 
-b.append(DateTimeFormatter.ISO_LOCAL_DATE) 
-b.optionalStart() 
-b.appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME) 
-var OPTIONAL_FORMATTER = b.toFormatter();
+var OPTIONAL_FORMATTER = new DateTimeFormatterBuilder().parseCaseInsensitive() 
+    .append(DateTimeFormatter.ISO_LOCAL_DATE) 
+    .optionalStart() 
+    .appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME) 
+    .toFormatter();
 
 // create a temporal query that create a new Temporal depending on the existing fields
 dateOrDateTimeQuery = { 
