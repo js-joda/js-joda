@@ -4,6 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {abstractMethodFail} from '../assert';
+import {Enum} from '../Enum';
+
+
 /**
  * Strategy for querying a temporal object.
  * <p>
@@ -79,12 +83,10 @@ export class TemporalQuery  extends Enum {
      * @throws ArithmeticException if numeric overflow occurs
      */
     queryFrom(temporal){
-        throw new Error('abstract class');
+        abstractMethodFail('queryFrom');
     }
 
 }
-
-import {Enum} from '../Enum';
 
 /**
  * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function

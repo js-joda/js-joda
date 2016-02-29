@@ -3,6 +3,8 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
+import {abstractMethodFail} from './assert';
 import {Instant} from './Instant';
 import {ZoneOffset} from './ZoneOffset';
 
@@ -112,7 +114,7 @@ export class Clock {
       *  the Java epoch of 1970-01-01T00:00Z (UTC), not null
       */
     millis(){
-        throw new TypeError('millis() function is not implemented');
+        abstractMethodFail('millis');
     }
 
     /**
@@ -123,7 +125,7 @@ export class Clock {
      * @return {Instant} the current instant from this clock, not null
      */
     instant(){
-        throw new TypeError('instant() function is not implemented');
+        abstractMethodFail('instant');
     }
 
     /**
@@ -136,7 +138,7 @@ export class Clock {
      * @return {number}
      */
     offset(){
-        throw new TypeError('offset() function is not implemented');
+        abstractMethodFail('offset');
     }
 }
 
