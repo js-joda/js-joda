@@ -7,14 +7,8 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-js-joda, a port of the ThreeTen immutable data and time library to javascript. 
-It provides a simple and clean API based on the ISO8601 calendar.
-Joda-Time (the predecessor project) used to be the de facto standard date and time library for Java. It is the base for JSR-310 that became part of Java SE 8 in the java.time package.
-JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
-
-js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. 
-This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. 
-The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our javascript port.
+js-joda, a port of the ThreeTen immutable data and time library to javascript. It provides a simple and clean API based on the ISO8601 calendar.
+Joda-Time (the predecessor project) used to be the de facto standard date and time library for Java and is the base for JSR-310 that became part of Java SE 8 in the java.time package.
 
 ## Why yet another javascript date and time library
 
@@ -80,6 +74,13 @@ Any further timezone converting and localization is not part of the first milest
 
 ## License
 
+Joda time is the base for JSR-310 that became part of Java SE 8 in the java.time package.
+JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
+
+js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. 
+This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. 
+The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our javascript port.
+
 + js-joda is released under the [BSD 3-clause license](LICENSE):
 
 + our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
@@ -91,6 +92,6 @@ Any further timezone converting and localization is not part of the first milest
 + The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne. 
 
 The API of this project (as far as possible with javascript), a lot of implementation details and documentation 
-are just copied but never equalled ;)
+are just copied but never equalled.
 
 
