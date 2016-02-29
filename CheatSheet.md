@@ -683,3 +683,56 @@ Duration.between(dt1, dt1.plusHours(10)).toString(); // "PT10H"
 
 ```
 
+
+## Customize js-joda
+
+js-joda is easy extend-able, it allows you to create your own custom domain models or formatter. check the temporal interface documentation
+at temporal directory for more information.
+
+### Custom temporal adjuster
+
+```javascript
+
+// implement a temporal/TemporalAdjuster that the next or same even day of month
+var nextOrSameEvenDay = { adjustInto: function(t){ return t.dayOfMonth() % 2 === 0 ? t : t.plusDays(1); } }
+
+LocalDateTime.parse('2012-12-23T12:00').with(nextOrSameEvenDay); // '2012-12-24T12:00'
+LocalDate.parse('2012-12-24').with(nextOrSameEvenDay); // '2012-12-24'
+
+```
+
+### Custom temporal fields and temporal units 
+
+a good point to start is temporal/IsoFields as an example how to implement fields and units for an ISO week based year.
+ // TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.
+ 
+### Custom formatter and queries
+
+The following example, is a kind of the opposite of a domain driven approach.
+It implements a date-time parser that parses a local date with an optional local time. 
+the temporal query returns either a LocalDate or a LocalDateTime, depending on the parsed fields.
+
+```javascript
+
+// build a custom date time formatter where the time field is optional
+var b = new DateTimeFormatterBuilder().parseCaseInsensitive() 
+b.append(DateTimeFormatter.ISO_LOCAL_DATE) 
+b.optionalStart() 
+b.appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME) 
+var OPTIONAL_FORMATTER = b.toFormatter();
+
+// create a temporal query that create a new Temporal depending on the existing fields
+dateOrDateTimeQuery = { 
+    queryFrom: function(temporal){ 
+        var date = temporal.query(TemporalQueries.localDate());
+        var time = temporal.query(TemporalQueries.localTime());
+        if(time==null) return date;
+        else return date.atTime(time)
+    }
+}
+   
+localDate = OPTIONAL_FORMATTER.parse('2012-12-24', dateOrDateTimeQuery);
+localDateTime = OPTIONAL_FORMATTER.parse('2012-12-24T23:59', dateOrDateTimeQuery);
+
+```
+
