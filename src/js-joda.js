@@ -10,7 +10,7 @@ export { Instant } from './Instant';
 export { LocalDate } from './LocalDate';
 export { LocalTime } from './LocalTime';
 export { LocalDateTime } from './LocalDateTime';
-export { MathUtil } from './MathUtil';
+// export { MathUtil } from './MathUtil'; what for export MathUtil ?
 export { Month } from './Month';
 export { Period } from './Period';
 export { Year } from './Year';
