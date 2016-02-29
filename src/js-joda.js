@@ -20,4 +20,8 @@ export {ChronoField} from './temporal/ChronoField';
 export {ChronoUnit} from './temporal/ChronoUnit';
 export {TemporalAdjusters} from './temporal/TemporalAdjusters';
 
+export {DateTimeFormatter} from './format/DateTimeFormatter';
+export {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
+export {ResolverStyle} from './format/ResolverStyle';
+
 import './_init';
