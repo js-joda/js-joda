@@ -42,7 +42,7 @@ export class DateTimeFormatter {
      * @param chrono  the chronology to use, null for no override
      * @param zone  the zone to use, null for no override
      */
-    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono, zone) {
+    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {
         assert(printerParser != null);
         assert(decimalStyle != null);
         assert(resolverStyle != null);
