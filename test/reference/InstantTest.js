@@ -510,7 +510,7 @@ describe('org.threeten.bp.TestInstant', () => {
         it('two calls of now should be closer the 0.1 secs', () => {
             var expected = Instant.now(Clock.systemUTC());
             var test = Instant.now();
-            var diff = Math.abs(test.epochMilli() - expected.epochMilli());
+            var diff = Math.abs(test.toEpochMilli() - expected.toEpochMilli());
             expect(diff).to.be.lessThan(100);  // less than 0.1 secs
         });
 

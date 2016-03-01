@@ -172,7 +172,7 @@ class SystemUTCClock extends SystemClock{
  */
 class SystemDefaultClock extends SystemClock{
     offset(instant) {
-        var offsetInMinutes = new Date().getTimezoneOffset(instant.epochMilli());
+        var offsetInMinutes = new Date().getTimezoneOffset(instant.toEpochMilli());
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 

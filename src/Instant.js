@@ -357,18 +357,6 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Gets the number of milli seconds from the Java epoch of 1970-01-01T00:00:00Z.
-     *
-     * The epoch milli second count is a simple incrementing count of milli seconds where
-     * milli second 0 is 1970-01-01T00:00:00Z.
-     *
-     * @return {number} the milli seconds from the epoch of 1970-01-01T00:00:00Z
-     */
-    epochMilli(){
-        return this._seconds * 1000 + MathUtil.intDiv(this._nanos, 1000000);
-    }
-
-    /**
      * Gets the number of nanoseconds, later along the time-line, from the start
      * of the second.
      *
@@ -550,7 +538,25 @@ export class Instant extends Temporal {
 
     // TODO at*/
 
-    // TODO toEpochMilli
+    //-----------------------------------------------------------------------
+     /**
+      * Converts this instant to the number of milliseconds from the epoch
+      * of 1970-01-01T00:00:00Z.
+      * <p>
+      * If this instant represents a point on the time-line too far in the future
+      * or past to fit in a {@code long} milliseconds, then an exception is thrown.
+      * <p>
+      * If this instant has greater than millisecond precision, then the conversion
+      * will drop any excess precision information as though the amount in nanoseconds
+      * was subject to integer division by one million.
+      *
+      * @return {number} the number of milliseconds since the epoch of 1970-01-01T00:00:00Z
+      * @throws ArithmeticException if numeric overflow occurs
+      */
+     toEpochMilli() {
+         var millis = MathUtil.safeMultiply(this._seconds, 1000);
+         return millis + this._nanos / NANOS_PER_MILLI;
+     }
 
     // TODO compareTo/ isAfter / isBefore
 
