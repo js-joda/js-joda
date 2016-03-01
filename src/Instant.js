@@ -3,6 +3,8 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
+import {requireNonNull, requireInstance} from './assert';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
@@ -558,7 +560,52 @@ export class Instant extends Temporal {
          return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
      }
 
-    // TODO compareTo/ isAfter / isBefore
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this instant to the specified instant.
+     * <p>
+     * The comparison is based on the time-line position of the instants.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     *
+     * @param {Instant} otherInstant  the other instant to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     * @throws NullPointerException if otherInstant is null
+     */
+    compareTo(otherInstant) {
+        requireNonNull(otherInstant, 'otherInstant');
+        requireInstance(otherInstant, Instant, 'otherInstant');
+        var cmp = MathUtil.compareNumbers(this._seconds, otherInstant._seconds);
+        if (cmp !== 0) {
+            return cmp;
+        }
+        return this._nanos - otherInstant._nanos;
+    }
+
+    /**
+     * Checks if this instant is after the specified instant.
+     * <p>
+     * The comparison is based on the time-line position of the instants.
+     *
+     * @param {Instant} otherInstant  the other instant to compare to, not null
+     * @return {boolean} true if this instant is after the specified instant
+     * @throws NullPointerException if otherInstant is null
+     */
+    isAfter(otherInstant) {
+        return this.compareTo(otherInstant) > 0;
+    }
+
+    /**
+     * Checks if this instant is before the specified instant.
+     * <p>
+     * The comparison is based on the time-line position of the instants.
+     *
+     * @param {Instant} otherInstant  the other instant to compare to, not null
+     * @return {boolean} true if this instant is before the specified instant
+     * @throws NullPointerException if otherInstant is null
+     */
+    isBefore(otherInstant) {
+        return this.compareTo(otherInstant) < 0;
+    }
 
     /**
      * Checks if this instant is equal to the specified instant.

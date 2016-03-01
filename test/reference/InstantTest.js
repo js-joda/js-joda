@@ -8,7 +8,7 @@ import {assertEquals} from '../testUtils';
 
 import '../_init';
 
-import {ArithmeticException} from '../../src/errors';
+import {NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {Clock} from '../../src/Clock';
@@ -616,6 +616,77 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('compareTo', function () {
+
+        it('test_comparisons', () => {
+            doTest_comparisons_Instant(
+                    Instant.ofEpochSecond(-2, 0),
+                    Instant.ofEpochSecond(-2, 999999998),
+                    Instant.ofEpochSecond(-2, 999999999),
+                    Instant.ofEpochSecond(-1, 0),
+                    Instant.ofEpochSecond(-1, 1),
+                    Instant.ofEpochSecond(-1, 999999998),
+                    Instant.ofEpochSecond(-1, 999999999),
+                    Instant.ofEpochSecond(0, 0),
+                    Instant.ofEpochSecond(0, 1),
+                    Instant.ofEpochSecond(0, 2),
+                    Instant.ofEpochSecond(0, 999999999),
+                    Instant.ofEpochSecond(1, 0),
+                    Instant.ofEpochSecond(2, 0)
+            );
+        });
+
+        function doTest_comparisons_Instant(...instants) {
+            for (var i = 0; i < instants.length; i++) {
+                var a = instants[i];
+                for (var j = 0; j < instants.length; j++) {
+                    var b = instants[j];
+                    if (i < j) {
+                        assertEquals(a.compareTo(b) < 0, true, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else if (i > j) {
+                        assertEquals(a.compareTo(b) > 0, true, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), false, a + ' <=> ' + b);
+                    } else {
+                        assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
+                        assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.equals(b), true, a + ' <=> ' + b);
+                    }
+                }
+            }
+        }
+
+        it('test_compareTo_ObjectNull', () => {
+            expect(() => {
+                var a = Instant.ofEpochSecond(0, 0);
+                a.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isBefore_ObjectNull', () => {
+            expect(() => {
+                var a = Instant.ofEpochSecond(0, 0);
+                a.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isAfter_ObjectNull', () => {
+            expect(() => {
+                var a = Instant.ofEpochSecond(0, 0);
+                a.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('compareToNonInstant', () => {
+            expect(() => {
+                var c = Instant.ofEpochSecond(0);
+                c.compareTo({});
+            }).to.throw(IllegalArgumentException);
+        });
 
     });
 
