@@ -3,19 +3,22 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {expect} from 'chai';
 import {assertEquals} from '../testUtils';
 
 import '../_init';
 
-import {NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
+import {DateTimeException,NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
+
+import {Clock} from '../../src/Clock';
+import {Instant} from '../../src/Instant';
+import {LocalDateTime} from '../../src/LocalDateTime';
+import {MathUtil} from '../../src/MathUtil';
+import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
-import {Clock} from '../../src/Clock';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {Instant} from '../../src/Instant';
-import {MathUtil} from '../../src/MathUtil';
-import {DateTimeException} from '../../src/errors';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
@@ -692,14 +695,159 @@ describe('org.threeten.bp.TestInstant', () => {
 
     describe('equals', function () {
 
+        it('test_equals', () => {
+            var test5a = Instant.ofEpochSecond(5, 20);
+            var test5b = Instant.ofEpochSecond(5, 20);
+            var test5n = Instant.ofEpochSecond(5, 30);
+            var test6 = Instant.ofEpochSecond(6, 20);
+
+            assertEquals(test5a.equals(test5a), true);
+            assertEquals(test5a.equals(test5b), true);
+            assertEquals(test5a.equals(test5n), false);
+            assertEquals(test5a.equals(test6), false);
+
+            assertEquals(test5b.equals(test5a), true);
+            assertEquals(test5b.equals(test5b), true);
+            assertEquals(test5b.equals(test5n), false);
+            assertEquals(test5b.equals(test6), false);
+
+            assertEquals(test5n.equals(test5a), false);
+            assertEquals(test5n.equals(test5b), false);
+            assertEquals(test5n.equals(test5n), true);
+            assertEquals(test5n.equals(test6), false);
+
+            assertEquals(test6.equals(test5a), false);
+            assertEquals(test6.equals(test5b), false);
+            assertEquals(test6.equals(test5n), false);
+            assertEquals(test6.equals(test6), true);
+        });
+
+        it('test_equals_null', () => {
+            var test5 = Instant.ofEpochSecond(5, 20);
+            assertEquals(test5.equals(null), false);
+        });
+
+        it('test_equals_otherClass', () => {
+            var test5 = Instant.ofEpochSecond(5, 20);
+            assertEquals(test5.equals(''), false);
+        });
+
     });
 
     describe('hashCode', function () {
 
+        it('test_hashCode', () => {
+            var test5a = Instant.ofEpochSecond(5, 20);
+            var test5b = Instant.ofEpochSecond(5, 20);
+            var test5n = Instant.ofEpochSecond(5, 30);
+            var test6 = Instant.ofEpochSecond(6, 20);
+
+            assertEquals(test5a.hashCode() === test5a.hashCode(), true);
+            assertEquals(test5a.hashCode() === test5b.hashCode(), true);
+            assertEquals(test5b.hashCode() === test5b.hashCode(), true);
+
+            assertEquals(test5a.hashCode() === test5n.hashCode(), false);
+            assertEquals(test5a.hashCode() === test6.hashCode(), false);
+        });
+
     });
 
-    describe('toString', function () {
+    describe.skip('toString', function () {
 
+        // @DataProvider(name="toStringParse")
+        function data_toString() {
+            return [
+                [Instant.ofEpochSecond(65, 567), '1970-01-01T00:01:05.000000567Z'],
+                [Instant.ofEpochSecond(1, 0), '1970-01-01T00:00:01Z'],
+                [Instant.ofEpochSecond(60, 0), '1970-01-01T00:01:00Z'],
+                [Instant.ofEpochSecond(3600, 0), '1970-01-01T01:00:00Z'],
+                [Instant.ofEpochSecond(-1, 0), '1969-12-31T23:59:59Z'],
+
+                [LocalDateTime.of(0, 1, 2, 0, 0).toInstant(ZoneOffset.UTC), '0000-01-02T00:00:00Z'],
+                [LocalDateTime.of(0, 1, 1, 12, 30).toInstant(ZoneOffset.UTC), '0000-01-01T12:30:00Z'],
+                [LocalDateTime.of(0, 1, 1, 0, 0, 0, 1).toInstant(ZoneOffset.UTC), '0000-01-01T00:00:00.000000001Z'],
+                [LocalDateTime.of(0, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), '0000-01-01T00:00:00Z'],
+
+                [LocalDateTime.of(-1, 12, 31, 23, 59, 59, 999999999).toInstant(ZoneOffset.UTC), '-0001-12-31T23:59:59.999999999Z'],
+                [LocalDateTime.of(-1, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '-0001-12-31T12:30:00Z'],
+                [LocalDateTime.of(-1, 12, 30, 12, 30).toInstant(ZoneOffset.UTC), '-0001-12-30T12:30:00Z'],
+
+                [LocalDateTime.of(-9999, 1, 2, 12, 30).toInstant(ZoneOffset.UTC), '-9999-01-02T12:30:00Z'],
+                [LocalDateTime.of(-9999, 1, 1, 12, 30).toInstant(ZoneOffset.UTC), '-9999-01-01T12:30:00Z'],
+                [LocalDateTime.of(-9999, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), '-9999-01-01T00:00:00Z'],
+
+                [LocalDateTime.of(-10000, 12, 31, 23, 59, 59, 999999999).toInstant(ZoneOffset.UTC), '-10000-12-31T23:59:59.999999999Z'],
+                [LocalDateTime.of(-10000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '-10000-12-31T12:30:00Z'],
+                [LocalDateTime.of(-10000, 12, 30, 12, 30).toInstant(ZoneOffset.UTC), '-10000-12-30T12:30:00Z'],
+                [LocalDateTime.of(-15000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '-15000-12-31T12:30:00Z'],
+
+                [LocalDateTime.of(-19999, 1, 2, 12, 30).toInstant(ZoneOffset.UTC), '-19999-01-02T12:30:00Z'],
+                [LocalDateTime.of(-19999, 1, 1, 12, 30).toInstant(ZoneOffset.UTC), '-19999-01-01T12:30:00Z'],
+                [LocalDateTime.of(-19999, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), '-19999-01-01T00:00:00Z'],
+
+                [LocalDateTime.of(-20000, 12, 31, 23, 59, 59, 999999999).toInstant(ZoneOffset.UTC), '-20000-12-31T23:59:59.999999999Z'],
+                [LocalDateTime.of(-20000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '-20000-12-31T12:30:00Z'],
+                [LocalDateTime.of(-20000, 12, 30, 12, 30).toInstant(ZoneOffset.UTC), '-20000-12-30T12:30:00Z'],
+                [LocalDateTime.of(-25000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '-25000-12-31T12:30:00Z'],
+
+                [LocalDateTime.of(9999, 12, 30, 12, 30).toInstant(ZoneOffset.UTC), '9999-12-30T12:30:00Z'],
+                [LocalDateTime.of(9999, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '9999-12-31T12:30:00Z'],
+                [LocalDateTime.of(9999, 12, 31, 23, 59, 59, 999999999).toInstant(ZoneOffset.UTC), '9999-12-31T23:59:59.999999999Z'],
+
+                [LocalDateTime.of(10000, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), '+10000-01-01T00:00:00Z'],
+                [LocalDateTime.of(10000, 1, 1, 12, 30).toInstant(ZoneOffset.UTC), '+10000-01-01T12:30:00Z'],
+                [LocalDateTime.of(10000, 1, 2, 12, 30).toInstant(ZoneOffset.UTC), '+10000-01-02T12:30:00Z'],
+                [LocalDateTime.of(15000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '+15000-12-31T12:30:00Z'],
+
+                [LocalDateTime.of(19999, 12, 30, 12, 30).toInstant(ZoneOffset.UTC), '+19999-12-30T12:30:00Z'],
+                [LocalDateTime.of(19999, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '+19999-12-31T12:30:00Z'],
+                [LocalDateTime.of(19999, 12, 31, 23, 59, 59, 999999999).toInstant(ZoneOffset.UTC), '+19999-12-31T23:59:59.999999999Z'],
+
+                [LocalDateTime.of(20000, 1, 1, 0, 0).toInstant(ZoneOffset.UTC), '+20000-01-01T00:00:00Z'],
+                [LocalDateTime.of(20000, 1, 1, 12, 30).toInstant(ZoneOffset.UTC), '+20000-01-01T12:30:00Z'],
+                [LocalDateTime.of(20000, 1, 2, 12, 30).toInstant(ZoneOffset.UTC), '+20000-01-02T12:30:00Z'],
+                [LocalDateTime.of(25000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '+25000-12-31T12:30:00Z'],
+
+                [LocalDateTime.of(-999999, 1, 1, 12, 30).toInstant(ZoneOffset.UTC).minus(1, ChronoUnit.DAYS), '-1000000000-12-31T12:30:00Z'],
+                [LocalDateTime.of(999999, 12, 31, 12, 30).toInstant(ZoneOffset.UTC).plus(1, ChronoUnit.DAYS), '+1000000000-01-01T12:30:00Z'],
+
+                [Instant.MIN, '-1000000000-01-01T00:00:00Z'],
+                [Instant.MAX, '+1000000000-12-31T23:59:59.999999999Z']
+            ];
+        }
+
+        //@Test(dataProvider="toStringParse")
+        it('test_toString', function () {
+            data_toString().forEach((data)=> {
+                test_toString.apply(this, data);
+            });
+        });
+
+        function test_toString(instant, expected) {
+            assertEquals(instant.toString(), expected);
+        }
+
+        //@Test(dataProvider="toStringParse")
+        it('test_parse', function () {
+            data_toString().forEach((data)=> {
+                test_parse.apply(this, data);
+            });
+        });
+
+        function test_parse(instant, text) {
+            assertEquals(Instant.parse(text), instant);
+        }
+
+        //@Test(dataProvider="toStringParse")
+        it('test_parseLowercase', function () {
+            data_toString().forEach((data)=> {
+                test_parseLowercase.apply(this, data);
+            });
+        });
+
+        function test_parseLowercase(instant, text) {
+            assertEquals(Instant.parse(text.toLowerCase()), instant);
+        }
     });
 
 });

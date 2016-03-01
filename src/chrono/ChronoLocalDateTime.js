@@ -8,6 +8,7 @@ import {requireNonNull} from '../assert';
 import {MathUtil} from '../MathUtil';
 
 import {LocalDate} from '../LocalDate';
+import {Instant} from '../Instant';
 import {ChronoUnit} from '../temporal/ChronoUnit';
 import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
@@ -86,6 +87,20 @@ export class ChronoLocalDateTime extends Temporal {
         return temporal
                 .with(ChronoUnit.EPOCH_DAY, this.toLocalDate().toEpochDay())
                 .with(ChronoUnit.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Converts this date-time to an {@code Instant}.
+     * <p>
+     * This combines this local date-time and the specified offset to form
+     * an {@code Instant}.
+     *
+     * @param {ZoneOffset} offset  the offset to use for the conversion, not null
+     * @return {Instant} an {@code Instant} representing the same instant, not null
+     */
+    toInstant( offset) {
+        return Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());
     }
 
     /**
