@@ -44,10 +44,10 @@ describe('org.threeten.bp.TestInstant', () => {
             check(Instant.EPOCH, 0, 0);
         });
         it('MIN', () => {
-            check(Instant.MIN, -31619087596800, 0);
+            check(Instant.MIN, -31619119219200, 0);
         });
         it('MAX', () => {
-            check(Instant.MAX, 31494784780799, 999999999);
+            check(Instant.MAX, 31494816403199, 999999999);
         });
     });
 

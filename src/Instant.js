@@ -5,13 +5,16 @@
  */
 
 import {requireNonNull, requireInstance} from './assert';
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {Clock} from './Clock';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+
+import {Clock} from './Clock';
 import {LocalTime} from './LocalTime';
 import {MathUtil} from './MathUtil';
 import {Temporal} from './temporal/Temporal';
+
+import {ChronoField} from './temporal/ChronoField';
+import {ChronoUnit} from './temporal/ChronoUnit';
+import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 const NANOS_PER_MILLI = 1000000;
 
@@ -753,12 +756,22 @@ export class Instant extends Temporal {
         return ((this._seconds ^ (this._seconds >>> 24))) + 51 * this._nanos;
     }
 
-    // TODO toString()
+    /**
+     * A string representation of this instant using ISO-8601 representation.
+     * <p>
+     * The format used is the same as {@link DateTimeFormatter#ISO_INSTANT}.
+     *
+     * @return {string} an ISO-8601 representation of this instant, not null
+     */
+    toString(){
+        // TODO return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(this) + 'Z';
+        return 'Instant { seconds: ' + this._seconds + ', nanos: ' + this._nanos + '}';
+    }
 }
 
 export function _init() {
-    Instant.MIN_SECONDS = -31619087596800; // -999999-01-01T00:00:00
-    Instant.MAX_SECONDS = 31494784780799; // +999999-12-31T23:59:59
+    Instant.MIN_SECONDS = -31619119219200; // -1000000-01-01T00:00:00Z
+    Instant.MAX_SECONDS = 31494816403199; // +1000000-12-31T23:59:59.999999999Z
     Instant.EPOCH = new Instant(0, 0);
     Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);
     Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999);
