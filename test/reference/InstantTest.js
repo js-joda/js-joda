@@ -436,7 +436,135 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('plusMillis', function () {
+        
+        //@DataProvider(name="PlusMillis")
+        function provider_plusMillis_long() {
+            return [
+                    [0, 0, 0,       0, 0],
+                    [0, 0, 1,       0, 1000000],
+                    [0, 0, 999,     0, 999000000],
+                    [0, 0, 1000,    1, 0],
+                    [0, 0, 1001,    1, 1000000],
+                    [0, 0, 1999,    1, 999000000],
+                    [0, 0, 2000,    2, 0],
+                    [0, 0, -1,      -1, 999000000],
+                    [0, 0, -999,    -1, 1000000],
+                    [0, 0, -1000,   -1, 0],
+                    [0, 0, -1001,   -2, 999000000],
+                    [0, 0, -1999,   -2, 1000000],
+    
+                    [0, 1, 0,       0, 1],
+                    [0, 1, 1,       0, 1000001],
+                    [0, 1, 998,     0, 998000001],
+                    [0, 1, 999,     0, 999000001],
+                    [0, 1, 1000,    1, 1],
+                    [0, 1, 1998,    1, 998000001],
+                    [0, 1, 1999,    1, 999000001],
+                    [0, 1, 2000,    2, 1],
+                    [0, 1, -1,      -1, 999000001],
+                    [0, 1, -2,      -1, 998000001],
+                    [0, 1, -1000,   -1, 1],
+                    [0, 1, -1001,   -2, 999000001],
+    
+                    [0, 1000000, 0,       0, 1000000],
+                    [0, 1000000, 1,       0, 2000000],
+                    [0, 1000000, 998,     0, 999000000],
+                    [0, 1000000, 999,     1, 0],
+                    [0, 1000000, 1000,    1, 1000000],
+                    [0, 1000000, 1998,    1, 999000000],
+                    [0, 1000000, 1999,    2, 0],
+                    [0, 1000000, 2000,    2, 1000000],
+                    [0, 1000000, -1,      0, 0],
+                    [0, 1000000, -2,      -1, 999000000],
+                    [0, 1000000, -999,    -1, 2000000],
+                    [0, 1000000, -1000,   -1, 1000000],
+                    [0, 1000000, -1001,   -1, 0],
+                    [0, 1000000, -1002,   -2, 999000000],
+    
+                    [0, 999999999, 0,     0, 999999999],
+                    [0, 999999999, 1,     1, 999999],
+                    [0, 999999999, 999,   1, 998999999],
+                    [0, 999999999, 1000,  1, 999999999],
+                    [0, 999999999, 1001,  2, 999999],
+                    [0, 999999999, -1,    0, 998999999],
+                    [0, 999999999, -1000, -1, 999999999],
+                    [0, 999999999, -1001, -1, 998999999],
+    
+                    [0, 0, MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
+                    [0, 0, MathUtil.MIN_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1, MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000 + 1000000000]
+            ];
+        }
 
+        it('plusMillis_long', function () {
+            provider_plusMillis_long().forEach((data) => {
+                plusMillis_long.apply(this, data);
+            });
+        });
+    
+        //@Test(dataProvider="PlusMillis")
+        function plusMillis_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var t = Instant.ofEpochSecond(seconds, nanos);
+            t = t.plusMillis(amount);
+            assertEquals(t.epochSecond(), expectedSeconds);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+        
+        it('plusMillis_long_oneMore', function () {
+            provider_plusMillis_long().forEach((data) => {
+                plusMillis_long_oneMore.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider="PlusMillis")
+        function plusMillis_long_oneMore(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var t = Instant.ofEpochSecond(seconds + 1, nanos);
+            t = t.plusMillis(amount);
+            assertEquals(t.epochSecond(), expectedSeconds + 1);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+        
+        it('plusMillis_long_minusOneLess', function () {
+            provider_plusMillis_long().forEach((data) => {
+                plusMillis_long_minusOneLess.apply(this, data);
+            });
+        });
+
+        //@Test(dataProvider="PlusMillis")
+        function plusMillis_long_minusOneLess(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var t = Instant.ofEpochSecond(seconds - 1, nanos);
+            t = t.plusMillis(amount);
+            assertEquals(t.epochSecond(), expectedSeconds - 1);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+    
+        it('plusMillis_long_max', () => {
+            var t = Instant.ofEpochSecond(MAX_SECOND, 998999999);
+            t = t.plusMillis(1);
+            assertEquals(t.epochSecond(), MAX_SECOND);
+            assertEquals(t.nano(), 999999999);
+        });
+    
+        it('plusMillis_long_overflowTooBig', () => {
+            expect(() => {
+                var t = Instant.ofEpochSecond(MAX_SECOND, 999000000);
+                t.plusMillis(1);
+            }).to.throw(DateTimeException);
+        });
+    
+        it('plusMillis_long_min', () => {
+            var t = Instant.ofEpochSecond(MIN_SECOND, 1000000);
+            t = t.plusMillis(-1);
+            assertEquals(t.epochSecond(), MIN_SECOND);
+            assertEquals(t.nano(), 0);
+        });
+    
+        it('plusMillis_long_overflowTooSmall', () => {
+            expect(() => {
+                var t = Instant.ofEpochSecond(MIN_SECOND, 0);
+                t.plusMillis(-1);
+            }).to.throw(DateTimeException);
+        });
+        
     });
 
     describe('plusNanos', () => {
