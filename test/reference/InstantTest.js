@@ -44,6 +44,67 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
+    describe('now', () => {
+
+        it('two calls of now should be closer the 0.1 secs', () => {
+            var expected = Instant.now(Clock.systemUTC());
+            var test = Instant.now();
+            var diff = Math.abs(test.toEpochMilli() - expected.toEpochMilli());
+            expect(diff).to.be.lessThan(100);  // less than 0.1 secs
+        });
+
+        it('now_Clock_allSecsInDay_utc', () => {
+            for (var i = 0; i < (2 * 24 * 60 * 60); i += 100) {
+                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                var clock = Clock.fixed(expected, ZoneOffset.UTC);
+                var test = Instant.now(clock);
+                expect(test.equals(expected)).to.equal(true);
+            }
+        });
+
+        it('now_Clock_allSecsInDay_beforeEpoch', () => {
+            for (var i = -1; i >= -(24 * 60 * 60); i -= 100) {
+                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                var clock = Clock.fixed(expected, ZoneOffset.UTC);
+                var test = Instant.now(clock);
+                expect(test.equals(expected)).to.equal(true);
+            }
+        });
+    });
+
+    describe('ofEpochSecond()', function () {
+
+    });
+
+    describe('ofEpochMilli()', function () {
+
+    });
+
+    describe('parse', function () {
+
+    });
+
+    describe('get(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.get(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.get(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.get(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+        });
+
+        it('test_getLong_TemporalField', () => {
+            let test = TEST_12345_123456789;
+            expect(test.getLong(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
+            expect(test.getLong(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
+            expect(test.getLong(ChronoField.MILLI_OF_SECOND)).to.eql(123);
+            expect(test.getLong(ChronoField.INSTANT_SECONDS)).to.eql(12345);
+        });
+    });
+
+    describe('query', function () {
+
+    });
+
     describe('plus', () => {
         var dataProviderPlus;
         beforeEach(() => {
@@ -337,6 +398,10 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
+    describe('plusMillis', function () {
+
+    });
+
     describe('plusNanos', () => {
         var dataProviderPlus;
         beforeEach(() => {
@@ -506,48 +571,32 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
-    describe('now', () => {
-        it('two calls of now should be closer the 0.1 secs', () => {
-            var expected = Instant.now(Clock.systemUTC());
-            var test = Instant.now();
-            var diff = Math.abs(test.toEpochMilli() - expected.toEpochMilli());
-            expect(diff).to.be.lessThan(100);  // less than 0.1 secs
-        });
+    describe('minusMillis', function () {
 
-        it('now_Clock_allSecsInDay_utc', () => {
-            for (var i = 0; i < (2 * 24 * 60 * 60); i+=100) {
-                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
-                var clock = Clock.fixed(expected, ZoneOffset.UTC);
-                var test = Instant.now(clock);
-                expect(test.equals(expected)).to.equal(true);
-            }
-        });
-
-        it('now_Clock_allSecsInDay_beforeEpoch', () => {
-            for (var i =-1; i >= -(24 * 60 * 60); i-=100) {
-                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
-                var clock = Clock.fixed(expected, ZoneOffset.UTC);
-                var test = Instant.now(clock);
-                expect(test.equals(expected)).to.equal(true);
-            }
-        });
     });
-    
-    describe('get(TemporalField)', () => {
-        it('test_get_TemporalField', () => {
-            let test = TEST_12345_123456789;
-            expect(test.get(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
-            expect(test.get(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
-            expect(test.get(ChronoField.MILLI_OF_SECOND)).to.eql(123);
-        });
 
-        it('test_getLong_TemporalField', () => {
-            let test = TEST_12345_123456789;
-            expect(test.getLong(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
-            expect(test.getLong(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
-            expect(test.getLong(ChronoField.MILLI_OF_SECOND)).to.eql(123);
-            expect(test.getLong(ChronoField.INSTANT_SECONDS)).to.eql(12345);
-        });
+    describe('minusNanos', function () {
+
+    });
+
+    describe('toEpochMilli', function () {
+
+    });
+
+    describe('compareTo', function () {
+
+    });
+
+    describe('equals', function () {
+
+    });
+
+    describe('hashCode', function () {
+
+    });
+
+    describe('toString', function () {
+
     });
 
 });
