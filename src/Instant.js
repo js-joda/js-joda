@@ -375,9 +375,55 @@ export class Instant extends Temporal {
 
     // TODO truncatedTo
 
-    // TODO plus amount
+    //-----------------------------------------------------------------------
+    /**
+     *
+     * @param {TemporalAmount|number} amount
+     * @param {TemporalUnit} unit - only required if first param is a TemporalAmount
+     * @return {Instant}
+     */
+    plus(amount, unit){
+        if(arguments.length === 1){
+            return this.plus1(amount);
+        } else {
+            return this.plus2(amount, unit);
+        }
+    }
 
-    // TODO plus amount, unit
+    /**
+     * @param {!TemporalAmount} amount
+     * @return {Instant}
+     * @throws DateTimeException
+     * @throws ArithmeticException
+     */
+    plus1(amount) {
+        requireNonNull(amount, 'amount');
+        return amount.addTo(this);
+    }
+
+    /**
+     * @param {!number} amountToAdd
+     * @param {!TemporalUnit} unit
+     * @return {Instant}
+     * @throws DateTimeException
+     * @throws ArithmeticException
+     */
+    plus2(amountToAdd, unit) {
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
+                case ChronoUnit.MICROS: return this._plus(MathUtil.intDiv(amountToAdd, 1000000), MathUtil.intMod(amountToAdd, 1000000) * 1000);
+                case ChronoUnit.MILLIS: return this.plusMillis(amountToAdd);
+                case ChronoUnit.SECONDS: return this.plusSeconds(amountToAdd);
+                case ChronoUnit.MINUTES: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_MINUTE));
+                case ChronoUnit.HOURS: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_HOUR));
+                case ChronoUnit.HALF_DAYS: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY / 2));
+                case ChronoUnit.DAYS: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.addTo(this, amountToAdd);
+    }
 
     /**
      * Returns a copy of this instant with the specified duration in seconds added.
@@ -392,7 +438,20 @@ export class Instant extends Temporal {
         return this._plus(secondsToAdd, 0);
     }
 
-    // TODO plusMillis
+    /**
+     * Returns a copy of this instant with the specified duration in milliseconds added.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} millisToAdd - the milliseconds to add, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified milliseconds added, not null
+     * @throws DateTimeException if the result exceeds the maximum or minimum instant
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    plusMillis(millisToAdd) {
+        return this._plus(MathUtil.intDiv(millisToAdd, 1000), MathUtil.intMod(millisToAdd, 1000) * NANOS_PER_MILLI);
+    }
+
     /**
      * Returns a copy of this instant with the specified duration in nanoseconds added.
      * 
@@ -427,9 +486,42 @@ export class Instant extends Temporal {
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);
     }
 
-    // TODO minus amount
+    //-----------------------------------------------------------------------
+    /**
+     *
+     * @param {TemporalAmount|number} amount
+     * @param {TemporalUnit} unit - only required if first param is a TemporalAmount
+     * @return {Instant}
+     */
+    minus(amount, unit){
+        if(arguments.length === 1){
+            return this.minus1(amount);
+        } else {
+            return this.minus2(amount, unit);
+        }
+    }
 
-    // TODO minus amount, unit
+    /**
+     * @param {!TemporalAmount} amount
+     * @return {Instant}
+     * @throws DateTimeException
+     * @throws ArithmeticException
+     */
+    minus1(amount) {
+        requireNonNull(amount, 'amount');
+        return amount.subtractFrom(this);
+    }
+
+    /**
+     * @param {!number} amountToSubtract
+     * @param {!TemporalUnit} unit
+     * @return {Instant}
+     * @throws DateTimeException
+     * @throws ArithmeticException
+     */
+    minus2(amountToSubtract, unit) {
+        return this.plus2(-1 * amountToSubtract, unit);
+    }
 
     /**
      * Returns a copy of this instant with the specified duration in seconds subtracted.
@@ -444,7 +536,33 @@ export class Instant extends Temporal {
         return this.plusSeconds(secondsToSubtract * -1);
     }
 
-    // TODO minus millis / nanos
+    /**
+     * Returns a copy of this instant with the specified duration in milliseconds subtracted.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} millisToSubtract - the milliseconds to subtract, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified milliseconds subtracted, not null
+     * @throws DateTimeException if the result exceeds the maximum or minimum instant
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusMillis(millisToSubtract) {
+        return this.plusMillis(-1 * millisToSubtract);
+    }
+
+    /**
+     * Returns a copy of this instant with the specified duration in nanoseconds subtracted.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} nanosToSubtract  the nanoseconds to subtract, positive or negative
+     * @return {Instant} an {@code Instant} based on this instant with the specified nanoseconds subtracted, not null
+     * @throws DateTimeException if the result exceeds the maximum or minimum instant
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusNanos(nanosToSubtract) {
+        return this.plusNanos(-1 * nanosToSubtract);
+    }
 
     // TODO query
 

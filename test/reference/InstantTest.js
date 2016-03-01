@@ -12,6 +12,7 @@ import '../_init';
 import {DateTimeException,NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {Duration} from '../../src/Duration';
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {MathUtil} from '../../src/MathUtil';
@@ -314,16 +315,46 @@ describe('org.threeten.bp.TestInstant', () => {
 
         });
 
-        it('plus_secondsPlusNanos', () => {
-            for(var i=0; i < dataProviderPlus.length; i++){
+        it('plus_Duration', () => {
+            for (var i = 0; i < dataProviderPlus.length; i++) {
                 var plusData = dataProviderPlus[i];
-                plus_secondsPlusNanos.apply(this, plusData);
+                plus_Duration.apply(this, plusData);
             }
         });
 
-        // TODO replace plusSeconds and plusNano by plus(amount, TemporalUnit)
-        function plus_secondsPlusNanos(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond){
-            var instant = Instant.ofEpochSecond(seconds, nanos).plusSeconds(otherSeconds).plusNanos(otherNanos);
+        //@Test(dataProvider="Plus")
+        function plus_Duration(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond) {
+            var i = Instant.ofEpochSecond(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
+            assertEquals(i.epochSecond(), expectedSeconds);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('plus_Duration_overflowTooBig', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                i.plus(Duration.ofSeconds(0, 1));
+            }).to.throw(DateTimeException);
+        });
+
+        it('plus_Duration_overflowTooSmall', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MIN_SECOND);
+                i.plus(Duration.ofSeconds(-1, 999999999));
+            }).to.throw(DateTimeException);
+        });
+
+
+        it('plus_longTemporalUnit', () => {
+            for(var i=0; i < dataProviderPlus.length; i++){
+                var plusData = dataProviderPlus[i];
+                plus_longTemporalUnit.apply(this, plusData);
+            }
+        });
+
+        function plus_longTemporalUnit(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond){
+            var instant = Instant.ofEpochSecond(seconds, nanos)
+                .plus(otherSeconds, ChronoUnit.SECONDS)
+                .plus(otherNanos, ChronoUnit.NANOS);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
         }
