@@ -17,45 +17,90 @@
     <script src="//cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js"></script>
     <script src="//cdn.jsdelivr.net/benchmarkjs/2.1.0/benchmark.js"></script>
     <script type="application/javascript">
+
+        function freezeClassesAndStaticClassProperties(JSJodaModule) {
+            Object.getOwnPropertyNames(JSJodaModule).forEach(function (className){
+                if (className.indexOf('_') === 0 || className[0] !== className[0].toUpperCase()){
+                    return;
+                }
+                var JSJodaClass = JSJodaModule[className];
+                if(Object.isFrozen(JSJodaClass)){
+                    return;
+                }
+                Object.getOwnPropertyNames(JSJodaClass).forEach(function(classProp){
+                    if(JSJodaClass[classProp] instanceof JSJodaClass){
+                        // console.log('about to freeze static instance: ' + className + '.' + classProp);
+                        Object.freeze(JSJodaClass[classProp]);
+                    }
+                });
+                // console.log('about to freeze class: ' + className);
+                Object.freeze(JSJodaClass);
+            });
+
+        }
+
         function performBenchmark() {
             var LocalDateTime = JSJoda.LocalDateTime;
-            var accessLoops = 10;
+            var LocalDate = JSJoda.LocalDate;
 
-            function testMomentParsePlus(){
-                var m = moment('2016-02-26T09:29:08.678');
-                var s = '';
 
-                for (var i = 0; i < accessLoops; i++) {
-                    m.add(1, 'months');
-                    s += m.toISOString();
-                }
+            function testMomentParseDateTime() {
+            	return moment('2016-02-26T09:29:08.678');
             }
 
-            function testJSJodaParsePlus(){
-                var d = LocalDateTime.parse('2016-02-26T09:29:08.678');
-                var s = '';
+            function testJSJodaParseDateTime() {
+            	return LocalDateTime.parse('2016-02-26T09:29:08.678');
+            }
 
-                for (var i = 0; i < accessLoops; i++) {
-                    d = d.plusMonths(1);
-                    s += d.toString();
-                }
+            function testMomentParseDate() {
+            	return moment('2016-02-26');
+            }
+
+            function testJSJodaParseDate() {
+            	return LocalDate.parse('2016-02-26');
+            }
+
+            var m = moment('2016-02-26T09:29:08');
+            function testMomentPlus() {
+                m = m.add(30, 'days').add(30, 'hours');
+                return m;
+            }
+
+            var d = LocalDateTime.parse('2016-02-26T09:29:08');
+            function testJSJodaPlus() {
+                d = d.plusDays(30).plusHours(30);
+                return d;
+            }
+
+            function logResult(){
+                var resultStr = 'Fastest is ' + this.filter('fastest').map('name') + '\n';
+                this.filter('successful').forEach(function (value) {
+                    resultStr += 'Result for ' + value.name + '\n';
+                    resultStr += JSON.stringify(_.pick(value, ['name', 'hz', 'count']), null, 4) + '\n';
+                });
+                console.log(resultStr)
+                document.getElementById('result').textContent += resultStr;
+            }
+
+            function logFullResult(){
+                console.log(JSON.stringify(this, null, 4));
             }
 
             var suite = new Benchmark.Suite();
             suite
-                .add('js-joda', testJSJodaParsePlus)
-                .add('moment', testMomentParsePlus)
-                .on('complete', function () {
-                    var resultStr = 'Fastest is ' + this.filter('fastest').map('name') + '\n\n';
-                    this.filter('successful').forEach(function (value) {
-                        resultStr += 'Result for ' + value.name + '\n';
-                        resultStr += JSON.stringify(_.pick(value, ['name', 'hz', 'count']), null, 4) + '\n';
-                    });
-                    console.log(resultStr);
-                    document.getElementById('result').textContent = resultStr;
-                })
-                .run();
+            	.add('testMomentParseDateTime', testMomentParseDateTime)
+            	.add('testJSJodaParseDateTime', testJSJodaParseDateTime)
+            	.add('testMomentParseDate', testMomentParseDate)
+            	.add('testJSJodaParseDate', testJSJodaParseDate)
+            	.add('testMomentPlus', testMomentPlus)
+            	.add('testJSJodaPlus', testJSJodaPlus)
+            	.on('complete', logResult)
+            	.run();
+
         }
+        document.getElementById('result').textContent = '';
+        performBenchmark();
+        freezeClassesAndStaticClassProperties(JSJoda)
         performBenchmark();
     </script>
 
