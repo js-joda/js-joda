@@ -1204,8 +1204,8 @@ describe('org.threeten.bp.TestInstant', () => {
                 [MIN_SECOND, 1, 1, MIN_SECOND, 0],
                 [MIN_SECOND + 1, 1, 1000000001, MIN_SECOND, 0],
 
-                [0, 0, MathUtil.MAX_SAFE_INTEGER, -(MathUtil.MAX_SAFE_INTEGER / 1000000000) - 1, (int) - (MathUtil.MAX_SAFE_INTEGER % 1000000000) + 1000000000],
-                [0, 0, MathUtil.MIN_SAFE_INTEGER, -(MathUtil.MIN_SAFE_INTEGER / 1000000000), (int) - (MathUtil.MIN_SAFE_INTEGER % 1000000000)]
+                [0, 0, MathUtil.MAX_SAFE_INTEGER, -MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000000000) - 1, -1 * MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000000000) + 1000000000],
+                [0, 0, MathUtil.MIN_SAFE_INTEGER, -MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000000000), -1 * MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000000000)]
             ];
         }
 
