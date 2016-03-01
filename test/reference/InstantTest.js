@@ -4,8 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 import {expect} from 'chai';
+import {assertEquals} from '../testUtils';
 
 import '../_init';
+
+import {ArithmeticException} from '../../src/errors';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {Clock} from '../../src/Clock';
@@ -581,6 +584,35 @@ describe('org.threeten.bp.TestInstant', () => {
 
     describe('toEpochMilli', function () {
 
+        it('test_toEpochMilli', () => {
+            assertEquals(Instant.ofEpochSecond(1, 1000000).toEpochMilli(), 1001);
+            assertEquals(Instant.ofEpochSecond(1, 2000000).toEpochMilli(), 1002);
+            assertEquals(Instant.ofEpochSecond(1, 567).toEpochMilli(), 1000);
+            assertEquals(Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000)).toEpochMilli(), (MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000)) * 1000);
+            assertEquals(Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000)).toEpochMilli(), (MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000)) * 1000);
+            assertEquals(Instant.ofEpochSecond(0, -1000000).toEpochMilli(), -1);
+            assertEquals(Instant.ofEpochSecond(0, 1000000).toEpochMilli(), 1);
+            assertEquals(Instant.ofEpochSecond(0, 999999).toEpochMilli(), 0);
+            assertEquals(Instant.ofEpochSecond(0, 1).toEpochMilli(), 0);
+            assertEquals(Instant.ofEpochSecond(0, 0).toEpochMilli(), 0);
+            assertEquals(Instant.ofEpochSecond(0, -1).toEpochMilli(), -1);
+            assertEquals(Instant.ofEpochSecond(0, -999999).toEpochMilli(), -1);
+            assertEquals(Instant.ofEpochSecond(0, -1000000).toEpochMilli(), -1);
+            assertEquals(Instant.ofEpochSecond(0, -1000001).toEpochMilli(), -2);
+        });
+    
+        it('test_toEpochMilli_tooBig', () => {
+            expect(() => {
+                Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000) + 1).toEpochMilli();
+            }).to.throw(ArithmeticException);
+        });
+    
+        it('test_toEpochMilli_tooSmall', () => {
+            expect(() => {
+                Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1).toEpochMilli();
+            }).to.throw(ArithmeticException);
+        });
+    
     });
 
     describe('compareTo', function () {

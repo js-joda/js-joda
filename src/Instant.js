@@ -555,7 +555,7 @@ export class Instant extends Temporal {
       */
      toEpochMilli() {
          var millis = MathUtil.safeMultiply(this._seconds, 1000);
-         return millis + this._nanos / NANOS_PER_MILLI;
+         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
      }
 
     // TODO compareTo/ isAfter / isBefore
