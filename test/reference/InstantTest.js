@@ -999,9 +999,243 @@ describe('org.threeten.bp.TestInstant', () => {
 
     describe('minusMillis', function () {
 
+        // @DataProvider(name="MinusMillis")
+        function provider_minusMillis_long() {
+            return [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, -1, 999000000],
+                [0, 0, 999, -1, 1000000],
+                [0, 0, 1000, -1, 0],
+                [0, 0, 1001, -2, 999000000],
+                [0, 0, 1999, -2, 1000000],
+                [0, 0, 2000, -2, 0],
+                [0, 0, -1, 0, 1000000],
+                [0, 0, -999, 0, 999000000],
+                [0, 0, -1000, 1, 0],
+                [0, 0, -1001, 1, 1000000],
+                [0, 0, -1999, 1, 999000000],
+
+                [0, 1, 0, 0, 1],
+                [0, 1, 1, -1, 999000001],
+                [0, 1, 998, -1, 2000001],
+                [0, 1, 999, -1, 1000001],
+                [0, 1, 1000, -1, 1],
+                [0, 1, 1998, -2, 2000001],
+                [0, 1, 1999, -2, 1000001],
+                [0, 1, 2000, -2, 1],
+                [0, 1, -1, 0, 1000001],
+                [0, 1, -2, 0, 2000001],
+                [0, 1, -1000, 1, 1],
+                [0, 1, -1001, 1, 1000001],
+
+                [0, 1000000, 0, 0, 1000000],
+                [0, 1000000, 1, 0, 0],
+                [0, 1000000, 998, -1, 3000000],
+                [0, 1000000, 999, -1, 2000000],
+                [0, 1000000, 1000, -1, 1000000],
+                [0, 1000000, 1998, -2, 3000000],
+                [0, 1000000, 1999, -2, 2000000],
+                [0, 1000000, 2000, -2, 1000000],
+                [0, 1000000, -1, 0, 2000000],
+                [0, 1000000, -2, 0, 3000000],
+                [0, 1000000, -999, 1, 0],
+                [0, 1000000, -1000, 1, 1000000],
+                [0, 1000000, -1001, 1, 2000000],
+                [0, 1000000, -1002, 1, 3000000],
+
+                [0, 999999999, 0, 0, 999999999],
+                [0, 999999999, 1, 0, 998999999],
+                [0, 999999999, 999, 0, 999999],
+                [0, 999999999, 1000, -1, 999999999],
+                [0, 999999999, 1001, -1, 998999999],
+                [0, 999999999, -1, 1, 999999],
+                [0, 999999999, -1000, 1, 999999999],
+                [0, 999999999, -1001, 2, 999999],
+
+                [0, 0, MathUtil.MAX_SAFE_INTEGER, -1 * MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000) - 1,  -1 * MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000 + 1000000000],
+                [0, 0, MathUtil.MIN_SAFE_INTEGER, -1 * MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000),      -1 * MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000]
+            ];
+        }
+
+        it('minusMillis_long', function () {
+            provider_minusMillis_long().forEach((data) => {
+                minusMillis_long.apply(this, data);
+            });
+        });
+
+        // @Test(dataProvider="MinusMillis")
+        function minusMillis_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var i = Instant.ofEpochSecond(seconds, nanos);
+            i = i.minusMillis(amount);
+            assertEquals(i.epochSecond(), expectedSeconds);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('minusMillis_long_oneMore', function () {
+            provider_minusMillis_long().forEach((data) => {
+                minusMillis_long_oneMore.apply(this, data);
+            });
+        });
+
+        // @Test(dataProvider="MinusMillis")
+        function minusMillis_long_oneMore(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var i = Instant.ofEpochSecond(seconds + 1, nanos);
+            i = i.minusMillis(amount);
+            assertEquals(i.epochSecond(), expectedSeconds + 1);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('minusMillis_long_minusOneLess', function () {
+            provider_minusMillis_long().forEach((data) => {
+                minusMillis_long_minusOneLess.apply(this, data);
+            });
+        });
+
+        // @Test(dataProvider="MinusMillis")
+        function minusMillis_long_minusOneLess(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var i = Instant.ofEpochSecond(seconds - 1, nanos);
+            i = i.minusMillis(amount);
+            assertEquals(i.epochSecond(), expectedSeconds - 1);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('minusMillis_long_max', () => {
+            var i = Instant.ofEpochSecond(MAX_SECOND, 998999999);
+            i = i.minusMillis(-1);
+            assertEquals(i.epochSecond(), MAX_SECOND);
+            assertEquals(i.nano(), 999999999);
+        });
+
+        it('minusMillis_long_overflowTooBig', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MAX_SECOND, 999000000);
+                i.minusMillis(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('minusMillis_long_min', () => {
+            var i = Instant.ofEpochSecond(MIN_SECOND, 1000000);
+            i = i.minusMillis(1);
+            assertEquals(i.epochSecond(), MIN_SECOND);
+            assertEquals(i.nano(), 0);
+        });
+
+        it('minusMillis_long_overflowTooSmall', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MIN_SECOND, 0);
+                i.minusMillis(1);
+            }).to.throw(DateTimeException);
+        });
+
     });
 
     describe('minusNanos', function () {
+
+        //@DataProvider(name="MinusNanos")
+        function provider_minusNanos_long() {
+            return [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, -1, 999999999],
+                [0, 0, 999999999, -1, 1],
+                [0, 0, 1000000000, -1, 0],
+                [0, 0, 1000000001, -2, 999999999],
+                [0, 0, 1999999999, -2, 1],
+                [0, 0, 2000000000, -2, 0],
+                [0, 0, -1, 0, 1],
+                [0, 0, -999999999, 0, 999999999],
+                [0, 0, -1000000000, 1, 0],
+                [0, 0, -1000000001, 1, 1],
+                [0, 0, -1999999999, 1, 999999999],
+
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 0, 999999999],
+                [1, 0, 999999999, 0, 1],
+                [1, 0, 1000000000, 0, 0],
+                [1, 0, 1000000001, -1, 999999999],
+                [1, 0, 1999999999, -1, 1],
+                [1, 0, 2000000000, -1, 0],
+                [1, 0, -1, 1, 1],
+                [1, 0, -999999999, 1, 999999999],
+                [1, 0, -1000000000, 2, 0],
+                [1, 0, -1000000001, 2, 1],
+                [1, 0, -1999999999, 2, 999999999],
+
+                [-1, 0, 0, -1, 0],
+                [-1, 0, 1, -2, 999999999],
+                [-1, 0, 999999999, -2, 1],
+                [-1, 0, 1000000000, -2, 0],
+                [-1, 0, 1000000001, -3, 999999999],
+                [-1, 0, 1999999999, -3, 1],
+                [-1, 0, 2000000000, -3, 0],
+                [-1, 0, -1, -1, 1],
+                [-1, 0, -999999999, -1, 999999999],
+                [-1, 0, -1000000000, 0, 0],
+                [-1, 0, -1000000001, 0, 1],
+                [-1, 0, -1999999999, 0, 999999999],
+
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 1, 0],
+                [1, 1, 999999998, 0, 3],
+                [1, 1, 999999999, 0, 2],
+                [1, 1, 1000000000, 0, 1],
+                [1, 1, 1999999998, -1, 3],
+                [1, 1, 1999999999, -1, 2],
+                [1, 1, 2000000000, -1, 1],
+                [1, 1, -1, 1, 2],
+                [1, 1, -2, 1, 3],
+                [1, 1, -1000000000, 2, 1],
+                [1, 1, -1000000001, 2, 2],
+                [1, 1, -1000000002, 2, 3],
+                [1, 1, -2000000000, 3, 1],
+
+                [1, 999999999, 0, 1, 999999999],
+                [1, 999999999, 1, 1, 999999998],
+                [1, 999999999, 999999999, 1, 0],
+                [1, 999999999, 1000000000, 0, 999999999],
+                [1, 999999999, 1000000001, 0, 999999998],
+                [1, 999999999, -1, 2, 0],
+                [1, 999999999, -1000000000, 2, 999999999],
+                [1, 999999999, -1000000001, 3, 0],
+                [1, 999999999, -1999999999, 3, 999999998],
+                [1, 999999999, -2000000000, 3, 999999999],
+
+                [MAX_SECOND, 0, -999999999, MAX_SECOND, 999999999],
+                [MAX_SECOND - 1, 0, -1999999999, MAX_SECOND, 999999999],
+                [MIN_SECOND, 1, 1, MIN_SECOND, 0],
+                [MIN_SECOND + 1, 1, 1000000001, MIN_SECOND, 0],
+
+                [0, 0, MathUtil.MAX_SAFE_INTEGER, -(MathUtil.MAX_SAFE_INTEGER / 1000000000) - 1, (int) - (MathUtil.MAX_SAFE_INTEGER % 1000000000) + 1000000000],
+                [0, 0, MathUtil.MIN_SAFE_INTEGER, -(MathUtil.MIN_SAFE_INTEGER / 1000000000), (int) - (MathUtil.MIN_SAFE_INTEGER % 1000000000)]
+            ];
+        }
+
+        it('minusNanos_long', function () {
+            provider_minusNanos_long().forEach((data) => {
+                minusNanos_long.apply(this, data);
+            });
+        });
+
+        // @Test(dataProvider="MinusNanos")
+        function minusNanos_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            var i = Instant.ofEpochSecond(seconds, nanos);
+            i = i.minusNanos(amount);
+            assertEquals(i.epochSecond(), expectedSeconds);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('minusNanos_long_overflowTooBig', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                i.minusNanos(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('minusNanos_long_overflowTooSmall', () => {
+            expect(() => {
+                var i = Instant.ofEpochSecond(MIN_SECOND, 0);
+                i.minusNanos(1);
+            }).to.throw(DateTimeException);
+        });
 
     });
 
@@ -1172,6 +1406,7 @@ describe('org.threeten.bp.TestInstant', () => {
 
     });
 
+    // TODO
     describe.skip('toString', function () {
 
         // @DataProvider(name="toStringParse")
