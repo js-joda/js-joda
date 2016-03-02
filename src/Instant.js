@@ -10,10 +10,11 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {Clock} from './Clock';
 import {LocalTime} from './LocalTime';
 import {MathUtil} from './MathUtil';
-import {Temporal} from './temporal/Temporal';
 
+import {Temporal} from './temporal/Temporal';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 const NANOS_PER_MILLI = 1000000;
@@ -194,7 +195,20 @@ export class Instant extends Temporal {
         }
     }
 
-    // TODO parse
+    /**
+     * Obtains an instance of {@code Instant} from a text string such as
+     * {@code 2007-12-03T10:15:30.000Z}.
+     * <p>
+     * The string must represent a valid instant in UTC and is parsed using
+     * {@link DateTimeFormatter#ISO_INSTANT}.
+     *
+     * @param {string} text - the text to parse, not null
+     * @return {Instant} the parsed instant, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static parse(text) {
+        return DateTimeFormatter.ISO_INSTANT.parse(text, Instant.FROM);
+    }
 
     /**
      *
@@ -764,7 +778,7 @@ export class Instant extends Temporal {
      * @return {string} an ISO-8601 representation of this instant, not null
      */
     toString(){
-        // TODO return DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(this) + 'Z';
+        // return DateTimeFormatter.ISO_INSTANT.format(this);
         return 'Instant { seconds: ' + this._seconds + ', nanos: ' + this._nanos + '}';
     }
 }
@@ -775,4 +789,7 @@ export function _init() {
     Instant.EPOCH = new Instant(0, 0);
     Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);
     Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999);
+    Instant.FROM = createTemporalQuery('Instant.FROM', (temporal) => {
+        return Instant.from(temporal);
+    });
 }

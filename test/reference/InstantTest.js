@@ -1406,8 +1406,7 @@ describe('org.threeten.bp.TestInstant', () => {
 
     });
 
-    // TODO
-    describe.skip('toString', function () {
+    describe('toString', function () {
 
         // @DataProvider(name="toStringParse")
         function data_toString() {
@@ -1463,22 +1462,23 @@ describe('org.threeten.bp.TestInstant', () => {
                 [LocalDateTime.of(20000, 1, 2, 12, 30).toInstant(ZoneOffset.UTC), '+20000-01-02T12:30:00Z'],
                 [LocalDateTime.of(25000, 12, 31, 12, 30).toInstant(ZoneOffset.UTC), '+25000-12-31T12:30:00Z'],
 
-                [LocalDateTime.of(-999999, 1, 1, 12, 30).toInstant(ZoneOffset.UTC).minus(1, ChronoUnit.DAYS), '-1000000000-12-31T12:30:00Z'],
-                [LocalDateTime.of(999999, 12, 31, 12, 30).toInstant(ZoneOffset.UTC).plus(1, ChronoUnit.DAYS), '+1000000000-01-01T12:30:00Z'],
+                [LocalDateTime.of(-999999, 1, 1, 12, 30).toInstant(ZoneOffset.UTC).minus(1, ChronoUnit.DAYS), '-1000000-12-31T12:30:00Z'],
+                [LocalDateTime.of(999999, 12, 31, 12, 30).toInstant(ZoneOffset.UTC).plus(1, ChronoUnit.DAYS), '+1000000-01-01T12:30:00Z'],
 
-                [Instant.MIN, '-1000000000-01-01T00:00:00Z'],
-                [Instant.MAX, '+1000000000-12-31T23:59:59.999999999Z']
+                [Instant.MIN, '-1000000-01-01T00:00:00Z'],
+                [Instant.MAX, '+1000000-12-31T23:59:59.999999999Z']
             ];
         }
 
         //@Test(dataProvider="toStringParse")
-        it('test_toString', function () {
+        it.skip('test_toString', function () {
             data_toString().forEach((data)=> {
                 test_toString.apply(this, data);
             });
         });
 
         function test_toString(instant, expected) {
+            //console.log(instant, expected);
             assertEquals(instant.toString(), expected);
         }
 
@@ -1490,6 +1490,7 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         function test_parse(instant, text) {
+            //console.log(instant, text);
             assertEquals(Instant.parse(text), instant);
         }
 
