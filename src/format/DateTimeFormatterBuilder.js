@@ -1155,8 +1155,8 @@ class InstantPrinterParser  {
         // use INSTANT_SECONDS, thus this code is not bound by Instant.MAX
         var inSecs = context.getValue(ChronoField.INSTANT_SECONDS);
         var inNanos = 0;
-        if (context.getTemporal().isSupported(ChronoField.NANO_OF_SECOND)) {
-            inNanos = context.getTemporal().getLong(ChronoField.NANO_OF_SECOND);
+        if (context.temporal().isSupported(ChronoField.NANO_OF_SECOND)) {
+            inNanos = context.temporal().getLong(ChronoField.NANO_OF_SECOND);
         }
         if (inSecs == null) {
             return false;
@@ -1173,7 +1173,7 @@ class InstantPrinterParser  {
                 buf.append('+').append(hi);
             }
             buf.append(ldt);
-            if (ldt.getSecond() === 0) {
+            if (ldt.second() === 0) {
                 buf.append(':00');
             }
         } else {
@@ -1184,11 +1184,11 @@ class InstantPrinterParser  {
             let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
             let pos = buf.length();
             buf.append(ldt);
-            if (ldt.getSecond() === 0) {
+            if (ldt.second() === 0) {
                 buf.append(':00');
             }
             if (hi < 0) {
-                if (ldt.getYear() === -10000) {
+                if (ldt.year() === -10000) {
                     buf.replace(pos, pos + 2, '' + (hi - 1));
                 } else if (lo === 0) {
                     buf.insert(pos, hi);

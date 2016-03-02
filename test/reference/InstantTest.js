@@ -1471,14 +1471,14 @@ describe('org.threeten.bp.TestInstant', () => {
         }
 
         //@Test(dataProvider="toStringParse")
-        it.skip('test_toString', function () {
+        it('test_toString', function () {
             data_toString().forEach((data)=> {
                 test_toString.apply(this, data);
             });
         });
 
         function test_toString(instant, expected) {
-            //console.log(instant, expected);
+            console.log(instant, expected);
             assertEquals(instant.toString(), expected);
         }
 

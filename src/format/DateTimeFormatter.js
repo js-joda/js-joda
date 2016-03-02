@@ -8,14 +8,20 @@ import {assert, requireNonNull} from '../assert';
 
 import {DateTimeParseException, NullPointerException} from '../errors';
 
+import {Period} from '../Period';
+
 import {ParsePosition} from './ParsePosition';
+import {DateTimeBuilder} from './DateTimeBuilder';
 import {DateTimeParseContext} from './DateTimeParseContext';
+import {DateTimePrintContext} from './DateTimePrintContext';
 import {DateTimeFormatterBuilder} from './DateTimeFormatterBuilder';
 import {SignStyle} from './SignStyle';
+import {StringBuilder} from './StringBuilder';
 import {ResolverStyle} from './ResolverStyle';
 
 import {IsoChronology} from '../chrono/IsoChronology';
 import {ChronoField} from '../temporal/ChronoField';
+import {createTemporalQuery} from '../temporal/TemporalQuery';
 
 /**
  *
@@ -29,6 +35,85 @@ import {ChronoField} from '../temporal/ChronoField';
  *
  */
 export class DateTimeFormatter {
+
+    //-----------------------------------------------------------------------
+    /**
+     * A query that provides access to the excess days that were parsed.
+     * <p>
+     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     * access to additional information from the parse. The query always returns
+     * a non-null period, with a zero period returned instead of null.
+     * <p>
+     * There are two situations where this query may return a non-zero period.
+     * <ul>
+     * <li>If the {@code ResolverStyle} is {@code LENIENT} and a time is parsed
+     *  without a date, then the complete result of the parse consists of a
+     *  {@code LocalTime} and an excess {@code Period} in days.
+     *
+     * <li>If the {@code ResolverStyle} is {@code SMART} and a time is parsed
+     *  without a date where the time is 24:00:00, then the complete result of
+     *  the parse consists of a {@code LocalTime} of 00:00:00 and an excess
+     *  {@code Period} of one day.
+     * </ul>
+     * <p>
+     * In both cases, if a complete {@code ChronoLocalDateTime} or {@code Instant}
+     * is parsed, then the excess days are added to the date part.
+     * As a result, this query will return a zero period.
+     * <p>
+     * The {@code SMART} behaviour handles the common "end of day" 24:00 value.
+     * Processing in {@code LENIENT} mode also produces the same result:
+     * <pre>
+     *  Text to parse        Parsed object                         Excess days
+     *  "2012-12-03T00:00"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO
+     *  "2012-12-03T24:00"   LocalDateTime.of(2012, 12, 4, 0, 0)   ZERO
+     *  "00:00"              LocalTime.of(0, 0)                    ZERO
+     *  "24:00"              LocalTime.of(0, 0)                    Period.ofDays(1)
+     * </pre>
+     * The query can be used as follows:
+     * <pre>
+     *  TemporalAccessor parsed = formatter.parse(str);
+     *  LocalTime time = parsed.query(LocalTime.FROM);
+     *  Period extraDays = parsed.query(DateTimeFormatter.parsedExcessDays());
+     * </pre>
+     * @return {TemporalQuery} a query that provides access to the excess days that were parsed
+     */
+    static parsedExcessDays() {
+        return DateTimeFormatter.PARSED_EXCESS_DAYS;
+    }
+
+    /**
+     * A query that provides access to whether a leap-second was parsed.
+     * <p>
+     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     * access to additional information from the parse. The query always returns
+     * a non-null boolean, true if parsing saw a leap-second, false if not.
+     * <p>
+     * Instant parsing handles the special "leap second" time of '23:59:60'.
+     * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other
+     * local times in different time-zones. To avoid this potential ambiguity,
+     * the handling of leap-seconds is limited to
+     * {@link DateTimeFormatterBuilder#appendInstant()}, as that method
+     * always parses the instant with the UTC zone offset.
+     * <p>
+     * If the time '23:59:60' is received, then a simple conversion is applied,
+     * replacing the second-of-minute of 60 with 59. This query can be used
+     * on the parse result to determine if the leap-second adjustment was made.
+     * The query will return one second of excess if it did adjust to remove
+     * the leap-second, and zero if not. Note that applying a leap-second
+     * smoothing mechanism, such as UTC-SLS, is the responsibility of the
+     * application, as follows:
+     * <pre>
+     *  TemporalAccessor parsed = formatter.parse(str);
+     *  Instant instant = parsed.query(Instant::from);
+     *  if (parsed.query(DateTimeFormatter.parsedLeapSecond())) {
+     *    // validate leap-second is correct and apply correct smoothing
+     *  }
+     * </pre>
+     * @return a query that provides access to whether a leap-second was parsed
+     */
+    static parsedLeapSecond() {
+        return DateTimeFormatter.PARSED_LEAP_SECOND;
+    }
 
     //-----------------------------------------------------------------------
     /**
@@ -128,6 +213,91 @@ export class DateTimeFormatter {
         return this;
     }
 
+    //-----------------------------------------------------------------------
+     /**
+      * Formats a date-time object using this formatter.
+      * <p>
+      * This formats the date-time to a String using the rules of the formatter.
+      *
+      * @param {TemporalAccessor} temporal  the temporal object to print, not null
+      * @return {String} the printed string, not null
+      * @throws DateTimeException if an error occurs during formatting
+      */
+     format(temporal) {
+         var buf = new StringBuilder(32);
+         this._formatTo(temporal, buf);
+         return buf.toString();
+     }
+
+     //-----------------------------------------------------------------------
+     /**
+      * Formats a date-time object to an {@code Appendable} using this formatter.
+      * <p>
+      * This formats the date-time to the specified destination.
+      * {@link Appendable} is a general purpose interface that is implemented by all
+      * key character output classes including {@code StringBuffer}, {@code StringBuilder},
+      * {@code PrintStream} and {@code Writer}.
+      * <p>
+      * Although {@code Appendable} methods throw an {@code IOException}, this method does not.
+      * Instead, any {@code IOException} is wrapped in a runtime exception.
+      *
+      * @param {TemporalAccessor} temporal - the temporal object to print, not null
+      * @param {StringBuilder} appendable - the appendable to print to, not null
+      * @throws DateTimeException if an error occurs during formatting
+      */
+     _formatTo(temporal, appendable) {
+         requireNonNull(temporal, 'temporal');
+         requireNonNull(appendable, 'appendable');
+         var context = new DateTimePrintContext(temporal, this);
+         this._printerParser.print(context, appendable);
+     }
+
+    /**
+     * function overloading for {@link DateTimeFormatter.parse}
+     *
+     * if called with one arg {@link DateTimeFormatter.parse1} is called
+     * otherwise {@link DateTimeFormatter.parse2}
+     *
+     * @param {string} text
+     * @param {TemporalQuery} type
+     * @return {TemporalAccessor}
+     */
+    parse(text, type){
+        if(arguments.length === 1){
+            return this.parse1(text);
+        } else {
+            return this.parse2(text, type);
+        }
+    }
+
+    /**
+     * Fully parses the text producing a temporal object.
+     * <p>
+     * This parses the entire text producing a temporal object.
+     * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
+     * The result of this method is {@code TemporalAccessor} which has been resolved,
+     * applying basic validation checks to help ensure a valid date-time.
+     * <p>
+     * If the parse completes without reading the entire length of the text,
+     * or a problem occurs during parsing or merging, then an exception is thrown.
+     *
+     * @param {String} text  the text to parse, not null
+     * @return {TemporalAccessor} the parsed temporal object, not null
+     * @throws DateTimeParseException if unable to parse the requested result
+     */
+    parse1(text) {
+        requireNonNull(text, 'text');
+        try {
+            return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+        } catch (ex) {
+            if(ex instanceof DateTimeParseException){
+                throw ex;
+            } else {
+                throw this._createError(text, ex);
+            }
+        }
+    }
+
     /**
      * Fully parses the text producing a temporal object.
      *
@@ -144,7 +314,7 @@ export class DateTimeFormatter {
  * @return the parsed temporal object, not null
      * @throws DateTimeParseException if unable to parse the requested result
      */
-    parse(text, type) {
+    parse2(text, type) {
         requireNonNull(text, 'text');
         requireNonNull(type, 'type');
         try {
@@ -310,4 +480,22 @@ export function _init() {
         .parseCaseInsensitive()
         .appendInstant()
         .toFormatter(ResolverStyle.STRICT);
+
+    DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
+        if (temporal instanceof DateTimeBuilder) {
+            return temporal.excessDays;
+        } else {
+            return Period.ZERO;
+        }
+    });
+
+    DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', (temporal) => {
+        if (temporal instanceof DateTimeBuilder) {
+            return temporal.leapSecond;
+        } else {
+            return false;
+        }
+    });
+
+
 }

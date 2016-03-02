@@ -189,6 +189,13 @@ export class DateTimeParseContext{
     }
 
     /**
+     * Stores the leap second.
+     */
+    setParsedLeapSecond() {
+        this.currentParsed().leapSecond = true;
+    }
+
+    /**
      * Gets the effective chronology during parsing.
      *
      * @return the effective parsing chronology, not null

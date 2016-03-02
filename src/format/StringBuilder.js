@@ -10,10 +10,17 @@ export class StringBuilder {
 
     append(str){
         this._str += str;
+        return this;
     }
 
     insert(offset, str){
         this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
+        return this;
+    }
+
+    replace(start, end, str){
+        this._str = this._str.slice(0, start) + str + this._str.slice(end);
+        return this;
     }
 
     length(){
@@ -22,6 +29,7 @@ export class StringBuilder {
 
     setLength(length){
         this._str = this._str.slice(0, length);
+        return this;
     }
 
 

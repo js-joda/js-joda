@@ -778,8 +778,7 @@ export class Instant extends Temporal {
      * @return {string} an ISO-8601 representation of this instant, not null
      */
     toString(){
-        // return DateTimeFormatter.ISO_INSTANT.format(this);
-        return 'Instant { seconds: ' + this._seconds + ', nanos: ' + this._nanos + '}';
+        return DateTimeFormatter.ISO_INSTANT.format(this);
     }
 }
 
