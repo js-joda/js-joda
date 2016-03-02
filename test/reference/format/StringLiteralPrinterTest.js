@@ -11,10 +11,10 @@ import '../../_init';
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
+import {StringBuilder} from '../../../src/format/StringBuilder';
 import {LocalDate} from '../../../src/LocalDate';
 
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
-const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 
 import {EMPTY} from '../temporal/Empty';
 

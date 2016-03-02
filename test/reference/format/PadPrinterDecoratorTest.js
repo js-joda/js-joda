@@ -12,13 +12,13 @@ import '../../_init';
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
+import {StringBuilder} from '../../../src/format/StringBuilder';
 import {DateTimeException} from '../../../src/errors';
 import {LocalDate} from '../../../src/LocalDate';
 
 const PadPrinterParserDecorator = DateTimeFormatterBuilder.PadPrinterParserDecorator;
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
 const CharLiteralPrinterParser = DateTimeFormatterBuilder.CharLiteralPrinterParser;
-const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestPadPrinterDecorator', () => {

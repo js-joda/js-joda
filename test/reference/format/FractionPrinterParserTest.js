@@ -21,10 +21,10 @@ import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBui
 import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
+import {StringBuilder} from '../../../src/format/StringBuilder';
 import {IsoChronology} from '../../../src/chrono/IsoChronology';
 
 var FractionPrinterParser = DateTimeFormatterBuilder.FractionPrinterParser;
-var StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 
 import {EMPTY} from '../temporal/Empty';
 import {MockFieldValue} from '../temporal/MockFieldValue';

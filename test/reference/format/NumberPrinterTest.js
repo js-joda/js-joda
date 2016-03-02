@@ -13,12 +13,12 @@ import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBui
 import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
 import {DecimalStyle} from '../../../src/format/DecimalStyle';
 import {SignStyle} from '../../../src/format/SignStyle';
+import {StringBuilder} from '../../../src/format/StringBuilder';
 import {ChronoField} from '../../../src/temporal/ChronoField';
 import {DateTimeException} from '../../../src/errors';
 import {LocalDate} from '../../../src/LocalDate';
 
 const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
-const StringBuilder = DateTimeFormatterBuilder.StringBuilder;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const HOUR_OF_DAY = ChronoField.HOUR_OF_DAY;
 
