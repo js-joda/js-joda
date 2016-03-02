@@ -75,7 +75,7 @@ export class DateTimeFormatterBuilder {
      * Since the default is case sensitive, this method should only be used after
      * a previous call to {@code #parseCaseInsensitive}.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     parseCaseSensitive() {
         this._appendInternalPrinterParser(SettingsParser.SENSITIVE);
@@ -95,7 +95,7 @@ export class DateTimeFormatterBuilder {
      * in the builder, thus the parser can swap between case parsing modes
      * multiple times during the parse.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     parseCaseInsensitive() {
         this._appendInternalPrinterParser(SettingsParser.INSENSITIVE);
@@ -114,7 +114,7 @@ export class DateTimeFormatterBuilder {
      * The change will remain in force until the end of the formatter that is eventually
      * constructed or until {@code parseLenient} is called.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     parseStrict() {
         this._appendInternalPrinterParser(SettingsParser.STRICT);
@@ -133,7 +133,7 @@ export class DateTimeFormatterBuilder {
      * The change will remain in force until the end of the formatter that is eventually
      * constructed or until {@code parseStrict} is called.
      *
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     parseLenient() {
         this._appendInternalPrinterParser(SettingsParser.LENIENT);
@@ -169,7 +169,7 @@ export class DateTimeFormatterBuilder {
      * See {@link #appendValue(TemporalField, int)} for full details.
      *
      * @param field  the field to append, not null
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     _appendValue1(field) {
         assert(field != null);
@@ -261,7 +261,7 @@ export class DateTimeFormatterBuilder {
      * @param minWidth  the minimum field width of the printed field, from 1 to 19
      * @param maxWidth  the maximum field width of the printed field, from 1 to 19
      * @param signStyle  the positive/negative output style, not null
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      * @throws IllegalArgumentException if the widths are invalid
      */
     _appendValue4(field, minWidth, maxWidth, signStyle) {
@@ -288,7 +288,7 @@ export class DateTimeFormatterBuilder {
      *
      * @param width  the width
      * @param pp  the printer-parser, not null
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     _appendValuePrinterParser(pp) {
         assert(pp != null);
@@ -349,7 +349,7 @@ export class DateTimeFormatterBuilder {
      * @param {Number} minWidth  the minimum width of the field excluding the decimal point, from 0 to 9
      * @param {Number} maxWidth  the maximum width of the field excluding the decimal point, from 1 to 9
      * @param {boolean} decimalPoint  whether to output the localized decimal point symbol
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      * @throws IllegalArgumentException if the field has a variable set of valid values or
      *  either width is invalid
      */
@@ -357,6 +357,50 @@ export class DateTimeFormatterBuilder {
         this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint));
         return this;
     }
+
+    /**
+     * Appends an instant using ISO-8601 to the formatter with control over
+     * the number of fractional digits.
+     * <p>
+     * Instants have a fixed output format, although this method provides some
+     * control over the fractional digits. They are converted to a date-time
+     * with a zone-offset of UTC and printed using the standard ISO-8601 format.
+     * The localized decimal style is not used.
+     * <p>
+     * The {@code this.fractionalDigits} parameter allows the output of the fractional
+     * second to be controlled. Specifying zero will cause no fractional digits
+     * to be output. From 1 to 9 will output an increasing number of digits, using
+     * zero right-padding if necessary. The special value -1 is used to output as
+     * many digits as necessary to avoid any trailing zeroes.
+     * <p>
+     * When parsing in strict mode, the number of parsed digits must match the
+     * fractional digits. When parsing in lenient mode, any number of fractional
+     * digits from zero to nine are accepted.
+     * <p>
+     * The instant is obtained using {@link ChronoField#INSTANT_SECONDS INSTANT_SECONDS}
+     * and optionally (@code NANO_OF_SECOND). The value of {@code INSTANT_SECONDS}
+     * may be outside the maximum range of {@code LocalDateTime}.
+     * <p>
+     * The {@linkplain ResolverStyle resolver style} has no effect on instant parsing.
+     * The end-of-day time of '24:00' is handled as midnight at the start of the following day.
+     * The leap-second time of '23:59:59' is handled to some degree, see
+     * {@link DateTimeFormatter#parsedLeapSecond()} for full details.
+     * <p>
+     * An alternative to this method is to format/parse the instant as a single
+     * epoch-seconds value. That is achieved using {@code appendValue(INSTANT_SECONDS)}.
+     *
+     * @param {number} [fractionalDigits=-2] - the number of fractional second digits to format with,
+     *  from 0 to 9, or -1 to use as many digits as necessary
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     */
+    appendInstant(fractionalDigits=-2) {
+        if (fractionalDigits < -2 || fractionalDigits > 9) {
+            throw new IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
+        }
+        this._appendInternal(new InstantPrinterParser(fractionalDigits));
+        return this;
+    }
+
 
     //-----------------------------------------------------------------------
     /**
@@ -452,7 +496,7 @@ export class DateTimeFormatterBuilder {
      * If the literal is empty, nothing is added to the formatter.
      *
      * @param literal  the literal to append, not null
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     appendLiteral(literal) {
         assert(literal != null);
@@ -488,7 +532,7 @@ export class DateTimeFormatterBuilder {
      * parts of the formatter directly to this builder.
      *
      * @param {DateTimeFormatter} formatter  the formatter to add, not null
-     * @return this, for chaining, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     append(formatter) {
         requireNonNull(formatter, 'formatter');
@@ -1087,6 +1131,149 @@ class FractionPrinterParser {
     }
 }
 
+//-----------------------------------------------------------------------
+import {LocalDateTime} from '../LocalDateTime';
+import {ZoneOffset} from '../ZoneOffset';
+import {ChronoField} from '../temporal/ChronoField';
+
+// days in a 400 year cycle = 146097
+// days in a 10,000 year cycle = 146097 * 25
+// seconds per day = 86400
+const SECONDS_PER_10000_YEARS = 146097 * 25 * 86400;
+const SECONDS_0000_TO_1970 = ((146097 * 5) - (30 * 365 + 7)) * 86400;
+
+/**
+ * Prints or parses an ISO-8601 instant.
+ */
+class InstantPrinterParser  {
+
+    constructor(fractionalDigits) {
+        this.fractionalDigits = fractionalDigits;
+    }
+
+    print(context, buf) {
+        // use INSTANT_SECONDS, thus this code is not bound by Instant.MAX
+        var inSecs = context.getValue(ChronoField.INSTANT_SECONDS);
+        var inNanos = 0;
+        if (context.getTemporal().isSupported(ChronoField.NANO_OF_SECOND)) {
+            inNanos = context.getTemporal().getLong(ChronoField.NANO_OF_SECOND);
+        }
+        if (inSecs == null) {
+            return false;
+        }
+        var inSec = inSecs;
+        var inNano = ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
+        if (inSec >= -SECONDS_0000_TO_1970) {
+            // current era
+            let zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
+            let hi = MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
+            let lo = MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            if (hi > 0) {
+                buf.append('+').append(hi);
+            }
+            buf.append(ldt);
+            if (ldt.getSecond() === 0) {
+                buf.append(':00');
+            }
+        } else {
+            // before current era
+            let zeroSecs = inSec + SECONDS_0000_TO_1970;
+            let hi = MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
+            let lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            let pos = buf.length();
+            buf.append(ldt);
+            if (ldt.getSecond() === 0) {
+                buf.append(':00');
+            }
+            if (hi < 0) {
+                if (ldt.getYear() === -10000) {
+                    buf.replace(pos, pos + 2, '' + (hi - 1));
+                } else if (lo === 0) {
+                    buf.insert(pos, hi);
+                } else {
+                    buf.insert(pos + 1, Math.abs(hi));
+                }
+            }
+        }
+        //fraction
+        if (this.fractionalDigits === -2) {
+            if (inNano !== 0) {
+                buf.append('.');
+                if (MathUtil.intMod(inNano, 1000000) === 0) {
+                    buf.append(('' + (MathUtil.intDiv(inNano, 1000000) + 1000)).substring(1));
+                } else if (MathUtil.intMod(inNano, 1000) === 0) {
+                    buf.append(('' + (MathUtil.intDiv(inNano, 1000) + 1000000)).substring(1));
+                } else {
+                    buf.append(('' + ((inNano) + 1000000000)).substring(1));
+                }
+            }
+        } else if (this.fractionalDigits > 0 || (this.fractionalDigits === -1 && inNano > 0)) {
+            buf.append('.');
+            let div = 100000000;
+            for (let i = 0; ((this.fractionalDigits === -1 && inNano > 0) || i < this.fractionalDigits); i++) {
+                let digit = MathUtil.intDiv(inNano, div);
+                buf.append(digit);
+                inNano = inNano - (digit * div);
+                div = MathUtil.intDiv(div, 10);
+            }
+        }
+        buf.append('Z');
+        return true;
+    }
+
+    parse(context, text, position) {
+        // new context to avoid overwriting fields like year/month/day
+        var newContext = context.copy();
+        var minDigits = (this.fractionalDigits < 0 ? 0 : this.fractionalDigits);
+        var maxDigits = (this.fractionalDigits < 0 ? 9 : this.fractionalDigits);
+        var parser = new DateTimeFormatterBuilder()
+                .append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T')
+                .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':')
+                .appendValue(ChronoField.SECOND_OF_MINUTE, 2).appendFraction(ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z')
+                .toFormatter().toPrinterParser(false);
+        var pos = parser.parse(newContext, text, position);
+        if (pos < 0) {
+            return pos;
+        }
+        // parser restricts most fields to 2 digits, so definitely int
+        // correctly parsed nano is also guaranteed to be valid
+        var yearParsed = newContext.getParsed(ChronoField.YEAR);
+        var month = newContext.getParsed(ChronoField.MONTH_OF_YEAR);
+        var day = newContext.getParsed(ChronoField.DAY_OF_MONTH);
+        var hour = newContext.getParsed(ChronoField.HOUR_OF_DAY);
+        var min = newContext.getParsed(ChronoField.MINUTE_OF_HOUR);
+        var secVal = newContext.getParsed(ChronoField.SECOND_OF_MINUTE);
+        var nanoVal = newContext.getParsed(ChronoField.NANO_OF_SECOND);
+        var sec = (secVal != null ? secVal : 0);
+        var nano = (nanoVal != null ? nanoVal : 0);
+        var year = MathUtil.intMod(yearParsed, 10000);
+        var days = 0;
+        if (hour === 24 && min === 0 && sec === 0 && nano === 0) {
+            hour = 0;
+            days = 1;
+        } else if (hour === 23 && min === 59 && sec === 60) {
+            context.setParsedLeapSecond();
+            sec = 59;
+        }
+        var instantSecs;
+        try {
+            var ldt = LocalDateTime.of(year, month, day, hour, min, sec, 0).plusDays(days);
+            instantSecs = ldt.toEpochSecond(ZoneOffset.UTC);
+            instantSecs += MathUtil.safeMultiply(MathUtil.intDiv(yearParsed, 10000), SECONDS_PER_10000_YEARS);
+        } catch (ex) {
+            return ~position;
+        }
+        var successPos = pos;
+        successPos = context.setParsedField(ChronoField.INSTANT_SECONDS, instantSecs, position, successPos);
+        return context.setParsedField(ChronoField.NANO_OF_SECOND, nano, position, successPos);
+    }
+
+    toString() {
+        return 'Instant()';
+    }
+}
 
 class StringBuilder {
     constructor(){
