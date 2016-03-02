@@ -48,7 +48,38 @@ export class TemporalAccessor {
         }
         return query.queryFrom(this);
     }
-    
+
+    /**
+     * Gets the value of the specified field as an {@code int}.
+     * <p>
+     * This queries the date-time for the value for the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If the date-time cannot return the value, because the field is unsupported or for
+     * some other reason, an exception will be thrown.
+     *
+     * <h3>Specification for implementors</h3>
+     * Implementations must check and handle all fields defined in {@link ChronoField}.
+     * If the field is supported and has an {@code int} range, then the value of
+     * the field must be returned.
+     * If unsupported, then a {@code DateTimeException} must be thrown.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * <p>
+     * Implementations must not alter either this object.
+     *
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field, within the valid range of values
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
+     * @throws DateTimeException if the value is outside the range of valid values for the field
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
+    }
+
     /**
      * Gets the range of valid values for the specified field.
      * <p>
