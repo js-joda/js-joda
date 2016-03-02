@@ -17,7 +17,12 @@ export class DateTimeParseContext{
 
     constructor(){
         if(arguments.length === 1){
-            this._constructorFormatter.apply(this, arguments);
+            if(arguments[0] instanceof DateTimeParseContext){
+                this._constructorSelf.apply(this, arguments);
+                return;
+            } else {
+                this._constructorFormatter.apply(this, arguments);
+            }
         } else {
             this._constructorParam.apply(this, arguments);
         }
@@ -39,6 +44,23 @@ export class DateTimeParseContext{
         this._overrideChronology = formatter.chronology();
     }
 
+
+    _constructorSelf(other) {
+        this._locale = other._locale;
+        this._symbols = other._symbols;
+        this._overrideChronology = other._overrideChronology;
+        this._overrideZone = other._overrideZone;
+        this._caseSensitive = other._caseSensitive;
+        this._strict = other._strict;
+        this._parsed = [new Parsed(this)];
+    }
+
+    /**
+     * Creates a copy of this context.
+     */
+    copy() {
+        return new DateTimeParseContext(this);
+    }
 
     symbols(){
         return this._symbols;
