@@ -443,6 +443,40 @@ export class DateTimeBuilder extends Temporal {
 
     /**
      *
+     * @param {TemporalField} field
+     * @returns {number}
+     */
+    isSupported(field) {
+        if (field == null) {
+            return false;
+        }
+        return this.fieldValues.containsKey(field) ||
+                (this.date != null && this.date.isSupported(field)) ||
+                (this.time != null && this.time.isSupported(field));
+    }
+
+    /**
+     *
+     * @param {TemporalField} field
+     * @returns {number}
+     */
+    getLong(field) {
+        requireNonNull(field, 'field');
+        var value = this.getFieldValue0(field);
+        if (value == null) {
+            if (this.date != null && this.date.isSupported(field)) {
+                return this.date.getLong(field);
+            }
+            if (this.time != null && this.time.isSupported(field)) {
+                return this.time.getLong(field);
+            }
+            throw new DateTimeException('Field not found: ' + field);
+        }
+        return value;
+    }
+
+    /**
+     *
      * @param {!TemporalQuery} query
      * @returns {*}
      */
