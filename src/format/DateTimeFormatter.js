@@ -306,4 +306,8 @@ export function _init() {
         .append(DateTimeFormatter.ISO_LOCAL_TIME)
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
 
+    DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendInstant()
+        .toFormatter(ResolverStyle.STRICT);
 }
