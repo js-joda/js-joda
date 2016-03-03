@@ -10,6 +10,7 @@ import {MathUtil} from '../MathUtil';
 import {LocalDate} from '../LocalDate';
 import {Instant} from '../Instant';
 import {ChronoUnit} from '../temporal/ChronoUnit';
+import {ChronoField} from '../temporal/ChronoField';
 import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
@@ -85,8 +86,8 @@ export class ChronoLocalDateTime extends Temporal {
 
     adjustInto(temporal) {
         return temporal
-                .with(ChronoUnit.EPOCH_DAY, this.toLocalDate().toEpochDay())
-                .with(ChronoUnit.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
+                .with(ChronoField.EPOCH_DAY, this.toLocalDate().toEpochDay())
+                .with(ChronoField.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
     }
 
     //-----------------------------------------------------------------------
