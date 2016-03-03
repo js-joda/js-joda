@@ -4,6 +4,13 @@
  */
 import {expect, assert} from 'chai';
 
+export function dataProviderTest(dataProvider, test, log){
+    dataProvider().forEach((data)=>{
+        if(log) console.log(data);
+        test.apply(this, data);
+    });
+}
+
 export function assertEquals(expected, actual, message){
     if(expected != null || actual != null) {
         if(expected != null) {
