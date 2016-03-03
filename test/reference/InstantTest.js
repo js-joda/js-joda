@@ -5,11 +5,13 @@
  */
 
 import {expect} from 'chai';
-import {assertEquals} from '../testUtils';
+import {assertEquals, dataProviderTest} from '../testUtils';
 
 import '../_init';
 
-import {DateTimeException,NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
+import {
+    DateTimeException, DateTimeParseException,
+    NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Duration} from '../../src/Duration';
@@ -20,6 +22,7 @@ import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
@@ -79,15 +82,187 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
-    describe('ofEpochSecond()', function () {
+    describe('ofEpochSecond(long)', () => {
+
+        it('factory_seconds_long()', () => {
+            for (var i = -2; i <= 2; i++) {
+                var t = Instant.ofEpochSecond(i);
+                assertEquals(t.epochSecond(), i);
+                assertEquals(t.nano(), 0);
+            }
+        });
 
     });
 
-    describe('ofEpochMilli()', function () {
+    describe('ofEpochSecond(long,long)', function () {
+        
+        it('factory_seconds_long_long()', () => {
+            for (let i = -2; i <= 2; i++) {
+                for (let j = 0; j < 10; j++) {
+                    let t = Instant.ofEpochSecond(i, j);
+                    assertEquals(t.epochSecond(), i);
+                    assertEquals(t.nano(), j);
+                }
+                for (let j = -10; j < 0; j++) {
+                    let t = Instant.ofEpochSecond(i, j);
+                    assertEquals(t.epochSecond(), i - 1);
+                    assertEquals(t.nano(), j + 1000000000);
+                }
+                for (let j = 999999990; j < 1000000000; j++) {
+                    let t = Instant.ofEpochSecond(i, j);
+                    assertEquals(t.epochSecond(), i);
+                    assertEquals(t.nano(), j);
+                }
+            }
+        });
+    
+        it('factory_seconds_long_long_nanosNegativeAdjusted', () => {
+            var test = Instant.ofEpochSecond(2, -1);
+            assertEquals(test.epochSecond(), 1);
+            assertEquals(test.nano(), 999999999);
+        });
+    
+        it('factory_seconds_long_long_tooBig', () => {
+            expect(() => {
+                Instant.ofEpochSecond(MAX_SECOND, 1000000000);
+            }).to.throw(DateTimeException);
+        });
+    
+        it('factory_seconds_long_long_tooBigBig', () => {
+            expect(() => {
+                Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER, MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+    
+    });
+    
+    describe('ofEpochMilli(long)', () => {
+
+        // @DataProvider(name="MillisInstantNoNanos")
+        function provider_factory_millis_long() {
+            return [
+                    [0, 0, 0],
+                    [1, 0, 1000000],
+                    [2, 0, 2000000],
+                    [999, 0, 999000000],
+                    [1000, 1, 0],
+                    [1001, 1, 1000000],
+                    [-1, -1, 999000000],
+                    [-2, -1, 998000000],
+                    [-999, -1, 1000000],
+                    [-1000, -1, 0],
+                    [-1001, -2, 999000000]
+            ];
+        }
+
+        it('', function () {
+            dataProviderTest(provider_factory_millis_long, factory_millis_long);
+        });
+
+        // @Test(dataProvider="MillisInstantNoNanos")
+        function factory_millis_long(millis, expectedSeconds, expectedNanoOfSecond) {
+            var t = Instant.ofEpochMilli(millis);
+            assertEquals(t.epochSecond(), expectedSeconds);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
 
     });
 
-    describe('parse', function () {
+    describe('parse(String)', function () {
+
+        // see also parse tests under toString()
+        // @DataProvider(name='Parse')
+        function provider_factory_parse() {
+            return [
+                ['1970-01-01T00:00:00Z', 0, 0],
+                ['1970-01-01t00:00:00Z', 0, 0],
+                ['1970-01-01T00:00:00z', 0, 0],
+                ['1970-01-01T00:00:00.0Z', 0, 0],
+                ['1970-01-01T00:00:00.000000000Z', 0, 0],
+
+                ['1970-01-01T00:00:00.000000001Z', 0, 1],
+                ['1970-01-01T00:00:00.100000000Z', 0, 100000000],
+                ['1970-01-01T00:00:01Z', 1, 0],
+                ['1970-01-01T00:01:00Z', 60, 0],
+                ['1970-01-01T00:01:01Z', 61, 0],
+                ['1970-01-01T00:01:01.000000001Z', 61, 1],
+                ['1970-01-01T01:00:00.000000000Z', 3600, 0],
+                ['1970-01-01T01:01:01.000000001Z', 3661, 1],
+                ['1970-01-02T01:01:01.100000000Z', 90061, 100000000]
+            ];
+        }
+
+        it('factory_parse', function () {
+            dataProviderTest(provider_factory_parse, factory_parse);
+        });
+
+        // @Test(dataProvider='Parse')
+        function factory_parse(text, expectedEpochSeconds, expectedNanoOfSecond) {
+            // console.log(text, expectedEpochSeconds, expectedNanoOfSecond);
+            var t = Instant.parse(text);
+            assertEquals(t.epochSecond(), expectedEpochSeconds);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+
+        it('factory_parseLowercase', function () {
+            dataProviderTest(provider_factory_parse, factory_parseLowercase);
+        });
+
+        // @Test(dataProvider='Parse')
+        function factory_parseLowercase(text, expectedEpochSeconds, expectedNanoOfSecond) {
+            var t = Instant.parse(text.toLowerCase(/*Locale.ENGLISH*/));
+            assertEquals(t.epochSecond(), expectedEpochSeconds);
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+
+        // TODO: should comma be accepted?
+        //    @Test(dataProvider='Parse')
+        //    public void factory_parse_comma(text, expectedEpochSeconds, expectedNanoOfSecond) {
+        //        text = text.replace('.', ',');
+        //        var t = Instant.parse(text);
+        //        assertEquals(t.epochSecond(), expectedEpochSeconds);
+        //        assertEquals(t.nano(), expectedNanoOfSecond);
+        //    }
+
+        // @DataProvider(name='ParseFailures')
+        function provider_factory_parseFailures() {
+            return [
+                [''],
+                ['Z'],
+                ['1970-01-01T00:00:00'],
+                ['1970-01-01T00:00:0Z'],
+                ['1970-01-01T00:00:00.0000000000Z']
+            ];
+        }
+
+        it('factory_parseFailures', function () {
+            dataProviderTest(provider_factory_parseFailures, factory_parseFailures);
+        });
+
+        // @Test(dataProvider='ParseFailures', expectedExceptions=DateTimeParseException.class)
+        function factory_parseFailures(text) {
+            expect(()=>{
+                Instant.parse(text);
+            }).to.throw(DateTimeParseException);
+        }
+
+        it('factory_parseFailures_comma', function () {
+            dataProviderTest(provider_factory_parseFailures, factory_parseFailures_comma);
+        });
+
+        // @Test(dataProvider='ParseFailures', expectedExceptions=DateTimeParseException.class)
+        function factory_parseFailures_comma(text) {
+            expect(()=>{
+                text = text.replace('.', ',');
+                Instant.parse(text);
+            }).to.throw(DateTimeParseException);
+        }
+
+        it('factory_parse_nullText', () => {
+            expect(() => {
+                Instant.parse(null);
+            }).to.throw(NullPointerException);
+        });
 
     });
 
@@ -108,7 +283,218 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
-    describe('query', function () {
+    describe('query(TemporalQuery)', function () {
+
+        it('test_query', () => {
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.chronology()), null);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.localDate()), null);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.localTime()), null);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.offset()), null);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.precision()), ChronoUnit.NANOS);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.zone()), null);
+            assertEquals(TEST_12345_123456789.query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_12345_123456789.query(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    // TODO tests are missing in threeten bp
+    describe('adjustInto(Temporal)', () => {
+
+        // @DataProvider(name='adjustInto')
+        function data_adjustInto() {
+            return [
+                [Instant.ofEpochSecond(10, 200), Instant.ofEpochSecond(20), Instant.ofEpochSecond(10, 200), null],
+                [Instant.ofEpochSecond(10, -200), Instant.now(), Instant.ofEpochSecond(10, -200), null],
+                [Instant.ofEpochSecond(-10), Instant.EPOCH, Instant.ofEpochSecond(-10), null],
+                [Instant.ofEpochSecond(10), Instant.MIN, Instant.ofEpochSecond(10), null],
+                [Instant.ofEpochSecond(10), Instant.MAX, Instant.ofEpochSecond(10), null],
+
+                [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20).toInstant(ZoneOffset.UTC), Instant.ofEpochSecond(10, 200), null],
+                //[Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZoneOffset.UTC), OffsetDateTime.of(1970, 1, 1, 0, 0, 10, 200, ZoneOffset.UTC), null],
+                //[Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, OFFSET_PTWO), OffsetDateTime.of(1970, 1, 1, 2, 0, 10, 200, OFFSET_PTWO), null],
+                //[Instant.ofEpochSecond(10, 200), ZonedDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZONE_PARIS), ZonedDateTime.of(1970, 1, 1, 1, 0, 10, 200, ZONE_PARIS), null],
+
+                [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20), null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), null, null, NullPointerException]
+
+            ];
+        }
+
+        it('test_adjustInto', function () {
+            dataProviderTest(data_adjustInto, test_adjustInto);
+        });
+
+        // @Test(dataProvider='adjustInto')
+        function test_adjustInto(test, temporal, expected, expectedEx) {
+            // console.log(test, temporal, expected, expectedEx);
+            if (expectedEx == null) {
+                var result = test.adjustInto(temporal);
+                assertEquals(result, expected);
+            } else {
+                expect(()=> {
+                    test.adjustInto(temporal);
+                }).to.throw(expectedEx);
+            }
+        }
+
+    });
+
+
+    // TODO tests are missing in threeten bp  
+    describe('with(TemporalAdjuster)', () => {
+
+        // @DataProvider(name='with')
+        function data_with() {
+            return [
+                [Instant.ofEpochSecond(10, 200), Instant.ofEpochSecond(20), Instant.ofEpochSecond(20), null],
+                [Instant.ofEpochSecond(10), Instant.ofEpochSecond(20, -100), Instant.ofEpochSecond(20, -100), null],
+                [Instant.ofEpochSecond(-10), Instant.EPOCH, Instant.ofEpochSecond(0), null],
+                [Instant.ofEpochSecond(10), Instant.MIN, Instant.MIN, null],
+                [Instant.ofEpochSecond(10), Instant.MAX, Instant.MAX, null],
+
+                [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20).toInstant(ZoneOffset.UTC), Instant.ofEpochSecond(20), null],
+
+                [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20), null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), null, null, NullPointerException]
+            ];
+        }
+
+        it('test_with_temporalAdjuster', function () {
+            dataProviderTest(data_with, test_with_temporalAdjuster);
+        });
+
+        // @Test(dataProvider='with')
+        function test_with_temporalAdjuster(test, adjuster, expected, expectedEx) {
+            if (expectedEx == null) {
+                let result = test.with(adjuster);
+                assertEquals(result, expected);
+            } else {
+                expect(()=> {
+                    test.with(adjuster);
+                }).to.throw(expectedEx);
+            }
+        }
+
+    });
+
+    // TODO tests are missing in threeten bp
+    describe('with(TemporalField, long)', function () {
+
+        // @DataProvider(name='with_longTemporalField')
+        function data_with_longTemporalField() {
+            return [
+                [Instant.ofEpochSecond(10, 200), ChronoField.INSTANT_SECONDS, 100, Instant.ofEpochSecond(100, 200), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.INSTANT_SECONDS, 0, Instant.ofEpochSecond(0, 200), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.INSTANT_SECONDS, -100, Instant.ofEpochSecond(-100, 200), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.NANO_OF_SECOND, 100, Instant.ofEpochSecond(10, 100), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.NANO_OF_SECOND, 0, Instant.ofEpochSecond(10), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MICRO_OF_SECOND, 100, Instant.ofEpochSecond(10, 100 * 1000), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MICRO_OF_SECOND, 0, Instant.ofEpochSecond(10), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MILLI_OF_SECOND, 100, Instant.ofEpochSecond(10, 100 * 1000 * 1000), null],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MILLI_OF_SECOND, 0, Instant.ofEpochSecond(10), null],
+
+                [Instant.ofEpochSecond(10, 200), ChronoField.NANO_OF_SECOND, 1000000000, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MICRO_OF_SECOND, 1000000, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MILLI_OF_SECOND, 1000, null, DateTimeException],
+
+                [Instant.ofEpochSecond(10, 200), ChronoField.SECOND_OF_MINUTE, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.SECOND_OF_DAY, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.OFFSET_SECONDS, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.NANO_OF_DAY, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MINUTE_OF_HOUR, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MINUTE_OF_DAY, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MILLI_OF_DAY, 1, null, DateTimeException],
+                [Instant.ofEpochSecond(10, 200), ChronoField.MICRO_OF_DAY, 1, null, DateTimeException]
+            ];
+        }
+
+        it('test_with_longTemporalField', function () {
+            dataProviderTest(data_with_longTemporalField, test_with_longTemporalField);
+        });
+
+        // @Test(dataProvider='with_longTemporalField')
+        function test_with_longTemporalField(test, field, value, expected, expectedEx) {
+            if (expectedEx == null) {
+                let result = test.with(field, value);
+                assertEquals(result, expected);
+            } else {
+                expect(()=> {
+                    test.with(field, value);
+                }).to.throw(expectedEx);
+            }
+        }
+
+    });
+
+    // TODO tests are missing in threeten bp
+    describe('truncated(TemporalUnit)', () => {
+
+        var NINETY_MINUTES = {
+            duration: () => { return Duration.ofMinutes(90); }
+        };
+
+        var NINETYFIVE_MINUTES = {
+            duration: () => { return Duration.ofMinutes(95); }
+        };
+
+        // @DataProvider(name='truncatedToValid')
+        function data_truncatedToValid() {
+            return [
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.NANOS, Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.MICROS, Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456000)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.MILLIS, Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123000000)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.SECONDS, Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 0)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.MINUTES, Instant.ofEpochSecond(86400 + 3600 + 60, 0)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.HOURS, Instant.ofEpochSecond(86400 + 3600, 0)],
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), ChronoUnit.DAYS, Instant.ofEpochSecond(86400, 0)],
+
+                [Instant.ofEpochSecond(86400 + 3600 + 60 + 1, 123456789), NINETY_MINUTES, Instant.ofEpochSecond(86400 + 0, 0)],
+                [Instant.ofEpochSecond(86400 + 7200 + 60 + 1, 123456789), NINETY_MINUTES, Instant.ofEpochSecond(86400 + 5400, 0)],
+                [Instant.ofEpochSecond(86400 + 10800 + 60 + 1, 123456789),NINETY_MINUTES, Instant.ofEpochSecond(86400 + 10800, 0)]
+            ];
+        }
+
+        it('test_truncatedTo_valid', function () {
+            dataProviderTest(data_truncatedToValid, test_truncatedTo_valid);
+        });
+
+        // @Test(dataProvider='truncatedToValid')
+        function test_truncatedTo_valid(input, unit, expected) {
+            assertEquals(input.truncatedTo(unit), expected);
+        }
+
+        // @DataProvider(name='truncatedToInvalid')
+        function data_truncatedToInvalid() {
+            return [
+                [Instant.ofEpochSecond(1, 123456789), NINETYFIVE_MINUTES],
+                [Instant.ofEpochSecond(1, 123456789), ChronoUnit.WEEKS],
+                [Instant.ofEpochSecond(1, 123456789), ChronoUnit.MONTHS],
+                [Instant.ofEpochSecond(1, 123456789), ChronoUnit.YEARS]
+            ];
+        }
+
+        it('test_truncatedTo_invalid', function () {
+            dataProviderTest(data_truncatedToInvalid, test_truncatedTo_invalid);
+        });
+
+        // @Test(dataProvider='truncatedToInvalid', expectedExceptions=DateTimeException.class)
+        function test_truncatedTo_invalid(input, unit) {
+            expect(() => {
+                input.truncatedTo(unit);
+            }).to.throw(DateTimeException);
+        }
+
+        it('test_truncatedTo_null', () => {
+            expect(() => {
+                TEST_12345_123456789.truncatedTo(null);
+            }).to.throw(NullPointerException);
+        });
 
     });
 
@@ -1478,7 +1864,7 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         function test_toString(instant, expected) {
-            console.log(instant, expected);
+            // console.log(instant, expected);
             assertEquals(instant.toString(), expected);
         }
 

@@ -14,6 +14,7 @@ import {MathUtil} from './MathUtil';
 import {Temporal} from './temporal/Temporal';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
@@ -287,7 +288,31 @@ export class Instant extends Temporal {
         return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
     }
 
-    // TODO range
+    /**
+     * Gets the range of valid values for the specified field.
+     * <p>
+     * The range object expresses the minimum and maximum valid values for a field.
+     * This instant is used to enhance the accuracy of the returned range.
+     * If it is not possible to return the range, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return
+     * appropriate range instances.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the range can be obtained is determined by the field.
+     *
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws DateTimeException if the range for the field cannot be obtained
+     */
+    range(field) {
+        return super.range(field);
+    }
 
     /**
      * Gets the value of the specified field from this instant as an {@code int}.
@@ -388,9 +413,150 @@ export class Instant extends Temporal {
         return this._nanos;
     }
 
-    // TODO with
+    //-------------------------------------------------------------------------
+    /**
+     * function overloading for {@link Instant.with}
+     *
+     * if called with 1 argument {@link Instant.withTemporalAdjuster} is called
+     * otherwise {@link Instant.with2}
+     *
+     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
+     * @param {number} newValue
+     * @returns {Instant}
+     */
+    with(adjusterOrField, newValue){
+        if(arguments.length === 1){
+            return this.withTemporalAdjuster(adjusterOrField);
+        } else {
+            return this.with2(adjusterOrField, newValue);
+        }
+    }
+    /**
+     * Returns an adjusted copy of this instant.
+     * <p>
+     * This returns a new {@code Instant}, based on this one, with the date adjusted.
+     * The adjustment takes place using the specified adjuster strategy object.
+     * Read the documentation of the adjuster to understand what adjustment will be made.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+     * specified adjuster passing {@code this} as the argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {!TemporalAdjuster} adjuster - the adjuster to use, not null
+     * @return {Instant} an {@code Instant} based on {@code this} with the adjustment made, not null
+     * @throws DateTimeException if the adjustment cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    withTemporalAdjuster(adjuster) {
+        requireNonNull(adjuster, 'adjuster');
+        return adjuster.adjustInto(this);
+    }
 
-    // TODO truncatedTo
+    /**
+     * Returns a copy of this instant with the specified field set to a new value.
+     * <p>
+     * This returns a new {@code Instant}, based on this one, with the value
+     * for the specified field changed.
+     * If it is not possible to set the value, because the field is not supported or for
+     * some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the adjustment is implemented here.
+     * The supported fields behave as follows:
+     * <ul>
+     * <li>{@code NANO_OF_SECOND} -
+     *  Returns an {@code Instant} with the specified nano-of-second.
+     *  The epoch-second will be unchanged.
+     * <li>{@code MICRO_OF_SECOND} -
+     *  Returns an {@code Instant} with the nano-of-second replaced by the specified
+     *  micro-of-second multiplied by 1,000. The epoch-second will be unchanged.
+     * <li>{@code MILLI_OF_SECOND} -
+     *  Returns an {@code Instant} with the nano-of-second replaced by the specified
+     *  milli-of-second multiplied by 1,000,000. The epoch-second will be unchanged.
+     * <li>{@code INSTANT_SECONDS} -
+     *  Returns an {@code Instant} with the specified epoch-second.
+     *  The nano-of-second will be unchanged.
+     * </ul>
+     * <p>
+     * In all cases, if the new value is outside the valid range of values for the field
+     * then a {@code DateTimeException} will be thrown.
+     * <p>
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+     * passing {@code this} as the argument. In this case, the field determines
+     * whether and how to adjust the instant.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalField} field - the field to set in the result, not null
+     * @param {number} newValue - the new value of the field in the result
+     * @return {Instant} an {@code Instant} based on {@code this} with the specified field set, not null
+     * @throws DateTimeException if the field cannot be set
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    with2(field, newValue) {
+        requireNonNull(field, 'field');
+        if (field instanceof ChronoField) {
+            field.checkValidValue(newValue);
+            switch (field) {
+                case ChronoField.MILLI_OF_SECOND: {
+                    let nval = newValue * NANOS_PER_MILLI;
+                    return (nval !== this._nanos? Instant._create(this._seconds, nval) : this);
+                }
+                case ChronoField.MICRO_OF_SECOND: {
+                    let nval = newValue * 1000;
+                    return (nval !== this._nanos? Instant._create(this._seconds, nval) : this);
+                }
+                case ChronoField.NANO_OF_SECOND: return (newValue !== this._nanos? Instant._create(this._seconds, newValue) : this);
+                case ChronoField.INSTANT_SECONDS: return (newValue !== this._seconds ? Instant._create(newValue, this._nanos) : this);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a copy of this {@code Instant} truncated to the specified unit.
+     * <p>
+     * Truncating the instant returns a copy of the original with fields
+     * smaller than the specified unit set to zero.
+     * The fields are calculated on the basis of using a UTC offset as seen
+     * in {@code toString}.
+     * For example, truncating with the {@link ChronoUnit#MINUTES MINUTES} unit will
+     * round down to the nearest minute, setting the seconds and nanoseconds to zero.
+     * <p>
+     * The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+     * that divides into the length of a standard day without remainder.
+     * This includes all supplied time units on {@link ChronoUnit} and
+     * {@link ChronoUnit#DAYS DAYS}. Other units throw an exception.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {!TemporalUnit} unit - the unit to truncate to, not null
+     * @return {Instant} an {@code Instant} based on this instant with the time truncated, not null
+     * @throws DateTimeException if the unit is invalid for truncation
+     */
+    truncatedTo(unit) {
+        requireNonNull(unit, 'unit');
+        if (unit === ChronoUnit.NANOS) {
+            return this;
+        }
+        var unitDur = unit.duration();
+        if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
+            throw new DateTimeException('Unit is too large to be used for truncation');
+        }
+        var dur = unitDur.toNanos();
+        if (MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
+            throw new DateTimeException('Unit must divide into a standard day without remainder');
+        }
+        var nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
+        var result = MathUtil.intDiv(nod, dur) * dur;
+        return this.plusNanos(result - nod);
+    }
 
     //-----------------------------------------------------------------------
     /**
@@ -581,9 +747,67 @@ export class Instant extends Temporal {
         return this.plusNanos(-1 * nanosToSubtract);
     }
 
-    // TODO query
+    //-------------------------------------------------------------------------
+    /**
+     * Queries this instant using the specified query.
+     * <p>
+     * This queries this instant using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param {!TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, 'query');
+        if (query === TemporalQueries.precision()) {
+            return ChronoUnit.NANOS;
+        }
+        // inline TemporalAccessor.super.query(query) as an optimization
+        if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+                query === TemporalQueries.chronology() || query === TemporalQueries.zoneId() ||
+                query === TemporalQueries.zone() || query === TemporalQueries.offset()) {
+            return null;
+        }
+        return query.queryFrom(this);
+    }
 
-    // TODO adjustInto
+    /**
+     * Adjusts the specified temporal object to have this instant.
+     * <p>
+     * This returns a temporal object of the same observable type as the input
+     * with the instant changed to be the same as this.
+     * <p>
+     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * twice, passing {@link ChronoField#INSTANT_SECONDS} and
+     * {@link ChronoField#NANO_OF_SECOND} as the fields.
+     * <p>
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with(TemporalAdjuster)}:
+     * <pre>
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisInstant.adjustInto(temporal);
+     *   temporal = temporal.with(thisInstant);
+     * </pre>
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {!Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, 'temporal');
+        return temporal.with(ChronoField.INSTANT_SECONDS, this._seconds).with(ChronoField.NANO_OF_SECOND, this._nanos);
+    }
 
     /**
      * Calculates the period between this instant and another instant in
@@ -673,7 +897,42 @@ export class Instant extends Temporal {
         return secsDiff;
     }
 
-    // TODO at*/
+    //-----------------------------------------------------------------------
+    /**
+     * Combines this instant with an offset to create an {@code OffsetDateTime}.
+     * <p>
+     * This returns an {@code OffsetDateTime} formed from this instant at the
+     * specified offset from UTC/Greenwich. An exception will be thrown if the
+     * instant is too large to fit into an offset date-time.
+     * <p>
+     * This method is equivalent to
+     * {@link OffsetDateTime#ofInstant(Instant, ZoneId) OffsetDateTime.ofInstant(this, offset)}.
+     *
+     * @param {ZoneOffset} offset - the offset to combine with, not null
+     * @return {OffsetDateTime} the offset date-time formed from this instant and the specified offset, not null
+     * @throws DateTimeException if the result exceeds the supported range
+     */
+    //atOffset(offset) {
+    //    return OffsetDateTime.ofInstant(this, offset);
+    //}
+
+    /**
+     * Combines this instant with a time-zone to create a {@code ZonedDateTime}.
+     * <p>
+     * This returns an {@code ZonedDateTime} formed from this instant at the
+     * specified time-zone. An exception will be thrown if the instant is too
+     * large to fit into a zoned date-time.
+     * <p>
+     * This method is equivalent to
+     * {@link ZonedDateTime#ofInstant(Instant, ZoneId) ZonedDateTime.ofInstant(this, zone)}.
+     *
+     * @param {ZoneId} zone - the zone to combine with, not null
+     * @return {ZonedDateTime} the zoned date-time formed from this instant and the specified zone, not null
+     * @throws DateTimeException if the result exceeds the supported range
+     */
+    //atZone(zone) {
+    //    return ZonedDateTime.ofInstant(this, zone);
+    //}
 
     //-----------------------------------------------------------------------
      /**
