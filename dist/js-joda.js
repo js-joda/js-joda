@@ -89,7 +89,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(38);
 	
 	Object.defineProperty(exports, 'DayOfWeek', {
 	  enumerable: true,
@@ -98,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Duration = __webpack_require__(8);
+	var _Duration = __webpack_require__(14);
 	
 	Object.defineProperty(exports, 'Duration', {
 	  enumerable: true,
@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
 	Object.defineProperty(exports, 'LocalDate', {
 	  enumerable: true,
@@ -125,7 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(5);
 	
 	Object.defineProperty(exports, 'LocalTime', {
 	  enumerable: true,
@@ -134,7 +134,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _LocalDateTime = __webpack_require__(11);
+	var _LocalDateTime = __webpack_require__(7);
 	
 	Object.defineProperty(exports, 'LocalDateTime', {
 	  enumerable: true,
@@ -143,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Month = __webpack_require__(15);
+	var _Month = __webpack_require__(11);
 	
 	Object.defineProperty(exports, 'Month', {
 	  enumerable: true,
@@ -152,7 +152,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(28);
 	
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -161,7 +161,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(16);
 	
 	Object.defineProperty(exports, 'Year', {
 	  enumerable: true,
@@ -170,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(24);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -179,7 +179,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
 	Object.defineProperty(exports, 'ChronoField', {
 	  enumerable: true,
@@ -188,7 +188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
 	Object.defineProperty(exports, 'ChronoUnit', {
 	  enumerable: true,
@@ -197,7 +197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalAdjusters = __webpack_require__(38);
+	var _TemporalAdjusters = __webpack_require__(40);
 	
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -206,7 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
 	Object.defineProperty(exports, 'TemporalQueries', {
 	  enumerable: true,
@@ -215,7 +215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
 	Object.defineProperty(exports, 'DateTimeFormatter', {
 	  enumerable: true,
@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	var _DateTimeFormatterBuilder = __webpack_require__(34);
 	
 	Object.defineProperty(exports, 'DateTimeFormatterBuilder', {
 	  enumerable: true,
@@ -233,7 +233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(25);
 	
 	Object.defineProperty(exports, 'ResolverStyle', {
 	  enumerable: true,
@@ -242,7 +242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	__webpack_require__(40);
+	__webpack_require__(42);
 
 /***/ },
 /* 1 */
@@ -265,7 +265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Instant = __webpack_require__(4);
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(24);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -373,7 +373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(SystemDefaultClock, [{
 	        key: 'offset',
 	        value: function offset(instant) {
-	            var offsetInMinutes = new Date().getTimezoneOffset(instant.epochMilli());
+	            var offsetInMinutes = new Date().getTimezoneOffset(instant.toEpochMilli());
 	            return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
 	        }
 	    }, {
@@ -543,23 +543,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	exports._init = _init;
 	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _ChronoUnit = __webpack_require__(7);
-	
-	var _Clock = __webpack_require__(1);
+	var _assert = __webpack_require__(2);
 	
 	var _errors = __webpack_require__(3);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _Clock = __webpack_require__(1);
+	
+	var _LocalTime = __webpack_require__(5);
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _Temporal2 = __webpack_require__(16);
+	var _Temporal2 = __webpack_require__(20);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _ChronoUnit = __webpack_require__(13);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _TemporalQuery = __webpack_require__(23);
+	
+	var _DateTimeFormatter = __webpack_require__(27);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -571,11 +581,69 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	
 	var NANOS_PER_MILLI = 1000000;
 	
-	var Instant = exports.Instant = function (_Temporal) {
+	var Instant = function (_Temporal) {
 	    _inherits(Instant, _Temporal);
+	
+	    _createClass(Instant, null, [{
+	        key: 'now',
+	        value: function now() {
+	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemUTC() : arguments[0];
+	
+	            return clock.instant();
+	        }
+	    }, {
+	        key: 'ofEpochSecond',
+	        value: function ofEpochSecond(epochSecond) {
+	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	
+	            var secs = epochSecond + _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            return Instant._create(secs, nos);
+	        }
+	    }, {
+	        key: 'ofEpochMilli',
+	        value: function ofEpochMilli(epochMilli) {
+	            var secs = _MathUtil.MathUtil.floorDiv(epochMilli, 1000);
+	            var mos = _MathUtil.MathUtil.floorMod(epochMilli, 1000);
+	            return Instant._create(secs, mos * 1000000);
+	        }
+	    }, {
+	        key: 'from',
+	        value: function from(temporal) {
+	            try {
+	                var instantSecs = temporal.getLong(_ChronoField.ChronoField.INSTANT_SECONDS);
+	                var nanoOfSecond = temporal.get(_ChronoField.ChronoField.NANO_OF_SECOND);
+	                return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
+	            } catch (ex) {
+	                throw new _errors.DateTimeException('Unable to obtain Instant from TemporalAccessor: ' + temporal + ', type ' + (typeof temporal === 'undefined' ? 'undefined' : _typeof(temporal)), ex);
+	            }
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            return _DateTimeFormatter.DateTimeFormatter.ISO_INSTANT.parse(text, Instant.FROM);
+	        }
+	    }, {
+	        key: '_create',
+	        value: function _create(seconds, nanoOfSecond) {
+	            if (seconds === 0 && nanoOfSecond === 0) {
+	                return Instant.EPOCH;
+	            }
+	            return new Instant(seconds, nanoOfSecond);
+	        }
+	    }, {
+	        key: '_validate',
+	        value: function _validate(seconds, nanoOfSecond) {
+	            if (seconds < Instant.MIN_SECONDS || seconds > Instant.MAX_SECONDS) {
+	                throw new _errors.DateTimeException('Instant exceeds minimum or maximum instant');
+	            }
+	            if (nanoOfSecond < 0 || nanoOfSecond > _LocalTime.LocalTime.NANOS_PER_SECOND) {
+	                throw new _errors.DateTimeException('Instant exceeds minimum or maximum instant');
+	            }
+	        }
+	    }]);
 	
 	    function Instant(seconds, nanoOfSecond) {
 	        _classCallCheck(this, Instant);
@@ -589,14 +657,61 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    _createClass(Instant, [{
+	        key: 'isSupported',
+	        value: function isSupported(fieldOrUnit) {
+	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
+	                return fieldOrUnit === _ChronoField.ChronoField.INSTANT_SECONDS || fieldOrUnit === _ChronoField.ChronoField.NANO_OF_SECOND || fieldOrUnit === _ChronoField.ChronoField.MICRO_OF_SECOND || fieldOrUnit === _ChronoField.ChronoField.MILLI_OF_SECOND;
+	            }
+	            if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
+	                return fieldOrUnit.isTimeBased() || fieldOrUnit === _ChronoUnit.ChronoUnit.DAYS;
+	            }
+	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            return _get(Object.getPrototypeOf(Instant.prototype), 'range', this).call(this, field);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                switch (field) {
+	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
+	                        return this._nanos;
+	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
+	                        return _MathUtil.MathUtil.intDiv(this._nanos, 1000);
+	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
+	                        return _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+	                    case _ChronoField.ChronoField.INSTANT_SECONDS:
+	                        _ChronoField.ChronoField.INSTANT_SECONDS.checkValidIntValue(this._seconds);
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return this.range(field).checkValidIntValue(field.getFrom(this), field);
+	        }
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                switch (field) {
+	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
+	                        return this._nanos;
+	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
+	                        return _MathUtil.MathUtil.intDiv(this._nanos, 1000);
+	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
+	                        return _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+	                    case _ChronoField.ChronoField.INSTANT_SECONDS:
+	                        return this._seconds;
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.getFrom(this);
+	        }
+	    }, {
 	        key: 'epochSecond',
 	        value: function epochSecond() {
 	            return this._seconds;
-	        }
-	    }, {
-	        key: 'epochMilli',
-	        value: function epochMilli() {
-	            return this._seconds * 1000 + _MathUtil.MathUtil.intDiv(this._nanos, 1000000);
 	        }
 	    }, {
 	        key: 'nano',
@@ -604,14 +719,115 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._nanos;
 	        }
 	    }, {
+	        key: 'with',
+	        value: function _with(adjusterOrField, newValue) {
+	            if (arguments.length === 1) {
+	                return this.withTemporalAdjuster(adjusterOrField);
+	            } else {
+	                return this.with2(adjusterOrField, newValue);
+	            }
+	        }
+	    }, {
+	        key: 'withTemporalAdjuster',
+	        value: function withTemporalAdjuster(adjuster) {
+	            (0, _assert.requireNonNull)(adjuster, 'adjuster');
+	            return adjuster.adjustInto(this);
+	        }
+	    }, {
+	        key: 'with2',
+	        value: function with2(field, newValue) {
+	            (0, _assert.requireNonNull)(field, 'field');
+	            if (field instanceof _ChronoField.ChronoField) {
+	                field.checkValidValue(newValue);
+	                switch (field) {
+	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
+	                        {
+	                            var nval = newValue * NANOS_PER_MILLI;
+	                            return nval !== this._nanos ? Instant._create(this._seconds, nval) : this;
+	                        }
+	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
+	                        {
+	                            var nval = newValue * 1000;
+	                            return nval !== this._nanos ? Instant._create(this._seconds, nval) : this;
+	                        }
+	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
+	                        return newValue !== this._nanos ? Instant._create(this._seconds, newValue) : this;
+	                    case _ChronoField.ChronoField.INSTANT_SECONDS:
+	                        return newValue !== this._seconds ? Instant._create(newValue, this._nanos) : this;
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.adjustInto(this, newValue);
+	        }
+	    }, {
+	        key: 'truncatedTo',
+	        value: function truncatedTo(unit) {
+	            (0, _assert.requireNonNull)(unit, 'unit');
+	            if (unit === _ChronoUnit.ChronoUnit.NANOS) {
+	                return this;
+	            }
+	            var unitDur = unit.duration();
+	            if (unitDur.seconds() > _LocalTime.LocalTime.SECONDS_PER_DAY) {
+	                throw new _errors.DateTimeException('Unit is too large to be used for truncation');
+	            }
+	            var dur = unitDur.toNanos();
+	            if (_MathUtil.MathUtil.intMod(_LocalTime.LocalTime.NANOS_PER_DAY, dur) !== 0) {
+	                throw new _errors.DateTimeException('Unit must divide into a standard day without remainder');
+	            }
+	            var nod = _MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_DAY) * _LocalTime.LocalTime.NANOS_PER_SECOND + this._nanos;
+	            var result = _MathUtil.MathUtil.intDiv(nod, dur) * dur;
+	            return this.plusNanos(result - nod);
+	        }
+	    }, {
+	        key: 'plus',
+	        value: function plus(amount, unit) {
+	            if (arguments.length === 1) {
+	                return this.plus1(amount);
+	            } else {
+	                return this.plus2(amount, unit);
+	            }
+	        }
+	    }, {
+	        key: 'plus1',
+	        value: function plus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            return amount.addTo(this);
+	        }
+	    }, {
+	        key: 'plus2',
+	        value: function plus2(amountToAdd, unit) {
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.NANOS:
+	                        return this.plusNanos(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MICROS:
+	                        return this._plus(_MathUtil.MathUtil.intDiv(amountToAdd, 1000000), _MathUtil.MathUtil.intMod(amountToAdd, 1000000) * 1000);
+	                    case _ChronoUnit.ChronoUnit.MILLIS:
+	                        return this.plusMillis(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.SECONDS:
+	                        return this.plusSeconds(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MINUTES:
+	                        return this.plusSeconds(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_MINUTE));
+	                    case _ChronoUnit.ChronoUnit.HOURS:
+	                        return this.plusSeconds(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_HOUR));
+	                    case _ChronoUnit.ChronoUnit.HALF_DAYS:
+	                        return this.plusSeconds(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY / 2));
+	                    case _ChronoUnit.ChronoUnit.DAYS:
+	                        return this.plusSeconds(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY));
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	            return unit.addTo(this, amountToAdd);
+	        }
+	    }, {
 	        key: 'plusSeconds',
 	        value: function plusSeconds(secondsToAdd) {
 	            return this._plus(secondsToAdd, 0);
 	        }
 	    }, {
-	        key: 'minusSeconds',
-	        value: function minusSeconds(secondsToSubtract) {
-	            return this.plusSeconds(secondsToSubtract * -1);
+	        key: 'plusMillis',
+	        value: function plusMillis(millisToAdd) {
+	            return this._plus(_MathUtil.MathUtil.intDiv(millisToAdd, 1000), _MathUtil.MathUtil.intMod(millisToAdd, 1000) * NANOS_PER_MILLI);
 	        }
 	    }, {
 	        key: 'plusNanos',
@@ -631,15 +847,58 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return Instant.ofEpochSecond(epochSec, nanoAdjustment);
 	        }
 	    }, {
-	        key: 'equals',
-	        value: function equals(otherInstant) {
-	            if (this === otherInstant) {
-	                return true;
+	        key: 'minus',
+	        value: function minus(amount, unit) {
+	            if (arguments.length === 1) {
+	                return this.minus1(amount);
+	            } else {
+	                return this.minus2(amount, unit);
 	            }
-	            if (otherInstant instanceof Instant) {
-	                return this.epochSecond() === otherInstant.epochSecond() && this.nano() === otherInstant.nano();
+	        }
+	    }, {
+	        key: 'minus1',
+	        value: function minus1(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            return amount.subtractFrom(this);
+	        }
+	    }, {
+	        key: 'minus2',
+	        value: function minus2(amountToSubtract, unit) {
+	            return this.plus2(-1 * amountToSubtract, unit);
+	        }
+	    }, {
+	        key: 'minusSeconds',
+	        value: function minusSeconds(secondsToSubtract) {
+	            return this.plusSeconds(secondsToSubtract * -1);
+	        }
+	    }, {
+	        key: 'minusMillis',
+	        value: function minusMillis(millisToSubtract) {
+	            return this.plusMillis(-1 * millisToSubtract);
+	        }
+	    }, {
+	        key: 'minusNanos',
+	        value: function minusNanos(nanosToSubtract) {
+	            return this.plusNanos(-1 * nanosToSubtract);
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            (0, _assert.requireNonNull)(_query, 'query');
+	            if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.NANOS;
 	            }
-	            return false;
+	
+	            if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return null;
+	            }
+	            return _query.queryFrom(this);
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            return temporal.with(_ChronoField.ChronoField.INSTANT_SECONDS, this._seconds).with(_ChronoField.ChronoField.NANO_OF_SECOND, this._nanos);
 	        }
 	    }, {
 	        key: 'until',
@@ -688,1292 +947,72 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return secsDiff;
 	        }
 	    }, {
-	        key: 'get',
-	        value: function get(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                switch (field) {
-	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
-	                        return this._nanos;
-	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
-	                        return _MathUtil.MathUtil.intDiv(this._nanos, 1000);
-	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
-	                        return _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-	                    case _ChronoField.ChronoField.INSTANT_SECONDS:
-	                        _ChronoField.ChronoField.INSTANT_SECONDS.checkValidIntValue(this._seconds);
-	                }
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	            }
-	            return this.range(field).checkValidIntValue(field.getFrom(this), field);
+	        key: 'toEpochMilli',
+	        value: function toEpochMilli() {
+	            var millis = _MathUtil.MathUtil.safeMultiply(this._seconds, 1000);
+	            return millis + _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
 	        }
 	    }, {
-	        key: 'getLong',
-	        value: function getLong(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                switch (field) {
-	                    case _ChronoField.ChronoField.NANO_OF_SECOND:
-	                        return this._nanos;
-	                    case _ChronoField.ChronoField.MICRO_OF_SECOND:
-	                        return _MathUtil.MathUtil.intDiv(this._nanos, 1000);
-	                    case _ChronoField.ChronoField.MILLI_OF_SECOND:
-	                        return _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-	                    case _ChronoField.ChronoField.INSTANT_SECONDS:
-	                        return this._seconds;
-	                }
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        key: 'compareTo',
+	        value: function compareTo(otherInstant) {
+	            (0, _assert.requireNonNull)(otherInstant, 'otherInstant');
+	            (0, _assert.requireInstance)(otherInstant, Instant, 'otherInstant');
+	            var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherInstant._seconds);
+	            if (cmp !== 0) {
+	                return cmp;
 	            }
-	            return field.getFrom(this);
+	            return this._nanos - otherInstant._nanos;
 	        }
 	    }, {
-	        key: 'isSupported',
-	        value: function isSupported(fieldOrUnit) {
-	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
-	                return fieldOrUnit === _ChronoField.ChronoField.INSTANT_SECONDS || fieldOrUnit === _ChronoField.ChronoField.NANO_OF_SECOND || fieldOrUnit === _ChronoField.ChronoField.MICRO_OF_SECOND || fieldOrUnit === _ChronoField.ChronoField.MILLI_OF_SECOND;
-	            }
-	            if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
-	                return fieldOrUnit.isTimeBased() || fieldOrUnit === _ChronoUnit.ChronoUnit.DAYS;
-	            }
-	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
-	        }
-	    }], [{
-	        key: 'now',
-	        value: function now() {
-	            var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemUTC() : arguments[0];
-	
-	            return clock.instant();
+	        key: 'isAfter',
+	        value: function isAfter(otherInstant) {
+	            return this.compareTo(otherInstant) > 0;
 	        }
 	    }, {
-	        key: 'from',
-	        value: function from(temporal) {
-	            try {
-	                var instantSecs = temporal.getLong(_ChronoField.ChronoField.INSTANT_SECONDS);
-	                var nanoOfSecond = temporal.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	                return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
-	            } catch (ex) {
-	                throw new _errors.DateTimeException('Unable to obtain Instant from TemporalAccessor: ' + temporal + ', type ' + (typeof temporal === 'undefined' ? 'undefined' : _typeof(temporal)), ex);
-	            }
+	        key: 'isBefore',
+	        value: function isBefore(otherInstant) {
+	            return this.compareTo(otherInstant) < 0;
 	        }
 	    }, {
-	        key: 'ofEpochSecond',
-	        value: function ofEpochSecond(epochSecond) {
-	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	
-	            var secs = epochSecond + _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            return Instant._create(secs, nos);
+	        key: 'equals',
+	        value: function equals(otherInstant) {
+	            if (this === otherInstant) {
+	                return true;
+	            }
+	            if (otherInstant instanceof Instant) {
+	                return this.epochSecond() === otherInstant.epochSecond() && this.nano() === otherInstant.nano();
+	            }
+	            return false;
 	        }
 	    }, {
-	        key: 'ofEpochMilli',
-	        value: function ofEpochMilli(epochMilli) {
-	            var secs = _MathUtil.MathUtil.floorDiv(epochMilli, 1000);
-	            var mos = _MathUtil.MathUtil.floorMod(epochMilli, 1000);
-	            return Instant._create(secs, mos * 1000000);
+	        key: 'hashCode',
+	        value: function hashCode() {
+	            return (this._seconds ^ this._seconds >>> 24) + 51 * this._nanos;
 	        }
 	    }, {
-	        key: '_create',
-	        value: function _create(seconds, nanoOfSecond) {
-	            if (seconds === 0 && nanoOfSecond === 0) {
-	                return Instant.EPOCH;
-	            }
-	            return new Instant(seconds, nanoOfSecond);
-	        }
-	    }, {
-	        key: '_validate',
-	        value: function _validate(seconds, nanoOfSecond) {
-	            if (seconds < Instant.MIN_SECONDS || seconds > Instant.MAX_SECONDS) {
-	                throw new _errors.DateTimeException('Instant exceeds minimum or maximum instant');
-	            }
-	            if (nanoOfSecond < 0 || nanoOfSecond > _LocalTime.LocalTime.NANOS_PER_SECOND) {
-	                throw new _errors.DateTimeException('Instant exceeds minimum or maximum instant');
-	            }
+	        key: 'toString',
+	        value: function toString() {
+	            return _DateTimeFormatter.DateTimeFormatter.ISO_INSTANT.format(this);
 	        }
 	    }]);
 	
 	    return Instant;
 	}(_Temporal2.Temporal);
 	
+	exports.Instant = Instant;
 	function _init() {
-	    Instant.MIN_SECONDS = -31619087596800;
-	    Instant.MAX_SECONDS = 31494784780799;
+	    Instant.MIN_SECONDS = -31619119219200;
+	    Instant.MAX_SECONDS = 31494816403199;
 	    Instant.EPOCH = new Instant(0, 0);
 	    Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);
 	    Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999);
+	    Instant.FROM = (0, _TemporalQuery.createTemporalQuery)('Instant.FROM', function (temporal) {
+	        return Instant.from(temporal);
+	    });
 	}
 
 /***/ },
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ChronoField = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	exports._init = _init;
-	
-	var _MathUtil = __webpack_require__(6);
-	
-	var _ChronoUnit = __webpack_require__(7);
-	
-	var _TemporalField2 = __webpack_require__(37);
-	
-	var _ValueRange = __webpack_require__(24);
-	
-	var _Year = __webpack_require__(21);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	
-	var ChronoField = exports.ChronoField = function (_TemporalField) {
-	    _inherits(ChronoField, _TemporalField);
-	
-	    function ChronoField(name, baseUnit, rangeUnit, range) {
-	        _classCallCheck(this, ChronoField);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoField).call(this));
-	
-	        _this._name = name;
-	        _this._baseUnit = baseUnit;
-	        _this._rangeUnit = rangeUnit;
-	        _this._range = range;
-	        return _this;
-	    }
-	
-	    _createClass(ChronoField, [{
-	        key: 'name',
-	        value: function name() {
-	            return this._name;
-	        }
-	    }, {
-	        key: 'baseUnit',
-	        value: function baseUnit() {
-	            return this._baseUnit;
-	        }
-	    }, {
-	        key: 'rangeUnit',
-	        value: function rangeUnit() {
-	            return this._rangeUnit;
-	        }
-	    }, {
-	        key: 'range',
-	        value: function range() {
-	            return this._range;
-	        }
-	    }, {
-	        key: 'displayName',
-	        value: function displayName() {
-	            return this.toString();
-	        }
-	    }, {
-	        key: 'checkValidValue',
-	        value: function checkValidValue(value) {
-	            return this.range().checkValidValue(value, this.name());
-	        }
-	    }, {
-	        key: 'isDateBased',
-	        value: function isDateBased() {
-	            var dateBased = this === ChronoField.DAY_OF_WEEK || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR || this === ChronoField.DAY_OF_MONTH || this === ChronoField.DAY_OF_YEAR || this === ChronoField.EPOCH_DAY || this === ChronoField.ALIGNED_WEEK_OF_MONTH || this === ChronoField.ALIGNED_WEEK_OF_YEAR || this === ChronoField.MONTH_OF_YEAR || this === ChronoField.YEAR_OF_ERA || this === ChronoField.YEAR || this === ChronoField.ERA;
-	            return dateBased;
-	        }
-	    }, {
-	        key: 'isTimeBased',
-	        value: function isTimeBased() {
-	            var timeBased = this === ChronoField.NANO_OF_SECOND || this === ChronoField.NANO_OF_DAY || this === ChronoField.MICRO_OF_SECOND || this === ChronoField.MICRO_OF_DAY || this === ChronoField.MILLI_OF_SECOND || this === ChronoField.MILLI_OF_DAY || this === ChronoField.SECOND_OF_MINUTE || this === ChronoField.SECOND_OF_DAY || this === ChronoField.MINUTE_OF_HOUR || this === ChronoField.MINUTE_OF_DAY || this === ChronoField.HOUR_OF_AMPM || this === ChronoField.CLOCK_HOUR_OF_AMPM || this === ChronoField.HOUR_OF_DAY || this === ChronoField.CLOCK_HOUR_OF_DAY || this === ChronoField.AMPM_OF_DAY;
-	            return timeBased;
-	        }
-	    }, {
-	        key: 'rangeRefinedBy',
-	        value: function rangeRefinedBy(temporal) {
-	            return temporal.range(this);
-	        }
-	    }, {
-	        key: 'checkValidIntValue',
-	        value: function checkValidIntValue(value) {
-	            return this.range().checkValidIntValue(value, this);
-	        }
-	    }, {
-	        key: 'getFrom',
-	        value: function getFrom(temporal) {
-	            return temporal.getLong(this);
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            return this.name();
-	        }
-	    }, {
-	        key: 'equals',
-	        value: function equals(other) {
-	            return this === other;
-	        }
-	    }]);
-	
-	    return ChronoField;
-	}(_TemporalField2.TemporalField);
-	
-	function _init() {
-	
-	    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
-	
-	    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
-	
-	    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
-	
-	    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000 - 1));
-	
-	    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
-	
-	    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000 - 1));
-	
-	    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.MINUTES, _ValueRange.ValueRange.of(0, 59));
-	
-	    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 - 1));
-	
-	    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.HOURS, _ValueRange.ValueRange.of(0, 59));
-	
-	    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 24 * 60 - 1));
-	
-	    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(0, 11));
-	
-	    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(1, 12));
-	
-	    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
-	
-	    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(1, 24));
-	
-	    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', _ChronoUnit.ChronoUnit.HALF_DAYS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 1));
-	
-	    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-	
-	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-	
-	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-	
-	    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
-	
-	    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
-	
-	    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
-	
-	    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
-	
-	    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
-	
-	    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
-	
-	    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE * 12, _Year.Year.MAX_VALUE * 12 + 11));
-	
-	    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _Year.Year.MAX_VALUE, _Year.Year.MAX_VALUE + 1));
-	
-	    ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
-	
-	    ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
-	
-	    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
-	
-	    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
-	}
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.MathUtil = exports.MIN_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	
-	var _errors = __webpack_require__(3);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var MAX_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = 9007199254740991;
-	var MIN_SAFE_INTEGER = exports.MIN_SAFE_INTEGER = -9007199254740991;
-	
-	var MathUtil = exports.MathUtil = function () {
-	    function MathUtil() {
-	        _classCallCheck(this, MathUtil);
-	    }
-	
-	    _createClass(MathUtil, null, [{
-	        key: 'intDiv',
-	        value: function intDiv(x, y) {
-	            var r = x / y;
-	            if (r === 0) {
-	                return 0;
-	            } else if (r < 0) {
-	                r = Math.ceil(r);
-	            } else {
-	                r = Math.floor(r);
-	            }
-	            return MathUtil.safeZero(r);
-	        }
-	    }, {
-	        key: 'intMod',
-	        value: function intMod(x, y) {
-	            var r = x - MathUtil.intDiv(x, y) * y;
-	            if (r === 0) {
-	                return 0;
-	            } else if (r < 0) {
-	                r = Math.ceil(r);
-	            } else {
-	                r = Math.floor(r);
-	            }
-	            return MathUtil.safeZero(r);
-	        }
-	    }, {
-	        key: 'floorDiv',
-	        value: function floorDiv(x, y) {
-	            var r = Math.floor(x / y);
-	            return MathUtil.safeZero(r);
-	        }
-	    }, {
-	        key: 'floorMod',
-	        value: function floorMod(x, y) {
-	            var r = x - MathUtil.floorDiv(x, y) * y;
-	            return MathUtil.safeZero(r);
-	        }
-	    }, {
-	        key: 'safeAdd',
-	        value: function safeAdd(x, y) {
-	            MathUtil.verifyInt(x);
-	            MathUtil.verifyInt(y);
-	            if (x === 0) {
-	                return MathUtil.safeZero(y);
-	            }
-	            if (y === 0) {
-	                return MathUtil.safeZero(x);
-	            }
-	            var r = MathUtil.safeToInt(x + y);
-	            if (r === x || r === y) {
-	                throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
-	            }
-	            return r;
-	        }
-	    }, {
-	        key: 'safeSubtract',
-	        value: function safeSubtract(x, y) {
-	            MathUtil.verifyInt(x);
-	            MathUtil.verifyInt(y);
-	            if (x === 0 && y === 0) {
-	                return 0;
-	            } else if (x === 0) {
-	                return MathUtil.safeZero(-1 * y);
-	            } else if (y === 0) {
-	                return MathUtil.safeZero(x);
-	            }
-	            return MathUtil.safeToInt(x - y);
-	        }
-	    }, {
-	        key: 'safeMultiply',
-	        value: function safeMultiply(x, y) {
-	            MathUtil.verifyInt(x);
-	            MathUtil.verifyInt(y);
-	            if (x === 1) {
-	                return MathUtil.safeZero(y);
-	            }
-	            if (y === 1) {
-	                return MathUtil.safeZero(x);
-	            }
-	            if (x === 0 || y === 0) {
-	                return 0;
-	            }
-	            var r = MathUtil.safeToInt(x * y);
-	            if (r / y !== x || x === MIN_SAFE_INTEGER && y === -1 || y === MIN_SAFE_INTEGER && x === -1) {
-	                throw new _errors.ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
-	            }
-	            return r;
-	        }
-	    }, {
-	        key: 'parseInt',
-	        value: function (_parseInt) {
-	            function parseInt(_x) {
-	                return _parseInt.apply(this, arguments);
-	            }
-	
-	            parseInt.toString = function () {
-	                return _parseInt.toString();
-	            };
-	
-	            return parseInt;
-	        }(function (value) {
-	            var r = parseInt(value);
-	            return MathUtil.safeToInt(r);
-	        })
-	    }, {
-	        key: 'safeToInt',
-	        value: function safeToInt(value) {
-	            MathUtil.verifyInt(value);
-	            return MathUtil.safeZero(value);
-	        }
-	    }, {
-	        key: 'verifyInt',
-	        value: function verifyInt(value) {
-	            if (value == null) {
-	                throw new _errors.ArithmeticException('Invalid value: \'' + value + '\', using null or undefined as argument');
-	            }
-	            if (isNaN(value)) {
-	                throw new _errors.ArithmeticException('Invalid int value, using NaN as argument');
-	            }
-	            if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
-	                throw new _errors.ArithmeticException('Calculation overflows an int: ' + value);
-	            }
-	        }
-	    }, {
-	        key: 'safeZero',
-	        value: function safeZero(value) {
-	            return value === 0 ? 0 : value;
-	        }
-	    }, {
-	        key: 'compareNumbers',
-	        value: function compareNumbers(a, b) {
-	            if (a < b) {
-	                return -1;
-	            }
-	            if (a > b) {
-	                return 1;
-	            }
-	            return 0;
-	        }
-	    }]);
-	
-	    return MathUtil;
-	}();
-	
-	MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
-	MathUtil.MIN_SAFE_INTEGER = MIN_SAFE_INTEGER;
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.ChronoUnit = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	exports._init = _init;
-	
-	var _MathUtil = __webpack_require__(6);
-	
-	var _Duration = __webpack_require__(8);
-	
-	var _Year = __webpack_require__(21);
-	
-	var _TemporalUnit2 = __webpack_require__(36);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var ChronoUnit = exports.ChronoUnit = function (_TemporalUnit) {
-	  _inherits(ChronoUnit, _TemporalUnit);
-	
-	  function ChronoUnit(name, estimatedDuration) {
-	    _classCallCheck(this, ChronoUnit);
-	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoUnit).call(this));
-	
-	    _this._name = name;
-	    _this._duration = estimatedDuration;
-	    return _this;
-	  }
-	
-	  _createClass(ChronoUnit, [{
-	    key: 'duration',
-	    value: function duration() {
-	      return this._duration;
-	    }
-	  }, {
-	    key: 'isDurationEstimated',
-	    value: function isDurationEstimated() {
-	      return this.isDateBased() || this === ChronoUnit.FOREVER;
-	    }
-	  }, {
-	    key: 'isDateBased',
-	    value: function isDateBased() {
-	      return this.compareTo(ChronoUnit.DAYS) >= 0 && this !== ChronoUnit.FOREVER;
-	    }
-	  }, {
-	    key: 'isTimeBased',
-	    value: function isTimeBased() {
-	      return this.compareTo(ChronoUnit.DAYS) < 0;
-	    }
-	  }, {
-	    key: 'isSupportedBy',
-	    value: function isSupportedBy(temporal) {
-	      if (this === ChronoUnit.FOREVER) {
-	        return false;
-	      }
-	
-	      try {
-	        temporal.plus(1, this);
-	        return true;
-	      } catch (e) {
-	        try {
-	          temporal.plus(-1, this);
-	          return true;
-	        } catch (e2) {
-	          return false;
-	        }
-	      }
-	    }
-	  }, {
-	    key: 'addTo',
-	    value: function addTo(temporal, amount) {
-	      return temporal.plus(amount, this);
-	    }
-	  }, {
-	    key: 'between',
-	    value: function between(temporal1, temporal2) {
-	      return temporal1.until(temporal2, this);
-	    }
-	  }, {
-	    key: 'toString',
-	    value: function toString() {
-	      return this._name;
-	    }
-	  }, {
-	    key: 'compareTo',
-	    value: function compareTo(other) {
-	      return this.duration().compareTo(other.duration());
-	    }
-	  }]);
-	
-	  return ChronoUnit;
-	}(_TemporalUnit2.TemporalUnit);
-	
-	function _init() {
-	  ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
-	
-	  ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
-	
-	  ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
-	
-	  ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
-	
-	  ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
-	
-	  ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
-	
-	  ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
-	
-	  ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
-	
-	  ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
-	
-	  ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
-	
-	  ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
-	
-	  ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
-	
-	  ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
-	
-	  ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
-	
-	  ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_Year.Year.MAX_VALUE + 1)));
-	
-	  ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(_MathUtil.MathUtil.MAX_SAFE_INTEGER, 999999999));
-	}
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Duration = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	exports._init = _init;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _errors = __webpack_require__(3);
-	
-	var _MathUtil = __webpack_require__(6);
-	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _ChronoUnit = __webpack_require__(7);
-	
-	var _TemporalAmount2 = __webpack_require__(9);
-	
-	var _LocalTime = __webpack_require__(10);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	
-	var Duration = exports.Duration = function (_TemporalAmount) {
-	    _inherits(Duration, _TemporalAmount);
-	
-	    function Duration(seconds, nanos) {
-	        _classCallCheck(this, Duration);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Duration).call(this));
-	
-	        _this._seconds = seconds;
-	        _this._nanos = nanos;
-	        return _this;
-	    }
-	
-	    _createClass(Duration, [{
-	        key: 'get',
-	        value: function get(unit) {
-	            if (unit === _ChronoUnit.ChronoUnit.SECONDS) {
-	                return this._seconds;
-	            } else if (unit === _ChronoUnit.ChronoUnit.NANOS) {
-	                return this._nanos;
-	            } else {
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
-	            }
-	        }
-	    }, {
-	        key: 'units',
-	        value: function units() {
-	            return [_ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.NANOS];
-	        }
-	    }, {
-	        key: 'isZero',
-	        value: function isZero() {
-	            return (this._seconds | this._nanos) === 0;
-	        }
-	    }, {
-	        key: 'isNegative',
-	        value: function isNegative() {
-	            return this._seconds < 0;
-	        }
-	    }, {
-	        key: 'seconds',
-	        value: function seconds() {
-	            return this._seconds;
-	        }
-	    }, {
-	        key: 'nano',
-	        value: function nano() {
-	            return this._nanos;
-	        }
-	    }, {
-	        key: 'withSeconds',
-	        value: function withSeconds(seconds) {
-	            return Duration.create(seconds, this._nanos);
-	        }
-	    }, {
-	        key: 'withNanos',
-	        value: function withNanos(nanoOfSecond) {
-	            _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
-	            return Duration.create(this._seconds, nanoOfSecond);
-	        }
-	    }, {
-	        key: 'plusDuration',
-	        value: function plusDuration(duration) {
-	            return this.plus(duration.seconds(), duration.nano());
-	        }
-	    }, {
-	        key: 'plus',
-	        value: function plus(a, b) {
-	            if (a instanceof Duration) {
-	                (0, _assert.requireNonNull)(a, 'duration');
-	                return this.plusDuration(a);
-	            }
-	            if (b instanceof _ChronoUnit.ChronoUnit) {
-	                (0, _assert.requireNonNull)(a, 'amount');
-	                (0, _assert.requireNonNull)(b, 'unit');
-	                return this.plusAmountUnit(a, b);
-	            }
-	            (0, _assert.requireNonNull)(a, 'seconds');
-	            (0, _assert.requireNonNull)(b, 'nanos');
-	            return this.plusSecondsNanos(a, b);
-	        }
-	    }, {
-	        key: 'plusAmountUnit',
-	        value: function plusAmountUnit(amountToAdd, unit) {
-	            (0, _assert.requireNonNull)(unit, 'unit');
-	            if (unit === _ChronoUnit.ChronoUnit.DAYS) {
-	                return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	            }
-	            if (unit.isDurationEstimated()) {
-	                throw new _errors.UnsupportedTemporalTypeException('Unit must not have an estimated duration');
-	            }
-	            if (amountToAdd === 0) {
-	                return this;
-	            }
-	            if (unit instanceof _ChronoUnit.ChronoUnit) {
-	                switch (unit) {
-	                    case _ChronoUnit.ChronoUnit.NANOS:
-	                        return this.plusNanos(amountToAdd);
-	                    case _ChronoUnit.ChronoUnit.MICROS:
-	                        return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(amountToAdd, 1000000 * 1000) * 1000, _MathUtil.MathUtil.intMod(amountToAdd, 1000000 * 1000) * 1000);
-	                    case _ChronoUnit.ChronoUnit.MILLIS:
-	                        return this.plusMillis(amountToAdd);
-	                    case _ChronoUnit.ChronoUnit.SECONDS:
-	                        return this.plusSeconds(amountToAdd);
-	                }
-	                return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
-	            }
-	            var duration = unit.duration().multipliedBy(amountToAdd);
-	            return this.plusSecondsNanos(duration.seconds(), duration.nano());
-	        }
-	    }, {
-	        key: 'plusDays',
-	        value: function plusDays(daysToAdd) {
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(daysToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	        }
-	    }, {
-	        key: 'plusHours',
-	        value: function plusHours(hoursToAdd) {
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(hoursToAdd, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
-	        }
-	    }, {
-	        key: 'plusMinutes',
-	        value: function plusMinutes(minutesToAdd) {
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(minutesToAdd, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
-	        }
-	    }, {
-	        key: 'plusSeconds',
-	        value: function plusSeconds(secondsToAdd) {
-	            return this.plusSecondsNanos(secondsToAdd, 0);
-	        }
-	    }, {
-	        key: 'plusMillis',
-	        value: function plusMillis(millisToAdd) {
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(millisToAdd, 1000), _MathUtil.MathUtil.intMod(millisToAdd, 1000) * 1000000);
-	        }
-	    }, {
-	        key: 'plusNanos',
-	        value: function plusNanos(nanosToAdd) {
-	            return this.plusSecondsNanos(0, nanosToAdd);
-	        }
-	    }, {
-	        key: 'plusSecondsNanos',
-	        value: function plusSecondsNanos(secondsToAdd, nanosToAdd) {
-	            if ((secondsToAdd | nanosToAdd) === 0) {
-	                return this;
-	            }
-	            var epochSec = _MathUtil.MathUtil.safeAdd(this._seconds, secondsToAdd);
-	            epochSec = _MathUtil.MathUtil.safeAdd(epochSec, _MathUtil.MathUtil.intDiv(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND));
-	            nanosToAdd = _MathUtil.MathUtil.intMod(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            var nanoAdjustment = _MathUtil.MathUtil.safeAdd(this._nanos, nanosToAdd);
-	            return Duration.ofSeconds(epochSec, nanoAdjustment);
-	        }
-	    }, {
-	        key: 'minus',
-	        value: function minus(a, b) {
-	            if (a instanceof Duration) {
-	                (0, _assert.requireNonNull)(a, 'duration');
-	                return this.minusDuration(a);
-	            }
-	            if (b instanceof _ChronoUnit.ChronoUnit) {
-	                (0, _assert.requireNonNull)(a, 'amount');
-	                (0, _assert.requireNonNull)(b, 'unit');
-	                return this.minusAmountUnit(a, b);
-	            }
-	            (0, _assert.requireNonNull)(a, 'seconds');
-	            (0, _assert.requireNonNull)(b, 'nanos');
-	            return this.minusSecondsNanos(a, b);
-	        }
-	    }, {
-	        key: 'minusDuration',
-	        value: function minusDuration(duration) {
-	            var secsToSubtract = duration.seconds();
-	            var nanosToSubtract = duration.nano();
-	            if (secsToSubtract === _MathUtil.MIN_SAFE_INTEGER) {
-	                return this.plus(_MathUtil.MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
-	            }
-	            return this.plus(-secsToSubtract, -nanosToSubtract);
-	        }
-	    }, {
-	        key: 'minusAmountUnit',
-	        value: function minusAmountUnit(amountToSubtract, unit) {
-	            return amountToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(_MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit);
-	        }
-	    }, {
-	        key: 'minusDays',
-	        value: function minusDays(daysToSubtract) {
-	            return daysToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusDays(_MathUtil.MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract);
-	        }
-	    }, {
-	        key: 'minusHours',
-	        value: function minusHours(hoursToSubtract) {
-	            return hoursToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusHours(_MathUtil.MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract);
-	        }
-	    }, {
-	        key: 'minusMinutes',
-	        value: function minusMinutes(minutesToSubtract) {
-	            return minutesToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMinutes(_MathUtil.MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract);
-	        }
-	    }, {
-	        key: 'minusSeconds',
-	        value: function minusSeconds(secondsToSubtract) {
-	            return secondsToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusSeconds(_MathUtil.MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract);
-	        }
-	    }, {
-	        key: 'minusMillis',
-	        value: function minusMillis(millisToSubtract) {
-	            return millisToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMillis(_MathUtil.MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract);
-	        }
-	    }, {
-	        key: 'minusNanos',
-	        value: function minusNanos(nanosToSubtract) {
-	            return nanosToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusNanos(_MathUtil.MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract);
-	        }
-	    }, {
-	        key: 'multipliedBy',
-	        value: function multipliedBy(multiplicand) {
-	            if (multiplicand === 0) {
-	                return Duration.ZERO;
-	            }
-	            if (multiplicand === 1) {
-	                return this;
-	            }
-	            return Duration.create(_MathUtil.MathUtil.safeMultiply(this.toSeconds(), multiplicand));
-	        }
-	    }, {
-	        key: 'dividedBy',
-	        value: function dividedBy(divisor) {
-	            if (divisor === 0) {
-	                throw new _errors.ArithmeticException('Cannot divide by zero');
-	            }
-	            if (divisor === 1) {
-	                return this;
-	            }
-	            return Duration.create(this.toSeconds() / divisor);
-	        }
-	    }, {
-	        key: 'toSeconds',
-	        value: function toSeconds() {
-	            var nanoFloat = _MathUtil.MathUtil.safeMultiply(this._nanos, Math.pow(10, -9));
-	            return _MathUtil.MathUtil.safeAdd(this._seconds, nanoFloat);
-	        }
-	    }, {
-	        key: 'negated',
-	        value: function negated() {
-	            return this.multipliedBy(-1);
-	        }
-	    }, {
-	        key: 'abs',
-	        value: function abs() {
-	            return this.isNegative() ? this.negated() : this;
-	        }
-	    }, {
-	        key: 'addTo',
-	        value: function addTo(temporal) {
-	            (0, _assert.requireNonNull)(temporal, 'temporal');
-	            if (this._seconds !== 0) {
-	                temporal = temporal.plus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
-	            }
-	            if (this._nanos !== 0) {
-	                temporal = temporal.plus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
-	            }
-	            return temporal;
-	        }
-	    }, {
-	        key: 'subtractFrom',
-	        value: function subtractFrom(temporal) {
-	            (0, _assert.requireNonNull)(temporal, 'temporal');
-	            if (this._seconds !== 0) {
-	                temporal = temporal.minus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
-	            }
-	            if (this._nanos !== 0) {
-	                temporal = temporal.minus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
-	            }
-	            return temporal;
-	        }
-	    }, {
-	        key: 'toDays',
-	        value: function toDays() {
-	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_DAY;
-	        }
-	    }, {
-	        key: 'toHours',
-	        value: function toHours() {
-	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_HOUR;
-	        }
-	    }, {
-	        key: 'toMinutes',
-	        value: function toMinutes() {
-	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_MINUTE;
-	        }
-	    }, {
-	        key: 'toMillis',
-	        value: function toMillis() {
-	            var millis = Math.round(_MathUtil.MathUtil.safeMultiply(this._seconds, 1000));
-	            millis = _MathUtil.MathUtil.safeAdd(millis, _MathUtil.MathUtil.intDiv(this._nanos, 1000000));
-	            return millis;
-	        }
-	    }, {
-	        key: 'toNanos',
-	        value: function toNanos() {
-	            var totalNanos = _MathUtil.MathUtil.safeMultiply(this._seconds, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, this._nanos);
-	            return totalNanos;
-	        }
-	    }, {
-	        key: 'compareTo',
-	        value: function compareTo(otherDuration) {
-	            (0, _assert.requireNonNull)(otherDuration, 'otherDuration');
-	            (0, _assert.requireInstance)(otherDuration, Duration, 'otherDuration');
-	            var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
-	            if (cmp !== 0) {
-	                return cmp;
-	            }
-	            return this._nanos - otherDuration.nano();
-	        }
-	    }, {
-	        key: 'equals',
-	        value: function equals(otherDuration) {
-	            if (this === otherDuration) {
-	                return true;
-	            }
-	            if (otherDuration instanceof Duration) {
-	                return this.seconds() === otherDuration.seconds() && this.nano() === otherDuration.nano();
-	            }
-	            return false;
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            if (this === Duration.ZERO) {
-	                return 'PT0S';
-	            }
-	            var hours = _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
-	            var minutes = _MathUtil.MathUtil.intDiv(_MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR), _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	            var secs = _MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	            var rval = 'PT';
-	            if (hours !== 0) {
-	                rval += hours + 'H';
-	            }
-	            if (minutes !== 0) {
-	                rval += minutes + 'M';
-	            }
-	            if (secs === 0 && this._nanos === 0 && rval.length > 2) {
-	                return rval;
-	            }
-	            if (secs < 0 && this._nanos > 0) {
-	                if (secs === -1) {
-	                    rval += '-0';
-	                } else {
-	                    rval += secs + 1;
-	                }
-	            } else {
-	                rval += secs;
-	            }
-	            if (this._nanos > 0) {
-	                rval += '.';
-	                var nanoString = undefined;
-	                if (secs < 0) {
-	                    nanoString = '' + (2 * _LocalTime.LocalTime.NANOS_PER_SECOND - this._nanos);
-	                } else {
-	                    nanoString = '' + (_LocalTime.LocalTime.NANOS_PER_SECOND + this._nanos);
-	                }
-	
-	                nanoString = nanoString.slice(1, nanoString.length);
-	                rval += nanoString;
-	                while (rval.charAt(rval.length - 1) === '0') {
-	                    rval = rval.slice(0, rval.length - 1);
-	                }
-	            }
-	            rval += 'S';
-	            return rval;
-	        }
-	    }], [{
-	        key: 'ofDays',
-	        value: function ofDays(days) {
-	            return Duration.create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	        }
-	    }, {
-	        key: 'ofHours',
-	        value: function ofHours(hours) {
-	            return Duration.create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
-	        }
-	    }, {
-	        key: 'ofMinutes',
-	        value: function ofMinutes(minutes) {
-	            return Duration.create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
-	        }
-	    }, {
-	        key: 'ofSeconds',
-	        value: function ofSeconds(seconds) {
-	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	
-	            var secs = _MathUtil.MathUtil.safeAdd(seconds, _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND));
-	            var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            return Duration.create(secs, nos);
-	        }
-	    }, {
-	        key: 'ofMillis',
-	        value: function ofMillis(millis) {
-	            var secs = _MathUtil.MathUtil.intDiv(millis, 1000);
-	            var mos = _MathUtil.MathUtil.intMod(millis, 1000);
-	            if (mos < 0) {
-	                mos += 1000;
-	                secs--;
-	            }
-	            return Duration.create(secs, mos * 1000000);
-	        }
-	    }, {
-	        key: 'ofNanos',
-	        value: function ofNanos(nanos) {
-	            var secs = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            var nos = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            if (nos < 0) {
-	                nos += _LocalTime.LocalTime.NANOS_PER_SECOND;
-	                secs--;
-	            }
-	            return this.create(secs, nos);
-	        }
-	    }, {
-	        key: 'of',
-	        value: function of(amount, unit) {
-	            return Duration.ZERO.plus(amount, unit);
-	        }
-	    }, {
-	        key: 'from',
-	        value: function from(amount) {
-	            (0, _assert.requireNonNull)(amount, 'amount');
-	            var duration = Duration.ZERO;
-	            amount.units().forEach(function (unit) {
-	                duration = duration.plus(amount.get(unit), unit);
-	            });
-	            return duration;
-	        }
-	    }, {
-	        key: 'between',
-	        value: function between(startInclusive, endExclusive) {
-	            (0, _assert.requireNonNull)(startInclusive, 'startInclusive');
-	            (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
-	            var secs = startInclusive.until(endExclusive, _ChronoUnit.ChronoUnit.SECONDS);
-	            var nanos = 0;
-	            if (startInclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)) {
-	                try {
-	                    var startNos = startInclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND);
-	                    nanos = endExclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND) - startNos;
-	                    if (secs > 0 && nanos < 0) {
-	                        nanos += _LocalTime.LocalTime.NANOS_PER_SECOND;
-	                    } else if (secs < 0 && nanos > 0) {
-	                        nanos -= _LocalTime.LocalTime.NANOS_PER_SECOND;
-	                    } else if (secs === 0 && nanos !== 0) {
-	                        var adjustedEnd = endExclusive.with(_ChronoField.ChronoField.NANO_OF_SECOND, startNos);
-	                        secs = startInclusive.until(adjustedEnd, _ChronoUnit.ChronoUnit.SECONDS);
-	                    }
-	                } catch (e) {}
-	            }
-	            return this.ofSeconds(secs, nanos);
-	        }
-	    }, {
-	        key: 'parse',
-	        value: function parse(text) {
-	            (0, _assert.requireNonNull)(text, 'text');
-	
-	            var PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
-	            var matches = PATTERN.exec(text);
-	            if (matches !== null) {
-	                if ('T' === matches[3] === false) {
-	                    var negate = '-' === matches[1];
-	                    var dayMatch = matches[2];
-	                    var hourMatch = matches[4];
-	                    var minuteMatch = matches[5];
-	                    var secondMatch = matches[6];
-	                    var fractionMatch = matches[7];
-	                    if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-	                        var daysAsSecs = Duration._parseNumber(text, dayMatch, _LocalTime.LocalTime.SECONDS_PER_DAY, 'days');
-	                        var hoursAsSecs = Duration._parseNumber(text, hourMatch, _LocalTime.LocalTime.SECONDS_PER_HOUR, 'hours');
-	                        var minsAsSecs = Duration._parseNumber(text, minuteMatch, _LocalTime.LocalTime.SECONDS_PER_MINUTE, 'minutes');
-	                        var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
-	                        var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
-	                        var nanos = Duration._parseFraction(text, fractionMatch, negativeSecs ? -1 : 1);
-	                        try {
-	                            return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
-	                        } catch (ex) {
-	                            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
-	                        }
-	                    }
-	                }
-	            }
-	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
-	        }
-	    }, {
-	        key: '_parseNumber',
-	        value: function _parseNumber(text, parsed, multiplier, errorText) {
-	            if (parsed == null) {
-	                return 0;
-	            }
-	            try {
-	                if (parsed[0] === '+') {
-	                    parsed = parsed.substring(1);
-	                }
-	                var val = parseFloat(parsed);
-	                return _MathUtil.MathUtil.safeMultiply(val, multiplier);
-	            } catch (ex) {
-	                throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
-	            }
-	        }
-	    }, {
-	        key: '_parseFraction',
-	        value: function _parseFraction(text, parsed, negate) {
-	            if (parsed == null || parsed.length === 0) {
-	                return 0;
-	            }
-	            try {
-	                parsed = (parsed + '000000000').substring(0, 9);
-	                return parseFloat(parsed) * negate;
-	            } catch (ex) {
-	                throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
-	            }
-	        }
-	    }, {
-	        key: 'create',
-	        value: function create() {
-	            if (arguments.length === 1) {
-	                return Duration.createSeconds(arguments[0]);
-	            } else if (arguments.length === 2) {
-	                return Duration.createSecondsNanos(arguments[0], arguments[1]);
-	            } else {
-	                return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
-	            }
-	        }
-	    }, {
-	        key: 'createNegateDaysHoursMinutesSecondsNanos',
-	        value: function createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
-	            var seconds = _MathUtil.MathUtil.safeAdd(daysAsSecs, _MathUtil.MathUtil.safeAdd(hoursAsSecs, _MathUtil.MathUtil.safeAdd(minsAsSecs, secs)));
-	            if (negate) {
-	                return Duration.ofSeconds(seconds, nanos).negated();
-	            }
-	            return Duration.ofSeconds(seconds, nanos);
-	        }
-	    }, {
-	        key: 'createSecondsNanos',
-	        value: function createSecondsNanos() {
-	            var seconds = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	
-	            if ((seconds | nanoAdjustment) === 0) {
-	                return Duration.ZERO;
-	            }
-	
-	            if (seconds >= 0) {
-	                nanoAdjustment += seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
-	            } else {
-	                nanoAdjustment -= seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
-	            }
-	            seconds = Math.floor(seconds);
-	            nanoAdjustment = Math.round(nanoAdjustment);
-	
-	            return new Duration(seconds, nanoAdjustment);
-	        }
-	    }, {
-	        key: 'createSeconds',
-	        value: function createSeconds(seconds) {
-	            var nanos = Math.round(seconds * Math.pow(10, 9));
-	            var div = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            var rem = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	            return Duration.ofSeconds(div, rem);
-	        }
-	    }]);
-	
-	    return Duration;
-	}(_TemporalAmount2.TemporalAmount);
-	
-	function _init() {
-	    Duration.ZERO = new Duration(0, 0);
-	}
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.TemporalAmount = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	var _assert = __webpack_require__(2);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var TemporalAmount = exports.TemporalAmount = function () {
-	  function TemporalAmount() {
-	    _classCallCheck(this, TemporalAmount);
-	  }
-	
-	  _createClass(TemporalAmount, [{
-	    key: 'get',
-	    value: function get(unit) {
-	      (0, _assert.abstractMethodFail)('adjustInto');
-	    }
-	  }, {
-	    key: 'getUnits',
-	    value: function getUnits() {
-	      (0, _assert.abstractMethodFail)('adjustInto');
-	    }
-	  }, {
-	    key: 'addTo',
-	    value: function addTo(temporal) {
-	      (0, _assert.abstractMethodFail)('adjustInto');
-	    }
-	  }, {
-	    key: 'subtractFrom',
-	    value: function subtractFrom(temporal) {
-	      (0, _assert.abstractMethodFail)('adjustInto');
-	    }
-	  }]);
-	
-	  return TemporalAmount;
-	}();
-
-/***/ },
-/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1997,19 +1036,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _LocalDateTime = __webpack_require__(11);
+	var _LocalDateTime = __webpack_require__(7);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _Temporal2 = __webpack_require__(16);
+	var _Temporal2 = __webpack_require__(20);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -2681,7 +1720,185 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 11 */
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.MathUtil = exports.MIN_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	var _errors = __webpack_require__(3);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var MAX_SAFE_INTEGER = exports.MAX_SAFE_INTEGER = 9007199254740991;
+	var MIN_SAFE_INTEGER = exports.MIN_SAFE_INTEGER = -9007199254740991;
+	
+	var MathUtil = exports.MathUtil = function () {
+	    function MathUtil() {
+	        _classCallCheck(this, MathUtil);
+	    }
+	
+	    _createClass(MathUtil, null, [{
+	        key: 'intDiv',
+	        value: function intDiv(x, y) {
+	            var r = x / y;
+	            if (r === 0) {
+	                return 0;
+	            } else if (r < 0) {
+	                r = Math.ceil(r);
+	            } else {
+	                r = Math.floor(r);
+	            }
+	            return MathUtil.safeZero(r);
+	        }
+	    }, {
+	        key: 'intMod',
+	        value: function intMod(x, y) {
+	            var r = x - MathUtil.intDiv(x, y) * y;
+	            if (r === 0) {
+	                return 0;
+	            } else if (r < 0) {
+	                r = Math.ceil(r);
+	            } else {
+	                r = Math.floor(r);
+	            }
+	            return MathUtil.safeZero(r);
+	        }
+	    }, {
+	        key: 'floorDiv',
+	        value: function floorDiv(x, y) {
+	            var r = Math.floor(x / y);
+	            return MathUtil.safeZero(r);
+	        }
+	    }, {
+	        key: 'floorMod',
+	        value: function floorMod(x, y) {
+	            var r = x - MathUtil.floorDiv(x, y) * y;
+	            return MathUtil.safeZero(r);
+	        }
+	    }, {
+	        key: 'safeAdd',
+	        value: function safeAdd(x, y) {
+	            MathUtil.verifyInt(x);
+	            MathUtil.verifyInt(y);
+	            if (x === 0) {
+	                return MathUtil.safeZero(y);
+	            }
+	            if (y === 0) {
+	                return MathUtil.safeZero(x);
+	            }
+	            var r = MathUtil.safeToInt(x + y);
+	            if (r === x || r === y) {
+	                throw new _errors.ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
+	            }
+	            return r;
+	        }
+	    }, {
+	        key: 'safeSubtract',
+	        value: function safeSubtract(x, y) {
+	            MathUtil.verifyInt(x);
+	            MathUtil.verifyInt(y);
+	            if (x === 0 && y === 0) {
+	                return 0;
+	            } else if (x === 0) {
+	                return MathUtil.safeZero(-1 * y);
+	            } else if (y === 0) {
+	                return MathUtil.safeZero(x);
+	            }
+	            return MathUtil.safeToInt(x - y);
+	        }
+	    }, {
+	        key: 'safeMultiply',
+	        value: function safeMultiply(x, y) {
+	            MathUtil.verifyInt(x);
+	            MathUtil.verifyInt(y);
+	            if (x === 1) {
+	                return MathUtil.safeZero(y);
+	            }
+	            if (y === 1) {
+	                return MathUtil.safeZero(x);
+	            }
+	            if (x === 0 || y === 0) {
+	                return 0;
+	            }
+	            var r = MathUtil.safeToInt(x * y);
+	            if (r / y !== x || x === MIN_SAFE_INTEGER && y === -1 || y === MIN_SAFE_INTEGER && x === -1) {
+	                throw new _errors.ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
+	            }
+	            return r;
+	        }
+	    }, {
+	        key: 'parseInt',
+	        value: function (_parseInt) {
+	            function parseInt(_x) {
+	                return _parseInt.apply(this, arguments);
+	            }
+	
+	            parseInt.toString = function () {
+	                return _parseInt.toString();
+	            };
+	
+	            return parseInt;
+	        }(function (value) {
+	            var r = parseInt(value);
+	            return MathUtil.safeToInt(r);
+	        })
+	    }, {
+	        key: 'safeToInt',
+	        value: function safeToInt(value) {
+	            MathUtil.verifyInt(value);
+	            return MathUtil.safeZero(value);
+	        }
+	    }, {
+	        key: 'verifyInt',
+	        value: function verifyInt(value) {
+	            if (value == null) {
+	                throw new _errors.ArithmeticException('Invalid value: \'' + value + '\', using null or undefined as argument');
+	            }
+	            if (isNaN(value)) {
+	                throw new _errors.ArithmeticException('Invalid int value, using NaN as argument');
+	            }
+	            if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
+	                throw new _errors.ArithmeticException('Calculation overflows an int: ' + value);
+	            }
+	        }
+	    }, {
+	        key: 'safeZero',
+	        value: function safeZero(value) {
+	            return value === 0 ? 0 : value;
+	        }
+	    }, {
+	        key: 'compareNumbers',
+	        value: function compareNumbers(a, b) {
+	            if (a < b) {
+	                return -1;
+	            }
+	            if (a > b) {
+	                return 1;
+	            }
+	            return 0;
+	        }
+	    }]);
+	
+	    return MathUtil;
+	}();
+	
+	MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
+	MathUtil.MIN_SAFE_INTEGER = MIN_SAFE_INTEGER;
+
+/***/ },
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2705,21 +1922,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(5);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(23);
 	
-	var _ChronoLocalDateTime2 = __webpack_require__(35);
+	var _ChronoLocalDateTime2 = __webpack_require__(39);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3334,7 +2551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 12 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3356,35 +2573,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(13);
+	var _IsoChronology = __webpack_require__(9);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _ChronoLocalDate2 = __webpack_require__(23);
+	var _ChronoLocalDate2 = __webpack_require__(26);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(23);
 	
-	var _ValueRange = __webpack_require__(24);
+	var _ValueRange = __webpack_require__(19);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
 	var _Clock = __webpack_require__(1);
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(38);
 	
-	var _Month = __webpack_require__(15);
+	var _Month = __webpack_require__(11);
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(28);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(16);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(5);
 	
-	var _LocalDateTime = __webpack_require__(11);
+	var _LocalDateTime = __webpack_require__(7);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4139,7 +3356,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 13 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4153,17 +3370,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	exports._init = _init;
 	
-	var _Enum2 = __webpack_require__(14);
+	var _Enum2 = __webpack_require__(10);
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
-	var _Month = __webpack_require__(15);
+	var _Month = __webpack_require__(11);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(16);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(25);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4232,7 +3449,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 14 */
+/* 10 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4273,7 +3490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 15 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4293,17 +3510,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
 	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(13);
+	var _IsoChronology = __webpack_require__(9);
 	
-	var _Temporal2 = __webpack_require__(16);
+	var _Temporal2 = __webpack_require__(20);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -4559,42 +3776,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.Temporal = undefined;
-	
-	var _TemporalAccessor2 = __webpack_require__(17);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var Temporal = exports.Temporal = function (_TemporalAccessor) {
-	  _inherits(Temporal, _TemporalAccessor);
-
-	  function Temporal() {
-	    _classCallCheck(this, Temporal);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Temporal).apply(this, arguments));
-	  }
-
-	  return Temporal;
-	}(_TemporalAccessor2.TemporalAccessor);
-
-/***/ },
-/* 17 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4602,237 +3784,329 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.TemporalAccessor = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _TemporalQueries = __webpack_require__(18);
-	
-	var _errors = __webpack_require__(3);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var TemporalAccessor = function () {
-	    function TemporalAccessor() {
-	        _classCallCheck(this, TemporalAccessor);
-	    }
-	
-	    _createClass(TemporalAccessor, [{
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
-	                return null;
-	            }
-	            return _query.queryFrom(this);
-	        }
-	    }, {
-	        key: 'range',
-	        value: function range(field) {
-	            if (field instanceof _ChronoField.ChronoField) {
-	                if (this.isSupported(field)) {
-	                    return field.range();
-	                }
-	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	            }
-	            return field.rangeRefinedBy(this);
-	        }
-	    }]);
-	
-	    return TemporalAccessor;
-	}();
-
-	exports.TemporalAccessor = TemporalAccessor;
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.TemporalQueries = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	exports._init = _init;
-	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _TemporalQuery = __webpack_require__(19);
-	
-	var _LocalDate = __webpack_require__(12);
-	
-	var _LocalTime = __webpack_require__(10);
-	
-	var _ZoneOffset = __webpack_require__(20);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var TemporalQueries = exports.TemporalQueries = function () {
-	    function TemporalQueries() {
-	        _classCallCheck(this, TemporalQueries);
-	    }
-	
-	    _createClass(TemporalQueries, null, [{
-	        key: 'zoneId',
-	        value: function zoneId() {
-	            return TemporalQueries.ZONE_ID;
-	        }
-	    }, {
-	        key: 'chronology',
-	        value: function chronology() {
-	            return TemporalQueries.CHRONO;
-	        }
-	    }, {
-	        key: 'precision',
-	        value: function precision() {
-	            return TemporalQueries.PRECISION;
-	        }
-	    }, {
-	        key: 'zone',
-	        value: function zone() {
-	            return TemporalQueries.ZONE;
-	        }
-	    }, {
-	        key: 'offset',
-	        value: function offset() {
-	            return TemporalQueries.OFFSET;
-	        }
-	    }, {
-	        key: 'localDate',
-	        value: function localDate() {
-	            return TemporalQueries.LOCAL_DATE;
-	        }
-	    }, {
-	        key: 'localTime',
-	        value: function localTime() {
-	            return TemporalQueries.LOCAL_TIME;
-	        }
-	    }]);
-	
-	    return TemporalQueries;
-	}();
-	
-	function _init() {
-	    TemporalQueries.ZONE_ID = (0, _TemporalQuery.createTemporalQuery)('ZONE_ID', function (temporal) {
-	        return temporal.query(TemporalQueries.ZONE_ID);
-	    });
-	
-	    TemporalQueries.CHRONO = (0, _TemporalQuery.createTemporalQuery)('CHRONO', function (temporal) {
-	        return temporal.query(TemporalQueries.CHRONO);
-	    });
-	
-	    TemporalQueries.PRECISION = (0, _TemporalQuery.createTemporalQuery)('PRECISION', function (temporal) {
-	        return temporal.query(TemporalQueries.PRECISION);
-	    });
-	
-	    TemporalQueries.OFFSET = (0, _TemporalQuery.createTemporalQuery)('OFFSET', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
-	            return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
-	        }
-	        return null;
-	    });
-	
-	    TemporalQueries.ZONE = (0, _TemporalQuery.createTemporalQuery)('ZONE', function (temporal) {
-	        var zone = temporal.query(TemporalQueries.ZONE_ID);
-	        return zone != null ? zone : temporal.query(TemporalQueries.OFFSET);
-	    });
-	
-	    TemporalQueries.LOCAL_DATE = (0, _TemporalQuery.createTemporalQuery)('LOCAL_DATE', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
-	            return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
-	        }
-	        return null;
-	    });
-	
-	    TemporalQueries.LOCAL_TIME = (0, _TemporalQuery.createTemporalQuery)('LOCAL_TIME', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
-	            return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
-	        }
-	        return null;
-	    });
-	}
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.TemporalQuery = undefined;
+	exports.ChronoField = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	exports.createTemporalQuery = createTemporalQuery;
+	exports._init = _init;
 	
-	var _assert = __webpack_require__(2);
+	var _MathUtil = __webpack_require__(6);
 	
-	var _Enum2 = __webpack_require__(14);
+	var _ChronoUnit = __webpack_require__(13);
+	
+	var _TemporalField2 = __webpack_require__(18);
+	
+	var _ValueRange = __webpack_require__(19);
+	
+	var _Year = __webpack_require__(16);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
-	  _inherits(TemporalQuery, _Enum);
 	
-	  function TemporalQuery() {
-	    _classCallCheck(this, TemporalQuery);
+	var ChronoField = exports.ChronoField = function (_TemporalField) {
+	    _inherits(ChronoField, _TemporalField);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TemporalQuery).apply(this, arguments));
-	  }
+	    function ChronoField(name, baseUnit, rangeUnit, range) {
+	        _classCallCheck(this, ChronoField);
 	
-	  _createClass(TemporalQuery, [{
-	    key: 'queryFrom',
-	    value: function queryFrom(temporal) {
-	      (0, _assert.abstractMethodFail)('queryFrom');
-	    }
-	  }]);
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoField).call(this));
 	
-	  return TemporalQuery;
-	}(_Enum2.Enum);
-	
-	function createTemporalQuery(name, queryFromFunction) {
-	  var ExtendedTemporalQuery = function (_TemporalQuery) {
-	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
-	
-	    function ExtendedTemporalQuery() {
-	      _classCallCheck(this, ExtendedTemporalQuery);
-	
-	      return _possibleConstructorReturn(this, Object.getPrototypeOf(ExtendedTemporalQuery).apply(this, arguments));
+	        _this._name = name;
+	        _this._baseUnit = baseUnit;
+	        _this._rangeUnit = rangeUnit;
+	        _this._range = range;
+	        return _this;
 	    }
 	
-	    return ExtendedTemporalQuery;
-	  }(TemporalQuery);
+	    _createClass(ChronoField, [{
+	        key: 'name',
+	        value: function name() {
+	            return this._name;
+	        }
+	    }, {
+	        key: 'baseUnit',
+	        value: function baseUnit() {
+	            return this._baseUnit;
+	        }
+	    }, {
+	        key: 'rangeUnit',
+	        value: function rangeUnit() {
+	            return this._rangeUnit;
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range() {
+	            return this._range;
+	        }
+	    }, {
+	        key: 'displayName',
+	        value: function displayName() {
+	            return this.toString();
+	        }
+	    }, {
+	        key: 'checkValidValue',
+	        value: function checkValidValue(value) {
+	            return this.range().checkValidValue(value, this.name());
+	        }
+	    }, {
+	        key: 'isDateBased',
+	        value: function isDateBased() {
+	            var dateBased = this === ChronoField.DAY_OF_WEEK || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR || this === ChronoField.DAY_OF_MONTH || this === ChronoField.DAY_OF_YEAR || this === ChronoField.EPOCH_DAY || this === ChronoField.ALIGNED_WEEK_OF_MONTH || this === ChronoField.ALIGNED_WEEK_OF_YEAR || this === ChronoField.MONTH_OF_YEAR || this === ChronoField.YEAR_OF_ERA || this === ChronoField.YEAR || this === ChronoField.ERA;
+	            return dateBased;
+	        }
+	    }, {
+	        key: 'isTimeBased',
+	        value: function isTimeBased() {
+	            var timeBased = this === ChronoField.NANO_OF_SECOND || this === ChronoField.NANO_OF_DAY || this === ChronoField.MICRO_OF_SECOND || this === ChronoField.MICRO_OF_DAY || this === ChronoField.MILLI_OF_SECOND || this === ChronoField.MILLI_OF_DAY || this === ChronoField.SECOND_OF_MINUTE || this === ChronoField.SECOND_OF_DAY || this === ChronoField.MINUTE_OF_HOUR || this === ChronoField.MINUTE_OF_DAY || this === ChronoField.HOUR_OF_AMPM || this === ChronoField.CLOCK_HOUR_OF_AMPM || this === ChronoField.HOUR_OF_DAY || this === ChronoField.CLOCK_HOUR_OF_DAY || this === ChronoField.AMPM_OF_DAY;
+	            return timeBased;
+	        }
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            return temporal.range(this);
+	        }
+	    }, {
+	        key: 'checkValidIntValue',
+	        value: function checkValidIntValue(value) {
+	            return this.range().checkValidIntValue(value, this);
+	        }
+	    }, {
+	        key: 'getFrom',
+	        value: function getFrom(temporal) {
+	            return temporal.getLong(this);
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this.name();
+	        }
+	    }, {
+	        key: 'equals',
+	        value: function equals(other) {
+	            return this === other;
+	        }
+	    }]);
 	
-	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
-	  return new ExtendedTemporalQuery(name);
+	    return ChronoField;
+	}(_TemporalField2.TemporalField);
+	
+	function _init() {
+	
+	    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
+	
+	    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
+	
+	    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
+	
+	    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000 - 1));
+	
+	    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
+	
+	    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000 - 1));
+	
+	    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.MINUTES, _ValueRange.ValueRange.of(0, 59));
+	
+	    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 - 1));
+	
+	    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.HOURS, _ValueRange.ValueRange.of(0, 59));
+	
+	    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 24 * 60 - 1));
+	
+	    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(0, 11));
+	
+	    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(1, 12));
+	
+	    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
+	
+	    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(1, 24));
+	
+	    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', _ChronoUnit.ChronoUnit.HALF_DAYS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 1));
+	
+	    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+	
+	    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+	
+	    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
+	
+	    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_Year.Year.MIN_VALUE * 365.25), Math.floor(_Year.Year.MAX_VALUE * 365.25)));
+	
+	    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
+	
+	    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
+	
+	    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+	
+	    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE * 12, _Year.Year.MAX_VALUE * 12 + 11));
+	
+	    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _Year.Year.MAX_VALUE, _Year.Year.MAX_VALUE + 1));
+	
+	    ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_Year.Year.MIN_VALUE, _Year.Year.MAX_VALUE), 'year');
+	
+	    ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
+	
+	    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+	
+	    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
 	}
 
 /***/ },
-/* 20 */
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ChronoUnit = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports._init = _init;
+	
+	var _MathUtil = __webpack_require__(6);
+	
+	var _Duration = __webpack_require__(14);
+	
+	var _Year = __webpack_require__(16);
+	
+	var _TemporalUnit2 = __webpack_require__(17);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ChronoUnit = exports.ChronoUnit = function (_TemporalUnit) {
+	  _inherits(ChronoUnit, _TemporalUnit);
+	
+	  function ChronoUnit(name, estimatedDuration) {
+	    _classCallCheck(this, ChronoUnit);
+	
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoUnit).call(this));
+	
+	    _this._name = name;
+	    _this._duration = estimatedDuration;
+	    return _this;
+	  }
+	
+	  _createClass(ChronoUnit, [{
+	    key: 'duration',
+	    value: function duration() {
+	      return this._duration;
+	    }
+	  }, {
+	    key: 'isDurationEstimated',
+	    value: function isDurationEstimated() {
+	      return this.isDateBased() || this === ChronoUnit.FOREVER;
+	    }
+	  }, {
+	    key: 'isDateBased',
+	    value: function isDateBased() {
+	      return this.compareTo(ChronoUnit.DAYS) >= 0 && this !== ChronoUnit.FOREVER;
+	    }
+	  }, {
+	    key: 'isTimeBased',
+	    value: function isTimeBased() {
+	      return this.compareTo(ChronoUnit.DAYS) < 0;
+	    }
+	  }, {
+	    key: 'isSupportedBy',
+	    value: function isSupportedBy(temporal) {
+	      if (this === ChronoUnit.FOREVER) {
+	        return false;
+	      }
+	
+	      try {
+	        temporal.plus(1, this);
+	        return true;
+	      } catch (e) {
+	        try {
+	          temporal.plus(-1, this);
+	          return true;
+	        } catch (e2) {
+	          return false;
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'addTo',
+	    value: function addTo(temporal, amount) {
+	      return temporal.plus(amount, this);
+	    }
+	  }, {
+	    key: 'between',
+	    value: function between(temporal1, temporal2) {
+	      return temporal1.until(temporal2, this);
+	    }
+	  }, {
+	    key: 'toString',
+	    value: function toString() {
+	      return this._name;
+	    }
+	  }, {
+	    key: 'compareTo',
+	    value: function compareTo(other) {
+	      return this.duration().compareTo(other.duration());
+	    }
+	  }]);
+	
+	  return ChronoUnit;
+	}(_TemporalUnit2.TemporalUnit);
+	
+	function _init() {
+	  ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
+	
+	  ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
+	
+	  ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
+	
+	  ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
+	
+	  ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
+	
+	  ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
+	
+	  ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
+	
+	  ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
+	
+	  ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
+	
+	  ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
+	
+	  ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
+	
+	  ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
+	
+	  ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
+	
+	  ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
+	
+	  ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_Year.Year.MAX_VALUE + 1)));
+	
+	  ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(_MathUtil.MathUtil.MAX_SAFE_INTEGER, 999999999));
+	}
+
+/***/ },
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4840,134 +4114,664 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.ZoneOffset = undefined;
+	exports.Duration = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	exports._init = _init;
 	
+	var _assert = __webpack_require__(2);
+	
 	var _errors = __webpack_require__(3);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _MathUtil = __webpack_require__(6);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _ChronoUnit = __webpack_require__(13);
+	
+	var _TemporalAmount2 = __webpack_require__(15);
+	
+	var _LocalTime = __webpack_require__(5);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var ZoneOffset = exports.ZoneOffset = function () {
-	    function ZoneOffset(totalSeconds) {
-	        _classCallCheck(this, ZoneOffset);
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	        ZoneOffset._validateTotalSeconds(totalSeconds);
-	        this._totalSeconds = totalSeconds;
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	
+	var Duration = exports.Duration = function (_TemporalAmount) {
+	    _inherits(Duration, _TemporalAmount);
+	
+	    function Duration(seconds, nanos) {
+	        _classCallCheck(this, Duration);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Duration).call(this));
+	
+	        _this._seconds = seconds;
+	        _this._nanos = nanos;
+	        return _this;
 	    }
 	
-	    _createClass(ZoneOffset, [{
-	        key: 'totalSeconds',
-	        value: function totalSeconds() {
-	            return this._totalSeconds;
+	    _createClass(Duration, [{
+	        key: 'get',
+	        value: function get(unit) {
+	            if (unit === _ChronoUnit.ChronoUnit.SECONDS) {
+	                return this._seconds;
+	            } else if (unit === _ChronoUnit.ChronoUnit.NANOS) {
+	                return this._nanos;
+	            } else {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	            }
+	        }
+	    }, {
+	        key: 'units',
+	        value: function units() {
+	            return [_ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.NANOS];
+	        }
+	    }, {
+	        key: 'isZero',
+	        value: function isZero() {
+	            return (this._seconds | this._nanos) === 0;
+	        }
+	    }, {
+	        key: 'isNegative',
+	        value: function isNegative() {
+	            return this._seconds < 0;
+	        }
+	    }, {
+	        key: 'seconds',
+	        value: function seconds() {
+	            return this._seconds;
+	        }
+	    }, {
+	        key: 'nano',
+	        value: function nano() {
+	            return this._nanos;
+	        }
+	    }, {
+	        key: 'withSeconds',
+	        value: function withSeconds(seconds) {
+	            return Duration.create(seconds, this._nanos);
+	        }
+	    }, {
+	        key: 'withNanos',
+	        value: function withNanos(nanoOfSecond) {
+	            _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
+	            return Duration.create(this._seconds, nanoOfSecond);
+	        }
+	    }, {
+	        key: 'plusDuration',
+	        value: function plusDuration(duration) {
+	            return this.plus(duration.seconds(), duration.nano());
+	        }
+	    }, {
+	        key: 'plus',
+	        value: function plus(a, b) {
+	            if (a instanceof Duration) {
+	                (0, _assert.requireNonNull)(a, 'duration');
+	                return this.plusDuration(a);
+	            }
+	            if (b instanceof _ChronoUnit.ChronoUnit) {
+	                (0, _assert.requireNonNull)(a, 'amount');
+	                (0, _assert.requireNonNull)(b, 'unit');
+	                return this.plusAmountUnit(a, b);
+	            }
+	            (0, _assert.requireNonNull)(a, 'seconds');
+	            (0, _assert.requireNonNull)(b, 'nanos');
+	            return this.plusSecondsNanos(a, b);
+	        }
+	    }, {
+	        key: 'plusAmountUnit',
+	        value: function plusAmountUnit(amountToAdd, unit) {
+	            (0, _assert.requireNonNull)(unit, 'unit');
+	            if (unit === _ChronoUnit.ChronoUnit.DAYS) {
+	                return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	            }
+	            if (unit.isDurationEstimated()) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unit must not have an estimated duration');
+	            }
+	            if (amountToAdd === 0) {
+	                return this;
+	            }
+	            if (unit instanceof _ChronoUnit.ChronoUnit) {
+	                switch (unit) {
+	                    case _ChronoUnit.ChronoUnit.NANOS:
+	                        return this.plusNanos(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.MICROS:
+	                        return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(amountToAdd, 1000000 * 1000) * 1000, _MathUtil.MathUtil.intMod(amountToAdd, 1000000 * 1000) * 1000);
+	                    case _ChronoUnit.ChronoUnit.MILLIS:
+	                        return this.plusMillis(amountToAdd);
+	                    case _ChronoUnit.ChronoUnit.SECONDS:
+	                        return this.plusSeconds(amountToAdd);
+	                }
+	                return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
+	            }
+	            var duration = unit.duration().multipliedBy(amountToAdd);
+	            return this.plusSecondsNanos(duration.seconds(), duration.nano());
+	        }
+	    }, {
+	        key: 'plusDays',
+	        value: function plusDays(daysToAdd) {
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(daysToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	        }
+	    }, {
+	        key: 'plusHours',
+	        value: function plusHours(hoursToAdd) {
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(hoursToAdd, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
+	        }
+	    }, {
+	        key: 'plusMinutes',
+	        value: function plusMinutes(minutesToAdd) {
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(minutesToAdd, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
+	        }
+	    }, {
+	        key: 'plusSeconds',
+	        value: function plusSeconds(secondsToAdd) {
+	            return this.plusSecondsNanos(secondsToAdd, 0);
+	        }
+	    }, {
+	        key: 'plusMillis',
+	        value: function plusMillis(millisToAdd) {
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(millisToAdd, 1000), _MathUtil.MathUtil.intMod(millisToAdd, 1000) * 1000000);
+	        }
+	    }, {
+	        key: 'plusNanos',
+	        value: function plusNanos(nanosToAdd) {
+	            return this.plusSecondsNanos(0, nanosToAdd);
+	        }
+	    }, {
+	        key: 'plusSecondsNanos',
+	        value: function plusSecondsNanos(secondsToAdd, nanosToAdd) {
+	            if ((secondsToAdd | nanosToAdd) === 0) {
+	                return this;
+	            }
+	            var epochSec = _MathUtil.MathUtil.safeAdd(this._seconds, secondsToAdd);
+	            epochSec = _MathUtil.MathUtil.safeAdd(epochSec, _MathUtil.MathUtil.intDiv(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND));
+	            nanosToAdd = _MathUtil.MathUtil.intMod(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            var nanoAdjustment = _MathUtil.MathUtil.safeAdd(this._nanos, nanosToAdd);
+	            return Duration.ofSeconds(epochSec, nanoAdjustment);
+	        }
+	    }, {
+	        key: 'minus',
+	        value: function minus(a, b) {
+	            if (a instanceof Duration) {
+	                (0, _assert.requireNonNull)(a, 'duration');
+	                return this.minusDuration(a);
+	            }
+	            if (b instanceof _ChronoUnit.ChronoUnit) {
+	                (0, _assert.requireNonNull)(a, 'amount');
+	                (0, _assert.requireNonNull)(b, 'unit');
+	                return this.minusAmountUnit(a, b);
+	            }
+	            (0, _assert.requireNonNull)(a, 'seconds');
+	            (0, _assert.requireNonNull)(b, 'nanos');
+	            return this.minusSecondsNanos(a, b);
+	        }
+	    }, {
+	        key: 'minusDuration',
+	        value: function minusDuration(duration) {
+	            var secsToSubtract = duration.seconds();
+	            var nanosToSubtract = duration.nano();
+	            if (secsToSubtract === _MathUtil.MIN_SAFE_INTEGER) {
+	                return this.plus(_MathUtil.MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
+	            }
+	            return this.plus(-secsToSubtract, -nanosToSubtract);
+	        }
+	    }, {
+	        key: 'minusAmountUnit',
+	        value: function minusAmountUnit(amountToSubtract, unit) {
+	            return amountToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(_MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit);
+	        }
+	    }, {
+	        key: 'minusDays',
+	        value: function minusDays(daysToSubtract) {
+	            return daysToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusDays(_MathUtil.MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract);
+	        }
+	    }, {
+	        key: 'minusHours',
+	        value: function minusHours(hoursToSubtract) {
+	            return hoursToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusHours(_MathUtil.MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract);
+	        }
+	    }, {
+	        key: 'minusMinutes',
+	        value: function minusMinutes(minutesToSubtract) {
+	            return minutesToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMinutes(_MathUtil.MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract);
+	        }
+	    }, {
+	        key: 'minusSeconds',
+	        value: function minusSeconds(secondsToSubtract) {
+	            return secondsToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusSeconds(_MathUtil.MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract);
+	        }
+	    }, {
+	        key: 'minusMillis',
+	        value: function minusMillis(millisToSubtract) {
+	            return millisToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMillis(_MathUtil.MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract);
+	        }
+	    }, {
+	        key: 'minusNanos',
+	        value: function minusNanos(nanosToSubtract) {
+	            return nanosToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusNanos(_MathUtil.MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract);
+	        }
+	    }, {
+	        key: 'multipliedBy',
+	        value: function multipliedBy(multiplicand) {
+	            if (multiplicand === 0) {
+	                return Duration.ZERO;
+	            }
+	            if (multiplicand === 1) {
+	                return this;
+	            }
+	            return Duration.create(_MathUtil.MathUtil.safeMultiply(this.toSeconds(), multiplicand));
+	        }
+	    }, {
+	        key: 'dividedBy',
+	        value: function dividedBy(divisor) {
+	            if (divisor === 0) {
+	                throw new _errors.ArithmeticException('Cannot divide by zero');
+	            }
+	            if (divisor === 1) {
+	                return this;
+	            }
+	            return Duration.create(this.toSeconds() / divisor);
+	        }
+	    }, {
+	        key: 'toSeconds',
+	        value: function toSeconds() {
+	            var nanoFloat = _MathUtil.MathUtil.safeMultiply(this._nanos, Math.pow(10, -9));
+	            return _MathUtil.MathUtil.safeAdd(this._seconds, nanoFloat);
+	        }
+	    }, {
+	        key: 'negated',
+	        value: function negated() {
+	            return this.multipliedBy(-1);
+	        }
+	    }, {
+	        key: 'abs',
+	        value: function abs() {
+	            return this.isNegative() ? this.negated() : this;
+	        }
+	    }, {
+	        key: 'addTo',
+	        value: function addTo(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            if (this._seconds !== 0) {
+	                temporal = temporal.plus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
+	            }
+	            if (this._nanos !== 0) {
+	                temporal = temporal.plus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
+	            }
+	            return temporal;
+	        }
+	    }, {
+	        key: 'subtractFrom',
+	        value: function subtractFrom(temporal) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            if (this._seconds !== 0) {
+	                temporal = temporal.minus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
+	            }
+	            if (this._nanos !== 0) {
+	                temporal = temporal.minus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
+	            }
+	            return temporal;
+	        }
+	    }, {
+	        key: 'toDays',
+	        value: function toDays() {
+	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_DAY;
+	        }
+	    }, {
+	        key: 'toHours',
+	        value: function toHours() {
+	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_HOUR;
+	        }
+	    }, {
+	        key: 'toMinutes',
+	        value: function toMinutes() {
+	            return this._seconds / _LocalTime.LocalTime.SECONDS_PER_MINUTE;
+	        }
+	    }, {
+	        key: 'toMillis',
+	        value: function toMillis() {
+	            var millis = Math.round(_MathUtil.MathUtil.safeMultiply(this._seconds, 1000));
+	            millis = _MathUtil.MathUtil.safeAdd(millis, _MathUtil.MathUtil.intDiv(this._nanos, 1000000));
+	            return millis;
+	        }
+	    }, {
+	        key: 'toNanos',
+	        value: function toNanos() {
+	            var totalNanos = _MathUtil.MathUtil.safeMultiply(this._seconds, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, this._nanos);
+	            return totalNanos;
+	        }
+	    }, {
+	        key: 'compareTo',
+	        value: function compareTo(otherDuration) {
+	            (0, _assert.requireNonNull)(otherDuration, 'otherDuration');
+	            (0, _assert.requireInstance)(otherDuration, Duration, 'otherDuration');
+	            var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
+	            if (cmp !== 0) {
+	                return cmp;
+	            }
+	            return this._nanos - otherDuration.nano();
 	        }
 	    }, {
 	        key: 'equals',
-	        value: function equals(obj) {
-	            if (this === obj) {
+	        value: function equals(otherDuration) {
+	            if (this === otherDuration) {
 	                return true;
 	            }
-	            if (obj instanceof ZoneOffset) {
-	                return this._totalSeconds === obj._totalSeconds;
+	            if (otherDuration instanceof Duration) {
+	                return this.seconds() === otherDuration.seconds() && this.nano() === otherDuration.nano();
 	            }
 	            return false;
 	        }
-	    }], [{
-	        key: '_validateTotalSeconds',
-	        value: function _validateTotalSeconds(totalSeconds) {
-	            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
-	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	            }
-	        }
 	    }, {
-	        key: '_validate',
-	        value: function _validate(hours, minutes, seconds) {
-	            if (hours < -18 || hours > 18) {
-	                throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+	        key: 'toString',
+	        value: function toString() {
+	            if (this === Duration.ZERO) {
+	                return 'PT0S';
 	            }
-	            if (hours > 0) {
-	                if (minutes < 0 || seconds < 0) {
-	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
+	            var hours = _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
+	            var minutes = _MathUtil.MathUtil.intDiv(_MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR), _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	            var secs = _MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	            var rval = 'PT';
+	            if (hours !== 0) {
+	                rval += hours + 'H';
+	            }
+	            if (minutes !== 0) {
+	                rval += minutes + 'M';
+	            }
+	            if (secs === 0 && this._nanos === 0 && rval.length > 2) {
+	                return rval;
+	            }
+	            if (secs < 0 && this._nanos > 0) {
+	                if (secs === -1) {
+	                    rval += '-0';
+	                } else {
+	                    rval += secs + 1;
 	                }
-	            } else if (hours < 0) {
-	                if (minutes > 0 || seconds > 0) {
-	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
+	            } else {
+	                rval += secs;
+	            }
+	            if (this._nanos > 0) {
+	                rval += '.';
+	                var nanoString = undefined;
+	                if (secs < 0) {
+	                    nanoString = '' + (2 * _LocalTime.LocalTime.NANOS_PER_SECOND - this._nanos);
+	                } else {
+	                    nanoString = '' + (_LocalTime.LocalTime.NANOS_PER_SECOND + this._nanos);
 	                }
-	            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
-	                throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
+	
+	                nanoString = nanoString.slice(1, nanoString.length);
+	                rval += nanoString;
+	                while (rval.charAt(rval.length - 1) === '0') {
+	                    rval = rval.slice(0, rval.length - 1);
+	                }
 	            }
-	            if (Math.abs(minutes) > 59) {
-	                throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
-	            }
-	            if (Math.abs(seconds) > 59) {
-	                throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
-	            }
-	            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
-	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	            }
+	            rval += 'S';
+	            return rval;
+	        }
+	    }], [{
+	        key: 'ofDays',
+	        value: function ofDays(days) {
+	            return Duration.create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
 	        }
 	    }, {
 	        key: 'ofHours',
 	        value: function ofHours(hours) {
-	            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
+	            return Duration.create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
 	        }
 	    }, {
-	        key: 'ofHoursMinutes',
-	        value: function ofHoursMinutes(hours, minutes) {
-	            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
+	        key: 'ofMinutes',
+	        value: function ofMinutes(minutes) {
+	            return Duration.create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
 	        }
 	    }, {
-	        key: 'ofHoursMinutesSeconds',
-	        value: function ofHoursMinutesSeconds(hours, minutes, seconds) {
-	            ZoneOffset._validate(hours, minutes, seconds);
-	            var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
-	            return ZoneOffset.ofTotalSeconds(totalSeconds);
+	        key: 'ofSeconds',
+	        value: function ofSeconds(seconds) {
+	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	
+	            var secs = _MathUtil.MathUtil.safeAdd(seconds, _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND));
+	            var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            return Duration.create(secs, nos);
 	        }
 	    }, {
-	        key: 'ofTotalMinutes',
-	        value: function ofTotalMinutes(totalMinutes) {
-	            var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
-	            return ZoneOffset.ofTotalSeconds(totalSeconds);
-	        }
-	    }, {
-	        key: 'ofTotalSeconds',
-	        value: function ofTotalSeconds(totalSeconds) {
-	            if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
-	                var totalSecs = totalSeconds;
-	                var result = ZoneOffset.SECONDS_CACHE[totalSecs];
-	                if (result == null) {
-	                    result = new ZoneOffset(totalSeconds);
-	                    ZoneOffset.SECONDS_CACHE[totalSecs] = result;
-	                }
-	                return result;
-	            } else {
-	                return new ZoneOffset(totalSeconds);
+	        key: 'ofMillis',
+	        value: function ofMillis(millis) {
+	            var secs = _MathUtil.MathUtil.intDiv(millis, 1000);
+	            var mos = _MathUtil.MathUtil.intMod(millis, 1000);
+	            if (mos < 0) {
+	                mos += 1000;
+	                secs--;
 	            }
+	            return Duration.create(secs, mos * 1000000);
+	        }
+	    }, {
+	        key: 'ofNanos',
+	        value: function ofNanos(nanos) {
+	            var secs = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            var nos = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            if (nos < 0) {
+	                nos += _LocalTime.LocalTime.NANOS_PER_SECOND;
+	                secs--;
+	            }
+	            return this.create(secs, nos);
+	        }
+	    }, {
+	        key: 'of',
+	        value: function of(amount, unit) {
+	            return Duration.ZERO.plus(amount, unit);
+	        }
+	    }, {
+	        key: 'from',
+	        value: function from(amount) {
+	            (0, _assert.requireNonNull)(amount, 'amount');
+	            var duration = Duration.ZERO;
+	            amount.units().forEach(function (unit) {
+	                duration = duration.plus(amount.get(unit), unit);
+	            });
+	            return duration;
+	        }
+	    }, {
+	        key: 'between',
+	        value: function between(startInclusive, endExclusive) {
+	            (0, _assert.requireNonNull)(startInclusive, 'startInclusive');
+	            (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	            var secs = startInclusive.until(endExclusive, _ChronoUnit.ChronoUnit.SECONDS);
+	            var nanos = 0;
+	            if (startInclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)) {
+	                try {
+	                    var startNos = startInclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND);
+	                    nanos = endExclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND) - startNos;
+	                    if (secs > 0 && nanos < 0) {
+	                        nanos += _LocalTime.LocalTime.NANOS_PER_SECOND;
+	                    } else if (secs < 0 && nanos > 0) {
+	                        nanos -= _LocalTime.LocalTime.NANOS_PER_SECOND;
+	                    } else if (secs === 0 && nanos !== 0) {
+	                        var adjustedEnd = endExclusive.with(_ChronoField.ChronoField.NANO_OF_SECOND, startNos);
+	                        secs = startInclusive.until(adjustedEnd, _ChronoUnit.ChronoUnit.SECONDS);
+	                    }
+	                } catch (e) {}
+	            }
+	            return this.ofSeconds(secs, nanos);
+	        }
+	    }, {
+	        key: 'parse',
+	        value: function parse(text) {
+	            (0, _assert.requireNonNull)(text, 'text');
+	
+	            var PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
+	            var matches = PATTERN.exec(text);
+	            if (matches !== null) {
+	                if ('T' === matches[3] === false) {
+	                    var negate = '-' === matches[1];
+	                    var dayMatch = matches[2];
+	                    var hourMatch = matches[4];
+	                    var minuteMatch = matches[5];
+	                    var secondMatch = matches[6];
+	                    var fractionMatch = matches[7];
+	                    if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
+	                        var daysAsSecs = Duration._parseNumber(text, dayMatch, _LocalTime.LocalTime.SECONDS_PER_DAY, 'days');
+	                        var hoursAsSecs = Duration._parseNumber(text, hourMatch, _LocalTime.LocalTime.SECONDS_PER_HOUR, 'hours');
+	                        var minsAsSecs = Duration._parseNumber(text, minuteMatch, _LocalTime.LocalTime.SECONDS_PER_MINUTE, 'minutes');
+	                        var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
+	                        var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
+	                        var nanos = Duration._parseFraction(text, fractionMatch, negativeSecs ? -1 : 1);
+	                        try {
+	                            return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
+	                        } catch (ex) {
+	                            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
+	                        }
+	                    }
+	                }
+	            }
+	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
+	        }
+	    }, {
+	        key: '_parseNumber',
+	        value: function _parseNumber(text, parsed, multiplier, errorText) {
+	            if (parsed == null) {
+	                return 0;
+	            }
+	            try {
+	                if (parsed[0] === '+') {
+	                    parsed = parsed.substring(1);
+	                }
+	                var val = parseFloat(parsed);
+	                return _MathUtil.MathUtil.safeMultiply(val, multiplier);
+	            } catch (ex) {
+	                throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
+	            }
+	        }
+	    }, {
+	        key: '_parseFraction',
+	        value: function _parseFraction(text, parsed, negate) {
+	            if (parsed == null || parsed.length === 0) {
+	                return 0;
+	            }
+	            try {
+	                parsed = (parsed + '000000000').substring(0, 9);
+	                return parseFloat(parsed) * negate;
+	            } catch (ex) {
+	                throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
+	            }
+	        }
+	    }, {
+	        key: 'create',
+	        value: function create() {
+	            if (arguments.length === 1) {
+	                return Duration.createSeconds(arguments[0]);
+	            } else if (arguments.length === 2) {
+	                return Duration.createSecondsNanos(arguments[0], arguments[1]);
+	            } else {
+	                return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+	            }
+	        }
+	    }, {
+	        key: 'createNegateDaysHoursMinutesSecondsNanos',
+	        value: function createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
+	            var seconds = _MathUtil.MathUtil.safeAdd(daysAsSecs, _MathUtil.MathUtil.safeAdd(hoursAsSecs, _MathUtil.MathUtil.safeAdd(minsAsSecs, secs)));
+	            if (negate) {
+	                return Duration.ofSeconds(seconds, nanos).negated();
+	            }
+	            return Duration.ofSeconds(seconds, nanos);
+	        }
+	    }, {
+	        key: 'createSecondsNanos',
+	        value: function createSecondsNanos() {
+	            var seconds = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	            var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	
+	            if ((seconds | nanoAdjustment) === 0) {
+	                return Duration.ZERO;
+	            }
+	
+	            if (seconds >= 0) {
+	                nanoAdjustment += seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
+	            } else {
+	                nanoAdjustment -= seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
+	            }
+	            seconds = Math.floor(seconds);
+	            nanoAdjustment = Math.round(nanoAdjustment);
+	
+	            return new Duration(seconds, nanoAdjustment);
+	        }
+	    }, {
+	        key: 'createSeconds',
+	        value: function createSeconds(seconds) {
+	            var nanos = Math.round(seconds * Math.pow(10, 9));
+	            var div = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            var rem = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	            return Duration.ofSeconds(div, rem);
 	        }
 	    }]);
 	
-	    return ZoneOffset;
-	}();
+	    return Duration;
+	}(_TemporalAmount2.TemporalAmount);
 	
 	function _init() {
-	    ZoneOffset.MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
-	    ZoneOffset.SECONDS_CACHE = {};
-	    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-	    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
-	    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+	    Duration.ZERO = new Duration(0, 0);
 	}
 
 /***/ },
-/* 21 */
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.TemporalAmount = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(2);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var TemporalAmount = exports.TemporalAmount = function () {
+	  function TemporalAmount() {
+	    _classCallCheck(this, TemporalAmount);
+	  }
+	
+	  _createClass(TemporalAmount, [{
+	    key: 'get',
+	    value: function get(unit) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'getUnits',
+	    value: function getUnits() {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'addTo',
+	    value: function addTo(temporal) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }, {
+	    key: 'subtractFrom',
+	    value: function subtractFrom(temporal) {
+	      (0, _assert.abstractMethodFail)('adjustInto');
+	    }
+	  }]);
+	
+	  return TemporalAmount;
+	}();
+
+/***/ },
+/* 16 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4996,128 +4800,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/* 17 */
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ResolverStyle = undefined;
-	
-	var _Enum2 = __webpack_require__(14);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
-	  _inherits(ResolverStyle, _Enum);
-	
-	  function ResolverStyle() {
-	    _classCallCheck(this, ResolverStyle);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResolverStyle).apply(this, arguments));
-	  }
-	
-	  return ResolverStyle;
-	}(_Enum2.Enum);
-	
-	ResolverStyle.STRICT = new ResolverStyle('STRICT');
-	
-	ResolverStyle.SMART = new ResolverStyle('SMART');
-	
-	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
+	var TemporalUnit = exports.TemporalUnit = function TemporalUnit() {
+	  _classCallCheck(this, TemporalUnit);
+	};
 
 /***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
+/* 18 */
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.ChronoLocalDate = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _ChronoUnit = __webpack_require__(7);
-	
-	var _TemporalQueries = __webpack_require__(18);
-	
-	var _Temporal2 = __webpack_require__(16);
-	
-	var _LocalDate = __webpack_require__(12);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var ChronoLocalDate = function (_Temporal) {
-	    _inherits(ChronoLocalDate, _Temporal);
-	
-	    function ChronoLocalDate() {
-	        _classCallCheck(this, ChronoLocalDate);
-	
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoLocalDate).apply(this, arguments));
-	    }
-	
-	    _createClass(ChronoLocalDate, [{
-	        key: 'isSupported',
-	        value: function isSupported(fieldOrUnit) {
-	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
-	                return fieldOrUnit.isDateBased();
-	            } else if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
-	                return fieldOrUnit.isDateBased();
-	            }
-	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
-	        }
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return this.chronology();
-	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	                return _ChronoUnit.ChronoUnit.DAYS;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
-	                return _LocalDate.LocalDate.ofEpochDay(this.toEpochDay());
-	            } else if (_query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
-	                return null;
-	            }
-	            return _get(Object.getPrototypeOf(ChronoLocalDate.prototype), 'query', this).call(this, _query);
-	        }
-	    }, {
-	        key: 'adjustInto',
-	        value: function adjustInto(temporal) {
-	            return temporal.with(_ChronoField.ChronoField.EPOCH_DAY, this.toEpochDay());
-	        }
-	    }]);
-	
-	    return ChronoLocalDate;
-	}(_Temporal2.Temporal);
-
-	exports.ChronoLocalDate = ChronoLocalDate;
+	var TemporalField = exports.TemporalField = function TemporalField() {
+	  _classCallCheck(this, TemporalField);
+	};
 
 /***/ },
-/* 24 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5260,7 +4987,541 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Temporal = undefined;
+	
+	var _TemporalAccessor2 = __webpack_require__(21);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Temporal = exports.Temporal = function (_TemporalAccessor) {
+	  _inherits(Temporal, _TemporalAccessor);
+
+	  function Temporal() {
+	    _classCallCheck(this, Temporal);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Temporal).apply(this, arguments));
+	  }
+
+	  return Temporal;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.TemporalAccessor = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _errors = __webpack_require__(3);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var TemporalAccessor = function () {
+	    function TemporalAccessor() {
+	        _classCallCheck(this, TemporalAccessor);
+	    }
+	
+	    _createClass(TemporalAccessor, [{
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
+	                return null;
+	            }
+	            return _query.queryFrom(this);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            return this.range(field).checkValidIntValue(this.getLong(field), field);
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range(field) {
+	            if (field instanceof _ChronoField.ChronoField) {
+	                if (this.isSupported(field)) {
+	                    return field.range();
+	                }
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	            }
+	            return field.rangeRefinedBy(this);
+	        }
+	    }]);
+	
+	    return TemporalAccessor;
+	}();
+
+	exports.TemporalAccessor = TemporalAccessor;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.TemporalQueries = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	exports._init = _init;
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _TemporalQuery = __webpack_require__(23);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	var _LocalTime = __webpack_require__(5);
+	
+	var _ZoneOffset = __webpack_require__(24);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var TemporalQueries = exports.TemporalQueries = function () {
+	    function TemporalQueries() {
+	        _classCallCheck(this, TemporalQueries);
+	    }
+	
+	    _createClass(TemporalQueries, null, [{
+	        key: 'zoneId',
+	        value: function zoneId() {
+	            return TemporalQueries.ZONE_ID;
+	        }
+	    }, {
+	        key: 'chronology',
+	        value: function chronology() {
+	            return TemporalQueries.CHRONO;
+	        }
+	    }, {
+	        key: 'precision',
+	        value: function precision() {
+	            return TemporalQueries.PRECISION;
+	        }
+	    }, {
+	        key: 'zone',
+	        value: function zone() {
+	            return TemporalQueries.ZONE;
+	        }
+	    }, {
+	        key: 'offset',
+	        value: function offset() {
+	            return TemporalQueries.OFFSET;
+	        }
+	    }, {
+	        key: 'localDate',
+	        value: function localDate() {
+	            return TemporalQueries.LOCAL_DATE;
+	        }
+	    }, {
+	        key: 'localTime',
+	        value: function localTime() {
+	            return TemporalQueries.LOCAL_TIME;
+	        }
+	    }]);
+	
+	    return TemporalQueries;
+	}();
+	
+	function _init() {
+	    TemporalQueries.ZONE_ID = (0, _TemporalQuery.createTemporalQuery)('ZONE_ID', function (temporal) {
+	        return temporal.query(TemporalQueries.ZONE_ID);
+	    });
+	
+	    TemporalQueries.CHRONO = (0, _TemporalQuery.createTemporalQuery)('CHRONO', function (temporal) {
+	        return temporal.query(TemporalQueries.CHRONO);
+	    });
+	
+	    TemporalQueries.PRECISION = (0, _TemporalQuery.createTemporalQuery)('PRECISION', function (temporal) {
+	        return temporal.query(TemporalQueries.PRECISION);
+	    });
+	
+	    TemporalQueries.OFFSET = (0, _TemporalQuery.createTemporalQuery)('OFFSET', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
+	            return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
+	        }
+	        return null;
+	    });
+	
+	    TemporalQueries.ZONE = (0, _TemporalQuery.createTemporalQuery)('ZONE', function (temporal) {
+	        var zone = temporal.query(TemporalQueries.ZONE_ID);
+	        return zone != null ? zone : temporal.query(TemporalQueries.OFFSET);
+	    });
+	
+	    TemporalQueries.LOCAL_DATE = (0, _TemporalQuery.createTemporalQuery)('LOCAL_DATE', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
+	            return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
+	        }
+	        return null;
+	    });
+	
+	    TemporalQueries.LOCAL_TIME = (0, _TemporalQuery.createTemporalQuery)('LOCAL_TIME', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
+	            return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
+	        }
+	        return null;
+	    });
+	}
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.TemporalQuery = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports.createTemporalQuery = createTemporalQuery;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _Enum2 = __webpack_require__(10);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
+	  _inherits(TemporalQuery, _Enum);
+	
+	  function TemporalQuery() {
+	    _classCallCheck(this, TemporalQuery);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TemporalQuery).apply(this, arguments));
+	  }
+	
+	  _createClass(TemporalQuery, [{
+	    key: 'queryFrom',
+	    value: function queryFrom(temporal) {
+	      (0, _assert.abstractMethodFail)('queryFrom');
+	    }
+	  }]);
+	
+	  return TemporalQuery;
+	}(_Enum2.Enum);
+	
+	function createTemporalQuery(name, queryFromFunction) {
+	  var ExtendedTemporalQuery = function (_TemporalQuery) {
+	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
+	
+	    function ExtendedTemporalQuery() {
+	      _classCallCheck(this, ExtendedTemporalQuery);
+	
+	      return _possibleConstructorReturn(this, Object.getPrototypeOf(ExtendedTemporalQuery).apply(this, arguments));
+	    }
+	
+	    return ExtendedTemporalQuery;
+	  }(TemporalQuery);
+	
+	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
+	  return new ExtendedTemporalQuery(name);
+	}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ZoneOffset = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	
+	exports._init = _init;
+	
+	var _errors = __webpack_require__(3);
+	
+	var _LocalTime = __webpack_require__(5);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var ZoneOffset = exports.ZoneOffset = function () {
+	    function ZoneOffset(totalSeconds) {
+	        _classCallCheck(this, ZoneOffset);
+	
+	        ZoneOffset._validateTotalSeconds(totalSeconds);
+	        this._totalSeconds = totalSeconds;
+	    }
+	
+	    _createClass(ZoneOffset, [{
+	        key: 'totalSeconds',
+	        value: function totalSeconds() {
+	            return this._totalSeconds;
+	        }
+	    }, {
+	        key: 'equals',
+	        value: function equals(obj) {
+	            if (this === obj) {
+	                return true;
+	            }
+	            if (obj instanceof ZoneOffset) {
+	                return this._totalSeconds === obj._totalSeconds;
+	            }
+	            return false;
+	        }
+	    }], [{
+	        key: '_validateTotalSeconds',
+	        value: function _validateTotalSeconds(totalSeconds) {
+	            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
+	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	            }
+	        }
+	    }, {
+	        key: '_validate',
+	        value: function _validate(hours, minutes, seconds) {
+	            if (hours < -18 || hours > 18) {
+	                throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+	            }
+	            if (hours > 0) {
+	                if (minutes < 0 || seconds < 0) {
+	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
+	                }
+	            } else if (hours < 0) {
+	                if (minutes > 0 || seconds > 0) {
+	                    throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
+	                }
+	            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
+	                throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
+	            }
+	            if (Math.abs(minutes) > 59) {
+	                throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
+	            }
+	            if (Math.abs(seconds) > 59) {
+	                throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
+	            }
+	            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
+	                throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	            }
+	        }
+	    }, {
+	        key: 'ofHours',
+	        value: function ofHours(hours) {
+	            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
+	        }
+	    }, {
+	        key: 'ofHoursMinutes',
+	        value: function ofHoursMinutes(hours, minutes) {
+	            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
+	        }
+	    }, {
+	        key: 'ofHoursMinutesSeconds',
+	        value: function ofHoursMinutesSeconds(hours, minutes, seconds) {
+	            ZoneOffset._validate(hours, minutes, seconds);
+	            var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
+	            return ZoneOffset.ofTotalSeconds(totalSeconds);
+	        }
+	    }, {
+	        key: 'ofTotalMinutes',
+	        value: function ofTotalMinutes(totalMinutes) {
+	            var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
+	            return ZoneOffset.ofTotalSeconds(totalSeconds);
+	        }
+	    }, {
+	        key: 'ofTotalSeconds',
+	        value: function ofTotalSeconds(totalSeconds) {
+	            if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
+	                var totalSecs = totalSeconds;
+	                var result = ZoneOffset.SECONDS_CACHE[totalSecs];
+	                if (result == null) {
+	                    result = new ZoneOffset(totalSeconds);
+	                    ZoneOffset.SECONDS_CACHE[totalSecs] = result;
+	                }
+	                return result;
+	            } else {
+	                return new ZoneOffset(totalSeconds);
+	            }
+	        }
+	    }]);
+	
+	    return ZoneOffset;
+	}();
+	
+	function _init() {
+	    ZoneOffset.MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
+	    ZoneOffset.SECONDS_CACHE = {};
+	    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+	    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+	    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+	}
+
+/***/ },
 /* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ResolverStyle = undefined;
+	
+	var _Enum2 = __webpack_require__(10);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ResolverStyle = exports.ResolverStyle = function (_Enum) {
+	  _inherits(ResolverStyle, _Enum);
+	
+	  function ResolverStyle() {
+	    _classCallCheck(this, ResolverStyle);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(ResolverStyle).apply(this, arguments));
+	  }
+	
+	  return ResolverStyle;
+	}(_Enum2.Enum);
+	
+	ResolverStyle.STRICT = new ResolverStyle('STRICT');
+	
+	ResolverStyle.SMART = new ResolverStyle('SMART');
+	
+	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.ChronoLocalDate = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _ChronoUnit = __webpack_require__(13);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _Temporal2 = __webpack_require__(20);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ChronoLocalDate = function (_Temporal) {
+	    _inherits(ChronoLocalDate, _Temporal);
+	
+	    function ChronoLocalDate() {
+	        _classCallCheck(this, ChronoLocalDate);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ChronoLocalDate).apply(this, arguments));
+	    }
+	
+	    _createClass(ChronoLocalDate, [{
+	        key: 'isSupported',
+	        value: function isSupported(fieldOrUnit) {
+	            if (fieldOrUnit instanceof _ChronoField.ChronoField) {
+	                return fieldOrUnit.isDateBased();
+	            } else if (fieldOrUnit instanceof _ChronoUnit.ChronoUnit) {
+	                return fieldOrUnit.isDateBased();
+	            }
+	            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chronology();
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return _ChronoUnit.ChronoUnit.DAYS;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return _LocalDate.LocalDate.ofEpochDay(this.toEpochDay());
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return null;
+	            }
+	            return _get(Object.getPrototypeOf(ChronoLocalDate.prototype), 'query', this).call(this, _query);
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal) {
+	            return temporal.with(_ChronoField.ChronoField.EPOCH_DAY, this.toEpochDay());
+	        }
+	    }]);
+	
+	    return ChronoLocalDate;
+	}(_Temporal2.Temporal);
+
+	exports.ChronoLocalDate = ChronoLocalDate;
+
+/***/ },
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5282,23 +5543,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _ParsePosition = __webpack_require__(26);
+	var _Period = __webpack_require__(28);
 	
-	var _DateTimeParseContext = __webpack_require__(27);
+	var _ParsePosition = __webpack_require__(29);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	var _DateTimeBuilder = __webpack_require__(30);
 	
-	var _SignStyle = __webpack_require__(33);
+	var _DateTimeParseContext = __webpack_require__(32);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _DateTimePrintContext = __webpack_require__(33);
 	
-	var _IsoChronology = __webpack_require__(13);
+	var _DateTimeFormatterBuilder = __webpack_require__(34);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _SignStyle = __webpack_require__(36);
+	
+	var _StringBuilder = __webpack_require__(37);
+	
+	var _ResolverStyle = __webpack_require__(25);
+	
+	var _IsoChronology = __webpack_require__(9);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _TemporalQuery = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	var DateTimeFormatter = exports.DateTimeFormatter = function () {
+	    _createClass(DateTimeFormatter, null, [{
+	        key: 'parsedExcessDays',
+	        value: function parsedExcessDays() {
+	            return DateTimeFormatter.PARSED_EXCESS_DAYS;
+	        }
+	    }, {
+	        key: 'parsedLeapSecond',
+	        value: function parsedLeapSecond() {
+	            return DateTimeFormatter.PARSED_LEAP_SECOND;
+	        }
+	    }]);
+	
 	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
 	        var chrono = arguments.length <= 5 || arguments[5] === undefined ? _IsoChronology.IsoChronology.INSTANCE : arguments[5];
 	        var zone = arguments[6];
@@ -5353,8 +5636,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this;
 	        }
 	    }, {
+	        key: 'format',
+	        value: function format(temporal) {
+	            var buf = new _StringBuilder.StringBuilder(32);
+	            this._formatTo(temporal, buf);
+	            return buf.toString();
+	        }
+	    }, {
+	        key: '_formatTo',
+	        value: function _formatTo(temporal, appendable) {
+	            (0, _assert.requireNonNull)(temporal, 'temporal');
+	            (0, _assert.requireNonNull)(appendable, 'appendable');
+	            var context = new _DateTimePrintContext.DateTimePrintContext(temporal, this);
+	            this._printerParser.print(context, appendable);
+	        }
+	    }, {
 	        key: 'parse',
 	        value: function parse(text, type) {
+	            if (arguments.length === 1) {
+	                return this.parse1(text);
+	            } else {
+	                return this.parse2(text, type);
+	            }
+	        }
+	    }, {
+	        key: 'parse1',
+	        value: function parse1(text) {
+	            (0, _assert.requireNonNull)(text, 'text');
+	            try {
+	                return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeParseException) {
+	                    throw ex;
+	                } else {
+	                    throw this._createError(text, ex);
+	                }
+	            }
+	        }
+	    }, {
+	        key: 'parse2',
+	        value: function parse2(text, type) {
 	            (0, _assert.requireNonNull)(text, 'text');
 	            (0, _assert.requireNonNull)(type, 'type');
 	            try {
@@ -5442,773 +5763,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DateTimeFormatter.ISO_LOCAL_TIME = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendValue(_ChronoField.ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, 2).optionalStart().appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND, 0, 9, true).toFormatter(_ResolverStyle.ResolverStyle.STRICT);
 	
 	    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
+	
+	    DateTimeFormatter.ISO_INSTANT = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(_ResolverStyle.ResolverStyle.STRICT);
+	
+	    DateTimeFormatter.PARSED_EXCESS_DAYS = (0, _TemporalQuery.createTemporalQuery)('PARSED_EXCESS_DAYS', function (temporal) {
+	        if (temporal instanceof _DateTimeBuilder.DateTimeBuilder) {
+	            return temporal.excessDays;
+	        } else {
+	            return _Period.Period.ZERO;
+	        }
+	    });
+	
+	    DateTimeFormatter.PARSED_LEAP_SECOND = (0, _TemporalQuery.createTemporalQuery)('PARSED_LEAP_SECOND', function (temporal) {
+	        if (temporal instanceof _DateTimeBuilder.DateTimeBuilder) {
+	            return temporal.leapSecond;
+	        } else {
+	            return false;
+	        }
+	    });
 	}
 
 /***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var ParsePosition = exports.ParsePosition = function () {
-	    function ParsePosition(index) {
-	        _classCallCheck(this, ParsePosition);
-	
-	        this._index = index;
-	        this._errorIndex = -1;
-	    }
-	
-	    _createClass(ParsePosition, [{
-	        key: "getIndex",
-	        value: function getIndex() {
-	            return this._index;
-	        }
-	    }, {
-	        key: "setIndex",
-	        value: function setIndex(index) {
-	            this._index = index;
-	        }
-	    }, {
-	        key: "getErrorIndex",
-	        value: function getErrorIndex() {
-	            return this._errorIndex;
-	        }
-	    }, {
-	        key: "setErrorIndex",
-	        value: function setErrorIndex(errorIndex) {
-	            this._errorIndex = errorIndex;
-	        }
-	    }]);
-	
-	    return ParsePosition;
-	}();
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.DateTimeParseContext = undefined;
-	
-	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-	
-	var _assert = __webpack_require__(2);
-	
-	var _DateTimeBuilder = __webpack_require__(28);
-	
-	var _EnumMap = __webpack_require__(29);
-	
-	var _IsoChronology = __webpack_require__(13);
-	
-	var _Temporal2 = __webpack_require__(16);
-	
-	var _TemporalQueries = __webpack_require__(18);
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var DateTimeParseContext = exports.DateTimeParseContext = function () {
-	    function DateTimeParseContext() {
-	        _classCallCheck(this, DateTimeParseContext);
-	
-	        if (arguments.length === 1) {
-	            this._constructorFormatter.apply(this, arguments);
-	        } else {
-	            this._constructorParam.apply(this, arguments);
-	        }
-	
-	        this._caseSensitive = true;
-	        this._strict = true;
-	        this._parsed = [new Parsed(this)];
-	    }
-	
-	    _createClass(DateTimeParseContext, [{
-	        key: '_constructorParam',
-	        value: function _constructorParam(locale, symbols, chronology) {
-	            this._locale = locale;
-	            this._symbols = symbols;
-	            this._overrideChronology = chronology;
-	        }
-	    }, {
-	        key: '_constructorFormatter',
-	        value: function _constructorFormatter(formatter) {
-	            this._locale = formatter.locale();
-	            this._symbols = formatter.decimalStyle();
-	            this._overrideChronology = formatter.chronology();
-	        }
-	    }, {
-	        key: 'symbols',
-	        value: function symbols() {
-	            return this._symbols;
-	        }
-	    }, {
-	        key: 'isStrict',
-	        value: function isStrict() {
-	            return this._strict;
-	        }
-	    }, {
-	        key: 'setStrict',
-	        value: function setStrict(strict) {
-	            this._strict = strict;
-	        }
-	    }, {
-	        key: 'startOptional',
-	        value: function startOptional() {
-	            this._parsed.push(this.currentParsed().copy());
-	        }
-	    }, {
-	        key: 'endOptional',
-	        value: function endOptional(successful) {
-	            if (successful) {
-	                this._parsed.splice(this._parsed.length - 2, 1);
-	            } else {
-	                this._parsed.splice(this._parsed.length - 1, 1);
-	            }
-	        }
-	    }, {
-	        key: 'isCaseSensitive',
-	        value: function isCaseSensitive() {
-	            return this._caseSensitive;
-	        }
-	    }, {
-	        key: 'setCaseSensitive',
-	        value: function setCaseSensitive(caseSensitive) {
-	            this._caseSensitive = caseSensitive;
-	        }
-	    }, {
-	        key: 'subSequenceEquals',
-	        value: function subSequenceEquals(cs1, offset1, cs2, offset2, length) {
-	            if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
-	                return false;
-	            }
-	            if (!this.isCaseSensitive()) {
-	                cs1 = cs1.toLowerCase();
-	                cs2 = cs2.toLowerCase();
-	            }
-	            for (var i = 0; i < length; i++) {
-	                var ch1 = cs1[offset1 + i];
-	                var ch2 = cs2[offset2 + i];
-	                if (ch1 !== ch2) {
-	                    return false;
-	                }
-	            }
-	            return true;
-	        }
-	    }, {
-	        key: 'charEquals',
-	        value: function charEquals(ch1, ch2) {
-	            if (this.isCaseSensitive()) {
-	                return ch1 === ch2;
-	            }
-	            return this.charEqualsIgnoreCase(ch1, ch2);
-	        }
-	    }, {
-	        key: 'charEqualsIgnoreCase',
-	        value: function charEqualsIgnoreCase(c1, c2) {
-	            return c1 === c2 || c1.toLowerCase() === c2.toLowerCase();
-	        }
-	    }, {
-	        key: 'setParsedField',
-	        value: function setParsedField(field, value, errorPos, successPos) {
-	            var currentParsedFieldValues = this.currentParsed().fieldValues;
-	            var old = currentParsedFieldValues.get(field);
-	            currentParsedFieldValues.set(field, value);
-	            return old != null && old !== value ? ~errorPos : successPos;
-	        }
-	    }, {
-	        key: 'getParsed',
-	        value: function getParsed(field) {
-	            return this.currentParsed().fieldValues.get(field);
-	        }
-	    }, {
-	        key: 'toParsed',
-	        value: function toParsed() {
-	            return this.currentParsed();
-	        }
-	    }, {
-	        key: 'currentParsed',
-	        value: function currentParsed() {
-	            return this._parsed[this._parsed.length - 1];
-	        }
-	    }, {
-	        key: 'getEffectiveChronology',
-	        value: function getEffectiveChronology() {
-	            var chrono = this.currentParsed().chrono;
-	            if (chrono == null) {
-	                chrono = this._overrideChronology;
-	                if (chrono == null) {
-	                    chrono = _IsoChronology.IsoChronology.INSTANCE;
-	                }
-	            }
-	            return chrono;
-	        }
-	    }]);
-	
-	    return DateTimeParseContext;
-	}();
-	
-	var Parsed = function (_Temporal) {
-	    _inherits(Parsed, _Temporal);
-	
-	    function Parsed(dateTimeParseContext) {
-	        _classCallCheck(this, Parsed);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Parsed).call(this));
-	
-	        _this.chrono = null;
-	        _this.zone = null;
-	        _this.fieldValues = new _EnumMap.EnumMap();
-	        _this.leapSecond = false;
-	        _this.dateTimeParseContext = dateTimeParseContext;
-	        return _this;
-	    }
-	
-	    _createClass(Parsed, [{
-	        key: 'copy',
-	        value: function copy() {
-	            var cloned = new Parsed();
-	            cloned.chrono = this.chrono;
-	            cloned.zone = this.zone;
-	            cloned.fieldValues.putAll(this.fieldValues);
-	            cloned.leapSecond = this.leapSecond;
-	            cloned.dateTimeParseContext = this.dateTimeParseContext;
-	            return cloned;
-	        }
-	    }, {
-	        key: 'toString',
-	        value: function toString() {
-	            return this.fieldValues + ', ' + this.chrono + ', ' + this.zone;
-	        }
-	    }, {
-	        key: 'isSupported',
-	        value: function isSupported(field) {
-	            return this.fieldValues.containsKey(field);
-	        }
-	    }, {
-	        key: 'get',
-	        value: function get(field) {
-	            var val = this.fieldValues.get(field);
-	            (0, _assert.assert)(val != null);
-	            return val;
-	        }
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return this.chrono;
-	            }
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone()) {
-	                return this.zone;
-	            }
-	            return _get(Object.getPrototypeOf(Parsed.prototype), 'query', this).call(this, _query);
-	        }
-	    }, {
-	        key: 'toBuilder',
-	        value: function toBuilder() {
-	            var builder = new _DateTimeBuilder.DateTimeBuilder();
-	            builder.fieldValues.putAll(this.fieldValues);
-	            builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
-	            if (this.zone != null) {
-	                builder.zone = this.zone;
-	            } else {
-	                builder.zone = this.overrideZone;
-	            }
-	            builder.leapSecond = this.leapSecond;
-	            builder.excessDays = this.excessDays;
-	            return builder;
-	        }
-	    }]);
-	
-	    return Parsed;
-	}(_Temporal2.Temporal);
-
-/***/ },
 /* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.DateTimeBuilder = undefined;
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _assert = __webpack_require__(2);
-	
-	var _errors = __webpack_require__(3);
-	
-	var _MathUtil = __webpack_require__(6);
-	
-	var _EnumMap = __webpack_require__(29);
-	
-	var _ResolverStyle = __webpack_require__(22);
-	
-	var _IsoChronology = __webpack_require__(13);
-	
-	var _ChronoLocalDate = __webpack_require__(23);
-	
-	var _ChronoField = __webpack_require__(5);
-	
-	var _Temporal2 = __webpack_require__(16);
-	
-	var _TemporalQueries = __webpack_require__(18);
-	
-	var _LocalTime = __webpack_require__(10);
-	
-	var _LocalDate = __webpack_require__(12);
-	
-	var _Period = __webpack_require__(30);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var DateTimeBuilder = function (_Temporal) {
-	    _inherits(DateTimeBuilder, _Temporal);
-	
-	    function DateTimeBuilder() {
-	        _classCallCheck(this, DateTimeBuilder);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeBuilder).call(this));
-	
-	        _this.fieldValues = new _EnumMap.EnumMap();
-	
-	        _this.chrono = null;
-	
-	        _this.zone = null;
-	
-	        _this.date = null;
-	
-	        _this.time = null;
-	
-	        _this.leapSecond = false;
-	
-	        _this.excessDays = null;
-	        return _this;
-	    }
-	
-	    _createClass(DateTimeBuilder, [{
-	        key: 'getFieldValue0',
-	        value: function getFieldValue0(field) {
-	            return this.fieldValues.get(field);
-	        }
-	    }, {
-	        key: '_addFieldValue',
-	        value: function _addFieldValue(field, value) {
-	            (0, _assert.requireNonNull)(field, 'field');
-	            var old = this.getFieldValue0(field);
-	            if (old != null && old.longValue() !== value) {
-	                throw new _errors.DateTimeException('Conflict found: ' + field + ' ' + old + ' differs from ' + field + ' ' + value + ': ' + this);
-	            }
-	            return this._putFieldValue0(field, value);
-	        }
-	    }, {
-	        key: '_putFieldValue0',
-	        value: function _putFieldValue0(field, value) {
-	            this.fieldValues.put(field, value);
-	            return this;
-	        }
-	    }, {
-	        key: 'resolve',
-	        value: function resolve(resolverStyle, resolverFields) {
-	            if (resolverFields != null) {
-	                this.fieldValues.retainAll(resolverFields);
-	            }
-	
-	            this._mergeDate(resolverStyle);
-	            this._mergeTime(resolverStyle);
-	
-	            this._resolveTimeInferZeroes(resolverStyle);
-	
-	            if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
-	                this.date = this.date.plus(this.excessDays);
-	                this.excessDays = _Period.Period.ZERO;
-	            }
-	
-	            return this;
-	        }
-	    }, {
-	        key: '_mergeDate',
-	        value: function _mergeDate(resolverStyle) {
-	            this._checkDate(_IsoChronology.IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
-	        }
-	    }, {
-	        key: '_checkDate',
-	        value: function _checkDate(date) {
-	            if (date != null) {
-	                this._addObject(date);
-	                for (var field in this.fieldValues.keySet()) {
-	                    if (field instanceof _ChronoField.ChronoField) {
-	                        if (field.isDateBased()) {
-	                            var val1;
-	                            try {
-	                                val1 = date.getLong(field);
-	                            } catch (ex) {
-	                                if (ex instanceof _errors.DateTimeException) {
-	                                    continue;
-	                                } else {
-	                                    throw ex;
-	                                }
-	                            }
-	                            var val2 = this.fieldValues.get(field);
-	                            if (val1 !== val2) {
-	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
-	                            }
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	    }, {
-	        key: '_mergeTime',
-	        value: function _mergeTime(resolverStyle) {
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY)) {
-	                var ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && ch === 0) {} else {
-	                            _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY.checkValidValue(ch);
-	                        }
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, ch === 24 ? 0 : ch);
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM)) {
-	                var ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && ch === 0) {} else {
-	                            _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM.checkValidValue(ch);
-	                        }
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_AMPM, ch === 12 ? 0 : ch);
-	            }
-	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.AMPM_OF_DAY)) {
-	                    _ChronoField.ChronoField.AMPM_OF_DAY.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.AMPM_OF_DAY));
-	                }
-	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.HOUR_OF_AMPM)) {
-	                    _ChronoField.ChronoField.HOUR_OF_AMPM.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.HOUR_OF_AMPM));
-	                }
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.AMPM_OF_DAY) && this.fieldValues.containsKey(_ChronoField.ChronoField.HOUR_OF_AMPM)) {
-	                var ap = this.fieldValues.remove(_ChronoField.ChronoField.AMPM_OF_DAY);
-	                var hap = this.fieldValues.remove(_ChronoField.ChronoField.HOUR_OF_AMPM);
-	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, ap * 12 + hap);
-	            }
-	
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_DAY)) {
-	                var nod = this.fieldValues.remove(_ChronoField.ChronoField.NANO_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    _ChronoField.ChronoField.NANO_OF_DAY.checkValidValue(nod);
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(nod, 1000000000));
-	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, _MathUtil.MathUtil.intMod(nod, 1000000000));
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_DAY)) {
-	                var cod = this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    _ChronoField.ChronoField.MICRO_OF_DAY.checkValidValue(cod);
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(cod, 1000000));
-	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intMod(cod, 1000000));
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_DAY)) {
-	                var lod = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    _ChronoField.ChronoField.MILLI_OF_DAY.checkValidValue(lod);
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(lod, 1000));
-	                this._addFieldValue(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intMod(lod, 1000));
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.SECOND_OF_DAY)) {
-	                var sod = this.fieldValues.remove(_ChronoField.ChronoField.SECOND_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    _ChronoField.ChronoField.SECOND_OF_DAY.checkValidValue(sod);
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, _MathUtil.MathUtil.intDiv(sod, 3600));
-	                this._addFieldValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(sod, 60), 60));
-	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, _MathUtil.MathUtil.intMod(sod, 60));
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MINUTE_OF_DAY)) {
-	                var mod = this.fieldValues.remove(_ChronoField.ChronoField.MINUTE_OF_DAY);
-	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                    _ChronoField.ChronoField.MINUTE_OF_DAY.checkValidValue(mod);
-	                }
-	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, _MathUtil.MathUtil.intDiv(mod, 60));
-	                this._addFieldValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, _MathUtil.MathUtil.intMod(mod, 60));
-	            }
-	
-	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND)) {
-	                    _ChronoField.ChronoField.MILLI_OF_SECOND.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.MILLI_OF_SECOND));
-	                }
-	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
-	                    _ChronoField.ChronoField.MICRO_OF_SECOND.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.MICRO_OF_SECOND));
-	                }
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
-	                var los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
-	                var cos = this.fieldValues.get(_ChronoField.ChronoField.MICRO_OF_SECOND);
-	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, los * 1000 + _MathUtil.MathUtil.intMod(cos, 1000));
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
-	                var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000));
-	                this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
-	                var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	                this._addFieldValue(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000000));
-	                this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
-	            }
-	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
-	                var cos = this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
-	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, cos * 1000);
-	            } else if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND)) {
-	                var los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
-	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, los * 1000000);
-	            }
-	        }
-	    }, {
-	        key: '_resolveTimeInferZeroes',
-	        value: function _resolveTimeInferZeroes(resolverStyle) {
-	            var hod = this.fieldValues.get(_ChronoField.ChronoField.HOUR_OF_DAY);
-	            var moh = this.fieldValues.get(_ChronoField.ChronoField.MINUTE_OF_HOUR);
-	            var som = this.fieldValues.get(_ChronoField.ChronoField.SECOND_OF_MINUTE);
-	            var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	            if (hod == null) {
-	                return;
-	            }
-	            if (moh == null && (som != null || nos != null)) {
-	                return;
-	            }
-	            if (moh != null && som == null && nos != null) {
-	                return;
-	            }
-	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
-	                if (hod != null) {
-	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && hod === 24 && (moh == null || moh === 0) && (som == null || som === 0) && (nos == null || nos === 0)) {
-	                        hod = 0;
-	                        this.excessDays = _Period.Period.ofDays(1);
-	                    }
-	                    var hodVal = _ChronoField.ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
-	                    if (moh != null) {
-	                        var mohVal = _ChronoField.ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
-	                        if (som != null) {
-	                            var somVal = _ChronoField.ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
-	                            if (nos != null) {
-	                                var nosVal = _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
-	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal, somVal, nosVal));
-	                            } else {
-	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal, somVal));
-	                            }
-	                        } else {
-	                            if (nos == null) {
-	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal));
-	                            }
-	                        }
-	                    } else {
-	                        if (som == null && nos == null) {
-	                            this._addObject(_LocalTime.LocalTime.of(hodVal, 0));
-	                        }
-	                    }
-	                }
-	            } else {
-	                if (hod != null) {
-	                    var hodVal = hod;
-	                    if (moh != null) {
-	                        if (som != null) {
-	                            if (nos == null) {
-	                                nos = 0;
-	                            }
-	                            var totalNanos = _MathUtil.MathUtil.safeMultiply(hodVal, 3600000000000);
-	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, _MathUtil.MathUtil.safeMultiply(moh, 60000000000));
-	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, _MathUtil.MathUtil.safeMultiply(som, 1000000000));
-	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, nos);
-	                            var excessDays = _MathUtil.MathUtil.floorDiv(totalNanos, 86400000000000);
-	                            var nod = _MathUtil.MathUtil.floorMod(totalNanos, 86400000000000);
-	                            this._addObject(_LocalTime.LocalTime.ofNanoOfDay(nod));
-	                            this.excessDays = _Period.Period.ofDays(excessDays);
-	                        } else {
-	                            var totalSecs = _MathUtil.MathUtil.safeMultiply(hodVal, 3600);
-	                            totalSecs = _MathUtil.MathUtil.safeAdd(totalSecs, _MathUtil.MathUtil.safeMultiply(moh, 60));
-	                            var excessDays = _MathUtil.MathUtil.floorDiv(totalSecs, 86400);
-	                            var sod = _MathUtil.MathUtil.floorMod(totalSecs, 86400);
-	                            this._addObject(_LocalTime.LocalTime.ofSecondOfDay(sod));
-	                            this.excessDays = _Period.Period.ofDays(excessDays);
-	                        }
-	                    } else {
-	                        var excessDays = _MathUtil.MathUtil.safeToInt(_MathUtil.MathUtil.floorDiv(hodVal, 24));
-	                        hodVal = _MathUtil.MathUtil.floorMod(hodVal, 24);
-	                        this._addObject(_LocalTime.LocalTime.of(hodVal, 0));
-	                        this.excessDays = _Period.Period.ofDays(excessDays);
-	                    }
-	                }
-	            }
-	            this.fieldValues.remove(_ChronoField.ChronoField.HOUR_OF_DAY);
-	            this.fieldValues.remove(_ChronoField.ChronoField.MINUTE_OF_HOUR);
-	            this.fieldValues.remove(_ChronoField.ChronoField.SECOND_OF_MINUTE);
-	            this.fieldValues.remove(_ChronoField.ChronoField.NANO_OF_SECOND);
-	        }
-	    }, {
-	        key: '_addObject',
-	        value: function _addObject(dateOrTime) {
-	            if (dateOrTime instanceof _ChronoLocalDate.ChronoLocalDate) {
-	                this.date = dateOrTime;
-	            } else if (dateOrTime instanceof _LocalTime.LocalTime) {
-	                this.time = dateOrTime;
-	            }
-	        }
-	    }, {
-	        key: 'build',
-	        value: function build(type) {
-	            return type.queryFrom(this);
-	        }
-	    }, {
-	        key: 'query',
-	        value: function query(_query) {
-	            if (_query === _TemporalQueries.TemporalQueries.zoneId()) {
-	                return this.zone;
-	            } else if (_query === _TemporalQueries.TemporalQueries.chronology()) {
-	                return this.chrono;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
-	                return this.date != null ? _LocalDate.LocalDate.from(this.date) : null;
-	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
-	                return this.time;
-	            } else if (_query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
-	                return _query.queryFrom(this);
-	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	                return null;
-	            }
-	
-	            return _query.queryFrom(this);
-	        }
-	    }]);
-	
-	    return DateTimeBuilder;
-	}(_Temporal2.Temporal);
-
-	exports.DateTimeBuilder = DateTimeBuilder;
-
-/***/ },
-/* 29 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var EnumMap = exports.EnumMap = function () {
-	    function EnumMap() {
-	        _classCallCheck(this, EnumMap);
-	
-	        this._map = {};
-	    }
-	
-	    _createClass(EnumMap, [{
-	        key: "putAll",
-	        value: function putAll(otherMap) {
-	            for (var key in otherMap._map) {
-	                this._map[key] = otherMap._map[key];
-	            }
-	            return this;
-	        }
-	    }, {
-	        key: "containsKey",
-	        value: function containsKey(key) {
-	            return this._map.hasOwnProperty(key.name());
-	        }
-	    }, {
-	        key: "get",
-	        value: function get(key) {
-	            return this._map[key.name()];
-	        }
-	    }, {
-	        key: "set",
-	        value: function set(key, val) {
-	            this._map[key.name()] = val;
-	            return this;
-	        }
-	    }, {
-	        key: "retainAll",
-	        value: function retainAll(keyList) {
-	            var map = {};
-	            for (var i = 0; i < keyList.length; i++) {
-	                var key = keyList[i].name();
-	                map[key] = this._map[key];
-	            }
-	            this._map = map;
-	            return this;
-	        }
-	    }, {
-	        key: "remove",
-	        value: function remove(key) {
-	            var keyName = key.name();
-	            var val = this._map[keyName];
-	            this._map[keyName] = undefined;
-	            return val;
-	        }
-	    }, {
-	        key: "keySet",
-	        value: function keySet() {
-	            return this._map;
-	        }
-	    }, {
-	        key: "clear",
-	        value: function clear() {
-	            this._map = {};
-	        }
-	    }]);
-	
-	    return EnumMap;
-	}();
-
-/***/ },
-/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6228,13 +5804,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _IsoChronology = __webpack_require__(13);
+	var _IsoChronology = __webpack_require__(9);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _TemporalAmount2 = __webpack_require__(9);
+	var _TemporalAmount2 = __webpack_require__(15);
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -6635,7 +6211,906 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var ParsePosition = exports.ParsePosition = function () {
+	    function ParsePosition(index) {
+	        _classCallCheck(this, ParsePosition);
+	
+	        this._index = index;
+	        this._errorIndex = -1;
+	    }
+	
+	    _createClass(ParsePosition, [{
+	        key: "getIndex",
+	        value: function getIndex() {
+	            return this._index;
+	        }
+	    }, {
+	        key: "setIndex",
+	        value: function setIndex(index) {
+	            this._index = index;
+	        }
+	    }, {
+	        key: "getErrorIndex",
+	        value: function getErrorIndex() {
+	            return this._errorIndex;
+	        }
+	    }, {
+	        key: "setErrorIndex",
+	        value: function setErrorIndex(errorIndex) {
+	            this._errorIndex = errorIndex;
+	        }
+	    }]);
+	
+	    return ParsePosition;
+	}();
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeBuilder = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _assert = __webpack_require__(2);
+	
+	var _errors = __webpack_require__(3);
+	
+	var _MathUtil = __webpack_require__(6);
+	
+	var _EnumMap = __webpack_require__(31);
+	
+	var _ResolverStyle = __webpack_require__(25);
+	
+	var _IsoChronology = __webpack_require__(9);
+	
+	var _ChronoLocalDate = __webpack_require__(26);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _Temporal2 = __webpack_require__(20);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _LocalTime = __webpack_require__(5);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	var _Period = __webpack_require__(28);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var DateTimeBuilder = function (_Temporal) {
+	    _inherits(DateTimeBuilder, _Temporal);
+	
+	    function DateTimeBuilder() {
+	        _classCallCheck(this, DateTimeBuilder);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(DateTimeBuilder).call(this));
+	
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	
+	        _this.chrono = null;
+	
+	        _this.zone = null;
+	
+	        _this.date = null;
+	
+	        _this.time = null;
+	
+	        _this.leapSecond = false;
+	
+	        _this.excessDays = null;
+	        return _this;
+	    }
+	
+	    _createClass(DateTimeBuilder, [{
+	        key: 'getFieldValue0',
+	        value: function getFieldValue0(field) {
+	            return this.fieldValues.get(field);
+	        }
+	    }, {
+	        key: '_addFieldValue',
+	        value: function _addFieldValue(field, value) {
+	            (0, _assert.requireNonNull)(field, 'field');
+	            var old = this.getFieldValue0(field);
+	            if (old != null && old.longValue() !== value) {
+	                throw new _errors.DateTimeException('Conflict found: ' + field + ' ' + old + ' differs from ' + field + ' ' + value + ': ' + this);
+	            }
+	            return this._putFieldValue0(field, value);
+	        }
+	    }, {
+	        key: '_putFieldValue0',
+	        value: function _putFieldValue0(field, value) {
+	            this.fieldValues.put(field, value);
+	            return this;
+	        }
+	    }, {
+	        key: 'resolve',
+	        value: function resolve(resolverStyle, resolverFields) {
+	            if (resolverFields != null) {
+	                this.fieldValues.retainAll(resolverFields);
+	            }
+	
+	            this._mergeDate(resolverStyle);
+	            this._mergeTime(resolverStyle);
+	
+	            this._resolveTimeInferZeroes(resolverStyle);
+	
+	            if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
+	                this.date = this.date.plus(this.excessDays);
+	                this.excessDays = _Period.Period.ZERO;
+	            }
+	
+	            return this;
+	        }
+	    }, {
+	        key: '_mergeDate',
+	        value: function _mergeDate(resolverStyle) {
+	            this._checkDate(_IsoChronology.IsoChronology.INSTANCE.resolveDate(this.fieldValues, resolverStyle));
+	        }
+	    }, {
+	        key: '_checkDate',
+	        value: function _checkDate(date) {
+	            if (date != null) {
+	                this._addObject(date);
+	                for (var field in this.fieldValues.keySet()) {
+	                    if (field instanceof _ChronoField.ChronoField) {
+	                        if (field.isDateBased()) {
+	                            var val1;
+	                            try {
+	                                val1 = date.getLong(field);
+	                            } catch (ex) {
+	                                if (ex instanceof _errors.DateTimeException) {
+	                                    continue;
+	                                } else {
+	                                    throw ex;
+	                                }
+	                            }
+	                            var val2 = this.fieldValues.get(field);
+	                            if (val1 !== val2) {
+	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    }, {
+	        key: '_mergeTime',
+	        value: function _mergeTime(resolverStyle) {
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY)) {
+	                var ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && ch === 0) {} else {
+	                            _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY.checkValidValue(ch);
+	                        }
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, ch === 24 ? 0 : ch);
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM)) {
+	                var ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && ch === 0) {} else {
+	                            _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM.checkValidValue(ch);
+	                        }
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_AMPM, ch === 12 ? 0 : ch);
+	            }
+	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.AMPM_OF_DAY)) {
+	                    _ChronoField.ChronoField.AMPM_OF_DAY.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.AMPM_OF_DAY));
+	                }
+	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.HOUR_OF_AMPM)) {
+	                    _ChronoField.ChronoField.HOUR_OF_AMPM.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.HOUR_OF_AMPM));
+	                }
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.AMPM_OF_DAY) && this.fieldValues.containsKey(_ChronoField.ChronoField.HOUR_OF_AMPM)) {
+	                var ap = this.fieldValues.remove(_ChronoField.ChronoField.AMPM_OF_DAY);
+	                var hap = this.fieldValues.remove(_ChronoField.ChronoField.HOUR_OF_AMPM);
+	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, ap * 12 + hap);
+	            }
+	
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_DAY)) {
+	                var nod = this.fieldValues.remove(_ChronoField.ChronoField.NANO_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    _ChronoField.ChronoField.NANO_OF_DAY.checkValidValue(nod);
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(nod, 1000000000));
+	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, _MathUtil.MathUtil.intMod(nod, 1000000000));
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_DAY)) {
+	                var cod = this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    _ChronoField.ChronoField.MICRO_OF_DAY.checkValidValue(cod);
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(cod, 1000000));
+	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intMod(cod, 1000000));
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_DAY)) {
+	                var lod = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    _ChronoField.ChronoField.MILLI_OF_DAY.checkValidValue(lod);
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_DAY, _MathUtil.MathUtil.intDiv(lod, 1000));
+	                this._addFieldValue(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intMod(lod, 1000));
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.SECOND_OF_DAY)) {
+	                var sod = this.fieldValues.remove(_ChronoField.ChronoField.SECOND_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    _ChronoField.ChronoField.SECOND_OF_DAY.checkValidValue(sod);
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, _MathUtil.MathUtil.intDiv(sod, 3600));
+	                this._addFieldValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(sod, 60), 60));
+	                this._addFieldValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, _MathUtil.MathUtil.intMod(sod, 60));
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MINUTE_OF_DAY)) {
+	                var mod = this.fieldValues.remove(_ChronoField.ChronoField.MINUTE_OF_DAY);
+	                if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                    _ChronoField.ChronoField.MINUTE_OF_DAY.checkValidValue(mod);
+	                }
+	                this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, _MathUtil.MathUtil.intDiv(mod, 60));
+	                this._addFieldValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, _MathUtil.MathUtil.intMod(mod, 60));
+	            }
+	
+	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND)) {
+	                    _ChronoField.ChronoField.MILLI_OF_SECOND.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.MILLI_OF_SECOND));
+	                }
+	                if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
+	                    _ChronoField.ChronoField.MICRO_OF_SECOND.checkValidValue(this.fieldValues.get(_ChronoField.ChronoField.MICRO_OF_SECOND));
+	                }
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
+	                var los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
+	                var cos = this.fieldValues.get(_ChronoField.ChronoField.MICRO_OF_SECOND);
+	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, los * 1000 + _MathUtil.MathUtil.intMod(cos, 1000));
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
+	                var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
+	                this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000));
+	                this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
+	                var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
+	                this._addFieldValue(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000000));
+	                this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
+	            }
+	            if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
+	                var cos = this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
+	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, cos * 1000);
+	            } else if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND)) {
+	                var los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
+	                this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, los * 1000000);
+	            }
+	        }
+	    }, {
+	        key: '_resolveTimeInferZeroes',
+	        value: function _resolveTimeInferZeroes(resolverStyle) {
+	            var hod = this.fieldValues.get(_ChronoField.ChronoField.HOUR_OF_DAY);
+	            var moh = this.fieldValues.get(_ChronoField.ChronoField.MINUTE_OF_HOUR);
+	            var som = this.fieldValues.get(_ChronoField.ChronoField.SECOND_OF_MINUTE);
+	            var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
+	            if (hod == null) {
+	                return;
+	            }
+	            if (moh == null && (som != null || nos != null)) {
+	                return;
+	            }
+	            if (moh != null && som == null && nos != null) {
+	                return;
+	            }
+	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                if (hod != null) {
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && hod === 24 && (moh == null || moh === 0) && (som == null || som === 0) && (nos == null || nos === 0)) {
+	                        hod = 0;
+	                        this.excessDays = _Period.Period.ofDays(1);
+	                    }
+	                    var hodVal = _ChronoField.ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
+	                    if (moh != null) {
+	                        var mohVal = _ChronoField.ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
+	                        if (som != null) {
+	                            var somVal = _ChronoField.ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
+	                            if (nos != null) {
+	                                var nosVal = _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
+	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal, somVal, nosVal));
+	                            } else {
+	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal, somVal));
+	                            }
+	                        } else {
+	                            if (nos == null) {
+	                                this._addObject(_LocalTime.LocalTime.of(hodVal, mohVal));
+	                            }
+	                        }
+	                    } else {
+	                        if (som == null && nos == null) {
+	                            this._addObject(_LocalTime.LocalTime.of(hodVal, 0));
+	                        }
+	                    }
+	                }
+	            } else {
+	                if (hod != null) {
+	                    var hodVal = hod;
+	                    if (moh != null) {
+	                        if (som != null) {
+	                            if (nos == null) {
+	                                nos = 0;
+	                            }
+	                            var totalNanos = _MathUtil.MathUtil.safeMultiply(hodVal, 3600000000000);
+	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, _MathUtil.MathUtil.safeMultiply(moh, 60000000000));
+	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, _MathUtil.MathUtil.safeMultiply(som, 1000000000));
+	                            totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, nos);
+	                            var excessDays = _MathUtil.MathUtil.floorDiv(totalNanos, 86400000000000);
+	                            var nod = _MathUtil.MathUtil.floorMod(totalNanos, 86400000000000);
+	                            this._addObject(_LocalTime.LocalTime.ofNanoOfDay(nod));
+	                            this.excessDays = _Period.Period.ofDays(excessDays);
+	                        } else {
+	                            var totalSecs = _MathUtil.MathUtil.safeMultiply(hodVal, 3600);
+	                            totalSecs = _MathUtil.MathUtil.safeAdd(totalSecs, _MathUtil.MathUtil.safeMultiply(moh, 60));
+	                            var excessDays = _MathUtil.MathUtil.floorDiv(totalSecs, 86400);
+	                            var sod = _MathUtil.MathUtil.floorMod(totalSecs, 86400);
+	                            this._addObject(_LocalTime.LocalTime.ofSecondOfDay(sod));
+	                            this.excessDays = _Period.Period.ofDays(excessDays);
+	                        }
+	                    } else {
+	                        var excessDays = _MathUtil.MathUtil.safeToInt(_MathUtil.MathUtil.floorDiv(hodVal, 24));
+	                        hodVal = _MathUtil.MathUtil.floorMod(hodVal, 24);
+	                        this._addObject(_LocalTime.LocalTime.of(hodVal, 0));
+	                        this.excessDays = _Period.Period.ofDays(excessDays);
+	                    }
+	                }
+	            }
+	            this.fieldValues.remove(_ChronoField.ChronoField.HOUR_OF_DAY);
+	            this.fieldValues.remove(_ChronoField.ChronoField.MINUTE_OF_HOUR);
+	            this.fieldValues.remove(_ChronoField.ChronoField.SECOND_OF_MINUTE);
+	            this.fieldValues.remove(_ChronoField.ChronoField.NANO_OF_SECOND);
+	        }
+	    }, {
+	        key: '_addObject',
+	        value: function _addObject(dateOrTime) {
+	            if (dateOrTime instanceof _ChronoLocalDate.ChronoLocalDate) {
+	                this.date = dateOrTime;
+	            } else if (dateOrTime instanceof _LocalTime.LocalTime) {
+	                this.time = dateOrTime;
+	            }
+	        }
+	    }, {
+	        key: 'build',
+	        value: function build(type) {
+	            return type.queryFrom(this);
+	        }
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            if (field == null) {
+	                return false;
+	            }
+	            return this.fieldValues.containsKey(field) || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
+	        }
+	    }, {
+	        key: 'getLong',
+	        value: function getLong(field) {
+	            (0, _assert.requireNonNull)(field, 'field');
+	            var value = this.getFieldValue0(field);
+	            if (value == null) {
+	                if (this.date != null && this.date.isSupported(field)) {
+	                    return this.date.getLong(field);
+	                }
+	                if (this.time != null && this.time.isSupported(field)) {
+	                    return this.time.getLong(field);
+	                }
+	                throw new _errors.DateTimeException('Field not found: ' + field);
+	            }
+	            return value;
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId()) {
+	                return this.zone;
+	            } else if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localDate()) {
+	                return this.date != null ? _LocalDate.LocalDate.from(this.date) : null;
+	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
+	                return this.time;
+	            } else if (_query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	                return _query.queryFrom(this);
+	            } else if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	                return null;
+	            }
+	
+	            return _query.queryFrom(this);
+	        }
+	    }]);
+	
+	    return DateTimeBuilder;
+	}(_Temporal2.Temporal);
+
+	exports.DateTimeBuilder = DateTimeBuilder;
+
+/***/ },
 /* 31 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var EnumMap = exports.EnumMap = function () {
+	    function EnumMap() {
+	        _classCallCheck(this, EnumMap);
+	
+	        this._map = {};
+	    }
+	
+	    _createClass(EnumMap, [{
+	        key: "putAll",
+	        value: function putAll(otherMap) {
+	            for (var key in otherMap._map) {
+	                this._map[key] = otherMap._map[key];
+	            }
+	            return this;
+	        }
+	    }, {
+	        key: "containsKey",
+	        value: function containsKey(key) {
+	            return this._map.hasOwnProperty(key.name());
+	        }
+	    }, {
+	        key: "get",
+	        value: function get(key) {
+	            return this._map[key.name()];
+	        }
+	    }, {
+	        key: "set",
+	        value: function set(key, val) {
+	            this._map[key.name()] = val;
+	            return this;
+	        }
+	    }, {
+	        key: "retainAll",
+	        value: function retainAll(keyList) {
+	            var map = {};
+	            for (var i = 0; i < keyList.length; i++) {
+	                var key = keyList[i].name();
+	                map[key] = this._map[key];
+	            }
+	            this._map = map;
+	            return this;
+	        }
+	    }, {
+	        key: "remove",
+	        value: function remove(key) {
+	            var keyName = key.name();
+	            var val = this._map[keyName];
+	            this._map[keyName] = undefined;
+	            return val;
+	        }
+	    }, {
+	        key: "keySet",
+	        value: function keySet() {
+	            return this._map;
+	        }
+	    }, {
+	        key: "clear",
+	        value: function clear() {
+	            this._map = {};
+	        }
+	    }]);
+	
+	    return EnumMap;
+	}();
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimeParseContext = undefined;
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _assert = __webpack_require__(2);
+	
+	var _DateTimeBuilder = __webpack_require__(30);
+	
+	var _EnumMap = __webpack_require__(31);
+	
+	var _IsoChronology = __webpack_require__(9);
+	
+	var _Temporal2 = __webpack_require__(20);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var DateTimeParseContext = exports.DateTimeParseContext = function () {
+	    function DateTimeParseContext() {
+	        _classCallCheck(this, DateTimeParseContext);
+	
+	        if (arguments.length === 1) {
+	            if (arguments[0] instanceof DateTimeParseContext) {
+	                this._constructorSelf.apply(this, arguments);
+	                return;
+	            } else {
+	                this._constructorFormatter.apply(this, arguments);
+	            }
+	        } else {
+	            this._constructorParam.apply(this, arguments);
+	        }
+	
+	        this._caseSensitive = true;
+	        this._strict = true;
+	        this._parsed = [new Parsed(this)];
+	    }
+	
+	    _createClass(DateTimeParseContext, [{
+	        key: '_constructorParam',
+	        value: function _constructorParam(locale, symbols, chronology) {
+	            this._locale = locale;
+	            this._symbols = symbols;
+	            this._overrideChronology = chronology;
+	        }
+	    }, {
+	        key: '_constructorFormatter',
+	        value: function _constructorFormatter(formatter) {
+	            this._locale = formatter.locale();
+	            this._symbols = formatter.decimalStyle();
+	            this._overrideChronology = formatter.chronology();
+	        }
+	    }, {
+	        key: '_constructorSelf',
+	        value: function _constructorSelf(other) {
+	            this._locale = other._locale;
+	            this._symbols = other._symbols;
+	            this._overrideChronology = other._overrideChronology;
+	            this._overrideZone = other._overrideZone;
+	            this._caseSensitive = other._caseSensitive;
+	            this._strict = other._strict;
+	            this._parsed = [new Parsed(this)];
+	        }
+	    }, {
+	        key: 'copy',
+	        value: function copy() {
+	            return new DateTimeParseContext(this);
+	        }
+	    }, {
+	        key: 'symbols',
+	        value: function symbols() {
+	            return this._symbols;
+	        }
+	    }, {
+	        key: 'isStrict',
+	        value: function isStrict() {
+	            return this._strict;
+	        }
+	    }, {
+	        key: 'setStrict',
+	        value: function setStrict(strict) {
+	            this._strict = strict;
+	        }
+	    }, {
+	        key: 'startOptional',
+	        value: function startOptional() {
+	            this._parsed.push(this.currentParsed().copy());
+	        }
+	    }, {
+	        key: 'endOptional',
+	        value: function endOptional(successful) {
+	            if (successful) {
+	                this._parsed.splice(this._parsed.length - 2, 1);
+	            } else {
+	                this._parsed.splice(this._parsed.length - 1, 1);
+	            }
+	        }
+	    }, {
+	        key: 'isCaseSensitive',
+	        value: function isCaseSensitive() {
+	            return this._caseSensitive;
+	        }
+	    }, {
+	        key: 'setCaseSensitive',
+	        value: function setCaseSensitive(caseSensitive) {
+	            this._caseSensitive = caseSensitive;
+	        }
+	    }, {
+	        key: 'subSequenceEquals',
+	        value: function subSequenceEquals(cs1, offset1, cs2, offset2, length) {
+	            if (offset1 + length > cs1.length || offset2 + length > cs2.length) {
+	                return false;
+	            }
+	            if (!this.isCaseSensitive()) {
+	                cs1 = cs1.toLowerCase();
+	                cs2 = cs2.toLowerCase();
+	            }
+	            for (var i = 0; i < length; i++) {
+	                var ch1 = cs1[offset1 + i];
+	                var ch2 = cs2[offset2 + i];
+	                if (ch1 !== ch2) {
+	                    return false;
+	                }
+	            }
+	            return true;
+	        }
+	    }, {
+	        key: 'charEquals',
+	        value: function charEquals(ch1, ch2) {
+	            if (this.isCaseSensitive()) {
+	                return ch1 === ch2;
+	            }
+	            return this.charEqualsIgnoreCase(ch1, ch2);
+	        }
+	    }, {
+	        key: 'charEqualsIgnoreCase',
+	        value: function charEqualsIgnoreCase(c1, c2) {
+	            return c1 === c2 || c1.toLowerCase() === c2.toLowerCase();
+	        }
+	    }, {
+	        key: 'setParsedField',
+	        value: function setParsedField(field, value, errorPos, successPos) {
+	            var currentParsedFieldValues = this.currentParsed().fieldValues;
+	            var old = currentParsedFieldValues.get(field);
+	            currentParsedFieldValues.set(field, value);
+	            return old != null && old !== value ? ~errorPos : successPos;
+	        }
+	    }, {
+	        key: 'getParsed',
+	        value: function getParsed(field) {
+	            return this.currentParsed().fieldValues.get(field);
+	        }
+	    }, {
+	        key: 'toParsed',
+	        value: function toParsed() {
+	            return this.currentParsed();
+	        }
+	    }, {
+	        key: 'currentParsed',
+	        value: function currentParsed() {
+	            return this._parsed[this._parsed.length - 1];
+	        }
+	    }, {
+	        key: 'setParsedLeapSecond',
+	        value: function setParsedLeapSecond() {
+	            this.currentParsed().leapSecond = true;
+	        }
+	    }, {
+	        key: 'getEffectiveChronology',
+	        value: function getEffectiveChronology() {
+	            var chrono = this.currentParsed().chrono;
+	            if (chrono == null) {
+	                chrono = this._overrideChronology;
+	                if (chrono == null) {
+	                    chrono = _IsoChronology.IsoChronology.INSTANCE;
+	                }
+	            }
+	            return chrono;
+	        }
+	    }]);
+	
+	    return DateTimeParseContext;
+	}();
+	
+	var Parsed = function (_Temporal) {
+	    _inherits(Parsed, _Temporal);
+	
+	    function Parsed(dateTimeParseContext) {
+	        _classCallCheck(this, Parsed);
+	
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Parsed).call(this));
+	
+	        _this.chrono = null;
+	        _this.zone = null;
+	        _this.fieldValues = new _EnumMap.EnumMap();
+	        _this.leapSecond = false;
+	        _this.dateTimeParseContext = dateTimeParseContext;
+	        return _this;
+	    }
+	
+	    _createClass(Parsed, [{
+	        key: 'copy',
+	        value: function copy() {
+	            var cloned = new Parsed();
+	            cloned.chrono = this.chrono;
+	            cloned.zone = this.zone;
+	            cloned.fieldValues.putAll(this.fieldValues);
+	            cloned.leapSecond = this.leapSecond;
+	            cloned.dateTimeParseContext = this.dateTimeParseContext;
+	            return cloned;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this.fieldValues + ', ' + this.chrono + ', ' + this.zone;
+	        }
+	    }, {
+	        key: 'isSupported',
+	        value: function isSupported(field) {
+	            return this.fieldValues.containsKey(field);
+	        }
+	    }, {
+	        key: 'get',
+	        value: function get(field) {
+	            var val = this.fieldValues.get(field);
+	            (0, _assert.assert)(val != null);
+	            return val;
+	        }
+	    }, {
+	        key: 'query',
+	        value: function query(_query) {
+	            if (_query === _TemporalQueries.TemporalQueries.chronology()) {
+	                return this.chrono;
+	            }
+	            if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.zone()) {
+	                return this.zone;
+	            }
+	            return _get(Object.getPrototypeOf(Parsed.prototype), 'query', this).call(this, _query);
+	        }
+	    }, {
+	        key: 'toBuilder',
+	        value: function toBuilder() {
+	            var builder = new _DateTimeBuilder.DateTimeBuilder();
+	            builder.fieldValues.putAll(this.fieldValues);
+	            builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
+	            if (this.zone != null) {
+	                builder.zone = this.zone;
+	            } else {
+	                builder.zone = this.overrideZone;
+	            }
+	            builder.leapSecond = this.leapSecond;
+	            builder.excessDays = this.excessDays;
+	            return builder;
+	        }
+	    }]);
+	
+	    return Parsed;
+	}(_Temporal2.Temporal);
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DateTimePrintContext = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _errors = __webpack_require__(3);
+	
+	var _DateTimeFormatter = __webpack_require__(27);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var DateTimePrintContext = exports.DateTimePrintContext = function () {
+	    function DateTimePrintContext(temporal, localeOrFormatter, symbols) {
+	        _classCallCheck(this, DateTimePrintContext);
+	
+	        if (arguments.length === 2 && arguments[1] instanceof _DateTimeFormatter.DateTimeFormatter) {
+	            this._temporal = DateTimePrintContext.adjust(temporal, localeOrFormatter);
+	            this._locale = localeOrFormatter.locale();
+	            this._symbols = localeOrFormatter.decimalStyle();
+	        } else {
+	            this._temporal = temporal;
+	            this._locale = localeOrFormatter;
+	            this._symbols = symbols;
+	        }
+	        this._optional = 0;
+	    }
+	
+	    _createClass(DateTimePrintContext, [{
+	        key: 'symbols',
+	        value: function symbols() {
+	            return this._symbols;
+	        }
+	    }, {
+	        key: 'startOptional',
+	        value: function startOptional() {
+	            this._optional++;
+	        }
+	    }, {
+	        key: 'endOptional',
+	        value: function endOptional() {
+	            this._optional--;
+	        }
+	    }, {
+	        key: 'getValue',
+	        value: function getValue(field) {
+	            try {
+	                return this._temporal.getLong(field);
+	            } catch (ex) {
+	                if (ex instanceof _errors.DateTimeException && this._optional > 0) {
+	                    return null;
+	                }
+	                throw ex;
+	            }
+	        }
+	    }, {
+	        key: 'temporal',
+	        value: function temporal() {
+	            return this._temporal;
+	        }
+	    }, {
+	        key: 'setDateTime',
+	        value: function setDateTime(temporal) {
+	            this._temporal = temporal;
+	        }
+	    }], [{
+	        key: 'adjust',
+	        value: function adjust(temporal, formatter) {
+	            return temporal;
+	        }
+	    }]);
+	
+	    return DateTimePrintContext;
+	}();
+
+/***/ },
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6655,17 +7130,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _Enum2 = __webpack_require__(14);
+	var _Enum2 = __webpack_require__(10);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
-	var _DecimalStyle = __webpack_require__(32);
+	var _DecimalStyle = __webpack_require__(35);
 	
-	var _SignStyle = __webpack_require__(33);
+	var _SignStyle = __webpack_require__(36);
 	
-	var _ResolverStyle = __webpack_require__(22);
+	var _ResolverStyle = __webpack_require__(25);
 	
 	var _MathUtil = __webpack_require__(6);
+	
+	var _LocalDateTime = __webpack_require__(7);
+	
+	var _ZoneOffset = __webpack_require__(24);
+	
+	var _ChronoField = __webpack_require__(12);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -6799,6 +7280,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        key: 'appendFraction',
 	        value: function appendFraction(field, minWidth, maxWidth, decimalPoint) {
 	            this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint));
+	            return this;
+	        }
+	    }, {
+	        key: 'appendInstant',
+	        value: function appendInstant() {
+	            var fractionalDigits = arguments.length <= 0 || arguments[0] === undefined ? -2 : arguments[0];
+	
+	            if (fractionalDigits < -2 || fractionalDigits > 9) {
+	                throw new _errors.IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
+	            }
+	            this._appendInternal(new InstantPrinterParser(fractionalDigits));
 	            return this;
 	        }
 	    }, {
@@ -7441,41 +7933,136 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return FractionPrinterParser;
 	}();
 	
-	var StringBuilder = function () {
-	    function StringBuilder() {
-	        _classCallCheck(this, StringBuilder);
+	var SECONDS_PER_10000_YEARS = 146097 * 25 * 86400;
+	var SECONDS_0000_TO_1970 = (146097 * 5 - (30 * 365 + 7)) * 86400;
 	
-	        this._str = '';
+	var InstantPrinterParser = function () {
+	    function InstantPrinterParser(fractionalDigits) {
+	        _classCallCheck(this, InstantPrinterParser);
+	
+	        this.fractionalDigits = fractionalDigits;
 	    }
 	
-	    _createClass(StringBuilder, [{
-	        key: 'append',
-	        value: function append(str) {
-	            this._str += str;
+	    _createClass(InstantPrinterParser, [{
+	        key: 'print',
+	        value: function print(context, buf) {
+	            var inSecs = context.getValue(_ChronoField.ChronoField.INSTANT_SECONDS);
+	            var inNanos = 0;
+	            if (context.temporal().isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)) {
+	                inNanos = context.temporal().getLong(_ChronoField.ChronoField.NANO_OF_SECOND);
+	            }
+	            if (inSecs == null) {
+	                return false;
+	            }
+	            var inSec = inSecs;
+	            var inNano = _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
+	            if (inSec >= -SECONDS_0000_TO_1970) {
+	                var zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
+	                var hi = _MathUtil.MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
+	                var lo = _MathUtil.MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
+	                var ldt = _LocalDateTime.LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, _ZoneOffset.ZoneOffset.UTC);
+	                if (hi > 0) {
+	                    buf.append('+').append(hi);
+	                }
+	                buf.append(ldt);
+	                if (ldt.second() === 0) {
+	                    buf.append(':00');
+	                }
+	            } else {
+	                var zeroSecs = inSec + SECONDS_0000_TO_1970;
+	                var hi = _MathUtil.MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
+	                var lo = _MathUtil.MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
+	                var ldt = _LocalDateTime.LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, _ZoneOffset.ZoneOffset.UTC);
+	                var pos = buf.length();
+	                buf.append(ldt);
+	                if (ldt.second() === 0) {
+	                    buf.append(':00');
+	                }
+	                if (hi < 0) {
+	                    if (ldt.year() === -10000) {
+	                        buf.replace(pos, pos + 2, '' + (hi - 1));
+	                    } else if (lo === 0) {
+	                        buf.insert(pos, hi);
+	                    } else {
+	                        buf.insert(pos + 1, Math.abs(hi));
+	                    }
+	                }
+	            }
+	
+	            if (this.fractionalDigits === -2) {
+	                if (inNano !== 0) {
+	                    buf.append('.');
+	                    if (_MathUtil.MathUtil.intMod(inNano, 1000000) === 0) {
+	                        buf.append(('' + (_MathUtil.MathUtil.intDiv(inNano, 1000000) + 1000)).substring(1));
+	                    } else if (_MathUtil.MathUtil.intMod(inNano, 1000) === 0) {
+	                        buf.append(('' + (_MathUtil.MathUtil.intDiv(inNano, 1000) + 1000000)).substring(1));
+	                    } else {
+	                        buf.append(('' + (inNano + 1000000000)).substring(1));
+	                    }
+	                }
+	            } else if (this.fractionalDigits > 0 || this.fractionalDigits === -1 && inNano > 0) {
+	                buf.append('.');
+	                var div = 100000000;
+	                for (var i = 0; this.fractionalDigits === -1 && inNano > 0 || i < this.fractionalDigits; i++) {
+	                    var digit = _MathUtil.MathUtil.intDiv(inNano, div);
+	                    buf.append(digit);
+	                    inNano = inNano - digit * div;
+	                    div = _MathUtil.MathUtil.intDiv(div, 10);
+	                }
+	            }
+	            buf.append('Z');
+	            return true;
 	        }
 	    }, {
-	        key: 'insert',
-	        value: function insert(offset, str) {
-	            this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
-	        }
-	    }, {
-	        key: 'length',
-	        value: function length() {
-	            return this._str.length;
-	        }
-	    }, {
-	        key: 'setLength',
-	        value: function setLength(length) {
-	            this._str = this._str.slice(0, length);
+	        key: 'parse',
+	        value: function parse(context, text, position) {
+	            var newContext = context.copy();
+	            var minDigits = this.fractionalDigits < 0 ? 0 : this.fractionalDigits;
+	            var maxDigits = this.fractionalDigits < 0 ? 9 : this.fractionalDigits;
+	            var parser = new DateTimeFormatterBuilder().append(_DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').appendValue(_ChronoField.ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, 2).appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z').toFormatter().toPrinterParser(false);
+	            var pos = parser.parse(newContext, text, position);
+	            if (pos < 0) {
+	                return pos;
+	            }
+	
+	            var yearParsed = newContext.getParsed(_ChronoField.ChronoField.YEAR);
+	            var month = newContext.getParsed(_ChronoField.ChronoField.MONTH_OF_YEAR);
+	            var day = newContext.getParsed(_ChronoField.ChronoField.DAY_OF_MONTH);
+	            var hour = newContext.getParsed(_ChronoField.ChronoField.HOUR_OF_DAY);
+	            var min = newContext.getParsed(_ChronoField.ChronoField.MINUTE_OF_HOUR);
+	            var secVal = newContext.getParsed(_ChronoField.ChronoField.SECOND_OF_MINUTE);
+	            var nanoVal = newContext.getParsed(_ChronoField.ChronoField.NANO_OF_SECOND);
+	            var sec = secVal != null ? secVal : 0;
+	            var nano = nanoVal != null ? nanoVal : 0;
+	            var year = _MathUtil.MathUtil.intMod(yearParsed, 10000);
+	            var days = 0;
+	            if (hour === 24 && min === 0 && sec === 0 && nano === 0) {
+	                hour = 0;
+	                days = 1;
+	            } else if (hour === 23 && min === 59 && sec === 60) {
+	                context.setParsedLeapSecond();
+	                sec = 59;
+	            }
+	            var instantSecs;
+	            try {
+	                var ldt = _LocalDateTime.LocalDateTime.of(year, month, day, hour, min, sec, 0).plusDays(days);
+	                instantSecs = ldt.toEpochSecond(_ZoneOffset.ZoneOffset.UTC);
+	                instantSecs += _MathUtil.MathUtil.safeMultiply(_MathUtil.MathUtil.intDiv(yearParsed, 10000), SECONDS_PER_10000_YEARS);
+	            } catch (ex) {
+	                return ~position;
+	            }
+	            var successPos = pos;
+	            successPos = context.setParsedField(_ChronoField.ChronoField.INSTANT_SECONDS, instantSecs, position, successPos);
+	            return context.setParsedField(_ChronoField.ChronoField.NANO_OF_SECOND, nano, position, successPos);
 	        }
 	    }, {
 	        key: 'toString',
 	        value: function toString() {
-	            return this._str;
+	            return 'Instant()';
 	        }
 	    }]);
 	
-	    return StringBuilder;
+	    return InstantPrinterParser;
 	}();
 	
 	DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
@@ -7485,10 +8072,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
 	DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
 	DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
-	DateTimeFormatterBuilder.StringBuilder = StringBuilder;
 
 /***/ },
-/* 32 */
+/* 35 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7628,7 +8214,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 33 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7640,7 +8226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Enum2 = __webpack_require__(14);
+	var _Enum2 = __webpack_require__(10);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7686,7 +8272,72 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 34 */
+/* 37 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var StringBuilder = exports.StringBuilder = function () {
+	    function StringBuilder() {
+	        _classCallCheck(this, StringBuilder);
+	
+	        this._str = '';
+	    }
+	
+	    _createClass(StringBuilder, [{
+	        key: 'append',
+	        value: function append(str) {
+	            this._str += str;
+	            return this;
+	        }
+	    }, {
+	        key: 'insert',
+	        value: function insert(offset, str) {
+	            this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
+	            return this;
+	        }
+	    }, {
+	        key: 'replace',
+	        value: function replace(start, end, str) {
+	            this._str = this._str.slice(0, start) + str + this._str.slice(end);
+	            return this;
+	        }
+	    }, {
+	        key: 'length',
+	        value: function length() {
+	            return this._str.length;
+	        }
+	    }, {
+	        key: 'setLength',
+	        value: function setLength(length) {
+	            this._str = this._str.slice(0, length);
+	            return this;
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return this._str;
+	        }
+	    }]);
+	
+	    return StringBuilder;
+	}();
+
+/***/ },
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7706,17 +8357,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(2);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(31);
+	var _DateTimeFormatterBuilder = __webpack_require__(34);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _Temporal2 = __webpack_require__(16);
+	var _Temporal2 = __webpack_require__(20);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(19);
+	var _TemporalQuery = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7901,7 +8552,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7919,13 +8570,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _Instant = __webpack_require__(4);
 	
-	var _Temporal2 = __webpack_require__(16);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _ChronoField = __webpack_require__(12);
+	
+	var _Temporal2 = __webpack_require__(20);
+	
+	var _TemporalQueries = __webpack_require__(22);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -7970,7 +8625,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'adjustInto',
 	        value: function adjustInto(temporal) {
-	            return temporal.with(_ChronoUnit.ChronoUnit.EPOCH_DAY, this.toLocalDate().toEpochDay()).with(_ChronoUnit.ChronoUnit.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
+	            return temporal.with(_ChronoField.ChronoField.EPOCH_DAY, this.toLocalDate().toEpochDay()).with(_ChronoField.ChronoField.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
+	        }
+	    }, {
+	        key: 'toInstant',
+	        value: function toInstant(offset) {
+	            return _Instant.Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());
 	        }
 	    }, {
 	        key: 'toEpochSecond',
@@ -7989,51 +8649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDateTime = ChronoLocalDateTime;
 
 /***/ },
-/* 36 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var TemporalUnit = exports.TemporalUnit = function TemporalUnit() {
-	  _classCallCheck(this, TemporalUnit);
-	};
-
-/***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-	
-	var TemporalField = exports.TemporalField = function TemporalField() {
-	  _classCallCheck(this, TemporalField);
-	};
-
-/***/ },
-/* 38 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8053,11 +8669,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _TemporalAdjuster4 = __webpack_require__(39);
+	var _TemporalAdjuster4 = __webpack_require__(41);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
 	var _MathUtil = __webpack_require__(6);
 	
@@ -8266,7 +8882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8302,40 +8918,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _DayOfWeek = __webpack_require__(34);
+	var _DayOfWeek = __webpack_require__(38);
 	
-	var _Duration = __webpack_require__(8);
+	var _Duration = __webpack_require__(14);
 	
 	var _Instant = __webpack_require__(4);
 	
-	var _LocalDate = __webpack_require__(12);
+	var _LocalDate = __webpack_require__(8);
 	
-	var _LocalTime = __webpack_require__(10);
+	var _LocalTime = __webpack_require__(5);
 	
-	var _LocalDateTime = __webpack_require__(11);
+	var _LocalDateTime = __webpack_require__(7);
 	
-	var _Month = __webpack_require__(15);
+	var _Month = __webpack_require__(11);
 	
-	var _Period = __webpack_require__(30);
+	var _Period = __webpack_require__(28);
 	
-	var _Year = __webpack_require__(21);
+	var _Year = __webpack_require__(16);
 	
-	var _ZoneOffset = __webpack_require__(20);
+	var _ZoneOffset = __webpack_require__(24);
 	
-	var _IsoChronology = __webpack_require__(13);
+	var _IsoChronology = __webpack_require__(9);
 	
-	var _DateTimeFormatter = __webpack_require__(25);
+	var _DateTimeFormatter = __webpack_require__(27);
 	
-	var _ChronoField = __webpack_require__(5);
+	var _ChronoField = __webpack_require__(12);
 	
-	var _ChronoUnit = __webpack_require__(7);
+	var _ChronoUnit = __webpack_require__(13);
 	
-	var _TemporalQueries = __webpack_require__(18);
+	var _TemporalQueries = __webpack_require__(22);
 	
 	var isInit = false; /*
 	                     * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
