@@ -24,6 +24,7 @@ import {Period} from './Period';
 import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 import {LocalDateTime} from './LocalDateTime';
+import {ZoneId} from './ZoneId';
 
 /**
  * The number of days in a 400 year cycle.
@@ -84,10 +85,22 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} the current date, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
-        assert(clock != null, 'clock', NullPointerException);
-        var now = clock.instant();
-        var offset = clock.zone().rules().offset(now);
-        var epochSec = now.epochSecond() + offset.totalSeconds();
+        requireNonNull(clock, 'clock');
+        return LocalDate.ofInstant(clock.instant(), clock.zone());
+    }
+
+    /**
+     * obtain a LocalDate from an Instant in the specified time-zone or, if null
+     * in the system default time-zone
+     *
+     * @param {!Instant} instant
+     * @param {ZoneId} [zone=ZoneId.systemDefault()], defaults to ZoneId.systemDefault()
+     * @returns {LocalDate} the current date, not null
+     */
+    static ofInstant(instant, zone=ZoneId.systemDefault()){
+        requireNonNull(instant, 'instant');
+        var offset = zone.rules().offset(instant);
+        var epochSec = instant.epochSecond() + offset.totalSeconds();
         var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
         return LocalDate.ofEpochDay(epochDay);
     }
