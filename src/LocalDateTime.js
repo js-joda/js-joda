@@ -11,6 +11,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentExce
 import {Clock} from './Clock';
 import {LocalDate} from './LocalDate';
 import {LocalTime} from './LocalTime';
+import {ZoneId} from './ZoneId';
 
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
@@ -97,9 +98,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      */
     static now(clock = Clock.systemDefaultZone()) {
         requireNonNull(clock, 'clock');
-        var now = clock.instant();  // called once
-        var offset = clock.zone().rules().offset(now);
-        return LocalDateTime.ofEpochSecond(now.epochSecond(), now.nano(), offset);
+        return LocalDateTime.ofInstant(clock.instant(), clock.zone());
     }
 
     //-----------------------------------------------------------------------
@@ -165,16 +164,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * which is simple as there is only one valid offset for each instant.
      * Then, the instant and offset are used to calculate the local date-time.
      *
-     * @param {Instant} instant  the instant to create the date-time from, not null
-     * @param {ZoneId} zone  the time-zone, which may be an offset, not null
+     * @param {!Instant} instant  the instant to create the date-time from, not null
+     * @param {!ZoneId} [zone=ZoneId.systemDefault()]  the time-zone, which may be an offset, defaults to ZoneId.systemDefault()
      * @return {LocalDateTime} the local date-time, not null
      * @throws {DateTimeException} if the result exceeds the supported range
      */
-    static ofInstant(instant, zone) {
+    static ofInstant(instant, zone=ZoneId.systemDefault()) {
         requireNonNull(instant, 'instant');
         requireNonNull(zone, 'zone');
-        var rules = zone.getRules();
-        var offset = rules.getOffset(instant);
+        var rules = zone.rules();
+        var offset = rules.offset(instant);
         return LocalDateTime.ofEpochSecond(instant.epochSecond(), instant.nano(), offset);
     }
 

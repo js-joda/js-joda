@@ -11,6 +11,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentExce
 
 import {Clock} from './Clock';
 import {LocalDateTime} from './LocalDateTime';
+import {ZoneId} from './ZoneId';
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
@@ -119,16 +120,26 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} the current time, not null
      */
     static now(clock = Clock.systemDefaultZone()) {
-        requireNonNull(clock, 'clock');
-        // inline OffsetTime factory to avoid creating object and InstantProvider checks
-        var now = clock.instant();  // called once
-        var offset = clock.zone().rules().offset(now);
-        var secsOfDay = MathUtil.intMod(now.epochSecond(), LocalTime.SECONDS_PER_DAY);
+        requireNonNull(clock, 'clock');// inline OffsetTime factory to avoid creating object and InstantProvider checks
+        return LocalTime.ofInstant(clock.instant(), clock.zone());
+    }
+
+    /**
+     * obtain a LocalTime from an Instant in the specified time-zone or, if null
+     * in the system default time-zone
+     *
+     * @param {!Instant} instant
+     * @param {ZoneId} [zone=ZoneId.systemDefault()], defaults to ZoneId.systemDefault()
+     * @returns {LocalDate} the current date, not null
+     */
+    static ofInstant(instant, zone=ZoneId.systemDefault()){
+        var offset = zone.rules().offset(instant);
+        var secsOfDay = MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
         secsOfDay = MathUtil.intMod((secsOfDay + offset.totalSeconds()), LocalTime.SECONDS_PER_DAY);
         if (secsOfDay < 0) {
             secsOfDay += LocalTime.SECONDS_PER_DAY;
         }
-        return LocalTime.ofSecondOfDay(secsOfDay, now.nano());
+        return LocalTime.ofSecondOfDay(secsOfDay, instant.nano());
     }
 
     /**
