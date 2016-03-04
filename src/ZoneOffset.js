@@ -3,8 +3,16 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {DateTimeException} from './errors';
+
 import {LocalTime} from './LocalTime';
+import {ZoneId} from './ZoneId';
+
+import {ZoneRules} from './zone/ZoneRules';
+
+var SECONDS_CACHE = {};
+
 
 /**
  *
@@ -19,14 +27,16 @@ import {LocalTime} from './LocalTime';
  * ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
  *
  */
-export class ZoneOffset {
+export class ZoneOffset extends ZoneId {
     /**
      * 
      * @param {number} totalSeconds
      */
     constructor(totalSeconds){
+        super();
         ZoneOffset._validateTotalSeconds(totalSeconds);
         this._totalSeconds = totalSeconds;
+        this._rules = ZoneRules.of(this);
     }
 
     /**
@@ -134,16 +144,29 @@ export class ZoneOffset {
     static ofTotalSeconds(totalSeconds) {
         if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
             var totalSecs = totalSeconds;
-            var result = ZoneOffset.SECONDS_CACHE[totalSecs];
+            var result = SECONDS_CACHE[totalSecs];
             if (result == null) {
                 result = new ZoneOffset(totalSeconds);
-                ZoneOffset.SECONDS_CACHE[totalSecs] = result;
+                SECONDS_CACHE[totalSecs] = result;
             }
             return result;
         } else {
             return new ZoneOffset(totalSeconds);
         }
     }
+
+    /**
+     * Gets the associated time-zone rules.
+     * <p>
+     * The rules will always return this offset when queried.
+     * The implementation class is immutable, thread-safe and serializable.
+     *
+     * @return {ZoneRules} the rules, not null
+     */
+    rules() {
+        return this._rules;
+    }
+
 
     /**
      * Checks if this offset is equal to another offset.
@@ -168,7 +191,6 @@ export class ZoneOffset {
 
 export function _init() {
     ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
-    ZoneOffset.SECONDS_CACHE = {};
     ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
     ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
     ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
