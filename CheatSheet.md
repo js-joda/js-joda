@@ -224,8 +224,7 @@ d1.atStartOfDay(); // '2016-02-25T00:00'
 d1.atTime(LocalTime.of(11, 55)); // '2016-02-25T11:55'
 d1.atTime(LocalTime.NOON); // '2016-02-25T12:00'
 
-// TODO milestone 1
-// add Basic ZoneDateTime and add a Converterhelper 
+// TODO milestone 1 add Basic ZoneDateTime and add a Converterhelper 
 // obtain a LocalDate from an Instant
 // Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
 
