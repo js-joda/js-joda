@@ -100,7 +100,7 @@ export class ChronoLocalDateTime extends Temporal {
      * @param {ZoneOffset} offset  the offset to use for the conversion, not null
      * @return {Instant} an {@code Instant} representing the same instant, not null
      */
-    toInstant( offset) {
+    toInstant(offset) {
         return Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());
     }
 
