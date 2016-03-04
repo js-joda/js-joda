@@ -86,7 +86,7 @@ export class LocalDate extends ChronoLocalDate{
     static now(clock = Clock.systemDefaultZone()) {
         assert(clock != null, 'clock', NullPointerException);
         var now = clock.instant();
-        var offset = clock.offset(now);
+        var offset = clock.zone().rules().offset(now);
         var epochSec = now.epochSecond() + offset.totalSeconds();
         var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
         return LocalDate.ofEpochDay(epochDay);

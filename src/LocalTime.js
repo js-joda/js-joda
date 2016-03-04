@@ -122,7 +122,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         requireNonNull(clock, 'clock');
         // inline OffsetTime factory to avoid creating object and InstantProvider checks
         var now = clock.instant();  // called once
-        var offset = clock.offset(now);
+        var offset = clock.zone().rules().offset(now);
         var secsOfDay = MathUtil.intMod(now.epochSecond(), LocalTime.SECONDS_PER_DAY);
         secsOfDay = MathUtil.intMod((secsOfDay + offset.totalSeconds()), LocalTime.SECONDS_PER_DAY);
         if (secsOfDay < 0) {

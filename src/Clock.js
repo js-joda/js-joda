@@ -6,6 +6,7 @@
 
 import {abstractMethodFail} from './assert';
 import {Instant} from './Instant';
+import {ZoneId} from './ZoneId';
 import {ZoneOffset} from './ZoneOffset';
 
 /**
@@ -114,7 +115,7 @@ export class Clock {
       *  the Java epoch of 1970-01-01T00:00Z (UTC), not null
       */
     millis(){
-        abstractMethodFail('millis');
+        abstractMethodFail('Clock.millis');
     }
 
     /**
@@ -125,20 +126,11 @@ export class Clock {
      * @return {Instant} the current instant from this clock, not null
      */
     instant(){
-        abstractMethodFail('instant');
+        abstractMethodFail('Clock.instant');
     }
 
-    /**
-     * in opposite to the jdk implementation the Clock itself returns the offset, that is because
-     * javascript provides only the UTC and the "local" (system default time zone.
-     * it is not possible the get the system default ZoneId without guessing. If we would define ZoneRules, we had to
-     * define something like a virtual, not standard ZoneId like "SystemDefault".
-     * Until we to not have a tzdb, we leave this question open
-     *
-     * @return {number}
-     */
-    offset(){
-        abstractMethodFail('offset');
+    zone(){
+        abstractMethodFail('Clock.zone');
     }
 }
 
@@ -150,10 +142,6 @@ class SystemClock extends Clock {
     instant() {
         return Instant.ofEpochMilli(this.millis());
     }
-
-    offset() {
-        return ZoneOffset.ofTotalSeconds(0);
-    }
 }
 
 /**
@@ -161,6 +149,10 @@ class SystemClock extends Clock {
  * {@link Date#getTime()}.
  */
 class SystemUTCClock extends SystemClock{
+    zone(){
+        return ZoneOffset.UTC;
+    }
+
     toString(){
         return 'SystemClock[UTC]';
     }
@@ -171,9 +163,8 @@ class SystemUTCClock extends SystemClock{
  * sytem default Zone {@link Date#getTime()} and {@link Date#getTimeZoneOffset()}.
  */
 class SystemDefaultClock extends SystemClock{
-    offset(instant) {
-        var offsetInMinutes = new Date().getTimezoneOffset(instant.toEpochMilli());
-        return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
+    zone(){
+        return ZoneId.systemDefault();
     }
 
     toString(){
@@ -186,18 +177,18 @@ class SystemDefaultClock extends SystemClock{
  * This is typically used for testing.
  */
 class FixedClock extends Clock{
-    constructor(fixedInstant, zoneOffset) {
+    constructor(fixedInstant, zoneId) {
         super();
         this._instant = fixedInstant;
-        this._zoneOffset = zoneOffset;
+        this._zoneId = zoneId;
     }
 
     instant() {
         return this._instant;
     }
 
-    offset() {
-        return this._zoneOffset;
+    zone() {
+        return this._zoneId;
     }
 
     toString(){

@@ -98,7 +98,7 @@ export class LocalDateTime extends ChronoLocalDateTime
     static now(clock = Clock.systemDefaultZone()) {
         requireNonNull(clock, 'clock');
         var now = clock.instant();  // called once
-        var offset = clock.offset(now); // getZone().getRules().getOffset(now);
+        var offset = clock.zone().rules().offset(now);
         return LocalDateTime.ofEpochSecond(now.epochSecond(), now.nano(), offset);
     }
 
