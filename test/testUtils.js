@@ -5,7 +5,8 @@
 import {expect, assert} from 'chai';
 
 export function dataProviderTest(dataProvider, test, log){
-    dataProvider().forEach((data)=>{
+    var data = typeof dataProvider === 'function' ? dataProvider() : dataProvider;
+    data.forEach((data)=>{
         if(log) console.log(data);
         test.apply(this, data);
     });
