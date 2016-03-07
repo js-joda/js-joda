@@ -221,18 +221,15 @@ d1.atStartOfDay(); // &#39;2016-02-25T00:00&#39;
 d1.atTime(LocalTime.of(11, 55)); // &#39;2016-02-25T11:55&#39;
 d1.atTime(LocalTime.NOON); // &#39;2016-02-25T12:00&#39;
 
-// TODO milestone 1
-// add Basic ZoneDateTime and add a Converterhelper
-// obtain a LocalDate from an Instant
-// Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
-
 // obtain a LocalDate from a JavaScript Date
-// var javascriptDate = new Date();
-// Instant.ofEpochMilli(javascriptDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+// the manual way
+var d = LocalDate.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
 
-// obtaim a LocalDate from a moment
-// var moment = moment();
-// Instant.ofEpochMilli(moment.toDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+// the recommended way with the javascript temporal
+d = LocalDate.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalDate.from(nativeJs(moment()));
 </code></pre>
 <h2 id="localtime">LocalTime</h2>
 <p>A LocalTime represents a time without time-zone in the ISO-8601 calendar system such as &#39;10:15:30&#39;</p>
@@ -364,6 +361,18 @@ var t2 = t1.plusHours(2).plusMinutes(42).plusSeconds(12);
 t1.until(t2, ChronoUnit.HOURS);    // 2
 t1.until(t2, ChronoUnit.MINUTES);  // 162
 t1.until(t2, ChronoUnit.SECONDS);  // 9732
+</code></pre>
+<h3 id="convert-from-a-javascript-date-or-moment">Convert from a javascript Date or moment</h3>
+<pre><code class="lang-javascript">
+// obtain a LocalTime instance from a JavaScript Date
+// the manual way
+var t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+
+// the recommended way with the javascript temporal
+t = LocalTime.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalTime.from(nativeJs(moment()));
 </code></pre>
 <h2 id="localdatetime">LocalDateTime</h2>
 <p>A LocalTime represents a date-time without a time-zone in the ISO-8601 calendar system, such as &#39;2007-12-03T10:15:30&#39;.</p>
@@ -555,6 +564,18 @@ dt1.until(dt2, ChronoUnit.HOURS);   // 61370
 dt1.until(dt2, ChronoUnit.MINUTES); // 3682242
 dt1.until(dt2, ChronoUnit.SECONDS); // 220934532
 </code></pre>
+<h3 id="convert-from-a-javascript-date-or-moment">Convert from a javascript Date or moment</h3>
+<pre><code class="lang-javascript">
+// obtain a LocalTime instance from a JavaScript Date
+// the manual way
+var t = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+
+// the recommended way with the javascript temporal
+t = LocalDateTime.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalDateTime.from(nativeJs(moment()));
+</code></pre>
 <h2 id="period">Period</h2>
 <p>Period is a date-based amount of time in the ISO-8601 calendar system, such as &#39;2 years, 3 months and 4 days&#39;.</p>
 <pre><code class="lang-javascript">
@@ -619,8 +640,8 @@ LocalDate.parse(&#39;2012-12-24&#39;).with(nextOrSameEvenDay); // &#39;2012-12-2
 </code></pre>
 <h3 id="custom-temporal-fields-and-temporal-units">Custom temporal fields and temporal units</h3>
 <p>a good point to start is temporal/IsoFields as an example how to implement custom fields and units.
-    IsoFields implements fields and units for an ISO week based year.</p>
-<p>// TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.</p>
+IsoFields implements fields and units for an ISO week based year.
+// TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.</p>
 <h3 id="custom-formatter-and-queries">Custom formatter and queries</h3>
 <p>The following example, is a kind of the opposite of a domain driven approach.
 It implements a date-time parser that parses a local date with an optional local time.
@@ -646,6 +667,7 @@ dateOrDateTimeQuery = {
 localDate = OPTIONAL_FORMATTER.parse(&#39;2012-12-24&#39;, dateOrDateTimeQuery);
 localDateTime = OPTIONAL_FORMATTER.parse(&#39;2012-12-24T23:59&#39;, dateOrDateTimeQuery);
 </code></pre>
+
 
             <!-- CheatSheet.md end -->
 
