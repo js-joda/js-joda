@@ -8981,7 +8981,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _ZoneOffset = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(25);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -9002,10 +9002,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(NativeJsTemporal, _TemporalAccessor);
 	
 	    function NativeJsTemporal(date) {
+	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
+	
 	        _classCallCheck(this, NativeJsTemporal);
 	
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NativeJsTemporal).call(this));
 	
+	        _this._zone = zone;
 	        if (date instanceof Date) {
 	            _this._epochMilli = date.getTime();
 	            return _possibleConstructorReturn(_this);
@@ -9022,11 +9025,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function query(_query) {
 	            (0, _assert.requireNonNull)(_query, 'query');
 	            if (_query === _TemporalQueries.TemporalQueries.localDate()) {
-	                return _LocalDate.LocalDate.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), _ZoneOffset.ZoneOffset.UTC);
+	                return _LocalDate.LocalDate.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), this._zone);
 	            } else if (_query === _TemporalQueries.TemporalQueries.localTime()) {
-	                return _LocalTime.LocalTime.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), _ZoneOffset.ZoneOffset.UTC);
+	                return _LocalTime.LocalTime.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), this._zone);
 	            } else if (_query === _TemporalQueries.TemporalQueries.zone()) {
-	                return _LocalTime.LocalTime.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), _ZoneOffset.ZoneOffset.UTC);
+	                return _LocalTime.LocalTime.ofInstant(_Instant.Instant.ofEpochMilli(this._epochMilli), this._zone);
 	            }
 	            return _get(Object.getPrototypeOf(NativeJsTemporal.prototype), 'query', this).call(this, _query);
 	        }
@@ -9055,8 +9058,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return NativeJsTemporal;
 	}(_TemporalAccessor2.TemporalAccessor);
 	
-	function nativeJs(date) {
-	    return new NativeJsTemporal(date);
+	function nativeJs(date, zone) {
+	    return new NativeJsTemporal(date, zone);
 	}
 
 /***/ },
