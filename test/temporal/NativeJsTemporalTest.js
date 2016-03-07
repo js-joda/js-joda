@@ -4,6 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {expect} from 'chai';
 import {assertEquals, dataProviderTest} from '../testUtils';
 
 import '../_init';
@@ -12,7 +13,10 @@ import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDateTime} from '../../src/LocalDateTime';
+import {ZoneOffset} from '../../src/ZoneOffset';
+
 import {nativeJs} from '../../src/temporal/NativeJsTemporal';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 
 describe('temporal/NativeJsTemporal.js', ()=>{
 
@@ -27,7 +31,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalDate) => {
-            var d = LocalDate.from(nativeJs(jsDate));
+            var d = LocalDate.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalDate);
         });
     });
@@ -42,7 +46,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalTime) => {
-            var d = LocalTime.from(nativeJs(jsDate));
+            var d = LocalTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalTime);
         }, true);
     });
@@ -57,7 +61,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalDateTime) => {
-            var d = LocalDateTime.from(nativeJs(jsDate));
+            var d = LocalDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalDateTime);
         });
     });
@@ -73,9 +77,19 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedInstant) => {
-            var i = Instant.from(nativeJs(jsDate));
+            var i = Instant.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(i, expectedInstant);
         });
+    });
+
+    it('should create a LocalDateTime with the default time zone', function () {
+        var jsDate = new Date('2016-02-29T00:00:00Z');
+        var dtn = LocalDateTime.from(nativeJs(jsDate));
+
+        var dtl = LocalDateTime.parse('2016-02-29T00:00:00');
+
+        var duration = dtn.until(dtl, ChronoUnit.MINUTES);
+        expect(duration).to.equal(jsDate.getTimezoneOffset());
     });
 
 

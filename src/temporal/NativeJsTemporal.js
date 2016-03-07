@@ -10,7 +10,7 @@ import {Instant} from '../Instant';
 import {LocalDate} from '../LocalDate';
 import {LocalTime} from '../LocalTime';
 import {MathUtil} from '../MathUtil';
-import {ZoneOffset} from '../ZoneOffset';
+import {ZoneId} from '../ZoneId';
 
 import {ChronoField} from './ChronoField';
 import {TemporalQueries} from './TemporalQueries';
@@ -25,9 +25,11 @@ class NativeJsTemporal extends TemporalAccessor {
     /**
      *
      * @param {!(Date|moment)} date - a javascript Date or a moment instance
+     * @param {ZoneId} [zone=ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
      */
-    constructor(date){
+    constructor(date, zone=ZoneId.systemDefault()){
         super();
+        this._zone = zone;
         if(date instanceof Date) {
             this._epochMilli = date.getTime();
             return;
@@ -47,11 +49,11 @@ class NativeJsTemporal extends TemporalAccessor {
     query(query) {
         requireNonNull(query, 'query');
         if (query === TemporalQueries.localDate()) {
-            return LocalDate.ofInstant(Instant.ofEpochMilli(this._epochMilli), ZoneOffset.UTC);
+            return LocalDate.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
         } else if(query === TemporalQueries.localTime()){
-            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), ZoneOffset.UTC);
+            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
         } else if(query === TemporalQueries.zone()){
-            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), ZoneOffset.UTC);
+            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
         }
         return super.query(query);
     }
@@ -84,7 +86,12 @@ class NativeJsTemporal extends TemporalAccessor {
 
 }
 
-
-export function nativeJs(date){
-    return new NativeJsTemporal(date);
+/**
+ *
+ * @param {!(Date|moment)} date - a javascript Date or a moment instance
+ * @param {ZoneId} [zone=ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
+ * @returns {NativeJsTemporal}
+ */
+export function nativeJs(date, zone){
+    return new NativeJsTemporal(date, zone);
 }
