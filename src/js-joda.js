@@ -11,12 +11,12 @@ export { Instant } from './Instant';
 export { LocalDate } from './LocalDate';
 export { LocalTime } from './LocalTime';
 export { LocalDateTime } from './LocalDateTime';
-// export { MathUtil } from './MathUtil'; what for export MathUtil ?
 export { Month } from './Month';
 export { Period } from './Period';
 export { Year } from './Year';
 export { ZoneOffset } from './ZoneOffset';
 
+export {nativeJs} from './temporal/NativeJsTemporal'
 export {ChronoField} from './temporal/ChronoField';
 export {ChronoUnit} from './temporal/ChronoUnit';
 export {TemporalAdjusters} from './temporal/TemporalAdjusters';
