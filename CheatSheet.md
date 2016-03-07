@@ -224,17 +224,15 @@ d1.atStartOfDay(); // '2016-02-25T00:00'
 d1.atTime(LocalTime.of(11, 55)); // '2016-02-25T11:55'
 d1.atTime(LocalTime.NOON); // '2016-02-25T12:00'
 
-// TODO milestone 1 add Basic ZoneDateTime and add a Converterhelper 
-// obtain a LocalDate from an Instant
-// Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
-
 // obtain a LocalDate from a JavaScript Date
-// var javascriptDate = new Date();
-// Instant.ofEpochMilli(javascriptDate.getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+// the manual way
+var d = LocalDate.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
 
-// obtaim a LocalDate from a moment
-// var moment = moment();
-// Instant.ofEpochMilli(moment.toDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate()
+// the recommended way with the javascript temporal
+d = LocalDate.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalDate.from(nativeJs(moment()));
 
 ```
 
@@ -397,6 +395,22 @@ var t2 = t1.plusHours(2).plusMinutes(42).plusSeconds(12);
 t1.until(t2, ChronoUnit.HOURS);    // 2
 t1.until(t2, ChronoUnit.MINUTES);  // 162
 t1.until(t2, ChronoUnit.SECONDS);  // 9732
+
+```
+
+### Convert from a javascript Date or moment 
+
+```javascript
+
+// obtain a LocalTime instance from a JavaScript Date
+// the manual way
+var t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+
+// the recommended way with the javascript temporal
+t = LocalTime.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalTime.from(nativeJs(moment()));
 
 ```
 
@@ -620,6 +634,23 @@ dt1.until(dt2, ChronoUnit.MINUTES); // 3682242
 dt1.until(dt2, ChronoUnit.SECONDS); // 220934532
 
 ```
+
+### Convert from a javascript Date or moment 
+
+```javascript
+
+// obtain a LocalTime instance from a JavaScript Date
+// the manual way
+var t = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+
+// the recommended way with the javascript temporal
+t = LocalDateTime.from(nativeJs(new Date()));
+
+// converting from a moment is workings the same way
+d = LocalDateTime.from(nativeJs(moment()));
+
+```
+
 
 ## Period
 
