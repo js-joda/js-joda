@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.ZoneOffset = exports.Year = exports.Period = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.ZoneOffset = exports.Year = exports.Period = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -206,7 +206,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalAdjusters = __webpack_require__(44);
+	var _IsoFields = __webpack_require__(44);
+	
+	Object.defineProperty(exports, 'IsoFields', {
+	  enumerable: true,
+	  get: function get() {
+	    return _IsoFields.IsoFields;
+	  }
+	});
+	
+	var _TemporalAdjusters = __webpack_require__(45);
 	
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -251,7 +260,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	__webpack_require__(46);
+	__webpack_require__(47);
 
 /***/ },
 /* 1 */
@@ -2931,7 +2940,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                f.checkValidValue(newValue);
 	                switch (f) {
 	                    case _ChronoField.ChronoField.DAY_OF_WEEK:
-	                        return this.plusDays(newValue - this.getDayOfWeek().value());
+	                        return this.plusDays(newValue - this.dayOfWeek().value());
 	                    case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH:
 	                        return this.plusDays(newValue - this.getLong(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));
 	                    case _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR:
@@ -3377,6 +3386,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    LocalDate.MIN = LocalDate.of(_Year.Year.MIN_VALUE, 1, 1);
 	
 	    LocalDate.MAX = LocalDate.of(_Year.Year.MAX_VALUE, 12, 31);
+	
+	    LocalDate.EPOCH_0 = LocalDate.ofEpochDay(0);
 	
 	    LocalDate.FROM = (0, _TemporalQuery.createTemporalQuery)('LocalDate.FROM', function (temporal) {
 	        return LocalDate.from(temporal);
@@ -9071,6 +9082,617 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.IsoFields = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	exports._init = _init;
+	
+	var _errors = __webpack_require__(3);
+	
+	var _DayOfWeek = __webpack_require__(41);
+	
+	var _Duration = __webpack_require__(14);
+	
+	var _MathUtil = __webpack_require__(6);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _ChronoUnit = __webpack_require__(13);
+	
+	var _TemporalField2 = __webpack_require__(18);
+	
+	var _TemporalUnit2 = __webpack_require__(17);
+	
+	var _ValueRange = __webpack_require__(19);
+	
+	var _IsoChronology = __webpack_require__(9);
+	
+	var _ResolverStyle = __webpack_require__(28);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+	
+	var IsoFields = exports.IsoFields = function IsoFields() {
+	    _classCallCheck(this, IsoFields);
+	};
+	
+	var QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
+	
+	var Field = function (_TemporalField) {
+	    _inherits(Field, _TemporalField);
+	
+	    function Field() {
+	        _classCallCheck(this, Field);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Field).apply(this, arguments));
+	    }
+	
+	    _createClass(Field, [{
+	        key: 'resolve',
+	        value: function resolve() {
+	            return null;
+	        }
+	    }, {
+	        key: 'isDateBased',
+	        value: function isDateBased() {
+	            return true;
+	        }
+	    }, {
+	        key: 'isTimeBased',
+	        value: function isTimeBased() {
+	            return false;
+	        }
+	    }, {
+	        key: '_isIso',
+	        value: function _isIso() {
+	            return true;
+	        }
+	    }, {
+	        key: 'getDisplayName',
+	        value: function getDisplayName() {
+	            return this.toString();
+	        }
+	    }, {
+	        key: 'resolve',
+	        value: function resolve() {
+	            return null;
+	        }
+	    }, {
+	        key: 'name',
+	        value: function name() {
+	            return this.toString();
+	        }
+	    }], [{
+	        key: '_getWeekRangeByLocalDate',
+	        value: function _getWeekRangeByLocalDate(date) {
+	            var wby = Field._getWeekBasedYear(date);
+	            return _ValueRange.ValueRange.of(1, Field._getWeekRangeByYear(wby));
+	        }
+	    }, {
+	        key: '_getWeekRangeByYear',
+	        value: function _getWeekRangeByYear(wby) {
+	            var date = _LocalDate.LocalDate.of(wby, 1, 1);
+	
+	            if (date.dayOfWeek() === _DayOfWeek.DayOfWeek.THURSDAY || date.dayOfWeek() === _DayOfWeek.DayOfWeek.WEDNESDAY && date.isLeapYear()) {
+	                return 53;
+	            }
+	            return 52;
+	        }
+	    }, {
+	        key: '_getWeek',
+	        value: function _getWeek(date) {
+	            var dow0 = date.dayOfWeek().ordinal();
+	            var doy0 = date.dayOfYear() - 1;
+	            var doyThu0 = doy0 + (3 - dow0);
+	            var alignedWeek = _MathUtil.MathUtil.intDiv(doyThu0, 7);
+	            var firstThuDoy0 = doyThu0 - alignedWeek * 7;
+	            var firstMonDoy0 = firstThuDoy0 - 3;
+	            if (firstMonDoy0 < -3) {
+	                firstMonDoy0 += 7;
+	            }
+	            if (doy0 < firstMonDoy0) {
+	                return Field._getWeekRangeByLocalDate(date.withDayOfYear(180).minusYears(1)).maximum();
+	            }
+	            var week = _MathUtil.MathUtil.intDiv(doy0 - firstMonDoy0, 7) + 1;
+	            if (week === 53) {
+	                if ((firstMonDoy0 === -3 || firstMonDoy0 === -2 && date.isLeapYear()) === false) {
+	                    week = 1;
+	                }
+	            }
+	            return week;
+	        }
+	    }, {
+	        key: '_getWeekBasedYear',
+	        value: function _getWeekBasedYear(date) {
+	            var year = date.year();
+	            var doy = date.dayOfYear();
+	            if (doy <= 3) {
+	                var dow = date.dayOfWeek().ordinal();
+	                if (doy - dow < -2) {
+	                    year--;
+	                }
+	            } else if (doy >= 363) {
+	                var _dow = date.dayOfWeek().ordinal();
+	                doy = doy - 363 - (date.isLeapYear() ? 1 : 0);
+	                if (doy - _dow >= 0) {
+	                    year++;
+	                }
+	            }
+	            return year;
+	        }
+	    }]);
+	
+	    return Field;
+	}(_TemporalField2.TemporalField);
+	
+	var DAY_OF_QUARTER_FIELD = function (_Field) {
+	    _inherits(DAY_OF_QUARTER_FIELD, _Field);
+	
+	    function DAY_OF_QUARTER_FIELD() {
+	        _classCallCheck(this, DAY_OF_QUARTER_FIELD);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(DAY_OF_QUARTER_FIELD).apply(this, arguments));
+	    }
+	
+	    _createClass(DAY_OF_QUARTER_FIELD, [{
+	        key: 'toString',
+	        value: function toString() {
+	            return 'DayOfQuarter';
+	        }
+	    }, {
+	        key: 'baseUnit',
+	        value: function baseUnit() {
+	            return _ChronoUnit.ChronoUnit.DAYS;
+	        }
+	    }, {
+	        key: 'rangeUnit',
+	        value: function rangeUnit() {
+	            return QUARTER_YEARS;
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range() {
+	            return _ValueRange.ValueRange.of(1, 90, 92);
+	        }
+	    }, {
+	        key: 'isSupportedBy',
+	        value: function isSupportedBy(temporal) {
+	            return temporal.isSupported(_ChronoField.ChronoField.DAY_OF_YEAR) && temporal.isSupported(_ChronoField.ChronoField.MONTH_OF_YEAR) && temporal.isSupported(_ChronoField.ChronoField.YEAR) && this._isIso(temporal);
+	        }
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: DayOfQuarter');
+	            }
+	            var qoy = temporal.getLong(QUARTER_OF_YEAR);
+	            if (qoy === 1) {
+	                var year = temporal.getLong(_ChronoField.ChronoField.YEAR);
+	                return _IsoChronology.IsoChronology.isLeapYear(year) ? _ValueRange.ValueRange.of(1, 91) : _ValueRange.ValueRange.of(1, 90);
+	            } else if (qoy === 2) {
+	                return _ValueRange.ValueRange.of(1, 91);
+	            } else if (qoy === 3 || qoy === 4) {
+	                return _ValueRange.ValueRange.of(1, 92);
+	            }
+	            return this.range();
+	        }
+	    }, {
+	        key: 'getFrom',
+	        value: function getFrom(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: DayOfQuarter');
+	            }
+	            var doy = temporal.get(_ChronoField.ChronoField.DAY_OF_YEAR);
+	            var moy = temporal.get(_ChronoField.ChronoField.MONTH_OF_YEAR);
+	            var year = temporal.getLong(_ChronoField.ChronoField.YEAR);
+	            return doy - QUARTER_DAYS[_MathUtil.MathUtil.intDiv(moy - 1, 3) + (_IsoChronology.IsoChronology.isLeapYear(year) ? 4 : 0)];
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal, newValue) {
+	            var curValue = this.getFrom(temporal);
+	            this.range().checkValidValue(newValue, this);
+	            return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, temporal.getLong(_ChronoField.ChronoField.DAY_OF_YEAR) + (newValue - curValue));
+	        }
+	    }, {
+	        key: 'resolve',
+	        value: function resolve(fieldValues, partialTemporal, resolverStyle) {
+	            var yearLong = fieldValues.get(_ChronoField.ChronoField.YEAR);
+	            var qoyLong = fieldValues.get(QUARTER_OF_YEAR);
+	            if (yearLong == null || qoyLong == null) {
+	                return null;
+	            }
+	            var y = _ChronoField.ChronoField.YEAR.checkValidIntValue(yearLong);
+	            var doq = fieldValues.get(DAY_OF_QUARTER);
+	            var date;
+	            if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                var qoy = qoyLong;
+	                date = _LocalDate.LocalDate.of(y, 1, 1);
+	                date = date.plusMonths(_MathUtil.MathUtil.safeMultiply(_MathUtil.MathUtil.safeSubtract(qoy, 1), 3));
+	                date = date.plusDays(_MathUtil.MathUtil.safeSubtract(doq, 1));
+	            } else {
+	                var _qoy = QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, QUARTER_OF_YEAR);
+	                if (resolverStyle === _ResolverStyle.ResolverStyle.STRICT) {
+	                    var max = 92;
+	                    if (_qoy === 1) {
+	                        max = _IsoChronology.IsoChronology.isLeapYear(y) ? 91 : 90;
+	                    } else if (_qoy === 2) {
+	                        max = 91;
+	                    }
+	                    _ValueRange.ValueRange.of(1, max).checkValidValue(doq, this);
+	                } else {
+	                    this.range().checkValidValue(doq, this);
+	                }
+	                date = _LocalDate.LocalDate.of(y, (_qoy - 1) * 3 + 1, 1).plusDays(doq - 1);
+	            }
+	            fieldValues.remove(this);
+	            fieldValues.remove(_ChronoField.ChronoField.YEAR);
+	            fieldValues.remove(QUARTER_OF_YEAR);
+	            return date;
+	        }
+	    }]);
+	
+	    return DAY_OF_QUARTER_FIELD;
+	}(Field);
+	
+	var QUARTER_OF_YEAR_FIELD = function (_Field2) {
+	    _inherits(QUARTER_OF_YEAR_FIELD, _Field2);
+	
+	    function QUARTER_OF_YEAR_FIELD() {
+	        _classCallCheck(this, QUARTER_OF_YEAR_FIELD);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(QUARTER_OF_YEAR_FIELD).apply(this, arguments));
+	    }
+	
+	    _createClass(QUARTER_OF_YEAR_FIELD, [{
+	        key: 'toString',
+	        value: function toString() {
+	            return 'QuarterOfYear';
+	        }
+	    }, {
+	        key: 'baseUnit',
+	        value: function baseUnit() {
+	            return QUARTER_YEARS;
+	        }
+	    }, {
+	        key: 'rangeUnit',
+	        value: function rangeUnit() {
+	            return _ChronoUnit.ChronoUnit.YEARS;
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range() {
+	            return _ValueRange.ValueRange.of(1, 4);
+	        }
+	    }, {
+	        key: 'isSupportedBy',
+	        value: function isSupportedBy(temporal) {
+	            return temporal.isSupported(_ChronoField.ChronoField.MONTH_OF_YEAR) && this._isIso(temporal);
+	        }
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            return this.range();
+	        }
+	    }, {
+	        key: 'getFrom',
+	        value: function getFrom(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: QuarterOfYear');
+	            }
+	            var moy = temporal.getLong(_ChronoField.ChronoField.MONTH_OF_YEAR);
+	            return _MathUtil.MathUtil.intDiv(moy + 2, 3);
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal, newValue) {
+	            var curValue = this.getFrom(temporal);
+	            this.range().checkValidValue(newValue, this);
+	            return temporal.with(_ChronoField.ChronoField.MONTH_OF_YEAR, temporal.getLong(_ChronoField.ChronoField.MONTH_OF_YEAR) + (newValue - curValue) * 3);
+	        }
+	    }]);
+	
+	    return QUARTER_OF_YEAR_FIELD;
+	}(Field);
+	
+	var WEEK_OF_WEEK_BASED_YEAR_FIELD = function (_Field3) {
+	    _inherits(WEEK_OF_WEEK_BASED_YEAR_FIELD, _Field3);
+	
+	    function WEEK_OF_WEEK_BASED_YEAR_FIELD() {
+	        _classCallCheck(this, WEEK_OF_WEEK_BASED_YEAR_FIELD);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(WEEK_OF_WEEK_BASED_YEAR_FIELD).apply(this, arguments));
+	    }
+	
+	    _createClass(WEEK_OF_WEEK_BASED_YEAR_FIELD, [{
+	        key: 'toString',
+	        value: function toString() {
+	            return 'WeekOfWeekBasedYear';
+	        }
+	    }, {
+	        key: 'baseUnit',
+	        value: function baseUnit() {
+	            return _ChronoUnit.ChronoUnit.WEEKS;
+	        }
+	    }, {
+	        key: 'rangeUnit',
+	        value: function rangeUnit() {
+	            return WEEK_BASED_YEARS;
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range() {
+	            return _ValueRange.ValueRange.of(1, 52, 53);
+	        }
+	    }, {
+	        key: 'isSupportedBy',
+	        value: function isSupportedBy(temporal) {
+	            return temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY) && this._isIso(temporal);
+	        }
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: WeekOfWeekBasedYear');
+	            }
+	            return Field._getWeekRangeByLocalDate(_LocalDate.LocalDate.from(temporal));
+	        }
+	    }, {
+	        key: 'getFrom',
+	        value: function getFrom(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: WeekOfWeekBasedYear');
+	            }
+	            return Field._getWeek(_LocalDate.LocalDate.from(temporal));
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal, newValue) {
+	            this.range().checkValidValue(newValue, this);
+	            return temporal.plus(_MathUtil.MathUtil.safeSubtract(newValue, this.getFrom(temporal)), _ChronoUnit.ChronoUnit.WEEKS);
+	        }
+	    }, {
+	        key: 'resolve',
+	        value: function resolve(fieldValues, partialTemporal, resolverStyle) {
+	            var wbyLong = fieldValues.get(WEEK_BASED_YEAR);
+	            var dowLong = fieldValues.get(_ChronoField.ChronoField.DAY_OF_WEEK);
+	            if (wbyLong == null || dowLong == null) {
+	                return null;
+	            }
+	            var wby = WEEK_BASED_YEAR.range().checkValidIntValue(wbyLong, WEEK_BASED_YEAR);
+	            var wowby = fieldValues.get(WEEK_OF_WEEK_BASED_YEAR);
+	            var date;
+	            if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                var dow = dowLong;
+	                var weeks = 0;
+	                if (dow > 7) {
+	                    weeks = _MathUtil.MathUtil.intDiv(dow - 1, 7);
+	                    dow = _MathUtil.MathUtil.intMod(dow - 1, 7) + 1;
+	                } else if (dow < 1) {
+	                    weeks = _MathUtil.MathUtil.intDiv(dow, 7) - 1;
+	                    dow = _MathUtil.MathUtil.intMod(dow, 7) + 7;
+	                }
+	                date = _LocalDate.LocalDate.of(wby, 1, 4).plusWeeks(wowby - 1).plusWeeks(weeks).with(_ChronoField.ChronoField.DAY_OF_WEEK, dow);
+	            } else {
+	                var _dow2 = _ChronoField.ChronoField.DAY_OF_WEEK.checkValidIntValue(dowLong);
+	                if (resolverStyle === _ResolverStyle.ResolverStyle.STRICT) {
+	                    var temp = _LocalDate.LocalDate.of(wby, 1, 4);
+	                    var range = Field._getWeekRangeByLocalDate(temp);
+	                    range.checkValidValue(wowby, this);
+	                } else {
+	                    this.range().checkValidValue(wowby, this);
+	                }
+	                date = _LocalDate.LocalDate.of(wby, 1, 4).plusWeeks(wowby - 1).with(_ChronoField.ChronoField.DAY_OF_WEEK, _dow2);
+	            }
+	            fieldValues.remove(this);
+	            fieldValues.remove(WEEK_BASED_YEAR);
+	            fieldValues.remove(_ChronoField.ChronoField.DAY_OF_WEEK);
+	            return date;
+	        }
+	    }, {
+	        key: 'getDisplayName',
+	        value: function getDisplayName() {
+	            return 'Week';
+	        }
+	    }]);
+	
+	    return WEEK_OF_WEEK_BASED_YEAR_FIELD;
+	}(Field);
+	
+	var WEEK_BASED_YEAR_FIELD = function (_Field4) {
+	    _inherits(WEEK_BASED_YEAR_FIELD, _Field4);
+	
+	    function WEEK_BASED_YEAR_FIELD() {
+	        _classCallCheck(this, WEEK_BASED_YEAR_FIELD);
+	
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(WEEK_BASED_YEAR_FIELD).apply(this, arguments));
+	    }
+	
+	    _createClass(WEEK_BASED_YEAR_FIELD, [{
+	        key: 'toString',
+	        value: function toString() {
+	            return 'WeekBasedYear';
+	        }
+	    }, {
+	        key: 'baseUnit',
+	        value: function baseUnit() {
+	            return WEEK_BASED_YEARS;
+	        }
+	    }, {
+	        key: 'rangeUnit',
+	        value: function rangeUnit() {
+	            return _ChronoUnit.ChronoUnit.FOREVER;
+	        }
+	    }, {
+	        key: 'range',
+	        value: function range() {
+	            return _ChronoField.ChronoField.YEAR.range();
+	        }
+	    }, {
+	        key: 'isSupportedBy',
+	        value: function isSupportedBy(temporal) {
+	            return temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY) && this._isIso(temporal);
+	        }
+	    }, {
+	        key: 'rangeRefinedBy',
+	        value: function rangeRefinedBy(temporal) {
+	            return _ChronoField.ChronoField.YEAR.range();
+	        }
+	    }, {
+	        key: 'getFrom',
+	        value: function getFrom(temporal) {
+	            if (temporal.isSupported(this) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: WeekBasedYear');
+	            }
+	            return Field._getWeekBasedYear(_LocalDate.LocalDate.from(temporal));
+	        }
+	    }, {
+	        key: 'adjustInto',
+	        value: function adjustInto(temporal, newValue) {
+	            if (this.isSupportedBy(temporal) === false) {
+	                throw new _errors.UnsupportedTemporalTypeException('Unsupported field: WeekBasedYear');
+	            }
+	            var newWby = this.range().checkValidIntValue(newValue, WEEK_BASED_YEAR);
+	            var date = _LocalDate.LocalDate.from(temporal);
+	            var dow = date.get(_ChronoField.ChronoField.DAY_OF_WEEK);
+	            var week = Field._getWeek(date);
+	            if (week === 53 && Field._getWeekRangeByYear(newWby) === 52) {
+	                week = 52;
+	            }
+	            var resolved = _LocalDate.LocalDate.of(newWby, 1, 4);
+	            var days = dow - resolved.get(_ChronoField.ChronoField.DAY_OF_WEEK) + (week - 1) * 7;
+	            resolved = resolved.plusDays(days);
+	            return temporal.with(resolved);
+	        }
+	    }]);
+	
+	    return WEEK_BASED_YEAR_FIELD;
+	}(Field);
+	
+	var Unit = function (_TemporalUnit) {
+	    _inherits(Unit, _TemporalUnit);
+	
+	    function Unit(name, estimatedDuration) {
+	        _classCallCheck(this, Unit);
+	
+	        var _this6 = _possibleConstructorReturn(this, Object.getPrototypeOf(Unit).call(this));
+	
+	        _this6._name = name;
+	        _this6._duration = estimatedDuration;
+	        return _this6;
+	    }
+	
+	    _createClass(Unit, [{
+	        key: 'duration',
+	        value: function duration() {
+	            return this._duration;
+	        }
+	    }, {
+	        key: 'isDurationEstimated',
+	        value: function isDurationEstimated() {
+	            return true;
+	        }
+	    }, {
+	        key: 'isDateBased',
+	        value: function isDateBased() {
+	            return true;
+	        }
+	    }, {
+	        key: 'isTimeBased',
+	        value: function isTimeBased() {
+	            return false;
+	        }
+	    }, {
+	        key: 'isSupportedBy',
+	        value: function isSupportedBy(temporal) {
+	            return temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY);
+	        }
+	    }, {
+	        key: 'addTo',
+	        value: function addTo(temporal, periodToAdd) {
+	            switch (this) {
+	                case WEEK_BASED_YEARS:
+	                    var added = _MathUtil.MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
+	                    return temporal.with(WEEK_BASED_YEAR, added);
+	                case QUARTER_YEARS:
+	                    return temporal.plus(_MathUtil.MathUtil.intDiv(periodToAdd, 256), _ChronoUnit.ChronoUnit.YEARS).plus(_MathUtil.MathUtil.intMod(periodToAdd, 256) * 3, _ChronoUnit.ChronoUnit.MONTHS);
+	                default:
+	                    throw new _errors.IllegalStateException('Unreachable');
+	            }
+	        }
+	    }, {
+	        key: 'between',
+	        value: function between(temporal1, temporal2) {
+	            switch (this) {
+	                case WEEK_BASED_YEARS:
+	                    return _MathUtil.MathUtil.safeSubtract(temporal2.getLong(WEEK_BASED_YEAR), temporal1.getLong(WEEK_BASED_YEAR));
+	                case QUARTER_YEARS:
+	                    return _MathUtil.MathUtil.intDiv(temporal1.until(temporal2, _ChronoUnit.ChronoUnit.MONTHS), 3);
+	                default:
+	                    throw new _errors.IllegalStateException('Unreachable');
+	            }
+	        }
+	    }, {
+	        key: 'toString',
+	        value: function toString() {
+	            return name;
+	        }
+	    }]);
+	
+	    return Unit;
+	}(_TemporalUnit2.TemporalUnit);
+	
+	var DAY_OF_QUARTER = null;
+	var QUARTER_OF_YEAR = null;
+	var WEEK_OF_WEEK_BASED_YEAR = null;
+	var WEEK_BASED_YEAR = null;
+	var WEEK_BASED_YEARS = null;
+	var QUARTER_YEARS = null;
+	
+	function _init() {
+	    DAY_OF_QUARTER = new DAY_OF_QUARTER_FIELD();
+	    QUARTER_OF_YEAR = new QUARTER_OF_YEAR_FIELD();
+	    WEEK_OF_WEEK_BASED_YEAR = new WEEK_OF_WEEK_BASED_YEAR_FIELD();
+	    WEEK_BASED_YEAR = new WEEK_BASED_YEAR_FIELD();
+	
+	    WEEK_BASED_YEARS = new Unit('WeekBasedYears', _Duration.Duration.ofSeconds(31556952));
+	    QUARTER_YEARS = new Unit('QuarterYears', _Duration.Duration.ofSeconds(31556952 / 4));
+	
+	    IsoFields.DAY_OF_QUARTER = DAY_OF_QUARTER;
+	    IsoFields.QUARTER_OF_YEAR = QUARTER_OF_YEAR;
+	    IsoFields.WEEK_OF_WEEK_BASED_YEAR = WEEK_OF_WEEK_BASED_YEAR;
+	    IsoFields.WEEK_BASED_YEAR = WEEK_BASED_YEAR;
+	    IsoFields.WEEK_BASED_YEARS = WEEK_BASED_YEARS;
+	    IsoFields.QUARTER_YEARS = QUARTER_YEARS;
+	}
+	
+	_LocalDate.LocalDate.prototype.isoWeekOfWeekyear = function () {
+	    return this.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+	};
+	
+	_LocalDate.LocalDate.prototype.isoWeekyear = function () {
+	    return this.get(IsoFields.WEEK_BASED_YEAR);
+	};
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.TemporalAdjusters = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
@@ -9083,7 +9705,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _TemporalAdjuster4 = __webpack_require__(45);
+	var _TemporalAdjuster4 = __webpack_require__(46);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -9296,7 +9918,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9332,7 +9954,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9365,12 +9987,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(13);
 	
+	var _IsoFields = __webpack_require__(44);
+	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var isInit = false; /*
-	                     * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                     */
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var isInit = false;
 	
 	function init() {
 	
@@ -9385,6 +10011,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _LocalTime._init)();
 	    (0, _ChronoUnit._init)();
 	    (0, _ChronoField._init)();
+	    (0, _IsoFields._init)();
 	    (0, _TemporalQueries._init)();
 	    (0, _DayOfWeek._init)();
 	    (0, _Instant._init)();
