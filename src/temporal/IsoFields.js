@@ -84,7 +84,7 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * <tr><th>2009-01-05</th><td>Monday</td><td>Week 2 of week-based-year 2009</td></tr>
  * </table>
  *
- * <h3>Static properties of Class {@link ChronoField}</h3>
+ * <h3>Static properties of Class {@link IsoFields}</h3>
  *
  * IsoFields.DAY_OF_QUARTER
  *
