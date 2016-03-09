@@ -765,7 +765,7 @@ export class LocalDate extends ChronoLocalDate{
             var f = field;
             f.checkValidValue(newValue);
             switch (f) {
-                case ChronoField.DAY_OF_WEEK: return this.plusDays(newValue - this.getDayOfWeek().value());
+                case ChronoField.DAY_OF_WEEK: return this.plusDays(newValue - this.dayOfWeek().value());
                 case ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH: return this.plusDays(newValue - this.getLong(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));
                 case ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR: return this.plusDays(newValue - this.getLong(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
                 case ChronoField.DAY_OF_MONTH: return this.withDayOfMonth(newValue);
