@@ -71,7 +71,11 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  * The maximum supported {@link LocalDate}
  * This could be used by an application as a "far future" date.
  *
+ * LocalDate.EPOCH_0
+ *
+ * The date at epoch day 0, that is 1970-01-01.
  */
+
 export class LocalDate extends ChronoLocalDate{
 
     /**
@@ -1706,6 +1710,10 @@ export function _init() {
      * This could be used by an application as a "far future" date.
      */
     LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
+    /**
+     * The date at epoch day 0, that is 1970-01-01.
+     */
+    LocalDate.EPOCH_0 = LocalDate.ofEpochDay(0);
 
     LocalDate.FROM = createTemporalQuery('LocalDate.FROM', (temporal) => {
         return LocalDate.from(temporal);
