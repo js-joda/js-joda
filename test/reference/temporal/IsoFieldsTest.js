@@ -47,6 +47,15 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
             });
         });
     
+        // @Test(dataProvider='week')
+        it('test_with_WOWBY', function () {
+            dataProviderTest(data_week, (date, dow, week) => {
+                assertEquals(
+                    date.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week).with(ChronoField.DAY_OF_WEEK, dow.value()),
+                    date);
+            });
+        });
+
     });
 
 
@@ -59,6 +68,25 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                 assertEquals(IsoFields.WEEK_BASED_YEAR.getFrom(date), wby);
                 assertEquals(date.get(IsoFields.WEEK_BASED_YEAR), wby);
             });
+        });
+
+        // @Test(dataProvider='week')
+        it('test_with_WBY', function () {
+            dataProviderTest(data_week, (date, dow, week, wby) => {
+                assertEquals(
+                    date.with(IsoFields.WEEK_BASED_YEAR, wby),
+                    date);
+            });
+        });
+
+        it('test_week_overflow', function () {
+            dataProviderTest([
+                [LocalDate.of(1964, 12, 28), 1965, LocalDate.of(1965, 12, 27)],
+                [LocalDate.of(2015, 12, 31), 2016, LocalDate.of(2016, 12, 29)]
+            ], (date, wby, expected) => {
+                assertEquals(date.with(IsoFields.WEEK_BASED_YEAR, wby), expected);
+            });
+
         });
 
     });
@@ -117,8 +145,104 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
         }
     });
 
+    describe('week years between / plus', function () {
 
-    describe('quarters between', function () {
+        function data_weekYearsBetween() {
+            return [
+                [LocalDate.of(1969, 12, 28), LocalDate.of(1969, 12, 28), 0],
+                [LocalDate.of(1969, 12, 28), LocalDate.of(1969, 12, 29), 1],
+
+                [LocalDate.of(1998, 12, 28), LocalDate.of(1998, 12, 29), 0],
+                [LocalDate.of(1998, 12, 28), LocalDate.of(1999, 1, 3), 0],
+                [LocalDate.of(1998, 12, 28), LocalDate.of(1999, 1, 4), 1],
+                [LocalDate.of(1998, 12, 28), LocalDate.of(2000, 1, 2), 1],
+                [LocalDate.of(1998, 12, 28), LocalDate.of(2000, 1, 4), 2]
+            ];
+        }
+
+        it('test_weak_years_between', function () {
+
+            dataProviderTest(data_weekYearsBetween, (start, end, expected) => {
+                assertEquals(IsoFields.WEEK_BASED_YEARS.between(start, end), expected);
+                assertEquals(start.until(end, IsoFields.WEEK_BASED_YEARS), expected);
+                assertEquals(IsoFields.WEEK_BASED_YEARS.between(end, start), expected !== 0 ? -expected : 0);
+                assertEquals(end.until(start, IsoFields.WEEK_BASED_YEARS), expected !== 0 ? -expected : 0);
+            });
+
+        });
+
+        it('test_weak_years_plus', function () {
+
+            dataProviderTest([
+               [LocalDate.of(1969, 12, 28), 0, LocalDate.of(1969, 12, 28)],
+               [LocalDate.of(1969, 12, 28), 1, LocalDate.of(1970, 12, 27)],
+               [LocalDate.of(1969, 12, 29), 0, LocalDate.of(1969, 12, 29)],
+               [LocalDate.of(1969, 12, 29), 1, LocalDate.of(1971, 1, 4)]
+            ], (date, weeks, expected) => {
+                assertEquals(date.plus(weeks, IsoFields.WEEK_BASED_YEARS), expected);
+                assertEquals(date.plus(weeks, IsoFields.WEEK_BASED_YEARS).dayOfWeek(), expected.dayOfWeek());
+
+                assertEquals(IsoFields.WEEK_BASED_YEARS.addTo(date, weeks), expected);
+
+                assertEquals(expected.minus(weeks, IsoFields.WEEK_BASED_YEARS), date);
+            });
+
+        });
+
+    });
+
+    describe('DAY_OF_QUARTER/ QUARTER_OF_YEAR', function () {
+
+        function data_quarter() {
+            return [
+                [LocalDate.of(2015, 1, 1), 1, 1],
+                [LocalDate.of(2015, 3, 31), 90, 1],
+                [LocalDate.of(2015, 4, 1), 1, 2],
+                [LocalDate.of(2015, 6, 30), 91, 2],
+                [LocalDate.of(2015, 7, 1), 1, 3],
+                [LocalDate.of(2015, 9, 30), 92, 3],
+                [LocalDate.of(2015, 10, 1), 1, 4],
+                [LocalDate.of(2015, 12, 31), 92, 4],
+                // leap year
+                [LocalDate.of(2016, 1, 1), 1, 1],
+                [LocalDate.of(2016, 3, 31), 91, 1],
+                [LocalDate.of(2016, 4, 1), 1, 2],
+                [LocalDate.of(2016, 6, 30), 91, 2],
+                [LocalDate.of(2016, 7, 1), 1, 3],
+                [LocalDate.of(2016, 9, 30), 92, 3],
+                [LocalDate.of(2016, 10, 1), 1, 4],
+                [LocalDate.of(2016, 12, 31), 92, 4]
+            ];
+        }
+
+        it('test_quarters', function () {
+            dataProviderTest(data_quarter, (date, doq, q) => {
+                assertEquals(date.get(IsoFields.DAY_OF_QUARTER), doq);
+                assertEquals(date.get(IsoFields.QUARTER_OF_YEAR), q);
+            });
+        });
+
+        it('test_with_quarters', function () {
+            dataProviderTest(data_quarter, (date, doq, q) => {
+                assertEquals(date.with(IsoFields.QUARTER_OF_YEAR, q), date);
+            });
+        });
+
+        it('test_with_day_of_quarter', function () {
+            dataProviderTest(data_quarter, (date, doq, q) => {
+                assertEquals(
+                    LocalDate.EPOCH_0
+                        .withYear(date.year())
+                        .with(IsoFields.QUARTER_OF_YEAR, q)
+                        .with(IsoFields.DAY_OF_QUARTER, doq),
+                    date);
+            });
+        });
+
+    });
+
+    describe('quarters between/ plus', function () {
+
         // @DataProvider(name='quartersBetween')
         function data_quartersBetween() {
             return [
@@ -155,12 +279,50 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
             dataProviderTest(data_quartersBetween, (start, end, expected) => {
                 assertEquals(IsoFields.QUARTER_YEARS.between(start, end), expected);
+                assertEquals(start.until(end, IsoFields.QUARTER_YEARS), expected);
             });
 
         });
-    });
 
-    // TODO more tests
+
+        function data_quartersPlus() {
+            return [
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2000, 1, 1), 0],
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2000, 4, 1), 1],
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2000, 7, 1), 2],
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2000, 10, 1), 3],
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2001, 1, 1), 4],
+                    [LocalDate.of(2000, 1, 1), LocalDate.of(2001, 4, 1), 5],
+
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2001, 1, 1), 0],
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2001, 4, 1), 1],
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2001, 7, 1), 2],
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2001, 10, 1), 3],
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2002, 1, 1), 4],
+                    [LocalDate.of(2001, 1, 1), LocalDate.of(2002, 4, 1), 5],
+
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2001, 3, 31), 0],
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2001, 6, 30), 1],
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2001, 9, 30), 2],
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2001, 12, 31), 3],
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2002, 3, 31), 4],
+                    [LocalDate.of(2001, 3, 31), LocalDate.of(2002, 6, 30), 5]
+            ];
+        }
+
+
+        it('test_quarters_plus', function () {
+
+            dataProviderTest(data_quartersPlus, (date, expected, quartersToAdd) => {
+                assertEquals(date.plus(quartersToAdd, IsoFields.QUARTER_YEARS), expected);
+                assertEquals(IsoFields.QUARTER_YEARS.addTo(date, quartersToAdd), expected);
+
+                assertEquals(expected.minus(quartersToAdd, IsoFields.QUARTER_YEARS), date.withDayOfMonth(expected.dayOfMonth()));
+            });
+
+        });
+
+    });
 
 });
 
