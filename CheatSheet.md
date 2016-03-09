@@ -92,9 +92,26 @@ d.get(ChronoField.ALIGNED_WEEK_OF_YEAR); // 52
 // or the day of week aligned to the first day of month
 d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 3
 
-// TODO
-// get week of week based year
-dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);   // 8
+### Get weeks of week based year, get year quarters and the day of quarter
+
+// get week of week based year as defined by ISO 8601 with a monday based week
+d.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);   // 51
+
+d.isoWeekOfWeekyear();   // 51, is the same as above 
+d.isoWeekyear();         // 2016
+
+LocalDate.of(2017,1,1).isoWeekOfWeekyear(); // 52
+LocalDate.of(2017,1,1).isoWeekyear();       // 2016
+
+// set the date to week 52 of week based year with the same day of week
+d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52);   // 2016-12-31
+
+// get the quarter of the year
+d.get(IsoFields.QUARTER_OF_YEAR);   // 4
+d.get(IsoFields.DAY_OF_QUARTER);    // 85
+
+// set the date to 15th day of the third quarter
+d.with(IsoFields.QUARTER_OF_YEAR, 3).with(IsoFields.DAY_OF_QUARTER, 15) // 2016-07-15
 
 ```
 
@@ -154,8 +171,8 @@ LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
 // set the day of year
 d.withDayOfYear(42); // 2016-02-11
 
-// set the ALIGNED_WEEK_OF_YEAR to 51
-d.with(ChronoField.ALIGNED_WEEK_OF_YEAR, 51) // 2016-12-17
+// set the WEEK_OF_WEEK_BASED_YEAR to 52
+d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52) // 2016-12-31
 
 // set by a TemporalAdjuster lastDayOfMonth
 d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
@@ -483,9 +500,9 @@ dt.range(ChronoField.DAY_OF_YEAR);  // ValueRange(1 - 366)
 // get other date based field like the aligned week of year
 dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR); // 9
 
-// TODO
 // get week of week based year
-// dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);   // 8
+dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);   // 8
+dt.toLocalDate().isoWeekOfWeekyear();
 
 // get other time based fields
 dt.get(ChronoField.SECOND_OF_DAY);   // 86142
@@ -735,7 +752,6 @@ LocalDate.parse('2012-12-24').with(nextOrSameEvenDay); // '2012-12-24'
 
 a good point to start is temporal/IsoFields as an example how to implement custom fields and units. 
 IsoFields implements fields and units for an ISO week based year.
-// TODO temporal/IsoFields is not yet migrated to js-joda, check org.threeten.bp.temporal.IsoFields for now.
  
 ### Custom formatter and queries
 
