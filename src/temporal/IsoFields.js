@@ -339,7 +339,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
         var qoy = temporal.getLong(QUARTER_OF_YEAR);
         if (qoy === 1) {
             var year = temporal.getLong(ChronoField.YEAR);
-            return (IsoChronology.INSTANCE.isLeapYear(year) ? ValueRange.of(1, 91) : ValueRange.of(1, 90));
+            return (IsoChronology.isLeapYear(year) ? ValueRange.of(1, 91) : ValueRange.of(1, 90));
         } else if (qoy === 2) {
             return ValueRange.of(1, 91);
         } else if (qoy === 3 || qoy === 4) {
@@ -360,7 +360,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
         var doy = temporal.get(ChronoField.DAY_OF_YEAR);
         var moy = temporal.get(ChronoField.MONTH_OF_YEAR);
         var year = temporal.getLong(ChronoField.YEAR);
-        return doy - QUARTER_DAYS[MathUtil.intDiv((moy - 1), 3) + (IsoChronology.INSTANCE.isLeapYear(year) ? 4 : 0)];
+        return doy - QUARTER_DAYS[MathUtil.intDiv((moy - 1), 3) + (IsoChronology.isLeapYear(year) ? 4 : 0)];
     }
 
     /**
@@ -401,7 +401,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
             if (resolverStyle === ResolverStyle.STRICT) {
                 var max = 92;
                 if (qoy === 1) {
-                    max = (IsoChronology.INSTANCE.isLeapYear(y) ? 91 : 90);
+                    max = (IsoChronology.isLeapYear(y) ? 91 : 90);
                 } else if (qoy === 2) {
                     max = 91;
                 }
@@ -832,6 +832,7 @@ export function _init() {
     QUARTER_OF_YEAR = new QUARTER_OF_YEAR_FIELD();
     WEEK_OF_WEEK_BASED_YEAR = new WEEK_OF_WEEK_BASED_YEAR_FIELD();
     WEEK_BASED_YEAR = new WEEK_BASED_YEAR_FIELD();
+
     WEEK_BASED_YEARS = new Unit('WeekBasedYears', Duration.ofSeconds(31556952));
     QUARTER_YEARS = new Unit('QuarterYears', Duration.ofSeconds(31556952 / 4));
 
