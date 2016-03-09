@@ -16,9 +16,10 @@ export { Period } from './Period';
 export { Year } from './Year';
 export { ZoneOffset } from './ZoneOffset';
 
-export {nativeJs} from './temporal/NativeJsTemporal'
+export {nativeJs} from './temporal/NativeJsTemporal';
 export {ChronoField} from './temporal/ChronoField';
 export {ChronoUnit} from './temporal/ChronoUnit';
+export {IsoFields} from './temporal/IsoFields';
 export {TemporalAdjusters} from './temporal/TemporalAdjusters';
 export {TemporalQueries} from './temporal/TemporalQueries';
 
