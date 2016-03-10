@@ -1,5 +1,5 @@
-require('./parseInstant.js');
-require('./parseLocalDate.js');
-require('./now.js');
-require('./plus1Day.js');
-require('./plusMinusDaysAndHours.js');
+require('./suites/parseInstant.js');
+require('./suites/parseLocalDate.js');
+require('./suites/now.js');
+require('./suites/plus1Day.js');
+require('./suites/plusMinusDaysAndHours.js');

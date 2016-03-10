@@ -1,4 +1,4 @@
-if(typeof require === 'function') { require('./node-init'); }
+if(typeof require === 'function') { require('../node-init'); }
 
 var dateStr = '2015-12-24T12:00';
 var dt = JSJoda.LocalDateTime.parse(dateStr);

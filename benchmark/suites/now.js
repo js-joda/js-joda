@@ -1,4 +1,4 @@
-if(typeof require === 'function') { require('./node-init'); }
+if(typeof require === 'function') { require('../node-init'); }
 
 addSuite(
     new Benchmark.Suite('now()')
