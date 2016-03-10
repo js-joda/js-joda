@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-joda benchmark</title>
+    <script src="//cdn.jsdelivr.net/js-joda/latest/js-joda.js"></script>
+    <script src="//cdn.jsdelivr.net/momentjs/2.11.2/moment.min.js"></script>
+    <script src="//cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js"></script>
+    <script src="//cdn.jsdelivr.net/benchmarkjs/2.1.0/benchmark.js"></script>
+    <script src="browser-init.js"></script>
+</head>
+<body>
+
+    <pre id="result"></pre>
+
+    <script src="suites/parseInstant.js"></script>
+    <script src="suites/parseLocalDate.js"></script>
+    <script src="suites/now.js"></script>
+    <script src="suites/plus1Day.js"></script>
+    <script src="suites/plusMinusDaysAndHours.js"></script>
+    <script src="suites/isLeapYear.js"></script>
+    <script src="suites/weekOfWeekYear.js"></script>
+
+</body>
+</html>
