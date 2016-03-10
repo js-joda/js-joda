@@ -14,8 +14,12 @@ function next(suite){
     }
     if(!running){
         var s = suites.shift();
-        s.run({ 'async': true });
-        running = true;
+        if(s!=null) {
+            s.run({'async': true});
+            running = true;
+        } else {
+            log('all benchmarks done')
+        }
     }
 }
 
@@ -26,11 +30,11 @@ function addSuite(suite){
         log(String(event.target));
     })
     .on('start', function() {
-        log('test "' + suite.name + '" is running');
+        log('benchmark "' + suite.name + '" is running');
     })
     .on('complete', function() {
         log('Fastest is ' + this.filter('fastest').map('name'));
-        log('test "' + suite.name + '" done');
+        log('benchmark "' + suite.name + '" done');
         log('');
         next();
     });

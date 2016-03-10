@@ -14,11 +14,11 @@ global.addSuite = function(suite){
         log(String(event.target));
     })
     .on('start', function() {
-        log('test "' + suite.name + '" is running');
+        log('benchmark "' + suite.name + '" is running');
     })
     .on('complete', function() {
         log('Fastest is ' + this.filter('fastest').map('name'));
-        log('test "' + suite.name + '" done');
+        log('benchmark "' + suite.name + '" done');
         log('');
     })
     .run();
