@@ -20,7 +20,7 @@ function next(suite){
 }
 
 
-function runTest(suite){
+function addSuite(suite){
     // add listeners
     suite.on('cycle', function(event) {
         log(String(event.target));

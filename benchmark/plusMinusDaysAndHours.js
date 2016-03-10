@@ -4,7 +4,7 @@ var dateStr = '2015-12-24T12:00';
 var dt = JSJoda.LocalDateTime.parse(dateStr);
 var m = moment(dateStr);
 
-runTest(
+addSuite(
     new Benchmark.Suite('plusMinusDaysAndHours')
         .add('js-joda', function() {
             dt.plusDays(1).minusDays(2).plusHours(24);

@@ -8,7 +8,7 @@ global.log = function(msg){
 };
 
 // run test
-global.runTest = function(suite){
+global.addSuite = function(suite){
     // add listeners
     suite.on('cycle', function(event) {
         log(String(event.target));
