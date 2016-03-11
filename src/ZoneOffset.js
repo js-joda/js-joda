@@ -5,6 +5,7 @@
  */
 
 import {DateTimeException} from './errors';
+import {MathUtil} from './MathUtil';
 
 import {LocalTime} from './LocalTime';
 import {ZoneId} from './ZoneId';
@@ -37,6 +38,7 @@ export class ZoneOffset extends ZoneId {
         ZoneOffset._validateTotalSeconds(totalSeconds);
         this._totalSeconds = totalSeconds;
         this._rules = ZoneRules.of(this);
+        this._id = ZoneOffset._buildId(totalSeconds);
     }
 
     /**
@@ -46,6 +48,38 @@ export class ZoneOffset extends ZoneId {
     totalSeconds() {
         return this._totalSeconds;
     }
+
+    /**
+     *
+     * @returns {string}
+     */
+    id() {
+        return this._id;
+    }
+
+    /**
+     *
+     * @param {number} totalSeconds
+     * @returns {string}
+     */
+    static _buildId(totalSeconds) {
+        if (totalSeconds === 0) {
+            return 'Z';
+        } else {
+            var absTotalSeconds = Math.abs(totalSeconds);
+            var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
+            var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+            var buf = '' + (totalSeconds < 0 ? '-' : '+')
+                + (absHours < 10 ? '0' : '') + (absHours)
+                + (absMinutes < 10 ? ':0' : ':') + (absMinutes);
+            var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
+            if (absSeconds !== 0) {
+                buf += (absSeconds < 10 ? ':0' : ':') + (absSeconds);
+            }
+            return buf.toString();
+        }
+    }
+
 
     /**
      * 
@@ -186,7 +220,14 @@ export class ZoneOffset extends ZoneId {
         }
         return false;
     }
-    
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString(){
+        return this._id;
+    }
 }
 
 export function _init() {
