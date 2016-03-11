@@ -60,6 +60,9 @@ class ZoneIdSystemDefault extends ZoneId {
         return this._rules;
     }
 
+    toString(){
+        return 'ZoneSystemDefault';
+    }
 }
 
 var zoneSystemDefaultInstance = new ZoneIdSystemDefault();
