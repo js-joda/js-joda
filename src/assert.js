@@ -29,5 +29,5 @@ export function requireInstance(value, _class, parameterName) {
 }
 
 export function abstractMethodFail(methodName){
-    throw new TypeError('abstract mehod ' + methodName + 'is not implemented');
+    throw new TypeError('abstract mehod "' + methodName + '" is not implemented');
 }
