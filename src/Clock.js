@@ -83,6 +83,15 @@ export class Clock {
     }
 
     /**
+     *
+     * @param {ZoneId} zone
+     * @return {Clock} a clock that uses the specified time zone
+     */
+    static system(zone){
+        return new SystemClock(zone);
+    }
+
+    /**
      * Obtains a clock that always returns the same instant.
      * <p>
      * This clock simply returns the specified instant.
