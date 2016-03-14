@@ -33,6 +33,16 @@ export class SystemDefaultZoneRules extends ZoneRules {
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
+    /**
+     *
+     * @param {LocalDateTime} dateTime
+     * @param {ZoneOffset} offset
+     * @return {boolean}
+     */
+    isValidOffset(dateTime, offset) {
+        return this.offsetOfLocalDateTime(dateTime).equals(offset);
+    }
+
     //-----------------------------------------------------------------------
     /**
      *

@@ -95,6 +95,21 @@ export class ZoneRules {
         abstractMethodFail('ZoneRules.offsetLocalDateTime');
     }
 
+    /**
+     * Checks if the offset date-time is valid for these rules.
+     * <p>
+     * To be valid, the local date-time must not be in a gap and the offset
+     * must match the valid offsets.
+     *
+     * @param {LocalDateTime} localDateTime - the date-time to check, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @param {ZoneOffset} offset - the offset to check, null returns false
+     * @return {boolean} true if the offset date-time is valid for these rules
+     */
+    isValidOffset(localDateTime, offset){
+        abstractMethodFail('ZoneRules.isValidOffset');
+    }
+
 }
 
 
@@ -118,6 +133,16 @@ class Fixed extends ZoneRules{
 
     offsetOfLocalDateTime(){
         return this._offset;
+    }
+
+    /**
+     *
+     * @param {LocalDateTime} LocalDateTime
+     * @param {ZoneOffset} offset
+     * @return {boolean}
+     */
+    isValidOffset(dateTime, offset) {
+        return this._offset.equals(offset);
     }
 
     //-----------------------------------------------------------------------
