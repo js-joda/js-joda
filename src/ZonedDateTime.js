@@ -111,11 +111,11 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     static of(){
         if(arguments.length === 3){
-            ZonedDateTime.of3.apply(this, arguments);
+            return ZonedDateTime.of3.apply(this, arguments);
         } else if (arguments.length === 2){
-            ZonedDateTime.of2.apply(this, arguments);
+            return ZonedDateTime.of2.apply(this, arguments);
         } else {
-            ZonedDateTime.of8.apply(this, arguments);
+            return ZonedDateTime.of8.apply(this, arguments);
         }
     }
     /**
@@ -282,9 +282,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     static ofInstant(){
         if (arguments.length === 2){
-            ZonedDateTime.ofInstant2.apply(this, arguments);
+            return ZonedDateTime.ofInstant2.apply(this, arguments);
         } else {            
-            ZonedDateTime.ofInstant3.apply(this, arguments);
+            return ZonedDateTime.ofInstant3.apply(this, arguments);
         }
     } 
     /**
@@ -987,9 +987,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     with(){
         if(arguments.length === 1){
-            ZonedDateTime.withTemporalAdjuster.apply(this, arguments);
+            return ZonedDateTime.withTemporalAdjuster.apply(this, arguments);
         } else {
-            ZonedDateTime.with2.apply(this, arguments);
+            return ZonedDateTime.with2.apply(this, arguments);
         }
     }
 
@@ -1350,9 +1350,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     plus(){
         if(arguments.length === 1){
-            ZonedDateTime.plusTemporalAmount.apply(this, arguments);
+            return ZonedDateTime.plusTemporalAmount.apply(this, arguments);
         } else {
-            ZonedDateTime.plus2.apply(this, arguments);
+            return ZonedDateTime.plus2.apply(this, arguments);
         }
     }
 
@@ -1531,7 +1531,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusHours(hours) {
-        return this._resolveInstant(this._datetime.plusHours(hours));
+        return this._resolveInstant(this._dateTime.plusHours(hours));
     }
 
     /**
@@ -1549,7 +1549,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusMinutes(minutes) {
-        return this._resolveInstant(this._datetime.plusMinutes(minutes));
+        return this._resolveInstant(this._dateTime.plusMinutes(minutes));
     }
 
     /**
@@ -1567,7 +1567,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusSeconds(seconds) {
-        return this._resolveInstant(this._datetime.plusSeconds(seconds));
+        return this._resolveInstant(this._dateTime.plusSeconds(seconds));
     }
 
     /**
@@ -1585,7 +1585,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusNanos(nanos) {
-        return this._resolveInstant(this._datetime.plusNanos(nanos));
+        return this._resolveInstant(this._dateTime.plusNanos(nanos));
     }
 
     //-----------------------------------------------------------------------
@@ -1597,9 +1597,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     minus(){
         if(arguments.length === 1){
-            ZonedDateTime.minusTemporalAmount.apply(this, arguments);
+            return ZonedDateTime.minusTemporalAmount.apply(this, arguments);
         } else {
-            ZonedDateTime.minus2.apply(this, arguments);
+            return ZonedDateTime.minus2.apply(this, arguments);
         }
     }
 
@@ -1920,7 +1920,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (unit instanceof ChronoUnit) {
             end = end.withZoneSameInstant(this._zone);
             if (unit.isDateBased()) {
-                return this._datetime.until(end.dateTime, unit);
+                return this._dateTime.until(end.dateTime, unit);
             } else {
                 // TODO we do not support offsetDateTime, we might have to find a different solution
                 // return toOffsetDateTime().until(end.toOffsetDateTime(), unit);
@@ -1951,7 +1951,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {LocalDate} the date part of this date-time, not null
      */
     toLocalDate() {
-        return this._datetime.toLocalDate();
+        return this._dateTime.toLocalDate();
     }
 
     /**
@@ -1963,7 +1963,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {LocalTime} the time part of this date-time, not null
      */
     toLocalTime() {
-        return this._datetime.toLocalTime();
+        return this._dateTime.toLocalTime();
     }
 
     /**
@@ -1994,7 +1994,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             return true;
         }
         if (other instanceof ZonedDateTime) {
-            return this._datetime.equals(other._dateTime) &&
+            return this._dateTime.equals(other._dateTime) &&
                 this._offset.equals(other._offset) &&
                 this._zone.equals(other._zone);
         }
@@ -2008,7 +2008,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     hashCode() {
         var r = 17;
-        r = 31 * r + this._datetime.hashCode();
+        r = 31 * r + this._dateTime.hashCode();
         r = 31 * r + this._offset.hashCode();
         r = 31 * r + this._zone.hashCode();
         return r;
@@ -2026,7 +2026,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {string} a string representation of this date-time, not null
      */
     toString() {
-        var str = this._datetime.toString() + this._offset.toString();
+        var str = this._dateTime.toString() + this._offset.toString();
         if (this._offset !== this._zone) {
             str += '[' + this._zone.toString() + ']';
         }

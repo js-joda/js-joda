@@ -5,6 +5,7 @@
  */
 
 import {requireNonNull} from '../assert';
+import {Instant} from '../Instant';
 import {LocalDate} from '../LocalDate';
 
 import {ChronoUnit} from '../temporal/ChronoUnit';
@@ -18,7 +19,7 @@ export class ChronoZonedDateTime  extends Temporal {
         } else if (query === TemporalQueries.chronology()) {
             return this.toLocalDate().getChronology();
         } else if (query === TemporalQueries.precision()) {
-            return ChronUnit.NANOS;
+            return ChronoUnit.NANOS;
         } else if (query === TemporalQueries.offset()) {
             return this.offset();
         } else if (query === TemporalQueries.localDate()) {
@@ -40,5 +41,38 @@ export class ChronoZonedDateTime  extends Temporal {
         requireNonNull(formatter, 'formatter');
         return formatter.format(this);
     }
+
+    /**
+     * Converts this date-time to an {@code Instant}.
+     * <p>
+     * This returns an {@code Instant} representing the same point on the
+     * time-line as this date-time. The calculation combines the
+     * {@linkplain #toLocalDateTime() local date-time} and
+     * {@linkplain #getOffset() offset}.
+     *
+     * @return {Instant} an {@code Instant} representing the same instant, not null
+     */
+    toInstant() {
+        return Instant.ofEpochSecond(this.toEpochSecond(), this.toLocalTime().nano());
+    }
+
+    /**
+     * Converts this date-time to the number of seconds from the epoch
+     * of 1970-01-01T00:00:00Z.
+     * <p>
+     * This uses the {@linkplain #toLocalDateTime() local date-time} and
+     * {@linkplain #getOffset() offset} to calculate the epoch-second value,
+     * which is the number of elapsed seconds from 1970-01-01T00:00:00Z.
+     * Instants on the time-line after the epoch are positive, earlier are negative.
+     *
+     * @return {number} the number of seconds from the epoch of 1970-01-01T00:00:00Z
+     */
+    toEpochSecond() {
+        var epochDay = this.toLocalDate().toEpochDay();
+        var secs = epochDay * 86400 + this.toLocalTime().toSecondOfDay();
+        secs -= this.offset().totalSeconds();
+        return secs;
+    }
+
 
 }

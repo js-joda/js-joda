@@ -60,6 +60,13 @@ class ZoneIdSystemDefault extends ZoneId {
         return this._rules;
     }
 
+    equals(other){
+        if(this === other){
+            return true;
+        }
+        return false;
+    }
+
     toString(){
         return 'ZoneSystemDefault';
     }
