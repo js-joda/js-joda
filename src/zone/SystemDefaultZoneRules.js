@@ -18,7 +18,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfInstant(instant){
-        var offsetInMinutes = new Date().getTimezoneOffset(instant.toEpochMilli());
+        var offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
@@ -29,7 +29,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      */
     offsetOfLocalDateTime(localDateTime){
         var epochMilli = localDateTime.toEpochSecond(ZoneOffset.UTC) * 1000;
-        var offsetInMinutes = new Date().getTimezoneOffset(epochMilli);
+        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
