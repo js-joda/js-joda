@@ -34,8 +34,8 @@ export class CurrentCESTZone extends ZoneId {
     }
 }
 
-const WINTER_OFFSET = ZoneOffset.ofHours(1);
-const SUMMER_OFFSET = ZoneOffset.ofHours(2);
+var WINTER_OFFSET = null;
+var SUMMER_OFFSET = null;
 
 class CurrentCESTZoneRules extends ZoneRules {
 
@@ -136,3 +136,7 @@ function lastSundayOfMonthAtMidnight(year, month){
         .atStartOfDay();
 }
 
+export function _init(){
+    WINTER_OFFSET = ZoneOffset.ofHours(1);
+    SUMMER_OFFSET = ZoneOffset.ofHours(2);
+}
