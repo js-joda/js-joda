@@ -5,8 +5,8 @@
  */
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
 import {ChronoUnit} from './ChronoUnit';
-import { TemporalField } from './TemporalField';
-import { ValueRange } from './ValueRange';
+import {TemporalField} from './TemporalField';
+import {ValueRange} from './ValueRange';
 import {Year} from '../Year';
 
 /**
