@@ -6,11 +6,12 @@
 
 import '../_init';
 
-// import {expect} from 'chai';
+import {expect} from 'chai';
 import {assertEquals, assertTrue} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
+import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
-// import {NullPointerException} from '../../src/errors';
+import {DateTimeException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
@@ -18,12 +19,37 @@ import {LocalTime} from '../../src/LocalTime';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {MathUtil} from '../../src/MathUtil';
+import {Year} from '../../src/Year';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestZonedDateTime', () => {
-    
+
+    var OFFSET_0100 = ZoneOffset.ofHours(1);
+    var OFFSET_0200 = ZoneOffset.ofHours(2);
+    var OFFSET_0130 = ZoneOffset.ofHoursMinutes(1, 30);
+    var OFFSET_MAX = ZoneOffset.ofHours(18);
+    var OFFSET_MIN = ZoneOffset.ofHours(-18);
+
+    var ZONE_0100 = OFFSET_0100;
+    var ZONE_0200 = OFFSET_0200;
+    var ZONE_M0100 = ZoneOffset.ofHours(-1);
+    var ZONE_PARIS = new CurrentCESTZone();
+    var TEST_PARIS_GAP_2008_03_30_02_30;
+    var TEST_PARIS_OVERLAP_2008_10_26_02_30;
+    var TEST_LOCAL_2008_06_30_11_30_59_500;
+    var TEST_DATE_TIME;
+    var TEST_DATE_TIME_PARIS;
+
+    beforeEach(function () {
+        TEST_LOCAL_2008_06_30_11_30_59_500 = LocalDateTime.of(2008, 6, 30, 11, 30, 59, 500);
+        TEST_DATE_TIME = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+        TEST_DATE_TIME_PARIS = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+        TEST_PARIS_OVERLAP_2008_10_26_02_30 = LocalDateTime.of(2008, 10, 26, 2, 30);
+        TEST_PARIS_GAP_2008_03_30_02_30 = LocalDateTime.of(2008, 3, 30, 2, 30);
+    });
+
     describe('now()', () => {
    
         it('now()', () => {
@@ -125,6 +151,265 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('of(LocalDateTime, ZoneId)', function () {
+
+        it('factory_of_LocalDateTime', () => {
+            var base = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
+            var test = ZonedDateTime.of(base, ZONE_PARIS);
+            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
+        });
+
+        it('factory_of_LocalDateTime_nullDateTime', () => {
+            expect(() => {
+                ZonedDateTime.of(null, ZONE_PARIS);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_of_LocalDateTime_nullZone', () => {
+            expect(() => {
+                var base = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
+                ZonedDateTime.of(base, null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    describe('ofInstant(Instant, ZoneId)', function () {
+        
+        it('factory_ofInstant_Instant_ZR', () => {
+            var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 35).toInstant(OFFSET_0200);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
+            check(test, 2008, 6, 30, 11, 30, 10, 35, OFFSET_0200, ZONE_PARIS);
+        });
+       
+        it('factory_ofInstant_Instant_ZO', () => {
+            var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 45).toInstant(OFFSET_0200);
+            var test = ZonedDateTime.ofInstant(instant, OFFSET_0200);
+            check(test, 2008, 6, 30, 11, 30, 10, 45, OFFSET_0200, OFFSET_0200);
+        });
+       
+        it('factory_ofInstant_Instant_inGap', () => {
+            var instant = TEST_PARIS_GAP_2008_03_30_02_30.toInstant(OFFSET_0100);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
+            check(test, 2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // one hour later in summer offset
+        });
+       
+        it('factory_ofInstant_Instant_inOverlap_earlier', () => {
+            var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0200);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
+            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // same time and offset
+        });
+       
+        it('factory_ofInstant_Instant_inOverlap_later', () => {
+            var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0100);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
+            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS);  // same time and offset
+        });
+       
+        it('factory_ofInstant_Instant_invalidOffset', () => {
+            var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500).toInstant(OFFSET_0130);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
+            check(test, 2008, 6, 30, 12, 0, 10, 500, OFFSET_0200, ZONE_PARIS);  // corrected offset, thus altered time
+        });
+       
+        it('factory_ofInstant_allSecsInDay()', () => {
+            for (var i = 0; i < (24 * 60 * 60); i++) {
+                var instant = Instant.ofEpochSecond(i);
+                var test = ZonedDateTime.ofInstant(instant, OFFSET_0100);
+                assertEquals(test.year(), 1970);
+                assertEquals(test.month(), Month.JANUARY);
+                assertEquals(test.dayOfMonth(), 1 + (i >= 23 * 60 * 60 ? 1 : 0));
+                assertEquals(test.hour(), MathUtil.intMod((MathUtil.intDiv(i, (60 * 60)) + 1), 24));
+                assertEquals(test.minute(), MathUtil.intMod(MathUtil.intDiv(i, 60), 60));
+                assertEquals(test.second(), MathUtil.intMod(i, 60));
+            }
+        });
+       
+        it('factory_ofInstant_allDaysInCycle()', () => {
+            // sanity check using different algorithm
+            var expected = LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0).atZone(ZoneOffset.UTC);
+            for (var i = 0; i < 146097; i++) {
+                var instant = Instant.ofEpochSecond(i * 24 * 60 * 60);
+                var test = ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
+                assertEquals(test, expected);
+                expected = expected.plusDays(1);
+            }
+        });
+       
+        it('factory_ofInstant_minWithMinOffset', () => {
+            var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+            var year = Year.MIN_VALUE;
+            var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
+            var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MIN.totalSeconds());
+            var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
+            assertEquals(test.year(), Year.MIN_VALUE);
+            assertEquals(test.month().value(), 1);
+            assertEquals(test.dayOfMonth(), 1);
+            assertEquals(test.offset(), OFFSET_MIN);
+            assertEquals(test.hour(), 0);
+            assertEquals(test.minute(), 0);
+            assertEquals(test.second(), 0);
+            assertEquals(test.nano(), 0);
+        });
+
+        it('factory_ofInstant_minWithMaxOffset', () => {
+            var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+            var year = Year.MIN_VALUE;
+            var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
+            var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MAX.totalSeconds());
+            var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
+            assertEquals(test.year(), Year.MIN_VALUE);
+            assertEquals(test.month().value(), 1);
+            assertEquals(test.dayOfMonth(), 1);
+            assertEquals(test.offset(), OFFSET_MAX);
+            assertEquals(test.hour(), 0);
+            assertEquals(test.minute(), 0);
+            assertEquals(test.second(), 0);
+            assertEquals(test.nano(), 0);
+        });
+
+        it('factory_ofInstant_maxWithMinOffset', () => {
+            var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+            var year = Year.MAX_VALUE;
+            var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) + 365 - days_0000_to_1970;
+            var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MIN.totalSeconds());
+            var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
+            assertEquals(test.year(), Year.MAX_VALUE);
+            assertEquals(test.month().value(), 12);
+            assertEquals(test.dayOfMonth(), 31);
+            assertEquals(test.offset(), OFFSET_MIN);
+            assertEquals(test.hour(), 23);
+            assertEquals(test.minute(), 59);
+            assertEquals(test.second(), 59);
+            assertEquals(test.nano(), 0);
+        });
+
+        it('factory_ofInstant_maxWithMaxOffset', () => {
+            var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+            var year = Year.MAX_VALUE;
+            var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) + 365 - days_0000_to_1970;
+            var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MAX.totalSeconds());
+            var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
+            assertEquals(test.year(), Year.MAX_VALUE);
+            assertEquals(test.month().value(), 12);
+            assertEquals(test.dayOfMonth(), 31);
+            assertEquals(test.offset(), OFFSET_MAX);
+            assertEquals(test.hour(), 23);
+            assertEquals(test.minute(), 59);
+            assertEquals(test.second(), 59);
+            assertEquals(test.nano(), 0);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_ofInstant_maxInstantWithMaxOffset', () => {
+            expect(() => {
+                var instant = Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER);
+                ZonedDateTime.ofInstant(instant, OFFSET_MAX);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofInstant_maxInstantWithMinOffset', () => {
+            expect(() => {
+                var instant = Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER);
+                ZonedDateTime.ofInstant(instant, OFFSET_MIN);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofInstant_tooBig', () => {
+            expect(() => {
+                var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+                var year = Year.MAX_VALUE + 1;
+                var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
+                var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
+                ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofInstant_tooLow', () => {
+            expect(() => {
+                var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
+                var year = Year.MIN_VALUE - 1;
+                var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
+                var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
+                ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofInstant_Instant_nullInstant', () => {
+            expect(() => {
+                ZonedDateTime.ofInstant(null, ZONE_0100);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_ofInstant_Instant_nullZone', () => {
+            expect(() => {
+                ZonedDateTime.ofInstant(Instant.EPOCH, null);
+            }).to.throw(NullPointerException);
+        });
+       
+    });
+
+    describe.skip('ofStrict(LocalDateTime, ZoneId, ZoneOffset)', function () {
+
+        it('factory_ofStrict_LDT_ZI_ZO', () => {
+            var normal = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
+            var test = ZonedDateTime.ofStrict(normal, OFFSET_0200, ZONE_PARIS);
+            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_inGap()', () => {
+            expect(() => {
+                try {
+                    ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_PARIS);
+                } catch (ex) {
+                    assertEquals(ex.message().contains(' gap'), true);
+                    throw ex;
+                }
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_inOverlap_invalidOfset()', () => {
+            expect(() => {
+                try {
+                    ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0130, ZONE_PARIS);
+                } catch (ex) {
+                    assertEquals(ex.message().contains(' is not valid for '), true);
+                    throw ex;
+                }
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_invalidOffset()', () => {
+            expect(() => {
+                try {
+                    ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0130, ZONE_PARIS);
+                } catch (ex) {
+                    assertEquals(ex.message().contains(' is not valid for '), true);
+                    throw ex;
+                }
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_nullLDT', () => {
+            expect(() => {
+                ZonedDateTime.ofStrict(null, OFFSET_0100, ZONE_PARIS);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_nullZO', () => {
+            expect(() => {
+                ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, null, ZONE_PARIS);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_ofStrict_LDT_ZI_ZO_nullZI', () => {
+            expect(() => {
+                ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0100, null);
+            }).to.throw(NullPointerException);
+        });
+       
+    });
+    
+    
 });
 
 
@@ -235,282 +520,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
      assertEquals(test.offset(), offset);
      assertEquals(test.zone(), zone);
  }
-
- //-----------------------------------------------------------------------
- // of(LocalDateTime, ZoneId)
- //-----------------------------------------------------------------------
- // TODO: tests of overlap/gap
-
- @Test
- it('factory_of_LocalDateTime', () => {
-     var base = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
-     var test = ZonedDateTime.of(base, ZONE_PARIS);
-     check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
- });
-
- it('factory_of_LocalDateTime_nullDateTime', () => {
-expect(() => {
-     ZonedDateTime.of((LocalDateTime) null, ZONE_PARIS);
- 
-}).to.throw(NullPointerException);
-});
-
- it('factory_of_LocalDateTime_nullZone', () => {
-expect(() => {
-     var base = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
-     ZonedDateTime.of(base, null);
- 
-}).to.throw(NullPointerException);
-});
-
- //-----------------------------------------------------------------------
- // ofInstant(Instant, ZoneId)
- //-----------------------------------------------------------------------
- @Test
- it('factory_ofInstant_Instant_ZR', () => {
-     var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 35).toInstant(OFFSET_0200);
-     var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-     check(test, 2008, 6, 30, 11, 30, 10, 35, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('factory_ofInstant_Instant_ZO', () => {
-     var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 45).toInstant(OFFSET_0200);
-     var test = ZonedDateTime.ofInstant(instant, OFFSET_0200);
-     check(test, 2008, 6, 30, 11, 30, 10, 45, OFFSET_0200, OFFSET_0200);
- });
-
- @Test
- it('factory_ofInstant_Instant_inGap', () => {
-     var instant = TEST_PARIS_GAP_2008_03_30_02_30.toInstant(OFFSET_0100);
-     var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-     check(test, 2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // one hour later in summer offset
- });
-
- @Test
- it('factory_ofInstant_Instant_inOverlap_earlier', () => {
-     var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0200);
-     var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-     check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // same time and offset
- });
-
- @Test
- it('factory_ofInstant_Instant_inOverlap_later', () => {
-     var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0100);
-     var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-     check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS);  // same time and offset
- });
-
- @Test
- it('factory_ofInstant_Instant_invalidOffset', () => {
-     var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500).toInstant(OFFSET_0130);
-     var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-     check(test, 2008, 6, 30, 12, 0, 10, 500, OFFSET_0200, ZONE_PARIS);  // corrected offset, thus altered time
- });
-
- @Test
- public void factory_ofInstant_allSecsInDay() {
-     for (var i = 0; i < (24 * 60 * 60); i++) {
-         var instant = Instant.ofEpochSecond(i);
-         var test = ZonedDateTime.ofInstant(instant, OFFSET_0100);
-         assertEquals(test.year(), 1970);
-         assertEquals(test.month(), Month.JANUARY);
-         assertEquals(test.dayOfMonth(), 1 + (i >= 23 * 60 * 60 ? 1 : 0));
-         assertEquals(test.hour(), ((i / (60 * 60)) + 1) % 24);
-         assertEquals(test.minute(), (i / 60) % 60);
-         assertEquals(test.second(), i % 60);
-     }
- }
-
- @Test
- public void factory_ofInstant_allDaysInCycle() {
-     // sanity check using different algorithm
-     var expected = LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0).atZone(ZoneOffset.UTC);
-     for (var i = 0; i < 146097; i++) {
-         var instant = Instant.ofEpochSecond(i * 24 * 60 * 60);
-         var test = ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
-         assertEquals(test, expected);
-         expected = expected.plusDays(1);
-     }
- }
-
- @Test
- it('factory_ofInstant_minWithMinOffset', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MIN_VALUE;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MIN.totalseconds());
-     var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
-     assertEquals(test.year(), Year.MIN_VALUE);
-     assertEquals(test.month().value(), 1);
-     assertEquals(test.dayOfMonth(), 1);
-     assertEquals(test.offset(), OFFSET_MIN);
-     assertEquals(test.hour(), 0);
-     assertEquals(test.minute(), 0);
-     assertEquals(test.second(), 0);
-     assertEquals(test.nano(), 0);
- });
-
- @Test
- it('factory_ofInstant_minWithMaxOffset', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MIN_VALUE;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MAX.totalseconds());
-     var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
-     assertEquals(test.year(), Year.MIN_VALUE);
-     assertEquals(test.month().value(), 1);
-     assertEquals(test.dayOfMonth(), 1);
-     assertEquals(test.offset(), OFFSET_MAX);
-     assertEquals(test.hour(), 0);
-     assertEquals(test.minute(), 0);
-     assertEquals(test.second(), 0);
-     assertEquals(test.nano(), 0);
- });
-
- @Test
- it('factory_ofInstant_maxWithMinOffset', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MAX_VALUE;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) + 365 - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MIN.totalseconds());
-     var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
-     assertEquals(test.year(), Year.MAX_VALUE);
-     assertEquals(test.month().value(), 12);
-     assertEquals(test.dayOfMonth(), 31);
-     assertEquals(test.offset(), OFFSET_MIN);
-     assertEquals(test.hour(), 23);
-     assertEquals(test.minute(), 59);
-     assertEquals(test.second(), 59);
-     assertEquals(test.nano(), 0);
- });
-
- @Test
- it('factory_ofInstant_maxWithMaxOffset', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MAX_VALUE;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) + 365 - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MAX.totalseconds());
-     var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
-     assertEquals(test.year(), Year.MAX_VALUE);
-     assertEquals(test.month().value(), 12);
-     assertEquals(test.dayOfMonth(), 31);
-     assertEquals(test.offset(), OFFSET_MAX);
-     assertEquals(test.hour(), 23);
-     assertEquals(test.minute(), 59);
-     assertEquals(test.second(), 59);
-     assertEquals(test.nano(), 0);
- });
-
- //-----------------------------------------------------------------------
- it('factory_ofInstant_maxInstantWithMaxOffset', () => {
-expect(() => {
-     var instant = Instant.ofEpochSecond(Long.MAX_VALUE);
-     ZonedDateTime.ofInstant(instant, OFFSET_MAX);
- 
-}).to.throw(DateTimeException);
-});
-
- it('factory_ofInstant_maxInstantWithMinOffset', () => {
-expect(() => {
-     var instant = Instant.ofEpochSecond(Long.MAX_VALUE);
-     ZonedDateTime.ofInstant(instant, OFFSET_MIN);
- 
-}).to.throw(DateTimeException);
-});
-
- @Test(expectedExceptions=DateTimeException.class)
- it('factory_ofInstant_tooBig', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MAX_VALUE + 1;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
-     ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
- });
-
- @Test(expectedExceptions=DateTimeException.class)
- it('factory_ofInstant_tooLow', () => {
-     var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-     var year = Year.MIN_VALUE - 1;
-     var days = (year * 365 + (year / 4 - year / 100 + year / 400)) - days_0000_to_1970;
-     var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
-     ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
- });
-
- it('factory_ofInstant_Instant_nullInstant', () => {
-expect(() => {
-     ZonedDateTime.ofInstant((Instant) null, ZONE_0100);
- 
-}).to.throw(NullPointerException);
-});
-
- it('factory_ofInstant_Instant_nullZone', () => {
-expect(() => {
-     ZonedDateTime.ofInstant(Instant.EPOCH, null);
- 
-}).to.throw(NullPointerException);
-});
-
- //-----------------------------------------------------------------------
- // ofStrict(LocalDateTime, ZoneId, ZoneOffset)
- //-----------------------------------------------------------------------
- @Test
- it('factory_ofStrict_LDT_ZI_ZO', () => {
-     var normal = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
-     var test = ZonedDateTime.ofStrict(normal, OFFSET_0200, ZONE_PARIS);
-     check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test(expectedExceptions=DateTimeException.class)
- public void factory_ofStrict_LDT_ZI_ZO_inGap() {
-     try {
-         ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_PARIS);
-     } catch (DateTimeException ex) {
-         assertEquals(ex.message().contains(" gap"), true);
-         throw ex;
-     }
- }
-
- @Test(expectedExceptions=DateTimeException.class)
- public void factory_ofStrict_LDT_ZI_ZO_inOverlap_invalidOfset() {
-     try {
-         ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0130, ZONE_PARIS);
-     } catch (DateTimeException ex) {
-         assertEquals(ex.message().contains(" is not valid for "), true);
-         throw ex;
-     }
- }
-
- @Test(expectedExceptions=DateTimeException.class)
- public void factory_ofStrict_LDT_ZI_ZO_invalidOffset() {
-     try {
-         ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0130, ZONE_PARIS);
-     } catch (DateTimeException ex) {
-         assertEquals(ex.message().contains(" is not valid for "), true);
-         throw ex;
-     }
- }
-
- it('factory_ofStrict_LDT_ZI_ZO_nullLDT', () => {
-expect(() => {
-     ZonedDateTime.ofStrict((LocalDateTime) null, OFFSET_0100, ZONE_PARIS);
- 
-}).to.throw(NullPointerException);
-});
-
- it('factory_ofStrict_LDT_ZI_ZO_nullZO', () => {
-expect(() => {
-     ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, null, ZONE_PARIS);
- 
-}).to.throw(NullPointerException);
-});
-
- it('factory_ofStrict_LDT_ZI_ZO_nullZI', () => {
-expect(() => {
-     ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0100, null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('from(DateTimeAccessor)', () => {
 
@@ -2060,3 +2069,17 @@ expect(() => {
 }
 
  */
+
+
+function check(test, y, m, d, h, min, s, n, offset, zone) {
+    assertEquals(test.year(), y);
+    assertEquals(test.month().value(), m);
+    assertEquals(test.dayOfMonth(), d);
+    assertEquals(test.hour(), h);
+    assertEquals(test.minute(), min);
+    assertEquals(test.second(), s);
+    assertEquals(test.nano(), n);
+    assertEquals(test.offset(), offset);
+    assertEquals(test.zone(), zone);
+}
+
