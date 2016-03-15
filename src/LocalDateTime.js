@@ -222,8 +222,8 @@ export class LocalDateTime extends ChronoLocalDateTime
         requireNonNull(temporal, 'temporal');
         if (temporal instanceof LocalDateTime) {
             return temporal;
-        //} else if (temporal instanceof ZonedDateTime) {
-        //    return temporal.toLocalDateTime();
+        } else if (temporal instanceof ZonedDateTime) {
+            return temporal.toLocalDateTime();
         }
         try {
             var date = LocalDate.from(temporal);
