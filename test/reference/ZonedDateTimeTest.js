@@ -24,6 +24,10 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {ChronoField} from '../../src/temporal/ChronoField';
+import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+
 describe('org.threeten.bp.TestZonedDateTime', () => {
 
     var OFFSET_0100 = ZoneOffset.ofHours(1);
@@ -409,184 +413,73 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
        
     });
     
-    
+    describe('from(DateTimeAccessor)', () => {
+
+        it('factory_from_DateTimeAccessor_ZDT', () => {
+            assertEquals(ZonedDateTime.from(TEST_DATE_TIME_PARIS), TEST_DATE_TIME_PARIS);
+        });
+
+        it('factory_from_DateTimeAccessor_LDT_ZoneId()', () => {
+            class DefaultInterfaceTemporalAccessorImpl extends TemporalAccessor {
+                isSupported(field) {
+                    return TEST_DATE_TIME_PARIS.toLocalDateTime().isSupported(field);
+                }
+
+                getLong(field) {
+                    return TEST_DATE_TIME_PARIS.toLocalDateTime().getLong(field);
+                }
+
+                query(query) {
+                    if (query === TemporalQueries.zoneId()) {
+                        return TEST_DATE_TIME_PARIS.zone();
+                    }
+                    return super.query(query);
+                }
+            }
+            assertEquals(ZonedDateTime.from(new DefaultInterfaceTemporalAccessorImpl()), TEST_DATE_TIME_PARIS);
+        });
+
+        it('factory_from_DateTimeAccessor_Instant_ZoneId()', () => {
+            class DefaultInterfaceTemporalAccessorImpl extends TemporalAccessor {
+                isSupported(field) {
+                    return field === ChronoField.INSTANT_SECONDS || field === ChronoField.NANO_OF_SECOND;
+                }
+
+                getLong(field) {
+                    return TEST_DATE_TIME_PARIS.toInstant().getLong(field);
+                }
+
+                query(query) {
+                    if (query === TemporalQueries.zoneId()) {
+                        return TEST_DATE_TIME_PARIS.zone();
+                    }
+                    return super.query(query);
+                }
+            }
+            assertEquals(ZonedDateTime.from(new DefaultInterfaceTemporalAccessorImpl()), TEST_DATE_TIME_PARIS);
+        });
+
+        it('factory_from_DateTimeAccessor_invalid_noDerive', () => {
+            expect(() => {
+                ZonedDateTime.from(LocalTime.of(12, 30));
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_from_DateTimeAccessor_null', () => {
+            expect(() => {
+                ZonedDateTime.from(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 
 /**
- private static final var OFFSET_0100 = ZoneOffset.ofHours(1);
- private static final var OFFSET_0200 = ZoneOffset.ofHours(2);
- private static final var OFFSET_0130 = ZoneOffset.of("+01:30");
- private static final var OFFSET_MAX = ZoneOffset.ofHours(18);
- private static final var OFFSET_MIN = ZoneOffset.ofHours(-18);
-
- private static final var ZONE_0100 = OFFSET_0100;
- private static final var ZONE_0200 = OFFSET_0200;
- private static final var ZONE_M0100 = ZoneOffset.ofHours(-1);
- private static final var ZONE_PARIS = ZoneId.of("Europe/Paris");
- private LocalDateTime TEST_PARIS_GAP_2008_03_30_02_30;
- private LocalDateTime TEST_PARIS_OVERLAP_2008_10_26_02_30;
- private LocalDateTime TEST_LOCAL_2008_06_30_11_30_59_500;
- private ZonedDateTime TEST_DATE_TIME;
- private ZonedDateTime TEST_DATE_TIME_PARIS;
-
- @BeforeMethod
- it('setUp', () => {
-     TEST_LOCAL_2008_06_30_11_30_59_500 = LocalDateTime.of(2008, 6, 30, 11, 30, 59, 500);
-     TEST_DATE_TIME = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     TEST_DATE_TIME_PARIS = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
-     TEST_PARIS_OVERLAP_2008_10_26_02_30 = LocalDateTime.of(2008, 10, 26, 2, 30);
-     TEST_PARIS_GAP_2008_03_30_02_30 = LocalDateTime.of(2008, 3, 30, 2, 30);
- });
-
  //-----------------------------------------------------------------------
- @Override
- protected List<TemporalAccessor> samples() {
-     TemporalAccessor[] array = {TEST_DATE_TIME, };
-     return Arrays.asList(array);
- }
 
- @Override
- protected List<TemporalField> validFields() {
-     TemporalField[] array = {
-         NANO_OF_SECOND,
-         NANO_OF_DAY,
-         MICRO_OF_SECOND,
-         MICRO_OF_DAY,
-         MILLI_OF_SECOND,
-         MILLI_OF_DAY,
-         SECOND_OF_MINUTE,
-         SECOND_OF_DAY,
-         MINUTE_OF_HOUR,
-         MINUTE_OF_DAY,
-         CLOCK_HOUR_OF_AMPM,
-         HOUR_OF_AMPM,
-         CLOCK_HOUR_OF_DAY,
-         HOUR_OF_DAY,
-         AMPM_OF_DAY,
-         DAY_OF_WEEK,
-         ALIGNED_DAY_OF_WEEK_IN_MONTH,
-         ALIGNED_DAY_OF_WEEK_IN_YEAR,
-         DAY_OF_MONTH,
-         DAY_OF_YEAR,
-         EPOCH_DAY,
-         ALIGNED_WEEK_OF_MONTH,
-         ALIGNED_WEEK_OF_YEAR,
-         MONTH_OF_YEAR,
-         PROLEPTIC_MONTH,
-         YEAR_OF_ERA,
-         YEAR,
-         ERA,
-         OFFSET_SECONDS,
-         INSTANT_SECONDS,
-         JulianFields.JULIAN_DAY,
-         JulianFields.MODIFIED_JULIAN_DAY,
-         JulianFields.RATA_DIE,
-     };
-     return Arrays.asList(array);
- }
-
- @Override
- protected List<TemporalField> invalidFields() {
-     List<TemporalField> list = new ArrayList<TemporalField>(Arrays.<TemporalField>asList(ChronoField.values()));
-     list.removeAll(validFields());
-     return list;
- }
-
- //-----------------------------------------------------------------------
- @Test
- public void test_serialization() throws ClassNotFoundException, IOException {
-     assertSerializable(TEST_DATE_TIME);
- }
-
- @Test
- public void test_serialization_format() throws ClassNotFoundException, IOException {
-     var zdt = LocalDateTime.of(2012, 9, 16, 22, 17, 59, 470 * 1000000).atZone(ZoneId.of("Europe/London"));
-     assertEqualsSerialisedForm(zdt);
- }
-
- //-----------------------------------------------------------------------
- // dateTime factories
- //-----------------------------------------------------------------------
- void check(ZonedDateTime test, int y, int m, int d, int h, int min, int s, int n, ZoneOffset offset, ZoneId zone) {
-     assertEquals(test.year(), y);
-     assertEquals(test.month().value(), m);
-     assertEquals(test.dayOfMonth(), d);
-     assertEquals(test.hour(), h);
-     assertEquals(test.minute(), min);
-     assertEquals(test.second(), s);
-     assertEquals(test.nano(), n);
-     assertEquals(test.offset(), offset);
-     assertEquals(test.zone(), zone);
- }
-
- describe('from(DateTimeAccessor)', () => {
-
-});
-
- @Test
- it('factory_from_DateTimeAccessor_ZDT', () => {
-     assertEquals(ZonedDateTime.from(TEST_DATE_TIME_PARIS), TEST_DATE_TIME_PARIS);
- });
-
- @Test
- public void factory_from_DateTimeAccessor_LDT_ZoneId() {
-     assertEquals(ZonedDateTime.from(new DefaultInterfaceTemporalAccessor() {
-         @Override
-         public boolean isSupported(TemporalField field) {
-             return TEST_DATE_TIME_PARIS.toLocalDateTime().isSupported(field);
-         }
-         @Override
-         public long getLong(TemporalField field) {
-             return TEST_DATE_TIME_PARIS.toLocalDateTime().getLong(field);
-         }
-         @SuppressWarnings("unchecked")
-         @Override
-         public <R> R query(TemporalQuery<R> query) {
-             if (query == TemporalQueries.zoneId()) {
-                 return (R) TEST_DATE_TIME_PARIS.zone();
-             }
-             return super.query(query);
-         }
-     }), TEST_DATE_TIME_PARIS);
- }
-
- @Test
- public void factory_from_DateTimeAccessor_Instant_ZoneId() {
-     assertEquals(ZonedDateTime.from(new DefaultInterfaceTemporalAccessor() {
-         @Override
-         public boolean isSupported(TemporalField field) {
-             return field == INSTANT_SECONDS || field == NANO_OF_SECOND;
-         }
-         @Override
-         public long getLong(TemporalField field) {
-             return TEST_DATE_TIME_PARIS.toInstant().getLong(field);
-         }
-         @SuppressWarnings("unchecked")
-         @Override
-         public <R> R query(TemporalQuery<R> query) {
-             if (query == TemporalQueries.zoneId()) {
-                 return (R) TEST_DATE_TIME_PARIS.zone();
-             }
-             return super.query(query);
-         }
-     }), TEST_DATE_TIME_PARIS);
- }
-
- it('factory_from_DateTimeAccessor_invalid_noDerive', () => {
-expect(() => {
-     ZonedDateTime.from(LocalTime.of(12, 30));
- 
-}).to.throw(DateTimeException);
-});
-
- it('factory_from_DateTimeAccessor_null', () => {
-expect(() => {
-     ZonedDateTime.from((TemporalAccessor) null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('parse()', () => {
 

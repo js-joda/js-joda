@@ -434,11 +434,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@code ZonedDateTime::from}.
      *
-     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
+     * @param {!TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {ZonedDateTime} the zoned date-time, not null
      * @throws DateTimeException if unable to convert to an {@code ZonedDateTime}
      */
     static from(temporal) {
+        requireNonNull(temporal, 'temporal');
         if (temporal instanceof ZonedDateTime) {
             return temporal;
         }

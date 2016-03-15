@@ -6,6 +6,9 @@
 
 import {abstractMethodFail} from './assert';
 
+import {DateTimeException} from './errors';
+import {TemporalQueries} from './temporal/TemporalQueries';
+
 import {SystemDefaultZoneRules} from './zone/SystemDefaultZoneRules';
 
 export class ZoneId {
@@ -45,6 +48,31 @@ export class ZoneId {
      */
     rules(){
         abstractMethodFail('ZoneId.rules');
+    }
+
+    /**
+     * Obtains an instance of {@code ZoneId} from a temporal object.
+     * <p>
+     * A {@code TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@code ZoneId}.
+     * <p>
+     * The conversion will try to obtain the zone in a way that favours region-based
+     * zones over offset-based zones using {@link TemporalQueries#zone()}.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@code ZoneId::from}.
+     *
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
+     * @return {ZoneId} the zone ID, not null
+     * @throws DateTimeException if unable to convert to a {@code ZoneId}
+     */
+    static from(temporal) {
+        var obj = temporal.query(TemporalQueries.zone());
+        if (obj == null) {
+            throw new DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' +
+                    temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+        }
+        return obj;
     }
 
 }
