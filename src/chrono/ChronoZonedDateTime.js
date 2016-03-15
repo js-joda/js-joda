@@ -17,7 +17,7 @@ export class ChronoZonedDateTime  extends Temporal {
         if (query === TemporalQueries.zoneId() || query === TemporalQueries.zone()) {
             return this.zone();
         } else if (query === TemporalQueries.chronology()) {
-            return this.toLocalDate().getChronology();
+            return this.toLocalDate().chronology();
         } else if (query === TemporalQueries.precision()) {
             return ChronoUnit.NANOS;
         } else if (query === TemporalQueries.offset()) {

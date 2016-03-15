@@ -1854,6 +1854,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (query === TemporalQueries.localDate()) {
             return this.toLocalDate();
         }
+        requireNonNull(query, 'query');
         return super.query(query);
     }
 

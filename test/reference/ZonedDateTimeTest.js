@@ -27,8 +27,10 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 //import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
@@ -709,34 +711,32 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('query(TemporalQuery)', () => {
+
+        it('test_query', () => {
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.localDate()), TEST_DATE_TIME.toLocalDate());
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.localTime()), TEST_DATE_TIME.toLocalTime());
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.offset()), TEST_DATE_TIME.offset());
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.precision()), ChronoUnit.NANOS);
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.zone()), TEST_DATE_TIME.zone());
+            assertEquals(TEST_DATE_TIME.query(TemporalQueries.zoneId()), TEST_DATE_TIME.zone());
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_DATE_TIME.query(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('query(TemporalQuery)', () => {
-
-});
-
- @Test
- it('test_query', () => {
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.localDate()), TEST_DATE_TIME.toLocalDate());
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.localTime()), TEST_DATE_TIME.toLocalTime());
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.offset()), TEST_DATE_TIME.offset());
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.precision()), ChronoUnit.NANOS);
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.zone()), TEST_DATE_TIME.zone());
-     assertEquals(TEST_DATE_TIME.query(TemporalQueries.zoneId()), TEST_DATE_TIME.zone());
- });
-
- it('test_query_null', () => {
-expect(() => {
-     TEST_DATE_TIME.query(null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('withEarlierOffsetAtOverlap()', () => {
 
