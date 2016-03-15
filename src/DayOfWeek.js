@@ -123,7 +123,7 @@ export class DayOfWeek extends Temporal {
         } catch (ex) {
             if(ex instanceof DateTimeException) {
                 throw new DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' +
-                    temporal + ', type ' + temporal.name(), ex);
+                    temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
             } else {
                 throw ex;
             }
