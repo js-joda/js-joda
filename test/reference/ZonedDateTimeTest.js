@@ -1904,60 +1904,40 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
-});
+    // TODO parser
+    describe.skip('toString()', () => {
 
-/**
- //-----------------------------------------------------------------------
+        // @Test(dataProvider="sampleToString")
+        it('test_toString', function () {
+            dataProviderTest(provider_sampleToString, (y, o, d, h, m, s, n, zoneId, expected) => {
+                var t = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZoneId.of(zoneId));
+                var str = t.toString();
+                assertEquals(str, expected);
+            });
+        });
 
+    });
 
- describe('toString()', () => {
+    describe('format(DateTimeFormatter)', () => {
 
-});
+        // TODO pattern parser
+/*
+        it('test_format_formatter', () => {
+            var f = DateTimeFormatter.ofPattern("y M d H m s");
+            var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
+            assertEquals(t, "2010 12 3 11 30 0");
+        });
+*/
 
- @DataProvider(name="sampleToString")
- function provider_sampleToString(){
-     return [
-         {2008, 6, 30, 11, 30, 59, 0, "Z", "2008-06-30T11:30:59Z"},
-         {2008, 6, 30, 11, 30, 59, 0, "+01:00", "2008-06-30T11:30:59+01:00"},
-         {2008, 6, 30, 11, 30, 59, 999000000, "Z", "2008-06-30T11:30:59.999Z"},
-         {2008, 6, 30, 11, 30, 59, 999000000, "+01:00", "2008-06-30T11:30:59.999+01:00"},
-         {2008, 6, 30, 11, 30, 59, 999000, "Z", "2008-06-30T11:30:59.000999Z"},
-         {2008, 6, 30, 11, 30, 59, 999000, "+01:00", "2008-06-30T11:30:59.000999+01:00"},
-         {2008, 6, 30, 11, 30, 59, 999, "Z", "2008-06-30T11:30:59.000000999Z"},
-         {2008, 6, 30, 11, 30, 59, 999, "+01:00", "2008-06-30T11:30:59.000000999+01:00"},
+        it('test_format_formatter_null', () => {
+            expect(() => {
+                ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 
-         {2008, 6, 30, 11, 30, 59, 999, "Europe/London", "2008-06-30T11:30:59.000000999+01:00[Europe/London]"},
-         {2008, 6, 30, 11, 30, 59, 999, "Europe/Paris", "2008-06-30T11:30:59.000000999+02:00[Europe/Paris]"},
-     };
- }
-
- // @Test(dataProvider="sampleToString")
- function test_toString(y, o, d, h, m, s, n, String zoneId, String expected) {
-     var t = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZoneId.of(zoneId));
-     var str = t.toString();
-     assertEquals(str, expected);
- }
-
- describe('format(DateTimeFormatter)', () => {
 
 });
-
-  it('test_format_formatter', () => {
-     var f = DateTimeFormatter.ofPattern("y M d H m s");
-     var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
-     assertEquals(t, "2010 12 3 11 30 0");
- }
-
- it('test_format_formatter_null', () => {
-expect(() => {
-     ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(null);
- 
-}).to.throw(NullPointerException);
-});
-
-
- */
-
 
 function check(test, y, m, d, h, min, s, n, offset, zone) {
     assertEquals(test.year(), y);
