@@ -1487,7 +1487,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusWeeks(weeks) {
-        this._resolveLocal(this._dateTime.plusWeeks(weeks));
+        return this._resolveLocal(this._dateTime.plusWeeks(weeks));
     }
 
     /**

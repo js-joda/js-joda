@@ -1280,141 +1280,137 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('plusYears()', () => {
+
+        it('test_plusYears', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusYears(1);
+            assertEquals(test, ZonedDateTime.of(ldt.plusYears(1), ZONE_0100));
+        });
+
+        it('test_plusYears_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusYears(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('plusMonths()', () => {
+
+        it('test_plusMonths', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusMonths(1);
+            assertEquals(test, ZonedDateTime.of(ldt.plusMonths(1), ZONE_0100));
+        });
+
+        it('test_plusMonths_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusMonths(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('plusWeeks()', () => {
+
+        it('test_plusWeeks', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusWeeks(1);
+            assertEquals(test, ZonedDateTime.of(ldt.plusWeeks(1), ZONE_0100));
+        });
+
+        it('test_plusWeeks_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusWeeks(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('plusDays()', () => {
+
+        it('test_plusDays', function () {
+            dataProviderTest(data_plusDays, (base, amount, expected) => {
+                assertEquals(base.plusDays(amount), expected);
+            })
+        });
+
+    });
+
+    describe('plusHours()', () => {
+
+        it('test_plusHours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plusHours(amount), expected);
+            })
+        });
+
+    });
+
+    describe('plusMinutes()', () => {
+
+        it('test_plusMinutes', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plusMinutes(amount * 60), expected);
+            })
+        });
+
+        it('test_plusMinutes_minutes', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusMinutes(30);
+            assertEquals(test, ZonedDateTime.of(ldt.plusMinutes(30), ZONE_0100));
+        });
+
+    });
+
+    describe('plusSeconds()', () => {
+
+        it('test_plusSeconds', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plusSeconds(amount * 3600), expected);
+            })
+        });
+
+        it('test_plusSeconds_seconds', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusSeconds(1);
+            assertEquals(test, ZonedDateTime.of(ldt.plusSeconds(1), ZONE_0100));
+        });
+
+    });
+
+    describe('plusNanos()', () => {
+
+        it('test_plusNanos_nanos', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plusNanos(amount * 3600000000000), expected);
+            })
+        });
+
+        it('test_plusNanos_nanos', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.plusNanos(1);
+            assertEquals(test, ZonedDateTime.of(ldt.plusNanos(1), ZONE_0100));
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('plusYears()', () => {
-
-});
-
- @Test
- it('test_plusYears', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusYears(1);
-     assertEquals(test, ZonedDateTime.of(ldt.plusYears(1), ZONE_0100));
- });
-
- @Test
- it('test_plusYears_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusYears(0);
-     assertEquals(test, base);
- });
-
- describe('plusMonths()', () => {
-
-});
-
- @Test
- it('test_plusMonths', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusMonths(1);
-     assertEquals(test, ZonedDateTime.of(ldt.plusMonths(1), ZONE_0100));
- });
-
- @Test
- it('test_plusMonths_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusMonths(0);
-     assertEquals(test, base);
- });
-
- describe('plusWeeks()', () => {
-
-});
-
- @Test
- it('test_plusWeeks', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusWeeks(1);
-     assertEquals(test, ZonedDateTime.of(ldt.plusWeeks(1), ZONE_0100));
- });
-
- @Test
- it('test_plusWeeks_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusWeeks(0);
-     assertEquals(test, base);
- });
-
- describe('plusDays()', () => {
-
-});
-
- @Test(dataProvider="plusDays")
- public void test_plusDays(base, amount, expected) {
-     assertEquals(base.plusDays(amount), expected);
- }
-
- describe('plusHours()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_plusHours(base, amount, expected) {
-     assertEquals(base.plusHours(amount), expected);
- }
-
- describe('plusMinutes()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_plusMinutes(base, amount, expected) {
-     assertEquals(base.plusMinutes(amount * 60), expected);
- }
-
- @Test
- it('test_plusMinutes_minutes', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusMinutes(30);
-     assertEquals(test, ZonedDateTime.of(ldt.plusMinutes(30), ZONE_0100));
- });
-
- describe('plusSeconds()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_plusSeconds(base, amount, expected) {
-     assertEquals(base.plusSeconds(amount * 3600), expected);
- }
-
- @Test
- it('test_plusSeconds_seconds', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusSeconds(1);
-     assertEquals(test, ZonedDateTime.of(ldt.plusSeconds(1), ZONE_0100));
- });
-
- describe('plusNanos()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_plusNanos(base, amount, expected) {
-     assertEquals(base.plusNanos(amount * 3600000000000), expected);
- }
-
- @Test
- it('test_plusNanos_nanos', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.plusNanos(1);
-     assertEquals(test, ZonedDateTime.of(ldt.plusNanos(1), ZONE_0100));
- });
 
  describe('minus(adjuster)', () => {
 
