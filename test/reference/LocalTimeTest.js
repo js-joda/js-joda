@@ -1,8 +1,5 @@
 import {expect} from 'chai';
 import {assertEquals, assertTrue, assertNotNull, isCoverageTestRunner} from '../testUtils';
-import {MockSimplePeriod} from './MockSimplePeriod';
-
-import '../_init';
 
 import {MathUtil} from '../../src/MathUtil';
 import {
@@ -24,7 +21,10 @@ import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
+import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+
+import '../_init';
 
 describe('org.threeten.bp.TestLocalTime', function () {
     var TEST_12_30_40_987654321;

@@ -6,11 +6,6 @@
 
 import {expect} from 'chai';
 import {assertEquals, assertSame, assertTrue, assertFalse, isCoverageTestRunner} from '../testUtils';
-import {MockSimplePeriod} from './MockSimplePeriod';
-
-import '../_init';
-
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
 import {DateTimeException, DateTimeParseException,
     NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
@@ -32,6 +27,11 @@ import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+
+import {MockSimplePeriod} from './MockSimplePeriod';
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+
+import '../_init';
 
 describe('org.threeten.bp.TestLocalDateTime', () => {
 
