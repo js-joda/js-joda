@@ -991,9 +991,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     with(){
         if(arguments.length === 1){
-            return ZonedDateTime.withTemporalAdjuster.apply(this, arguments);
+            return this.withTemporalAdjuster.apply(this, arguments);
         } else {
-            return ZonedDateTime.with2.apply(this, arguments);
+            return this.with2.apply(this, arguments);
         }
     }
 
@@ -1063,6 +1063,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         } else if (adjuster instanceof ZoneOffset) {
             return this._resolveOffset(adjuster);
         }
+        requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
 
@@ -1354,9 +1355,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     plus(){
         if(arguments.length === 1){
-            return ZonedDateTime.plusTemporalAmount.apply(this, arguments);
+            return this.plusTemporalAmount.apply(this, arguments);
         } else {
-            return ZonedDateTime.plus2.apply(this, arguments);
+            return this.plus2.apply(this, arguments);
         }
     }
 
@@ -1601,9 +1602,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      */
     minus(){
         if(arguments.length === 1){
-            return ZonedDateTime.minusTemporalAmount.apply(this, arguments);
+            return this.minusTemporalAmount.apply(this, arguments);
         } else {
-            return ZonedDateTime.minus2.apply(this, arguments);
+            return this.minus2.apply(this, arguments);
         }
     }
 

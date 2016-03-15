@@ -861,101 +861,96 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('with(WithAdjuster)', () => {
+
+        it('test_with_WithAdjuster_LocalDateTime_sameOffset', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var test = base.with(LocalDateTime.of(2012, 7, 15, 14, 30));
+            check(test, 2012, 7, 15, 14, 30, 0, 0, OFFSET_0200, ZONE_PARIS);
+        });
+       
+        it('test_with_WithAdjuster_LocalDateTime_adjustedOffset', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var test = base.with(LocalDateTime.of(2012, 1, 15, 14, 30));
+            check(test, 2012, 1, 15, 14, 30, 0, 0, OFFSET_0100, ZONE_PARIS);
+        });
+       
+        it('test_with_WithAdjuster_LocalDate', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var test = base.with(LocalDate.of(2012, 7, 28));
+            check(test, 2012, 7, 28, 11, 30, 59, 500, OFFSET_0200, ZONE_PARIS);
+        });
+       
+/* TODO iana tzdb
+        it('test_with_WithAdjuster_LocalTime', () => {
+            var base = ZonedDateTime.of(TEST_PARIS_OVERLAP_2008_10_26_02_30, ZONE_PARIS);
+            var test = base.with(LocalTime.of(2, 29));
+            check(test, 2008, 10, 26, 2, 29, 0, 0, OFFSET_0200, ZONE_PARIS);
+        });
+*/
+
+/* Year.of and Year adjuster not implemented
+        it('test_with_WithAdjuster_Year', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.with(Year.of(2007));
+            assertEquals(test, ZonedDateTime.of(ldt.withYear(2007), ZONE_0100));
+        });
+*/
+
+        it('test_with_WithAdjuster_Month_adjustedDayOfMonth', () => {
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var test = base.with(Month.JUNE);
+            check(test, 2012, 6, 30, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
+        });
+       
+        it('test_with_WithAdjuster_Offset_same', () => {
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var test = base.with(ZoneOffset.ofHours(2));
+            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
+        });
+       
+        it('test_with_WithAdjuster_Offset_ignored', () => {
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var test = base.with(ZoneOffset.ofHours(1));
+            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);  // offset ignored
+        });
+       
+/* TODO iana tzdb
+        it('test_with_WithAdjuster_LocalDate_retainOffset1()', () => {
+            var newYork = ZoneId.of('America/New_York');
+            var ldt = LocalDateTime.of(2008, 11, 1, 1, 30);
+            var base = ZonedDateTime.of(ldt, newYork);
+            assertEquals(base.offset(), ZoneOffset.ofHours(-4));
+            var test = base.with(LocalDate.of(2008, 11, 2));
+            assertEquals(test.offset(), ZoneOffset.ofHours(-4));
+        });
+       
+        it('test_with_WithAdjuster_LocalDate_retainOffset2()', () => {
+            var newYork = ZoneId.of('America/New_York');
+            var ldt = LocalDateTime.of(2008, 11, 3, 1, 30);
+            var base = ZonedDateTime.of(ldt, newYork);
+            assertEquals(base.offset(), ZoneOffset.ofHours(-5));
+            var test = base.with(LocalDate.of(2008, 11, 2));
+            assertEquals(test.offset(), ZoneOffset.ofHours(-5));
+        });
+*/
+
+        it('test_with_WithAdjuster_null', () => {
+            expect(() => {
+                var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+                base.with(null);
+            }).to.throw(NullPointerException);
+        });
+       
+    });
+   
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('with(WithAdjuster)', () => {
-
-});
-
- @Test
- it('test_with_WithAdjuster_LocalDateTime_sameOffset', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
-     var test = base.with(LocalDateTime.of(2012, 7, 15, 14, 30));
-     check(test, 2012, 7, 15, 14, 30, 0, 0, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_LocalDateTime_adjustedOffset', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
-     var test = base.with(LocalDateTime.of(2012, 1, 15, 14, 30));
-     check(test, 2012, 1, 15, 14, 30, 0, 0, OFFSET_0100, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_LocalDate', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
-     var test = base.with(LocalDate.of(2012, 7, 28));
-     check(test, 2012, 7, 28, 11, 30, 59, 500, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_LocalTime', () => {
-     var base = ZonedDateTime.of(TEST_PARIS_OVERLAP_2008_10_26_02_30, ZONE_PARIS);
-     var test = base.with(LocalTime.of(2, 29));
-     check(test, 2008, 10, 26, 2, 29, 0, 0, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_Year', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.with(Year.of(2007));
-     assertEquals(test, ZonedDateTime.of(ldt.withYear(2007), ZONE_0100));
- });
-
- @Test
- it('test_with_WithAdjuster_Month_adjustedDayOfMonth', () => {
-     var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
-     var test = base.with(Month.JUNE);
-     check(test, 2012, 6, 30, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_Offset_same', () => {
-     var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
-     var test = base.with(ZoneOffset.ofHours(2));
-     check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
- });
-
- @Test
- it('test_with_WithAdjuster_Offset_ignored', () => {
-     var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
-     var test = base.with(ZoneOffset.ofHours(1));
-     check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);  // offset ignored
- });
-
- @Test
- public void test_with_WithAdjuster_LocalDate_retainOffset1() {
-     var newYork = ZoneId.of("America/New_York");
-     var ldt = LocalDateTime.of(2008, 11, 1, 1, 30);
-     var base = ZonedDateTime.of(ldt, newYork);
-     assertEquals(base.offset(), ZoneOffset.ofHours(-4));
-     var test = base.with(LocalDate.of(2008, 11, 2));
-     assertEquals(test.offset(), ZoneOffset.ofHours(-4));
- }
-
- @Test
- public void test_with_WithAdjuster_LocalDate_retainOffset2() {
-     var newYork = ZoneId.of("America/New_York");
-     var ldt = LocalDateTime.of(2008, 11, 3, 1, 30);
-     var base = ZonedDateTime.of(ldt, newYork);
-     assertEquals(base.offset(), ZoneOffset.ofHours(-5));
-     var test = base.with(LocalDate.of(2008, 11, 2));
-     assertEquals(test.offset(), ZoneOffset.ofHours(-5));
- }
-
- it('test_with_WithAdjuster_null', () => {
-expect(() => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     base.with((TemporalAdjuster) null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('withYear()', () => {
 
