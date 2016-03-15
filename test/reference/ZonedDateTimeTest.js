@@ -16,6 +16,7 @@ import {DateTimeException, NullPointerException, DateTimeParseException} from '.
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
 import {LocalTime} from '../../src/LocalTime';
+import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {MathUtil} from '../../src/MathUtil';
@@ -24,7 +25,7 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+//import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
@@ -577,58 +578,62 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     });
     */
 
+
+    describe('basics', () => {
+   
+        // @DataProvider(name="sampleTimes")
+        function provider_sampleTimes() {
+            return[
+                [2008, 6, 30, 11, 30, 20, 500, ZONE_0100],
+                [2008, 6, 30, 11, 0, 0, 0, ZONE_0100],
+                [2008, 6, 30, 11, 30, 20, 500, ZONE_PARIS],
+                [2008, 6, 30, 11, 0, 0, 0, ZONE_PARIS],
+                [2008, 6, 30, 23, 59, 59, 999999999, ZONE_0100],
+                [-1, 1, 1, 0, 0, 0, 0, ZONE_0100]
+            ];
+        }
+       
+        // @Test(dataProvider="sampleTimes")
+        it('test_get', () => {
+
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n, zone) => {
+                var localDate = LocalDate.of(y, o, d);
+                var localTime = LocalTime.of(h, m, s, n);
+                var localDateTime = LocalDateTime.of(localDate, localTime);
+                var offset = zone.rules().offset(localDateTime);
+                var a = ZonedDateTime.of(localDateTime, zone);
+
+                assertEquals(a.year(), localDate.year());
+                assertEquals(a.month(), localDate.month());
+                assertEquals(a.dayOfMonth(), localDate.dayOfMonth());
+                assertEquals(a.dayOfYear(), localDate.dayOfYear());
+                assertEquals(a.dayOfWeek(), localDate.dayOfWeek());
+
+                assertEquals(a.hour(), localTime.hour());
+                assertEquals(a.minute(), localTime.minute());
+                assertEquals(a.second(), localTime.second());
+                assertEquals(a.nano(), localTime.nano());
+
+                assertEquals(a.toLocalDate(), localDate);
+                assertEquals(a.toLocalTime(), localTime);
+                assertEquals(a.toLocalDateTime(), localDateTime);
+                if (zone instanceof ZoneOffset) {
+                    assertEquals(a.toString(), localDateTime.toString() + offset.toString());
+                } else {
+                    assertEquals(a.toString(), localDateTime.toString() + offset.toString() + '[' + zone.toString() + ']');
+                }
+            });
+
+        });
+
+    });
+    
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
-
- describe('basics', () => {
-
-});
-
- @DataProvider(name="sampleTimes")
- Object[][] provider_sampleTimes() {
-     return new Object[][] {
-         {2008, 6, 30, 11, 30, 20, 500, ZONE_0100},
-         {2008, 6, 30, 11, 0, 0, 0, ZONE_0100},
-         {2008, 6, 30, 11, 30, 20, 500, ZONE_PARIS},
-         {2008, 6, 30, 11, 0, 0, 0, ZONE_PARIS},
-         {2008, 6, 30, 23, 59, 59, 999999999, ZONE_0100},
-         {-1, 1, 1, 0, 0, 0, 0, ZONE_0100},
-     };
- }
-
- @Test(dataProvider="sampleTimes")
- public void test_get(int y, int o, int d, int h, int m, int s, int n, ZoneId zone) {
-     var localDate = LocalDate.of(y, o, d);
-     var localTime = LocalTime.of(h, m, s, n);
-     var localDateTime = LocalDateTime.of(localDate, localTime);
-     var offset = zone.rules().getOffset(localDateTime);
-     var a = ZonedDateTime.of(localDateTime, zone);
-
-     assertEquals(a.year(), localDate.year());
-     assertEquals(a.month(), localDate.month());
-     assertEquals(a.dayOfMonth(), localDate.dayOfMonth());
-     assertEquals(a.dayofyear(), localDate.dayofyear());
-     assertEquals(a.dayofweek(), localDate.dayofweek());
-
-     assertEquals(a.hour(), localTime.hour());
-     assertEquals(a.minute(), localTime.minute());
-     assertEquals(a.second(), localTime.second());
-     assertEquals(a.nano(), localTime.nano());
-
-     assertEquals(a.toLocalDate(), localDate);
-     assertEquals(a.toLocalTime(), localTime);
-     assertEquals(a.toLocalDateTime(), localDateTime);
-     if (zone instanceof ZoneOffset) {
-         assertEquals(a.toString(), localDateTime.toString() + offset.toString());
-     } else {
-         assertEquals(a.toString(), localDateTime.toString() + offset.toString() + "[" + zone.toString() + "]");
-     }
- }
 
  describe('get(DateTimeField)', () => {
 
@@ -1067,42 +1072,42 @@ expect(() => {
 }).to.throw(DateTimeException);
 });
 
- describe('withDayOfYear()', () => {
+ describe('withdayOfYear()', () => {
 
 });
 
  @Test
- it('test_withDayOfYear_normal', () => {
+ it('test_withdayOfYear_normal', () => {
      var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withDayOfYear(33);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withDayOfYear(33), ZONE_0100));
+     var test = base.withdayOfYear(33);
+     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withdayOfYear(33), ZONE_0100));
  });
 
  @Test
- it('test_withDayOfYear_noChange', () => {
+ it('test_withdayOfYear_noChange', () => {
      var ldt = LocalDateTime.of(2008, 2, 5, 23, 30, 59, 0);
      var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.withDayOfYear(36);
+     var test = base.withdayOfYear(36);
      assertEquals(test, base);
  });
 
- it('test_withDayOfYear_tooBig', () => {
+ it('test_withdayOfYear_tooBig', () => {
 expect(() => {
-     TEST_DATE_TIME.withDayOfYear(367);
+     TEST_DATE_TIME.withdayOfYear(367);
  
 }).to.throw(DateTimeException);
 });
 
- it('test_withDayOfYear_tooSmall', () => {
+ it('test_withdayOfYear_tooSmall', () => {
 expect(() => {
-     TEST_DATE_TIME.withDayOfYear(0);
+     TEST_DATE_TIME.withdayOfYear(0);
  
 }).to.throw(DateTimeException);
 });
 
- it('test_withDayOfYear_invalid366', () => {
+ it('test_withdayOfYear_invalid366', () => {
 expect(() => {
-     LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_PARIS).withDayOfYear(366);
+     LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_PARIS).withdayOfYear(366);
  
 }).to.throw(DateTimeException);
 });
