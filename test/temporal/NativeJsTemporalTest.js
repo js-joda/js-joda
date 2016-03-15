@@ -83,13 +83,21 @@ describe('temporal/NativeJsTemporal.js', ()=>{
     });
 
     it('should create a LocalDateTime with the default time zone', function () {
-        var jsDate = new Date('2016-02-29T00:00:00Z');
-        var dtn = LocalDateTime.from(nativeJs(jsDate));
+        // winter time
+        check('2016-12-21T00:00:00');
 
-        var dtl = LocalDateTime.parse('2016-02-29T00:00:00');
+        // summer time
+        check('2016-06-21T00:00:00');
 
-        var duration = dtn.until(dtl, ChronoUnit.MINUTES);
-        expect(duration).to.equal(jsDate.getTimezoneOffset());
+        function check(isoDateString){
+            var jsDate = new Date(isoDateString + 'Z');
+            var dtn = LocalDateTime.from(nativeJs(jsDate));
+            var dtl = LocalDateTime.parse(isoDateString);
+
+            var duration = dtn.until(dtl, ChronoUnit.MINUTES);
+            expect(duration).to.equal(jsDate.getTimezoneOffset());
+        }
+
     });
 
 
