@@ -665,7 +665,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field - the field to get, not null
+     * @param {!TemporalField} field - the field to get, not null
      * @return {number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
@@ -691,7 +691,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * passing {@code this} as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {!TemporalField} field  the field to get, not null
      * @return {number} the value for the field
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
@@ -704,6 +704,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             }
             return this._dateTime.getLong(field);
         }
+        requireNonNull(field, 'field');
         return field.getFrom(this);
     }
 

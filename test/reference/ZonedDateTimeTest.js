@@ -9,9 +9,11 @@ import '../_init';
 import {expect} from 'chai';
 import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
-import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
+import {DateTimeException, NullPointerException} from '../../src/errors';
+//import {DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
@@ -57,7 +59,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     });
 
     describe('now()', () => {
-   
+
         it('now()', () => {
             var expected = ZonedDateTime.now(Clock.systemDefaultZone());
             var test = ZonedDateTime.now();
@@ -70,12 +72,12 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             }
             assertTrue(diff < 100000000);  // less than 0.1 secs
         });
-        
+
     });
-   
-   
+
+
     describe('now(ZoneId)', () => {
-        
+
         it('now_ZoneId', function () {
             var zone = ZoneId.systemDefault();
             var expected = ZonedDateTime.now(Clock.system(zone));
@@ -88,7 +90,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 test = ZonedDateTime.now(zone);
             }
             assertEquals(test, expected);
-            
+
         });
 
     });
@@ -112,7 +114,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 assertEquals(test.zone(), ZoneOffset.UTC);
             }
         });
-       
+
         it('now_Clock_allSecsInDay_zone()', () => {
             var zone = ZoneId.systemDefault();
             for (var i = 0; i < (2 * 24 * 60 * 60); i+=diff) {
@@ -123,7 +125,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 assertEquals(test, expected);
             }
         });
-       
+
         it('now_Clock_allSecsInDay_beforeEpoch()', () => {
             var expected = LocalTime.MIDNIGHT.plusNanos(123456789);
             for (let i =-1; i >= -(24 * 60 * 60); i-=diff) {
@@ -139,7 +141,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 assertEquals(test.zone(), ZoneOffset.UTC);
             }
         });
-       
+
         it('now_Clock_offsets()', () => {
             var base = ZonedDateTime.of(LocalDateTime.of(1970, 1, 1, 12, 0), ZoneOffset.UTC);
             for (let i = -9; i < 15; i++) {
@@ -180,37 +182,37 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     });
 
     describe('ofInstant(Instant, ZoneId)', function () {
-        
+
         it('factory_ofInstant_Instant_ZR', () => {
             var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 35).toInstant(OFFSET_0200);
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
             check(test, 2008, 6, 30, 11, 30, 10, 35, OFFSET_0200, ZONE_PARIS);
         });
-       
+
         it('factory_ofInstant_Instant_ZO', () => {
             var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 45).toInstant(OFFSET_0200);
             var test = ZonedDateTime.ofInstant(instant, OFFSET_0200);
             check(test, 2008, 6, 30, 11, 30, 10, 45, OFFSET_0200, OFFSET_0200);
         });
-       
+
         it('factory_ofInstant_Instant_inGap', () => {
             var instant = TEST_PARIS_GAP_2008_03_30_02_30.toInstant(OFFSET_0100);
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
             check(test, 2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // one hour later in summer offset
         });
-       
+
         it('factory_ofInstant_Instant_inOverlap_earlier', () => {
             var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0200);
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
             check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // same time and offset
         });
-       
+
         it('factory_ofInstant_Instant_inOverlap_later', () => {
             var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0100);
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
             check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS);  // same time and offset
         });
-       
+
         it('factory_ofInstant_Instant_invalidOffset', () => {
             var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500).toInstant(OFFSET_0130);
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
@@ -230,7 +232,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 assertEquals(test.second(), MathUtil.intMod(i, 60));
             }
         });
-       
+
         it('factory_ofInstant_allDaysInCycle()', () => {
             // sanity check using different algorithm
             var expected = LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0).atZone(ZoneOffset.UTC);
@@ -241,7 +243,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 expected = expected.plusDays(diff);
             }
         });
-       
+
         it('factory_ofInstant_minWithMinOffset', () => {
             var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
             var year = Year.MIN_VALUE;
@@ -352,7 +354,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 ZonedDateTime.ofInstant(Instant.EPOCH, null);
             }).to.throw(NullPointerException);
         });
-       
+
     });
 
     describe('ofStrict(LocalDateTime, ZoneId, ZoneOffset)', function () {
@@ -413,9 +415,9 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0100, null);
             }).to.throw(NullPointerException);
         });
-       
+
     });
-    
+
     describe('from(DateTimeAccessor)', () => {
 
         it('factory_from_DateTimeAccessor_ZDT', () => {
@@ -492,7 +494,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
         ];
     }
-    
+
   /* TODO parser
     describe('parse()', () => {
 
@@ -581,7 +583,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
 
     describe('basics', () => {
-   
+
         // @DataProvider(name="sampleTimes")
         function provider_sampleTimes() {
             return[
@@ -593,7 +595,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 [-1, 1, 1, 0, 0, 0, 0, ZONE_0100]
             ];
         }
-       
+
         // @Test(dataProvider="sampleTimes")
         it('test_get', () => {
 
@@ -628,95 +630,91 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-    
+
+    describe('get(DateTimeField)', () => {
+
+        it('test_get_DateTimeField', () => {
+            var test = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321), ZONE_0100);
+            assertEquals(test.get(ChronoField.YEAR), 2008);
+            assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
+            assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
+            assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
+            assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
+
+            assertEquals(test.get(ChronoField.HOUR_OF_DAY), 12);
+            assertEquals(test.get(ChronoField.MINUTE_OF_HOUR), 30);
+            assertEquals(test.get(ChronoField.SECOND_OF_MINUTE), 40);
+            assertEquals(test.get(ChronoField.NANO_OF_SECOND), 987654321);
+            assertEquals(test.get(ChronoField.HOUR_OF_AMPM), 0);
+            assertEquals(test.get(ChronoField.AMPM_OF_DAY), 1);
+
+            assertEquals(test.get(ChronoField.OFFSET_SECONDS), 3600);
+        });
+
+/* invalid test in javascript
+        it('test_get_DateTimeField_long', () => {
+            expect(() => {
+                TEST_DATE_TIME.get(ChronoField.INSTANT_SECONDS);
+            }).to.throw(DateTimeException);
+        });
+*/
+
+        it('test_get_DateTimeField_invalidField', () => {
+            expect(() => {
+                TEST_DATE_TIME.get(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_DateTimeField_null', () => {
+            expect(() => {
+                TEST_DATE_TIME.get(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+
+    describe('getLong(DateTimeField)', () => {
+
+        it('test_getLong_DateTimeField', () => {
+            var test = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321), ZONE_0100);
+            assertEquals(test.getLong(ChronoField.YEAR), 2008);
+            assertEquals(test.getLong(ChronoField.MONTH_OF_YEAR), 6);
+            assertEquals(test.getLong(ChronoField.DAY_OF_MONTH), 30);
+            assertEquals(test.getLong(ChronoField.DAY_OF_WEEK), 1);
+            assertEquals(test.getLong(ChronoField.DAY_OF_YEAR), 182);
+
+            assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
+            assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
+            assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
+            assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
+            assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
+            assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
+
+            assertEquals(test.getLong(ChronoField.OFFSET_SECONDS), 3600);
+            assertEquals(test.getLong(ChronoField.INSTANT_SECONDS), test.toEpochSecond());
+        });
+
+        it('test_getLong_DateTimeField_invalidField', () => {
+            expect(() => {
+                TEST_DATE_TIME.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_getLong_DateTimeField_null', () => {
+            expect(() => {
+                TEST_DATE_TIME.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('get(DateTimeField)', () => {
-
-});
-
- @Test
- it('test_get_DateTimeField', () => {
-     var test = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321), ZONE_0100);
-     assertEquals(test.get(ChronoField.YEAR), 2008);
-     assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
-     assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
-     assertEquals(test.get(ChronoField.DAY_OF_WEEK), 1);
-     assertEquals(test.get(ChronoField.DAY_OF_YEAR), 182);
-
-     assertEquals(test.get(ChronoField.HOUR_OF_DAY), 12);
-     assertEquals(test.get(ChronoField.MINUTE_OF_HOUR), 30);
-     assertEquals(test.get(ChronoField.SECOND_OF_MINUTE), 40);
-     assertEquals(test.get(ChronoField.NANO_OF_SECOND), 987654321);
-     assertEquals(test.get(ChronoField.HOUR_OF_AMPM), 0);
-     assertEquals(test.get(ChronoField.AMPM_OF_DAY), 1);
-
-     assertEquals(test.get(ChronoField.OFFSET_SECONDS), 3600);
- });
-
- it('test_get_DateTimeField_long', () => {
-expect(() => {
-     TEST_DATE_TIME.get(ChronoField.INSTANT_SECONDS);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_get_DateTimeField_invalidField', () => {
-expect(() => {
-     TEST_DATE_TIME.get(MockFieldNoValue.INSTANCE);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_get_DateTimeField_null', () => {
-expect(() => {
-     TEST_DATE_TIME.get((TemporalField) null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('getLong(DateTimeField)', () => {
-
-});
-
- @Test
- it('test_getLong_DateTimeField', () => {
-     var test = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 12, 30, 40, 987654321), ZONE_0100);
-     assertEquals(test.getLong(ChronoField.YEAR), 2008);
-     assertEquals(test.getLong(ChronoField.MONTH_OF_YEAR), 6);
-     assertEquals(test.getLong(ChronoField.DAY_OF_MONTH), 30);
-     assertEquals(test.getLong(ChronoField.DAY_OF_WEEK), 1);
-     assertEquals(test.getLong(ChronoField.DAY_OF_YEAR), 182);
-
-     assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
-     assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
-     assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
-     assertEquals(test.getLong(ChronoField.NANO_OF_SECOND), 987654321);
-     assertEquals(test.getLong(ChronoField.HOUR_OF_AMPM), 0);
-     assertEquals(test.getLong(ChronoField.AMPM_OF_DAY), 1);
-
-     assertEquals(test.getLong(ChronoField.OFFSET_SECONDS), 3600);
-     assertEquals(test.getLong(ChronoField.INSTANT_SECONDS), test.toEpochSecond());
- });
-
- it('test_getLong_DateTimeField_invalidField', () => {
-expect(() => {
-     TEST_DATE_TIME.getLong(MockFieldNoValue.INSTANCE);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_getLong_DateTimeField_null', () => {
-expect(() => {
-     TEST_DATE_TIME.getLong((TemporalField) null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('query(TemporalQuery)', () => {
 
