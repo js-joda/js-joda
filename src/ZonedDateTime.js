@@ -383,8 +383,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
                         '' due to a gap in the local time-line, typically caused by daylight savings');
             }
         */
-            throw new DateTimeException('ZoneOffset "' + this._offset + '" is not valid for LocalDateTime "' +
-                this._localDateTime + '" in zone "' + this._zone + '"');
+            throw new DateTimeException('ZoneOffset "' + offset + '" is not valid for LocalDateTime "' +
+                localDateTime + '" in zone "' + zone + '"');
         }
         return new ZonedDateTime(localDateTime, offset, zone);
     }

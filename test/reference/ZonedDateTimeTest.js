@@ -731,150 +731,142 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+/* TODO iana tzdb
+    describe('withEarlierOffsetAtOverlap()', () => {
+
+        it('test_withEarlierOffsetAtOverlap_notAtOverlap', () => {
+            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
+            var test = base.withEarlierOffsetAtOverlap();
+            assertEquals(test, base);  // not changed
+        });
+
+        it('test_withEarlierOffsetAtOverlap_atOverlap', () => {
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
+            var test = base.withEarlierOffsetAtOverlap();
+            assertEquals(test.offset(), OFFSET_0200);  // offset changed to earlier
+            assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
+        });
+
+        it('test_withEarlierOffsetAtOverlap_atOverlap_noChange', () => {
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
+            var test = base.withEarlierOffsetAtOverlap();
+            assertEquals(test, base);  // not changed
+        });
+
+    });
+*/
+
+/* TODO iana tzdb
+    describe('withLaterOffsetAtOverlap()', () => {
+
+        it('test_withLaterOffsetAtOverlap_notAtOverlap', () => {
+            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
+            var test = base.withLaterOffsetAtOverlap();
+            assertEquals(test, base);  // not changed
+        });
+
+        it('test_withLaterOffsetAtOverlap_atOverlap', () => {
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
+            var test = base.withLaterOffsetAtOverlap();
+            assertEquals(test.offset(), OFFSET_0100);  // offset changed to later
+            assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
+        });
+
+        it('test_withLaterOffsetAtOverlap_atOverlap_noChange', () => {
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
+            var test = base.withLaterOffsetAtOverlap();
+            assertEquals(test, base);  // not changed
+        });
+
+    });
+*/
+
+    describe('withZoneSameLocal(ZoneId)', () => {
+
+        it('test_withZoneSameLocal', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.withZoneSameLocal(ZONE_0200);
+            assertEquals(test.toLocalDateTime(), base.toLocalDateTime());
+        });
+
+        it('test_withZoneSameLocal_noChange', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.withZoneSameLocal(ZONE_0100);
+            assertEquals(test, base);
+        });
+
+/* TODO iana tzdb
+        it('test_withZoneSameLocal_retainOffset1()', () => {
+            var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
+            var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-04:00') );
+            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            assertEquals(base.offset(), ZoneOffset.ofHours(-4));
+            assertEquals(test.offset(), ZoneOffset.ofHours(-4));
+        });
+
+        it('test_withZoneSameLocal_retainOffset2()', () => {
+            var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
+            var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-05:00') );
+            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            assertEquals(base.offset(), ZoneOffset.ofHours(-5));
+            assertEquals(test.offset(), ZoneOffset.ofHours(-5));
+        });
+*/
+
+        it('test_withZoneSameLocal_null', () => {
+            expect(() => {
+                var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+                var base = ZonedDateTime.of(ldt, ZONE_0100);
+                base.withZoneSameLocal(null);
+
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('withZoneSameInstant()', () => {
+
+        it('test_withZoneSameInstant', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withZoneSameInstant(ZONE_0200);
+            var expected = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.plusHours(1), ZONE_0200);
+            assertEquals(test, expected);
+        });
+
+        it('test_withZoneSameInstant_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withZoneSameInstant(ZONE_0100);
+            assertEquals(test, base);
+        });
+
+        it('test_withZoneSameInstant_null', () => {
+            expect(() => {
+                var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+                base.withZoneSameInstant(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('withFixedOffsetZone()', () => {
+
+        it('test_withZoneLocked', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var test = base.withFixedOffsetZone();
+            var expected = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0200);
+            assertEquals(test, expected);
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('withEarlierOffsetAtOverlap()', () => {
-
-});
-
- @Test
- it('test_withEarlierOffsetAtOverlap_notAtOverlap', () => {
-     var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
-     var test = base.withEarlierOffsetAtOverlap();
-     assertEquals(test, base);  // not changed
- });
-
- @Test
- it('test_withEarlierOffsetAtOverlap_atOverlap', () => {
-     var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
-     var test = base.withEarlierOffsetAtOverlap();
-     assertEquals(test.offset(), OFFSET_0200);  // offset changed to earlier
-     assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
- });
-
- @Test
- it('test_withEarlierOffsetAtOverlap_atOverlap_noChange', () => {
-     var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
-     var test = base.withEarlierOffsetAtOverlap();
-     assertEquals(test, base);  // not changed
- });
-
- describe('withLaterOffsetAtOverlap()', () => {
-
-});
-
- @Test
- it('test_withLaterOffsetAtOverlap_notAtOverlap', () => {
-     var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
-     var test = base.withLaterOffsetAtOverlap();
-     assertEquals(test, base);  // not changed
- });
-
- @Test
- it('test_withLaterOffsetAtOverlap_atOverlap', () => {
-     var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
-     var test = base.withLaterOffsetAtOverlap();
-     assertEquals(test.offset(), OFFSET_0100);  // offset changed to later
-     assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
- });
-
- @Test
- it('test_withLaterOffsetAtOverlap_atOverlap_noChange', () => {
-     var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
-     var test = base.withLaterOffsetAtOverlap();
-     assertEquals(test, base);  // not changed
- });
-
- describe('withZoneSameLocal(ZoneId)', () => {
-
-});
-
- @Test
- it('test_withZoneSameLocal', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.withZoneSameLocal(ZONE_0200);
-     assertEquals(test.toLocalDateTime(), base.toLocalDateTime());
- });
-
- @Test
- it('test_withZoneSameLocal_noChange', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.withZoneSameLocal(ZONE_0100);
-     assertEquals(test, base);
- });
-
- @Test
- public void test_withZoneSameLocal_retainOffset1() {
-     var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
-     var base = ZonedDateTime.of(ldt, ZoneId.of("UTC-04:00") );
-     var test = base.withZoneSameLocal(ZoneId.of("America/New_York"));
-     assertEquals(base.offset(), ZoneOffset.ofHours(-4));
-     assertEquals(test.offset(), ZoneOffset.ofHours(-4));
- }
-
- @Test
- public void test_withZoneSameLocal_retainOffset2() {
-     var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
-     var base = ZonedDateTime.of(ldt, ZoneId.of("UTC-05:00") );
-     var test = base.withZoneSameLocal(ZoneId.of("America/New_York"));
-     assertEquals(base.offset(), ZoneOffset.ofHours(-5));
-     assertEquals(test.offset(), ZoneOffset.ofHours(-5));
- }
-
- it('test_withZoneSameLocal_null', () => {
-expect(() => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     base.withZoneSameLocal(null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('withZoneSameInstant()', () => {
-
-});
-
- @Test
- it('test_withZoneSameInstant', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withZoneSameInstant(ZONE_0200);
-     var expected = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.plusHours(1), ZONE_0200);
-     assertEquals(test, expected);
- });
-
- @Test
- it('test_withZoneSameInstant_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withZoneSameInstant(ZONE_0100);
-     assertEquals(test, base);
- });
-
- it('test_withZoneSameInstant_null', () => {
-expect(() => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     base.withZoneSameInstant(null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('withFixedOffsetZone()', () => {
-
-});
-
- @Test
- it('test_withZoneLocked', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
-     var test = base.withFixedOffsetZone();
-     var expected = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0200);
-     assertEquals(test, expected);
- });
 
  describe('with(WithAdjuster)', () => {
 
