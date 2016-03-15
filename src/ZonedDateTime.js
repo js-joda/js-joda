@@ -19,6 +19,7 @@ import {ChronoZonedDateTime} from './chrono/ChronoZonedDateTime';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalQueries} from './temporal/TemporalQueries';
 
 /**
@@ -475,12 +476,13 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * The string must represent a valid date-time and is parsed using
      * {@link org.threeten.bp.format.DateTimeFormatter#ISO_ZONED_DATE_TIME}.
      *
-     * @param {string} text - the text to parse such as '2007-12-03T10:15:30+01:00[Europe/Paris]', not null
-     * @param {DateTimeFormatter} [formatter=DateTimeFormatter.ISO_ZONED_DATE_TIME] - the formatter to use
+     * @param {!string} text - the text to parse such as '2007-12-03T10:15:30+01:00[Europe/Paris]', not null
+     * @param {!DateTimeFormatter} [formatter=DateTimeFormatter.ISO_ZONED_DATE_TIME] - the formatter to use
      * @return {ZonedDateTime} the parsed zoned date-time, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
     static parse(text, formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME) {
+        requireNonNull(formatter, 'fromatter');
         return formatter.parse(text, ZonedDateTime.FROM);
     }
 
@@ -2050,13 +2052,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
 
 }
 
-
-/**
- public static final TemporalQuery<ZonedDateTime> FROM = new TemporalQuery<ZonedDateTime>() {
-     @Override
-     public ZonedDateTime queryFrom(TemporalAccessor temporal) {
-         return ZonedDateTime.from(temporal);
-     }
- };
-
-*/
+export function _init(){
+    ZonedDateTime.FROM = createTemporalQuery('ZonedDateTime.FROM', (temporal) => {
+        return ZonedDateTime.from(temporal);
+    });
+}

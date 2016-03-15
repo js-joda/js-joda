@@ -7,11 +7,11 @@
 import '../_init';
 
 import {expect} from 'chai';
-import {assertEquals, assertTrue} from '../testUtils';
+import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
 import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Instant} from '../../src/Instant';
@@ -24,6 +24,7 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
@@ -473,6 +474,109 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    // @DataProvider(name='sampleToString')
+    function provider_sampleToString() {
+        return [
+            [2008, 6, 30, 11, 30, 59, 0, 'Z', '2008-06-30T11:30:59Z'],
+            [2008, 6, 30, 11, 30, 59, 0, '+01:00', '2008-06-30T11:30:59+01:00'],
+            [2008, 6, 30, 11, 30, 59, 999000000, 'Z', '2008-06-30T11:30:59.999Z'],
+            [2008, 6, 30, 11, 30, 59, 999000000, '+01:00', '2008-06-30T11:30:59.999+01:00'],
+            [2008, 6, 30, 11, 30, 59, 999000, 'Z', '2008-06-30T11:30:59.000999Z'],
+            [2008, 6, 30, 11, 30, 59, 999000, '+01:00', '2008-06-30T11:30:59.000999+01:00'],
+            [2008, 6, 30, 11, 30, 59, 999, 'Z', '2008-06-30T11:30:59.000000999Z'],
+            [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00'],
+
+            [2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
+            [2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
+        ];
+    }
+    
+  /* TODO parser
+    describe('parse()', () => {
+
+        // @Test(dataProvider="sampleToString")
+        it('test_parse', () => {
+            dataProviderTest(provider_sampleToString, checkParsed);
+        });
+
+        //@DataProvider(name="parseAdditional")
+        function data_parseAdditional() {
+            return [
+                ['2012-06-30T12:30:40Z[GMT]', 2012, 6, 30, 12, 30, 40, 0, 'GMT'],
+                ['2012-06-30T12:30:40Z[UT]', 2012, 6, 30, 12, 30, 40, 0, 'UT'],
+                ['2012-06-30T12:30:40Z[UTC]', 2012, 6, 30, 12, 30, 40, 0, 'UTC'],
+                ['2012-06-30T12:30:40+01:00[+01:00]', 2012, 6, 30, 12, 30, 40, 0, '+01:00'],
+                ['2012-06-30T12:30:40+01:00[GMT+01:00]', 2012, 6, 30, 12, 30, 40, 0, 'GMT+01:00'],
+                ['2012-06-30T12:30:40+01:00[UT+01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UT+01:00'],
+                ['2012-06-30T12:30:40+01:00[UTC+01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC+01:00'],
+                ['2012-06-30T12:30:40-01:00[-01:00]', 2012, 6, 30, 12, 30, 40, 0, '-01:00'],
+                ['2012-06-30T12:30:40-01:00[GMT-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'GMT-01:00'],
+                ['2012-06-30T12:30:40-01:00[UT-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UT-01:00'],
+                ['2012-06-30T12:30:40-01:00[UTC-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC-01:00'],
+                ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London'],
+            ];
+        }
+
+        // @Test(dataProvider='parseAdditional')
+        it('test_parseAdditional', () => {
+            dataProviderTest(data_parseAdditional, checkParsed);
+        });
+
+        function checkParsed(y, month, d, h, m, s, n, zoneId, text) {
+            var t = ZonedDateTime.parse(text);
+            assertEquals(t.year(), y);
+            assertEquals(t.month().value(), month);
+            assertEquals(t.dayOfMonth(), d);
+            assertEquals(t.hour(), h);
+            assertEquals(t.minute(), m);
+            assertEquals(t.second(), s);
+            assertEquals(t.nano(), n);
+            assertEquals(t.zone().id(), zoneId);
+        }
+
+        it('factory_parse_illegalValue()', () => {
+            expect(() => {
+                ZonedDateTime.parse('2008-06-32T11:15+01:00[Europe/Paris]');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_invalidValue()', () => {
+            expect(() => {
+                ZonedDateTime.parse('2008-06-31T11:15+01:00[Europe/Paris]');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_nullText', () => {
+            expect(() => {
+                ZonedDateTime.parse(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    describe('parse(DateTimeFormatter)', () => {
+
+        it('factory_parse_formatter', function () {
+            var f = DateTimeFormatter.ofPattern('u M d H m s VV');
+            var test = ZonedDateTime.parse('2010 12 3 11 30 0 Europe/London', f);
+            assertEquals(test, ZonedDateTime.of(LocalDateTime.of(2010, 12, 3, 11, 30), ZoneId.of('Europe/London')));
+        });
+
+        it('factory_parse_formatter_nullText', () => {
+            expect(() => {
+                var f = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+                ZonedDateTime.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_formatter_nullFormatter', () => {
+            expect(() => {
+                ZonedDateTime.parse('ANY', null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+    */
+
 });
 
 
@@ -480,93 +584,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 /**
  //-----------------------------------------------------------------------
 
-
- describe('parse()', () => {
-
-});
-
- @Test(dataProvider="sampleToString")
- public void test_parse(int y, int month, int d, int h, int m, int s, int n, String zoneId, String text) {
-     var t = ZonedDateTime.parse(text);
-     assertEquals(t.year(), y);
-     assertEquals(t.month().value(), month);
-     assertEquals(t.dayOfMonth(), d);
-     assertEquals(t.hour(), h);
-     assertEquals(t.minute(), m);
-     assertEquals(t.second(), s);
-     assertEquals(t.nano(), n);
-     assertEquals(t.zone().id(), zoneId);
- }
-
- @DataProvider(name="parseAdditional")
- Object[][] data_parseAdditional() {
-     return new Object[][] {
-             {"2012-06-30T12:30:40Z[GMT]", 2012, 6, 30, 12, 30, 40, 0, "GMT"},
-             {"2012-06-30T12:30:40Z[UT]", 2012, 6, 30, 12, 30, 40, 0, "UT"},
-             {"2012-06-30T12:30:40Z[UTC]", 2012, 6, 30, 12, 30, 40, 0, "UTC"},
-             {"2012-06-30T12:30:40+01:00[+01:00]", 2012, 6, 30, 12, 30, 40, 0, "+01:00"},
-             {"2012-06-30T12:30:40+01:00[GMT+01:00]", 2012, 6, 30, 12, 30, 40, 0, "GMT+01:00"},
-             {"2012-06-30T12:30:40+01:00[UT+01:00]", 2012, 6, 30, 12, 30, 40, 0, "UT+01:00"},
-             {"2012-06-30T12:30:40+01:00[UTC+01:00]", 2012, 6, 30, 12, 30, 40, 0, "UTC+01:00"},
-             {"2012-06-30T12:30:40-01:00[-01:00]", 2012, 6, 30, 12, 30, 40, 0, "-01:00"},
-             {"2012-06-30T12:30:40-01:00[GMT-01:00]", 2012, 6, 30, 12, 30, 40, 0, "GMT-01:00"},
-             {"2012-06-30T12:30:40-01:00[UT-01:00]", 2012, 6, 30, 12, 30, 40, 0, "UT-01:00"},
-             {"2012-06-30T12:30:40-01:00[UTC-01:00]", 2012, 6, 30, 12, 30, 40, 0, "UTC-01:00"},
-             {"2012-06-30T12:30:40+01:00[Europe/London]", 2012, 6, 30, 12, 30, 40, 0, "Europe/London"},
-     };
- }
-
- @Test(dataProvider="parseAdditional")
- public void test_parseAdditional(String text, int y, int month, int d, int h, int m, int s, int n, String zoneId) {
-     var t = ZonedDateTime.parse(text);
-     assertEquals(t.year(), y);
-     assertEquals(t.month().value(), month);
-     assertEquals(t.dayOfMonth(), d);
-     assertEquals(t.hour(), h);
-     assertEquals(t.minute(), m);
-     assertEquals(t.second(), s);
-     assertEquals(t.nano(), n);
-     assertEquals(t.zone().id(), zoneId);
- }
-
- @Test(expectedExceptions=DateTimeParseException.class)
- public void factory_parse_illegalValue() {
-     ZonedDateTime.parse("2008-06-32T11:15+01:00[Europe/Paris]");
- }
-
- @Test(expectedExceptions=DateTimeParseException.class)
- public void factory_parse_invalidValue() {
-     ZonedDateTime.parse("2008-06-31T11:15+01:00[Europe/Paris]");
- }
-
- it('factory_parse_nullText', () => {
-expect(() => {
-     ZonedDateTime.parse((String) null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('parse(DateTimeFormatter)', () => {
-
-});
-
- @Test
- public void factory_parse_formatter() {
-     var f = DateTimeFormatter.ofPattern("u M d H m s VV");
-     var test = ZonedDateTime.parse("2010 12 3 11 30 0 Europe/London", f);
-     assertEquals(test, ZonedDateTime.of(LocalDateTime.of(2010, 12, 3, 11, 30), ZoneId.of("Europe/London")));
- }
-
- @Test(expectedExceptions=NullPointerException.class)
- public void factory_parse_formatter_nullText() {
-     var f = DateTimeFormatter.ofPattern("y M d H m s");
-     ZonedDateTime.parse((String) null, f);
- }
-
- @Test(expectedExceptions=NullPointerException.class)
- public void factory_parse_formatter_nullFormatter() {
-     ZonedDateTime.parse("ANY", null);
- }
 
  describe('basics', () => {
 

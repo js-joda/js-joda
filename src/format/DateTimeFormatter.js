@@ -481,6 +481,14 @@ export function _init() {
         .appendInstant()
         .toFormatter(ResolverStyle.STRICT);
 
+    // TODO parser
+    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .append(DateTimeFormatter.ISO_LOCAL_DATE)
+        .appendLiteral('T')
+        .append(DateTimeFormatter.ISO_LOCAL_TIME)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
     DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
         if (temporal instanceof DateTimeBuilder) {
             return temporal.excessDays;
