@@ -104,5 +104,9 @@ class ZoneIdSystemDefault extends ZoneId {
     }
 }
 
-var zoneSystemDefaultInstance = new ZoneIdSystemDefault();
+var zoneSystemDefaultInstance = null;
+
+export function _init(){
+    zoneSystemDefaultInstance = new ZoneIdSystemDefault();
+}
 

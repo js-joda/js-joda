@@ -14,6 +14,7 @@ import {_init as PeriodInit} from './Period';
 import {_init as YearInit} from './Year';
 import {_init as ZonedDateTimeInit} from './ZonedDateTime';
 import {_init as ZoneOffsetInit} from './ZoneOffset';
+import {_init as ZoneIdInit} from './ZoneId';
 import {_init as IsoChronologyInit} from './chrono/IsoChronology';
 import {_init as DateTimeFormatterInit} from './format/DateTimeFormatter';
 import {_init as ChronoFieldInit} from './temporal/ChronoField';
@@ -46,6 +47,7 @@ function init() {
     PeriodInit();
     ZoneOffsetInit();
     ZonedDateTimeInit();
+    ZoneIdInit();
     IsoChronologyInit();
     DateTimeFormatterInit();
 }
