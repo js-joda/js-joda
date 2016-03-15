@@ -1419,6 +1419,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
                 return this._resolveInstant(this._dateTime.plus(amountToAdd, unit));
             }
         }
+        requireNonNull(unit, 'unit');
         return unit.addTo(this, amountToAdd);
     }
 

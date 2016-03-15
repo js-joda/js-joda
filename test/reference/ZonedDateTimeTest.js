@@ -1241,43 +1241,51 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-   
+
+    describe('plus(long,PeriodUnit)', function () {
+
+        // @Test(dataProvider="plusTime")
+        it('test_plus_longUnit_hours', () => {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(amount, ChronoUnit.HOURS), expected);
+            });
+        });
+
+        // @Test(dataProvider="plusTime")
+        it('test_plus_longUnit_minutes', () => {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(amount * 60, ChronoUnit.MINUTES), expected);
+            });
+        });
+
+        // @Test(dataProvider="plusTime")
+        it('test_plus_longUnit_seconds', () => {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(amount * 3600, ChronoUnit.SECONDS), expected);
+            });
+        });
+
+        // @Test(dataProvider="plusTime")
+        it('test_plus_longUnit_nanos', () => {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(amount * 3600000000000, ChronoUnit.NANOS), expected);
+            });
+        });
+
+        it('test_plus_longUnit_null', () => {
+            expect(() => {
+                TEST_DATE_TIME_PARIS.plus(0, null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- //-----------------------------------------------------------------------
- // plus(long,PeriodUnit)
- //-----------------------------------------------------------------------
- @Test(dataProvider="plusTime")
- public void test_plus_longUnit_hours(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(amount, HOURS), expected);
- }
-
- @Test(dataProvider="plusTime")
- public void test_plus_longUnit_minutes(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(amount * 60, MINUTES), expected);
- }
-
- @Test(dataProvider="plusTime")
- public void test_plus_longUnit_seconds(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(amount * 3600, SECONDS), expected);
- }
-
- @Test(dataProvider="plusTime")
- public void test_plus_longUnit_nanos(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(amount * 3600000000000, NANOS), expected);
- }
-
- it('test_plus_longUnit_null', () => {
-expect(() => {
-     TEST_DATE_TIME_PARIS.plus(0, null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('plusYears()', () => {
 
@@ -1344,7 +1352,7 @@ expect(() => {
 });
 
  @Test(dataProvider="plusDays")
- public void test_plusDays(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ public void test_plusDays(base, amount, expected) {
      assertEquals(base.plusDays(amount), expected);
  }
 
@@ -1352,8 +1360,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_plusHours(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_plusHours(base, amount, expected) {
      assertEquals(base.plusHours(amount), expected);
  }
 
@@ -1361,8 +1369,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_plusMinutes(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_plusMinutes(base, amount, expected) {
      assertEquals(base.plusMinutes(amount * 60), expected);
  }
 
@@ -1378,8 +1386,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_plusSeconds(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_plusSeconds(base, amount, expected) {
      assertEquals(base.plusSeconds(amount * 3600), expected);
  }
 
@@ -1395,8 +1403,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_plusNanos(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_plusNanos(base, amount, expected) {
      assertEquals(base.plusNanos(amount * 3600000000000), expected);
  }
 
@@ -1413,17 +1421,17 @@ expect(() => {
 });
 
  @Test(dataProvider="plusDays")
- public void test_minus_adjuster_Period_days(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ public void test_minus_adjuster_Period_days(base, amount, expected) {
      assertEquals(base.minus(Period.ofDays((int) -amount)), expected);
  }
 
- @Test(dataProvider="plusTime")
- public void test_minus_adjuster_Period_hours(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minus_adjuster_Period_hours(base, amount, expected) {
      assertEquals(base.minus(Duration.ofHours(-amount)), expected);
  }
 
- @Test(dataProvider="plusTime")
- public void test_minus_adjuster_Duration_hours(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minus_adjuster_Duration_hours(base, amount, expected) {
      assertEquals(base.minus(Duration.ofHours(-amount)), expected);
  }
 
@@ -1527,7 +1535,7 @@ expect(() => {
 });
 
  @Test(dataProvider="plusDays")
- public void test_minusDays(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ public void test_minusDays(base, amount, expected) {
      assertEquals(base.minusDays(-amount), expected);
  }
 
@@ -1535,8 +1543,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_minusHours(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minusHours(base, amount, expected) {
      assertEquals(base.minusHours(-amount), expected);
  }
 
@@ -1544,8 +1552,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_minusMinutes(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minusMinutes(base, amount, expected) {
      assertEquals(base.minusMinutes(-amount * 60), expected);
  }
 
@@ -1561,8 +1569,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_minusSeconds(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minusSeconds(base, amount, expected) {
      assertEquals(base.minusSeconds(-amount * 3600), expected);
  }
 
@@ -1578,8 +1586,8 @@ expect(() => {
 
 });
 
- @Test(dataProvider="plusTime")
- public void test_minusNanos(ZonedDateTime base, long amount, ZonedDateTime expected) {
+ // @Test(dataProvider="plusTime")
+ public void test_minusNanos(base, amount, expected) {
      assertEquals(base.minusNanos(-amount * 3600000000000), expected);
  }
 
