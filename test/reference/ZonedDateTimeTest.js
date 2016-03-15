@@ -216,9 +216,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
             check(test, 2008, 6, 30, 12, 0, 10, 500, OFFSET_0200, ZONE_PARIS);  // corrected offset, thus altered time
         });
-       
+
+        var diff = isBrowserTestRunner() || isCoverageTestRunner() ? 179 : 7;
         it('factory_ofInstant_allSecsInDay()', () => {
-            for (var i = 0; i < (24 * 60 * 60); i++) {
+            for (var i = 0; i < (24 * 60 * 60); i+=diff) {
                 var instant = Instant.ofEpochSecond(i);
                 var test = ZonedDateTime.ofInstant(instant, OFFSET_0100);
                 assertEquals(test.year(), 1970);
@@ -233,11 +234,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('factory_ofInstant_allDaysInCycle()', () => {
             // sanity check using different algorithm
             var expected = LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0).atZone(ZoneOffset.UTC);
-            for (var i = 0; i < 146097; i++) {
+            for (var i = 0; i < 146097; i+=diff) {
                 var instant = Instant.ofEpochSecond(i * 24 * 60 * 60);
                 var test = ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
                 assertEquals(test, expected);
-                expected = expected.plusDays(1);
+                expected = expected.plusDays(diff);
             }
         });
        
