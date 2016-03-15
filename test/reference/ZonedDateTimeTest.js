@@ -1590,22 +1590,22 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    //@DataProvider(name="toInstant")
+    function data_toInstant(){
+        return [
+            [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0), 0, 0],
+            [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 1), 0, 1],
+            [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 999999999), 0, 999999999],
+            [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 0), 1, 0],
+            [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 1), 1, 1],
+            [LocalDateTime.of(1969, 12, 31, 23, 59, 59, 999999999), -1, 999999999],
+            [LocalDateTime.of(1970, 1, 2, 0, 0), 24 * 60 * 60, 0],
+            [LocalDateTime.of(1969, 12, 31, 0, 0), -24 * 60 * 60, 0]
+        ];
+    }
+
     describe('toInstant()', () => {
    
-        //@DataProvider(name="toInstant")
-        function data_toInstant(){
-            return [
-                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0), 0, 0],
-                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 1), 0, 1],
-                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 999999999), 0, 999999999],
-                [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 0), 1, 0],
-                [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 1), 1, 1],
-                [LocalDateTime.of(1969, 12, 31, 23, 59, 59, 999999999), -1, 999999999],
-                [LocalDateTime.of(1970, 1, 2, 0, 0), 24 * 60 * 60, 0],
-                [LocalDateTime.of(1969, 12, 31, 0, 0), -24 * 60 * 60, 0]
-            ];
-        }
-
         //@Test(dataProvider="toInstant")
         it('test_toInstant_UTC', function () {
             dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
@@ -1639,6 +1639,52 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
    
+    describe('toEpochSecond()', () => {
+
+        it('test_toEpochSecond_afterEpoch', () => {
+            var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
+            for (var i = 0; i < 100000; i++) {
+                var a = ZonedDateTime.of(ldt, ZONE_PARIS);
+                assertEquals(a.toEpochSecond(), i);
+                ldt = ldt.plusSeconds(1);
+            }
+        });
+
+        it('test_toEpochSecond_beforeEpoch', () => {
+            var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
+            for (var i = 0; i < 100000; i++) {
+                var a = ZonedDateTime.of(ldt, ZONE_PARIS);
+                assertEquals(a.toEpochSecond(), MathUtil.safeZero(-i));
+                ldt = ldt.minusSeconds(1);
+            }
+        });
+
+        //@Test(dataProvider="toInstant")
+        it('test_toEpochSecond_UTC', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZoneOffset.UTC);
+                assertEquals(dt.toEpochSecond(), expectedEpSec);
+            });
+        });
+
+        //@Test(dataProvider="toInstant")
+        it('test_toEpochSecond_P0100', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZONE_0100);
+                assertEquals(dt.toEpochSecond(), expectedEpSec - 3600);
+            });
+        });
+
+        //@Test(dataProvider="toInstant")
+        it('test_toEpochSecond_M0100', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZONE_M0100);
+                assertEquals(dt.toEpochSecond(), expectedEpSec + 3600);
+            });
+        });
+
+    });
+
 });
 
 
@@ -1647,54 +1693,12 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  //-----------------------------------------------------------------------
 
 
- describe('toEpochSecond()', () => {
-
-});
-
- @Test
- public void test_toEpochSecond_afterEpoch() {
-     var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-     for (var i = 0; i < 100000; i++) {
-         var a = ZonedDateTime.of(ldt, ZONE_PARIS);
-         assertEquals(a.toEpochSecond(), i);
-         ldt = ldt.plusSeconds(1);
-     }
- }
-
- @Test
- public void test_toEpochSecond_beforeEpoch() {
-     var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-     for (var i = 0; i < 100000; i++) {
-         var a = ZonedDateTime.of(ldt, ZONE_PARIS);
-         assertEquals(a.toEpochSecond(), -i);
-         ldt = ldt.minusSeconds(1);
-     }
- }
-
- @Test(dataProvider="toInstant")
- public void test_toEpochSecond_UTC(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZoneOffset.UTC);
-     assertEquals(dt.toEpochSecond(), expectedEpSec);
- }
-
- @Test(dataProvider="toInstant")
- public void test_toEpochSecond_P0100(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZONE_0100);
-     assertEquals(dt.toEpochSecond(), expectedEpSec - 3600);
- }
-
- @Test(dataProvider="toInstant")
- public void test_toEpochSecond_M0100(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZONE_M0100);
-     assertEquals(dt.toEpochSecond(), expectedEpSec + 3600);
- }
-
  describe('compareTo()', () => {
 
 });
 
  @Test
- public void test_compareTo_time1() {
+ it('test_compareTo_time1', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0100);  // a is before b due to time
      assertEquals(a.compareTo(b) < 0, true);
@@ -1704,7 +1708,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_time2() {
+ it('test_compareTo_time2', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZONE_0100);  // a is before b due to time
      assertEquals(a.compareTo(b) < 0, true);
@@ -1714,7 +1718,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_offset1() {
+ it('test_compareTo_offset1', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0200);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);  // a is before b due to offset
      assertEquals(a.compareTo(b) < 0, true);
@@ -1724,7 +1728,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_offset2() {
+ it('test_compareTo_offset2', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZoneId.of("UTC+01:01"));
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);  // a is before b due to offset
      assertEquals(a.compareTo(b) < 0, true);
@@ -1734,7 +1738,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_both() {
+ it('test_compareTo_both', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 50), ZONE_0200);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20), ZONE_0100);  // a is before b on instant scale
      assertEquals(a.compareTo(b) < 0, true);
@@ -1744,7 +1748,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_bothNanos() {
+ it('test_compareTo_bothNanos', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20, 40, 5), ZONE_0200);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 20, 40, 6), ZONE_0100);  // a is before b on instant scale
      assertEquals(a.compareTo(b) < 0, true);
@@ -1754,7 +1758,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
  }
 
  @Test
- public void test_compareTo_hourDifference() {
+ it('test_compareTo_hourDifference', () => {
      var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 0), ZONE_0100);
      var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 0), ZONE_0200);  // a is before b despite being same time-line time
      assertEquals(a.compareTo(b) < 0, true);
@@ -1893,7 +1897,7 @@ expect(() => {
  });
 
  @Test
- public void test_equals_string_false() {
+ it('test_equals_string_false', () => {
      assertEquals(TEST_DATE_TIME.equals("2007-07-15"), false);
  }
 
@@ -1930,7 +1934,7 @@ expect(() => {
 });
 
  @Test
- public void test_format_formatter() {
+ it('test_format_formatter', () => {
      var f = DateTimeFormatter.ofPattern("y M d H m s");
      var t = ZonedDateTime.of(dateTime(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
      assertEquals(t, "2010 12 3 11 30 0");
