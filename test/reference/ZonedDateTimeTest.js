@@ -587,23 +587,22 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     */
 
 
-    describe('basics', () => {
+    // @DataProvider(name="sampleTimes")
+    function provider_sampleTimes() {
+        return[
+            [2008, 6, 30, 11, 30, 20, 500, ZONE_0100],
+            [2008, 6, 30, 11, 0, 0, 0, ZONE_0100],
+            [2008, 6, 30, 11, 30, 20, 500, ZONE_PARIS],
+            [2008, 6, 30, 11, 0, 0, 0, ZONE_PARIS],
+            [2008, 6, 30, 23, 59, 59, 999999999, ZONE_0100],
+            [-1, 1, 1, 0, 0, 0, 0, ZONE_0100]
+        ];
+    }
 
-        // @DataProvider(name="sampleTimes")
-        function provider_sampleTimes() {
-            return[
-                [2008, 6, 30, 11, 30, 20, 500, ZONE_0100],
-                [2008, 6, 30, 11, 0, 0, 0, ZONE_0100],
-                [2008, 6, 30, 11, 30, 20, 500, ZONE_PARIS],
-                [2008, 6, 30, 11, 0, 0, 0, ZONE_PARIS],
-                [2008, 6, 30, 23, 59, 59, 999999999, ZONE_0100],
-                [-1, 1, 1, 0, 0, 0, 0, ZONE_0100]
-            ];
-        }
+    describe('basics', () => {
 
         // @Test(dataProvider="sampleTimes")
         it('test_get', () => {
-
             dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n, zone) => {
                 var localDate = LocalDate.of(y, o, d);
                 var localTime = LocalTime.of(h, m, s, n);
@@ -1824,72 +1823,92 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-   
+
+    describe('equals() / hashCode()', function () {
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_true', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                assertEquals(a.equals(b), true);
+                assertEquals(a.hashCode() === b.hashCode(), true);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_year_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y + 1, o, d, h, m, s, n), ZONE_0100);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_hour_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                h = (h === 23 ? 22 : h);
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h + 1, m, s, n), ZONE_0100);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_minute_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                m = (m === 59 ? 58 : m);
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h, m + 1, s, n), ZONE_0100);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_second_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                s = (s === 59 ? 58 : s);
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h, m, s + 1, n), ZONE_0100);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_nano_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                n = (n === 999999999 ? 999999998 : n);
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n + 1), ZONE_0100);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        // @Test(dataProvider="sampleTimes")
+        it('test_equals_false_offset_differs', function () {
+            dataProviderTest(provider_sampleTimes, (y, o, d, h, m, s, n) => {
+                var a = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0100);
+                var b = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZONE_0200);
+                assertEquals(a.equals(b), false);
+            });
+        });
+
+        it('test_equals_itself_true', () => {
+            assertEquals(TEST_DATE_TIME.equals(TEST_DATE_TIME), true);
+        });
+
+        it('test_equals_string_false', () => {
+            assertEquals(TEST_DATE_TIME.equals('2007-07-15'), false);
+        });
+
+    });
 
 });
 
 /**
  //-----------------------------------------------------------------------
 
-
- //-----------------------------------------------------------------------
- // equals() / hashCode()
- //-----------------------------------------------------------------------
- @Test(dataProvider="sampleTimes")
- public void test_equals_true(y, o, d, h, m, s, n, ignored) {
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     assertEquals(a.equals(b), true);
-     assertEquals(a.hashCode() === b.hashCode(), true);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_year_differs(y, o, d, h, m, s, n, ignored) {
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y + 1, o, d, h, m, s, n), ZONE_0100);
-     assertEquals(a.equals(b), false);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_hour_differs(y, o, d, h, m, s, n, ignored) {
-     h = (h === 23 ? 22 : h);
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h + 1, m, s, n), ZONE_0100);
-     assertEquals(a.equals(b), false);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_minute_differs(y, o, d, h, m, s, n, ignored) {
-     m = (m === 59 ? 58 : m);
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h, m + 1, s, n), ZONE_0100);
-     assertEquals(a.equals(b), false);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_second_differs(y, o, d, h, m, s, n, ignored) {
-     s = (s === 59 ? 58 : s);
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s + 1, n), ZONE_0100);
-     assertEquals(a.equals(b), false);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_nano_differs(y, o, d, h, m, s, n, ignored) {
-     n = (n === 999999999 ? 999999998 : n);
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n + 1), ZONE_0100);
-     assertEquals(a.equals(b), false);
- }
- @Test(dataProvider="sampleTimes")
- public void test_equals_false_offset_differs(y, o, d, h, m, s, n, ignored) {
-     var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
-     var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0200);
-     assertEquals(a.equals(b), false);
- }
-
-  it('test_equals_itself_true', () => {
-     assertEquals(TEST_DATE_TIME.equals(TEST_DATE_TIME), true);
- });
-
-  it('test_equals_string_false', () => {
-     assertEquals(TEST_DATE_TIME.equals("2007-07-15"), false);
- }
 
  describe('toString()', () => {
 
@@ -1912,9 +1931,9 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
      };
  }
 
- @Test(dataProvider="sampleToString")
- public void test_toString(y, o, d, h, m, s, n, String zoneId, String expected) {
-     var t = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZoneId.of(zoneId));
+ // @Test(dataProvider="sampleToString")
+ function test_toString(y, o, d, h, m, s, n, String zoneId, String expected) {
+     var t = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZoneId.of(zoneId));
      var str = t.toString();
      assertEquals(str, expected);
  }
@@ -1925,13 +1944,13 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
   it('test_format_formatter', () => {
      var f = DateTimeFormatter.ofPattern("y M d H m s");
-     var t = ZonedDateTime.of(dateTime(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
+     var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
      assertEquals(t, "2010 12 3 11 30 0");
  }
 
  it('test_format_formatter_null', () => {
 expect(() => {
-     ZonedDateTime.of(dateTime(2010, 12, 3, 11, 30), ZONE_PARIS).format(null);
+     ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(null);
  
 }).to.throw(NullPointerException);
 });

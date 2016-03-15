@@ -222,6 +222,13 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
+     * @return {number}
+     */
+    hashCode(){
+        return this._totalSeconds;
+    }
+
+    /**
      *
      * @returns {string}
      */
