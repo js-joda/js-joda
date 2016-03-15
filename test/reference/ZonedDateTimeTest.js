@@ -1590,6 +1590,55 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('toInstant()', () => {
+   
+        //@DataProvider(name="toInstant")
+        function data_toInstant(){
+            return [
+                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0), 0, 0],
+                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 1), 0, 1],
+                [LocalDateTime.of(1970, 1, 1, 0, 0, 0, 999999999), 0, 999999999],
+                [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 0), 1, 0],
+                [LocalDateTime.of(1970, 1, 1, 0, 0, 1, 1), 1, 1],
+                [LocalDateTime.of(1969, 12, 31, 23, 59, 59, 999999999), -1, 999999999],
+                [LocalDateTime.of(1970, 1, 2, 0, 0), 24 * 60 * 60, 0],
+                [LocalDateTime.of(1969, 12, 31, 0, 0), -24 * 60 * 60, 0]
+            ];
+        }
+
+        //@Test(dataProvider="toInstant")
+        it('test_toInstant_UTC', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZoneOffset.UTC);
+                var test = dt.toInstant();
+                assertEquals(test.epochSecond(), expectedEpSec);
+                assertEquals(test.nano(), expectedNos);
+            });
+        });
+
+
+        //@Test(dataProvider="toInstant")
+        it('test_toInstant_P0100', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZONE_0100);
+                var test = dt.toInstant();
+                assertEquals(test.epochSecond(), expectedEpSec - 3600);
+                assertEquals(test.nano(), expectedNos);
+            });
+        });
+
+        //@Test(dataProvider="toInstant")
+        it('test_toInstant_M0100', function () {
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+                var dt = ldt.atZone(ZONE_M0100);
+                var test = dt.toInstant();
+                assertEquals(test.epochSecond(), expectedEpSec + 3600);
+                assertEquals(test.nano(), expectedNos);
+            });
+        });
+
+    });
+   
 });
 
 
@@ -1597,48 +1646,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 /**
  //-----------------------------------------------------------------------
 
-
- describe('toInstant()', () => {
-
-});
-
- @DataProvider(name="toInstant")
- function data_toInstant(){
-     return [
-         {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0), 0, 0},
-         {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 1), 0, 1},
-         {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 999999999), 0, 999999999},
-         {LocalDateTime.of(1970, 1, 1, 0, 0, 1, 0), 1, 0},
-         {LocalDateTime.of(1970, 1, 1, 0, 0, 1, 1), 1, 1},
-         {LocalDateTime.of(1969, 12, 31, 23, 59, 59, 999999999), -1, 999999999},
-         {LocalDateTime.of(1970, 1, 2, 0, 0), 24 * 60 * 60, 0},
-         {LocalDateTime.of(1969, 12, 31, 0, 0), -24 * 60 * 60, 0},
-     };
- }
-
- @Test(dataProvider="toInstant")
- public void test_toInstant_UTC(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZoneOffset.UTC);
-     var test = dt.toInstant();
-     assertEquals(test.epochsecond(), expectedEpSec);
-     assertEquals(test.nano(), expectedNos);
- }
-
- @Test(dataProvider="toInstant")
- public void test_toInstant_P0100(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZONE_0100);
-     var test = dt.toInstant();
-     assertEquals(test.epochsecond(), expectedEpSec - 3600);
-     assertEquals(test.nano(), expectedNos);
- }
-
- @Test(dataProvider="toInstant")
- public void test_toInstant_M0100(LocalDateTime ldt, long expectedEpSec, int expectedNos) {
-     var dt = ldt.atZone(ZONE_M0100);
-     var test = dt.toInstant();
-     assertEquals(test.epochsecond(), expectedEpSec + 3600);
-     assertEquals(test.nano(), expectedNos);
- }
 
  describe('toEpochSecond()', () => {
 
