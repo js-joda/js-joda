@@ -1627,6 +1627,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusTemporalAmount(amount) {
+        requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -1660,7 +1661,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the unit cannot be added to this type
      */
     minus2(amountToSubtract, unit) {
-        return this.plus(-1 * amountToSubtract, unit);
+        return this.plus2(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

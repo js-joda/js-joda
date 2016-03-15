@@ -1158,7 +1158,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             //[dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
             // skip over overlap
             [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
             // land in overlap
             // TODO iana tzdb
             //[dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
@@ -1180,7 +1180,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             // TODO iana tzdb
             //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
             //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
             // TODO iana tzdb
             //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
             //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
@@ -1339,7 +1339,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_plusDays', function () {
             dataProviderTest(data_plusDays, (base, amount, expected) => {
                 assertEquals(base.plusDays(amount), expected);
-            })
+            });
         });
 
     });
@@ -1349,7 +1349,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_plusHours', function () {
             dataProviderTest(data_plusTime, (base, amount, expected) => {
                 assertEquals(base.plusHours(amount), expected);
-            })
+            });
         });
 
     });
@@ -1359,7 +1359,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_plusMinutes', function () {
             dataProviderTest(data_plusTime, (base, amount, expected) => {
                 assertEquals(base.plusMinutes(amount * 60), expected);
-            })
+            });
         });
 
         it('test_plusMinutes_minutes', () => {
@@ -1376,7 +1376,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_plusSeconds', function () {
             dataProviderTest(data_plusTime, (base, amount, expected) => {
                 assertEquals(base.plusSeconds(amount * 3600), expected);
-            })
+            });
         });
 
         it('test_plusSeconds_seconds', () => {
@@ -1393,7 +1393,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_plusNanos_nanos', function () {
             dataProviderTest(data_plusTime, (base, amount, expected) => {
                 assertEquals(base.plusNanos(amount * 3600000000000), expected);
-            })
+            });
         });
 
         it('test_plusNanos_nanos', () => {
@@ -1405,6 +1405,191 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('minus(adjuster)', () => {
+
+        // @Test(dataProvider="plusDays")
+        it('test_minus_adjuster_Period_days', function () {
+            dataProviderTest(data_plusDays, (base, amount, expected) => {
+                assertEquals(base.minus(Period.ofDays(-1 * amount)), expected);
+            });
+        });
+
+        // @Test(dataProvider="plusTime")
+        it('test_minus_adjuster_Period_hours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minus(Duration.ofHours(-amount)), expected);
+            });
+        });
+
+        // @Test(dataProvider="plusTime")
+        it('test_minus_adjuster_Duration_hours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minus(Duration.ofHours(-amount)), expected);
+            });
+        });
+
+        it('test_minus_adjuster', () => {
+            var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+            var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
+            var expected = ZonedDateTime.of(LocalDateTime.of(2007, 11, 1, 12, 30, 59, 500), ZONE_0100);
+            assertEquals(t.minus(period), expected);
+        });
+
+        it('test_minus_adjuster_Duration', () => {
+            var duration = Duration.ofSeconds(4 * 60 * 60 + 5 * 60 + 6);
+            var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
+            var expected = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 8, 25, 53, 500), ZONE_0100);
+            assertEquals(t.minus(duration), expected);
+        });
+
+        it('test_minus_adjuster_Period_zero', () => {
+            var t = TEST_DATE_TIME.minus(MockSimplePeriod.ZERO_DAYS);
+            assertEquals(t, TEST_DATE_TIME);
+        });
+
+        it('test_minus_adjuster_Duration_zero', () => {
+            var t = TEST_DATE_TIME.minus(Duration.ZERO);
+            assertEquals(t, TEST_DATE_TIME);
+        });
+
+        it('test_minus_adjuster_null', () => {
+            expect(() => {
+                TEST_DATE_TIME.minus(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('minusYears()', () => {
+
+        it('test_minusYears', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusYears(1);
+            assertEquals(test, ZonedDateTime.of(ldt.minusYears(1), ZONE_0100));
+        });
+
+        it('test_minusYears_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusYears(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('minusMonths()', () => {
+
+        it('test_minusMonths', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusMonths(1);
+            assertEquals(test, ZonedDateTime.of(ldt.minusMonths(1), ZONE_0100));
+        });
+
+        it('test_minusMonths_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusMonths(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('minusWeeks()', () => {
+
+        it('test_minusWeeks', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusWeeks(1);
+            assertEquals(test, ZonedDateTime.of(ldt.minusWeeks(1), ZONE_0100));
+        });
+
+        it('test_minusWeeks_zero', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusWeeks(0);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('minusDays()', () => {
+
+        // @Test(dataProvider="plusDays")
+        it('test_minusDays', function () {
+            dataProviderTest(data_plusDays, (base, amount, expected) => {
+                assertEquals(base.minusDays(-amount), expected);
+            });
+        });
+
+    });
+
+    describe('minusHours()', () => {
+
+        // @Test(dataProvider="plusTime")
+        it('test_minusHours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minusHours(-amount), expected);
+            });
+        });
+
+    });
+
+    describe('minusMinutes()', () => {
+
+        // @Test(dataProvider="plusTime")
+        it('test_minusMinutes', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minusMinutes(-amount * 60), expected);
+            });
+        });
+
+        it('test_minusMinutes_minutes', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusMinutes(30);
+            assertEquals(test, ZonedDateTime.of(ldt.minusMinutes(30), ZONE_0100));
+        });
+
+    });
+
+    describe('minusSeconds()', () => {
+
+        // @Test(dataProvider="plusTime")
+        it('test_minusSeconds', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minusSeconds(-amount * 3600), expected);
+            });
+        });
+
+        it('test_minusSeconds_seconds', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusSeconds(1);
+            assertEquals(test, ZonedDateTime.of(ldt.minusSeconds(1), ZONE_0100));
+        });
+
+    });
+
+    describe('minusNanos()', () => {
+
+        // @Test(dataProvider="plusTime")
+        it('test_minusNanos', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.minusNanos(-amount * 3600000000000), expected);
+            });
+        });
+
+        it('test_minusNanos_nanos', () => {
+            var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.minusNanos(1);
+            assertEquals(test, ZonedDateTime.of(ldt.minusNanos(1), ZONE_0100));
+        });
+
+    });
+
 });
 
 
@@ -1412,188 +1597,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 /**
  //-----------------------------------------------------------------------
 
- describe('minus(adjuster)', () => {
-
-});
-
- @Test(dataProvider="plusDays")
- public void test_minus_adjuster_Period_days(base, amount, expected) {
-     assertEquals(base.minus(Period.ofDays((int) -amount)), expected);
- }
-
- // @Test(dataProvider="plusTime")
- public void test_minus_adjuster_Period_hours(base, amount, expected) {
-     assertEquals(base.minus(Duration.ofHours(-amount)), expected);
- }
-
- // @Test(dataProvider="plusTime")
- public void test_minus_adjuster_Duration_hours(base, amount, expected) {
-     assertEquals(base.minus(Duration.ofHours(-amount)), expected);
- }
-
- @Test
- it('test_minus_adjuster', () => {
-     var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
-     var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
-     var expected = ZonedDateTime.of(LocalDateTime.of(2007, 11, 1, 12, 30, 59, 500), ZONE_0100);
-     assertEquals(t.minus(period), expected);
- });
-
- @Test
- it('test_minus_adjuster_Duration', () => {
-     var duration = Duration.ofSeconds(4 * 60 * 60 + 5 * 60 + 6);
-     var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
-     var expected = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 8, 25, 53, 500), ZONE_0100);
-     assertEquals(t.minus(duration), expected);
- });
-
- @Test
- it('test_minus_adjuster_Period_zero', () => {
-     var t = TEST_DATE_TIME.minus(MockSimplePeriod.ZERO_DAYS);
-     assertEquals(t, TEST_DATE_TIME);
- });
-
- @Test
- it('test_minus_adjuster_Duration_zero', () => {
-     var t = TEST_DATE_TIME.minus(Duration.ZERO);
-     assertEquals(t, TEST_DATE_TIME);
- });
-
- it('test_minus_adjuster_null', () => {
-expect(() => {
-     TEST_DATE_TIME.minus(null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('minusYears()', () => {
-
-});
-
- @Test
- it('test_minusYears', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusYears(1);
-     assertEquals(test, ZonedDateTime.of(ldt.minusYears(1), ZONE_0100));
- });
-
- @Test
- it('test_minusYears_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusYears(0);
-     assertEquals(test, base);
- });
-
- describe('minusMonths()', () => {
-
-});
-
- @Test
- it('test_minusMonths', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusMonths(1);
-     assertEquals(test, ZonedDateTime.of(ldt.minusMonths(1), ZONE_0100));
- });
-
- @Test
- it('test_minusMonths_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusMonths(0);
-     assertEquals(test, base);
- });
-
- describe('minusWeeks()', () => {
-
-});
-
- @Test
- it('test_minusWeeks', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusWeeks(1);
-     assertEquals(test, ZonedDateTime.of(ldt.minusWeeks(1), ZONE_0100));
- });
-
- @Test
- it('test_minusWeeks_zero', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusWeeks(0);
-     assertEquals(test, base);
- });
-
- describe('minusDays()', () => {
-
-});
-
- @Test(dataProvider="plusDays")
- public void test_minusDays(base, amount, expected) {
-     assertEquals(base.minusDays(-amount), expected);
- }
-
- describe('minusHours()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_minusHours(base, amount, expected) {
-     assertEquals(base.minusHours(-amount), expected);
- }
-
- describe('minusMinutes()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_minusMinutes(base, amount, expected) {
-     assertEquals(base.minusMinutes(-amount * 60), expected);
- }
-
- @Test
- it('test_minusMinutes_minutes', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusMinutes(30);
-     assertEquals(test, ZonedDateTime.of(ldt.minusMinutes(30), ZONE_0100));
- });
-
- describe('minusSeconds()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_minusSeconds(base, amount, expected) {
-     assertEquals(base.minusSeconds(-amount * 3600), expected);
- }
-
- @Test
- it('test_minusSeconds_seconds', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusSeconds(1);
-     assertEquals(test, ZonedDateTime.of(ldt.minusSeconds(1), ZONE_0100));
- });
-
- describe('minusNanos()', () => {
-
-});
-
- // @Test(dataProvider="plusTime")
- public void test_minusNanos(base, amount, expected) {
-     assertEquals(base.minusNanos(-amount * 3600000000000), expected);
- }
-
- @Test
- it('test_minusNanos_nanos', () => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.minusNanos(1);
-     assertEquals(test, ZonedDateTime.of(ldt.minusNanos(1), ZONE_0100));
- });
 
  describe('toInstant()', () => {
 
@@ -1974,8 +1977,8 @@ function dateTime5(year, month, dayOfMonth, hour, minute) {
 }
 
 function dateTime7(year, month, dayOfMonth,hour, minute, second, nanoOfSecond) {
-            return LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
-        }
+    return LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
+}
 
 function dateTime9(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
     return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
