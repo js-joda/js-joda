@@ -1640,21 +1640,22 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
    
     describe('toEpochSecond()', () => {
 
+        var diff = isCoverageTestRunner() || isBrowserTestRunner ? 179 : 7;
         it('test_toEpochSecond_afterEpoch', () => {
             var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-            for (var i = 0; i < 100000; i++) {
+            for (var i = 0; i < 100000; i+=diff) {
                 var a = ZonedDateTime.of(ldt, ZONE_PARIS);
                 assertEquals(a.toEpochSecond(), i);
-                ldt = ldt.plusSeconds(1);
+                ldt = ldt.plusSeconds(diff);
             }
         });
 
         it('test_toEpochSecond_beforeEpoch', () => {
             var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-            for (var i = 0; i < 100000; i++) {
+            for (var i = 0; i < 100000; i+=diff) {
                 var a = ZonedDateTime.of(ldt, ZONE_PARIS);
                 assertEquals(a.toEpochSecond(), MathUtil.safeZero(-i));
-                ldt = ldt.minusSeconds(1);
+                ldt = ldt.minusSeconds(diff);
             }
         });
 
