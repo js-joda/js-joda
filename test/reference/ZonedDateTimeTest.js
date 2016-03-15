@@ -945,230 +945,206 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
        
     });
    
+    describe('withYear()', () => {
+
+        it('test_withYear_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withYear(2007);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withYear(2007), ZONE_0100));
+        });
+
+        it('test_withYear_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withYear(2008);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('with(Month)', () => {
+
+        it('test_withMonth_Month_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.with(Month.JANUARY);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMonth(1), ZONE_0100));
+        });
+
+        it('test_withMonth_Month_null', () => {
+            expect(()=>{
+                var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+                base.with(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+
+    describe('withMonth()', () => {
+
+        it('test_withMonth_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withMonth(1);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMonth(1), ZONE_0100));
+        });
+
+        it('test_withMonth_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withMonth(6);
+            assertEquals(test, base);
+        });
+
+        it('test_withMonth_tooBig', () => {
+            expect(() => {
+                TEST_DATE_TIME.withMonth(13);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMonth_tooSmall', () => {
+            expect(() => {
+                TEST_DATE_TIME.withMonth(0);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withDayOfMonth()', () => {
+
+        it('test_withDayOfMonth_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withDayOfMonth(15);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withDayOfMonth(15), ZONE_0100));
+        });
+
+        it('test_withDayOfMonth_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withDayOfMonth(30);
+            assertEquals(test, base);
+        });
+
+        it('test_withDayOfMonth_tooBig', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 7, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(32);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfMonth_tooSmall', () => {
+            expect(() => {
+                TEST_DATE_TIME.withDayOfMonth(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfMonth_invalid31', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 6, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(31);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withDayOfYear()', () => {
+
+        it('test_withdayOfYear_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withDayOfYear(33);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withDayOfYear(33), ZONE_0100));
+        });
+
+        it('test_withdayOfYear_noChange', () => {
+            var ldt = LocalDateTime.of(2008, 2, 5, 23, 30, 59, 0);
+            var base = ZonedDateTime.of(ldt, ZONE_0100);
+            var test = base.withDayOfYear(36);
+            assertEquals(test, base);
+        });
+
+        it('test_withdayOfYear_tooBig', () => {
+            expect(() => {
+                TEST_DATE_TIME.withDayOfYear(367);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withdayOfYear_tooSmall', () => {
+            expect(() => {
+                TEST_DATE_TIME.withDayOfYear(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withdayOfYear_invalid366', () => {
+            expect(() => {
+                LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_PARIS).withDayOfYear(366);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('withHour()', () => {
+
+        it('test_withHour_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withHour(15);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withHour(15), ZONE_0100));
+        });
+
+        it('test_withHour_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withHour(11);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('withMinute()', () => {
+
+        it('test_withMinute_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withMinute(15);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMinute(15), ZONE_0100));
+        });
+
+        it('test_withMinute_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withMinute(30);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('withSecond()', () => {
+
+        it('test_withSecond_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withSecond(12);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withSecond(12), ZONE_0100));
+        });
+
+        it('test_withSecond_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withSecond(59);
+            assertEquals(test, base);
+        });
+
+    });
+
+    describe('withNano()', () => {
+
+        it('test_withNanoOfSecond_normal', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withNano(15);
+            assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withNano(15), ZONE_0100));
+        });
+
+        it('test_withNanoOfSecond_noChange', () => {
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
+            var test = base.withNano(500);
+            assertEquals(test, base);
+        });
+
+    });
+
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- describe('withYear()', () => {
-
-});
-
- @Test
- it('test_withYear_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withYear(2007);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withYear(2007), ZONE_0100));
- });
-
- @Test
- it('test_withYear_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withYear(2008);
-     assertEquals(test, base);
- });
-
- describe('with(Month)', () => {
-
-});
-
- @Test
- it('test_withMonth_Month_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.with(JANUARY);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMonth(1), ZONE_0100));
- });
-
- @Test(expectedExceptions = NullPointerException.class)
- it('test_withMonth_Month_null', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     base.with((Month) null);
- });
-
- describe('withMonth()', () => {
-
-});
-
- @Test
- it('test_withMonth_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withMonth(1);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMonth(1), ZONE_0100));
- });
-
- @Test
- it('test_withMonth_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withMonth(6);
-     assertEquals(test, base);
- });
-
- it('test_withMonth_tooBig', () => {
-expect(() => {
-     TEST_DATE_TIME.withMonth(13);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_withMonth_tooSmall', () => {
-expect(() => {
-     TEST_DATE_TIME.withMonth(0);
- 
-}).to.throw(DateTimeException);
-});
-
- describe('withDayOfMonth()', () => {
-
-});
-
- @Test
- it('test_withDayOfMonth_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withDayOfMonth(15);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withDayOfMonth(15), ZONE_0100));
- });
-
- @Test
- it('test_withDayOfMonth_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withDayOfMonth(30);
-     assertEquals(test, base);
- });
-
- it('test_withDayOfMonth_tooBig', () => {
-expect(() => {
-     LocalDateTime.of(2007, 7, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(32);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_withDayOfMonth_tooSmall', () => {
-expect(() => {
-     TEST_DATE_TIME.withDayOfMonth(0);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_withDayOfMonth_invalid31', () => {
-expect(() => {
-     LocalDateTime.of(2007, 6, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(31);
- 
-}).to.throw(DateTimeException);
-});
-
- describe('withdayOfYear()', () => {
-
-});
-
- @Test
- it('test_withdayOfYear_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withdayOfYear(33);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withdayOfYear(33), ZONE_0100));
- });
-
- @Test
- it('test_withdayOfYear_noChange', () => {
-     var ldt = LocalDateTime.of(2008, 2, 5, 23, 30, 59, 0);
-     var base = ZonedDateTime.of(ldt, ZONE_0100);
-     var test = base.withdayOfYear(36);
-     assertEquals(test, base);
- });
-
- it('test_withdayOfYear_tooBig', () => {
-expect(() => {
-     TEST_DATE_TIME.withdayOfYear(367);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_withdayOfYear_tooSmall', () => {
-expect(() => {
-     TEST_DATE_TIME.withdayOfYear(0);
- 
-}).to.throw(DateTimeException);
-});
-
- it('test_withdayOfYear_invalid366', () => {
-expect(() => {
-     LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_PARIS).withdayOfYear(366);
- 
-}).to.throw(DateTimeException);
-});
-
- describe('withHour()', () => {
-
-});
-
- @Test
- it('test_withHour_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withHour(15);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withHour(15), ZONE_0100));
- });
-
- @Test
- it('test_withHour_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withHour(11);
-     assertEquals(test, base);
- });
-
- describe('withMinute()', () => {
-
-});
-
- @Test
- it('test_withMinute_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withMinute(15);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withMinute(15), ZONE_0100));
- });
-
- @Test
- it('test_withMinute_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withMinute(30);
-     assertEquals(test, base);
- });
-
- describe('withSecond()', () => {
-
-});
-
- @Test
- it('test_withSecond_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withSecond(12);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withSecond(12), ZONE_0100));
- });
-
- @Test
- it('test_withSecond_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withSecond(59);
-     assertEquals(test, base);
- });
-
- describe('withNano()', () => {
-
-});
-
- @Test
- it('test_withNanoOfSecond_normal', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withNano(15);
-     assertEquals(test, ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500.withNano(15), ZONE_0100));
- });
-
- @Test
- it('test_withNanoOfSecond_noChange', () => {
-     var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-     var test = base.withNano(500);
-     assertEquals(test, base);
- });
 
  //-----------------------------------------------------------------------
  // plus/minus
