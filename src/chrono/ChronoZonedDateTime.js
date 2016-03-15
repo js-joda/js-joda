@@ -107,6 +107,80 @@ export class ChronoZonedDateTime  extends Temporal {
         return cmp;
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the instant of this date-time is after that of the specified date-time.
+     * <p>
+     * This method differs from the comparison in {@link #compareTo} in that it
+     * only compares the instant of the date-time. This is equivalent to using
+     * {@code dateTime1.toInstant().isAfter(dateTime2.toInstant());}.
+     *
+     * @param {!ChronoZonedDateTime} other - the other date-time to compare to, not null
+     * @return {boolean} true if this is after the specified date-time
+     */
+    isAfter(other) {
+        requireNonNull(other, 'other');
+        var thisEpochSec = this.toEpochSecond();
+        var otherEpochSec = other.toEpochSecond();
+        return thisEpochSec > otherEpochSec ||
+            (thisEpochSec === otherEpochSec && this.toLocalTime().nano() > other.toLocalTime().nano());
+    }
+
+    /**
+     * Checks if the instant of this date-time is before that of the specified date-time.
+     * <p>
+     * This method differs from the comparison in {@link #compareTo} in that it
+     * only compares the instant of the date-time. This is equivalent to using
+     * {@code dateTime1.toInstant().isBefore(dateTime2.toInstant());}.
+     *
+     * @param {!ChronoZonedDateTime} other - the other date-time to compare to, not null
+     * @return {boolean} true if this point is before the specified date-time
+     */
+    isBefore(other) {
+        requireNonNull(other, 'other');
+        var thisEpochSec = this.toEpochSecond();
+        var otherEpochSec = other.toEpochSecond();
+        return thisEpochSec < otherEpochSec ||
+            (thisEpochSec === otherEpochSec && this.toLocalTime().nano() < other.toLocalTime().nano());
+    }
+
+    /**
+     * Checks if the instant of this date-time is equal to that of the specified date-time.
+     * <p>
+     * This method differs from the comparison in {@link #compareTo} and {@link #equals}
+     * in that it only compares the instant of the date-time. This is equivalent to using
+     * {@code dateTime1.toInstant().equals(dateTime2.toInstant());}.
+     *
+     * @param {!ChronoZonedDateTime} other - the other date-time to compare to, not null
+     * @return {boolean} true if the instant equals the instant of the specified date-time
+     */
+    isEqual(other) {
+        requireNonNull(other, 'other');
+        return this.toEpochSecond() === other.toEpochSecond() &&
+                this.toLocalTime().nano() === other.toLocalTime().nano();
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this date-time is equal to another date-time.
+     * <p>
+     * The comparison is based on the offset date-time and the zone.
+     * To compare for the same instant on the time-line, use {@link #compareTo}.
+     * Only objects of type {@code ChronoZoneDateTime} are compared, other types return false.
+     *
+     * @param {*} other  the object to check, null returns false
+     * @return {boolean} true if this is equal to the other date-time
+     */
+    equals(other) {
+        if (this === other) {
+            return true;
+        }
+        if (other instanceof ChronoZonedDateTime) {
+            return this.compareTo(other) === 0;
+        }
+        return false;
+    }
+
 }
 
 function strcmp(a, b){

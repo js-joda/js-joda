@@ -1759,125 +1759,125 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
     });
 
+    describe('isBefore()', () => {
+   
+        // @DataProvider(name="IsBefore")
+        function data_isBefore(){
+            return [
+                [11, 30, ZONE_0100, 11, 31, ZONE_0100, true], // a is before b due to time
+                [11, 30, ZONE_0200, 11, 30, ZONE_0100, true], // a is before b due to offset
+                [11, 30, ZONE_0200, 10, 30, ZONE_0100, false] // a is equal b due to same instant
+            ];
+        }
+
+        // @Test(dataProvider="IsBefore")
+        it('test_isBefore', () => {
+            dataProviderTest(data_isBefore, (hour1, minute1, zone1, hour2, minute2, zone2, expected) => {
+                var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour1, minute1), zone1);
+                var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour2, minute2), zone2);
+                assertEquals(a.isBefore(b), expected);
+                assertEquals(b.isBefore(a), false);
+                assertEquals(a.isBefore(a), false);
+                assertEquals(b.isBefore(b), false);
+            });
+        });
+
+        it('test_isBefore_null', () => {
+            expect(() => {
+                var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+                var a = ZonedDateTime.of(ldt, ZONE_0100);
+                a.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+   
+    describe('isAfter()', () => {
+   
+        // @DataProvider(name="IsAfter")
+        function data_isAfter(){
+            return [
+                [11, 31, ZONE_0100, 11, 30, ZONE_0100, true], // a is after b due to time
+                [11, 30, ZONE_0100, 11, 30, ZONE_0200, true], // a is after b due to offset
+                [11, 30, ZONE_0200, 10, 30, ZONE_0100, false] // a is equal b due to same instant
+            ];
+        }
+
+        // @Test(dataProvider="IsAfter")
+        it('test_isBefore', () => {
+            dataProviderTest(data_isAfter, (hour1, minute1, zone1, hour2, minute2, zone2, expected) => {
+                var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour1, minute1), zone1);
+                var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour2, minute2), zone2);
+                assertEquals(a.isAfter(b), expected);
+                assertEquals(b.isAfter(a), false);
+                assertEquals(a.isAfter(a), false);
+                assertEquals(b.isAfter(b), false);
+            });
+        });
+
+        it('test_isAfter_null', () => {
+            expect(() => {
+                var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+                var a = ZonedDateTime.of(ldt, ZONE_0100);
+                a.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+   
 
 });
-
-
 
 /**
  //-----------------------------------------------------------------------
 
 
- describe('isBefore()', () => {
-
-});
-
- @DataProvider(name="IsBefore")
- function data_isBefore(){
-     return [
-         {11, 30, ZONE_0100, 11, 31, ZONE_0100, true}, // a is before b due to time
-         {11, 30, ZONE_0200, 11, 30, ZONE_0100, true}, // a is before b due to offset
-         {11, 30, ZONE_0200, 10, 30, ZONE_0100, false}, // a is equal b due to same instant
-     };
- }
-
- @Test(dataProvider="IsBefore")
- public void test_isBefore(int hour1, int minute1, ZoneId zone1, int hour2, int minute2, ZoneId zone2, boolean expected) {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour1, minute1), zone1);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour2, minute2), zone2);
-     assertEquals(a.isBefore(b), expected);
-     assertEquals(b.isBefore(a), false);
-     assertEquals(a.isBefore(a), false);
-     assertEquals(b.isBefore(b), false);
- }
-
- it('test_isBefore_null', () => {
-expect(() => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var a = ZonedDateTime.of(ldt, ZONE_0100);
-     a.isBefore(null);
- 
-}).to.throw(NullPointerException);
-});
-
- describe('isAfter()', () => {
-
-});
-
- @DataProvider(name="IsAfter")
- function data_isAfter(){
-     return [
-         {11, 31, ZONE_0100, 11, 30, ZONE_0100, true}, // a is after b due to time
-         {11, 30, ZONE_0100, 11, 30, ZONE_0200, true}, // a is after b due to offset
-         {11, 30, ZONE_0200, 10, 30, ZONE_0100, false}, // a is equal b due to same instant
-     };
- }
-
- @Test(dataProvider="IsAfter")
- public void test_isAfter(int hour1, int minute1, ZoneId zone1, int hour2, int minute2, ZoneId zone2, boolean expected) {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour1, minute1), zone1);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, hour2, minute2), zone2);
-     assertEquals(a.isAfter(b), expected);
-     assertEquals(b.isAfter(a), false);
-     assertEquals(a.isAfter(a), false);
-     assertEquals(b.isAfter(b), false);
- }
-
- it('test_isAfter_null', () => {
-expect(() => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var a = ZonedDateTime.of(ldt, ZONE_0100);
-     a.isAfter(null);
- 
-}).to.throw(NullPointerException);
-});
-
  //-----------------------------------------------------------------------
  // equals() / hashCode()
  //-----------------------------------------------------------------------
  @Test(dataProvider="sampleTimes")
- public void test_equals_true(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_true(y, o, d, h, m, s, n, ignored) {
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      assertEquals(a.equals(b), true);
      assertEquals(a.hashCode() === b.hashCode(), true);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_year_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_year_differs(y, o, d, h, m, s, n, ignored) {
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y + 1, o, d, h, m, s, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_hour_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_hour_differs(y, o, d, h, m, s, n, ignored) {
      h = (h === 23 ? 22 : h);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h + 1, m, s, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_minute_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_minute_differs(y, o, d, h, m, s, n, ignored) {
      m = (m === 59 ? 58 : m);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m + 1, s, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_second_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_second_differs(y, o, d, h, m, s, n, ignored) {
      s = (s === 59 ? 58 : s);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s + 1, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_nano_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_nano_differs(y, o, d, h, m, s, n, ignored) {
      n = (n === 999999999 ? 999999998 : n);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n + 1), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
- public void test_equals_false_offset_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
+ public void test_equals_false_offset_differs(y, o, d, h, m, s, n, ignored) {
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0200);
      assertEquals(a.equals(b), false);
@@ -1913,7 +1913,7 @@ expect(() => {
  }
 
  @Test(dataProvider="sampleToString")
- public void test_toString(int y, int o, int d, int h, int m, int s, int n, String zoneId, String expected) {
+ public void test_toString(y, o, d, h, m, s, n, String zoneId, String expected) {
      var t = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZoneId.of(zoneId));
      var str = t.toString();
      assertEquals(str, expected);
@@ -1936,26 +1936,6 @@ expect(() => {
 }).to.throw(NullPointerException);
 });
 
- //-------------------------------------------------------------------------
- private static LocalDateTime dateTime(
-         int year, int month, int dayOfMonth,
-         int hour, int minute) {
-     return LocalDateTime.of(year, month, dayOfMonth, hour, minute);
- }
-
- private static LocalDateTime dateTime(
-                 int year, int month, int dayOfMonth,
-                 int hour, int minute, int second, int nanoOfSecond) {
-             return LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
-         }
-
- private static ZonedDateTime dateTime(
-         int year, int month, int dayOfMonth,
-         int hour, int minute, int second, int nanoOfSecond, ZoneOffset offset, ZoneId zoneId) {
-     return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
- }
-
-}
 
  */
 
