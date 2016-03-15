@@ -1372,12 +1372,13 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalAmount} amount - the amount to add, not null
+     * @param {!TemporalAmount} amount - the amount to add, not null
      * @return {ZonedDateTime} a {@code ZonedDateTime} based on this date-time with the addition made, not null
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusTemporalAmount(amount) {
+        requireNonNull(amount);
         return amount.addTo(this);
     }
 

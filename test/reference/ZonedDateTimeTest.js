@@ -10,18 +10,21 @@ import {expect} from 'chai';
 import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+import {MockSimplePeriod} from './MockSimplePeriod';
 import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
 import {DateTimeException, NullPointerException} from '../../src/errors';
 //import {DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {Duration} from '../../src/Duration';
 import {Instant} from '../../src/Instant';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {MathUtil} from '../../src/MathUtil';
+import {Period} from '../../src/Period';
 import {Year} from '../../src/Year';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
@@ -1139,110 +1142,112 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    // @DataProvider(name="plusDays")
+    function data_plusDays(){
+        return [
+            // normal
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 0, dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1, dateTime9(2008, 7, 1, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime9(2008, 6, 29, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            // skip over gap
+            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 31, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 29, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            // land in gap
+            // TODO iana tzdb
+            //[dateTime9(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            //[dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            // skip over overlap
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            // land in overlap
+            // TODO iana tzdb
+            //[dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            //[dateTime9(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), -1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+        ];
+    }
+   
+    // @DataProvider(name="plusTime")
+    function data_plusTime(){
+        return [
+            // normal
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 0,  dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1,  dateTime9(2008, 7, 1, 0, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime9(2008, 6, 30, 22, 30, 59, 0, OFFSET_0100, ZONE_0100)],
+            // gap
+            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1,  dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            // overlap
+            // TODO iana tzdb
+            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            // TODO iana tzdb
+            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+        ];
+    }
+   
+    describe('plus(adjuster)', () => {
+   
+        //@Test(dataProvider="plusDays")
+        it('test_plus_adjuster_Period_days', function () {
+            dataProviderTest(data_plusDays, (base, amount, expected) => {
+                assertEquals(base.plus(Period.ofDays(amount)), expected);
+            });
+        });
+        
+        // @Test(dataProvider="plusTime")
+        it('test_plus_adjuster_Period_hours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(Duration.ofHours(amount)), expected);
+            });
+        });
+        
+        // @Test(dataProvider="plusTime")
+        it('test_plus_adjuster_Duration_hours', function () {
+            dataProviderTest(data_plusTime, (base, amount, expected) => {
+                assertEquals(base.plus(Duration.ofHours(amount)), expected);
+            });
+        });
+        
+        it('test_plus_adjuster', () => {
+            var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+            var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
+            var expected = ZonedDateTime.of(LocalDateTime.of(2009, 1, 1, 12, 30, 59, 500), ZONE_0100);
+            assertEquals(t.plus(period), expected);
+        });
+       
+        it('test_plus_adjuster_Duration', () => {
+            var duration = Duration.ofSeconds(4 * 60 * 60 + 5 * 60 + 6);
+            var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
+            var expected = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 16, 36, 5, 500), ZONE_0100);
+            assertEquals(t.plus(duration), expected);
+        });
+       
+        it('test_plus_adjuster_Period_zero', () => {
+            var t = TEST_DATE_TIME.plus(MockSimplePeriod.ZERO_DAYS);
+            assertEquals(t, TEST_DATE_TIME);
+        });
+       
+        it('test_plus_adjuster_Duration_zero', () => {
+            var t = TEST_DATE_TIME.plus(Duration.ZERO);
+            assertEquals(t, TEST_DATE_TIME);
+        });
+
+        it('test_plus_adjuster_null', () => {
+            expect(() => {
+                TEST_DATE_TIME.plus(null);
+            }).to.throw(NullPointerException);
+        });
+
+    });
+   
 });
 
 
 
 /**
  //-----------------------------------------------------------------------
-
- //-----------------------------------------------------------------------
- // plus/minus
- //-----------------------------------------------------------------------
- @DataProvider(name="plusDays")
- Object[][] data_plusDays() {
-     return new Object[][] {
-         // normal
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 0, dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1, dateTime(2008, 7, 1, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime(2008, 6, 29, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         // skip over gap
-         {dateTime(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime(2008, 3, 31, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         {dateTime(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime(2008, 3, 29, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         // land in gap
-         {dateTime(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         {dateTime(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         // skip over overlap
-         {dateTime(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         {dateTime(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         // land in overlap
-         {dateTime(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         {dateTime(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), -1, dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-     };
- }
-
- @DataProvider(name="plusTime")
- Object[][] data_plusTime() {
-     return new Object[][] {
-         // normal
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 0, dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1, dateTime(2008, 7, 1, 0, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         {dateTime(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime(2008, 6, 30, 22, 30, 59, 0, OFFSET_0100, ZONE_0100)},
-         // gap
-         {dateTime(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         {dateTime(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         // overlap
-         {dateTime(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)},
-         {dateTime(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         {dateTime(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         {dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-         {dateTime(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)},
-     };
- }
-
- describe('plus(adjuster)', () => {
-
-});
-
- @Test(dataProvider="plusDays")
- public void test_plus_adjuster_Period_days(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(Period.ofDays((int) amount)), expected);
- }
-
- @Test(dataProvider="plusTime")
- public void test_plus_adjuster_Period_hours(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(Duration.ofHours(amount)), expected);
- }
-
- @Test(dataProvider="plusTime")
- public void test_plus_adjuster_Duration_hours(ZonedDateTime base, long amount, ZonedDateTime expected) {
-     assertEquals(base.plus(Duration.ofHours(amount)), expected);
- }
-
- @Test
- it('test_plus_adjuster', () => {
-     var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
-     var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
-     var expected = ZonedDateTime.of(LocalDateTime.of(2009, 1, 1, 12, 30, 59, 500), ZONE_0100);
-     assertEquals(t.plus(period), expected);
- });
-
- @Test
- it('test_plus_adjuster_Duration', () => {
-     var duration = Duration.ofSeconds(4 * 60 * 60 + 5 * 60 + 6);
-     var t = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 12, 30, 59, 500), ZONE_0100);
-     var expected = ZonedDateTime.of(LocalDateTime.of(2008, 6, 1, 16, 36, 5, 500), ZONE_0100);
-     assertEquals(t.plus(duration), expected);
- });
-
- @Test
- it('test_plus_adjuster_Period_zero', () => {
-     var t = TEST_DATE_TIME.plus(MockSimplePeriod.ZERO_DAYS);
-     assertEquals(t, TEST_DATE_TIME);
- });
-
- @Test
- it('test_plus_adjuster_Duration_zero', () => {
-     var t = TEST_DATE_TIME.plus(Duration.ZERO);
-     assertEquals(t, TEST_DATE_TIME);
- });
-
- it('test_plus_adjuster_null', () => {
-expect(() => {
-     TEST_DATE_TIME.plus(null);
- 
-}).to.throw(NullPointerException);
-});
 
  //-----------------------------------------------------------------------
  // plus(long,PeriodUnit)
@@ -1591,8 +1596,8 @@ expect(() => {
 });
 
  @DataProvider(name="toInstant")
- Object[][] data_toInstant() {
-     return new Object[][] {
+ function data_toInstant(){
+     return [
          {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 0), 0, 0},
          {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 1), 0, 1},
          {LocalDateTime.of(1970, 1, 1, 0, 0, 0, 999999999), 0, 999999999},
@@ -1758,8 +1763,8 @@ expect(() => {
 });
 
  @DataProvider(name="IsBefore")
- Object[][] data_isBefore() {
-     return new Object[][] {
+ function data_isBefore(){
+     return [
          {11, 30, ZONE_0100, 11, 31, ZONE_0100, true}, // a is before b due to time
          {11, 30, ZONE_0200, 11, 30, ZONE_0100, true}, // a is before b due to offset
          {11, 30, ZONE_0200, 10, 30, ZONE_0100, false}, // a is equal b due to same instant
@@ -1790,8 +1795,8 @@ expect(() => {
 });
 
  @DataProvider(name="IsAfter")
- Object[][] data_isAfter() {
-     return new Object[][] {
+ function data_isAfter(){
+     return [
          {11, 31, ZONE_0100, 11, 30, ZONE_0100, true}, // a is after b due to time
          {11, 30, ZONE_0100, 11, 30, ZONE_0200, true}, // a is after b due to offset
          {11, 30, ZONE_0200, 10, 30, ZONE_0100, false}, // a is equal b due to same instant
@@ -1883,8 +1888,8 @@ expect(() => {
 });
 
  @DataProvider(name="sampleToString")
- Object[][] provider_sampleToString() {
-     return new Object[][] {
+ function provider_sampleToString(){
+     return [
          {2008, 6, 30, 11, 30, 59, 0, "Z", "2008-06-30T11:30:59Z"},
          {2008, 6, 30, 11, 30, 59, 0, "+01:00", "2008-06-30T11:30:59+01:00"},
          {2008, 6, 30, 11, 30, 59, 999000000, "Z", "2008-06-30T11:30:59.999Z"},
@@ -1960,3 +1965,14 @@ function check(test, y, m, d, h, min, s, n, offset, zone) {
     assertEquals(test.zone(), zone);
 }
 
+function dateTime5(year, month, dayOfMonth, hour, minute) {
+    return LocalDateTime.of(year, month, dayOfMonth, hour, minute);
+}
+
+function dateTime7(year, month, dayOfMonth,hour, minute, second, nanoOfSecond) {
+            return LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
+        }
+
+function dateTime9(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
+    return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
+}
