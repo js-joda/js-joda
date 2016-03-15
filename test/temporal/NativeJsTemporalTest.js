@@ -48,7 +48,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         dataProviderTest(testData, (jsDate, expectedLocalTime) => {
             var d = LocalTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalTime);
-        }, true);
+        });
     });
 
     it('should create a LocalDateTime from native js Date instance', function () {
