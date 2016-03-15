@@ -348,7 +348,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
        
     });
 
-    describe.skip('ofStrict(LocalDateTime, ZoneId, ZoneOffset)', function () {
+    describe('ofStrict(LocalDateTime, ZoneId, ZoneOffset)', function () {
 
         it('factory_ofStrict_LDT_ZI_ZO', () => {
             var normal = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
@@ -361,7 +361,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 try {
                     ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_PARIS);
                 } catch (ex) {
-                    assertEquals(ex.message().contains(' gap'), true);
+                    // expect(ex.message).contains(' gap'); TODO iana tzdb
                     throw ex;
                 }
             }).to.throw(DateTimeException);
@@ -372,7 +372,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 try {
                     ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0130, ZONE_PARIS);
                 } catch (ex) {
-                    assertEquals(ex.message().contains(' is not valid for '), true);
+                    expect(ex.message).contains(' is not valid for ');
                     throw ex;
                 }
             }).to.throw(DateTimeException);
@@ -383,7 +383,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 try {
                     ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0130, ZONE_PARIS);
                 } catch (ex) {
-                    assertEquals(ex.message().contains(' is not valid for '), true);
+                    expect(ex.message).contains(' is not valid for ');
                     throw ex;
                 }
             }).to.throw(DateTimeException);
