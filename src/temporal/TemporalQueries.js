@@ -256,7 +256,7 @@ export function _init() {
      */
     TemporalQueries.OFFSET = createTemporalQuery('OFFSET', (temporal) => {
         if (temporal.isSupported(ChronoField.OFFSET_SECONDS)) {
-            return ZoneOffset.ofTotalSeconds(temporal.get(TemporalQueries.OFFSET_SECONDS));
+            return ZoneOffset.ofTotalSeconds(temporal.get(ChronoField.OFFSET_SECONDS));
         }
         return null;
     });
@@ -274,7 +274,7 @@ export function _init() {
      */
     TemporalQueries.LOCAL_DATE = createTemporalQuery('LOCAL_DATE', (temporal) => {
         if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
-            return LocalDate.ofEpochDay(temporal.getLong(TemporalQueries.EPOCH_DAY));
+            return LocalDate.ofEpochDay(temporal.getLong(ChronoField.EPOCH_DAY));
         }
         return null;
     });
@@ -284,7 +284,7 @@ export function _init() {
      */
     TemporalQueries.LOCAL_TIME = createTemporalQuery('LOCAL_TIME', (temporal) => {
         if (temporal.isSupported(ChronoField.NANO_OF_DAY)) {
-            return LocalTime.ofNanoOfDay(temporal.getLong(TemporalQueries.NANO_OF_DAY));
+            return LocalTime.ofNanoOfDay(temporal.getLong(ChronoField.NANO_OF_DAY));
         }
         return null;
     });
