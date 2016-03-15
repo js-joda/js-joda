@@ -7,6 +7,7 @@
 import {requireNonNull} from '../assert';
 import {Instant} from '../Instant';
 import {LocalDate} from '../LocalDate';
+import {MathUtil} from '../MathUtil';
 
 import {ChronoUnit} from '../temporal/ChronoUnit';
 import {Temporal} from '../temporal/Temporal';
@@ -74,5 +75,46 @@ export class ChronoZonedDateTime  extends Temporal {
         return secs;
     }
 
+    /**
+      * Compares this date-time to another date-time, including the chronology.
+      * <p>
+      * The comparison is based first on the instant, then on the local date-time,
+      * then on the zone ID, then on the chronology.
+      * It is "consistent with equals", as defined by {@link Comparable}.
+      * <p>
+      * If all the date-time objects being compared are in the same chronology, then the
+      * additional chronology stage is not required.
+      *
+      * @param {ChronoZonedDateTime} other - the other date-time to compare to, not null
+      * @return {number} the comparator value, negative if less, positive if greater
+      */
+    compareTo(other) {
+        requireNonNull(other, 'other');
+        var cmp = MathUtil.compareNumbers(this.toEpochSecond(), other.toEpochSecond());
+        if (cmp === 0) {
+            cmp = this.toLocalTime().nano() - other.toLocalTime().nano();
+            if (cmp === 0) {
+                cmp = this.toLocalDateTime().compareTo(other.toLocalDateTime());
+                if (cmp === 0) {
+                    cmp = strcmp(this.zone().id(), other.zone().id());
+                    // we only support iso for now
+                    //if (cmp === 0) {
+                    //    cmp = toLocalDate().getChronology().compareTo(other.toLocalDate().getChronology());
+                    //}
+                }
+            }
+        }
+        return cmp;
+    }
 
+}
+
+function strcmp(a, b){
+    if (a < b) {
+        return -1;
+    }
+    if (a > b) {
+        return 1;
+    }
+    return 0;
 }

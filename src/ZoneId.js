@@ -50,6 +50,10 @@ export class ZoneId {
         abstractMethodFail('ZoneId.rules');
     }
 
+    id(){
+        return this.toString();
+    }
+
     /**
      * Obtains an instance of {@code ZoneId} from a temporal object.
      * <p>

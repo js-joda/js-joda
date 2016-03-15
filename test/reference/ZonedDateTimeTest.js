@@ -1685,6 +1685,81 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    describe('compareTo()', () => {
+
+        it('test_compareTo_time1', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0100);  // a is before b due to time
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_time2', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZONE_0100);  // a is before b due to time
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_offset1', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0200);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);  // a is before b due to offset
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_offset2', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZoneOffset.ofHoursMinutes(1,1));
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);  // a is before b due to offset
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_both', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 50), ZONE_0200);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20), ZONE_0100);  // a is before b on instant scale
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_bothNanos', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20, 40, 5), ZONE_0200);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 20, 40, 6), ZONE_0100);  // a is before b on instant scale
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_hourDifference', () => {
+            var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 0), ZONE_0100);
+            var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 0), ZONE_0200);  // a is before b despite being same time-line time
+            assertEquals(a.compareTo(b) < 0, true);
+            assertEquals(b.compareTo(a) > 0, true);
+            assertEquals(a.compareTo(a) === 0, true);
+            assertEquals(b.compareTo(b) === 0, true);
+        });
+
+        it('test_compareTo_null', () => {
+            expect(() => {
+                var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
+                var a = ZonedDateTime.of(ldt, ZONE_0100);
+                a.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+
 });
 
 
@@ -1692,89 +1767,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 /**
  //-----------------------------------------------------------------------
 
-
- describe('compareTo()', () => {
-
-});
-
- @Test
- it('test_compareTo_time1', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0100);  // a is before b due to time
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_time2', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZONE_0100);  // a is before b due to time
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_offset1', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 41), ZONE_0200);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 39), ZONE_0100);  // a is before b due to offset
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_offset2', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 5), ZoneId.of("UTC+01:01"));
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30, 40, 4), ZONE_0100);  // a is before b due to offset
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_both', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 50), ZONE_0200);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20), ZONE_0100);  // a is before b on instant scale
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_bothNanos', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 20, 40, 5), ZONE_0200);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 20, 40, 6), ZONE_0100);  // a is before b on instant scale
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- @Test
- it('test_compareTo_hourDifference', () => {
-     var a = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 10, 0), ZONE_0100);
-     var b = ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 0), ZONE_0200);  // a is before b despite being same time-line time
-     assertEquals(a.compareTo(b) < 0, true);
-     assertEquals(b.compareTo(a) > 0, true);
-     assertEquals(a.compareTo(a) == 0, true);
-     assertEquals(b.compareTo(b) == 0, true);
- }
-
- it('test_compareTo_null', () => {
-expect(() => {
-     var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
-     var a = ZonedDateTime.of(ldt, ZONE_0100);
-     a.compareTo(null);
- 
-}).to.throw(NullPointerException);
-});
 
  describe('isBefore()', () => {
 
@@ -1848,7 +1840,7 @@ expect(() => {
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      assertEquals(a.equals(b), true);
-     assertEquals(a.hashCode() == b.hashCode(), true);
+     assertEquals(a.hashCode() === b.hashCode(), true);
  }
  @Test(dataProvider="sampleTimes")
  public void test_equals_false_year_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
@@ -1858,28 +1850,28 @@ expect(() => {
  }
  @Test(dataProvider="sampleTimes")
  public void test_equals_false_hour_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
-     h = (h == 23 ? 22 : h);
+     h = (h === 23 ? 22 : h);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h + 1, m, s, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
  public void test_equals_false_minute_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
-     m = (m == 59 ? 58 : m);
+     m = (m === 59 ? 58 : m);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m + 1, s, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
  public void test_equals_false_second_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
-     s = (s == 59 ? 58 : s);
+     s = (s === 59 ? 58 : s);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s + 1, n), ZONE_0100);
      assertEquals(a.equals(b), false);
  }
  @Test(dataProvider="sampleTimes")
  public void test_equals_false_nano_differs(int y, int o, int d, int h, int m, int s, int n, ZoneId ignored) {
-     n = (n == 999999999 ? 999999998 : n);
+     n = (n === 999999999 ? 999999998 : n);
      var a = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n), ZONE_0100);
      var b = ZonedDateTime.of(dateTime(y, o, d, h, m, s, n + 1), ZONE_0100);
      assertEquals(a.equals(b), false);
@@ -1891,13 +1883,11 @@ expect(() => {
      assertEquals(a.equals(b), false);
  }
 
- @Test
- it('test_equals_itself_true', () => {
+  it('test_equals_itself_true', () => {
      assertEquals(TEST_DATE_TIME.equals(TEST_DATE_TIME), true);
  });
 
- @Test
- it('test_equals_string_false', () => {
+  it('test_equals_string_false', () => {
      assertEquals(TEST_DATE_TIME.equals("2007-07-15"), false);
  }
 
@@ -1933,8 +1923,7 @@ expect(() => {
 
 });
 
- @Test
- it('test_format_formatter', () => {
+  it('test_format_formatter', () => {
      var f = DateTimeFormatter.ofPattern("y M d H m s");
      var t = ZonedDateTime.of(dateTime(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
      assertEquals(t, "2010 12 3 11 30 0");
