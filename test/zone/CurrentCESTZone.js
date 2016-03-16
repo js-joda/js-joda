@@ -61,7 +61,7 @@ class CurrentCESTZoneRules extends ZoneRules {
     }
 
     /**
-     *
+     * see {@link ZoneRules.offsetOfLocalDateTime}
      * @param {LocalDateTime} localDateTime
      * @returns {ZoneOffset}
      */
@@ -74,11 +74,11 @@ class CurrentCESTZoneRules extends ZoneRules {
         } else if (localDateTime.isAfter(winterSummerTransition.withHour(3)) && localDateTime.isBefore(summerWinterTransition)){
             return SUMMER_OFFSET;
         } else if (! localDateTime.isBefore(winterSummerTransition) && ! localDateTime.isAfter(winterSummerTransition.withHour(3))){
-            // gap! best fit is SUMMER_OFFSET
-            return SUMMER_OFFSET;
-        } else {
-            // overlap! best fit is WINTER_OFFSET
+            // gap! best value is WINTER_OFFSET
             return WINTER_OFFSET;
+        } else {
+            // overlap! best value is SUMMER_OFFSET
+            return SUMMER_OFFSET;
         }
     }
 

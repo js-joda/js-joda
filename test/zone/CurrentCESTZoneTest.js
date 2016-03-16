@@ -36,15 +36,17 @@ describe('CurrentCESTZoneTest', () => {
         return [
             [LocalDateTime.parse('2016-12-21T00:00:00'), ZoneOffset.ofHours(1)],
             [LocalDateTime.parse('2016-06-21T00:00:00'), ZoneOffset.ofHours(2)],
+            // gap
             [LocalDateTime.parse('2016-03-27T01:59:59'), ZoneOffset.ofHours(1)],
-            [LocalDateTime.parse('2016-03-27T02:00:00'), ZoneOffset.ofHours(2)],
-            [LocalDateTime.parse('2016-03-27T02:30:00'), ZoneOffset.ofHours(2)],
-            [LocalDateTime.parse('2016-03-27T03:00:00'), ZoneOffset.ofHours(2)],
+            [LocalDateTime.parse('2016-03-27T02:00:00'), ZoneOffset.ofHours(1)],
+            [LocalDateTime.parse('2016-03-27T02:30:00'), ZoneOffset.ofHours(1)],
+            [LocalDateTime.parse('2016-03-27T03:00:00'), ZoneOffset.ofHours(1)],
             [LocalDateTime.parse('2016-03-27T03:01:00'), ZoneOffset.ofHours(2)],
+            // overlap
             [LocalDateTime.parse('2016-10-30T01:59:59'), ZoneOffset.ofHours(2)],
-            [LocalDateTime.parse('2016-10-30T02:00:00'), ZoneOffset.ofHours(1)],
-            [LocalDateTime.parse('2016-10-30T02:30:00'), ZoneOffset.ofHours(1)],
-            [LocalDateTime.parse('2016-10-30T03:00:00'), ZoneOffset.ofHours(1)],
+            [LocalDateTime.parse('2016-10-30T02:00:00'), ZoneOffset.ofHours(2)],
+            [LocalDateTime.parse('2016-10-30T02:30:00'), ZoneOffset.ofHours(2)],
+            [LocalDateTime.parse('2016-10-30T03:00:00'), ZoneOffset.ofHours(2)],
             [LocalDateTime.parse('2016-10-30T03:01:00'), ZoneOffset.ofHours(1)]
         ];
     };

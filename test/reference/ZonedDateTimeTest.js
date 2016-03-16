@@ -370,16 +370,18 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
         });
 
+        /* TODO iana tzdb
         it('factory_ofStrict_LDT_ZI_ZO_inGap()', () => {
             expect(() => {
                 try {
                     ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_PARIS);
                 } catch (ex) {
-                    // expect(ex.message).contains(' gap'); TODO iana tzdb
+                    expect(ex.message).contains(' gap');
                     throw ex;
                 }
             }).to.throw(DateTimeException);
         });
+        */
 
         it('factory_ofStrict_LDT_ZI_ZO_inOverlap_invalidOfset()', () => {
             expect(() => {
