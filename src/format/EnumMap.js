@@ -23,6 +23,10 @@ export class EnumMap {
         return this._map[key.name()];
     }
 
+    put(key, val) {
+        return this.set(key, val);
+    }
+
     set(key, val) {
         this._map[key.name()] = val;
         return this;
