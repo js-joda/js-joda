@@ -13,6 +13,11 @@ export class StringBuilder {
         return this;
     }
 
+    appendChar(str){
+        this._str += str[0];
+        return this;
+    }
+
     insert(offset, str){
         this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
         return this;
