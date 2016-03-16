@@ -73,7 +73,7 @@ class CurrentCESTZoneRules extends ZoneRules {
             return WINTER_OFFSET;
         } else if (localDateTime.isAfter(winterSummerTransition.withHour(3)) && localDateTime.isBefore(summerWinterTransition)){
             return SUMMER_OFFSET;
-        } else if (! localDateTime.isBefore(winterSummerTransition) && ! localDateTime.isAfter(winterSummerTransition.withHour(3))){
+        } else if (localDateTime.compareTo(winterSummerTransition) >= 0 && localDateTime.compareTo(winterSummerTransition.withHour(3)) <= 0){
             // gap! best value is WINTER_OFFSET
             return WINTER_OFFSET;
         } else {
