@@ -23,14 +23,24 @@ export class SystemDefaultZoneRules extends ZoneRules {
     }
 
     /**
+     * This implementation is NOT returning the best value in a gap or overlap situation
+     * as specified at {@link ZoneRules.offsetOfLocalDateTime}.
+     *
+     * The calculated offset depends Date.prototype.getTimezoneOffset and its not specified
+     * at the ECMA-262 specification how to handle daylight savings gaps/ overlaps.
+     *
+     * The Chrome Browser version 49 is returning the next transition offset in a gap/overlap situation,
+     * other browsers/ engines might do it in the same way.
      *
      * @param {LocalDateTime} localDateTime
      * @returns {ZoneOffset}
      */
     offsetOfLocalDateTime(localDateTime){
         var epochMilli = localDateTime.toEpochSecond(ZoneOffset.UTC) * 1000;
-        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
-        return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
+        var offsetInMinutesBeforePossibleTransition = new Date(epochMilli).getTimezoneOffset();
+        var epochMilliSystemZone = epochMilli + offsetInMinutesBeforePossibleTransition * 60000;
+        var offsetInMinutesAfterPossibleTransition = new Date(epochMilliSystemZone).getTimezoneOffset();
+        return ZoneOffset.ofTotalMinutes(offsetInMinutesAfterPossibleTransition * -1);
     }
 
     /**
