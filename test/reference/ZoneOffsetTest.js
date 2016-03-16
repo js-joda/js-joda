@@ -431,7 +431,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 
     });
 
-    describe.skip('get(TemporalField)', () => {
+    describe('get(TemporalField)', () => {
 
         it('test_get_TemporalField', () => {
             assertEquals(ZoneOffset.UTC.get(ChronoField.OFFSET_SECONDS), 0);
@@ -447,7 +447,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 
     });
 
-    describe.skip('query(TemporalQuery)', () => {
+    describe('query(TemporalQuery)', () => {
 
         it('test_query', () => {
             assertEquals(ZoneOffset.UTC.query(TemporalQueries.chronology()), null);

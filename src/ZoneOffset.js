@@ -11,6 +11,9 @@ import {MathUtil} from './MathUtil';
 import {LocalTime} from './LocalTime';
 import {ZoneId} from './ZoneId';
 
+import {ChronoField} from './temporal/ChronoField';
+import {TemporalQueries} from './temporal/TemporalQueries';
+
 import {ZoneRules} from './zone/ZoneRules';
 
 var SECONDS_CACHE = {};
@@ -305,6 +308,119 @@ export class ZoneOffset extends ZoneId {
     rules() {
         return this._rules;
     }
+
+    /**
+      * Gets the value of the specified field from this offset as an {@code int}.
+      * <p>
+      * This queries this offset for the value for the specified field.
+      * The returned value will always be within the valid range of values for the field.
+      * If it is not possible to return the value, because the field is not supported
+      * or for some other reason, an exception is thrown.
+      * <p>
+      * If the field is a {@link ChronoField} then the query is implemented here.
+      * The {@code OFFSET_SECONDS} field returns the value of the offset.
+      * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+      * <p>
+      * If the field is not a {@code ChronoField}, then the result of this method
+      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+      * passing {@code this} as the argument. Whether the value can be obtained,
+      * and what the value represents, is determined by the field.
+      *
+      * @param {TemporalField} field - the field to get, not null
+      * @return {number} the value for the field
+      * @throws DateTimeException if a value for the field cannot be obtained
+      * @throws ArithmeticException if numeric overflow occurs
+      */
+     get(field) {
+         return this.getLong(field);
+     }
+
+     /**
+      * Gets the value of the specified field from this offset as a {@code long}.
+      * <p>
+      * This queries this offset for the value for the specified field.
+      * If it is not possible to return the value, because the field is not supported
+      * or for some other reason, an exception is thrown.
+      * <p>
+      * If the field is a {@link ChronoField} then the query is implemented here.
+      * The {@code OFFSET_SECONDS} field returns the value of the offset.
+      * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+      * <p>
+      * If the field is not a {@code ChronoField}, then the result of this method
+      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+      * passing {@code this} as the argument. Whether the value can be obtained,
+      * and what the value represents, is determined by the field.
+      *
+      * @param {TemporalField} field - the field to get, not null
+      * @return {number} the value for the field
+      * @throws DateTimeException if a value for the field cannot be obtained
+      * @throws ArithmeticException if numeric overflow occurs
+      */
+     getLong(field) {
+         if (field === ChronoField.OFFSET_SECONDS) {
+             return this._totalSeconds;
+         } else if (field instanceof ChronoField) {
+             throw new DateTimeException('Unsupported field: ' + field);
+         }
+         return field.getFrom(this);
+     }
+
+     //-----------------------------------------------------------------------
+     /**
+      * Queries this offset using the specified query.
+      * <p>
+      * This queries this offset using the specified query strategy object.
+      * The {@code TemporalQuery} object defines the logic to be used to
+      * obtain the result. Read the documentation of the query to understand
+      * what the result of this method will be.
+      * <p>
+      * The result of this method is obtained by invoking the
+      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+      * specified query passing {@code this} as the argument.
+      *
+      * @param {TemporalQuery} query - the query to invoke, not null
+      * @return {*} the query result, null may be returned (defined by the query)
+      * @throws DateTimeException if unable to query (defined by the query)
+      * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+      */
+     query(query) {
+         requireNonNull(query, 'query');
+         if (query === TemporalQueries.offset() || query === TemporalQueries.zone()) {
+             return this;
+         } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+                 query === TemporalQueries.precision() || query === TemporalQueries.chronology() || query === TemporalQueries.zoneId()) {
+             return null;
+         }
+         return query.queryFrom(this);
+     }
+
+     /**
+      * Adjusts the specified temporal object to have the same offset as this object.
+      * <p>
+      * This returns a temporal object of the same observable type as the input
+      * with the offset changed to be the same as this.
+      * <p>
+      * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+      * passing {@link ChronoField#OFFSET_SECONDS} as the field.
+      * <p>
+      * In most cases, it is clearer to reverse the calling pattern by using
+      * {@link Temporal#with(TemporalAdjuster)}:
+      * <pre>
+      *   // these two lines are equivalent, but the second approach is recommended
+      *   temporal = thisOffset.adjustInto(temporal);
+      *   temporal = temporal.with(thisOffset);
+      * </pre>
+      * <p>
+      * This instance is immutable and unaffected by this method call.
+      *
+      * @param {Temporal} temporal - the target object to be adjusted, not null
+      * @return {Temporal} the adjusted object, not null
+      * @throws DateTimeException if unable to make the adjustment
+      * @throws ArithmeticException if numeric overflow occurs
+      */
+     adjustInto(temporal) {
+         return temporal.with(ChronoField.OFFSET_SECONDS, this._totalSeconds);
+     }
 
     /**
      * Compares this offset to another offset in descending order.
