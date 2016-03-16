@@ -178,15 +178,6 @@ d.withDayOfYear(42); // 2016-02-11
 // set the WEEK_OF_WEEK_BASED_YEAR to 52
 d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52) // 2016-12-31
 
-// set by a TemporalAdjuster lastDayOfMonth
-d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
-
-// set by a TemporalAdjuster lastDayOfMonth
-d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-31
-
-// set by a TemporalAdjuster next or same weekday
-d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
-
 ```
 
 ### Compare LocalDates
@@ -257,6 +248,30 @@ d = LocalDate.from(nativeJs(moment()));
 
 ```
 
+### Adjust a date to another date
+
+TemporalAdjusters provides compact business logic for date based temporals such as LocalDate, LocalDateTime or ZonedDateTime.
+
+```javascript
+
+var d = LocalDate.parse('2016-12-24');
+
+// get first/ last day of month
+d.with(TemporalAdjusters.firstDayOfMonth()) // 2016-12-01
+d.with(TemporalAdjusters.lastDayOfMonth())  // 2016-12-31
+
+// get the next specified weekday
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))   // 2016-12-25
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-24
+d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))       // 2016-12-31
+
+// get the first/last weekday of month
+d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY)) // 2016-12-31
+d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY)) // 2016-12-03
+
+```
+
+Find more adjusters in the TemporalAdjusters API documentation.
 
 ## LocalTime
 
