@@ -106,15 +106,16 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     //-----------------------------------------------------------------------
     /**
      * function overloading for static {@link ZonedDateTime.of}
-     * if called with 3 args {@link ZonedDateTime.of3} is called.
-     * if called with 2 args {@link ZonedDateTime.of2} is called,
+     *
+     * if called with 2 (or less) args {@link ZonedDateTime.of2} is called,
+     * if called with 3 args and the first arg is an instance of LocalDate {@link ZonedDateTime.of3} is called,
      * otherwise {@link ZonedDateTime.of8} is called.
      */
     static of(){
-        if(arguments.length === 3){
-            return ZonedDateTime.of3.apply(this, arguments);
-        } else if (arguments.length === 2){
+        if(arguments.length <= 2){
             return ZonedDateTime.of2.apply(this, arguments);
+        } else if (arguments.length === 3 && arguments[0] instanceof LocalDate){
+            return ZonedDateTime.of3.apply(this, arguments);
         } else {
             return ZonedDateTime.of8.apply(this, arguments);
         }
@@ -169,8 +170,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * For a typical one hour daylight savings change, the local date-time will be
      * moved one hour later into the offset typically corresponding to 'summer'.
      *
-     * @param {LocalDateTime} localDateTime - the local date-time, not null
-     * @param {ZoneId} zone - the time-zone, not null
+     * @param {!LocalDateTime} localDateTime - the local date-time, not null
+     * @param {!ZoneId} zone - the time-zone, not null
      * @return {ZonedDateTime} the zoned date-time, not null
      */
     static of2(localDateTime, zone) {
@@ -242,8 +243,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * For a typical one hour daylight savings change, the local date-time will be
      * moved one hour later into the offset typically corresponding to 'summer'.
      *
-     * @param {LocalDateTime} localDateTime - the local date-time, not null
-     * @param {ZoneId} zone - the time-zone, not null
+     * @param {!LocalDateTime} localDateTime - the local date-time, not null
+     * @param {!ZoneId} zone - the time-zone, not null
      * @param {ZoneOffset} preferredOffset - the zone offset, null if no preference
      * @return {ZonedDateTime} the zoned date-time, not null
      */
@@ -297,8 +298,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * Converting an instant to a zoned date-time is simple as there is only one valid
      * offset for each instant.
      *
-     * @param {Instant} instant - the instant to create the date-time from, not null
-     * @param {ZoneId} zone - the time-zone, not null
+     * @param {!Instant} instant - the instant to create the date-time from, not null
+     * @param {!ZoneId} zone - the time-zone, not null
      * @return {ZonedDateTime} the zoned date-time, not null
      * @throws DateTimeException if the result exceeds the supported range
      */
