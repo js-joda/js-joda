@@ -33,7 +33,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
     var buf;
 
     beforeEach(() => {
-        OFFSET_0130 = ZoneOffset.ofHoursMinutes(1,30); // '+01:30');
+        OFFSET_0130 = ZoneOffset.of('+01:30');
         init();
     });
 
