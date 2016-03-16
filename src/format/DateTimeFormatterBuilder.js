@@ -1389,13 +1389,13 @@ class OffsetIdPrinterParser  {
         if (sign === '+' || sign === '-') {
             // starts
             var negative = (sign === '-' ? -1 : 1);
-            var array = [];
+            var array = [0,0,0,0];
             array[0] = position + 1;
             if ((this._parseNumber(array, 1, text, true) ||
                     this._parseNumber(array, 2, text, this.type >=3) ||
                     this._parseNumber(array, 3, text, false)) === false) {
                 // success
-                var offsetSecs = negative * (array[1] * 3600 + array[2] * 60 + array[3]);
+                var offsetSecs = MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));
                 return context.setParsedField(ChronoField.OFFSET_SECONDS, offsetSecs, position, array[0]);
             }
         }
@@ -1415,7 +1415,7 @@ class OffsetIdPrinterParser  {
      * @param {boolean} required  whether this number is required
      * @return {boolean} true if an error occurred
      */
-    parseNumber(array, arrayIndex, parseText, required) {
+    _parseNumber(array, arrayIndex, parseText, required) {
         if ((this.type + 3) / 2 < arrayIndex) {
             return false;  // ignore seconds/minutes
         }
@@ -1434,7 +1434,7 @@ class OffsetIdPrinterParser  {
         if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
             return required;
         }
-        var value = (ch1 - 48) * 10 + (ch2 - 48);
+        var value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
         if (value < 0 || value > 59) {
             return required;
         }
