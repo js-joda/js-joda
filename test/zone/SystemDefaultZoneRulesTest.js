@@ -39,7 +39,7 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
     it('ZoneIdSystemDefault.toString', function () {
         var zone = ZoneId.systemDefault();
         expect(zone.toString()).to.be.a('string');
-        expect(zone.toString()).to.contain('System');
+        expect(zone.toString()).to.contain('SYSTEM');
     });
 
 

@@ -100,7 +100,7 @@ class ZoneIdSystemDefault extends ZoneId {
     }
 
     toString(){
-        return 'ZoneSystemDefault';
+        return 'SYSTEM';
     }
 }
 

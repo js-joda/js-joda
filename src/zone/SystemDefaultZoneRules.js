@@ -72,7 +72,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {string}
      */
     toString() {
-        return 'SystemDefaultZoneRules()';
+        return 'SYSTEM';
     }
 
 }
