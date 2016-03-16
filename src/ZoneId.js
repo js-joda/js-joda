@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {abstractMethodFail} from './assert';
+import {abstractMethodFail, requireNonNull} from './assert';
 
 import {DateTimeException} from './errors';
 import {TemporalQueries} from './temporal/TemporalQueries';
@@ -66,11 +66,12 @@ export class ZoneId {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@code ZoneId::from}.
      *
-     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
+     * @param {!TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {ZoneId} the zone ID, not null
      * @throws DateTimeException if unable to convert to a {@code ZoneId}
      */
     static from(temporal) {
+        requireNonNull(temporal, 'temporal');
         var obj = temporal.query(TemporalQueries.zone());
         if (obj == null) {
             throw new DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' +
