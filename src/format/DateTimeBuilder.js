@@ -38,6 +38,22 @@ import {Period} from '../Period';
  */
 export class DateTimeBuilder extends Temporal {
 
+    /**
+     * Creates a new instance of the builder with a single field-value.
+     * <p>
+     * This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an empty builder.
+     *
+     * @param {TemporalField} field - the field to add, not null
+     * @param {number} value - the value to add, not null
+     * @return {DateTimeBuilder}
+     */
+    static create(field, value) {
+        var dtb = new DateTimeBuilder();
+        dtb._addFieldValue(field, value);
+        return dtb;
+    }
+
+
     constructor(){
         super();
 
