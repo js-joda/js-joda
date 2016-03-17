@@ -10136,11 +10136,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	 */
 	
-	_ZoneId.ZoneId.systemDefault = function () {
+	function systemDefault() {
 	    return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
-	};
+	}
 	
-	_ZoneId.ZoneId.of = function (zoneId) {
+	function of(zoneId) {
 	    (0, _assert.requireNonNull)(zoneId, 'zoneId');
 	    if (zoneId === 'Z') {
 	        return _ZoneOffset.ZoneOffset.UTC;
@@ -10169,9 +10169,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return new _ZoneRegion.ZoneRegion('UT' + _offset.id(), _offset.rules());
 	    }
 	    return _ZoneRegion.ZoneRegion.ofId(zoneId, true);
-	};
+	}
 	
-	_ZoneId.ZoneId.ofOffset = function (prefix, offset) {
+	function ofOffset(prefix, offset) {
 	    (0, _assert.requireNonNull)(prefix, 'prefix');
 	    (0, _assert.requireNonNull)(offset, 'offset');
 	    if (prefix.length === 0) {
@@ -10184,16 +10184,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return new _ZoneRegion.ZoneRegion(prefix + offset.id(), offset.rules());
 	    }
 	    throw new _errors.IllegalArgumentException('Invalid prefix, must be GMT, UTC or UT: ' + prefix);
-	};
+	}
 	
-	_ZoneId.ZoneId.from = function (temporal) {
+	function from(temporal) {
 	    (0, _assert.requireNonNull)(temporal, 'temporal');
 	    var obj = temporal.query(_TemporalQueries.TemporalQueries.zone());
 	    if (obj == null) {
 	        throw new _errors.DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
 	    }
 	    return obj;
-	};
+	}
+	
+	_ZoneId.ZoneId.systemDefault = systemDefault;
+	_ZoneId.ZoneId.of = of;
+	_ZoneId.ZoneId.ofOffset = ofOffset;
+	_ZoneId.ZoneId.from = from;
+	
+	_ZoneOffset.ZoneOffset.from = from;
+	_ZoneRegion.ZoneRegion.from = from;
 	
 	var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
 	
