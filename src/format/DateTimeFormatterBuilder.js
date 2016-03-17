@@ -8,6 +8,8 @@ import {assert, requireNonNull} from '../assert';
 import {ArithmeticException, DateTimeException, IllegalArgumentException, IllegalStateException} from '../errors';
 
 import {Enum} from '../Enum';
+import {ZoneId} from '../ZoneId';
+import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {DateTimeFormatter} from './DateTimeFormatter';
 import {DecimalStyle} from './DecimalStyle';
@@ -286,7 +288,6 @@ export class DateTimeFormatterBuilder {
     /**
      * Appends a fixed width printer-parser.
      *
-     * @param width  the width
      * @param pp  the printer-parser, not null
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
@@ -412,6 +413,32 @@ export class DateTimeFormatterBuilder {
      */
     appendOffsetId() {
         this._appendInternal(OffsetIdPrinterParser.INSTANCE_ID);
+        return this;
+    }
+
+    /**
+      * Appends the time-zone ID, such as 'Europe/Paris' or '+02:00', to the formatter.
+      * <p>
+      * This appends an instruction to print/parse the zone ID to the builder.
+      * The zone ID is obtained in a strict manner suitable for {@code ZonedDateTime}.
+      * By contrast, {@code OffsetDateTime} does not have a zone ID suitable
+      * for use with this method, see {@link #appendZoneOrOffsetId()}.
+      * <p>
+      * During printing, the zone is obtained using a mechanism equivalent
+      * to querying the temporal with {@link TemporalQueries#zoneId()}.
+      * It will be printed using the result of {@link ZoneId#getId()}.
+      * If the zone cannot be obtained then an exception is thrown unless the
+      * section of the formatter is optional.
+      * <p>
+      * During parsing, the zone is parsed and must match a known zone or offset.
+      * If the zone cannot be parsed then an exception is thrown unless the
+      * section of the formatter is optional.
+      *
+      * @return {DateTimeFormatterBuilder} this, for chaining, not null
+      * @see #appendZoneRegionId()
+      */
+    appendZoneId() {
+        this._appendInternal(new ZoneIdPrinterParser(TemporalQueries.zoneId(), 'ZoneId()'));
         return this;
     }
 
@@ -1449,8 +1476,135 @@ class OffsetIdPrinterParser  {
         return 'Offset(' + PATTERNS[this.type] + ',"' + converted + '")';
     }
 }
-
 OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
+
+/**
+ * Prints or parses a zone ID.
+ */
+class ZoneIdPrinterParser {
+
+    /**
+     *
+     * @param {TemporalQuery} query
+     * @param {string} description
+     */
+    constructor(query, description) {
+        this.query = query;
+        this.description = description;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     *
+     * @param {DateTimePrintContext } context
+     * @param {StringBuilder} buf
+     * @returns {boolean}
+     */
+    print(context, buf) {
+        var zone = context.getValueQuery(this.query);
+        if (zone == null) {
+            return false;
+        }
+        buf.append(zone.id());
+        return true;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * This implementation looks for the longest matching string.
+     * For example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just
+     * Etc/GMC although both are valid.
+     * <p>
+     * This implementation uses a tree to search for valid time-zone names in
+     * the parseText. The top level node of the tree has a length equal to the
+     * length of the shortest time-zone as well as the beginning characters of
+     * all other time-zones.
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} position
+     * @return {number}
+     */
+    parse(context, text, position) {
+        var length = text.length;
+        if (position > length) {
+            return ~position;
+        }
+        if (position === length) {
+            return ~position;
+        }
+
+        // handle fixed time-zone IDs
+        var nextChar = text.charAt(position);
+        if (nextChar === '+' || nextChar === '-') {
+            var newContext = context.copy();
+            var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+            if (endPos < 0) {
+                return endPos;
+            }
+            var offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+            var zone = ZoneOffset.ofTotalSeconds(offset);
+            context.setParsedZone(zone);
+            return endPos;
+        } else if (length >= position + 2) {
+            var nextNextChar = text.charAt(position + 1);
+            if (context.charEquals(nextChar, 'U') &&
+                            context.charEquals(nextNextChar, 'T')) {
+                if (length >= position + 3 &&
+                                context.charEquals(text.charAt(position + 2), 'C')) {
+                    return this._parsePrefixedOffset(context, text, position, position + 3);
+                }
+                return this._parsePrefixedOffset(context, text, position, position + 2);
+            } else if (context.charEquals(nextChar, 'G') &&
+                    length >= position + 3 &&
+                    context.charEquals(nextNextChar, 'M') &&
+                    context.charEquals(text.charAt(position + 2), 'T')) {
+                return this._parsePrefixedOffset(context, text, position, position + 3);
+            }
+        }
+        // ...
+        if (context.charEquals(nextChar, 'Z')) {
+            context.setParsedZone(ZoneOffset.UTC);
+            return position + 1;
+        }
+        // ...
+        return ~position;
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} prefixPos
+     * @param {number} position
+     * @return {number}
+     */
+    _parsePrefixedOffset(context, text, prefixPos, position) {
+        var prefix = text.substring(prefixPos, position).toUpperCase();
+        var newContext = context.copy();
+        if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {
+            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            return position;
+        }
+        var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+        if (endPos < 0) {
+            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            return position;
+        }
+        var offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+        var offset = ZoneOffset.ofTotalSeconds(offsetSecs);
+        context.setParsedZone(ZoneId.ofOffset(prefix, offset));
+        return endPos;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString() {
+        return this.description;
+    }
+}
 
 DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
 DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
@@ -1460,3 +1614,4 @@ DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser
 DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
 DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
 DateTimeFormatterBuilder.OffsetIdPrinterParser = OffsetIdPrinterParser;
+DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;

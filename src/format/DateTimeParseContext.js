@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../assert';
+import {assert, requireNonNull} from '../assert';
 
 import {DateTimeBuilder} from './DateTimeBuilder';
 import {EnumMap} from './EnumMap';
@@ -174,6 +174,19 @@ export class DateTimeParseContext{
         var old = currentParsedFieldValues.get(field);
         currentParsedFieldValues.set(field, value);
         return (old != null && old !== value) ? ~errorPos : successPos;
+    }
+
+    /**
+     * Stores the parsed zone.
+     * <p>
+     * This stores the zone that has been parsed.
+     * No validation is performed other than ensuring it is not null.
+     *
+     * @param {ZoneId} zone  the parsed zone, not null
+     */
+    setParsedZone(zone) {
+        requireNonNull(zone, 'zone');
+        this.currentParsed().zone = zone;
     }
 
     getParsed(field) {

@@ -492,6 +492,7 @@ export function _init() {
         .optionalStart()
         .appendLiteral('[')
         .parseCaseSensitive()
+        .appendZoneId()
         // .appendZoneRegionId()
         .appendLiteral(']')
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
