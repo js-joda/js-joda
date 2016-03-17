@@ -566,7 +566,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
     });
 
-/**
+/** TODO parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter', function () {
@@ -1910,8 +1910,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
-    // TODO parser
-    describe.skip('toString()', () => {
+    describe('toString()', () => {
 
         // @Test(dataProvider="sampleToString")
         it('test_toString', function () {
