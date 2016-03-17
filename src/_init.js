@@ -20,7 +20,8 @@ import {_init as DateTimeFormatterInit} from './format/DateTimeFormatter';
 import {_init as ChronoFieldInit} from './temporal/ChronoField';
 import {_init as ChronoUnitInit} from './temporal/ChronoUnit';
 import {_init as IsoFieldsInit} from './temporal/IsoFields';
-import {_init as TemporalQueriesInit} from './temporal/TemporalQueries';
+
+import {_init as TemporalQueriesInit} from './temporal/TemporalQueriesFactory';
 
 var isInit = false;
 
