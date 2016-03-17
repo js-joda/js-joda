@@ -471,6 +471,14 @@ export class ZoneOffset extends ZoneId {
      *
      * @returns {string}
      */
+    id() {
+        return this._id;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
     toString(){
         return this._id;
     }
