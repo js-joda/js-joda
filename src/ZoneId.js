@@ -17,6 +17,7 @@ export class ZoneId {
      * <p>
      *
      * @return {ZoneId} the zone ID, not null
+     * @see find code at {@link ZoneIdFactory}
      */
     static systemDefault() {
         abstractMethodFail('ZoneId.rules');
@@ -61,6 +62,7 @@ export class ZoneId {
      * @return {ZoneId} the zone ID, not null
      * @throws DateTimeException if the zone ID has an invalid format
      * @throws ZoneRulesException if the zone ID is a region ID that cannot be found
+     * @see find code at {@link ZoneIdFactory}
      */
     static of(zoneId) {
         abstractMethodFail('ZoneId.of');
@@ -78,6 +80,7 @@ export class ZoneId {
      * @return {ZoneId} the zone ID, not null
      * @throws IllegalArgumentException if the prefix is not one of
      *     'GMT', 'UTC', or 'UT', or ''
+     * @see find code at {@link ZoneIdFactory}
      */
     static ofOffset(prefix, offset) {
         abstractMethodFail('ZoneId.ofOffset');
@@ -99,6 +102,7 @@ export class ZoneId {
      * @param {!TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {ZoneId} the zone ID, not null
      * @throws DateTimeException if unable to convert to a {@code ZoneId}
+     * @see find code at {@link ZoneIdFactory}
      */
     static from(temporal) {
         abstractMethodFail('ZoneId.from');
