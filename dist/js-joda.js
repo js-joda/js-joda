@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	exports.__esModule = true;
-	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.ZoneOffset = exports.ZoneId = exports.ZonedDateTime = exports.Year = exports.Period = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.Year = exports.Period = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -150,7 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(27);
 	
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -177,21 +177,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ZoneId = __webpack_require__(25);
-	
-	Object.defineProperty(exports, 'ZoneId', {
-	  enumerable: true,
-	  get: function get() {
-	    return _ZoneId.ZoneId;
-	  }
-	});
-	
-	var _ZoneOffset = __webpack_require__(24);
+	var _ZoneOffset = __webpack_require__(38);
 	
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
 	  get: function get() {
 	    return _ZoneOffset.ZoneOffset;
+	  }
+	});
+	
+	var _ZoneId = __webpack_require__(34);
+	
+	Object.defineProperty(exports, 'ZoneId', {
+	  enumerable: true,
+	  get: function get() {
+	    return _ZoneId.ZoneId;
 	  }
 	});
 	
@@ -249,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	Object.defineProperty(exports, 'DateTimeFormatter', {
 	  enumerable: true,
@@ -258,7 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(37);
+	var _DateTimeFormatterBuilder = __webpack_require__(33);
 	
 	Object.defineProperty(exports, 'DateTimeFormatterBuilder', {
 	  enumerable: true,
@@ -267,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	Object.defineProperty(exports, 'ResolverStyle', {
 	  enumerable: true,
@@ -291,9 +291,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Instant = __webpack_require__(4);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
-	var _ZoneOffset = __webpack_require__(24);
+	var _ZoneOffset = __webpack_require__(38);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -540,9 +540,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -635,20 +635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    Instant.prototype.get = function get(field) {
-	        if (field instanceof _ChronoField.ChronoField) {
-	            switch (field) {
-	                case _ChronoField.ChronoField.NANO_OF_SECOND:
-	                    return this._nanos;
-	                case _ChronoField.ChronoField.MICRO_OF_SECOND:
-	                    return _MathUtil.MathUtil.intDiv(this._nanos, 1000);
-	                case _ChronoField.ChronoField.MILLI_OF_SECOND:
-	                    return _MathUtil.MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-	                case _ChronoField.ChronoField.INSTANT_SECONDS:
-	                    _ChronoField.ChronoField.INSTANT_SECONDS.checkValidIntValue(this._seconds);
-	            }
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	        }
-	        return this.range(field).checkValidIntValue(field.getFrom(this), field);
+	        return this.getLong(field);
 	    };
 	
 	    Instant.prototype.getLong = function getLong(field) {
@@ -958,9 +945,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalDateTime = __webpack_require__(7);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -970,7 +957,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -1774,9 +1761,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ZonedDateTime = __webpack_require__(42);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -1784,7 +1771,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	var _ChronoLocalDateTime2 = __webpack_require__(44);
 	
@@ -2352,15 +2339,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoUnit = __webpack_require__(13);
 	
-	var _ChronoLocalDate2 = __webpack_require__(29);
+	var _ChronoLocalDate2 = __webpack_require__(24);
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	var _ValueRange = __webpack_require__(19);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -2368,7 +2355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Month = __webpack_require__(11);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(27);
 	
 	var _Year = __webpack_require__(16);
 	
@@ -2376,7 +2363,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalDateTime = __webpack_require__(7);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3089,7 +3076,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ChronoField = __webpack_require__(12);
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -3481,7 +3468,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
 	
 	var ChronoField = exports.ChronoField = function (_TemporalField) {
 	    _inherits(ChronoField, _TemporalField);
@@ -4568,18 +4554,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.TemporalAccessor = undefined;
 	
+	var _errors = __webpack_require__(3);
+	
 	var _ChronoField = __webpack_require__(12);
 	
 	var _TemporalQueries = __webpack_require__(22);
-	
-	var _errors = __webpack_require__(3);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                           */
-	
 	
 	var TemporalAccessor = function () {
 	    function TemporalAccessor() {
@@ -4614,595 +4599,58 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
 	exports.__esModule = true;
-	exports.TemporalQueries = undefined;
-	exports._init = _init;
 	
-	var _ChronoField = __webpack_require__(12);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var _TemporalQuery = __webpack_require__(23);
-	
-	var _LocalDate = __webpack_require__(8);
-	
-	var _LocalTime = __webpack_require__(5);
-	
-	var _ZoneOffset = __webpack_require__(24);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
+	/**
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
 	
 	var TemporalQueries = exports.TemporalQueries = function () {
-	    function TemporalQueries() {
-	        _classCallCheck(this, TemporalQueries);
-	    }
+	  function TemporalQueries() {
+	    _classCallCheck(this, TemporalQueries);
+	  }
 	
-	    TemporalQueries.zoneId = function zoneId() {
-	        return TemporalQueries.ZONE_ID;
-	    };
+	  TemporalQueries.zoneId = function zoneId() {
+	    return TemporalQueries.ZONE_ID;
+	  };
 	
-	    TemporalQueries.chronology = function chronology() {
-	        return TemporalQueries.CHRONO;
-	    };
+	  TemporalQueries.chronology = function chronology() {
+	    return TemporalQueries.CHRONO;
+	  };
 	
-	    TemporalQueries.precision = function precision() {
-	        return TemporalQueries.PRECISION;
-	    };
+	  TemporalQueries.precision = function precision() {
+	    return TemporalQueries.PRECISION;
+	  };
 	
-	    TemporalQueries.zone = function zone() {
-	        return TemporalQueries.ZONE;
-	    };
+	  TemporalQueries.zone = function zone() {
+	    return TemporalQueries.ZONE;
+	  };
 	
-	    TemporalQueries.offset = function offset() {
-	        return TemporalQueries.OFFSET;
-	    };
+	  TemporalQueries.offset = function offset() {
+	    return TemporalQueries.OFFSET;
+	  };
 	
-	    TemporalQueries.localDate = function localDate() {
-	        return TemporalQueries.LOCAL_DATE;
-	    };
+	  TemporalQueries.localDate = function localDate() {
+	    return TemporalQueries.LOCAL_DATE;
+	  };
 	
-	    TemporalQueries.localTime = function localTime() {
-	        return TemporalQueries.LOCAL_TIME;
-	    };
+	  TemporalQueries.localTime = function localTime() {
+	    return TemporalQueries.LOCAL_TIME;
+	  };
 	
-	    return TemporalQueries;
+	  return TemporalQueries;
 	}();
-	
-	function _init() {
-	    TemporalQueries.ZONE_ID = (0, _TemporalQuery.createTemporalQuery)('ZONE_ID', function (temporal) {
-	        return temporal.query(TemporalQueries.ZONE_ID);
-	    });
-	
-	    TemporalQueries.CHRONO = (0, _TemporalQuery.createTemporalQuery)('CHRONO', function (temporal) {
-	        return temporal.query(TemporalQueries.CHRONO);
-	    });
-	
-	    TemporalQueries.PRECISION = (0, _TemporalQuery.createTemporalQuery)('PRECISION', function (temporal) {
-	        return temporal.query(TemporalQueries.PRECISION);
-	    });
-	
-	    TemporalQueries.OFFSET = (0, _TemporalQuery.createTemporalQuery)('OFFSET', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
-	            return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(_ChronoField.ChronoField.OFFSET_SECONDS));
-	        }
-	        return null;
-	    });
-	
-	    TemporalQueries.ZONE = (0, _TemporalQuery.createTemporalQuery)('ZONE', function (temporal) {
-	        var zone = temporal.query(TemporalQueries.ZONE_ID);
-	        return zone != null ? zone : temporal.query(TemporalQueries.OFFSET);
-	    });
-	
-	    TemporalQueries.LOCAL_DATE = (0, _TemporalQuery.createTemporalQuery)('LOCAL_DATE', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
-	            return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(_ChronoField.ChronoField.EPOCH_DAY));
-	        }
-	        return null;
-	    });
-	
-	    TemporalQueries.LOCAL_TIME = (0, _TemporalQuery.createTemporalQuery)('LOCAL_TIME', function (temporal) {
-	        if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
-	            return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(_ChronoField.ChronoField.NANO_OF_DAY));
-	        }
-	        return null;
-	    });
-	}
 
 /***/ },
 /* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.TemporalQuery = undefined;
-	exports.createTemporalQuery = createTemporalQuery;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _Enum2 = __webpack_require__(10);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
-	  _inherits(TemporalQuery, _Enum);
-	
-	  function TemporalQuery() {
-	    _classCallCheck(this, TemporalQuery);
-	
-	    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
-	  }
-	
-	  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
-	    (0, _assert.abstractMethodFail)('queryFrom');
-	  };
-	
-	  return TemporalQuery;
-	}(_Enum2.Enum);
-	
-	function createTemporalQuery(name, queryFromFunction) {
-	  var ExtendedTemporalQuery = function (_TemporalQuery) {
-	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
-	
-	    function ExtendedTemporalQuery() {
-	      _classCallCheck(this, ExtendedTemporalQuery);
-	
-	      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
-	    }
-	
-	    return ExtendedTemporalQuery;
-	  }(TemporalQuery);
-	
-	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
-	  return new ExtendedTemporalQuery(name);
-	}
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.ZoneOffset = undefined;
-	exports._init = _init;
-	
-	var _errors = __webpack_require__(3);
-	
-	var _MathUtil = __webpack_require__(6);
-	
-	var _LocalTime = __webpack_require__(5);
-	
-	var _ZoneId2 = __webpack_require__(25);
-	
-	var _ZoneRules = __webpack_require__(27);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var SECONDS_CACHE = {};
-	
-	var ZoneOffset = exports.ZoneOffset = function (_ZoneId) {
-	    _inherits(ZoneOffset, _ZoneId);
-	
-	    function ZoneOffset(totalSeconds) {
-	        _classCallCheck(this, ZoneOffset);
-	
-	        var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
-	
-	        ZoneOffset._validateTotalSeconds(totalSeconds);
-	        _this._totalSeconds = totalSeconds;
-	        _this._rules = _ZoneRules.ZoneRules.of(_this);
-	        _this._id = ZoneOffset._buildId(totalSeconds);
-	        return _this;
-	    }
-	
-	    ZoneOffset.prototype.totalSeconds = function totalSeconds() {
-	        return this._totalSeconds;
-	    };
-	
-	    ZoneOffset.prototype.id = function id() {
-	        return this._id;
-	    };
-	
-	    ZoneOffset._buildId = function _buildId(totalSeconds) {
-	        if (totalSeconds === 0) {
-	            return 'Z';
-	        } else {
-	            var absTotalSeconds = Math.abs(totalSeconds);
-	            var absHours = _MathUtil.MathUtil.intDiv(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
-	            var absMinutes = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE), _LocalTime.LocalTime.MINUTES_PER_HOUR);
-	            var buf = '' + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
-	            var absSeconds = _MathUtil.MathUtil.intMod(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	            if (absSeconds !== 0) {
-	                buf += (absSeconds < 10 ? ':0' : ':') + absSeconds;
-	            }
-	            return buf.toString();
-	        }
-	    };
-	
-	    ZoneOffset._validateTotalSeconds = function _validateTotalSeconds(totalSeconds) {
-	        if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
-	            throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	        }
-	    };
-	
-	    ZoneOffset._validate = function _validate(hours, minutes, seconds) {
-	        if (hours < -18 || hours > 18) {
-	            throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
-	        }
-	        if (hours > 0) {
-	            if (minutes < 0 || seconds < 0) {
-	                throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
-	            }
-	        } else if (hours < 0) {
-	            if (minutes > 0 || seconds > 0) {
-	                throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
-	            }
-	        } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
-	            throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
-	        }
-	        if (Math.abs(minutes) > 59) {
-	            throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
-	        }
-	        if (Math.abs(seconds) > 59) {
-	            throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
-	        }
-	        if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
-	            throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-	        }
-	    };
-	
-	    ZoneOffset.ofHours = function ofHours(hours) {
-	        return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
-	    };
-	
-	    ZoneOffset.ofHoursMinutes = function ofHoursMinutes(hours, minutes) {
-	        return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
-	    };
-	
-	    ZoneOffset.ofHoursMinutesSeconds = function ofHoursMinutesSeconds(hours, minutes, seconds) {
-	        ZoneOffset._validate(hours, minutes, seconds);
-	        var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
-	        return ZoneOffset.ofTotalSeconds(totalSeconds);
-	    };
-	
-	    ZoneOffset.ofTotalMinutes = function ofTotalMinutes(totalMinutes) {
-	        var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
-	        return ZoneOffset.ofTotalSeconds(totalSeconds);
-	    };
-	
-	    ZoneOffset.ofTotalSeconds = function ofTotalSeconds(totalSeconds) {
-	        if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
-	            var totalSecs = totalSeconds;
-	            var result = SECONDS_CACHE[totalSecs];
-	            if (result == null) {
-	                result = new ZoneOffset(totalSeconds);
-	                SECONDS_CACHE[totalSecs] = result;
-	            }
-	            return result;
-	        } else {
-	            return new ZoneOffset(totalSeconds);
-	        }
-	    };
-	
-	    ZoneOffset.prototype.rules = function rules() {
-	        return this._rules;
-	    };
-	
-	    ZoneOffset.prototype.equals = function equals(obj) {
-	        if (this === obj) {
-	            return true;
-	        }
-	        if (obj instanceof ZoneOffset) {
-	            return this._totalSeconds === obj._totalSeconds;
-	        }
-	        return false;
-	    };
-	
-	    ZoneOffset.prototype.hashCode = function hashCode() {
-	        return this._totalSeconds;
-	    };
-	
-	    ZoneOffset.prototype.toString = function toString() {
-	        return this._id;
-	    };
-	
-	    return ZoneOffset;
-	}(_ZoneId2.ZoneId);
-	
-	function _init() {
-	    ZoneOffset.MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
-	    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-	    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
-	    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
-	}
-
-/***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.ZoneId = undefined;
-	exports._init = _init;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _errors = __webpack_require__(3);
-	
-	var _TemporalQueries = __webpack_require__(22);
-	
-	var _SystemDefaultZoneRules = __webpack_require__(26);
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-	
-	var ZoneId = exports.ZoneId = function () {
-	    function ZoneId() {
-	        _classCallCheck(this, ZoneId);
-	    }
-	
-	    ZoneId.systemDefault = function systemDefault() {
-	        return zoneSystemDefaultInstance;
-	    };
-	
-	    ZoneId.prototype.rules = function rules() {
-	        (0, _assert.abstractMethodFail)('ZoneId.rules');
-	    };
-	
-	    ZoneId.prototype.id = function id() {
-	        return this.toString();
-	    };
-	
-	    ZoneId.from = function from(temporal) {
-	        var obj = temporal.query(_TemporalQueries.TemporalQueries.zone());
-	        if (obj == null) {
-	            throw new _errors.DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
-	        }
-	        return obj;
-	    };
-	
-	    return ZoneId;
-	}();
-	
-	var ZoneIdSystemDefault = function (_ZoneId) {
-	    _inherits(ZoneIdSystemDefault, _ZoneId);
-	
-	    function ZoneIdSystemDefault() {
-	        _classCallCheck(this, ZoneIdSystemDefault);
-	
-	        var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
-	
-	        _this._rules = new _SystemDefaultZoneRules.SystemDefaultZoneRules();
-	        return _this;
-	    }
-	
-	    ZoneIdSystemDefault.prototype.rules = function rules() {
-	        return this._rules;
-	    };
-	
-	    ZoneIdSystemDefault.prototype.equals = function equals(other) {
-	        if (this === other) {
-	            return true;
-	        }
-	        return false;
-	    };
-	
-	    ZoneIdSystemDefault.prototype.toString = function toString() {
-	        return 'ZoneSystemDefault';
-	    };
-	
-	    return ZoneIdSystemDefault;
-	}(ZoneId);
-	
-	var zoneSystemDefaultInstance = null;
-	
-	function _init() {
-	    zoneSystemDefaultInstance = new ZoneIdSystemDefault();
-	}
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.SystemDefaultZoneRules = undefined;
-	
-	var _ZoneRules2 = __webpack_require__(27);
-	
-	var _ZoneOffset = __webpack_require__(24);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var SystemDefaultZoneRules = exports.SystemDefaultZoneRules = function (_ZoneRules) {
-	    _inherits(SystemDefaultZoneRules, _ZoneRules);
-	
-	    function SystemDefaultZoneRules() {
-	        _classCallCheck(this, SystemDefaultZoneRules);
-	
-	        return _possibleConstructorReturn(this, _ZoneRules.apply(this, arguments));
-	    }
-	
-	    SystemDefaultZoneRules.prototype.isFixedOffset = function isFixedOffset() {
-	        return false;
-	    };
-	
-	    SystemDefaultZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
-	        var offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
-	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
-	    };
-	
-	    SystemDefaultZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-	        var epochMilli = localDateTime.toEpochSecond(_ZoneOffset.ZoneOffset.UTC) * 1000;
-	        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
-	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
-	    };
-	
-	    SystemDefaultZoneRules.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
-	        return this.offsetOfLocalDateTime(dateTime).equals(offset);
-	    };
-	
-	    SystemDefaultZoneRules.prototype.equals = function equals(other) {
-	        if (this === other || other instanceof SystemDefaultZoneRules) {
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    };
-	
-	    SystemDefaultZoneRules.prototype.toString = function toString() {
-	        return 'SystemDefaultZoneRules()';
-	    };
-	
-	    return SystemDefaultZoneRules;
-	}(_ZoneRules2.ZoneRules);
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.ZoneRules = undefined;
-	
-	var _assert = __webpack_require__(2);
-	
-	var _Instant = __webpack_require__(4);
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-	
-	var ZoneRules = exports.ZoneRules = function () {
-	    function ZoneRules() {
-	        _classCallCheck(this, ZoneRules);
-	    }
-	
-	    ZoneRules.of = function of(offset) {
-	        (0, _assert.requireNonNull)(offset, 'offset');
-	        return new Fixed(offset);
-	    };
-	
-	    ZoneRules.prototype.isFixedOffset = function isFixedOffset() {
-	        (0, _assert.abstractMethodFail)('ZoneRules.isFixedOffset');
-	    };
-	
-	    ZoneRules.prototype.offset = function offset(instantOrLocalDateTime) {
-	        if (instantOrLocalDateTime instanceof _Instant.Instant) {
-	            return this.offsetOfInstant(instantOrLocalDateTime);
-	        } else {
-	            return this.offsetOfLocalDateTime(instantOrLocalDateTime);
-	        }
-	    };
-	
-	    ZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
-	        (0, _assert.abstractMethodFail)('ZoneRules.offsetInstant');
-	    };
-	
-	    ZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-	        (0, _assert.abstractMethodFail)('ZoneRules.offsetLocalDateTime');
-	    };
-	
-	    ZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
-	        (0, _assert.abstractMethodFail)('ZoneRules.isValidOffset');
-	    };
-	
-	    return ZoneRules;
-	}();
-	
-	var Fixed = function (_ZoneRules) {
-	    _inherits(Fixed, _ZoneRules);
-	
-	    function Fixed(offset) {
-	        _classCallCheck(this, Fixed);
-	
-	        var _this = _possibleConstructorReturn(this, _ZoneRules.call(this));
-	
-	        _this._offset = offset;
-	        return _this;
-	    }
-	
-	    Fixed.prototype.isFixedOffset = function isFixedOffset() {
-	        return true;
-	    };
-	
-	    Fixed.prototype.offsetOfInstant = function offsetOfInstant() {
-	        return this._offset;
-	    };
-	
-	    Fixed.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime() {
-	        return this._offset;
-	    };
-	
-	    Fixed.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
-	        return this._offset.equals(offset);
-	    };
-	
-	    Fixed.prototype.equals = function equals(other) {
-	        if (this === other) {
-	            return true;
-	        }
-	        if (other instanceof Fixed) {
-	            return this._offset.equals(other._offset);
-	        }
-	        return false;
-	    };
-	
-	    Fixed.prototype.toString = function toString() {
-	        return 'FixedRules:' + this._offset.toString();
-	    };
-	
-	    return Fixed;
-	}(ZoneRules);
-
-/***/ },
-/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5241,7 +4689,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
 /***/ },
-/* 29 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5310,7 +4758,64 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDate = ChronoLocalDate;
 
 /***/ },
-/* 30 */
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.TemporalQuery = undefined;
+	exports.createTemporalQuery = createTemporalQuery;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _Enum2 = __webpack_require__(10);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
+	  _inherits(TemporalQuery, _Enum);
+	
+	  function TemporalQuery() {
+	    _classCallCheck(this, TemporalQuery);
+	
+	    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
+	  }
+	
+	  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
+	    (0, _assert.abstractMethodFail)('queryFrom');
+	  };
+	
+	  return TemporalQuery;
+	}(_Enum2.Enum);
+	
+	function createTemporalQuery(name, queryFromFunction) {
+	  var ExtendedTemporalQuery = function (_TemporalQuery) {
+	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
+	
+	    function ExtendedTemporalQuery() {
+	      _classCallCheck(this, ExtendedTemporalQuery);
+	
+	      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
+	    }
+	
+	    return ExtendedTemporalQuery;
+	  }(TemporalQuery);
+	
+	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
+	  return new ExtendedTemporalQuery(name);
+	}
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5323,29 +4828,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(27);
 	
-	var _ParsePosition = __webpack_require__(32);
+	var _ParsePosition = __webpack_require__(28);
 	
-	var _DateTimeBuilder = __webpack_require__(33);
+	var _DateTimeBuilder = __webpack_require__(29);
 	
-	var _DateTimeParseContext = __webpack_require__(35);
+	var _DateTimeParseContext = __webpack_require__(31);
 	
-	var _DateTimePrintContext = __webpack_require__(36);
+	var _DateTimePrintContext = __webpack_require__(32);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(37);
+	var _DateTimeFormatterBuilder = __webpack_require__(33);
 	
-	var _SignStyle = __webpack_require__(39);
+	var _SignStyle = __webpack_require__(37);
 	
 	var _StringBuilder = __webpack_require__(40);
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _IsoChronology = __webpack_require__(9);
 	
 	var _ChronoField = __webpack_require__(12);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
@@ -5528,7 +5033,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    DateTimeFormatter.ISO_INSTANT = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(_ResolverStyle.ResolverStyle.STRICT);
 	
-	    DateTimeFormatter.ISO_ZONED_DATE_TIME = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
+	    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
+	
+	    DateTimeFormatter.ISO_ZONED_DATE_TIME = new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneId().appendLiteral(']').toFormatter(_ResolverStyle.ResolverStyle.STRICT).withChronology(_IsoChronology.IsoChronology.INSTANCE);
 	
 	    DateTimeFormatter.PARSED_EXCESS_DAYS = (0, _TemporalQuery.createTemporalQuery)('PARSED_EXCESS_DAYS', function (temporal) {
 	        if (temporal instanceof _DateTimeBuilder.DateTimeBuilder) {
@@ -5548,7 +5055,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 31 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5928,7 +5435,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 32 */
+/* 28 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5971,7 +5478,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 33 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5985,13 +5492,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _EnumMap = __webpack_require__(34);
+	var _EnumMap = __webpack_require__(30);
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _IsoChronology = __webpack_require__(9);
 	
-	var _ChronoLocalDate = __webpack_require__(29);
+	var _ChronoLocalDate = __webpack_require__(24);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -6003,7 +5510,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalDate = __webpack_require__(8);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(27);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -6017,6 +5524,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var DateTimeBuilder = function (_Temporal) {
 	    _inherits(DateTimeBuilder, _Temporal);
+	
+	    DateTimeBuilder.create = function create(field, value) {
+	        var dtb = new DateTimeBuilder();
+	        dtb._addFieldValue(field, value);
+	        return dtb;
+	    };
 	
 	    function DateTimeBuilder() {
 	        _classCallCheck(this, DateTimeBuilder);
@@ -6350,7 +5863,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
-/* 34 */
+/* 30 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6384,6 +5897,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    EnumMap.prototype.get = function get(key) {
 	        return this._map[key.name()];
+	    };
+	
+	    EnumMap.prototype.put = function put(key, val) {
+	        return this.set(key, val);
 	    };
 	
 	    EnumMap.prototype.set = function set(key, val) {
@@ -6420,7 +5937,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 35 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6430,9 +5947,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(2);
 	
-	var _DateTimeBuilder = __webpack_require__(33);
+	var _DateTimeBuilder = __webpack_require__(29);
 	
-	var _EnumMap = __webpack_require__(34);
+	var _EnumMap = __webpack_require__(30);
 	
 	var _IsoChronology = __webpack_require__(9);
 	
@@ -6564,6 +6081,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return old != null && old !== value ? ~errorPos : successPos;
 	    };
 	
+	    DateTimeParseContext.prototype.setParsedZone = function setParsedZone(zone) {
+	        (0, _assert.requireNonNull)(zone, 'zone');
+	        this.currentParsed().zone = zone;
+	    };
+	
 	    DateTimeParseContext.prototype.getParsed = function getParsed(field) {
 	        return this.currentParsed().fieldValues.get(field);
 	    };
@@ -6662,7 +6184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_Temporal2.Temporal);
 
 /***/ },
-/* 36 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6672,7 +6194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
@@ -6712,6 +6234,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this._optional--;
 	    };
 	
+	    DateTimePrintContext.prototype.getValueQuery = function getValueQuery(query) {
+	        var result = this._temporal.query(query);
+	        if (result == null && this._optional === 0) {
+	            throw new _errors.DateTimeException('Unable to extract value: ' + this._temporal);
+	        }
+	        return result;
+	    };
+	
 	    DateTimePrintContext.prototype.getValue = function getValue(field) {
 	        try {
 	            return this._temporal.getLong(field);
@@ -6735,7 +6265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 37 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6749,19 +6279,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Enum2 = __webpack_require__(10);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _ZoneId = __webpack_require__(34);
 	
-	var _DecimalStyle = __webpack_require__(38);
+	var _TemporalQueries = __webpack_require__(22);
 	
-	var _SignStyle = __webpack_require__(39);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _DecimalStyle = __webpack_require__(36);
+	
+	var _SignStyle = __webpack_require__(37);
+	
+	var _ResolverStyle = __webpack_require__(23);
 	
 	var _MathUtil = __webpack_require__(6);
 	
 	var _LocalDateTime = __webpack_require__(7);
 	
-	var _ZoneOffset = __webpack_require__(24);
+	var _ZoneOffset = __webpack_require__(38);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -6900,6 +6434,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw new _errors.IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
 	        }
 	        this._appendInternal(new InstantPrinterParser(fractionalDigits));
+	        return this;
+	    };
+	
+	    DateTimeFormatterBuilder.prototype.appendOffsetId = function appendOffsetId() {
+	        this._appendInternal(OffsetIdPrinterParser.INSTANCE_ID);
+	        return this;
+	    };
+	
+	    DateTimeFormatterBuilder.prototype.appendZoneId = function appendZoneId() {
+	        this._appendInternal(new ZoneIdPrinterParser(_TemporalQueries.TemporalQueries.zoneId(), 'ZoneId()'));
 	        return this;
 	    };
 	
@@ -7621,6 +7165,211 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return InstantPrinterParser;
 	}();
 	
+	var PATTERNS = ['+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'];
+	
+	var OffsetIdPrinterParser = function () {
+	    function OffsetIdPrinterParser(noOffsetText, pattern) {
+	        _classCallCheck(this, OffsetIdPrinterParser);
+	
+	        (0, _assert.requireNonNull)(noOffsetText, 'noOffsetText');
+	        (0, _assert.requireNonNull)(pattern, 'pattern');
+	        this.noOffsetText = noOffsetText;
+	        this.type = this._checkPattern(pattern);
+	    }
+	
+	    OffsetIdPrinterParser.prototype._checkPattern = function _checkPattern(pattern) {
+	        for (var i = 0; i < PATTERNS.length; i++) {
+	            if (PATTERNS[i] === pattern) {
+	                return i;
+	            }
+	        }
+	        throw new _errors.IllegalArgumentException('Invalid zone offset pattern: ' + pattern);
+	    };
+	
+	    OffsetIdPrinterParser.prototype.print = function print(context, buf) {
+	        var offsetSecs = context.getValue(_ChronoField.ChronoField.OFFSET_SECONDS);
+	        if (offsetSecs == null) {
+	            return false;
+	        }
+	        var totalSecs = _MathUtil.MathUtil.safeToInt(offsetSecs);
+	        if (totalSecs === 0) {
+	            buf.append(this.noOffsetText);
+	        } else {
+	            var absHours = Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs, 3600), 100));
+	            var absMinutes = Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs, 60), 60));
+	            var absSeconds = Math.abs(_MathUtil.MathUtil.intMod(totalSecs, 60));
+	            var bufPos = buf.length();
+	            var output = absHours;
+	            buf.append(totalSecs < 0 ? '-' : '+').appendChar(_MathUtil.MathUtil.intDiv(absHours, 10) + '0').appendChar(_MathUtil.MathUtil.intMod(absHours, 10) + '0');
+	            if (this.type >= 3 || this.type >= 1 && absMinutes > 0) {
+	                buf.append(this.type % 2 === 0 ? ':' : '').appendChar(_MathUtil.MathUtil.intDiv(absMinutes, 10) + '0').appendChar(absMinutes % 10 + '0');
+	                output += absMinutes;
+	                if (this.type >= 7 || this.type >= 5 && absSeconds > 0) {
+	                    buf.append(this.type % 2 === 0 ? ':' : '').appendChar(_MathUtil.MathUtil.intDiv(absSeconds, 10) + '0').appendChar(absSeconds % 10 + '0');
+	                    output += absSeconds;
+	                }
+	            }
+	            if (output === 0) {
+	                buf.setLength(bufPos);
+	                buf.append(this.noOffsetText);
+	            }
+	        }
+	        return true;
+	    };
+	
+	    OffsetIdPrinterParser.prototype.parse = function parse(context, text, position) {
+	        var length = text.length;
+	        var noOffsetLen = this.noOffsetText.length;
+	        if (noOffsetLen === 0) {
+	            if (position === length) {
+	                return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS, 0, position, position);
+	            }
+	        } else {
+	            if (position === length) {
+	                return ~position;
+	            }
+	            if (context.subSequenceEquals(text, position, this.noOffsetText, 0, noOffsetLen)) {
+	                return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);
+	            }
+	        }
+	
+	        var sign = text[position];
+	        if (sign === '+' || sign === '-') {
+	            var negative = sign === '-' ? -1 : 1;
+	            var array = [0, 0, 0, 0];
+	            array[0] = position + 1;
+	            if ((this._parseNumber(array, 1, text, true) || this._parseNumber(array, 2, text, this.type >= 3) || this._parseNumber(array, 3, text, false)) === false) {
+	                var offsetSecs = _MathUtil.MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));
+	                return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS, offsetSecs, position, array[0]);
+	            }
+	        }
+	
+	        if (noOffsetLen === 0) {
+	            return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);
+	        }
+	        return ~position;
+	    };
+	
+	    OffsetIdPrinterParser.prototype._parseNumber = function _parseNumber(array, arrayIndex, parseText, required) {
+	        if ((this.type + 3) / 2 < arrayIndex) {
+	            return false;
+	        }
+	        var pos = array[0];
+	        if (this.type % 2 === 0 && arrayIndex > 1) {
+	            if (pos + 1 > parseText.length || parseText[pos] !== ':') {
+	                return required;
+	            }
+	            pos++;
+	        }
+	        if (pos + 2 > parseText.length) {
+	            return required;
+	        }
+	        var ch1 = parseText[pos++];
+	        var ch2 = parseText[pos++];
+	        if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
+	            return required;
+	        }
+	        var value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
+	        if (value < 0 || value > 59) {
+	            return required;
+	        }
+	        array[arrayIndex] = value;
+	        array[0] = pos;
+	        return false;
+	    };
+	
+	    OffsetIdPrinterParser.prototype.toString = function toString() {
+	        var converted = this.noOffsetText.replace('\'', '\'\'');
+	        return 'Offset(' + PATTERNS[this.type] + ',"' + converted + '")';
+	    };
+	
+	    return OffsetIdPrinterParser;
+	}();
+	
+	OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
+	
+	var ZoneIdPrinterParser = function () {
+	    function ZoneIdPrinterParser(query, description) {
+	        _classCallCheck(this, ZoneIdPrinterParser);
+	
+	        this.query = query;
+	        this.description = description;
+	    }
+	
+	    ZoneIdPrinterParser.prototype.print = function print(context, buf) {
+	        var zone = context.getValueQuery(this.query);
+	        if (zone == null) {
+	            return false;
+	        }
+	        buf.append(zone.id());
+	        return true;
+	    };
+	
+	    ZoneIdPrinterParser.prototype.parse = function parse(context, text, position) {
+	        var length = text.length;
+	        if (position > length) {
+	            return ~position;
+	        }
+	        if (position === length) {
+	            return ~position;
+	        }
+	
+	        var nextChar = text.charAt(position);
+	        if (nextChar === '+' || nextChar === '-') {
+	            var newContext = context.copy();
+	            var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+	            if (endPos < 0) {
+	                return endPos;
+	            }
+	            var offset = newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);
+	            var zone = _ZoneOffset.ZoneOffset.ofTotalSeconds(offset);
+	            context.setParsedZone(zone);
+	            return endPos;
+	        } else if (length >= position + 2) {
+	            var nextNextChar = text.charAt(position + 1);
+	            if (context.charEquals(nextChar, 'U') && context.charEquals(nextNextChar, 'T')) {
+	                if (length >= position + 3 && context.charEquals(text.charAt(position + 2), 'C')) {
+	                    return this._parsePrefixedOffset(context, text, position, position + 3);
+	                }
+	                return this._parsePrefixedOffset(context, text, position, position + 2);
+	            } else if (context.charEquals(nextChar, 'G') && length >= position + 3 && context.charEquals(nextNextChar, 'M') && context.charEquals(text.charAt(position + 2), 'T')) {
+	                return this._parsePrefixedOffset(context, text, position, position + 3);
+	            }
+	        }
+	
+	        if (context.charEquals(nextChar, 'Z')) {
+	            context.setParsedZone(_ZoneOffset.ZoneOffset.UTC);
+	            return position + 1;
+	        }
+	
+	        return ~position;
+	    };
+	
+	    ZoneIdPrinterParser.prototype._parsePrefixedOffset = function _parsePrefixedOffset(context, text, prefixPos, position) {
+	        var prefix = text.substring(prefixPos, position).toUpperCase();
+	        var newContext = context.copy();
+	        if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {
+	            context.setParsedZone(_ZoneId.ZoneId.ofOffset(prefix, _ZoneOffset.ZoneOffset.UTC));
+	            return position;
+	        }
+	        var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+	        if (endPos < 0) {
+	            context.setParsedZone(_ZoneId.ZoneId.ofOffset(prefix, _ZoneOffset.ZoneOffset.UTC));
+	            return position;
+	        }
+	        var offsetSecs = newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);
+	        var offset = _ZoneOffset.ZoneOffset.ofTotalSeconds(offsetSecs);
+	        context.setParsedZone(_ZoneId.ZoneId.ofOffset(prefix, offset));
+	        return endPos;
+	    };
+	
+	    ZoneIdPrinterParser.prototype.toString = function toString() {
+	        return this.description;
+	    };
+	
+	    return ZoneIdPrinterParser;
+	}();
+	
 	DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
 	DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
 	DateTimeFormatterBuilder.SettingsParser = SettingsParser;
@@ -7628,9 +7377,128 @@ return /******/ (function(modules) { // webpackBootstrap
 	DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
 	DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
 	DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
+	DateTimeFormatterBuilder.OffsetIdPrinterParser = OffsetIdPrinterParser;
+	DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
 
 /***/ },
-/* 38 */
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.ZoneId = undefined;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _StringUtil = __webpack_require__(35);
+	
+	var _Instant = __webpack_require__(4);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+	
+	var ZoneId = exports.ZoneId = function () {
+	    function ZoneId() {
+	        _classCallCheck(this, ZoneId);
+	    }
+	
+	    ZoneId.systemDefault = function systemDefault() {
+	        (0, _assert.abstractMethodFail)('ZoneId.rules');
+	    };
+	
+	    ZoneId.of = function of(zoneId) {
+	        (0, _assert.abstractMethodFail)('ZoneId.of');
+	    };
+	
+	    ZoneId.ofOffset = function ofOffset(prefix, offset) {
+	        (0, _assert.abstractMethodFail)('ZoneId.ofOffset');
+	    };
+	
+	    ZoneId.from = function from(temporal) {
+	        (0, _assert.abstractMethodFail)('ZoneId.from');
+	    };
+	
+	    ZoneId.prototype.rules = function rules() {
+	        (0, _assert.abstractMethodFail)('ZoneId.rules');
+	    };
+	
+	    ZoneId.prototype.normalized = function normalized() {
+	        var rules = this.rules();
+	        if (rules.isFixedOffset()) {
+	            return rules.offset(_Instant.Instant.EPOCH);
+	        }
+	
+	        return this;
+	    };
+	
+	    ZoneId.prototype.equals = function equals(other) {
+	        if (this === other) {
+	            return true;
+	        }
+	        if (other instanceof ZoneId) {
+	            return this.id() === other.id();
+	        }
+	        return false;
+	    };
+	
+	    ZoneId.prototype.hashCode = function hashCode() {
+	        return _StringUtil.StringUtil.hashCode(this.id());
+	    };
+	
+	    ZoneId.prototype.toString = function toString() {
+	        return this.id();
+	    };
+	
+	    return ZoneId;
+	}();
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	exports.__esModule = true;
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	var StringUtil = exports.StringUtil = function () {
+	    function StringUtil() {
+	        _classCallCheck(this, StringUtil);
+	    }
+	
+	    StringUtil.startsWith = function startsWith(text, pattern) {
+	        return text.indexOf(pattern) === 0;
+	    };
+	
+	    StringUtil.hashCode = function hashCode(text) {
+	        var hash = 0,
+	            i,
+	            chr,
+	            len;
+	        if (text.length === 0) return hash;
+	        for (i = 0, len = text.length; i < len; i++) {
+	            chr = text.charCodeAt(i);
+	            hash = (hash << 5) - hash + chr;
+	            hash |= 0;
+	        }
+	        return hash;
+	    };
+	
+	    return StringUtil;
+	}();
+
+/***/ },
+/* 36 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7749,7 +7617,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 39 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7800,6 +7668,387 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.ZoneOffset = undefined;
+	exports._init = _init;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _errors = __webpack_require__(3);
+	
+	var _MathUtil = __webpack_require__(6);
+	
+	var _LocalTime = __webpack_require__(5);
+	
+	var _ZoneId2 = __webpack_require__(34);
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _ZoneRules = __webpack_require__(39);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SECONDS_CACHE = {};
+	var ID_CACHE = {};
+	
+	var ZoneOffset = function (_ZoneId) {
+	    _inherits(ZoneOffset, _ZoneId);
+	
+	    function ZoneOffset(totalSeconds) {
+	        _classCallCheck(this, ZoneOffset);
+	
+	        var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
+	
+	        ZoneOffset._validateTotalSeconds(totalSeconds);
+	        _this._totalSeconds = totalSeconds;
+	        _this._rules = _ZoneRules.ZoneRules.of(_this);
+	        _this._id = ZoneOffset._buildId(totalSeconds);
+	        return _this;
+	    }
+	
+	    ZoneOffset.prototype.totalSeconds = function totalSeconds() {
+	        return this._totalSeconds;
+	    };
+	
+	    ZoneOffset.prototype.id = function id() {
+	        return this._id;
+	    };
+	
+	    ZoneOffset._buildId = function _buildId(totalSeconds) {
+	        if (totalSeconds === 0) {
+	            return 'Z';
+	        } else {
+	            var absTotalSeconds = Math.abs(totalSeconds);
+	            var absHours = _MathUtil.MathUtil.intDiv(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
+	            var absMinutes = _MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE), _LocalTime.LocalTime.MINUTES_PER_HOUR);
+	            var buf = '' + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
+	            var absSeconds = _MathUtil.MathUtil.intMod(absTotalSeconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	            if (absSeconds !== 0) {
+	                buf += (absSeconds < 10 ? ':0' : ':') + absSeconds;
+	            }
+	            return buf;
+	        }
+	    };
+	
+	    ZoneOffset._validateTotalSeconds = function _validateTotalSeconds(totalSeconds) {
+	        if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
+	            throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	        }
+	    };
+	
+	    ZoneOffset._validate = function _validate(hours, minutes, seconds) {
+	        if (hours < -18 || hours > 18) {
+	            throw new _errors.DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+	        }
+	        if (hours > 0) {
+	            if (minutes < 0 || seconds < 0) {
+	                throw new _errors.DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
+	            }
+	        } else if (hours < 0) {
+	            if (minutes > 0 || seconds > 0) {
+	                throw new _errors.DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
+	            }
+	        } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
+	            throw new _errors.DateTimeException('Zone offset minutes and seconds must have the same sign');
+	        }
+	        if (Math.abs(minutes) > 59) {
+	            throw new _errors.DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
+	        }
+	        if (Math.abs(seconds) > 59) {
+	            throw new _errors.DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
+	        }
+	        if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
+	            throw new _errors.DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+	        }
+	    };
+	
+	    ZoneOffset.of = function of(offsetId) {
+	        (0, _assert.requireNonNull)(offsetId, 'offsetId');
+	
+	        var offset = ID_CACHE[offsetId];
+	        if (offset != null) {
+	            return offset;
+	        }
+	
+	        var hours, minutes, seconds;
+	        switch (offsetId.length) {
+	            case 2:
+	                offsetId = offsetId[0] + '0' + offsetId[1];
+	            case 3:
+	                hours = ZoneOffset._parseNumber(offsetId, 1, false);
+	                minutes = 0;
+	                seconds = 0;
+	                break;
+	            case 5:
+	                hours = ZoneOffset._parseNumber(offsetId, 1, false);
+	                minutes = ZoneOffset._parseNumber(offsetId, 3, false);
+	                seconds = 0;
+	                break;
+	            case 6:
+	                hours = ZoneOffset._parseNumber(offsetId, 1, false);
+	                minutes = ZoneOffset._parseNumber(offsetId, 4, true);
+	                seconds = 0;
+	                break;
+	            case 7:
+	                hours = ZoneOffset._parseNumber(offsetId, 1, false);
+	                minutes = ZoneOffset._parseNumber(offsetId, 3, false);
+	                seconds = ZoneOffset._parseNumber(offsetId, 5, false);
+	                break;
+	            case 9:
+	                hours = ZoneOffset._parseNumber(offsetId, 1, false);
+	                minutes = ZoneOffset._parseNumber(offsetId, 4, true);
+	                seconds = ZoneOffset._parseNumber(offsetId, 7, true);
+	                break;
+	            default:
+	                throw new _errors.DateTimeException('Invalid ID for ZoneOffset, invalid format: ' + offsetId);
+	        }
+	        var first = offsetId[0];
+	        if (first !== '+' && first !== '-') {
+	            throw new _errors.DateTimeException('Invalid ID for ZoneOffset, plus/minus not found when expected: ' + offsetId);
+	        }
+	        if (first === '-') {
+	            return ZoneOffset.ofHoursMinutesSeconds(-hours, -minutes, -seconds);
+	        } else {
+	            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, seconds);
+	        }
+	    };
+	
+	    ZoneOffset._parseNumber = function _parseNumber(offsetId, pos, precededByColon) {
+	        if (precededByColon && offsetId[pos - 1] !== ':') {
+	            throw new _errors.DateTimeException('Invalid ID for ZoneOffset, colon not found when expected: ' + offsetId);
+	        }
+	        var ch1 = offsetId[pos];
+	        var ch2 = offsetId[pos + 1];
+	        if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
+	            throw new _errors.DateTimeException('Invalid ID for ZoneOffset, non numeric characters found: ' + offsetId);
+	        }
+	        return (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
+	    };
+	
+	    ZoneOffset.ofHours = function ofHours(hours) {
+	        return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
+	    };
+	
+	    ZoneOffset.ofHoursMinutes = function ofHoursMinutes(hours, minutes) {
+	        return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
+	    };
+	
+	    ZoneOffset.ofHoursMinutesSeconds = function ofHoursMinutesSeconds(hours, minutes, seconds) {
+	        ZoneOffset._validate(hours, minutes, seconds);
+	        var totalSeconds = hours * _LocalTime.LocalTime.SECONDS_PER_HOUR + minutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE + seconds;
+	        return ZoneOffset.ofTotalSeconds(totalSeconds);
+	    };
+	
+	    ZoneOffset.ofTotalMinutes = function ofTotalMinutes(totalMinutes) {
+	        var totalSeconds = totalMinutes * _LocalTime.LocalTime.SECONDS_PER_MINUTE;
+	        return ZoneOffset.ofTotalSeconds(totalSeconds);
+	    };
+	
+	    ZoneOffset.ofTotalSeconds = function ofTotalSeconds(totalSeconds) {
+	        if (totalSeconds % (15 * _LocalTime.LocalTime.SECONDS_PER_MINUTE) === 0) {
+	            var totalSecs = totalSeconds;
+	            var result = SECONDS_CACHE[totalSecs];
+	            if (result == null) {
+	                result = new ZoneOffset(totalSeconds);
+	                SECONDS_CACHE[totalSecs] = result;
+	                ID_CACHE[result.id()] = result;
+	            }
+	            return result;
+	        } else {
+	            return new ZoneOffset(totalSeconds);
+	        }
+	    };
+	
+	    ZoneOffset.prototype.rules = function rules() {
+	        return this._rules;
+	    };
+	
+	    ZoneOffset.prototype.get = function get(field) {
+	        return this.getLong(field);
+	    };
+	
+	    ZoneOffset.prototype.getLong = function getLong(field) {
+	        if (field === _ChronoField.ChronoField.OFFSET_SECONDS) {
+	            return this._totalSeconds;
+	        } else if (field instanceof _ChronoField.ChronoField) {
+	            throw new _errors.DateTimeException('Unsupported field: ' + field);
+	        }
+	        return field.getFrom(this);
+	    };
+	
+	    ZoneOffset.prototype.query = function query(_query) {
+	        (0, _assert.requireNonNull)(_query, 'query');
+	        if (_query === _TemporalQueries.TemporalQueries.offset() || _query === _TemporalQueries.TemporalQueries.zone()) {
+	            return this;
+	        } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.precision() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zoneId()) {
+	            return null;
+	        }
+	        return _query.queryFrom(this);
+	    };
+	
+	    ZoneOffset.prototype.adjustInto = function adjustInto(temporal) {
+	        return temporal.with(_ChronoField.ChronoField.OFFSET_SECONDS, this._totalSeconds);
+	    };
+	
+	    ZoneOffset.prototype.compareTo = function compareTo(other) {
+	        (0, _assert.requireNonNull)(other, 'other');
+	        return other._totalSeconds - this._totalSeconds;
+	    };
+	
+	    ZoneOffset.prototype.equals = function equals(obj) {
+	        if (this === obj) {
+	            return true;
+	        }
+	        if (obj instanceof ZoneOffset) {
+	            return this._totalSeconds === obj._totalSeconds;
+	        }
+	        return false;
+	    };
+	
+	    ZoneOffset.prototype.hashCode = function hashCode() {
+	        return this._totalSeconds;
+	    };
+	
+	    ZoneOffset.prototype.id = function id() {
+	        return this._id;
+	    };
+	
+	    ZoneOffset.prototype.toString = function toString() {
+	        return this._id;
+	    };
+	
+	    return ZoneOffset;
+	}(_ZoneId2.ZoneId);
+	
+	exports.ZoneOffset = ZoneOffset;
+	function _init() {
+	    ZoneOffset.MAX_SECONDS = 18 * _LocalTime.LocalTime.SECONDS_PER_HOUR;
+	    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+	    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+	    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+	}
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.ZoneRules = undefined;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _Instant = __webpack_require__(4);
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+	
+	var ZoneRules = exports.ZoneRules = function () {
+	    function ZoneRules() {
+	        _classCallCheck(this, ZoneRules);
+	    }
+	
+	    ZoneRules.of = function of(offset) {
+	        (0, _assert.requireNonNull)(offset, 'offset');
+	        return new Fixed(offset);
+	    };
+	
+	    ZoneRules.prototype.isFixedOffset = function isFixedOffset() {
+	        (0, _assert.abstractMethodFail)('ZoneRules.isFixedOffset');
+	    };
+	
+	    ZoneRules.prototype.offset = function offset(instantOrLocalDateTime) {
+	        if (instantOrLocalDateTime instanceof _Instant.Instant) {
+	            return this.offsetOfInstant(instantOrLocalDateTime);
+	        } else {
+	            return this.offsetOfLocalDateTime(instantOrLocalDateTime);
+	        }
+	    };
+	
+	    ZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.offsetInstant');
+	    };
+	
+	    ZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.offsetLocalDateTime');
+	    };
+	
+	    ZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.isValidOffset');
+	    };
+	
+	    return ZoneRules;
+	}();
+	
+	var Fixed = function (_ZoneRules) {
+	    _inherits(Fixed, _ZoneRules);
+	
+	    function Fixed(offset) {
+	        _classCallCheck(this, Fixed);
+	
+	        var _this = _possibleConstructorReturn(this, _ZoneRules.call(this));
+	
+	        _this._offset = offset;
+	        return _this;
+	    }
+	
+	    Fixed.prototype.isFixedOffset = function isFixedOffset() {
+	        return true;
+	    };
+	
+	    Fixed.prototype.offsetOfInstant = function offsetOfInstant() {
+	        return this._offset;
+	    };
+	
+	    Fixed.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime() {
+	        return this._offset;
+	    };
+	
+	    Fixed.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
+	        return this._offset.equals(offset);
+	    };
+	
+	    Fixed.prototype.equals = function equals(other) {
+	        if (this === other) {
+	            return true;
+	        }
+	        if (other instanceof Fixed) {
+	            return this._offset.equals(other._offset);
+	        }
+	        return false;
+	    };
+	
+	    Fixed.prototype.toString = function toString() {
+	        return 'FixedRules:' + this._offset.toString();
+	    };
+	
+	    return Fixed;
+	}(ZoneRules);
+
+/***/ },
 /* 40 */
 /***/ function(module, exports) {
 
@@ -7823,6 +8072,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    StringBuilder.prototype.append = function append(str) {
 	        this._str += str;
+	        return this;
+	    };
+	
+	    StringBuilder.prototype.appendChar = function appendChar(str) {
+	        this._str += str[0];
 	        return this;
 	    };
 	
@@ -7868,7 +8122,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _assert = __webpack_require__(2);
 	
-	var _DateTimeFormatterBuilder = __webpack_require__(37);
+	var _DateTimeFormatterBuilder = __webpack_require__(33);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -7878,7 +8132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -8066,19 +8320,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _LocalTime = __webpack_require__(5);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
-	var _ZoneOffset = __webpack_require__(24);
+	var _ZoneOffset = __webpack_require__(38);
 	
 	var _ChronoZonedDateTime2 = __webpack_require__(43);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(12);
 	
 	var _ChronoUnit = __webpack_require__(13);
 	
-	var _TemporalQuery = __webpack_require__(23);
+	var _TemporalQuery = __webpack_require__(25);
 	
 	var _TemporalQueries = __webpack_require__(22);
 	
@@ -8106,10 +8360,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    ZonedDateTime.of = function of() {
-	        if (arguments.length === 3) {
-	            return ZonedDateTime.of3.apply(this, arguments);
-	        } else if (arguments.length === 2) {
+	        if (arguments.length <= 2) {
 	            return ZonedDateTime.of2.apply(this, arguments);
+	        } else if (arguments.length === 3 && arguments[0] instanceof _LocalDate.LocalDate) {
+	            return ZonedDateTime.of3.apply(this, arguments);
 	        } else {
 	            return ZonedDateTime.of8.apply(this, arguments);
 	        }
@@ -8855,7 +9109,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _MathUtil = __webpack_require__(6);
 	
-	var _ZoneId = __webpack_require__(25);
+	var _ZoneId = __webpack_require__(34);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -8963,7 +9217,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _IsoChronology = __webpack_require__(9);
 	
-	var _ResolverStyle = __webpack_require__(28);
+	var _ResolverStyle = __webpack_require__(23);
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
@@ -9711,6 +9965,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
+	var _ZoneOffset = __webpack_require__(38);
+	
 	var _DayOfWeek = __webpack_require__(41);
 	
 	var _Duration = __webpack_require__(14);
@@ -9725,19 +9981,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Month = __webpack_require__(11);
 	
-	var _Period = __webpack_require__(31);
+	var _Period = __webpack_require__(27);
 	
 	var _Year = __webpack_require__(16);
 	
 	var _ZonedDateTime = __webpack_require__(42);
 	
-	var _ZoneOffset = __webpack_require__(24);
-	
-	var _ZoneId = __webpack_require__(25);
-	
 	var _IsoChronology = __webpack_require__(9);
 	
-	var _DateTimeFormatter = __webpack_require__(30);
+	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -9745,7 +9997,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _IsoFields = __webpack_require__(46);
 	
-	var _TemporalQueries = __webpack_require__(22);
+	var _TemporalQueriesFactory = __webpack_require__(50);
+	
+	var _ZoneIdFactory = __webpack_require__(51);
 	
 	/*
 	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
@@ -9768,7 +10022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _ChronoUnit._init)();
 	    (0, _ChronoField._init)();
 	    (0, _IsoFields._init)();
-	    (0, _TemporalQueries._init)();
+	    (0, _TemporalQueriesFactory._init)();
 	    (0, _DayOfWeek._init)();
 	    (0, _Instant._init)();
 	    (0, _LocalDate._init)();
@@ -9777,12 +10031,351 @@ return /******/ (function(modules) { // webpackBootstrap
 	    (0, _Period._init)();
 	    (0, _ZoneOffset._init)();
 	    (0, _ZonedDateTime._init)();
-	    (0, _ZoneId._init)();
+	    (0, _ZoneIdFactory._init)();
 	    (0, _IsoChronology._init)();
 	    (0, _DateTimeFormatter._init)();
 	}
 	
 	init();
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports._init = _init;
+	
+	var _ChronoField = __webpack_require__(12);
+	
+	var _TemporalQuery = __webpack_require__(25);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	var _LocalTime = __webpack_require__(5);
+	
+	var _ZoneOffset = __webpack_require__(38);
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	function _init() {
+	    _TemporalQueries.TemporalQueries.ZONE_ID = (0, _TemporalQuery.createTemporalQuery)('ZONE_ID', function (temporal) {
+	        return temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
+	    });
+	
+	    _TemporalQueries.TemporalQueries.CHRONO = (0, _TemporalQuery.createTemporalQuery)('CHRONO', function (temporal) {
+	        return temporal.query(_TemporalQueries.TemporalQueries.CHRONO);
+	    });
+	
+	    _TemporalQueries.TemporalQueries.PRECISION = (0, _TemporalQuery.createTemporalQuery)('PRECISION', function (temporal) {
+	        return temporal.query(_TemporalQueries.TemporalQueries.PRECISION);
+	    });
+	
+	    _TemporalQueries.TemporalQueries.OFFSET = (0, _TemporalQuery.createTemporalQuery)('OFFSET', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.OFFSET_SECONDS)) {
+	            return _ZoneOffset.ZoneOffset.ofTotalSeconds(temporal.get(_ChronoField.ChronoField.OFFSET_SECONDS));
+	        }
+	        return null;
+	    });
+	
+	    _TemporalQueries.TemporalQueries.ZONE = (0, _TemporalQuery.createTemporalQuery)('ZONE', function (temporal) {
+	        var zone = temporal.query(_TemporalQueries.TemporalQueries.ZONE_ID);
+	        return zone != null ? zone : temporal.query(_TemporalQueries.TemporalQueries.OFFSET);
+	    });
+	
+	    _TemporalQueries.TemporalQueries.LOCAL_DATE = (0, _TemporalQuery.createTemporalQuery)('LOCAL_DATE', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.EPOCH_DAY)) {
+	            return _LocalDate.LocalDate.ofEpochDay(temporal.getLong(_ChronoField.ChronoField.EPOCH_DAY));
+	        }
+	        return null;
+	    });
+	
+	    _TemporalQueries.TemporalQueries.LOCAL_TIME = (0, _TemporalQuery.createTemporalQuery)('LOCAL_TIME', function (temporal) {
+	        if (temporal.isSupported(_ChronoField.ChronoField.NANO_OF_DAY)) {
+	            return _LocalTime.LocalTime.ofNanoOfDay(temporal.getLong(_ChronoField.ChronoField.NANO_OF_DAY));
+	        }
+	        return null;
+	    });
+	}
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports._init = _init;
+	
+	var _assert = __webpack_require__(2);
+	
+	var _errors = __webpack_require__(3);
+	
+	var _StringUtil = __webpack_require__(35);
+	
+	var _ZoneId = __webpack_require__(34);
+	
+	var _ZoneOffset = __webpack_require__(38);
+	
+	var _ZoneRegion = __webpack_require__(52);
+	
+	var _TemporalQueries = __webpack_require__(22);
+	
+	var _SystemDefaultZoneId = __webpack_require__(53);
+	
+	/*
+	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+	
+	_ZoneId.ZoneId.systemDefault = function () {
+	    return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
+	};
+	
+	_ZoneId.ZoneId.of = function (zoneId) {
+	    (0, _assert.requireNonNull)(zoneId, 'zoneId');
+	    if (zoneId === 'Z') {
+	        return _ZoneOffset.ZoneOffset.UTC;
+	    }
+	    if (zoneId.length === 1) {
+	        throw new _errors.DateTimeException('Invalid zone: ' + zoneId);
+	    }
+	    if (_StringUtil.StringUtil.startsWith(zoneId, '+') || _StringUtil.StringUtil.startsWith(zoneId, '-')) {
+	        return _ZoneOffset.ZoneOffset.of(zoneId);
+	    }
+	    if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'UT') {
+	        return new _ZoneRegion.ZoneRegion(zoneId, _ZoneOffset.ZoneOffset.UTC.rules());
+	    }
+	    if (_StringUtil.StringUtil.startsWith(zoneId, 'UTC+') || _StringUtil.StringUtil.startsWith(zoneId, 'GMT+') || _StringUtil.StringUtil.startsWith(zoneId, 'UTC-') || _StringUtil.StringUtil.startsWith(zoneId, 'GMT-')) {
+	        var offset = _ZoneOffset.ZoneOffset.of(zoneId.substring(3));
+	        if (offset.totalSeconds() === 0) {
+	            return new _ZoneRegion.ZoneRegion(zoneId.substring(0, 3), offset.rules());
+	        }
+	        return new _ZoneRegion.ZoneRegion(zoneId.substring(0, 3) + offset.id(), offset.rules());
+	    }
+	    if (_StringUtil.StringUtil.startsWith(zoneId, 'UT+') || _StringUtil.StringUtil.startsWith(zoneId, 'UT-')) {
+	        var _offset = _ZoneOffset.ZoneOffset.of(zoneId.substring(2));
+	        if (_offset.totalSeconds() === 0) {
+	            return new _ZoneRegion.ZoneRegion('UT', _offset.rules());
+	        }
+	        return new _ZoneRegion.ZoneRegion('UT' + _offset.id(), _offset.rules());
+	    }
+	    return _ZoneRegion.ZoneRegion.ofId(zoneId, true);
+	};
+	
+	_ZoneId.ZoneId.ofOffset = function (prefix, offset) {
+	    (0, _assert.requireNonNull)(prefix, 'prefix');
+	    (0, _assert.requireNonNull)(offset, 'offset');
+	    if (prefix.length === 0) {
+	        return offset;
+	    }
+	    if (prefix === 'GMT' || prefix === 'UTC' || prefix === 'UT') {
+	        if (offset.totalSeconds() === 0) {
+	            return new _ZoneRegion.ZoneRegion(prefix, offset.rules());
+	        }
+	        return new _ZoneRegion.ZoneRegion(prefix + offset.id(), offset.rules());
+	    }
+	    throw new _errors.IllegalArgumentException('Invalid prefix, must be GMT, UTC or UT: ' + prefix);
+	};
+	
+	_ZoneId.ZoneId.from = function (temporal) {
+	    (0, _assert.requireNonNull)(temporal, 'temporal');
+	    var obj = temporal.query(_TemporalQueries.TemporalQueries.zone());
+	    if (obj == null) {
+	        throw new _errors.DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+	    }
+	    return obj;
+	};
+	
+	var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
+	
+	function _init() {
+	    SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new _SystemDefaultZoneId.SystemDefaultZoneId();
+	}
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.ZoneRegion = undefined;
+	
+	var _errors = __webpack_require__(3);
+	
+	var _ZoneId2 = __webpack_require__(34);
+	
+	var _ZoneOffset = __webpack_require__(38);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ZoneRegion = exports.ZoneRegion = function (_ZoneId) {
+	  _inherits(ZoneRegion, _ZoneId);
+	
+	  ZoneRegion.ofId = function ofId(zoneId) {
+	    if (zoneId === 'GMT0') {
+	      var rules = _ZoneOffset.ZoneOffset.UTC.rules();
+	      return new ZoneRegion(zoneId, rules);
+	    }
+	    throw new _errors.DateTimeException('ZoneRegion.ofId() is not yet implemented');
+	  };
+	
+	  function ZoneRegion(id, rules) {
+	    _classCallCheck(this, ZoneRegion);
+	
+	    var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
+	
+	    _this._id = id;
+	    _this._rules = rules;
+	    return _this;
+	  }
+	
+	  ZoneRegion.prototype.id = function id() {
+	    return this._id;
+	  };
+	
+	  ZoneRegion.prototype.rules = function rules() {
+	    return this._rules;
+	  };
+	
+	  return ZoneRegion;
+	}(_ZoneId2.ZoneId);
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.SystemDefaultZoneId = undefined;
+	
+	var _SystemDefaultZoneRules = __webpack_require__(54);
+	
+	var _ZoneId2 = __webpack_require__(34);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SystemDefaultZoneId = exports.SystemDefaultZoneId = function (_ZoneId) {
+	    _inherits(SystemDefaultZoneId, _ZoneId);
+	
+	    function SystemDefaultZoneId() {
+	        _classCallCheck(this, SystemDefaultZoneId);
+	
+	        var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
+	
+	        _this._rules = new _SystemDefaultZoneRules.SystemDefaultZoneRules();
+	        return _this;
+	    }
+	
+	    SystemDefaultZoneId.prototype.rules = function rules() {
+	        return this._rules;
+	    };
+	
+	    SystemDefaultZoneId.prototype.equals = function equals(other) {
+	        if (this === other) {
+	            return true;
+	        }
+	        return false;
+	    };
+	
+	    SystemDefaultZoneId.prototype.toString = function toString() {
+	        return 'SYSTEM';
+	    };
+	
+	    return SystemDefaultZoneId;
+	}(_ZoneId2.ZoneId);
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.SystemDefaultZoneRules = undefined;
+	
+	var _ZoneRules2 = __webpack_require__(39);
+	
+	var _ZoneOffset = __webpack_require__(38);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var SystemDefaultZoneRules = exports.SystemDefaultZoneRules = function (_ZoneRules) {
+	    _inherits(SystemDefaultZoneRules, _ZoneRules);
+	
+	    function SystemDefaultZoneRules() {
+	        _classCallCheck(this, SystemDefaultZoneRules);
+	
+	        return _possibleConstructorReturn(this, _ZoneRules.apply(this, arguments));
+	    }
+	
+	    SystemDefaultZoneRules.prototype.isFixedOffset = function isFixedOffset() {
+	        return false;
+	    };
+	
+	    SystemDefaultZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
+	        var offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
+	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
+	    };
+	
+	    SystemDefaultZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
+	        var epochMilli = localDateTime.toEpochSecond(_ZoneOffset.ZoneOffset.UTC) * 1000;
+	        var offsetInMinutesBeforePossibleTransition = new Date(epochMilli).getTimezoneOffset();
+	        var epochMilliSystemZone = epochMilli + offsetInMinutesBeforePossibleTransition * 60000;
+	        var offsetInMinutesAfterPossibleTransition = new Date(epochMilliSystemZone).getTimezoneOffset();
+	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutesAfterPossibleTransition * -1);
+	    };
+	
+	    SystemDefaultZoneRules.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
+	        return this.offsetOfLocalDateTime(dateTime).equals(offset);
+	    };
+	
+	    SystemDefaultZoneRules.prototype.equals = function equals(other) {
+	        if (this === other || other instanceof SystemDefaultZoneRules) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    };
+	
+	    SystemDefaultZoneRules.prototype.toString = function toString() {
+	        return 'SYSTEM';
+	    };
+	
+	    return SystemDefaultZoneRules;
+	}(_ZoneRules2.ZoneRules);
 
 /***/ }
 /******/ ])
