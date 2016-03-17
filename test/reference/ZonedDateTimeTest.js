@@ -13,7 +13,7 @@ import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
 //import {DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
@@ -495,14 +495,14 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [2008, 6, 30, 11, 30, 59, 999000, 'Z', '2008-06-30T11:30:59.000999Z'],
             [2008, 6, 30, 11, 30, 59, 999000, '+01:00', '2008-06-30T11:30:59.000999+01:00'],
             [2008, 6, 30, 11, 30, 59, 999, 'Z', '2008-06-30T11:30:59.000000999Z'],
-            [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00'],
+            [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00']
 
-            [2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
-            [2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
+            // TODO iana tzdb
+            //[2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
+            //[2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
         ];
     }
 
-  /* TODO parser
     describe('parse()', () => {
 
         // @Test(dataProvider="sampleToString")
@@ -523,14 +523,16 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 ['2012-06-30T12:30:40-01:00[-01:00]', 2012, 6, 30, 12, 30, 40, 0, '-01:00'],
                 ['2012-06-30T12:30:40-01:00[GMT-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'GMT-01:00'],
                 ['2012-06-30T12:30:40-01:00[UT-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UT-01:00'],
-                ['2012-06-30T12:30:40-01:00[UTC-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC-01:00'],
-                ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London'],
+                ['2012-06-30T12:30:40-01:00[UTC-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC-01:00']
+//                ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London']
             ];
         }
 
         // @Test(dataProvider='parseAdditional')
         it('test_parseAdditional', () => {
-            dataProviderTest(data_parseAdditional, checkParsed);
+            dataProviderTest(data_parseAdditional, (text, y, month, d, h, m, s, n, zoneId) => {
+                checkParsed(y, month, d, h, m, s, n, zoneId, text);
+            });
         });
 
         function checkParsed(y, month, d, h, m, s, n, zoneId, text) {
@@ -564,6 +566,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
     });
 
+/**
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter', function () {
