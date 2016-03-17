@@ -19,12 +19,11 @@ import {SystemDefaultZoneId} from './zone/SystemDefaultZoneId';
  * 
  * @returns {*}
  */
-ZoneId.systemDefault = () => {
+function systemDefault() {
     return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
-};
+}
 
-
-ZoneId.of = (zoneId) => {
+function of(zoneId){
     requireNonNull(zoneId, 'zoneId');
     if (zoneId === 'Z') {
         return ZoneOffset.UTC;
@@ -54,9 +53,9 @@ ZoneId.of = (zoneId) => {
         return new ZoneRegion('UT' + offset.id(), offset.rules());
     }
     return ZoneRegion.ofId(zoneId, true);
-};
+}
 
-ZoneId.ofOffset = (prefix, offset) => {
+function ofOffset(prefix, offset){
     requireNonNull(prefix, 'prefix');
     requireNonNull(offset, 'offset');
     if (prefix.length === 0) {
@@ -69,10 +68,10 @@ ZoneId.ofOffset = (prefix, offset) => {
         return new ZoneRegion(prefix + offset.id(), offset.rules());
     }
     throw new IllegalArgumentException('Invalid prefix, must be GMT, UTC or UT: ' + prefix);
-};
+}
 
 
-ZoneId.from = (temporal) => {
+function from(temporal){
     requireNonNull(temporal, 'temporal');
     var obj = temporal.query(TemporalQueries.zone());
     if (obj == null) {
@@ -80,7 +79,16 @@ ZoneId.from = (temporal) => {
                 temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
     }
     return obj;
-};
+}
+
+ZoneId.systemDefault = systemDefault;
+ZoneId.of = of;
+ZoneId.ofOffset = ofOffset;
+ZoneId.from = from;
+
+// bad hack for ie9, we need a better way to get rid of the dependency cycles
+ZoneOffset.from = from;
+ZoneRegion.from = from;
 
 var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
 
