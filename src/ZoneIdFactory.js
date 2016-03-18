@@ -15,8 +15,14 @@ import {ZoneId} from './ZoneId';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {SystemDefaultZoneId} from './zone/SystemDefaultZoneId';
 
+/**
+ * @see {@link ZoneId}
+ *
+ * Helper class to avoid dependency cycles.
+ * Static methods of the class ZoneIdFactory are added automatically to class ZoneId.
+ */
 export class ZoneIdFactory {
-    //-----------------------------------------------------------------------
+
     /**
      * Gets the system default time-zone.
      * <p>
