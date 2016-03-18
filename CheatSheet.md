@@ -25,19 +25,24 @@ js-joda Cheat sheet
   * [Get values from LocalTime](#get-values-from-localtime)
   * [Adding to/ subtracting from a LocalTime instance](#adding-to--subtracting-from-a-localtime-instance)
   * [Alter certain fields of a LocalTime instance](#alter-certain-fields-of-a-localtime-instance)
-  * [truncate a LocalTime instance](#truncate-a-localtime-instance)
+  * [Truncate a LocalTime instance](#truncate-a-localtime-instance)
   * [Compare LocalTime instances](#compare-localtime-instances)
   * [Distance between times](#distance-between-times)
-  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment)
+  * [Convert a LocalTime from a javascript Date or moment](#convert-a-localtime-from-a-javascript-date-or-moment)
 - [LocalDateTime](#localdatetime)
   * [Create a LocalDateTime instance](#create-a-localdatetime-instance)
   * [Get values from LocalDateTime](#get-values-from-localdatetime)
   * [Adding to/ subtracting from a LocalDateTime instance](#adding-to--subtracting-from-a-localdatetime-instance)
   * [Alter certain fields of a LocalDateTime instance](#alter-certain-fields-of-a-localdatetime-instance)
-  * [truncate a LocalDateTime instance](#truncate-a-localdatetime-instance)
+  * [Truncate a LocalDateTime instance](#truncate-a-localdatetime-instance)
   * [Compare LocalDateTime instances](#compare-localdatetime-instances)
   * [Distance between local dates and times](#distance-between-local-dates-and-times)
-  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment-1)
+  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment)
+- [ZonedDateTime](#zoneddatetime)
+  * [The system default time zone](#the-system-default-time-zone)
+  * [Create a ZonedDateTime](#create-a-zoneddatetime)
+  * [Switch timezones](#switch-timezones)
+  * [Get and manipulate values from a ZonedDateTime](#get-and-manipulate-values-from-a-zoneddatetime)
 - [Period](#period)
 - [Duration](#duration)
 - [Customize js-joda](#customize-js-joda)
@@ -429,7 +434,7 @@ t.plusSeconds(1).with(nextEvenSecond) // '11:55:44'
 
 ```
 
-### truncate a LocalTime instance
+### Truncate a LocalTime instance
 
 ```javascript
 
@@ -480,7 +485,7 @@ t1.until(t2, ChronoUnit.SECONDS);  // 9732
 
 ```
 
-### Convert from a javascript Date or moment 
+### Convert a LocalTime from a javascript Date or moment 
 
 ```javascript
 
@@ -662,7 +667,7 @@ dt.plusSeconds(1).with(nextEvenSecond) // '2016-02-26T23:55:44.123'
 
 ```
 
-### truncate a LocalDateTime instance
+### Truncate a LocalDateTime instance
 
 ```javascript
 
@@ -733,6 +738,96 @@ d = LocalDateTime.from(nativeJs(moment()));
 
 ```
 
+## ZonedDateTime
+
+ZonedDateTime represents a date-time with a time-zone in the ISO-8601 calendar system. Without the iana tzdb loaded,
+ZonedDateTime only supports time-zones with a fixed Offset such as `UTC` or `UTC+02:00` and the system default time-zone `SYSTEM`.
+
+### The system default time zone
+
+The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec do not provide an api 
+for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline 
+(Date.prototype.getTimezoneOffset()). 
+
+It is not recommended to exchange zoned-date-times with the SYSTEM zone-id between javascript engines, 
+because the default time-zone may differ on the other machine.  Before a ZonedDateTime is exchanged, 
+it should be converted to a fixed offset zone.
+    
+```javascript
+
+// get now with the default system time-zone
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// convert it to ZonedDateTime with a fixed offset
+ZonedDateTime.now().withFixedOffsetZone().toString(); // e.g. 2016-03-18T12:38:23.561+01:00
+    
+```
+
+### Create a ZonedDateTime
+
+```javascript
+
+// get now with the default system time-zone
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// get now with the UTC time-zone
+ZonedDateTime.now(ZoneId.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
+
+// get now with a fixed offset time-zone 
+ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
+
+// parse a date time with a time tone ISO String
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]'); 
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00'); 
+ZonedDateTime.parse('2016-03-18T11:38:23.561Z'); 
+ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]'); 
+
+// create from a LocalDate(Time)
+LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM); // 2012-06-06T00:00+02:00[SYSTEM]
+ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
+ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
+
+// create by Instant
+ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM) // current system time
+
+```
+
+### Switch timezones
+
+```javascript
+
+var d = LocalDate.of(2016, 3, 18)
+var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00')) // 2016-03-18T12:00-05:00[UTC-05:00]
+
+// switch timezone retaining the local date-time if possible
+zdt.withZoneSameLocal(ZoneId.UTC); // 2016-03-18T12:00Z
+
+// switch timezone and retain the instant
+zdt.withZoneSameInstant(ZoneId.UTC); // 2016-03-18T17:00Z
+
+
+```
+
+### Get and manipulate values from a ZonedDateTime
+
+Check the examples for LocalDate and LocalDateTime. ZonedDateTime implements the same methods as LocalDateTime 
+for getting or setting values.
+
+The calculation for date and time units differ. Date units operate on the local time-line. Time units operate on the instant time-line. 
+The following example shows the difference for a daylight saving transition. 
+
+```javascript
+
+// assume the system default time zone is CET and its 2016-03-18 at noon local time.
+var zdt = ZonedDateTime.now();  // 2016-03-18T12:00+01:00[SYSTEM]
+
+// adding a date unit of 2 weeks  (crossing a daylight saving transition)
+zdt.plusWeeks(2); // still noon: 2016-04-01T12:00+02:00[SYSTEM]
+
+// adding a time unit of 2 weeks (2 * 7 * 24)
+zdt.plusHours(2 * 7 * 24); // 1 pm: 2016-04-01T13:00+02:00[SYSTEM]
+
+```
 
 ## Period
 
