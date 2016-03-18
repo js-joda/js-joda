@@ -24,7 +24,8 @@ export class SystemDefaultZoneId extends ZoneId {
         return false;
     }
 
-    toString(){
+    id(){
         return 'SYSTEM';
     }
+
 }
