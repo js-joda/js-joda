@@ -131,4 +131,11 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
 
     });
 
+    it('javascript special id SYSTEM', function () {
+        var text = 'SYSTEM';
+        var parsed = builder.appendZoneId().toFormatter().parseUnresolved(text, pos);
+        assertEquals(pos.getErrorIndex(), -1);
+        assertEquals(pos.getIndex(), 6);
+        assertEquals(parsed.query(TemporalQueries.zoneId()), ZoneId.systemDefault());
+    });
 });

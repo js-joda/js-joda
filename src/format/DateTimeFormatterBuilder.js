@@ -9,6 +9,10 @@ import {ArithmeticException, DateTimeException, IllegalArgumentException, Illega
 
 import {Enum} from '../Enum';
 import {ZoneIdFactory} from '../ZoneIdFactory';
+import {LocalDateTime} from '../LocalDateTime';
+import {ZoneOffset} from '../ZoneOffset';
+import {ZoneId} from '../ZoneId';
+import {ChronoField} from '../temporal/ChronoField';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {DateTimeFormatter} from './DateTimeFormatter';
@@ -1172,9 +1176,6 @@ class FractionPrinterParser {
 }
 
 //-----------------------------------------------------------------------
-import {LocalDateTime} from '../LocalDateTime';
-import {ZoneOffset} from '../ZoneOffset';
-import {ChronoField} from '../temporal/ChronoField';
 
 // days in a 400 year cycle = 146097
 // days in a 10,000 year cycle = 146097 * 25
@@ -1562,6 +1563,12 @@ class ZoneIdPrinterParser {
                 return this._parsePrefixedOffset(context, text, position, position + 3);
             }
         }
+        // javascript special case
+        if(text.substr(position, 6) === 'SYSTEM'){
+            context.setParsedZone(ZoneId.systemDefault());
+            return position + 6;
+        }
+
         // ...
         if (context.charEquals(nextChar, 'Z')) {
             context.setParsedZone(ZoneOffset.UTC);
