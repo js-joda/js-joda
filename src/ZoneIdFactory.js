@@ -102,6 +102,10 @@ export class ZoneIdFactory {
             }
             return new ZoneRegion('UT' + offset.id(), offset.rules());
         }
+        // javascript special case
+        if(zoneId === 'SYSTEM'){
+            return ZoneId.systemDefault();
+        }
         return ZoneRegion.ofId(zoneId, true);
     }
 
@@ -172,5 +176,9 @@ export function _init(){
     ZoneId.ofOffset = ZoneIdFactory.ofOffset;
     ZoneId.from = ZoneIdFactory.from;
     ZoneOffset.from = ZoneIdFactory.from;
+
+    // short cut
+    ZoneId.SYSTEM = SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
+    ZoneId.UTC = ZoneOffset.ofTotalSeconds(0);
 }
 

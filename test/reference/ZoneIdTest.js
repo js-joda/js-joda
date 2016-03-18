@@ -213,6 +213,14 @@ describe('org.threeten.bp.TestZoneId', ()=>{
             assertEquals(test.rules().isFixedOffset(), true);
         });
 
+        // javascript SYSTEM time-zone
+        it('test_of_string_SYSTEM', () => {
+            var test = ZoneId.of('SYSTEM');
+            assertEquals(test.id(), 'SYSTEM');
+            assertEquals(test, ZoneId.systemDefault());
+            assertEquals(test.normalized(), ZoneId.systemDefault());
+        });
+
     });
 
     // TODO missing in threeten bp
