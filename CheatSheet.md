@@ -3,6 +3,52 @@ js-joda Cheat sheet
 
 [For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/pithu/js-joda/)  
 
+## Table of content
+
+<!-- toc -->
+
+- [Try it out](#try-it-out)
+- [Consistent method prefixes](#consistent-method-prefixes)
+- [Basic concepts](#basic-concepts)
+- [LocalDate](#localdate)
+  * [Create a LocalDate](#create-a-localdate)
+  * [Get values from LocalDate](#get-values-from-localdate)
+  * [Get weeks of week based year, get year quarters and the day of quarter](#get-weeks-of-week-based-year--get-year-quarters-and-the-day-of-quarter)
+  * [Adding to/ subtracting from a LocalDate](#adding-to--subtracting-from-a-localdate)
+  * [Alter certain fields of a LocalDate](#alter-certain-fields-of-a-localdate)
+  * [Compare LocalDates](#compare-localdates)
+  * [Distance on the timeline](#distance-on-the-timeline)
+  * [Converting from and to other temporals](#converting-from-and-to-other-temporals)
+  * [Adjust a date to another date](#adjust-a-date-to-another-date)
+- [LocalTime](#localtime)
+  * [Create a LocalTime instance](#create-a-localtime-instance)
+  * [Get values from LocalTime](#get-values-from-localtime)
+  * [Adding to/ subtracting from a LocalTime instance](#adding-to--subtracting-from-a-localtime-instance)
+  * [Alter certain fields of a LocalTime instance](#alter-certain-fields-of-a-localtime-instance)
+  * [truncate a LocalTime instance](#truncate-a-localtime-instance)
+  * [Compare LocalTime instances](#compare-localtime-instances)
+  * [Distance between times](#distance-between-times)
+  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment)
+- [LocalDateTime](#localdatetime)
+  * [Create a LocalDateTime instance](#create-a-localdatetime-instance)
+  * [Get values from LocalDateTime](#get-values-from-localdatetime)
+  * [Adding to/ subtracting from a LocalDateTime instance](#adding-to--subtracting-from-a-localdatetime-instance)
+  * [Alter certain fields of a LocalDateTime instance](#alter-certain-fields-of-a-localdatetime-instance)
+  * [truncate a LocalDateTime instance](#truncate-a-localdatetime-instance)
+  * [Compare LocalDateTime instances](#compare-localdatetime-instances)
+  * [Distance between local dates and times](#distance-between-local-dates-and-times)
+  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment-1)
+- [Period](#period)
+- [Duration](#duration)
+- [Customize js-joda](#customize-js-joda)
+  * [Custom temporal adjuster](#custom-temporal-adjuster)
+  * [Custom temporal fields and temporal units](#custom-temporal-fields-and-temporal-units)
+  * [Custom formatter and queries](#custom-formatter-and-queries)
+
+<!-- tocstop -->
+
+## Try it out
+
 Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://pithu.github.io/js-joda/cheat-sheet.html).
 
 ## Consistent method prefixes
