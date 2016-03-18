@@ -8,7 +8,7 @@ import {assert, requireNonNull} from '../assert';
 import {ArithmeticException, DateTimeException, IllegalArgumentException, IllegalStateException} from '../errors';
 
 import {Enum} from '../Enum';
-import {ZoneId} from '../ZoneId';
+import {ZoneIdFactory} from '../ZoneIdFactory';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {DateTimeFormatter} from './DateTimeFormatter';
@@ -1583,17 +1583,17 @@ class ZoneIdPrinterParser {
         var prefix = text.substring(prefixPos, position).toUpperCase();
         var newContext = context.copy();
         if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {
-            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            context.setParsedZone(ZoneIdFactory.ofOffset(prefix, ZoneOffset.UTC));
             return position;
         }
         var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
         if (endPos < 0) {
-            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            context.setParsedZone(ZoneIdFactory.ofOffset(prefix, ZoneOffset.UTC));
             return position;
         }
         var offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
         var offset = ZoneOffset.ofTotalSeconds(offsetSecs);
-        context.setParsedZone(ZoneId.ofOffset(prefix, offset));
+        context.setParsedZone(ZoneIdFactory.ofOffset(prefix, offset));
         return endPos;
     }
 

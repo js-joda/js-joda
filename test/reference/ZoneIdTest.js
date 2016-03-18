@@ -13,6 +13,7 @@ import '../_init';
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneId} from '../../src/ZoneId';
+import {ZoneIdFactory} from '../../src/ZoneIdFactory';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestZoneId', ()=>{
@@ -230,7 +231,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         it('test_prefixOfOffset', () => {
             dataProviderTest(data_prefixValid, (prefix, offset, expectedHour) => {
                 var zoff = ZoneOffset.of(offset);
-                var zoneId = ZoneId.ofOffset(prefix, zoff);
+                var zoneId = ZoneIdFactory.ofOffset(prefix, zoff);
                 assertEquals(zoneId.rules(), ZoneOffset.ofHours(expectedHour).rules());
                 assertEquals(zoneId.id(), prefix + (expectedHour !== 0 ? zoff.id() : ''), 'in correct id for : ' + prefix + ', zoff: ' + zoff);
             });
@@ -249,20 +250,20 @@ describe('org.threeten.bp.TestZoneId', ()=>{
             dataProviderTest(data_prefixInvalid, (prefix, offset) => {
                 expect(() => {
                     var zoff = ZoneOffset.of(offset);
-                    ZoneId.ofOffset(prefix, zoff);
+                    ZoneIdFactory.ofOffset(prefix, zoff);
                 }).to.throw(IllegalArgumentException);
             });
         });
 
         it('test_nullPrefixOfOffset', function () {
             expect(() => {
-                ZoneId.ofOffset(null, ZoneOffset.ofTotalSeconds(1));
+                ZoneIdFactory.ofOffset(null, ZoneOffset.ofTotalSeconds(1));
             }).to.throw(NullPointerException);
         });
 
         it('test_nullOffsetOfOffset', function () {
             expect(() => {
-                ZoneId.ofOffset('GMT', null);
+                ZoneIdFactory.ofOffset('GMT', null);
             }).to.throw(NullPointerException);
         });
 
