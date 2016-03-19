@@ -481,6 +481,22 @@ export function _init() {
         .appendInstant()
         .toFormatter(ResolverStyle.STRICT);
 
+    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+        .appendOffsetId()
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+        .optionalStart()
+        .appendLiteral('[')
+        .parseCaseSensitive()
+        .appendZoneId()
+        // .appendZoneRegionId()
+        .appendLiteral(']')
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
     DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
         if (temporal instanceof DateTimeBuilder) {
             return temporal.excessDays;

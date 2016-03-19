@@ -4,3 +4,7 @@
  */
 
 import '../src/_init';
+
+import {_init as CurrentCESTZoneInit} from './zone/CurrentCESTZone';
+
+CurrentCESTZoneInit();

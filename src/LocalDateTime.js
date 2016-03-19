@@ -11,6 +11,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentExce
 import {Clock} from './Clock';
 import {LocalDate} from './LocalDate';
 import {LocalTime} from './LocalTime';
+import {ZonedDateTime} from './ZonedDateTime';
 import {ZoneId} from './ZoneId';
 
 
@@ -221,8 +222,8 @@ export class LocalDateTime extends ChronoLocalDateTime
         requireNonNull(temporal, 'temporal');
         if (temporal instanceof LocalDateTime) {
             return temporal;
-        //} else if (temporal instanceof ZonedDateTime) {
-        //    return temporal.toLocalDateTime();
+        } else if (temporal instanceof ZonedDateTime) {
+            return temporal.toLocalDateTime();
         }
         try {
             var date = LocalDate.from(temporal);
@@ -1462,11 +1463,9 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @param {ZoneId} zone  the time-zone to use, not null
      * @return {ZonedDateTime} the zoned date-time formed from this date-time, not null
      */
-/*
     atZone(zone) {
         return ZonedDateTime.of(this, zone);
     }
-*/
 
     //-----------------------------------------------------------------------
     /**

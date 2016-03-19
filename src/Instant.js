@@ -339,17 +339,7 @@ export class Instant extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     get(field) {
-        if (field instanceof ChronoField) {
-            switch (field) {
-                case ChronoField.NANO_OF_SECOND: return this._nanos;
-                case ChronoField.MICRO_OF_SECOND: return MathUtil.intDiv(this._nanos, 1000);
-                case ChronoField.MILLI_OF_SECOND: return MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-                case ChronoField.INSTANT_SECONDS:
-                    ChronoField.INSTANT_SECONDS.checkValidIntValue(this._seconds);
-            }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
-        }
-        return this.range(field).checkValidIntValue(field.getFrom(this), field);
+        return this.getLong(field);
     }
 
     /**

@@ -5,23 +5,11 @@
  */
 
 import {abstractMethodFail} from './assert';
+import {StringUtil} from './StringUtil';
 
-import {SystemDefaultZoneRules} from './zone/SystemDefaultZoneRules';
+import {Instant} from './Instant';
 
 export class ZoneId {
-
-    //-----------------------------------------------------------------------
-    /**
-     * Gets the system default time-zone.
-     * <p>
-     *
-     * @return {ZoneId} the zone ID, not null
-     */
-    static systemDefault() {
-        return zoneSystemDefaultInstance;
-    }
-
-
     //-----------------------------------------------------------------------
     /**
      * Gets the time-zone rules for this ID allowing calculations to be performed.
@@ -47,20 +35,67 @@ export class ZoneId {
         abstractMethodFail('ZoneId.rules');
     }
 
-}
-
-class ZoneIdSystemDefault extends ZoneId {
-
-    constructor(){
-        super();
-        this._rules = new SystemDefaultZoneRules();
+    /**
+      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.
+      * <p>
+      * The returns a normalized {@code ZoneId} that can be used in place of this ID.
+      * The result will have {@code ZoneRules} equivalent to those returned by this object,
+      * however the ID returned by {@code getId()} may be different.
+      * <p>
+      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.
+      * If they do, then the {@code ZoneOffset} equal to that offset is returned.
+      * Otherwise {@code this} is returned.
+      *
+      * @return {ZoneId} the time-zone unique ID, not null
+      */
+    normalized() {
+        var rules = this.rules();
+        if (rules.isFixedOffset()) {
+            return rules.offset(Instant.EPOCH);
+        }
+        //try {
+        //} catch (ZoneRulesException ex) {
+        //    // ignore invalid objects
+        //}
+        return this;
     }
 
-    rules(){
-        return this._rules;
-    }
+     //-----------------------------------------------------------------------
+     /**
+      * Checks if this time-zone ID is equal to another time-zone ID.
+      * <p>
+      * The comparison is based on the ID.
+      *
+      * @param {*} other  the object to check, null returns false
+      * @return {boolean} true if this is equal to the other time-zone ID
+      */
+     equals(other) {
+         if (this === other) {
+             return true;
+         }
+         if (other instanceof ZoneId) {
+             return this.id() === other.id();
+         }
+         return false;
+     }
+
+     /**
+      * A hash code for this time-zone ID.
+      *
+      * @return {number} a suitable hash code
+      */
+     hashCode() {
+         return StringUtil.hashCode(this.id());
+     }
+
+     //-----------------------------------------------------------------------
+     /**
+      * Outputs this zone as a {@code String}, using the ID.
+      *
+      * @return {string} a string representation of this time-zone ID, not null
+      */
+     toString() {
+         return this.id();
+     }
 
 }
-
-var zoneSystemDefaultInstance = new ZoneIdSystemDefault();
-

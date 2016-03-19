@@ -59,6 +59,21 @@ export class DateTimePrintContext{
     }
 
     /**
+     * Gets a value using a query.
+     *
+     * @param {TemporalQuery} query  the query to use, not null
+     * @return {*} the result, null if not found and optional is true
+     * @throws DateTimeException if the type is not available and the section is not optional
+     */
+    getValueQuery(query) {
+        var result = this._temporal.query(query);
+        if (result == null && this._optional === 0) {
+            throw new DateTimeException('Unable to extract value: ' + this._temporal);
+        }
+        return result;
+    }
+
+    /**
      * Gets the value of the specified field.
      *
      * This will return the value for the specified field.

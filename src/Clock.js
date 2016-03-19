@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {abstractMethodFail} from './assert';
+import {abstractMethodFail, requireNonNull} from './assert';
 import {Instant} from './Instant';
 import {ZoneId} from './ZoneId';
 import {ZoneOffset} from './ZoneOffset';
@@ -60,7 +60,7 @@ export class Clock {
      * @return {Clock} a clock that uses the system clock in the UTC zone, not null
      */
     static systemUTC() {
-        return new SystemUTCClock();
+        return new SystemClock(ZoneOffset.UTC);
     }
 
     /**
@@ -79,7 +79,16 @@ export class Clock {
      * @see ZoneId#systemDefault()
      */
     static systemDefaultZone() {
-        return new SystemDefaultClock();
+        return new SystemClock(ZoneId.systemDefault());
+    }
+
+    /**
+     *
+     * @param {ZoneId} zone
+     * @return {Clock} a clock that uses the specified time zone
+     */
+    static system(zone){
+        return new SystemClock(zone);
     }
 
     /**
@@ -134,42 +143,53 @@ export class Clock {
     }
 }
 
-class SystemClock extends Clock {
-    millis() {
-        return new Date().getTime();
-    }
-
-    instant() {
-        return Instant.ofEpochMilli(this.millis());
-    }
-}
-
 /**
  * Implementation of a clock that always returns the latest time from
  * {@link Date#getTime()}.
  */
-class SystemUTCClock extends SystemClock{
-    zone(){
-        return ZoneOffset.UTC;
+class SystemClock extends Clock {
+    /**
+     *
+     * @param {!ZoneId} zone
+     */
+    constructor(zone){
+        requireNonNull(zone, 'zone');
+        super();
+        this._zone = zone;
     }
 
+    /**
+     *
+     * @returns {!ZoneId}
+     */
+    zone() {
+        return this._zone;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    millis() {
+        return new Date().getTime();
+    }
+
+    /**
+     *
+     * @returns {Instant}
+     */
+    instant() {
+        return Instant.ofEpochMilli(this.millis());
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
     toString(){
-        return 'SystemClock[UTC]';
-    }
-}
-
-/**
- * Implementation of a clock that always returns the latest time from
- * sytem default Zone {@link Date#getTime()} and {@link Date#getTimeZoneOffset()}.
- */
-class SystemDefaultClock extends SystemClock{
-    zone(){
-        return ZoneId.systemDefault();
+        return 'SystemClock[' + this._zone.toString() + ']';
     }
 
-    toString(){
-        return 'SystemClock[default]';
-    }
 }
 
 /**

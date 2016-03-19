@@ -3,6 +3,57 @@ js-joda Cheat sheet
 
 [For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/pithu/js-joda/)  
 
+## Table of content
+
+<!-- toc -->
+
+- [Try it out](#try-it-out)
+- [Consistent method prefixes](#consistent-method-prefixes)
+- [Basic concepts](#basic-concepts)
+- [LocalDate](#localdate)
+  * [Create a LocalDate](#create-a-localdate)
+  * [Get values from LocalDate](#get-values-from-localdate)
+  * [Get weeks of week based year, get year quarters and the day of quarter](#get-weeks-of-week-based-year--get-year-quarters-and-the-day-of-quarter)
+  * [Adding to/ subtracting from a LocalDate](#adding-to--subtracting-from-a-localdate)
+  * [Alter certain fields of a LocalDate](#alter-certain-fields-of-a-localdate)
+  * [Compare LocalDates](#compare-localdates)
+  * [Distance on the timeline](#distance-on-the-timeline)
+  * [Converting from and to other temporals](#converting-from-and-to-other-temporals)
+  * [Adjust a date to another date](#adjust-a-date-to-another-date)
+- [LocalTime](#localtime)
+  * [Create a LocalTime instance](#create-a-localtime-instance)
+  * [Get values from LocalTime](#get-values-from-localtime)
+  * [Adding to/ subtracting from a LocalTime instance](#adding-to--subtracting-from-a-localtime-instance)
+  * [Alter certain fields of a LocalTime instance](#alter-certain-fields-of-a-localtime-instance)
+  * [Truncate a LocalTime instance](#truncate-a-localtime-instance)
+  * [Compare LocalTime instances](#compare-localtime-instances)
+  * [Distance between times](#distance-between-times)
+  * [Convert a LocalTime from a javascript Date or moment](#convert-a-localtime-from-a-javascript-date-or-moment)
+- [LocalDateTime](#localdatetime)
+  * [Create a LocalDateTime instance](#create-a-localdatetime-instance)
+  * [Get values from LocalDateTime](#get-values-from-localdatetime)
+  * [Adding to/ subtracting from a LocalDateTime instance](#adding-to--subtracting-from-a-localdatetime-instance)
+  * [Alter certain fields of a LocalDateTime instance](#alter-certain-fields-of-a-localdatetime-instance)
+  * [Truncate a LocalDateTime instance](#truncate-a-localdatetime-instance)
+  * [Compare LocalDateTime instances](#compare-localdatetime-instances)
+  * [Distance between local dates and times](#distance-between-local-dates-and-times)
+  * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment)
+- [ZonedDateTime](#zoneddatetime)
+  * [The system default time zone](#the-system-default-time-zone)
+  * [Create a ZonedDateTime](#create-a-zoneddatetime)
+  * [Switch timezones](#switch-timezones)
+  * [Get and manipulate values from a ZonedDateTime](#get-and-manipulate-values-from-a-zoneddatetime)
+- [Period](#period)
+- [Duration](#duration)
+- [Customize js-joda](#customize-js-joda)
+  * [Custom temporal adjuster](#custom-temporal-adjuster)
+  * [Custom temporal fields and temporal units](#custom-temporal-fields-and-temporal-units)
+  * [Custom formatter and queries](#custom-formatter-and-queries)
+
+<!-- tocstop -->
+
+## Try it out
+
 Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://pithu.github.io/js-joda/cheat-sheet.html).
 
 ## Consistent method prefixes
@@ -178,15 +229,6 @@ d.withDayOfYear(42); // 2016-02-11
 // set the WEEK_OF_WEEK_BASED_YEAR to 52
 d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52) // 2016-12-31
 
-// set by a TemporalAdjuster lastDayOfMonth
-d.with(TemporalAdjusters.lastDayOfMonth()) // 2016-12-31
-
-// set by a TemporalAdjuster lastDayOfMonth
-d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-31
-
-// set by a TemporalAdjuster next or same weekday
-d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)) // 2016-12-25
-
 ```
 
 ### Compare LocalDates
@@ -257,6 +299,30 @@ d = LocalDate.from(nativeJs(moment()));
 
 ```
 
+### Adjust a date to another date
+
+TemporalAdjusters provides compact business logic for date based temporals such as LocalDate, LocalDateTime or ZonedDateTime.
+
+```javascript
+
+var d = LocalDate.parse('2016-12-24');
+
+// get first/ last day of month
+d.with(TemporalAdjusters.firstDayOfMonth()) // 2016-12-01
+d.with(TemporalAdjusters.lastDayOfMonth())  // 2016-12-31
+
+// get the next specified weekday
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))   // 2016-12-25
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)) // 2016-12-24
+d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))       // 2016-12-31
+
+// get the first/last weekday of month
+d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY)) // 2016-12-31
+d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY)) // 2016-12-03
+
+```
+
+Find more adjusters in the TemporalAdjusters API documentation.
 
 ## LocalTime
 
@@ -368,7 +434,7 @@ t.plusSeconds(1).with(nextEvenSecond) // '11:55:44'
 
 ```
 
-### truncate a LocalTime instance
+### Truncate a LocalTime instance
 
 ```javascript
 
@@ -419,7 +485,7 @@ t1.until(t2, ChronoUnit.SECONDS);  // 9732
 
 ```
 
-### Convert from a javascript Date or moment 
+### Convert a LocalTime from a javascript Date or moment 
 
 ```javascript
 
@@ -601,7 +667,7 @@ dt.plusSeconds(1).with(nextEvenSecond) // '2016-02-26T23:55:44.123'
 
 ```
 
-### truncate a LocalDateTime instance
+### Truncate a LocalDateTime instance
 
 ```javascript
 
@@ -672,6 +738,96 @@ d = LocalDateTime.from(nativeJs(moment()));
 
 ```
 
+## ZonedDateTime
+
+ZonedDateTime represents a date-time with a time-zone in the ISO-8601 calendar system. Without the iana tzdb loaded,
+ZonedDateTime only supports time-zones with a fixed Offset such as `UTC` or `UTC+02:00` and the system default time-zone `SYSTEM`.
+
+### The system default time zone
+
+The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec do not provide an api 
+for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline 
+(Date.prototype.getTimezoneOffset()). 
+
+It is not recommended to exchange zoned-date-times with the SYSTEM zone-id between javascript engines, 
+because the default time-zone may differ on the other machine.  Before a ZonedDateTime is exchanged, 
+it should be converted to a fixed offset zone.
+    
+```javascript
+
+// get now with the default system time-zone
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// convert it to ZonedDateTime with a fixed offset
+ZonedDateTime.now().withFixedOffsetZone().toString(); // e.g. 2016-03-18T12:38:23.561+01:00
+    
+```
+
+### Create a ZonedDateTime
+
+```javascript
+
+// get now with the default system time-zone
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// get now with the UTC time-zone
+ZonedDateTime.now(ZoneId.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
+
+// get now with a fixed offset time-zone 
+ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
+
+// parse a date time with a time tone ISO String
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]'); 
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00'); 
+ZonedDateTime.parse('2016-03-18T11:38:23.561Z'); 
+ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]'); 
+
+// create from a LocalDate(Time)
+LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM); // 2012-06-06T00:00+02:00[SYSTEM]
+ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
+ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
+
+// create by Instant
+ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM) // current system time
+
+```
+
+### Switch timezones
+
+```javascript
+
+var d = LocalDate.of(2016, 3, 18)
+var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00')) // 2016-03-18T12:00-05:00[UTC-05:00]
+
+// switch timezone retaining the local date-time if possible
+zdt.withZoneSameLocal(ZoneId.UTC); // 2016-03-18T12:00Z
+
+// switch timezone and retain the instant
+zdt.withZoneSameInstant(ZoneId.UTC); // 2016-03-18T17:00Z
+
+
+```
+
+### Get and manipulate values from a ZonedDateTime
+
+Check the examples for LocalDate and LocalDateTime. ZonedDateTime implements the same methods as LocalDateTime 
+for getting or setting values.
+
+The calculation for date and time units differ. Date units operate on the local time-line. Time units operate on the instant time-line. 
+The following example shows the difference for a daylight saving transition. 
+
+```javascript
+
+// assume the system default time zone is CET and its 2016-03-18 at noon local time.
+var zdt = ZonedDateTime.now();  // 2016-03-18T12:00+01:00[SYSTEM]
+
+// adding a date unit of 2 weeks  (crossing a daylight saving transition)
+zdt.plusWeeks(2); // still noon: 2016-04-01T12:00+02:00[SYSTEM]
+
+// adding a time unit of 2 weeks (2 * 7 * 24)
+zdt.plusHours(2 * 7 * 24); // 1 pm: 2016-04-01T13:00+02:00[SYSTEM]
+
+```
 
 ## Period
 

@@ -1,3 +1,8 @@
+/*
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
 
 import '../../_init';
 import {assertEquals, dataProviderTest, isCoverageTestRunner, isBrowserTestRunner} from '../../testUtils';
@@ -109,7 +114,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
     });
 */
 
-    var yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 40; // should be at least 400
+    var yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 30; // should be at least 400
     it('test_loop', function () {
         // yearsToLoop = 400; this.timeout(10000);
         // loop round at least one 400 year cycle, including before 1970

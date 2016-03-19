@@ -113,7 +113,7 @@ export class ChronoLocalDateTime extends Temporal {
      * Instants on the time-line after the epoch are positive, earlier are negative.
      *
      * @param {ZoneOffset} offset  the offset to use for the conversion, not null
-     * @return the number of seconds from the epoch of 1970-01-01T00:00:00Z
+     * @return {number} the number of seconds from the epoch of 1970-01-01T00:00:00Z
      */
     toEpochSecond(offset) {
         requireNonNull(offset, 'offset');

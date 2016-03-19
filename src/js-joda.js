@@ -14,7 +14,9 @@ export { LocalDateTime } from './LocalDateTime';
 export { Month } from './Month';
 export { Period } from './Period';
 export { Year } from './Year';
+export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
+export { ZoneId } from './ZoneId';
 
 export {nativeJs} from './temporal/NativeJsTemporal';
 export {ChronoField} from './temporal/ChronoField';
