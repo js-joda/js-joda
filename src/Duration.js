@@ -54,7 +54,6 @@ export class Duration extends TemporalAmount
      * @param {Number} nanos - the nanoseconds within the second, from 0 to 999,999,999
      * @private
      */
-    //TODO: private ? 
     constructor(seconds, nanos) {
         super();
         this._seconds = seconds;
@@ -921,7 +920,8 @@ export class Duration extends TemporalAmount
      * @return {number} the total length of the duration in seconds, with a scale of 9, not null
      */
     toSeconds() {
-        var nanoFloat = MathUtil.safeMultiply(this._nanos, Math.pow(10, -9));
+        // intentionally not with safeMultiply... we accept rounding errors here?
+        var nanoFloat = this._nanos * Math.pow(10, -9);
         return MathUtil.safeAdd(this._seconds, nanoFloat);
     }
 
