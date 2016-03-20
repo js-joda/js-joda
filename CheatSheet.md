@@ -745,7 +745,7 @@ ZonedDateTime only supports time-zones with a fixed Offset such as `UTC` or `UTC
 
 ### The system default time zone
 
-The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec do not provide an api 
+The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec does not provide an API 
 for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline 
 (Date.prototype.getTimezoneOffset()). 
 
@@ -776,7 +776,7 @@ ZonedDateTime.now(ZoneId.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 // get now with a fixed offset time-zone 
 ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
 
-// parse a date time with a time tone ISO String
+// parse a date time with a time zone ISO String
 ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]'); 
 ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00'); 
 ZonedDateTime.parse('2016-03-18T11:38:23.561Z'); 
