@@ -891,7 +891,11 @@ export class Duration extends TemporalAmount
         if (multiplicand === 1) {
             return this;
         }
-        return Duration.create(MathUtil.safeMultiply(this.toSeconds(), multiplicand));
+        let secs = MathUtil.safeMultiply(this._seconds, multiplicand);
+        let nos = MathUtil.safeMultiply(this._nanos, multiplicand);
+        secs = secs + MathUtil.intDiv(nos, LocalTime.NANOS_PER_SECOND);
+        nos = MathUtil.intMod(nos, LocalTime.NANOS_PER_SECOND);
+        return Duration.ofSeconds(secs, nos);
     }
 
     /**
