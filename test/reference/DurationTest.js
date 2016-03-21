@@ -3,7 +3,9 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {expect} from 'chai';
+import {dataProviderTest} from '../testUtils';
 
 import '../_init';
 
@@ -1718,8 +1720,7 @@ describe('org.threeten.bp.TestDuration', () => {
         ];
 
         it('dividedBy', () => {
-            data_dividedBy.forEach((val) => {
-                let [seconds, nanos, divisor, expectedSeconds, expectedNanos] = val;
+            dataProviderTest(data_dividedBy, (seconds, nanos, divisor, expectedSeconds, expectedNanos) => {
                 let d = Duration.ofSeconds(seconds, nanos);
                 let t = d.dividedBy(divisor);
                 expect(t.seconds()).to.eql(expectedSeconds);
