@@ -379,9 +379,7 @@ export class Duration extends TemporalAmount
      * @return {Duration}
      */
     static _create() {
-        if (arguments.length === 1) {
-            return Duration._createSeconds(arguments[0]);
-        } else if (arguments.length === 2) {
+        if (arguments.length <= 2) {
             return Duration._createSecondsNanos(arguments[0], arguments[1]);
         } else {
             return Duration._createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
@@ -406,32 +404,9 @@ export class Duration extends TemporalAmount
         if ((seconds | nanoAdjustment) === 0) {
             return Duration.ZERO;
         }
-        // if seconds is a float, we need to adjust the nanos from it as well
-        if (seconds >= 0) {
-            nanoAdjustment += seconds % 1 * LocalTime.NANOS_PER_SECOND;
-        } else {
-            nanoAdjustment -= seconds % 1 * LocalTime.NANOS_PER_SECOND;
-        }
-        seconds = Math.floor(seconds);
-        nanoAdjustment = Math.round(nanoAdjustment);
-
         return new Duration(seconds, nanoAdjustment);
     }
     
-    /**
-     * Creates an instance of {@link Duration} from a number of seconds.
-     *
-     * @param {Number} seconds - the number of seconds, up to scale 9, positive or negative
-     * @return {!Duration}
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    static _createSeconds(seconds) {
-        let nanos = Math.round(seconds * Math.pow(10, 9));
-        let div = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
-        let rem = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
-        return Duration.ofSeconds(div, rem);
-    }
-
     //-----------------------------------------------------------------------
     /**
      * Gets the value of the requested unit.
@@ -901,7 +876,8 @@ export class Duration extends TemporalAmount
     /**
      * Returns a copy of this duration divided by the specified value.
      * <p>
-     * This instance is immutable and unaffected by this method call.
+     * In opposite to the threeten implementation the division is realized by floating point not by 
+     * fixed point arithmetic. Expect floating point rounding errors for {@link Duration.dividedBy}.
      *
      * @param {Number} divisor - the value to divide the duration by, positive or negative, not zero
      * @return {Duration} based on this duration divided by the specified divisor, not null
@@ -914,19 +890,11 @@ export class Duration extends TemporalAmount
         if (divisor === 1) {
             return this;
         }
-        return Duration._create(this.toSeconds() / divisor);
-    }
-
-    /**
-     * Converts this duration to the total length in seconds and
-     * fractional nanoseconds expressed as a {@code BigDecimal}.
-     *
-     * @return {number} the total length of the duration in seconds, with a scale of 9, not null
-     */
-    toSeconds() {
-        // intentionally not with safeMultiply... we accept rounding errors here?
-        var nanoFloat = this._nanos * Math.pow(10, -9);
-        return MathUtil.safeAdd(this._seconds, nanoFloat);
+        var secs = MathUtil.intDiv(this._seconds, divisor);
+        var secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
+        var nos = MathUtil.intDiv(this._nanos, divisor);
+        nos = secsMod + nos;
+        return Duration.ofSeconds(secs, nos);
     }
 
     //-----------------------------------------------------------------------
