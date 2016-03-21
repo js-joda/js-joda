@@ -9,7 +9,7 @@ js-joda Cheat sheet
 
 ## Try it out
 
-Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://pithu.github.io/js-joda/cheat-sheet.html).
+Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of this webpage.
 
 ## Consistent method prefixes
 

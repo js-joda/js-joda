@@ -57,7 +57,7 @@ Then add it as a script tag to your page
 
 ## Documentation
 
-+ [Cheat Sheet](CheatSheet.md) Quick start guide
++ [Cheat Sheet](cheat-sheet.html) Quick start guide
 + [API](https://doc.esdoc.org/github.com/pithu/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
 + [js-joda Homepage](http://pithu.github.io/js-joda/) Project homepage
 
