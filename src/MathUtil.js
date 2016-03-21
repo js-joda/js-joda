@@ -20,13 +20,7 @@ export class MathUtil {
      */
     static intDiv(x, y) {
         var r = x/y;
-        if(r === 0){
-            return 0;
-        } else if(r < 0){
-            r = Math.ceil(r);
-        } else {
-            r = Math.floor(r);
-        }
+        r = MathUtil.roundDown(r);
         return MathUtil.safeZero(r);
     }
 
@@ -38,16 +32,23 @@ export class MathUtil {
      */
     static intMod(x, y) {
         var r = x - MathUtil.intDiv(x, y) * y;
-        if(r === 0){
-            return 0;
-        } else if(r < 0){
-            r = Math.ceil(r);
-        } else {
-            r = Math.floor(r);
-        }
+        r = MathUtil.roundDown(r);
         return MathUtil.safeZero(r);
     }
 
+    /**
+     * 
+     * @param {number} r
+     * @returns {number}
+     */
+    static roundDown(r){
+        if (r < 0) {
+            return Math.ceil(r);
+        } else {
+            return Math.floor(r);
+        }
+    }
+    
     /**
      * 
      * @param {number} x
