@@ -525,10 +525,10 @@ LocalDateTime.of(2016,2,29);            // "2016-02-29T00:00"
 LocalDateTime.of(2016,2,29,12,55,42);   // "2016-02-29T12:55:42"
 LocalDateTime.of(2016,2,29,12,55,42,9)  // "2016-02-29T12:55:42.000000009"
 
-// TODO milestone 1
 // obtain an instance of LocalDateTime from epoch seconds and a ZoneOffset
-// LocalTime.ofEpochSecond() // 
-// LocalTime.ofInstant() // 
+LocalDateTime.ofEpochSecond(0, ZoneOffset.UTC) //  "1970-01-01T00:00" 
+LocalDateTime.ofInstant(Instant.now()) // current local date-time  
+LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC) // current local utc date-time  
 
 ```
 
