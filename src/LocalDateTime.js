@@ -13,6 +13,7 @@ import {LocalDate} from './LocalDate';
 import {LocalTime} from './LocalTime';
 import {ZonedDateTime} from './ZonedDateTime';
 import {ZoneId} from './ZoneId';
+import {ZoneOffset} from './ZoneOffset';
 
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
@@ -187,12 +188,16 @@ export class LocalDateTime extends ChronoLocalDateTime
      * low-level conversions rather than general application usage.
      *
      * @param {number} epochSecond - the number of seconds from the epoch of 1970-01-01T00:00:00Z
-     * @param {number} nanoOfSecond - the nanosecond within the second, from 0 to 999,999,999
-     * @param {ZoneOffset} offset - the zone offset, not null
+     * @param {number|!ZoneOffset} nanoOfSecond - the nanosecond within the second, from 0 to 999,999,999
+     * @param {ZoneOffset} offset - the zone offset, not null if called with 3 arguments 
      * @return {LocalDateTime} the local date-time, not null
      * @throws {DateTimeException} if the result exceeds the supported range
      */
     static ofEpochSecond(epochSecond=0, nanoOfSecond=0, offset) {
+        if(arguments.length === 2 && nanoOfSecond instanceof ZoneOffset){
+            offset = nanoOfSecond;
+            nanoOfSecond = 0;
+        }
         requireNonNull(offset, 'offset');
         var localSecond = epochSecond + offset.totalSeconds();  // overflow caught later
         var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
