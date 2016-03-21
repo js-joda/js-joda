@@ -73,7 +73,7 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if the input days exceeds the capacity of {@link Duration}
      */
     static ofDays(days) {
-        return Duration.create(MathUtil.safeMultiply(days, LocalTime.SECONDS_PER_DAY), 0);
+        return Duration._create(MathUtil.safeMultiply(days, LocalTime.SECONDS_PER_DAY), 0);
     }
 
     /**
@@ -88,7 +88,7 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if the input hours exceeds the capacity of {@link Duration}
      */
     static ofHours(hours) {
-        return Duration.create(MathUtil.safeMultiply(hours, LocalTime.SECONDS_PER_HOUR), 0);
+        return Duration._create(MathUtil.safeMultiply(hours, LocalTime.SECONDS_PER_HOUR), 0);
     }
 
     /**
@@ -103,7 +103,7 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if the input minutes exceeds the capacity of {@link Duration}
      */
     static ofMinutes(minutes) {
-        return Duration.create(MathUtil.safeMultiply(minutes, LocalTime.SECONDS_PER_MINUTE), 0);
+        return Duration._create(MathUtil.safeMultiply(minutes, LocalTime.SECONDS_PER_MINUTE), 0);
     }
 
     //-----------------------------------------------------------------------
@@ -129,7 +129,7 @@ export class Duration extends TemporalAmount
     static ofSeconds(seconds, nanoAdjustment = 0) {
         var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
         var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
-        return Duration.create(secs, nos);
+        return Duration._create(secs, nos);
     }
 
     //-----------------------------------------------------------------------
@@ -148,7 +148,7 @@ export class Duration extends TemporalAmount
             mos += 1000;
             secs--;
         }
-        return Duration.create(secs, mos * 1000000);
+        return Duration._create(secs, mos * 1000000);
     }
 
     //-----------------------------------------------------------------------
@@ -167,7 +167,7 @@ export class Duration extends TemporalAmount
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
         }
-        return this.create(secs, nos);
+        return this._create(secs, nos);
     }
 
     //-----------------------------------------------------------------------
@@ -333,7 +333,7 @@ export class Duration extends TemporalAmount
                     var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
                     var nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
-                        return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
+                        return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
                     } catch (ex) {
                         throw new DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
                     }
@@ -378,17 +378,17 @@ export class Duration extends TemporalAmount
      *
      * @return {Duration}
      */
-    static create() {
+    static _create() {
         if (arguments.length === 1) {
-            return Duration.createSeconds(arguments[0]);
+            return Duration._createSeconds(arguments[0]);
         } else if (arguments.length === 2) {
-            return Duration.createSecondsNanos(arguments[0], arguments[1]);
+            return Duration._createSecondsNanos(arguments[0], arguments[1]);
         } else {
-            return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+            return Duration._createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
         }
     }
 
-    static createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
+    static _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
         var seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
         if (negate) {
             return Duration.ofSeconds(seconds, nanos).negated();
@@ -402,7 +402,7 @@ export class Duration extends TemporalAmount
      * @param {Number} seconds - the length of the duration in seconds, positive or negative
      * @param {Number} nanoAdjustment - the nanosecond adjustment within the second, from 0 to 999,999,999
      */
-    static createSecondsNanos(seconds = 0, nanoAdjustment = 0) {
+    static _createSecondsNanos(seconds = 0, nanoAdjustment = 0) {
         if ((seconds | nanoAdjustment) === 0) {
             return Duration.ZERO;
         }
@@ -425,7 +425,7 @@ export class Duration extends TemporalAmount
      * @return {!Duration}
      * @throws ArithmeticException if numeric overflow occurs
      */
-    static createSeconds(seconds) {
+    static _createSeconds(seconds) {
         let nanos = Math.round(seconds * Math.pow(10, 9));
         let div = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
         let rem = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
@@ -536,7 +536,7 @@ export class Duration extends TemporalAmount
      * @return {Duration} based on this period with the requested seconds, not null
      */
     withSeconds(seconds) {
-        return Duration.create(seconds, this._nanos);
+        return Duration._create(seconds, this._nanos);
     }
 
     /**
@@ -553,7 +553,7 @@ export class Duration extends TemporalAmount
      */
     withNanos(nanoOfSecond) {
         ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
-        return Duration.create(this._seconds, nanoOfSecond);
+        return Duration._create(this._seconds, nanoOfSecond);
     }
 
     //-----------------------------------------------------------------------
@@ -914,7 +914,7 @@ export class Duration extends TemporalAmount
         if (divisor === 1) {
             return this;
         }
-        return Duration.create(this.toSeconds() / divisor);
+        return Duration._create(this.toSeconds() / divisor);
     }
 
     /**
