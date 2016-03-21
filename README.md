@@ -9,8 +9,6 @@ Immutable data and time library for javascript
 
 + **js-joda** is an **immutable data and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
 
-+ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threeten, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
-
 + js-joda has a lightweight footprint, only **36 kB minified and compressed**, no third party dependencies.
  
 + js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
@@ -19,6 +17,8 @@ Immutable data and time library for javascript
 We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
      
 + js-joda supports **ECMAScript 5** browsers down to ie9.          
+
++ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threeten, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
 
 ## Why yet another javascript date and time library
 
@@ -41,7 +41,7 @@ with the architecture of frameworks like React and Flux.
 
 + **LocalTime** represents a time without time-zone in the ISO-8601 calendar system such as '11:55:00'.
 
-+ **LocalDateTime** is a description of the date, as used for birthdays, combined with the local time as seen on a wall clock.
++ **LocalDateTime** is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.
 
 + **ZonedDateTime** is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
 
