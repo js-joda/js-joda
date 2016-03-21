@@ -11,5 +11,6 @@ build
 .idea
 *.iml
 
-
-
+# ruby and jekyll
+Gemfile*
+_site
