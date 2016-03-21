@@ -28,7 +28,7 @@ The API is using a consistent method prefixes.
 ## Basic concepts
 
 The API is immutable, an existing instance is never changed, all manipulating methods as parse/ with/ plus/ minus/ to/ at are returning new instances.
-An existing instance is always valid. Instead of returning null or invalid values, exceptions are thrown. 
+An existing instance is always valid. Instead of returning null or invalid values, exceptions are thrown.
 
 ## LocalDate
 
@@ -42,7 +42,7 @@ A LocalDate represents a date without a time and time-zone in the ISO-8601 calen
 LocalDate.now();
 
 // obtain the current date in the utc timezone, e.g. 2016-02-23
-LocalDate.now(Clock.systemUTC()); 
+LocalDate.now(Clock.systemUTC());
 
 // obtain an instance of LocalDate from an ISO8601 formatted text string
 LocalDate.parse('2016-02-23');
@@ -107,7 +107,7 @@ d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 3
 // get week of week based year as defined by ISO 8601 with a monday based week
 d.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);   // 51
 
-d.isoWeekOfWeekyear();   // 51, is the same as above 
+d.isoWeekOfWeekyear();   // 51, is the same as above
 d.isoWeekyear();         // 2016
 
 LocalDate.of(2017,1,1).isoWeekOfWeekyear(); // 52
@@ -126,27 +126,27 @@ d.with(IsoFields.QUARTER_OF_YEAR, 3).with(IsoFields.DAY_OF_QUARTER, 15) // 2016-
 ```
 
 ### Adding to/ subtracting from a LocalDate
- 
+
 ```javascript
 
 var d = LocalDate.parse('2016-02-23');
 
-// add/ subtract 366 days 
+// add/ subtract 366 days
 d.plusDays(366); // '2017-02-23'
 d.minusDays(366); // '2015-02-22'
 
-// add/ subtract 12 months 
+// add/ subtract 12 months
 d.plusMonths(12); // '2017-02-23'
 d.minusMonths(12); // '2015-02-23'
 
-// add/ subtract 4 weeks 
+// add/ subtract 4 weeks
 d.plusWeeks(4); // '2016-03-22'
 d.minusWeeks(4); // '2016-01-26'
 
 // add/ subtract 1 year to the parsed LocalDate and returns a new instance
 d.plusYears(1); // '2017-02-23'
 d.minusYears(1); // '2015-02-23'
- 
+
 // add/ subtract 30 years  
 d.plus(3, ChronoUnit.DECADES); // '2046-02-23'
 d.minus(3, ChronoUnit.DECADES); // '1986-02-23'
@@ -172,7 +172,7 @@ d.withMonth(1).withDayOfMonth(1); // '2016-01-01'
 // set month to November and the day of month to 1
 d.withMonth(Month.NOVEMBER).withDayOfMonth(1); // '2016-11-01'
 
-// set the year to beginning of era 
+// set the year to beginning of era
 d.withYear(1); // '0001-12-24'
 
 // get the last day of the current month
@@ -291,7 +291,7 @@ A LocalTime represents a time without time-zone in the ISO-8601 calendar system 
 LocalTime.now();
 
 // obtain the current time in the utc timezone, e.g. '09:29:05.743'
-LocalTime.now(Clock.systemUTC()); 
+LocalTime.now(Clock.systemUTC());
 
 // obtain an instance of LocalTime from an ISO8601 formatted text string
 LocalTime.parse('09:42');      // '09:42'
@@ -332,24 +332,24 @@ t.get(ChronoField.HOUR_OF_AMPM);      // 11
 ```
 
 ### Adding to/ subtracting from a LocalTime instance
- 
+
 ```javascript
 
 var t = LocalTime.parse('11:55:42')
 
-// add/ subtract 12 hours 
+// add/ subtract 12 hours
 t.plusHours(12); // '23:55:42'
 t.minusHours(12); // '23:55:42'
 
-// add/ subtract 30 minutes 
+// add/ subtract 30 minutes
 t.plusMinutes(30); // '12:25:42'
 t.minusMinutes(30); // '11:25:42'
 
-// add/ subtract 30 seconds 
+// add/ subtract 30 seconds
 t.plusSeconds(30); // '11:56:12'
 t.minusSeconds(30); // '11:55:12'
 
-// add/ subtract 1.000.000 nanos (1 milli second) 
+// add/ subtract 1.000.000 nanos (1 milli second)
 t.plusNanos(1000000); // '11:56:42.001'
 t.minusNanos(1000000); // '11:55:41.999'
 
@@ -426,7 +426,7 @@ t1.hashCode() !== t2.hashCode(); // true
 
 ```
 
-### Distance between times 
+### Distance between times
 
 ```javascript
 
@@ -440,7 +440,7 @@ t1.until(t2, ChronoUnit.SECONDS);  // 9732
 
 ```
 
-### Convert a LocalTime from a javascript Date or moment 
+### Convert a LocalTime from a javascript Date or moment
 
 ```javascript
 
@@ -469,7 +469,7 @@ A LocalTime represents a date-time without a time-zone in the ISO-8601 calendar 
 LocalDateTime.now();
 
 // obtain the current date and time in the utc timezone
-LocalDateTime.now(Clock.systemUTC()); 
+LocalDateTime.now(Clock.systemUTC());
 
 // obtain an instance of LocalDateTime from an ISO8601 formatted text string
 LocalDateTime.parse('2016-02-26T09:42');        // '2016-02-26T09:42'
@@ -538,27 +538,27 @@ dt.get(ChronoField.HOUR_OF_AMPM);      // 11
 ```
 
 ### Adding to/ subtracting from a LocalDateTime instance
- 
+
 ```javascript
 
 var dt = LocalDateTime.parse('2016-02-26T23:55:42.123');
 
-// add/ subtract 366 days 
+// add/ subtract 366 days
 dt.plusDays(366); // '2017-02-26T23:55:42.123'
 dt.minusDays(366); // '2015-02-25T23:55:42.123'
 
-// add/ subtract 12 months 
+// add/ subtract 12 months
 dt.plusMonths(12); // '2017-02-26'
 dt.minusMonths(12); // '2015-02-26'
 
-// add/ subtract 4 weeks 
+// add/ subtract 4 weeks
 dt.plusWeeks(4); // '2016-03-25T23:55:42.123'
 dt.minusWeeks(4); // '2016-01-29T23:55:42.123'
 
 // add/ subtract 1 year to the parsed LocalDate and returns a new instance
 dt.plusYears(1); // '2017-02-26T23:55:42.123'
 dt.minusYears(1); // '2015-02-26T23:55:42.123'
- 
+
 // add/ subtract 30 years  
 dt.plus(3, ChronoUnit.DECADES); // '2046-02-26T23:55:42.123'
 dt.minus(3, ChronoUnit.DECADES); // '1986-02-26T23:55:42.123'
@@ -567,19 +567,19 @@ dt.minus(3, ChronoUnit.DECADES); // '1986-02-26T23:55:42.123'
 dt.plus(Period.ofMonths(3).plusDays(3))  // '2016-05-29T23:55:42.123'
 dt.minus(Period.ofMonths(3).plusDays(3)) // '2015-11-23T23:55:42.123'
 
-// add/ subtract 12 hours 
+// add/ subtract 12 hours
 dt.plusHours(12); // '2016-02-27T11:55:42.123'
 dt.minusHours(12); // '2016-02-26T11:55:42.123'
 
-// add/ subtract 30 minutes 
+// add/ subtract 30 minutes
 dt.plusMinutes(30); // '2016-02-27T00:25:42.123'
 dt.minusMinutes(30); // '2016-02-26T23:25:42.123'
 
-// add/ subtract 30 seconds 
+// add/ subtract 30 seconds
 dt.plusSeconds(30); // '2016-02-26T23:56:12.123'
 dt.minusSeconds(30); // '2016-02-26T23:55:12.123'
 
-// add/ subtract 1.000.000 nanos (1 milli second) 
+// add/ subtract 1.000.000 nanos (1 milli second)
 dt.plusNanos(1000000); // '2016-02-26T23:55:42.124'
 dt.minusNanos(1000000); // '2016-02-26T23:55:42.122'
 
@@ -659,7 +659,7 @@ dt1.hashCode() !== dt2.hashCode(); // true
 
 ```
 
-### Distance between local dates and times 
+### Distance between local dates and times
 
 ```javascript
 
@@ -677,7 +677,7 @@ dt1.until(dt2, ChronoUnit.SECONDS); // 220934532
 
 ```
 
-### Convert from a javascript Date or moment 
+### Convert from a javascript Date or moment
 
 ```javascript
 
@@ -701,13 +701,13 @@ ZonedDateTime only supports time-zones with a fixed Offset such as `UTC` or `UTC
 ### The system default time zone
 
 The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec does not provide an API 
-for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline 
-(Date.prototype.getTimezoneOffset()). 
+for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline
+(Date.prototype.getTimezoneOffset()).
 
-It is not recommended to exchange zoned-date-times with the SYSTEM zone-id between javascript engines, 
-because the default time-zone may differ on the other machine.  Before a ZonedDateTime is exchanged, 
+It is not recommended to exchange zoned-date-times with the SYSTEM zone-id between javascript engines,
+because the default time-zone may differ on the other machine.  Before a ZonedDateTime is exchanged,
 it should be converted to a fixed offset zone.
-    
+
 ```javascript
 
 // get now with the default system time-zone
@@ -715,7 +715,7 @@ ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
 
 // convert it to ZonedDateTime with a fixed offset
 ZonedDateTime.now().withFixedOffsetZone().toString(); // e.g. 2016-03-18T12:38:23.561+01:00
-    
+
 ```
 
 ### Create a ZonedDateTime
@@ -728,14 +728,14 @@ ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
 // get now with the UTC time-zone
 ZonedDateTime.now(ZoneId.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 
-// get now with a fixed offset time-zone 
+// get now with a fixed offset time-zone
 ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
 
 // parse a date time with a time zone ISO String
-ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]'); 
-ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00'); 
-ZonedDateTime.parse('2016-03-18T11:38:23.561Z'); 
-ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]'); 
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]');
+ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00');
+ZonedDateTime.parse('2016-03-18T11:38:23.561Z');
+ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]');
 
 // create from a LocalDate(Time)
 LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM); // 2012-06-06T00:00+02:00[SYSTEM]
@@ -765,11 +765,11 @@ zdt.withZoneSameInstant(ZoneId.UTC); // 2016-03-18T17:00Z
 
 ### Get and manipulate values from a ZonedDateTime
 
-Check the examples for LocalDate and LocalDateTime. ZonedDateTime implements the same methods as LocalDateTime 
+Check the examples for LocalDate and LocalDateTime. ZonedDateTime implements the same methods as LocalDateTime
 for getting or setting values.
 
-The calculation for date and time units differ. Date units operate on the local time-line. Time units operate on the instant time-line. 
-The following example shows the difference for a daylight saving transition. 
+The calculation for date and time units differ. Date units operate on the local time-line. Time units operate on the instant time-line.
+The following example shows the difference for a daylight saving transition.
 
 ```javascript
 
@@ -791,8 +791,8 @@ Period is a date-based amount of time in the ISO-8601 calendar system, such as '
 ```javascript
 
 // parse and format ISO8601 period strings
-Period.parse('P1Y10M').toString(); // 'P1Y10M' 
- 
+Period.parse('P1Y10M').toString(); // 'P1Y10M'
+
 // obtain a Period of 10 years, 5 month and 30 days
 Period.of(10, 5, 30).toString(); // "P10Y5M30D"
 
@@ -863,36 +863,36 @@ LocalDate.parse('2012-12-24').with(nextOrSameEvenDay); // '2012-12-24'
 
 ```
 
-### Custom temporal fields and temporal units 
+### Custom temporal fields and temporal units
 
-a good point to start is temporal/IsoFields as an example how to implement custom fields and units. 
+a good point to start is temporal/IsoFields as an example how to implement custom fields and units.
 IsoFields implements fields and units for an ISO week based year.
- 
+
 ### Custom formatter and queries
 
 The following example, is a kind of the opposite of a domain driven approach.
-It implements a date-time parser that parses a local date with an optional local time. 
+It implements a date-time parser that parses a local date with an optional local time.
 the temporal query returns either a LocalDate or a LocalDateTime, depending on the parsed fields.
 
 ```javascript
 
 // build a custom date time formatter where the time field is optional
-var OPTIONAL_FORMATTER = new DateTimeFormatterBuilder().parseCaseInsensitive() 
-    .append(DateTimeFormatter.ISO_LOCAL_DATE) 
-    .optionalStart() 
-    .appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME) 
+var OPTIONAL_FORMATTER = new DateTimeFormatterBuilder().parseCaseInsensitive()
+    .append(DateTimeFormatter.ISO_LOCAL_DATE)
+    .optionalStart()
+    .appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME)
     .toFormatter();
 
 // create a temporal query that create a new Temporal depending on the existing fields
-dateOrDateTimeQuery = { 
-    queryFrom: function(temporal){ 
+dateOrDateTimeQuery = {
+    queryFrom: function(temporal){
         var date = temporal.query(TemporalQueries.localDate());
         var time = temporal.query(TemporalQueries.localTime());
         if(time==null) return date;
         else return date.atTime(time)
     }
 }
-   
+
 localDate = OPTIONAL_FORMATTER.parse('2012-12-24', dateOrDateTimeQuery);
 localDateTime = OPTIONAL_FORMATTER.parse('2012-12-24T23:59', dateOrDateTimeQuery);
 
