@@ -1012,7 +1012,7 @@ export class Duration extends TemporalAmount
      * @return {number} the number of days in the duration, may be negative
      */
     toDays() {
-        return this._seconds / LocalTime.SECONDS_PER_DAY;
+        return MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_DAY);
     }
 
     /**
@@ -1026,7 +1026,7 @@ export class Duration extends TemporalAmount
      * @return {number} the number of hours in the duration, may be negative
      */
     toHours() {
-        return this._seconds / LocalTime.SECONDS_PER_HOUR;
+        return MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
     }
 
     /**
@@ -1040,7 +1040,7 @@ export class Duration extends TemporalAmount
      * @return {number} the number of minutes in the duration, may be negative
      */
     toMinutes() {
-        return this._seconds / LocalTime.SECONDS_PER_MINUTE;
+        return MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_MINUTE);
     }
 
     /**
