@@ -13,12 +13,13 @@ Immutable data and time library for javascript
  
 + js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
  
-+ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threeten project. 
-We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
-     
 + js-joda supports **ECMAScript 5** browsers down to ie9.          
 
-+ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threeten, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
++ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threetenbp, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
+
++ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threetenbp project. 
+We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
+     
 
 ## Why yet another javascript date and time library
 
@@ -32,8 +33,6 @@ especially if these dates are persisted to an external server.
 
 + js-joda is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux.
-
-+ js-joda is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the ThreeTen-Backport of the Java SE 8 java.time package).
 
 ## The js-joda domain models
 
@@ -87,8 +86,8 @@ Then add it as a script tag to your page
 ### Milestone 1
 
 We reached milestone 1 with version v1.0.0 supporting the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
-and Period converting from and to ISO8601. ZonedDateTime without the iana time-zone database loaded, supports only fixed offsets 
-like UTC or GMT+02:00 and the system default time zone.
+and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
+only fixed offsets like UTC or UTC+02:00 and the system default time zone.
  
 ### Future Milestones
 
@@ -98,7 +97,8 @@ This might also be an extra package to reduce library size if Timezone functiona
 ## License
 
 Joda time is the base for JSR-310 that became part of Java SE 8 in the java.time package.
-JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
+JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improvements on some design flaws (see 
+http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html)
 
 js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation.
 This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception.

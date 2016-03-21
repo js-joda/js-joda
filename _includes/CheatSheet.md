@@ -13,7 +13,7 @@ Tip: Try out the cheat sheet examples in your browser console. All js-joda class
 
 ## Consistent method prefixes
 
-The API is using a consistent method prefixes.
+The API is using a set of consistent method prefixes.
 
 - of - static factory method
 - parse - static factory method focused on parsing
@@ -23,7 +23,7 @@ The API is using a consistent method prefixes.
 - minus - subtracts an amount from an object
 - to - converts this object to another type
 - at - combines this object with another, such as date.atTime(time)
-- getter for instance properties are omitting the get keyword, e.q. localDate.year()  
+- getter methods for instance properties are omitting the get keyword, e.q. localDate.year()  
 
 ## Basic concepts
 
@@ -256,7 +256,7 @@ d = LocalDate.from(nativeJs(moment()));
 
 ### Adjust a date to another date
 
-TemporalAdjusters provides compact business logic for date based temporals such as LocalDate, LocalDateTime or ZonedDateTime.
+TemporalAdjusters provide compact business logic for date based temporals such as LocalDate, LocalDateTime or ZonedDateTime.
 
 ```javascript
 
@@ -459,7 +459,7 @@ d = LocalTime.from(nativeJs(moment()));
 
 ## LocalDateTime
 
-A LocalTime represents a date-time without a time-zone in the ISO-8601 calendar system, such as '2007-12-03T10:15:30'.
+A LocalDateTime represents a date-time without a time-zone in the ISO-8601 calendar system, such as '2007-12-03T10:15:30'.
 
 ### Create a LocalDateTime instance
 
@@ -695,17 +695,17 @@ d = LocalDateTime.from(nativeJs(moment()));
 
 ## ZonedDateTime
 
-ZonedDateTime represents a date-time with a time-zone in the ISO-8601 calendar system. Without the iana tzdb loaded,
-ZonedDateTime only supports time-zones with a fixed Offset such as `UTC` or `UTC+02:00` and the system default time-zone `SYSTEM`.
+ZonedDateTime represents a date-time with a time-zone in the ISO-8601 calendar system. Without support for loading iana time-zone databases,
+ZonedDateTime currently only supports time-zones with a fixed Offset such as `UTC` or `UTC+02:00` and the system default time-zone `SYSTEM`.
 
 ### The system default time zone
 
 The `SYSTEM` time-zone is a NON standard zone-id, that is introduced by js-joda because the javascript spec does not provide an API 
-for the system default zone-id. The javascript spec only provides the system default tome-zone offset for a point in the timeline
+for the system default zone-id. The javascript spec only provides the system default time-zone offset for a point in the timeline
 (Date.prototype.getTimezoneOffset()).
 
 It is not recommended to exchange zoned-date-times with the SYSTEM zone-id between javascript engines,
-because the default time-zone may differ on the other machine.  Before a ZonedDateTime is exchanged,
+because the default time-zone may differ on other machines.  Before a ZonedDateTime is exchanged,
 it should be converted to a fixed offset zone.
 
 ```javascript
@@ -848,8 +848,8 @@ Duration.between(dt1, dt1.plusHours(10)).toString(); // "PT10H"
 
 ## Customize js-joda
 
-js-joda is easy extend-able, it allows you to create your own custom domain models or formatter. check the temporal interface documentation
-at temporal directory for more information.
+js-joda is easily extendable, it allows you to create your own custom domain models or formatter. Check the temporal interface documentation
+in the temporal directory for more information.
 
 ### Custom temporal adjuster
 
@@ -865,13 +865,12 @@ LocalDate.parse('2012-12-24').with(nextOrSameEvenDay); // '2012-12-24'
 
 ### Custom temporal fields and temporal units
 
-a good point to start is temporal/IsoFields as an example how to implement custom fields and units.
+A good starting point is temporal/IsoFields as an example how to implement custom fields and units.
 IsoFields implements fields and units for an ISO week based year.
 
 ### Custom formatter and queries
 
-The following example, is a kind of the opposite of a domain driven approach.
-It implements a date-time parser that parses a local date with an optional local time.
+The following example implements a date-time parser that parses a local date with an optional local time.
 the temporal query returns either a LocalDate or a LocalDateTime, depending on the parsed fields.
 
 ```javascript
