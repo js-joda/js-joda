@@ -6,6 +6,12 @@
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="bundle.css">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+        <script src="//cdn.jsdelivr.net/js-joda/latest/js-joda.js"></script>
+        <script>
+            // copy all js-joda classes to the global scope
+            for(var prop in JSJoda) { window[prop] = JSJoda[prop]; }
+            console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
+        </script>
     </head>
     <body>
         <div class="pageHeader">
