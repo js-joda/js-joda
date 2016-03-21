@@ -7,8 +7,18 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-js-joda, a port of the ThreeTen immutable data and time library to javascript. It provides a simple and clean API based on the ISO8601 calendar.
-Joda-Time (the predecessor project) used to be the de facto standard date and time library for Java and is the base for JSR-310 that became part of Java SE 8 in the java.time package.
++ **js-joda** is an **immutable data and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
+
++ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threeten, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
+
++ js-joda has a lightweight footprint, only **36 kB minified and compressed**, no third party dependencies.
+ 
++ js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
+ 
++ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threeten project. 
+We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
+     
++ js-joda supports **ECMAScript 5** browsers down to ie9.          
 
 ## Why yet another javascript date and time library
 
@@ -25,11 +35,23 @@ with the architecture of frameworks like React and Flux.
 
 + js-joda is a port of the sophisticated, robust and domain-driven API of Joda-Time (to be more precise of the ThreeTen-Backport of the Java SE 8 java.time package).
 
-## Getting started
+## The js-joda domain models
 
-The library is in a very early state, far away from productive.
-But you are very welcome to play around with js-joda and to give your feedback.
-Please check the tests and the API Documentation for the current state of development.
++ **LocalDate** represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
+
++ **LocalTime** represents a time without time-zone in the ISO-8601 calendar system such as '11:55:00'.
+
++ **LocalDateTime** is a description of the date, as used for birthdays, combined with the local time as seen on a wall clock.
+
++ **ZonedDateTime** is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
+
++ **Instant** is an instantaneous point on the time-line measured from the epoch of *1970-01-01T00:00:00Z* in epoch-seconds and nanosecond-of-second.
+
++ **Duration** is a time-based amount of time, such as '34.5 seconds'.
+
++ **Period**  is a date-based amount of time in the ISO-8601 calendar system, such as '2 years, 3 months and 4 days'.
+
+## Getting started
 
 ### Node
 
@@ -59,18 +81,19 @@ Then add it as a script tag to your page
 
 + [Cheat Sheet](cheat-sheet.html) Quick start guide
 + [API](https://doc.esdoc.org/github.com/pithu/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
-+ [js-joda Homepage](http://pithu.github.io/js-joda/) Project homepage
 
 ## Roadmap
 
 ### Milestone 1
-Our current plan is to have a first milestone with LocalDate, LocalDateTime, Instant, Duration and Period working.
-The result of the first milestone will be a fully functional Date/Time library, converting from and to ISO8601, with UTC and system default timezone.
 
+We reached milestone 1 with version v1.0.0 supporting the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
+and Period converting from and to ISO8601. ZonedDateTime without the iana time-zone database loaded, supports only fixed offsets 
+like UTC or GMT+02:00 and the system default time zone.
+ 
 ### Future Milestones
 
-Any further timezone converting and localization is not part of the first milestone and will be saved for later. This might also be an extra package
- to reduce library size if Timezone functionality is not needed.
+Any further timezone converting and localization is not part of the first milestone and will be saved for later.
+This might also be an extra package to reduce library size if Timezone functionality is not needed.
 
 ## License
 
