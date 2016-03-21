@@ -1543,7 +1543,6 @@ describe('org.threeten.bp.TestDuration', () => {
             [-1, 0, 2, -2, 0],
             [-1, 0, 3, -3, 0],
 
-            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
             [-1, 500000000, -3, 1, 500000000],
             [-1, 500000000, -2, 1, 0],
             [-1, 500000000, -1, 0, 500000000],
@@ -1551,7 +1550,6 @@ describe('org.threeten.bp.TestDuration', () => {
             [-1, 500000000, 1, -1, 500000000],
             [-1, 500000000, 2, -1, 0],
             [-1, 500000000, 3, -2, 500000000],
-            */
 
             [0, 0, -3, 0, 0],
             [0, 0, -2, 0, 0],
@@ -1561,7 +1559,6 @@ describe('org.threeten.bp.TestDuration', () => {
             [0, 0, 2, 0, 0],
             [0, 0, 3, 0, 0],
 
-            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
             [0, 500000000, -3, -2, 500000000],
             [0, 500000000, -2, -1, 0],
             [0, 500000000, -1, -1, 500000000],
@@ -1569,7 +1566,6 @@ describe('org.threeten.bp.TestDuration', () => {
             [0, 500000000, 1, 0, 500000000],
             [0, 500000000, 2, 1, 0],
             [0, 500000000, 3, 1, 500000000],
-            */
 
             [1, 0, -3, -3, 0],
             [1, 0, -2, -2, 0],
@@ -1608,7 +1604,8 @@ describe('org.threeten.bp.TestDuration', () => {
         it('multipliedBy', () => {
             data_multipliedBy.forEach((val) => {
                 let [seconds, nanos, mulitplicand, expectedSeconds, expectedNanos] = val;
-                let t = Duration.ofSeconds(seconds, nanos).multipliedBy(mulitplicand);
+                let d = Duration.ofSeconds(seconds, nanos);
+                let t = d.multipliedBy(mulitplicand);
                 expect(t.seconds()).to.eql(expectedSeconds);
                 expect(t.nano()).to.eql(expectedNanos);
             });
@@ -1643,8 +1640,7 @@ describe('org.threeten.bp.TestDuration', () => {
     describe('dividedBy()', () => {
         let data_dividedBy = [
             [-4, 666666667, -3, 1, 111111111],
-            [-4, 666666667, -2, 1, 666666667],  // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with
-                                                // ROUND_DOWN :/
+            [-4, 666666667, -2, 1, 666666667],
             [-4, 666666667, -1, 3, 333333333],
             [-4, 666666667, 1, -4, 666666667],
             [-4, 666666667, 2, -2, 333333334],
@@ -1657,12 +1653,12 @@ describe('org.threeten.bp.TestDuration', () => {
             [-3, 0, 2, -2, 500000000],
             [-3, 0, 3, -1, 0],
 
-            [-2, 0, -3, 0, 666666667],   // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [-2, 0, -3, 0, 666666667],
             [-2, 0, -2, 1, 0],
             [-2, 0, -1, 2, 0],
             [-2, 0, 1, -2, 0],
             [-2, 0, 2, -1, 0],
-            [-2, 0, 3, -1, 333333333],  // TODO: in threeten the nanos are 333333334 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [-2, 0, 3, -1, 333333333],
 
             [-1, 0, -3, 0, 333333333],
             [-1, 0, -2, 0, 500000000],
@@ -1671,14 +1667,12 @@ describe('org.threeten.bp.TestDuration', () => {
             [-1, 0, 2, -1, 500000000],
             [-1, 0, 3, -1, 666666667],
 
-            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
-             [-1, 500000000, -3, 0, 166666666],
-             [-1, 500000000, -2, 0, 250000000],
-             [-1, 500000000, -1, 0, 500000000],
-             [-1, 500000000, 1, -1, 500000000],
-             [-1, 500000000, 2, -1, 750000000],
-             [-1, 500000000, 3, -1, 833333334],
-             */
+            [-1, 500000000, -3, 0, 166666667],
+            [-1, 500000000, -2, 0, 250000000],
+            [-1, 500000000, -1, 0, 500000000],
+            [-1, 500000000, 1, -1, 500000000],
+            [-1, 500000000, 2, -1, 750000000],
+            [-1, 500000000, 3, -1, 833333333],
 
             [0, 0, -3, 0, 0],
             [0, 0, -2, 0, 0],
@@ -1687,14 +1681,12 @@ describe('org.threeten.bp.TestDuration', () => {
             [0, 0, 2, 0, 0],
             [0, 0, 3, 0, 0],
 
-            /* TODO: these overflow in Duration.toSeconds() since we dont have BigDecimals :/
-             [0, 500000000, -3, -1, 833333334],
-             [0, 500000000, -2, -1, 750000000],
-             [0, 500000000, -1, -1, 500000000],
-             [0, 500000000, 1, 0, 500000000],
-             [0, 500000000, 2, 0, 250000000],
-             [0, 500000000, 3, 0, 166666666],
-             */
+            [0, 500000000, -3, -1, 833333333],
+            [0, 500000000, -2, -1, 750000000],
+            [0, 500000000, -1, -1, 500000000],
+            [0, 500000000, 1, 0, 500000000],
+            [0, 500000000, 2, 0, 250000000],
+            [0, 500000000, 3, 0, 166666667],
 
             [1, 0, -3, -1, 666666667],
             [1, 0, -2, -1, 500000000],
@@ -1703,12 +1695,12 @@ describe('org.threeten.bp.TestDuration', () => {
             [1, 0, 2, 0, 500000000],
             [1, 0, 3, 0, 333333333],
 
-            [2, 0, -3, -1, 333333333], // TODO: in threeten the nanos are 333333334 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [2, 0, -3, -1, 333333333],
             [2, 0, -2, -1, 0],
             [2, 0, -1, -2, 0],
             [2, 0, 1, 2, 0],
             [2, 0, 2, 1, 0],
-            [2, 0, 3, 0, 666666667], // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with ROUND_DOWN :/
+            [2, 0, 3, 0, 666666667],
 
             [3, 0, -3, -1, 0],
             [3, 0, -2, -2, 500000000],
@@ -1721,15 +1713,15 @@ describe('org.threeten.bp.TestDuration', () => {
             [3, 333333333, -2, -2, 333333334],
             [3, 333333333, -1, -4, 666666667],
             [3, 333333333, 1, 3, 333333333],
-            [3, 333333333, 2, 1, 666666667], // TODO: in threeten the nanos are 666666666 (but we dont have BigDecimal divide with
-                                             // ROUND_DOWN :/
+            [3, 333333333, 2, 1, 666666667],
             [3, 333333333, 3, 1, 111111111]
         ];
 
         it('dividedBy', () => {
             data_dividedBy.forEach((val) => {
                 let [seconds, nanos, divisor, expectedSeconds, expectedNanos] = val;
-                let t = Duration.ofSeconds(seconds, nanos).dividedBy(divisor);
+                let d = Duration.ofSeconds(seconds, nanos);
+                let t = d.dividedBy(divisor);
                 expect(t.seconds()).to.eql(expectedSeconds);
                 expect(t.nano()).to.eql(expectedNanos);
             });
