@@ -13,12 +13,13 @@ Immutable data and time library for javascript
  
 + js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
  
-+ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threetenbp project. 
-We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
-     
 + js-joda supports **ECMAScript 5** browsers down to ie9.          
 
 + js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threetenbp, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
+
++ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threetenbp project. 
+We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
+     
 
 ## Why yet another javascript date and time library
 
