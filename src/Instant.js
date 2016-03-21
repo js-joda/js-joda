@@ -845,7 +845,7 @@ export class Instant extends Temporal {
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this._nanosUntil(end);
-                case ChronoUnit.MICROS: return this._nanosUntil(end) / 1000;
+                case ChronoUnit.MICROS: return MathUtil.intDiv(this._nanosUntil(end), 1000);
                 case ChronoUnit.MILLIS: return MathUtil.safeSubtract(end.toEpochMilli(), this.toEpochMilli());
                 case ChronoUnit.SECONDS: return this._secondsUntil(end);
                 case ChronoUnit.MINUTES: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_MINUTE);
