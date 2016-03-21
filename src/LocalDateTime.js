@@ -874,7 +874,7 @@ export class LocalDateTime extends ChronoLocalDateTime
             switch (unit) {
                 case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
                 case ChronoUnit.MICROS: return this.plusDays(MathUtil.intDiv(amountToAdd, LocalTime.MICROS_PER_DAY)).plusNanos(MathUtil.intMod(amountToAdd, LocalTime.MICROS_PER_DAY) * 1000);
-                case ChronoUnit.MILLIS: return this.plusDays(amountToAdd / LocalTime.MILLIS_PER_DAY).plusNanos(MathUtil.intMod(amountToAdd, LocalTime.MILLIS_PER_DAY) * 1000000);
+                case ChronoUnit.MILLIS: return this.plusDays(MathUtil.intDiv(amountToAdd, LocalTime.MILLIS_PER_DAY)).plusNanos(MathUtil.intMod(amountToAdd, LocalTime.MILLIS_PER_DAY) * 1000000);
                 case ChronoUnit.SECONDS: return this.plusSeconds(amountToAdd);
                 case ChronoUnit.MINUTES: return this.plusMinutes(amountToAdd);
                 case ChronoUnit.HOURS: return this.plusHours(amountToAdd);
