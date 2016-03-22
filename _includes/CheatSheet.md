@@ -42,7 +42,7 @@ A LocalDate represents a date without a time and time-zone in the ISO-8601 calen
 LocalDate.now();
 
 // obtain the current date in the utc timezone, e.g. 2016-02-23
-LocalDate.now(Clock.systemUTC());
+LocalDate.now(ZoneOffset.UTC);
 
 // obtain an instance of LocalDate from an ISO8601 formatted text string
 LocalDate.parse('2016-02-23');
@@ -291,7 +291,7 @@ A LocalTime represents a time without time-zone in the ISO-8601 calendar system 
 LocalTime.now();
 
 // obtain the current time in the utc timezone, e.g. '09:29:05.743'
-LocalTime.now(Clock.systemUTC());
+LocalTime.now(ZoneOffset.UTC);
 
 // obtain an instance of LocalTime from an ISO8601 formatted text string
 LocalTime.parse('09:42');      // '09:42'
@@ -469,7 +469,7 @@ A LocalDateTime represents a date-time without a time-zone in the ISO-8601 calen
 LocalDateTime.now();
 
 // obtain the current date and time in the utc timezone
-LocalDateTime.now(Clock.systemUTC());
+LocalDateTime.now(ZoneOffset.UTC);
 
 // obtain an instance of LocalDateTime from an ISO8601 formatted text string
 LocalDateTime.parse('2016-02-26T09:42');        // '2016-02-26T09:42'
@@ -726,7 +726,7 @@ ZonedDateTime.now().withFixedOffsetZone().toString(); // e.g. 2016-03-18T12:38:2
 ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
 
 // get now with the UTC time-zone
-ZonedDateTime.now(ZoneId.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
+ZonedDateTime.now(ZoneOffset.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 
 // get now with a fixed offset time-zone
 ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
