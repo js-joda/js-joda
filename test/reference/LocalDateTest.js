@@ -41,6 +41,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
     var MIN_VALID_EPOCHDAYS;
     var MAX_DATE;
     var MIN_DATE;
+    var MAX_INSTANT;
+    var MIN_INSTANT;
     before(() => {
         TEST_2007_07_15 = LocalDate.of(2007, 7, 15);
 
@@ -48,8 +50,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         MIN_DATE = LocalDate.MIN;
         MAX_VALID_EPOCHDAYS = MAX_DATE.toEpochDay();
         MIN_VALID_EPOCHDAYS = MIN_DATE.toEpochDay();
-        //MAX_INSTANT = max.atStartOfDay(ZoneOffset.UTC).toInstant();
-        //MIN_INSTANT = min.atStartOfDay(ZoneOffset.UTC).toInstant();    
+        MAX_INSTANT = MAX_DATE.atStartOfDay(ZoneOffset.UTC).toInstant();
+        MIN_INSTANT = MIN_DATE.atStartOfDay(ZoneOffset.UTC).toInstant();    
     });
 
     /**
@@ -169,7 +171,6 @@ describe('org.threeten.bp.TestLocalDate', () => {
             }
         });
 
-/** TODO
         it('now_Clock_maxYear', () => {
             var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
             var test = LocalDate.now(clock);
@@ -195,7 +196,6 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 LocalDate.now(clock);
             }).to.throw(DateTimeException);
         });
-*/
 
     });
 

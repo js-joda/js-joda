@@ -3,6 +3,7 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 import {assert, requireNonNull, requireInstance} from './assert';
 
 import {MathUtil} from './MathUtil';
@@ -25,6 +26,7 @@ import {Year} from './Year';
 import {LocalTime} from './LocalTime';
 import {LocalDateTime} from './LocalDateTime';
 import {ZoneId} from './ZoneId';
+import {ZonedDateTime} from './ZonedDateTime';
 
 /**
  * The number of days in a 400 year cycle.
@@ -1428,10 +1430,15 @@ export class LocalDate extends ChronoLocalDate{
      * This returns a {@link LocalDateTime} formed from this date at the time of
      * midnight, 00:00, at the start of this date.
      *
-     * @return {LocalDateTime} the local date-time of midnight at the start of this date, not null
+     * @param {ZoneId} zone - if zone is not null @see {@link LocalDate.atStartOfDayWithZone}
+     * @return {LocalDateTime|ZonedDateTime} the local date-time of midnight at the start of this date, not null
      */
-    atStartOfDay() {
-        return LocalDateTime.of(this, LocalTime.MIDNIGHT);
+    atStartOfDay(zone) {
+        if(zone != null){
+            return this.atStartOfDayWithZone(zone);
+        } else {
+            return LocalDateTime.of(this, LocalTime.MIDNIGHT);
+        }
     }
 
     /**
@@ -1455,15 +1462,15 @@ export class LocalDate extends ChronoLocalDate{
      * To convert to a specific time in a given time-zone call {@link #atTime(LocalTime)}
      * followed by {@link LocalDateTime#atZone(ZoneId)}.
      *
-     * @param {ZoneId} zone - the zone ID to use, not null
+     * @param {!ZoneId} zone - the zone ID to use, not null
      * @return {ZonedDateTime} the zoned date-time formed from this date and the earliest valid time for the zone, not null
      */
-/*
-    _atStartOfDayZonedDateTime(zone) {   //atStartOfDay(zoneId)
+    atStartOfDayWithZone(zone) { 
         requireNonNull(zone, 'zone');
+        var ldt = this.atTime(LocalTime.MIDNIGHT);
+/*      TODO iana tzdb
         // need to handle case where there is a gap from 11:30 to 00:30
         // standard ZDT factory would result in 01:00 rather than 00:30
-        var ldt = this.atTime(LocalTime.MIDNIGHT);
         if (zone instanceof ZoneOffset === false) {
             var rules = zone.getRules();
             var trans = rules.getTransition(ldt);
@@ -1471,9 +1478,10 @@ export class LocalDate extends ChronoLocalDate{
                 ldt = trans.getDateTimeAfter();
             }
         }
+*/
         return ZonedDateTime.of(ldt, zone);
     }
-*/
+
 
     /**
      * Converts this date to the Epoch Day.
