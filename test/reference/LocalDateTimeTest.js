@@ -28,9 +28,11 @@ import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {ZoneId} from '../../src/ZoneId';
+import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+import {CurrentCESTZone} from '../zone/CurrentCESTZone';
 
 import '../_init';
 
@@ -38,11 +40,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     var OFFSET_PONE;
     var OFFSET_PTWO;
-    //var OFFSET_MTWO;
-    /*
-     private static final var ZONE_PARIS = ZoneId.of('Europe/Paris');
-     private static final var ZONE_GAZA = ZoneId.of('Asia/Gaza');
-     */
+    var OFFSET_MTWO;
+    var ZONE_DUMMY_CEST = new CurrentCESTZone();
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
     var MAX_DATE_TIME;
     var MIN_DATE_TIME;
@@ -52,7 +51,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     beforeEach('setUp', () => {
         OFFSET_PONE = ZoneOffset.ofHours(1);
         OFFSET_PTWO = ZoneOffset.ofHours(2);
-        //OFFSET_MTWO = ZoneOffset.ofHours(-2);
+        OFFSET_MTWO = ZoneOffset.ofHours(-2);
         MAX_DATE_TIME = LocalDateTime.MAX;
         MIN_DATE_TIME = LocalDateTime.MIN;
         MAX_INSTANT = MAX_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
@@ -702,9 +701,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     describe('ofInstant()', () => {
 
-/* TODO timezone
         it('factory_ofInstant_zone()', () => {
-            var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), ZONE_PARIS);
+            var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(86400 + 3600 + 120 + 4, 500), ZONE_DUMMY_CEST);
             assertEquals(test, LocalDateTime.of(1970, 1, 2, 2, 2, 4, 500));  // offset +01:00
         });
 
@@ -718,8 +716,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(test, LocalDateTime.of(1969, 12, 31, 2, 0, 4, 500));
         });
     
-*/
-
         it('factory_ofInstant_instantTooBig', () => {
             expect(() => {
                 LocalDateTime.ofInstant(Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER), OFFSET_PONE);
@@ -732,13 +728,11 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             }).to.throw(DateTimeException);
         });
     
-/* TODO timezone
         it('factory_ofInstant_nullInstant', () => {
             expect(() => {
-                LocalDateTime.ofInstant(null, ZONE_GAZA);
+                LocalDateTime.ofInstant(null, ZONE_DUMMY_CEST);
             }).to.throw(NullPointerException);
         });
-*/
 
         it('factory_ofInstant_nullZone', () => {
             expect(() => {
@@ -805,7 +799,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('test_from_Accessor', () => {
             var base = LocalDateTime.of(2007, 7, 15, 17, 30);
             assertEquals(LocalDateTime.from(base), base);
-            // TODO timezone assertEquals(LocalDateTime.from(ZonedDateTime.of(base, ZoneOffset.ofHours(2))), base);
+            assertEquals(LocalDateTime.from(ZonedDateTime.of(base, ZoneOffset.ofHours(2))), base);
         });
 
         it('test_from_Accessor_invalid_noDerive', () => {
