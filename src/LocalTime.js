@@ -110,6 +110,28 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  */
 export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuster */ {
     /**
+     * Obtains the current time from the specified clock. 
+     * If no argument is specified the system default clock is queried, 
+     * if a zone-id is passed a system clock with the specified zone is queried.
+     * <p>
+     * This will query the specified clock to obtain the current time.
+     * Using this method allows the use of an alternate clock for testing.
+     * The alternate clock may be introduced using {@link Clock dependency injection}.
+     *
+     * @param {Clock|ZoneId} clockOrZone - the zone ID or clock to use, if null Clock.systemDefaultZone() is used.
+     * @return {LocalDateTime} the current time using the system clock, not null
+     */
+    static now(clockOrZone) {
+        if (clockOrZone == null){
+            return LocalTime._now(Clock.systemDefaultZone());
+        } else if (clockOrZone instanceof Clock){
+            return LocalTime._now(clockOrZone);
+        } else {
+            return LocalTime._now(Clock.system(clockOrZone));
+        }
+    }
+
+    /**
      * Obtains the current time from the specified clock.
      * <p>
      * This will query the specified clock to obtain the current time.
@@ -119,7 +141,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {Clock} [clock=Clock.systemDefaultZone()] - the clock to use, not null
      * @return {LocalTime} the current time, not null
      */
-    static now(clock = Clock.systemDefaultZone()) {
+    static _now(clock = Clock.systemDefaultZone()) {
         requireNonNull(clock, 'clock');// inline OffsetTime factory to avoid creating object and InstantProvider checks
         return LocalTime.ofInstant(clock.instant(), clock.zone());
     }

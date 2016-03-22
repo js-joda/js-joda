@@ -1,3 +1,9 @@
+/*
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
 import {expect} from 'chai';
 import {assertEquals, assertTrue, assertNotNull, isCoverageTestRunner} from '../testUtils';
 
@@ -15,6 +21,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {Period} from '../../src/Period';
+import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
@@ -92,14 +99,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     });
 
-/** TODO timezone
     describe('now(ZoneId)', () => {
-        it('now_ZoneId_nullZoneId', () => {
-            expect(() => {
-                LocalTime.now(null);
-            }).to.throw(NullPointerException);
-        });
-        
+
         it('now_ZoneId()', () => {
             var zone = ZoneId.of('UTC+01:02:03');
             var expected = LocalTime.now(Clock.system(zone));
@@ -113,17 +114,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
             }
             assertEquals(test, expected);
         });
-    
-	});
-*/
+
+    });
+
 
     describe('now(Clock)', () => {
-
-        it('now_Clock_nullClock', () => {
-            expect(() => {
-                LocalTime.now(null);
-            }).to.throw(NullPointerException);
-        });
 
         var delta = isCoverageTestRunner() ? 937 : 13;
         it('now_Clock_allSecsInDay()', () => {
