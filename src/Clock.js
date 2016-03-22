@@ -206,6 +206,10 @@ class FixedClock extends Clock{
     instant() {
         return this._instant;
     }
+    
+    millis(){
+        return this._instant.toEpochMilli();
+    }
 
     zone() {
         return this._zoneId;

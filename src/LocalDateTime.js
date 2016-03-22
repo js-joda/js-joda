@@ -111,8 +111,32 @@ export class LocalDateTime extends ChronoLocalDateTime
     static _now(clock) {
         requireNonNull(clock, 'clock');
         return LocalDateTime.ofInstant(clock.instant(), clock.zone());
+
+        // this is an alternative implementation with better performance.
+        // var epochMilli = clock.millis();
+        // var offset = clock.zone().rules().offsetOfEpochMilli(epochMilli);
+        // return LocalDateTime._ofEpochMillis(epochMilli, offset);
+        
     }
 
+    /**
+     * @see comment at {LocalDateTime._now}
+     * @param {number} epochMilli
+     * @param {ZoneOffset} offset
+     * @return {LocalDateTime} the  date-time, not null
+     * 
+     */
+    static _ofEpochMillis(epochMilli, offset){
+        var localSecond = MathUtil.floorDiv(epochMilli, 1000) + offset.totalSeconds();  
+        var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
+        var secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
+        var nanoOfSecond = MathUtil.floorMod(epochMilli, 1000) * 1000000;
+        var date = LocalDate.ofEpochDay(localEpochDay);
+        var time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
+        return new LocalDateTime(date, time);
+        
+    }
+    
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link LocalDateTime.of}

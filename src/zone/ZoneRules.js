@@ -48,6 +48,7 @@ export class ZoneRules {
             return this.offsetOfLocalDateTime(instantOrLocalDateTime);
         }
     }
+    
     /**
      * Gets the offset applicable at the specified instant in these rules.
      * <p>
@@ -55,13 +56,27 @@ export class ZoneRules {
      * one valid offset for each instant.
      * This method returns that offset.
      *
-     * @param {Instant} instant  the instant to find the offset for, not null, but null
+     * @param {Instant} instant - the instant to find the offset for, not null, but null
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfInstant(instant){
         abstractMethodFail('ZoneRules.offsetInstant');
     }
+    
+    /**
+     * Gets the offset applicable at the specified epochMilli in these rules.
+     * 
+     * The method is for javascript performance optimisation.
+     *
+     * @param {number} epochMilli - the epoch millisecond to find the offset for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset} the offset, not null
+     */
+    offsetOfEpochMilli(epochMilli){
+        abstractMethodFail('ZoneRules.offsetOfEpochMilli');
+    }
+    
 
     /**
      * Gets a suitable offset for the specified local date-time in these rules.
@@ -128,6 +143,10 @@ class Fixed extends ZoneRules{
     }
 
     offsetOfInstant(){
+        return this._offset;
+    }
+
+    offsetOfEpochMilli(){
         return this._offset;
     }
 

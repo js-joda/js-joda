@@ -23,6 +23,16 @@ export class SystemDefaultZoneRules extends ZoneRules {
     }
 
     /**
+     *
+     * @param {number} epochMilli
+     * @returns {ZoneOffset}
+     */
+    offsetOfEpochMilli(epochMilli){
+        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
+        return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
+    }
+
+    /**
      * This implementation is NOT returning the best value in a gap or overlap situation
      * as specified at {@link ZoneRules.offsetOfLocalDateTime}.
      *

@@ -8,6 +8,7 @@ import {DayOfWeek} from '../../src/DayOfWeek';
 import {Month} from '../../src/Month';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {Instant} from '../../src/Instant';
 import {TemporalAdjusters} from '../../src/temporal/TemporalAdjusters';
 import {ZoneRules} from '../../src/zone/ZoneRules';
 
@@ -58,6 +59,16 @@ class CurrentCESTZoneRules extends ZoneRules {
         } else {
             return SUMMER_OFFSET;
         }
+    }
+
+    /**
+     * very slow implementation, but for the test class it is fine.
+     * 
+     * @param {number} epochMilli
+     * @returns {ZoneOffset}
+     */
+    offsetOfEpochMilli(epochMilli){
+        this.offsetOfInstant(Instant.ofEpochMilli(epochMilli));
     }
 
     /**
