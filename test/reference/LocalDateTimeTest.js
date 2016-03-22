@@ -2707,13 +2707,12 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-/* TODO timezone
     describe('atZone()', () => {
 
         it('test_atZone', () => {
             var t = LocalDateTime.of(2008, 6, 30, 11, 30);
-            assertEquals(t.atZone(ZONE_PARIS),
-                ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), ZONE_PARIS));
+            assertEquals(t.atZone(ZONE_DUMMY_CEST),
+                ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), ZONE_DUMMY_CEST));
         });
 
         it('test_atZone_Offset', () => {
@@ -2721,6 +2720,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
         });
 
+        /* TODO iana tzdb
         it('test_atZone_dstGap', () => {
             var t = LocalDateTime.of(2007, 4, 1, 0, 0);
             assertEquals(t.atZone(ZONE_GAZA),
@@ -2732,6 +2732,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(t.atZone(ZONE_PARIS),
                 ZonedDateTime.ofStrict(LocalDateTime.of(2007, 10, 28, 2, 30), OFFSET_PTWO, ZONE_PARIS));
         });
+        */
 
         it('test_atZone_nullTimeZone', () => {
             expect(() => {
@@ -2742,7 +2743,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
 	});
 
-*/
     describe('toEpochSecond()', () => {
 
         var delta = isCoverageTestRunner() ? 937 : 97;
