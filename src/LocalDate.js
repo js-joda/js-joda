@@ -82,16 +82,25 @@ export class LocalDate extends ChronoLocalDate{
 
     /**
      * Obtains the current date from the system clock in the default time-zone or
-     * if specified, the current date from the specified clock.
+     * if specified, the current date from the specified clock or
+     * if argument is a ZoneId this will query a clock with the specified ZoneId.
      *
      * This will query the specified clock to obtain the current date - today.
      * Using this method allows the use of an alternate clock for testing.
      *
-     * @param {Clock} [clock=Clock.systemDefaultZone()] - the clock to use, if null, the system clock and default time-zone is used.
+     * @param {Clock|ZoneId} [clockOrZone=Clock.systemDefaultZone()] - the clock or zone to use, 
+     * if null, the system clock and default time-zone is used.
      * @return {LocalDate} the current date, not null
      */
-    static now(clock = Clock.systemDefaultZone()) {
-        requireNonNull(clock, 'clock');
+    static now(clockOrZone) {
+        var clock;
+        if(clockOrZone == null){
+            clock = Clock.systemDefaultZone();
+        } else if(clockOrZone instanceof ZoneId){
+            clock = Clock.system(clockOrZone);
+        } else {
+            clock = clockOrZone;
+        }
         return LocalDate.ofInstant(clock.instant(), clock.zone());
     }
 

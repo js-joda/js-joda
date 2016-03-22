@@ -26,6 +26,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {Period} from '../../src/Period';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {ZoneId} from '../../src/ZoneId';
 import {Year} from '../../src/Year';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
@@ -121,11 +122,23 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-/* TODO timezone milestone
     describe('now(ZoneId)', () => {
 
+        it('now_ZoneId()', () => {
+            var zone = ZoneId.of('UTC+01:02:03');
+            var expected = LocalDate.now(Clock.system(zone));
+            var test = LocalDate.now(zone);
+            for (var i = 0; i < 100; i++) {
+                if (expected.equals(test)) {
+                    return;
+                }
+                expected = LocalDate.now(Clock.system(zone));
+                test = LocalDate.now(zone);
+            }
+            assertEquals(test, expected);
+        });
+
     });
-*/
 
     describe('now(Clock)', () => {
         it('now_Clock_nullClock', function () {
