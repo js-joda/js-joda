@@ -391,6 +391,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this._instant;
 	    };
 	
+	    FixedClock.prototype.millis = function millis() {
+	        return this._instant.toEpochMilli();
+	    };
+	
 	    FixedClock.prototype.zone = function zone() {
 	        return this._zoneId;
 	    };
@@ -833,7 +837,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case _ChronoUnit.ChronoUnit.NANOS:
 	                    return this._nanosUntil(end);
 	                case _ChronoUnit.ChronoUnit.MICROS:
-	                    return this._nanosUntil(end) / 1000;
+	                    return _MathUtil.MathUtil.intDiv(this._nanosUntil(end), 1000);
 	                case _ChronoUnit.ChronoUnit.MILLIS:
 	                    return _MathUtil.MathUtil.safeSubtract(end.toEpochMilli(), this.toEpochMilli());
 	                case _ChronoUnit.ChronoUnit.SECONDS:
@@ -972,7 +976,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	var LocalTime = function (_Temporal) {
 	    _inherits(LocalTime, _Temporal);
 	
-	    LocalTime.now = function now() {
+	    LocalTime.now = function now(clockOrZone) {
+	        if (clockOrZone == null) {
+	            return LocalTime._now(_Clock.Clock.systemDefaultZone());
+	        } else if (clockOrZone instanceof _Clock.Clock) {
+	            return LocalTime._now(clockOrZone);
+	        } else {
+	            return LocalTime._now(_Clock.Clock.system(clockOrZone));
+	        }
+	    };
+	
+	    LocalTime._now = function _now() {
 	        var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
 	
 	        (0, _assert.requireNonNull)(clock, 'clock');
@@ -1605,26 +1619,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    MathUtil.intDiv = function intDiv(x, y) {
 	        var r = x / y;
-	        if (r === 0) {
-	            return 0;
-	        } else if (r < 0) {
-	            r = Math.ceil(r);
-	        } else {
-	            r = Math.floor(r);
-	        }
+	        r = MathUtil.roundDown(r);
 	        return MathUtil.safeZero(r);
 	    };
 	
 	    MathUtil.intMod = function intMod(x, y) {
 	        var r = x - MathUtil.intDiv(x, y) * y;
-	        if (r === 0) {
-	            return 0;
-	        } else if (r < 0) {
-	            r = Math.ceil(r);
-	        } else {
-	            r = Math.floor(r);
-	        }
+	        r = MathUtil.roundDown(r);
 	        return MathUtil.safeZero(r);
+	    };
+	
+	    MathUtil.roundDown = function roundDown(r) {
+	        if (r < 0) {
+	            return Math.ceil(r);
+	        } else {
+	            return Math.floor(r);
+	        }
 	    };
 	
 	    MathUtil.floorDiv = function floorDiv(x, y) {
@@ -1763,6 +1773,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ZoneId = __webpack_require__(37);
 	
+	var _ZoneOffset = __webpack_require__(36);
+	
 	var _DateTimeFormatter = __webpack_require__(26);
 	
 	var _ChronoField = __webpack_require__(12);
@@ -1788,11 +1800,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	var LocalDateTime = function (_ChronoLocalDateTime) {
 	    _inherits(LocalDateTime, _ChronoLocalDateTime);
 	
-	    LocalDateTime.now = function now() {
-	        var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
+	    LocalDateTime.now = function now(clockOrZone) {
+	        if (clockOrZone == null) {
+	            return LocalDateTime._now(_Clock.Clock.systemDefaultZone());
+	        } else if (clockOrZone instanceof _Clock.Clock) {
+	            return LocalDateTime._now(clockOrZone);
+	        } else {
+	            return LocalDateTime._now(_Clock.Clock.system(clockOrZone));
+	        }
+	    };
 	
+	    LocalDateTime._now = function _now(clock) {
 	        (0, _assert.requireNonNull)(clock, 'clock');
 	        return LocalDateTime.ofInstant(clock.instant(), clock.zone());
+	    };
+	
+	    LocalDateTime._ofEpochMillis = function _ofEpochMillis(epochMilli, offset) {
+	        var localSecond = _MathUtil.MathUtil.floorDiv(epochMilli, 1000) + offset.totalSeconds();
+	        var localEpochDay = _MathUtil.MathUtil.floorDiv(localSecond, _LocalTime.LocalTime.SECONDS_PER_DAY);
+	        var secsOfDay = _MathUtil.MathUtil.floorMod(localSecond, _LocalTime.LocalTime.SECONDS_PER_DAY);
+	        var nanoOfSecond = _MathUtil.MathUtil.floorMod(epochMilli, 1000) * 1000000;
+	        var date = _LocalDate.LocalDate.ofEpochDay(localEpochDay);
+	        var time = _LocalTime.LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
+	        return new LocalDateTime(date, time);
 	    };
 	
 	    LocalDateTime.of = function of() {
@@ -1838,6 +1868,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var nanoOfSecond = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 	        var offset = arguments[2];
 	
+	        if (arguments.length === 2 && nanoOfSecond instanceof _ZoneOffset.ZoneOffset) {
+	            offset = nanoOfSecond;
+	            nanoOfSecond = 0;
+	        }
 	        (0, _assert.requireNonNull)(offset, 'offset');
 	        var localSecond = epochSecond + offset.totalSeconds();
 	        var localEpochDay = _MathUtil.MathUtil.floorDiv(localSecond, _LocalTime.LocalTime.SECONDS_PER_DAY);
@@ -2055,7 +2089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                case _ChronoUnit.ChronoUnit.MICROS:
 	                    return this.plusDays(_MathUtil.MathUtil.intDiv(amountToAdd, _LocalTime.LocalTime.MICROS_PER_DAY)).plusNanos(_MathUtil.MathUtil.intMod(amountToAdd, _LocalTime.LocalTime.MICROS_PER_DAY) * 1000);
 	                case _ChronoUnit.ChronoUnit.MILLIS:
-	                    return this.plusDays(amountToAdd / _LocalTime.LocalTime.MILLIS_PER_DAY).plusNanos(_MathUtil.MathUtil.intMod(amountToAdd, _LocalTime.LocalTime.MILLIS_PER_DAY) * 1000000);
+	                    return this.plusDays(_MathUtil.MathUtil.intDiv(amountToAdd, _LocalTime.LocalTime.MILLIS_PER_DAY)).plusNanos(_MathUtil.MathUtil.intMod(amountToAdd, _LocalTime.LocalTime.MILLIS_PER_DAY) * 1000000);
 	                case _ChronoUnit.ChronoUnit.SECONDS:
 	                    return this.plusSeconds(amountToAdd);
 	                case _ChronoUnit.ChronoUnit.MINUTES:
@@ -2365,6 +2399,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _ZoneId = __webpack_require__(37);
 	
+	var _ZonedDateTime = __webpack_require__(46);
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -2375,7 +2411,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	
 	var DAYS_PER_CYCLE = 146097;
 	
 	var DAYS_0000_TO_1970 = DAYS_PER_CYCLE * 5 - (30 * 365 + 7);
@@ -2383,10 +2418,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	var LocalDate = function (_ChronoLocalDate) {
 	    _inherits(LocalDate, _ChronoLocalDate);
 	
-	    LocalDate.now = function now() {
-	        var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
-	
-	        (0, _assert.requireNonNull)(clock, 'clock');
+	    LocalDate.now = function now(clockOrZone) {
+	        var clock;
+	        if (clockOrZone == null) {
+	            clock = _Clock.Clock.systemDefaultZone();
+	        } else if (clockOrZone instanceof _ZoneId.ZoneId) {
+	            clock = _Clock.Clock.system(clockOrZone);
+	        } else {
+	            clock = clockOrZone;
+	        }
 	        return LocalDate.ofInstant(clock.instant(), clock.zone());
 	    };
 	
@@ -2929,8 +2969,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this.atTime1(_LocalTime.LocalTime.of(hour, minute, second, nanoOfSecond));
 	    };
 	
-	    LocalDate.prototype.atStartOfDay = function atStartOfDay() {
-	        return _LocalDateTime.LocalDateTime.of(this, _LocalTime.LocalTime.MIDNIGHT);
+	    LocalDate.prototype.atStartOfDay = function atStartOfDay(zone) {
+	        if (zone != null) {
+	            return this.atStartOfDayWithZone(zone);
+	        } else {
+	            return _LocalDateTime.LocalDateTime.of(this, _LocalTime.LocalTime.MIDNIGHT);
+	        }
+	    };
+	
+	    LocalDate.prototype.atStartOfDayWithZone = function atStartOfDayWithZone(zone) {
+	        (0, _assert.requireNonNull)(zone, 'zone');
+	        var ldt = this.atTime(_LocalTime.LocalTime.MIDNIGHT);
+	
+	        return _ZonedDateTime.ZonedDateTime.of(ldt, zone);
 	    };
 	
 	    LocalDate.prototype.toEpochDay = function toEpochDay() {
@@ -3781,15 +3832,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	
 	    Duration.ofDays = function ofDays(days) {
-	        return Duration.create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
 	    };
 	
 	    Duration.ofHours = function ofHours(hours) {
-	        return Duration.create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
 	    };
 	
 	    Duration.ofMinutes = function ofMinutes(minutes) {
-	        return Duration.create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
 	    };
 	
 	    Duration.ofSeconds = function ofSeconds(seconds) {
@@ -3797,7 +3848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	        var secs = _MathUtil.MathUtil.safeAdd(seconds, _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND));
 	        var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        return Duration.create(secs, nos);
+	        return Duration._create(secs, nos);
 	    };
 	
 	    Duration.ofMillis = function ofMillis(millis) {
@@ -3807,7 +3858,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            mos += 1000;
 	            secs--;
 	        }
-	        return Duration.create(secs, mos * 1000000);
+	        return Duration._create(secs, mos * 1000000);
 	    };
 	
 	    Duration.ofNanos = function ofNanos(nanos) {
@@ -3817,7 +3868,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            nos += _LocalTime.LocalTime.NANOS_PER_SECOND;
 	            secs--;
 	        }
-	        return this.create(secs, nos);
+	        return this._create(secs, nos);
 	    };
 	
 	    Duration.of = function of(amount, unit) {
@@ -3876,7 +3927,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
 	                    var nanos = Duration._parseFraction(text, fractionMatch, negativeSecs ? -1 : 1);
 	                    try {
-	                        return Duration.create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
+	                        return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
 	                    } catch (ex) {
 	                        throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
 	                    }
@@ -3913,17 +3964,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    };
 	
-	    Duration.create = function create() {
-	        if (arguments.length === 1) {
-	            return Duration.createSeconds(arguments[0]);
-	        } else if (arguments.length === 2) {
-	            return Duration.createSecondsNanos(arguments[0], arguments[1]);
+	    Duration._create = function _create() {
+	        if (arguments.length <= 2) {
+	            return Duration._createSecondsNanos(arguments[0], arguments[1]);
 	        } else {
-	            return Duration.createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+	            return Duration._createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
 	        }
 	    };
 	
-	    Duration.createNegateDaysHoursMinutesSecondsNanos = function createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
+	    Duration._createNegateDaysHoursMinutesSecondsNanos = function _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
 	        var seconds = _MathUtil.MathUtil.safeAdd(daysAsSecs, _MathUtil.MathUtil.safeAdd(hoursAsSecs, _MathUtil.MathUtil.safeAdd(minsAsSecs, secs)));
 	        if (negate) {
 	            return Duration.ofSeconds(seconds, nanos).negated();
@@ -3931,30 +3980,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return Duration.ofSeconds(seconds, nanos);
 	    };
 	
-	    Duration.createSecondsNanos = function createSecondsNanos() {
+	    Duration._createSecondsNanos = function _createSecondsNanos() {
 	        var seconds = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
 	        var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 	
 	        if ((seconds | nanoAdjustment) === 0) {
 	            return Duration.ZERO;
 	        }
-	
-	        if (seconds >= 0) {
-	            nanoAdjustment += seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
-	        } else {
-	            nanoAdjustment -= seconds % 1 * _LocalTime.LocalTime.NANOS_PER_SECOND;
-	        }
-	        seconds = Math.floor(seconds);
-	        nanoAdjustment = Math.round(nanoAdjustment);
-	
 	        return new Duration(seconds, nanoAdjustment);
-	    };
-	
-	    Duration.createSeconds = function createSeconds(seconds) {
-	        var nanos = Math.round(seconds * Math.pow(10, 9));
-	        var div = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        var rem = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        return Duration.ofSeconds(div, rem);
 	    };
 	
 	    Duration.prototype.get = function get(unit) {
@@ -3988,12 +4021,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    Duration.prototype.withSeconds = function withSeconds(seconds) {
-	        return Duration.create(seconds, this._nanos);
+	        return Duration._create(seconds, this._nanos);
 	    };
 	
 	    Duration.prototype.withNanos = function withNanos(nanoOfSecond) {
 	        _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
-	        return Duration.create(this._seconds, nanoOfSecond);
+	        return Duration._create(this._seconds, nanoOfSecond);
 	    };
 	
 	    Duration.prototype.plusDuration = function plusDuration(duration) {
@@ -4137,7 +4170,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (multiplicand === 1) {
 	            return this;
 	        }
-	        return Duration.create(_MathUtil.MathUtil.safeMultiply(this.toSeconds(), multiplicand));
+	        var secs = _MathUtil.MathUtil.safeMultiply(this._seconds, multiplicand);
+	        var nos = _MathUtil.MathUtil.safeMultiply(this._nanos, multiplicand);
+	        secs = secs + _MathUtil.MathUtil.intDiv(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        nos = _MathUtil.MathUtil.intMod(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        return Duration.ofSeconds(secs, nos);
 	    };
 	
 	    Duration.prototype.dividedBy = function dividedBy(divisor) {
@@ -4147,12 +4184,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (divisor === 1) {
 	            return this;
 	        }
-	        return Duration.create(this.toSeconds() / divisor);
-	    };
-	
-	    Duration.prototype.toSeconds = function toSeconds() {
-	        var nanoFloat = _MathUtil.MathUtil.safeMultiply(this._nanos, Math.pow(10, -9));
-	        return _MathUtil.MathUtil.safeAdd(this._seconds, nanoFloat);
+	        var secs = _MathUtil.MathUtil.intDiv(this._seconds, divisor);
+	        var secsMod = _MathUtil.MathUtil.roundDown((this._seconds / divisor - secs) * _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        var nos = _MathUtil.MathUtil.intDiv(this._nanos, divisor);
+	        nos = secsMod + nos;
+	        return Duration.ofSeconds(secs, nos);
 	    };
 	
 	    Duration.prototype.negated = function negated() {
@@ -4186,15 +4222,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    Duration.prototype.toDays = function toDays() {
-	        return this._seconds / _LocalTime.LocalTime.SECONDS_PER_DAY;
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_DAY);
 	    };
 	
 	    Duration.prototype.toHours = function toHours() {
-	        return this._seconds / _LocalTime.LocalTime.SECONDS_PER_HOUR;
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
 	    };
 	
 	    Duration.prototype.toMinutes = function toMinutes() {
-	        return this._seconds / _LocalTime.LocalTime.SECONDS_PER_MINUTE;
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
 	    };
 	
 	    Duration.prototype.toMillis = function toMillis() {
@@ -7931,6 +7967,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.abstractMethodFail)('ZoneRules.offsetInstant');
 	    };
 	
+	    ZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.offsetOfEpochMilli');
+	    };
+	
 	    ZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
 	        (0, _assert.abstractMethodFail)('ZoneRules.offsetLocalDateTime');
 	    };
@@ -7959,6 +7999,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    Fixed.prototype.offsetOfInstant = function offsetOfInstant() {
+	        return this._offset;
+	    };
+	
+	    Fixed.prototype.offsetOfEpochMilli = function offsetOfEpochMilli() {
 	        return this._offset;
 	    };
 	
@@ -8133,6 +8177,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    SystemDefaultZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
 	        var offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
+	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
+	    };
+	
+	    SystemDefaultZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
+	        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
 	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
 	    };
 	
