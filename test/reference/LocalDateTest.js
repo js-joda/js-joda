@@ -27,6 +27,7 @@ import {Month} from '../../src/Month';
 import {Period} from '../../src/Period';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneId} from '../../src/ZoneId';
+import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {Year} from '../../src/Year';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
@@ -141,12 +142,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
     });
 
     describe('now(Clock)', () => {
-        it('now_Clock_nullClock', function () {
-            expect(() => {
-                LocalDate.now(null);
-            }).to.throw(NullPointerException);
-        });
-
+        
         it('now_Clock_allSecsInDay_utc', () => {
             var instant, clock, test;
             for (let i = 0; i < (2 * 24 * 60 * 60); i += 100) {
@@ -1745,21 +1741,22 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(t.atStartOfDay(),LocalDateTime.of(2008, 6, 30, 0, 0));
         });
 
-/*
-        it('test_atStartOfDay_dstGap', () => {
+
+        it('test_atStartOfDay_zone', () => {
+            var zone = ZoneId.of('UTC+01:00');
             var t = LocalDate.of(2007, 4, 1);
-            assertEquals(t.atStartOfDay(ZONE_GAZA),
-                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
+            assertEquals(t.atStartOfDay(zone),
+                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 0, 0), zone));
         });
 
-        it('test_atStartOfDay_nullTimeZone', () => {
-            expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
-                t.atStartOfDay(null);
-            }).to.throw(NullPointerException);
-        });
-*/
-
+        /* TODO iana tzdb
+            it('test_atStartOfDay_dstGap', () => {
+                var t = LocalDate.of(2007, 4, 1);
+                assertEquals(t.atStartOfDay(ZONE_GAZA),
+                    ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
+            });
+        */
+        
     });
 
     describe('toEpochDay()', function () {
