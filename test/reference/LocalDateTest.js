@@ -375,7 +375,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('test_factory_CalendricalObject', () => {
             assertEquals(LocalDate.from(LocalDate.of(2007, 7, 15)), LocalDate.of(2007, 7, 15));
-            // TODO assertEquals(LocalDate.from(LocalDateTime.of(2007, 7, 15, 12, 30)), LocalDate.of(2007, 7, 15));
+            assertEquals(LocalDate.from(LocalDateTime.of(2007, 7, 15, 12, 30)), LocalDate.of(2007, 7, 15));
         });
 
         it('test_factory_CalendricalObject_invalid_noDerive', () => {
