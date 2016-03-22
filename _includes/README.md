@@ -94,6 +94,17 @@ only fixed offsets like UTC or UTC+02:00 and the system default time zone.
 Any further timezone converting and localization is not part of the first milestone and will be saved for later.
 This might also be an extra package to reduce library size if Timezone functionality is not needed.
 
+## Contributing
+
+Contributions are always welcome. Before contributing please read the [code of conduct](http://contributor-covenant.org/version/1/4/) & 
+search the issue tracker. We use GitHub issues.  Your issue may have already been discussed or fixed. 
+To contribute, fork js-joda, commit your changes, & send a pull request.
+
+By contributing to js-joda, you agree that your contributions will be licensed under its BSD license.
+
+Note that pull requests and issues will only be considered so far as matching the threeten backport API. 
+Additional requested features will be rejected.
+
 ## License
 
 Joda time is the base for JSR-310 that became part of Java SE 8 in the java.time package.
