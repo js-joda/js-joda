@@ -103,6 +103,9 @@ To contribute, fork js-joda, commit your changes, & send a pull request.
 
 By contributing to js-joda, you agree that your contributions will be licensed under its BSD license.
 
+Note that pull requests and issues will only be considered so far as matching the threeten backport API. 
+Additional requested features will be rejected.
+
 ## License
 
 Joda time is the base for JSR-310 that became part of Java SE 8 in the java.time package.
