@@ -114,7 +114,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
     });
 */
 
-    var yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 30; // should be at least 400
+    var yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 23; // should be at least 400
     it('test_loop', function () {
         // yearsToLoop = 400; this.timeout(10000);
         // loop round at least one 400 year cycle, including before 1970
