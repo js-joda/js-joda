@@ -481,7 +481,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-    /** TODO
+    /** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
         @Test
         public void factory_parse_formatter() {
@@ -1973,7 +1973,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         }
     });
 
-    /** TODO
+    /** TODO pattern parser
      *
     describe('format(DateTimeFormatter)', function () {
         it('test_format_formatter', () => {

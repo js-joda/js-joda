@@ -571,7 +571,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
     });
 
-/** TODO parser
+/** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter', function () {

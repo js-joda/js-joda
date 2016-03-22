@@ -873,7 +873,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-/** TODO parser
+/** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
@@ -3057,7 +3057,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     describe('format(DateTimeFormatter)', () => {
 
-/* TODO parser
+/* TODO pattern parser
         it('test_format_formatter()', () => {
             var f = DateTimeFormatter.ofPattern('y M d H m s');
             var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);

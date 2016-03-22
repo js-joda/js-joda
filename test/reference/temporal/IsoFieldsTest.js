@@ -96,7 +96,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
     });
 
-/* TODO parser
+/* TODO weekday parser
     describe('parse weeks', () => {
 
         // @Test(dataProvider='week')

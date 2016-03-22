@@ -70,7 +70,6 @@ describe('MathUtil', () => {
             // following test fails because the end of javascript floating point accuracy reached
             //testFloorDivMod(Number.MIN_SAFE_INTEGER, 3, -3002399751580331, 2);
 
-            // TODO research where the boundaries for MIN/ MAX seconds are
             // same test for Instant.MIN_SECONDS
             testFloorDivMod(-31619087596800, 3, -10539695865600, 0);
             testFloorDivMod(-31619087596800 + 1, 3, -10539695865600, 1);
@@ -145,7 +144,7 @@ describe('MathUtil', () => {
         });
 
         it('safeMultiply', function () {
-            // TODO
+            // TODO add tests
         });
 
     });

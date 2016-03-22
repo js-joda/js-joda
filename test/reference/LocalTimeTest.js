@@ -500,7 +500,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
     });
 
-/* TODO parser
+/* TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
@@ -2113,7 +2113,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     });
 
 
-/* TODO parser
+/* TODO pattern parser
     describe('format(DateTimeFormatter)', () => {
 
         it('test_format_formatter()', () => {
