@@ -27,6 +27,7 @@ import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import {ZoneId} from '../../src/ZoneId';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
@@ -43,19 +44,19 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
      private static final var ZONE_GAZA = ZoneId.of('Asia/Gaza');
      */
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
-    //var MAX_DATE_TIME;
-    //var MIN_DATE_TIME;
-    //var MAX_INSTANT;
-    //var MIN_INSTANT;
+    var MAX_DATE_TIME;
+    var MIN_DATE_TIME;
+    var MAX_INSTANT;
+    var MIN_INSTANT;
 
     beforeEach('setUp', () => {
         OFFSET_PONE = ZoneOffset.ofHours(1);
         OFFSET_PTWO = ZoneOffset.ofHours(2);
         //OFFSET_MTWO = ZoneOffset.ofHours(-2);
-        //MAX_DATE_TIME = LocalDateTime.MAX;
-        //MIN_DATE_TIME = LocalDateTime.MIN;
-        //MAX_INSTANT = MAX_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
-        //MIN_INSTANT = MIN_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
+        MAX_DATE_TIME = LocalDateTime.MAX;
+        MIN_DATE_TIME = LocalDateTime.MIN;
+        MAX_INSTANT = MAX_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
+        MIN_INSTANT = MIN_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
     });
 
 /*
@@ -155,38 +156,38 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-    /*
-     describe('now(ZoneId)', () => {
+    describe('now(ZoneId)', () => {
 
-         it('now_ZoneId_nullZoneId', () => {
-             expect(() => {
-                 LocalDateTime.now(null);
-             }).to.throw(NullPointerException);
-         });
+        it('now_ZoneId_nullZoneId', () => {
+            var expected = LocalDateTime.now(Clock.systemDefaultZone());
+            var test = LocalDateTime.now();
+            for (var i = 0; i < 100; i++) {
+                if (expected.equals(test)) {
+                    return;
+                }
+                expected = LocalDateTime.now(Clock.systemDefaultZone());
+                test = LocalDateTime.now();
+            }
+            assertEquals(test, expected);
+        });
 
-         it('now_ZoneId()', () => {
-             var zone = ZoneId.of('UTC+01:02:03');
-             var expected = LocalDateTime.now(Clock.system(zone));
-             var test = LocalDateTime.now(zone);
-             for (var i = 0; i < 100; i++) {
-                 if (expected.equals(test)) {
-                     return;
-                 }
-                 expected = LocalDateTime.now(Clock.system(zone));
-                 test = LocalDateTime.now(zone);
-             }
-             assertEquals(test, expected);
-         });
+        it('now_ZoneId()', () => {
+            var zone = ZoneId.of('UTC+01:02:03');
+            var expected = LocalDateTime.now(Clock.system(zone));
+            var test = LocalDateTime.now(zone);
+            for (var i = 0; i < 100; i++) {
+                if (expected.equals(test)) {
+                    return;
+                }
+                expected = LocalDateTime.now(Clock.system(zone));
+                test = LocalDateTime.now(zone);
+            }
+            assertEquals(test, expected);
+        });
 
-     });
-     */
+    });
 
     describe('now(Clock)', () => {
-        it('now_Clock_nullClock', () => {
-            expect(() => {
-                LocalDateTime.now(null);
-            }).to.throw(NullPointerException);
-        });
 
         var delta = isCoverageTestRunner() ? 937 : 97;
 
@@ -233,39 +234,35 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
                 assertEquals(test.toLocalTime(), expected);
             }
         });
+
+
+        it('now_Clock_maxYear', () => {
+            var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
+            var test = LocalDateTime.now(clock);
+            assertEquals(test, MAX_DATE_TIME);
+        });
+
+        it('now_Clock_tooBig', () => {
+            expect(() => {
+                var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
+                LocalDateTime.now(clock);
+            }).to.throw(DateTimeException);
+        });
+
+        it('now_Clock_minYear', () => {
+            var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
+            var test = LocalDateTime.now(clock);
+            assertEquals(test, MIN_DATE_TIME);
+        });
+
+        it('now_Clock_tooLow', () => {
+            expect(() => {
+                var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
+                LocalDateTime.now(clock);
+            }).to.throw(DateTimeException);
+        });
+
     });
-
-
-    //-----------------------------------------------------------------------
-
-/* TODO Instant
-    it('now_Clock_maxYear', () => {
-        var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
-        var test = LocalDateTime.now(clock);
-        assertEquals(test, MAX_DATE_TIME);
-    });
-
-    it('now_Clock_tooBig', () => {
-        expect(() => {
-            var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
-            LocalDateTime.now(clock);
-        }).to.throw(DateTimeException);
-    });
-
-    it('now_Clock_minYear', () => {
-        var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
-        var test = LocalDateTime.now(clock);
-        assertEquals(test, MIN_DATE_TIME);
-    });
-
-    it('now_Clock_tooLow', () => {
-        expect(() => {
-            var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
-            LocalDateTime.now(clock);
-        }).to.throw(DateTimeException);
-    });
-
-*/
 
     describe('of() factories', function () {
 

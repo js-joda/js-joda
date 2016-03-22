@@ -71,22 +71,32 @@ export class LocalDateTime extends ChronoLocalDateTime
 
 
     /**
-     * Obtains the current date-time from the system clock in the specified time-zone.
+     * Obtains the current date-time from from the specified clock or the system clock in the specified time-zone.
      * <p>
-     * This will query the {@link Clock#system(ZoneId) system clock} to obtain the current date-time.
+     * If the argument is an instance of Clock this will query the specified clock to obtain the current date-time.
+     * Using this method allows the use of an alternate clock for testing.
+     * The alternate clock may be introduced using {@link Clock dependency injection}.
+     * <p>
+     * If the argument is an instance of ZoneId this will query the {@link Clock#system(ZoneId) system clock} to obtain the current date-time.
      * Specifying the time-zone avoids dependence on the default time-zone.
+     * <p>
+     * If nor argument is applied, the system default time zone is used to obtain the current date-time.    
      * <p>
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param {ZoneId} zone - the zone ID to use, not null
+     * @param {Clock|ZoneId} clockOrZone - the zone ID or clock to use, if null Clock.systemDefaultZone() is used.
      * @return {LocalDateTime} the current date-time using the system clock, not null
      */
-    /*
-        static now(zone) {
-            return now(Clock.system(zone));
+    static now(clockOrZone) {
+        if (clockOrZone == null){
+            return LocalDateTime._now(Clock.systemDefaultZone());
+        } else if (clockOrZone instanceof Clock){
+            return LocalDateTime._now(clockOrZone);
+        } else {
+            return LocalDateTime._now(Clock.system(clockOrZone));
         }
-    */
+    }
 
     /**
      * Obtains the current date-time from the specified clock.
@@ -98,7 +108,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @param {Clock} clock - the clock to use, defaults to Clock.systemDefaultZone()
      * @return {LocalDateTime} the current date-time, not null
      */
-    static now(clock = Clock.systemDefaultZone()) {
+    static _now(clock) {
         requireNonNull(clock, 'clock');
         return LocalDateTime.ofInstant(clock.instant(), clock.zone());
     }
