@@ -1930,10 +1930,15 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (unit instanceof ChronoUnit) {
             end = end.withZoneSameInstant(this._zone);
             if (unit.isDateBased()) {
-                return this._dateTime.until(end.dateTime, unit);
+                return this._dateTime.until(end._dateTime, unit);
             } else {
-                // TODO we do not support offsetDateTime, we might have to find a different solution
-                // return toOffsetDateTime().until(end.toOffsetDateTime(), unit);
+                // TODO check with iana tzdb, this might be wrong   
+                return this._dateTime.until(end._dateTime, unit);
+                // threeten says
+                // return toOffsetDateTime().until(end.toOffsetDateTime(), unit)
+                // OffsetDateTime.until ...
+                // end = end.withOffsetSameInstant(offset);
+                // return dateTime.until(end.dateTime, unit);
             }
         }
         return unit.between(this, end);

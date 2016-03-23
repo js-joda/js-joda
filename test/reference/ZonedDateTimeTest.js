@@ -1695,6 +1695,127 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
+    // missing in threeten
+    describe('until()', () => {
+
+        //@DataProvider(name='until')
+        function provider_until() {
+            // TODO date based ChronoUnit missing in threeten bp
+            return [
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.DAYS, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.WEEKS, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.MONTHS, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.YEARS, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.DECADES, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.CENTURIES, 0],
+                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.MILLENNIA, 0],
+
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.DAYS, 364],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.WEEKS, 52],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.MONTHS, 11],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.YEARS, 0, -1],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.DECADES, 0],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.CENTURIES, 0],
+                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.MILLENNIA, 0],
+
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.NANOS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MICROS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MILLIS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MINUTES, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HOURS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HALF_DAYS, 0],
+
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.NANOS, 1000000000],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MICROS, 1000000],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MILLIS, 1000],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.SECONDS, 1],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MINUTES, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HOURS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HALF_DAYS, 0],
+
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.NANOS, 60000000000],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MICROS, 60000000],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MILLIS, 60000],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.SECONDS, 60],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MINUTES, 1],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HOURS, 0],
+                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HALF_DAYS, 0],
+
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.499', ChronoUnit.SECONDS, -1],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.500', ChronoUnit.SECONDS, -1],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.501', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.499', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.500', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.501', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.499', ChronoUnit.SECONDS, 0],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.500', ChronoUnit.SECONDS, 1],
+                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.501', ChronoUnit.SECONDS, 1],
+
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.499', ChronoUnit.SECONDS, 86400 - 2],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.500', ChronoUnit.SECONDS, 86400 - 1],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.501', ChronoUnit.SECONDS, 86400 - 1],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.499', ChronoUnit.SECONDS, 86400 - 1],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.500', ChronoUnit.SECONDS, 86400 + 0],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.501', ChronoUnit.SECONDS, 86400 + 0],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.499', ChronoUnit.SECONDS, 86400 + 0],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.500', ChronoUnit.SECONDS, 86400 + 1],
+                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.501', ChronoUnit.SECONDS, 86400 + 1]
+            ];
+        }
+
+        it('test_until', function () {
+            dataProviderTest(provider_until,test_until);
+        });
+
+        // @Test(dataProvider = 'until')
+        function test_until(startStr, endStr, unit, expected) {
+            // console.log(startStr, endStr, unit.toString(), expected);
+            var start = LocalDateTime.parse(startStr).atZone(ZONE_0100);
+            var end = LocalDateTime.parse(endStr).atZone(ZONE_0100);
+            assertEquals(start.until(end, unit), expected);
+        }
+
+        it('test_until_reveresed', function () {
+            dataProviderTest(provider_until,test_until_reveresed);
+        });
+
+        // @Test(dataProvider = 'until')
+        function test_until_reveresed(startStr, endStr, unit, expected) {
+            // console.log(startStr, endStr, unit.toString(), expected);
+            var start = LocalDateTime.parse(startStr).atZone(ZONE_0100);
+            var end = LocalDateTime.parse(endStr).atZone(ZONE_0100);
+            assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
+        }
+
+        function data_until_UTC_CET(){
+            return [
+                 [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 1, 2).atStartOfDay(ZONE_PARIS), 23],
+                 [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 1, 2, 1, 0).atZone(ZONE_PARIS), 24],
+                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 7, 2).atStartOfDay(ZONE_PARIS), 22],
+                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 1, 0).atZone(ZONE_PARIS), 23],
+                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 2, 0).atZone(ZONE_PARIS), 24],
+                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 3, 0).atZone(ZONE_PARIS), 25]
+            ];
+        }
+
+        it('test_until_UTC_CET_hours', ()=> {
+            dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
+                assertEquals(utc.until(cet, ChronoUnit.HOURS),  expectedHours);
+                assertEquals(cet.until(utc, ChronoUnit.HOURS), -expectedHours);
+            });
+        });
+
+        it('test_until_UTC_CET_days', ()=> {
+            dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
+                var expectedDays = Math.floor(expectedHours / 24);
+                assertEquals(utc.until(cet, ChronoUnit.DAYS), expectedDays);
+                assertEquals(cet.until(utc, ChronoUnit.DAYS), MathUtil.safeZero(-expectedDays));
+            });
+        });
+
+    });
+
     describe('compareTo()', () => {
 
         it('test_compareTo_time1', () => {
