@@ -1,5 +1,4 @@
-require('./suites/parseInstant');
-require('./suites/parseLocalDate');
+require('./suites/parse');
 require('./suites/now');
 require('./suites/plus1Day');
 require('./suites/plusMinusDaysAndHours');
