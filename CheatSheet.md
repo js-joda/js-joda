@@ -941,8 +941,3 @@ localDate = OPTIONAL_FORMATTER.parse('2012-12-24', dateOrDateTimeQuery);
 localDateTime = OPTIONAL_FORMATTER.parse('2012-12-24T23:59', dateOrDateTimeQuery);
 
 ```
-
-<script src="https://cdn.jsdelivr.net/auto-toc.js/0.0.5/dist.js"></script>
-<script>
-  autoToc('.content', '.toc-placeholder', {ignore: ['js-joda Cheat sheet', 'Table of content']});
-</script>
