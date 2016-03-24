@@ -40,7 +40,6 @@ describe('org.threeten.bp.TestMonth', () => {
     });
 
     //-----------------------------------------------------------------------
-    // TODO: Month.from()
     it.skip('test_factory_CalendricalObject', () => {
         expect(Month.from(LocalDate.of(2011, 6, 6))).to.eql(Month.JUNE);
     });
