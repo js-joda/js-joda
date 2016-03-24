@@ -40,17 +40,17 @@ describe('org.threeten.bp.TestMonth', () => {
     });
 
     //-----------------------------------------------------------------------
-    it.skip('test_factory_CalendricalObject', () => {
+    it('test_factory_CalendricalObject', () => {
         expect(Month.from(LocalDate.of(2011, 6, 6))).to.eql(Month.JUNE);
     });
 
-    it.skip('test_factory_CalendricalObject_invalid_noDerive', () => {
+    it('test_factory_CalendricalObject_invalid_noDerive', () => {
         expect(() => {
             Month.from(LocalTime.of(12, 30));
         }).to.throw(DateTimeException);
     });
 
-    it.skip('test_factory_CalendricalObject_null', () => {
+    it('test_factory_CalendricalObject_null', () => {
         expect(() => {
             Month.from(null);
         }).to.throw(DateTimeException); // NullPointerException in JDK

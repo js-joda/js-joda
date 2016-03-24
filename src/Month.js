@@ -455,6 +455,40 @@ export class Month extends Temporal {
         }
         return MONTHS[month-1];
     }
+    
+    /**
+     * Obtains an instance of {@code Month} from a temporal object.
+     * <p>
+     * This obtains a month based on the specified temporal.
+     * A {@code TemporalAccessor} represents an arbitrary set of date and time information,
+     * which this factory converts to an instance of {@code Month}.
+     * <p>
+     * The conversion extracts the {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} field.
+     * The extraction is only permitted if the temporal object has an ISO
+     * chronology, or can be converted to a {@code LocalDate}.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@code Month::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {Month} the month-of-year, not null
+     * @throws DateTimeException if unable to convert to a {@code Month}
+     */
+    static from(temporal) {
+        if (temporal instanceof Month) {
+            return temporal;
+        }
+        try {
+            /* only ISO for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }*/
+            return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
+        } catch (ex) {
+            throw new DateTimeException('Unable to obtain Month from TemporalAccessor: ' +
+                    temporal + ' of type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
+        }
+    }
 }
 
 var MONTHS;
