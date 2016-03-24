@@ -34,7 +34,7 @@ especially if these dates are persisted to an external server.
 + js-joda is immutable. Immutability aligns well with pure functions and
 with the architecture of frameworks like React and Flux.
 
-## The js-joda domain models
+## The threeten domain models
 
 + **LocalDate** represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
 
