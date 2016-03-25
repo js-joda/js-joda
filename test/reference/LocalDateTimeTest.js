@@ -19,7 +19,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {Instant} from '../../src/Instant';
 import {Month} from '../../src/Month';
-import {Year} from '../../src/Year';
+import {YearConstants} from '../../src/YearConstants';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
@@ -1084,7 +1084,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_withYear_int_invalid', () => {
             expect(() => {
-                TEST_2007_07_15_12_30_40_987654321.withYear(Year.MIN_VALUE - 1);
+                TEST_2007_07_15_12_30_40_987654321.withYear(YearConstants.MIN_VALUE - 1);
             }).to.throw(DateTimeException);
         });
 
@@ -1298,14 +1298,14 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('test_plus_Period_invalidTooLarge', () => {
             expect(() => {
                 var period = MockSimplePeriod.of(1, ChronoUnit.YEARS);
-                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(period);
+                LocalDateTime.of(YearConstants.MAX_VALUE, 1, 1, 0, 0).plus(period);
             }).to.throw(DateTimeException);
         });
 
         it('test_plus_Period_invalidTooSmall', () => {
             expect(() => {
                 var period = MockSimplePeriod.of(-1, ChronoUnit.YEARS);
-                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(period);
+                LocalDateTime.of(YearConstants.MIN_VALUE, 1, 1, 0, 0).plus(period);
             }).to.throw(DateTimeException);
         });
 
@@ -1331,13 +1331,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_plus_longPeriodUnit_invalidTooLarge', () => {
             expect(() => {
-                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).plus(1, ChronoUnit.YEARS);
+                LocalDateTime.of(YearConstants.MAX_VALUE, 1, 1, 0, 0).plus(1, ChronoUnit.YEARS);
             }).to.throw(DateTimeException);
         });
 
         it('test_plus_longPeriodUnit_invalidTooSmall', () => {
             expect(() => {
-                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).plus(-1, ChronoUnit.YEARS);
+                LocalDateTime.of(YearConstants.MIN_VALUE, 1, 1, 0, 0).plus(-1, ChronoUnit.YEARS);
             }).to.throw(DateTimeException);
         });
 
@@ -1362,13 +1362,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_plusYears_int_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 1, 1).plusYears(1);
+                createDateMidnight(YearConstants.MAX_VALUE, 1, 1).plusYears(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusYears_int_invalidTooSmall', () => {
             expect(() => {
-                LocalDate.of(Year.MIN_VALUE, 1, 1).plusYears(-1);
+                LocalDate.of(YearConstants.MIN_VALUE, 1, 1).plusYears(-1);
             }).to.throw(DateTimeException);
         });
 
@@ -1413,13 +1413,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_plusMonths_int_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 1).plusMonths(1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 1).plusMonths(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusMonths_int_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).plusMonths(-1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).plusMonths(-1);
             }).to.throw(DateTimeException);
         });
 
@@ -1512,24 +1512,24 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         it('test_plusWeeks_maximum', () => {
-            var t = createDateMidnight(Year.MAX_VALUE, 12, 24).plusWeeks(1);
-            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MAX_VALUE, 12, 24).plusWeeks(1);
+            check(t, YearConstants.MAX_VALUE, 12, 31, 0, 0, 0, 0);
         });
 
         it('test_plusWeeks_minimum', () => {
-            var t = createDateMidnight(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
-            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MIN_VALUE, 1, 8).plusWeeks(-1);
+            check(t, YearConstants.MIN_VALUE, 1, 1, 0, 0, 0, 0);
         });
 
         it('test_plusWeeks_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 25).plusWeeks(1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 25).plusWeeks(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusWeeks_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 7).plusWeeks(-1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 7).plusWeeks(-1);
             }).to.throw(DateTimeException);
         });
 
@@ -1622,36 +1622,36 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         it('test_plusDays_maximum', () => {
-            var t = createDateMidnight(Year.MAX_VALUE, 12, 30).plusDays(1);
-            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MAX_VALUE, 12, 30).plusDays(1);
+            check(t, YearConstants.MAX_VALUE, 12, 31, 0, 0, 0, 0);
         });
 
         it('test_plusDays_minimum', () => {
-            var t = createDateMidnight(Year.MIN_VALUE, 1, 2).plusDays(-1);
-            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MIN_VALUE, 1, 2).plusDays(-1);
+            check(t, YearConstants.MIN_VALUE, 1, 1, 0, 0, 0, 0);
         });
 
         it('test_plusDays_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 31).plusDays(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusDays_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(-1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).plusDays(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusDays_overflowTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 31).plusDays(MathUtil.MAX_SAFE_INTEGER);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 31).plusDays(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(ArithmeticException);
         });
 
         it('test_plusDays_overflowTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).plusDays(MathUtil.MIN_SAFE_INTEGER);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).plusDays(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(ArithmeticException);
         });
 
@@ -1964,14 +1964,14 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('test_minus_Period_invalidTooLarge', () => {
             expect(() => {
                 var period = MockSimplePeriod.of(-1, ChronoUnit.YEARS);
-                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).minus(period);
+                LocalDateTime.of(YearConstants.MAX_VALUE, 1, 1, 0, 0).minus(period);
             }).to.throw(DateTimeException);
         });
 
         it('test_minus_Period_invalidTooSmall', () => {
             expect(() => {
                 var period = MockSimplePeriod.of(1, ChronoUnit.YEARS);
-                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).minus(period);
+                LocalDateTime.of(YearConstants.MIN_VALUE, 1, 1, 0, 0).minus(period);
             }).to.throw(DateTimeException);
         });
 
@@ -1997,13 +1997,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_minus_longPeriodUnit_invalidTooLarge', () => {
             expect(() => {
-                LocalDateTime.of(Year.MAX_VALUE, 1, 1, 0, 0).minus(-1, ChronoUnit.YEARS);
+                LocalDateTime.of(YearConstants.MAX_VALUE, 1, 1, 0, 0).minus(-1, ChronoUnit.YEARS);
             }).to.throw(DateTimeException);
         });
 
         it('test_minus_longPeriodUnit_invalidTooSmall', () => {
             expect(() => {
-                LocalDateTime.of(Year.MIN_VALUE, 1, 1, 0, 0).minus(1, ChronoUnit.YEARS);
+                LocalDateTime.of(YearConstants.MIN_VALUE, 1, 1, 0, 0).minus(1, ChronoUnit.YEARS);
             }).to.throw(DateTimeException);
         });
 
@@ -2028,13 +2028,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_minusYears_int_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 1, 1).minusYears(-1);
+                createDateMidnight(YearConstants.MAX_VALUE, 1, 1).minusYears(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusYears_int_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).minusYears(1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).minusYears(1);
             }).to.throw(DateTimeException);
         });
 
@@ -2079,13 +2079,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_minusMonths_int_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 1).minusMonths(-1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 1).minusMonths(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusMonths_int_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).minusMonths(1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).minusMonths(1);
             }).to.throw(DateTimeException);
         });
 
@@ -2180,24 +2180,24 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         it('test_minusWeeks_maximum', () => {
-            var t = createDateMidnight(Year.MAX_VALUE, 12, 24).minusWeeks(-1);
-            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MAX_VALUE, 12, 24).minusWeeks(-1);
+            check(t, YearConstants.MAX_VALUE, 12, 31, 0, 0, 0, 0);
         });
 
         it('test_minusWeeks_minimum', () => {
-            var t = createDateMidnight(Year.MIN_VALUE, 1, 8).minusWeeks(1);
-            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MIN_VALUE, 1, 8).minusWeeks(1);
+            check(t, YearConstants.MIN_VALUE, 1, 1, 0, 0, 0, 0);
         });
 
         it('test_minusWeeks_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 25).minusWeeks(-1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 25).minusWeeks(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusWeeks_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 7).minusWeeks(1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 7).minusWeeks(1);
             }).to.throw(DateTimeException);
         });
 
@@ -2292,36 +2292,36 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
         it('test_minusDays_maximum', () => {
-            var t = createDateMidnight(Year.MAX_VALUE, 12, 30).minusDays(-1);
-            check(t, Year.MAX_VALUE, 12, 31, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MAX_VALUE, 12, 30).minusDays(-1);
+            check(t, YearConstants.MAX_VALUE, 12, 31, 0, 0, 0, 0);
         });
 
         it('test_minusDays_minimum', () => {
-            var t = createDateMidnight(Year.MIN_VALUE, 1, 2).minusDays(1);
-            check(t, Year.MIN_VALUE, 1, 1, 0, 0, 0, 0);
+            var t = createDateMidnight(YearConstants.MIN_VALUE, 1, 2).minusDays(1);
+            check(t, YearConstants.MIN_VALUE, 1, 1, 0, 0, 0, 0);
         });
 
         it('test_minusDays_invalidTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 31).minusDays(-1);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 31).minusDays(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusDays_invalidTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).minusDays(1);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).minusDays(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusDays_overflowTooLarge', () => {
             expect(() => {
-                createDateMidnight(Year.MAX_VALUE, 12, 31).minusDays(MathUtil.MIN_SAFE_INTEGER);
+                createDateMidnight(YearConstants.MAX_VALUE, 12, 31).minusDays(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(ArithmeticException);
         });
 
         it('test_minusDays_overflowTooSmall', () => {
             expect(() => {
-                createDateMidnight(Year.MIN_VALUE, 1, 1).minusDays(MathUtil.MAX_SAFE_INTEGER);
+                createDateMidnight(YearConstants.MIN_VALUE, 1, 1).minusDays(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(ArithmeticException);
         });
 
@@ -2741,7 +2741,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             }).to.throw(NullPointerException);
         });
 
-	});
+    });
 
     describe('toEpochSecond()', () => {
 
@@ -2770,8 +2770,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_comparisons', () => {
             test_comparisons_LocalDateTime1(
-                LocalDate.of(Year.MIN_VALUE, 1, 1),
-                LocalDate.of(Year.MIN_VALUE, 12, 31),
+                LocalDate.of(YearConstants.MIN_VALUE, 1, 1),
+                LocalDate.of(YearConstants.MIN_VALUE, 12, 31),
                 LocalDate.of(-1, 1, 1),
                 LocalDate.of(-1, 12, 31),
                 LocalDate.of(0, 1, 1),
@@ -2781,8 +2781,8 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
                 LocalDate.of(2008, 1, 1),
                 LocalDate.of(2008, 2, 29),
                 LocalDate.of(2008, 12, 31),
-                LocalDate.of(Year.MAX_VALUE, 1, 1),
-                LocalDate.of(Year.MAX_VALUE, 12, 31)
+                LocalDate.of(YearConstants.MAX_VALUE, 1, 1),
+                LocalDate.of(YearConstants.MAX_VALUE, 12, 31)
             );
         });
 

@@ -7,7 +7,7 @@
 import {MathUtil} from '../MathUtil';
 
 import {Duration} from '../Duration';
-import {Year} from '../Year';
+import {YearConstants} from '../YearConstants';
 import {TemporalUnit} from './TemporalUnit';
 
 /**
@@ -123,7 +123,7 @@ import {TemporalUnit} from './TemporalUnit';
  * Unit that represents the concept of an era.
  * The ISO calendar system doesn't have eras thus it is impossible to add
  * an era to a date or date-time.
- * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
+ * The estimated duration of the era is artificially defined as {YearConstants.MAX_VALUE} + 1.
  * <p>
  * When used with other calendar systems there are no restrictions on the unit.
  *
@@ -450,11 +450,11 @@ export function _init() {
      * Unit that represents the concept of an era.
      * The ISO calendar system doesn't have eras thus it is impossible to add
      * an era to a date or date-time.
-     * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
+     * The estimated duration of the era is artificially defined as {YearConstants.MAX_VALUE} + 1.
      * <p>
      * When used with other calendar systems there are no restrictions on the unit.
      */
-    ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * (Year.MAX_VALUE + 1)));
+    ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * (YearConstants.MAX_VALUE + 1)));
     /**
      * Artificial unit that represents the concept of forever.
      * This is primarily used with {@link TemporalField} to represent unbounded fields

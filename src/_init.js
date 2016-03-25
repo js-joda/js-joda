@@ -12,6 +12,7 @@ import {_init as LocalTimeInit} from './LocalTime';
 import {_init as LocalDateTimeInit} from './LocalDateTime';
 import {_init as MonthInit} from './Month';
 import {_init as PeriodInit} from './Period';
+import {_init as YearConstantsInit} from './YearConstants';
 import {_init as YearInit} from './Year';
 import {_init as ZonedDateTimeInit} from './ZonedDateTime';
 import {_init as IsoChronologyInit} from './chrono/IsoChronology';
@@ -33,7 +34,7 @@ function init() {
 
     isInit = true;
 
-    YearInit();
+    YearConstantsInit();
     DurationInit();
     LocalTimeInit();
     ChronoUnitInit();
@@ -44,6 +45,7 @@ function init() {
     InstantInit();
     LocalDateInit();
     LocalDateTimeInit();
+    YearInit();
     MonthInit();
     PeriodInit();
     ZoneOffsetInit();
