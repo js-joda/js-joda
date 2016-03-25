@@ -1,5 +1,5 @@
-Immutable data and time library for javascript
-=============================================
+Immutable date and time library for javascript
+==============================================
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
 [![Build Status](https://travis-ci.org/pithu/js-joda.svg)](https://travis-ci.org/pithu/js-joda)
@@ -7,7 +7,7 @@ Immutable data and time library for javascript
 
 ## Introduction
 
-+ **js-joda** is an **immutable data and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
++ **js-joda** is an **immutable date and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
 
 + js-joda has a lightweight footprint, only **36 kB minified and compressed**, no third party dependencies.
  
