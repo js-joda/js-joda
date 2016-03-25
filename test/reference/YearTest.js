@@ -8,7 +8,9 @@ import '../_init';
 
 import {Year} from '../../src/Year';
 import {Clock} from '../../src/Clock';
+import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
+import {LocalTime} from '../../src/LocalTime';
 import {NullPointerException, DateTimeException} from '../../src/errors';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
@@ -93,6 +95,22 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         expect(() => {
             Year.of(YearConstants.MAX_VALUE + 1);
         }).to.throw(DateTimeException);
+    });
+    //-----------------------------------------------------------------------
+    it('test_factory_CalendricalObject', () => {
+        expect(Year.from(LocalDate.of(2007, 7, 15))).to.eql(Year.of(2007));
+    });
+
+    it('test_factory_CalendricalObject_invalid_noDerive', () => {
+        expect(() => {
+            Year.from(LocalTime.of(12, 30));
+        }).to.throw(DateTimeException);
+    });
+
+    it('test_factory_CalendricalObject_null', () => {
+        expect(() => {
+            Year.from(null);
+        }).to.throw(NullPointerException);
     });
 
 });

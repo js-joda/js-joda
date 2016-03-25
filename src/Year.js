@@ -8,8 +8,10 @@ import {requireNonNull, requireInstance} from './assert';
 
 import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
+import {DateTimeException} from './errors';
 import {LocalDate} from './LocalDate';
 import {Temporal} from './temporal/Temporal';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {ZoneId} from './ZoneId';
 
 /**
@@ -147,8 +149,45 @@ export class Year extends Temporal {
      * @throws DateTimeException if the field is invalid
      */
     static of(isoYear) {
+        requireNonNull(isoYear, 'isoYear');
         ChronoField.YEAR.checkValidValue(isoYear);
         return new Year(isoYear);
+    }
+    
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code Year} from a temporal object.
+     * <p>
+     * A {@code TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@code Year}.
+     * <p>
+     * The conversion extracts the {@link ChronoField#YEAR year} field.
+     * The extraction is only permitted if the temporal object has an ISO
+     * chronology, or can be converted to a {@code LocalDate}.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@code Year::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {Year} the year, not null
+     * @throws DateTimeException if unable to convert to a {@code Year}
+     */
+    static from(temporal) {
+        requireNonNull(temporal, 'temporal');
+        requireInstance(temporal, TemporalAccessor, 'temporal');
+        if (temporal instanceof Year) {
+            return temporal;
+        }
+        try {
+            /* we support only ISO for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }*/
+            return Year.of(temporal.get(ChronoField.YEAR));
+        } catch (ex) {
+            throw new DateTimeException('Unable to obtain Year from TemporalAccessor: ' +
+                    temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+        }
     }
 
     /**
