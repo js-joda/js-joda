@@ -43,4 +43,10 @@ function messageForDateTimeParseException(message, text = '', index = 0, cause =
         msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
     }
     this.message = msg;
+    this.parsedString = () => {
+        return text;
+    };
+    this.errorIndex = () => {
+        return index;
+    };
 }
