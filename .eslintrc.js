@@ -15,7 +15,8 @@ module.exports = {
         ],
         "quotes": [
             2,
-            "single"
+            "single",
+            "avoid-escape"
         ],
         "linebreak-style": [
             2,
