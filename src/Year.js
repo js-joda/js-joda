@@ -8,6 +8,7 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {requireNonNull, requireInstance} from './assert';
 
 import {ChronoField} from './temporal/ChronoField';
+import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
@@ -16,6 +17,8 @@ import {MathUtil} from './MathUtil';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {TemporalAmount} from './temporal/TemporalAmount';
+import {TemporalUnit} from './temporal/TemporalUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ValueRange} from './temporal/ValueRange';
 import {YearConstants} from './YearConstants';
@@ -379,6 +382,80 @@ export class Year extends Temporal {
      */
     isLeap() {
         return Year.isLeap(this._year);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * plus function overloading
+     */
+    plus() {
+        if (arguments.length === 1) {
+            return this.plusAmount.apply(this, arguments);
+        } else {
+            return this.plusAmountToAddUnit.apply(this, arguments);
+        }
+    }
+
+    /**
+     * Returns a copy of this year with the specified period added.
+     * <p>
+     * This method returns a new year based on this year with the specified period added.
+     * The adder is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link #plus(long, TemporalUnit)}.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAmount} amount  the amount to add, not null
+     * @return {Year} based on this year with the addition made, not null
+     * @throws DateTimeException if the addition cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    plusAmount(amount) {
+        requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount, 'amount');
+        return amount.addTo(this);
+    }
+
+    /**
+     * @param {number} amountToAdd
+     * @param {TemporalUnit} unit
+     * @return {Year} based on this year with the addition made, not null
+     * @throws DateTimeException if the addition cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    plusAmountToAddUnit(amountToAdd, unit) {
+        requireNonNull(amountToAdd, 'amountToAdd');
+        requireNonNull(unit, 'unit');
+        requireInstance(unit, TemporalUnit, 'unit');
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.YEARS: return this.plusYears(amountToAdd);
+                case ChronoUnit.DECADES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 10));
+                case ChronoUnit.CENTURIES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 100));
+                case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
+                case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.addTo(this, amountToAdd);
+    }
+
+    /**
+     * Returns a copy of this year with the specified number of years added.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} yearsToAdd  the years to add, may be negative
+     * @return {Year} based on this year with the period added, not null
+     * @throws DateTimeException if the result exceeds the supported year range
+     */
+    plusYears(yearsToAdd) {
+        if (yearsToAdd === 0) {
+            return this;
+        }
+        return Year.of(ChronoField.YEAR.checkValidIntValue(MathUtil.safeAdd(this._year, yearsToAdd)));
     }
 
     /**
