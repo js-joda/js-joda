@@ -455,4 +455,33 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             expect(Year.of(500).length()).to.eql(365);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // isValidMonthDay(Month)
+    //-----------------------------------------------------------------------
+    // TODO: skipped, needs MonthDay
+    describe.skip('isValidMonthDay(Month)', () => {
+        it('test_isValidMonthDay_june', () => {
+            let test = Year.of(2007);
+            let monthDay = MonthDay.of(6, 30);
+            expect(test.isValidMonthDay(monthDay)).to.eql(true);
+        });
+
+        it('test_isValidMonthDay_febNonLeap', () => {
+            let test = Year.of(2007);
+            let monthDay = MonthDay.of(2, 29);
+            expect(test.isValidMonthDay(monthDay)).to.eql(false);
+        });
+
+        it('test_isValidMonthDay_febLeap', () => {
+            let test = Year.of(2008);
+            let monthDay = MonthDay.of(2, 29);
+            expect(test.isValidMonthDay(monthDay)).to.eql(true);
+        });
+
+        it('test_isValidMonthDay_null', () => {
+            let test = Year.of(2008);
+            expect(test.isValidMonthDay(null)).to.eql(false);
+        });
+    });
 });
