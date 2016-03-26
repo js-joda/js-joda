@@ -7,12 +7,14 @@ import {expect} from 'chai';
 import '../_init';
 
 import {Year} from '../../src/Year';
+import {ChronoField} from '../../src/temporal/ChronoField';
 import {Clock} from '../../src/Clock';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
@@ -211,4 +213,32 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         });
     });
 
+    //-----------------------------------------------------------------------
+    // get(DateTimeField)
+    //-----------------------------------------------------------------------
+    describe('get(DateTimeField)', () => {
+        it('test_get_DateTimeField', () => {
+            expect(TEST_2008.getLong(ChronoField.YEAR)).to.eql(2008);
+            expect(TEST_2008.getLong(ChronoField.YEAR_OF_ERA)).to.eql(2008);
+            expect(TEST_2008.getLong(ChronoField.ERA)).to.eql(1);
+        });
+
+        it('test_get_DateTimeField_null', () => {
+            expect(()=> {
+                TEST_2008.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_DateTimeField_invalidField', () => {
+            expect(()=> {
+                TEST_2008.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_DateTimeField_timeField', () => {
+            expect(()=> {
+                TEST_2008.getLong(ChronoField.AMPM_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+    });
 });

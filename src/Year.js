@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException} from './errors';
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {requireNonNull, requireInstance} from './assert';
 
 import {ChronoField} from './temporal/ChronoField';
@@ -16,7 +16,10 @@ import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {createTemporalQuery} from './temporal/TemporalQuery';
+import {ValueRange} from './temporal/ValueRange';
+import {YearConstants} from './YearConstants';
 import {ZoneId} from './ZoneId';
+
 
 /**
  * A year in the ISO-8601 calendar system, such as {@code 2007}.
@@ -63,7 +66,7 @@ export class Year extends Temporal {
      */
     constructor(value) {
         super();
-        this._value = value;
+        this._year = value;
     }
 
     /**
@@ -71,7 +74,7 @@ export class Year extends Temporal {
      * @return {number} gets the value
      */
     value() {
-        return this._value;
+        return this._year;
     }
 
     /**
@@ -238,6 +241,97 @@ export class Year extends Temporal {
         requireInstance(formatter, DateTimeFormatter, 'formatter');
         return formatter.parse(text, Year.FROM);
     }
+    
+    /**
+     * Gets the range of valid values for the specified field.
+     * <p>
+     * The range object expresses the minimum and maximum valid values for a field.
+     * This year is used to enhance the accuracy of the returned range.
+     * If it is not possible to return the range, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return
+     * appropriate range instances.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the range can be obtained is determined by the field.
+     *
+     * @param {TemporalField} field  the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws DateTimeException if the range for the field cannot be obtained
+     */
+    range(field) {
+        if (field === ChronoField.YEAR_OF_ERA) {
+            return (this._year <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1) : ValueRange.of(1, Year.MAX_VALUE));
+        }
+        return super.range(field);
+    }
+
+    /**
+     * Gets the value of the specified field from this year as an {@code int}.
+     * <p>
+     * This queries this year for the value for the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this year.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
+    }
+
+    /**
+     * Gets the value of the specified field from this year as a {@code long}.
+     * <p>
+     * This queries this year for the value for the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this year.
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
+     * passing {@code this} as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    getLong(field) {
+        requireNonNull(field, 'field');
+        if (field instanceof ChronoField) {
+            switch (field) {
+                case ChronoField.YEAR_OF_ERA: return (this._year < 1 ? 1 - this._year : this._year);
+                case ChronoField.YEAR: return this._year;
+                case ChronoField.ERA: return (this._year < 1 ? 0 : 1);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.getFrom(this);
+    }
 
     /**
      * Checks if this year is equal to the specified {@link Year}.
@@ -258,7 +352,6 @@ export class Year extends Temporal {
     }
 }
 
-import {YearConstants} from './YearConstants';
 var PARSER;
 
 export function _init() {
