@@ -4,20 +4,26 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull} from '../assert';
+import {assert, requireNonNull, requireInstance} from '../assert';
 import {ArithmeticException, DateTimeException, IllegalArgumentException, IllegalStateException} from '../errors';
+import {MathUtil} from '../MathUtil';
 
 import {Enum} from '../Enum';
 import {ZoneIdFactory} from '../ZoneIdFactory';
+import {LocalDate} from '../LocalDate';
 import {LocalDateTime} from '../LocalDateTime';
 import {ZoneOffset} from '../ZoneOffset';
 import {ZoneId} from '../ZoneId';
+import {ChronoLocalDate} from '../chrono/ChronoLocalDate';
+import {IsoChronology} from '../chrono/IsoChronology';
 import {ChronoField} from '../temporal/ChronoField';
+import {IsoFields} from '../temporal/IsoFields';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {DateTimeFormatter} from './DateTimeFormatter';
 import {DecimalStyle} from './DecimalStyle';
 import {SignStyle} from './SignStyle';
+import {TextStyle} from './TextStyle';
 import {ResolverStyle} from './ResolverStyle';
 
 const MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript
@@ -290,6 +296,123 @@ export class DateTimeFormatterBuilder {
     }
 
     /**
+     * appendValueReduced function overloading
+     */
+    appendValueReduced() {
+        if (arguments.length === 4 && arguments[3] instanceof ChronoLocalDate) {
+            return this._appendValueReducedFieldWidthMaxWidthBaseDate.apply(this, arguments);
+        } else {
+            return this._appendValueReducedFieldWidthMaxWidthBaseValue.apply(this, arguments);
+        }
+    }
+    
+    /**
+     * Appends the reduced value of a date-time field to the formatter.
+     * <p>
+     * Since fields such as year vary by chronology, it is recommended to use the
+     * {@link #appendValueReduced(TemporalField, int, int, ChronoLocalDate)} date}
+     * variant of this method in most cases. This variant is suitable for
+     * simple fields or working with only the ISO chronology.
+     * <p>
+     * For formatting, the {@code width} and {@code maxWidth} are used to
+     * determine the number of characters to format.
+     * If they are equal then the format is fixed width.
+     * If the value of the field is within the range of the {@code baseValue} using
+     * {@code width} characters then the reduced value is formatted otherwise the value is
+     * truncated to fit {@code maxWidth}.
+     * The rightmost characters are output to match the width, left padding with zero.
+     * <p>
+     * For strict parsing, the number of characters allowed by {@code width} to {@code maxWidth} are parsed.
+     * For lenient parsing, the number of characters must be at least 1 and less than 10.
+     * If the number of digits parsed is equal to {@code width} and the value is positive,
+     * the value of the field is computed to be the first number greater than
+     * or equal to the {@code baseValue} with the same least significant characters,
+     * otherwise the value parsed is the field value.
+     * This allows a reduced value to be entered for values in range of the baseValue
+     * and width and absolute values can be entered for values outside the range.
+     * <p>
+     * For example, a base value of {@code 1980} and a width of {@code 2} will have
+     * valid values from {@code 1980} to {@code 2079}.
+     * During parsing, the text {@code "12"} will result in the value {@code 2012} as that
+     * is the value within the range where the last two characters are "12".
+     * By contrast, parsing the text {@code "1915"} will result in the value {@code 1915}.
+     *
+     * @param {TemporalField} field  the field to append, not null
+     * @param {number} width  the field width of the printed and parsed field, from 1 to 10
+     * @param {number} maxWidth  the maximum field width of the printed field, from 1 to 10
+     * @param {number} baseValue  the base value of the range of valid values
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     * @throws IllegalArgumentException if the width or base value is invalid
+     */
+    _appendValueReducedFieldWidthMaxWidthBaseValue(field, width, maxWidth, baseValue) {
+        requireNonNull(field, 'field');
+        let pp = new ReducedPrinterParser(field, width, maxWidth, baseValue, null);
+        this._appendValuePrinterParser(pp);
+        return this;
+    }
+
+    /**
+     * Appends the reduced value of a date-time field to the formatter.
+     * <p>
+     * This is typically used for formatting and parsing a two digit year.
+     * <p>
+     * The base date is used to calculate the full value during parsing.
+     * For example, if the base date is 1950-01-01 then parsed values for
+     * a two digit year parse will be in the range 1950-01-01 to 2049-12-31.
+     * Only the year would be extracted from the date, thus a base date of
+     * 1950-08-25 would also parse to the range 1950-01-01 to 2049-12-31.
+     * This behavior is necessary to support fields such as week-based-year
+     * or other calendar systems where the parsed value does not align with
+     * standard ISO years.
+     * <p>
+     * The exact behavior is as follows. Parse the full set of fields and
+     * determine the effective chronology using the last chronology if
+     * it appears more than once. Then convert the base date to the
+     * effective chronology. Then extract the specified field from the
+     * chronology-specific base date and use it to determine the
+     * {@code baseValue} used below.
+     * <p>
+     * For formatting, the {@code width} and {@code maxWidth} are used to
+     * determine the number of characters to format.
+     * If they are equal then the format is fixed width.
+     * If the value of the field is within the range of the {@code baseValue} using
+     * {@code width} characters then the reduced value is formatted otherwise the value is
+     * truncated to fit {@code maxWidth}.
+     * The rightmost characters are output to match the width, left padding with zero.
+     * <p>
+     * For strict parsing, the number of characters allowed by {@code width} to {@code maxWidth} are parsed.
+     * For lenient parsing, the number of characters must be at least 1 and less than 10.
+     * If the number of digits parsed is equal to {@code width} and the value is positive,
+     * the value of the field is computed to be the first number greater than
+     * or equal to the {@code baseValue} with the same least significant characters,
+     * otherwise the value parsed is the field value.
+     * This allows a reduced value to be entered for values in range of the baseValue
+     * and width and absolute values can be entered for values outside the range.
+     * <p>
+     * For example, a base value of {@code 1980} and a width of {@code 2} will have
+     * valid values from {@code 1980} to {@code 2079}.
+     * During parsing, the text {@code "12"} will result in the value {@code 2012} as that
+     * is the value within the range where the last two characters are "12".
+     * By contrast, parsing the text {@code "1915"} will result in the value {@code 1915}.
+     *
+     * @param {TemporaField} field  the field to append, not null
+     * @param {number} width  the field width of the printed and parsed field, from 1 to 10
+     * @param {number} maxWidth  the maximum field width of the printed field, from 1 to 10
+     * @param {ChronoLocalDate} baseDate  the base date used to calculate the base value for the range
+     *  of valid values in the parsed chronology, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     * @throws IllegalArgumentException if the width or base value is invalid
+     */
+    _appendValueReducedFieldWidthMaxWidthBaseDate(field, width, maxWidth, baseDate) {
+        requireNonNull(field, 'field');
+        requireNonNull(baseDate, 'baseDate');
+        requireInstance(baseDate, ChronoLocalDate, 'baseDate');
+        let pp = new ReducedPrinterParser(field, width, maxWidth, 0, baseDate);
+        this._appendValuePrinterParser(pp);
+        return this;
+    }
+
+    /**
      * Appends a fixed width printer-parser.
      *
      * @param pp  the printer-parser, not null
@@ -419,6 +542,49 @@ export class DateTimeFormatterBuilder {
         this._appendInternal(OffsetIdPrinterParser.INSTANCE_ID);
         return this;
     }
+    
+    /**
+     * Appends the zone offset, such as '+01:00', to the formatter.
+     * <p>
+     * This appends an instruction to print/parse the offset ID to the builder.
+     * <p>
+     * During printing, the offset is obtained using a mechanism equivalent
+     * to querying the temporal with {@link TemporalQueries#offset()}.
+     * It will be printed using the format defined below.
+     * If the offset cannot be obtained then an exception is thrown unless the
+     * section of the formatter is optional.
+     * <p>
+     * During parsing, the offset is parsed using the format defined below.
+     * If the offset cannot be parsed then an exception is thrown unless the
+     * section of the formatter is optional.
+     * <p>
+     * The format of the offset is controlled by a pattern which must be one
+     * of the following:
+     * <p><ul>
+     * <li>{@code +HH} - hour only, ignoring minute and second
+     * <li>{@code +HHmm} - hour, with minute if non-zero, ignoring second, no colon
+     * <li>{@code +HH:mm} - hour, with minute if non-zero, ignoring second, with colon
+     * <li>{@code +HHMM} - hour and minute, ignoring second, no colon
+     * <li>{@code +HH:MM} - hour and minute, ignoring second, with colon
+     * <li>{@code +HHMMss} - hour and minute, with second if non-zero, no colon
+     * <li>{@code +HH:MM:ss} - hour and minute, with second if non-zero, with colon
+     * <li>{@code +HHMMSS} - hour, minute and second, no colon
+     * <li>{@code +HH:MM:SS} - hour, minute and second, with colon
+     * </ul><p>
+     * The "no offset" text controls what text is printed when the total amount of
+     * the offset fields to be output is zero.
+     * Example values would be 'Z', '+00:00', 'UTC' or 'GMT'.
+     * Three formats are accepted for parsing UTC - the "no offset" text, and the
+     * plus and minus versions of zero defined by the pattern.
+     *
+     * @param {String} pattern  the pattern to use, not null
+     * @param {String} noOffsetText  the text to use when the offset is zero, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     */
+    appendOffset(pattern, noOffsetText) {
+        this._appendInternalPrinterParser(new OffsetIdPrinterParser(noOffsetText, pattern));
+        return this;
+    }
 
     /**
       * Appends the time-zone ID, such as 'Europe/Paris' or '+02:00', to the formatter.
@@ -448,6 +614,605 @@ export class DateTimeFormatterBuilder {
 
     //-----------------------------------------------------------------------
     /**
+     * Appends the elements defined by the specified pattern to the builder.
+     * <p>
+     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.
+     * The characters '{' and '}' are reserved for future use.
+     * The characters '[' and ']' indicate optional patterns.
+     * The following pattern letters are defined:
+     * <pre>
+     *  Symbol  Meaning                     Presentation      Examples
+     *  ------  -------                     ------------      -------
+     *   G       era                         number/text       1; 01; AD; Anno Domini
+     *   y       year                        year              2004; 04
+     *   D       day-of-year                 number            189
+     *   M       month-of-year               number/text       7; 07; Jul; July; J
+     *   d       day-of-month                number            10
+     *
+     *   Q       quarter-of-year             number/text       3; 03; Q3
+     *   Y       week-based-year             year              1996; 96
+     *   w       week-of-year                number            27
+     *   W       week-of-month               number            27
+     *   e       localized day-of-week       number            2; Tue; Tuesday; T
+     *   E       day-of-week                 number/text       2; Tue; Tuesday; T
+     *   F       week-of-month               number            3
+     *
+     *   a       am-pm-of-day                text              PM
+     *   h       clock-hour-of-am-pm (1-12)  number            12
+     *   K       hour-of-am-pm (0-11)        number            0
+     *   k       clock-hour-of-am-pm (1-24)  number            0
+     *
+     *   H       hour-of-day (0-23)          number            0
+     *   m       minute-of-hour              number            30
+     *   s       second-of-minute            number            55
+     *   S       fraction-of-second          fraction          978
+     *   A       milli-of-day                number            1234
+     *   n       nano-of-second              number            987654321
+     *   N       nano-of-day                 number            1234000000
+     *
+     *   V       time-zone ID                zone-id           America/Los_Angeles; Z; -08:30
+     *   z       time-zone name              zone-name         Pacific Standard Time; PST
+     *   X       zone-offset 'Z' for zero    offset-X          Z; -08; -0830; -08:30; -083015; -08:30:15;
+     *   x       zone-offset                 offset-x          +0000; -08; -0830; -08:30; -083015; -08:30:15;
+     *   Z       zone-offset                 offset-Z          +0000; -0800; -08:00;
+     *
+     *   p       pad next                    pad modifier      1
+     *
+     *   '       escape for text             delimiter
+     *   ''      single quote                literal           '
+     *   [       optional section start
+     *   ]       optional section end
+     *   {}      reserved for future use
+     * </pre>
+     * <p>
+     * The count of pattern letters determine the format.
+     * <p>
+     * <b>Text</b>: The text style is determined based on the number of pattern letters used.
+     * Less than 4 pattern letters will use the {@link TextStyle#SHORT short form}.
+     * Exactly 4 pattern letters will use the {@link TextStyle#FULL full form}.
+     * Exactly 5 pattern letters will use the {@link TextStyle#NARROW narrow form}.
+     * <p>
+     * <b>Number</b>: If the count of letters is one, then the value is printed using the minimum number
+     * of digits and without padding as per {@link #appendValue(TemporalField)}. Otherwise, the
+     * count of digits is used as the width of the output field as per {@link #appendValue(TemporalField, int)}.
+     * <p>
+     * <b>Number/Text</b>: If the count of pattern letters is 3 or greater, use the Text rules above.
+     * Otherwise use the Number rules above.
+     * <p>
+     * <b>Fraction</b>: Outputs the nano-of-second field as a fraction-of-second.
+     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.
+     * If it is less than 9, then the nano-of-second value is truncated, with only the most
+     * significant digits being output.
+     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.
+     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern
+     * letters, up to 9 digits.
+     * <p>
+     * <b>Year</b>: The count of letters determines the minimum field width below which padding is used.
+     * If the count of letters is two, then a {@link #appendValueReduced reduced} two digit form is used.
+     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the
+     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.
+     * If the count of letters is less than four (but not two), then the sign is only output for negative
+     * years as per {@link SignStyle#NORMAL}.
+     * Otherwise, the sign is output if the pad width is exceeded, as per {@link SignStyle#EXCEEDS_PAD}
+     * <p>
+     * <b>ZoneId</b>: This outputs the time-zone ID, such as 'Europe/Paris'.
+     * If the count of letters is two, then the time-zone ID is output.
+     * Any other count of letters throws {@code IllegalArgumentException}.
+     * <pre>
+     *  Pattern     Equivalent builder methods
+     *   VV          appendZoneId()
+     * </pre>
+     * <p>
+     * <b>Zone names</b>: This outputs the display name of the time-zone ID.
+     * If the count of letters is one, two or three, then the short name is output.
+     * If the count of letters is four, then the full name is output.
+     * Five or more letters throws {@code IllegalArgumentException}.
+     * <pre>
+     *  Pattern     Equivalent builder methods
+     *   z           appendZoneText(TextStyle.SHORT)
+     *   zz          appendZoneText(TextStyle.SHORT)
+     *   zzz         appendZoneText(TextStyle.SHORT)
+     *   zzzz        appendZoneText(TextStyle.FULL)
+     * </pre>
+     * <p>
+     * <b>Offset X and x</b>: This formats the offset based on the number of pattern letters.
+     * One letter outputs just the hour', such as '+01', unless the minute is non-zero
+     * in which case the minute is also output, such as '+0130'.
+     * Two letters outputs the hour and minute, without a colon, such as '+0130'.
+     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.
+     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.
+     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.
+     * Six or more letters throws {@code IllegalArgumentException}.
+     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,
+     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.
+     * <pre>
+     *  Pattern     Equivalent builder methods
+     *   X           appendOffset("+HHmm","Z")
+     *   XX          appendOffset("+HHMM","Z")
+     *   XXX         appendOffset("+HH:MM","Z")
+     *   XXXX        appendOffset("+HHMMss","Z")
+     *   XXXXX       appendOffset("+HH:MM:ss","Z")
+     *   x           appendOffset("+HHmm","+00")
+     *   xx          appendOffset("+HHMM","+0000")
+     *   xxx         appendOffset("+HH:MM","+00:00")
+     *   xxxx        appendOffset("+HHMMss","+0000")
+     *   xxxxx       appendOffset("+HH:MM:ss","+00:00")
+     * </pre>
+     * <p>
+     * <b>Offset Z</b>: This formats the offset based on the number of pattern letters.
+     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.
+     * Four or more letters throws {@code IllegalArgumentException}.
+     * The output will be '+0000' when the offset is zero.
+     * <pre>
+     *  Pattern     Equivalent builder methods
+     *   Z           appendOffset("+HHMM","+0000")
+     *   ZZ          appendOffset("+HHMM","+0000")
+     *   ZZZ         appendOffset("+HHMM","+0000")
+     * </pre>
+     * <p>
+     * <b>Optional section</b>: The optional section markers work exactly like calling {@link #optionalStart()}
+     * and {@link #optionalEnd()}.
+     * <p>
+     * <b>Pad modifier</b>: Modifies the pattern that immediately follows to be padded with spaces.
+     * The pad width is determined by the number of pattern letters.
+     * This is the same as calling {@link #padNext(int)}.
+     * <p>
+     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.
+     * <p>
+     * Any unrecognized letter is an error.
+     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.
+     * Despite this, it is recommended to use single quotes around all characters that you want to
+     * output directly to ensure that future changes do not break your application.
+     * <p>
+     * Note that the pattern string is similar, but not identical, to
+     * {@link java.text.SimpleDateFormat SimpleDateFormat}.
+     * The pattern string is also similar, but not identical, to that defined by the
+     * Unicode Common Locale Data Repository (CLDR/LDML).
+     * Pattern letters 'E' and 'u' are merged, which changes the meaning of "E" and "EE" to be numeric.
+     * Pattern letters 'X' is aligned with Unicode CLDR/LDML, which affects pattern 'X'.
+     * Pattern letter 'y' and 'Y' parse years of two digits and more than 4 digits differently.
+     * Pattern letters 'n', 'A', 'N', 'I' and 'p' are added.
+     * Number types will reject large numbers.
+     *
+     * @param {String} pattern  the pattern to add, not null
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     * @throws IllegalArgumentException if the pattern is invalid
+     */
+    appendPattern(pattern) {
+        requireNonNull(pattern, 'pattern');
+        this._parsePattern(pattern);
+        return this;
+    }
+
+    _parsePattern(pattern) {
+        /** Map of letters to fields. */
+        const FIELD_MAP = {
+            'G': ChronoField.ERA,
+            'y': ChronoField.YEAR_OF_ERA,
+            'u': ChronoField.YEAR,
+            'Q': IsoFields.QUARTER_OF_YEAR,
+            'q': IsoFields.QUARTER_OF_YEAR,
+            'M': ChronoField.MONTH_OF_YEAR,
+            'L': ChronoField.MONTH_OF_YEAR,
+            'D': ChronoField.DAY_OF_YEAR,
+            'd': ChronoField.DAY_OF_MONTH,
+            'F': ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH,
+            'E': ChronoField.DAY_OF_WEEK,
+            'c': ChronoField.DAY_OF_WEEK,
+            'e': ChronoField.DAY_OF_WEEK,
+            'a': ChronoField.AMPM_OF_DAY,
+            'H': ChronoField.HOUR_OF_DAY,
+            'k': ChronoField.CLOCK_HOUR_OF_DAY,
+            'K': ChronoField.HOUR_OF_AMPM,
+            'h': ChronoField.CLOCK_HOUR_OF_AMPM,
+            'm': ChronoField.MINUTE_OF_HOUR,
+            's': ChronoField.SECOND_OF_MINUTE,
+            'S': ChronoField.NANO_OF_SECOND,
+            'A': ChronoField.MILLI_OF_DAY,
+            'n': ChronoField.NANO_OF_SECOND,
+            'N': ChronoField.NANO_OF_DAY
+        };
+
+        for (let pos = 0; pos < pattern.length; pos++) {
+            let cur = pattern.charAt(pos);
+            if ((cur >= 'A' && cur <= 'Z') || (cur >= 'a' && cur <= 'z')) {
+                let start = pos++;
+                for (; pos < pattern.length && pattern.charAt(pos) === cur; pos++);  // short loop
+                let count = pos - start;
+                // padding
+                if (cur === 'p') {
+                    let pad = 0;
+                    if (pos < pattern.length) {
+                        cur = pattern.charAt(pos);
+                        if ((cur >= 'A' && cur <= 'Z') || (cur >= 'a' && cur <= 'z')) {
+                            pad = count;
+                            start = pos++;
+                            for (; pos < pattern.length && pattern.charAt(pos) === cur; pos++);  // short loop
+                            count = pos - start;
+                        }
+                    }
+                    if (pad === 0) {
+                        throw new IllegalArgumentException(
+                            'Pad letter \'p\' must be followed by valid pad pattern: ' + pattern);
+                    }
+                    this.padNext(pad); // pad and continue parsing
+                }
+                // main rules
+                let field = FIELD_MAP[cur];
+                if (field != null) {
+                    this._parseField(cur, count, field);
+                } else if (cur === 'z') {
+                    //TODO:
+                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                    if (count > 4) {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    } else if (count === 4) {
+                        this.appendZoneText(TextStyle.FULL);
+                    } else {
+                        this.appendZoneText(TextStyle.SHORT);
+                    }
+                } else if (cur === 'V') {
+                    if (count !== 2) {
+                        throw new IllegalArgumentException('Pattern letter count must be 2: ' + cur);
+                    }
+                    this.appendZoneId();
+                } else if (cur === 'Z') {
+                    if (count < 4) {
+                        this.appendOffset('+HHMM', '+0000');
+                    } else if (count === 4) {
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendLocalizedOffset(TextStyle.FULL);
+                    } else if (count === 5) {
+                        this.appendOffset('+HH:MM:ss', 'Z');
+                    } else {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    }
+                } else if (cur === 'O') {
+                    //TODO:
+                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                    if (count === 1) {
+                        this.appendLocalizedOffset(TextStyle.SHORT);
+                    } else if (count === 4) {
+                        this.appendLocalizedOffset(TextStyle.FULL);
+                    } else {
+                        throw new IllegalArgumentException('Pattern letter count must be 1 or 4: ' + cur);
+                    }
+                } else if (cur === 'X') {
+                    if (count > 5) {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    }
+                    this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], 'Z');
+                } else if (cur === 'x') {
+                    if (count > 5) {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    }
+                    let zero = (count === 1 ? '+00' : (count % 2 === 0 ? '+0000' : '+00:00'));
+                    this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
+                } else if (cur === 'W') {
+                    if (count > 1) {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    }
+                    this._appendInternal(new OffsetIdPrinterParser('W', count));
+                } else if (cur === 'w') {
+                    if (count > 2) {
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    }
+                    this._appendInternal(new OffsetIdPrinterParser('w', count));
+                } else if (cur === 'Y') {
+                    this._appendInternal(new OffsetIdPrinterParser('Y', count));
+                } else {
+                    throw new IllegalArgumentException('Unknown pattern letter: ' + cur);
+                }
+                pos--;
+
+            } else if (cur === '\'') {
+                // parse literals
+                let start = pos++;
+                for (; pos < pattern.length; pos++) {
+                    if (pattern.charAt(pos) === '\'') {
+                        if (pos + 1 < pattern.length && pattern.charAt(pos + 1) === '\'') {
+                            pos++;
+                        } else {
+                            break;  // end of literal
+                        }
+                    }
+                }
+                if (pos >= pattern.length) {
+                    throw new IllegalArgumentException('Pattern ends with an incomplete string literal: ' + pattern);
+                }
+                let str = pattern.substring(start + 1, pos);
+                if (str.length === 0) {
+                    this.appendLiteral('\'');
+                } else {
+                    this.appendLiteral(str.replace('\'\'', '\''));
+                }
+
+            } else if (cur === '[') {
+                this.optionalStart();
+
+            } else if (cur === ']') {
+                if (this._active._parent === null) {
+                    throw new IllegalArgumentException('Pattern invalid as it contains ] without previous [');
+                }
+                this.optionalEnd();
+
+            } else if (cur === '{' || cur === '}' || cur === '#') {
+                throw new IllegalArgumentException('Pattern includes reserved character: \'' + cur + '\'');
+            } else {
+                this.appendLiteral(cur);
+            }
+        }
+    }
+
+    _parseField(cur, count, field) {
+        switch (cur) {
+            case 'u':
+            case 'y':
+                if (count === 2) {
+                    this.appendValueReduced(field, 2, 2, ReducedPrinterParser.BASE_DATE);
+                } else if (count < 4) {
+                    this.appendValue(field, count, MAX_WIDTH, SignStyle.NORMAL);
+                } else {
+                    this.appendValue(field, count, MAX_WIDTH, SignStyle.EXCEEDS_PAD);
+                }
+                break;
+            case 'M':
+            case 'Q':
+                switch (count) {
+                    case 1:
+                        this.appendValue(field);
+                        break;
+                    case 2:
+                        this.appendValue(field, 2);
+                        break;
+                    case 3:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.SHORT);
+                        break;
+                    case 4:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.FULL);
+                        break;
+                    case 5:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.NARROW);
+                        break;
+                    default:
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'L':
+            case 'q':
+                switch (count) {
+                    case 1:
+                        this.appendValue(field);
+                        break;
+                    case 2:
+                        this.appendValue(field, 2);
+                        break;
+                    case 3:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.SHORT_STANDALONE);
+                        break;
+                    case 4:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.FULL_STANDALONE);
+                        break;
+                    case 5:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.NARROW_STANDALONE);
+                        break;
+                    default:
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'e':
+                switch (count) {
+                    case 1:
+                    case 2:
+                        // TODO: WeekFieldsPrinterParser
+                        throw new IllegalArgumentException('Pattern using WeekFields not implemented yet!');
+                        // this.appendInternal(new WeekFieldsPrinterParser('e', count));
+                        break;
+                    case 3:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.SHORT);
+                        break;
+                    case 4:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.FULL);
+                        break;
+                    case 5:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.NARROW);
+                        break;
+                    default:
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'c':
+                switch (count) {
+                    case 1:
+                        // TODO: WeekFieldsPrinterParser
+                        throw new IllegalArgumentException('Pattern using WeekFields not implemented yet!');
+                        // this.appendInternal(new WeekFieldsPrinterParser('c', count));
+                        break;
+                    case 2:
+                        throw new IllegalArgumentException('Invalid number of pattern letters: ' + cur);
+                    case 3:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.SHORT_STANDALONE);
+                        break;
+                    case 4:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.FULL_STANDALONE);
+                        break;
+                    case 5:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.NARROW_STANDALONE);
+                        break;
+                    default:
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'a':
+                if (count === 1) {
+                    //TODO:
+                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                    this.appendText(field, TextStyle.SHORT);
+                } else {
+                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'E':
+            case 'G':
+                switch (count) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.SHORT);
+                        break;
+                    case 4:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.FULL);
+                        break;
+                    case 5:
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+                        this.appendText(field, TextStyle.NARROW);
+                        break;
+                    default:
+                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'S':
+                this.appendFraction(ChronoField.NANO_OF_SECOND, count, count, false);
+                break;
+            case 'F':
+                if (count === 1) {
+                    this.appendValue(field);
+                } else {
+                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'd':
+            case 'h':
+            case 'H':
+            case 'k':
+            case 'K':
+            case 'm':
+            case 's':
+                if (count === 1) {
+                    this.appendValue(field);
+                } else if (count === 2) {
+                    this.appendValue(field, count);
+                } else {
+                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            case 'D':
+                if (count === 1) {
+                    this.appendValue(field);
+                } else if (count <= 3) {
+                    this.appendValue(field, count);
+                } else {
+                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                }
+                break;
+            default:
+                if (count === 1) {
+                    this.appendValue(field);
+                } else {
+                    this.appendValue(field, count);
+                }
+                break;
+        }
+    }
+
+    /**
+     * padNext function overloading
+     */
+    padNext() {
+        if (arguments.length === 1) {
+            return this._padNext1.apply(this, arguments);
+        } else {
+            return this._padNext2.apply(this, arguments);
+        }
+    }
+
+    /**
+     * Causes the next added printer/parser to pad to a fixed width using a space.
+     * <p>
+     * This padding will pad to a fixed width using spaces.
+     * <p>
+     * During formatting, the decorated element will be output and then padded
+     * to the specified width. An exception will be thrown during printing if
+     * the pad width is exceeded.
+     * <p>
+     * During parsing, the padding and decorated element are parsed.
+     * If parsing is lenient, then the pad width is treated as a maximum.
+     * If parsing is case insensitive, then the pad character is matched ignoring case.
+     * The padding is parsed greedily. Thus, if the decorated element starts with
+     * the pad character, it will not be parsed.
+     *
+     * @param {number} padWidth  the pad width, 1 or greater
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     * @throws IllegalArgumentException if pad width is too small
+     */
+    _padNext1(padWidth) {
+        return this._padNext2(padWidth, ' ');
+    }
+
+    /**
+     * Causes the next added printer/parser to pad to a fixed width.
+     * <p>
+     * This padding is intended for padding other than zero-padding.
+     * Zero-padding should be achieved using the appendValue methods.
+     * <p>
+     * During formatting, the decorated element will be output and then padded
+     * to the specified width. An exception will be thrown during printing if
+     * the pad width is exceeded.
+     * <p>
+     * During parsing, the padding and decorated element are parsed.
+     * If parsing is lenient, then the pad width is treated as a maximum.
+     * If parsing is case insensitive, then the pad character is matched ignoring case.
+     * The padding is parsed greedily. Thus, if the decorated element starts with
+     * the pad character, it will not be parsed.
+     *
+     * @param {number} padWidth  the pad width, 1 or greater
+     * @param {String} padChar  the pad character
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     * @throws IllegalArgumentException if pad width is too small
+     */
+    _padNext2(padWidth, padChar) {
+        if (padWidth < 1) {
+            throw new IllegalArgumentException('The pad width must be at least one but was ' + padWidth);
+        }
+        this._active._padNextWidth = padWidth;
+        this._active._padNextChar = padChar;
+        this._active._valueParserIndex = -1;
+        return this;
+    }
+
+
+    //-----------------------------------------------------------------------
+    /**
      * Mark the start of an optional section.
      * <p>
      * The output of printing can include optional sections, which may be nested.
@@ -468,7 +1233,7 @@ export class DateTimeFormatterBuilder {
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     optionalStart() {
-        this._active.valueParserIndex = -1;
+        this._active._valueParserIndex = -1;
         this._active = new DateTimeFormatterBuilder(this._active, true);
         return this;
     }
@@ -544,7 +1309,13 @@ export class DateTimeFormatterBuilder {
      */
     appendLiteral(literal) {
         assert(literal != null);
-        this._appendInternalPrinterParser(new StringLiteralPrinterParser(literal));
+        if (literal.length > 0) {
+            if (literal.length === 1) {
+                this._appendInternalPrinterParser(new CharLiteralPrinterParser(literal.charAt(0)));
+            } else {
+                this._appendInternalPrinterParser(new StringLiteralPrinterParser(literal));
+            }
+        }
         return this;
     }
     
@@ -744,6 +1515,7 @@ class PadPrinterParserDecorator {
         var caseSensitive = context.isCaseSensitive();
         // parse
         assert(!(position > text.length));
+        assert(position >= 0);
         if (position === text.length) {
             return ~position;  // no more characters in the string
         }
@@ -830,7 +1602,45 @@ class StringLiteralPrinterParser {
     }
 
     toString() {
-        return '\'' + this._literal + '\'';
+        let converted = this._literal.replace("'", "''");
+        return '\'' + converted + '\'';
+    }
+}
+
+/**
+ * Prints or parses a char literal.
+ */
+class CharLiteralPrinterParser {
+
+    constructor(literal) {
+        if (literal.length > 1) {
+            throw new IllegalArgumentException('invalid literal, too long: "' + literal + '"');
+        }
+        this._literal = literal;
+    }
+
+    print(context, buf) {
+        buf.append(this._literal);
+        return true;
+    }
+
+    parse(context, text, position) {
+        var length = text.length;
+        if (position === length) {
+            return ~position;
+        }
+        let ch = text.charAt(position);
+        if (context.charEquals(this._literal, ch) === false) {
+            return ~position;
+        }
+        return position + this._literal.length;
+    }
+
+    toString() {
+        if (this._literal === '\'') {
+            return "''";
+        }
+        return "'" + this._literal + "'";
     }
 }
 
@@ -1021,10 +1831,132 @@ class NumberPrinterParser {
     }
 
 }
+//-----------------------------------------------------------------------
+/**
+ * Prints and parses a reduced numeric date-time field.
+ */
+class ReducedPrinterParser extends NumberPrinterParser {
+
+    /**
+     * Constructor.
+     *
+     * @param {TemporalField} field  the field to print, validated not null
+     * @param {number} width  the field width, from 1 to 10
+     * @param {number} maxWidth  the field max width, from 1 to 10
+     * @param {number} baseValue  the base value
+     * @param {ChronoLocalDate} baseDate  the base date
+     */
+    constructor(field, width, maxWidth, baseValue, baseDate) {
+        super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);
+        if (width < 1 || width > 10) {
+            throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);
+        }
+        if (maxWidth < 1 || maxWidth > 10) {
+            throw new IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was ' + maxWidth);
+        }
+        if (maxWidth < width) {
+            throw new IllegalArgumentException('The maxWidth must be greater than the width');
+        }
+        if (baseDate === null) {
+            if (field.range().isValidValue(baseValue) === false) {
+                throw new IllegalArgumentException('The base value must be within the range of the field');
+            }
+            if ((baseValue + EXCEED_POINTS[width]) > MathUtil.MAX_SAFE_INTEGER) {
+                throw new DateTimeException('Unable to add printer-parser as the range exceeds the capacity of an int');
+            }
+        }
+        this._baseValue = baseValue;
+        this._baseDate = baseDate;
+    }
+
+    /**
+     *
+     * @param {DateTimePrintContext} context
+     * @param {number} value
+     */
+    getValue(context, value) {
+        let absValue = Math.abs(value);
+        let baseValue = this._baseValue;
+        if (this._baseDate !== null) {
+            // TODO: in threetenbp the following line is used, but we dont have Chronology yet, 
+            // let chrono = Chronology.from(context.getTemporal());
+            // so let's use IsoChronology for now
+            context.temporal();
+            let chrono = IsoChronology.INSTANCE;
+            baseValue = chrono.date(this._baseDate).get(this._field);
+        }
+        if (value >= baseValue && value < baseValue + EXCEED_POINTS[this._minWidth]) {
+            return absValue % EXCEED_POINTS[this._minWidth];
+        }
+        return absValue % EXCEED_POINTS[this._maxWidth];
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     * @param {number} value
+     * @param {number} errorPos
+     * @param {number} successPos
+     */
+    setValue(context, value, errorPos, successPos) {
+        let baseValue = this._baseValue;
+        if (this._baseDate != null) {
+            let chrono = context.getEffectiveChronology();
+            baseValue = chrono.date(this._baseDate).get(this._field);
+            context.addChronologyChangedParser(this, value, errorPos, successPos);
+        }
+        let parseLen = successPos - errorPos;
+        if (parseLen === this._minWidth && value >= 0) {
+            let range = EXCEED_POINTS[this._minWidth];
+            let lastPart = baseValue % range;
+            let basePart = baseValue - lastPart;
+            if (baseValue > 0) {
+                value = basePart + value;
+            } else {
+                value = basePart - value;
+            }
+            if (value < baseValue) {
+                value += range;
+            }
+        }
+        return context.setParsedField(this._field, value, errorPos, successPos);
+    }
+
+    withFixedWidth() {
+        if (this.subsequentWidth() === -1) {
+            return this;
+        }
+        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate, -1);
+    }
+
+    /**
+     *
+     * @param {number} subsequentWidth
+     * @returns {ReducedPrinterParser}
+     */
+    withSubsequentWidth(subsequentWidth) {
+        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate,
+            this._subsequentWidth + subsequentWidth);
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     */
+    isFixedWidth(context) {
+        if (context.isStrict() === false) {
+            return false;
+        }
+        return super.isFixedWidth(context);
+    }
+
+    toString() {
+        return 'ReducedValue(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + (this._baseDate != null ? this._baseDate : this._baseValue) + ')';
+    }
+}
+
 
 //-----------------------------------------------------------------------
-
-import {MathUtil} from '../MathUtil';
 
 /**
  * TODO optimize FractionPrinterParser, fix documentation
@@ -1474,10 +2406,11 @@ class OffsetIdPrinterParser  {
 
     toString() {
         var converted = this.noOffsetText.replace('\'', '\'\'');
-        return 'Offset(' + PATTERNS[this.type] + ',"' + converted + '")';
+        return 'Offset(' + PATTERNS[this.type] + ',\'' + converted + '\')';
     }
 }
 OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
+OffsetIdPrinterParser.PATTERNS = PATTERNS;
 
 /**
  * Prints or parses a zone ID.
@@ -1613,12 +2546,18 @@ class ZoneIdPrinterParser {
     }
 }
 
-DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
-DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
-DateTimeFormatterBuilder.SettingsParser = SettingsParser;
-DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
-DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
-DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
-DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
-DateTimeFormatterBuilder.OffsetIdPrinterParser = OffsetIdPrinterParser;
-DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
+export function _init() {
+    ReducedPrinterParser.BASE_DATE = LocalDate.of(2000, 1, 1);
+
+    DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
+    DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
+    DateTimeFormatterBuilder.SettingsParser = SettingsParser;
+    DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
+    DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
+    DateTimeFormatterBuilder.CharLiteralPrinterParser = CharLiteralPrinterParser;
+    DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
+    DateTimeFormatterBuilder.ReducedPrinterParser = ReducedPrinterParser;
+    DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
+    DateTimeFormatterBuilder.OffsetIdPrinterParser = OffsetIdPrinterParser;
+    DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
+}
