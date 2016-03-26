@@ -55,6 +55,6 @@ describe('org.threeten.bp.format.TestStringLiteralPrinter', () => {
 
     it('test_toString_apos', () => {
         var pp = new StringLiteralPrinterParser('o\'clock');
-        assertEquals(pp.toString(), '\'o\'clock\'');
+        assertEquals(pp.toString(), '\'o\'\'clock\'');
     });
 });

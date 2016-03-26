@@ -132,7 +132,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
         dataProviderTest(provider_offsets, (pattern) => {
             init();
             var pp = new OffsetIdPrinterParser('NO-OFFSET', pattern);
-            assertEquals(pp.toString(), 'Offset(' + pattern + ',"NO-OFFSET")');
+            assertEquals(pp.toString(), 'Offset(' + pattern + ',\'NO-OFFSET\')');
         });
     });
 
