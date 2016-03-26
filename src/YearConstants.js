@@ -5,7 +5,7 @@
 
 /**
  * attempt to avoid dependency cycles... define all constants here and they could be used
- * so instead of using e.g. YearConstants.MAX_VALUE we must use YearConstants.MAX_VALUE :/
+ * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle
  */
 export class YearConstants {}
 

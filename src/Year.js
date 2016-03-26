@@ -44,12 +44,12 @@ import {ZoneId} from './ZoneId';
  *
  * <h3>Static properties of Class {@link LocalDate}</h3>
  *
- * YearConstants.MIN_VALUE = -999.999;
+ * Year.MIN_VALUE = -999.999;
  *
  * The minimum supported year. Theoretically the minimum could be -28.542.4812 years in javascript.
  * approx LocalDateTime.ofEpochSecond(Number.MIN_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
  *
- * YearConstants.MAX_VALUE = 999.999;
+ * Year.MAX_VALUE = 999.999;
  *
  * The maximum supported year. Theoretically the maximum could be 285.428.751 years in javascript.
  * approx LocalDateTime.ofEpochSecond(Number.MAX_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
@@ -258,10 +258,13 @@ export class Year extends Temporal {
     }
 }
 
+import {YearConstants} from './YearConstants';
 var PARSER;
 
 export function _init() {
-    /* NOTE: MIN_VALUE/MAX_VALUE moved to YearConstants */
+    
+    Year.MIN_VALUE = YearConstants.MIN_VALUE;
+    Year.MAX_VALUE = YearConstants.MAX_VALUE;
     
     PARSER = new DateTimeFormatterBuilder()
         .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)

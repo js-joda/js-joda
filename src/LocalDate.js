@@ -63,12 +63,12 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
  *
  * <h3>Static properties of Class {@link LocalDate}</h3>
  *
- * LocalDate.MIN = LocalDate.of(YearConstants.MIN_VALUE, 1, 1);
+ * LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
  *
  * The minimum supported {@link LocalDate}
  * This could be used by an application as a "far past" date.
  *
- * LocalDate.MAX = LocalDate.of(YearConstants.MAX_VALUE, 12, 31);
+ * LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
  *
  * The maximum supported {@link LocalDate}
  * This could be used by an application as a "far future" date.
@@ -126,7 +126,7 @@ export class LocalDate extends ChronoLocalDate{
      * This returns a {@link LocalDate} with the specified year, month and day-of-month.
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
-     * @param {!number} year - the year to represent, from {@link YearConstants.MIN_VALUE} to {@link YearConstants.MAX_VALUE}
+     * @param {!number} year - the year to represent, from {@link Year.MIN_VALUE} to {@link Year.MAX_VALUE}
      * @param {!(Month|Number)} month - the month-of-year to represent, from 1 (January) to 12 (December)
      * @param {!number} dayOfMonth - the day-of-month to represent, from 1 to 31
      * @return {LocalDate} the local date, not null
@@ -143,7 +143,7 @@ export class LocalDate extends ChronoLocalDate{
      * This returns a {@link LocalDate} with the specified year and day-of-year.
      * The day-of-year must be valid for the year, otherwise an exception will be thrown.
      *
-     * @param {!number} year - the year to represent, from {@link YearConstants.MIN_VALUE} to {@link YearConstants.MAX_VALUE}
+     * @param {!number} year - the year to represent, from {@link Year.MIN_VALUE} to {@link Year.MAX_VALUE}
      * @param {!number} dayOfYear - the day-of-year to represent, from 1 to 366
      * @return {LocalDate} the local date, not null
      * @throws {DateTimeException} if the value of any field is out of range,
@@ -247,7 +247,7 @@ export class LocalDate extends ChronoLocalDate{
     /**
      * Resolves the date, resolving days past the end of month.
      *
-     * @param {!number} year - the year to represent, validated from {@link YearConstants.MIN_VALUE} to {@link YearConstants.MAX_VALUE}
+     * @param {!number} year - the year to represent, validated from {@link Year.MIN_VALUE} to {@link Year.MAX_VALUE}
      * @param {!number} month - the month-of-year to represent, validated from 1 to 12
      * @param {!number} day - the day-of-month to represent, validated from 1 to 31
      * @return {LocalDate} resolved date, not null
@@ -392,7 +392,7 @@ export class LocalDate extends ChronoLocalDate{
                     case ChronoField.DAY_OF_YEAR: return ValueRange.of(1, this.lengthOfYear());
                     case ChronoField.ALIGNED_WEEK_OF_MONTH: return ValueRange.of(1, this.month() === Month.FEBRUARY && this.isLeapYear() === false ? 4 : 5);
                     case ChronoField.YEAR_OF_ERA:
-                        return (this._year <= 0 ? ValueRange.of(1, YearConstants.MAX_VALUE + 1) : ValueRange.of(1, YearConstants.MAX_VALUE));
+                        return (this._year <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1) : ValueRange.of(1, Year.MAX_VALUE));
                 }
                 return field.range();
             }
@@ -803,7 +803,7 @@ export class LocalDate extends ChronoLocalDate{
      * Returns a copy of this date with the year altered.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
      *
-     * @param {!number} year  the year to set in the result, from {@link YearConstants.MIN_VALUE} to {@link YearConstants.MAX_VALUE}
+     * @param {!number} year  the year to set in the result, from {@link Year.MIN_VALUE} to {@link Year.MAX_VALUE}
      * @return {LocalDate} a {@link LocalDate} based on this date with the requested year, not null
      * @throws {DateTimeException} if the year value is invalid
      */

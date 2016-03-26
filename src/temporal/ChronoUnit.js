@@ -123,7 +123,7 @@ import {TemporalUnit} from './TemporalUnit';
  * Unit that represents the concept of an era.
  * The ISO calendar system doesn't have eras thus it is impossible to add
  * an era to a date or date-time.
- * The estimated duration of the era is artificially defined as {YearConstants.MAX_VALUE} + 1.
+ * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
  * <p>
  * When used with other calendar systems there are no restrictions on the unit.
  *
@@ -450,7 +450,7 @@ export function _init() {
      * Unit that represents the concept of an era.
      * The ISO calendar system doesn't have eras thus it is impossible to add
      * an era to a date or date-time.
-     * The estimated duration of the era is artificially defined as {YearConstants.MAX_VALUE} + 1.
+     * The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.
      * <p>
      * When used with other calendar systems there are no restrictions on the unit.
      */

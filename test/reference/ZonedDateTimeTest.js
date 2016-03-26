@@ -25,7 +25,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {MathUtil} from '../../src/MathUtil';
 import {Period} from '../../src/Period';
-import {YearConstants} from '../../src/YearConstants';
+import {Year} from '../../src/Year';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
@@ -251,11 +251,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_minWithMinOffset', () => {
             var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-            var year = YearConstants.MIN_VALUE;
+            var year = Year.MIN_VALUE;
             var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
             var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MIN.totalSeconds());
             var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
-            assertEquals(test.year(), YearConstants.MIN_VALUE);
+            assertEquals(test.year(), Year.MIN_VALUE);
             assertEquals(test.month().value(), 1);
             assertEquals(test.dayOfMonth(), 1);
             assertEquals(test.offset(), OFFSET_MIN);
@@ -267,11 +267,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_minWithMaxOffset', () => {
             var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-            var year = YearConstants.MIN_VALUE;
+            var year = Year.MIN_VALUE;
             var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
             var instant = Instant.ofEpochSecond(days * 24 * 60 * 60 - OFFSET_MAX.totalSeconds());
             var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
-            assertEquals(test.year(), YearConstants.MIN_VALUE);
+            assertEquals(test.year(), Year.MIN_VALUE);
             assertEquals(test.month().value(), 1);
             assertEquals(test.dayOfMonth(), 1);
             assertEquals(test.offset(), OFFSET_MAX);
@@ -283,11 +283,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_maxWithMinOffset', () => {
             var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-            var year = YearConstants.MAX_VALUE;
+            var year = Year.MAX_VALUE;
             var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) + 365 - days_0000_to_1970;
             var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MIN.totalSeconds());
             var test = ZonedDateTime.ofInstant(instant, OFFSET_MIN);
-            assertEquals(test.year(), YearConstants.MAX_VALUE);
+            assertEquals(test.year(), Year.MAX_VALUE);
             assertEquals(test.month().value(), 12);
             assertEquals(test.dayOfMonth(), 31);
             assertEquals(test.offset(), OFFSET_MIN);
@@ -299,11 +299,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_maxWithMaxOffset', () => {
             var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-            var year = YearConstants.MAX_VALUE;
+            var year = Year.MAX_VALUE;
             var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) + 365 - days_0000_to_1970;
             var instant = Instant.ofEpochSecond((days + 1) * 24 * 60 * 60 - 1 - OFFSET_MAX.totalSeconds());
             var test = ZonedDateTime.ofInstant(instant, OFFSET_MAX);
-            assertEquals(test.year(), YearConstants.MAX_VALUE);
+            assertEquals(test.year(), Year.MAX_VALUE);
             assertEquals(test.month().value(), 12);
             assertEquals(test.dayOfMonth(), 31);
             assertEquals(test.offset(), OFFSET_MAX);
@@ -331,7 +331,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('factory_ofInstant_tooBig', () => {
             expect(() => {
                 var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-                var year = YearConstants.MAX_VALUE + 1;
+                var year = Year.MAX_VALUE + 1;
                 var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
                 var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
                 ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);
@@ -341,7 +341,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('factory_ofInstant_tooLow', () => {
             expect(() => {
                 var days_0000_to_1970 = (146097 * 5) - (30 * 365 + 7);
-                var year = YearConstants.MIN_VALUE - 1;
+                var year = Year.MIN_VALUE - 1;
                 var days = (year * 365 + (MathUtil.intDiv(year, 4) - MathUtil.intDiv(year, 100) + MathUtil.intDiv(year, 400))) - days_0000_to_1970;
                 var instant = Instant.ofEpochSecond(days * 24 * 60 * 60);
                 ZonedDateTime.ofInstant(instant, ZoneOffset.UTC);

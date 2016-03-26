@@ -15,7 +15,6 @@ import {LocalTime} from '../../src/LocalTime';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
-import {YearConstants} from '../../src/YearConstants';
 
 describe('org.threeten.bp.temporal.TestYear', () => {
     const TEST_2008 = Year.of(2008);
@@ -95,13 +94,13 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('test_factory_int_tooLow', () => {
             expect(() => {
-                Year.of(YearConstants.MIN_VALUE - 1);
+                Year.of(Year.MIN_VALUE - 1);
             }).to.throw(DateTimeException);
         });
 
         it('test_factory_int_tooHigh', () => {
             expect(() => {
-                Year.of(YearConstants.MAX_VALUE + 1);
+                Year.of(Year.MAX_VALUE + 1);
             }).to.throw(DateTimeException);
         });
         //-----------------------------------------------------------------------
@@ -137,8 +136,8 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             ['-1234', Year.of(-1234)],
             // ['-12345678', Year.of(-12345678)], // too large for our Year.MIN_VALUE
 
-            ['+' + YearConstants.MAX_VALUE, Year.of(YearConstants.MAX_VALUE)],
-            ['' + YearConstants.MIN_VALUE, Year.of(YearConstants.MIN_VALUE)]
+            ['+' + Year.MAX_VALUE, Year.of(Year.MAX_VALUE)],
+            ['' + Year.MIN_VALUE, Year.of(Year.MIN_VALUE)]
         ];
 
         it('factory_parse_success', () => {
