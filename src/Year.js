@@ -12,6 +12,7 @@ import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {LocalDate} from './LocalDate';
+import {MathUtil} from './MathUtil';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
@@ -242,6 +243,30 @@ export class Year extends Temporal {
         return formatter.parse(text, Year.FROM);
     }
     
+    //-------------------------------------------------------------------------
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     * <p>
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     * <p>
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     * <p>
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @param {number} year  the year to check
+     * @return {boolean} true if the year is leap, false otherwise
+     */
+    static isLeap(year) {
+        return ((MathUtil.intMod(year, 4) === 0) && ((MathUtil.intMod(year, 100) !== 0) || (MathUtil.intMod(year, 400) === 0)));
+    }
+    
     /**
      * Gets the range of valid values for the specified field.
      * <p>
@@ -331,6 +356,29 @@ export class Year extends Temporal {
             throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
         }
         return field.getFrom(this);
+    }
+    
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     * <p>
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     * <p>
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     * <p>
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @return {boolean} true if the year is leap, false otherwise
+     */
+    isLeap() {
+        return Year.isLeap(this._year);
     }
 
     /**

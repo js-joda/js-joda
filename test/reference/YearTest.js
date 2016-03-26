@@ -241,4 +241,46 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // isLeap()
+    //-----------------------------------------------------------------------
+    describe('isLeap()', () => {
+        it('test_isLeap', () => {
+            expect(Year.of(1999).isLeap()).to.eql(false);
+            expect(Year.of(2000).isLeap()).to.eql(true);
+            expect(Year.of(2001).isLeap()).to.eql(false);
+
+            expect(Year.of(2007).isLeap()).to.eql(false);
+            expect(Year.of(2008).isLeap()).to.eql(true);
+            expect(Year.of(2009).isLeap()).to.eql(false);
+            expect(Year.of(2010).isLeap()).to.eql(false);
+            expect(Year.of(2011).isLeap()).to.eql(false);
+            expect(Year.of(2012).isLeap()).to.eql(true);
+
+            expect(Year.of(2095).isLeap()).to.eql(false);
+            expect(Year.of(2096).isLeap()).to.eql(true);
+            expect(Year.of(2097).isLeap()).to.eql(false);
+            expect(Year.of(2098).isLeap()).to.eql(false);
+            expect(Year.of(2099).isLeap()).to.eql(false);
+            expect(Year.of(2100).isLeap()).to.eql(false);
+            expect(Year.of(2101).isLeap()).to.eql(false);
+            expect(Year.of(2102).isLeap()).to.eql(false);
+            expect(Year.of(2103).isLeap()).to.eql(false);
+            expect(Year.of(2104).isLeap()).to.eql(true);
+            expect(Year.of(2105).isLeap()).to.eql(false);
+
+            expect(Year.of(-500).isLeap()).to.eql(false);
+            expect(Year.of(-400).isLeap()).to.eql(true);
+            expect(Year.of(-300).isLeap()).to.eql(false);
+            expect(Year.of(-200).isLeap()).to.eql(false);
+            expect(Year.of(-100).isLeap()).to.eql(false);
+            expect(Year.of(0).isLeap()).to.eql(true);
+            expect(Year.of(100).isLeap()).to.eql(false);
+            expect(Year.of(200).isLeap()).to.eql(false);
+            expect(Year.of(300).isLeap()).to.eql(false);
+            expect(Year.of(400).isLeap()).to.eql(true);
+            expect(Year.of(500).isLeap()).to.eql(false);
+        });
+    });
 });
