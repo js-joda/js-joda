@@ -336,4 +336,56 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // minusYears()
+    //-----------------------------------------------------------------------
+    describe('minusYears()', () => {
+        it('test_minusYears', () => {
+            expect(Year.of(2007).minusYears(-1)).to.eql(Year.of(2008));
+            expect(Year.of(2007).minusYears(0)).to.eql(Year.of(2007));
+            expect(Year.of(2007).minusYears(1)).to.eql(Year.of(2006));
+            expect(Year.of(2007).minusYears(2)).to.eql(Year.of(2005));
+
+            expect(Year.of(Year.MAX_VALUE - 1).minusYears(-1)).to.eql(Year.of(Year.MAX_VALUE));
+            expect(Year.of(Year.MAX_VALUE).minusYears(0)).to.eql(Year.of(Year.MAX_VALUE));
+
+            expect(Year.of(Year.MIN_VALUE + 1).minusYears(1)).to.eql(Year.of(Year.MIN_VALUE));
+            expect(Year.of(Year.MIN_VALUE).minusYears(0)).to.eql(Year.of(Year.MIN_VALUE));
+        });
+
+        it('test_minusYear_zero_equals', () => {
+            let base = Year.of(2007);
+            expect(base.minusYears(0)).to.eql(base);
+        });
+
+        it('test_minusYears_big', () => {
+            let years = 20 + Year.MAX_VALUE;
+            expect(Year.of(40).minusYears(years)).to.eql(Year.of(40 - years));
+        });
+
+        it('test_minusYears_max', () => {
+            expect(() => {
+                Year.of(Year.MAX_VALUE).minusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_maxLots', () => {
+            expect(() => {
+                Year.of(Year.MAX_VALUE).minusYears(-1000);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_min', () => {
+            expect(() => {
+                Year.of(Year.MIN_VALUE).minusYears(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_minusYears_minLots', () => {
+            expect(() => {
+                Year.of(Year.MIN_VALUE).minusYears(1000);
+            }).to.throw(DateTimeException);
+        });
+    });
 });

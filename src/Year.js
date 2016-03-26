@@ -82,7 +82,8 @@ export class Year extends Temporal {
     }
 
     /**
-     * to handle function overriding this function accepts zero or one arguments, checks their type and delegates to the appropriate function
+     * to handle function overriding this function accepts zero or one arguments, checks their type and delegates to the appropriate
+     * function
      *
      * @return {Year}
      */
@@ -456,6 +457,62 @@ export class Year extends Temporal {
             return this;
         }
         return Year.of(ChronoField.YEAR.checkValidIntValue(MathUtil.safeAdd(this._year, yearsToAdd)));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * minus function overloading
+     */
+    minus() {
+        if (arguments.length === 1) {
+            return this.minusAmount.apply(this, arguments);
+        } else {
+            return this.minusAmountToSubtractUnit.apply(this, arguments);
+        }
+    }
+
+    /**
+     * Returns a copy of this year with the specified period subtracted.
+     * <p>
+     * This method returns a new year based on this year with the specified period subtracted.
+     * The subtractor is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link #minus(long, TemporalUnit)}.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAmount} amount  the amount to subtract, not null
+     * @return {Year} based on this year with the subtraction made, not null
+     * @throws DateTimeException if the subtraction cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusAmount(amount) {
+        return amount.subtractFrom(this);
+    }
+
+    /**
+     * @param {number} amountToSubtract  the amount to subtract, not null
+     * @param {TemporalUnit} unit
+     * @return {Year} based on this year with the subtraction made, not null
+     * @throws DateTimeException {@inheritDoc}
+     * @throws ArithmeticException {@inheritDoc}
+     */
+    minusAmountToSubtractUnit(amountToSubtract, unit) {
+        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plus(MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plus(-amountToSubtract, unit));
+    }
+
+    /**
+     * Returns a copy of this year with the specified number of years subtracted.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} yearsToSubtract  the years to subtract, may be negative
+     * @return {Year} based on this year with the period subtracted, not null
+     * @throws DateTimeException if the result exceeds the supported year range
+     */
+    minusYears(yearsToSubtract) {
+        return (yearsToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusYears(MathUtil.MAX_SAFE_INTEGER).plusYears(1) : this.plusYears(-yearsToSubtract));
     }
 
     /**
