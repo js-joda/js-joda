@@ -413,4 +413,46 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(NullPointerException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // length()
+    //-----------------------------------------------------------------------
+    describe('length()', () => {
+        it('test_length', () => {
+            expect(Year.of(1999).length()).to.eql(365);
+            expect(Year.of(2000).length()).to.eql(366);
+            expect(Year.of(2001).length()).to.eql(365);
+
+            expect(Year.of(2007).length()).to.eql(365);
+            expect(Year.of(2008).length()).to.eql(366);
+            expect(Year.of(2009).length()).to.eql(365);
+            expect(Year.of(2010).length()).to.eql(365);
+            expect(Year.of(2011).length()).to.eql(365);
+            expect(Year.of(2012).length()).to.eql(366);
+
+            expect(Year.of(2095).length()).to.eql(365);
+            expect(Year.of(2096).length()).to.eql(366);
+            expect(Year.of(2097).length()).to.eql(365);
+            expect(Year.of(2098).length()).to.eql(365);
+            expect(Year.of(2099).length()).to.eql(365);
+            expect(Year.of(2100).length()).to.eql(365);
+            expect(Year.of(2101).length()).to.eql(365);
+            expect(Year.of(2102).length()).to.eql(365);
+            expect(Year.of(2103).length()).to.eql(365);
+            expect(Year.of(2104).length()).to.eql(366);
+            expect(Year.of(2105).length()).to.eql(365);
+
+            expect(Year.of(-500).length()).to.eql(365);
+            expect(Year.of(-400).length()).to.eql(366);
+            expect(Year.of(-300).length()).to.eql(365);
+            expect(Year.of(-200).length()).to.eql(365);
+            expect(Year.of(-100).length()).to.eql(365);
+            expect(Year.of(0).length()).to.eql(366);
+            expect(Year.of(100).length()).to.eql(365);
+            expect(Year.of(200).length()).to.eql(365);
+            expect(Year.of(300).length()).to.eql(365);
+            expect(Year.of(400).length()).to.eql(366);
+            expect(Year.of(500).length()).to.eql(365);
+        });
+    });
 });

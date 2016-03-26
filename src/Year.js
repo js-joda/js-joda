@@ -551,6 +551,15 @@ export class Year extends Temporal {
     }
 
     /**
+     * Gets the length of this year in days.
+     *
+     * @return {number} the length of this year in days, 365 or 366
+     */
+    length() {
+        return this.isLeap() ? 366 : 365;
+    }
+
+    /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>
      * The comparison is based on the value
