@@ -388,4 +388,29 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // doAdjustment()
+    //-----------------------------------------------------------------------
+    describe('doAdjustment()', () => {
+        it('test_adjustDate', () => {
+            let base = LocalDate.of(2007, 2, 12);
+            for (let i = -4; i <= 2104; i++) {
+                let result = Year.of(i).adjustInto(base);
+                expect(result).to.eql(LocalDate.of(i, 2, 12));
+            }
+        });
+
+        it('test_adjustDate_resolve', () => {
+            let test = Year.of(2011);
+            expect(test.adjustInto(LocalDate.of(2012, 2, 29))).to.eql(LocalDate.of(2011, 2, 28));
+        });
+
+        it('test_adjustDate_nullLocalDate', () => {
+            expect(() => {
+                let test = Year.of(1);
+                test.adjustInto(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 });

@@ -516,6 +516,41 @@ export class Year extends Temporal {
     }
 
     /**
+     * Adjusts the specified temporal object to have this year.
+     * <p>
+     * This returns a temporal object of the same observable type as the input
+     * with the year changed to be the same as this.
+     * <p>
+     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * passing {@link ChronoField#YEAR} as the field.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a {@code DateTimeException} is thrown.
+     * <p>
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with(TemporalAdjuster)}:
+     * <pre>
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisYear.adjustInto(temporal);
+     *   temporal = temporal.with(thisYear);
+     * </pre>
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, 'temporal');
+        /* TODO: only IsoChronology for now 
+         if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
+         throw new DateTimeException("Adjustment only supported on ISO date-time");
+         }*/
+        return temporal.with(ChronoField.YEAR, this._year);
+    }
+
+    /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>
      * The comparison is based on the value
