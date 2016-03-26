@@ -4,14 +4,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {DateTimeException} from './errors';
 import {requireNonNull, requireInstance} from './assert';
 
 import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
-import {DateTimeException} from './errors';
+import {DateTimeFormatter} from './format/DateTimeFormatter';
+import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {LocalDate} from './LocalDate';
+import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ZoneId} from './ZoneId';
 
 /**
@@ -179,7 +183,7 @@ export class Year extends Temporal {
             return temporal;
         }
         try {
-            /* we support only ISO for now
+            /* TODO: we support only ISO for now
             if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
                 temporal = LocalDate.from(temporal);
             }*/
@@ -188,6 +192,51 @@ export class Year extends Temporal {
             throw new DateTimeException('Unable to obtain Year from TemporalAccessor: ' +
                     temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
+    }
+    //-----------------------------------------------------------------------
+    /**
+     * to handle function overriding this function accepts one or two arguments, checks their type and delegates to the appropriate function
+     *
+     * @return {Year}
+     */
+    static parse() {
+        if (arguments.length <= 1) {
+            return Year._parseText(arguments[0]);
+        } else {
+            return Year._parseTextFormatter(arguments[0], arguments[1]);
+        }
+    }
+    
+    /**
+     * Obtains an instance of {@code Year} from a text string such as {@code 2007}.
+     * <p>
+     * The string must represent a valid year.
+     * Years outside the range 0000 to 9999 must be prefixed by the plus or minus symbol.
+     *
+     * @param {String} text  the text to parse such as "2007", not null
+     * @return {Year} the parsed year, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static _parseText(text) {
+        requireNonNull(text, 'text');
+        return Year.parse(text, PARSER);
+    }
+
+    /**
+     * Obtains an instance of {@code Year} from a text string using a specific formatter.
+     * <p>
+     * The text is parsed using the formatter, returning a year.
+     *
+     * @param {String} text  the text to parse, not null
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {Year} the parsed year, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static _parseTextFormatter(text, formatter) {
+        requireNonNull(text, 'text');
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return formatter.parse(text, Year.FROM);
     }
 
     /**
@@ -209,6 +258,16 @@ export class Year extends Temporal {
     }
 }
 
+var PARSER;
+
 export function _init() {
     /* NOTE: MIN_VALUE/MAX_VALUE moved to YearConstants */
+    
+    PARSER = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .toFormatter();
+
+    Year.FROM = createTemporalQuery('Year.FROM', (temporal) => {
+        return Year.from(temporal);
+    });
 }
