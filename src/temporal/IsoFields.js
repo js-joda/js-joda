@@ -842,22 +842,23 @@ export function _init() {
     IsoFields.WEEK_BASED_YEAR = WEEK_BASED_YEAR;
     IsoFields.WEEK_BASED_YEARS = WEEK_BASED_YEARS;
     IsoFields.QUARTER_YEARS = QUARTER_YEARS;
+    
+    // this differs from threeten, but for ease of use we bring back good old joda time functionality
+    /**
+     * the week of the week based year as defined by the ISO8601 Standard with a Monday-based week
+     *
+     * @returns {number} the week a the week based year
+     */
+    LocalDate.prototype.isoWeekOfWeekyear = function () {
+        return this.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+    };
+    /**
+     * the year of the week based year as defined by the ISO8601 Standard with a Monday-based week
+     *
+     * @returns {number} the year a the week based year
+     */
+    LocalDate.prototype.isoWeekyear = function () {
+        return this.get(IsoFields.WEEK_BASED_YEAR);
+    };
 }
 
-// this differs from threeten, but for ease of use we bring back good old joda time functionality
-/**
- * the week of the week based year as defined by the ISO8601 Standard with a Monday-based week
- *
- * @returns {number} the week a the week based year
- */
-LocalDate.prototype.isoWeekOfWeekyear = function () {
-    return this.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-};
-/**
- * the year of the week based year as defined by the ISO8601 Standard with a Monday-based week
- *
- * @returns {number} the year a the week based year
- */
-LocalDate.prototype.isoWeekyear = function () {
-    return this.get(IsoFields.WEEK_BASED_YEAR);
-};
