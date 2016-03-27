@@ -656,4 +656,63 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(NullPointerException);
         });
     });
+    //-----------------------------------------------------------------------
+    // equals()
+    //-----------------------------------------------------------------------
+    describe('equals()', () => {
+        it('test_equals', () => {
+            for (let i = -4; i <= 2104; i += 10) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
+                let a = Year.of(i);
+                for (let j = -4; j <= 2104; j += 10) {
+                    let b = Year.of(j);
+                    expect(a.equals(b)).to.eql(i === j);
+                }
+            }
+        });
+
+        it('test_equals_same', () => {
+            let test = Year.of(2011);
+            expect(test.equals(test)).to.eql(true);
+        });
+
+        it('test_equals_nullYear', () => {
+            let doy = null;
+            let test = Year.of(1);
+            expect(test.equals(doy)).to.eql(false);
+        });
+
+        it('test_equals_incorrectType', () => {
+            let test = Year.of(1);
+            expect(test.equals('Incorrect type')).to.eql(false);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // toString()
+    //-----------------------------------------------------------------------
+    describe('toString()', () => {
+        it('test_toString', () => {
+            for (let i = -4; i <= 2104; i++) {
+                let a = Year.of(i);
+                expect(a.toString()).to.eql('' + i);
+            }
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // format(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    describe('format(DateTimeFormatter)', () => {
+        it('test_format_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('y');
+            let t = Year.of(2010).format(f);
+            expect(t).to.eql('2010');
+        });
+
+        it('format_formatter_null', () => {
+            expect(() => {
+                Year.of(2010).format(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 });

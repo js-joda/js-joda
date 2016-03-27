@@ -650,6 +650,22 @@ export class Year extends Temporal {
         return this._year < other._year;
     }
     /**
+     * Outputs this year as a {@code String} using the formatter.
+     * <p>
+     * This year will be passed to the formatter
+     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted year string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return formatter.format(this);
+    }
+
+    /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>
      * The comparison is based on the value
@@ -665,6 +681,14 @@ export class Year extends Temporal {
             return this.value() === otherYear.value();
         }
         return false;
+    }
+    /**
+     * Outputs this year as a {@code String}.
+     *
+     * @return {String} a string representation of this year, not null
+     */
+    toString() {
+        return '' + this._year;
     }
 }
 
