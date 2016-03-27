@@ -645,7 +645,35 @@ export class MonthDay extends Temporal {
         }
         return false;
     }
+    //-----------------------------------------------------------------------
+    /**
+     * Outputs this month-day as a {@code String}, such as {@code --12-03}.
+     * <p>
+     * The output will be in the format {@code --MM-dd}:
+     *
+     * @return {String} a string representation of this month-day, not null
+     */
+    toString() {
+        return '--'
+            + (this._month < 10 ? '0' : '') + this._month
+            + (this._day < 10 ? '-0' : '-') + this._day;
+    }
 
+    /**
+     * Outputs this month-day as a {@code String} using the formatter.
+     * <p>
+     * This month-day will be passed to the formatter
+     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted month-day string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return formatter.format(this);
+    }
 
 }
 

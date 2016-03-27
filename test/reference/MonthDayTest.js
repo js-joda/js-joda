@@ -542,5 +542,83 @@ describe('org.threeten.bp.TestMonthDay', () => {
         });
     });
 
+    //-----------------------------------------------------------------------
+    // equals()
+    //-----------------------------------------------------------------------
+    describe('equals()', () => {
+        it('test_equals', () => {
+            let a = MonthDay.of(1, 1);
+            let b = MonthDay.of(1, 1);
+            let c = MonthDay.of(2, 1);
+            let d = MonthDay.of(1, 2);
+
+            expect(a.equals(a)).to.eql(true);
+            expect(a.equals(b)).to.eql(true);
+            expect(a.equals(c)).to.eql(false);
+            expect(a.equals(d)).to.eql(false);
+
+            expect(b.equals(a)).to.eql(true);
+            expect(b.equals(b)).to.eql(true);
+            expect(b.equals(c)).to.eql(false);
+            expect(b.equals(d)).to.eql(false);
+
+            expect(c.equals(a)).to.eql(false);
+            expect(c.equals(b)).to.eql(false);
+            expect(c.equals(c)).to.eql(true);
+            expect(c.equals(d)).to.eql(false);
+
+            expect(d.equals(a)).to.eql(false);
+            expect(d.equals(b)).to.eql(false);
+            expect(d.equals(c)).to.eql(false);
+            expect(d.equals(d)).to.eql(true);
+        });
+
+        it('test_equals_itself_true', () => {
+            expect(TEST_07_15.equals(TEST_07_15)).to.eql(true);
+        });
+
+        it('test_equals_string_false', () => {
+            expect(TEST_07_15.equals('2007-07-15')).to.eql(false);
+        });
+
+        it('test_equals_null_false', () => {
+            expect(TEST_07_15.equals(null)).to.eql(false);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // toString()
+    //-----------------------------------------------------------------------
+    describe('toString()', () => {
+        let data_sampleToString = [
+            [7, 5, '--07-05'],
+            [12, 31, '--12-31'],
+            [1, 2, '--01-02']
+        ];
+
+        it('test_toString', () => {
+            data_sampleToString.forEach((val) => {
+                let [m, d, expected] = val;
+                let test = MonthDay.of(m, d);
+                let str = test.toString();
+                expect(str).to.eql(expected);
+            });
+        });
+    });
+    //-----------------------------------------------------------------------
+    // format(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    describe('format(DateTimeFormatter)', () => {
+        it('test_format_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('M d');
+            let t = MonthDay.of(12, 3).format(f);
+            expect(t).to.eql('12 3');
+        });
+
+        it('test_format_formatter_null', () => {
+            expect(() => {
+                MonthDay.of(12, 3).format(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 });
 
