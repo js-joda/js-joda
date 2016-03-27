@@ -154,4 +154,78 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             }).to.throw(NullPointerException);
         });
     });
+    //-----------------------------------------------------------------------
+    // parse()
+    //-----------------------------------------------------------------------
+    describe('parse()', () => {
+        let data_goodParseData = [
+            ['0000-01', YearMonth.of(0, 1)],
+            ['0000-12', YearMonth.of(0, 12)],
+            ['9999-12', YearMonth.of(9999, 12)],
+            ['2000-01', YearMonth.of(2000, 1)],
+            ['2000-02', YearMonth.of(2000, 2)],
+            ['2000-03', YearMonth.of(2000, 3)],
+            ['2000-04', YearMonth.of(2000, 4)],
+            ['2000-05', YearMonth.of(2000, 5)],
+            ['2000-06', YearMonth.of(2000, 6)],
+            ['2000-07', YearMonth.of(2000, 7)],
+            ['2000-08', YearMonth.of(2000, 8)],
+            ['2000-09', YearMonth.of(2000, 9)],
+            ['2000-10', YearMonth.of(2000, 10)],
+            ['2000-11', YearMonth.of(2000, 11)],
+            ['2000-12', YearMonth.of(2000, 12)],
+
+            // ['+12345678-03', YearMonth.of(12345678, 3)],  // too large for our Year.MAX_VALUE
+            ['+123456-03', YearMonth.of(123456, 3)],
+            ['0000-03', YearMonth.of(0, 3)],
+            ['-1234-03', YearMonth.of(-1234, 3)],
+            // ['-12345678-03', YearMonth.of(-12345678, 3)], // too smal for our Year.MIN_VALUE
+
+            ['+' + Year.MAX_VALUE + '-03', YearMonth.of(Year.MAX_VALUE, 3)],
+            [Year.MIN_VALUE + '-03', YearMonth.of(Year.MIN_VALUE, 3)]
+        ];
+
+        it('factory_parse_success', () => {
+            data_goodParseData.forEach((val) => {
+                let [text, expected] = val;
+                let yearMonth = YearMonth.parse(text);
+                expect(yearMonth).to.eql(expected);
+            });
+        });
+
+        //-----------------------------------------------------------------------
+        let data_badParseData = [
+            ['', 0],
+            ['-00', 1],
+            ['--01-0', 1],
+            ['A01-3', 0],
+            ['200-01', 0],
+            ['2009/12', 4],
+
+            ['-0000-10', 0],
+            ['-12345678901-10', 11],
+            ['+1-10', 1],
+            ['+12-10', 1],
+            ['+123-10', 1],
+            ['+1234-10', 0],
+            ['12345-10', 0],
+            ['+12345678901-10', 11]
+        ];
+
+        it('factory_parse_fail', () => {
+            data_badParseData.forEach((val) => {
+                let [text, pos] = val;
+                expect(() => {
+                    try {
+                        YearMonth.parse(text);
+                        expect.fail(null, null, `Parse should have failed for ${text} at position ${pos}`);
+                    } catch (ex) {
+                        expect(ex.parsedString()).to.eql(text);
+                        expect(ex.errorIndex()).to.eql(pos);
+                        throw ex;
+                    }
+                }).to.throw(DateTimeParseException);
+            });
+        });
+    });
 });
