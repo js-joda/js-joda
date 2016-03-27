@@ -11,12 +11,14 @@ import {MathUtil} from '../../src/MathUtil';
 import {Clock} from '../../src/Clock';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {Month} from '../../src/Month';
 import {MonthDay} from '../../src/MonthDay';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
@@ -462,6 +464,81 @@ describe('org.threeten.bp.TestMonthDay', () => {
                 let test = MonthDay.of(6, 30);
                 test.atYear(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // query(TemporalQuery)
+    //-----------------------------------------------------------------------
+    describe('query(TemporalQuery)', () => {
+        it('test_query', () => {
+            expect(TEST_07_15.query(TemporalQueries.chronology())).to.eql(IsoChronology.INSTANCE);
+            expect(TEST_07_15.query(TemporalQueries.localDate())).to.eql(null);
+            expect(TEST_07_15.query(TemporalQueries.localTime())).to.eql(null);
+            expect(TEST_07_15.query(TemporalQueries.offset())).to.eql(null);
+            expect(TEST_07_15.query(TemporalQueries.precision())).to.eql(null);
+            expect(TEST_07_15.query(TemporalQueries.zone())).to.eql(null);
+            expect(TEST_07_15.query(TemporalQueries.zoneId())).to.eql(null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_07_15.query(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // compareTo()
+    //-----------------------------------------------------------------------
+    describe('compareTo()', () => {
+        it('test_comparisons', () => {
+            let data_comparisons_MonthDay = [
+                MonthDay.of(1, 1),
+                MonthDay.of(1, 31),
+                MonthDay.of(2, 1),
+                MonthDay.of(2, 29),
+                MonthDay.of(3, 1),
+                MonthDay.of(12, 31)
+            ];
+            for (let i = 0; i < data_comparisons_MonthDay.length; i++) {
+                let a = data_comparisons_MonthDay[i];
+                for (let j = 0; j < data_comparisons_MonthDay.length; j++) {
+                    let b = data_comparisons_MonthDay[j];
+                    if (i < j) {
+                        expect(a.compareTo(b) < 0).to.eql(true);
+                        expect(a.isBefore(b)).to.eql(true);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.equals(b)).to.eql(false);
+                    } else if (i > j) {
+                        expect(a.compareTo(b) > 0).to.eql(true);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(a.isAfter(b)).to.eql(true);
+                        expect(a.equals(b)).to.eql(false);
+                    } else {
+                        expect(a.compareTo(b)).to.eql(0);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.equals(b)).to.eql(true);
+                    }
+                }
+            }
+        });
+
+        it('test_compareTo_ObjectNull', () => {
+            expect(() => {
+                TEST_07_15.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isBefore_ObjectNull', () => {
+            expect(() => {
+                TEST_07_15.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_isAfter_ObjectNull', () => {
+            expect(() => {
+                TEST_07_15.isAfter(null);
+            }).to.throw(NullPointerException);
         });
     });
 

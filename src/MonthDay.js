@@ -10,11 +10,13 @@ import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
+import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
 import {Month} from './Month';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
-import {createTemporalQuery} from './temporal/TemporalQuery';
+import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
+import {TemporalQueries} from './temporal/TemporalQueries';
 import {ValueRange} from './temporal/ValueRange';
 import {Year} from './Year';
 import {ZoneId} from './ZoneId';
@@ -497,6 +499,33 @@ export class MonthDay extends Temporal {
         return MonthDay.of(this._month, dayOfMonth);
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Queries this month-day using the specified query.
+     * <p>
+     * This queries this month-day using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, 'query');
+        requireInstance(query, TemporalQuery, 'query');
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        }
+        return super.query(query);
+    }
+
     /**
      * Adjusts the specified temporal object to have this month-day.
      * <p>
@@ -552,6 +581,50 @@ export class MonthDay extends Temporal {
     atYear(year) {
         return LocalDate.of(year, this._month, this.isValidYear(year) ? this._day : 28);
     }
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this month-day to another month-day.
+     * <p>
+     * The comparison is based first on value of the month, then on the value of the day.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     *
+     * @param {MonthDay} other  the other month-day to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, MonthDay, 'other');
+        let cmp = (this._month - other.monthValue());
+        if (cmp === 0) {
+            cmp = (this._day - other.dayOfMonth());
+        }
+        return cmp;
+    }
+
+    /**
+     * Is this month-day after the specified month-day.
+     *
+     * @param {MonthDay} other  the other month-day to compare to, not null
+     * @return {boolean} true if this is after the specified month-day
+     */
+    isAfter(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, MonthDay, 'other');
+        return this.compareTo(other) > 0;
+    }
+
+    /**
+     * Is this month-day before the specified month-day.
+     *
+     * @param {MonthDay} other  the other month-day to compare to, not null
+     * @return {boolean} true if this point is before the specified month-day
+     */
+    isBefore(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, MonthDay, 'other');
+        return this.compareTo(other) < 0;
+    }
+
 
     //-----------------------------------------------------------------------
     /**
