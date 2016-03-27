@@ -618,9 +618,9 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('compareTo()', () => {
         it('test_compareTo', () => {
-            for (let i = -4; i <= 2104; i += 10) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
+            for (let i = -4; i <= 2104; i += 25) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
                 let a = Year.of(i);
-                for (let j = -4; j <= 2104; j += 10) {
+                for (let j = -4; j <= 2104; j += 25) {
                     let b = Year.of(j);
                     if (i < j) {
                         expect(a.compareTo(b) < 0).to.eql(true);
@@ -661,9 +661,9 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('equals()', () => {
         it('test_equals', () => {
-            for (let i = -4; i <= 2104; i += 10) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
+            for (let i = -4; i <= 2104; i += 25) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
                 let a = Year.of(i);
-                for (let j = -4; j <= 2104; j += 10) {
+                for (let j = -4; j <= 2104; j += 25) {
                     let b = Year.of(j);
                     expect(a.equals(b)).to.eql(i === j);
                 }
