@@ -8,13 +8,16 @@ import '../_init';
 
 import {Year} from '../../src/Year';
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Clock} from '../../src/Clock';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
@@ -586,6 +589,27 @@ describe('org.threeten.bp.temporal.TestYear', () => {
                 let test = Year.of(2007);
                 test.atDay(367);
             }).to.throw(DateTimeException);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // query(TemporalQuery)
+    //-----------------------------------------------------------------------
+    describe('query(TemporalQuery)', () => {
+        it('test_query', () => {
+            expect(TEST_2008.query(TemporalQueries.chronology())).to.eql(IsoChronology.INSTANCE);
+            expect(TEST_2008.query(TemporalQueries.localDate())).to.eql(null);
+            expect(TEST_2008.query(TemporalQueries.localTime())).to.eql(null);
+            expect(TEST_2008.query(TemporalQueries.offset())).to.eql(null);
+            expect(TEST_2008.query(TemporalQueries.precision())).to.eql(ChronoUnit.YEARS);
+            expect(TEST_2008.query(TemporalQueries.zone())).to.eql(null);
+            expect(TEST_2008.query(TemporalQueries.zoneId())).to.eql(null);
+        });
+
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_2008.query(null);
+            }).to.throw(NullPointerException);
         });
     });
 });

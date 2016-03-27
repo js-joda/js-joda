@@ -12,12 +12,15 @@ import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
+import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
 import {MathUtil} from './MathUtil';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalAmount} from './temporal/TemporalAmount';
+import {TemporalQueries} from './temporal/TemporalQueries';
+import {TemporalQuery} from './temporal/TemporalQuery';
 import {TemporalUnit} from './temporal/TemporalUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ValueRange} from './temporal/ValueRange';
@@ -576,6 +579,37 @@ export class Year extends Temporal {
         return LocalDate.ofYearDay(this._year, dayOfYear);
     }
     
+    //-----------------------------------------------------------------------
+    /**
+     * Queries this year using the specified query.
+     * <p>
+     * This queries this year using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, 'query()');
+        requireInstance(query, TemporalQuery, 'query()');
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.YEARS;
+        } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+                query === TemporalQueries.zone() || query === TemporalQueries.zoneId() || query === TemporalQueries.offset()) {
+            return null;
+        }
+        return super.query(query);
+    }
     /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>
