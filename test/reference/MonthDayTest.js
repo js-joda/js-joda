@@ -6,6 +6,7 @@ import {expect} from 'chai';
 
 import '../_init';
 import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
+import {MathUtil} from '../../src/MathUtil';
 
 import {Clock} from '../../src/Clock';
 import {ChronoField} from '../../src/temporal/ChronoField';
@@ -394,5 +395,75 @@ describe('org.threeten.bp.TestMonthDay', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // adjust()
+    //-----------------------------------------------------------------------
+    describe('adjust()', () => {
+        it('test_adjustDate', () => {
+            let test = MonthDay.of(6, 30);
+            let date = LocalDate.of(2007, 1, 1);
+            expect(test.adjustInto(date)).to.eql(LocalDate.of(2007, 6, 30));
+        });
+
+        it('test_adjustDate_resolve', () => {
+            let test = MonthDay.of(2, 29);
+            let date = LocalDate.of(2007, 6, 30);
+            expect(test.adjustInto(date)).to.eql(LocalDate.of(2007, 2, 28));
+        });
+
+        it('test_adjustDate_equal', () => {
+            let test = MonthDay.of(6, 30);
+            let date = LocalDate.of(2007, 6, 30);
+            expect(test.adjustInto(date)).to.eql(date);
+        });
+
+        it('test_adjustDate_null', () => {
+            expect(() => {
+                TEST_07_15.adjustInto(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // isValidYear(int)
+    //-----------------------------------------------------------------------
+    describe('isValidYear(int)', () => {
+        it('test_isValidYear_june', () => {
+            let test = MonthDay.of(6, 30);
+            expect(test.isValidYear(2007)).to.eql(true);
+        });
+
+        it('test_isValidYear_febNonLeap', () => {
+            let test = MonthDay.of(2, 29);
+            expect(test.isValidYear(2007)).to.eql(false);
+        });
+
+        it('test_isValidYear_febLeap', () => {
+            let test = MonthDay.of(2, 29);
+            expect(test.isValidYear(2008)).to.eql(true);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // atYear(int)
+    //-----------------------------------------------------------------------
+    describe('atYear(int)', () => {
+        it('test_atYear_int', () => {
+            let test = MonthDay.of(6, 30);
+            expect(test.atYear(2008)).to.eql(LocalDate.of(2008, 6, 30));
+        });
+
+        it('test_atYear_int_leapYearAdjust', () => {
+            let test = MonthDay.of(2, 29);
+            expect(test.atYear(2005)).to.eql(LocalDate.of(2005, 2, 28));
+        });
+
+        it('test_atYear_int_invalidYear', () => {
+            expect(()=> {
+                let test = MonthDay.of(6, 30);
+                test.atYear(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+    });
+
 });
 

@@ -497,6 +497,62 @@ export class MonthDay extends Temporal {
         return MonthDay.of(this._month, dayOfMonth);
     }
 
+    /**
+     * Adjusts the specified temporal object to have this month-day.
+     * <p>
+     * This returns a temporal object of the same observable type as the input
+     * with the month and day-of-month changed to be the same as this.
+     * <p>
+     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * twice, passing {@link ChronoField#MONTH_OF_YEAR} and
+     * {@link ChronoField#DAY_OF_MONTH} as the fields.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a {@code DateTimeException} is thrown.
+     * <p>
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with(TemporalAdjuster)}:
+     * <pre>
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisMonthDay.adjustInto(temporal);
+     *   temporal = temporal.with(thisMonthDay);
+     * </pre>
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, 'temporal');
+        /* TODO: only IsoChronology for now
+        if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
+            throw new DateTimeException("Adjustment only supported on ISO date-time");
+        }*/
+        temporal = temporal.with(ChronoField.MONTH_OF_YEAR, this._month);
+        return temporal.with(ChronoField.DAY_OF_MONTH, Math.min(temporal.range(ChronoField.DAY_OF_MONTH).maximum(), this._day));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Combines this month-day with a year to create a {@code LocalDate}.
+     * <p>
+     * This returns a {@code LocalDate} formed from this month-day and the specified year.
+     * <p>
+     * A month-day of February 29th will be adjusted to February 28th in the resulting
+     * date if the year is not a leap year.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} year  the year to use, from MIN_YEAR to MAX_YEAR
+     * @return {LocalDate} the local date formed from this month-day and the specified year, not null
+     * @throws DateTimeException if the year is outside the valid range of years
+     */
+    atYear(year) {
+        return LocalDate.of(year, this._month, this.isValidYear(year) ? this._day : 28);
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Checks if this month-day is equal to another month-day.
