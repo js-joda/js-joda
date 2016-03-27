@@ -326,5 +326,73 @@ describe('org.threeten.bp.TestMonthDay', () => {
         });
     });
 
+    //-----------------------------------------------------------------------
+    // withMonth()
+    //-----------------------------------------------------------------------
+    describe('withMonth()', () => {
+        it('test_withMonth', () => {
+            expect(MonthDay.of(6, 30).withMonth(1)).to.eql(MonthDay.of(1, 30));
+        });
+
+        it('test_withMonth_adjustToValid', () => {
+            expect(MonthDay.of(7, 31).withMonth(6)).to.eql(MonthDay.of(6, 30));
+        });
+
+        it('test_withMonth_adjustToValidFeb', () => {
+            expect(MonthDay.of(7, 31).withMonth(2)).to.eql(MonthDay.of(2, 29));
+        });
+
+        it('test_withMonth_int_noChangeEqual', () => {
+            let test = MonthDay.of(6, 30);
+            expect(test.withMonth(6)).to.eql(test);
+        });
+
+        it('test_withMonth_tooLow', () => {
+            expect(() => {
+                MonthDay.of(6, 30).withMonth(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMonth_tooHigh', () => {
+            expect(() => {
+                MonthDay.of(6, 30).withMonth(13);
+            }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // withDayOfMonth()
+    //-----------------------------------------------------------------------
+    describe('withDayOfMonth()', () => {
+        it('test_withDayOfMonth', () => {
+            expect(MonthDay.of(6, 30).withDayOfMonth(1)).to.eql(MonthDay.of(6, 1));
+        });
+
+        it('test_withDayOfMonth_invalid', () => {
+            expect(() => {
+                MonthDay.of(6, 30).withDayOfMonth(31);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfMonth_adjustToValidFeb', () => {
+            expect(MonthDay.of(2, 1).withDayOfMonth(29)).to.eql(MonthDay.of(2, 29));
+        });
+
+        it('test_withDayOfMonth_noChangeEqual', () => {
+            let test = MonthDay.of(6, 30);
+            expect(test.withDayOfMonth(30)).to.eql(test);
+        });
+
+        it('test_withDayOfMonth_tooLow', () => {
+            expect(() => {
+                MonthDay.of(6, 30).withDayOfMonth(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withDayOfMonth_tooHigh', () => {
+            expect(() => {
+                MonthDay.of(6, 30).withDayOfMonth(32);
+            }).to.throw(DateTimeException);
+        });
+    });
 });
 

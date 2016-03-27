@@ -16,6 +16,7 @@ import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ValueRange} from './temporal/ValueRange';
+import {Year} from './Year';
 import {ZoneId} from './ZoneId';
 
 /**
@@ -139,7 +140,7 @@ export class MonthDay extends Temporal {
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth > month.maxLength()) {
             throw new DateTimeException('Illegal value for DayOfMonth field, value ' + dayOfMonth +
-                    ' is not valid for month ' + month.name());
+                    ' is not valid for month ' + month.toString());
         }
         return new MonthDay(month.value(), dayOfMonth);
     }
@@ -421,6 +422,79 @@ export class MonthDay extends Temporal {
             throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
         }
         return field.getFrom(this);
+    }
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the year is valid for this month-day.
+     * <p>
+     * This method checks whether this month and day and the input year form
+     * a valid date. This can only return false for February 29th.
+     *
+     * @param {number} year  the year to validate, an out of range value returns false
+     * @return {boolean} true if the year is valid for this month-day
+     * @see Year#isValidMonthDay(MonthDay)
+     */
+    isValidYear(year) {
+        return (this._day === 29 && this._month === 2 && Year.isLeap(year) === false) === false;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a copy of this {@code MonthDay} with the month-of-year altered.
+     * <p>
+     * This returns a month-day with the specified month.
+     * If the day-of-month is invalid for the specified month, the day will
+     * be adjusted to the last valid day-of-month.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} month  the month-of-year to set in the returned month-day, from 1 (January) to 12 (December)
+     * @return {MonthDay} based on this month-day with the requested month, not null
+     * @throws DateTimeException if the month-of-year value is invalid
+     */
+    withMonth(month) {
+        return this.with(Month.of(month));
+    }
+
+    /**
+    * Returns a copy of this {@code MonthDay} with the month-of-year altered.
+    * <p>
+    * This returns a month-day with the specified month.
+    * If the day-of-month is invalid for the specified month, the day will
+    * be adjusted to the last valid day-of-month.
+    * <p>
+    * This instance is immutable and unaffected by this method call.
+    *
+    * @param {Month} month  the month-of-year to set in the returned month-day, not null
+    * @return {MonthDay} based on this month-day with the requested month, not null
+    */
+    with(month) {
+        requireNonNull(month, 'month');
+        if (month.value() === this._month) {
+            return this;
+        }
+        let day = Math.min(this._day, month.maxLength());
+        return new MonthDay(month.value(), day);
+    }
+
+    /**
+     * Returns a copy of this {@code MonthDay} with the day-of-month altered.
+     * <p>
+     * This returns a month-day with the specified day-of-month.
+     * If the day-of-month is invalid for the month, an exception is thrown.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} dayOfMonth  the day-of-month to set in the return month-day, from 1 to 31
+     * @return {MonthDay} based on this month-day with the requested day, not null
+     * @throws DateTimeException if the day-of-month value is invalid
+     * @throws DateTimeException if the day-of-month is invalid for the month
+     */
+    withDayOfMonth(dayOfMonth) {
+        if (dayOfMonth === this._day) {
+            return this;
+        }
+        return MonthDay.of(this._month, dayOfMonth);
     }
 
     //-----------------------------------------------------------------------
