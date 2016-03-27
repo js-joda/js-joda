@@ -5,16 +5,29 @@
 import {expect} from 'chai';
 
 import '../_init';
-import {NullPointerException} from '../../src/errors';
+import {DateTimeException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
+import {LocalTime} from '../../src/LocalTime';
 import {Month} from '../../src/Month';
 import {MonthDay} from '../../src/MonthDay';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestMonthDay', () => {
+    let TEST_07_15;
+
+    beforeEach(() => {
+        TEST_07_15 = MonthDay.of(7, 15);
+    });
+
+    let check = (test, m, d) => {
+        expect(test.month().value()).to.eql(m);
+        expect(test.dayOfMonth()).to.eql(d);
+    };
+
     //-----------------------------------------------------------------------
     // now()
     //-----------------------------------------------------------------------
@@ -76,5 +89,77 @@ describe('org.threeten.bp.TestMonthDay', () => {
             }).to.throw(NullPointerException);
         });
     });
+    //-----------------------------------------------------------------------
+    describe('of()', () => {
+        it('factory_intMonth', () => {
+            expect(TEST_07_15).to.eql(MonthDay.of(Month.JULY, 15));
+        });
+
+        it('test_factory_intMonth_dayTooLow', () => {
+            expect(() => {
+                MonthDay.of(Month.JANUARY, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_factory_intMonth_dayTooHigh', () => {
+            expect(() => {
+                MonthDay.of(Month.JANUARY, 32);
+            }).to.throw(DateTimeException);
+        });
+
+        it('factory_intMonth_nullMonth', () => {
+            expect(() => {
+                MonthDay.of(null, 15);
+            }).to.throw(NullPointerException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('factory_ints', () => {
+            check(TEST_07_15, 7, 15);
+        });
+
+        it('test_factory_ints_dayTooLow', () => {
+            expect(() => {
+                MonthDay.of(1, 0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_factory_ints_dayTooHigh', () => {
+            expect(() => {
+                MonthDay.of(1, 32);
+            }).to.throw(DateTimeException);
+        });
+
+
+        it('test_factory_ints_monthTooLow', () => {
+            expect(() => {
+                MonthDay.of(0, 1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_factory_ints_monthTooHigh', () => {
+            expect(() => {
+                MonthDay.of(13, 1);
+            }).to.throw(DateTimeException);
+        });
+
+        //-----------------------------------------------------------------------
+        it('test_factory_CalendricalObject', () => {
+            expect(MonthDay.from(LocalDate.of(2007, 7, 15))).to.eql(TEST_07_15);
+        });
+
+        it('test_factory_CalendricalObject_invalid_noDerive', () => {
+            expect(() => {
+                MonthDay.from(LocalTime.of(12, 30));
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_factory_CalendricalObject_null', () => {
+            expect(() => {
+                MonthDay.from(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
 });
 

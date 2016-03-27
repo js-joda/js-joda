@@ -5,13 +5,13 @@
 
 import {requireNonNull, requireInstance} from './assert';
 import {DateTimeException} from './errors';
-import {MathUtil} from './MathUtil';
 
 import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
 import {LocalDate} from './LocalDate';
 import {Month} from './Month';
 import {Temporal} from './temporal/Temporal';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {ZoneId} from './ZoneId';
 
 /**
@@ -111,7 +111,7 @@ export class MonthDay extends Temporal {
         if (arguments.length === 2 && arguments[0] instanceof Month) {
             return MonthDay._ofMonthNumber.apply(this, arguments);
         } else {
-            return MonthDay._ofNumberNumber(this, arguments);
+            return MonthDay._ofNumberNumber.apply(this, arguments);
         }
     }
     /**
@@ -157,7 +157,44 @@ export class MonthDay extends Temporal {
      * @throws DateTimeException if the day-of-month is invalid for the month
      */
     static _ofNumberNumber(month, dayOfMonth) {
+        requireNonNull(month, 'month');
+        requireNonNull(dayOfMonth, 'dayOfMonth');
         return MonthDay.of(Month.of(month), dayOfMonth);
+    }
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code MonthDay} from a temporal object.
+     * <p>
+     * A {@code TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@code MonthDay}.
+     * <p>
+     * The conversion extracts the {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} and
+     * {@link ChronoField#DAY_OF_MONTH DAY_OF_MONTH} fields.
+     * The extraction is only permitted if the date-time has an ISO chronology.
+     * <p>
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@code MonthDay::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {MonthDay} the month-day, not null
+     * @throws DateTimeException if unable to convert to a {@code MonthDay}
+     */
+    static from(temporal) {
+        requireNonNull(temporal, 'temporal');
+        requireInstance(temporal, TemporalAccessor, 'temporal');
+        if (temporal instanceof MonthDay) {
+            return temporal;
+        }
+        try {
+            /* TODO: only IsoChronology for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }*/
+            return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
+        } catch (ex) {
+            throw new DateTimeException('Unable to obtain MonthDay from TemporalAccessor: ' +
+                    temporal + ', type ' + +(temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+        }
     }
 
     //-----------------------------------------------------------------------
