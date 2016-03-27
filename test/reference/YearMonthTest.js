@@ -10,6 +10,7 @@ import '../_init';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
@@ -226,6 +227,42 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
                     }
                 }).to.throw(DateTimeParseException);
             });
+        });
+        //-----------------------------------------------------------------------
+        it('factory_parse_illegalValue_Month', () => {
+            expect(() => {
+                YearMonth.parse('2008-13');
+            }).to.throw(DateTimeParseException);
+        });
+
+        it('factory_parse_nullText', () => {
+            expect(() => {
+                YearMonth.parse(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // parse(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    describe('parse(DateTimeFormatter)', () => {
+        it('factory_parse_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('u M');
+            let test = YearMonth.parse('2010 12', f);
+            expect(test).to.eql(YearMonth.of(2010, 12));
+        });
+
+        it('factory_parse_formatter_nullText', () => {
+            expect(() => {
+                let f = DateTimeFormatter.ofPattern('u M');
+                YearMonth.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_formatter_nullFormatter', () => {
+            expect(() => {
+                YearMonth.parse('ANY', null);
+            }).to.throw(NullPointerException);
         });
     });
 });
