@@ -8,10 +8,12 @@ import '../_init';
 import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {ChronoField} from '../../src/temporal/ChronoField';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {Month} from '../../src/Month';
 import {MonthDay} from '../../src/MonthDay';
 import {ZoneId} from '../../src/ZoneId';
@@ -273,5 +275,56 @@ describe('org.threeten.bp.TestMonthDay', () => {
             }).to.throw(NullPointerException);
         });
     });
+    //-----------------------------------------------------------------------
+    // get(DateTimeField)
+    //-----------------------------------------------------------------------
+    describe('get(DateTimeField)', () => {
+        it('test_get_DateTimeField', () => {
+            expect(TEST_07_15.getLong(ChronoField.DAY_OF_MONTH)).to.eql(15);
+            expect(TEST_07_15.getLong(ChronoField.MONTH_OF_YEAR)).to.eql(7);
+        });
+
+        it('test_get_DateTimeField_null', () => {
+            expect(() => {
+                TEST_07_15.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_DateTimeField_invalidField', () => {
+            expect(() => {
+                TEST_07_15.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_DateTimeField_timeField', () => {
+            expect(() => {
+                TEST_07_15.getLong(ChronoField.AMPM_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // get*()
+    //-----------------------------------------------------------------------
+    describe('get*()', () => {
+        let data_sampleDates = [
+            [1, 1],
+            [1, 31],
+            [2, 1],
+            [2, 28],
+            [2, 29],
+            [7, 4],
+            [7, 5]
+        ];
+
+        it('test_get', () => {
+            data_sampleDates.forEach((val) => {
+                let [m, d] = val;
+                let a = MonthDay.of(m, d);
+                expect(a.month()).to.eql(Month.of(m));
+                expect(a.dayOfMonth()).to.eql(d);
+            });
+        });
+    });
+
 });
 
