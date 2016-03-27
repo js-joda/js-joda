@@ -84,6 +84,7 @@ export class MonthDay extends Temporal {
      * @return {MonthDay} the current month-day using the system clock, not null
      */
     static _nowZoneId(zone) {
+        requireNonNull(zone, 'zone');
         return this._nowClock(Clock.system(zone));
     }
 
@@ -98,6 +99,7 @@ export class MonthDay extends Temporal {
      * @return {MonthDay} the current month-day, not null
      */
     static _nowClock(clock) {
+        requireNonNull(clock, 'clock');
         let now = LocalDate.now(clock);  // called once
         return MonthDay.of(now.month(), now.dayOfMonth());
     }
