@@ -610,6 +610,45 @@ export class Year extends Temporal {
         }
         return super.query(query);
     }
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this year to another year.
+     * <p>
+     * The comparison is based on the value of the year.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, Year, 'other');
+        return this._year - other._year;
+    }
+
+    /**
+     * Is this year after the specified year.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {boolean} true if this is after the specified year
+     */
+    isAfter(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, Year, 'other');
+        return this._year > other._year;
+    }
+
+    /**
+     * Is this year before the specified year.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {boolean} true if this point is before the specified year
+     */
+    isBefore(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, Year, 'other');
+        return this._year < other._year;
+    }
     /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>

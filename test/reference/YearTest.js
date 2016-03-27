@@ -612,4 +612,48 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             }).to.throw(NullPointerException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // compareTo()
+    //-----------------------------------------------------------------------
+    describe('compareTo()', () => {
+        it('test_compareTo', () => {
+            for (let i = -4; i <= 2104; i += 10) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
+                let a = Year.of(i);
+                for (let j = -4; j <= 2104; j += 10) {
+                    let b = Year.of(j);
+                    if (i < j) {
+                        expect(a.compareTo(b) < 0).to.eql(true);
+                        expect(b.compareTo(a) > 0).to.eql(true);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.isBefore(b)).to.eql(true);
+                        expect(b.isAfter(a)).to.eql(true);
+                        expect(b.isBefore(a)).to.eql(false);
+                    } else if (i > j) {
+                        expect(a.compareTo(b) > 0).to.eql(true);
+                        expect(b.compareTo(a) < 0).to.eql(true);
+                        expect(a.isAfter(b)).to.eql(true);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(b.isAfter(a)).to.eql(false);
+                        expect(b.isBefore(a)).to.eql(true);
+                    } else {
+                        expect(a.compareTo(b)).to.eql(0);
+                        expect(b.compareTo(a)).to.eql(0);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(b.isAfter(a)).to.eql(false);
+                        expect(b.isBefore(a)).to.eql(false);
+                    }
+                }
+            }
+        });
+
+        it('test_compareTo_nullYear', () => {
+            expect(() => {
+                let doy = null;
+                let test = Year.of(1);
+                test.compareTo(doy);
+            }).to.throw(NullPointerException);
+        });
+    });
 });
