@@ -11,6 +11,7 @@ import {_init as LocalDateInit} from './LocalDate';
 import {_init as LocalTimeInit} from './LocalTime';
 import {_init as LocalDateTimeInit} from './LocalDateTime';
 import {_init as MonthInit} from './Month';
+import {_init as MonthDayInit} from './MonthDay';
 import {_init as PeriodInit} from './Period';
 import {_init as YearConstantsInit} from './YearConstants';
 import {_init as YearInit} from './Year';
@@ -48,6 +49,7 @@ function init() {
     LocalDateTimeInit();
     YearInit();
     MonthInit();
+    MonthDayInit();
     PeriodInit();
     ZoneOffsetInit();
     ZonedDateTimeInit();

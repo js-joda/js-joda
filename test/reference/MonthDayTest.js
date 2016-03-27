@@ -5,9 +5,10 @@
 import {expect} from 'chai';
 
 import '../_init';
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
@@ -160,6 +161,117 @@ describe('org.threeten.bp.TestMonthDay', () => {
             }).to.throw(NullPointerException);
         });
     });
+    //-----------------------------------------------------------------------
+    // parse()
+    //-----------------------------------------------------------------------
+    describe('parse()', () => {
+        let data_goodParseData = [
+            ['--01-01', MonthDay.of(1, 1)],
+            ['--01-31', MonthDay.of(1, 31)],
+            ['--02-01', MonthDay.of(2, 1)],
+            ['--02-29', MonthDay.of(2, 29)],
+            ['--03-01', MonthDay.of(3, 1)],
+            ['--03-31', MonthDay.of(3, 31)],
+            ['--04-01', MonthDay.of(4, 1)],
+            ['--04-30', MonthDay.of(4, 30)],
+            ['--05-01', MonthDay.of(5, 1)],
+            ['--05-31', MonthDay.of(5, 31)],
+            ['--06-01', MonthDay.of(6, 1)],
+            ['--06-30', MonthDay.of(6, 30)],
+            ['--07-01', MonthDay.of(7, 1)],
+            ['--07-31', MonthDay.of(7, 31)],
+            ['--08-01', MonthDay.of(8, 1)],
+            ['--08-31', MonthDay.of(8, 31)],
+            ['--09-01', MonthDay.of(9, 1)],
+            ['--09-30', MonthDay.of(9, 30)],
+            ['--10-01', MonthDay.of(10, 1)],
+            ['--10-31', MonthDay.of(10, 31)],
+            ['--11-01', MonthDay.of(11, 1)],
+            ['--11-30', MonthDay.of(11, 30)],
+            ['--12-01', MonthDay.of(12, 1)],
+            ['--12-31', MonthDay.of(12, 31)]
+        ];
 
+        it('factory_parse_success', () => {
+            data_goodParseData.forEach((val) => {
+                let [text, expected] = val;
+                let monthDay = MonthDay.parse(text);
+                expect(monthDay).to.eql(expected);
+            });
+        });
+        //-----------------------------------------------------------------------
+        let data_badParseData = [
+            ['', 0],
+            ['-00', 0],
+            ['--FEB-23', 2],
+            ['--01-0', 5],
+            ['--01-3A', 5]
+        ];
+
+        it('factory_parse_fail', () => {
+            data_badParseData.forEach((val) => {
+                let [text, pos] = val;
+                expect(() => {
+                    try {
+                        MonthDay.parse(text);
+                        expect.fail(null, null, `Parse should have failed for ${text} at position ${pos}`);
+                    }
+                    catch (ex) {
+                        expect(ex.parsedString()).to.eql(text);
+                        expect(ex.errorIndex()).to.eql(pos);
+                        throw ex;
+                    }
+                }).to.throw(DateTimeParseException);
+            });
+
+            //-----------------------------------------------------------------------
+            it('factory_parse_illegalValue_Day', () => {
+                expect(() => {
+                    MonthDay.parse('--06-32');
+                }).to.throw(DateTimeParseException);
+            });
+
+            it('factory_parse_invalidValue_Day', () => {
+                expect(() => {
+                    MonthDay.parse('--06-31');
+                }).to.throw(DateTimeParseException);
+            });
+
+            it('factory_parse_illegalValue_Month', () => {
+                expect(() => {
+                    MonthDay.parse('--13-25');
+                }).to.throw(DateTimeParseException);
+            });
+
+            it('factory_parse_nullText', () => {
+                expect(() => {
+                    MonthDay.parse(null);
+                }).to.throw(NullPointerException);
+            });
+        });
+    });
+    //-----------------------------------------------------------------------
+    // parse(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    describe('parse(DateTimeFormatter)', () => {
+        it('factory_parse_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('M d');
+            let test = MonthDay.parse('12 3', f);
+            expect(test).to.eql(MonthDay.of(12, 3));
+        });
+
+        it('factory_parse_formatter_nullText', () => {
+            expect(() => {
+                let f = DateTimeFormatter.ofPattern('M d');
+                MonthDay.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
+
+        it('factory_parse_formatter_nullFormatter', () => {
+            expect(() => {
+                MonthDay.parse('ANY', null);
+            }).to.throw(NullPointerException);
+        });
+    });
 });
 

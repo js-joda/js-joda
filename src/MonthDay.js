@@ -8,10 +8,13 @@ import {DateTimeException} from './errors';
 
 import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
+import {DateTimeFormatter} from './format/DateTimeFormatter';
+import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {LocalDate} from './LocalDate';
 import {Month} from './Month';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
+import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ZoneId} from './ZoneId';
 
 /**
@@ -196,6 +199,48 @@ export class MonthDay extends Temporal {
                     temporal + ', type ' + +(temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
     }
+    //-----------------------------------------------------------------------
+    /**
+     * parse function overloading
+     */
+    static parse() {
+        if (arguments.length === 1) {
+            return MonthDay._parseString.apply(this, arguments);
+        } else {
+            return MonthDay._parseStringFormatter.apply(this, arguments);
+        }
+    }
+
+    /**
+     * Obtains an instance of {@code MonthDay} from a text string such as {@code --12-03}.
+     * <p>
+     * The string must represent a valid month-day.
+     * The format is {@code --MM-dd}.
+     *
+     * @param {String} text  the text to parse such as "--12-03", not null
+     * @return {MonthDay} the parsed month-day, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static _parseString(text) {
+        return MonthDay._parseStringFormatter(text, PARSER);
+    }
+
+    /**
+     * Obtains an instance of {@code MonthDay} from a text string using a specific formatter.
+     * <p>
+     * The text is parsed using the formatter, returning a month-day.
+     *
+     * @param {String} text  the text to parse, not null
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {MonthDay} the parsed month-day, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static _parseStringFormatter(text, formatter) {
+        requireNonNull(text, 'text');
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return formatter.parse(text, MonthDay.FROM);
+    }
 
     //-----------------------------------------------------------------------
     /**
@@ -274,5 +319,17 @@ export class MonthDay extends Temporal {
 
 }
 
+var PARSER;
+
 export function _init() {
+    PARSER = new DateTimeFormatterBuilder()
+        .appendLiteral('--')
+        .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+        .appendLiteral('-')
+        .appendValue(ChronoField.DAY_OF_MONTH, 2)
+        .toFormatter();
+
+    MonthDay.FROM = createTemporalQuery('MonthDay.FROM', (temporal) => {
+        return MonthDay.from(temporal);
+    });
 }
