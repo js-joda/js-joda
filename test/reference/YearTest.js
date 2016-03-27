@@ -484,4 +484,108 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             expect(test.isValidMonthDay(null)).to.eql(false);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // atMonth(Month)
+    //-----------------------------------------------------------------------
+    // TODO: skipped, needs YearMonth
+    describe.skip('atMonth(Month)', () => {
+        it('test_atMonth', () => {
+            let test = Year.of(2008);
+            expect(test.atMonth(Month.JUNE)).to.eql(YearMonth.of(2008, 6));
+        });
+
+        it('test_atMonth_nullMonth', () => {
+            expect(() => {
+                let test = Year.of(2008);
+                test.atMonth(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // atMonth(int)
+    //-----------------------------------------------------------------------
+    // TODO: skipped, needs YearMonth
+    describe.skip('atMonth(Month)', () => {
+        it('test_atMonth_int', () => {
+            let test = Year.of(2008);
+            expect(test.atMonth(6)).to.eql(YearMonth.of(2008, 6));
+        });
+
+        it('test_atMonth_int_invalidMonth', () => {
+            expect(() => {
+                let test = Year.of(2008);
+                test.atMonth(13);
+            }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // atMonthDay(MonthDay)
+    //-----------------------------------------------------------------------
+    // TODO: skipped, needs MonthDay
+    describe.skip('atMonthDay(MonthDay)', () => {
+        // let data_atMonthDay = [
+        //     [Year.of(2008), MonthDay.of(6, 30), LocalDate.of(2008, 6, 30)],
+        //     [Year.of(2008), MonthDay.of(2, 29), LocalDate.of(2008, 2, 29)],
+        //     [Year.of(2009), MonthDay.of(2, 29), LocalDate.of(2009, 2, 28)]
+        // ];
+
+        it('test_atMonthDay', () => {
+            data_atMonthDay.forEach((val) => {
+                let [year, monthDay, expected] = val;
+                expect(year.atMonthDay(monthDay)).to.eql(expected);
+            });
+        });
+
+        it('test_atMonthDay_nullMonthDay', () => {
+            expect(() => {
+                let test = Year.of(2008);
+                test.atMonthDay(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // atDay(int)
+    //-----------------------------------------------------------------------
+    describe('atDay(int)', () => {
+        it('test_atDay_notLeapYear', () => {
+            let test = Year.of(2007);
+            let expected = LocalDate.of(2007, 1, 1);
+            for (let i = 1; i <= 365; i++) {
+                expect(test.atDay(i)).to.eql(expected);
+                expected = expected.plusDays(1);
+            }
+        });
+
+        it('test_atDay_notLeapYear_day366', () => {
+            expect(() => {
+                let test = Year.of(2007);
+                test.atDay(366);
+            });
+        });
+
+        it('test_atDay_leapYear', () => {
+            let test = Year.of(2008);
+            let expected = LocalDate.of(2008, 1, 1);
+            for (let i = 1; i <= 366; i++) {
+                expect(test.atDay(i)).to.eql(expected);
+                expected = expected.plusDays(1);
+            }
+        });
+
+        it('test_atDay_day0', () => {
+            expect(() => {
+                let test = Year.of(2007);
+                test.atDay(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_atDay_day367', () => {
+            expect(() => {
+                let test = Year.of(2007);
+                test.atDay(367);
+            }).to.throw(DateTimeException);
+        });
+    });
 });

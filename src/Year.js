@@ -559,6 +559,23 @@ export class Year extends Temporal {
         return this.isLeap() ? 366 : 365;
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Combines this year with a day-of-year to create a {@code LocalDate}.
+     * <p>
+     * This returns a {@code LocalDate} formed from this year and the specified day-of-year.
+     * <p>
+     * The day-of-year value 366 is only valid in a leap year.
+     *
+     * @param {number} dayOfYear  the day-of-year to use, not null
+     * @return {LocalDate} the local date formed from this year and the specified date of year, not null
+     * @throws DateTimeException if the day of year is zero or less, 366 or greater or equal
+     *  to 366 and this is not a leap year
+     */
+    atDay(dayOfYear) {
+        return LocalDate.ofYearDay(this._year, dayOfYear);
+    }
+    
     /**
      * Checks if this year is equal to the specified {@link Year}.
      * <p>
