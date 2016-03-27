@@ -15,6 +15,7 @@ import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
+import {MonthDay} from '../../src/MonthDay';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
@@ -462,8 +463,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     // isValidMonthDay(Month)
     //-----------------------------------------------------------------------
-    // TODO: skipped, needs MonthDay
-    describe.skip('isValidMonthDay(Month)', () => {
+    describe('isValidMonthDay(Month)', () => {
         it('test_isValidMonthDay_june', () => {
             let test = Year.of(2007);
             let monthDay = MonthDay.of(6, 30);
@@ -526,13 +526,12 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     // atMonthDay(MonthDay)
     //-----------------------------------------------------------------------
-    // TODO: skipped, needs MonthDay
-    describe.skip('atMonthDay(MonthDay)', () => {
-        // let data_atMonthDay = [
-        //     [Year.of(2008), MonthDay.of(6, 30), LocalDate.of(2008, 6, 30)],
-        //     [Year.of(2008), MonthDay.of(2, 29), LocalDate.of(2008, 2, 29)],
-        //     [Year.of(2009), MonthDay.of(2, 29), LocalDate.of(2009, 2, 28)]
-        // ];
+    describe('atMonthDay(MonthDay)', () => {
+        let data_atMonthDay = [
+            [Year.of(2008), MonthDay.of(6, 30), LocalDate.of(2008, 6, 30)],
+            [Year.of(2008), MonthDay.of(2, 29), LocalDate.of(2008, 2, 29)],
+            [Year.of(2009), MonthDay.of(2, 29), LocalDate.of(2009, 2, 28)]
+        ];
 
         it('test_atMonthDay', () => {
             data_atMonthDay.forEach((val) => {
