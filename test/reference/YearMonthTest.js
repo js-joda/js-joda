@@ -15,6 +15,7 @@ import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
+import {MathUtil} from '../../src/MathUtil';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {Month} from '../../src/Month';
 import {Year} from '../../src/Year';
@@ -439,4 +440,239 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             }).to.throw(DateTimeException);
         });
     });
+    
+    //-----------------------------------------------------------------------
+    // plusYears()
+    //-----------------------------------------------------------------------
+    describe('plusYears()', () => {
+        it('test_plusYears_long', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusYears(1)).to.eql(YearMonth.of(2009, 6));
+        });
+        
+        it('test_plusYears_long_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusYears(0)).to.eql(test);
+        });
+        
+        it('test_plusYears_long_negative', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusYears(-1)).to.eql(YearMonth.of(2007, 6));
+        });
+        
+        it('test_plusYears_long_big', () => {
+            let test = YearMonth.of(-40, 6);
+            expect(test.plusYears(20 + Year.MAX_VALUE)).to.eql(YearMonth.of(-40 + 20 + Year.MAX_VALUE, 6));
+        });
+        
+        it('test_plusYears_long_invalidTooLarge', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 6);
+                test.plusYears(1);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusYears_long_invalidTooLargeMaxAddMax', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.plusYears(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusYears_long_invalidTooLargeMaxAddMin', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.plusYears(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusYears_long_invalidTooSmall', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 6);
+                test.plusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+    
+    //-----------------------------------------------------------------------
+    // plusMonths()
+    //-----------------------------------------------------------------------
+    describe('plusMonths()', () => {
+        it('test_plusMonths_long', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusMonths(1)).to.eql(YearMonth.of(2008, 7));
+        });
+        
+        it('test_plusMonths_long_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusMonths(0)).to.eql(test);
+        });
+        
+        it('test_plusMonths_long_overYears', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusMonths(7)).to.eql(YearMonth.of(2009, 1));
+        });
+        
+        it('test_plusMonths_long_negative', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusMonths(-1)).to.eql(YearMonth.of(2008, 5));
+        });
+        
+        it('test_plusMonths_long_negativeOverYear', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.plusMonths(-6)).to.eql(YearMonth.of(2007, 12));
+        });
+        
+        it('test_plusMonths_long_big', () => {
+            let test = YearMonth.of(-40, 1);
+            let months = 20 + (Year.MAX_VALUE * 12);
+            expect(test.plusMonths(months)).to.eql(YearMonth.of((-40 + MathUtil.intDiv(months, 12)), 1 + MathUtil.intMod(months, 12)));
+        });
+        
+        it('test_plusMonths_long_invalidTooLarge', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.plusMonths(1);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusMonths_long_invalidTooLargeMaxAddMax', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.plusMonths(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusMonths_long_invalidTooLargeMaxAddMin', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.plusMonths(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_plusMonths_long_invalidTooSmall', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 1);
+                test.plusMonths(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+    
+    //-----------------------------------------------------------------------
+    // minusYears()
+    //-----------------------------------------------------------------------
+    describe('minusYears()', () => {
+        it('test_minusYears_long', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusYears(1)).to.eql(YearMonth.of(2007, 6));
+        });
+        
+        it('test_minusYears_long_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusYears(0)).to.eql(test);
+        });
+        
+        it('test_minusYears_long_negative', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusYears(-1)).to.eql(YearMonth.of(2009, 6));
+        });
+        
+        it('test_minusYears_long_big', () => {
+            let test = YearMonth.of(40, 6);
+            expect(test.minusYears(20 + Year.MAX_VALUE)).to.eql(YearMonth.of(40 - 20 - Year.MAX_VALUE, 6));
+        });
+        
+        it('test_minusYears_long_invalidTooLarge', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 6);
+                test.minusYears(-1);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusYears_long_invalidTooLargeMaxSubtractMax', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 12);
+                test.minusYears(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusYears_long_invalidTooLargeMaxSubtractMin', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 12);
+                test.minusYears(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusYears_long_invalidTooSmall', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 6);
+                test.minusYears(1);
+            }).to.throw(DateTimeException);
+        });
+    });
+    
+    //-----------------------------------------------------------------------
+    // minusMonths()
+    //-----------------------------------------------------------------------
+    describe('minusMonths()', () => {
+        it('test_minusMonths_long', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusMonths(1)).to.eql(YearMonth.of(2008, 5));
+        });
+        
+        it('test_minusMonths_long_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusMonths(0)).to.eql(test);
+        });
+        
+        it('test_minusMonths_long_overYears', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusMonths(6)).to.eql(YearMonth.of(2007, 12));
+        });
+        
+        it('test_minusMonths_long_negative', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusMonths(-1)).to.eql(YearMonth.of(2008, 7));
+        });
+        
+        it('test_minusMonths_long_negativeOverYear', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.minusMonths(-7)).to.eql(YearMonth.of(2009, 1));
+        });
+        
+        it('test_minusMonths_long_big', () => {
+            let test = YearMonth.of(40, 12);
+            let months = 20 + Year.MAX_VALUE * 12;
+            expect(test.minusMonths(months)).to.eql(YearMonth.of(40 - MathUtil.intDiv(months, 12), 12 - MathUtil.intMod(months, 12)));
+        });
+        
+        it('test_minusMonths_long_invalidTooLarge', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.minusMonths(-1);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusMonths_long_invalidTooLargeMaxSubtractMax', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.minusMonths(MathUtil.MAX_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusMonths_long_invalidTooLargeMaxSubtractMin', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MAX_VALUE, 12);
+                test.minusMonths(MathUtil.MIN_SAFE_INTEGER);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_minusMonths_long_invalidTooSmall', () => {
+            expect(() => {
+                let test = YearMonth.of(Year.MIN_VALUE, 1);
+                test.minusMonths(1);
+            }).to.throw(DateTimeException);
+        });
+    });
+
 });
