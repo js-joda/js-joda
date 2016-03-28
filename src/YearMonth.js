@@ -244,7 +244,9 @@ export class YearMonth extends Temporal {
         } else {
             return this._isSupportedUnit.apply(this, arguments);
         }
-    }/**
+    }
+    
+    /**
      * Checks if the specified field is supported.
      * <p>
      * This checks if this year-month can be queried for the specified field.
@@ -379,7 +381,7 @@ export class YearMonth extends Temporal {
                 case ChronoField.YEAR: return this._year;
                 case ChronoField.ERA: return (this._year < 1 ? 0 : 1);
             }
-            throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
         }
         return field.getFrom(this);
     }
@@ -429,6 +431,156 @@ export class YearMonth extends Temporal {
     month() {
         return Month.of(this._month);
     }
+
+    /**
+     * isSupported function overloading
+     */
+    with() {
+        if (arguments.length === 1) {
+            return this._withAdjuster.apply(this, arguments);
+        } else if (arguments.length === 2 && arguments[0] instanceof TemporalField){
+            return this._withFieldValue.apply(this, arguments);
+        } else {
+            return this._withYearMonth.apply(this, arguments);
+        }
+    }
+    
+    /**
+     * Returns a copy of this year-month with the new year and month, checking
+     * to see if a new object is in fact required.
+     *
+     * @param {number} newYear  the year to represent, validated from MIN_YEAR to MAX_YEAR
+     * @param {number} newMonth  the month-of-year to represent, validated not null
+     * @return the year-month, not null
+     */
+    _withYearMonth(newYear, newMonth) {
+        if (this._year === newYear && this._month === newMonth) {
+            return this;
+        }
+        return new YearMonth(newYear, newMonth);
+    }
+
+    /**
+     * Returns an adjusted copy of this year-month.
+     * <p>
+     * This returns a new {@code YearMonth}, based on this one, with the year-month adjusted.
+     * The adjustment takes place using the specified adjuster strategy object.
+     * Read the documentation of the adjuster to understand what adjustment will be made.
+     * <p>
+     * A simple adjuster might simply set the one of the fields, such as the year field.
+     * A more complex adjuster might set the year-month to the next month that
+     * Halley's comet will pass the Earth.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+     * specified adjuster passing {@code this} as the argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
+     * @return {YearMonth} based on {@code this} with the adjustment made, not null
+     * @throws DateTimeException if the adjustment cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _withAdjuster(adjuster) {
+        requireNonNull(adjuster, 'adjuster');
+        return adjuster.adjustInto(this);
+    }
+
+    /**
+     * Returns a copy of this year-month with the specified field set to a new value.
+     * <p>
+     * This returns a new {@code YearMonth}, based on this one, with the value
+     * for the specified field changed.
+     * This can be used to change any supported field, such as the year or month.
+     * If it is not possible to set the value, because the field is not supported or for
+     * some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the adjustment is implemented here.
+     * The supported fields behave as follows:
+     * <ul>
+     * <li>{@code MONTH_OF_YEAR} -
+     *  Returns a {@code YearMonth} with the specified month-of-year.
+     *  The year will be unchanged.
+     * <li>{@code PROLEPTIC_MONTH} -
+     *  Returns a {@code YearMonth} with the specified proleptic-month.
+     *  This completely replaces the year and month of this object.
+     * <li>{@code YEAR_OF_ERA} -
+     *  Returns a {@code YearMonth} with the specified year-of-era
+     *  The month and era will be unchanged.
+     * <li>{@code YEAR} -
+     *  Returns a {@code YearMonth} with the specified year.
+     *  The month will be unchanged.
+     * <li>{@code ERA} -
+     *  Returns a {@code YearMonth} with the specified era.
+     *  The month and year-of-era will be unchanged.
+     * </ul>
+     * <p>
+     * In all cases, if the new value is outside the valid range of values for the field
+     * then a {@code DateTimeException} will be thrown.
+     * <p>
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+     * passing {@code this} as the argument. In this case, the field determines
+     * whether and how to adjust the instant.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalField} field  the field to set in the result, not null
+     * @param {number} newValue  the new value of the field in the result
+     * @return a {@code YearMonth} based on {@code this} with the specified field set, not null
+     * @throws DateTimeException if the field cannot be set
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    _withFieldValue(field, newValue) {
+        requireNonNull(field, 'field');
+        requireInstance(field, TemporalField, 'field');
+        if (field instanceof ChronoField) {
+            let f = field;
+            f.checkValidValue(newValue);
+            switch (f) {
+                case ChronoField.MONTH_OF_YEAR: return this.withMonth(newValue);
+                case ChronoField.PROLEPTIC_MONTH: return this.plusMonths(newValue - this.getLong(ChronoField.PROLEPTIC_MONTH));
+                case ChronoField.YEAR_OF_ERA: return this.withYear((this._year < 1 ? 1 - newValue : newValue));
+                case ChronoField.YEAR: return this.withYear(newValue);
+                case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a copy of this {@code YearMonth} with the year altered.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} year  the year to set in the returned year-month, from MIN_YEAR to MAX_YEAR
+     * @return {YearMonth} based on this year-month with the requested year, not null
+     * @throws DateTimeException if the year value is invalid
+     */
+    withYear(year) {
+        ChronoField.YEAR.checkValidValue(year);
+        return this._withYearMonth(year, this._month);
+    }
+
+    /**
+     * Returns a copy of this {@code YearMonth} with the month-of-year altered.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} month  the month-of-year to set in the returned year-month, from 1 (January) to 12 (December)
+     * @return {YearMonth} based on this year-month with the requested month, not null
+     * @throws DateTimeException if the month-of-year value is invalid
+     */
+    withMonth(month) {
+        ChronoField.MONTH_OF_YEAR.checkValidValue(month);
+        return this._withYearMonth(this._year, month);
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Checks if this year-month is equal to another year-month.

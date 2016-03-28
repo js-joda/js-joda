@@ -339,4 +339,104 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             }).to.throw(DateTimeException);
         });
     });
+
+    //-----------------------------------------------------------------------
+    // with(Year)
+    //-----------------------------------------------------------------------
+    describe('with(Year)', () => {
+        it('test_with_Year', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.with(Year.of(2000))).to.eql(YearMonth.of(2000, 6));
+        });
+
+        it('test_with_Year_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.with(Year.of(2008))).to.eql(test);
+        });
+
+        it('test_with_Year_null', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.with(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // with(Month)
+    //-----------------------------------------------------------------------
+    describe('with(Month)', () => {
+        it('test_with_Month', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.with(Month.JANUARY)).to.eql(YearMonth.of(2008, 1));
+        });
+
+        it('test_with_Month_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.with(Month.JUNE)).to.eql(test);
+        });
+
+        it('test_with_Month_null', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.with(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // withYear()
+    //-----------------------------------------------------------------------
+    describe('withYear()', () => {
+        it('test_withYear', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.withYear(1999)).to.eql(YearMonth.of(1999, 6));
+        });
+
+        it('test_withYear_int_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.withYear(2008)).to.eql(test);
+        });
+
+        it('test_withYear_tooLow', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.withYear(Year.MIN_VALUE - 1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withYear_tooHigh', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.withYear(Year.MAX_VALUE + 1);
+            }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // withMonth()
+    //-----------------------------------------------------------------------
+    describe('withMonth()', () => {
+        it('test_withMonth', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.withMonth(1)).to.eql(YearMonth.of(2008, 1));
+        });
+
+        it('test_withMonth_int_noChange_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.withMonth(6)).to.eql(test);
+        });
+
+        it('test_withMonth_tooLow', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.withMonth(0);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_withMonth_tooHigh', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.withMonth(13);
+            }).to.throw(DateTimeException);
+        });
+    });
 });
