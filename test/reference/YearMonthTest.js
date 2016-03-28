@@ -10,10 +10,12 @@ import '../_init';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
+import {ChronoField} from '../../src/temporal/ChronoField';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
+import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {Month} from '../../src/Month';
 import {Year} from '../../src/Year';
 import {YearMonth} from '../../src/YearMonth';
@@ -21,7 +23,8 @@ import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.temporal.TestYearMonth', () => {
-    
+    const TEST_2008_06 = YearMonth.of(2008, 6);
+
     let check = (test, y, m) => {
         expect(test.year()).to.eql(y);
         expect(test.month().value()).to.eql(m);
@@ -263,6 +266,77 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             expect(() => {
                 YearMonth.parse('ANY', null);
             }).to.throw(NullPointerException);
+        });
+    });
+
+    //-----------------------------------------------------------------------
+    // get(TemporalField)
+    //-----------------------------------------------------------------------
+    describe('get(TemporalField)', () => {
+        it('test_get_TemporalField', () => {
+            expect(TEST_2008_06.get(ChronoField.YEAR)).to.eql(2008);
+            expect(TEST_2008_06.get(ChronoField.MONTH_OF_YEAR)).to.eql(6);
+            expect(TEST_2008_06.get(ChronoField.YEAR_OF_ERA)).to.eql(2008);
+            expect(TEST_2008_06.get(ChronoField.ERA)).to.eql(1);
+        });
+
+        it('test_get_TemporalField_tooBig', () => {
+            expect(() => {
+                // TODO: in threetenbp the ValueRange of PROLEPTIC_MONTH is enough to overflow 
+                // this since it checks for a 32bit Integer in ValueRange.isIntValue()... 
+                // but we check for MAX_SAFE_INTEGER instead... so i use NANO_OF_DAY in this test instead
+                // TEST_2008_06.get(ChronoField.PROLEPTIC_MONTH);  
+                TEST_2008_06.get(ChronoField.NANO_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_TemporalField_null', () => {
+            expect(() => {
+                TEST_2008_06.get(null);
+            }).to.throw(NullPointerException);
+        });
+
+        it('test_get_TemporalField_invalidField', () => {
+            expect(() => {
+                TEST_2008_06.get(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_get_TemporalField_timeField', () => {
+            expect(() => {
+                TEST_2008_06.get(ChronoField.AMPM_OF_DAY);
+            }).to.throw(DateTimeException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // getLong(TemporalField)
+    //-----------------------------------------------------------------------
+    describe('getLong(TemporalField)', () => {
+        it('test_getLong_TemporalField', () => {
+            expect(TEST_2008_06.getLong(ChronoField.YEAR)).to.eql(2008);
+            expect(TEST_2008_06.getLong(ChronoField.MONTH_OF_YEAR)).to.eql(6);
+            expect(TEST_2008_06.getLong(ChronoField.YEAR_OF_ERA)).to.eql(2008);
+            expect(TEST_2008_06.getLong(ChronoField.ERA)).to.eql(1);
+            expect(TEST_2008_06.getLong(ChronoField.PROLEPTIC_MONTH)).to.eql(2008 * 12 + 6 - 1);
+        });
+
+        it('test_getLong_TemporalField_null', () => {
+            expect(() => {
+                TEST_2008_06.getLong(null);
+            }).to.throw(NullPointerException);
+        });
+
+
+        it('test_getLong_TemporalField_invalidField', () => {
+            expect(() => {
+                TEST_2008_06.getLong(MockFieldNoValue.INSTANCE);
+            }).to.throw(DateTimeException);
+        });
+
+        it('test_getLong_TemporalField_timeField', () => {
+            expect(() => {
+                TEST_2008_06.getLong(ChronoField.AMPM_OF_DAY);
+            }).to.throw(DateTimeException);
         });
     });
 });
