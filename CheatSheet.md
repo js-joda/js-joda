@@ -54,7 +54,7 @@ js-joda Cheat sheet
 
 ## Try it out
 
-Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://js-joda.github.io/js-joda/cheat-sheet.html).
+Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [the js-joda webpage](http://js-joda.github.io/js-joda/cheat-sheet.html).
 
 ## Consistent method prefixes
 
