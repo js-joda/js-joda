@@ -23,7 +23,7 @@ export function requireNonNull(value, parameterName) {
 
 export function requireInstance(value, _class, parameterName) {
     if (!(value instanceof _class)) {
-        throw new IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class));
+        throw new IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ', but is ' + value.constructor.name : ''));
     }
     return value;
 }

@@ -22,7 +22,7 @@ import {Clock} from './Clock';
 import {DayOfWeek} from './DayOfWeek';
 import {Month} from './Month';
 import {Period} from './Period';
-import {Year} from './Year';
+import {YearConstants} from './YearConstants';
 import {LocalTime} from './LocalTime';
 import {LocalDateTime} from './LocalDateTime';
 import {ZoneId} from './ZoneId';
@@ -1721,12 +1721,12 @@ export function _init() {
      * The minimum supported {@link LocalDate}
      * This could be used by an application as a "far past" date.
      */
-    LocalDate.MIN = LocalDate.of(Year.MIN_VALUE, 1, 1);
+    LocalDate.MIN = LocalDate.of(YearConstants.MIN_VALUE, 1, 1);
     /**
      * The maximum supported {@link LocalDate}
      * This could be used by an application as a "far future" date.
      */
-    LocalDate.MAX = LocalDate.of(Year.MAX_VALUE, 12, 31);
+    LocalDate.MAX = LocalDate.of(YearConstants.MAX_VALUE, 12, 31);
     /**
      * The date at epoch day 0, that is 1970-01-01.
      */

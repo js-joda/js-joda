@@ -25,10 +25,10 @@ import {LocalTime} from '../../src/LocalTime';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
 import {Period} from '../../src/Period';
+import {Year} from '../../src/Year';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneId} from '../../src/ZoneId';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
-import {Year} from '../../src/Year';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {ChronoField} from '../../src/temporal/ChronoField';

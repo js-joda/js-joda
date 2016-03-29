@@ -115,6 +115,143 @@ export class DateTimeFormatter {
         return DateTimeFormatter.PARSED_LEAP_SECOND;
     }
 
+    /**
+     * Creates a formatter using the specified pattern.
+     * <p>
+     * This method will create a formatter based on a simple pattern of letters and symbols.
+     * For example, {@code d MMM yyyy} will format 2011-12-03 as '3 Dec 2011'.
+     * <p>
+     * The returned formatter will use the default locale, but this can be changed
+     * using {@link DateTimeFormatter#withLocale(Locale)}.
+     * <p>
+     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.
+     * The following pattern letters are defined:
+     * <pre>
+     *  Symbol  Meaning                     Presentation      Examples
+     *  ------  -------                     ------------      -------
+     *   G       era                         number/text       1; 01; AD; Anno Domini
+     *   y       year                        year              2004; 04
+     *   D       day-of-year                 number            189
+     *   M       month-of-year               number/text       7; 07; Jul; July; J
+     *   d       day-of-month                number            10
+     *
+     *   Q       quarter-of-year             number/text       3; 03; Q3
+     *   Y       week-based-year             year              1996; 96
+     *   w       week-of-year                number            27
+     *   W       week-of-month               number            27
+     *   e       localized day-of-week       number            2; Tue; Tuesday; T
+     *   E       day-of-week                 number/text       2; Tue; Tuesday; T
+     *   F       week-of-month               number            3
+     *
+     *   a       am-pm-of-day                text              PM
+     *   h       clock-hour-of-am-pm (1-12)  number            12
+     *   K       hour-of-am-pm (0-11)        number            0
+     *   k       clock-hour-of-am-pm (1-24)  number            0
+     *
+     *   H       hour-of-day (0-23)          number            0
+     *   m       minute-of-hour              number            30
+     *   s       second-of-minute            number            55
+     *   S       fraction-of-second          fraction          978
+     *   A       milli-of-day                number            1234
+     *   n       nano-of-second              number            987654321
+     *   N       nano-of-day                 number            1234000000
+     *
+     *   V       time-zone ID                zone-id           America/Los_Angeles; Z; -08:30
+     *   z       time-zone name              zone-name         Pacific Standard Time; PST
+     *   X       zone-offset 'Z' for zero    offset-X          Z; -08; -0830; -08:30; -083015; -08:30:15;
+     *   x       zone-offset                 offset-x          +0000; -08; -0830; -08:30; -083015; -08:30:15;
+     *   Z       zone-offset                 offset-Z          +0000; -0800; -08:00;
+     *
+     *   p       pad next                    pad modifier      1
+     *
+     *   '       escape for text             delimiter
+     *   ''      single quote                literal           '
+     *   [       optional section start
+     *   ]       optional section end
+     *   {}      reserved for future use
+     * </pre>
+     * <p>
+     * The count of pattern letters determine the format.
+     * <p>
+     * <b>Text</b>: The text style is determined based on the number of pattern letters used.
+     * Less than 4 pattern letters will use the {@link TextStyle#SHORT short form}.
+     * Exactly 4 pattern letters will use the {@link TextStyle#FULL full form}.
+     * Exactly 5 pattern letters will use the {@link TextStyle#NARROW narrow form}.
+     * <p>
+     * <b>Number</b>: If the count of letters is one, then the value is printed using the minimum number
+     * of digits and without padding as per {@link DateTimeFormatterBuilder#appendValue(TemporalField)}.
+     * Otherwise, the count of digits is used as the width of the output field as per
+     * {@link DateTimeFormatterBuilder#appendValue(TemporalField, int)}.
+     * <p>
+     * <b>Number/Text</b>: If the count of pattern letters is 3 or greater, use the Text rules above.
+     * Otherwise use the Number rules above.
+     * <p>
+     * <b>Fraction</b>: Outputs the nano-of-second field as a fraction-of-second.
+     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.
+     * If it is less than 9, then the nano-of-second value is truncated, with only the most
+     * significant digits being output.
+     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.
+     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern
+     * letters, up to 9 digits.
+     * <p>
+     * <b>Year</b>: The count of letters determines the minimum field width below which padding is used.
+     * If the count of letters is two, then a {@link DateTimeFormatterBuilder#appendValueReduced reduced}
+     * two digit form is used.
+     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the
+     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.
+     * If the count of letters is less than four (but not two), then the sign is only output for negative
+     * years as per {@link SignStyle#NORMAL}.
+     * Otherwise, the sign is output if the pad width is exceeded, as per {@link SignStyle#EXCEEDS_PAD}
+     * <p>
+     * <b>ZoneId</b>: This outputs the time-zone ID, such as 'Europe/Paris'.
+     * If the count of letters is two, then the time-zone ID is output.
+     * Any other count of letters throws {@code IllegalArgumentException}.
+     * <p>
+     * <b>Zone names</b>: This outputs the display name of the time-zone ID.
+     * If the count of letters is one, two or three, then the short name is output.
+     * If the count of letters is four, then the full name is output.
+     * Five or more letters throws {@code IllegalArgumentException}.
+     * <p>
+     * <b>Offset X and x</b>: This formats the offset based on the number of pattern letters.
+     * One letter outputs just the hour', such as '+01', unless the minute is non-zero
+     * in which case the minute is also output, such as '+0130'.
+     * Two letters outputs the hour and minute, without a colon, such as '+0130'.
+     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.
+     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.
+     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.
+     * Six or more letters throws {@code IllegalArgumentException}.
+     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,
+     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.
+     * <p>
+     * <b>Offset Z</b>: This formats the offset based on the number of pattern letters.
+     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.
+     * Four or more letters throws {@code IllegalArgumentException}.
+     * The output will be '+0000' when the offset is zero.
+     * <p>
+     * <b>Optional section</b>: The optional section markers work exactly like calling
+     * {@link DateTimeFormatterBuilder#optionalStart()} and {@link DateTimeFormatterBuilder#optionalEnd()}.
+     * <p>
+     * <b>Pad modifier</b>: Modifies the pattern that immediately follows to be padded with spaces.
+     * The pad width is determined by the number of pattern letters.
+     * This is the same as calling {@link DateTimeFormatterBuilder#padNext(int)}.
+     * <p>
+     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.
+     * <p>
+     * Any unrecognized letter is an error.
+     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.
+     * Despite this, it is recommended to use single quotes around all characters that you want to
+     * output directly to ensure that future changes do not break your application.
+     *
+     * @param {String} pattern  the pattern to use, not null
+     * @return {DateTimeFormatter} the formatter based on the pattern, not null
+     * @throws IllegalArgumentException if the pattern is invalid
+     * @see DateTimeFormatterBuilder#appendPattern(String)
+     */
+    static ofPattern(pattern) {
+        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
+    }
+
+
     //-----------------------------------------------------------------------
     /**
      * Constructor.
@@ -214,43 +351,43 @@ export class DateTimeFormatter {
     }
 
     //-----------------------------------------------------------------------
-     /**
-      * Formats a date-time object using this formatter.
-      * <p>
-      * This formats the date-time to a String using the rules of the formatter.
-      *
-      * @param {TemporalAccessor} temporal  the temporal object to print, not null
-      * @return {String} the printed string, not null
-      * @throws DateTimeException if an error occurs during formatting
-      */
-     format(temporal) {
-         var buf = new StringBuilder(32);
-         this._formatTo(temporal, buf);
-         return buf.toString();
-     }
+    /**
+     * Formats a date-time object using this formatter.
+     * <p>
+     * This formats the date-time to a String using the rules of the formatter.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to print, not null
+     * @return {String} the printed string, not null
+     * @throws DateTimeException if an error occurs during formatting
+     */
+    format(temporal) {
+        var buf = new StringBuilder(32);
+        this._formatTo(temporal, buf);
+        return buf.toString();
+    }
 
-     //-----------------------------------------------------------------------
-     /**
-      * Formats a date-time object to an {@code Appendable} using this formatter.
-      * <p>
-      * This formats the date-time to the specified destination.
-      * {@link Appendable} is a general purpose interface that is implemented by all
-      * key character output classes including {@code StringBuffer}, {@code StringBuilder},
-      * {@code PrintStream} and {@code Writer}.
-      * <p>
-      * Although {@code Appendable} methods throw an {@code IOException}, this method does not.
-      * Instead, any {@code IOException} is wrapped in a runtime exception.
-      *
-      * @param {TemporalAccessor} temporal - the temporal object to print, not null
-      * @param {StringBuilder} appendable - the appendable to print to, not null
-      * @throws DateTimeException if an error occurs during formatting
-      */
-     _formatTo(temporal, appendable) {
-         requireNonNull(temporal, 'temporal');
-         requireNonNull(appendable, 'appendable');
-         var context = new DateTimePrintContext(temporal, this);
-         this._printerParser.print(context, appendable);
-     }
+    //-----------------------------------------------------------------------
+    /**
+     * Formats a date-time object to an {@code Appendable} using this formatter.
+     * <p>
+     * This formats the date-time to the specified destination.
+     * {@link Appendable} is a general purpose interface that is implemented by all
+     * key character output classes including {@code StringBuffer}, {@code StringBuilder},
+     * {@code PrintStream} and {@code Writer}.
+     * <p>
+     * Although {@code Appendable} methods throw an {@code IOException}, this method does not.
+     * Instead, any {@code IOException} is wrapped in a runtime exception.
+     *
+     * @param {TemporalAccessor} temporal - the temporal object to print, not null
+     * @param {StringBuilder} appendable - the appendable to print to, not null
+     * @throws DateTimeException if an error occurs during formatting
+     */
+    _formatTo(temporal, appendable) {
+        requireNonNull(temporal, 'temporal');
+        requireNonNull(appendable, 'appendable');
+        var context = new DateTimePrintContext(temporal, this);
+        this._printerParser.print(context, appendable);
+    }
 
     /**
      * function overloading for {@link DateTimeFormatter.parse}

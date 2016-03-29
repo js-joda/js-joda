@@ -10,6 +10,7 @@ import '../../_init';
 
 import {ChronoField} from '../../../src/temporal/ChronoField';
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
+import {IllegalArgumentException} from '../../../src/errors';
 
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 
@@ -61,6 +62,219 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         }).to.throw(Error);
     });
 
+    //-----------------------------------------------------------------------
+    describe('appendPattern', () => {
+        let dataValid = [
+            ["'a'", "'a'"],
+            ["''", "''"],
+            ["'!'", "'!'"],
+            ['!', "'!'"],
+
+            ["'hello_people,][)('", "'hello_people,][)('"],
+            ["'hi'", "'hi'"],
+            ["'yyyy'", "'yyyy'"],
+            ["''''", "''"],
+            ["'o''clock'", "'o''clock'"],
+
+            /* TODO: text patterns not implemented yet
+            ['G', 'Text(Era,SHORT)'],
+            ['GG', 'Text(Era,SHORT)'],
+            ['GGG', 'Text(Era,SHORT)'],
+            ['GGGG', 'Text(Era)'],
+            ['GGGGG', 'Text(Era,NARROW)'],
+            */
+            
+            ['u', 'Value(Year)'],
+            ['uu', 'ReducedValue(Year,2,2,2000-01-01)'],
+            ['uuu', 'Value(Year,3,15,NORMAL)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+            ['uuuu', 'Value(Year,4,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing 
+            ['uuuuu', 'Value(Year,5,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+
+            ['y', 'Value(YearOfEra)'],
+            ['yy', 'ReducedValue(YearOfEra,2,2,2000-01-01)'],
+            ['yyy', 'Value(YearOfEra,3,15,NORMAL)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+            ['yyyy', 'Value(YearOfEra,4,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+            ['yyyyy', 'Value(YearOfEra,5,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+
+//            ['Y', 'Value(WeekBasedYear)'],
+//            ['YY', 'ReducedValue(WeekBasedYear,2,2000)'],
+//            ['YYY', 'Value(WeekBasedYear,3,19,NORMAL)'],
+//            ['YYYY', 'Value(WeekBasedYear,4,19,EXCEEDS_PAD)'],
+//            ['YYYYY', 'Value(WeekBasedYear,5,19,EXCEEDS_PAD)'],
+
+            ['M', 'Value(MonthOfYear)'],
+            ['MM', 'Value(MonthOfYear,2)'],
+            /* TODO: text patterns not implemented yet
+            ['MMM', 'Text(MonthOfYear,SHORT)'],
+            ['MMMM', 'Text(MonthOfYear)'],
+            ['MMMMM', 'Text(MonthOfYear,NARROW)'],
+            */
+
+//            ['w', 'Value(WeekOfWeekBasedYear)'],
+//            ['ww', 'Value(WeekOfWeekBasedYear,2)'],
+//            ['www', 'Value(WeekOfWeekBasedYear,3)'],
+
+            ['D', 'Value(DayOfYear)'],
+            ['DD', 'Value(DayOfYear,2)'],
+            ['DDD', 'Value(DayOfYear,3)'],
+
+            ['d', 'Value(DayOfMonth)'],
+            ['dd', 'Value(DayOfMonth,2)'],
+
+            ['F', 'Value(AlignedDayOfWeekInMonth)'],
+
+            /* TODO: text patterns not implemented yet
+            ['E', 'Text(DayOfWeek,SHORT)'],
+            ['EE', 'Text(DayOfWeek,SHORT)'],
+            ['EEE', 'Text(DayOfWeek,SHORT)'],
+            ['EEEE', 'Text(DayOfWeek)'],
+            ['EEEEE', 'Text(DayOfWeek,NARROW)'],
+
+            ['a', 'Text(AmPmOfDay,SHORT)'],
+            */
+            
+            ['H', 'Value(HourOfDay)'],
+            ['HH', 'Value(HourOfDay,2)'],
+
+            ['K', 'Value(HourOfAmPm)'],
+            ['KK', 'Value(HourOfAmPm,2)'],
+
+            ['k', 'Value(ClockHourOfDay)'],
+            ['kk', 'Value(ClockHourOfDay,2)'],
+
+            ['h', 'Value(ClockHourOfAmPm)'],
+            ['hh', 'Value(ClockHourOfAmPm,2)'],
+
+            ['m', 'Value(MinuteOfHour)'],
+            ['mm', 'Value(MinuteOfHour,2)'],
+
+            ['s', 'Value(SecondOfMinute)'],
+            ['ss', 'Value(SecondOfMinute,2)'],
+
+            ['S', 'Fraction(NanoOfSecond,1,1)'],
+            ['SS', 'Fraction(NanoOfSecond,2,2)'],
+            ['SSS', 'Fraction(NanoOfSecond,3,3)'],
+            ['SSSSSSSSS', 'Fraction(NanoOfSecond,9,9)'],
+
+            ['A', 'Value(MilliOfDay)'],
+            ['AA', 'Value(MilliOfDay,2)'],
+            ['AAA', 'Value(MilliOfDay,3)'],
+
+            ['n', 'Value(NanoOfSecond)'],
+            ['nn', 'Value(NanoOfSecond,2)'],
+            ['nnn', 'Value(NanoOfSecond,3)'],
+
+            ['N', 'Value(NanoOfDay)'],
+            ['NN', 'Value(NanoOfDay,2)'],
+            ['NNN', 'Value(NanoOfDay,3)'],
+
+            /* TODO: text patterns not implemented yet
+            ['z', 'ZoneText(SHORT)'],
+            ['zz', 'ZoneText(SHORT)'],
+            ['zzz', 'ZoneText(SHORT)'],
+            ['zzzz', 'ZoneText(FULL)'],
+            */
+
+            ['VV', 'ZoneId()'],
+            
+            ['Z', "Offset(+HHMM,'+0000')"],  // SimpleDateFormat compatible
+            ['ZZ', "Offset(+HHMM,'+0000')"],
+            ['ZZZ', "Offset(+HHMM,'+0000')"],
+
+            ['X', "Offset(+HHmm,'Z')"],
+            ['XX', "Offset(+HHMM,'Z')"],
+            ['XXX', "Offset(+HH:MM,'Z')"],
+            ['XXXX', "Offset(+HHMMss,'Z')"],
+            ['XXXXX', "Offset(+HH:MM:ss,'Z')"],
+
+            ['x', "Offset(+HHmm,'+00')"],
+            ['xx', "Offset(+HHMM,'+0000')"],
+            ['xxx', "Offset(+HH:MM,'+00:00')"],
+            ['xxxx', "Offset(+HHMMss,'+0000')"],
+            ['xxxxx', "Offset(+HH:MM:ss,'+00:00')"],
+
+            ['ppH', 'Pad(Value(HourOfDay),2)'],
+            ['pppDD', 'Pad(Value(DayOfYear,2),3)'],
+
+            ['uuuu[-MM[-dd', "Value(Year,4,15,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]"], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+            ['uuuu[-MM[-dd]]', "Value(Year,4,15,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]"], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+            ['uuuu[-MM[]-dd]', "Value(Year,4,15,EXCEEDS_PAD)['-'Value(MonthOfYear,2)'-'Value(DayOfMonth,2)]"], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+
+            ["uuuu-MM-dd'T'HH:mm:ss.SSS", "Value(Year,4,15,EXCEEDS_PAD)'-'Value(MonthOfYear,2)'-'Value(DayOfMonth,2)" +
+            "'T'Value(HourOfDay,2)':'Value(MinuteOfHour,2)':'Value(SecondOfMinute,2)'.'Fraction(NanoOfSecond,3,3)"] // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
+        ];
+
+        it('test_appendPattern_valid', () => {
+            dataValid.forEach((val) => {
+                let [input, expected] = val;
+                // since we are forEach ing dataValid, the beforeEach doesn't catch... so we create the builder here
+                builder = new DateTimeFormatterBuilder();
+                builder.appendPattern(input);
+                let f = builder.toFormatter();
+                expect(f.toString()).to.eql(expected);
+            });
+        });
+
+        //-----------------------------------------------------------------------
+        let dataInvalid = [
+            ["'"],
+            ["'hello"],
+            ["'hel''lo"],
+            ["'hello''"],
+            [']'],
+            ['{'],
+            ['}'],
+            ['#'],
+
+            ['yyyy]'],
+            ['yyyy]MM'],
+            ['yyyy[MM]]'],
+
+            ['MMMMMM'],
+            ['QQQQQQ'],
+            ['EEEEEE'],
+            ['aaaaaa'],
+            ['XXXXXX'],
+
+            ['RO'],
+
+            ['p'],
+            ['pp'],
+            ['p:'],
+
+            ['f'],
+            ['ff'],
+            ['f:'],
+            ['fy'],
+            ['fa'],
+            ['fM'],
+
+            ['ddd'],
+            ['FF'],
+            ['FFF'],
+            ['aa'],
+            ['aaa'],
+            ['aaaa'],
+            ['aaaaa'],
+            ['HHH'],
+            ['KKK'],
+            ['kkk'],
+            ['hhh'],
+            ['mmm'],
+            ['sss']
+        ];
+
+        it('test_appendPattern_invalid', () => {
+            dataInvalid.forEach((val) => {
+                let [input] = val;
+                // since we are forEach ing dataValid, the beforeEach doesn't catch... so we create the builder here
+                builder = new DateTimeFormatterBuilder();
+                expect(() => {
+                    builder.appendPattern(input);
+                }).to.throw(IllegalArgumentException);
+            });
+        });
+    });
 });
 
 
@@ -505,209 +719,6 @@ public class TestDateTimeFormatterBuilder {
 
     //-----------------------------------------------------------------------
     //-----------------------------------------------------------------------
-    //-----------------------------------------------------------------------
-    @DataProvider(name='validPatterns')
-    Object[][] dataValid() {
-        return new Object[][] {
-            {''a'', ''a''},
-            {'''', ''''},
-            {''!'', ''!''},
-            {'!', ''!''},
-
-            {''hello_people,][)('', ''hello_people,][)(''},
-            {''hi'', ''hi''},
-            {''yyyy'', ''yyyy''},
-            {'''''', ''''},
-            {''o''clock'', ''o''clock''},
-
-            {'G', 'Text(Era,SHORT)'},
-            {'GG', 'Text(Era,SHORT)'},
-            {'GGG', 'Text(Era,SHORT)'},
-            {'GGGG', 'Text(Era)'},
-            {'GGGGG', 'Text(Era,NARROW)'},
-
-            {'u', 'Value(Year)'},
-            {'uu', 'ReducedValue(Year,2,2,2000-01-01)'},
-            {'uuu', 'Value(Year,3,19,NORMAL)'},
-            {'uuuu', 'Value(Year,4,19,EXCEEDS_PAD)'},
-            {'uuuuu', 'Value(Year,5,19,EXCEEDS_PAD)'},
-
-            {'y', 'Value(YearOfEra)'},
-            {'yy', 'ReducedValue(YearOfEra,2,2,2000-01-01)'},
-            {'yyy', 'Value(YearOfEra,3,19,NORMAL)'},
-            {'yyyy', 'Value(YearOfEra,4,19,EXCEEDS_PAD)'},
-            {'yyyyy', 'Value(YearOfEra,5,19,EXCEEDS_PAD)'},
-
-//            {'Y', 'Value(WeekBasedYear)'},
-//            {'YY', 'ReducedValue(WeekBasedYear,2,2000)'},
-//            {'YYY', 'Value(WeekBasedYear,3,19,NORMAL)'},
-//            {'YYYY', 'Value(WeekBasedYear,4,19,EXCEEDS_PAD)'},
-//            {'YYYYY', 'Value(WeekBasedYear,5,19,EXCEEDS_PAD)'},
-
-            {'M', 'Value(MonthOfYear)'},
-            {'MM', 'Value(MonthOfYear,2)'},
-            {'MMM', 'Text(MonthOfYear,SHORT)'},
-            {'MMMM', 'Text(MonthOfYear)'},
-            {'MMMMM', 'Text(MonthOfYear,NARROW)'},
-
-//            {'w', 'Value(WeekOfWeekBasedYear)'},
-//            {'ww', 'Value(WeekOfWeekBasedYear,2)'},
-//            {'www', 'Value(WeekOfWeekBasedYear,3)'},
-
-            {'D', 'Value(DayOfYear)'},
-            {'DD', 'Value(DayOfYear,2)'},
-            {'DDD', 'Value(DayOfYear,3)'},
-
-            {'d', 'Value(DayOfMonth)'},
-            {'dd', 'Value(DayOfMonth,2)'},
-
-            {'F', 'Value(AlignedDayOfWeekInMonth)'},
-
-            {'E', 'Text(DayOfWeek,SHORT)'},
-            {'EE', 'Text(DayOfWeek,SHORT)'},
-            {'EEE', 'Text(DayOfWeek,SHORT)'},
-            {'EEEE', 'Text(DayOfWeek)'},
-            {'EEEEE', 'Text(DayOfWeek,NARROW)'},
-
-            {'a', 'Text(AmPmOfDay,SHORT)'},
-
-            {'H', 'Value(HourOfDay)'},
-            {'HH', 'Value(HourOfDay,2)'},
-
-            {'K', 'Value(HourOfAmPm)'},
-            {'KK', 'Value(HourOfAmPm,2)'},
-
-            {'k', 'Value(ClockHourOfDay)'},
-            {'kk', 'Value(ClockHourOfDay,2)'},
-
-            {'h', 'Value(ClockHourOfAmPm)'},
-            {'hh', 'Value(ClockHourOfAmPm,2)'},
-
-            {'m', 'Value(MinuteOfHour)'},
-            {'mm', 'Value(MinuteOfHour,2)'},
-
-            {'s', 'Value(SecondOfMinute)'},
-            {'ss', 'Value(SecondOfMinute,2)'},
-
-            {'S', 'Fraction(NanoOfSecond,1,1)'},
-            {'SS', 'Fraction(NanoOfSecond,2,2)'},
-            {'SSS', 'Fraction(NanoOfSecond,3,3)'},
-            {'SSSSSSSSS', 'Fraction(NanoOfSecond,9,9)'},
-
-            {'A', 'Value(MilliOfDay)'},
-            {'AA', 'Value(MilliOfDay,2)'},
-            {'AAA', 'Value(MilliOfDay,3)'},
-
-            {'n', 'Value(NanoOfSecond)'},
-            {'nn', 'Value(NanoOfSecond,2)'},
-            {'nnn', 'Value(NanoOfSecond,3)'},
-
-            {'N', 'Value(NanoOfDay)'},
-            {'NN', 'Value(NanoOfDay,2)'},
-            {'NNN', 'Value(NanoOfDay,3)'},
-
-            {'z', 'ZoneText(SHORT)'},
-            {'zz', 'ZoneText(SHORT)'},
-            {'zzz', 'ZoneText(SHORT)'},
-            {'zzzz', 'ZoneText(FULL)'},
-
-            {'VV', 'ZoneId()'},
-
-            {'Z', 'Offset(+HHMM,'+0000')'},  // SimpleDateFormat compatible
-            {'ZZ', 'Offset(+HHMM,'+0000')'},
-            {'ZZZ', 'Offset(+HHMM,'+0000')'},
-
-            {'X', 'Offset(+HHmm,'Z')'},
-            {'XX', 'Offset(+HHMM,'Z')'},
-            {'XXX', 'Offset(+HH:MM,'Z')'},
-            {'XXXX', 'Offset(+HHMMss,'Z')'},
-            {'XXXXX', 'Offset(+HH:MM:ss,'Z')'},
-
-            {'x', 'Offset(+HHmm,'+00')'},
-            {'xx', 'Offset(+HHMM,'+0000')'},
-            {'xxx', 'Offset(+HH:MM,'+00:00')'},
-            {'xxxx', 'Offset(+HHMMss,'+0000')'},
-            {'xxxxx', 'Offset(+HH:MM:ss,'+00:00')'},
-
-            {'ppH', 'Pad(Value(HourOfDay),2)'},
-            {'pppDD', 'Pad(Value(DayOfYear,2),3)'},
-
-            {'uuuu[-MM[-dd', 'Value(Year,4,19,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]'},
-            {'uuuu[-MM[-dd]]', 'Value(Year,4,19,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]'},
-            {'uuuu[-MM[]-dd]', 'Value(Year,4,19,EXCEEDS_PAD)['-'Value(MonthOfYear,2)'-'Value(DayOfMonth,2)]'},
-
-            {'uuuu-MM-dd'T'HH:mm:ss.SSS', 'Value(Year,4,19,EXCEEDS_PAD)'-'Value(MonthOfYear,2)'-'Value(DayOfMonth,2)' +
-                ''T'Value(HourOfDay,2)':'Value(MinuteOfHour,2)':'Value(SecondOfMinute,2)'.'Fraction(NanoOfSecond,3,3)'},
-        };
-    }
-
-    @Test(dataProvider='validPatterns')
-    public void test_appendPattern_valid(String input, String expected) throws Exception {
-        builder.appendPattern(input);
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), expected);
-    }
-
-    //-----------------------------------------------------------------------
-    @DataProvider(name='invalidPatterns')
-    Object[][] dataInvalid() {
-        return new Object[][] {
-            {'''},
-            {''hello'},
-            {''hel''lo'},
-            {''hello'''},
-            {']'},
-            {'{'},
-            {'}'},
-            {'#'},
-
-            {'yyyy]'},
-            {'yyyy]MM'},
-            {'yyyy[MM]]'},
-
-            {'MMMMMM'},
-            {'QQQQQQ'},
-            {'EEEEEE'},
-            {'aaaaaa'},
-            {'XXXXXX'},
-
-            {'RO'},
-
-            {'p'},
-            {'pp'},
-            {'p:'},
-
-            {'f'},
-            {'ff'},
-            {'f:'},
-            {'fy'},
-            {'fa'},
-            {'fM'},
-
-            {'ddd'},
-            {'FF'},
-            {'FFF'},
-            {'aa'},
-            {'aaa'},
-            {'aaaa'},
-            {'aaaaa'},
-            {'HHH'},
-            {'KKK'},
-            {'kkk'},
-            {'hhh'},
-            {'mmm'},
-            {'sss'},
-        };
-    }
-
-    @Test(dataProvider='invalidPatterns', expectedExceptions=IllegalArgumentException.class)
-    public void test_appendPattern_invalid(String input) throws Exception {
-        try {
-            builder.appendPattern(input);
-        } catch (IllegalArgumentException ex) {
-            throw ex;
-        }
-    }
 
 }
  *

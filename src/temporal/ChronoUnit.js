@@ -7,7 +7,7 @@
 import {MathUtil} from '../MathUtil';
 
 import {Duration} from '../Duration';
-import {Year} from '../Year';
+import {YearConstants} from '../YearConstants';
 import {TemporalUnit} from './TemporalUnit';
 
 /**
@@ -454,7 +454,7 @@ export function _init() {
      * <p>
      * When used with other calendar systems there are no restrictions on the unit.
      */
-    ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * (Year.MAX_VALUE + 1)));
+    ChronoUnit.ERAS = new ChronoUnit('Eras', Duration.ofSeconds(31556952 * (YearConstants.MAX_VALUE + 1)));
     /**
      * Artificial unit that represents the concept of forever.
      * This is primarily used with {@link TemporalField} to represent unbounded fields
