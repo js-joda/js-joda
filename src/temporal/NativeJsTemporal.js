@@ -53,7 +53,7 @@ class NativeJsTemporal extends TemporalAccessor {
         } else if(query === TemporalQueries.localTime()){
             return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
         } else if(query === TemporalQueries.zone()){
-            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
+            return this._zone;
         }
         return super.query(query);
     }
@@ -84,6 +84,14 @@ class NativeJsTemporal extends TemporalAccessor {
         return field.getFrom(this);
     }
 
+    /**
+     *
+     * @param {TemporalField} field
+     * @returns {boolean}
+     */
+    isSupported(field){
+        return field === ChronoField.INSTANT_SECONDS || field === ChronoField.NANO_OF_SECOND;
+    }
 }
 
 /**

@@ -1,7 +1,7 @@
 js-joda Cheat sheet
 =============================================
 
-[For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/pithu/js-joda/)  
+[For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/js-joda/js-joda/)  
 
 ## Table of content
 
@@ -54,7 +54,7 @@ js-joda Cheat sheet
 
 ## Try it out
 
-Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [this webpage](http://pithu.github.io/js-joda/cheat-sheet.html).
+Tip: Try out the cheat sheet examples in your browser console. All js-joda classes are imported into the global name space of [the js-joda webpage](http://js-joda.github.io/js-joda/cheat-sheet.html).
 
 ## Consistent method prefixes
 
