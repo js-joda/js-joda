@@ -6,6 +6,7 @@
 
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {requireNonNull, requireInstance} from './assert';
+import {MathUtil} from './MathUtil';
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
@@ -14,15 +15,14 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
-import {MathUtil} from './MathUtil';
+import {MonthDay} from './MonthDay';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalAmount} from './temporal/TemporalAmount';
 import {TemporalQueries} from './temporal/TemporalQueries';
-import {TemporalQuery} from './temporal/TemporalQuery';
+import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalUnit} from './temporal/TemporalUnit';
-import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ValueRange} from './temporal/ValueRange';
 import {YearConstants} from './YearConstants';
 import {ZoneId} from './ZoneId';
@@ -554,6 +554,19 @@ export class Year extends Temporal {
     }
 
     /**
+     * Checks if the month-day is valid for this year.
+     * <p>
+     * This method checks whether this year and the input month and day form
+     * a valid date.
+     *
+     * @param {MonthDay} monthDay  the month-day to validate, null returns false
+     * @return {boolean} true if the month and day are valid for this year
+     */
+    isValidMonthDay(monthDay) {
+        return monthDay != null && monthDay.isValidYear(this._year);
+    }
+
+    /**
      * Gets the length of this year in days.
      *
      * @return {number} the length of this year in days, 365 or 366
@@ -578,7 +591,25 @@ export class Year extends Temporal {
     atDay(dayOfYear) {
         return LocalDate.ofYearDay(this._year, dayOfYear);
     }
-    
+
+    /**
+     * Combines this year with a month-day to create a {@code LocalDate}.
+     * <p>
+     * This returns a {@code LocalDate} formed from this year and the specified month-day.
+     * <p>
+     * A month-day of February 29th will be adjusted to February 28th in the resulting
+     * date if the year is not a leap year.
+     *
+     * @param {MonthDay} monthDay  the month-day to use, not null
+     * @return {LocalDate} the local date formed from this year and the specified month-day, not null
+     */
+    atMonthDay(monthDay) {
+        requireNonNull(monthDay, 'monthDay');
+        requireInstance(monthDay, MonthDay, 'monthDay');
+        return monthDay.atYear(this._year);
+    }
+
+
     //-----------------------------------------------------------------------
     /**
      * Queries this year using the specified query.
