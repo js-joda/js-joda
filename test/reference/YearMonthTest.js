@@ -11,13 +11,16 @@ import {NullPointerException, DateTimeException, DateTimeParseException} from '.
 
 import {Clock} from '../../src/Clock';
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
 import {MathUtil} from '../../src/MathUtil';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {Month} from '../../src/Month';
+import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {Year} from '../../src/Year';
 import {YearMonth} from '../../src/YearMonth';
 import {ZoneId} from '../../src/ZoneId';
@@ -796,6 +799,165 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
                 let test = YearMonth.of(2008, 6);
                 test.atDay(31);
             }).to.throw(DateTimeException);
+        });
+    });
+    
+    //-----------------------------------------------------------------------
+    // query(TemporalQuery)
+    //-----------------------------------------------------------------------
+    describe('query(TemporalQuery)', () => {
+        it('test_query', () => {
+            expect(TEST_2008_06.query(TemporalQueries.chronology())).to.eql(IsoChronology.INSTANCE);
+            expect(TEST_2008_06.query(TemporalQueries.localDate())).to.eql(null);
+            expect(TEST_2008_06.query(TemporalQueries.localTime())).to.eql(null);
+            expect(TEST_2008_06.query(TemporalQueries.offset())).to.eql(null);
+            expect(TEST_2008_06.query(TemporalQueries.precision())).to.eql(ChronoUnit.MONTHS);
+            expect(TEST_2008_06.query(TemporalQueries.zone())).to.eql(null);
+            expect(TEST_2008_06.query(TemporalQueries.zoneId())).to.eql(null);
+        });
+        
+        it('test_query_null', () => {
+            expect(() => {
+                TEST_2008_06.query(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // compareTo()
+    //-----------------------------------------------------------------------
+    describe('compareTo()', () => {
+        it('test_comparisons', () => {
+            let data_comparisons_YearMonth = [
+                YearMonth.of(-1, 1),
+                YearMonth.of(0, 1),
+                YearMonth.of(0, 12),
+                YearMonth.of(1, 1),
+                YearMonth.of(1, 2),
+                YearMonth.of(1, 12),
+                YearMonth.of(2008, 1),
+                YearMonth.of(2008, 6),
+                YearMonth.of(2008, 12)
+            ];
+            for (let i = 0; i < data_comparisons_YearMonth.length; i++) {
+                let a = data_comparisons_YearMonth[i];
+                for (let j = 0; j < data_comparisons_YearMonth.length; j++) {
+                    let b = data_comparisons_YearMonth[j];
+                    if (i < j) {
+                        expect(a.compareTo(b) < 0).to.eql(true);
+                        expect(a.isBefore(b)).to.eql(true);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.equals(b)).to.eql(false);
+                    } else if (i > j) {
+                        expect(a.compareTo(b) > 0).to.eql(true);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(a.isAfter(b)).to.eql(true);
+                        expect(a.equals(b)).to.eql(false);
+                    } else {
+                        expect(a.compareTo(b)).to.eql(0);
+                        expect(a.isBefore(b)).to.eql(false);
+                        expect(a.isAfter(b)).to.eql(false);
+                        expect(a.equals(b)).to.eql(true);
+                    }
+                }
+            }
+        });
+        
+        it('test_compareTo_ObjectNull', () => {
+            expect(() => {
+                TEST_2008_06.compareTo(null);
+            }).to.throw(NullPointerException);
+        });
+        
+        it('test_isBefore_ObjectNull', () => {
+            expect(() => {
+                TEST_2008_06.isBefore(null);
+            }).to.throw(NullPointerException);
+        });
+        
+        it('test_isAfter_ObjectNull', () => {
+            expect(() => {
+                TEST_2008_06.isAfter(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // equals()
+    //-----------------------------------------------------------------------
+    describe('equals()', () => {
+        it('test_equals', () => {
+            let a = YearMonth.of(2008, 6);
+            let b = YearMonth.of(2008, 6);
+            let c = YearMonth.of(2007, 6);
+            let d = YearMonth.of(2008, 5);
+            
+            expect(a.equals(a)).to.eql(true);
+            expect(a.equals(b)).to.eql(true);
+            expect(a.equals(c)).to.eql(false);
+            expect(a.equals(d)).to.eql(false);
+            
+            expect(b.equals(a)).to.eql(true);
+            expect(b.equals(b)).to.eql(true);
+            expect(b.equals(c)).to.eql(false);
+            expect(b.equals(d)).to.eql(false);
+            
+            expect(c.equals(a)).to.eql(false);
+            expect(c.equals(b)).to.eql(false);
+            expect(c.equals(c)).to.eql(true);
+            expect(c.equals(d)).to.eql(false);
+            
+            expect(d.equals(a)).to.eql(false);
+            expect(d.equals(b)).to.eql(false);
+            expect(d.equals(c)).to.eql(false);
+            expect(d.equals(d)).to.eql(true);
+        });
+        
+        it('test_equals_itself_true', () => {
+            expect(TEST_2008_06.equals(TEST_2008_06)).to.eql(true);
+        });
+        
+        it('test_equals_string_false', () => {
+            expect(TEST_2008_06.equals('2007-07-15')).to.eql(false);
+        });
+        
+        it('test_equals_null_false', () => {
+            expect(TEST_2008_06.equals(null)).to.eql(false);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // toString()
+    //-----------------------------------------------------------------------
+    describe('toString()', () => {
+        let data_sampleToString = [
+            [2008, 1, '2008-01'],
+            [2008, 12, '2008-12'],
+            [7, 5, '0007-05'],
+            [0, 5, '0000-05'],
+            [-1, 1, '-0001-01']
+        ];
+        
+        it('test_toString', () => {
+            data_sampleToString.forEach((val) => {
+                let [y, m, expected] = val;
+                let test = YearMonth.of(y, m);
+                let str = test.toString();
+                expect(str).to.eql(expected);
+            });
+        });
+    });
+    //-----------------------------------------------------------------------
+    // format(DateTimeFormatter)
+    //-----------------------------------------------------------------------
+    describe('format(DateTimeFormatter)', () => {
+        it('test_format_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('y M');
+            let t = YearMonth.of(2010, 12).format(f);
+            expect(t).to.eql('2010 12');
+        });
+        
+        it('test_format_formatter_null', () => {
+            expect(() => {
+                YearMonth.of(2010, 12).format(null);
+            }).to.throw(NullPointerException);
         });
     });
 });

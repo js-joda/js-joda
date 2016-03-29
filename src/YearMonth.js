@@ -18,6 +18,8 @@ import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAmount} from './temporal/TemporalAmount';
 import {TemporalField} from './temporal/TemporalField';
+import {TemporalQueries} from './temporal/TemporalQueries';
+import {TemporalQuery} from './temporal/TemporalQuery';
 import {TemporalUnit} from './temporal/TemporalUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {ValueRange} from './temporal/ValueRange';
@@ -807,6 +809,38 @@ export class YearMonth extends Temporal {
         return (monthsToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusMonths(Math.MAX_SAFE_INTEGER).plusMonths(1) : this.plusMonths(-monthsToSubtract));
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Queries this year-month using the specified query.
+     * <p>
+     * This queries this year-month using the specified query strategy object.
+     * The {@code TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * specified query passing {@code this} as the argument.
+     *
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, 'query');
+        requireInstance(query, TemporalQuery, 'query');
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.MONTHS;
+        } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+                query === TemporalQueries.zone() || query === TemporalQueries.zoneId() || query === TemporalQueries.offset()) {
+            return null;
+        }
+        return super.query(query);
+    }
+
     /**
      * Adjusts the specified temporal object to have this year-month.
      * <p>
@@ -841,6 +875,66 @@ export class YearMonth extends Temporal {
             throw new DateTimeException("Adjustment only supported on ISO date-time");
         }*/
         return temporal.with(ChronoField.PROLEPTIC_MONTH, this._getProlepticMonth());
+    }
+
+    /**
+     * Calculates the period between this year-month and another year-month in
+     * terms of the specified unit.
+     * <p>
+     * This calculates the period between two year-months in terms of a single unit.
+     * The start and end points are {@code this} and the specified year-month.
+     * The result will be negative if the end is before the start.
+     * The {@code Temporal} passed to this method must be a {@code YearMonth}.
+     * For example, the period in years between two year-months can be calculated
+     * using {@code startYearMonth.until(endYearMonth, YEARS)}.
+     * <p>
+     * The calculation returns a whole number, representing the number of
+     * complete units between the two year-months.
+     * For example, the period in decades between 2012-06 and 2032-05
+     * will only be one decade as it is one month short of two decades.
+     * <p>
+     * This method operates in association with {@link TemporalUnit#between}.
+     * The result of this method is a {@code long} representing the amount of
+     * the specified unit. By contrast, the result of {@code between} is an
+     * object that can be used directly in addition/subtraction:
+     * <pre>
+     *   long period = start.until(end, YEARS);   // this method
+     *   dateTime.plus(YEARS.between(start, end));      // use in plus/minus
+     * </pre>
+     * <p>
+     * The calculation is implemented in this method for {@link ChronoUnit}.
+     * The units {@code MONTHS}, {@code YEARS}, {@code DECADES},
+     * {@code CENTURIES}, {@code MILLENNIA} and {@code ERAS} are supported.
+     * Other {@code ChronoUnit} values will throw an exception.
+     * <p>
+     * If the unit is not a {@code ChronoUnit}, then the result of this method
+     * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
+     * passing {@code this} as the first argument and the input temporal as
+     * the second argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} endExclusive  the end year-month, which is converted to a {@code YearMonth}, not null
+     * @param {TemporalUnit} unit  the unit to measure the period in, not null
+     * @return {number} the amount of the period between this year-month and the end year-month
+     * @throws DateTimeException if the period cannot be calculated
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    until(endExclusive, unit) {
+        let end = YearMonth.from(endExclusive);
+        if (unit instanceof ChronoUnit) {
+            let monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();  // no overflow
+            switch (unit) {
+                case ChronoUnit.MONTHS: return monthsUntil;
+                case ChronoUnit.YEARS: return monthsUntil / 12;
+                case ChronoUnit.DECADES: return monthsUntil / 120;
+                case ChronoUnit.CENTURIES: return monthsUntil / 1200;
+                case ChronoUnit.MILLENNIA: return monthsUntil / 12000;
+                case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.between(this, end);
     }
 
     //-----------------------------------------------------------------------
@@ -885,6 +979,46 @@ export class YearMonth extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
+     * Compares this year-month to another year-month.
+     * <p>
+     * The comparison is based first on the value of the year, then on the value of the month.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     *
+     * @param {YearMonth} other  the other year-month to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, YearMonth, 'other');
+        let cmp = (this._year - other.year());
+        if (cmp === 0) {
+            cmp = (this._month - other.monthValue());
+        }
+        return cmp;
+    }
+    
+    /**
+     * Is this year-month after the specified year-month.
+     *
+     * @param {YearMonth} other  the other year-month to compare to, not null
+     * @return {boolean} true if this is after the specified year-month
+     */
+    isAfter(other) {
+        return this.compareTo(other) > 0;
+    }
+
+    /**
+     * Is this year-month before the specified year-month.
+     *
+     * @param {YearMonth} other  the other year-month to compare to, not null
+     * @return {boolean} true if this point is before the specified year-month
+     */
+    isBefore(other) {
+        return this.compareTo(other) < 0;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
      * Checks if this year-month is equal to another year-month.
      * <p>
      * The comparison is based on the time-line position of the year-months.
@@ -903,6 +1037,32 @@ export class YearMonth extends Temporal {
         return false;
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Outputs this year-month as a {@code String}, such as {@code 2007-12}.
+     * <p>
+     * The output will be in the format {@code yyyy-MM}:
+     *
+     * @return {String} a string representation of this year-month, not null
+     */
+    toString() {
+        return PARSER.format(this);
+    }
+
+    /**
+     * Outputs this year-month as a {@code String} using the formatter.
+     * <p>
+     * This year-month will be passed to the formatter
+     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted year-month string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, 'formatter');
+        return formatter.format(this);
+    }
 
 }
 
