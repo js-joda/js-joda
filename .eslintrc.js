@@ -1,39 +1,39 @@
 module.exports = {
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "forOf": false
+    'extends': 'eslint:recommended',
+    'parserOptions': {
+        'ecmaVersion': 6,
+        'sourceType': 'module',
+        'forOf': false
     },
-    "rules": {
-        "indent": [
+    'rules': {
+        'indent': [
             2,
             4,
             {
-                "SwitchCase": 1
+                'SwitchCase': 1
             }
         ],
-        "quotes": [
+        'quotes': [
             2,
-            "single"
+            'single'
         ],
-        "linebreak-style": [
+        'linebreak-style': [
             2,
-            "unix"
+            'unix'
         ],
-        "semi": [
+        'semi': [
             2,
-            "always"
+            'always'
         ],
-        "eqeqeq": [
+        'eqeqeq': [
             2,
-            "smart"
+            'smart'
         ]
     },
-    "env": {
-        "es6": false,
-        "browser": true,
-        "node": true,
-        "mocha": true
+    'env': {
+        'es6': false,
+        'browser': true,
+        'node': true,
+        'mocha': true
     }
 };
