@@ -11,7 +11,7 @@
     "time",
     "timezone"
   ],
-  "homepage": "https://github.com/pithu/joda-js",
+  "homepage": "https://github.com/js-joda/joda-js",
   "ignore": [
     "**/.*",
     "node_modules",
