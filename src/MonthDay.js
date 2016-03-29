@@ -200,7 +200,7 @@ export class MonthDay extends Temporal {
             return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
         } catch (ex) {
             throw new DateTimeException('Unable to obtain MonthDay from TemporalAccessor: ' +
-                    temporal + ', type ' + +(temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+                    temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
     }
     //-----------------------------------------------------------------------
