@@ -674,5 +674,128 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             }).to.throw(DateTimeException);
         });
     });
-
+    //-----------------------------------------------------------------------
+    // doAdjustment()
+    //-----------------------------------------------------------------------
+    describe('doAdjustment()', () => {
+        it('test_adjustDate', () => {
+            let test = YearMonth.of(2008, 6);
+            let date = LocalDate.of(2007, 1, 1);
+            expect(test.adjustInto(date)).to.eql(LocalDate.of(2008, 6, 1));
+        });
+        
+        it('test_adjustDate_preserveDoM', () => {
+            let test = YearMonth.of(2011, 3);
+            let date = LocalDate.of(2008, 2, 29);
+            expect(test.adjustInto(date)).to.eql(LocalDate.of(2011, 3, 29));
+        });
+        
+        it('test_adjustDate_resolve', () => {
+            let test = YearMonth.of(2007, 2);
+            let date = LocalDate.of(2008, 3, 31);
+            expect(test.adjustInto(date)).to.eql(LocalDate.of(2007, 2, 28));
+        });
+        
+        it('test_adjustDate_equal', () => {
+            let test = YearMonth.of(2008, 6);
+            let date = LocalDate.of(2008, 6, 30);
+            expect(test.adjustInto(date)).to.eql(date);
+        });
+        
+        it('test_adjustDate_null', () => {
+            expect(() => {
+                TEST_2008_06.adjustInto(null);
+            }).to.throw(NullPointerException);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // isLeapYear()
+    //-----------------------------------------------------------------------
+    describe('isLeapYear()', () => {
+        it('test_isLeapYear', () => {
+            expect(YearMonth.of(2007, 6).isLeapYear()).to.eql(false);
+            expect(YearMonth.of(2008, 6).isLeapYear()).to.eql(true);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // lengthOfMonth()
+    //-----------------------------------------------------------------------
+    describe('lengthOfMonth()', () => {
+        it('test_lengthOfMonth_june', () => {
+            let test = YearMonth.of(2007, 6);
+            expect(test.lengthOfMonth()).to.eql(30);
+        });
+        
+        it('test_lengthOfMonth_febNonLeap', () => {
+            let test = YearMonth.of(2007, 2);
+            expect(test.lengthOfMonth()).to.eql(28);
+        });
+        
+        it('test_lengthOfMonth_febLeap', () => {
+            let test = YearMonth.of(2008, 2);
+            expect(test.lengthOfMonth()).to.eql(29);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // lengthOfYear()
+    //-----------------------------------------------------------------------
+    describe('lengthOfYear()', () => {
+        it('test_lengthOfYear', () => {
+            expect(YearMonth.of(2007, 6).lengthOfYear()).to.eql(365);
+            expect(YearMonth.of(2008, 6).lengthOfYear()).to.eql(366);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // isValidDay(int)
+    //-----------------------------------------------------------------------
+    describe('isValidDay(int)', () => {
+        it('test_isValidDay_int_june', () => {
+            let test = YearMonth.of(2007, 6);
+            expect(test.isValidDay(1)).to.eql(true);
+            expect(test.isValidDay(30)).to.eql(true);
+            
+            expect(test.isValidDay(-1)).to.eql(false);
+            expect(test.isValidDay(0)).to.eql(false);
+            expect(test.isValidDay(31)).to.eql(false);
+            expect(test.isValidDay(32)).to.eql(false);
+        });
+        
+        it('test_isValidDay_int_febNonLeap', () => {
+            let test = YearMonth.of(2007, 2);
+            expect(test.isValidDay(1)).to.eql(true);
+            expect(test.isValidDay(28)).to.eql(true);
+            
+            expect(test.isValidDay(-1)).to.eql(false);
+            expect(test.isValidDay(0)).to.eql(false);
+            expect(test.isValidDay(29)).to.eql(false);
+            expect(test.isValidDay(32)).to.eql(false);
+        });
+        
+        it('test_isValidDay_int_febLeap', () => {
+            let test = YearMonth.of(2008, 2);
+            expect(test.isValidDay(1)).to.eql(true);
+            expect(test.isValidDay(29)).to.eql(true);
+            
+            expect(test.isValidDay(-1)).to.eql(false);
+            expect(test.isValidDay(0)).to.eql(false);
+            expect(test.isValidDay(30)).to.eql(false);
+            expect(test.isValidDay(32)).to.eql(false);
+        });
+    });
+    //-----------------------------------------------------------------------
+    // atDay(int)
+    //-----------------------------------------------------------------------
+    describe('atDay(int)', () => {
+        it('test_atDay_int', () => {
+            let test = YearMonth.of(2008, 6);
+            expect(test.atDay(30)).to.eql(LocalDate.of(2008, 6, 30));
+        });
+        
+        it('test_atDay_int_invalidDay', () => {
+            expect(() => {
+                let test = YearMonth.of(2008, 6);
+                test.atDay(31);
+            }).to.throw(DateTimeException);
+        });
+    });
 });

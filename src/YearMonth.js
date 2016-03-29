@@ -11,6 +11,7 @@ import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
+import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
 import {Month} from './Month';
 import {SignStyle} from './format/SignStyle';
@@ -434,6 +435,65 @@ export class YearMonth extends Temporal {
         return Month.of(this._month);
     }
 
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     * <p>
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     * <p>
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     * <p>
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @return {boolean} true if the year is leap, false otherwise
+     */
+    isLeapYear() {
+        return IsoChronology.isLeapYear(this._year);
+    }
+
+    /**
+     * Checks if the day-of-month is valid for this year-month.
+     * <p>
+     * This method checks whether this year and month and the input day form
+     * a valid date.
+     *
+     * @param {number} dayOfMonth  the day-of-month to validate, from 1 to 31, invalid value returns false
+     * @return {boolean} true if the day is valid for this year-month
+     */
+    isValidDay(dayOfMonth) {
+        return dayOfMonth >= 1 && dayOfMonth <= this.lengthOfMonth();
+    }
+
+    /**
+     * Returns the length of the month, taking account of the year.
+     * <p>
+     * This returns the length of the month in days.
+     * For example, a date in January would return 31.
+     *
+     * @return {number} the length of the month in days, from 28 to 31
+     */
+    lengthOfMonth() {
+        return this.month().length(this.isLeapYear());
+    }
+
+    /**
+     * Returns the length of the year.
+     * <p>
+     * This returns the length of the year in days, either 365 or 366.
+     *
+     * @return {number} 366 if the year is leap, 365 otherwise
+     */
+    lengthOfYear() {
+        return (this.isLeapYear() ? 366 : 365);
+    }
+
     /**
      * with function overloading
      */
@@ -745,6 +805,82 @@ export class YearMonth extends Temporal {
      */
     minusMonths(monthsToSubtract) {
         return (monthsToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusMonths(Math.MAX_SAFE_INTEGER).plusMonths(1) : this.plusMonths(-monthsToSubtract));
+    }
+
+    /**
+     * Adjusts the specified temporal object to have this year-month.
+     * <p>
+     * This returns a temporal object of the same observable type as the input
+     * with the year and month changed to be the same as this.
+     * <p>
+     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * passing {@link ChronoField#PROLEPTIC_MONTH} as the field.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a {@code DateTimeException} is thrown.
+     * <p>
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with(TemporalAdjuster)}:
+     * <pre>
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisYearMonth.adjustInto(temporal);
+     *   temporal = temporal.with(thisYearMonth);
+     * </pre>
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, 'temporal');
+        requireInstance(temporal, Temporal, 'temporal');
+        /* TODO: only IsoChronology for now
+        if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
+            throw new DateTimeException("Adjustment only supported on ISO date-time");
+        }*/
+        return temporal.with(ChronoField.PROLEPTIC_MONTH, this._getProlepticMonth());
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Combines this year-month with a day-of-month to create a {@code LocalDate}.
+     * <p>
+     * This returns a {@code LocalDate} formed from this year-month and the specified day-of-month.
+     * <p>
+     * The day-of-month value must be valid for the year-month.
+     * <p>
+     * This method can be used as part of a chain to produce a date:
+     * <pre>
+     *  LocalDate date = year.atMonth(month).atDay(day);
+     * </pre>
+     *
+     * @param {number} dayOfMonth  the day-of-month to use, from 1 to 31
+     * @return {LocalDate} the date formed from this year-month and the specified day, not null
+     * @throws DateTimeException if the day is invalid for the year-month
+     * @see #isValidDay(int)
+     */
+    atDay(dayOfMonth) {
+        return LocalDate.of(this._year, this._month, dayOfMonth);
+    }
+
+    /**
+     * Returns a {@code LocalDate} at the end of the month.
+     * <p>
+     * This returns a {@code LocalDate} based on this year-month.
+     * The day-of-month is set to the last valid day of the month, taking
+     * into account leap years.
+     * <p>
+     * This method can be used as part of a chain to produce a date:
+     * <pre>
+     *  LocalDate date = year.atMonth(month).atEndOfMonth();
+     * </pre>
+     *
+     * @return {LocalDate} the last valid date of this year-month, not null
+     */
+    atEndOfMonth() {
+        return LocalDate.of(this._year, this._month, this.lengthOfMonth());
     }
 
     //-----------------------------------------------------------------------
