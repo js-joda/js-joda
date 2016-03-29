@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pithu/js-joda.git"
+    "url": "git+https://github.com/js-joda/js-joda.git"
   },
   "author": "",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/pithu/js-joda/issues"
+    "url": "https://github.com/js-joda/js-joda/issues"
   },
-  "homepage": "https://github.com/pithu/js-joda#readme",
+  "homepage": "https://github.com/js-joda/js-joda#readme",
   "dependencies": {
     "benchmark": "^2.1.0",
     "js-joda": "^0.9.1",

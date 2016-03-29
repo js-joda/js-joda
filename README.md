@@ -2,8 +2,8 @@ Immutable date and time library for javascript
 ==============================================
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
-[![Build Status](https://travis-ci.org/pithu/js-joda.svg)](https://travis-ci.org/pithu/js-joda)
-[![Coverage Status](https://coveralls.io/repos/pithu/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/pithu/js-joda?branch=master)
+[![Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
+[![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
 
 ## Introduction
 
@@ -79,8 +79,8 @@ Then add it as a script tag to your page
 ## Documentation
 
 + [Cheat Sheet](CheatSheet.md) Quick start guide
-+ [API](https://doc.esdoc.org/github.com/pithu/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
-+ [js-joda Homepage](http://pithu.github.io/js-joda/) Project homepage
++ [API](https://doc.esdoc.org/github.com/js-joda/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [js-joda Homepage](http://js-joda.github.io/js-joda/) Project homepage
 
 ## Roadmap
 
