@@ -13,7 +13,9 @@ import {Instant} from '../../src/Instant';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDateTime} from '../../src/LocalDateTime';
+import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {nativeJs} from '../../src/temporal/NativeJsTemporal';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
@@ -100,5 +102,19 @@ describe('temporal/NativeJsTemporal.js', ()=>{
 
     });
 
+    it('should create a ZonedDateTime from native js Date instance', function () {
+        var jsDate = new Date('2016-02-29T00:00:00Z');
+        var testData = [
+            [new Date('2016-02-29T00:00:00Z'), ZonedDateTime.parse('2016-02-29T00:00:00Z')],
+            [new Date(jsDate.getTime()-1), ZonedDateTime.parse('2016-02-28T23:59:59.999Z')],
+            [new Date(jsDate.getTime()+(24*60*60*1000)-1), ZonedDateTime.parse('2016-02-29T23:59:59.999Z')],
+            [new Date(jsDate.getTime()+(24*60*60*1000)), LocalDate.parse('2016-03-01').atStartOfDay().atZone(ZoneId.UTC)]
+        ];
+
+        dataProviderTest(testData, (jsDate, expectedLocalDateTime) => {
+            var d = ZonedDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
+            assertEquals(d, expectedLocalDateTime);
+        });
+    });
 
 });
