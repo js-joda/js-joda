@@ -5,7 +5,7 @@
  */
 
 import {expect} from 'chai';
-import {assertEquals} from '../testUtils';
+import {assertEquals, assertSame} from '../testUtils';
 
 import '../_init';
 
@@ -17,29 +17,51 @@ import {LocalTime} from '../../src/LocalTime';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import {TextStyle} from '../../src/format/TextStyle';
 
 describe('org.threeten.bp.TestDayOfWeek', () => {
-
-/*
-    it('test_factory_CalendricalObject', () => {
-        assertEquals(DayOfWeek.from(LocalDate.of(2011, 6, 6)), DayOfWeek.MONDAY);
+    
+    describe('of', () => {
+        it('test_factory_int_singleton', () => {
+            for (let i = 1; i <= 7; i++) {
+                let test = DayOfWeek.of(i);
+                assertEquals(test.value(), i);
+                assertSame(DayOfWeek.of(i), test);
+            }
+        });
+        
+        it('test_factory_int_valueTooLow', () => {
+            expect(() => {
+                DayOfWeek.of(0);
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_factory_int_valueTooHigh', () => {
+            expect(() => {
+                DayOfWeek.of(8);
+            }).to.throw(DateTimeException);
+        });
     });
-*/
-
-/*
-    it('test_factory_CalendricalObject_invalid_noDerive', () => {
-        expect(() => {
-            DayOfWeek.from(LocalTime.of(12, 30));
-        }).to.throw(DateTimeException);
+    
+    describe('from', () => {
+        it('test_factory_CalendricalObject', () => {
+            assertEquals(DayOfWeek.from(LocalDate.of(2011, 6, 6)), DayOfWeek.MONDAY);
+        });
+        
+        it('test_factory_CalendricalObject_invalid_noDerive', () => {
+            expect(() => {
+                DayOfWeek.from(LocalTime.of(12, 30));
+            }).to.throw(DateTimeException);
+        });
+        
+        it('test_factory_CalendricalObject_null', () => {
+            expect(() => {
+                DayOfWeek.from(null);
+            }).to.throw(NullPointerException);
+        });
+    
     });
-*/
-
-    it('test_factory_CalendricalObject_null', () => {
-        expect(() => {
-            DayOfWeek.from(null);
-        }).to.throw(NullPointerException);
-    });
-
+    
     describe('get(TemporalField)', function () {
 
         it('test_get_TemporalField', () => {
@@ -71,25 +93,24 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
         });
     
     });
-
-    describe('getDisplayName()', function () {
-        /*
-            it('test_getDisplayName', () => {
-                assertEquals(DayOfWeek.MONDAY.getDisplayName(TextStyle.SHORT, Locale.US), 'Mon');
-            });
-        */
+    
+    describe.skip('getDisplayName()', function () {
+        // TODO: skipped because it needs locale support
+        it('test_getDisplayName', () => {
+            assertEquals(DayOfWeek.MONDAY.getDisplayName(TextStyle.SHORT, Locale.US), 'Mon');
+        });
         
-        /*
-            @Test(expectedExceptions = NullPointerException.class)
-            public void test_getDisplayName_nullStyle() {
+        it('test_getDisplayName_nullStyle', () => {
+            expect(() => {
                 DayOfWeek.MONDAY.getDisplayName(null, Locale.US);
-            }
-            
-            @Test(expectedExceptions = NullPointerException.class)
-            public void test_getDisplayName_nullLocale() {
+            }).to.throw(NullPointerException);
+        });
+        
+        it('test_getDisplayName_nullLocale', () => {
+            expect(() => {
                 DayOfWeek.MONDAY.getDisplayName(TextStyle.FULL, null);
-            }
-        */
+            }).to.throw(NullPointerException);
+        });
     });
 
     describe('plus(long), plus(long,unit)', function () {
@@ -178,7 +199,6 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
 
     });
 
-/*
     describe('adjustInto()', function () {
 
         it('test_adjustInto', () => {
@@ -196,7 +216,6 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
         });
 
     });
-*/
 
     describe('toString()', function() {
 
