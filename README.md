@@ -9,7 +9,7 @@ Immutable date and time library for javascript
 
 + **js-joda** is an **immutable date and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
 
-+ js-joda has a lightweight footprint, only **36 kB minified and compressed**, no third party dependencies.
++ js-joda has a lightweight footprint, only **43 kB minified and compressed**, no third party dependencies.
  
 + js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
  
@@ -17,7 +17,7 @@ Immutable date and time library for javascript
 
 + js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threetenbp, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
 
-+ js-joda is **robust and stable**. We ported more then 1500 test-cases with a lots of test-permutations from the threetenbp project. 
++ js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project.
 We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
      
 
@@ -49,6 +49,16 @@ with the architecture of frameworks like React and Flux.
 + **Duration** is a time-based amount of time, such as '34.5 seconds'.
 
 + **Period**  is a date-based amount of time in the ISO-8601 calendar system, such as '2 years, 3 months and 4 days'.
+
++ **Year**  represents a year in the ISO-8601 calendar system, such as '2016'.
+
++ **YearMonth**  represents a year and a month in the ISO-8601 calendar system, such as '2016-01'.
+
++ **Month**  represents a month-of-year in the ISO-8601 calendar system, such as 'July'.
+
++ **MonthDay**  represents a month-day in the ISO-8601 calendar system, such as '--12-03'. Could be used to represent e.g. Birthdays.
+
++ **DayOfWeek**  represents a day-of-week in the ISO-8601 calendar system, such as 'Tuesday'.
 
 ## Getting started
 
