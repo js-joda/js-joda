@@ -66,8 +66,8 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
  *
  */
 export class LocalDateTime extends ChronoLocalDateTime
-        /** extends ChronoLocalDateTime<LocalDate>
-        implements Temporal, TemporalAdjuster, Serializable */ {
+/** extends ChronoLocalDateTime<LocalDate>
+implements Temporal, TemporalAdjuster, Serializable */ {
 
 
     /**
@@ -286,6 +286,7 @@ export class LocalDateTime extends ChronoLocalDateTime
      * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text, formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME) {
+        requireNonNull(formatter, 'formatter');
         return formatter.parse(text, LocalDateTime.FROM);
     }
 

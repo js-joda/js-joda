@@ -32,6 +32,7 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {ChronoField} from '../../src/temporal/ChronoField';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
@@ -481,27 +482,26 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
-    /** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
-        @Test
-        public void factory_parse_formatter() {
-            DateTimeFormatter f = DateTimeFormatter.ofPattern('u M d');
-            LocalDate test = LocalDate.parse('2010 12 3', f);
+        it('factory_parse_formatter', () => {
+            let f = DateTimeFormatter.ofPattern('u M d');
+            let test = LocalDate.parse('2010 12 3', f);
             assertEquals(test, LocalDate.of(2010, 12, 3));
-        }
+        });
 
-        @Test(expectedExceptions=NullPointerException.class)
-        public void factory_parse_formatter_nullText() {
-            DateTimeFormatter f = DateTimeFormatter.ofPattern('u M d');
-            LocalDate.parse((String) null, f);
-        }
+        it('factory_parse_formatter_nullText', () => {
+            expect(() => {
+                let f = DateTimeFormatter.ofPattern('u M d');
+                LocalDate.parse(null, f);
+            }).to.throw(NullPointerException);
+        });
 
-        @Test(expectedExceptions=NullPointerException.class)
-        public void factory_parse_formatter_nullFormatter() {
-            LocalDate.parse('ANY', null);
-        }
+        it('factory_parse_formatter_nullFormatter', () => {
+            expect(() => {
+                LocalDate.parse('ANY', null);
+            }).to.throw(NullPointerException);
+        });
     });
-     */
 
     describe('get/ getLong(TemporalField)', () => {
         it('test_get_TemporalField', () => {
@@ -1973,21 +1973,24 @@ describe('org.threeten.bp.TestLocalDate', () => {
         }
     });
 
-    /** TODO pattern parser
-     *
     describe('format(DateTimeFormatter)', function () {
         it('test_format_formatter', () => {
-            DateTimeFormatter f = DateTimeFormatter.ofPattern("y M d");
-            String t = LocalDate.of(2010, 12, 3).format(f);
-            assertEquals(t, "2010 12 3");
-        }
+            let f = DateTimeFormatter.ofPattern('y M d');
+            let t = LocalDate.of(2010, 12, 3).format(f);
+            assertEquals(t, '2010 12 3');
+        });
+
+        it('test_format_formatter_2', () => {
+            let f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
+            let t = LocalDate.of(2010, 12, 3).format(f);
+            assertEquals(t, '2010-12-03');
+        });
 
         it('test_format_formatter_null', () => {
             expect(() => {
                 LocalDate.of(2010, 12, 3).format(null);
             }).to.throw(NullPointerException);
-        }
+        });
     });
-    */
 });
 
