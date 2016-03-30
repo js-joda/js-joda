@@ -26,6 +26,7 @@ import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
@@ -495,7 +496,6 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
     });
 
-/* TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
@@ -518,7 +518,6 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
     });
-*/
 
     describe('get(TemporalField)', () => {
 
@@ -2108,7 +2107,6 @@ describe('org.threeten.bp.TestLocalTime', function () {
     });
 
 
-/* TODO pattern parser
     describe('format(DateTimeFormatter)', () => {
 
         it('test_format_formatter()', () => {
@@ -2124,5 +2122,4 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
     });
-*/
 });

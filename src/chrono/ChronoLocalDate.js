@@ -4,8 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {requireNonNull, requireInstance} from '../assert';
+
 import {ChronoField} from '../temporal/ChronoField';
 import {ChronoUnit} from '../temporal/ChronoUnit';
+import {DateTimeFormatter} from '../format/DateTimeFormatter';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 import {Temporal} from '../temporal/Temporal';
 
@@ -199,5 +202,24 @@ export class ChronoLocalDate extends Temporal {
 
     adjustInto(temporal) {
         return temporal.with(ChronoField.EPOCH_DAY, this.toEpochDay());
+    }
+    /**
+     * Formats this date using the specified formatter.
+     * <p>
+     * This date will be passed to the formatter to produce a string.
+     * <p>
+     * The default implementation must behave as follows:
+     * <pre>
+     *  return formatter.format(this);
+     * </pre>
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted date string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return formatter.format(this);
     }
 }

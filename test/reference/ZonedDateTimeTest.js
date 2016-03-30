@@ -31,7 +31,7 @@ import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
-//import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
@@ -2051,14 +2051,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     describe('format(DateTimeFormatter)', () => {
 
-        // TODO pattern parser
-/*
         it('test_format_formatter', () => {
-            var f = DateTimeFormatter.ofPattern("y M d H m s");
+            var f = DateTimeFormatter.ofPattern('y M d H m s');
             var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
-            assertEquals(t, "2010 12 3 11 30 0");
+            assertEquals(t, '2010 12 3 11 30 0');
         });
-*/
 
         it('test_format_formatter_null', () => {
             expect(() => {

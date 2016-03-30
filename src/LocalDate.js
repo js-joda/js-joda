@@ -25,6 +25,7 @@ import {Period} from './Period';
 import {YearConstants} from './YearConstants';
 import {LocalTime} from './LocalTime';
 import {LocalDateTime} from './LocalDateTime';
+import {Year} from './Year';
 import {ZoneId} from './ZoneId';
 import {ZonedDateTime} from './ZonedDateTime';
 
@@ -1714,6 +1715,24 @@ export class LocalDate extends ChronoLocalDate{
 
         return yearString + monthString + dayString;
     }
+
+    /**
+     * Outputs this date as a {@code String} using the formatter.
+     * <p>
+     * This date will be passed to the formatter
+     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted date string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, 'formatter');
+        requireInstance(formatter, DateTimeFormatter, 'formatter');
+        return super.format(formatter);
+    }
+
+
 }
 
 export function _init() {

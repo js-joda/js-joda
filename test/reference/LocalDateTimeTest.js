@@ -21,9 +21,8 @@ import {Instant} from '../../src/Instant';
 import {Month} from '../../src/Month';
 import {Year} from '../../src/Year';
 import {ZoneOffset} from '../../src/ZoneOffset';
-
 import {IsoChronology} from '../../src/chrono/IsoChronology';
-// import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
+import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
@@ -867,7 +866,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     });
 
-/** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
@@ -890,7 +888,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         });
 
     });
-*/
 
     describe('get(DateTimeField)', () => {
 
@@ -3051,13 +3048,17 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
     describe('format(DateTimeFormatter)', () => {
 
-/* TODO pattern parser
         it('test_format_formatter()', () => {
             var f = DateTimeFormatter.ofPattern('y M d H m s');
             var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);
             assertEquals(t, '2010 12 3 11 30 45');
         });
-*/
+
+        it('test_format_formatter_2()', () => {
+            var f = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
+            var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);
+            assertEquals(t, '2010-12-03 11:30:45');
+        });
 
         it('test_format_formatter_null', () => {
             expect(() => {
