@@ -15,6 +15,7 @@ import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {Month} from '../../src/Month';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import {TextStyle} from '../../src/format/TextStyle';
 
 describe('org.threeten.bp.TestMonth', () => {
     const MAX_LENGTH = 12;
@@ -97,16 +98,16 @@ describe('org.threeten.bp.TestMonth', () => {
         });
     });
 
-    describe.skip('getText()', () => {
-        it('test_getText', () => {
+    describe.skip('getDisplayName()', () => {
+        it('test_ggetDisplayName', () => {
             expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql('Jan');
         });
-        it('test_getText_nullStyle', () => {
+        it('test_getDisplayName_nullStyle', () => {
             expect(() => {
                 Month.JANUARY.getDisplayName(null, Locale.US);
             }).to.throw(DateTimeException); //NullPointerException in JDK
         });
-        it('test_getText_nullLocale', () => {
+        it('test_getDisplayName_nullLocale', () => {
             expect(() => {
                 Month.JANUARY.getDisplayName(TextStyle.FULL, null);
             }).to.throw(DateTimeException); //NullPointerException in JDK
