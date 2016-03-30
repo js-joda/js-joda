@@ -36,6 +36,8 @@ with the architecture of frameworks like React and Flux.
 
 ## The threeten domain models
 
+### Dates and Times
+
 + **LocalDate** represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
 
 + **LocalTime** represents a time without time-zone in the ISO-8601 calendar system such as '11:55:00'.
@@ -46,9 +48,13 @@ with the architecture of frameworks like React and Flux.
 
 + **Instant** is an instantaneous point on the time-line measured from the epoch of *1970-01-01T00:00:00Z* in epoch-seconds and nanosecond-of-second.
 
+### Duration and Period
+
 + **Duration** is a time-based amount of time, such as '34.5 seconds'.
 
 + **Period**  is a date-based amount of time in the ISO-8601 calendar system, such as '2 years, 3 months and 4 days'.
+
+### Additional value types
 
 + **Year**  represents a year in the ISO-8601 calendar system, such as '2016'.
 
