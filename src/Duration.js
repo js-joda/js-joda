@@ -44,8 +44,7 @@ import {LocalTime} from './LocalTime';
  * Constant for a duration of zero.
  *
  */
-export class Duration extends TemporalAmount
-        /*implements TemporalAmount, Comparable<Duration>, Serializable */ {
+export class Duration extends TemporalAmount /*implements TemporalAmount, Comparable<Duration>, Serializable */ {
 
     /**
      * Constructs an instance of {@link Duration} using seconds and nanoseconds.
@@ -374,7 +373,8 @@ export class Duration extends TemporalAmount
 
     //-----------------------------------------------------------------------
     /**
-     * to handle function overriding this function accepts any number of arguments, checks their type and delegates to the appropriate function
+     * to handle function overriding this function accepts any number of arguments, checks their type and delegates to the appropriate
+     * function
      *
      * @return {Duration}
      */
@@ -542,30 +542,33 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusDuration(duration) {
+        requireNonNull(duration, 'duration');
         return this.plus(duration.seconds(), duration.nano());
     }
-
-
+    
+    
     /**
-     * to handle function overriding this function accepts two arguments, checks their type and delegates to the appropriate function
-     * 
-     * @param {!(Duration|number)} a
-     * @param {ChronoUnit|number} b
-     * @return {Duration}
+     * function overloading for {@link Duration.of}
+     *
+     * if called with 1 arguments, then {@link Duration.plusDuration} is executed.
+     *
+     * if called with 2 arguments and second argument is an instance of ChronoUnit, then {@link Duration.plusAmountUnit} is executed.
+     *
+     * Otherwise {@link Duration.plusSecondsNanos} is executed.
+     *
+     * @param {!(Duration|number)} arg1
+     * @param {ChronoUnit|number} arg2
+     * @returns {Duration}
      */
-    plus(a, b){
-        if (a instanceof Duration) {
-            requireNonNull(a, 'duration');
-            return this.plusDuration(a);
+    plus() {
+        if (arguments.length === 1) {
+            return this.plusDuration.apply(this, arguments);
         }
-        if (b instanceof ChronoUnit) {
-            requireNonNull(a, 'amount');
-            requireNonNull(b, 'unit');
-            return this.plusAmountUnit(a, b);
+        else if (arguments.length === 2 && arguments[1] instanceof ChronoUnit) {
+            return this.plusAmountUnit.apply(this, arguments);
+        } else {
+            return this.plusSecondsNanos.apply(this, arguments);
         }
-        requireNonNull(a, 'seconds');
-        requireNonNull(b, 'nanos');
-        return this.plusSecondsNanos(a, b);
     }
     
     /**
@@ -585,6 +588,7 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusAmountUnit(amountToAdd, unit) {
+        requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         if (unit === ChronoUnit.DAYS) {
             return this.plusSecondsNanos(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY), 0);
@@ -698,6 +702,8 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if numeric overflow occurs
      */
     plusSecondsNanos(secondsToAdd, nanosToAdd) {
+        requireNonNull(secondsToAdd, 'secondsToAdd');
+        requireNonNull(nanosToAdd, 'nanosToAdd');
         if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
@@ -710,25 +716,22 @@ export class Duration extends TemporalAmount
 
     //-----------------------------------------------------------------------
     /**
-     * to handle function overriding this function accepts two arguments, checks their type and delegates to the appropriate function
+     * function overloading for {@link Duration.minus}
      *
-     * @param {!(Duration|number)} a
-     * @param {ChronoUnit|number} b
+     * if called with 1 arguments and first argument is an instance of Duration, then {@link Duration.minusDuration} is executed.
+     *
+     * Otherwise {@link Duration.minusAmountUnit} is executed.
+     *
+     * @param {!(Duration|number)} arg1
+     * @param {ChronoUnit} arg2
      * @return {Duration}
      */
-    minus(a, b) {
-        if (a instanceof Duration) {
-            requireNonNull(a, 'duration');
-            return this.minusDuration(a);
+    minus() {
+        if (arguments.length === 1) {
+            return this.minusDuration.apply(this, arguments);
+        } else {
+            return this.minusAmountUnit.apply(this, arguments);
         }
-        if (b instanceof ChronoUnit) {
-            requireNonNull(a, 'amount');
-            requireNonNull(b, 'unit');
-            return this.minusAmountUnit(a, b);
-        }
-        requireNonNull(a, 'seconds');
-        requireNonNull(b, 'nanos');
-        return this.minusSecondsNanos(a, b);
     }
 
     /**
@@ -741,6 +744,7 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDuration(duration) {
+        requireNonNull(duration, 'duration');
         var secsToSubtract = duration.seconds();
         var nanosToSubtract = duration.nano();
         if (secsToSubtract === MIN_SAFE_INTEGER) {
@@ -765,6 +769,8 @@ export class Duration extends TemporalAmount
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusAmountUnit(amountToSubtract, unit) {
+        requireNonNull(amountToSubtract, 'amountToSubtract');
+        requireNonNull(unit, 'unit');
         return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 

@@ -50,7 +50,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         it('now_ZoneId_nullZoneId', () => {
             expect(() => {
                 /* call the "private" overloaded method */
-                Year._nowZoneId(null);
+                Year.nowZoneId(null);
             }).to.throw(NullPointerException);
         });
 
@@ -83,7 +83,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         it('now_Clock_nullClock', () => {
             expect(() => {
                 /* call the "private" overloaded method */
-                Year._nowClock(null);
+                Year.nowClock(null);
             }).to.throw(NullPointerException);
         });
     });
