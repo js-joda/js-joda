@@ -52,15 +52,24 @@ import {ZoneId} from './ZoneId';
  */
 export class MonthDay extends Temporal {
     /**
-     * now function overloading
+     * function overloading for {@link MonthDay.now}
+     *
+     * if called with 0 argument {@link MonthDay.now0} is applied,
+     *
+     * if called with 1 argument and first argument is an instance of ZoneId, then {@link MonthDay.nowZoneId} is applied,
+     *
+     * otherwise {@link MonthDay.nowClock} is applied
+     *
+     * @param {!(ZoneId|Clock|null)} arg1
+     * @returns {MonthDay}
      */
     static now() {
         if (arguments.length === 0) {
-            return MonthDay._now0.apply(this, arguments);
+            return MonthDay.now0.apply(this, arguments);
         } else if (arguments.length === 1 && arguments[0] instanceof ZoneId) {
-            return MonthDay._nowZoneId.apply(this, arguments);
+            return MonthDay.nowZoneId.apply(this, arguments);
         } else {
-            return MonthDay._nowClock.apply(this, arguments);
+            return MonthDay.nowClock.apply(this, arguments);
         }
     }
     /**
@@ -74,8 +83,8 @@ export class MonthDay extends Temporal {
      *
      * @return {MonthDay} the current month-day using the system clock and default time-zone, not null
      */
-    static _now0() {
-        return this._nowClock(Clock.systemDefaultZone());
+    static now0() {
+        return this.nowClock(Clock.systemDefaultZone());
     }
 
     /**
@@ -90,9 +99,9 @@ export class MonthDay extends Temporal {
      * @param {ZoneId} zone  the zone ID to use, not null
      * @return {MonthDay} the current month-day using the system clock, not null
      */
-    static _nowZoneId(zone) {
+    static nowZoneId(zone) {
         requireNonNull(zone, 'zone');
-        return this._nowClock(Clock.system(zone));
+        return this.nowClock(Clock.system(zone));
     }
 
     /**
@@ -105,20 +114,28 @@ export class MonthDay extends Temporal {
      * @param {Clock} clock  the clock to use, not null
      * @return {MonthDay} the current month-day, not null
      */
-    static _nowClock(clock) {
+    static nowClock(clock) {
         requireNonNull(clock, 'clock');
         let now = LocalDate.now(clock);  // called once
         return MonthDay.of(now.month(), now.dayOfMonth());
     }
     //-----------------------------------------------------------------------
     /**
-     * of function overloading
+     * function overloading for {@link MonthDay.of}
+     *
+     * if called with 2 argument and first argument is an instance of Month, then {@link MonthDay.ofMonthNumber} is applied,
+     *
+     * otherwise {@link MonthDay.ofNumberNumber} is applied
+     *
+     * @param {!(Month|number)} arg1
+     * @param {!(number|null)} arg2
+     * @returns {MonthDay}
      */
     static of() {
         if (arguments.length === 2 && arguments[0] instanceof Month) {
-            return MonthDay._ofMonthNumber.apply(this, arguments);
+            return MonthDay.ofMonthNumber.apply(this, arguments);
         } else {
-            return MonthDay._ofNumberNumber.apply(this, arguments);
+            return MonthDay.ofNumberNumber.apply(this, arguments);
         }
     }
     /**
@@ -137,7 +154,7 @@ export class MonthDay extends Temporal {
      * @throws DateTimeException if the value of any field is out of range
      * @throws DateTimeException if the day-of-month is invalid for the month
      */
-    static _ofMonthNumber(month, dayOfMonth) {
+    static ofMonthNumber(month, dayOfMonth) {
         requireNonNull(month, 'month');
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth > month.maxLength()) {
@@ -163,7 +180,7 @@ export class MonthDay extends Temporal {
      * @throws DateTimeException if the value of any field is out of range
      * @throws DateTimeException if the day-of-month is invalid for the month
      */
-    static _ofNumberNumber(month, dayOfMonth) {
+    static ofNumberNumber(month, dayOfMonth) {
         requireNonNull(month, 'month');
         requireNonNull(dayOfMonth, 'dayOfMonth');
         return MonthDay.of(Month.of(month), dayOfMonth);
@@ -205,13 +222,20 @@ export class MonthDay extends Temporal {
     }
     //-----------------------------------------------------------------------
     /**
-     * parse function overloading
+     * function overloading for {@link MonthDay.parse}
+     *
+     * if called with 1 argument, then {@link MonthDay.parseString} is applied,
+     *
+     * otherwise {@link MonthDay.parseStringFormatter} is applied
+     *
+     * @param {!(ZoneId|Clock|null)} arg1
+     * @returns {MonthDay}
      */
     static parse() {
         if (arguments.length === 1) {
-            return MonthDay._parseString.apply(this, arguments);
+            return MonthDay.parseString.apply(this, arguments);
         } else {
-            return MonthDay._parseStringFormatter.apply(this, arguments);
+            return MonthDay.parseStringFormatter.apply(this, arguments);
         }
     }
 
@@ -225,8 +249,8 @@ export class MonthDay extends Temporal {
      * @return {MonthDay} the parsed month-day, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseString(text) {
-        return MonthDay._parseStringFormatter(text, PARSER);
+    static parseString(text) {
+        return MonthDay.parseStringFormatter(text, PARSER);
     }
 
     /**
@@ -239,7 +263,7 @@ export class MonthDay extends Temporal {
      * @return {MonthDay} the parsed month-day, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseStringFormatter(text, formatter) {
+    static parseStringFormatter(text, formatter) {
         requireNonNull(text, 'text');
         requireNonNull(formatter, 'formatter');
         requireInstance(formatter, DateTimeFormatter, 'formatter');

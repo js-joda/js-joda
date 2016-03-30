@@ -49,15 +49,24 @@ import {ZoneId} from './ZoneId';
 export class YearMonth extends Temporal {
     //-----------------------------------------------------------------------
     /**
-     * now function overloading
+     * function overloading for {@link YearMonth.now}
+     *
+     * if called with 0 argument {@link YearMonth.now0} is applied,
+     *
+     * if called with 1 argument and first argument is an instance of ZoneId, then {@link YearMonth.nowZoneId} is applied,
+     *
+     * otherwise {@link YearMonth.nowClock} is applied
+     *
+     * @param {!(ZoneId|Clock|null)} arg1
+     * @returns {YearMonth}
      */
     static now() {
         if (arguments.length === 0) {
-            return YearMonth._now0.apply(this, arguments);
+            return YearMonth.now0.apply(this, arguments);
         } else if (arguments.length === 1 && arguments[0] instanceof ZoneId) {
-            return YearMonth._nowZoneId.apply(this, arguments);
+            return YearMonth.nowZoneId.apply(this, arguments);
         } else {
-            return YearMonth._nowClock.apply(this, arguments);
+            return YearMonth.nowClock.apply(this, arguments);
         }
     }
 
@@ -73,8 +82,8 @@ export class YearMonth extends Temporal {
      *
      * @return {YearMonth} the current year-month using the system clock and default time-zone, not null
      */
-    static _now0() {
-        return YearMonth._nowClock(Clock.systemDefaultZone());
+    static now0() {
+        return YearMonth.nowClock(Clock.systemDefaultZone());
     }
 
     /**
@@ -89,8 +98,8 @@ export class YearMonth extends Temporal {
      * @param {ZoneId} zone  the zone ID to use, not null
      * @return {YearMonth} the current year-month using the system clock, not null
      */
-    static _nowZoneId(zone) {
-        return YearMonth._nowClock(Clock.system(zone));
+    static nowZoneId(zone) {
+        return YearMonth.nowClock(Clock.system(zone));
     }
 
     /**
@@ -103,20 +112,28 @@ export class YearMonth extends Temporal {
      * @param {Clock} clock  the clock to use, not null
      * @return {YearMonth} the current year-month, not null
      */
-    static _nowClock(clock) {
+    static nowClock(clock) {
         let now = LocalDate.now(clock);
         return YearMonth.of(now.year(), now.month());
     }
 
     //-----------------------------------------------------------------------
     /**
-     * of function overloading
+     * function overloading for {@link YearMonth.of}
+     *
+     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.ofNumberMonth} is applied,
+     *
+     * otherwise {@link YearMonth.ofNumberNumber} is applied
+     *
+     * @param {!(Month|number)} arg1
+     * @param {!(number|null)} arg2
+     * @returns {YearMonth}
      */
     static of() {
         if (arguments.length === 2 && arguments[1] instanceof Month) {
-            return YearMonth._ofYearMonth.apply(this, arguments);
+            return YearMonth.ofNumberMonth.apply(this, arguments);
         } else {
-            return YearMonth._ofYearMonthNumber.apply(this, arguments);
+            return YearMonth.ofNumberNumber.apply(this, arguments);
         }
     }
 
@@ -128,10 +145,10 @@ export class YearMonth extends Temporal {
      * @return {YearMonth} the year-month, not null
      * @throws DateTimeException if the year value is invalid
      */
-    static _ofYearMonth(year, month) {
+    static ofNumberMonth(year, month) {
         requireNonNull(month, 'month');
         requireInstance(month, Month, 'month');
-        return YearMonth._ofYearMonthNumber(year, month.value());
+        return YearMonth.ofNumberNumber(year, month.value());
     }
 
     /**
@@ -142,7 +159,7 @@ export class YearMonth extends Temporal {
      * @return {YearMonth} the year-month, not null
      * @throws DateTimeException if either field value is invalid
      */
-    static _ofYearMonthNumber(year, month) {
+    static ofNumberNumber(year, month) {
         requireNonNull(year, 'year');
         requireNonNull(month, 'month');
         ChronoField.YEAR.checkValidValue(year);
@@ -187,13 +204,21 @@ export class YearMonth extends Temporal {
     }
     //-----------------------------------------------------------------------
     /**
-     * parse function overloading
+     * function overloading for {@link YearMonth.parse}
+     *
+     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.parseString} is applied,
+     *
+     * otherwise {@link YearMonth.parseStringFormatter} is applied
+     *
+     * @param {!(String)} arg1
+     * @param {!(DateTimeFormatter|null)} arg2
+     * @returns {MonthDay}
      */
     static parse() {
         if (arguments.length === 1) {
-            return YearMonth._parseString.apply(this, arguments);
+            return YearMonth.parseString.apply(this, arguments);
         } else {
-            return YearMonth._parseStringFormatter.apply(this, arguments);
+            return YearMonth.parseStringFormatter.apply(this, arguments);
         }
     }
 
@@ -208,8 +233,8 @@ export class YearMonth extends Temporal {
      * @return {YearMonth} the parsed year-month, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseString(text) {
-        return YearMonth._parseStringFormatter(text, PARSER);
+    static parseString(text) {
+        return YearMonth.parseStringFormatter(text, PARSER);
     }
 
     /**
@@ -222,7 +247,7 @@ export class YearMonth extends Temporal {
      * @return the parsed year-month, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseStringFormatter(text, formatter) {
+    static parseStringFormatter(text, formatter) {
         requireNonNull(formatter, 'formatter');
         return formatter.parse(text, YearMonth.FROM);
     }
@@ -239,15 +264,22 @@ export class YearMonth extends Temporal {
         this._year = year;
         this._month = month;
     }
-
+    
     /**
-     * isSupported function overloading
+     * function overloading for {@link YearMonth.isSupported}
+     *
+     * if called with 1 argument and first argument is an instance of TemporalField, then {@link YearMonth.isSupportedField} is applied,
+     *
+     * otherwise {@link YearMonth.isSupportedUnit} is applied
+     *
+     * @param {!(TemporalField|ChronoUnit)} arg1
+     * @returns {boolean}
      */
     isSupported() {
         if (arguments.length === 1 && arguments[0] instanceof TemporalField) {
-            return this._isSupportedField.apply(this, arguments);
+            return this.isSupportedField.apply(this, arguments);
         } else {
-            return this._isSupportedUnit.apply(this, arguments);
+            return this.isSupportedUnit.apply(this, arguments);
         }
     }
     
@@ -279,7 +311,7 @@ export class YearMonth extends Temporal {
      * @param {TemporalField} field  the field to check, null returns false
      * @return {boolean} true if the field is supported on this year-month, false if not
      */
-    _isSupportedField(field) {
+    isSupportedField(field) {
         if (field instanceof ChronoField) {
             return field === ChronoField.YEAR || field === ChronoField.MONTH_OF_YEAR ||
                     field === ChronoField.PROLEPTIC_MONTH || field === ChronoField.YEAR_OF_ERA || field === ChronoField.ERA;
@@ -287,7 +319,7 @@ export class YearMonth extends Temporal {
         return field != null && field.isSupportedBy(this);
     }
 
-    _isSupportedUnit(unit) {
+    isSupportedUnit(unit) {
         if (unit instanceof ChronoUnit) {
             return unit === ChronoUnit.MONTHS || unit === ChronoUnit.YEARS || unit === ChronoUnit.DECADES || unit === ChronoUnit.CENTURIES || unit === ChronoUnit.MILLENNIA || unit === ChronoUnit.ERAS;
         }
@@ -495,17 +527,27 @@ export class YearMonth extends Temporal {
     lengthOfYear() {
         return (this.isLeapYear() ? 366 : 365);
     }
-
+    
     /**
-     * with function overloading
+     * function overloading for {@link YearMonth.of}
+     *
+     * if called with 1 argument, then {@link YearMonth.withAdjuster} is applied,
+     *
+     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link YearMonth.withFieldValue} is applied,
+     *
+     * otherwise {@link YearMonth.withYearMonth} is applied
+     *
+     * @param {!(TemporalField|TemporalAdjuster)} arg1
+     * @param {!(number|null)} arg2
+     * @returns {YearMonth}
      */
     with() {
         if (arguments.length === 1) {
-            return this._withAdjuster.apply(this, arguments);
+            return this.withAdjuster.apply(this, arguments);
         } else if (arguments.length === 2 && arguments[0] instanceof TemporalField){
-            return this._withFieldValue.apply(this, arguments);
+            return this.withFieldValue.apply(this, arguments);
         } else {
-            return this._withYearMonth.apply(this, arguments);
+            return this.withYearMonth.apply(this, arguments);
         }
     }
     
@@ -517,7 +559,7 @@ export class YearMonth extends Temporal {
      * @param {number} newMonth  the month-of-year to represent, validated not null
      * @return the year-month, not null
      */
-    _withYearMonth(newYear, newMonth) {
+    withYearMonth(newYear, newMonth) {
         if (this._year === newYear && this._month === newMonth) {
             return this;
         }
@@ -546,7 +588,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    _withAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
@@ -598,7 +640,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    _withFieldValue(field, newValue) {
+    withFieldValue(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -628,7 +670,7 @@ export class YearMonth extends Temporal {
      */
     withYear(year) {
         ChronoField.YEAR.checkValidValue(year);
-        return this._withYearMonth(year, this._month);
+        return this.withYearMonth(year, this._month);
     }
 
     /**
@@ -642,18 +684,26 @@ export class YearMonth extends Temporal {
      */
     withMonth(month) {
         ChronoField.MONTH_OF_YEAR.checkValidValue(month);
-        return this._withYearMonth(this._year, month);
+        return this.withYearMonth(this._year, month);
     }
     
     //-----------------------------------------------------------------------
     /**
-     * plus function overloading
+     * function overloading for {@link YearMonth.plus}
+     *
+     * if called with 1 arguments, then {@link YearMonth.plusAmount} is executed.
+     *
+     * Otherwise {@link YearMonth.plusAmountUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {YearMonth}
      */
     plus() {
         if (arguments.length === 1) {
-            return this._plusAmount.apply(this, arguments);
+            return this.plusAmount.apply(this, arguments);
         } else {
-            return this._plusAmountUnit.apply(this, arguments);
+            return this.plusAmountUnit.apply(this, arguments);
         }
     }
 
@@ -673,7 +723,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    _plusAmount(amount) {
+    plusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.addTo(this);
@@ -686,7 +736,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException {@inheritDoc}
      * @throws ArithmeticException {@inheritDoc}
      */
-    _plusAmountUnit(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
         if (unit instanceof ChronoField) {
@@ -717,7 +767,7 @@ export class YearMonth extends Temporal {
             return this;
         }
         let newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
-        return this._withYearMonth(newYear, this._month);
+        return this.withYearMonth(newYear, this._month);
     }
 
     /**
@@ -737,18 +787,26 @@ export class YearMonth extends Temporal {
         let calcMonths = monthCount + monthsToAdd;
         let newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
         let newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
-        return this._withYearMonth(newYear, newMonth);
+        return this.withYearMonth(newYear, newMonth);
     }
 
     //-----------------------------------------------------------------------
     /**
-     * minus function overloading
+     * function overloading for {@link YearMonth.minus}
+     *
+     * if called with 1 arguments, then {@link YearMonth.minusAmount} is executed.
+     *
+     * Otherwise {@link YearMonth.minusAmountUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {YearMonth}
      */
     minus() {
         if (arguments.length === 1) {
-            return this._minusAmount.apply(this, arguments);
+            return this.minusAmount.apply(this, arguments);
         } else {
-            return this._minusAmountUnit.apply(this, arguments);
+            return this.minusAmountUnit.apply(this, arguments);
         }
     }
     
@@ -768,7 +826,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    _minusAmount(amount) {
+    minusAmount(amount) {
         return amount.subtractFrom(this);
     }
 
@@ -779,8 +837,8 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException {@inheritDoc}
      * @throws ArithmeticException {@inheritDoc}
      */
-    _minusAmountUnit(amountToSubtract, unit) {
-        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this._plusAmountUnit(MathUtil.MAX_SAFE_INTEGER, unit)._plusAmountUnit(1, unit) : this._plusAmountUnit(-amountToSubtract, unit));
+    minusAmountUnit(amountToSubtract, unit) {
+        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(MathUtil.MAX_SAFE_INTEGER, unit).plusAmountUnit(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 
     /**

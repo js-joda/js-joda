@@ -6,7 +6,7 @@
 
 import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException} from './errors';
 import {MathUtil} from './MathUtil';
-import {assert} from './assert';
+import {assert, requireNonNull} from './assert';
 
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 
@@ -376,6 +376,7 @@ export class DayOfWeek extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     adjustInto(temporal) {
+        requireNonNull(temporal, 'temporal');
         return temporal.with(ChronoField.DAY_OF_WEEK, this.value());
     }
 

@@ -15,6 +15,7 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
+import {Month} from './Month';
 import {MonthDay} from './MonthDay';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
@@ -25,6 +26,7 @@ import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalUnit} from './temporal/TemporalUnit';
 import {ValueRange} from './temporal/ValueRange';
 import {YearConstants} from './YearConstants';
+import {YearMonth} from './YearMonth';
 import {ZoneId} from './ZoneId';
 
 
@@ -83,20 +85,26 @@ export class Year extends Temporal {
     value() {
         return this._year;
     }
-
+    
     /**
-     * to handle function overriding this function accepts zero or one arguments, checks their type and delegates to the appropriate
-     * function
+     * function overloading for {@link Year.now}
      *
-     * @return {Year}
+     * if called without arguments, then {@link Year.now0} is executed.
+
+     * if called with 1 arguments and first argument is an instance of ZoneId, then {@link Year.nowZoneId} is executed.
+     *
+     * Otherwise {@link Year.nowClock} is executed.
+     *
+     * @param {!(ZoneId|Clock|null)} arg1 
+     * @returns {Year}
      */
     static now(arg = undefined) {
         if (arg === undefined) {
-            return Year._now();
+            return Year.now0();
         } else if (arg instanceof ZoneId) {
-            return Year._nowZoneId(arg);
+            return Year.nowZoneId(arg);
         } else {
-            return Year._nowClock(arg);
+            return Year.nowClock(arg);
         }
     }
     
@@ -111,8 +119,8 @@ export class Year extends Temporal {
      *
      * @return {Year} the current year using the system clock and default time-zone, not null
      */
-    static _now() {
-        return Year._nowClock(Clock.systemDefaultZone());
+    static now0() {
+        return Year.nowClock(Clock.systemDefaultZone());
     }
 
     /**
@@ -127,10 +135,10 @@ export class Year extends Temporal {
      * @param {ZoneId} zone  the zone ID to use, not null
      * @return {Year} the current year using the system clock, not null
      */
-    static _nowZoneId(zone) {
+    static nowZoneId(zone) {
         requireNonNull(zone, 'zone');
         requireInstance(zone, ZoneId, 'zone');
-        return Year._nowClock(Clock.system(zone));
+        return Year.nowClock(Clock.system(zone));
     }
 
     /**
@@ -143,7 +151,7 @@ export class Year extends Temporal {
      * @param {Clock} clock  the clock to use, not null
      * @return {Year} the current year, not null
      */
-    static _nowClock(clock) {
+    static nowClock(clock) {
         requireNonNull(clock, 'clock');
         requireInstance(clock, Clock, 'clock');
         let now = LocalDate.now(clock);  // called once
@@ -206,15 +214,21 @@ export class Year extends Temporal {
     }
     //-----------------------------------------------------------------------
     /**
-     * to handle function overriding this function accepts one or two arguments, checks their type and delegates to the appropriate function
+     * function overloading for {@link Year.parse}
      *
-     * @return {Year}
+     * if called with 1 argument, then {@link Year.parseText} is executed.
+     *
+     * Otherwise {@link Year.parseTextFormatter} is executed.
+     *
+     * @param {!(String)} text
+     * @param {DateTimeFormatter} formatter
+     * @returns {Year}
      */
     static parse() {
         if (arguments.length <= 1) {
-            return Year._parseText(arguments[0]);
+            return Year.parseText(arguments[0]);
         } else {
-            return Year._parseTextFormatter(arguments[0], arguments[1]);
+            return Year.parseTextFormatter(arguments[0], arguments[1]);
         }
     }
     
@@ -228,7 +242,7 @@ export class Year extends Temporal {
      * @return {Year} the parsed year, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseText(text) {
+    static parseText(text) {
         requireNonNull(text, 'text');
         return Year.parse(text, PARSER);
     }
@@ -243,7 +257,7 @@ export class Year extends Temporal {
      * @return {Year} the parsed year, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static _parseTextFormatter(text, formatter) {
+    static parseTextFormatter(text, formatter) {
         requireNonNull(text, 'text');
         requireNonNull(formatter, 'formatter');
         requireInstance(formatter, DateTimeFormatter, 'formatter');
@@ -390,7 +404,15 @@ export class Year extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * plus function overloading
+     * function overloading for {@link Year.plus}
+     *
+     * if called with 1 arguments, then {@link Year.plusAmount} is executed.
+     *
+     * Otherwise {@link Year.plusAmountToAddUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {Year}
      */
     plus() {
         if (arguments.length === 1) {
@@ -464,7 +486,15 @@ export class Year extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * minus function overloading
+     * function overloading for {@link Year.minus}
+     *
+     * if called with 1 argument, then {@link Year.minusAmount} is executed.
+     *
+     * Otherwise {@link Year.minusAmountToSubtractUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
+     * @returns {Year}
      */
     minus() {
         if (arguments.length === 1) {
@@ -590,6 +620,64 @@ export class Year extends Temporal {
      */
     atDay(dayOfYear) {
         return LocalDate.ofYearDay(this._year, dayOfYear);
+    }
+    
+    /**
+     * function overloading for {@link Year.atMonth}
+     *
+     * if called with 1 arguments and first argument is instance of Month, then {@link Year.atMonthMonth} is executed.
+     *
+     * Otherwise {@link Year.atMonthNumber} is executed.
+     *
+     * @param {TemporalUnit} unit
+     * @returns {YearMonth}
+     */
+    atMonth() {
+        if (arguments.length === 1 && arguments[0] instanceof Month) {
+            return this.atMonthMonth.apply(this, arguments);
+        } else {
+            return this.atMonthNumber.apply(this, arguments);
+        }
+    }
+    
+    /**
+     * Combines this year with a month to create a {@code YearMonth}.
+     * <p>
+     * This returns a {@code YearMonth} formed from this year and the specified month.
+     * All possible combinations of year and month are valid.
+     * <p>
+     * This method can be used as part of a chain to produce a date:
+     * <pre>
+     *  LocalDate date = year.atMonth(month).atDay(day);
+     * </pre>
+     *
+     * @param {Month} month  the month-of-year to use, not null
+     * @return {YearMonth} the year-month formed from this year and the specified month, not null
+     */
+    atMonthMonth(month) {
+        requireNonNull(month, 'month');
+        requireInstance(month, Month, 'month');
+        return YearMonth.of(this._year, month);
+    }
+
+    /**
+     * Combines this year with a month to create a {@code YearMonth}.
+     * <p>
+     * This returns a {@code YearMonth} formed from this year and the specified month.
+     * All possible combinations of year and month are valid.
+     * <p>
+     * This method can be used as part of a chain to produce a date:
+     * <pre>
+     *  LocalDate date = year.atMonth(month).atDay(day);
+     * </pre>
+     *
+     * @param {number} month  the month-of-year to use, from 1 (January) to 12 (December)
+     * @return {YearMonth} the year-month formed from this year and the specified month, not null
+     * @throws DateTimeException if the month is invalid
+     */
+    atMonthNumber(month) {
+        requireNonNull(month, 'month');
+        return YearMonth.of(this._year, month);
     }
 
     /**

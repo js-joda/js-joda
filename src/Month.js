@@ -10,6 +10,7 @@ import {MathUtil} from './MathUtil';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
 import {Temporal} from './temporal/Temporal';
 import {TemporalQueries} from './temporal/TemporalQueries';
@@ -55,6 +56,24 @@ export class Month extends Temporal {
         return this._value;
     }
     
+    /**
+     * Gets the textual representation, such as 'Jan' or 'December'.
+     * <p>
+     * This returns the textual name used to identify the month-of-year.
+     * The parameters control the length of the returned text and the locale.
+     * <p>
+     * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
+     *
+     * @param {TextStyle} style - the length of the text required, not null
+     * @param {Locale} locale - the locale to use, not null
+     * @return {string} the text value of the day-of-week, not null
+     */
+    getDisplayName(style, locale) {
+        // TODO:
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+        return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
+    }
+
     /**
      * Checks if the specified field is supported.
      * <p>
