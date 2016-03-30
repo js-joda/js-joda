@@ -15,10 +15,12 @@ import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {LocalTime} from '../../src/LocalTime';
+import {Month} from '../../src/Month';
 import {MonthDay} from '../../src/MonthDay';
 import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import {YearMonth} from '../../src/YearMonth';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
@@ -491,8 +493,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     // atMonth(Month)
     //-----------------------------------------------------------------------
-    // TODO: skipped, needs YearMonth
-    describe.skip('atMonth(Month)', () => {
+    describe('atMonth(Month)', () => {
         it('test_atMonth', () => {
             let test = Year.of(2008);
             expect(test.atMonth(Month.JUNE)).to.eql(YearMonth.of(2008, 6));
@@ -509,8 +510,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     // atMonth(int)
     //-----------------------------------------------------------------------
-    // TODO: skipped, needs YearMonth
-    describe.skip('atMonth(Month)', () => {
+    describe('atMonth(Month)', () => {
         it('test_atMonth_int', () => {
             let test = Year.of(2008);
             expect(test.atMonth(6)).to.eql(YearMonth.of(2008, 6));
