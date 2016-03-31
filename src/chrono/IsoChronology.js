@@ -5,6 +5,9 @@
  */
 
 import {Enum} from '../Enum';
+import {requireNonNull} from '../assert';
+import {DateTimeException} from '../errors';
+import {MathUtil} from '../MathUtil';
 
 import {LocalDate} from '../LocalDate';
 import {Month} from '../Month';
@@ -37,6 +40,25 @@ export class IsoChronology extends Enum{
         return ((prolepticYear & 3) === 0) && ((prolepticYear % 100) !== 0 || (prolepticYear % 400) === 0);
     }
 
+    /**
+     * Updates the map of field-values during resolution.
+     *
+     * @param {?} fieldValues  the fieldValues map to update, not null
+     * @param {ChronoField} field  the field to update, not null
+     * @param {number} value  the value to update, not null
+     * @throws DateTimeException if a conflict occurs
+     */
+    _updateResolveMap(fieldValues, field, value) {
+        // TODO: this function is in Chronology in threetenbp, maybe needs to be moved?
+        requireNonNull(fieldValues, 'fieldValues');
+        requireNonNull(field, 'field');
+        let current = fieldValues.get(field);
+        if (current != null && current !== value) {
+            throw new DateTimeException('Invalid state, field: ' + field + ' ' + current + ' conflicts with ' + field + ' ' + value);
+        }
+        fieldValues.put(field, value);
+    }
+
     resolveDate(fieldValues, resolverStyle) {
         if (fieldValues.containsKey(ChronoField.EPOCH_DAY)) {
             return LocalDate.ofEpochDay(fieldValues.remove(ChronoField.EPOCH_DAY));
@@ -55,38 +77,36 @@ export class IsoChronology extends Enum{
 */
 
         // eras
-/*
-        Long yoeLong = fieldValues.remove(YEAR_OF_ERA);
+        let yoeLong = fieldValues.remove(ChronoField.YEAR_OF_ERA);
         if (yoeLong != null) {
-            if (resolverStyle != ResolverStyle.LENIENT) {
-                YEAR_OF_ERA.checkValidValue(yoeLong);
+            if (resolverStyle !== ResolverStyle.LENIENT) {
+                ChronoField.YEAR_OF_ERA.checkValidValue(yoeLong);
             }
-            Long era = fieldValues.remove(ERA);
+            let era = fieldValues.remove(ChronoField.ERA);
             if (era == null) {
-                Long year = fieldValues.get(ChronoField.YEAR);
-                if (resolverStyle == ResolverStyle.STRICT) {
+                let year = fieldValues.get(ChronoField.YEAR);
+                if (resolverStyle === ResolverStyle.STRICT) {
                     // do not invent era if strict, but do cross-check with year
                     if (year != null) {
-                        updateResolveMap(fieldValues, ChronoField.YEAR, (year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+                        this._updateResolveMap(fieldValues, ChronoField.YEAR, (year > 0 ? yoeLong: MathUtil.safeSubtract(1, yoeLong)));
                     } else {
                         // reinstate the field removed earlier, no cross-check issues
-                        fieldValues.put(YEAR_OF_ERA, yoeLong);
+                        fieldValues.put(ChronoField.YEAR_OF_ERA, yoeLong);
                     }
                 } else {
                     // invent era
-                    updateResolveMap(fieldValues, ChronoField.YEAR, (year == null || year > 0 ? yoeLong: Jdk8Methods.safeSubtract(1, yoeLong)));
+                    this._updateResolveMap(fieldValues, ChronoField.YEAR, (year == null || year > 0 ? yoeLong: MathUtil.safeSubtract(1, yoeLong)));
                 }
-            } else if (era.longValue() == 1L) {
-                updateResolveMap(fieldValues, ChronoField.YEAR, yoeLong);
-            } else if (era.longValue() == 0L) {
-                updateResolveMap(fieldValues, ChronoField.YEAR, Jdk8Methods.safeSubtract(1, yoeLong));
+            } else if (era === 1) {
+                this._updateResolveMap(fieldValues, ChronoField.YEAR, yoeLong);
+            } else if (era === 0) {
+                this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.safeSubtract(1, yoeLong));
             } else {
-                throw new DateTimeException("Invalid value for era: " + era);
+                throw new DateTimeException('Invalid value for era: ' + era);
             }
-        } else if (fieldValues.containsKey(ERA)) {
-            ERA.checkValidValue(fieldValues.get(ERA));  // always validated
+        } else if (fieldValues.containsKey(ChronoField.ERA)) {
+            ChronoField.ERA.checkValidValue(fieldValues.get(ChronoField.ERA));  // always validated
         }
-*/
 
         // build date
         if (fieldValues.containsKey(ChronoField.YEAR)) {

@@ -489,6 +489,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
             assertEquals(test, LocalDate.of(2010, 12, 3));
         });
 
+        it('factory_parse_formatter_2', () => {
+            let f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
+            let test = LocalDate.parse('2010-12-03', f);
+            assertEquals(test, LocalDate.of(2010, 12, 3));
+        });
+
         it('factory_parse_formatter_nullText', () => {
             expect(() => {
                 let f = DateTimeFormatter.ofPattern('u M d');
