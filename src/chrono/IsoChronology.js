@@ -43,7 +43,7 @@ export class IsoChronology extends Enum{
     /**
      * Updates the map of field-values during resolution.
      *
-     * @param {?} fieldValues  the fieldValues map to update, not null
+     * @param {EnumMap} fieldValues  the fieldValues map to update, not null
      * @param {ChronoField} field  the field to update, not null
      * @param {number} value  the value to update, not null
      * @throws DateTimeException if a conflict occurs
