@@ -873,6 +873,13 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             var test = LocalDateTime.parse('2010 12 3 11 30 45', f);
             assertEquals(test, LocalDateTime.of(2010, 12, 3, 11, 30, 45));
         });
+    
+        // TODO tests are missing in threeten bp
+        it('factory_parse_formatter_2()', () => {
+            var f = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
+            var test = LocalDateTime.parse('2010-12-03 11:30:45', f);
+            assertEquals(test, LocalDateTime.of(2010, 12, 3, 11, 30, 45));
+        });
 
         it('factory_parse_formatter_nullText', () => {
             expect(() => {
@@ -3054,6 +3061,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(t, '2010 12 3 11 30 45');
         });
 
+        // TODO tests are missing in threeten bp
         it('test_format_formatter_2()', () => {
             var f = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
             var t = LocalDateTime.of(2010, 12, 3, 11, 30, 45).format(f);
