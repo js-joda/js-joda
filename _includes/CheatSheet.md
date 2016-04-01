@@ -876,7 +876,7 @@ the temporal query returns either a LocalDate or a LocalDateTime, depending on t
 ```javascript
 
 // build a custom date time formatter where the time field is optional
-var OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd['T'HH:mm:ss]")
+var OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd['T'HH:mm[:ss]]")
 
 // create a temporal query that create a new Temporal depending on the existing fields
 dateOrDateTimeQuery = {
