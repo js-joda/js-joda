@@ -714,13 +714,20 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             var test = LocalDateTime.ofInstant(Instant.ofEpochSecond(-86400 + 4, 500), OFFSET_PTWO);
             assertEquals(test, LocalDateTime.of(1969, 12, 31, 2, 0, 4, 500));
         });
+
+        // TODO tests are missing in threeten bp
+        it('factory_ofInstant_invalidType', () => {
+            expect(() => {
+                LocalDateTime.ofInstant(0);
+            }).to.throw(IllegalArgumentException);
+        });
     
         it('factory_ofInstant_instantTooBig', () => {
             expect(() => {
                 LocalDateTime.ofInstant(Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER), OFFSET_PONE);
             }).to.throw(DateTimeException);
         });
-    
+
         it('factory_ofInstant_instantTooSmall', () => {
             expect(() => {
                 LocalDateTime.ofInstant(Instant.ofEpochSecond(MathUtil.MIN_SAFE_INTEGER), OFFSET_PONE);

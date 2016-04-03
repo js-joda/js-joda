@@ -9,6 +9,7 @@ import {assert, requireNonNull, requireInstance} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
 
 import {Clock} from './Clock';
+import {Instant} from './Instant';
 import {LocalDate} from './LocalDate';
 import {LocalTime} from './LocalTime';
 import {ZonedDateTime} from './ZonedDateTime';
@@ -207,6 +208,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      */
     static ofInstant(instant, zone=ZoneId.systemDefault()) {
         requireNonNull(instant, 'instant');
+        requireInstance(instant, Instant, 'instant');
         requireNonNull(zone, 'zone');
         var rules = zone.rules();
         var offset = rules.offset(instant);
