@@ -213,6 +213,8 @@ export class DateTimeFormatter {
      * If the count of letters is four, then the full name is output.
      * Five or more letters throws `IllegalArgumentException`.
      * <p>
+     * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!
+     * <p>
      * **Offset X and x**: This formats the offset based on the number of pattern letters.
      * One letter outputs just the hour', such as '+01', unless the minute is non-zero
      * in which case the minute is also output, such as '+0130'.
