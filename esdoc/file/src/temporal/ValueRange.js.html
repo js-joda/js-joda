@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/temporal/ValueRange.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/js-joda/js-joda.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/StringUtil.js~StringUtil.html">StringUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html">ZoneIdFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeParseContext.js~DateTimeParseContext.html">DateTimeParseContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimePrintContext.js~DateTimePrintContext.html">DateTimePrintContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/EnumMap.js~EnumMap.html">EnumMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ParsePosition.js~ParsePosition.html">ParsePosition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/temporal/ValueRange.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {assert} from &apos;../assert&apos;;
+import {DateTimeException, IllegalArgumentException} from &apos;../errors&apos;;
+import {MathUtil} from &apos;../MathUtil&apos;;
+
+/**
+ * The range of valid values for a date-time field.
+ * 
+ * All TemporalField instances have a valid range of values.
+ * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
+ * This class captures that valid range.
+ * 
+ * It is important to be aware of the limitations of this class.
+ * Only the minimum and maximum values are provided.
+ * It is possible for there to be invalid values within the outer range.
+ * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
+ * have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are invalid.
+ * 
+ * Instances of this class are not tied to a specific field.
+ */
+export class ValueRange {
+
+    /**
+     *
+     * @param {!number} minSmallest
+     * @param {!number} minLargest
+     * @param {!number} maxSmallest
+     * @param {!number} maxLargest
+     */
+    constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
+        assert(!(minSmallest &gt; minLargest), &apos;Smallest minimum value \&apos;&apos; + minSmallest +
+            &apos;\&apos; must be less than largest minimum value \&apos;&apos; + minLargest + &apos;\&apos;&apos;, IllegalArgumentException);
+        assert(!(maxSmallest &gt; maxLargest), &apos;Smallest maximum value \&apos;&apos; + maxSmallest +
+            &apos;\&apos; must be less than largest maximum value \&apos;&apos; + maxLargest + &apos;\&apos;&apos;, IllegalArgumentException);
+        assert(!(minLargest &gt; maxLargest), &apos;Minimum value \&apos;&apos; + minLargest +
+            &apos;\&apos; must be less than maximum value \&apos;&apos; + maxLargest + &apos;\&apos;&apos;, IllegalArgumentException);
+
+        this._minSmallest = minSmallest;
+        this._minLargest = minLargest;
+        this._maxLargest = maxLargest;
+        this._maxSmallest = maxSmallest;
+    }
+
+    /**
+     * Is the value range fixed and fully known.
+     * &lt;p&gt;
+     * For example, the ISO day-of-month runs from 1 to between 28 and 31.
+     * Since there is uncertainty about the maximum value, the range is not fixed.
+     * However, for the month of January, the range is always 1 to 31, thus it is fixed.
+     *
+     * @return {boolean} true if the set of values is fixed
+     */
+    isFixed() {
+        return this._minSmallest === this._minLargest &amp;&amp; this._maxSmallest === this._maxLargest;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    minimum(){
+        return this._minSmallest;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    largestMinimum(){
+        return this._minLargest;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    maximum(){
+        return this._maxLargest;
+    }
+
+    /**
+     *
+     * @returns {number}
+     */
+    smallestMaximum(){
+        return this._maxSmallest;
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     */
+    isValidValue(value) {
+        return (this.minimum() &lt;= value &amp;&amp; value &lt;= this.maximum());
+    }
+
+    /**
+     *
+     * @param {number} value
+     * @param {TemporalField} field
+     */
+    checkValidValue(value, field) {
+        var msg;
+        if (!this.isValidValue(value)) {
+            if (field != null) {
+                msg = (&apos;Invalid value for &apos; + field + &apos; (valid values &apos; + (this.toString()) + &apos;): &apos;) + value;
+            } else {
+                msg = (&apos;Invalid value (valid values &apos; + (this.toString()) + &apos;): &apos;) + value;
+            }
+            return assert(false, msg, DateTimeException);
+        }
+    }
+
+    /**
+     * Checks that the specified value is valid and fits in an {@code int}.
+     * &lt;p&gt;
+     * This validates that the value is within the valid range of values and that
+     * all valid values are within the bounds of an {@code int}.
+     * The field is only used to improve the error message.
+     *
+     * @param {number} value - the value to check
+     * @param {TemporalField} field - the field being checked, may be null
+     * @return {number} the value that was passed in
+     * @see #isValidIntValue(long)
+     */
+    checkValidIntValue(value, field) {
+        if (this.isValidIntValue(value) === false) {
+            throw new DateTimeException(&apos;Invalid int value for &apos; + field + &apos;: &apos; + value);
+        }
+        return value;
+    }
+
+    /**
+     * Checks if the value is within the valid range and that all values
+     * in the range fit in an {@code int}.
+     * &lt;p&gt;
+     * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+     *
+     * @param {number} value - the value to check
+     * @return true if the value is valid and fits in an {@code int}
+     */
+    isValidIntValue(value) {
+        return this.isIntValue() &amp;&amp; this.isValidValue(value);
+    }
+
+    /**
+     * Checks if all values in the range fit in an {@code int}.
+     * &lt;p&gt;
+     * This checks that all valid values are within the bounds of an {@code int}.
+     * &lt;p&gt;
+     * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
+     * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
+     * &lt;p&gt;
+     * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+     *
+     * @return boolean if a valid value always fits in an {@code int}
+     */
+    isIntValue() { // should be isSafeIntegerValue
+        return this.minimum() &gt;= MathUtil.MIN_SAFE_INTEGER &amp;&amp; this.maximum() &lt;= MathUtil.MAX_SAFE_INTEGER;
+    }
+
+    /**
+     * Checks if this range is equal to another range.
+     * &lt;p&gt;
+     * The comparison is based on the four values, minimum, largest minimum,
+     * smallest maximum and maximum.
+     * Only objects of type {@code ValueRange} are compared, other types return false.
+     *
+     * @param {*} other - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other range
+     */
+    equals(other) {
+        if (other === this) {
+            return true;
+        }
+        if (other instanceof ValueRange) {
+            return this._minSmallest === other._minSmallest &amp;&amp; this._minLargest === other._minLargest &amp;&amp;
+                this._maxSmallest === other._maxSmallest &amp;&amp; this._maxLargest === other._maxLargest;
+        }
+        return false;
+    }
+
+    /**
+     * A hash code for this range.
+     *
+     * @return {number} a suitable hash code
+     */
+    hashCode() {
+        var hash = this._minSmallest + this._minLargest &lt;&lt; 16 + this._minLargest &gt;&gt; 48 + this._maxSmallest &lt;&lt; 32 +
+            this._maxSmallest &gt;&gt; 32 + this._maxLargest &lt;&lt; 48 + this._maxLargest &gt;&gt; 16;
+        return (hash ^ (hash &gt;&gt;&gt; 32));
+    }
+    
+    /*
+     * Outputs this range as a String.
+     * 
+     * The format will be &apos;{min}/{largestMin} - {smallestMax}/{max}&apos;,
+     * where the largestMin or smallestMax sections may be omitted, together
+     * with associated slash, if they are the same as the min or max.
+     *
+     * @return {string} a string representation of this range, not null
+     */
+    toString() {
+        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? &apos;/&apos; + (this.largestMinimum()) : &apos;&apos;);
+        str += &apos; - &apos;;
+        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? &apos;/&apos; + (this.maximum()) : &apos;&apos;);
+        return str;
+    }
+
+    /*
+     * called with 2 params: Obtains a fixed value range.
+     *
+     * This factory obtains a range where the minimum and maximum values are fixed.
+     * For example, the ISO month-of-year always runs from 1 to 12.
+     *
+     * @param min  the minimum value
+     * @param max  the maximum value
+     * @return the ValueRange for min, max, not null
+
+     * called with 3 params: Obtains a variable value range.
+     *
+     * This factory obtains a range where the minimum value is fixed and the maximum value may vary.
+     * For example, the ISO day-of-month always starts at 1, but ends between 28 and 31.
+     *
+     * @param min  the minimum value
+     * @param maxSmallest  the smallest maximum value
+     * @param maxLargest  the largest maximum value
+     * @return the ValueRange for min, smallest max, largest max, not null
+
+     * called with 4 params: Obtains a fully variable value range.
+     *
+     * This factory obtains a range where both the minimum and maximum value may vary.
+     *
+     * @param minSmallest  the smallest minimum value
+     * @param minLargest  the largest minimum value
+     * @param maxSmallest  the smallest maximum value
+     * @param maxLargest  the largest maximum value
+     *
+     * @return {ValueRange} the ValueRange for smallest min, largest min, smallest max, largest max, not null
+     */
+    static of() {
+        if (arguments.length === 2) {
+            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
+        } else if (arguments.length === 3) {
+            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
+        } else if (arguments.length === 4) {
+            return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
+        } else {
+            return assert(false, &apos;Invalid number of arguments &apos; + arguments.length, IllegalArgumentException);
+        }
+    }
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

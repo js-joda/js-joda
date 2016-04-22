@@ -1,0 +1,320 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "TemporalAccessor",
+            "range": [
+              240,
+              256
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 24
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "TemporalAccessor",
+            "range": [
+              240,
+              256
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 24
+              }
+            }
+          },
+          "range": [
+            240,
+            256
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 24
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./TemporalAccessor",
+        "raw": "'./TemporalAccessor'",
+        "range": [
+          263,
+          283
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 31
+          },
+          "end": {
+            "line": 7,
+            "column": 51
+          }
+        }
+      },
+      "range": [
+        232,
+        284
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 52
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            230
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Framework-level interface defining read-write access to a temporal object,\n * such as a date, time, offset or some combination of these.\n * <p>\n * This is the base interface type for date, time and offset objects that\n * are complete enough to be manipulated using plus and minus.\n * It is implemented by those classes that can provide and manipulate information\n * as {@link TemporalField fields} or {@link TemporalQuery queries}.\n * See {@link TemporalAccessor} for the read-only version of this interface.\n * <p>\n * Most date and time information can be represented as a number.\n * These are modeled using {@code TemporalField} with the number held using\n * a {@code long} to handle large values. Year, month and day-of-month are\n * simple examples of fields, but they also include instant and offsets.\n * See {@link ChronoField} for the standard set of fields.\n * <p>\n * Two pieces of date/time information cannot be represented by numbers,\n * the {@link Chronology chronology} and the {@link ZoneId time-zone}.\n * These can be accessed via {@link #query(TemporalQuery) queries} using\n * the static methods defined on {@link TemporalQueries}.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code LocalDate}.\n * There are many reasons for this, part of which is that implementations\n * of this interface may be in calendar systems other than ISO.\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\n *\n * <h3>When to implement</h3>\n * <p>\n * A class should implement this interface if it meets three criteria:\n * <p><ul>\n * <li>it provides access to date/time/offset information, as per {@code TemporalAccessor}\n * <li>the set of fields are contiguous from the largest to the smallest\n * <li>the set of fields are complete, such that no other field is needed to define the\n *  valid range of values for the fields that are represented\n * </ul><p>\n * <p>\n * Four examples make this clear:\n * <p><ul>\n * <li>{@code LocalDate} implements this interface as it represents a set of fields\n *  that are contiguous from days to forever and require no external information to determine\n *  the validity of each date. It is therefore able to implement plus/minus correctly.\n * <li>{@code LocalTime} implements this interface as it represents a set of fields\n *  that are contiguous from nanos to within days and require no external information to determine\n *  validity. It is able to implement plus/minus correctly, by wrapping around the day.\n * <li>{@code MonthDay}, the combination of month-of-year and day-of-month, does not implement\n *  this interface.  While the combination is contiguous, from days to months within years,\n *  the combination does not have sufficient information to define the valid range of values\n *  for day-of-month.  As such, it is unable to implement plus/minus correctly.\n * <li>The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\n *  this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\n *  days to months.\n * </ul><p>\n *\n * @interface\n ",
+          "range": [
+            286,
+            3507
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 65,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "Temporal",
+          "range": [
+            3521,
+            3529
+          ],
+          "loc": {
+            "start": {
+              "line": 66,
+              "column": 13
+            },
+            "end": {
+              "line": 66,
+              "column": 21
+            }
+          }
+        },
+        "superClass": {
+          "type": "Identifier",
+          "name": "TemporalAccessor",
+          "range": [
+            3538,
+            3554
+          ],
+          "loc": {
+            "start": {
+              "line": 66,
+              "column": 30
+            },
+            "end": {
+              "line": 66,
+              "column": 46
+            }
+          }
+        },
+        "body": {
+          "type": "ClassBody",
+          "body": [],
+          "range": [
+            3555,
+            3557
+          ],
+          "loc": {
+            "start": {
+              "line": 66,
+              "column": 47
+            },
+            "end": {
+              "line": 66,
+              "column": 49
+            }
+          }
+        },
+        "range": [
+          3515,
+          3557
+        ],
+        "loc": {
+          "start": {
+            "line": 66,
+            "column": 7
+          },
+          "end": {
+            "line": 66,
+            "column": 49
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Framework-level interface defining read-write access to a temporal object,\n * such as a date, time, offset or some combination of these.\n * <p>\n * This is the base interface type for date, time and offset objects that\n * are complete enough to be manipulated using plus and minus.\n * It is implemented by those classes that can provide and manipulate information\n * as {@link TemporalField fields} or {@link TemporalQuery queries}.\n * See {@link TemporalAccessor} for the read-only version of this interface.\n * <p>\n * Most date and time information can be represented as a number.\n * These are modeled using {@code TemporalField} with the number held using\n * a {@code long} to handle large values. Year, month and day-of-month are\n * simple examples of fields, but they also include instant and offsets.\n * See {@link ChronoField} for the standard set of fields.\n * <p>\n * Two pieces of date/time information cannot be represented by numbers,\n * the {@link Chronology chronology} and the {@link ZoneId time-zone}.\n * These can be accessed via {@link #query(TemporalQuery) queries} using\n * the static methods defined on {@link TemporalQueries}.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code LocalDate}.\n * There are many reasons for this, part of which is that implementations\n * of this interface may be in calendar systems other than ISO.\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\n *\n * <h3>When to implement</h3>\n * <p>\n * A class should implement this interface if it meets three criteria:\n * <p><ul>\n * <li>it provides access to date/time/offset information, as per {@code TemporalAccessor}\n * <li>the set of fields are contiguous from the largest to the smallest\n * <li>the set of fields are complete, such that no other field is needed to define the\n *  valid range of values for the fields that are represented\n * </ul><p>\n * <p>\n * Four examples make this clear:\n * <p><ul>\n * <li>{@code LocalDate} implements this interface as it represents a set of fields\n *  that are contiguous from days to forever and require no external information to determine\n *  the validity of each date. It is therefore able to implement plus/minus correctly.\n * <li>{@code LocalTime} implements this interface as it represents a set of fields\n *  that are contiguous from nanos to within days and require no external information to determine\n *  validity. It is able to implement plus/minus correctly, by wrapping around the day.\n * <li>{@code MonthDay}, the combination of month-of-year and day-of-month, does not implement\n *  this interface.  While the combination is contiguous, from days to months within years,\n *  the combination does not have sufficient information to define the valid range of values\n *  for day-of-month.  As such, it is unable to implement plus/minus correctly.\n * <li>The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\n *  this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\n *  days to months.\n * </ul><p>\n *\n * @interface\n ",
+            "range": [
+              286,
+              3507
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 65,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        3508,
+        3557
+      ],
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 0
+        },
+        "end": {
+          "line": 66,
+          "column": 49
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Framework-level interface defining read-write access to a temporal object,\n * such as a date, time, offset or some combination of these.\n * <p>\n * This is the base interface type for date, time and offset objects that\n * are complete enough to be manipulated using plus and minus.\n * It is implemented by those classes that can provide and manipulate information\n * as {@link TemporalField fields} or {@link TemporalQuery queries}.\n * See {@link TemporalAccessor} for the read-only version of this interface.\n * <p>\n * Most date and time information can be represented as a number.\n * These are modeled using {@code TemporalField} with the number held using\n * a {@code long} to handle large values. Year, month and day-of-month are\n * simple examples of fields, but they also include instant and offsets.\n * See {@link ChronoField} for the standard set of fields.\n * <p>\n * Two pieces of date/time information cannot be represented by numbers,\n * the {@link Chronology chronology} and the {@link ZoneId time-zone}.\n * These can be accessed via {@link #query(TemporalQuery) queries} using\n * the static methods defined on {@link TemporalQueries}.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code LocalDate}.\n * There are many reasons for this, part of which is that implementations\n * of this interface may be in calendar systems other than ISO.\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\n *\n * <h3>When to implement</h3>\n * <p>\n * A class should implement this interface if it meets three criteria:\n * <p><ul>\n * <li>it provides access to date/time/offset information, as per {@code TemporalAccessor}\n * <li>the set of fields are contiguous from the largest to the smallest\n * <li>the set of fields are complete, such that no other field is needed to define the\n *  valid range of values for the fields that are represented\n * </ul><p>\n * <p>\n * Four examples make this clear:\n * <p><ul>\n * <li>{@code LocalDate} implements this interface as it represents a set of fields\n *  that are contiguous from days to forever and require no external information to determine\n *  the validity of each date. It is therefore able to implement plus/minus correctly.\n * <li>{@code LocalTime} implements this interface as it represents a set of fields\n *  that are contiguous from nanos to within days and require no external information to determine\n *  validity. It is able to implement plus/minus correctly, by wrapping around the day.\n * <li>{@code MonthDay}, the combination of month-of-year and day-of-month, does not implement\n *  this interface.  While the combination is contiguous, from days to months within years,\n *  the combination does not have sufficient information to define the valid range of values\n *  for day-of-month.  As such, it is unable to implement plus/minus correctly.\n * <li>The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\n *  this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\n *  days to months.\n * </ul><p>\n *\n * @interface\n ",
+          "range": [
+            286,
+            3507
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 65,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    232,
+    3557
+  ],
+  "loc": {
+    "start": {
+      "line": 7,
+      "column": 0
+    },
+    "end": {
+      "line": 66,
+      "column": 49
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Framework-level interface defining read-write access to a temporal object,\n * such as a date, time, offset or some combination of these.\n * <p>\n * This is the base interface type for date, time and offset objects that\n * are complete enough to be manipulated using plus and minus.\n * It is implemented by those classes that can provide and manipulate information\n * as {@link TemporalField fields} or {@link TemporalQuery queries}.\n * See {@link TemporalAccessor} for the read-only version of this interface.\n * <p>\n * Most date and time information can be represented as a number.\n * These are modeled using {@code TemporalField} with the number held using\n * a {@code long} to handle large values. Year, month and day-of-month are\n * simple examples of fields, but they also include instant and offsets.\n * See {@link ChronoField} for the standard set of fields.\n * <p>\n * Two pieces of date/time information cannot be represented by numbers,\n * the {@link Chronology chronology} and the {@link ZoneId time-zone}.\n * These can be accessed via {@link #query(TemporalQuery) queries} using\n * the static methods defined on {@link TemporalQueries}.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code LocalDate}.\n * There are many reasons for this, part of which is that implementations\n * of this interface may be in calendar systems other than ISO.\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\n *\n * <h3>When to implement</h3>\n * <p>\n * A class should implement this interface if it meets three criteria:\n * <p><ul>\n * <li>it provides access to date/time/offset information, as per {@code TemporalAccessor}\n * <li>the set of fields are contiguous from the largest to the smallest\n * <li>the set of fields are complete, such that no other field is needed to define the\n *  valid range of values for the fields that are represented\n * </ul><p>\n * <p>\n * Four examples make this clear:\n * <p><ul>\n * <li>{@code LocalDate} implements this interface as it represents a set of fields\n *  that are contiguous from days to forever and require no external information to determine\n *  the validity of each date. It is therefore able to implement plus/minus correctly.\n * <li>{@code LocalTime} implements this interface as it represents a set of fields\n *  that are contiguous from nanos to within days and require no external information to determine\n *  validity. It is able to implement plus/minus correctly, by wrapping around the day.\n * <li>{@code MonthDay}, the combination of month-of-year and day-of-month, does not implement\n *  this interface.  While the combination is contiguous, from days to months within years,\n *  the combination does not have sufficient information to define the valid range of values\n *  for day-of-month.  As such, it is unable to implement plus/minus correctly.\n * <li>The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\n *  this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\n *  days to months.\n * </ul><p>\n *\n * @interface\n ",
+      "range": [
+        286,
+        3507
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 65,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

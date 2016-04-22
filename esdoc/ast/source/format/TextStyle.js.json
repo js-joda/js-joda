@@ -1,0 +1,3411 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Enum",
+            "range": [
+              164,
+              168
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 8
+              },
+              "end": {
+                "line": 6,
+                "column": 12
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "Enum",
+            "range": [
+              164,
+              168
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 8
+              },
+              "end": {
+                "line": 6,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            164,
+            168
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 8
+            },
+            "end": {
+              "line": 6,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../Enum",
+        "raw": "'../Enum'",
+        "range": [
+          175,
+          184
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 19
+          },
+          "end": {
+            "line": 6,
+            "column": 28
+          }
+        }
+      },
+      "range": [
+        156,
+        185
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 29
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            154
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Enumeration of the style of text formatting and parsing.\n * <p>\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n * <p>\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n * <p>\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * <h3>Specification for implementors</h3>\n * This is immutable and thread-safe enum.\n ",
+          "range": [
+            187,
+            1286
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 27,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "TextStyle",
+          "range": [
+            1300,
+            1309
+          ],
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 13
+            },
+            "end": {
+              "line": 28,
+              "column": 22
+            }
+          }
+        },
+        "superClass": {
+          "type": "Identifier",
+          "name": "Enum",
+          "range": [
+            1318,
+            1322
+          ],
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 31
+            },
+            "end": {
+              "line": 28,
+              "column": 35
+            }
+          }
+        },
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "isStandalone",
+                "range": [
+                  1453,
+                  1465
+                ],
+                "loc": {
+                  "start": {
+                    "line": 34,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 34,
+                    "column": 16
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "SwitchStatement",
+                      "discriminant": {
+                        "type": "ThisExpression",
+                        "range": [
+                          1486,
+                          1490
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "cases": [
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                1511,
+                                1520
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 36,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 36,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "FULL_STANDALONE",
+                              "range": [
+                                1521,
+                                1536
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 36,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 36,
+                                  "column": 42
+                                }
+                              }
+                            },
+                            "range": [
+                              1511,
+                              1536
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 36,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 36,
+                                "column": 42
+                              }
+                            }
+                          },
+                          "consequent": [],
+                          "range": [
+                            1506,
+                            1537
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 43
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                1555,
+                                1564
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 37,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 37,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "SHORT_STANDALONE",
+                              "range": [
+                                1565,
+                                1581
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 37,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 37,
+                                  "column": 43
+                                }
+                              }
+                            },
+                            "range": [
+                              1555,
+                              1581
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 37,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 37,
+                                "column": 43
+                              }
+                            }
+                          },
+                          "consequent": [],
+                          "range": [
+                            1550,
+                            1582
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 37,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 37,
+                              "column": 44
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                1600,
+                                1609
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 38,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 38,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "NARROW_STANDALONE",
+                              "range": [
+                                1610,
+                                1627
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 38,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 38,
+                                  "column": 44
+                                }
+                              }
+                            },
+                            "range": [
+                              1600,
+                              1627
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 38,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 38,
+                                "column": 44
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "Literal",
+                                "value": true,
+                                "raw": "true",
+                                "range": [
+                                  1652,
+                                  1656
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 39,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 39,
+                                    "column": 27
+                                  }
+                                }
+                              },
+                              "range": [
+                                1645,
+                                1657
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 39,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 39,
+                                  "column": 28
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            1595,
+                            1657
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 38,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 39,
+                              "column": 28
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": null,
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "Literal",
+                                "value": false,
+                                "raw": "false",
+                                "range": [
+                                  1702,
+                                  1707
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 41,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 41,
+                                    "column": 28
+                                  }
+                                }
+                              },
+                              "range": [
+                                1695,
+                                1708
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 41,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 41,
+                                  "column": 29
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            1670,
+                            1708
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 40,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 41,
+                              "column": 29
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        1478,
+                        1718
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 42,
+                          "column": 9
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    1468,
+                    1724
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 34,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 43,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  1465,
+                  1724
+                ],
+                "loc": {
+                  "start": {
+                    "line": 34,
+                    "column": 16
+                  },
+                  "end": {
+                    "line": 43,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                1453,
+                1724
+              ],
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 4
+                },
+                "end": {
+                  "line": 43,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Checks if the style is stand-alone.\n     *\n     * @return {boolean} true if the style is stand-alone\n     ",
+                  "range": [
+                    1329,
+                    1448
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 29,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+                  "range": [
+                    1730,
+                    1869
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 45,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 49,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "asStandalone",
+                "range": [
+                  1874,
+                  1886
+                ],
+                "loc": {
+                  "start": {
+                    "line": 50,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 50,
+                    "column": 16
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "SwitchStatement",
+                      "discriminant": {
+                        "type": "ThisExpression",
+                        "range": [
+                          1907,
+                          1911
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 51,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 51,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "cases": [
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                1932,
+                                1941
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 52,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 52,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "FULL",
+                              "range": [
+                                1942,
+                                1946
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 52,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 52,
+                                  "column": 31
+                                }
+                              }
+                            },
+                            "range": [
+                              1932,
+                              1946
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 52,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 52,
+                                "column": 31
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    1971,
+                                    1980
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 53,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 53,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "FULL_STANDALONE",
+                                  "range": [
+                                    1981,
+                                    1996
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 53,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 53,
+                                      "column": 48
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  1971,
+                                  1996
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 53,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 53,
+                                    "column": 48
+                                  }
+                                }
+                              },
+                              "range": [
+                                1964,
+                                1997
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 53,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 53,
+                                  "column": 49
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            1927,
+                            1997
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 52,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 53,
+                              "column": 49
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                2015,
+                                2024
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 54,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 54,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "SHORT",
+                              "range": [
+                                2025,
+                                2030
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 54,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 54,
+                                  "column": 32
+                                }
+                              }
+                            },
+                            "range": [
+                              2015,
+                              2030
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 54,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 54,
+                                "column": 32
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    2055,
+                                    2064
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 55,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 55,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "SHORT_STANDALONE",
+                                  "range": [
+                                    2065,
+                                    2081
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 55,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 55,
+                                      "column": 49
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2055,
+                                  2081
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 55,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 55,
+                                    "column": 49
+                                  }
+                                }
+                              },
+                              "range": [
+                                2048,
+                                2082
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 55,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 55,
+                                  "column": 50
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            2010,
+                            2082
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 54,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 55,
+                              "column": 50
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                2100,
+                                2109
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 56,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 56,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "NARROW",
+                              "range": [
+                                2110,
+                                2116
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 56,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 56,
+                                  "column": 33
+                                }
+                              }
+                            },
+                            "range": [
+                              2100,
+                              2116
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 56,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 56,
+                                "column": 33
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    2141,
+                                    2150
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 57,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 57,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "NARROW_STANDALONE",
+                                  "range": [
+                                    2151,
+                                    2168
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 57,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 57,
+                                      "column": 50
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2141,
+                                  2168
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 57,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 57,
+                                    "column": 50
+                                  }
+                                }
+                              },
+                              "range": [
+                                2134,
+                                2169
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 57,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 57,
+                                  "column": 51
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            2095,
+                            2169
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 56,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 57,
+                              "column": 51
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": null,
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  2267,
+                                  2271
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 60,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 60,
+                                    "column": 27
+                                  }
+                                }
+                              },
+                              "range": [
+                                2260,
+                                2272
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 60,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 60,
+                                  "column": 28
+                                }
+                              },
+                              "leadingComments": [
+                                {
+                                  "type": "Line",
+                                  "value": " all others are already standalone",
+                                  "range": [
+                                    2207,
+                                    2243
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 59,
+                                      "column": 16
+                                    },
+                                    "end": {
+                                      "line": 59,
+                                      "column": 52
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ],
+                          "range": [
+                            2182,
+                            2272
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 58,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 60,
+                              "column": 28
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        1899,
+                        2282
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 51,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 61,
+                          "column": 9
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    1889,
+                    2288
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 50,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 62,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  1886,
+                  2288
+                ],
+                "loc": {
+                  "start": {
+                    "line": 50,
+                    "column": 16
+                  },
+                  "end": {
+                    "line": 62,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                1874,
+                2288
+              ],
+              "loc": {
+                "start": {
+                  "line": 50,
+                  "column": 4
+                },
+                "end": {
+                  "line": 62,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+                  "range": [
+                    1730,
+                    1869
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 45,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 49,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+                  "range": [
+                    2294,
+                    2423
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 68,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "asNormal",
+                "range": [
+                  2428,
+                  2436
+                ],
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 69,
+                    "column": 12
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "SwitchStatement",
+                      "discriminant": {
+                        "type": "ThisExpression",
+                        "range": [
+                          2457,
+                          2461
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 70,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 70,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "cases": [
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                2482,
+                                2491
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 71,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 71,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "FULL_STANDALONE",
+                              "range": [
+                                2492,
+                                2507
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 71,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 71,
+                                  "column": 42
+                                }
+                              }
+                            },
+                            "range": [
+                              2482,
+                              2507
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 71,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 71,
+                                "column": 42
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    2532,
+                                    2541
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 72,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 72,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "FULL",
+                                  "range": [
+                                    2542,
+                                    2546
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 72,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 72,
+                                      "column": 37
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2532,
+                                  2546
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 72,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 72,
+                                    "column": 37
+                                  }
+                                }
+                              },
+                              "range": [
+                                2525,
+                                2547
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 72,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 72,
+                                  "column": 38
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            2477,
+                            2547
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 71,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 72,
+                              "column": 38
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                2565,
+                                2574
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 73,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 73,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "SHORT_STANDALONE",
+                              "range": [
+                                2575,
+                                2591
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 73,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 73,
+                                  "column": 43
+                                }
+                              }
+                            },
+                            "range": [
+                              2565,
+                              2591
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 73,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 73,
+                                "column": 43
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    2616,
+                                    2625
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 74,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 74,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "SHORT",
+                                  "range": [
+                                    2626,
+                                    2631
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 74,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 74,
+                                      "column": 38
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2616,
+                                  2631
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 74,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 74,
+                                    "column": 38
+                                  }
+                                }
+                              },
+                              "range": [
+                                2609,
+                                2632
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 74,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 74,
+                                  "column": 39
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            2560,
+                            2632
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 73,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 74,
+                              "column": 39
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TextStyle",
+                              "range": [
+                                2650,
+                                2659
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 75,
+                                  "column": 17
+                                },
+                                "end": {
+                                  "line": 75,
+                                  "column": 26
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "NARROW_STANDALONE",
+                              "range": [
+                                2660,
+                                2677
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 75,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 75,
+                                  "column": 44
+                                }
+                              }
+                            },
+                            "range": [
+                              2650,
+                              2677
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 75,
+                                "column": 17
+                              },
+                              "end": {
+                                "line": 75,
+                                "column": 44
+                              }
+                            }
+                          },
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TextStyle",
+                                  "range": [
+                                    2702,
+                                    2711
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 76,
+                                      "column": 23
+                                    },
+                                    "end": {
+                                      "line": 76,
+                                      "column": 32
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "NARROW",
+                                  "range": [
+                                    2712,
+                                    2718
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 76,
+                                      "column": 33
+                                    },
+                                    "end": {
+                                      "line": 76,
+                                      "column": 39
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2702,
+                                  2718
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 76,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 76,
+                                    "column": 39
+                                  }
+                                }
+                              },
+                              "range": [
+                                2695,
+                                2719
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 76,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 76,
+                                  "column": 40
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            2645,
+                            2719
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 75,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 76,
+                              "column": 40
+                            }
+                          }
+                        },
+                        {
+                          "type": "SwitchCase",
+                          "test": null,
+                          "consequent": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  2813,
+                                  2817
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 79,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 79,
+                                    "column": 27
+                                  }
+                                }
+                              },
+                              "range": [
+                                2806,
+                                2818
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 79,
+                                  "column": 16
+                                },
+                                "end": {
+                                  "line": 79,
+                                  "column": 28
+                                }
+                              },
+                              "leadingComments": [
+                                {
+                                  "type": "Line",
+                                  "value": " all others are already normal",
+                                  "range": [
+                                    2757,
+                                    2789
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 78,
+                                      "column": 16
+                                    },
+                                    "end": {
+                                      "line": 78,
+                                      "column": 48
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ],
+                          "range": [
+                            2732,
+                            2818
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 77,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 79,
+                              "column": 28
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        2449,
+                        2828
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 70,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 80,
+                          "column": 9
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    2439,
+                    2834
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 69,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 81,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2436,
+                  2834
+                ],
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 81,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2428,
+                2834
+              ],
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 4
+                },
+                "end": {
+                  "line": 81,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+                  "range": [
+                    2294,
+                    2423
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 68,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            }
+          ],
+          "range": [
+            1323,
+            2836
+          ],
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 36
+            },
+            "end": {
+              "line": 82,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          1294,
+          2836
+        ],
+        "loc": {
+          "start": {
+            "line": 28,
+            "column": 7
+          },
+          "end": {
+            "line": 82,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Enumeration of the style of text formatting and parsing.\n * <p>\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n * <p>\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n * <p>\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * <h3>Specification for implementors</h3>\n * This is immutable and thread-safe enum.\n ",
+            "range": [
+              187,
+              1286
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 0
+              },
+              "end": {
+                "line": 27,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+            "range": [
+              2838,
+              2949
+            ],
+            "loc": {
+              "start": {
+                "line": 84,
+                "column": 0
+              },
+              "end": {
+                "line": 87,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1287,
+        2836
+      ],
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 0
+        },
+        "end": {
+          "line": 82,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Enumeration of the style of text formatting and parsing.\n * <p>\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n * <p>\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n * <p>\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * <h3>Specification for implementors</h3>\n * This is immutable and thread-safe enum.\n ",
+          "range": [
+            187,
+            1286
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 27,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+          "range": [
+            2838,
+            2949
+          ],
+          "loc": {
+            "start": {
+              "line": 84,
+              "column": 0
+            },
+            "end": {
+              "line": 87,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              2950,
+              2959
+            ],
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 0
+              },
+              "end": {
+                "line": 88,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "FULL",
+            "range": [
+              2960,
+              2964
+            ],
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 10
+              },
+              "end": {
+                "line": 88,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            2950,
+            2964
+          ],
+          "loc": {
+            "start": {
+              "line": 88,
+              "column": 0
+            },
+            "end": {
+              "line": 88,
+              "column": 14
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              2971,
+              2980
+            ],
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 21
+              },
+              "end": {
+                "line": 88,
+                "column": 30
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "FULL",
+              "raw": "'FULL'",
+              "range": [
+                2981,
+                2987
+              ],
+              "loc": {
+                "start": {
+                  "line": 88,
+                  "column": 31
+                },
+                "end": {
+                  "line": 88,
+                  "column": 37
+                }
+              }
+            }
+          ],
+          "range": [
+            2967,
+            2988
+          ],
+          "loc": {
+            "start": {
+              "line": 88,
+              "column": 17
+            },
+            "end": {
+              "line": 88,
+              "column": 38
+            }
+          }
+        },
+        "range": [
+          2950,
+          2988
+        ],
+        "loc": {
+          "start": {
+            "line": 88,
+            "column": 0
+          },
+          "end": {
+            "line": 88,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        2950,
+        2989
+      ],
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 0
+        },
+        "end": {
+          "line": 88,
+          "column": 39
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+          "range": [
+            2838,
+            2949
+          ],
+          "loc": {
+            "start": {
+              "line": 84,
+              "column": 0
+            },
+            "end": {
+              "line": 87,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+          "range": [
+            2990,
+            3121
+          ],
+          "loc": {
+            "start": {
+              "line": 89,
+              "column": 0
+            },
+            "end": {
+              "line": 92,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3122,
+              3131
+            ],
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 0
+              },
+              "end": {
+                "line": 93,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "FULL_STANDALONE",
+            "range": [
+              3132,
+              3147
+            ],
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 10
+              },
+              "end": {
+                "line": 93,
+                "column": 25
+              }
+            }
+          },
+          "range": [
+            3122,
+            3147
+          ],
+          "loc": {
+            "start": {
+              "line": 93,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 25
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3154,
+              3163
+            ],
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 32
+              },
+              "end": {
+                "line": 93,
+                "column": 41
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "FULL_STANDALONE",
+              "raw": "'FULL_STANDALONE'",
+              "range": [
+                3164,
+                3181
+              ],
+              "loc": {
+                "start": {
+                  "line": 93,
+                  "column": 42
+                },
+                "end": {
+                  "line": 93,
+                  "column": 59
+                }
+              }
+            }
+          ],
+          "range": [
+            3150,
+            3182
+          ],
+          "loc": {
+            "start": {
+              "line": 93,
+              "column": 28
+            },
+            "end": {
+              "line": 93,
+              "column": 60
+            }
+          }
+        },
+        "range": [
+          3122,
+          3182
+        ],
+        "loc": {
+          "start": {
+            "line": 93,
+            "column": 0
+          },
+          "end": {
+            "line": 93,
+            "column": 60
+          }
+        }
+      },
+      "range": [
+        3122,
+        3183
+      ],
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 0
+        },
+        "end": {
+          "line": 93,
+          "column": 61
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+          "range": [
+            2990,
+            3121
+          ],
+          "loc": {
+            "start": {
+              "line": 89,
+              "column": 0
+            },
+            "end": {
+              "line": 92,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+          "range": [
+            3184,
+            3288
+          ],
+          "loc": {
+            "start": {
+              "line": 94,
+              "column": 0
+            },
+            "end": {
+              "line": 97,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3289,
+              3298
+            ],
+            "loc": {
+              "start": {
+                "line": 98,
+                "column": 0
+              },
+              "end": {
+                "line": 98,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "SHORT",
+            "range": [
+              3299,
+              3304
+            ],
+            "loc": {
+              "start": {
+                "line": 98,
+                "column": 10
+              },
+              "end": {
+                "line": 98,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            3289,
+            3304
+          ],
+          "loc": {
+            "start": {
+              "line": 98,
+              "column": 0
+            },
+            "end": {
+              "line": 98,
+              "column": 15
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3311,
+              3320
+            ],
+            "loc": {
+              "start": {
+                "line": 98,
+                "column": 22
+              },
+              "end": {
+                "line": 98,
+                "column": 31
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "SHORT",
+              "raw": "'SHORT'",
+              "range": [
+                3321,
+                3328
+              ],
+              "loc": {
+                "start": {
+                  "line": 98,
+                  "column": 32
+                },
+                "end": {
+                  "line": 98,
+                  "column": 39
+                }
+              }
+            }
+          ],
+          "range": [
+            3307,
+            3329
+          ],
+          "loc": {
+            "start": {
+              "line": 98,
+              "column": 18
+            },
+            "end": {
+              "line": 98,
+              "column": 40
+            }
+          }
+        },
+        "range": [
+          3289,
+          3329
+        ],
+        "loc": {
+          "start": {
+            "line": 98,
+            "column": 0
+          },
+          "end": {
+            "line": 98,
+            "column": 40
+          }
+        }
+      },
+      "range": [
+        3289,
+        3330
+      ],
+      "loc": {
+        "start": {
+          "line": 98,
+          "column": 0
+        },
+        "end": {
+          "line": 98,
+          "column": 41
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+          "range": [
+            3184,
+            3288
+          ],
+          "loc": {
+            "start": {
+              "line": 94,
+              "column": 0
+            },
+            "end": {
+              "line": 97,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+          "range": [
+            3331,
+            3455
+          ],
+          "loc": {
+            "start": {
+              "line": 99,
+              "column": 0
+            },
+            "end": {
+              "line": 102,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3456,
+              3465
+            ],
+            "loc": {
+              "start": {
+                "line": 103,
+                "column": 0
+              },
+              "end": {
+                "line": 103,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "SHORT_STANDALONE",
+            "range": [
+              3466,
+              3482
+            ],
+            "loc": {
+              "start": {
+                "line": 103,
+                "column": 10
+              },
+              "end": {
+                "line": 103,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            3456,
+            3482
+          ],
+          "loc": {
+            "start": {
+              "line": 103,
+              "column": 0
+            },
+            "end": {
+              "line": 103,
+              "column": 26
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3489,
+              3498
+            ],
+            "loc": {
+              "start": {
+                "line": 103,
+                "column": 33
+              },
+              "end": {
+                "line": 103,
+                "column": 42
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "SHORT_STANDALONE",
+              "raw": "'SHORT_STANDALONE'",
+              "range": [
+                3499,
+                3517
+              ],
+              "loc": {
+                "start": {
+                  "line": 103,
+                  "column": 43
+                },
+                "end": {
+                  "line": 103,
+                  "column": 61
+                }
+              }
+            }
+          ],
+          "range": [
+            3485,
+            3518
+          ],
+          "loc": {
+            "start": {
+              "line": 103,
+              "column": 29
+            },
+            "end": {
+              "line": 103,
+              "column": 62
+            }
+          }
+        },
+        "range": [
+          3456,
+          3518
+        ],
+        "loc": {
+          "start": {
+            "line": 103,
+            "column": 0
+          },
+          "end": {
+            "line": 103,
+            "column": 62
+          }
+        }
+      },
+      "range": [
+        3456,
+        3519
+      ],
+      "loc": {
+        "start": {
+          "line": 103,
+          "column": 0
+        },
+        "end": {
+          "line": 103,
+          "column": 63
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+          "range": [
+            3331,
+            3455
+          ],
+          "loc": {
+            "start": {
+              "line": 99,
+              "column": 0
+            },
+            "end": {
+              "line": 102,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+          "range": [
+            3520,
+            3623
+          ],
+          "loc": {
+            "start": {
+              "line": 104,
+              "column": 0
+            },
+            "end": {
+              "line": 107,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3624,
+              3633
+            ],
+            "loc": {
+              "start": {
+                "line": 108,
+                "column": 0
+              },
+              "end": {
+                "line": 108,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "NARROW",
+            "range": [
+              3634,
+              3640
+            ],
+            "loc": {
+              "start": {
+                "line": 108,
+                "column": 10
+              },
+              "end": {
+                "line": 108,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            3624,
+            3640
+          ],
+          "loc": {
+            "start": {
+              "line": 108,
+              "column": 0
+            },
+            "end": {
+              "line": 108,
+              "column": 16
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3647,
+              3656
+            ],
+            "loc": {
+              "start": {
+                "line": 108,
+                "column": 23
+              },
+              "end": {
+                "line": 108,
+                "column": 32
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "NARROW",
+              "raw": "'NARROW'",
+              "range": [
+                3657,
+                3665
+              ],
+              "loc": {
+                "start": {
+                  "line": 108,
+                  "column": 33
+                },
+                "end": {
+                  "line": 108,
+                  "column": 41
+                }
+              }
+            }
+          ],
+          "range": [
+            3643,
+            3666
+          ],
+          "loc": {
+            "start": {
+              "line": 108,
+              "column": 19
+            },
+            "end": {
+              "line": 108,
+              "column": 42
+            }
+          }
+        },
+        "range": [
+          3624,
+          3666
+        ],
+        "loc": {
+          "start": {
+            "line": 108,
+            "column": 0
+          },
+          "end": {
+            "line": 108,
+            "column": 42
+          }
+        }
+      },
+      "range": [
+        3624,
+        3667
+      ],
+      "loc": {
+        "start": {
+          "line": 108,
+          "column": 0
+        },
+        "end": {
+          "line": 108,
+          "column": 43
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+          "range": [
+            3520,
+            3623
+          ],
+          "loc": {
+            "start": {
+              "line": 104,
+              "column": 0
+            },
+            "end": {
+              "line": 107,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+          "range": [
+            3668,
+            3791
+          ],
+          "loc": {
+            "start": {
+              "line": 109,
+              "column": 0
+            },
+            "end": {
+              "line": 112,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3792,
+              3801
+            ],
+            "loc": {
+              "start": {
+                "line": 113,
+                "column": 0
+              },
+              "end": {
+                "line": 113,
+                "column": 9
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "NARROW_STANDALONE",
+            "range": [
+              3802,
+              3819
+            ],
+            "loc": {
+              "start": {
+                "line": 113,
+                "column": 10
+              },
+              "end": {
+                "line": 113,
+                "column": 27
+              }
+            }
+          },
+          "range": [
+            3792,
+            3819
+          ],
+          "loc": {
+            "start": {
+              "line": 113,
+              "column": 0
+            },
+            "end": {
+              "line": 113,
+              "column": 27
+            }
+          }
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "TextStyle",
+            "range": [
+              3826,
+              3835
+            ],
+            "loc": {
+              "start": {
+                "line": 113,
+                "column": 34
+              },
+              "end": {
+                "line": 113,
+                "column": 43
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "NARROW_STANDALONE",
+              "raw": "'NARROW_STANDALONE'",
+              "range": [
+                3836,
+                3855
+              ],
+              "loc": {
+                "start": {
+                  "line": 113,
+                  "column": 44
+                },
+                "end": {
+                  "line": 113,
+                  "column": 63
+                }
+              }
+            }
+          ],
+          "range": [
+            3822,
+            3856
+          ],
+          "loc": {
+            "start": {
+              "line": 113,
+              "column": 30
+            },
+            "end": {
+              "line": 113,
+              "column": 64
+            }
+          }
+        },
+        "range": [
+          3792,
+          3856
+        ],
+        "loc": {
+          "start": {
+            "line": 113,
+            "column": 0
+          },
+          "end": {
+            "line": 113,
+            "column": 64
+          }
+        }
+      },
+      "range": [
+        3792,
+        3857
+      ],
+      "loc": {
+        "start": {
+          "line": 113,
+          "column": 0
+        },
+        "end": {
+          "line": 113,
+          "column": 65
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+          "range": [
+            3668,
+            3791
+          ],
+          "loc": {
+            "start": {
+              "line": 109,
+              "column": 0
+            },
+            "end": {
+              "line": 112,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    156,
+    3857
+  ],
+  "loc": {
+    "start": {
+      "line": 6,
+      "column": 0
+    },
+    "end": {
+      "line": 113,
+      "column": 65
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        154
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Enumeration of the style of text formatting and parsing.\n * <p>\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n * <p>\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n * <p>\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * <h3>Specification for implementors</h3>\n * This is immutable and thread-safe enum.\n ",
+      "range": [
+        187,
+        1286
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Checks if the style is stand-alone.\n     *\n     * @return {boolean} true if the style is stand-alone\n     ",
+      "range": [
+        1329,
+        1448
+      ],
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+      "range": [
+        1730,
+        1869
+      ],
+      "loc": {
+        "start": {
+          "line": 45,
+          "column": 4
+        },
+        "end": {
+          "line": 49,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " all others are already standalone",
+      "range": [
+        2207,
+        2243
+      ],
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 16
+        },
+        "end": {
+          "line": 59,
+          "column": 52
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+      "range": [
+        2294,
+        2423
+      ],
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 68,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " all others are already normal",
+      "range": [
+        2757,
+        2789
+      ],
+      "loc": {
+        "start": {
+          "line": 78,
+          "column": 16
+        },
+        "end": {
+          "line": 78,
+          "column": 48
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "range": [
+        2838,
+        2949
+      ],
+      "loc": {
+        "start": {
+          "line": 84,
+          "column": 0
+        },
+        "end": {
+          "line": 87,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "range": [
+        2990,
+        3121
+      ],
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 0
+        },
+        "end": {
+          "line": 92,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "range": [
+        3184,
+        3288
+      ],
+      "loc": {
+        "start": {
+          "line": 94,
+          "column": 0
+        },
+        "end": {
+          "line": 97,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "range": [
+        3331,
+        3455
+      ],
+      "loc": {
+        "start": {
+          "line": 99,
+          "column": 0
+        },
+        "end": {
+          "line": 102,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "range": [
+        3520,
+        3623
+      ],
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 0
+        },
+        "end": {
+          "line": 107,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "range": [
+        3668,
+        3791
+      ],
+      "loc": {
+        "start": {
+          "line": 109,
+          "column": 0
+        },
+        "end": {
+          "line": 112,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "type": "Program",
+  "body": [],
+  "sourceType": "module",
+  "range": [
+    226,
+    226
+  ],
+  "loc": {
+    "start": {
+      "line": 3,
+      "column": 81
+    },
+    "end": {
+      "line": 3,
+      "column": 81
+    }
+  },
+  "leadingComments": [
+    {
+      "type": "Line",
+      "value": "! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper",
+      "range": [
+        0,
+        64
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
+      "range": [
+        65,
+        144
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 79
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
+      "range": [
+        145,
+        226
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 81
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Line",
+      "value": "! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper",
+      "range": [
+        0,
+        64
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
+      "range": [
+        65,
+        144
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 79
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
+      "range": [
+        145,
+        226
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 81
+        }
+      }
+    }
+  ]
+}

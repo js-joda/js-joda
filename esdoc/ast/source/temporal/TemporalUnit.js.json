@@ -1,0 +1,208 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "TemporalUnit",
+          "range": [
+            1188,
+            1200
+          ],
+          "loc": {
+            "start": {
+              "line": 27,
+              "column": 13
+            },
+            "end": {
+              "line": 27,
+              "column": 25
+            }
+          }
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "body": [],
+          "range": [
+            1201,
+            1203
+          ],
+          "loc": {
+            "start": {
+              "line": 27,
+              "column": 26
+            },
+            "end": {
+              "line": 27,
+              "column": 28
+            }
+          }
+        },
+        "range": [
+          1182,
+          1203
+        ],
+        "loc": {
+          "start": {
+            "line": 27,
+            "column": 7
+          },
+          "end": {
+            "line": 27,
+            "column": 28
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "range": [
+              0,
+              230
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          },
+          {
+            "type": "Block",
+            "value": "*\n * A unit of date-time, such as Days or Hours.\n * <p>\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n * <p>\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n * <p>\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n * <p>\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the unit is a {@code ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+            "range": [
+              232,
+              1174
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 26,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1175,
+        1203
+      ],
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 28
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            230
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        },
+        {
+          "type": "Block",
+          "value": "*\n * A unit of date-time, such as Days or Hours.\n * <p>\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n * <p>\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n * <p>\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n * <p>\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the unit is a {@code ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+          "range": [
+            232,
+            1174
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 26,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    1175,
+    1203
+  ],
+  "loc": {
+    "start": {
+      "line": 27,
+      "column": 0
+    },
+    "end": {
+      "line": 27,
+      "column": 28
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * A unit of date-time, such as Days or Hours.\n * <p>\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n * <p>\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n * <p>\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n * <p>\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the unit is a {@code ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+      "range": [
+        232,
+        1174
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 26,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "TemporalField",
+          "range": [
+            1079,
+            1092
+          ],
+          "loc": {
+            "start": {
+              "line": 24,
+              "column": 13
+            },
+            "end": {
+              "line": 24,
+              "column": 26
+            }
+          }
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "body": [],
+          "range": [
+            1093,
+            1095
+          ],
+          "loc": {
+            "start": {
+              "line": 24,
+              "column": 27
+            },
+            "end": {
+              "line": 24,
+              "column": 29
+            }
+          }
+        },
+        "range": [
+          1073,
+          1095
+        ],
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 7
+          },
+          "end": {
+            "line": 24,
+            "column": 29
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "range": [
+              0,
+              231
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          },
+          {
+            "type": "Block",
+            "value": "*\n * A field of date-time, such as month-of-year or hour-of-minute.\n * <p>\n * Date and time is expressed using fields which partition the time-line into something\n * meaningful for humans. Implementations of this interface represent those fields.\n * <p>\n * The most commonly used units are defined in {@link ChronoField}.\n * Further fields are supplied in {@link IsoFields}, {@link WeekFields} and {@link JulianFields}.\n * Fields can also be written by application code by implementing this interface.\n * <p>\n * The field works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the field is a {@code ChronoField}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+            "range": [
+              233,
+              1065
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 23,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1066,
+        1095
+      ],
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 0
+        },
+        "end": {
+          "line": 24,
+          "column": 29
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            231
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        },
+        {
+          "type": "Block",
+          "value": "*\n * A field of date-time, such as month-of-year or hour-of-minute.\n * <p>\n * Date and time is expressed using fields which partition the time-line into something\n * meaningful for humans. Implementations of this interface represent those fields.\n * <p>\n * The most commonly used units are defined in {@link ChronoField}.\n * Further fields are supplied in {@link IsoFields}, {@link WeekFields} and {@link JulianFields}.\n * Fields can also be written by application code by implementing this interface.\n * <p>\n * The field works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the field is a {@code ChronoField}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+          "range": [
+            233,
+            1065
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 23,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    1066,
+    1095
+  ],
+  "loc": {
+    "start": {
+      "line": 24,
+      "column": 0
+    },
+    "end": {
+      "line": 24,
+      "column": 29
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        231
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * A field of date-time, such as month-of-year or hour-of-minute.\n * <p>\n * Date and time is expressed using fields which partition the time-line into something\n * meaningful for humans. Implementations of this interface represent those fields.\n * <p>\n * The most commonly used units are defined in {@link ChronoField}.\n * Further fields are supplied in {@link IsoFields}, {@link WeekFields} and {@link JulianFields}.\n * Fields can also be written by application code by implementing this interface.\n * <p>\n * The field works using double dispatch. Client code calls methods on a date-time like\n * {@code LocalDateTime} which check if the field is a {@code ChronoField}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
+      "range": [
+        233,
+        1065
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 23,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

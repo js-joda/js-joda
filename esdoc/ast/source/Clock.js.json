@@ -1,0 +1,4981 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              241,
+              259
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              241,
+              259
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            241,
+            259
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 26
+            }
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "requireNonNull",
+            "range": [
+              261,
+              275
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 28
+              },
+              "end": {
+                "line": 7,
+                "column": 42
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "requireNonNull",
+            "range": [
+              261,
+              275
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 28
+              },
+              "end": {
+                "line": 7,
+                "column": 42
+              }
+            }
+          },
+          "range": [
+            261,
+            275
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 28
+            },
+            "end": {
+              "line": 7,
+              "column": 42
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./assert",
+        "raw": "'./assert'",
+        "range": [
+          282,
+          292
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 49
+          },
+          "end": {
+            "line": 7,
+            "column": 59
+          }
+        }
+      },
+      "range": [
+        233,
+        293
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 60
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            231
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Instant",
+            "range": [
+              302,
+              309
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 15
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "Instant",
+            "range": [
+              302,
+              309
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            302,
+            309
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 8
+            },
+            "end": {
+              "line": 8,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Instant",
+        "raw": "'./Instant'",
+        "range": [
+          316,
+          327
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 22
+          },
+          "end": {
+            "line": 8,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        294,
+        328
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "ZoneId",
+            "range": [
+              337,
+              343
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 8
+              },
+              "end": {
+                "line": 9,
+                "column": 14
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "ZoneId",
+            "range": [
+              337,
+              343
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 8
+              },
+              "end": {
+                "line": 9,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            337,
+            343
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 8
+            },
+            "end": {
+              "line": 9,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./ZoneId",
+        "raw": "'./ZoneId'",
+        "range": [
+          350,
+          360
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 31
+          }
+        }
+      },
+      "range": [
+        329,
+        361
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "ZoneOffset",
+            "range": [
+              370,
+              380
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 18
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "ZoneOffset",
+            "range": [
+              370,
+              380
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 18
+              }
+            }
+          },
+          "range": [
+            370,
+            380
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 8
+            },
+            "end": {
+              "line": 10,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./ZoneOffset",
+        "raw": "'./ZoneOffset'",
+        "range": [
+          387,
+          401
+        ],
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 25
+          },
+          "end": {
+            "line": 10,
+            "column": 39
+          }
+        }
+      },
+      "range": [
+        362,
+        402
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 40
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+          "range": [
+            404,
+            1664
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 35,
+              "column": 3
+            }
+          }
+        },
+        {
+          "type": "Block",
+          "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
+          "range": [
+            1666,
+            2351
+          ],
+          "loc": {
+            "start": {
+              "line": 37,
+              "column": 0
+            },
+            "end": {
+              "line": 50,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "Clock",
+          "range": [
+            2366,
+            2371
+          ],
+          "loc": {
+            "start": {
+              "line": 52,
+              "column": 13
+            },
+            "end": {
+              "line": 52,
+              "column": 18
+            }
+          }
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "systemUTC",
+                "range": [
+                  2802,
+                  2811
+                ],
+                "loc": {
+                  "start": {
+                    "line": 62,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 62,
+                    "column": 20
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "NewExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "SystemClock",
+                          "range": [
+                            2835,
+                            2846
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 63,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 63,
+                              "column": 30
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "ZoneOffset",
+                              "range": [
+                                2847,
+                                2857
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 63,
+                                  "column": 31
+                                },
+                                "end": {
+                                  "line": 63,
+                                  "column": 41
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "UTC",
+                              "range": [
+                                2858,
+                                2861
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 63,
+                                  "column": 42
+                                },
+                                "end": {
+                                  "line": 63,
+                                  "column": 45
+                                }
+                              }
+                            },
+                            "range": [
+                              2847,
+                              2861
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 63,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 63,
+                                "column": 45
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          2831,
+                          2862
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 63,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 63,
+                            "column": 46
+                          }
+                        }
+                      },
+                      "range": [
+                        2824,
+                        2863
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 63,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 63,
+                          "column": 47
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    2814,
+                    2869
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 62,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 64,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2811,
+                  2869
+                ],
+                "loc": {
+                  "start": {
+                    "line": 62,
+                    "column": 20
+                  },
+                  "end": {
+                    "line": 64,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2795,
+                2869
+              ],
+              "loc": {
+                "start": {
+                  "line": 62,
+                  "column": 4
+                },
+                "end": {
+                  "line": 64,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     * <p>\n     * This clock, rather than {@link #systemDefaultZone()}, should be used when\n     * you need the current instant without the date or time.\n     * <p>\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
+                  "range": [
+                    2378,
+                    2790
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 53,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 61,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+                  "range": [
+                    2875,
+                    3529
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 66,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 80,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": true
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "systemDefaultZone",
+                "range": [
+                  3541,
+                  3558
+                ],
+                "loc": {
+                  "start": {
+                    "line": 81,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 81,
+                    "column": 28
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "NewExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "SystemClock",
+                          "range": [
+                            3582,
+                            3593
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 82,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 82,
+                              "column": 30
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "Identifier",
+                                "name": "ZoneId",
+                                "range": [
+                                  3594,
+                                  3600
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 82,
+                                    "column": 31
+                                  },
+                                  "end": {
+                                    "line": 82,
+                                    "column": 37
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "systemDefault",
+                                "range": [
+                                  3601,
+                                  3614
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 82,
+                                    "column": 38
+                                  },
+                                  "end": {
+                                    "line": 82,
+                                    "column": 51
+                                  }
+                                }
+                              },
+                              "range": [
+                                3594,
+                                3614
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 82,
+                                  "column": 31
+                                },
+                                "end": {
+                                  "line": 82,
+                                  "column": 51
+                                }
+                              }
+                            },
+                            "arguments": [],
+                            "range": [
+                              3594,
+                              3616
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 82,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 82,
+                                "column": 53
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          3578,
+                          3617
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 82,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 82,
+                            "column": 54
+                          }
+                        }
+                      },
+                      "range": [
+                        3571,
+                        3618
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 82,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 82,
+                          "column": 55
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    3561,
+                    3624
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 81,
+                      "column": 31
+                    },
+                    "end": {
+                      "line": 83,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  3558,
+                  3624
+                ],
+                "loc": {
+                  "start": {
+                    "line": 81,
+                    "column": 28
+                  },
+                  "end": {
+                    "line": 83,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                3534,
+                3624
+              ],
+              "loc": {
+                "start": {
+                  "line": 81,
+                  "column": 4
+                },
+                "end": {
+                  "line": 83,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+                  "range": [
+                    2875,
+                    3529
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 66,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 80,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
+                  "range": [
+                    3630,
+                    3741
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 85,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 89,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": true
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "system",
+                "range": [
+                  3753,
+                  3759
+                ],
+                "loc": {
+                  "start": {
+                    "line": 90,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 90,
+                    "column": 17
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "zone",
+                    "range": [
+                      3760,
+                      3764
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 90,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 90,
+                        "column": 22
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "NewExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "SystemClock",
+                          "range": [
+                            3786,
+                            3797
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 91,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 91,
+                              "column": 30
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "zone",
+                            "range": [
+                              3798,
+                              3802
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 91,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 91,
+                                "column": 35
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          3782,
+                          3803
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 91,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 91,
+                            "column": 36
+                          }
+                        }
+                      },
+                      "range": [
+                        3775,
+                        3804
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 91,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 91,
+                          "column": 37
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    3765,
+                    3810
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 90,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 92,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  3759,
+                  3810
+                ],
+                "loc": {
+                  "start": {
+                    "line": 90,
+                    "column": 17
+                  },
+                  "end": {
+                    "line": 92,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                3746,
+                3810
+              ],
+              "loc": {
+                "start": {
+                  "line": 90,
+                  "column": 4
+                },
+                "end": {
+                  "line": 92,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
+                  "range": [
+                    3630,
+                    3741
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 85,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 89,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+                  "range": [
+                    3816,
+                    4399
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 94,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 105,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": true
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "fixed",
+                "range": [
+                  4411,
+                  4416
+                ],
+                "loc": {
+                  "start": {
+                    "line": 106,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 106,
+                    "column": 16
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "fixedInstant",
+                    "range": [
+                      4417,
+                      4429
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 106,
+                        "column": 17
+                      },
+                      "end": {
+                        "line": 106,
+                        "column": 29
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "zoneOffset",
+                    "range": [
+                      4431,
+                      4441
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 106,
+                        "column": 31
+                      },
+                      "end": {
+                        "line": 106,
+                        "column": 41
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "NewExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "FixedClock",
+                          "range": [
+                            4464,
+                            4474
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 107,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 107,
+                              "column": 29
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "fixedInstant",
+                            "range": [
+                              4475,
+                              4487
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 107,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 107,
+                                "column": 42
+                              }
+                            }
+                          },
+                          {
+                            "type": "Identifier",
+                            "name": "zoneOffset",
+                            "range": [
+                              4489,
+                              4499
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 107,
+                                "column": 44
+                              },
+                              "end": {
+                                "line": 107,
+                                "column": 54
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          4460,
+                          4500
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 107,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 107,
+                            "column": 55
+                          }
+                        }
+                      },
+                      "range": [
+                        4453,
+                        4501
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 107,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 107,
+                          "column": 56
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    4443,
+                    4507
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 106,
+                      "column": 43
+                    },
+                    "end": {
+                      "line": 108,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  4416,
+                  4507
+                ],
+                "loc": {
+                  "start": {
+                    "line": 106,
+                    "column": 16
+                  },
+                  "end": {
+                    "line": 108,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                4404,
+                4507
+              ],
+              "loc": {
+                "start": {
+                  "line": 106,
+                  "column": 4
+                },
+                "end": {
+                  "line": 108,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+                  "range": [
+                    3816,
+                    4399
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 94,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 105,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+                  "range": [
+                    4513,
+                    5316
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 110,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 125,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": true
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "millis",
+                "range": [
+                  5321,
+                  5327
+                ],
+                "loc": {
+                  "start": {
+                    "line": 126,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 126,
+                    "column": 10
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            5339,
+                            5357
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 127,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 127,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "Clock.millis",
+                            "raw": "'Clock.millis'",
+                            "range": [
+                              5358,
+                              5372
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 127,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 127,
+                                "column": 41
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          5339,
+                          5373
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 127,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 127,
+                            "column": 42
+                          }
+                        }
+                      },
+                      "range": [
+                        5339,
+                        5374
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 127,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 127,
+                          "column": 43
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    5329,
+                    5380
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 126,
+                      "column": 12
+                    },
+                    "end": {
+                      "line": 128,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  5327,
+                  5380
+                ],
+                "loc": {
+                  "start": {
+                    "line": 126,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 128,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                5321,
+                5380
+              ],
+              "loc": {
+                "start": {
+                  "line": 126,
+                  "column": 4
+                },
+                "end": {
+                  "line": 128,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+                  "range": [
+                    4513,
+                    5316
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 110,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 125,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+                  "range": [
+                    5386,
+                    5621
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 130,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 136,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "instant",
+                "range": [
+                  5626,
+                  5633
+                ],
+                "loc": {
+                  "start": {
+                    "line": 137,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 137,
+                    "column": 11
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            5645,
+                            5663
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 138,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 138,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "Clock.instant",
+                            "raw": "'Clock.instant'",
+                            "range": [
+                              5664,
+                              5679
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 138,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 138,
+                                "column": 42
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          5645,
+                          5680
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 138,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 138,
+                            "column": 43
+                          }
+                        }
+                      },
+                      "range": [
+                        5645,
+                        5681
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 138,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 138,
+                          "column": 44
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    5635,
+                    5687
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 137,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 139,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  5633,
+                  5687
+                ],
+                "loc": {
+                  "start": {
+                    "line": 137,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 139,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                5626,
+                5687
+              ],
+              "loc": {
+                "start": {
+                  "line": 137,
+                  "column": 4
+                },
+                "end": {
+                  "line": 139,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+                  "range": [
+                    5386,
+                    5621
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 130,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 136,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "zone",
+                "range": [
+                  5693,
+                  5697
+                ],
+                "loc": {
+                  "start": {
+                    "line": 141,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 141,
+                    "column": 8
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            5709,
+                            5727
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 142,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 142,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "Clock.zone",
+                            "raw": "'Clock.zone'",
+                            "range": [
+                              5728,
+                              5740
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 142,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 142,
+                                "column": 39
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          5709,
+                          5741
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 142,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 142,
+                            "column": 40
+                          }
+                        }
+                      },
+                      "range": [
+                        5709,
+                        5742
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 142,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 142,
+                          "column": 41
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    5699,
+                    5748
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 141,
+                      "column": 10
+                    },
+                    "end": {
+                      "line": 143,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  5697,
+                  5748
+                ],
+                "loc": {
+                  "start": {
+                    "line": 141,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 143,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                5693,
+                5748
+              ],
+              "loc": {
+                "start": {
+                  "line": 141,
+                  "column": 4
+                },
+                "end": {
+                  "line": 143,
+                  "column": 5
+                }
+              },
+              "static": false
+            }
+          ],
+          "range": [
+            2372,
+            5750
+          ],
+          "loc": {
+            "start": {
+              "line": 52,
+              "column": 19
+            },
+            "end": {
+              "line": 144,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          2360,
+          5750
+        ],
+        "loc": {
+          "start": {
+            "line": 52,
+            "column": 7
+          },
+          "end": {
+            "line": 144,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+            "range": [
+              404,
+              1664
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 0
+              },
+              "end": {
+                "line": 35,
+                "column": 3
+              }
+            }
+          },
+          {
+            "type": "Block",
+            "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
+            "range": [
+              1666,
+              2351
+            ],
+            "loc": {
+              "start": {
+                "line": 37,
+                "column": 0
+              },
+              "end": {
+                "line": 50,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+            "range": [
+              5752,
+              5856
+            ],
+            "loc": {
+              "start": {
+                "line": 146,
+                "column": 0
+              },
+              "end": {
+                "line": 149,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        2353,
+        5750
+      ],
+      "loc": {
+        "start": {
+          "line": 52,
+          "column": 0
+        },
+        "end": {
+          "line": 144,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+          "range": [
+            404,
+            1664
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 35,
+              "column": 3
+            }
+          }
+        },
+        {
+          "type": "Block",
+          "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
+          "range": [
+            1666,
+            2351
+          ],
+          "loc": {
+            "start": {
+              "line": 37,
+              "column": 0
+            },
+            "end": {
+              "line": 50,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+          "range": [
+            5752,
+            5856
+          ],
+          "loc": {
+            "start": {
+              "line": 146,
+              "column": 0
+            },
+            "end": {
+              "line": 149,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ClassDeclaration",
+      "id": {
+        "type": "Identifier",
+        "name": "SystemClock",
+        "range": [
+          5863,
+          5874
+        ],
+        "loc": {
+          "start": {
+            "line": 150,
+            "column": 6
+          },
+          "end": {
+            "line": 150,
+            "column": 17
+          }
+        }
+      },
+      "superClass": {
+        "type": "Identifier",
+        "name": "Clock",
+        "range": [
+          5883,
+          5888
+        ],
+        "loc": {
+          "start": {
+            "line": 150,
+            "column": 26
+          },
+          "end": {
+            "line": 150,
+            "column": 31
+          }
+        }
+      },
+      "body": {
+        "type": "ClassBody",
+        "body": [
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "constructor",
+              "range": [
+                5947,
+                5958
+              ],
+              "loc": {
+                "start": {
+                  "line": 155,
+                  "column": 4
+                },
+                "end": {
+                  "line": 155,
+                  "column": 15
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "name": "zone",
+                  "range": [
+                    5959,
+                    5963
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 155,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 155,
+                      "column": 20
+                    }
+                  }
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "requireNonNull",
+                        "range": [
+                          5974,
+                          5988
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 156,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 156,
+                            "column": 22
+                          }
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "name": "zone",
+                          "range": [
+                            5989,
+                            5993
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 156,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 156,
+                              "column": 27
+                            }
+                          }
+                        },
+                        {
+                          "type": "Literal",
+                          "value": "zone",
+                          "raw": "'zone'",
+                          "range": [
+                            5995,
+                            6001
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 156,
+                              "column": 29
+                            },
+                            "end": {
+                              "line": 156,
+                              "column": 35
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        5974,
+                        6002
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 156,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 156,
+                          "column": 36
+                        }
+                      }
+                    },
+                    "range": [
+                      5974,
+                      6003
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 156,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 156,
+                        "column": 37
+                      }
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "Super",
+                        "range": [
+                          6012,
+                          6017
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 157,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 157,
+                            "column": 13
+                          }
+                        }
+                      },
+                      "arguments": [],
+                      "range": [
+                        6012,
+                        6019
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 157,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 157,
+                          "column": 15
+                        }
+                      }
+                    },
+                    "range": [
+                      6012,
+                      6020
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 157,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 157,
+                        "column": 16
+                      }
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "AssignmentExpression",
+                      "operator": "=",
+                      "left": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                          "range": [
+                            6029,
+                            6033
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 158,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 158,
+                              "column": 12
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "_zone",
+                          "range": [
+                            6034,
+                            6039
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 158,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 158,
+                              "column": 18
+                            }
+                          }
+                        },
+                        "range": [
+                          6029,
+                          6039
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 158,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 158,
+                            "column": 18
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "zone",
+                        "range": [
+                          6042,
+                          6046
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 158,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 158,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "range": [
+                        6029,
+                        6046
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 158,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 158,
+                          "column": 25
+                        }
+                      }
+                    },
+                    "range": [
+                      6029,
+                      6047
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 158,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 158,
+                        "column": 26
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  5964,
+                  6053
+                ],
+                "loc": {
+                  "start": {
+                    "line": 155,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 159,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                5958,
+                6053
+              ],
+              "loc": {
+                "start": {
+                  "line": 155,
+                  "column": 15
+                },
+                "end": {
+                  "line": 159,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "constructor",
+            "computed": false,
+            "range": [
+              5947,
+              6053
+            ],
+            "loc": {
+              "start": {
+                "line": 155,
+                "column": 4
+              },
+              "end": {
+                "line": 159,
+                "column": 5
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @param {!ZoneId} zone\n     ",
+                "range": [
+                  5895,
+                  5942
+                ],
+                "loc": {
+                  "start": {
+                    "line": 151,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 154,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
+                "range": [
+                  6059,
+                  6103
+                ],
+                "loc": {
+                  "start": {
+                    "line": 161,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 164,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "zone",
+              "range": [
+                6108,
+                6112
+              ],
+              "loc": {
+                "start": {
+                  "line": 165,
+                  "column": 4
+                },
+                "end": {
+                  "line": 165,
+                  "column": 8
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                        "range": [
+                          6132,
+                          6136
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 166,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 166,
+                            "column": 19
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "_zone",
+                        "range": [
+                          6137,
+                          6142
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 166,
+                            "column": 20
+                          },
+                          "end": {
+                            "line": 166,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "range": [
+                        6132,
+                        6142
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 166,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 166,
+                          "column": 25
+                        }
+                      }
+                    },
+                    "range": [
+                      6125,
+                      6143
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 166,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 166,
+                        "column": 26
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6115,
+                  6149
+                ],
+                "loc": {
+                  "start": {
+                    "line": 165,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 167,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6112,
+                6149
+              ],
+              "loc": {
+                "start": {
+                  "line": 165,
+                  "column": 8
+                },
+                "end": {
+                  "line": 167,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6108,
+              6149
+            ],
+            "loc": {
+              "start": {
+                "line": 165,
+                "column": 4
+              },
+              "end": {
+                "line": 167,
+                "column": 5
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
+                "range": [
+                  6059,
+                  6103
+                ],
+                "loc": {
+                  "start": {
+                    "line": 161,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 164,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {number}\n     ",
+                "range": [
+                  6155,
+                  6198
+                ],
+                "loc": {
+                  "start": {
+                    "line": 169,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 172,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "millis",
+              "range": [
+                6203,
+                6209
+              ],
+              "loc": {
+                "start": {
+                  "line": 173,
+                  "column": 4
+                },
+                "end": {
+                  "line": 173,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "NewExpression",
+                          "callee": {
+                            "type": "Identifier",
+                            "name": "Date",
+                            "range": [
+                              6233,
+                              6237
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 174,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 174,
+                                "column": 23
+                              }
+                            }
+                          },
+                          "arguments": [],
+                          "range": [
+                            6229,
+                            6239
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 174,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 174,
+                              "column": 25
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "getTime",
+                          "range": [
+                            6240,
+                            6247
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 174,
+                              "column": 26
+                            },
+                            "end": {
+                              "line": 174,
+                              "column": 33
+                            }
+                          }
+                        },
+                        "range": [
+                          6229,
+                          6247
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 174,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 174,
+                            "column": 33
+                          }
+                        }
+                      },
+                      "arguments": [],
+                      "range": [
+                        6229,
+                        6249
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 174,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 174,
+                          "column": 35
+                        }
+                      }
+                    },
+                    "range": [
+                      6222,
+                      6250
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 174,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 174,
+                        "column": 36
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6212,
+                  6256
+                ],
+                "loc": {
+                  "start": {
+                    "line": 173,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 175,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6209,
+                6256
+              ],
+              "loc": {
+                "start": {
+                  "line": 173,
+                  "column": 10
+                },
+                "end": {
+                  "line": 175,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6203,
+              6256
+            ],
+            "loc": {
+              "start": {
+                "line": 173,
+                "column": 4
+              },
+              "end": {
+                "line": 175,
+                "column": 5
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {number}\n     ",
+                "range": [
+                  6155,
+                  6198
+                ],
+                "loc": {
+                  "start": {
+                    "line": 169,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 172,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {Instant}\n     ",
+                "range": [
+                  6262,
+                  6306
+                ],
+                "loc": {
+                  "start": {
+                    "line": 177,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 180,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "instant",
+              "range": [
+                6311,
+                6318
+              ],
+              "loc": {
+                "start": {
+                  "line": 181,
+                  "column": 4
+                },
+                "end": {
+                  "line": 181,
+                  "column": 11
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "Identifier",
+                          "name": "Instant",
+                          "range": [
+                            6338,
+                            6345
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 182,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 182,
+                              "column": 22
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "ofEpochMilli",
+                          "range": [
+                            6346,
+                            6358
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 182,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 182,
+                              "column": 35
+                            }
+                          }
+                        },
+                        "range": [
+                          6338,
+                          6358
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 182,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 182,
+                            "column": 35
+                          }
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "ThisExpression",
+                              "range": [
+                                6359,
+                                6363
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 182,
+                                  "column": 36
+                                },
+                                "end": {
+                                  "line": 182,
+                                  "column": 40
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "millis",
+                              "range": [
+                                6364,
+                                6370
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 182,
+                                  "column": 41
+                                },
+                                "end": {
+                                  "line": 182,
+                                  "column": 47
+                                }
+                              }
+                            },
+                            "range": [
+                              6359,
+                              6370
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 182,
+                                "column": 36
+                              },
+                              "end": {
+                                "line": 182,
+                                "column": 47
+                              }
+                            }
+                          },
+                          "arguments": [],
+                          "range": [
+                            6359,
+                            6372
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 182,
+                              "column": 36
+                            },
+                            "end": {
+                              "line": 182,
+                              "column": 49
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        6338,
+                        6373
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 182,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 182,
+                          "column": 50
+                        }
+                      }
+                    },
+                    "range": [
+                      6331,
+                      6374
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 182,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 182,
+                        "column": 51
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6321,
+                  6380
+                ],
+                "loc": {
+                  "start": {
+                    "line": 181,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 183,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6318,
+                6380
+              ],
+              "loc": {
+                "start": {
+                  "line": 181,
+                  "column": 11
+                },
+                "end": {
+                  "line": 183,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6311,
+              6380
+            ],
+            "loc": {
+              "start": {
+                "line": 181,
+                "column": 4
+              },
+              "end": {
+                "line": 183,
+                "column": 5
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {Instant}\n     ",
+                "range": [
+                  6262,
+                  6306
+                ],
+                "loc": {
+                  "start": {
+                    "line": 177,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 180,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "trailingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {string}\n     ",
+                "range": [
+                  6386,
+                  6429
+                ],
+                "loc": {
+                  "start": {
+                    "line": 185,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 188,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "toString",
+              "range": [
+                6434,
+                6442
+              ],
+              "loc": {
+                "start": {
+                  "line": 189,
+                  "column": 4
+                },
+                "end": {
+                  "line": 189,
+                  "column": 12
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "BinaryExpression",
+                      "operator": "+",
+                      "left": {
+                        "type": "BinaryExpression",
+                        "operator": "+",
+                        "left": {
+                          "type": "Literal",
+                          "value": "SystemClock[",
+                          "raw": "'SystemClock['",
+                          "range": [
+                            6461,
+                            6475
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 190,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 190,
+                              "column": 29
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  6478,
+                                  6482
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 190,
+                                    "column": 32
+                                  },
+                                  "end": {
+                                    "line": 190,
+                                    "column": 36
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "_zone",
+                                "range": [
+                                  6483,
+                                  6488
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 190,
+                                    "column": 37
+                                  },
+                                  "end": {
+                                    "line": 190,
+                                    "column": 42
+                                  }
+                                }
+                              },
+                              "range": [
+                                6478,
+                                6488
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 190,
+                                  "column": 32
+                                },
+                                "end": {
+                                  "line": 190,
+                                  "column": 42
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "toString",
+                              "range": [
+                                6489,
+                                6497
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 190,
+                                  "column": 43
+                                },
+                                "end": {
+                                  "line": 190,
+                                  "column": 51
+                                }
+                              }
+                            },
+                            "range": [
+                              6478,
+                              6497
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 190,
+                                "column": 32
+                              },
+                              "end": {
+                                "line": 190,
+                                "column": 51
+                              }
+                            }
+                          },
+                          "arguments": [],
+                          "range": [
+                            6478,
+                            6499
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 190,
+                              "column": 32
+                            },
+                            "end": {
+                              "line": 190,
+                              "column": 53
+                            }
+                          }
+                        },
+                        "range": [
+                          6461,
+                          6499
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 190,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 190,
+                            "column": 53
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "Literal",
+                        "value": "]",
+                        "raw": "']'",
+                        "range": [
+                          6502,
+                          6505
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 190,
+                            "column": 56
+                          },
+                          "end": {
+                            "line": 190,
+                            "column": 59
+                          }
+                        }
+                      },
+                      "range": [
+                        6461,
+                        6505
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 190,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 190,
+                          "column": 59
+                        }
+                      }
+                    },
+                    "range": [
+                      6454,
+                      6506
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 190,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 190,
+                        "column": 60
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6444,
+                  6512
+                ],
+                "loc": {
+                  "start": {
+                    "line": 189,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 191,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6442,
+                6512
+              ],
+              "loc": {
+                "start": {
+                  "line": 189,
+                  "column": 12
+                },
+                "end": {
+                  "line": 191,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6434,
+              6512
+            ],
+            "loc": {
+              "start": {
+                "line": 189,
+                "column": 4
+              },
+              "end": {
+                "line": 191,
+                "column": 5
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n     *\n     * @returns {string}\n     ",
+                "range": [
+                  6386,
+                  6429
+                ],
+                "loc": {
+                  "start": {
+                    "line": 185,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 188,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "static": false
+          }
+        ],
+        "range": [
+          5889,
+          6515
+        ],
+        "loc": {
+          "start": {
+            "line": 150,
+            "column": 32
+          },
+          "end": {
+            "line": 193,
+            "column": 1
+          }
+        }
+      },
+      "range": [
+        5857,
+        6515
+      ],
+      "loc": {
+        "start": {
+          "line": 150,
+          "column": 0
+        },
+        "end": {
+          "line": 193,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+          "range": [
+            5752,
+            5856
+          ],
+          "loc": {
+            "start": {
+              "line": 146,
+              "column": 0
+            },
+            "end": {
+              "line": 149,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
+          "range": [
+            6517,
+            6630
+          ],
+          "loc": {
+            "start": {
+              "line": 195,
+              "column": 0
+            },
+            "end": {
+              "line": 198,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ClassDeclaration",
+      "id": {
+        "type": "Identifier",
+        "name": "FixedClock",
+        "range": [
+          6637,
+          6647
+        ],
+        "loc": {
+          "start": {
+            "line": 199,
+            "column": 6
+          },
+          "end": {
+            "line": 199,
+            "column": 16
+          }
+        }
+      },
+      "superClass": {
+        "type": "Identifier",
+        "name": "Clock",
+        "range": [
+          6656,
+          6661
+        ],
+        "loc": {
+          "start": {
+            "line": 199,
+            "column": 25
+          },
+          "end": {
+            "line": 199,
+            "column": 30
+          }
+        }
+      },
+      "body": {
+        "type": "ClassBody",
+        "body": [
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "constructor",
+              "range": [
+                6667,
+                6678
+              ],
+              "loc": {
+                "start": {
+                  "line": 200,
+                  "column": 4
+                },
+                "end": {
+                  "line": 200,
+                  "column": 15
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "name": "fixedInstant",
+                  "range": [
+                    6679,
+                    6691
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 200,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 200,
+                      "column": 28
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "zoneId",
+                  "range": [
+                    6693,
+                    6699
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 200,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 200,
+                      "column": 36
+                    }
+                  }
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "Super",
+                        "range": [
+                          6711,
+                          6716
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 201,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 201,
+                            "column": 13
+                          }
+                        }
+                      },
+                      "arguments": [],
+                      "range": [
+                        6711,
+                        6718
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 201,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 201,
+                          "column": 15
+                        }
+                      }
+                    },
+                    "range": [
+                      6711,
+                      6719
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 201,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 201,
+                        "column": 16
+                      }
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "AssignmentExpression",
+                      "operator": "=",
+                      "left": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                          "range": [
+                            6728,
+                            6732
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 202,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 202,
+                              "column": 12
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "_instant",
+                          "range": [
+                            6733,
+                            6741
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 202,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 202,
+                              "column": 21
+                            }
+                          }
+                        },
+                        "range": [
+                          6728,
+                          6741
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 202,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 202,
+                            "column": 21
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "fixedInstant",
+                        "range": [
+                          6744,
+                          6756
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 202,
+                            "column": 24
+                          },
+                          "end": {
+                            "line": 202,
+                            "column": 36
+                          }
+                        }
+                      },
+                      "range": [
+                        6728,
+                        6756
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 202,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 202,
+                          "column": 36
+                        }
+                      }
+                    },
+                    "range": [
+                      6728,
+                      6757
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 202,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 202,
+                        "column": 37
+                      }
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "AssignmentExpression",
+                      "operator": "=",
+                      "left": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "ThisExpression",
+                          "range": [
+                            6766,
+                            6770
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 203,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 203,
+                              "column": 12
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "_zoneId",
+                          "range": [
+                            6771,
+                            6778
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 203,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 203,
+                              "column": 20
+                            }
+                          }
+                        },
+                        "range": [
+                          6766,
+                          6778
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 203,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 203,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "zoneId",
+                        "range": [
+                          6781,
+                          6787
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 203,
+                            "column": 23
+                          },
+                          "end": {
+                            "line": 203,
+                            "column": 29
+                          }
+                        }
+                      },
+                      "range": [
+                        6766,
+                        6787
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 203,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 203,
+                          "column": 29
+                        }
+                      }
+                    },
+                    "range": [
+                      6766,
+                      6788
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 203,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 203,
+                        "column": 30
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6701,
+                  6794
+                ],
+                "loc": {
+                  "start": {
+                    "line": 200,
+                    "column": 38
+                  },
+                  "end": {
+                    "line": 204,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6678,
+                6794
+              ],
+              "loc": {
+                "start": {
+                  "line": 200,
+                  "column": 15
+                },
+                "end": {
+                  "line": 204,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "constructor",
+            "computed": false,
+            "range": [
+              6667,
+              6794
+            ],
+            "loc": {
+              "start": {
+                "line": 200,
+                "column": 4
+              },
+              "end": {
+                "line": 204,
+                "column": 5
+              }
+            },
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "instant",
+              "range": [
+                6800,
+                6807
+              ],
+              "loc": {
+                "start": {
+                  "line": 206,
+                  "column": 4
+                },
+                "end": {
+                  "line": 206,
+                  "column": 11
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                        "range": [
+                          6827,
+                          6831
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 207,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 207,
+                            "column": 19
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "_instant",
+                        "range": [
+                          6832,
+                          6840
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 207,
+                            "column": 20
+                          },
+                          "end": {
+                            "line": 207,
+                            "column": 28
+                          }
+                        }
+                      },
+                      "range": [
+                        6827,
+                        6840
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 207,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 207,
+                          "column": 28
+                        }
+                      }
+                    },
+                    "range": [
+                      6820,
+                      6841
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 207,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 207,
+                        "column": 29
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6810,
+                  6847
+                ],
+                "loc": {
+                  "start": {
+                    "line": 206,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 208,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6807,
+                6847
+              ],
+              "loc": {
+                "start": {
+                  "line": 206,
+                  "column": 11
+                },
+                "end": {
+                  "line": 208,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6800,
+              6847
+            ],
+            "loc": {
+              "start": {
+                "line": 206,
+                "column": 4
+              },
+              "end": {
+                "line": 208,
+                "column": 5
+              }
+            },
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "millis",
+              "range": [
+                6857,
+                6863
+              ],
+              "loc": {
+                "start": {
+                  "line": 210,
+                  "column": 4
+                },
+                "end": {
+                  "line": 210,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                            "range": [
+                              6882,
+                              6886
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 211,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 211,
+                                "column": 19
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "_instant",
+                            "range": [
+                              6887,
+                              6895
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 211,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 211,
+                                "column": 28
+                              }
+                            }
+                          },
+                          "range": [
+                            6882,
+                            6895
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 211,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 211,
+                              "column": 28
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "toEpochMilli",
+                          "range": [
+                            6896,
+                            6908
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 211,
+                              "column": 29
+                            },
+                            "end": {
+                              "line": 211,
+                              "column": 41
+                            }
+                          }
+                        },
+                        "range": [
+                          6882,
+                          6908
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 211,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 211,
+                            "column": 41
+                          }
+                        }
+                      },
+                      "arguments": [],
+                      "range": [
+                        6882,
+                        6910
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 211,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 211,
+                          "column": 43
+                        }
+                      }
+                    },
+                    "range": [
+                      6875,
+                      6911
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 211,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 211,
+                        "column": 44
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6865,
+                  6917
+                ],
+                "loc": {
+                  "start": {
+                    "line": 210,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 212,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6863,
+                6917
+              ],
+              "loc": {
+                "start": {
+                  "line": 210,
+                  "column": 10
+                },
+                "end": {
+                  "line": 212,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6857,
+              6917
+            ],
+            "loc": {
+              "start": {
+                "line": 210,
+                "column": 4
+              },
+              "end": {
+                "line": 212,
+                "column": 5
+              }
+            },
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "zone",
+              "range": [
+                6923,
+                6927
+              ],
+              "loc": {
+                "start": {
+                  "line": 214,
+                  "column": 4
+                },
+                "end": {
+                  "line": 214,
+                  "column": 8
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "ThisExpression",
+                        "range": [
+                          6947,
+                          6951
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 215,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 215,
+                            "column": 19
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "_zoneId",
+                        "range": [
+                          6952,
+                          6959
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 215,
+                            "column": 20
+                          },
+                          "end": {
+                            "line": 215,
+                            "column": 27
+                          }
+                        }
+                      },
+                      "range": [
+                        6947,
+                        6959
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 215,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 215,
+                          "column": 27
+                        }
+                      }
+                    },
+                    "range": [
+                      6940,
+                      6960
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 215,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 215,
+                        "column": 28
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6930,
+                  6966
+                ],
+                "loc": {
+                  "start": {
+                    "line": 214,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 216,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6927,
+                6966
+              ],
+              "loc": {
+                "start": {
+                  "line": 214,
+                  "column": 8
+                },
+                "end": {
+                  "line": 216,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6923,
+              6966
+            ],
+            "loc": {
+              "start": {
+                "line": 214,
+                "column": 4
+              },
+              "end": {
+                "line": 216,
+                "column": 5
+              }
+            },
+            "static": false
+          },
+          {
+            "type": "MethodDefinition",
+            "key": {
+              "type": "Identifier",
+              "name": "toString",
+              "range": [
+                6972,
+                6980
+              ],
+              "loc": {
+                "start": {
+                  "line": 218,
+                  "column": 4
+                },
+                "end": {
+                  "line": 218,
+                  "column": 12
+                }
+              }
+            },
+            "value": {
+              "type": "FunctionExpression",
+              "id": null,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "argument": {
+                      "type": "Literal",
+                      "value": "FixedClock[]",
+                      "raw": "'FixedClock[]'",
+                      "range": [
+                        6999,
+                        7013
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 219,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 219,
+                          "column": 29
+                        }
+                      }
+                    },
+                    "range": [
+                      6992,
+                      7014
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 219,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 219,
+                        "column": 30
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  6982,
+                  7020
+                ],
+                "loc": {
+                  "start": {
+                    "line": 218,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 220,
+                    "column": 5
+                  }
+                }
+              },
+              "generator": false,
+              "expression": false,
+              "range": [
+                6980,
+                7020
+              ],
+              "loc": {
+                "start": {
+                  "line": 218,
+                  "column": 12
+                },
+                "end": {
+                  "line": 220,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "method",
+            "computed": false,
+            "range": [
+              6972,
+              7020
+            ],
+            "loc": {
+              "start": {
+                "line": 218,
+                "column": 4
+              },
+              "end": {
+                "line": 220,
+                "column": 5
+              }
+            },
+            "static": false
+          }
+        ],
+        "range": [
+          6661,
+          7022
+        ],
+        "loc": {
+          "start": {
+            "line": 199,
+            "column": 30
+          },
+          "end": {
+            "line": 221,
+            "column": 1
+          }
+        }
+      },
+      "range": [
+        6631,
+        7022
+      ],
+      "loc": {
+        "start": {
+          "line": 199,
+          "column": 0
+        },
+        "end": {
+          "line": 221,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
+          "range": [
+            6517,
+            6630
+          ],
+          "loc": {
+            "start": {
+              "line": 195,
+              "column": 0
+            },
+            "end": {
+              "line": 198,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    233,
+    7022
+  ],
+  "loc": {
+    "start": {
+      "line": 7,
+      "column": 0
+    },
+    "end": {
+      "line": 221,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        231
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+      "range": [
+        404,
+        1664
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 35,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
+      "range": [
+        1666,
+        2351
+      ],
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 0
+        },
+        "end": {
+          "line": 50,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     * <p>\n     * This clock, rather than {@link #systemDefaultZone()}, should be used when\n     * you need the current instant without the date or time.\n     * <p>\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
+      "range": [
+        2378,
+        2790
+      ],
+      "loc": {
+        "start": {
+          "line": 53,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+      "range": [
+        2875,
+        3529
+      ],
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 80,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
+      "range": [
+        3630,
+        3741
+      ],
+      "loc": {
+        "start": {
+          "line": 85,
+          "column": 4
+        },
+        "end": {
+          "line": 89,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+      "range": [
+        3816,
+        4399
+      ],
+      "loc": {
+        "start": {
+          "line": 94,
+          "column": 4
+        },
+        "end": {
+          "line": 105,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+      "range": [
+        4513,
+        5316
+      ],
+      "loc": {
+        "start": {
+          "line": 110,
+          "column": 4
+        },
+        "end": {
+          "line": 125,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+      "range": [
+        5386,
+        5621
+      ],
+      "loc": {
+        "start": {
+          "line": 130,
+          "column": 4
+        },
+        "end": {
+          "line": 136,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+      "range": [
+        5752,
+        5856
+      ],
+      "loc": {
+        "start": {
+          "line": 146,
+          "column": 0
+        },
+        "end": {
+          "line": 149,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @param {!ZoneId} zone\n     ",
+      "range": [
+        5895,
+        5942
+      ],
+      "loc": {
+        "start": {
+          "line": 151,
+          "column": 4
+        },
+        "end": {
+          "line": 154,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
+      "range": [
+        6059,
+        6103
+      ],
+      "loc": {
+        "start": {
+          "line": 161,
+          "column": 4
+        },
+        "end": {
+          "line": 164,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @returns {number}\n     ",
+      "range": [
+        6155,
+        6198
+      ],
+      "loc": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 172,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @returns {Instant}\n     ",
+      "range": [
+        6262,
+        6306
+      ],
+      "loc": {
+        "start": {
+          "line": 177,
+          "column": 4
+        },
+        "end": {
+          "line": 180,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     *\n     * @returns {string}\n     ",
+      "range": [
+        6386,
+        6429
+      ],
+      "loc": {
+        "start": {
+          "line": 185,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
+      "range": [
+        6517,
+        6630
+      ],
+      "loc": {
+        "start": {
+          "line": 195,
+          "column": 0
+        },
+        "end": {
+          "line": 198,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

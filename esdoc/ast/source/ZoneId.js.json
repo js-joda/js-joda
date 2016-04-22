@@ -1,0 +1,2618 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              240,
+              258
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              240,
+              258
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            240,
+            258
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 26
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./assert",
+        "raw": "'./assert'",
+        "range": [
+          265,
+          275
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 33
+          },
+          "end": {
+            "line": 7,
+            "column": 43
+          }
+        }
+      },
+      "range": [
+        232,
+        276
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 44
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            230
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "StringUtil",
+            "range": [
+              285,
+              295
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 18
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "StringUtil",
+            "range": [
+              285,
+              295
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 18
+              }
+            }
+          },
+          "range": [
+            285,
+            295
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 8
+            },
+            "end": {
+              "line": 8,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./StringUtil",
+        "raw": "'./StringUtil'",
+        "range": [
+          302,
+          316
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 25
+          },
+          "end": {
+            "line": 8,
+            "column": 39
+          }
+        }
+      },
+      "range": [
+        277,
+        317
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Instant",
+            "range": [
+              327,
+              334
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 15
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "Instant",
+            "range": [
+              327,
+              334
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            327,
+            334
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 8
+            },
+            "end": {
+              "line": 10,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Instant",
+        "raw": "'./Instant'",
+        "range": [
+          341,
+          352
+        ],
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 22
+          },
+          "end": {
+            "line": 10,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        319,
+        353
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "ZoneId",
+          "range": [
+            368,
+            374
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 13
+            },
+            "end": {
+              "line": 12,
+              "column": 19
+            }
+          }
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "rules",
+                "range": [
+                  1503,
+                  1508
+                ],
+                "loc": {
+                  "start": {
+                    "line": 34,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 34,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            1520,
+                            1538
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 35,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 35,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "ZoneId.rules",
+                            "raw": "'ZoneId.rules'",
+                            "range": [
+                              1539,
+                              1553
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 35,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 35,
+                                "column": 41
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          1520,
+                          1554
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 42
+                          }
+                        }
+                      },
+                      "range": [
+                        1520,
+                        1555
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 35,
+                          "column": 43
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    1510,
+                    1561
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 34,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 36,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  1508,
+                  1561
+                ],
+                "loc": {
+                  "start": {
+                    "line": 34,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 36,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                1503,
+                1561
+              ],
+              "loc": {
+                "start": {
+                  "line": 34,
+                  "column": 4
+                },
+                "end": {
+                  "line": 36,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Line",
+                  "value": "-----------------------------------------------------------------------",
+                  "range": [
+                    381,
+                    454
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 77
+                    }
+                  }
+                },
+                {
+                  "type": "Block",
+                  "value": "*\n     * Gets the time-zone rules for this ID allowing calculations to be performed.\n     * <p>\n     * The rules provide the functionality associated with a time-zone,\n     * such as finding the offset for a given instant or local date-time.\n     * <p>\n     * A time-zone can be invalid if it is deserialized in a Java Runtime which\n     * does not have the same rules loaded as the Java Runtime that stored it.\n     * In this case, calling this method will throw a {@code ZoneRulesException}.\n     * <p>\n     * The rules are supplied by {@link ZoneRulesProvider}. An advanced provider may\n     * support dynamic updates to the rules without restarting the Java Runtime.\n     * If so, then the result of this method may change over time.\n     * Each individual call will be still remain thread-safe.\n     * <p>\n     * {@link ZoneOffset} will always return a set of rules where the offset never changes.\n     *\n     * @return {!ZoneRules} the rules, not null\n     * @throws ZoneRulesException if no rules are available for this ID\n     ",
+                  "range": [
+                    459,
+                    1498
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 33,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.\n      * <p>\n      * The returns a normalized {@code ZoneId} that can be used in place of this ID.\n      * The result will have {@code ZoneRules} equivalent to those returned by this object,\n      * however the ID returned by {@code getId()} may be different.\n      * <p>\n      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.\n      * If they do, then the {@code ZoneOffset} equal to that offset is returned.\n      * Otherwise {@code this} is returned.\n      *\n      * @return {ZoneId} the time-zone unique ID, not null\n      ",
+                  "range": [
+                    1567,
+                    2217
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 38,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 50,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "normalized",
+                "range": [
+                  2222,
+                  2232
+                ],
+                "loc": {
+                  "start": {
+                    "line": 51,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 51,
+                    "column": 14
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "VariableDeclaration",
+                      "declarations": [
+                        {
+                          "type": "VariableDeclarator",
+                          "id": {
+                            "type": "Identifier",
+                            "name": "rules",
+                            "range": [
+                              2249,
+                              2254
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 52,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 52,
+                                "column": 17
+                              }
+                            }
+                          },
+                          "init": {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  2257,
+                                  2261
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 52,
+                                    "column": 20
+                                  },
+                                  "end": {
+                                    "line": 52,
+                                    "column": 24
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "rules",
+                                "range": [
+                                  2262,
+                                  2267
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 52,
+                                    "column": 25
+                                  },
+                                  "end": {
+                                    "line": 52,
+                                    "column": 30
+                                  }
+                                }
+                              },
+                              "range": [
+                                2257,
+                                2267
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 52,
+                                  "column": 20
+                                },
+                                "end": {
+                                  "line": 52,
+                                  "column": 30
+                                }
+                              }
+                            },
+                            "arguments": [],
+                            "range": [
+                              2257,
+                              2269
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 52,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 52,
+                                "column": 32
+                              }
+                            }
+                          },
+                          "range": [
+                            2249,
+                            2269
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 52,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 52,
+                              "column": 32
+                            }
+                          }
+                        }
+                      ],
+                      "kind": "var",
+                      "range": [
+                        2245,
+                        2270
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 52,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 52,
+                          "column": 33
+                        }
+                      }
+                    },
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Identifier",
+                            "name": "rules",
+                            "range": [
+                              2283,
+                              2288
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 53,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 53,
+                                "column": 17
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "isFixedOffset",
+                            "range": [
+                              2289,
+                              2302
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 53,
+                                "column": 18
+                              },
+                              "end": {
+                                "line": 53,
+                                "column": 31
+                              }
+                            }
+                          },
+                          "range": [
+                            2283,
+                            2302
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 53,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 53,
+                              "column": 31
+                            }
+                          }
+                        },
+                        "arguments": [],
+                        "range": [
+                          2283,
+                          2304
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 53,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 53,
+                            "column": 33
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "rules",
+                                  "range": [
+                                    2327,
+                                    2332
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 54,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 24
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "offset",
+                                  "range": [
+                                    2333,
+                                    2339
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 54,
+                                      "column": 25
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 31
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  2327,
+                                  2339
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 54,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 54,
+                                    "column": 31
+                                  }
+                                }
+                              },
+                              "arguments": [
+                                {
+                                  "type": "MemberExpression",
+                                  "computed": false,
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "Instant",
+                                    "range": [
+                                      2340,
+                                      2347
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 54,
+                                        "column": 32
+                                      },
+                                      "end": {
+                                        "line": 54,
+                                        "column": 39
+                                      }
+                                    }
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "EPOCH",
+                                    "range": [
+                                      2348,
+                                      2353
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 54,
+                                        "column": 40
+                                      },
+                                      "end": {
+                                        "line": 54,
+                                        "column": 45
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    2340,
+                                    2353
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 54,
+                                      "column": 32
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 45
+                                    }
+                                  }
+                                }
+                              ],
+                              "range": [
+                                2327,
+                                2354
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 54,
+                                  "column": 19
+                                },
+                                "end": {
+                                  "line": 54,
+                                  "column": 46
+                                }
+                              }
+                            },
+                            "range": [
+                              2320,
+                              2355
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 54,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 54,
+                                "column": 47
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          2306,
+                          2365
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 53,
+                            "column": 35
+                          },
+                          "end": {
+                            "line": 55,
+                            "column": 9
+                          }
+                        }
+                      },
+                      "alternate": null,
+                      "range": [
+                        2279,
+                        2365
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 53,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 55,
+                          "column": 9
+                        }
+                      },
+                      "trailingComments": [
+                        {
+                          "type": "Line",
+                          "value": "try {",
+                          "range": [
+                            2374,
+                            2381
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 56,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 56,
+                              "column": 15
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "} catch (ZoneRulesException ex) {",
+                          "range": [
+                            2390,
+                            2425
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 57,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 57,
+                              "column": 43
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "    // ignore invalid objects",
+                          "range": [
+                            2434,
+                            2465
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 58,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 58,
+                              "column": 39
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "}",
+                          "range": [
+                            2474,
+                            2477
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 59,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 59,
+                              "column": 11
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "ThisExpression",
+                        "range": [
+                          2493,
+                          2497
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 60,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 60,
+                            "column": 19
+                          }
+                        }
+                      },
+                      "range": [
+                        2486,
+                        2498
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 60,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 60,
+                          "column": 20
+                        }
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "Line",
+                          "value": "try {",
+                          "range": [
+                            2374,
+                            2381
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 56,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 56,
+                              "column": 15
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "} catch (ZoneRulesException ex) {",
+                          "range": [
+                            2390,
+                            2425
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 57,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 57,
+                              "column": 43
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "    // ignore invalid objects",
+                          "range": [
+                            2434,
+                            2465
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 58,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 58,
+                              "column": 39
+                            }
+                          }
+                        },
+                        {
+                          "type": "Line",
+                          "value": "}",
+                          "range": [
+                            2474,
+                            2477
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 59,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 59,
+                              "column": 11
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "range": [
+                    2235,
+                    2504
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 51,
+                      "column": 17
+                    },
+                    "end": {
+                      "line": 61,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2232,
+                  2504
+                ],
+                "loc": {
+                  "start": {
+                    "line": 51,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 61,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2222,
+                2504
+              ],
+              "loc": {
+                "start": {
+                  "line": 51,
+                  "column": 4
+                },
+                "end": {
+                  "line": 61,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.\n      * <p>\n      * The returns a normalized {@code ZoneId} that can be used in place of this ID.\n      * The result will have {@code ZoneRules} equivalent to those returned by this object,\n      * however the ID returned by {@code getId()} may be different.\n      * <p>\n      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.\n      * If they do, then the {@code ZoneOffset} equal to that offset is returned.\n      * Otherwise {@code this} is returned.\n      *\n      * @return {ZoneId} the time-zone unique ID, not null\n      ",
+                  "range": [
+                    1567,
+                    2217
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 38,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 50,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Line",
+                  "value": "-----------------------------------------------------------------------",
+                  "range": [
+                    2511,
+                    2584
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 63,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 63,
+                      "column": 78
+                    }
+                  }
+                },
+                {
+                  "type": "Block",
+                  "value": "*\n      * Checks if this time-zone ID is equal to another time-zone ID.\n      * <p>\n      * The comparison is based on the ID.\n      *\n      * @param {*} other  the object to check, null returns false\n      * @return {boolean} true if this is equal to the other time-zone ID\n      ",
+                  "range": [
+                    2590,
+                    2875
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 71,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "equals",
+                "range": [
+                  2881,
+                  2887
+                ],
+                "loc": {
+                  "start": {
+                    "line": 72,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 72,
+                    "column": 11
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "other",
+                    "range": [
+                      2888,
+                      2893
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 72,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 72,
+                        "column": 17
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "BinaryExpression",
+                        "operator": "===",
+                        "left": {
+                          "type": "ThisExpression",
+                          "range": [
+                            2910,
+                            2914
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 73,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 73,
+                              "column": 17
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "other",
+                          "range": [
+                            2919,
+                            2924
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 73,
+                              "column": 22
+                            },
+                            "end": {
+                              "line": 73,
+                              "column": 27
+                            }
+                          }
+                        },
+                        "range": [
+                          2910,
+                          2924
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 73,
+                            "column": 13
+                          },
+                          "end": {
+                            "line": 73,
+                            "column": 27
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "Literal",
+                              "value": true,
+                              "raw": "true",
+                              "range": [
+                                2948,
+                                2952
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 74,
+                                  "column": 20
+                                },
+                                "end": {
+                                  "line": 74,
+                                  "column": 24
+                                }
+                              }
+                            },
+                            "range": [
+                              2941,
+                              2953
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 74,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 74,
+                                "column": 25
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          2926,
+                          2964
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 73,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 75,
+                            "column": 10
+                          }
+                        }
+                      },
+                      "alternate": null,
+                      "range": [
+                        2906,
+                        2964
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 73,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 75,
+                          "column": 10
+                        }
+                      }
+                    },
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "BinaryExpression",
+                        "operator": "instanceof",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "other",
+                          "range": [
+                            2978,
+                            2983
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 76,
+                              "column": 13
+                            },
+                            "end": {
+                              "line": 76,
+                              "column": 18
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "ZoneId",
+                          "range": [
+                            2995,
+                            3001
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 76,
+                              "column": 30
+                            },
+                            "end": {
+                              "line": 76,
+                              "column": 36
+                            }
+                          }
+                        },
+                        "range": [
+                          2978,
+                          3001
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 76,
+                            "column": 13
+                          },
+                          "end": {
+                            "line": 76,
+                            "column": 36
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "BinaryExpression",
+                              "operator": "===",
+                              "left": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "computed": false,
+                                  "object": {
+                                    "type": "ThisExpression",
+                                    "range": [
+                                      3025,
+                                      3029
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 77,
+                                        "column": 20
+                                      },
+                                      "end": {
+                                        "line": 77,
+                                        "column": 24
+                                      }
+                                    }
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "id",
+                                    "range": [
+                                      3030,
+                                      3032
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 77,
+                                        "column": 25
+                                      },
+                                      "end": {
+                                        "line": 77,
+                                        "column": 27
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    3025,
+                                    3032
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 77,
+                                      "column": 20
+                                    },
+                                    "end": {
+                                      "line": 77,
+                                      "column": 27
+                                    }
+                                  }
+                                },
+                                "arguments": [],
+                                "range": [
+                                  3025,
+                                  3034
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 77,
+                                    "column": 20
+                                  },
+                                  "end": {
+                                    "line": 77,
+                                    "column": 29
+                                  }
+                                }
+                              },
+                              "right": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "computed": false,
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "other",
+                                    "range": [
+                                      3039,
+                                      3044
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 77,
+                                        "column": 34
+                                      },
+                                      "end": {
+                                        "line": 77,
+                                        "column": 39
+                                      }
+                                    }
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "id",
+                                    "range": [
+                                      3045,
+                                      3047
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 77,
+                                        "column": 40
+                                      },
+                                      "end": {
+                                        "line": 77,
+                                        "column": 42
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    3039,
+                                    3047
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 77,
+                                      "column": 34
+                                    },
+                                    "end": {
+                                      "line": 77,
+                                      "column": 42
+                                    }
+                                  }
+                                },
+                                "arguments": [],
+                                "range": [
+                                  3039,
+                                  3049
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 77,
+                                    "column": 34
+                                  },
+                                  "end": {
+                                    "line": 77,
+                                    "column": 44
+                                  }
+                                }
+                              },
+                              "range": [
+                                3025,
+                                3049
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 77,
+                                  "column": 20
+                                },
+                                "end": {
+                                  "line": 77,
+                                  "column": 44
+                                }
+                              }
+                            },
+                            "range": [
+                              3018,
+                              3050
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 77,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 77,
+                                "column": 45
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          3003,
+                          3061
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 76,
+                            "column": 38
+                          },
+                          "end": {
+                            "line": 78,
+                            "column": 10
+                          }
+                        }
+                      },
+                      "alternate": null,
+                      "range": [
+                        2974,
+                        3061
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 76,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 78,
+                          "column": 10
+                        }
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "Literal",
+                        "value": false,
+                        "raw": "false",
+                        "range": [
+                          3078,
+                          3083
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 79,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 79,
+                            "column": 21
+                          }
+                        }
+                      },
+                      "range": [
+                        3071,
+                        3084
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 79,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 79,
+                          "column": 22
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    2895,
+                    3091
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 72,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 80,
+                      "column": 6
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2887,
+                  3091
+                ],
+                "loc": {
+                  "start": {
+                    "line": 72,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 80,
+                    "column": 6
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2881,
+                3091
+              ],
+              "loc": {
+                "start": {
+                  "line": 72,
+                  "column": 5
+                },
+                "end": {
+                  "line": 80,
+                  "column": 6
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Line",
+                  "value": "-----------------------------------------------------------------------",
+                  "range": [
+                    2511,
+                    2584
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 63,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 63,
+                      "column": 78
+                    }
+                  }
+                },
+                {
+                  "type": "Block",
+                  "value": "*\n      * Checks if this time-zone ID is equal to another time-zone ID.\n      * <p>\n      * The comparison is based on the ID.\n      *\n      * @param {*} other  the object to check, null returns false\n      * @return {boolean} true if this is equal to the other time-zone ID\n      ",
+                  "range": [
+                    2590,
+                    2875
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 71,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * A hash code for this time-zone ID.\n      *\n      * @return {number} a suitable hash code\n      ",
+                  "range": [
+                    3098,
+                    3207
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 82,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 86,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "hashCode",
+                "range": [
+                  3213,
+                  3221
+                ],
+                "loc": {
+                  "start": {
+                    "line": 87,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 87,
+                    "column": 13
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Identifier",
+                            "name": "StringUtil",
+                            "range": [
+                              3242,
+                              3252
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 88,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 88,
+                                "column": 26
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "hashCode",
+                            "range": [
+                              3253,
+                              3261
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 88,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 88,
+                                "column": 35
+                              }
+                            }
+                          },
+                          "range": [
+                            3242,
+                            3261
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 88,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 88,
+                              "column": 35
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  3262,
+                                  3266
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 88,
+                                    "column": 36
+                                  },
+                                  "end": {
+                                    "line": 88,
+                                    "column": 40
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "id",
+                                "range": [
+                                  3267,
+                                  3269
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 88,
+                                    "column": 41
+                                  },
+                                  "end": {
+                                    "line": 88,
+                                    "column": 43
+                                  }
+                                }
+                              },
+                              "range": [
+                                3262,
+                                3269
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 88,
+                                  "column": 36
+                                },
+                                "end": {
+                                  "line": 88,
+                                  "column": 43
+                                }
+                              }
+                            },
+                            "arguments": [],
+                            "range": [
+                              3262,
+                              3271
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 88,
+                                "column": 36
+                              },
+                              "end": {
+                                "line": 88,
+                                "column": 45
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          3242,
+                          3272
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 88,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 88,
+                            "column": 46
+                          }
+                        }
+                      },
+                      "range": [
+                        3235,
+                        3273
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 88,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 88,
+                          "column": 47
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    3224,
+                    3280
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 87,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 89,
+                      "column": 6
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  3221,
+                  3280
+                ],
+                "loc": {
+                  "start": {
+                    "line": 87,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 89,
+                    "column": 6
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                3213,
+                3280
+              ],
+              "loc": {
+                "start": {
+                  "line": 87,
+                  "column": 5
+                },
+                "end": {
+                  "line": 89,
+                  "column": 6
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n      * A hash code for this time-zone ID.\n      *\n      * @return {number} a suitable hash code\n      ",
+                  "range": [
+                    3098,
+                    3207
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 82,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 86,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Line",
+                  "value": "-----------------------------------------------------------------------",
+                  "range": [
+                    3287,
+                    3360
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 91,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 91,
+                      "column": 78
+                    }
+                  }
+                },
+                {
+                  "type": "Block",
+                  "value": "*\n      * Outputs this zone as a {@code String}, using the ID.\n      *\n      * @return {string} a string representation of this time-zone ID, not null\n      ",
+                  "range": [
+                    3366,
+                    3527
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 92,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 96,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "toString",
+                "range": [
+                  3533,
+                  3541
+                ],
+                "loc": {
+                  "start": {
+                    "line": 97,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 97,
+                    "column": 13
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                            "range": [
+                              3562,
+                              3566
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 98,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 98,
+                                "column": 20
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "id",
+                            "range": [
+                              3567,
+                              3569
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 98,
+                                "column": 21
+                              },
+                              "end": {
+                                "line": 98,
+                                "column": 23
+                              }
+                            }
+                          },
+                          "range": [
+                            3562,
+                            3569
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 98,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 98,
+                              "column": 23
+                            }
+                          }
+                        },
+                        "arguments": [],
+                        "range": [
+                          3562,
+                          3571
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 98,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 98,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "range": [
+                        3555,
+                        3572
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 98,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 98,
+                          "column": 26
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    3544,
+                    3579
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 97,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 99,
+                      "column": 6
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  3541,
+                  3579
+                ],
+                "loc": {
+                  "start": {
+                    "line": 97,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 99,
+                    "column": 6
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                3533,
+                3579
+              ],
+              "loc": {
+                "start": {
+                  "line": 97,
+                  "column": 5
+                },
+                "end": {
+                  "line": 99,
+                  "column": 6
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Line",
+                  "value": "-----------------------------------------------------------------------",
+                  "range": [
+                    3287,
+                    3360
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 91,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 91,
+                      "column": 78
+                    }
+                  }
+                },
+                {
+                  "type": "Block",
+                  "value": "*\n      * Outputs this zone as a {@code String}, using the ID.\n      *\n      * @return {string} a string representation of this time-zone ID, not null\n      ",
+                  "range": [
+                    3366,
+                    3527
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 92,
+                      "column": 5
+                    },
+                    "end": {
+                      "line": 96,
+                      "column": 8
+                    }
+                  }
+                }
+              ],
+              "static": false
+            }
+          ],
+          "range": [
+            375,
+            3582
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 20
+            },
+            "end": {
+              "line": 101,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          362,
+          3582
+        ],
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 7
+          },
+          "end": {
+            "line": 101,
+            "column": 1
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        355,
+        3582
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 101,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    232,
+    3582
+  ],
+  "loc": {
+    "start": {
+      "line": 7,
+      "column": 0
+    },
+    "end": {
+      "line": 101,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "-----------------------------------------------------------------------",
+      "range": [
+        381,
+        454
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 4
+        },
+        "end": {
+          "line": 13,
+          "column": 77
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Gets the time-zone rules for this ID allowing calculations to be performed.\n     * <p>\n     * The rules provide the functionality associated with a time-zone,\n     * such as finding the offset for a given instant or local date-time.\n     * <p>\n     * A time-zone can be invalid if it is deserialized in a Java Runtime which\n     * does not have the same rules loaded as the Java Runtime that stored it.\n     * In this case, calling this method will throw a {@code ZoneRulesException}.\n     * <p>\n     * The rules are supplied by {@link ZoneRulesProvider}. An advanced provider may\n     * support dynamic updates to the rules without restarting the Java Runtime.\n     * If so, then the result of this method may change over time.\n     * Each individual call will be still remain thread-safe.\n     * <p>\n     * {@link ZoneOffset} will always return a set of rules where the offset never changes.\n     *\n     * @return {!ZoneRules} the rules, not null\n     * @throws ZoneRulesException if no rules are available for this ID\n     ",
+      "range": [
+        459,
+        1498
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 4
+        },
+        "end": {
+          "line": 33,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.\n      * <p>\n      * The returns a normalized {@code ZoneId} that can be used in place of this ID.\n      * The result will have {@code ZoneRules} equivalent to those returned by this object,\n      * however the ID returned by {@code getId()} may be different.\n      * <p>\n      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.\n      * If they do, then the {@code ZoneOffset} equal to that offset is returned.\n      * Otherwise {@code this} is returned.\n      *\n      * @return {ZoneId} the time-zone unique ID, not null\n      ",
+      "range": [
+        1567,
+        2217
+      ],
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 4
+        },
+        "end": {
+          "line": 50,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "try {",
+      "range": [
+        2374,
+        2381
+      ],
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 8
+        },
+        "end": {
+          "line": 56,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "} catch (ZoneRulesException ex) {",
+      "range": [
+        2390,
+        2425
+      ],
+      "loc": {
+        "start": {
+          "line": 57,
+          "column": 8
+        },
+        "end": {
+          "line": 57,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "    // ignore invalid objects",
+      "range": [
+        2434,
+        2465
+      ],
+      "loc": {
+        "start": {
+          "line": 58,
+          "column": 8
+        },
+        "end": {
+          "line": 58,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "}",
+      "range": [
+        2474,
+        2477
+      ],
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 8
+        },
+        "end": {
+          "line": 59,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "-----------------------------------------------------------------------",
+      "range": [
+        2511,
+        2584
+      ],
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 5
+        },
+        "end": {
+          "line": 63,
+          "column": 78
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      * Checks if this time-zone ID is equal to another time-zone ID.\n      * <p>\n      * The comparison is based on the ID.\n      *\n      * @param {*} other  the object to check, null returns false\n      * @return {boolean} true if this is equal to the other time-zone ID\n      ",
+      "range": [
+        2590,
+        2875
+      ],
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 5
+        },
+        "end": {
+          "line": 71,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      * A hash code for this time-zone ID.\n      *\n      * @return {number} a suitable hash code\n      ",
+      "range": [
+        3098,
+        3207
+      ],
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 5
+        },
+        "end": {
+          "line": 86,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "-----------------------------------------------------------------------",
+      "range": [
+        3287,
+        3360
+      ],
+      "loc": {
+        "start": {
+          "line": 91,
+          "column": 5
+        },
+        "end": {
+          "line": 91,
+          "column": 78
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n      * Outputs this zone as a {@code String}, using the ID.\n      *\n      * @return {string} a string representation of this time-zone ID, not null\n      ",
+      "range": [
+        3366,
+        3527
+      ],
+      "loc": {
+        "start": {
+          "line": 92,
+          "column": 5
+        },
+        "end": {
+          "line": 96,
+          "column": 8
+        }
+      }
+    }
+  ]
+}

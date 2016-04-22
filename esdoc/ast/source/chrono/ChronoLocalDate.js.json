@@ -1,0 +1,3845 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "requireNonNull",
+            "range": [
+              240,
+              254
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 22
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "requireNonNull",
+            "range": [
+              240,
+              254
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 22
+              }
+            }
+          },
+          "range": [
+            240,
+            254
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 22
+            }
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "requireInstance",
+            "range": [
+              256,
+              271
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 24
+              },
+              "end": {
+                "line": 7,
+                "column": 39
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "requireInstance",
+            "range": [
+              256,
+              271
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 24
+              },
+              "end": {
+                "line": 7,
+                "column": 39
+              }
+            }
+          },
+          "range": [
+            256,
+            271
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 24
+            },
+            "end": {
+              "line": 7,
+              "column": 39
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../assert",
+        "raw": "'../assert'",
+        "range": [
+          278,
+          289
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 46
+          },
+          "end": {
+            "line": 7,
+            "column": 57
+          }
+        }
+      },
+      "range": [
+        232,
+        290
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 58
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            230
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "ChronoField",
+            "range": [
+              300,
+              311
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 8
+              },
+              "end": {
+                "line": 9,
+                "column": 19
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "ChronoField",
+            "range": [
+              300,
+              311
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 8
+              },
+              "end": {
+                "line": 9,
+                "column": 19
+              }
+            }
+          },
+          "range": [
+            300,
+            311
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 8
+            },
+            "end": {
+              "line": 9,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../temporal/ChronoField",
+        "raw": "'../temporal/ChronoField'",
+        "range": [
+          318,
+          343
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 26
+          },
+          "end": {
+            "line": 9,
+            "column": 51
+          }
+        }
+      },
+      "range": [
+        292,
+        344
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 52
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "ChronoUnit",
+            "range": [
+              353,
+              363
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 18
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "ChronoUnit",
+            "range": [
+              353,
+              363
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 8
+              },
+              "end": {
+                "line": 10,
+                "column": 18
+              }
+            }
+          },
+          "range": [
+            353,
+            363
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 8
+            },
+            "end": {
+              "line": 10,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../temporal/ChronoUnit",
+        "raw": "'../temporal/ChronoUnit'",
+        "range": [
+          370,
+          394
+        ],
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 25
+          },
+          "end": {
+            "line": 10,
+            "column": 49
+          }
+        }
+      },
+      "range": [
+        345,
+        395
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 50
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "DateTimeFormatter",
+            "range": [
+              404,
+              421
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 8
+              },
+              "end": {
+                "line": 11,
+                "column": 25
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "DateTimeFormatter",
+            "range": [
+              404,
+              421
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 8
+              },
+              "end": {
+                "line": 11,
+                "column": 25
+              }
+            }
+          },
+          "range": [
+            404,
+            421
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 8
+            },
+            "end": {
+              "line": 11,
+              "column": 25
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../format/DateTimeFormatter",
+        "raw": "'../format/DateTimeFormatter'",
+        "range": [
+          428,
+          457
+        ],
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 32
+          },
+          "end": {
+            "line": 11,
+            "column": 61
+          }
+        }
+      },
+      "range": [
+        396,
+        458
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 62
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "TemporalQueries",
+            "range": [
+              467,
+              482
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 8
+              },
+              "end": {
+                "line": 12,
+                "column": 23
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "TemporalQueries",
+            "range": [
+              467,
+              482
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 8
+              },
+              "end": {
+                "line": 12,
+                "column": 23
+              }
+            }
+          },
+          "range": [
+            467,
+            482
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 8
+            },
+            "end": {
+              "line": 12,
+              "column": 23
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../temporal/TemporalQueries",
+        "raw": "'../temporal/TemporalQueries'",
+        "range": [
+          489,
+          518
+        ],
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 30
+          },
+          "end": {
+            "line": 12,
+            "column": 59
+          }
+        }
+      },
+      "range": [
+        459,
+        519
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Temporal",
+            "range": [
+              528,
+              536
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 8
+              },
+              "end": {
+                "line": 13,
+                "column": 16
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "Temporal",
+            "range": [
+              528,
+              536
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 8
+              },
+              "end": {
+                "line": 13,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            528,
+            536
+          ],
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 8
+            },
+            "end": {
+              "line": 13,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../temporal/Temporal",
+        "raw": "'../temporal/Temporal'",
+        "range": [
+          543,
+          565
+        ],
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 23
+          },
+          "end": {
+            "line": 13,
+            "column": 45
+          }
+        }
+      },
+      "range": [
+        520,
+        566
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "LocalDate",
+            "range": [
+              576,
+              585
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 8
+              },
+              "end": {
+                "line": 15,
+                "column": 17
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "LocalDate",
+            "range": [
+              576,
+              585
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 8
+              },
+              "end": {
+                "line": 15,
+                "column": 17
+              }
+            }
+          },
+          "range": [
+            576,
+            585
+          ],
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 8
+            },
+            "end": {
+              "line": 15,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../LocalDate",
+        "raw": "'../LocalDate'",
+        "range": [
+          592,
+          606
+        ],
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 24
+          },
+          "end": {
+            "line": 15,
+            "column": 38
+          }
+        }
+      },
+      "range": [
+        568,
+        607
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 39
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * A date without time-of-day or time-zone in an arbitrary chronology, intended\n * for advanced globalization use cases.\n * <p>\n * <b>Most applications should declare method signatures, fields and variables\n * as {@link LocalDate}, not this interface.</b>\n * <p>\n * A {@code ChronoLocalDate} is the abstract representation of a date where the\n * {@code Chronology chronology}, or calendar system, is pluggable.\n * The date is defined in terms of fields expressed by {@link TemporalField},\n * where most common implementations are defined in {@link ChronoField}.\n * The chronology defines how the calendar system operates and the meaning of\n * the standard fields.\n *\n * <h4>When to use this interface</h4>\n * The design of the API encourages the use of {@code LocalDate} rather than this\n * interface, even in the case where the application needs to deal with multiple\n * calendar systems. The rationale for this is explored in the following documentation.\n * <p>\n * The primary use case where this interface should be used is where the generic\n * type parameter {@code <C>} is fully defined as a specific chronology.\n * In that case, the assumptions of that chronology are known at development\n * time and specified in the code.\n * <p>\n * When the chronology is defined in the generic type parameter as ? or otherwise\n * unknown at development time, the rest of the discussion below applies.\n * <p>\n * To emphasize the point, declaring a method signature, field or variable as this\n * interface type can initially seem like the sensible way to globalize an application,\n * however it is usually the wrong approach.\n * As such, it should be considered an application-wide architectural decision to choose\n * to use this interface as opposed to {@code LocalDate}.\n *\n * <h4>Architectural issues to consider</h4>\n * These are some of the points that must be considered before using this interface\n * throughout an application.\n * <p>\n * 1) Applications using this interface, as opposed to using just {@code LocalDate},\n * face a significantly higher probability of bugs. This is because the calendar system\n * in use is not known at development time. A key cause of bugs is where the developer\n * applies assumptions from their day-to-day knowledge of the ISO calendar system\n * to code that is intended to deal with any arbitrary calendar system.\n * The section below outlines how those assumptions can cause problems\n * The primary mechanism for reducing this increased risk of bugs is a strong code review process.\n * This should also be considered a extra cost in maintenance for the lifetime of the code.\n * <p>\n * 2) This interface does not enforce immutability of implementations.\n * While the implementation notes indicate that all implementations must be immutable\n * there is nothing in the code or type system to enforce this. Any method declared\n * to accept a {@code ChronoLocalDate} could therefore be passed a poorly or\n * maliciously written mutable implementation.\n * <p>\n * 3) Applications using this interface  must consider the impact of eras.\n * {@code LocalDate} shields users from the concept of eras, by ensuring that {@code getYear()}\n * returns the proleptic year. That decision ensures that developers can think of\n * {@code LocalDate} instances as consisting of three fields - year, month-of-year and day-of-month.\n * By contrast, users of this interface must think of dates as consisting of four fields -\n * era, year-of-era, month-of-year and day-of-month. The extra era field is frequently\n * forgotten, yet it is of vital importance to dates in an arbitrary calendar system.\n * For example, in the Japanese calendar system, the era represents the reign of an Emperor.\n * Whenever one reign ends and another starts, the year-of-era is reset to one.\n * <p>\n * 4) The only agreed international standard for passing a date between two systems\n * is the ISO-8601 standard which requires the ISO calendar system. Using this interface\n * throughout the application will inevitably lead to the requirement to pass the date\n * across a network or component boundary, requiring an application specific protocol or format.\n * <p>\n * 5) Long term persistence, such as a database, will almost always only accept dates in the\n * ISO-8601 calendar system (or the related Julian-Gregorian). Passing around dates in other\n * calendar systems increases the complications of interacting with persistence.\n * <p>\n * 6) Most of the time, passing a {@code ChronoLocalDate} throughout an application\n * is unnecessary, as discussed in the last section below.\n *\n * <h4>False assumptions causing bugs in multi-calendar system code</h4>\n * As indicated above, there are many issues to consider when try to use and manipulate a\n * date in an arbitrary calendar system. These are some of the key issues.\n * <p>\n * Code that queries the day-of-month and assumes that the value will never be more than\n * 31 is invalid. Some calendar systems have more than 31 days in some months.\n * <p>\n * Code that adds 12 months to a date and assumes that a year has been added is invalid.\n * Some calendar systems have a different number of months, such as 13 in the Coptic or Ethiopic.\n * <p>\n * Code that adds one month to a date and assumes that the month-of-year value will increase\n * by one or wrap to the next year is invalid. Some calendar systems have a variable number\n * of months in a year, such as the Hebrew.\n * <p>\n * Code that adds one month, then adds a second one month and assumes that the day-of-month\n * will remain close to its original value is invalid. Some calendar systems have a large difference\n * between the length of the longest month and the length of the shortest month.\n * For example, the Coptic or Ethiopic have 12 months of 30 days and 1 month of 5 days.\n * <p>\n * Code that adds seven days and assumes that a week has been added is invalid.\n * Some calendar systems have weeks of other than seven days, such as the French Revolutionary.\n * <p>\n * Code that assumes that because the year of {@code date1} is greater than the year of {@code date2}\n * then {@code date1} is after {@code date2} is invalid. This is invalid for all calendar systems\n * when referring to the year-of-era, and especially untrue of the Japanese calendar system\n * where the year-of-era restarts with the reign of every new Emperor.\n * <p>\n * Code that treats month-of-year one and day-of-month one as the start of the year is invalid.\n * Not all calendar systems start the year when the month value is one.\n * <p>\n * In general, manipulating a date, and even querying a date, is wide open to bugs when the\n * calendar system is unknown at development time. This is why it is essential that code using\n * this interface is subjected to additional code reviews. It is also why an architectural\n * decision to avoid this interface type is usually the correct one.\n *\n * <h4>Using LocalDate instead</h4>\n * The primary alternative to using this interface throughout your application is as follows.\n * <p><ul>\n * <li>Declare all method signatures referring to dates in terms of {@code LocalDate}.\n * <li>Either store the chronology (calendar system) in the user profile or lookup\n *  the chronology from the user locale\n * <li>Convert the ISO {@code LocalDate} to and from the user's preferred calendar system during\n *  printing and parsing\n * </ul><p>\n * This approach treats the problem of globalized calendar systems as a localization issue\n * and confines it to the UI layer. This approach is in keeping with other localization\n * issues in the java platform.\n * <p>\n * As discussed above, performing calculations on a date where the rules of the calendar system\n * are pluggable requires skill and is not recommended.\n * Fortunately, the need to perform calculations on a date in an arbitrary calendar system\n * is extremely rare. For example, it is highly unlikely that the business rules of a library\n * book rental scheme will allow rentals to be for one month, where meaning of the month\n * is dependent on the user's preferred calendar system.\n * <p>\n * A key use case for calculations on a date in an arbitrary calendar system is producing\n * a month-by-month calendar for display and user interaction. Again, this is a UI issue,\n * and use of this interface solely within a few methods of the UI layer may be justified.\n * <p>\n * In any other part of the system, where a date must be manipulated in a calendar system\n * other than ISO, the use case will generally specify the calendar system to use.\n * For example, an application may need to calculate the next Islamic or Hebrew holiday\n * which may require manipulating the date.\n * This kind of use case can be handled as follows:\n * <p><ul>\n * <li>start from the ISO {@code LocalDate} being passed to the method\n * <li>convert the date to the alternate calendar system, which for this use case is known\n *  rather than arbitrary\n * <li>perform the calculation\n * <li>convert back to {@code LocalDate}\n * </ul><p>\n * Developers writing low-level frameworks or libraries should also avoid this interface.\n * Instead, one of the two general purpose access interfaces should be used.\n * Use {@link TemporalAccessor} if read-only access is required, or use {@link Temporal}\n * if read-write access is required.\n *\n * <h3>Specification for implementors</h3>\n * This interface must be implemented with care to ensure other classes operate correctly.\n * All implementations that can be instantiated must be final, immutable and thread-safe.\n * Subclasses should be Serializable wherever possible.\n * <p>\n * Additional calendar systems may be added to the system.\n * See {@link Chronology} for more details.\n * <p>\n * In JDK 8, this is an interface with default methods.\n * Since there are no default methods in JDK 7, an abstract class is used.\n ",
+          "range": [
+            609,
+            10417
+          ],
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 0
+            },
+            "end": {
+              "line": 177,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "ChronoLocalDate",
+          "range": [
+            10431,
+            10446
+          ],
+          "loc": {
+            "start": {
+              "line": 178,
+              "column": 13
+            },
+            "end": {
+              "line": 178,
+              "column": 28
+            }
+          }
+        },
+        "superClass": {
+          "type": "Identifier",
+          "name": "Temporal",
+          "range": [
+            10455,
+            10463
+          ],
+          "loc": {
+            "start": {
+              "line": 178,
+              "column": 37
+            },
+            "end": {
+              "line": 178,
+              "column": 45
+            }
+          }
+        },
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "isSupported",
+                "range": [
+                  10471,
+                  10482
+                ],
+                "loc": {
+                  "start": {
+                    "line": 180,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 180,
+                    "column": 15
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "fieldOrUnit",
+                    "range": [
+                      10483,
+                      10494
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 180,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 180,
+                        "column": 27
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "BinaryExpression",
+                        "operator": "instanceof",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "fieldOrUnit",
+                          "range": [
+                            10510,
+                            10521
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 181,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 181,
+                              "column": 23
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "ChronoField",
+                          "range": [
+                            10533,
+                            10544
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 181,
+                              "column": 35
+                            },
+                            "end": {
+                              "line": 181,
+                              "column": 46
+                            }
+                          }
+                        },
+                        "range": [
+                          10510,
+                          10544
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 181,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 181,
+                            "column": 46
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "fieldOrUnit",
+                                  "range": [
+                                    10567,
+                                    10578
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 182,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 182,
+                                      "column": 30
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "isDateBased",
+                                  "range": [
+                                    10579,
+                                    10590
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 182,
+                                      "column": 31
+                                    },
+                                    "end": {
+                                      "line": 182,
+                                      "column": 42
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  10567,
+                                  10590
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 182,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 182,
+                                    "column": 42
+                                  }
+                                }
+                              },
+                              "arguments": [],
+                              "range": [
+                                10567,
+                                10592
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 182,
+                                  "column": 19
+                                },
+                                "end": {
+                                  "line": 182,
+                                  "column": 44
+                                }
+                              }
+                            },
+                            "range": [
+                              10560,
+                              10593
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 182,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 182,
+                                "column": 45
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          10546,
+                          10603
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 181,
+                            "column": 48
+                          },
+                          "end": {
+                            "line": 183,
+                            "column": 9
+                          }
+                        }
+                      },
+                      "alternate": {
+                        "type": "IfStatement",
+                        "test": {
+                          "type": "BinaryExpression",
+                          "operator": "instanceof",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "fieldOrUnit",
+                            "range": [
+                              10613,
+                              10624
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 183,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 183,
+                                "column": 30
+                              }
+                            }
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "ChronoUnit",
+                            "range": [
+                              10636,
+                              10646
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 183,
+                                "column": 42
+                              },
+                              "end": {
+                                "line": 183,
+                                "column": 52
+                              }
+                            }
+                          },
+                          "range": [
+                            10613,
+                            10646
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 183,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 183,
+                              "column": 52
+                            }
+                          }
+                        },
+                        "consequent": {
+                          "type": "BlockStatement",
+                          "body": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "computed": false,
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "fieldOrUnit",
+                                    "range": [
+                                      10669,
+                                      10680
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 184,
+                                        "column": 19
+                                      },
+                                      "end": {
+                                        "line": 184,
+                                        "column": 30
+                                      }
+                                    }
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "isDateBased",
+                                    "range": [
+                                      10681,
+                                      10692
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 184,
+                                        "column": 31
+                                      },
+                                      "end": {
+                                        "line": 184,
+                                        "column": 42
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    10669,
+                                    10692
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 184,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 184,
+                                      "column": 42
+                                    }
+                                  }
+                                },
+                                "arguments": [],
+                                "range": [
+                                  10669,
+                                  10694
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 184,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 184,
+                                    "column": 44
+                                  }
+                                }
+                              },
+                              "range": [
+                                10662,
+                                10695
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 184,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 184,
+                                  "column": 45
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            10648,
+                            10705
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 183,
+                              "column": 54
+                            },
+                            "end": {
+                              "line": 185,
+                              "column": 9
+                            }
+                          }
+                        },
+                        "alternate": null,
+                        "range": [
+                          10609,
+                          10705
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 183,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 185,
+                            "column": 9
+                          }
+                        }
+                      },
+                      "range": [
+                        10506,
+                        10705
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 181,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 185,
+                          "column": 9
+                        }
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "LogicalExpression",
+                        "operator": "&&",
+                        "left": {
+                          "type": "BinaryExpression",
+                          "operator": "!=",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "fieldOrUnit",
+                            "range": [
+                              10721,
+                              10732
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 186,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 186,
+                                "column": 26
+                              }
+                            }
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": null,
+                            "raw": "null",
+                            "range": [
+                              10736,
+                              10740
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 186,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 186,
+                                "column": 34
+                              }
+                            }
+                          },
+                          "range": [
+                            10721,
+                            10740
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 186,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 186,
+                              "column": 34
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "fieldOrUnit",
+                              "range": [
+                                10744,
+                                10755
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 186,
+                                  "column": 38
+                                },
+                                "end": {
+                                  "line": 186,
+                                  "column": 49
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "isSupportedBy",
+                              "range": [
+                                10756,
+                                10769
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 186,
+                                  "column": 50
+                                },
+                                "end": {
+                                  "line": 186,
+                                  "column": 63
+                                }
+                              }
+                            },
+                            "range": [
+                              10744,
+                              10769
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 186,
+                                "column": 38
+                              },
+                              "end": {
+                                "line": 186,
+                                "column": 63
+                              }
+                            }
+                          },
+                          "arguments": [
+                            {
+                              "type": "ThisExpression",
+                              "range": [
+                                10770,
+                                10774
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 186,
+                                  "column": 64
+                                },
+                                "end": {
+                                  "line": 186,
+                                  "column": 68
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            10744,
+                            10775
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 186,
+                              "column": 38
+                            },
+                            "end": {
+                              "line": 186,
+                              "column": 69
+                            }
+                          }
+                        },
+                        "range": [
+                          10721,
+                          10775
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 186,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 186,
+                            "column": 69
+                          }
+                        }
+                      },
+                      "range": [
+                        10714,
+                        10776
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 186,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 186,
+                          "column": 70
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    10496,
+                    10782
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 180,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 187,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  10482,
+                  10782
+                ],
+                "loc": {
+                  "start": {
+                    "line": 180,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 187,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                10471,
+                10782
+              ],
+              "loc": {
+                "start": {
+                  "line": 180,
+                  "column": 4
+                },
+                "end": {
+                  "line": 187,
+                  "column": 5
+                }
+              },
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "query",
+                "range": [
+                  10788,
+                  10793
+                ],
+                "loc": {
+                  "start": {
+                    "line": 189,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 189,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "query",
+                    "range": [
+                      10794,
+                      10799
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 189,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 189,
+                        "column": 15
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "BinaryExpression",
+                        "operator": "===",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "query",
+                          "range": [
+                            10815,
+                            10820
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 190,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 190,
+                              "column": 17
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "TemporalQueries",
+                              "range": [
+                                10825,
+                                10840
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 190,
+                                  "column": 22
+                                },
+                                "end": {
+                                  "line": 190,
+                                  "column": 37
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "chronology",
+                              "range": [
+                                10841,
+                                10851
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 190,
+                                  "column": 38
+                                },
+                                "end": {
+                                  "line": 190,
+                                  "column": 48
+                                }
+                              }
+                            },
+                            "range": [
+                              10825,
+                              10851
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 190,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 190,
+                                "column": 48
+                              }
+                            }
+                          },
+                          "arguments": [],
+                          "range": [
+                            10825,
+                            10853
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 190,
+                              "column": 22
+                            },
+                            "end": {
+                              "line": 190,
+                              "column": 50
+                            }
+                          }
+                        },
+                        "range": [
+                          10815,
+                          10853
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 190,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 190,
+                            "column": 50
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "ThisExpression",
+                                  "range": [
+                                    10876,
+                                    10880
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 191,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 191,
+                                      "column": 23
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "chronology",
+                                  "range": [
+                                    10881,
+                                    10891
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 191,
+                                      "column": 24
+                                    },
+                                    "end": {
+                                      "line": 191,
+                                      "column": 34
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  10876,
+                                  10891
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 191,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 191,
+                                    "column": 34
+                                  }
+                                }
+                              },
+                              "arguments": [],
+                              "range": [
+                                10876,
+                                10893
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 191,
+                                  "column": 19
+                                },
+                                "end": {
+                                  "line": 191,
+                                  "column": 36
+                                }
+                              }
+                            },
+                            "range": [
+                              10869,
+                              10894
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 191,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 191,
+                                "column": 37
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          10855,
+                          10904
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 190,
+                            "column": 52
+                          },
+                          "end": {
+                            "line": 192,
+                            "column": 9
+                          }
+                        }
+                      },
+                      "alternate": {
+                        "type": "IfStatement",
+                        "test": {
+                          "type": "BinaryExpression",
+                          "operator": "===",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "query",
+                            "range": [
+                              10914,
+                              10919
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 192,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 192,
+                                "column": 24
+                              }
+                            }
+                          },
+                          "right": {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "Identifier",
+                                "name": "TemporalQueries",
+                                "range": [
+                                  10924,
+                                  10939
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 192,
+                                    "column": 29
+                                  },
+                                  "end": {
+                                    "line": 192,
+                                    "column": 44
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "precision",
+                                "range": [
+                                  10940,
+                                  10949
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 192,
+                                    "column": 45
+                                  },
+                                  "end": {
+                                    "line": 192,
+                                    "column": 54
+                                  }
+                                }
+                              },
+                              "range": [
+                                10924,
+                                10949
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 192,
+                                  "column": 29
+                                },
+                                "end": {
+                                  "line": 192,
+                                  "column": 54
+                                }
+                              }
+                            },
+                            "arguments": [],
+                            "range": [
+                              10924,
+                              10951
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 192,
+                                "column": 29
+                              },
+                              "end": {
+                                "line": 192,
+                                "column": 56
+                              }
+                            }
+                          },
+                          "range": [
+                            10914,
+                            10951
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 192,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 192,
+                              "column": 56
+                            }
+                          }
+                        },
+                        "consequent": {
+                          "type": "BlockStatement",
+                          "body": [
+                            {
+                              "type": "ReturnStatement",
+                              "argument": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "ChronoUnit",
+                                  "range": [
+                                    10974,
+                                    10984
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 193,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 193,
+                                      "column": 29
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "DAYS",
+                                  "range": [
+                                    10985,
+                                    10989
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 193,
+                                      "column": 30
+                                    },
+                                    "end": {
+                                      "line": 193,
+                                      "column": 34
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  10974,
+                                  10989
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 193,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 193,
+                                    "column": 34
+                                  }
+                                }
+                              },
+                              "range": [
+                                10967,
+                                10990
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 193,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 193,
+                                  "column": 35
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            10953,
+                            11000
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 192,
+                              "column": 58
+                            },
+                            "end": {
+                              "line": 194,
+                              "column": 9
+                            }
+                          }
+                        },
+                        "alternate": {
+                          "type": "IfStatement",
+                          "test": {
+                            "type": "BinaryExpression",
+                            "operator": "===",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "query",
+                              "range": [
+                                11010,
+                                11015
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 194,
+                                  "column": 19
+                                },
+                                "end": {
+                                  "line": 194,
+                                  "column": 24
+                                }
+                              }
+                            },
+                            "right": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "TemporalQueries",
+                                  "range": [
+                                    11020,
+                                    11035
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 194,
+                                      "column": 29
+                                    },
+                                    "end": {
+                                      "line": 194,
+                                      "column": 44
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "localDate",
+                                  "range": [
+                                    11036,
+                                    11045
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 194,
+                                      "column": 45
+                                    },
+                                    "end": {
+                                      "line": 194,
+                                      "column": 54
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  11020,
+                                  11045
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 194,
+                                    "column": 29
+                                  },
+                                  "end": {
+                                    "line": 194,
+                                    "column": 54
+                                  }
+                                }
+                              },
+                              "arguments": [],
+                              "range": [
+                                11020,
+                                11047
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 194,
+                                  "column": 29
+                                },
+                                "end": {
+                                  "line": 194,
+                                  "column": 56
+                                }
+                              }
+                            },
+                            "range": [
+                              11010,
+                              11047
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 194,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 194,
+                                "column": 56
+                              }
+                            }
+                          },
+                          "consequent": {
+                            "type": "BlockStatement",
+                            "body": [
+                              {
+                                "type": "ReturnStatement",
+                                "argument": {
+                                  "type": "CallExpression",
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "computed": false,
+                                    "object": {
+                                      "type": "Identifier",
+                                      "name": "LocalDate",
+                                      "range": [
+                                        11070,
+                                        11079
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 195,
+                                          "column": 19
+                                        },
+                                        "end": {
+                                          "line": 195,
+                                          "column": 28
+                                        }
+                                      }
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "ofEpochDay",
+                                      "range": [
+                                        11080,
+                                        11090
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 195,
+                                          "column": 29
+                                        },
+                                        "end": {
+                                          "line": 195,
+                                          "column": 39
+                                        }
+                                      }
+                                    },
+                                    "range": [
+                                      11070,
+                                      11090
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 195,
+                                        "column": 19
+                                      },
+                                      "end": {
+                                        "line": 195,
+                                        "column": 39
+                                      }
+                                    }
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "CallExpression",
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "computed": false,
+                                        "object": {
+                                          "type": "ThisExpression",
+                                          "range": [
+                                            11091,
+                                            11095
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 195,
+                                              "column": 40
+                                            },
+                                            "end": {
+                                              "line": 195,
+                                              "column": 44
+                                            }
+                                          }
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "toEpochDay",
+                                          "range": [
+                                            11096,
+                                            11106
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 195,
+                                              "column": 45
+                                            },
+                                            "end": {
+                                              "line": 195,
+                                              "column": 55
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          11091,
+                                          11106
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 195,
+                                            "column": 40
+                                          },
+                                          "end": {
+                                            "line": 195,
+                                            "column": 55
+                                          }
+                                        }
+                                      },
+                                      "arguments": [],
+                                      "range": [
+                                        11091,
+                                        11108
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 195,
+                                          "column": 40
+                                        },
+                                        "end": {
+                                          "line": 195,
+                                          "column": 57
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "range": [
+                                    11070,
+                                    11109
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 195,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 195,
+                                      "column": 58
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  11063,
+                                  11110
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 195,
+                                    "column": 12
+                                  },
+                                  "end": {
+                                    "line": 195,
+                                    "column": 59
+                                  }
+                                }
+                              }
+                            ],
+                            "range": [
+                              11049,
+                              11120
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 194,
+                                "column": 58
+                              },
+                              "end": {
+                                "line": 196,
+                                "column": 9
+                              }
+                            }
+                          },
+                          "alternate": {
+                            "type": "IfStatement",
+                            "test": {
+                              "type": "LogicalExpression",
+                              "operator": "||",
+                              "left": {
+                                "type": "LogicalExpression",
+                                "operator": "||",
+                                "left": {
+                                  "type": "LogicalExpression",
+                                  "operator": "||",
+                                  "left": {
+                                    "type": "BinaryExpression",
+                                    "operator": "===",
+                                    "left": {
+                                      "type": "Identifier",
+                                      "name": "query",
+                                      "range": [
+                                        11130,
+                                        11135
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 196,
+                                          "column": 19
+                                        },
+                                        "end": {
+                                          "line": 196,
+                                          "column": 24
+                                        }
+                                      }
+                                    },
+                                    "right": {
+                                      "type": "CallExpression",
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "computed": false,
+                                        "object": {
+                                          "type": "Identifier",
+                                          "name": "TemporalQueries",
+                                          "range": [
+                                            11140,
+                                            11155
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 196,
+                                              "column": 29
+                                            },
+                                            "end": {
+                                              "line": 196,
+                                              "column": 44
+                                            }
+                                          }
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "localTime",
+                                          "range": [
+                                            11156,
+                                            11165
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 196,
+                                              "column": 45
+                                            },
+                                            "end": {
+                                              "line": 196,
+                                              "column": 54
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          11140,
+                                          11165
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 196,
+                                            "column": 29
+                                          },
+                                          "end": {
+                                            "line": 196,
+                                            "column": 54
+                                          }
+                                        }
+                                      },
+                                      "arguments": [],
+                                      "range": [
+                                        11140,
+                                        11167
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 196,
+                                          "column": 29
+                                        },
+                                        "end": {
+                                          "line": 196,
+                                          "column": 56
+                                        }
+                                      }
+                                    },
+                                    "range": [
+                                      11130,
+                                      11167
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 196,
+                                        "column": 19
+                                      },
+                                      "end": {
+                                        "line": 196,
+                                        "column": 56
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "BinaryExpression",
+                                    "operator": "===",
+                                    "left": {
+                                      "type": "Identifier",
+                                      "name": "query",
+                                      "range": [
+                                        11171,
+                                        11176
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 196,
+                                          "column": 60
+                                        },
+                                        "end": {
+                                          "line": 196,
+                                          "column": 65
+                                        }
+                                      }
+                                    },
+                                    "right": {
+                                      "type": "CallExpression",
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "computed": false,
+                                        "object": {
+                                          "type": "Identifier",
+                                          "name": "TemporalQueries",
+                                          "range": [
+                                            11181,
+                                            11196
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 196,
+                                              "column": 70
+                                            },
+                                            "end": {
+                                              "line": 196,
+                                              "column": 85
+                                            }
+                                          }
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "zone",
+                                          "range": [
+                                            11197,
+                                            11201
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 196,
+                                              "column": 86
+                                            },
+                                            "end": {
+                                              "line": 196,
+                                              "column": 90
+                                            }
+                                          }
+                                        },
+                                        "range": [
+                                          11181,
+                                          11201
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 196,
+                                            "column": 70
+                                          },
+                                          "end": {
+                                            "line": 196,
+                                            "column": 90
+                                          }
+                                        }
+                                      },
+                                      "arguments": [],
+                                      "range": [
+                                        11181,
+                                        11203
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 196,
+                                          "column": 70
+                                        },
+                                        "end": {
+                                          "line": 196,
+                                          "column": 92
+                                        }
+                                      }
+                                    },
+                                    "range": [
+                                      11171,
+                                      11203
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 196,
+                                        "column": 60
+                                      },
+                                      "end": {
+                                        "line": 196,
+                                        "column": 92
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    11130,
+                                    11203
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 196,
+                                      "column": 19
+                                    },
+                                    "end": {
+                                      "line": 196,
+                                      "column": 92
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "BinaryExpression",
+                                  "operator": "===",
+                                  "left": {
+                                    "type": "Identifier",
+                                    "name": "query",
+                                    "range": [
+                                      11223,
+                                      11228
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 197,
+                                        "column": 16
+                                      },
+                                      "end": {
+                                        "line": 197,
+                                        "column": 21
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "type": "CallExpression",
+                                    "callee": {
+                                      "type": "MemberExpression",
+                                      "computed": false,
+                                      "object": {
+                                        "type": "Identifier",
+                                        "name": "TemporalQueries",
+                                        "range": [
+                                          11233,
+                                          11248
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 197,
+                                            "column": 26
+                                          },
+                                          "end": {
+                                            "line": 197,
+                                            "column": 41
+                                          }
+                                        }
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "zoneId",
+                                        "range": [
+                                          11249,
+                                          11255
+                                        ],
+                                        "loc": {
+                                          "start": {
+                                            "line": 197,
+                                            "column": 42
+                                          },
+                                          "end": {
+                                            "line": 197,
+                                            "column": 48
+                                          }
+                                        }
+                                      },
+                                      "range": [
+                                        11233,
+                                        11255
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 197,
+                                          "column": 26
+                                        },
+                                        "end": {
+                                          "line": 197,
+                                          "column": 48
+                                        }
+                                      }
+                                    },
+                                    "arguments": [],
+                                    "range": [
+                                      11233,
+                                      11257
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 197,
+                                        "column": 26
+                                      },
+                                      "end": {
+                                        "line": 197,
+                                        "column": 50
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    11223,
+                                    11257
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 197,
+                                      "column": 16
+                                    },
+                                    "end": {
+                                      "line": 197,
+                                      "column": 50
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  11130,
+                                  11257
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 196,
+                                    "column": 19
+                                  },
+                                  "end": {
+                                    "line": 197,
+                                    "column": 50
+                                  }
+                                }
+                              },
+                              "right": {
+                                "type": "BinaryExpression",
+                                "operator": "===",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "query",
+                                  "range": [
+                                    11261,
+                                    11266
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 197,
+                                      "column": 54
+                                    },
+                                    "end": {
+                                      "line": 197,
+                                      "column": 59
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "CallExpression",
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "computed": false,
+                                    "object": {
+                                      "type": "Identifier",
+                                      "name": "TemporalQueries",
+                                      "range": [
+                                        11271,
+                                        11286
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 197,
+                                          "column": 64
+                                        },
+                                        "end": {
+                                          "line": 197,
+                                          "column": 79
+                                        }
+                                      }
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "offset",
+                                      "range": [
+                                        11287,
+                                        11293
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 197,
+                                          "column": 80
+                                        },
+                                        "end": {
+                                          "line": 197,
+                                          "column": 86
+                                        }
+                                      }
+                                    },
+                                    "range": [
+                                      11271,
+                                      11293
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 197,
+                                        "column": 64
+                                      },
+                                      "end": {
+                                        "line": 197,
+                                        "column": 86
+                                      }
+                                    }
+                                  },
+                                  "arguments": [],
+                                  "range": [
+                                    11271,
+                                    11295
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 197,
+                                      "column": 64
+                                    },
+                                    "end": {
+                                      "line": 197,
+                                      "column": 88
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  11261,
+                                  11295
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 197,
+                                    "column": 54
+                                  },
+                                  "end": {
+                                    "line": 197,
+                                    "column": 88
+                                  }
+                                }
+                              },
+                              "range": [
+                                11130,
+                                11295
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 196,
+                                  "column": 19
+                                },
+                                "end": {
+                                  "line": 197,
+                                  "column": 88
+                                }
+                              }
+                            },
+                            "consequent": {
+                              "type": "BlockStatement",
+                              "body": [
+                                {
+                                  "type": "ReturnStatement",
+                                  "argument": {
+                                    "type": "Literal",
+                                    "value": null,
+                                    "raw": "null",
+                                    "range": [
+                                      11318,
+                                      11322
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 198,
+                                        "column": 19
+                                      },
+                                      "end": {
+                                        "line": 198,
+                                        "column": 23
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    11311,
+                                    11323
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 198,
+                                      "column": 12
+                                    },
+                                    "end": {
+                                      "line": 198,
+                                      "column": 24
+                                    }
+                                  }
+                                }
+                              ],
+                              "range": [
+                                11297,
+                                11333
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 197,
+                                  "column": 90
+                                },
+                                "end": {
+                                  "line": 199,
+                                  "column": 9
+                                }
+                              }
+                            },
+                            "alternate": null,
+                            "range": [
+                              11126,
+                              11333
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 196,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 199,
+                                "column": 9
+                              }
+                            }
+                          },
+                          "range": [
+                            11006,
+                            11333
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 194,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 199,
+                              "column": 9
+                            }
+                          }
+                        },
+                        "range": [
+                          10910,
+                          11333
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 192,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 199,
+                            "column": 9
+                          }
+                        }
+                      },
+                      "range": [
+                        10811,
+                        11333
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 190,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 199,
+                          "column": 9
+                        }
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Super",
+                            "range": [
+                              11349,
+                              11354
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 200,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 200,
+                                "column": 20
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "query",
+                            "range": [
+                              11355,
+                              11360
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 200,
+                                "column": 21
+                              },
+                              "end": {
+                                "line": 200,
+                                "column": 26
+                              }
+                            }
+                          },
+                          "range": [
+                            11349,
+                            11360
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 200,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 200,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "query",
+                            "range": [
+                              11361,
+                              11366
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 200,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 200,
+                                "column": 32
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          11349,
+                          11367
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 200,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 200,
+                            "column": 33
+                          }
+                        }
+                      },
+                      "range": [
+                        11342,
+                        11368
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 200,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 200,
+                          "column": 34
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    10801,
+                    11374
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 189,
+                      "column": 17
+                    },
+                    "end": {
+                      "line": 201,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  10793,
+                  11374
+                ],
+                "loc": {
+                  "start": {
+                    "line": 189,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 201,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                10788,
+                11374
+              ],
+              "loc": {
+                "start": {
+                  "line": 189,
+                  "column": 4
+                },
+                "end": {
+                  "line": 201,
+                  "column": 5
+                }
+              },
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "adjustInto",
+                "range": [
+                  11380,
+                  11390
+                ],
+                "loc": {
+                  "start": {
+                    "line": 203,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 203,
+                    "column": 14
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "temporal",
+                    "range": [
+                      11391,
+                      11399
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 203,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 203,
+                        "column": 23
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Identifier",
+                            "name": "temporal",
+                            "range": [
+                              11418,
+                              11426
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 204,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 204,
+                                "column": 23
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "with",
+                            "range": [
+                              11427,
+                              11431
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 204,
+                                "column": 24
+                              },
+                              "end": {
+                                "line": 204,
+                                "column": 28
+                              }
+                            }
+                          },
+                          "range": [
+                            11418,
+                            11431
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 204,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 204,
+                              "column": 28
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "MemberExpression",
+                            "computed": false,
+                            "object": {
+                              "type": "Identifier",
+                              "name": "ChronoField",
+                              "range": [
+                                11432,
+                                11443
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 204,
+                                  "column": 29
+                                },
+                                "end": {
+                                  "line": 204,
+                                  "column": 40
+                                }
+                              }
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "EPOCH_DAY",
+                              "range": [
+                                11444,
+                                11453
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 204,
+                                  "column": 41
+                                },
+                                "end": {
+                                  "line": 204,
+                                  "column": 50
+                                }
+                              }
+                            },
+                            "range": [
+                              11432,
+                              11453
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 204,
+                                "column": 29
+                              },
+                              "end": {
+                                "line": 204,
+                                "column": 50
+                              }
+                            }
+                          },
+                          {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "computed": false,
+                              "object": {
+                                "type": "ThisExpression",
+                                "range": [
+                                  11455,
+                                  11459
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 204,
+                                    "column": 52
+                                  },
+                                  "end": {
+                                    "line": 204,
+                                    "column": 56
+                                  }
+                                }
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "toEpochDay",
+                                "range": [
+                                  11460,
+                                  11470
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 204,
+                                    "column": 57
+                                  },
+                                  "end": {
+                                    "line": 204,
+                                    "column": 67
+                                  }
+                                }
+                              },
+                              "range": [
+                                11455,
+                                11470
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 204,
+                                  "column": 52
+                                },
+                                "end": {
+                                  "line": 204,
+                                  "column": 67
+                                }
+                              }
+                            },
+                            "arguments": [],
+                            "range": [
+                              11455,
+                              11472
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 204,
+                                "column": 52
+                              },
+                              "end": {
+                                "line": 204,
+                                "column": 69
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          11418,
+                          11473
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 204,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 204,
+                            "column": 70
+                          }
+                        }
+                      },
+                      "range": [
+                        11411,
+                        11474
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 204,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 204,
+                          "column": 71
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    11401,
+                    11480
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 203,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 205,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  11390,
+                  11480
+                ],
+                "loc": {
+                  "start": {
+                    "line": 203,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 205,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                11380,
+                11480
+              ],
+              "loc": {
+                "start": {
+                  "line": 203,
+                  "column": 4
+                },
+                "end": {
+                  "line": 205,
+                  "column": 5
+                }
+              },
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Formats this date using the specified formatter.\n     * <p>\n     * This date will be passed to the formatter to produce a string.\n     * <p>\n     * The default implementation must behave as follows:\n     * <pre>\n     *  return formatter.format(this);\n     * </pre>\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+                  "range": [
+                    11485,
+                    11979
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 206,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 219,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "format",
+                "range": [
+                  11984,
+                  11990
+                ],
+                "loc": {
+                  "start": {
+                    "line": 220,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 220,
+                    "column": 10
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "formatter",
+                    "range": [
+                      11991,
+                      12000
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 220,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 220,
+                        "column": 20
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "requireNonNull",
+                          "range": [
+                            12012,
+                            12026
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 221,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 221,
+                              "column": 22
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "formatter",
+                            "range": [
+                              12027,
+                              12036
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 221,
+                                "column": 23
+                              },
+                              "end": {
+                                "line": 221,
+                                "column": 32
+                              }
+                            }
+                          },
+                          {
+                            "type": "Literal",
+                            "value": "formatter",
+                            "raw": "'formatter'",
+                            "range": [
+                              12038,
+                              12049
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 221,
+                                "column": 34
+                              },
+                              "end": {
+                                "line": 221,
+                                "column": 45
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          12012,
+                          12050
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 221,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 221,
+                            "column": 46
+                          }
+                        }
+                      },
+                      "range": [
+                        12012,
+                        12051
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 221,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 221,
+                          "column": 47
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "requireInstance",
+                          "range": [
+                            12060,
+                            12075
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 222,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 222,
+                              "column": 23
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "name": "formatter",
+                            "range": [
+                              12076,
+                              12085
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 222,
+                                "column": 24
+                              },
+                              "end": {
+                                "line": 222,
+                                "column": 33
+                              }
+                            }
+                          },
+                          {
+                            "type": "Identifier",
+                            "name": "DateTimeFormatter",
+                            "range": [
+                              12087,
+                              12104
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 222,
+                                "column": 35
+                              },
+                              "end": {
+                                "line": 222,
+                                "column": 52
+                              }
+                            }
+                          },
+                          {
+                            "type": "Literal",
+                            "value": "formatter",
+                            "raw": "'formatter'",
+                            "range": [
+                              12106,
+                              12117
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 222,
+                                "column": 54
+                              },
+                              "end": {
+                                "line": 222,
+                                "column": 65
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          12060,
+                          12118
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 222,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 222,
+                            "column": 66
+                          }
+                        }
+                      },
+                      "range": [
+                        12060,
+                        12119
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 222,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 222,
+                          "column": 67
+                        }
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Identifier",
+                            "name": "formatter",
+                            "range": [
+                              12135,
+                              12144
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 223,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 223,
+                                "column": 24
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "format",
+                            "range": [
+                              12145,
+                              12151
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 223,
+                                "column": 25
+                              },
+                              "end": {
+                                "line": 223,
+                                "column": 31
+                              }
+                            }
+                          },
+                          "range": [
+                            12135,
+                            12151
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 223,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 223,
+                              "column": 31
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "ThisExpression",
+                            "range": [
+                              12152,
+                              12156
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 223,
+                                "column": 32
+                              },
+                              "end": {
+                                "line": 223,
+                                "column": 36
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          12135,
+                          12157
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 223,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 223,
+                            "column": 37
+                          }
+                        }
+                      },
+                      "range": [
+                        12128,
+                        12158
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 223,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 223,
+                          "column": 38
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    12002,
+                    12164
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 220,
+                      "column": 22
+                    },
+                    "end": {
+                      "line": 224,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  11990,
+                  12164
+                ],
+                "loc": {
+                  "start": {
+                    "line": 220,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 224,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                11984,
+                12164
+              ],
+              "loc": {
+                "start": {
+                  "line": 220,
+                  "column": 4
+                },
+                "end": {
+                  "line": 224,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Formats this date using the specified formatter.\n     * <p>\n     * This date will be passed to the formatter to produce a string.\n     * <p>\n     * The default implementation must behave as follows:\n     * <pre>\n     *  return formatter.format(this);\n     * </pre>\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+                  "range": [
+                    11485,
+                    11979
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 206,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 219,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            }
+          ],
+          "range": [
+            10464,
+            12166
+          ],
+          "loc": {
+            "start": {
+              "line": 178,
+              "column": 46
+            },
+            "end": {
+              "line": 225,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          10425,
+          12166
+        ],
+        "loc": {
+          "start": {
+            "line": 178,
+            "column": 7
+          },
+          "end": {
+            "line": 225,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * A date without time-of-day or time-zone in an arbitrary chronology, intended\n * for advanced globalization use cases.\n * <p>\n * <b>Most applications should declare method signatures, fields and variables\n * as {@link LocalDate}, not this interface.</b>\n * <p>\n * A {@code ChronoLocalDate} is the abstract representation of a date where the\n * {@code Chronology chronology}, or calendar system, is pluggable.\n * The date is defined in terms of fields expressed by {@link TemporalField},\n * where most common implementations are defined in {@link ChronoField}.\n * The chronology defines how the calendar system operates and the meaning of\n * the standard fields.\n *\n * <h4>When to use this interface</h4>\n * The design of the API encourages the use of {@code LocalDate} rather than this\n * interface, even in the case where the application needs to deal with multiple\n * calendar systems. The rationale for this is explored in the following documentation.\n * <p>\n * The primary use case where this interface should be used is where the generic\n * type parameter {@code <C>} is fully defined as a specific chronology.\n * In that case, the assumptions of that chronology are known at development\n * time and specified in the code.\n * <p>\n * When the chronology is defined in the generic type parameter as ? or otherwise\n * unknown at development time, the rest of the discussion below applies.\n * <p>\n * To emphasize the point, declaring a method signature, field or variable as this\n * interface type can initially seem like the sensible way to globalize an application,\n * however it is usually the wrong approach.\n * As such, it should be considered an application-wide architectural decision to choose\n * to use this interface as opposed to {@code LocalDate}.\n *\n * <h4>Architectural issues to consider</h4>\n * These are some of the points that must be considered before using this interface\n * throughout an application.\n * <p>\n * 1) Applications using this interface, as opposed to using just {@code LocalDate},\n * face a significantly higher probability of bugs. This is because the calendar system\n * in use is not known at development time. A key cause of bugs is where the developer\n * applies assumptions from their day-to-day knowledge of the ISO calendar system\n * to code that is intended to deal with any arbitrary calendar system.\n * The section below outlines how those assumptions can cause problems\n * The primary mechanism for reducing this increased risk of bugs is a strong code review process.\n * This should also be considered a extra cost in maintenance for the lifetime of the code.\n * <p>\n * 2) This interface does not enforce immutability of implementations.\n * While the implementation notes indicate that all implementations must be immutable\n * there is nothing in the code or type system to enforce this. Any method declared\n * to accept a {@code ChronoLocalDate} could therefore be passed a poorly or\n * maliciously written mutable implementation.\n * <p>\n * 3) Applications using this interface  must consider the impact of eras.\n * {@code LocalDate} shields users from the concept of eras, by ensuring that {@code getYear()}\n * returns the proleptic year. That decision ensures that developers can think of\n * {@code LocalDate} instances as consisting of three fields - year, month-of-year and day-of-month.\n * By contrast, users of this interface must think of dates as consisting of four fields -\n * era, year-of-era, month-of-year and day-of-month. The extra era field is frequently\n * forgotten, yet it is of vital importance to dates in an arbitrary calendar system.\n * For example, in the Japanese calendar system, the era represents the reign of an Emperor.\n * Whenever one reign ends and another starts, the year-of-era is reset to one.\n * <p>\n * 4) The only agreed international standard for passing a date between two systems\n * is the ISO-8601 standard which requires the ISO calendar system. Using this interface\n * throughout the application will inevitably lead to the requirement to pass the date\n * across a network or component boundary, requiring an application specific protocol or format.\n * <p>\n * 5) Long term persistence, such as a database, will almost always only accept dates in the\n * ISO-8601 calendar system (or the related Julian-Gregorian). Passing around dates in other\n * calendar systems increases the complications of interacting with persistence.\n * <p>\n * 6) Most of the time, passing a {@code ChronoLocalDate} throughout an application\n * is unnecessary, as discussed in the last section below.\n *\n * <h4>False assumptions causing bugs in multi-calendar system code</h4>\n * As indicated above, there are many issues to consider when try to use and manipulate a\n * date in an arbitrary calendar system. These are some of the key issues.\n * <p>\n * Code that queries the day-of-month and assumes that the value will never be more than\n * 31 is invalid. Some calendar systems have more than 31 days in some months.\n * <p>\n * Code that adds 12 months to a date and assumes that a year has been added is invalid.\n * Some calendar systems have a different number of months, such as 13 in the Coptic or Ethiopic.\n * <p>\n * Code that adds one month to a date and assumes that the month-of-year value will increase\n * by one or wrap to the next year is invalid. Some calendar systems have a variable number\n * of months in a year, such as the Hebrew.\n * <p>\n * Code that adds one month, then adds a second one month and assumes that the day-of-month\n * will remain close to its original value is invalid. Some calendar systems have a large difference\n * between the length of the longest month and the length of the shortest month.\n * For example, the Coptic or Ethiopic have 12 months of 30 days and 1 month of 5 days.\n * <p>\n * Code that adds seven days and assumes that a week has been added is invalid.\n * Some calendar systems have weeks of other than seven days, such as the French Revolutionary.\n * <p>\n * Code that assumes that because the year of {@code date1} is greater than the year of {@code date2}\n * then {@code date1} is after {@code date2} is invalid. This is invalid for all calendar systems\n * when referring to the year-of-era, and especially untrue of the Japanese calendar system\n * where the year-of-era restarts with the reign of every new Emperor.\n * <p>\n * Code that treats month-of-year one and day-of-month one as the start of the year is invalid.\n * Not all calendar systems start the year when the month value is one.\n * <p>\n * In general, manipulating a date, and even querying a date, is wide open to bugs when the\n * calendar system is unknown at development time. This is why it is essential that code using\n * this interface is subjected to additional code reviews. It is also why an architectural\n * decision to avoid this interface type is usually the correct one.\n *\n * <h4>Using LocalDate instead</h4>\n * The primary alternative to using this interface throughout your application is as follows.\n * <p><ul>\n * <li>Declare all method signatures referring to dates in terms of {@code LocalDate}.\n * <li>Either store the chronology (calendar system) in the user profile or lookup\n *  the chronology from the user locale\n * <li>Convert the ISO {@code LocalDate} to and from the user's preferred calendar system during\n *  printing and parsing\n * </ul><p>\n * This approach treats the problem of globalized calendar systems as a localization issue\n * and confines it to the UI layer. This approach is in keeping with other localization\n * issues in the java platform.\n * <p>\n * As discussed above, performing calculations on a date where the rules of the calendar system\n * are pluggable requires skill and is not recommended.\n * Fortunately, the need to perform calculations on a date in an arbitrary calendar system\n * is extremely rare. For example, it is highly unlikely that the business rules of a library\n * book rental scheme will allow rentals to be for one month, where meaning of the month\n * is dependent on the user's preferred calendar system.\n * <p>\n * A key use case for calculations on a date in an arbitrary calendar system is producing\n * a month-by-month calendar for display and user interaction. Again, this is a UI issue,\n * and use of this interface solely within a few methods of the UI layer may be justified.\n * <p>\n * In any other part of the system, where a date must be manipulated in a calendar system\n * other than ISO, the use case will generally specify the calendar system to use.\n * For example, an application may need to calculate the next Islamic or Hebrew holiday\n * which may require manipulating the date.\n * This kind of use case can be handled as follows:\n * <p><ul>\n * <li>start from the ISO {@code LocalDate} being passed to the method\n * <li>convert the date to the alternate calendar system, which for this use case is known\n *  rather than arbitrary\n * <li>perform the calculation\n * <li>convert back to {@code LocalDate}\n * </ul><p>\n * Developers writing low-level frameworks or libraries should also avoid this interface.\n * Instead, one of the two general purpose access interfaces should be used.\n * Use {@link TemporalAccessor} if read-only access is required, or use {@link Temporal}\n * if read-write access is required.\n *\n * <h3>Specification for implementors</h3>\n * This interface must be implemented with care to ensure other classes operate correctly.\n * All implementations that can be instantiated must be final, immutable and thread-safe.\n * Subclasses should be Serializable wherever possible.\n * <p>\n * Additional calendar systems may be added to the system.\n * See {@link Chronology} for more details.\n * <p>\n * In JDK 8, this is an interface with default methods.\n * Since there are no default methods in JDK 7, an abstract class is used.\n ",
+            "range": [
+              609,
+              10417
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 0
+              },
+              "end": {
+                "line": 177,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        10418,
+        12166
+      ],
+      "loc": {
+        "start": {
+          "line": 178,
+          "column": 0
+        },
+        "end": {
+          "line": 225,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * A date without time-of-day or time-zone in an arbitrary chronology, intended\n * for advanced globalization use cases.\n * <p>\n * <b>Most applications should declare method signatures, fields and variables\n * as {@link LocalDate}, not this interface.</b>\n * <p>\n * A {@code ChronoLocalDate} is the abstract representation of a date where the\n * {@code Chronology chronology}, or calendar system, is pluggable.\n * The date is defined in terms of fields expressed by {@link TemporalField},\n * where most common implementations are defined in {@link ChronoField}.\n * The chronology defines how the calendar system operates and the meaning of\n * the standard fields.\n *\n * <h4>When to use this interface</h4>\n * The design of the API encourages the use of {@code LocalDate} rather than this\n * interface, even in the case where the application needs to deal with multiple\n * calendar systems. The rationale for this is explored in the following documentation.\n * <p>\n * The primary use case where this interface should be used is where the generic\n * type parameter {@code <C>} is fully defined as a specific chronology.\n * In that case, the assumptions of that chronology are known at development\n * time and specified in the code.\n * <p>\n * When the chronology is defined in the generic type parameter as ? or otherwise\n * unknown at development time, the rest of the discussion below applies.\n * <p>\n * To emphasize the point, declaring a method signature, field or variable as this\n * interface type can initially seem like the sensible way to globalize an application,\n * however it is usually the wrong approach.\n * As such, it should be considered an application-wide architectural decision to choose\n * to use this interface as opposed to {@code LocalDate}.\n *\n * <h4>Architectural issues to consider</h4>\n * These are some of the points that must be considered before using this interface\n * throughout an application.\n * <p>\n * 1) Applications using this interface, as opposed to using just {@code LocalDate},\n * face a significantly higher probability of bugs. This is because the calendar system\n * in use is not known at development time. A key cause of bugs is where the developer\n * applies assumptions from their day-to-day knowledge of the ISO calendar system\n * to code that is intended to deal with any arbitrary calendar system.\n * The section below outlines how those assumptions can cause problems\n * The primary mechanism for reducing this increased risk of bugs is a strong code review process.\n * This should also be considered a extra cost in maintenance for the lifetime of the code.\n * <p>\n * 2) This interface does not enforce immutability of implementations.\n * While the implementation notes indicate that all implementations must be immutable\n * there is nothing in the code or type system to enforce this. Any method declared\n * to accept a {@code ChronoLocalDate} could therefore be passed a poorly or\n * maliciously written mutable implementation.\n * <p>\n * 3) Applications using this interface  must consider the impact of eras.\n * {@code LocalDate} shields users from the concept of eras, by ensuring that {@code getYear()}\n * returns the proleptic year. That decision ensures that developers can think of\n * {@code LocalDate} instances as consisting of three fields - year, month-of-year and day-of-month.\n * By contrast, users of this interface must think of dates as consisting of four fields -\n * era, year-of-era, month-of-year and day-of-month. The extra era field is frequently\n * forgotten, yet it is of vital importance to dates in an arbitrary calendar system.\n * For example, in the Japanese calendar system, the era represents the reign of an Emperor.\n * Whenever one reign ends and another starts, the year-of-era is reset to one.\n * <p>\n * 4) The only agreed international standard for passing a date between two systems\n * is the ISO-8601 standard which requires the ISO calendar system. Using this interface\n * throughout the application will inevitably lead to the requirement to pass the date\n * across a network or component boundary, requiring an application specific protocol or format.\n * <p>\n * 5) Long term persistence, such as a database, will almost always only accept dates in the\n * ISO-8601 calendar system (or the related Julian-Gregorian). Passing around dates in other\n * calendar systems increases the complications of interacting with persistence.\n * <p>\n * 6) Most of the time, passing a {@code ChronoLocalDate} throughout an application\n * is unnecessary, as discussed in the last section below.\n *\n * <h4>False assumptions causing bugs in multi-calendar system code</h4>\n * As indicated above, there are many issues to consider when try to use and manipulate a\n * date in an arbitrary calendar system. These are some of the key issues.\n * <p>\n * Code that queries the day-of-month and assumes that the value will never be more than\n * 31 is invalid. Some calendar systems have more than 31 days in some months.\n * <p>\n * Code that adds 12 months to a date and assumes that a year has been added is invalid.\n * Some calendar systems have a different number of months, such as 13 in the Coptic or Ethiopic.\n * <p>\n * Code that adds one month to a date and assumes that the month-of-year value will increase\n * by one or wrap to the next year is invalid. Some calendar systems have a variable number\n * of months in a year, such as the Hebrew.\n * <p>\n * Code that adds one month, then adds a second one month and assumes that the day-of-month\n * will remain close to its original value is invalid. Some calendar systems have a large difference\n * between the length of the longest month and the length of the shortest month.\n * For example, the Coptic or Ethiopic have 12 months of 30 days and 1 month of 5 days.\n * <p>\n * Code that adds seven days and assumes that a week has been added is invalid.\n * Some calendar systems have weeks of other than seven days, such as the French Revolutionary.\n * <p>\n * Code that assumes that because the year of {@code date1} is greater than the year of {@code date2}\n * then {@code date1} is after {@code date2} is invalid. This is invalid for all calendar systems\n * when referring to the year-of-era, and especially untrue of the Japanese calendar system\n * where the year-of-era restarts with the reign of every new Emperor.\n * <p>\n * Code that treats month-of-year one and day-of-month one as the start of the year is invalid.\n * Not all calendar systems start the year when the month value is one.\n * <p>\n * In general, manipulating a date, and even querying a date, is wide open to bugs when the\n * calendar system is unknown at development time. This is why it is essential that code using\n * this interface is subjected to additional code reviews. It is also why an architectural\n * decision to avoid this interface type is usually the correct one.\n *\n * <h4>Using LocalDate instead</h4>\n * The primary alternative to using this interface throughout your application is as follows.\n * <p><ul>\n * <li>Declare all method signatures referring to dates in terms of {@code LocalDate}.\n * <li>Either store the chronology (calendar system) in the user profile or lookup\n *  the chronology from the user locale\n * <li>Convert the ISO {@code LocalDate} to and from the user's preferred calendar system during\n *  printing and parsing\n * </ul><p>\n * This approach treats the problem of globalized calendar systems as a localization issue\n * and confines it to the UI layer. This approach is in keeping with other localization\n * issues in the java platform.\n * <p>\n * As discussed above, performing calculations on a date where the rules of the calendar system\n * are pluggable requires skill and is not recommended.\n * Fortunately, the need to perform calculations on a date in an arbitrary calendar system\n * is extremely rare. For example, it is highly unlikely that the business rules of a library\n * book rental scheme will allow rentals to be for one month, where meaning of the month\n * is dependent on the user's preferred calendar system.\n * <p>\n * A key use case for calculations on a date in an arbitrary calendar system is producing\n * a month-by-month calendar for display and user interaction. Again, this is a UI issue,\n * and use of this interface solely within a few methods of the UI layer may be justified.\n * <p>\n * In any other part of the system, where a date must be manipulated in a calendar system\n * other than ISO, the use case will generally specify the calendar system to use.\n * For example, an application may need to calculate the next Islamic or Hebrew holiday\n * which may require manipulating the date.\n * This kind of use case can be handled as follows:\n * <p><ul>\n * <li>start from the ISO {@code LocalDate} being passed to the method\n * <li>convert the date to the alternate calendar system, which for this use case is known\n *  rather than arbitrary\n * <li>perform the calculation\n * <li>convert back to {@code LocalDate}\n * </ul><p>\n * Developers writing low-level frameworks or libraries should also avoid this interface.\n * Instead, one of the two general purpose access interfaces should be used.\n * Use {@link TemporalAccessor} if read-only access is required, or use {@link Temporal}\n * if read-write access is required.\n *\n * <h3>Specification for implementors</h3>\n * This interface must be implemented with care to ensure other classes operate correctly.\n * All implementations that can be instantiated must be final, immutable and thread-safe.\n * Subclasses should be Serializable wherever possible.\n * <p>\n * Additional calendar systems may be added to the system.\n * See {@link Chronology} for more details.\n * <p>\n * In JDK 8, this is an interface with default methods.\n * Since there are no default methods in JDK 7, an abstract class is used.\n ",
+          "range": [
+            609,
+            10417
+          ],
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 0
+            },
+            "end": {
+              "line": 177,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    232,
+    12166
+  ],
+  "loc": {
+    "start": {
+      "line": 7,
+      "column": 0
+    },
+    "end": {
+      "line": 225,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * A date without time-of-day or time-zone in an arbitrary chronology, intended\n * for advanced globalization use cases.\n * <p>\n * <b>Most applications should declare method signatures, fields and variables\n * as {@link LocalDate}, not this interface.</b>\n * <p>\n * A {@code ChronoLocalDate} is the abstract representation of a date where the\n * {@code Chronology chronology}, or calendar system, is pluggable.\n * The date is defined in terms of fields expressed by {@link TemporalField},\n * where most common implementations are defined in {@link ChronoField}.\n * The chronology defines how the calendar system operates and the meaning of\n * the standard fields.\n *\n * <h4>When to use this interface</h4>\n * The design of the API encourages the use of {@code LocalDate} rather than this\n * interface, even in the case where the application needs to deal with multiple\n * calendar systems. The rationale for this is explored in the following documentation.\n * <p>\n * The primary use case where this interface should be used is where the generic\n * type parameter {@code <C>} is fully defined as a specific chronology.\n * In that case, the assumptions of that chronology are known at development\n * time and specified in the code.\n * <p>\n * When the chronology is defined in the generic type parameter as ? or otherwise\n * unknown at development time, the rest of the discussion below applies.\n * <p>\n * To emphasize the point, declaring a method signature, field or variable as this\n * interface type can initially seem like the sensible way to globalize an application,\n * however it is usually the wrong approach.\n * As such, it should be considered an application-wide architectural decision to choose\n * to use this interface as opposed to {@code LocalDate}.\n *\n * <h4>Architectural issues to consider</h4>\n * These are some of the points that must be considered before using this interface\n * throughout an application.\n * <p>\n * 1) Applications using this interface, as opposed to using just {@code LocalDate},\n * face a significantly higher probability of bugs. This is because the calendar system\n * in use is not known at development time. A key cause of bugs is where the developer\n * applies assumptions from their day-to-day knowledge of the ISO calendar system\n * to code that is intended to deal with any arbitrary calendar system.\n * The section below outlines how those assumptions can cause problems\n * The primary mechanism for reducing this increased risk of bugs is a strong code review process.\n * This should also be considered a extra cost in maintenance for the lifetime of the code.\n * <p>\n * 2) This interface does not enforce immutability of implementations.\n * While the implementation notes indicate that all implementations must be immutable\n * there is nothing in the code or type system to enforce this. Any method declared\n * to accept a {@code ChronoLocalDate} could therefore be passed a poorly or\n * maliciously written mutable implementation.\n * <p>\n * 3) Applications using this interface  must consider the impact of eras.\n * {@code LocalDate} shields users from the concept of eras, by ensuring that {@code getYear()}\n * returns the proleptic year. That decision ensures that developers can think of\n * {@code LocalDate} instances as consisting of three fields - year, month-of-year and day-of-month.\n * By contrast, users of this interface must think of dates as consisting of four fields -\n * era, year-of-era, month-of-year and day-of-month. The extra era field is frequently\n * forgotten, yet it is of vital importance to dates in an arbitrary calendar system.\n * For example, in the Japanese calendar system, the era represents the reign of an Emperor.\n * Whenever one reign ends and another starts, the year-of-era is reset to one.\n * <p>\n * 4) The only agreed international standard for passing a date between two systems\n * is the ISO-8601 standard which requires the ISO calendar system. Using this interface\n * throughout the application will inevitably lead to the requirement to pass the date\n * across a network or component boundary, requiring an application specific protocol or format.\n * <p>\n * 5) Long term persistence, such as a database, will almost always only accept dates in the\n * ISO-8601 calendar system (or the related Julian-Gregorian). Passing around dates in other\n * calendar systems increases the complications of interacting with persistence.\n * <p>\n * 6) Most of the time, passing a {@code ChronoLocalDate} throughout an application\n * is unnecessary, as discussed in the last section below.\n *\n * <h4>False assumptions causing bugs in multi-calendar system code</h4>\n * As indicated above, there are many issues to consider when try to use and manipulate a\n * date in an arbitrary calendar system. These are some of the key issues.\n * <p>\n * Code that queries the day-of-month and assumes that the value will never be more than\n * 31 is invalid. Some calendar systems have more than 31 days in some months.\n * <p>\n * Code that adds 12 months to a date and assumes that a year has been added is invalid.\n * Some calendar systems have a different number of months, such as 13 in the Coptic or Ethiopic.\n * <p>\n * Code that adds one month to a date and assumes that the month-of-year value will increase\n * by one or wrap to the next year is invalid. Some calendar systems have a variable number\n * of months in a year, such as the Hebrew.\n * <p>\n * Code that adds one month, then adds a second one month and assumes that the day-of-month\n * will remain close to its original value is invalid. Some calendar systems have a large difference\n * between the length of the longest month and the length of the shortest month.\n * For example, the Coptic or Ethiopic have 12 months of 30 days and 1 month of 5 days.\n * <p>\n * Code that adds seven days and assumes that a week has been added is invalid.\n * Some calendar systems have weeks of other than seven days, such as the French Revolutionary.\n * <p>\n * Code that assumes that because the year of {@code date1} is greater than the year of {@code date2}\n * then {@code date1} is after {@code date2} is invalid. This is invalid for all calendar systems\n * when referring to the year-of-era, and especially untrue of the Japanese calendar system\n * where the year-of-era restarts with the reign of every new Emperor.\n * <p>\n * Code that treats month-of-year one and day-of-month one as the start of the year is invalid.\n * Not all calendar systems start the year when the month value is one.\n * <p>\n * In general, manipulating a date, and even querying a date, is wide open to bugs when the\n * calendar system is unknown at development time. This is why it is essential that code using\n * this interface is subjected to additional code reviews. It is also why an architectural\n * decision to avoid this interface type is usually the correct one.\n *\n * <h4>Using LocalDate instead</h4>\n * The primary alternative to using this interface throughout your application is as follows.\n * <p><ul>\n * <li>Declare all method signatures referring to dates in terms of {@code LocalDate}.\n * <li>Either store the chronology (calendar system) in the user profile or lookup\n *  the chronology from the user locale\n * <li>Convert the ISO {@code LocalDate} to and from the user's preferred calendar system during\n *  printing and parsing\n * </ul><p>\n * This approach treats the problem of globalized calendar systems as a localization issue\n * and confines it to the UI layer. This approach is in keeping with other localization\n * issues in the java platform.\n * <p>\n * As discussed above, performing calculations on a date where the rules of the calendar system\n * are pluggable requires skill and is not recommended.\n * Fortunately, the need to perform calculations on a date in an arbitrary calendar system\n * is extremely rare. For example, it is highly unlikely that the business rules of a library\n * book rental scheme will allow rentals to be for one month, where meaning of the month\n * is dependent on the user's preferred calendar system.\n * <p>\n * A key use case for calculations on a date in an arbitrary calendar system is producing\n * a month-by-month calendar for display and user interaction. Again, this is a UI issue,\n * and use of this interface solely within a few methods of the UI layer may be justified.\n * <p>\n * In any other part of the system, where a date must be manipulated in a calendar system\n * other than ISO, the use case will generally specify the calendar system to use.\n * For example, an application may need to calculate the next Islamic or Hebrew holiday\n * which may require manipulating the date.\n * This kind of use case can be handled as follows:\n * <p><ul>\n * <li>start from the ISO {@code LocalDate} being passed to the method\n * <li>convert the date to the alternate calendar system, which for this use case is known\n *  rather than arbitrary\n * <li>perform the calculation\n * <li>convert back to {@code LocalDate}\n * </ul><p>\n * Developers writing low-level frameworks or libraries should also avoid this interface.\n * Instead, one of the two general purpose access interfaces should be used.\n * Use {@link TemporalAccessor} if read-only access is required, or use {@link Temporal}\n * if read-write access is required.\n *\n * <h3>Specification for implementors</h3>\n * This interface must be implemented with care to ensure other classes operate correctly.\n * All implementations that can be instantiated must be final, immutable and thread-safe.\n * Subclasses should be Serializable wherever possible.\n * <p>\n * Additional calendar systems may be added to the system.\n * See {@link Chronology} for more details.\n * <p>\n * In JDK 8, this is an interface with default methods.\n * Since there are no default methods in JDK 7, an abstract class is used.\n ",
+      "range": [
+        609,
+        10417
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 177,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Formats this date using the specified formatter.\n     * <p>\n     * This date will be passed to the formatter to produce a string.\n     * <p>\n     * The default implementation must behave as follows:\n     * <pre>\n     *  return formatter.format(this);\n     * </pre>\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+      "range": [
+        11485,
+        11979
+      ],
+      "loc": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 7
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,1177 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              240,
+              258
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "abstractMethodFail",
+            "range": [
+              240,
+              258
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            240,
+            258
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 8
+            },
+            "end": {
+              "line": 7,
+              "column": 26
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../assert",
+        "raw": "'../assert'",
+        "range": [
+          265,
+          276
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 33
+          },
+          "end": {
+            "line": 7,
+            "column": 44
+          }
+        }
+      },
+      "range": [
+        232,
+        277
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 45
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "range": [
+            0,
+            230
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Framework-level interface defining an amount of time, such as\n * \"6 hours\", \"8 days\" or \"2 years and 3 months\".\n * <p>\n * This is the base interface type for amounts of time.\n * An amount is distinct from a date or time-of-day in that it is not tied\n * to any specific point on the time-line.\n * <p>\n * The amount can be thought of as a {@code Map} of {@link TemporalUnit} to\n * {@code long}, exposed via {@link #getUnits()} and {@link #get(TemporalUnit)}.\n * A simple case might have a single unit-value pair, such as \"6 hours\".\n * A more complex case may have multiple unit-value pairs, such as\n * \"7 years, 3 months and 5 days\".\n * <p>\n * There are two common implementations.\n * {@link Period} is a date-based implementation, storing years, months and days.\n * {@link Duration} is a time-based implementation, storing seconds and nanoseconds,\n * but providing some access using other duration based units such as minutes,\n * hours and fixed 24-hour days.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code Period} and {@code Duration}.\n *\n * @interface\n ",
+          "range": [
+            279,
+            1505
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "ClassDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "TemporalAmount",
+          "range": [
+            1519,
+            1533
+          ],
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 13
+            },
+            "end": {
+              "line": 35,
+              "column": 27
+            }
+          }
+        },
+        "superClass": null,
+        "body": {
+          "type": "ClassBody",
+          "body": [
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "get",
+                "range": [
+                  2339,
+                  2342
+                ],
+                "loc": {
+                  "start": {
+                    "line": 52,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 52,
+                    "column": 7
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "unit",
+                    "range": [
+                      2343,
+                      2347
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 52,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 52,
+                        "column": 12
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            2358,
+                            2376
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 53,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 53,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "adjustInto",
+                            "raw": "'adjustInto'",
+                            "range": [
+                              2377,
+                              2389
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 53,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 53,
+                                "column": 39
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          2358,
+                          2390
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 53,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 53,
+                            "column": 40
+                          }
+                        }
+                      },
+                      "range": [
+                        2358,
+                        2391
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 53,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 53,
+                          "column": 41
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    2348,
+                    2397
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 52,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 54,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  2342,
+                  2397
+                ],
+                "loc": {
+                  "start": {
+                    "line": 52,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 54,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                2339,
+                2397
+              ],
+              "loc": {
+                "start": {
+                  "line": 52,
+                  "column": 4
+                },
+                "end": {
+                  "line": 54,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Returns the value of the requested unit.\n     * The units returned from {@link #getUnits()} uniquely define the\n     * value of the {@code TemporalAmount}.  A value must be returned\n     * for each unit listed in {@code getUnits}.\n     *\n     * @implSpec\n     * Implementations may declare support for units not listed by {@link #getUnits()}.\n     * Typically, the implementation would define additional units\n     * as conversions for the convenience of developers.\n     *\n     * @param {TemporalUnit} unit - the {@code TemporalUnit} for which to return the value\n     * @return {number} the long value of the unit\n     * @throws DateTimeException if a value for the unit cannot be obtained\n     * @throws UnsupportedTemporalTypeException if the {@code unit} is not supported\n     ",
+                  "range": [
+                    1539,
+                    2334
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 36,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 51,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Returns the list of units uniquely defining the value of this TemporalAmount.\n     * The list of {@code TemporalUnits} is defined by the implementation class.\n     * The list is a snapshot of the units at the time {@code getUnits}\n     * is called and is not mutable.\n     * The units are ordered from longest duration to the shortest duration\n     * of the unit.\n     *\n     * @implSpec\n     * The list of units completely and uniquely represents the\n     * state of the object without omissions, overlaps or duplication.\n     * The units are in order from longest duration to shortest.\n     *\n     * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null\n     ",
+                  "range": [
+                    2403,
+                    3092
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 56,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 70,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "getUnits",
+                "range": [
+                  3097,
+                  3105
+                ],
+                "loc": {
+                  "start": {
+                    "line": 71,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 71,
+                    "column": 12
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            3117,
+                            3135
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 72,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 72,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "adjustInto",
+                            "raw": "'adjustInto'",
+                            "range": [
+                              3136,
+                              3148
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 72,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 72,
+                                "column": 39
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          3117,
+                          3149
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 72,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 72,
+                            "column": 40
+                          }
+                        }
+                      },
+                      "range": [
+                        3117,
+                        3150
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 72,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 72,
+                          "column": 41
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    3107,
+                    3156
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 71,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 73,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  3105,
+                  3156
+                ],
+                "loc": {
+                  "start": {
+                    "line": 71,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 73,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                3097,
+                3156
+              ],
+              "loc": {
+                "start": {
+                  "line": 71,
+                  "column": 4
+                },
+                "end": {
+                  "line": 73,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Returns the list of units uniquely defining the value of this TemporalAmount.\n     * The list of {@code TemporalUnits} is defined by the implementation class.\n     * The list is a snapshot of the units at the time {@code getUnits}\n     * is called and is not mutable.\n     * The units are ordered from longest duration to the shortest duration\n     * of the unit.\n     *\n     * @implSpec\n     * The list of units completely and uniquely represents the\n     * state of the object without omissions, overlaps or duplication.\n     * The units are in order from longest duration to shortest.\n     *\n     * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null\n     ",
+                  "range": [
+                    2403,
+                    3092
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 56,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 70,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Adds to the specified temporal object.\n     * <p>\n     * Adds the amount to the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus(TemporalAmount)}:\n     * <pre>\n     *   // These two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.addTo(dateTime);\n     *   dateTime = dateTime.plus(adder);\n     * </pre>\n     * It is recommended to use the second approach, {@code plus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and add to it.\n     * The implementation defines the logic of the addition and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the addition.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to add the amount to, not null\n     * @return {Temporal} an object of the same observable type with the addition made, not null\n     * @throws DateTimeException if unable to add\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "range": [
+                    3162,
+                    5180
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 75,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 114,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "addTo",
+                "range": [
+                  5185,
+                  5190
+                ],
+                "loc": {
+                  "start": {
+                    "line": 115,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 115,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "temporal",
+                    "range": [
+                      5191,
+                      5199
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 115,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 115,
+                        "column": 18
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            5210,
+                            5228
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 116,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 116,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "adjustInto",
+                            "raw": "'adjustInto'",
+                            "range": [
+                              5229,
+                              5241
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 116,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 116,
+                                "column": 39
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          5210,
+                          5242
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 116,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 116,
+                            "column": 40
+                          }
+                        }
+                      },
+                      "range": [
+                        5210,
+                        5243
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 116,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 116,
+                          "column": 41
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    5200,
+                    5249
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 115,
+                      "column": 19
+                    },
+                    "end": {
+                      "line": 117,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  5190,
+                  5249
+                ],
+                "loc": {
+                  "start": {
+                    "line": 115,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 117,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                5185,
+                5249
+              ],
+              "loc": {
+                "start": {
+                  "line": 115,
+                  "column": 4
+                },
+                "end": {
+                  "line": 117,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Adds to the specified temporal object.\n     * <p>\n     * Adds the amount to the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus(TemporalAmount)}:\n     * <pre>\n     *   // These two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.addTo(dateTime);\n     *   dateTime = dateTime.plus(adder);\n     * </pre>\n     * It is recommended to use the second approach, {@code plus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and add to it.\n     * The implementation defines the logic of the addition and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the addition.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to add the amount to, not null\n     * @return {Temporal} an object of the same observable type with the addition made, not null\n     * @throws DateTimeException if unable to add\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "range": [
+                    3162,
+                    5180
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 75,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 114,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Subtracts this object from the specified temporal object.\n     * <p>\n     * Subtracts the amount from the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#minus(TemporalAmount)}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.subtractFrom(dateTime);\n     *   dateTime = dateTime.minus(amount);\n     * </pre>\n     * It is recommended to use the second approach, {@code minus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and subtract from it.\n     * The implementation defines the logic of the subtraction and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the subtraction.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to subtract the amount from, not null\n     * @return {Temporal} an object of the same observable type with the subtraction made, not null\n     * @throws DateTimeException if unable to subtract\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "range": [
+                    5255,
+                    7338
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 119,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 158,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "subtractFrom",
+                "range": [
+                  7344,
+                  7356
+                ],
+                "loc": {
+                  "start": {
+                    "line": 159,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 159,
+                    "column": 17
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "name": "temporal",
+                    "range": [
+                      7357,
+                      7365
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 159,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 159,
+                        "column": 26
+                      }
+                    }
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "abstractMethodFail",
+                          "range": [
+                            7376,
+                            7394
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 160,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 160,
+                              "column": 26
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "adjustInto",
+                            "raw": "'adjustInto'",
+                            "range": [
+                              7395,
+                              7407
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 160,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 160,
+                                "column": 39
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          7376,
+                          7408
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 160,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 160,
+                            "column": 40
+                          }
+                        }
+                      },
+                      "range": [
+                        7376,
+                        7409
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 160,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 160,
+                          "column": 41
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    7366,
+                    7416
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 159,
+                      "column": 27
+                    },
+                    "end": {
+                      "line": 161,
+                      "column": 6
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  7356,
+                  7416
+                ],
+                "loc": {
+                  "start": {
+                    "line": 159,
+                    "column": 17
+                  },
+                  "end": {
+                    "line": 161,
+                    "column": 6
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                7344,
+                7416
+              ],
+              "loc": {
+                "start": {
+                  "line": 159,
+                  "column": 5
+                },
+                "end": {
+                  "line": 161,
+                  "column": 6
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Subtracts this object from the specified temporal object.\n     * <p>\n     * Subtracts the amount from the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#minus(TemporalAmount)}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.subtractFrom(dateTime);\n     *   dateTime = dateTime.minus(amount);\n     * </pre>\n     * It is recommended to use the second approach, {@code minus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and subtract from it.\n     * The implementation defines the logic of the subtraction and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the subtraction.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to subtract the amount from, not null\n     * @return {Temporal} an object of the same observable type with the subtraction made, not null\n     * @throws DateTimeException if unable to subtract\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "range": [
+                    5255,
+                    7338
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 119,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 158,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            }
+          ],
+          "range": [
+            1533,
+            7419
+          ],
+          "loc": {
+            "start": {
+              "line": 35,
+              "column": 27
+            },
+            "end": {
+              "line": 163,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          1513,
+          7419
+        ],
+        "loc": {
+          "start": {
+            "line": 35,
+            "column": 7
+          },
+          "end": {
+            "line": 163,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Framework-level interface defining an amount of time, such as\n * \"6 hours\", \"8 days\" or \"2 years and 3 months\".\n * <p>\n * This is the base interface type for amounts of time.\n * An amount is distinct from a date or time-of-day in that it is not tied\n * to any specific point on the time-line.\n * <p>\n * The amount can be thought of as a {@code Map} of {@link TemporalUnit} to\n * {@code long}, exposed via {@link #getUnits()} and {@link #get(TemporalUnit)}.\n * A simple case might have a single unit-value pair, such as \"6 hours\".\n * A more complex case may have multiple unit-value pairs, such as\n * \"7 years, 3 months and 5 days\".\n * <p>\n * There are two common implementations.\n * {@link Period} is a date-based implementation, storing years, months and days.\n * {@link Duration} is a time-based implementation, storing seconds and nanoseconds,\n * but providing some access using other duration based units such as minutes,\n * hours and fixed 24-hour days.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code Period} and {@code Duration}.\n *\n * @interface\n ",
+            "range": [
+              279,
+              1505
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1506,
+        7419
+      ],
+      "loc": {
+        "start": {
+          "line": 35,
+          "column": 0
+        },
+        "end": {
+          "line": 163,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Framework-level interface defining an amount of time, such as\n * \"6 hours\", \"8 days\" or \"2 years and 3 months\".\n * <p>\n * This is the base interface type for amounts of time.\n * An amount is distinct from a date or time-of-day in that it is not tied\n * to any specific point on the time-line.\n * <p>\n * The amount can be thought of as a {@code Map} of {@link TemporalUnit} to\n * {@code long}, exposed via {@link #getUnits()} and {@link #get(TemporalUnit)}.\n * A simple case might have a single unit-value pair, such as \"6 hours\".\n * A more complex case may have multiple unit-value pairs, such as\n * \"7 years, 3 months and 5 days\".\n * <p>\n * There are two common implementations.\n * {@link Period} is a date-based implementation, storing years, months and days.\n * {@link Duration} is a time-based implementation, storing seconds and nanoseconds,\n * but providing some access using other duration based units such as minutes,\n * hours and fixed 24-hour days.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code Period} and {@code Duration}.\n *\n * @interface\n ",
+          "range": [
+            279,
+            1505
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    232,
+    7419
+  ],
+  "loc": {
+    "start": {
+      "line": 7,
+      "column": 0
+    },
+    "end": {
+      "line": 163,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "range": [
+        0,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Framework-level interface defining an amount of time, such as\n * \"6 hours\", \"8 days\" or \"2 years and 3 months\".\n * <p>\n * This is the base interface type for amounts of time.\n * An amount is distinct from a date or time-of-day in that it is not tied\n * to any specific point on the time-line.\n * <p>\n * The amount can be thought of as a {@code Map} of {@link TemporalUnit} to\n * {@code long}, exposed via {@link #getUnits()} and {@link #get(TemporalUnit)}.\n * A simple case might have a single unit-value pair, such as \"6 hours\".\n * A more complex case may have multiple unit-value pairs, such as\n * \"7 years, 3 months and 5 days\".\n * <p>\n * There are two common implementations.\n * {@link Period} is a date-based implementation, storing years, months and days.\n * {@link Duration} is a time-based implementation, storing seconds and nanoseconds,\n * but providing some access using other duration based units such as minutes,\n * hours and fixed 24-hour days.\n * <p>\n * This interface is a framework-level interface that should not be widely\n * used in application code. Instead, applications should create and pass\n * around instances of concrete types, such as {@code Period} and {@code Duration}.\n *\n * @interface\n ",
+      "range": [
+        279,
+        1505
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 34,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Returns the value of the requested unit.\n     * The units returned from {@link #getUnits()} uniquely define the\n     * value of the {@code TemporalAmount}.  A value must be returned\n     * for each unit listed in {@code getUnits}.\n     *\n     * @implSpec\n     * Implementations may declare support for units not listed by {@link #getUnits()}.\n     * Typically, the implementation would define additional units\n     * as conversions for the convenience of developers.\n     *\n     * @param {TemporalUnit} unit - the {@code TemporalUnit} for which to return the value\n     * @return {number} the long value of the unit\n     * @throws DateTimeException if a value for the unit cannot be obtained\n     * @throws UnsupportedTemporalTypeException if the {@code unit} is not supported\n     ",
+      "range": [
+        1539,
+        2334
+      ],
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 51,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Returns the list of units uniquely defining the value of this TemporalAmount.\n     * The list of {@code TemporalUnits} is defined by the implementation class.\n     * The list is a snapshot of the units at the time {@code getUnits}\n     * is called and is not mutable.\n     * The units are ordered from longest duration to the shortest duration\n     * of the unit.\n     *\n     * @implSpec\n     * The list of units completely and uniquely represents the\n     * state of the object without omissions, overlaps or duplication.\n     * The units are in order from longest duration to shortest.\n     *\n     * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null\n     ",
+      "range": [
+        2403,
+        3092
+      ],
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 4
+        },
+        "end": {
+          "line": 70,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Adds to the specified temporal object.\n     * <p>\n     * Adds the amount to the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus(TemporalAmount)}:\n     * <pre>\n     *   // These two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.addTo(dateTime);\n     *   dateTime = dateTime.plus(adder);\n     * </pre>\n     * It is recommended to use the second approach, {@code plus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and add to it.\n     * The implementation defines the logic of the addition and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the addition.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to add the amount to, not null\n     * @return {Temporal} an object of the same observable type with the addition made, not null\n     * @throws DateTimeException if unable to add\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "range": [
+        3162,
+        5180
+      ],
+      "loc": {
+        "start": {
+          "line": 75,
+          "column": 4
+        },
+        "end": {
+          "line": 114,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Subtracts this object from the specified temporal object.\n     * <p>\n     * Subtracts the amount from the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * <p>\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#minus(TemporalAmount)}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   dateTime = amount.subtractFrom(dateTime);\n     *   dateTime = dateTime.minus(amount);\n     * </pre>\n     * It is recommended to use the second approach, {@code minus(TemporalAmount)},\n     * as it is a lot clearer to read in code.\n     *\n     * @implSpec\n     * The implementation must take the input object and subtract from it.\n     * The implementation defines the logic of the subtraction and is responsible for\n     * documenting that logic. It may use any method on {@code Temporal} to\n     * query the temporal object and perform the subtraction.\n     * The returned object must have the same observable type as the input object\n     * <p>\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     * <p>\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.\n     * <p>\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal - the temporal object to subtract the amount from, not null\n     * @return {Temporal} an object of the same observable type with the subtraction made, not null\n     * @throws DateTimeException if unable to subtract\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "range": [
+        5255,
+        7338
+      ],
+      "loc": {
+        "start": {
+          "line": 119,
+          "column": 4
+        },
+        "end": {
+          "line": 158,
+          "column": 7
+        }
+      }
+    }
+  ]
+}
