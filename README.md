@@ -95,7 +95,7 @@ Then add it as a script tag to your page
 ## Documentation
 
 + [Cheat Sheet](CheatSheet.md) Quick start guide
-+ [API](https://doc.esdoc.org/github.com/js-joda/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [API](//js-joda.github.io/js-joda/esdoc/) ESDoc generated API documentation
 + [js-joda Homepage](http://js-joda.github.io/js-joda/) Project homepage
 
 ## Roadmap
