@@ -1,7 +1,7 @@
 js-joda Cheat sheet
 =============================================
 
-[For a detailed API Reference refer to the ESDoc generated docs](https://doc.esdoc.org/github.com/js-joda/js-joda/)  
+[For a detailed API Reference refer to the ESDoc generated docs](./esdoc/)  
 
 ## Table of content
 
