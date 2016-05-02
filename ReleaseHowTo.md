@@ -1,7 +1,7 @@
 Release how-to
 ==============
 
-1) bring your master branch in sync with the remote branch, stash or revert all uncommitted local changes
+1) sync your master branch with the remote branch, stash or revert all uncommitted local changes
 2) execute `npm run test-ci` to verify that the current state of the master branch is green
 3) bump the js-joda package version in the package.json
 4) execute `npm run build-dist`
