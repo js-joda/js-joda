@@ -19,3 +19,7 @@ build
 
 # Ide
 .idea
+
+# etc
+benchmark
+tmp
