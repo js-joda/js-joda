@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.1
+//! @version js-joda - 1.1.2
 //! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1789,6 +1789,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _Clock = __webpack_require__(1);
 	
+	var _Instant = __webpack_require__(4);
+	
 	var _LocalDate = __webpack_require__(8);
 	
 	var _LocalTime = __webpack_require__(5);
@@ -1881,6 +1883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
 	
 	        (0, _assert.requireNonNull)(instant, 'instant');
+	        (0, _assert.requireInstance)(instant, _Instant.Instant, 'instant');
 	        (0, _assert.requireNonNull)(zone, 'zone');
 	        var rules = zone.rules();
 	        var offset = rules.offset(instant);
@@ -5668,7 +5671,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
 	    };
 	
-	    DateTimeFormatter.prototype.withLocal = function withLocal() {
+	    DateTimeFormatter.prototype.withLocale = function withLocale() {
 	        return this;
 	    };
 	
