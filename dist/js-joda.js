@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.4
+//! @version js-joda - 1.1.5
 //! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1548,6 +1548,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return buf;
 	    };
 	
+	    LocalTime.prototype.toJSON = function toJSON() {
+	        return this.toString();
+	    };
+	
 	    LocalTime.prototype.format = function format(formatter) {
 	        (0, _assert.requireNonNull)(formatter, 'formatter');
 	        return formatter.format(this);
@@ -2360,6 +2364,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this._date.toString() + 'T' + this._time.toString();
 	    };
 	
+	    LocalDateTime.prototype.toJSON = function toJSON() {
+	        return this.toString();
+	    };
+	
 	    LocalDateTime.prototype.format = function format(formatter) {
 	        (0, _assert.requireNonNull)(formatter, 'formatter');
 	        return formatter.format(this);
@@ -3119,6 +3127,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	
 	        return yearString + monthString + dayString;
+	    };
+	
+	    LocalDate.prototype.toJSON = function toJSON() {
+	        return this.toString();
 	    };
 	
 	    LocalDate.prototype.format = function format(formatter) {
@@ -4401,6 +4413,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        rval += 'S';
 	        return rval;
+	    };
+	
+	    Duration.prototype.toJSON = function toJSON() {
+	        return this.toString();
 	    };
 	
 	    return Duration;
@@ -6173,6 +6189,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	            return buf;
 	        }
+	    };
+	
+	    Period.prototype.toJSON = function toJSON() {
+	        return this.toString();
 	    };
 	
 	    return Period;
@@ -9931,6 +9951,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            str += '[' + this._zone.toString() + ']';
 	        }
 	        return str;
+	    };
+	
+	    ZonedDateTime.prototype.toJSON = function toJSON() {
+	        return this.toString();
 	    };
 	
 	    ZonedDateTime.prototype.format = function format(formatter) {
