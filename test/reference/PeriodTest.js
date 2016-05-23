@@ -986,6 +986,7 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         function test_toString(input, expected) {
             assertEquals(input.toString(), expected);
+            assertEquals(input.toJSON(), input.toString());
         }
 
     });

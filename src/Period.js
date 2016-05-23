@@ -910,6 +910,14 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             return buf;
         }
     }
+    
+    /**
+     *
+     * @return {string} same as {@link Period.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 export function _init() {
