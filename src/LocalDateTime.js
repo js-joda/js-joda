@@ -1718,6 +1718,14 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     toString() {
         return this._date.toString() + 'T' + this._time.toString();
     }
+    
+    /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
 
     /**
      * Outputs this date-time as a {@link String} using the formatter.
