@@ -89,7 +89,7 @@ export class LocalDate extends ChronoLocalDate{
      * This will query the specified clock to obtain the current date - today.
      * Using this method allows the use of an alternate clock for testing.
      *
-     * @param {Clock|ZoneId} [clockOrZone=Clock.systemDefaultZone()] - the clock or zone to use, 
+     * @param {Clock|ZoneId} [clockOrZone=Clock.systemDefaultZone()] - the clock or zone to use,
      * if null, the system clock and default time-zone is used.
      * @return {LocalDate} the current date, not null
      */
@@ -235,7 +235,7 @@ export class LocalDate extends ChronoLocalDate{
      * The text is parsed using the formatter, returning a date.
      *
      * @param {!string} text - the text to parse, not null
-     * @param {DateTimeFormatter} [formatter=DateTimeFormatter.ISO_LOCAL_DATE] - the formatter to use, default is 
+     * @param {DateTimeFormatter} [formatter=DateTimeFormatter.ISO_LOCAL_DATE] - the formatter to use, default is
      * {@link DateTimeFormatter.ISO_LOCAL_DATE}
      * @return {LocalDate} the parsed local date, not null
      * @throws {DateTimeParseException} if the text cannot be parsed
@@ -289,7 +289,7 @@ export class LocalDate extends ChronoLocalDate{
 
 
     /**
-     * 
+     *
      * @param {!number} year
      * @param {!number} month
      * @param {!number} dayOfMonth
@@ -431,9 +431,9 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by 
-     * {@link MathUtil.MIN_SAFE_INTEGER}/ {@link MathUtil.MAX_SAFE_INTEGER} 
-     * 
+     * see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by
+     * {@link MathUtil.MIN_SAFE_INTEGER}/ {@link MathUtil.MAX_SAFE_INTEGER}
+     *
      * @param {!TemporalField} field
      * @returns {*}
      */
@@ -447,7 +447,7 @@ export class LocalDate extends ChronoLocalDate{
 
     /**
      * TODO tests are missing for the ALIGNED_* ChronoFields
-     * 
+     *
      * @param {!TemporalField} field
      * @returns {*}
      * @private
@@ -472,7 +472,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * 
+     *
      * @return {number}
      * @private
      */
@@ -613,10 +613,10 @@ export class LocalDate extends ChronoLocalDate{
     /**
      * function overloading for the {@link LocalDate.with} method.
      *
-     * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster 
+     * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster
      * and {@link LocalDate.withTemporalAdjuster} is called.
-     * 
-     * Otherwise a TemporalField and {@link Number} newValue argument is expected and 
+     *
+     * Otherwise a TemporalField and {@link Number} newValue argument is expected and
      * {@link LocalDate.withFieldAndValue} is called.
      *
      * @param {!(TemporalAdjuster|TemporalField)} fieldOrAdjuster
@@ -869,11 +869,11 @@ export class LocalDate extends ChronoLocalDate{
     /**
      * function overloading for plus
      *
-     * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.plus1} 
+     * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.plus1}
      * is called.
-     * 
+     *
      * Otherwise {@link LocalDate.plus2} is called.
-     * 
+     *
      * @param {!(TemporalAmount|number)} p1
      * @param {TemporalUnit} p2 - required if called with 2 arguments
      * @return {LocalDate}
@@ -1012,11 +1012,11 @@ export class LocalDate extends ChronoLocalDate{
 
     /**
      * Returns a copy of this LocalDate with the specified number of days added.
-     * 
+     *
      * This method adds the specified amount to the days field incrementing the
      * month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * 
+     *
      * For example, 2008-12-31 plus one day would result in 2009-01-01.
      *
      * @param {number} daysToAdd - the days to add, may be negative
@@ -1034,11 +1034,11 @@ export class LocalDate extends ChronoLocalDate{
     /**
       * function overloading for minus
       *
-      * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.minus1} 
+      * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.minus1}
       * is called.
-      * 
+      *
       * Otherwise {@link LocalDate.minus2} is called.
-      * 
+      *
       * @param {!(TemporalAmount|number)} p1
       * @param {TemporalUnit} p2 - required if called with 2 arguments
       * @return {LocalDate}
@@ -1152,11 +1152,11 @@ export class LocalDate extends ChronoLocalDate{
 
     /*
      * Returns a copy of this LocalDate with the specified number of days subtracted.
-     * 
+     *
      * This method subtracts the specified amount from the days field decrementing the
      * month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * 
+     *
      * For example, 2009-01-01 minus one day would result in 2008-12-31.
      *
      * @param {number} daysToSubtract - the days to subtract, may be negative
@@ -1220,10 +1220,10 @@ export class LocalDate extends ChronoLocalDate{
 
     /**
      * function overloading for {@link LocalDate.until}
-     * 
+     *
      * called with 1 (or less) arguments {{@link LocalDate.until1}} is called
      * otherwise {@link LocalDate.until2}
-     * 
+     *
      * @param {!TemporalAccessor} p1
      * @param {TemporalUnit} p2 - not null if called with 2 arguments
      * @return {number|Period}
@@ -1296,7 +1296,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * 
+     *
      * @param {!LocalDate} end
      * @returns {number}
      * @protected
@@ -1306,7 +1306,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * 
+     *
      * @param {!LocalDate} end
      * @returns {number}
      * @private
@@ -1371,11 +1371,11 @@ export class LocalDate extends ChronoLocalDate{
 
     //-----------------------------------------------------------------------
     /**
-     * function overloading for {@link LocalDate.atTime} 
-     * 
+     * function overloading for {@link LocalDate.atTime}
+     *
      * if called with 1 argument {@link LocalDate.atTime1} is called
      * otherwise {@link LocalDate.atTime4}
-     * 
+     *
      * @return {LocalDateTime} the local date-time formed from this date and the specified params
      */
     atTime(){
@@ -1385,7 +1385,7 @@ export class LocalDate extends ChronoLocalDate{
             return this.atTime4.apply(this, arguments);
         }
     }
-    
+
     /**
      * Combines this date with a time to create a {@link LocalDateTime}.
      * <p>
@@ -1475,7 +1475,7 @@ export class LocalDate extends ChronoLocalDate{
      * @param {!ZoneId} zone - the zone ID to use, not null
      * @return {ZonedDateTime} the zoned date-time formed from this date and the earliest valid time for the zone, not null
      */
-    atStartOfDayWithZone(zone) { 
+    atStartOfDayWithZone(zone) {
         requireNonNull(zone, 'zone');
         var ldt = this.atTime(LocalTime.MIDNIGHT);
 /*      TODO iana tzdb
@@ -1731,8 +1731,6 @@ export class LocalDate extends ChronoLocalDate{
         requireInstance(formatter, DateTimeFormatter, 'formatter');
         return super.format(formatter);
     }
-
-
 }
 
 export function _init() {
