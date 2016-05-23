@@ -1954,6 +1954,7 @@ describe('org.threeten.bp.TestDuration', () => {
                 let [seconds, nanos, expected] = val;
                 let t = Duration.ofSeconds(seconds, nanos);
                 expect(t.toString()).to.eql(expected);
+                expect(t.toJSON()).to.eql(expected);
             });
         });
     });

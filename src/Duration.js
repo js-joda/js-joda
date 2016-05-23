@@ -1190,6 +1190,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         return rval;
     }
 
+    /**
+     *
+     * @return {string} same as {@link Duration.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
+    
 }
 
 export function _init() {
