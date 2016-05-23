@@ -174,12 +174,13 @@ export class MathUtil {
     }
 
     /**
+     * convert -0 to 0 and int as string to a number ( '1' -> 1 )
      * 
      * @param {number} value
      * @returns {number}
      */
     static safeZero(value){
-        return value === 0 ? 0 : value;
+        return value === 0 ? 0 : +value;
     }
 
     /**

@@ -78,24 +78,21 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         /**
          * The number of years.
          */
-        this._years = years;
+        this._years = MathUtil.safeToInt(years);
         /**
          * The number of months.
          */
-        this._months =  months;
+        this._months =  MathUtil.safeToInt(months);
         /**
          * The number of days.
          */
-        this._days = days;
+        this._days = MathUtil.safeToInt(days);
     }
 
     static _validate(years, month, days){
         requireNonNull(years, 'years');
         requireNonNull(month, 'month');
         requireNonNull(days, 'days');
-        MathUtil.safeToInt(years);
-        MathUtil.safeToInt(month);
-        MathUtil.safeToInt(days);
     }
 
     //-----------------------------------------------------------------------

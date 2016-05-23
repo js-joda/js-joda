@@ -23,7 +23,7 @@ const Integer = {
 describe('org.threeten.bp.TestPeriod', () => {
 
     describe('factories', () => {
-        
+
         it('factory_zeroSingleton', () => {
             assertSame(Period.ZERO, Period.ZERO);
             assertSame(Period.of(0, 0, 0), Period.ZERO);
@@ -35,7 +35,7 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
     describe('of', () => {
-        
+
         it('factory_of_ints', () => {
             assertPeriod(Period.of(1, 2, 3), 1, 2, 3);
             assertPeriod(Period.of(0, 2, 3), 0, 2, 3);
@@ -43,7 +43,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             assertPeriod(Period.of(0, 0, 0), 0, 0, 0);
             assertPeriod(Period.of(-1, -2, -3), -1, -2, -3);
         });
-       
+
         //-----------------------------------------------------------------------
         it('factory_ofYears', () => {
             assertPeriod(Period.ofYears(1), 1, 0, 0);
@@ -52,7 +52,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             assertPeriod(Period.ofYears(Integer.MAX_VALUE), Integer.MAX_VALUE, 0, 0);
             assertPeriod(Period.ofYears(Integer.MIN_VALUE), Integer.MIN_VALUE, 0, 0);
         });
-       
+
         it('factory_ofMonths', () => {
             assertPeriod(Period.ofMonths(1), 0, 1, 0);
             assertPeriod(Period.ofMonths(0), 0, 0, 0);
@@ -60,7 +60,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             assertPeriod(Period.ofMonths(Integer.MAX_VALUE), 0, Integer.MAX_VALUE, 0);
             assertPeriod(Period.ofMonths(Integer.MIN_VALUE), 0, Integer.MIN_VALUE, 0);
         });
-       
+
         it('factory_ofDays', () => {
             assertPeriod(Period.ofDays(1), 0, 0, 1);
             assertPeriod(Period.ofDays(0), 0, 0, 0);
@@ -68,7 +68,18 @@ describe('org.threeten.bp.TestPeriod', () => {
             assertPeriod(Period.ofDays(Integer.MAX_VALUE), 0, 0, Integer.MAX_VALUE);
             assertPeriod(Period.ofDays(Integer.MIN_VALUE), 0, 0, Integer.MIN_VALUE);
         });
-       
+
+        it('factory_of_int_string', () => {
+            assertPeriod(Period.of('1', '2', '3'), 1, 2, 3);
+            assertPeriod(Period.of('-1', '-2', '-3'), -1, -2, -3);
+            assertPeriod(Period.ofYears('1'), 1, 0, 0);
+            assertPeriod(Period.ofYears('-1'), -1, 0, 0);
+            assertPeriod(Period.ofMonths('1'), 0, 1, 0);
+            assertPeriod(Period.ofMonths('-1'), 0, -1, 0);
+            assertPeriod(Period.ofDays('1'), 0, 0, 1);
+            assertPeriod(Period.ofDays('-1'), 0, 0, -1);
+        });
+
     });
 
     describe('between', function () {
@@ -201,7 +212,7 @@ describe('org.threeten.bp.TestPeriod', () => {
     }
 
     describe('parse()', function () {
-        
+
         function data_parse() {
             return [
                 //['P0D', Period.ZERO],
@@ -215,7 +226,7 @@ describe('org.threeten.bp.TestPeriod', () => {
                 //['P0M0D', Period.ZERO],
                 //['P0M0W', Period.ZERO],
                 //['P0W0D', Period.ZERO],
-                
+
                 ['P1D', Period.ofDays(1)],
                 ['P2D', Period.ofDays(2)],
                 ['P-2D', Period.ofDays(-2)],
@@ -223,13 +234,13 @@ describe('org.threeten.bp.TestPeriod', () => {
                 ['-P-2D', Period.ofDays(2)],
                 ['P' + Integer.MAX_VALUE + 'D', Period.ofDays(Integer.MAX_VALUE)],
                 ['P' + Integer.MIN_VALUE + 'D', Period.ofDays(Integer.MIN_VALUE)],
-                
+
                 ['P1W', Period.ofDays(7)],
                 ['P2W', Period.ofDays(14)],
                 ['P-2W', Period.ofDays(-14)],
                 ['-P2W', Period.ofDays(-14)],
                 ['-P-2W', Period.ofDays(14)],
-                
+
                 ['P1M', Period.ofMonths(1)],
                 ['P2M', Period.ofMonths(2)],
                 ['P-2M', Period.ofMonths(-2)],
@@ -237,7 +248,7 @@ describe('org.threeten.bp.TestPeriod', () => {
                 ['-P-2M', Period.ofMonths(2)],
                 ['P' + Integer.MAX_VALUE + 'M', Period.ofMonths(Integer.MAX_VALUE)],
                 ['P' + Integer.MIN_VALUE + 'M', Period.ofMonths(Integer.MIN_VALUE)],
-                
+
                 ['P1Y', Period.ofYears(1)],
                 ['P2Y', Period.ofYears(2)],
                 ['P-2Y', Period.ofYears(-2)],
@@ -245,7 +256,7 @@ describe('org.threeten.bp.TestPeriod', () => {
                 ['-P-2Y', Period.ofYears(2)],
                 ['P' + Integer.MAX_VALUE + 'Y', Period.ofYears(Integer.MAX_VALUE)],
                 ['P' + Integer.MIN_VALUE + 'Y', Period.ofYears(Integer.MIN_VALUE)],
-                
+
                 ['P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)]
             ];
         }
@@ -383,7 +394,7 @@ describe('org.threeten.bp.TestPeriod', () => {
                 [pymd(0, 0, 0), pymd(0, 0, -5), pymd(0, 0, -5)],
                 [pymd(0, 0, 0), pymd(2, 3, 4), pymd(2, 3, 4)],
                 [pymd(0, 0, 0), pymd(-2, -3, -4), pymd(-2, -3, -4)],
-   
+
                 [pymd(4, 5, 6), pymd(2, 3, 4), pymd(6, 8, 10)],
                 [pymd(4, 5, 6), pymd(-2, -3, -4), pymd(2, 2, 2)]
             ];
@@ -399,7 +410,7 @@ describe('org.threeten.bp.TestPeriod', () => {
             // console.log(base, add, expected);
             assertEquals(base.plus(add), expected);
         }
-        
+
     });
 
     describe('plusYears()', () => {
