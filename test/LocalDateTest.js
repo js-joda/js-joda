@@ -55,6 +55,11 @@ describe('Using a LocalDate instance', () => {
             expect(d.toString()).to.equal('-10000-01-01');
 
         });
+
+        it('should convert to same value as toString()', () => {
+            let d = new LocalDate(1970, 1, 1);
+            expect(d.toString()).to.equal(d.toJSON());
+        });
     });
 
     describe('when calling toEpochDay()', () => {

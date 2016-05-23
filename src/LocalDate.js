@@ -1717,6 +1717,14 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     *
+     * @return {string} same as {@link LocalDate.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
      * Outputs this date as a {@code String} using the formatter.
      * <p>
      * This date will be passed to the formatter

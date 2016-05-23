@@ -1977,6 +1977,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             var t = LocalDate.of(y, m, d);
             var str = t.toString();
             assertEquals(str, expected);
+            assertEquals(t.toJSON(), str);
         }
     });
 
