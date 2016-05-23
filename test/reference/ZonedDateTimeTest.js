@@ -2044,6 +2044,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 var t = ZonedDateTime.of(dateTime7(y, o, d, h, m, s, n), ZoneId.of(zoneId));
                 var str = t.toString();
                 assertEquals(str, expected);
+                assertEquals(t.toJSON(), str);
             });
         });
 

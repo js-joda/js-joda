@@ -2047,6 +2047,14 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         }
         return str;
     }
+    
+    /**
+     *
+     * @return {string} same as {@link ZonedDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
 
     /**
      * Outputs this date-time as a {@code String} using the formatter.
