@@ -1349,6 +1349,14 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
+     *
+     * @return {string} same as {@link LocalTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
+    
+    /**
      * Outputs this time as a {@link String} using the formatter.
      * <p>
      * This time will be passed to the formatter

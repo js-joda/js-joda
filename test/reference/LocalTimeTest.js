@@ -2102,6 +2102,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             var t = LocalTime.of(h, m, s, n);
             var str = t.toString();
             assertEquals(str, expected);
+            assertEquals(t.toJSON(), str);
         }
 
     });
