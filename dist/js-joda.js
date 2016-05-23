@@ -1752,7 +1752,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    MathUtil.safeZero = function safeZero(value) {
-	        return value === 0 ? 0 : value;
+	        return value === 0 ? 0 : +value;
 	    };
 	
 	    MathUtil.compareNumbers = function compareNumbers(a, b) {
@@ -5865,11 +5865,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        Period._validate(years, months, days);
 	
-	        _this._years = years;
+	        _this._years = _MathUtil.MathUtil.safeToInt(years);
 	
-	        _this._months = months;
+	        _this._months = _MathUtil.MathUtil.safeToInt(months);
 	
-	        _this._days = days;
+	        _this._days = _MathUtil.MathUtil.safeToInt(days);
 	        return _this;
 	    }
 	
@@ -5877,9 +5877,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireNonNull)(years, 'years');
 	        (0, _assert.requireNonNull)(month, 'month');
 	        (0, _assert.requireNonNull)(days, 'days');
-	        _MathUtil.MathUtil.safeToInt(years);
-	        _MathUtil.MathUtil.safeToInt(month);
-	        _MathUtil.MathUtil.safeToInt(days);
 	    };
 	
 	    Period.ofYears = function ofYears(years) {
