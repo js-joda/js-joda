@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.5
+//! @version js-joda - 1.1.6
 //! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	exports.__esModule = true;
-	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.convert = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 	
 	var _Clock = __webpack_require__(1);
 	
@@ -213,7 +213,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _NativeJsTemporal = __webpack_require__(54);
+	var _convert = __webpack_require__(54);
+	
+	Object.defineProperty(exports, 'convert', {
+	  enumerable: true,
+	  get: function get() {
+	    return _convert.convert;
+	  }
+	});
+	
+	var _NativeJsTemporal = __webpack_require__(55);
 	
 	Object.defineProperty(exports, 'nativeJs', {
 	  enumerable: true,
@@ -249,7 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	var _TemporalAdjusters = __webpack_require__(55);
+	var _TemporalAdjusters = __webpack_require__(56);
 	
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -294,7 +303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 	
-	__webpack_require__(57);
+	__webpack_require__(58);
 
 /***/ },
 /* 1 */
@@ -10197,6 +10206,66 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	
 	exports.__esModule = true;
+	exports.convert = convert;
+	
+	var _errors = __webpack_require__(3);
+	
+	var _LocalDate = __webpack_require__(8);
+	
+	var _LocalDateTime = __webpack_require__(7);
+	
+	var _ZonedDateTime = __webpack_require__(51);
+	
+	var _ZoneId = __webpack_require__(24);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper                 
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+	
+	var ToNativeJsConverter = function () {
+	    function ToNativeJsConverter(temporal, zone) {
+	        _classCallCheck(this, ToNativeJsConverter);
+	
+	        var zonedDateTime = void 0;
+	
+	        if (temporal instanceof _LocalDate.LocalDate) {
+	            zone = zone == null ? _ZoneId.ZoneId.systemDefault() : zone;
+	            zonedDateTime = temporal.atStartOfDay(zone);
+	        } else if (temporal instanceof _LocalDateTime.LocalDateTime) {
+	            zone = zone == null ? _ZoneId.ZoneId.systemDefault() : zone;
+	            zonedDateTime = temporal.atZone(zone);
+	        } else if (temporal instanceof _ZonedDateTime.ZonedDateTime) {
+	            if (zone == null) {
+	                zonedDateTime = temporal;
+	            } else {
+	                zonedDateTime = temporal.withZoneSameInstant(zone);
+	            }
+	        } else {
+	            throw new _errors.IllegalArgumentException('unsupported instance for convert operation:' + temporal);
+	        }
+	
+	        this.instant = zonedDateTime.toInstant();
+	    }
+	
+	    ToNativeJsConverter.prototype.toDate = function toDate() {
+	        return new Date(this.instant.toEpochMilli());
+	    };
+	
+	    return ToNativeJsConverter;
+	}();
+	
+	function convert(temporal, zone) {
+	    return new ToNativeJsConverter(temporal, zone);
+	}
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
 	exports.nativeJs = nativeJs;
 	
 	var _assert = __webpack_require__(2);
@@ -10292,7 +10361,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10304,7 +10373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _errors = __webpack_require__(3);
 	
-	var _TemporalAdjuster4 = __webpack_require__(56);
+	var _TemporalAdjuster4 = __webpack_require__(57);
 	
 	var _ChronoField = __webpack_require__(12);
 	
@@ -10497,7 +10566,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10526,7 +10595,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10571,7 +10640,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _DateTimeFormatterBuilder = __webpack_require__(20);
 	
-	var _TemporalQueriesFactory = __webpack_require__(58);
+	var _TemporalQueriesFactory = __webpack_require__(59);
 	
 	var _ZoneIdFactory = __webpack_require__(21);
 	
@@ -10617,7 +10686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	init();
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
