@@ -384,6 +384,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "js-joda/src/convert.js~convert",
+    "function/index.html#static-function-convert",
+    "<span>convert</span> <span class=\"search-result-import-path\">js-joda/src/convert.js</span>",
+    "function"
+  ],
+  [
     "js-joda/src/temporal/temporalquery.js~createtemporalquery",
     "function/index.html#static-function-createTemporalQuery",
     "<span>createTemporalQuery</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalQuery.js</span>",
@@ -1110,6 +1116,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/duration.js~duration#tojson",
+    "class/src/Duration.js~Duration.html#instance-method-toJSON",
+    "src/Duration.js~Duration#toJSON",
+    "method"
+  ],
+  [
     "src/duration.js~duration#tomillis",
     "class/src/Duration.js~Duration.html#instance-method-toMillis",
     "src/Duration.js~Duration#toMillis",
@@ -1728,6 +1740,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/localdate.js~localdate#tojson",
+    "class/src/LocalDate.js~LocalDate.html#instance-method-toJSON",
+    "src/LocalDate.js~LocalDate#toJSON",
+    "method"
+  ],
+  [
     "src/localdate.js~localdate#tostring",
     "class/src/LocalDate.js~LocalDate.html#instance-method-toString",
     "src/LocalDate.js~LocalDate#toString",
@@ -2124,6 +2142,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/localdatetime.js~localdatetime#tojson",
+    "class/src/LocalDateTime.js~LocalDateTime.html#instance-method-toJSON",
+    "src/LocalDateTime.js~LocalDateTime#toJSON",
+    "method"
+  ],
+  [
     "src/localdatetime.js~localdatetime#tolocaldate",
     "class/src/LocalDateTime.js~LocalDateTime.html#instance-method-toLocalDate",
     "src/LocalDateTime.js~LocalDateTime#toLocalDate",
@@ -2469,6 +2493,12 @@ window.esdocSearchIndex = [
     "src/localtime.js~localtime#second",
     "class/src/LocalTime.js~LocalTime.html#instance-method-second",
     "src/LocalTime.js~LocalTime#second",
+    "method"
+  ],
+  [
+    "src/localtime.js~localtime#tojson",
+    "class/src/LocalTime.js~LocalTime.html#instance-method-toJSON",
+    "src/LocalTime.js~LocalTime#toJSON",
     "method"
   ],
   [
@@ -3117,6 +3147,12 @@ window.esdocSearchIndex = [
     "src/period.js~period#subtractfrom",
     "class/src/Period.js~Period.html#instance-method-subtractFrom",
     "src/Period.js~Period#subtractFrom",
+    "method"
+  ],
+  [
+    "src/period.js~period#tojson",
+    "class/src/Period.js~Period.html#instance-method-toJSON",
+    "src/Period.js~Period#toJSON",
     "method"
   ],
   [
@@ -4266,6 +4302,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zoneddatetime.js~zoneddatetime#tojson",
+    "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toJSON",
+    "src/ZonedDateTime.js~ZonedDateTime#toJSON",
+    "method"
+  ],
+  [
     "src/zoneddatetime.js~zoneddatetime#tolocaldate",
     "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDate",
     "src/ZonedDateTime.js~ZonedDateTime#toLocalDate",
@@ -4630,6 +4672,12 @@ window.esdocSearchIndex = [
     "class/src/chrono/IsoChronology.js~IsoChronology.html#static-method-isLeapYear",
     "src/chrono/IsoChronology.js~IsoChronology.isLeapYear",
     "method"
+  ],
+  [
+    "src/convert.js",
+    "file/src/convert.js.html",
+    "src/convert.js",
+    "file"
   ],
   [
     "src/errors.js",

@@ -1,7 +1,7 @@
 {
-  "coverage": "88.74%",
-  "expectCount": 897,
-  "actualCount": 796,
+  "coverage": "88.82%",
+  "expectCount": 904,
+  "actualCount": 803,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -70,10 +70,10 @@
       "expectCount": 17,
       "actualCount": 13,
       "undocumentLines": [
-        314,
-        310,
-        306,
-        586
+        316,
+        312,
+        308,
+        588
       ]
     },
     "src/format/DateTimeFormatterBuilder.js": {
@@ -134,8 +134,8 @@
       ]
     },
     "src/Duration.js": {
-      "expectCount": 52,
-      "actualCount": 51,
+      "expectCount": 53,
+      "actualCount": 52,
       "undocumentLines": [
         433
       ]
@@ -184,20 +184,20 @@
       "undocumentLines": []
     },
     "src/LocalDate.js": {
-      "expectCount": 63,
-      "actualCount": 62,
+      "expectCount": 64,
+      "actualCount": 63,
       "undocumentLines": [
         1166
       ]
     },
     "src/LocalDateTime.js": {
-      "expectCount": 72,
-      "actualCount": 72,
+      "expectCount": 73,
+      "actualCount": 73,
       "undocumentLines": []
     },
     "src/LocalTime.js": {
-      "expectCount": 52,
-      "actualCount": 52,
+      "expectCount": 53,
+      "actualCount": 53,
       "undocumentLines": []
     },
     "src/MathUtil.js": {
@@ -231,8 +231,8 @@
       ]
     },
     "src/Period.js": {
-      "expectCount": 38,
-      "actualCount": 38,
+      "expectCount": 39,
+      "actualCount": 39,
       "undocumentLines": []
     },
     "src/format/ResolverStyle.js": {
@@ -395,8 +395,8 @@
       ]
     },
     "src/ZonedDateTime.js": {
-      "expectCount": 77,
-      "actualCount": 77,
+      "expectCount": 78,
+      "actualCount": 78,
       "undocumentLines": []
     },
     "src/assert.js": {
@@ -408,6 +408,11 @@
         24,
         17
       ]
+    },
+    "src/convert.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/temporal/NativeJsTemporal.js": {
       "expectCount": 1,

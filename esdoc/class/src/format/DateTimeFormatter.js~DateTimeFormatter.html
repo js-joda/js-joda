@@ -57,6 +57,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -601,7 +602,7 @@ for advanced use cases.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber255">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber257">source</a></span></span>
     </span>
   </h3>
 
@@ -704,6 +705,8 @@ Any other count of letters throws <code>IllegalArgumentException</code>.</p>
 If the count of letters is one, two or three, then the short name is output.
 If the count of letters is four, then the full name is output.
 Five or more letters throws <code>IllegalArgumentException</code>.</p>
+<p></p><p>
+<strong>NOTE</strong>: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!</p>
 <p></p><p>
 <strong>Offset X and x</strong>: This formats the offset based on the number of pattern letters.
 One letter outputs just the hour&apos;, such as &apos;+01&apos;, unless the minute is non-zero
@@ -983,7 +986,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber274">source</a></span></span>
     </span>
   </h3>
 
@@ -1087,7 +1090,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber314">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber316">source</a></span></span>
     </span>
   </h3>
 
@@ -1137,7 +1140,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber310">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber312">source</a></span></span>
     </span>
   </h3>
 
@@ -1187,7 +1190,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber368">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber370">source</a></span></span>
     </span>
   </h3>
 
@@ -1270,7 +1273,7 @@ This formats the date-time to a String using the rules of the formatter.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber306">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber308">source</a></span></span>
     </span>
   </h3>
 
@@ -1320,7 +1323,7 @@ This formats the date-time to a String using the rules of the formatter.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber407">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber409">source</a></span></span>
     </span>
   </h3>
 
@@ -1395,7 +1398,7 @@ otherwise <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber430">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber432">source</a></span></span>
     </span>
   </h3>
 
@@ -1484,7 +1487,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber459">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber461">source</a></span></span>
     </span>
   </h3>
 
@@ -1578,7 +1581,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber558">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber560">source</a></span></span>
     </span>
   </h3>
 
@@ -1701,7 +1704,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber582">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber584">source</a></span></span>
     </span>
   </h3>
 
@@ -1770,7 +1773,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber586">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber588">source</a></span></span>
     </span>
   </h3>
 
@@ -1820,7 +1823,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber342">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber344">source</a></span></span>
     </span>
   </h3>
 
@@ -1902,7 +1905,7 @@ formatter directly parses a valid chronology.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber354">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber356">source</a></span></span>
     </span>
   </h3>
 

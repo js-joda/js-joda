@@ -45621,10 +45621,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Outputs this date-time as a {@code String} using the formatter.\n     * <p>\n     * This date will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {string} the formatted date-time string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+                  "value": "*\n     *\n     * @return {string} same as {@link ZonedDateTime.toString}\n     ",
                   "range": [
-                    95721,
-                    96151
+                    95725,
+                    95806
                   ],
                   "loc": {
                     "start": {
@@ -45632,7 +45632,213 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 2060,
+                      "line": 2054,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "toJSON",
+                "range": [
+                  95811,
+                  95817
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2055,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 2055,
+                    "column": 10
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                            "range": [
+                              95837,
+                              95841
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 2056,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 2056,
+                                "column": 19
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "toString",
+                            "range": [
+                              95842,
+                              95850
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 2056,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 2056,
+                                "column": 28
+                              }
+                            }
+                          },
+                          "range": [
+                            95837,
+                            95850
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 2056,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 2056,
+                              "column": 28
+                            }
+                          }
+                        },
+                        "arguments": [],
+                        "range": [
+                          95837,
+                          95852
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 2056,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 2056,
+                            "column": 30
+                          }
+                        }
+                      },
+                      "range": [
+                        95830,
+                        95853
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 2056,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 2056,
+                          "column": 31
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    95820,
+                    95859
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2055,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 2057,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  95817,
+                  95859
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2055,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 2057,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                95811,
+                95859
+              ],
+              "loc": {
+                "start": {
+                  "line": 2055,
+                  "column": 4
+                },
+                "end": {
+                  "line": 2057,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     *\n     * @return {string} same as {@link ZonedDateTime.toString}\n     ",
+                  "range": [
+                    95725,
+                    95806
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2051,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 2054,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Outputs this date-time as a {@code String} using the formatter.\n     * <p>\n     * This date will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {string} the formatted date-time string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+                  "range": [
+                    95865,
+                    96295
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2059,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 2068,
                       "column": 7
                     }
                   }
@@ -45646,16 +45852,16 @@
                 "type": "Identifier",
                 "name": "format",
                 "range": [
-                  96156,
-                  96162
+                  96300,
+                  96306
                 ],
                 "loc": {
                   "start": {
-                    "line": 2061,
+                    "line": 2069,
                     "column": 4
                   },
                   "end": {
-                    "line": 2061,
+                    "line": 2069,
                     "column": 10
                   }
                 }
@@ -45668,16 +45874,16 @@
                     "type": "Identifier",
                     "name": "formatter",
                     "range": [
-                      96163,
-                      96172
+                      96307,
+                      96316
                     ],
                     "loc": {
                       "start": {
-                        "line": 2061,
+                        "line": 2069,
                         "column": 11
                       },
                       "end": {
-                        "line": 2061,
+                        "line": 2069,
                         "column": 20
                       }
                     }
@@ -45696,16 +45902,16 @@
                           "object": {
                             "type": "Super",
                             "range": [
-                              96191,
-                              96196
+                              96335,
+                              96340
                             ],
                             "loc": {
                               "start": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 15
                               },
                               "end": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 20
                               }
                             }
@@ -45714,31 +45920,31 @@
                             "type": "Identifier",
                             "name": "format",
                             "range": [
-                              96197,
-                              96203
+                              96341,
+                              96347
                             ],
                             "loc": {
                               "start": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 21
                               },
                               "end": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 27
                               }
                             }
                           },
                           "range": [
-                            96191,
-                            96203
+                            96335,
+                            96347
                           ],
                           "loc": {
                             "start": {
-                              "line": 2062,
+                              "line": 2070,
                               "column": 15
                             },
                             "end": {
-                              "line": 2062,
+                              "line": 2070,
                               "column": 27
                             }
                           }
@@ -45748,63 +45954,63 @@
                             "type": "Identifier",
                             "name": "formatter",
                             "range": [
-                              96204,
-                              96213
+                              96348,
+                              96357
                             ],
                             "loc": {
                               "start": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 28
                               },
                               "end": {
-                                "line": 2062,
+                                "line": 2070,
                                 "column": 37
                               }
                             }
                           }
                         ],
                         "range": [
-                          96191,
-                          96214
+                          96335,
+                          96358
                         ],
                         "loc": {
                           "start": {
-                            "line": 2062,
+                            "line": 2070,
                             "column": 15
                           },
                           "end": {
-                            "line": 2062,
+                            "line": 2070,
                             "column": 38
                           }
                         }
                       },
                       "range": [
-                        96184,
-                        96215
+                        96328,
+                        96359
                       ],
                       "loc": {
                         "start": {
-                          "line": 2062,
+                          "line": 2070,
                           "column": 8
                         },
                         "end": {
-                          "line": 2062,
+                          "line": 2070,
                           "column": 39
                         }
                       }
                     }
                   ],
                   "range": [
-                    96174,
-                    96221
+                    96318,
+                    96365
                   ],
                   "loc": {
                     "start": {
-                      "line": 2061,
+                      "line": 2069,
                       "column": 22
                     },
                     "end": {
-                      "line": 2063,
+                      "line": 2071,
                       "column": 5
                     }
                   }
@@ -45812,16 +46018,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  96162,
-                  96221
+                  96306,
+                  96365
                 ],
                 "loc": {
                   "start": {
-                    "line": 2061,
+                    "line": 2069,
                     "column": 10
                   },
                   "end": {
-                    "line": 2063,
+                    "line": 2071,
                     "column": 5
                   }
                 }
@@ -45829,16 +46035,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                96156,
-                96221
+                96300,
+                96365
               ],
               "loc": {
                 "start": {
-                  "line": 2061,
+                  "line": 2069,
                   "column": 4
                 },
                 "end": {
-                  "line": 2063,
+                  "line": 2071,
                   "column": 5
                 }
               },
@@ -45847,16 +46053,16 @@
                   "type": "Block",
                   "value": "*\n     * Outputs this date-time as a {@code String} using the formatter.\n     * <p>\n     * This date will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {string} the formatted date-time string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
                   "range": [
-                    95721,
-                    96151
+                    95865,
+                    96295
                   ],
                   "loc": {
                     "start": {
-                      "line": 2051,
+                      "line": 2059,
                       "column": 4
                     },
                     "end": {
-                      "line": 2060,
+                      "line": 2068,
                       "column": 7
                     }
                   }
@@ -45867,7 +46073,7 @@
           ],
           "range": [
             4162,
-            96224
+            96368
           ],
           "loc": {
             "start": {
@@ -45875,14 +46081,14 @@
               "column": 55
             },
             "end": {
-              "line": 2065,
+              "line": 2073,
               "column": 1
             }
           }
         },
         "range": [
           4114,
-          96224
+          96368
         ],
         "loc": {
           "start": {
@@ -45890,7 +46096,7 @@
             "column": 7
           },
           "end": {
-            "line": 2065,
+            "line": 2073,
             "column": 1
           }
         },
@@ -45920,7 +46126,7 @@
       "source": null,
       "range": [
         4107,
-        96224
+        96368
       ],
       "loc": {
         "start": {
@@ -45928,7 +46134,7 @@
           "column": 0
         },
         "end": {
-          "line": 2065,
+          "line": 2073,
           "column": 1
         }
       },
@@ -45961,16 +46167,16 @@
           "type": "Identifier",
           "name": "_init",
           "range": [
-            96242,
-            96247
+            96386,
+            96391
           ],
           "loc": {
             "start": {
-              "line": 2067,
+              "line": 2075,
               "column": 16
             },
             "end": {
-              "line": 2067,
+              "line": 2075,
               "column": 21
             }
           }
@@ -45991,16 +46197,16 @@
                     "type": "Identifier",
                     "name": "ZonedDateTime",
                     "range": [
-                      96255,
-                      96268
+                      96399,
+                      96412
                     ],
                     "loc": {
                       "start": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 4
                       },
                       "end": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 17
                       }
                     }
@@ -46009,31 +46215,31 @@
                     "type": "Identifier",
                     "name": "FROM",
                     "range": [
-                      96269,
-                      96273
+                      96413,
+                      96417
                     ],
                     "loc": {
                       "start": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 18
                       },
                       "end": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 22
                       }
                     }
                   },
                   "range": [
-                    96255,
-                    96273
+                    96399,
+                    96417
                   ],
                   "loc": {
                     "start": {
-                      "line": 2068,
+                      "line": 2076,
                       "column": 4
                     },
                     "end": {
-                      "line": 2068,
+                      "line": 2076,
                       "column": 22
                     }
                   }
@@ -46044,16 +46250,16 @@
                     "type": "Identifier",
                     "name": "createTemporalQuery",
                     "range": [
-                      96276,
-                      96295
+                      96420,
+                      96439
                     ],
                     "loc": {
                       "start": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 25
                       },
                       "end": {
-                        "line": 2068,
+                        "line": 2076,
                         "column": 44
                       }
                     }
@@ -46064,16 +46270,16 @@
                       "value": "ZonedDateTime.FROM",
                       "raw": "'ZonedDateTime.FROM'",
                       "range": [
-                        96296,
-                        96316
+                        96440,
+                        96460
                       ],
                       "loc": {
                         "start": {
-                          "line": 2068,
+                          "line": 2076,
                           "column": 45
                         },
                         "end": {
-                          "line": 2068,
+                          "line": 2076,
                           "column": 65
                         }
                       }
@@ -46086,16 +46292,16 @@
                           "type": "Identifier",
                           "name": "temporal",
                           "range": [
-                            96319,
-                            96327
+                            96463,
+                            96471
                           ],
                           "loc": {
                             "start": {
-                              "line": 2068,
+                              "line": 2076,
                               "column": 68
                             },
                             "end": {
-                              "line": 2068,
+                              "line": 2076,
                               "column": 76
                             }
                           }
@@ -46115,16 +46321,16 @@
                                   "type": "Identifier",
                                   "name": "ZonedDateTime",
                                   "range": [
-                                    96349,
-                                    96362
+                                    96493,
+                                    96506
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 15
                                     },
                                     "end": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 28
                                     }
                                   }
@@ -46133,31 +46339,31 @@
                                   "type": "Identifier",
                                   "name": "from",
                                   "range": [
-                                    96363,
-                                    96367
+                                    96507,
+                                    96511
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 29
                                     },
                                     "end": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 33
                                     }
                                   }
                                 },
                                 "range": [
-                                  96349,
-                                  96367
+                                  96493,
+                                  96511
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 2069,
+                                    "line": 2077,
                                     "column": 15
                                   },
                                   "end": {
-                                    "line": 2069,
+                                    "line": 2077,
                                     "column": 33
                                   }
                                 }
@@ -46167,63 +46373,63 @@
                                   "type": "Identifier",
                                   "name": "temporal",
                                   "range": [
-                                    96368,
-                                    96376
+                                    96512,
+                                    96520
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 34
                                     },
                                     "end": {
-                                      "line": 2069,
+                                      "line": 2077,
                                       "column": 42
                                     }
                                   }
                                 }
                               ],
                               "range": [
-                                96349,
-                                96377
+                                96493,
+                                96521
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 2069,
+                                  "line": 2077,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 2069,
+                                  "line": 2077,
                                   "column": 43
                                 }
                               }
                             },
                             "range": [
-                              96342,
-                              96378
+                              96486,
+                              96522
                             ],
                             "loc": {
                               "start": {
-                                "line": 2069,
+                                "line": 2077,
                                 "column": 8
                               },
                               "end": {
-                                "line": 2069,
+                                "line": 2077,
                                 "column": 44
                               }
                             }
                           }
                         ],
                         "range": [
-                          96332,
-                          96384
+                          96476,
+                          96528
                         ],
                         "loc": {
                           "start": {
-                            "line": 2068,
+                            "line": 2076,
                             "column": 81
                           },
                           "end": {
-                            "line": 2070,
+                            "line": 2078,
                             "column": 5
                           }
                         }
@@ -46231,78 +46437,78 @@
                       "generator": false,
                       "expression": false,
                       "range": [
-                        96318,
-                        96384
+                        96462,
+                        96528
                       ],
                       "loc": {
                         "start": {
-                          "line": 2068,
+                          "line": 2076,
                           "column": 67
                         },
                         "end": {
-                          "line": 2070,
+                          "line": 2078,
                           "column": 5
                         }
                       }
                     }
                   ],
                   "range": [
-                    96276,
-                    96385
+                    96420,
+                    96529
                   ],
                   "loc": {
                     "start": {
-                      "line": 2068,
+                      "line": 2076,
                       "column": 25
                     },
                     "end": {
-                      "line": 2070,
+                      "line": 2078,
                       "column": 6
                     }
                   }
                 },
                 "range": [
-                  96255,
-                  96385
+                  96399,
+                  96529
                 ],
                 "loc": {
                   "start": {
-                    "line": 2068,
+                    "line": 2076,
                     "column": 4
                   },
                   "end": {
-                    "line": 2070,
+                    "line": 2078,
                     "column": 6
                   }
                 }
               },
               "range": [
-                96255,
-                96386
+                96399,
+                96530
               ],
               "loc": {
                 "start": {
-                  "line": 2068,
+                  "line": 2076,
                   "column": 4
                 },
                 "end": {
-                  "line": 2070,
+                  "line": 2078,
                   "column": 7
                 }
               }
             }
           ],
           "range": [
-            96249,
-            96388
+            96393,
+            96532
           ],
           "loc": {
             "start": {
-              "line": 2067,
+              "line": 2075,
               "column": 23
             },
             "end": {
-              "line": 2071,
+              "line": 2079,
               "column": 1
             }
           }
@@ -46310,16 +46516,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          96233,
-          96388
+          96377,
+          96532
         ],
         "loc": {
           "start": {
-            "line": 2067,
+            "line": 2075,
             "column": 7
           },
           "end": {
-            "line": 2071,
+            "line": 2079,
             "column": 1
           }
         },
@@ -46329,16 +46535,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        96226,
-        96388
+        96370,
+        96532
       ],
       "loc": {
         "start": {
-          "line": 2067,
+          "line": 2075,
           "column": 0
         },
         "end": {
-          "line": 2071,
+          "line": 2079,
           "column": 1
         }
       }
@@ -46347,7 +46553,7 @@
   "sourceType": "module",
   "range": [
     232,
-    96388
+    96532
   ],
   "loc": {
     "start": {
@@ -46355,7 +46561,7 @@
       "column": 0
     },
     "end": {
-      "line": 2071,
+      "line": 2079,
       "column": 1
     }
   },
@@ -48648,10 +48854,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * Outputs this date-time as a {@code String} using the formatter.\n     * <p>\n     * This date will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {string} the formatted date-time string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+      "value": "*\n     *\n     * @return {string} same as {@link ZonedDateTime.toString}\n     ",
       "range": [
-        95721,
-        96151
+        95725,
+        95806
       ],
       "loc": {
         "start": {
@@ -48659,7 +48865,25 @@
           "column": 4
         },
         "end": {
-          "line": 2060,
+          "line": 2054,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Outputs this date-time as a {@code String} using the formatter.\n     * <p>\n     * This date will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {string} the formatted date-time string, not null\n     * @throws DateTimeException if an error occurs during printing\n     ",
+      "range": [
+        95865,
+        96295
+      ],
+      "loc": {
+        "start": {
+          "line": 2059,
+          "column": 4
+        },
+        "end": {
+          "line": 2068,
           "column": 7
         }
       }

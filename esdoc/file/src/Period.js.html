@@ -57,6 +57,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -185,24 +186,21 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         /**
          * The number of years.
          */
-        this._years = years;
+        this._years = MathUtil.safeToInt(years);
         /**
          * The number of months.
          */
-        this._months =  months;
+        this._months =  MathUtil.safeToInt(months);
         /**
          * The number of days.
          */
-        this._days = days;
+        this._days = MathUtil.safeToInt(days);
     }
 
     static _validate(years, month, days){
         requireNonNull(years, &apos;years&apos;);
         requireNonNull(month, &apos;month&apos;);
         requireNonNull(days, &apos;days&apos;);
-        MathUtil.safeToInt(years);
-        MathUtil.safeToInt(month);
-        MathUtil.safeToInt(days);
     }
 
     //-----------------------------------------------------------------------
@@ -1019,6 +1017,14 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             }
             return buf;
         }
+    }
+    
+    /**
+     *
+     * @return {string} same as {@link Period.toString}
+     */
+    toJSON() {
+        return this.toString();
     }
 }
 

@@ -57,6 +57,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -469,7 +470,7 @@ to the rules in the time-zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>function overloading for <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime">LocalDate.atTime</a></span> </p>
+        <div data-ice="description"><p>function overloading for <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime">LocalDate.atTime</a></span></p>
 </div>
       </div>
     </td>
@@ -754,8 +755,8 @@ to the rules in the time-zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by 
-<span>MathUtil.MIN_SAFE_INTEGER</span>/ <span>MathUtil.MAX_SAFE_INTEGER</span> </p>
+        <div data-ice="description"><p>see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by
+<span>MathUtil.MIN_SAFE_INTEGER</span>/ <span>MathUtil.MAX_SAFE_INTEGER</span></p>
 </div>
       </div>
     </td>
@@ -1475,6 +1476,31 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-toJSON">toJSON</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
@@ -2138,7 +2164,7 @@ Using this method allows the use of an alternate clock for testing.</p>
       <td data-ice="type"><span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: Clock.systemDefaultZone()</li></ul></td>
-      <td data-ice="description"><p>the clock or zone to use, 
+      <td data-ice="description"><p>the clock or zone to use,
 if null, the system clock and default time-zone is used.</p>
 </td>
     </tr>
@@ -2570,7 +2596,7 @@ The day-of-year must be valid for the year, otherwise an exception will be throw
       <td data-ice="type"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
 <li>default: DateTimeFormatter.ISO_LOCAL_DATE</li></ul></td>
-      <td data-ice="description"><p>the formatter to use, default is 
+      <td data-ice="description"><p>the formatter to use, default is
 <span>DateTimeFormatter.ISO_LOCAL_DATE</span></p>
 </td>
     </tr>
@@ -2900,7 +2926,7 @@ followed by {@link LocalDateTime#atZone(ZoneId)}.</p>
   
   
   
-  <div data-ice="description"><p>function overloading for <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime">LocalDate.atTime</a></span> </p>
+  <div data-ice="description"><p>function overloading for <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime">LocalDate.atTime</a></span></p>
 <p>if called with 1 argument <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime1">LocalDate.atTime1</a></span> is called
 otherwise <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-atTime4">LocalDate.atTime4</a></span></p>
 </div>
@@ -3498,7 +3524,7 @@ This method returns the primitive int value for the day-of-year.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDate.js.html#lineNumber1729">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDate.js.html#lineNumber1737">source</a></span></span>
     </span>
   </h3>
 
@@ -3691,8 +3717,8 @@ and what the value represents, is determined by the field.</p>
   
   
   
-  <div data-ice="description"><p>see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by 
-<span>MathUtil.MIN_SAFE_INTEGER</span>/ <span>MathUtil.MAX_SAFE_INTEGER</span> </p>
+  <div data-ice="description"><p>see {LocalDate.get}, get and getLong are identical in javascript, because we are only limited by
+<span>MathUtil.MIN_SAFE_INTEGER</span>/ <span>MathUtil.MAX_SAFE_INTEGER</span></p>
 </div>
 
   
@@ -4337,7 +4363,7 @@ This returns the length of the year in days, either 365 or 366.</p>
   
   
   <div data-ice="description"><p>function overloading for minus</p>
-<p>called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-minus1">LocalDate.minus1</a></span> 
+<p>called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-minus1">LocalDate.minus1</a></span>
 is called.</p>
 <p>Otherwise <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-minus2">LocalDate.minus2</a></span> is called.</p>
 </div>
@@ -5038,7 +5064,7 @@ result, the last valid day of the month, 2007-02-28, is selected instead.</p>
   
   
   <div data-ice="description"><p>function overloading for plus</p>
-<p>called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-plus1">LocalDate.plus1</a></span> 
+<p>called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-plus1">LocalDate.plus1</a></span>
 is called.</p>
 <p>Otherwise <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-plus2">LocalDate.plus2</a></span> is called.</p>
 </div>
@@ -5881,6 +5907,57 @@ This definition is the same for all chronologies, enabling conversion.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toJSON">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">toJSON</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/LocalDate.js.html#lineNumber1723">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>same as <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-toString">LocalDate.toString</a></span></p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
     
@@ -6250,9 +6327,9 @@ the second argument.</p>
   
   
   <div data-ice="description"><p>function overloading for the <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-with">LocalDate.with</a></span> method.</p>
-<p>calling &quot;with&quot; with one (or less) argument, assumes that the argument is an TemporalAdjuster 
+<p>calling &quot;with&quot; with one (or less) argument, assumes that the argument is an TemporalAdjuster
 and <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-withTemporalAdjuster">LocalDate.withTemporalAdjuster</a></span> is called.</p>
-<p>Otherwise a TemporalField and <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span> newValue argument is expected and 
+<p>Otherwise a TemporalField and <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span> newValue argument is expected and
 <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-withFieldAndValue">LocalDate.withFieldAndValue</a></span> is called.</p>
 </div>
 

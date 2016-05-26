@@ -53608,10 +53608,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Outputs this date-time as a {@link String} using the formatter.\n     * <p>\n     * This date-time will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {!DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date-time string, not null\n     * @throws {DateTimeException} if an error occurs during printing\n     ",
+                  "value": "*\n     *\n     * @return {string} same as {@link LocalDateTime.toString}\n     ",
                   "range": [
-                    78416,
-                    78854
+                    78420,
+                    78501
                   ],
                   "loc": {
                     "start": {
@@ -53619,7 +53619,213 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 1731,
+                      "line": 1725,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "static": false
+            },
+            {
+              "type": "MethodDefinition",
+              "key": {
+                "type": "Identifier",
+                "name": "toJSON",
+                "range": [
+                  78506,
+                  78512
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1726,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 1726,
+                    "column": 10
+                  }
+                }
+              },
+              "value": {
+                "type": "FunctionExpression",
+                "id": null,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "argument": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "ThisExpression",
+                            "range": [
+                              78532,
+                              78536
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 1727,
+                                "column": 15
+                              },
+                              "end": {
+                                "line": 1727,
+                                "column": 19
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "toString",
+                            "range": [
+                              78537,
+                              78545
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 1727,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 1727,
+                                "column": 28
+                              }
+                            }
+                          },
+                          "range": [
+                            78532,
+                            78545
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 1727,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 1727,
+                              "column": 28
+                            }
+                          }
+                        },
+                        "arguments": [],
+                        "range": [
+                          78532,
+                          78547
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 1727,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 1727,
+                            "column": 30
+                          }
+                        }
+                      },
+                      "range": [
+                        78525,
+                        78548
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 1727,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 1727,
+                          "column": 31
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    78515,
+                    78554
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 1726,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 1728,
+                      "column": 5
+                    }
+                  }
+                },
+                "generator": false,
+                "expression": false,
+                "range": [
+                  78512,
+                  78554
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1726,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 1728,
+                    "column": 5
+                  }
+                }
+              },
+              "kind": "method",
+              "computed": false,
+              "range": [
+                78506,
+                78554
+              ],
+              "loc": {
+                "start": {
+                  "line": 1726,
+                  "column": 4
+                },
+                "end": {
+                  "line": 1728,
+                  "column": 5
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     *\n     * @return {string} same as {@link LocalDateTime.toString}\n     ",
+                  "range": [
+                    78420,
+                    78501
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 1722,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 1725,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "trailingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n     * Outputs this date-time as a {@link String} using the formatter.\n     * <p>\n     * This date-time will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {!DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date-time string, not null\n     * @throws {DateTimeException} if an error occurs during printing\n     ",
+                  "range": [
+                    78560,
+                    78998
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 1730,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 1739,
                       "column": 7
                     }
                   }
@@ -53633,16 +53839,16 @@
                 "type": "Identifier",
                 "name": "format",
                 "range": [
-                  78859,
-                  78865
+                  79003,
+                  79009
                 ],
                 "loc": {
                   "start": {
-                    "line": 1732,
+                    "line": 1740,
                     "column": 4
                   },
                   "end": {
-                    "line": 1732,
+                    "line": 1740,
                     "column": 10
                   }
                 }
@@ -53655,16 +53861,16 @@
                     "type": "Identifier",
                     "name": "formatter",
                     "range": [
-                      78866,
-                      78875
+                      79010,
+                      79019
                     ],
                     "loc": {
                       "start": {
-                        "line": 1732,
+                        "line": 1740,
                         "column": 11
                       },
                       "end": {
-                        "line": 1732,
+                        "line": 1740,
                         "column": 20
                       }
                     }
@@ -53681,16 +53887,16 @@
                           "type": "Identifier",
                           "name": "requireNonNull",
                           "range": [
-                            78887,
-                            78901
+                            79031,
+                            79045
                           ],
                           "loc": {
                             "start": {
-                              "line": 1733,
+                              "line": 1741,
                               "column": 8
                             },
                             "end": {
-                              "line": 1733,
+                              "line": 1741,
                               "column": 22
                             }
                           }
@@ -53700,16 +53906,16 @@
                             "type": "Identifier",
                             "name": "formatter",
                             "range": [
-                              78902,
-                              78911
+                              79046,
+                              79055
                             ],
                             "loc": {
                               "start": {
-                                "line": 1733,
+                                "line": 1741,
                                 "column": 23
                               },
                               "end": {
-                                "line": 1733,
+                                "line": 1741,
                                 "column": 32
                               }
                             }
@@ -53719,47 +53925,47 @@
                             "value": "formatter",
                             "raw": "'formatter'",
                             "range": [
-                              78913,
-                              78924
+                              79057,
+                              79068
                             ],
                             "loc": {
                               "start": {
-                                "line": 1733,
+                                "line": 1741,
                                 "column": 34
                               },
                               "end": {
-                                "line": 1733,
+                                "line": 1741,
                                 "column": 45
                               }
                             }
                           }
                         ],
                         "range": [
-                          78887,
-                          78925
+                          79031,
+                          79069
                         ],
                         "loc": {
                           "start": {
-                            "line": 1733,
+                            "line": 1741,
                             "column": 8
                           },
                           "end": {
-                            "line": 1733,
+                            "line": 1741,
                             "column": 46
                           }
                         }
                       },
                       "range": [
-                        78887,
-                        78926
+                        79031,
+                        79070
                       ],
                       "loc": {
                         "start": {
-                          "line": 1733,
+                          "line": 1741,
                           "column": 8
                         },
                         "end": {
-                          "line": 1733,
+                          "line": 1741,
                           "column": 47
                         }
                       }
@@ -53775,16 +53981,16 @@
                             "type": "Identifier",
                             "name": "formatter",
                             "range": [
-                              78942,
-                              78951
+                              79086,
+                              79095
                             ],
                             "loc": {
                               "start": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 15
                               },
                               "end": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 24
                               }
                             }
@@ -53793,31 +53999,31 @@
                             "type": "Identifier",
                             "name": "format",
                             "range": [
-                              78952,
-                              78958
+                              79096,
+                              79102
                             ],
                             "loc": {
                               "start": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 25
                               },
                               "end": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 31
                               }
                             }
                           },
                           "range": [
-                            78942,
-                            78958
+                            79086,
+                            79102
                           ],
                           "loc": {
                             "start": {
-                              "line": 1734,
+                              "line": 1742,
                               "column": 15
                             },
                             "end": {
-                              "line": 1734,
+                              "line": 1742,
                               "column": 31
                             }
                           }
@@ -53826,63 +54032,63 @@
                           {
                             "type": "ThisExpression",
                             "range": [
-                              78959,
-                              78963
+                              79103,
+                              79107
                             ],
                             "loc": {
                               "start": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 32
                               },
                               "end": {
-                                "line": 1734,
+                                "line": 1742,
                                 "column": 36
                               }
                             }
                           }
                         ],
                         "range": [
-                          78942,
-                          78964
+                          79086,
+                          79108
                         ],
                         "loc": {
                           "start": {
-                            "line": 1734,
+                            "line": 1742,
                             "column": 15
                           },
                           "end": {
-                            "line": 1734,
+                            "line": 1742,
                             "column": 37
                           }
                         }
                       },
                       "range": [
-                        78935,
-                        78965
+                        79079,
+                        79109
                       ],
                       "loc": {
                         "start": {
-                          "line": 1734,
+                          "line": 1742,
                           "column": 8
                         },
                         "end": {
-                          "line": 1734,
+                          "line": 1742,
                           "column": 38
                         }
                       }
                     }
                   ],
                   "range": [
-                    78877,
-                    78971
+                    79021,
+                    79115
                   ],
                   "loc": {
                     "start": {
-                      "line": 1732,
+                      "line": 1740,
                       "column": 22
                     },
                     "end": {
-                      "line": 1735,
+                      "line": 1743,
                       "column": 5
                     }
                   }
@@ -53890,16 +54096,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  78865,
-                  78971
+                  79009,
+                  79115
                 ],
                 "loc": {
                   "start": {
-                    "line": 1732,
+                    "line": 1740,
                     "column": 10
                   },
                   "end": {
-                    "line": 1735,
+                    "line": 1743,
                     "column": 5
                   }
                 }
@@ -53907,16 +54113,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                78859,
-                78971
+                79003,
+                79115
               ],
               "loc": {
                 "start": {
-                  "line": 1732,
+                  "line": 1740,
                   "column": 4
                 },
                 "end": {
-                  "line": 1735,
+                  "line": 1743,
                   "column": 5
                 }
               },
@@ -53925,16 +54131,16 @@
                   "type": "Block",
                   "value": "*\n     * Outputs this date-time as a {@link String} using the formatter.\n     * <p>\n     * This date-time will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {!DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date-time string, not null\n     * @throws {DateTimeException} if an error occurs during printing\n     ",
                   "range": [
-                    78416,
-                    78854
+                    78560,
+                    78998
                   ],
                   "loc": {
                     "start": {
-                      "line": 1722,
+                      "line": 1730,
                       "column": 4
                     },
                     "end": {
-                      "line": 1731,
+                      "line": 1739,
                       "column": 7
                     }
                   }
@@ -53945,7 +54151,7 @@
           ],
           "range": [
             3221,
-            78974
+            79118
           ],
           "loc": {
             "start": {
@@ -53953,7 +54159,7 @@
               "column": 55
             },
             "end": {
-              "line": 1737,
+              "line": 1745,
               "column": 1
             }
           },
@@ -53980,7 +54186,7 @@
         },
         "range": [
           3075,
-          78974
+          79118
         ],
         "loc": {
           "start": {
@@ -53988,7 +54194,7 @@
             "column": 7
           },
           "end": {
-            "line": 1737,
+            "line": 1745,
             "column": 1
           }
         },
@@ -54018,7 +54224,7 @@
       "source": null,
       "range": [
         3068,
-        78974
+        79118
       ],
       "loc": {
         "start": {
@@ -54026,7 +54232,7 @@
           "column": 0
         },
         "end": {
-          "line": 1737,
+          "line": 1745,
           "column": 1
         }
       },
@@ -54059,16 +54265,16 @@
           "type": "Identifier",
           "name": "_init",
           "range": [
-            78992,
-            78997
+            79136,
+            79141
           ],
           "loc": {
             "start": {
-              "line": 1739,
+              "line": 1747,
               "column": 16
             },
             "end": {
-              "line": 1739,
+              "line": 1747,
               "column": 21
             }
           }
@@ -54089,16 +54295,16 @@
                     "type": "Identifier",
                     "name": "LocalDateTime",
                     "range": [
-                      79324,
-                      79337
+                      79468,
+                      79481
                     ],
                     "loc": {
                       "start": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 4
                       },
                       "end": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 17
                       }
                     }
@@ -54107,31 +54313,31 @@
                     "type": "Identifier",
                     "name": "MIN",
                     "range": [
-                      79338,
-                      79341
+                      79482,
+                      79485
                     ],
                     "loc": {
                       "start": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 18
                       },
                       "end": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 21
                       }
                     }
                   },
                   "range": [
-                    79324,
-                    79341
+                    79468,
+                    79485
                   ],
                   "loc": {
                     "start": {
-                      "line": 1746,
+                      "line": 1754,
                       "column": 4
                     },
                     "end": {
-                      "line": 1746,
+                      "line": 1754,
                       "column": 21
                     }
                   }
@@ -54145,16 +54351,16 @@
                       "type": "Identifier",
                       "name": "LocalDateTime",
                       "range": [
-                        79344,
-                        79357
+                        79488,
+                        79501
                       ],
                       "loc": {
                         "start": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 24
                         },
                         "end": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 37
                         }
                       }
@@ -54163,31 +54369,31 @@
                       "type": "Identifier",
                       "name": "of",
                       "range": [
-                        79358,
-                        79360
+                        79502,
+                        79504
                       ],
                       "loc": {
                         "start": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 38
                         },
                         "end": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 40
                         }
                       }
                     },
                     "range": [
-                      79344,
-                      79360
+                      79488,
+                      79504
                     ],
                     "loc": {
                       "start": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 24
                       },
                       "end": {
-                        "line": 1746,
+                        "line": 1754,
                         "column": 40
                       }
                     }
@@ -54200,16 +54406,16 @@
                         "type": "Identifier",
                         "name": "LocalDate",
                         "range": [
-                          79361,
-                          79370
+                          79505,
+                          79514
                         ],
                         "loc": {
                           "start": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 41
                           },
                           "end": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 50
                           }
                         }
@@ -54218,31 +54424,31 @@
                         "type": "Identifier",
                         "name": "MIN",
                         "range": [
-                          79371,
-                          79374
+                          79515,
+                          79518
                         ],
                         "loc": {
                           "start": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 51
                           },
                           "end": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 54
                           }
                         }
                       },
                       "range": [
-                        79361,
-                        79374
+                        79505,
+                        79518
                       ],
                       "loc": {
                         "start": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 41
                         },
                         "end": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 54
                         }
                       }
@@ -54254,16 +54460,16 @@
                         "type": "Identifier",
                         "name": "LocalTime",
                         "range": [
-                          79376,
-                          79385
+                          79520,
+                          79529
                         ],
                         "loc": {
                           "start": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 56
                           },
                           "end": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 65
                           }
                         }
@@ -54272,77 +54478,77 @@
                         "type": "Identifier",
                         "name": "MIN",
                         "range": [
-                          79386,
-                          79389
+                          79530,
+                          79533
                         ],
                         "loc": {
                           "start": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 66
                           },
                           "end": {
-                            "line": 1746,
+                            "line": 1754,
                             "column": 69
                           }
                         }
                       },
                       "range": [
-                        79376,
-                        79389
+                        79520,
+                        79533
                       ],
                       "loc": {
                         "start": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 56
                         },
                         "end": {
-                          "line": 1746,
+                          "line": 1754,
                           "column": 69
                         }
                       }
                     }
                   ],
                   "range": [
-                    79344,
-                    79390
+                    79488,
+                    79534
                   ],
                   "loc": {
                     "start": {
-                      "line": 1746,
+                      "line": 1754,
                       "column": 24
                     },
                     "end": {
-                      "line": 1746,
+                      "line": 1754,
                       "column": 70
                     }
                   }
                 },
                 "range": [
-                  79324,
-                  79390
+                  79468,
+                  79534
                 ],
                 "loc": {
                   "start": {
-                    "line": 1746,
+                    "line": 1754,
                     "column": 4
                   },
                   "end": {
-                    "line": 1746,
+                    "line": 1754,
                     "column": 70
                   }
                 }
               },
               "range": [
-                79324,
-                79391
+                79468,
+                79535
               ],
               "loc": {
                 "start": {
-                  "line": 1746,
+                  "line": 1754,
                   "column": 4
                 },
                 "end": {
-                  "line": 1746,
+                  "line": 1754,
                   "column": 71
                 }
               },
@@ -54351,16 +54557,16 @@
                   "type": "Block",
                   "value": "*\n     * The minimum supported {@link LocalDateTime}, '-999999999-01-01T00:00:00'.\n     * This is the local date-time of midnight at the start of the minimum date.\n     * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.\n     * This could be used by an application as a 'far past' date-time.\n     ",
                   "range": [
-                    79005,
-                    79319
+                    79149,
+                    79463
                   ],
                   "loc": {
                     "start": {
-                      "line": 1740,
+                      "line": 1748,
                       "column": 4
                     },
                     "end": {
-                      "line": 1745,
+                      "line": 1753,
                       "column": 7
                     }
                   }
@@ -54371,16 +54577,16 @@
                   "type": "Block",
                   "value": "*\n     * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.\n     * This is the local date-time just before midnight at the end of the maximum date.\n     * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.\n     * This could be used by an application as a 'far future' date-time.\n     ",
                   "range": [
-                    79397,
-                    79730
+                    79541,
+                    79874
                   ],
                   "loc": {
                     "start": {
-                      "line": 1748,
+                      "line": 1756,
                       "column": 4
                     },
                     "end": {
-                      "line": 1753,
+                      "line": 1761,
                       "column": 7
                     }
                   }
@@ -54399,16 +54605,16 @@
                     "type": "Identifier",
                     "name": "LocalDateTime",
                     "range": [
-                      79735,
-                      79748
+                      79879,
+                      79892
                     ],
                     "loc": {
                       "start": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 4
                       },
                       "end": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 17
                       }
                     }
@@ -54417,31 +54623,31 @@
                     "type": "Identifier",
                     "name": "MAX",
                     "range": [
-                      79749,
-                      79752
+                      79893,
+                      79896
                     ],
                     "loc": {
                       "start": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 18
                       },
                       "end": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 21
                       }
                     }
                   },
                   "range": [
-                    79735,
-                    79752
+                    79879,
+                    79896
                   ],
                   "loc": {
                     "start": {
-                      "line": 1754,
+                      "line": 1762,
                       "column": 4
                     },
                     "end": {
-                      "line": 1754,
+                      "line": 1762,
                       "column": 21
                     }
                   }
@@ -54455,16 +54661,16 @@
                       "type": "Identifier",
                       "name": "LocalDateTime",
                       "range": [
-                        79755,
-                        79768
+                        79899,
+                        79912
                       ],
                       "loc": {
                         "start": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 24
                         },
                         "end": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 37
                         }
                       }
@@ -54473,31 +54679,31 @@
                       "type": "Identifier",
                       "name": "of",
                       "range": [
-                        79769,
-                        79771
+                        79913,
+                        79915
                       ],
                       "loc": {
                         "start": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 38
                         },
                         "end": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 40
                         }
                       }
                     },
                     "range": [
-                      79755,
-                      79771
+                      79899,
+                      79915
                     ],
                     "loc": {
                       "start": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 24
                       },
                       "end": {
-                        "line": 1754,
+                        "line": 1762,
                         "column": 40
                       }
                     }
@@ -54510,16 +54716,16 @@
                         "type": "Identifier",
                         "name": "LocalDate",
                         "range": [
-                          79772,
-                          79781
+                          79916,
+                          79925
                         ],
                         "loc": {
                           "start": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 41
                           },
                           "end": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 50
                           }
                         }
@@ -54528,31 +54734,31 @@
                         "type": "Identifier",
                         "name": "MAX",
                         "range": [
-                          79782,
-                          79785
+                          79926,
+                          79929
                         ],
                         "loc": {
                           "start": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 51
                           },
                           "end": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 54
                           }
                         }
                       },
                       "range": [
-                        79772,
-                        79785
+                        79916,
+                        79929
                       ],
                       "loc": {
                         "start": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 41
                         },
                         "end": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 54
                         }
                       }
@@ -54564,16 +54770,16 @@
                         "type": "Identifier",
                         "name": "LocalTime",
                         "range": [
-                          79787,
-                          79796
+                          79931,
+                          79940
                         ],
                         "loc": {
                           "start": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 56
                           },
                           "end": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 65
                           }
                         }
@@ -54582,77 +54788,77 @@
                         "type": "Identifier",
                         "name": "MAX",
                         "range": [
-                          79797,
-                          79800
+                          79941,
+                          79944
                         ],
                         "loc": {
                           "start": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 66
                           },
                           "end": {
-                            "line": 1754,
+                            "line": 1762,
                             "column": 69
                           }
                         }
                       },
                       "range": [
-                        79787,
-                        79800
+                        79931,
+                        79944
                       ],
                       "loc": {
                         "start": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 56
                         },
                         "end": {
-                          "line": 1754,
+                          "line": 1762,
                           "column": 69
                         }
                       }
                     }
                   ],
                   "range": [
-                    79755,
-                    79801
+                    79899,
+                    79945
                   ],
                   "loc": {
                     "start": {
-                      "line": 1754,
+                      "line": 1762,
                       "column": 24
                     },
                     "end": {
-                      "line": 1754,
+                      "line": 1762,
                       "column": 70
                     }
                   }
                 },
                 "range": [
-                  79735,
-                  79801
+                  79879,
+                  79945
                 ],
                 "loc": {
                   "start": {
-                    "line": 1754,
+                    "line": 1762,
                     "column": 4
                   },
                   "end": {
-                    "line": 1754,
+                    "line": 1762,
                     "column": 70
                   }
                 }
               },
               "range": [
-                79735,
-                79802
+                79879,
+                79946
               ],
               "loc": {
                 "start": {
-                  "line": 1754,
+                  "line": 1762,
                   "column": 4
                 },
                 "end": {
-                  "line": 1754,
+                  "line": 1762,
                   "column": 71
                 }
               },
@@ -54661,16 +54867,16 @@
                   "type": "Block",
                   "value": "*\n     * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.\n     * This is the local date-time just before midnight at the end of the maximum date.\n     * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.\n     * This could be used by an application as a 'far future' date-time.\n     ",
                   "range": [
-                    79397,
-                    79730
+                    79541,
+                    79874
                   ],
                   "loc": {
                     "start": {
-                      "line": 1748,
+                      "line": 1756,
                       "column": 4
                     },
                     "end": {
-                      "line": 1753,
+                      "line": 1761,
                       "column": 7
                     }
                   }
@@ -54689,16 +54895,16 @@
                     "type": "Identifier",
                     "name": "LocalDateTime",
                     "range": [
-                      79808,
-                      79821
+                      79952,
+                      79965
                     ],
                     "loc": {
                       "start": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 4
                       },
                       "end": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 17
                       }
                     }
@@ -54707,31 +54913,31 @@
                     "type": "Identifier",
                     "name": "FROM",
                     "range": [
-                      79822,
-                      79826
+                      79966,
+                      79970
                     ],
                     "loc": {
                       "start": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 18
                       },
                       "end": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 22
                       }
                     }
                   },
                   "range": [
-                    79808,
-                    79826
+                    79952,
+                    79970
                   ],
                   "loc": {
                     "start": {
-                      "line": 1756,
+                      "line": 1764,
                       "column": 4
                     },
                     "end": {
-                      "line": 1756,
+                      "line": 1764,
                       "column": 22
                     }
                   }
@@ -54742,16 +54948,16 @@
                     "type": "Identifier",
                     "name": "createTemporalQuery",
                     "range": [
-                      79829,
-                      79848
+                      79973,
+                      79992
                     ],
                     "loc": {
                       "start": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 25
                       },
                       "end": {
-                        "line": 1756,
+                        "line": 1764,
                         "column": 44
                       }
                     }
@@ -54762,16 +54968,16 @@
                       "value": "LocalDateTime.FROM",
                       "raw": "'LocalDateTime.FROM'",
                       "range": [
-                        79849,
-                        79869
+                        79993,
+                        80013
                       ],
                       "loc": {
                         "start": {
-                          "line": 1756,
+                          "line": 1764,
                           "column": 45
                         },
                         "end": {
-                          "line": 1756,
+                          "line": 1764,
                           "column": 65
                         }
                       }
@@ -54784,16 +54990,16 @@
                           "type": "Identifier",
                           "name": "temporal",
                           "range": [
-                            79872,
-                            79880
+                            80016,
+                            80024
                           ],
                           "loc": {
                             "start": {
-                              "line": 1756,
+                              "line": 1764,
                               "column": 68
                             },
                             "end": {
-                              "line": 1756,
+                              "line": 1764,
                               "column": 76
                             }
                           }
@@ -54813,16 +55019,16 @@
                                   "type": "Identifier",
                                   "name": "LocalDateTime",
                                   "range": [
-                                    79902,
-                                    79915
+                                    80046,
+                                    80059
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 15
                                     },
                                     "end": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 28
                                     }
                                   }
@@ -54831,31 +55037,31 @@
                                   "type": "Identifier",
                                   "name": "from",
                                   "range": [
-                                    79916,
-                                    79920
+                                    80060,
+                                    80064
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 29
                                     },
                                     "end": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 33
                                     }
                                   }
                                 },
                                 "range": [
-                                  79902,
-                                  79920
+                                  80046,
+                                  80064
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 1757,
+                                    "line": 1765,
                                     "column": 15
                                   },
                                   "end": {
-                                    "line": 1757,
+                                    "line": 1765,
                                     "column": 33
                                   }
                                 }
@@ -54865,63 +55071,63 @@
                                   "type": "Identifier",
                                   "name": "temporal",
                                   "range": [
-                                    79921,
-                                    79929
+                                    80065,
+                                    80073
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 34
                                     },
                                     "end": {
-                                      "line": 1757,
+                                      "line": 1765,
                                       "column": 42
                                     }
                                   }
                                 }
                               ],
                               "range": [
-                                79902,
-                                79930
+                                80046,
+                                80074
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 1757,
+                                  "line": 1765,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 1757,
+                                  "line": 1765,
                                   "column": 43
                                 }
                               }
                             },
                             "range": [
-                              79895,
-                              79931
+                              80039,
+                              80075
                             ],
                             "loc": {
                               "start": {
-                                "line": 1757,
+                                "line": 1765,
                                 "column": 8
                               },
                               "end": {
-                                "line": 1757,
+                                "line": 1765,
                                 "column": 44
                               }
                             }
                           }
                         ],
                         "range": [
-                          79885,
-                          79937
+                          80029,
+                          80081
                         ],
                         "loc": {
                           "start": {
-                            "line": 1756,
+                            "line": 1764,
                             "column": 81
                           },
                           "end": {
-                            "line": 1758,
+                            "line": 1766,
                             "column": 5
                           }
                         }
@@ -54929,78 +55135,78 @@
                       "generator": false,
                       "expression": false,
                       "range": [
-                        79871,
-                        79937
+                        80015,
+                        80081
                       ],
                       "loc": {
                         "start": {
-                          "line": 1756,
+                          "line": 1764,
                           "column": 67
                         },
                         "end": {
-                          "line": 1758,
+                          "line": 1766,
                           "column": 5
                         }
                       }
                     }
                   ],
                   "range": [
-                    79829,
-                    79938
+                    79973,
+                    80082
                   ],
                   "loc": {
                     "start": {
-                      "line": 1756,
+                      "line": 1764,
                       "column": 25
                     },
                     "end": {
-                      "line": 1758,
+                      "line": 1766,
                       "column": 6
                     }
                   }
                 },
                 "range": [
-                  79808,
-                  79938
+                  79952,
+                  80082
                 ],
                 "loc": {
                   "start": {
-                    "line": 1756,
+                    "line": 1764,
                     "column": 4
                   },
                   "end": {
-                    "line": 1758,
+                    "line": 1766,
                     "column": 6
                   }
                 }
               },
               "range": [
-                79808,
-                79939
+                79952,
+                80083
               ],
               "loc": {
                 "start": {
-                  "line": 1756,
+                  "line": 1764,
                   "column": 4
                 },
                 "end": {
-                  "line": 1758,
+                  "line": 1766,
                   "column": 7
                 }
               }
             }
           ],
           "range": [
-            78999,
-            79941
+            79143,
+            80085
           ],
           "loc": {
             "start": {
-              "line": 1739,
+              "line": 1747,
               "column": 23
             },
             "end": {
-              "line": 1759,
+              "line": 1767,
               "column": 1
             }
           }
@@ -55008,16 +55214,16 @@
         "generator": false,
         "expression": false,
         "range": [
-          78983,
-          79941
+          79127,
+          80085
         ],
         "loc": {
           "start": {
-            "line": 1739,
+            "line": 1747,
             "column": 7
           },
           "end": {
-            "line": 1759,
+            "line": 1767,
             "column": 1
           }
         },
@@ -55027,16 +55233,16 @@
       "specifiers": [],
       "source": null,
       "range": [
-        78976,
-        79941
+        79120,
+        80085
       ],
       "loc": {
         "start": {
-          "line": 1739,
+          "line": 1747,
           "column": 0
         },
         "end": {
-          "line": 1759,
+          "line": 1767,
           "column": 1
         }
       }
@@ -55045,7 +55251,7 @@
   "sourceType": "module",
   "range": [
     232,
-    79941
+    80085
   ],
   "loc": {
     "start": {
@@ -55053,7 +55259,7 @@
       "column": 0
     },
     "end": {
-      "line": 1759,
+      "line": 1767,
       "column": 1
     }
   },
@@ -57346,10 +57552,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * Outputs this date-time as a {@link String} using the formatter.\n     * <p>\n     * This date-time will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {!DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date-time string, not null\n     * @throws {DateTimeException} if an error occurs during printing\n     ",
+      "value": "*\n     *\n     * @return {string} same as {@link LocalDateTime.toString}\n     ",
       "range": [
-        78416,
-        78854
+        78420,
+        78501
       ],
       "loc": {
         "start": {
@@ -57357,7 +57563,25 @@
           "column": 4
         },
         "end": {
-          "line": 1731,
+          "line": 1725,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * Outputs this date-time as a {@link String} using the formatter.\n     * <p>\n     * This date-time will be passed to the formatter\n     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.\n     *\n     * @param {!DateTimeFormatter} formatter  the formatter to use, not null\n     * @return {String} the formatted date-time string, not null\n     * @throws {DateTimeException} if an error occurs during printing\n     ",
+      "range": [
+        78560,
+        78998
+      ],
+      "loc": {
+        "start": {
+          "line": 1730,
+          "column": 4
+        },
+        "end": {
+          "line": 1739,
           "column": 7
         }
       }
@@ -57366,26 +57590,8 @@
       "type": "Block",
       "value": "*\n     * The minimum supported {@link LocalDateTime}, '-999999999-01-01T00:00:00'.\n     * This is the local date-time of midnight at the start of the minimum date.\n     * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.\n     * This could be used by an application as a 'far past' date-time.\n     ",
       "range": [
-        79005,
-        79319
-      ],
-      "loc": {
-        "start": {
-          "line": 1740,
-          "column": 4
-        },
-        "end": {
-          "line": 1745,
-          "column": 7
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\n     * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.\n     * This is the local date-time just before midnight at the end of the maximum date.\n     * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.\n     * This could be used by an application as a 'far future' date-time.\n     ",
-      "range": [
-        79397,
-        79730
+        79149,
+        79463
       ],
       "loc": {
         "start": {
@@ -57394,6 +57600,24 @@
         },
         "end": {
           "line": 1753,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n     * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.\n     * This is the local date-time just before midnight at the end of the maximum date.\n     * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.\n     * This could be used by an application as a 'far future' date-time.\n     ",
+      "range": [
+        79541,
+        79874
+      ],
+      "loc": {
+        "start": {
+          "line": 1756,
+          "column": 4
+        },
+        "end": {
+          "line": 1761,
           "column": 7
         }
       }
