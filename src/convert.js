@@ -45,10 +45,6 @@ class ToNativeJsConverter {
     toDate() {
         return new Date(this.instant.toEpochMilli());
     }
-
-    // toMoment() {
-    //     moment(this.instant.toEpochMilli());
-    // }
 }
 
 /**
