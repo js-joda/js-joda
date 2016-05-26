@@ -12,7 +12,7 @@ import {ZoneId} from './ZoneId';
 
 class ToNativeJsConverter {
     /**
-     * @param {!(LocalDate|LocalDateTime\ZonedDateTime)} temporal - a joda temporal instance
+     * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
      * @param {ZoneId} [zone] - the zone of the temporal,
      *  the default value for LocalDate and LocalDateTime is ZoneId.systemDefault().
      */
@@ -62,7 +62,10 @@ class ToNativeJsConverter {
  *
  * default zone for LocalDate and LocalDateTime is ZoneId.systemDefault().
  *
- * @param {!(LocalDate|LocalDateTime\ZonedDateTime)} temporal - a joda temporal instance
+ * @example
+ * convert(localDate).toDate()
+ *
+ * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
  * @param {ZoneId} [zone] - the zone of the temporal
  * @returns {ToNativeJsConverter}
  */
