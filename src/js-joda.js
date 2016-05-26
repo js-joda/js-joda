@@ -20,6 +20,8 @@ export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
 export { ZoneId } from './ZoneId';
 
+export {convert} from './convert';
+
 export {nativeJs} from './temporal/NativeJsTemporal';
 export {ChronoField} from './temporal/ChronoField';
 export {ChronoUnit} from './temporal/ChronoUnit';
