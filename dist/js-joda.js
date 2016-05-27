@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.6
+//! @version js-joda - 1.1.7
 //! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -10250,6 +10250,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    ToNativeJsConverter.prototype.toDate = function toDate() {
 	        return new Date(this.instant.toEpochMilli());
+	    };
+	
+	    ToNativeJsConverter.prototype.toEpochMilli = function toEpochMilli() {
+	        return this.instant.toEpochMilli();
 	    };
 	
 	    return ToNativeJsConverter;
