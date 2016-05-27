@@ -31,6 +31,7 @@ describe('convert', () => {
         let javascriptDate = convert(localDate, ZoneId.UTC).toDate();
         expect(javascriptDate).to.instanceof(Date);
         expect(javascriptDate.getTime()).to.equal(new Date('2016-05-26T00:00:00Z').getTime());
+        expect(javascriptDate.getTime()).to.equal(convert(localDate, ZoneId.UTC).toEpochMilli());
     });
 
     it('should convert a LocalDateTime to a javascript Date', () => {
@@ -46,6 +47,7 @@ describe('convert', () => {
         let javascriptDate = convert(localDateTime, ZoneId.UTC).toDate();
         expect(javascriptDate).to.instanceof(Date);
         expect(javascriptDate.getTime()).to.equal(new Date('2016-05-26T01:42:00Z').getTime());
+        expect(javascriptDate.getTime()).to.equal(convert(localDateTime, ZoneId.UTC).toEpochMilli());
     });
 
     it('should convert a ZonedDateTime to a javascript Date', () => {
@@ -53,6 +55,7 @@ describe('convert', () => {
         let javascriptDate = convert(zonedDateTime).toDate();
         expect(javascriptDate).to.instanceof(Date);
         expect(javascriptDate.getTime()).to.equal(new Date('2016-05-26T01:42:00Z').getTime());
+        expect(javascriptDate.getTime()).to.equal(convert(zonedDateTime).toEpochMilli());
     });
 
     it('should fail if temporal is not an instance of LocalDate, LocalDateTime or ZonedDateTime', () => {

@@ -45,6 +45,14 @@ class ToNativeJsConverter {
     toDate() {
         return new Date(this.instant.toEpochMilli());
     }
+
+    /**
+     *
+     * @returns {number}
+     */
+    toEpochMilli() {
+        return this.instant.toEpochMilli();
+    }
 }
 
 /**
@@ -63,7 +71,8 @@ class ToNativeJsConverter {
  * default zone for LocalDate and LocalDateTime is ZoneId.systemDefault().
  *
  * @example
- * convert(localDate).toDate()
+ * convert(localDate).toDate() // returns a javascript Date
+ * convert(localDate).toEpochMilli()   // returns the epochMillis
  *
  * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
  * @param {ZoneId} [zone] - the zone of the temporal
