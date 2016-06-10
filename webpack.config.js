@@ -17,7 +17,7 @@ var banner = createBanner();
 module.exports = {
     context: __dirname,
     entry: './src/js-joda.js',
-    devtool: sourceMaps ? 'source-map' : '',
+    devtool: sourceMaps ? 'hidden-source-map' : '',
     output: {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda.min.js' : 'js-joda.js',
