@@ -1,12 +1,25 @@
 language: node_js
+os:
+  - linux
+#  TODO: for osx we need to fix the before_script (no xvfb) and find out how to install firefox and phantom?
+#  - osx
 node_js:
+  - "0.12"
   - "4"
+  - "5"
+  - "node"
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 script:
-  - npm run test-ci
+  - export
+  - npm run build-dist
+  - npm run test
+  - npm run test-browser -- --browsers Firefox,PhantomJS
+#  run build-esdoc and coverage only for "node" (latest) version
+  - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run build-esdoc; fi
+  - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run test-coverage; fi
 
 after_script:
   - cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
