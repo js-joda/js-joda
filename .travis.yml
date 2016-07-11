@@ -4,9 +4,8 @@ os:
 #  TODO: for osx we need to fix the before_script (no xvfb) and find out how to install firefox and phantom?
 #  - osx
 node_js:
-  - "0.12"
+  - "0.10"
   - "4"
-  - "5"
   - "node"
 before_script:
   - "export DISPLAY=:99.0"
