@@ -50,7 +50,7 @@
     "karma-webpack": "^1.7.0",
     "markdown-toc": "^0.12.14",
     "mocha": "^2.5.3",
-    "phantomjs-prebuilt": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.9",
     "webpack": "^1.13.1"
   },
   "license": "BSD-3-Clause"
