@@ -34,7 +34,7 @@
     "babel-preset-es2015-loose": "^7.0.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.11",
-    "esdoc": "0.4.7",
+    "esdoc": "0.4.8",
     "eslint": "^3.0.1",
     "eslint-config-standard": "^5.3.5",
     "eslint-plugin-promise": "^2.0.0",
