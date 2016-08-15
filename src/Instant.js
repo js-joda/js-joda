@@ -535,16 +535,16 @@ export class Instant extends Temporal {
         if (unit === ChronoUnit.NANOS) {
             return this;
         }
-        var unitDur = unit.duration();
+        let unitDur = unit.duration();
         if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
             throw new DateTimeException('Unit is too large to be used for truncation');
         }
-        var dur = unitDur.toNanos();
+        let dur = unitDur.toNanos();
         if (MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
-        var nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
-        var result = MathUtil.intDiv(nod, dur) * dur;
+        let nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
+        let result = MathUtil.intDiv(nod, dur) * dur;
         return this.plusNanos(result - nod);
     }
 
