@@ -433,7 +433,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     // TODO tests are missing in threeten bp
-    describe('truncated(TemporalUnit)', () => {
+    describe('truncatedTo(TemporalUnit)', () => {
 
         var NINETY_MINUTES = {
             duration: () => { return Duration.ofMinutes(90); }
@@ -494,6 +494,15 @@ describe('org.threeten.bp.TestInstant', () => {
             expect(() => {
                 TEST_12345_123456789.truncatedTo(null);
             }).to.throw(NullPointerException);
+        });
+
+        it('test_truncatedTo', () => {
+            assertEquals(Instant.ofEpochSecond(2, 1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(2));
+            assertEquals(Instant.ofEpochSecond(2, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(1));
+            assertEquals(Instant.ofEpochSecond(0, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-1));
+            assertEquals(Instant.ofEpochSecond(-1).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-1));
+            assertEquals(Instant.ofEpochSecond(-1, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-2));
+            assertEquals(Instant.ofEpochSecond(-2).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-2));
         });
 
     });
