@@ -1663,8 +1663,33 @@ describe('org.threeten.bp.TestInstant', () => {
             expect(() => {
                 Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1).toEpochMilli();
             }).to.throw(ArithmeticException);
+        }); 
+        
+        //@DataProvider(name="sampleEpochMillis")
+        function provider_sampleEpochMillis() {
+            return [
+                    ['MAX_SAFE_INTEGER', MathUtil.MAX_SAFE_INTEGER],
+                    ['MAX_SAFE_INTEGER-1', MathUtil.MAX_SAFE_INTEGER - 1],
+                    ['1', 1],
+                    ['0', 0],
+                    ['-1', -1],
+                    ['MIN_SAFE_INTEGER+1', MathUtil.MIN_SAFE_INTEGER + 1],
+                    ['MIN_SAFE_INTEGER', MathUtil.MIN_SAFE_INTEGER]
+            ];
+        }
+
+        it('test_epochMillis', function () {
+            provider_sampleEpochMillis().forEach((data) => {
+                test_epochMillis.apply(this, data);
+            });
         });
-    
+
+        function test_epochMillis(name, millis) {
+            let t1 = Instant.ofEpochMilli(millis);
+            let m = t1.toEpochMilli();
+            assertEquals(millis, m, name);
+        }
+
     });
 
     describe('compareTo', function () {
