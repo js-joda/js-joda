@@ -13,6 +13,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
 script:
   - export
+  - npm run test-ts-definitions
   - npm run build-dist
   - npm run test
   - npm run test-browser -- --browsers Firefox,PhantomJS
