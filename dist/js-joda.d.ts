@@ -385,7 +385,7 @@ declare namespace JSJoda {
 
         static now(clockOrZone: Clock | ZoneId): LocalDateTime
 
-        static of(hour: number, minute: number, second: number, nanoOfSecond: number): LocalTime
+        static of(hour?: number, minute?: number, second?: number, nanoOfSecond?: number): LocalTime
 
         static ofInstant(instant: Instant, zone: ZoneId): LocalDate
 
@@ -745,7 +745,7 @@ declare namespace JSJoda {
 
         static ofEpochDay(epochDay: number): LocalDate
 
-        static ofInstant(instant: Instant, zoneId: ZoneId)
+        static ofInstant(instant: Instant, zoneId?: ZoneId)
 
         static ofYearDay(year: number, dayOfYear: number): LocalDate
 
@@ -784,6 +784,9 @@ declare namespace JSJoda {
         isEqual(other: LocalDate): boolean
 
         isLeapYear(): boolean
+
+        isoWeekOfWeekyear(): number; //implemented in IsoFields.js
+        isoWeekyear(): number; //implemented in IsoFields.js
 
         lengthOfMonth(): number;
 
@@ -828,7 +831,8 @@ declare namespace JSJoda {
         until(endDate: TemporalAccessor): Period
         until(endExclusive: TemporalAccessor, unit: TemporalUnit): number
 
-        with(fieldOrAdjuster: TemporalField | TemporalAdjuster, newValue: Number): LocalDate
+        with(fieldOrAdjuster: TemporalField, newValue: Number): LocalDate
+        with(adjuster: TemporalAdjuster): LocalDate
 
         withDayOfMonth(dayOfMonth: number): LocalDate
 
@@ -858,6 +862,8 @@ declare namespace JSJoda {
         static MAX: LocalDateTime
 
         constructor(date: LocalDate, time: LocalTime)
+
+        static now(clockOrZone?: Clock|ZoneId): LocalDateTime
 
         adjustInto(temporal: TemporalAdjuster): LocalDateTime
 
@@ -1436,6 +1442,8 @@ declare namespace JSJoda {
 
         toString(): string
     }
+
+    function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
 }
 
 declare module "JSJoda" {
