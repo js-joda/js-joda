@@ -1194,6 +1194,11 @@ declare namespace JSJoda {
         static parse(arg1: string, arg2?: DateTimeFormatter): MonthDay
     }
     class ZoneId {
+        static SYSTEM: ZoneId;
+        static UTC: ZoneId;
+        
+        static of(zoneId: string): ZoneId;
+
         equals(other: any): boolean
 
         hashCode(): number
@@ -1293,7 +1298,7 @@ declare namespace JSJoda {
     class ZonedDateTime extends ChronoZonedDateTime {
         static from(temporal: TemporalAccessor): ZonedDateTime
 
-        static now(clockOrZone: Clock | ZoneId): ZonedDateTime
+        static now(clockOrZone?: Clock | ZoneId): ZonedDateTime
 
         static of(): any
         static of(localDateTime: LocalDateTime, zone: ZoneId): ZonedDateTime
@@ -1308,7 +1313,7 @@ declare namespace JSJoda {
 
         static ofStrict(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 
-        static parse(text: string, formatter: DateTimeFormatter): ZonedDateTime
+        static parse(text: string, formatter?: DateTimeFormatter): ZonedDateTime
 
         constructor(dateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId)
 

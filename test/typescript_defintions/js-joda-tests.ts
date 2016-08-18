@@ -14,6 +14,8 @@ import nativeJs = JSJoda.nativeJs;
 import Period = JSJoda.Period;
 import TemporalAdjusters = JSJoda.TemporalAdjusters;
 import ZoneOffset = JSJoda.ZoneOffset;
+import ZonedDateTime = JSJoda.ZonedDateTime;
+import ZoneId = JSJoda.ZoneId;
 
 // used below
 declare function moment(): any;
@@ -367,4 +369,77 @@ function test_LocalDateTime() {
     dt = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
     dt = LocalDateTime.from(nativeJs(new Date()));
     dt = LocalDateTime.from(nativeJs(moment()));
+}
+
+function test_ZonedDateTime() {
+    ZonedDateTime.now().toString();
+
+    ZonedDateTime.now().withFixedOffsetZone().toString();
+    ZonedDateTime.now().toString();
+
+    ZonedDateTime.now(ZoneOffset.UTC).toString();
+
+    ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString();
+
+    ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]');
+    ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00');
+    ZonedDateTime.parse('2016-03-18T11:38:23.561Z');
+    ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]');
+    LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM);
+    ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM)
+    ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM)
+
+    ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM)
+
+    var d = LocalDate.of(2016, 3, 18)
+    var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00'))
+
+    zdt.withZoneSameLocal(ZoneId.UTC);
+
+    zdt.withZoneSameInstant(ZoneId.UTC);
+
+
+    var zdt = ZonedDateTime.now();
+
+    zdt.plusWeeks(2);
+
+    zdt.plusHours(2 * 7 * 24);
+}
+
+function test_Period() {
+    
+    Period.parse('P1Y10M').toString();
+
+    Period.of(10, 5, 30).toString();
+
+    Period.ofYears(10).toString();
+
+    Period.ofYears(10).plusDays(45).toString();
+
+    Period.of(1, 37, 0).normalized().toString();
+
+    Period.ofYears(10).plusMonths(10).minusDays(42).toString();
+
+    var p = Period.ofMonths(1);
+    LocalDate.parse('2012-12-12').plus(p);
+    LocalDate.parse('2012-01-31').plus(p);
+    LocalDateTime.parse('2012-05-31T12:00').plus(p);
+
+    Period.between(LocalDate.parse('2012-06-30'), LocalDate.parse('2012-08-31'));
+}
+
+function test_Duration() {
+    
+    Duration.ofHours(10).toString();
+
+    Duration.ofDays(10).toString();
+
+    var dt = LocalDateTime.parse('2012-12-24T12:00');
+
+    dt.plus(Duration.ofHours(10).plusMinutes(30)).toString();
+    dt.minus(Duration.ofHours(12).multipliedBy(10)).toString()
+
+    var dt1 = LocalDateTime.parse('2012-12-24T12:00');
+
+    Duration.between(dt1, dt1.plusHours(10)).toString();
 }
