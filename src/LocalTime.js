@@ -152,7 +152,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *
      * @param {!Instant} instant
      * @param {ZoneId} [zone=ZoneId.systemDefault()], defaults to ZoneId.systemDefault()
-     * @returns {LocalDate} the current date, not null
+     * @returns {LocalTime} the current date, not null
      */
     static ofInstant(instant, zone=ZoneId.systemDefault()){
         var offset = zone.rules().offset(instant);

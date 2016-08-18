@@ -383,17 +383,17 @@ declare namespace JSJoda {
 
         static from(temporal: TemporalAccessor): LocalTime
 
-        static now(clockOrZone: Clock | ZoneId): LocalDateTime
+        static now(clockOrZone?: Clock | ZoneId): LocalDateTime
 
         static of(hour?: number, minute?: number, second?: number, nanoOfSecond?: number): LocalTime
 
-        static ofInstant(instant: Instant, zone: ZoneId): LocalDate
+        static ofInstant(instant: Instant, zone?: ZoneId): LocalTime
 
         static ofNanoOfDay(nanoOfDay: number): LocalTime
 
-        static ofSecondOfDay(secondOfDay: number, nanoOfSecond: number): LocalTime
+        static ofSecondOfDay(secondOfDay?: number, nanoOfSecond?: number): LocalTime
 
-        static parse(text: String, formatter: String): LocalTime
+        static parse(text: String, formatter?: String): LocalTime
 
         constructor(hour?: number, minute?: number, second?: number, nanoOfSecond?: number)
 

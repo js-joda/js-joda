@@ -2,20 +2,30 @@
 
 import ChronoField = JSJoda.ChronoField;
 import ChronoUnit = JSJoda.ChronoUnit;
+import DayOfWeek = JSJoda.DayOfWeek;
+import Duration = JSJoda.Duration;
+import Instant = JSJoda.Instant;
 import IsoFields = JSJoda.IsoFields;
 import LocalDate = JSJoda.LocalDate;
-import Month = JSJoda.Month;
-import Period = JSJoda.Period;
-import ZoneOffset = JSJoda.ZoneOffset;
 import LocalDateTime = JSJoda.LocalDateTime;
 import LocalTime = JSJoda.LocalTime;
-import Instant = JSJoda.Instant;
-import TemporalAdjusters = JSJoda.TemporalAdjusters;
-import DayOfWeek = JSJoda.DayOfWeek;
+import Month = JSJoda.Month;
 import nativeJs = JSJoda.nativeJs;
+import Period = JSJoda.Period;
+import TemporalAdjusters = JSJoda.TemporalAdjusters;
+import ZoneOffset = JSJoda.ZoneOffset;
 
 // used below
 declare function moment(): any;
+
+/* - these test function don't actually *do* anything, they are also not meant to be run
+ * - they are used to test the typescript definitions / typings that we provide
+ * - they are mostly copied from the CheatSheet.md file and show usage of JSJoda and wether the usage complies
+ *   with the typing definitions
+ *
+ *  We used the Contribution guide ideas from DefinitelyTyped for these "tests"
+ *  For more information, see e.g. http:
+ */
 
 function test_LocalDate() {
     LocalDate.now();
@@ -124,4 +134,91 @@ function test_LocalDate() {
     d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
+}
+
+function test_LocalTime() {
+    LocalTime.now();
+    LocalTime.now(ZoneOffset.UTC);
+    LocalTime.parse('09:42');
+    LocalTime.parse('09:42:42');
+    LocalTime.parse('09:42:42.123');
+    LocalTime.parse('09:42:42.123456789');
+    LocalTime.of(23, 55);
+    LocalTime.of(23, 55, 42);
+    LocalTime.of(23, 55, 42, 123000000);
+    LocalTime.ofSecondOfDay(3666);
+
+    let t = LocalTime.parse('23:55:42.123');
+
+    t.toString();
+
+    t.hour();
+    t.minute();
+    t.second();
+    t.nano();
+    t.get(ChronoField.SECOND_OF_DAY);
+    t.get(ChronoField.MILLI_OF_SECOND);
+    t.get(ChronoField.HOUR_OF_AMPM);
+
+    t = LocalTime.parse('11:55:42');
+    t.plusHours(12);
+    t.minusHours(12);
+    t.plusMinutes(30);
+    t.minusMinutes(30);
+    t.plusSeconds(30);
+    t.minusSeconds(30);
+    t.plusNanos(1000000);
+    t.minusNanos(1000000);
+    t.plus(1, ChronoUnit.MILLIS);
+    t.plus(1, ChronoUnit.HALF_DAYS);
+    t.plus(Duration.ofMinutes(15));
+    t.minus(Duration.ofMinutes(15));
+
+    t = LocalTime.parse('11:55:42');
+    t.withHour(1);
+    t.withMinute(1);
+    t.withSecond(1);
+    t.with(ChronoField.MILLI_OF_SECOND, 51);
+    let nextEvenSecond = {
+        adjustInto: function (t: LocalTime) {
+            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+        }
+    };
+    t.with(nextEvenSecond);
+    t.plusSeconds(1).with(nextEvenSecond);
+
+    t = LocalTime.parse('23:55:42.123');
+
+    t.truncatedTo(ChronoUnit.SECONDS);
+    t.truncatedTo(ChronoUnit.MINUTES);
+    t.truncatedTo(ChronoUnit.HOURS);
+    t.truncatedTo(ChronoUnit.HALF_DAYS);
+    t.truncatedTo(ChronoUnit.DAYS);
+
+    let t1 = LocalTime.parse('11:55:42');
+    let t2 = t1.plusHours(2);
+
+    t1.isAfter(t2);
+    t1.isBefore(t2);
+
+    t1.equals(t1.plusHours(0));
+    t1.equals(t1.plusHours(1));
+
+    t1.compareTo(t1) === 0;
+    t1.compareTo(t2) < 0;
+    t2.compareTo(t1) > 0;
+
+    t1.hashCode();
+    t2.hashCode();
+    t1.hashCode() !== t2.hashCode();
+
+    t1 = LocalTime.parse('11:00');
+    t2 = t1.plusHours(2).plusMinutes(42).plusSeconds(12);
+    t1.until(t2, ChronoUnit.HOURS);
+    t1.until(t2, ChronoUnit.MINUTES);
+    t1.until(t2, ChronoUnit.SECONDS);
+
+    t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+    t = LocalTime.from(nativeJs(new Date()));
+    t = LocalTime.from(nativeJs(moment()));
 }
