@@ -503,7 +503,7 @@ declare namespace JSJoda {
 
         static safeZero(value: number): number
 
-        static verifyInt(value: number)
+        static verifyInt(value: number): void
     }
     class Month extends Temporal {
         static JANUARY: Month
@@ -745,7 +745,7 @@ declare namespace JSJoda {
 
         static ofEpochDay(epochDay: number): LocalDate
 
-        static ofInstant(instant: Instant, zoneId?: ZoneId)
+        static ofInstant(instant: Instant, zoneId?: ZoneId): LocalDate
 
         static ofYearDay(year: number, dayOfYear: number): LocalDate
 
@@ -965,7 +965,7 @@ declare namespace JSJoda {
 
         until(endExclusive: Temporal, unit: TemporalUnit): number
 
-        with(adjusterOrField): LocalDateTime
+        with(adjuster: TemporalAdjuster): LocalDateTime
         with(field: TemporalField, newValue: number): LocalDateTime
 
         withDayOfMonth(dayOfMonth: number): LocalDateTime
