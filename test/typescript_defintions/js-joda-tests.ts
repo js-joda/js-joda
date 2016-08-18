@@ -88,7 +88,7 @@ function test_LocalDate() {
     d.withYear(1);
     LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
     d.withDayOfYear(42);
-    d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52)
+    d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52);
 
     let d1 = LocalDate.parse('2016-12-24');
     let d2 = d1.plusDays(2);
@@ -221,4 +221,150 @@ function test_LocalTime() {
     t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
     t = LocalTime.from(nativeJs(new Date()));
     t = LocalTime.from(nativeJs(moment()));
+}
+
+function test_LocalDateTime() {
+    LocalDateTime.now();
+    LocalDateTime.now(ZoneOffset.UTC);
+    LocalDateTime.parse('2016-02-26T09:42');
+    LocalDateTime.parse('2016-02-26T09:42:42.123');
+
+    LocalDateTime.of(2016, 2, 29);
+    LocalDateTime.of(2016, 2, 29, 12, 55, 42);
+    LocalDateTime.of(2016, 2, 29, 12, 55, 42, 9);
+
+    LocalDateTime.ofEpochSecond(0, ZoneOffset.UTC);
+    LocalDateTime.ofInstant(Instant.now());
+    LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC);
+
+    let dt: LocalDateTime = LocalDateTime.parse('2016-02-26T23:55:42.123');
+
+    dt.toString();
+
+    dt.year();
+    dt.month();
+    dt.monthValue();
+    dt.dayOfMonth();
+    dt.hour();
+    dt.minute();
+    dt.second();
+    dt.nano();
+
+    dt.dayOfWeek();
+    dt.dayOfWeek().value();
+    dt.dayOfYear();
+    dt.toLocalDate().isLeapYear();
+
+    dt.toLocalDate();
+    dt.toLocalTime();
+    dt.toLocalDate().lengthOfMonth();
+    dt.range(ChronoField.DAY_OF_MONTH);
+
+    dt.toLocalDate().lengthOfYear();
+    dt.range(ChronoField.DAY_OF_YEAR);
+
+    dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
+
+    dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
+    dt.toLocalDate().isoWeekOfWeekyear();
+    dt.get(ChronoField.SECOND_OF_DAY);
+    dt.get(ChronoField.MILLI_OF_SECOND);
+    dt.get(ChronoField.HOUR_OF_AMPM);
+
+
+    dt = LocalDateTime.parse('2016-02-26T23:55:42.123');
+    dt.plusDays(366);
+    dt.minusDays(366);
+
+    dt.plusMonths(12);
+    dt.minusMonths(12);
+
+    dt.plusWeeks(4);
+    dt.minusWeeks(4);
+
+    dt.plusYears(1);
+    dt.minusYears(1);
+
+    dt.plus(3, ChronoUnit.DECADES);
+    dt.minus(3, ChronoUnit.DECADES);
+
+    dt.plus(Period.ofMonths(3).plusDays(3));
+    dt.minus(Period.ofMonths(3).plusDays(3));
+
+    dt.plusHours(12);
+    dt.minusHours(12);
+
+    dt.plusMinutes(30);
+    dt.minusMinutes(30);
+
+    dt.plusSeconds(30);
+    dt.minusSeconds(30);
+
+    dt.plusNanos(1000000);
+    dt.minusNanos(1000000);
+
+    dt.plus(1, ChronoUnit.MILLIS);
+    dt.plus(1, ChronoUnit.HALF_DAYS);
+
+    dt.plus(Duration.ofHours(30).plusMinutes(45));
+    dt.minus(Duration.ofHours(30).plusMinutes(45));
+
+    dt = LocalDateTime.parse('2016-02-26T23:55:42.123');
+    dt.withHour(1);
+
+    dt.withMinute(1);
+
+    dt.withSecond(1);
+
+    dt.withNano(0);
+
+    dt.with(ChronoField.MILLI_OF_SECOND, 51);
+
+
+    var nextEvenSecond = {
+        adjustInto: function (t: LocalDateTime) {
+            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+        }
+    };
+    dt.with(nextEvenSecond);
+    dt.plusSeconds(1).with(nextEvenSecond);
+
+    dt = LocalDateTime.parse('2016-02-26T23:55:42.123');
+
+    dt.truncatedTo(ChronoUnit.SECONDS);
+    dt.truncatedTo(ChronoUnit.MINUTES);
+    dt.truncatedTo(ChronoUnit.HOURS);
+    dt.truncatedTo(ChronoUnit.HALF_DAYS);
+    dt.truncatedTo(ChronoUnit.DAYS);
+
+    var dt1 = LocalDateTime.parse('2016-02-26T23:55:42.123');
+    var dt2 = dt1.plusHours(2);
+
+    dt1.isAfter(dt2);
+    dt1.isBefore(dt2);
+
+    dt1.equals(dt1.plusHours(0));
+    dt1.equals(dt1.plusHours(1));
+
+    dt1.compareTo(dt1) === 0;
+    dt1.compareTo(dt2) < 0;
+    dt2.compareTo(dt1) > 0;
+
+    dt1.hashCode();
+    dt2.hashCode();
+    dt1.hashCode() !== dt2.hashCode();
+
+    dt1 = LocalDateTime.parse('2016-02-26T23:55:42.123');
+    dt2 = dt1.plusYears(6).plusMonths(12).plusHours(2).plusMinutes(42).plusSeconds(12);
+    dt1.until(dt2, ChronoUnit.YEARS);
+    dt1.until(dt2, ChronoUnit.MONTHS);
+    dt1.until(dt2, ChronoUnit.WEEKS);
+    dt1.until(dt2, ChronoUnit.DAYS);
+    dt1.until(dt2, ChronoUnit.HOURS);
+    dt1.until(dt2, ChronoUnit.MINUTES);
+    dt1.until(dt2, ChronoUnit.SECONDS);
+
+    dt = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+    dt = LocalDateTime.from(nativeJs(new Date()));
+    dt = LocalDateTime.from(nativeJs(moment()));
 }

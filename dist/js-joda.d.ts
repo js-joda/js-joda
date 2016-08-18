@@ -189,7 +189,7 @@ declare namespace JSJoda {
 
         static from(temporal: TemporalAccessor): Instant
 
-        static now(clock: Clock): Instant
+        static now(clock?: Clock): Instant
 
         static ofEpochMilli(epochMilli: number): Instant
 
@@ -863,7 +863,21 @@ declare namespace JSJoda {
 
         constructor(date: LocalDate, time: LocalTime)
 
+        static from(temporal: TemporalAccessor): LocalDateTime
+
         static now(clockOrZone?: Clock|ZoneId): LocalDateTime
+
+        static of(date: LocalDate, time: LocalTime): LocalDateTime
+        static of(year?: number, month?: Month|number, dayOfMonth?: number, hour?: number, minute?: number, second?: number, nanoSecond?: number): LocalDateTime
+
+        static ofEpochSecond(epochSecond: number, offset:ZoneOffset): LocalDateTime
+        static ofEpochSecond(epochSecond: number, nanoOfSecond: number, offset:ZoneOffset): LocalDateTime
+
+        static ofInstant(instant: Instant, zoneId?: ZoneId): LocalDateTime
+
+        static ofYearDay(year: number, dayOfYear: number): LocalDateTime
+
+        static parse(text: string, formatter?: DateTimeFormatter): LocalDateTime
 
         adjustInto(temporal: TemporalAdjuster): LocalDateTime
 
@@ -873,7 +887,7 @@ declare namespace JSJoda {
 
         dayOfMonth(): number
 
-        dayOfWeek(): number
+        dayOfWeek(): DayOfWeek
 
         dayOfYear(): number
 

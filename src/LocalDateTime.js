@@ -549,7 +549,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * Additional information can be obtained from the {@link DayOfWeek}.
      * This includes textual names of the values.
      *
-     * @return {number} the day-of-week, not null
+     * @return {DayOfWeek} the day-of-week, not null
      */
     dayOfWeek() {
         return this._date.dayOfWeek();
