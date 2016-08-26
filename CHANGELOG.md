@@ -1,7 +1,13 @@
 Changelog
 =========
 
-### 1.1.9 (next)
+### 1.1.10 (next)
+
+#### Bugfixes
+
+#### dependency updates
+
+### 1.1.9
 
 #### Typescript typings
 
