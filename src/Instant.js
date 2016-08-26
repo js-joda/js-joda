@@ -544,7 +544,7 @@ export class Instant extends Temporal {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
         let nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
-        let result = MathUtil.floorDiv(nod, dur) * dur;
+        let result = MathUtil.intDiv(nod, dur) * dur;
         return this.plusNanos(result - nod);
     }
 

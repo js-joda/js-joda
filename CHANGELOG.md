@@ -8,7 +8,6 @@ Changelog
 added initial typescript typings (`.d.ts`) provided by [@spencerwi](https://github.com/spencerwi) and test based on the code from [CheatSheet](CheatSheet.md) to verify the typings 
 
 #### Bugfixes
- * Fix Instant.truncatedTo before 1970 (backport of [threetenbp](https://github.com/ThreeTen/threetenbp/commit/7e55ffc395713f75dc5b5cd9e11451902038c868))
 
 #### dependency updates
  * several dev dependency updates
