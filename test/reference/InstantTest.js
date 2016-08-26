@@ -141,17 +141,17 @@ describe('org.threeten.bp.TestInstant', () => {
         // @DataProvider(name="MillisInstantNoNanos")
         function provider_factory_millis_long() {
             return [
-                    [0, 0, 0],
-                    [1, 0, 1000000],
-                    [2, 0, 2000000],
-                    [999, 0, 999000000],
-                    [1000, 1, 0],
-                    [1001, 1, 1000000],
-                    [-1, -1, 999000000],
-                    [-2, -1, 998000000],
-                    [-999, -1, 1000000],
-                    [-1000, -1, 0],
-                    [-1001, -2, 999000000],
+                [0, 0, 0],
+                [1, 0, 1000000],
+                [2, 0, 2000000],
+                [999, 0, 999000000],
+                [1000, 1, 0],
+                [1001, 1, 1000000],
+                [-1, -1, 999000000],
+                [-2, -1, 998000000],
+                [-999, -1, 1000000],
+                [-1000, -1, 0],
+                [-1001, -2, 999000000],
                 // TODO Fix see https://github.com/ThreeTen/threetenbp/pull/54
                 // [MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
                 // [MathUtil.MAX_SAFE_INTEGER - 1, MathUtil.intDiv((MathUtil.MAX_SAFE_INTEGER - 1), 1000), MathUtil.intMod((MathUtil.MAX_SAFE_INTEGER - 1), 1000) * 1000000],
