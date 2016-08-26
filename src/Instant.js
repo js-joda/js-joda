@@ -939,16 +939,10 @@ export class Instant extends Temporal {
       * @return {number} the number of milliseconds since the epoch of 1970-01-01T00:00:00Z
       * @throws ArithmeticException if numeric overflow occurs
       */
-    toEpochMilli() {
-        if(this._seconds < 0 && this._nanos > 0) {
-            let millis = MathUtil.safeMultiply(this._seconds+1, 1000);
-            let adjustment = MathUtil.intDiv(this._nanos, NANOS_PER_MILLI) - 1000;
-            return millis + adjustment;
-        } else {
-            var millis = MathUtil.safeMultiply(this._seconds, 1000);
-            return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-        }
-    }
+     toEpochMilli() {
+         var millis = MathUtil.safeMultiply(this._seconds, 1000);
+         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+     }
 
     //-----------------------------------------------------------------------
     /**
