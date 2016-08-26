@@ -433,7 +433,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     // TODO tests are missing in threeten bp
-    describe('truncated(TemporalUnit)', () => {
+    describe('truncatedTo(TemporalUnit)', () => {
 
         var NINETY_MINUTES = {
             duration: () => { return Duration.ofMinutes(90); }
