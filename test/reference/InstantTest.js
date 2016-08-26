@@ -151,11 +151,16 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-2, -1, 998000000],
                     [-999, -1, 1000000],
                     [-1000, -1, 0],
-                    [-1001, -2, 999000000]
+                    [-1001, -2, 999000000],
+                // TODO Fix see https://github.com/ThreeTen/threetenbp/pull/54
+                // [MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
+                // [MathUtil.MAX_SAFE_INTEGER - 1, MathUtil.intDiv((MathUtil.MAX_SAFE_INTEGER - 1), 1000), MathUtil.intMod((MathUtil.MAX_SAFE_INTEGER - 1), 1000) * 1000000],
+                // [MathUtil.MIN_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1, MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000 + 1000000000],
+                // [MathUtil.MIN_SAFE_INTEGER + 1, MathUtil.intDiv((MathUtil.MIN_SAFE_INTEGER + 1), 1000) - 1, MathUtil.intMod((MathUtil.MIN_SAFE_INTEGER + 1), 1000) * 1000000 + 1000000000]
             ];
         }
 
-        it('', function () {
+        it('factory_millis_long', function () {
             dataProviderTest(provider_factory_millis_long, factory_millis_long);
         });
 
@@ -164,6 +169,7 @@ describe('org.threeten.bp.TestInstant', () => {
             var t = Instant.ofEpochMilli(millis);
             assertEquals(t.epochSecond(), expectedSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
+            assertEquals(t.toEpochMilli(), millis);
         }
 
     });
