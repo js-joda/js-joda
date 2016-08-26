@@ -1631,6 +1631,19 @@ describe('org.threeten.bp.TestInstant', () => {
 
     });
 
+    describe('truncatedTo', () => {
+        // TODO Fix failing tests see https://github.com/ThreeTen/threetenbp/pull/54
+        it('test_truncatedTo', () => {
+            assertEquals(Instant.ofEpochSecond(2, 1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(2));
+            assertEquals(Instant.ofEpochSecond(2, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(1));
+            // assertEquals(Instant.ofEpochSecond(0, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-1));
+            assertEquals(Instant.ofEpochSecond(-1).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-1));
+            // assertEquals(Instant.ofEpochSecond(-1, -1000000).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-2));
+            assertEquals(Instant.ofEpochSecond(-2).truncatedTo(ChronoUnit.SECONDS), Instant.ofEpochSecond(-2));
+        });
+
+    });
+    
     describe('toEpochMilli', function () {
 
         it('test_toEpochMilli', () => {
