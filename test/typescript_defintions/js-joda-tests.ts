@@ -1,21 +1,21 @@
-/// <reference path="../../dist/js-joda.d.ts" />
-
-import ChronoField = JSJoda.ChronoField;
-import ChronoUnit = JSJoda.ChronoUnit;
-import DayOfWeek = JSJoda.DayOfWeek;
-import Duration = JSJoda.Duration;
-import Instant = JSJoda.Instant;
-import IsoFields = JSJoda.IsoFields;
-import LocalDate = JSJoda.LocalDate;
-import LocalDateTime = JSJoda.LocalDateTime;
-import LocalTime = JSJoda.LocalTime;
-import Month = JSJoda.Month;
-import nativeJs = JSJoda.nativeJs;
-import Period = JSJoda.Period;
-import TemporalAdjusters = JSJoda.TemporalAdjusters;
-import ZoneOffset = JSJoda.ZoneOffset;
-import ZonedDateTime = JSJoda.ZonedDateTime;
-import ZoneId = JSJoda.ZoneId;
+import {
+    ChronoField,
+    ChronoUnit,
+    DayOfWeek,
+    Duration,
+    Instant,
+    IsoFields,
+    LocalDate,
+    LocalDateTime,
+    LocalTime,
+    Month,
+    nativeJs,
+    Period,
+    TemporalAdjusters,
+    ZoneOffset,
+    ZonedDateTime,
+    ZoneId
+} from '../../'
 
 // used below
 declare function moment(): any;
