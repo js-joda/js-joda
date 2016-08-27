@@ -95,16 +95,16 @@ export class Year extends Temporal {
      *
      * Otherwise {@link Year.nowClock} is executed.
      *
-     * @param {!(ZoneId|Clock|null)} arg1 
+     * @param {!(ZoneId|Clock)} zoneIdOrClock
      * @returns {Year}
      */
-    static now(arg = undefined) {
-        if (arg === undefined) {
+    static now(zoneIdOrClock = undefined) {
+        if (zoneIdOrClock === undefined) {
             return Year.now0();
-        } else if (arg instanceof ZoneId) {
-            return Year.nowZoneId(arg);
+        } else if (zoneIdOrClock instanceof ZoneId) {
+            return Year.nowZoneId(zoneIdOrClock);
         } else {
-            return Year.nowClock(arg);
+            return Year.nowClock(zoneIdOrClock);
         }
     }
     
@@ -221,14 +221,14 @@ export class Year extends Temporal {
      * Otherwise {@link Year.parseTextFormatter} is executed.
      *
      * @param {!(String)} text
-     * @param {DateTimeFormatter} formatter
+     * @param {?DateTimeFormatter} formatter
      * @returns {Year}
      */
-    static parse() {
+    static parse(text, formatter) {
         if (arguments.length <= 1) {
-            return Year.parseText(arguments[0]);
+            return Year.parseText(text);
         } else {
-            return Year.parseTextFormatter(arguments[0], arguments[1]);
+            return Year.parseTextFormatter(text, formatter);
         }
     }
     
@@ -257,7 +257,7 @@ export class Year extends Temporal {
      * @return {Year} the parsed year, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static parseTextFormatter(text, formatter) {
+    static parseTextFormatter(text, formatter = PARSER) {
         requireNonNull(text, 'text');
         requireNonNull(formatter, 'formatter');
         requireInstance(formatter, DateTimeFormatter, 'formatter');
@@ -410,15 +410,15 @@ export class Year extends Temporal {
      *
      * Otherwise {@link Year.plusAmountToAddUnit} is executed.
      *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
      * @returns {Year}
      */
-    plus() {
+    plus(amountOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.plusAmount.apply(this, arguments);
+            return this.plusAmount(amountOrNumber);
         } else {
-            return this.plusAmountToAddUnit.apply(this, arguments);
+            return this.plusAmountToAddUnit(amountOrNumber, unit);
         }
     }
 
@@ -492,15 +492,15 @@ export class Year extends Temporal {
      *
      * Otherwise {@link Year.minusAmountToSubtractUnit} is executed.
      *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit
      * @returns {Year}
      */
-    minus() {
+    minus(amountOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.minusAmount.apply(this, arguments);
+            return this.minusAmount(amountOrNumber);
         } else {
-            return this.minusAmountToSubtractUnit.apply(this, arguments);
+            return this.minusAmountToSubtractUnit(amountOrNumber, unit);
         }
     }
 
@@ -629,14 +629,14 @@ export class Year extends Temporal {
      *
      * Otherwise {@link Year.atMonthNumber} is executed.
      *
-     * @param {TemporalUnit} unit
+     * @param {Month|number} monthOrNumber
      * @returns {YearMonth}
      */
-    atMonth() {
-        if (arguments.length === 1 && arguments[0] instanceof Month) {
-            return this.atMonthMonth.apply(this, arguments);
+    atMonth(monthOrNumber) {
+        if (arguments.length === 1 && monthOrNumber instanceof Month) {
+            return this.atMonthMonth(monthOrNumber);
         } else {
-            return this.atMonthNumber.apply(this, arguments);
+            return this.atMonthNumber(monthOrNumber);
         }
     }
     

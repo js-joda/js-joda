@@ -548,7 +548,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     
     
     /**
-     * function overloading for {@link Duration.of}
+     * function overloading for {@link Duration.plus}
      *
      * if called with 1 arguments, then {@link Duration.plusDuration} is executed.
      *
@@ -556,18 +556,18 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *
      * Otherwise {@link Duration.plusSecondsNanos} is executed.
      *
-     * @param {!(Duration|number)} arg1
-     * @param {ChronoUnit|number} arg2
+     * @param {!(Duration|number)} durationOrNumber
+     * @param {!ChronoUnit|number} unitOrNumber
      * @returns {Duration}
      */
-    plus() {
+    plus(durationOrNumber, unitOrNumber) {
         if (arguments.length === 1) {
-            return this.plusDuration.apply(this, arguments);
+            return this.plusDuration(durationOrNumber);
         }
-        else if (arguments.length === 2 && arguments[1] instanceof ChronoUnit) {
-            return this.plusAmountUnit.apply(this, arguments);
+        else if (arguments.length === 2 && unitOrNumber instanceof ChronoUnit) {
+            return this.plusAmountUnit(durationOrNumber, unitOrNumber);
         } else {
-            return this.plusSecondsNanos.apply(this, arguments);
+            return this.plusSecondsNanos(durationOrNumber, unitOrNumber);
         }
     }
     
@@ -722,15 +722,15 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *
      * Otherwise {@link Duration.minusAmountUnit} is executed.
      *
-     * @param {!(Duration|number)} arg1
-     * @param {ChronoUnit} arg2
+     * @param {!(Duration|number)} durationOrNumber
+     * @param {?ChronoUnit} unit
      * @return {Duration}
      */
-    minus() {
+    minus(durationOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.minusDuration.apply(this, arguments);
+            return this.minusDuration(durationOrNumber);
         } else {
-            return this.minusAmountUnit.apply(this, arguments);
+            return this.minusAmountUnit(durationOrNumber, unit);
         }
     }
 

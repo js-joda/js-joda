@@ -112,7 +112,7 @@ declare namespace JSJoda {
 
         isZero(): boolean
 
-        minus(arg1: Duration | number, arg2: ChronoUnit): Duration
+        minus(durationOrNumber: Duration | number, unit: ChronoUnit): Duration
 
         minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): Duration
 
@@ -136,7 +136,7 @@ declare namespace JSJoda {
 
         negated(): Duration
 
-        plus(arg1: Duration | number, arg2: ChronoUnit | number): Duration
+        plus(durationOrNumber: Duration | number, unitOrNumber: ChronoUnit | number): Duration
 
         plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration
 
@@ -562,13 +562,13 @@ declare namespace JSJoda {
 
         static now(arg1?: ZoneId | Clock): MonthDay
 
-        static of(arg1: Month | number, arg2?: number): MonthDay
+        static of(monthOrNumber: Month | number, number?: number): MonthDay
 
         static ofMonthNumber(month: Month, dayOfMonth: number): MonthDay
 
         static ofNumberNumber(month: number, dayOfMonth: number): MonthDay
 
-        static parse(arg1?: ZoneId | Clock): MonthDay
+        static parse(text: string, formatter?: DateTimeFormatter): MonthDay
 
         static parseString(text: string): MonthDay
 
@@ -1178,20 +1178,34 @@ declare namespace JSJoda {
 
         static isLeap(year: number): boolean
 
-        static now(arg1?: ZoneId | Clock): Year
+        static now(zoneIdOrClock?: ZoneId | Clock): Year
 
         static of(isoYear: number): Year
 
         static parse(text: string, formatter?: DateTimeFormatter): Year
+
+        atMonth(monthOrNumber: Month | number): Year
+
+        plus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
+
+        minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
     }
     class YearMonth extends Temporal {
         static from(temporal: TemporalAccessor): YearMonth
 
-        static now(arg1?: ZoneId | Clock): YearMonth
+        static now(zoneIdOrClock?: ZoneId | Clock): YearMonth
 
-        static of(arg1: Month | number, arg2?: number): YearMonth
+        static of(year: number, monthOrNumber: Month | number): YearMonth
 
-        static parse(arg1: string, arg2?: DateTimeFormatter): MonthDay
+        static parse(text: string, formatter?: DateTimeFormatter): YearMonth
+
+        minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): YearMonth
+
+        plus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): YearMonth
+
+        with(adjusterOrField: TemporalAdjuster | TemporalField, value?: number): YearMonth
+
+        isSupported(fieldOrUnit: TemporalField | ChronoUnit): boolean
     }
     class ZoneId {
         static SYSTEM: ZoneId;
