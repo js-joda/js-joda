@@ -544,7 +544,7 @@ export class Instant extends Temporal {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
         let nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
-        let result = MathUtil.floorDiv(nod, dur) * dur;
+        let result = MathUtil.intDiv(nod, dur) * dur;
         return this.plusNanos(result - nod);
     }
 
@@ -939,16 +939,10 @@ export class Instant extends Temporal {
       * @return {number} the number of milliseconds since the epoch of 1970-01-01T00:00:00Z
       * @throws ArithmeticException if numeric overflow occurs
       */
-    toEpochMilli() {
-        if(this._seconds < 0 && this._nanos > 0) {
-            let millis = MathUtil.safeMultiply(this._seconds+1, 1000);
-            let adjustment = MathUtil.intDiv(this._nanos, NANOS_PER_MILLI) - 1000;
-            return millis + adjustment;
-        } else {
-            var millis = MathUtil.safeMultiply(this._seconds, 1000);
-            return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-        }
-    }
+     toEpochMilli() {
+         var millis = MathUtil.safeMultiply(this._seconds, 1000);
+         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+     }
 
     //-----------------------------------------------------------------------
     /**
