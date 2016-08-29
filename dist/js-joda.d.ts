@@ -69,7 +69,7 @@ declare namespace JSJoda {
 
         get(unit: TemporalUnit): number
 
-        getUnits(): TemporalUnit[]
+        units(): TemporalUnit[]
 
         subtractFrom(temporal: Temporal): Temporal
     }
@@ -78,7 +78,7 @@ declare namespace JSJoda {
 
         static between(startInclusive: Temporal, endExclusive: Temporal): Duration
 
-        static from(amount: number): Duration
+        static from(amount: TemporalAmount): Duration
 
         static of(amount: number, unit: TemporalUnit): Duration
 

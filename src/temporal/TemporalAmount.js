@@ -68,7 +68,7 @@ export class TemporalAmount {
      *
      * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null
      */
-    getUnits() {
+    units() {
         abstractMethodFail('units');
     }
     
