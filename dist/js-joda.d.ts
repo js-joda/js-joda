@@ -136,7 +136,7 @@ declare namespace JSJoda {
 
         negated(): Duration
 
-        plus(durationOrNumber: Duration | number, unitOrNumber: ChronoUnit | number): Duration
+        plus(durationOrNumber: Duration | number, unitOrNumber: TemporalUnit | number): Duration
 
         plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration
 
@@ -679,6 +679,19 @@ declare namespace JSJoda {
         toString(): string
     }
     class TemporalUnit {
+        addTo(temporal: Temporal, amount: number): Temporal
+
+        between(temporal1: Temporal, temporal2: Temporal): number
+
+        duration(): Duration
+
+        isDateBased(): boolean
+
+        isDurationEstimated(): boolean
+
+        isSupportedBy(temporal: Temporal): boolean
+
+        isTimeBased(): boolean
     }
     class ChronoUnit extends TemporalUnit {
         static MICROS: ChronoUnit
