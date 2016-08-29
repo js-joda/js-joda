@@ -466,7 +466,7 @@ export class DateTimeBuilder extends Temporal {
         if (field == null) {
             return false;
         }
-        return this.fieldValues.containsKey(field) ||
+        return (this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined) ||
                 (this.date != null && this.date.isSupported(field)) ||
                 (this.time != null && this.time.isSupported(field));
     }
