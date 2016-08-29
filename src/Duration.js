@@ -206,13 +206,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * The unit must either have an exact duration or be ChronoUnit.DAYS which
      * is treated as 24 hours. If any other units are found then an exception is thrown.
      *
-     * @param {Number} amount - the temporal amount to convert, not null
+     * @param {TemporalAmount} amount - the temporal amount to convert, not null
      * @return {Duration} the resulting duration, not null
      * @throws DateTimeException if the amount cannot be converted
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
         requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount);
         var duration = Duration.ZERO;
         amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
@@ -363,12 +364,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (parsed == null || parsed.length === 0) {
             return 0;
         }
-        try {
-            parsed = (parsed + '000000000').substring(0, 9);
-            return parseFloat(parsed) * negate;
-        } catch (ex) {
-            throw new DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
-        }
+        parsed = (parsed + '000000000').substring(0, 9);
+        return parseFloat(parsed) * negate;
     }
 
     //-----------------------------------------------------------------------
