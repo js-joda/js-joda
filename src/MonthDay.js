@@ -54,22 +54,22 @@ export class MonthDay extends Temporal {
     /**
      * function overloading for {@link MonthDay.now}
      *
-     * if called with 0 argument {@link MonthDay.now0} is applied,
+     * if called with 0 argument {@link MonthDay.now0} is executed,
      *
-     * if called with 1 argument and first argument is an instance of ZoneId, then {@link MonthDay.nowZoneId} is applied,
+     * if called with 1 argument and first argument is an instance of ZoneId, then {@link MonthDay.nowZoneId} is executed,
      *
-     * otherwise {@link MonthDay.nowClock} is applied
+     * otherwise {@link MonthDay.nowClock} is executed
      *
-     * @param {!(ZoneId|Clock|null)} arg1
+     * @param {?(ZoneId|Clock)} zoneIdOrClock
      * @returns {MonthDay}
      */
-    static now() {
+    static now(zoneIdOrClock) {
         if (arguments.length === 0) {
-            return MonthDay.now0.apply(this, arguments);
-        } else if (arguments.length === 1 && arguments[0] instanceof ZoneId) {
-            return MonthDay.nowZoneId.apply(this, arguments);
+            return MonthDay.now0();
+        } else if (arguments.length === 1 && zoneIdOrClock instanceof ZoneId) {
+            return MonthDay.nowZoneId(zoneIdOrClock);
         } else {
-            return MonthDay.nowClock.apply(this, arguments);
+            return MonthDay.nowClock(zoneIdOrClock);
         }
     }
     /**
@@ -123,19 +123,19 @@ export class MonthDay extends Temporal {
     /**
      * function overloading for {@link MonthDay.of}
      *
-     * if called with 2 argument and first argument is an instance of Month, then {@link MonthDay.ofMonthNumber} is applied,
+     * if called with 2 argument and first argument is an instance of Month, then {@link MonthDay.ofMonthNumber} is executed,
      *
-     * otherwise {@link MonthDay.ofNumberNumber} is applied
+     * otherwise {@link MonthDay.ofNumberNumber} is executed
      *
-     * @param {!(Month|number)} arg1
-     * @param {!(number|null)} arg2
+     * @param {!(Month|number)} monthOrNumber
+     * @param {?number} number
      * @returns {MonthDay}
      */
-    static of() {
-        if (arguments.length === 2 && arguments[0] instanceof Month) {
-            return MonthDay.ofMonthNumber.apply(this, arguments);
+    static of(monthOrNumber, number) {
+        if (arguments.length === 2 && monthOrNumber instanceof Month) {
+            return MonthDay.ofMonthNumber(monthOrNumber, number);
         } else {
-            return MonthDay.ofNumberNumber.apply(this, arguments);
+            return MonthDay.ofNumberNumber(monthOrNumber, number);
         }
     }
     /**
@@ -224,18 +224,19 @@ export class MonthDay extends Temporal {
     /**
      * function overloading for {@link MonthDay.parse}
      *
-     * if called with 1 argument, then {@link MonthDay.parseString} is applied,
+     * if called with 1 argument, then {@link MonthDay.parseString} is executed,
      *
-     * otherwise {@link MonthDay.parseStringFormatter} is applied
+     * otherwise {@link MonthDay.parseStringFormatter} is executed
      *
-     * @param {!(ZoneId|Clock|null)} arg1
+     * @param {!(String)} text
+     * @param {?DateTimeFormatter} formatter
      * @returns {MonthDay}
      */
-    static parse() {
+    static parse(text, formatter) {
         if (arguments.length === 1) {
-            return MonthDay.parseString.apply(this, arguments);
+            return MonthDay.parseString(text);
         } else {
-            return MonthDay.parseStringFormatter.apply(this, arguments);
+            return MonthDay.parseStringFormatter(text, formatter);
         }
     }
 

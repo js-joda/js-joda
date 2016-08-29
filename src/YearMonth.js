@@ -51,22 +51,22 @@ export class YearMonth extends Temporal {
     /**
      * function overloading for {@link YearMonth.now}
      *
-     * if called with 0 argument {@link YearMonth.now0} is applied,
+     * if called with 0 argument {@link YearMonth.now0} is executed,
      *
-     * if called with 1 argument and first argument is an instance of ZoneId, then {@link YearMonth.nowZoneId} is applied,
+     * if called with 1 argument and first argument is an instance of ZoneId, then {@link YearMonth.nowZoneId} is executed,
      *
-     * otherwise {@link YearMonth.nowClock} is applied
+     * otherwise {@link YearMonth.nowClock} is executed
      *
-     * @param {!(ZoneId|Clock|null)} arg1
+     * @param {?(ZoneId|Clock)} zoneIdOrClock
      * @returns {YearMonth}
      */
-    static now() {
+    static now(zoneIdOrClock) {
         if (arguments.length === 0) {
-            return YearMonth.now0.apply(this, arguments);
-        } else if (arguments.length === 1 && arguments[0] instanceof ZoneId) {
-            return YearMonth.nowZoneId.apply(this, arguments);
+            return YearMonth.now0();
+        } else if (arguments.length === 1 && zoneIdOrClock instanceof ZoneId) {
+            return YearMonth.nowZoneId(zoneIdOrClock);
         } else {
-            return YearMonth.nowClock.apply(this, arguments);
+            return YearMonth.nowClock(zoneIdOrClock);
         }
     }
 
@@ -121,19 +121,19 @@ export class YearMonth extends Temporal {
     /**
      * function overloading for {@link YearMonth.of}
      *
-     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.ofNumberMonth} is applied,
+     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.ofNumberMonth} is executed,
      *
-     * otherwise {@link YearMonth.ofNumberNumber} is applied
+     * otherwise {@link YearMonth.ofNumberNumber} is executed
      *
-     * @param {!(Month|number)} arg1
-     * @param {!(number|null)} arg2
+     * @param {!number} year
+     * @param {!(Month|number)} monthOrNumber
      * @returns {YearMonth}
      */
-    static of() {
-        if (arguments.length === 2 && arguments[1] instanceof Month) {
-            return YearMonth.ofNumberMonth.apply(this, arguments);
+    static of(year, monthOrNumber) {
+        if (arguments.length === 2 && monthOrNumber instanceof Month) {
+            return YearMonth.ofNumberMonth(year, monthOrNumber);
         } else {
-            return YearMonth.ofNumberNumber.apply(this, arguments);
+            return YearMonth.ofNumberNumber(year, monthOrNumber);
         }
     }
 
@@ -206,19 +206,19 @@ export class YearMonth extends Temporal {
     /**
      * function overloading for {@link YearMonth.parse}
      *
-     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.parseString} is applied,
+     * if called with 2 argument and first argument is an instance of Month, then {@link YearMonth.parseString} is executed,
      *
-     * otherwise {@link YearMonth.parseStringFormatter} is applied
+     * otherwise {@link YearMonth.parseStringFormatter} is executed
      *
-     * @param {!(String)} arg1
-     * @param {!(DateTimeFormatter|null)} arg2
-     * @returns {MonthDay}
+     * @param {!(String)} text
+     * @param {?DateTimeFormatter} formatter
+     * @returns {YearMonth}
      */
-    static parse() {
+    static parse(text, formatter) {
         if (arguments.length === 1) {
-            return YearMonth.parseString.apply(this, arguments);
+            return YearMonth.parseString(text);
         } else {
-            return YearMonth.parseStringFormatter.apply(this, arguments);
+            return YearMonth.parseStringFormatter(text, formatter);
         }
     }
 
@@ -268,18 +268,18 @@ export class YearMonth extends Temporal {
     /**
      * function overloading for {@link YearMonth.isSupported}
      *
-     * if called with 1 argument and first argument is an instance of TemporalField, then {@link YearMonth.isSupportedField} is applied,
+     * if called with 1 argument and first argument is an instance of TemporalField, then {@link YearMonth.isSupportedField} is executed,
      *
-     * otherwise {@link YearMonth.isSupportedUnit} is applied
+     * otherwise {@link YearMonth.isSupportedUnit} is executed
      *
-     * @param {!(TemporalField|ChronoUnit)} arg1
+     * @param {!(TemporalField|ChronoUnit)} fieldOrUnit
      * @returns {boolean}
      */
-    isSupported() {
-        if (arguments.length === 1 && arguments[0] instanceof TemporalField) {
-            return this.isSupportedField.apply(this, arguments);
+    isSupported(fieldOrUnit) {
+        if (arguments.length === 1 && fieldOrUnit instanceof TemporalField) {
+            return this.isSupportedField(fieldOrUnit);
         } else {
-            return this.isSupportedUnit.apply(this, arguments);
+            return this.isSupportedUnit(fieldOrUnit);
         }
     }
     
@@ -531,23 +531,23 @@ export class YearMonth extends Temporal {
     /**
      * function overloading for {@link YearMonth.of}
      *
-     * if called with 1 argument, then {@link YearMonth.withAdjuster} is applied,
+     * if called with 1 argument, then {@link YearMonth.withAdjuster} is executed,
      *
-     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link YearMonth.withFieldValue} is applied,
+     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link YearMonth.withFieldValue} is executed,
      *
-     * otherwise {@link YearMonth.withYearMonth} is applied
+     * otherwise {@link YearMonth.withYearMonth} is executed
      *
-     * @param {!(TemporalField|TemporalAdjuster)} arg1
-     * @param {!(number|null)} arg2
+     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
+     * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
      * @returns {YearMonth}
      */
-    with() {
+    with(adjusterOrFieldOrNumber, value) {
         if (arguments.length === 1) {
-            return this.withAdjuster.apply(this, arguments);
-        } else if (arguments.length === 2 && arguments[0] instanceof TemporalField){
-            return this.withFieldValue.apply(this, arguments);
+            return this.withAdjuster(adjusterOrFieldOrNumber);
+        } else if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField){
+            return this.withFieldValue(adjusterOrFieldOrNumber, value);
         } else {
-            return this.withYearMonth.apply(this, arguments);
+            return this.withYearMonth(adjusterOrFieldOrNumber, value);
         }
     }
     
@@ -695,18 +695,18 @@ export class YearMonth extends Temporal {
      *
      * Otherwise {@link YearMonth.plusAmountUnit} is executed.
      *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
      * @returns {YearMonth}
      */
-    plus() {
+    plus(amountOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.plusAmount.apply(this, arguments);
+            return this.plusAmount(amountOrNumber);
         } else {
-            return this.plusAmountUnit.apply(this, arguments);
+            return this.plusAmountToAddUnit(amountOrNumber, unit);
         }
     }
-
+    
     /**
      * Returns a copy of this year-month with the specified period added.
      * <p>
@@ -798,15 +798,15 @@ export class YearMonth extends Temporal {
      *
      * Otherwise {@link YearMonth.minusAmountUnit} is executed.
      *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit
      * @returns {YearMonth}
      */
-    minus() {
+    minus(amountOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.minusAmount.apply(this, arguments);
+            return this.minusAmount(amountOrNumber);
         } else {
-            return this.minusAmountUnit.apply(this, arguments);
+            return this.minusAmountUnit(amountOrNumber, unit);
         }
     }
     

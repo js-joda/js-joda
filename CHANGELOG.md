@@ -3,6 +3,10 @@ Changelog
 
 ### 1.1.10 (next)
 
+#### ESDoc Updates
+
+fixed some warnings in esdoc build regarding signature mismatches
+
 #### Bugfixes
 
 #### dependency updates
