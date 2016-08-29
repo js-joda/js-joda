@@ -1479,6 +1479,4 @@ declare namespace JSJoda {
     function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
 }
 
-declare module "JSJoda" {
-    export = JSJoda;
-}
+export = JSJoda;
