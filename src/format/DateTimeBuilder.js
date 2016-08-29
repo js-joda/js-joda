@@ -189,6 +189,7 @@ export class DateTimeBuilder extends Temporal {
         if (date != null) {
             this._addObject(date);
             for (let field in this.fieldValues.keySet()) {
+                // TODO: this doesn't work, the fieldValues keys are no actual ChronoField instances anymore
                 if (field instanceof ChronoField) {
                     if (field.isDateBased()) {
                         var val1;
