@@ -3,9 +3,13 @@ Changelog
 
 ### 1.1.10 (next)
 
+#### Typescript typings
+
+make typescript definitions to be module definitions (see PR #86)
+
 #### ESDoc Updates
 
-fixed some warnings in esdoc build regarding signature mismatches
+fixed some warnings in esdoc build regarding signature mismatches (see PR #87)
 
 #### Bugfixes
 
