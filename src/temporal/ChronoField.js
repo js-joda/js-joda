@@ -86,6 +86,22 @@ import {YearConstants} from '../YearConstants';
  *
  */
 export class ChronoField extends TemporalField {
+    
+    /**
+     * helper function to get one of the static ChronoField defines by name, needed to resolve ChronoField from EnumMap
+     *
+     * @param {String} fieldName
+     * @return {ChronoField | null}
+     */
+    static byName(fieldName) {
+        for (let prop in ChronoField) {
+            if (ChronoField.hasOwnProperty(prop)) {
+                if ((ChronoField[prop] instanceof ChronoField) && ChronoField[prop].name() === fieldName) {
+                    return ChronoField[prop];
+                }
+            }
+        }
+    }
 
     /**
      *
