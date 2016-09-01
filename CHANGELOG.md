@@ -15,6 +15,7 @@ This also led to missing features implemented, e.g. more Fields in `DateTimeBuil
 fixes found by extended Tests in
 - `Duration`
 - `DateTimeBuilder`
+- `DateTimeFormatterBuilder`
 
 #### dependency updates
 
