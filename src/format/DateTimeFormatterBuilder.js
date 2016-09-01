@@ -184,7 +184,7 @@ export class DateTimeFormatterBuilder {
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     _appendValue1(field) {
-        assert(field != null);
+        requireNonNull(field);
         this._appendValuePrinterParser(new NumberPrinterParser(field, 1, MAX_WIDTH, SignStyle.NORMAL));
         return this;
     }
@@ -238,7 +238,7 @@ export class DateTimeFormatterBuilder {
      * @throws IllegalArgumentException if the width is invalid
      */
     _appendValue2(field, width) {
-        assert(field != null);
+        requireNonNull(field);
         if (width < 1 || width > MAX_WIDTH) {
             throw new IllegalArgumentException(`The width must be from 1 to ${MAX_WIDTH} inclusive but was ${width}`);
         }
@@ -277,7 +277,8 @@ export class DateTimeFormatterBuilder {
      * @throws IllegalArgumentException if the widths are invalid
      */
     _appendValue4(field, minWidth, maxWidth, signStyle) {
-        assert(field != null);
+        requireNonNull(field);
+        requireNonNull(signStyle);
         if (minWidth === maxWidth && signStyle === SignStyle.NOT_NEGATIVE) {
             return this._appendValue2(field, maxWidth);
         }
@@ -1668,7 +1669,14 @@ class NumberPrinterParser {
     minWidth(){ return this._minWidth;}
     maxWidth(){ return this._maxWidth;}
     signStyle(){ return this._signStyle;}
-
+    
+    withFixedWidth() {
+        if (this._subsequentWidth === -1) {
+            return this;
+        }
+        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, -1);
+    }
+    
     withSubsequentWidth(subsequentWidth) {
         return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);
     }
@@ -1898,7 +1906,7 @@ class ReducedPrinterParser extends NumberPrinterParser {
      * @param {number} errorPos
      * @param {number} successPos
      */
-    setValue(context, value, errorPos, successPos) {
+    _setValue(context, value, errorPos, successPos) {
         let baseValue = this._baseValue;
         if (this._baseDate != null) {
             let chrono = context.getEffectiveChronology();
@@ -1923,7 +1931,7 @@ class ReducedPrinterParser extends NumberPrinterParser {
     }
 
     withFixedWidth() {
-        if (this.subsequentWidth() === -1) {
+        if (this._subsequentWidth === -1) {
             return this;
         }
         return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate, -1);
