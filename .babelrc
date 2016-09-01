@@ -1,4 +1,11 @@
 {
   "presets": ["es2015-loose"],
-  "comments": false
+  "comments": false,
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
 }
