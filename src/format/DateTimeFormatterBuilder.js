@@ -843,13 +843,15 @@ export class DateTimeFormatterBuilder {
                 if (field != null) {
                     this._parseField(cur, count, field);
                 } else if (cur === 'z') {
-                    //TODO:
-                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                     if (count > 4) {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     } else if (count === 4) {
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                         this.appendZoneText(TextStyle.FULL);
                     } else {
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                         this.appendZoneText(TextStyle.SHORT);
                     }
                 } else if (cur === 'V') {
@@ -870,11 +872,13 @@ export class DateTimeFormatterBuilder {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     }
                 } else if (cur === 'O') {
-                    //TODO:
-                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                     if (count === 1) {
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                         this.appendLocalizedOffset(TextStyle.SHORT);
                     } else if (count === 4) {
+                        //TODO:
+                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
                         this.appendLocalizedOffset(TextStyle.FULL);
                     } else {
                         throw new IllegalArgumentException('Pattern letter count must be 1 or 4: ' + cur);

@@ -347,6 +347,8 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['A', 'Value(MilliOfDay)'],
             ['AA', 'Value(MilliOfDay,2)'],
             ['AAA', 'Value(MilliOfDay,3)'],
+    
+            ['L', 'Value(MonthOfYear)'],
 
             ['n', 'Value(NanoOfSecond)'],
             ['nn', 'Value(NanoOfSecond,2)'],
@@ -364,10 +366,11 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             */
 
             ['VV', 'ZoneId()'],
-            
+    
             ['Z', "Offset(+HHMM,'+0000')"],  // SimpleDateFormat compatible
             ['ZZ', "Offset(+HHMM,'+0000')"],
             ['ZZZ', "Offset(+HHMM,'+0000')"],
+            ['ZZZZZ', "Offset(+HH:MM:ss,'Z')"],
 
             ['X', "Offset(+HHmm,'Z')"],
             ['XX', "Offset(+HHMM,'Z')"],
@@ -382,7 +385,11 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['xxxxx', "Offset(+HH:MM:ss,'+00:00')"],
 
             ['ppH', 'Pad(Value(HourOfDay),2)'],
+            ['ppm', 'Pad(Value(MinuteOfHour),2)'],
             ['pppDD', 'Pad(Value(DayOfYear,2),3)'],
+
+            ['q', 'Value(QuarterOfYear)'],
+            ['qq', 'Value(QuarterOfYear,2)'],
 
             ['uuuu[-MM[-dd', "Value(Year,4,15,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]"], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
             ['uuuu[-MM[-dd]]', "Value(Year,4,15,EXCEEDS_PAD)['-'Value(MonthOfYear,2)['-'Value(DayOfMonth,2)]]"], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
@@ -393,13 +400,12 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         ];
 
         it('test_appendPattern_valid', () => {
-            dataValid.forEach((val) => {
-                let [input, expected] = val;
+            dataProviderTest(dataValid, (input, expected) => {
                 // since we are forEach ing dataValid, the beforeEach doesn't catch... so we create the builder here
                 builder = new DateTimeFormatterBuilder();
                 builder.appendPattern(input);
                 let f = builder.toFormatter();
-                expect(f.toString()).to.eql(expected);
+                assertEquals(f.toString(), expected);
             });
         });
 
@@ -420,15 +426,26 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
             ['MMMMMM'],
             ['QQQQQQ'],
+            ['cccccc'],
+            ['DDDD'],
+            ['eeeeee'],
             ['EEEEEE'],
             ['aaaaaa'],
+            ['VVV'],
+            ['W'],
+            ['WW'],
             ['XXXXXX'],
+            ['xxxxxx'],
+            ['zzzzzz'],
+            ['ZZZZZZ'],
 
             ['RO'],
 
             ['p'],
             ['pp'],
             ['p:'],
+            
+            ['qqqqqq'],
 
             ['f'],
             ['ff'],
@@ -449,13 +466,15 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['kkk'],
             ['hhh'],
             ['mmm'],
+            ['OO'],
+            ['OOO'],
+            ['OOOOO'],
             ['sss']
         ];
 
         it('test_appendPattern_invalid', () => {
-            dataInvalid.forEach((val) => {
-                let [input] = val;
-                // since we are forEach ing dataValid, the beforeEach doesn't catch... so we create the builder here
+            dataProviderTest(dataInvalid, (input) => {
+                // since we are forEach ing dataInvalid, the beforeEach doesn't catch... so we create the builder here
                 builder = new DateTimeFormatterBuilder();
                 expect(() => {
                     builder.appendPattern(input);
@@ -533,7 +552,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         
         it('test_appendOffset', () => {
             dataProviderTest(data_offsetPatterns, (pattern) => {
-                let builder = new DateTimeFormatterBuilder();
+                builder = new DateTimeFormatterBuilder();
                 builder.appendOffset(pattern, 'Z');
                 let f = builder.toFormatter();
                 assertEquals(f.toString(), 'Offset(' + pattern + ',\'Z\')');
@@ -668,6 +687,14 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         
     });
     
+    describe('appendZone', () => {
+        it('test_appendZoneId', () => {
+            builder.appendZoneId();
+            let f = builder.toFormatter();
+            assertEquals(f.toString(), 'ZoneId()');
+        });
+    });
+    
 });
 
 
@@ -739,13 +766,6 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     }
 
     //-----------------------------------------------------------------------
-    @Test
-    public void test_appendZoneId() throws Exception {
-        builder.appendZoneId();
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), 'ZoneId()');
-    }
-
     @Test
     public void test_appendZoneText_1arg() throws Exception {
         builder.appendZoneText(TextStyle.FULL);
