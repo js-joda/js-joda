@@ -1,7 +1,7 @@
 Changelog
 =========
 
-### 1.1.11 (next)
+### 1.1.12 (next)
 
 #### Test Coverage and more threetenbp Features
 
@@ -18,7 +18,7 @@ fixes found by extended Tests in
 
 #### dependency updates
 
-### 1.1.10
+### 1.1.11
 
 #### Typescript typings
 

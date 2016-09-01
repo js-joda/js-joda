@@ -1,4 +1,2 @@
-reporting:
-  dir: ./build/coverage
 instrumentation:
     root: src

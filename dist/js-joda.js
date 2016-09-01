@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.10
+//! @version js-joda - 1.1.11
 //! @copyright (c) 2015-2016, Philipp Thuerwaechter, Pattrick Hueper, js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -459,8 +459,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	   */
-
-
 	function requireNonNull(value, parameterName) {
 	    if (value == null) {
 	        throw new _errors.NullPointerException(parameterName + ' must not be null');
@@ -2989,9 +2987,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var calcDate = this.plusMonths(totalMonths);
 	            days = end.toEpochDay() - calcDate.toEpochDay();
 	        } else if (totalMonths < 0 && days > 0) {
-	                totalMonths++;
-	                days -= end.lengthOfMonth();
-	            }
+	            totalMonths++;
+	            days -= end.lengthOfMonth();
+	        }
 	        var years = _MathUtil.MathUtil.intDiv(totalMonths, 12);
 	        var months = _MathUtil.MathUtil.intMod(totalMonths, 12);
 	        return _Period.Period.of(_MathUtil.MathUtil.safeToInt(years), months, days);
@@ -3306,7 +3304,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	 */
-
 	var Enum = exports.Enum = function () {
 	    function Enum(name) {
 	        _classCallCheck(this, Enum);
@@ -6235,7 +6232,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	 */
-
 	var ParsePosition = exports.ParsePosition = function () {
 	    function ParsePosition(index) {
 	        _classCallCheck(this, ParsePosition);
@@ -6409,8 +6405,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY);
 	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
 	                if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && ch === 0) {} else {
-	                        _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY.checkValidValue(ch);
-	                    }
+	                    _ChronoField.ChronoField.CLOCK_HOUR_OF_DAY.checkValidValue(ch);
+	                }
 	            }
 	            this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_DAY, ch === 24 ? 0 : ch);
 	        }
@@ -6418,8 +6414,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var _ch = this.fieldValues.remove(_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM);
 	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
 	                if (resolverStyle === _ResolverStyle.ResolverStyle.SMART && _ch === 0) {} else {
-	                        _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM.checkValidValue(_ch);
-	                    }
+	                    _ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM.checkValidValue(_ch);
+	                }
 	            }
 	            this._addFieldValue(_ChronoField.ChronoField.HOUR_OF_AMPM, _ch === 12 ? 0 : _ch);
 	        }
