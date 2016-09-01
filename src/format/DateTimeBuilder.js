@@ -197,7 +197,6 @@ export class DateTimeBuilder extends Temporal {
                             try {
                                 val1 = date.getLong(field);
                             } catch (ex) {
-                                /* istanbul ignore next it seems impossible to imagine how any valid ChronoField that isDateBased can throw here?? */
                                 if (ex instanceof DateTimeException) {
                                     continue;
                                 } else {

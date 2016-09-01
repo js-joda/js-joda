@@ -84,7 +84,37 @@ describe('js-joda DateTimeBuilderTest', () => {
                 builder._checkDate(LocalDate.of(2016,1,2));
             }).to.throw(DateTimeException);
         });
-
+    
+        it('should throw an exception if date.getLong throws an exception', () => {
+            let builder = new DateTimeBuilder();
+            builder.chrono = IsoChronology.INSTANCE;
+            builder._addFieldValue(ChronoField.YEAR, 2016);
+            builder._addFieldValue(ChronoField.DAY_OF_YEAR, 1);
+            expect(() => {
+                let d = LocalDate.of(2016, 1, 1);
+                // "mock" getLong to throw
+                d.getLong = () => {
+                    throw new Error('Test Error');
+                };
+                builder._checkDate(d);
+            }).to.throw(Error, /Test Error/);
+        });
+    
+        it('should not throw an exception if date.getLong throws a DateTimeException', () => {
+            let builder = new DateTimeBuilder();
+            builder.chrono = IsoChronology.INSTANCE;
+            builder._addFieldValue(ChronoField.YEAR, 2016);
+            builder._addFieldValue(ChronoField.DAY_OF_YEAR, 1);
+            expect(() => {
+                let d = LocalDate.of(2016, 1, 1);
+                // "mock" getLong to throw
+                d.getLong = () => {
+                    throw new DateTimeException('Test Error');
+                };
+                builder._checkDate(d);
+            }).to.not.throw();
+        });
+    
     });
     
     describe('isSupported', () => {
