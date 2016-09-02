@@ -560,6 +560,8 @@ export class YearMonth extends Temporal {
      * @return the year-month, not null
      */
     withYearMonth(newYear, newMonth) {
+        requireNonNull(newYear);
+        requireNonNull(newMonth);
         if (this._year === newYear && this._month === newMonth) {
             return this;
         }
@@ -703,7 +705,7 @@ export class YearMonth extends Temporal {
         if (arguments.length === 1) {
             return this.plusAmount(amountOrNumber);
         } else {
-            return this.plusAmountToAddUnit(amountOrNumber, unit);
+            return this.plusAmountUnit(amountOrNumber, unit);
         }
     }
     
@@ -739,7 +741,7 @@ export class YearMonth extends Temporal {
     plusAmountUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
-        if (unit instanceof ChronoField) {
+        if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.MONTHS: return this.plusMonths(amountToAdd);
                 case ChronoUnit.YEARS: return this.plusYears(amountToAdd);
@@ -827,6 +829,7 @@ export class YearMonth extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusAmount(amount) {
+        requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -979,6 +982,11 @@ export class YearMonth extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     until(endExclusive, unit) {
+        requireNonNull(endExclusive, 'endExclusive');
+        requireNonNull(unit, 'unit');
+        requireInstance(endExclusive, Temporal, 'endExclusive');
+        requireInstance(unit, TemporalUnit, 'unit');
+    
         let end = YearMonth.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             let monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();  // no overflow

@@ -16,6 +16,7 @@ fixes found by extended Tests in
 - `Duration`
 - `DateTimeBuilder`
 - `DateTimeFormatterBuilder`
+- `YearMonth`
 
 #### dependency updates
 
