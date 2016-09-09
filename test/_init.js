@@ -6,5 +6,7 @@
 import '../src/_init';
 
 import {_init as CurrentCESTZoneInit} from './zone/CurrentCESTZone';
+import {_init as CurrentAtlanticTimeZoneInit} from './zone/CurrentAtlanticTimeZone';
 
 CurrentCESTZoneInit();
+CurrentAtlanticTimeZoneInit();
