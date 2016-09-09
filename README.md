@@ -106,10 +106,28 @@ We reached milestone 1 with version v1.0.0 supporting the domain models LocalDat
 and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
 only fixed offsets like UTC or UTC+02:00 and the system default time zone.
  
+### Milestone 1.2
+
+Add iana timezone database support to js-joda. 
+
+Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
+can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. 
+ 
+### Milestone 1.4
+
+Add locale support.
+
+Extend pattern parser/ formatter for text with locale support.
+  
 ### Future Milestones
 
-Any further timezone converting and localization is not part of the first milestone and will be saved for later.
-This might also be an extra package to reduce library size if Timezone functionality is not needed.
+* Reduce library size be removing redundant code, especially by refactoring code for formatting/ parsing dates.
+* Increase test coverage (ongoing task)
+* Cleanup documentation (ongoing task)
+* Improve static factory API design and make it more javascript style. 
+One idea is to remove static factory methods like parse, from, of and unify it to one factory methods per domain. 
+E.g. localDate(isoDate: string), localDate(year: number, month: number, dayOfMonth: number)
+* ...
 
 ## Contributing
 
