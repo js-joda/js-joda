@@ -50,7 +50,15 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfInstant(instant){
-        return WINTER_OFFSET;
+        var year = yearOfInstant(instant);
+        var winterSummerTransition = secondSundayOfMarchAtMidnight(year).withHour(6).toInstant(ZoneOffset.UTC);
+        var summerWinterTransition = firstSundayOfNovemberAtMidnight(year).withHour(6).toInstant(ZoneOffset.UTC);
+
+        if (instant.isBefore(winterSummerTransition) || ! instant.isBefore(summerWinterTransition)){
+            return WINTER_OFFSET;
+        } else {
+            return SUMMER_OFFSET;
+        }
     }
 
     /**
@@ -59,7 +67,7 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfEpochMilli(epochMilli){
-        return WINTER_OFFSET;
+        return this.offsetOfInstant(Instant.ofEpochMilli(epochMilli));
     }
 
     /**

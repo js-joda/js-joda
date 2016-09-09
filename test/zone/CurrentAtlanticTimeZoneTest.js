@@ -16,14 +16,14 @@ import {ZoneOffset} from '../../src/ZoneOffset';
 describe('CurrentAtlanticTimeZoneTest', () => {
     const ADT_AST = new CurrentAtlanticTimeZone();
 
-    it.skip('test_offset_of_instant', function () {
+    it('test_offset_of_instant', function () {
         var testData = [
             [Instant.parse('2016-12-21T00:00:00Z'), ZoneOffset.ofHours(-3)],
             [Instant.parse('2016-06-21T00:00:00Z'), ZoneOffset.ofHours(-4)],
-            [Instant.parse('2016-03-13T04:59:59Z'), ZoneOffset.ofHours(-3)],
-            [Instant.parse('2016-03-13T05:00:00Z'), ZoneOffset.ofHours(-4)],
-            [Instant.parse('2016-11-06T04:59:59Z'), ZoneOffset.ofHours(-4)],
-            [Instant.parse('2016-11-06T05:00:00Z'), ZoneOffset.ofHours(-3)]
+            [Instant.parse('2016-03-13T05:59:59Z'), ZoneOffset.ofHours(-3)],
+            [Instant.parse('2016-03-13T06:00:00Z'), ZoneOffset.ofHours(-4)],
+            [Instant.parse('2016-11-06T05:59:59Z'), ZoneOffset.ofHours(-4)],
+            [Instant.parse('2016-11-06T06:00:00Z'), ZoneOffset.ofHours(-3)]
         ];
 
         dataProviderTest(testData, (instant, offset) => {
