@@ -12,11 +12,11 @@ import {Instant} from '../../src/Instant';
 import {TemporalAdjusters} from '../../src/temporal/TemporalAdjusters';
 import {ZoneRules} from '../../src/zone/ZoneRules';
 
-export class CurrentAtlanticTimeZone extends ZoneId {
+export class CurrentEasternTimeZone extends ZoneId {
 
     constructor(){
         super();
-        this._rules = new CurrentAtlanticTimeZoneRules();
+        this._rules = new CurrentEasternTimeZoneRules();
     }
 
     rules(){
@@ -31,14 +31,14 @@ export class CurrentAtlanticTimeZone extends ZoneId {
     }
 
     toString(){
-        return 'CurrentAtlanticTimeZone';
+        return 'CurrentEasternTimeZone';
     }
 }
 
 var WINTER_OFFSET = null;
 var SUMMER_OFFSET = null;
 
-class CurrentAtlanticTimeZoneRules extends ZoneRules {
+class CurrentEasternTimeZoneRules extends ZoneRules {
 
     isFixedOffset(){
         return false;
@@ -51,8 +51,8 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      */
     offsetOfInstant(instant){
         var year = yearOfInstant(instant);
-        var winterSummerTransition = secondSundayOfMarchAtMidnight(year).withHour(6).toInstant(ZoneOffset.UTC);
-        var summerWinterTransition = firstSundayOfNovemberAtMidnight(year).withHour(6).toInstant(ZoneOffset.UTC);
+        var winterSummerTransition = secondSundayOfMarchAtMidnight(year).withHour(7).toInstant(ZoneOffset.UTC);
+        var summerWinterTransition = firstSundayOfNovemberAtMidnight(year).withHour(7).toInstant(ZoneOffset.UTC);
 
         if (instant.isBefore(winterSummerTransition) || ! instant.isBefore(summerWinterTransition)){
             return WINTER_OFFSET;
@@ -109,7 +109,7 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      * @returns {boolean}
      */
     equals(other) {
-        if (this === other || other instanceof CurrentAtlanticTimeZoneRules) {
+        if (this === other || other instanceof CurrentEasternTimeZoneRules) {
             return true;
         } else {
             return false;
@@ -121,7 +121,7 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      * @returns {string}
      */
     toString() {
-        return 'CurrentAtlanticTimeZoneRules()';
+        return 'CurrentEasternTimeZoneRules()';
     }
 
 }
@@ -149,6 +149,6 @@ function firstSundayOfNovemberAtMidnight(year){
 }
 
 export function _init(){
-    WINTER_OFFSET = ZoneOffset.ofHours(-3);
-    SUMMER_OFFSET = ZoneOffset.ofHours(-4);
+    WINTER_OFFSET = ZoneOffset.ofHours(-4);
+    SUMMER_OFFSET = ZoneOffset.ofHours(-5);
 }
