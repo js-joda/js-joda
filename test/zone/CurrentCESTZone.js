@@ -62,13 +62,12 @@ class CurrentCESTZoneRules extends ZoneRules {
     }
 
     /**
-     * very slow implementation, but for the test class it is fine.
-     * 
+     *
      * @param {number} epochMilli
      * @returns {ZoneOffset}
      */
     offsetOfEpochMilli(epochMilli){
-        this.offsetOfInstant(Instant.ofEpochMilli(epochMilli));
+        return this.offsetOfInstant(Instant.ofEpochMilli(epochMilli));
     }
 
     /**
