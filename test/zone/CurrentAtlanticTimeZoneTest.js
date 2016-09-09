@@ -13,10 +13,10 @@ import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
-describe.skip('CurrentAtlanticTimeZoneTest', () => {
+describe('CurrentAtlanticTimeZoneTest', () => {
     const ADT_AST = new CurrentAtlanticTimeZone();
 
-    it('test_offset_of_instant', function () {
+    it.skip('test_offset_of_instant', function () {
         var testData = [
             [Instant.parse('2016-12-21T00:00:00Z'), ZoneOffset.ofHours(-3)],
             [Instant.parse('2016-06-21T00:00:00Z'), ZoneOffset.ofHours(-4)],
@@ -41,7 +41,7 @@ describe.skip('CurrentAtlanticTimeZoneTest', () => {
             [LocalDateTime.parse('2016-03-13T02:00:00'), ZoneOffset.ofHours(-3)],
             [LocalDateTime.parse('2016-03-13T02:30:00'), ZoneOffset.ofHours(-3)],
             [LocalDateTime.parse('2016-03-13T03:00:00'), ZoneOffset.ofHours(-3)],
-            [LocalDateTime.parse('2016-03-12T03:01:00'), ZoneOffset.ofHours(-4)],
+            [LocalDateTime.parse('2016-03-13T03:01:00'), ZoneOffset.ofHours(-4)],
             // overlap
             [LocalDateTime.parse('2016-11-06T01:59:59'), ZoneOffset.ofHours(-4)],
             [LocalDateTime.parse('2016-11-06T02:00:00'), ZoneOffset.ofHours(-4)],

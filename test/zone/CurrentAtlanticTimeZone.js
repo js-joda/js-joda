@@ -68,7 +68,20 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfLocalDateTime(localDateTime){
-        return WINTER_OFFSET;
+        var year = localDateTime.year();
+        var winterSummerTransition = secondSundayOfMarchAtMidnight(year).withHour(2);
+        var summerWinterTransition = firstSundayOfNovemberAtMidnight(year).withHour(2);
+        if (localDateTime.isBefore(winterSummerTransition) || localDateTime.isAfter(summerWinterTransition.withHour(3))){
+            return WINTER_OFFSET;
+        } else if (localDateTime.isAfter(winterSummerTransition.withHour(3)) && localDateTime.isBefore(summerWinterTransition)){
+            return SUMMER_OFFSET;
+        } else if (localDateTime.compareTo(winterSummerTransition) >= 0 && localDateTime.compareTo(winterSummerTransition.withHour(3)) <= 0){
+            // gap! best value is WINTER_OFFSET
+            return WINTER_OFFSET;
+        } else {
+            // overlap! best value is SUMMER_OFFSET
+            return SUMMER_OFFSET;
+        }
     }
 
     /**
@@ -105,6 +118,27 @@ class CurrentAtlanticTimeZoneRules extends ZoneRules {
 
 }
 
+function yearOfInstant(instant){
+    return LocalDate.ofInstant(instant, ZoneOffset.UTC).year();
+}
+
+function secondSundayOfMarchAtMidnight(year){
+    return LocalDate
+        .of(year, 1, 1)
+        .withMonth(Month.MARCH)
+        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+        .with(TemporalAdjusters.next(DayOfWeek.SUNDAY))
+        .atStartOfDay();
+
+}
+
+function firstSundayOfNovemberAtMidnight(year){
+    return LocalDate
+        .of(year, 1, 1)
+        .withMonth(Month.NOVEMBER)
+        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+        .atStartOfDay();
+}
 
 export function _init(){
     WINTER_OFFSET = ZoneOffset.ofHours(-3);
