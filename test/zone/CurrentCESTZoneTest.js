@@ -12,11 +12,12 @@ import {CurrentCESTZone} from './CurrentCESTZone';
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
 describe('CurrentCESTZoneTest', () => {
     const CEST = new CurrentCESTZone();
 
-    it('test_offset_of_instant', function () {
+    it('test_rules_offset_of_instant', function () {
         var testData = [
             [Instant.parse('2016-12-21T00:00:00Z'), ZoneOffset.ofHours(1)],
             [Instant.parse('2016-06-21T00:00:00Z'), ZoneOffset.ofHours(2)],
@@ -51,18 +52,27 @@ describe('CurrentCESTZoneTest', () => {
         ];
     };
 
-    it('test_offset_of_localDateTime', function () {
+    it('test_rules_offset_of_localDateTime', function () {
         dataProviderTest(testData, (localDateTime, offset) => {
             assertEquals(CEST.rules().offset(localDateTime), offset);
         });
 
     });
 
-    it('test_offset_isValidOffset', function () {
+    it('test_rules_isValidOffset', function () {
         dataProviderTest(testData, (localDateTime, offset) => {
             assertTrue(CEST.rules().isValidOffset(localDateTime, offset));
         });
 
+    });
+
+    it('test_rules_transition', () => {
+        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-12-21T00:00:00'), null));
+        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-03-27T02:30:00')),
+            ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), ZoneOffset.ofHours(1), ZoneOffset.ofHours(2)));
+        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-10-30T02:30:00')),
+            ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), ZoneOffset.ofHours(2), ZoneOffset.ofHours(1)));
+        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-06-21T00:00:00'), null));
     });
 
 });
