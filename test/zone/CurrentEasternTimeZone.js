@@ -10,6 +10,7 @@ import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {Instant} from '../../src/Instant';
 import {TemporalAdjusters} from '../../src/temporal/TemporalAdjusters';
+import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 import {ZoneRules} from '../../src/zone/ZoneRules';
 
 export class CurrentEasternTimeZone extends ZoneId {
@@ -95,9 +96,19 @@ class CurrentEasternTimeZoneRules extends ZoneRules {
     /**
      *
      * @param {LocalDateTime} localDateTime
-     * @return {ZoneOffsetTransition} TODO return a ZoneOffsetTransition instance if any
+     * @return {ZoneOffsetTransition}
      */
     transition(localDateTime){
+        var year = localDateTime.year();
+        let winterSummerTransition = secondSundayOfMarchAtMidnight(year).withHour(2);
+        let summerWinterTransition = firstSundayOfNovemberAtMidnight(year).withHour(2);
+        if(localDateTime.isAfter(winterSummerTransition) &&
+                localDateTime.isBefore(winterSummerTransition.plusHours(1))) {
+            return ZoneOffsetTransition.of(winterSummerTransition, WINTER_OFFSET, SUMMER_OFFSET);
+        } else if (localDateTime.isAfter(summerWinterTransition) &&
+                localDateTime.isBefore(summerWinterTransition.plusHours(1))) {
+            return ZoneOffsetTransition.of(summerWinterTransition, SUMMER_OFFSET, WINTER_OFFSET);
+        }
         return null;
     }
 
