@@ -1989,10 +1989,10 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {OffsetDateTime} an offset date-time representing the same local date-time and offset, not null
      */
-    toOffsetDateTime() {
-        // TODO we do not support OffsetDateTime, clean up
-        return OffsetDateTime.of(this._dateTime, this._offset);
-    }
+    // toOffsetDateTime() {
+    //     // TODO we do not support OffsetDateTime, clean up
+    //     return OffsetDateTime.of(this._dateTime, this._offset);
+    // }
 
     //-----------------------------------------------------------------------
     /**
