@@ -11,7 +11,6 @@ import {DayOfWeek} from '../../../src/DayOfWeek';
 import {LocalDate} from '../../../src/LocalDate';
 import {ValueRange} from '../../../src/temporal/ValueRange';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {ChronoField} from '../../../src/temporal/ChronoField';
 import {IsoFields} from '../../../src/temporal/IsoFields';
 
