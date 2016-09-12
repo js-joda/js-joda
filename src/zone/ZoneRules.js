@@ -111,6 +111,44 @@ export class ZoneRules {
     }
 
     /**
+     * Gets the offset transition applicable at the specified local date-time in these rules.
+     * <p>
+     * The mapping from a local date-time to an offset is not straightforward.
+     * There are three cases:
+     * <p><ul>
+     * <li>Normal, with one valid offset. For the vast majority of the year, the normal
+     *  case applies, where there is a single valid offset for the local date-time.</li>
+     * <li>Gap, with zero valid offsets. This is when clocks jump forward typically
+     *  due to the spring daylight savings change from "winter" to "summer".
+     *  In a gap there are local date-time values with no valid offset.</li>
+     * <li>Overlap, with two valid offsets. This is when clocks are set back typically
+     *  due to the autumn daylight savings change from "summer" to "winter".
+     *  In an overlap there are local date-time values with two valid offsets.</li>
+     * </ul><p>
+     * A transition is used to model the cases of a Gap or Overlap.
+     * The Normal case will return null.
+     * <p>
+     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     * One technique, using this method, would be:
+     * <pre>
+     *  ZoneOffsetTransition trans = rules.getTransition(localDT);
+     *  if (trans == null) {
+     *    // Gap or Overlap: determine what to do from transition
+     *  } else {
+     *    // Normal case: only one valid offset
+     *    zoneOffset = rule.getOffset(localDT);
+     *  }
+     * </pre>
+     *
+     * @param {LocalDateTime} localDateTime  the local date-time to query for offset transition, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffsetTransition} the offset transition, null if the local date-time is not in transition
+     */
+    transition(localDateTime){
+        abstractMethodFail('ZoneRules.transition');
+    }
+
+    /**
      * Checks if the offset date-time is valid for these rules.
      * <p>
      * To be valid, the local date-time must not be in a gap and the offset

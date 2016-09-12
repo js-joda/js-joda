@@ -94,6 +94,15 @@ class CurrentEasternTimeZoneRules extends ZoneRules {
 
     /**
      *
+     * @param {LocalDateTime} localDateTime
+     * @return {ZoneOffsetTransition} TODO return a ZoneOffsetTransition instance if any
+     */
+    transition(localDateTime){
+        return null;
+    }
+
+    /**
+     *
      * @param {LocalDateTime} dateTime
      * @param {ZoneOffset} offset
      * @return {boolean}

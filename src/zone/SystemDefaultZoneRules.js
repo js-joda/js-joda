@@ -55,6 +55,15 @@ export class SystemDefaultZoneRules extends ZoneRules {
 
     /**
      *
+     * @param {LocalDateTime} localDateTime
+     * @return {ZoneOffsetTransition} null because system default time will never return a a time in transition
+     */
+    transition(localDateTime){
+        return null;
+    }
+
+    /**
+     *
      * @param {LocalDateTime} dateTime
      * @param {ZoneOffset} offset
      * @return {boolean}
