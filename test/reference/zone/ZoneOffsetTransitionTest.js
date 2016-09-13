@@ -73,6 +73,7 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
             assertEquals(test.offsetBefore(), OFFSET_0200);
             assertEquals(test.offsetAfter(), OFFSET_0300);
             assertEquals(test.duration(), Duration.of(1, ChronoUnit.HOURS));
+            assertEquals(test.validOffsets(), []);
         });
 
         it('test_getters_overlap()', () => {
@@ -87,6 +88,7 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
             assertEquals(test.offsetBefore(), OFFSET_0300);
             assertEquals(test.offsetAfter(), OFFSET_0200);
             assertEquals(test.duration(), Duration.of(-1, ChronoUnit.HOURS));
+            assertEquals(test.validOffsets(), [OFFSET_0300, OFFSET_0200]);
         });
 
     });

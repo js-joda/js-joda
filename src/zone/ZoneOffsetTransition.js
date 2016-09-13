@@ -221,8 +221,12 @@ export class ZoneOffsetTransition {
      *
      * @return {[ZoneOffset]} the list of valid offsets
      */
-    getValidOffsets() {
-        [this._offsetBefore, this._offsetAfter];
+    validOffsets() {
+        if (this.isGap()){
+            return [];
+        } else {
+            return [this._offsetBefore, this._offsetAfter];
+        }
     }
 
     //-----------------------------------------------------------------------
