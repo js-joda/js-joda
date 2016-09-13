@@ -169,6 +169,6 @@ function firstSundayOfNovemberAtMidnight(year){
 }
 
 export function _init(){
-    WINTER_OFFSET = ZoneOffset.ofHours(-4);
-    SUMMER_OFFSET = ZoneOffset.ofHours(-5);
+    WINTER_OFFSET = ZoneOffset.ofHours(-5);
+    SUMMER_OFFSET = ZoneOffset.ofHours(-4);
 }

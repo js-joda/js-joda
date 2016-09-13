@@ -66,13 +66,25 @@ describe('CurrentCESTZoneTest', () => {
 
     });
 
+    const test_rules_transition_testData = [
+           [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
+           [LocalDateTime.parse('2016-03-27T02:30:00'),
+               ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), ZoneOffset.ofHours(1), ZoneOffset.ofHours(2)), true, false],
+           [LocalDateTime.parse('2016-10-30T02:30:00'),
+               ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), ZoneOffset.ofHours(2), ZoneOffset.ofHours(1)), false, true],
+           [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
+    ]
+
     it('test_rules_transition', () => {
-        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-12-21T00:00:00'), null));
-        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-03-27T02:30:00')),
-            ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), ZoneOffset.ofHours(1), ZoneOffset.ofHours(2)));
-        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-10-30T02:30:00')),
-            ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), ZoneOffset.ofHours(2), ZoneOffset.ofHours(1)));
-        assertEquals(CEST.rules().transition(LocalDateTime.parse('2016-06-21T00:00:00'), null));
+        test_rules_transition_testData.map((testData) => {
+            let [localDateTime, zoneOffsetTransition, isGap, isOverlap] = testData;
+
+            assertEquals(CEST.rules().transition(localDateTime), zoneOffsetTransition);
+            if (zoneOffsetTransition != null) {
+                assertEquals(CEST.rules().transition(localDateTime).isGap(), isGap);
+                assertEquals(CEST.rules().transition(localDateTime).isOverlap(), isOverlap);
+            }
+        });
     });
 
 });
