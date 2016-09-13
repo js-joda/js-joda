@@ -149,6 +149,52 @@ export class ZoneRules {
     }
 
     /**
+     * Gets the offset applicable at the specified local date-time in these rules.
+     * <p>
+     * The mapping from a local date-time to an offset is not straightforward.
+     * There are three cases:
+     * <p><ul>
+     * <li>Normal, with one valid offset. For the vast majority of the year, the normal
+     *  case applies, where there is a single valid offset for the local date-time.</li>
+     * <li>Gap, with zero valid offsets. This is when clocks jump forward typically
+     *  due to the spring daylight savings change from "winter" to "summer".
+     *  In a gap there are local date-time values with no valid offset.</li>
+     * <li>Overlap, with two valid offsets. This is when clocks are set back typically
+     *  due to the autumn daylight savings change from "summer" to "winter".
+     *  In an overlap there are local date-time values with two valid offsets.</li>
+     * </ul><p>
+     * Thus, for any given local date-time there can be zero, one or two valid offsets.
+     * This method returns that list of valid offsets, which is a list of size 0, 1 or 2.
+     * In the case where there are two offsets, the earlier offset is returned at index 0
+     * and the later offset at index 1.
+     * <p>
+     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     * One technique, using this method, would be:
+     * <pre>
+     *  List<ZoneOffset> validOffsets = rules.getOffset(localDT);
+     *  if (validOffsets.size() == 1) {
+     *    // Normal case: only one valid offset
+     *    zoneOffset = validOffsets.get(0);
+     *  } else {
+     *    // Gap or Overlap: determine what to do from transition (which will be non-null)
+     *    ZoneOffsetTransition trans = rules.getTransition(localDT);
+     *  }
+     * </pre>
+     * <p>
+     * In theory, it is possible for there to be more than two valid offsets.
+     * This would happen if clocks to be put back more than once in quick succession.
+     * This has never happened in the history of time-zones and thus has no special handling.
+     * However, if it were to happen, then the list would return more than 2 entries.
+     *
+     * @param {LocalDateTime} localDateTime - the local date-time to query for valid offsets, not null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {[ZoneOffset]} the list of valid offsets, may be immutable, not null
+     */
+    validOffsets(localDateTime){
+        abstractMethodFail('ZoneRules.validOffsets');
+    }
+
+    /**
      * Checks if the offset date-time is valid for these rules.
      * <p>
      * To be valid, the local date-time must not be in a gap and the offset
