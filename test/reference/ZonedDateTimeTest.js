@@ -370,7 +370,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
         });
 
-        /* TODO iana tzdb
         it('factory_ofStrict_LDT_ZI_ZO_inGap()', () => {
             expect(() => {
                 try {
@@ -381,7 +380,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 }
             }).to.throw(DateTimeException);
         });
-        */
 
         it('factory_ofStrict_LDT_ZI_ZO_inOverlap_invalidOfset()', () => {
             expect(() => {
