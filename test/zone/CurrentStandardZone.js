@@ -57,8 +57,14 @@ class CurrentStandardZoneRules extends ZoneRules {
      */
     offsetOfInstant(instant){
         var year = yearOfInstant(instant);
-        var winterSummerTransition = this._localDateOfwinterSummerTransition(year).withHour(1).toInstant(ZoneOffset.UTC);
-        var summerWinterTransition = this._localDateOfSummerWinterTransition (year).withHour(1).toInstant(ZoneOffset.UTC);
+        var winterSummerTransition = this._localDateOfwinterSummerTransition(year)
+            .withHour(2)
+            .minusSeconds(this._winterOffset.totalSeconds())
+            .toInstant(ZoneOffset.UTC);
+        var summerWinterTransition = this._localDateOfSummerWinterTransition(year)
+            .withHour(2)
+            .minusSeconds(this._winterOffset.totalSeconds())
+            .toInstant(ZoneOffset.UTC);
 
         if (instant.isBefore(winterSummerTransition) || ! instant.isBefore(summerWinterTransition)){
             return this._winterOffset;
@@ -197,3 +203,33 @@ export class CurrentStandardZoneCEST extends CurrentStandardZone{
         );
     }
 }
+
+function secondSundayOfMarchAtMidnight(year){
+    return LocalDate
+        .of(year, 1, 1)
+        .withMonth(Month.MARCH)
+        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+        .with(TemporalAdjusters.next(DayOfWeek.SUNDAY))
+        .atStartOfDay();
+
+}
+
+function firstSundayOfNovemberAtMidnight(year){
+    return LocalDate
+        .of(year, 1, 1)
+        .withMonth(Month.NOVEMBER)
+        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+        .atStartOfDay();
+}
+
+export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
+    constructor(){
+        super(
+            ZoneOffset.ofHours(-5),
+            ZoneOffset.ofHours(-4),
+            secondSundayOfMarchAtMidnight,
+            firstSundayOfNovemberAtMidnight
+        );
+    }
+}
+
