@@ -80,16 +80,16 @@ class CurrentCESTZoneRules extends ZoneRules {
         var year = localDateTime.year();
         var winterSummerTransition = lastSundayOfMarchAtMidnight(year).withHour(2);
         var summerWinterTransition = lastSundayOfOctoberAtMidnight(year).withHour(2);
-        if (localDateTime.isBefore(winterSummerTransition) || localDateTime.isAfter(summerWinterTransition.withHour(3))){
+        if (localDateTime.compareTo(winterSummerTransition) <= 0 || localDateTime.isAfter(summerWinterTransition.withHour(3))){
             return WINTER_OFFSET;
-        } else if (localDateTime.isAfter(winterSummerTransition.withHour(3)) && localDateTime.isBefore(summerWinterTransition)){
+        } else if (localDateTime.compareTo(winterSummerTransition.withHour(3)) >= 0 && localDateTime.isBefore(summerWinterTransition)){
             return SUMMER_OFFSET;
-        } else if (localDateTime.compareTo(winterSummerTransition) >= 0 && localDateTime.compareTo(winterSummerTransition.withHour(3)) <= 0){
-            // gap! best value is WINTER_OFFSET
-            return WINTER_OFFSET;
-        } else {
+        } else if (localDateTime.compareTo(summerWinterTransition) >= 0 && localDateTime.compareTo(summerWinterTransition.withHour(3)) <= 0){
             // overlap! best value is SUMMER_OFFSET
             return SUMMER_OFFSET;
+        } else {
+            // gap! best value is WINTER_OFFSET
+            return WINTER_OFFSET;
         }
     }
 
@@ -104,12 +104,28 @@ class CurrentCESTZoneRules extends ZoneRules {
         let summerWinterTransition = lastSundayOfOctoberAtMidnight(year).withHour(2);
         if(localDateTime.isAfter(winterSummerTransition) &&
                 localDateTime.isBefore(winterSummerTransition.plusHours(1))) {
+            // gap
             return ZoneOffsetTransition.of(winterSummerTransition, WINTER_OFFSET, SUMMER_OFFSET);
-        } else if (localDateTime.isAfter(summerWinterTransition) &&
-                localDateTime.isBefore(summerWinterTransition.plusHours(1))) {
+        } else if (localDateTime.compareTo(summerWinterTransition) >= 0 &&
+                localDateTime.compareTo(summerWinterTransition.plusHours(1)) <= 0) {
+            // overlap
             return ZoneOffsetTransition.of(summerWinterTransition, SUMMER_OFFSET, WINTER_OFFSET);
         }
         return null;
+    }
+
+    /**
+     *
+     * @param localDateTime
+     * @return {[ZoneOffset]}
+     */
+    validOffsets(localDateTime){
+        let transition = this.transition(localDateTime);
+        if(transition != null) {
+            return transition.validOffsets();
+        } else {
+            return [this.offsetOfLocalDateTime(localDateTime)];
+        }
     }
 
     /**
@@ -119,7 +135,9 @@ class CurrentCESTZoneRules extends ZoneRules {
      * @return {boolean}
      */
     isValidOffset(dateTime, offset) {
-        return this.offsetOfLocalDateTime(dateTime).equals(offset);
+        return this.validOffsets(dateTime).some((validOffset) => {
+            return validOffset.equals(offset);
+        });
     }
 
     //-----------------------------------------------------------------------
