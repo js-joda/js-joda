@@ -132,7 +132,7 @@ export class ZoneRules {
      * One technique, using this method, would be:
      * <pre>
      *  ZoneOffsetTransition trans = rules.getTransition(localDT);
-     *  if (trans == null) {
+     *  if (trans != null) {
      *    // Gap or Overlap: determine what to do from transition
      *  } else {
      *    // Normal case: only one valid offset
