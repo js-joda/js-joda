@@ -4,9 +4,3 @@
  */
 
 import '../src/_init';
-
-import {_init as CurrentCESTZoneInit} from './zone/CurrentCESTZone';
-import {_init as CurrentEasternTimeZoneInit} from './zone/CurrentEasternTimeZone';
-
-CurrentCESTZoneInit();
-CurrentEasternTimeZoneInit();

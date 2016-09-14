@@ -9,15 +9,16 @@ import '../_init';
 
 import {assertEquals, dataProviderTest} from '../testUtils';
 
-import {CurrentCESTZone} from './CurrentCESTZone';
+import {CurrentStandardZoneCEST} from './CurrentStandardZone';
 
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
-describe('CurrentCESTZoneTest', () => {
-    const CEST = new CurrentCESTZone();
+describe('CurrentStandardZoneCESTTest', () => {
+
+    const CEST = new CurrentStandardZoneCEST();
     const OFFSET_01 = ZoneOffset.ofHours(1); 
     const OFFSET_02 = ZoneOffset.ofHours(2);
 

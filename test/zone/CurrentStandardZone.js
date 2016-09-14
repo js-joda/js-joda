@@ -13,11 +13,11 @@ import {TemporalAdjusters} from '../../src/temporal/TemporalAdjusters';
 import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 import {ZoneRules} from '../../src/zone/ZoneRules';
 
-export class CurrentCESTZone extends ZoneId {
+class CurrentStandardZone extends ZoneId {
 
-    constructor(){
+    constructor(winterOffset, summerOffset, localDateOfwinterSummerTransition, localDateOfSummerWinterTransition){
         super();
-        this._rules = new CurrentCESTZoneRules();
+        this._rules = new CurrentStandardZoneRules(winterOffset, summerOffset, localDateOfwinterSummerTransition, localDateOfSummerWinterTransition);
     }
 
     rules(){
@@ -32,14 +32,19 @@ export class CurrentCESTZone extends ZoneId {
     }
 
     toString(){
-        return 'CurrentCESTZone';
+        return 'CurrentStandardZone:' + this._rules.toString();
     }
 }
 
-var WINTER_OFFSET = null;
-var SUMMER_OFFSET = null;
+class CurrentStandardZoneRules extends ZoneRules {
 
-class CurrentCESTZoneRules extends ZoneRules {
+    constructor(winterOffset, summerOffset, localDateOfwinterSummerTransition, localDateOfSummerWinterTransition){
+        super();
+        this._winterOffset = winterOffset;
+        this._summerOffset = summerOffset;
+        this._localDateOfwinterSummerTransition = localDateOfwinterSummerTransition;
+        this._localDateOfSummerWinterTransition  = localDateOfSummerWinterTransition;
+    }
 
     isFixedOffset(){
         return false;
@@ -52,13 +57,13 @@ class CurrentCESTZoneRules extends ZoneRules {
      */
     offsetOfInstant(instant){
         var year = yearOfInstant(instant);
-        var winterSummerTransition = lastSundayOfMarchAtMidnight(year).withHour(1).toInstant(ZoneOffset.UTC);
-        var summerWinterTransition = lastSundayOfOctoberAtMidnight(year).withHour(1).toInstant(ZoneOffset.UTC);
+        var winterSummerTransition = this._localDateOfwinterSummerTransition(year).withHour(1).toInstant(ZoneOffset.UTC);
+        var summerWinterTransition = this._localDateOfSummerWinterTransition (year).withHour(1).toInstant(ZoneOffset.UTC);
 
         if (instant.isBefore(winterSummerTransition) || ! instant.isBefore(summerWinterTransition)){
-            return WINTER_OFFSET;
+            return this._winterOffset;
         } else {
-            return SUMMER_OFFSET;
+            return this._summerOffset;
         }
     }
 
@@ -78,18 +83,18 @@ class CurrentCESTZoneRules extends ZoneRules {
      */
     offsetOfLocalDateTime(localDateTime){
         var year = localDateTime.year();
-        var winterSummerTransition = lastSundayOfMarchAtMidnight(year).withHour(2);
-        var summerWinterTransition = lastSundayOfOctoberAtMidnight(year).withHour(2);
+        var winterSummerTransition = this._localDateOfwinterSummerTransition(year).withHour(2);
+        var summerWinterTransition = this._localDateOfSummerWinterTransition (year).withHour(2);
         if (localDateTime.compareTo(winterSummerTransition) <= 0 || localDateTime.isAfter(summerWinterTransition.withHour(3))){
-            return WINTER_OFFSET;
+            return this._winterOffset;
         } else if (localDateTime.compareTo(winterSummerTransition.withHour(3)) >= 0 && localDateTime.isBefore(summerWinterTransition)){
-            return SUMMER_OFFSET;
+            return this._summerOffset;
         } else if (localDateTime.compareTo(summerWinterTransition) >= 0 && localDateTime.compareTo(summerWinterTransition.withHour(3)) <= 0){
             // overlap! best value is SUMMER_OFFSET
-            return SUMMER_OFFSET;
+            return this._summerOffset;
         } else {
             // gap! best value is WINTER_OFFSET
-            return WINTER_OFFSET;
+            return this._winterOffset;
         }
     }
 
@@ -100,16 +105,16 @@ class CurrentCESTZoneRules extends ZoneRules {
      */
     transition(localDateTime){
         var year = localDateTime.year();
-        let winterSummerTransition = lastSundayOfMarchAtMidnight(year).withHour(2);
-        let summerWinterTransition = lastSundayOfOctoberAtMidnight(year).withHour(2);
+        let winterSummerTransition = this._localDateOfwinterSummerTransition(year).withHour(2);
+        let summerWinterTransition = this._localDateOfSummerWinterTransition (year).withHour(2);
         if(localDateTime.isAfter(winterSummerTransition) &&
                 localDateTime.isBefore(winterSummerTransition.plusHours(1))) {
             // gap
-            return ZoneOffsetTransition.of(winterSummerTransition, WINTER_OFFSET, SUMMER_OFFSET);
+            return ZoneOffsetTransition.of(winterSummerTransition, this._winterOffset, this._summerOffset);
         } else if (localDateTime.compareTo(summerWinterTransition) >= 0 &&
                 localDateTime.compareTo(summerWinterTransition.plusHours(1)) <= 0) {
             // overlap
-            return ZoneOffsetTransition.of(summerWinterTransition, SUMMER_OFFSET, WINTER_OFFSET);
+            return ZoneOffsetTransition.of(summerWinterTransition, this._summerOffset, this._winterOffset);
         }
         return null;
     }
@@ -147,7 +152,7 @@ class CurrentCESTZoneRules extends ZoneRules {
      * @returns {boolean}
      */
     equals(other) {
-        if (this === other || other instanceof CurrentCESTZoneRules) {
+        if (this === other || other instanceof CurrentStandardZoneRules) {
             return true;
         } else {
             return false;
@@ -159,21 +164,15 @@ class CurrentCESTZoneRules extends ZoneRules {
      * @returns {string}
      */
     toString() {
-        return 'CurrentCESTZoneRules()';
+        return 'CurrentStandardZoneRules[' +
+            this._winterOffset.toString() + ':' +
+            this._summerOffset.toString() + ']';
     }
 
 }
 
 function yearOfInstant(instant){
     return LocalDate.ofInstant(instant, ZoneOffset.UTC).year();
-}
-
-function lastSundayOfMarchAtMidnight(year){
-    return lastSundayOfMonthAtMidnight(year, Month.MARCH);
-}
-
-function lastSundayOfOctoberAtMidnight(year){
-    return lastSundayOfMonthAtMidnight(year, Month.OCTOBER);
 }
 
 function lastSundayOfMonthAtMidnight(year, month){
@@ -184,7 +183,17 @@ function lastSundayOfMonthAtMidnight(year, month){
         .atStartOfDay();
 }
 
-export function _init(){
-    WINTER_OFFSET = ZoneOffset.ofHours(1);
-    SUMMER_OFFSET = ZoneOffset.ofHours(2);
+export class CurrentStandardZoneCEST extends CurrentStandardZone{
+    constructor(){
+        super(
+            ZoneOffset.ofHours(1),
+            ZoneOffset.ofHours(2),
+            (year) => {
+                return lastSundayOfMonthAtMidnight(year, Month.MARCH);
+            },
+            (year) => {
+                return lastSundayOfMonthAtMidnight(year, Month.OCTOBER);
+            }
+        );
+    }
 }

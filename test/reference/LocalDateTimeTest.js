@@ -31,7 +31,7 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {CurrentCESTZone} from '../zone/CurrentCESTZone';
+import {CurrentStandardZoneCEST} from '../zone/CurrentStandardZone';
 
 import '../_init';
 
@@ -40,7 +40,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     var OFFSET_PONE;
     var OFFSET_PTWO;
     var OFFSET_MTWO;
-    var ZONE_DUMMY_CEST = new CurrentCESTZone();
+    var ZONE_DUMMY_CEST = new CurrentStandardZoneCEST();
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
     var MAX_DATE_TIME;
     var MIN_DATE_TIME;
