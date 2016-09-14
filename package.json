@@ -19,7 +19,7 @@
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
     "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",
-    "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -al ./dist/js-joda.min.js*"
+    "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -alh ./dist/js-joda.min.js*"
   },
   "keywords": [
     "date",
@@ -38,7 +38,6 @@
     "babel-loader": "^6.2.4",
     "babel-plugin-istanbul": "^2.0.0",
     "babel-preset-es2015": "^6.13.2",
-    "babel-preset-es2015-loose": "^7.0.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.12",
     "esdoc": "^0.4.8",
