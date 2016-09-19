@@ -238,6 +238,14 @@ class Fixed extends ZoneRules{
         return this._offset;
     }
 
+    transition(localDateTime){
+        return null;
+    }
+
+    validOffsets(localDateTime){
+        return [this._offset];
+    }
+
     /**
      *
      * @param {LocalDateTime} LocalDateTime
