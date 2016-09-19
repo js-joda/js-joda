@@ -1160,16 +1160,14 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 31, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
             [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 29, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
             // land in gap
-            // TODO iana tzdb
-            //[dateTime9(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
             // skip over overlap
             [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
             // land in overlap
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), -1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), -1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
         ];
     }
    
@@ -1184,13 +1182,11 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1,  dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
             [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
             // overlap
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
         ];
     }
    
