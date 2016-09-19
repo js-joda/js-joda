@@ -254,25 +254,24 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (zone instanceof ZoneOffset) {
             return new ZonedDateTime(localDateTime, zone, zone);
         }
-        var rules = zone.rules();
-        var offset = rules.offsetOfLocalDateTime(localDateTime);
-
-/* TODO implement for iana tzdb
-        var validOffsets = rules.validOffsets(localDateTime);
-        if (validOffsets.size() == 1) {
-            offset = validOffsets.get(0);
-        } else if (validOffsets.size() == 0) {
-            var trans = rules.transition(localDateTime);
+        let offset = null;
+        let rules = zone.rules();
+        let validOffsets = rules.validOffsets(localDateTime);
+        if (validOffsets.length === 1) {
+            offset = validOffsets[0];
+        } else if (validOffsets.length === 0) {
+            let trans = rules.transition(localDateTime);
             localDateTime = localDateTime.plusSeconds(trans.duration().seconds());
             offset = trans.offsetAfter();
         } else {
-            if (preferredOffset != null && validOffsets.contains(preferredOffset)) {
+            if (preferredOffset != null &&
+                    validOffsets.some((validOffset) => {return validOffset.equals(preferredOffset);})) {
                 offset = preferredOffset;
             } else {
-                offset = requireNonNull(validOffsets.get(0), 'offset');  // protect against bad ZoneRules
+                offset = requireNonNull(validOffsets[0], 'offset');  // protect against bad ZoneRules
             }
         }
-*/
+
         return new ZonedDateTime(localDateTime, offset, zone);
     }
 
