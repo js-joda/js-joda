@@ -64,6 +64,15 @@ export class SystemDefaultZoneRules extends ZoneRules {
 
     /**
      *
+     * @param localDateTime
+     * @return {ZoneOffset[]}
+     */
+    validOffsets(localDateTime){
+        return [this.offsetOfLocalDateTime(localDateTime)];
+    }
+
+    /**
+     *
      * @param {LocalDateTime} dateTime
      * @param {ZoneOffset} offset
      * @return {boolean}
