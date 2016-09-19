@@ -219,7 +219,7 @@ export class ZoneOffsetTransition {
      * <p>
      * A gap will return an empty list, while an overlap will return both offsets.
      *
-     * @return {[ZoneOffset]} the list of valid offsets
+     * @return {ZoneOffset[]} the list of valid offsets
      */
     validOffsets() {
         if (this.isGap()){

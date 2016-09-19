@@ -188,7 +188,7 @@ export class ZoneRules {
      *
      * @param {LocalDateTime} localDateTime - the local date-time to query for valid offsets, not null
      *  may be ignored if the rules have a single offset for all instants
-     * @return {[ZoneOffset]} the list of valid offsets, may be immutable, not null
+     * @return {ZoneOffset[]} the list of valid offsets, may be immutable, not null
      */
     validOffsets(localDateTime){
         abstractMethodFail('ZoneRules.validOffsets');
