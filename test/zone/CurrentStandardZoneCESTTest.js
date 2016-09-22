@@ -77,7 +77,7 @@ describe('CurrentStandardZoneCESTTest', () => {
                 // gap
                 [LocalDateTime.parse('2016-03-27T01:59:59'), OFFSET_01, true ],
 
-                [LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, false ],
                 [LocalDateTime.parse('2016-03-27T02:30:00'), OFFSET_01, false ],
                 [LocalDateTime.parse('2016-03-27T03:00:00'), OFFSET_01, false],
 
@@ -96,7 +96,7 @@ describe('CurrentStandardZoneCESTTest', () => {
 
                 [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_01, true ],
                 [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_01, true ],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, false ],
 
                 [LocalDateTime.parse('2016-10-30T03:01:00'), OFFSET_01, true ],
             ];
@@ -112,12 +112,12 @@ describe('CurrentStandardZoneCESTTest', () => {
         const testData = [
                [LocalDateTime.parse('2016-12-21T00:00:00'), [OFFSET_01]],
                [LocalDateTime.parse('2016-06-21T00:00:00'), [OFFSET_02]],
-               [LocalDateTime.parse('2016-03-27T02:00:00'), [OFFSET_01]],
+               [LocalDateTime.parse('2016-03-27T02:00:00'), []],
                [LocalDateTime.parse('2016-03-27T02:30:00'), []],
                [LocalDateTime.parse('2016-03-27T03:00:00'), [OFFSET_02]],
                [LocalDateTime.parse('2016-10-30T02:00:00'), [OFFSET_01, OFFSET_02]],
                [LocalDateTime.parse('2016-10-30T02:30:00'), [OFFSET_01, OFFSET_02]],
-               [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_01, OFFSET_02]],
+               [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_02]],
         ];
 
         dataProviderTest(testData, (localDateTime, validOffsets) => {
