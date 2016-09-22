@@ -70,5 +70,26 @@ describe('ZonedDateTime', () => {
 
         });
 
+        it('should add zone offset for a local date with a gap at this zone', () => {
+
+            const testLocalToZoneEquality = () => {
+                return [
+                    //['2016-03-27T02:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Pseudo/Europe/Berlin]'],
+                    ['2016-03-27T02:30', EUROPE_BERLIN, '2016-03-27T03:30+02:00[Pseudo/Europe/Berlin]'],
+                    ['2016-03-27T03:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Pseudo/Europe/Berlin]'],
+                    //['2016-03-13T02:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
+                    ['2016-03-13T02:30', AMERICA_NEW_YORCK, '2016-03-13T03:30-04:00[Pseudo/America/New_York]'],
+                    ['2016-03-13T03:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
+                ];
+            };
+
+            dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, expectedZonedDateAsString) => {
+                let ldt = LocalDateTime.parse(localDateTimeAsString);
+                let zdt = ZonedDateTime.ofLocal(ldt, zone);
+                expect(zdt.toString()).to.equal(expectedZonedDateAsString);
+            });
+
+        });
+
     });
 });
