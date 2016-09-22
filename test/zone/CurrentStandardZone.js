@@ -189,7 +189,7 @@ function lastSundayOfMonthAtMidnight(year, month){
         .atStartOfDay();
 }
 
-export class CurrentStandardZoneCEST extends CurrentStandardZone{
+export class CurrentStandardZoneCentralEuropeanTime extends CurrentStandardZone{
     constructor(){
         super(
             ZoneOffset.ofHours(1),

@@ -9,7 +9,7 @@ import '../_init';
 
 import {assertEquals, dataProviderTest} from '../testUtils';
 
-import {CurrentStandardZoneCEST} from './CurrentStandardZone';
+import {CurrentStandardZoneCentralEuropeanTime} from './CurrentStandardZone';
 
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
@@ -18,7 +18,7 @@ import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
 describe('CurrentStandardZoneCESTTest', () => {
 
-    const CEST = new CurrentStandardZoneCEST();
+    const CEST = new CurrentStandardZoneCentralEuropeanTime();
     const OFFSET_01 = ZoneOffset.ofHours(1); 
     const OFFSET_02 = ZoneOffset.ofHours(2);
 
