@@ -202,6 +202,10 @@ export class CurrentStandardZoneCEST extends CurrentStandardZone{
             }
         );
     }
+
+    toString() {
+        return 'Pseudo/Europe/Berlin';
+    }
 }
 
 function secondSundayOfMarchAtMidnight(year){
@@ -230,6 +234,10 @@ export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
             secondSundayOfMarchAtMidnight,
             firstSundayOfNovemberAtMidnight
         );
+    }
+
+    toString() {
+        return 'Pseudo/America/New_York';
     }
 }
 
