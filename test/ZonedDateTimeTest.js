@@ -112,5 +112,24 @@ describe('ZonedDateTime', () => {
 
         });
 
+        it('should return the preferred offset if specified in an overlap situation', () => {
+
+            const testLocalToZoneEquality = () => {
+                return [
+                    ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(1)],
+                    ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(2)],
+                    ['2016-11-06T02:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-4)],
+                    ['2016-11-06T02:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-5)],
+                ];
+            };
+
+            dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, preferredOffset) => {
+                let ldt = LocalDateTime.parse(localDateTimeAsString);
+                let zdt = ZonedDateTime.ofLocal(ldt, zone, preferredOffset);
+                expect(zdt.offset()).to.equal(preferredOffset);
+            });
+
+        });
+
     });
 });
