@@ -47,6 +47,27 @@ describe('ZonedDateTime', () => {
                 let utcSameInstant = ZonedDateTime.parse('2016-06-30T11:30:59.000000500Z');
                 expect(utcSameInstant.isEqual(zdt));
             });
+
+        });
+
+        it('should equal in case of a local date with one valid offset at this zone', () => {
+
+            const testLocalToZoneEquality = () => {
+                return [
+                    [LOCAL_DATE_IN_SUMMER, FIXED_ZONE, '2016-06-30T11:30:59.000000500+06:00'],
+                    [LOCAL_DATE_IN_SUMMER, ZoneOffset.UTC, '2016-06-30T11:30:59.000000500Z'],
+                    [LOCAL_DATE_IN_SUMMER, EUROPE_BERLIN, '2016-06-30T11:30:59.000000500+02:00[Pseudo/Europe/Berlin]'],
+                    [LOCAL_DATE_IN_WINTER, EUROPE_BERLIN, '2016-12-21T11:30:59.000000500+01:00[Pseudo/Europe/Berlin]'],
+                    [LOCAL_DATE_IN_SUMMER, AMERICA_NEW_YORCK, '2016-06-30T11:30:59.000000500-04:00[Pseudo/America/New_York]'],
+                    [LOCAL_DATE_IN_WINTER, AMERICA_NEW_YORCK, '2016-12-21T11:30:59.000000500-05:00[Pseudo/America/New_York]'],
+                ];
+            };
+
+            dataProviderTest(testLocalToZoneEquality, (localDateTime, zone, expectedZonedDateAsString) => {
+                let zdt = ZonedDateTime.ofLocal(localDateTime, zone);
+                expect(zdt.toString()).to.equal(expectedZonedDateAsString);
+            });
+
         });
 
     });
