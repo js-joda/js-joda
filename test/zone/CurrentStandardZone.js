@@ -91,11 +91,11 @@ class CurrentStandardZoneRules extends ZoneRules {
         var year = localDateTime.year();
         var winterSummerTransition = this._localDateOfwinterSummerTransition(year).withHour(2);
         var summerWinterTransition = this._localDateOfSummerWinterTransition (year).withHour(2);
-        if (localDateTime.compareTo(winterSummerTransition) <= 0 || localDateTime.isAfter(summerWinterTransition.withHour(3))){
+        if (localDateTime.isBefore(winterSummerTransition) || localDateTime.compareTo(summerWinterTransition.withHour(3)) >= 0){
             return this._winterOffset;
         } else if (localDateTime.compareTo(winterSummerTransition.withHour(3)) >= 0 && localDateTime.isBefore(summerWinterTransition)){
             return this._summerOffset;
-        } else if (localDateTime.compareTo(summerWinterTransition) >= 0 && localDateTime.compareTo(summerWinterTransition.withHour(3)) <= 0){
+        } else if (localDateTime.compareTo(summerWinterTransition) >= 0 && localDateTime.isBefore(summerWinterTransition.withHour(3))){
             // overlap! best value is SUMMER_OFFSET
             return this._summerOffset;
         } else {

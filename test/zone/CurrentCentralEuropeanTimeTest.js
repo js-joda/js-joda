@@ -16,7 +16,7 @@ import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
-describe('CurrentStandardZoneCESTTest', () => {
+describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
 
     const CEST = new CurrentStandardZoneCentralEuropeanTime();
     const OFFSET_01 = ZoneOffset.ofHours(1); 
@@ -55,7 +55,7 @@ describe('CurrentStandardZoneCESTTest', () => {
                 [LocalDateTime.parse('2016-10-30T01:59:59'), OFFSET_02],
                 [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02],
                 [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_02],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_02],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01],
                 [LocalDateTime.parse('2016-10-30T03:01:00'), OFFSET_01],
             ];
         };
@@ -92,11 +92,11 @@ describe('CurrentStandardZoneCESTTest', () => {
 
                 [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, true ],
                 [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_02, true ],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_02, true ],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_02, false ],
 
                 [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_01, true ],
                 [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_01, true ],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, false ],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, true ],
 
                 [LocalDateTime.parse('2016-10-30T03:01:00'), OFFSET_01, true ],
             ];
@@ -117,7 +117,7 @@ describe('CurrentStandardZoneCESTTest', () => {
                [LocalDateTime.parse('2016-03-27T03:00:00'), [OFFSET_02]],
                [LocalDateTime.parse('2016-10-30T02:00:00'), [OFFSET_01, OFFSET_02]],
                [LocalDateTime.parse('2016-10-30T02:30:00'), [OFFSET_01, OFFSET_02]],
-               [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_02]],
+               [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_01]],
         ];
 
         dataProviderTest(testData, (localDateTime, validOffsets) => {
