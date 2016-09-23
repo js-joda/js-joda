@@ -1,5 +1,5 @@
 /**
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -1539,10 +1539,8 @@ export class LocalDate extends ChronoLocalDate{
     compareTo(other) {
         requireNonNull(other, 'other');
         requireInstance(other, LocalDate, 'other');
-        if (other instanceof LocalDate) {
-            return this._compareTo0(other);
-        }
-        // super.compareTo(other);
+        return this._compareTo0(other);
+        // return super.compareTo(other);  if not instanceof LocalDate
     }
 
     /**
