@@ -496,7 +496,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [2008, 6, 30, 11, 30, 59, 999, 'Z', '2008-06-30T11:30:59.000000999Z'],
             [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00']
 
-            // TODO iana tzdb
+            // TODO iana tzdb/ parser
             //[2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
             //[2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
         ];
@@ -527,7 +527,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 // special javascript ZoneId
                 ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM']
 
-                // TODO iana tzdb
+                // TODO iana tzdb/ parser
                 // ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London']
             ];
         }
@@ -917,9 +917,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);  // offset ignored
         });
        
-/* TODO iana tzdb
         it('test_with_WithAdjuster_LocalDate_retainOffset1()', () => {
-            var newYork = ZoneId.of('America/New_York');
+            var newYork = ZONE_NEW_YORK;
             var ldt = LocalDateTime.of(2008, 11, 1, 1, 30);
             var base = ZonedDateTime.of(ldt, newYork);
             assertEquals(base.offset(), ZoneOffset.ofHours(-4));
@@ -928,14 +927,13 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
        
         it('test_with_WithAdjuster_LocalDate_retainOffset2()', () => {
-            var newYork = ZoneId.of('America/New_York');
+            var newYork = ZONE_NEW_YORK;
             var ldt = LocalDateTime.of(2008, 11, 3, 1, 30);
             var base = ZonedDateTime.of(ldt, newYork);
             assertEquals(base.offset(), ZoneOffset.ofHours(-5));
             var test = base.with(LocalDate.of(2008, 11, 2));
             assertEquals(test.offset(), ZoneOffset.ofHours(-5));
         });
-*/
 
         it('test_with_WithAdjuster_null', () => {
             expect(() => {
