@@ -1539,10 +1539,8 @@ export class LocalDate extends ChronoLocalDate{
     compareTo(other) {
         requireNonNull(other, 'other');
         requireInstance(other, LocalDate, 'other');
-        if (other instanceof LocalDate) {
-            return this._compareTo0(other);
-        }
-        // super.compareTo(other);
+        return this._compareTo0(other);
+        // return super.compareTo(other);  if not instanceof LocalDate
     }
 
     /**
