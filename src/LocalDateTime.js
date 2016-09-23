@@ -1,5 +1,5 @@
 /*
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -1553,12 +1553,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         requireNonNull(other, 'other');
         requireInstance(other, LocalDateTime, 'other');
         return this._compareTo0(other);
-/*
-        if (other instanceof LocalDateTime) {
-            return this._compareTo0(other);
-        }
-        return super.compareTo(other);
-*/
+        // return super.compareTo(other); if not instance of  LocalDateTime
     }
 
     /**
@@ -1597,15 +1592,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {boolean} true if this date-time is after the specified date-time
      */
     isAfter(other) {
-        requireNonNull(other, 'other');
-        requireInstance(other, LocalDateTime, 'other');
-        return this._compareTo0(other) > 0;
-/*
-        if (other instanceof LocalDateTime) {
-            return this._compareTo0(other) > 0;
-        }
-        return super.isAfter(other);
-*/
+        return this.compareTo(other) > 0;
+        // return super.isAfter(other);  if not instance of LocalDateTime
     }
 
     /**
@@ -1630,15 +1618,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {boolean} true if this date-time is before the specified date-time
      */
     isBefore(other) {
-        requireNonNull(other, 'other');
-        requireInstance(other, LocalDateTime, 'other');
-        return this._compareTo0(other) < 0;
-/*
-        if (other instanceof LocalDateTime) {
-            return this._compareTo0(other) < 0;
-        }
-        return super.isBefore(other);
-*/
+        return this.compareTo(other) < 0;
+        // return super.isBefore(other);  if not instance of LocalDateTime
     }
 
     /**
@@ -1663,10 +1644,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {boolean} true if this date-time is equal to the specified date-time
      */
     isEqual(other) {
-        if (other instanceof LocalDateTime) {
-            return this._compareTo0(other) === 0;
-        }
-        return super.isEqual(other);
+        return this.compareTo(other) === 0;
+        // return super.isEqual(other); if not instance of LocalDateTime
     }
 
     //-----------------------------------------------------------------------
