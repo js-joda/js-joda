@@ -32,7 +32,7 @@ import {abstractMethodFail} from '../assert';
  *
  * @interface
  */
-export class TemporalAmount{
+export class TemporalAmount {
     /**
      * Returns the value of the requested unit.
      * The units returned from {@link #getUnits()} uniquely define the
@@ -49,10 +49,10 @@ export class TemporalAmount{
      * @throws DateTimeException if a value for the unit cannot be obtained
      * @throws UnsupportedTemporalTypeException if the {@code unit} is not supported
      */
-    get(unit){
-        abstractMethodFail('adjustInto');
+    get(unit) {
+        abstractMethodFail('get');
     }
-
+    
     /**
      * Returns the list of units uniquely defining the value of this TemporalAmount.
      * The list of {@code TemporalUnits} is defined by the implementation class.
@@ -68,10 +68,10 @@ export class TemporalAmount{
      *
      * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null
      */
-    getUnits(){
-        abstractMethodFail('adjustInto');
+    units() {
+        abstractMethodFail('units');
     }
-
+    
     /**
      * Adds to the specified temporal object.
      * <p>
@@ -112,10 +112,10 @@ export class TemporalAmount{
      * @throws DateTimeException if unable to add
      * @throws ArithmeticException if numeric overflow occurs
      */
-    addTo(temporal){
-        abstractMethodFail('adjustInto');
+    addTo(temporal) {
+        abstractMethodFail('addTo');
     }
-
+    
     /**
      * Subtracts this object from the specified temporal object.
      * <p>
@@ -156,8 +156,8 @@ export class TemporalAmount{
      * @throws DateTimeException if unable to subtract
      * @throws ArithmeticException if numeric overflow occurs
      */
-     subtractFrom(temporal){
-        abstractMethodFail('adjustInto');
-     }
-
+    subtractFrom(temporal) {
+        abstractMethodFail('subtractFrom');
+    }
+    
 }

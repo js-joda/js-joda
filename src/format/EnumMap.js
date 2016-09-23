@@ -16,7 +16,7 @@ export class EnumMap {
     }
 
     containsKey(key){
-        return this._map.hasOwnProperty(key.name());
+        return (this._map.hasOwnProperty(key.name())) && (this.get(key) !== undefined);
     }
 
     get(key) {

@@ -10,6 +10,7 @@ import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from './MathUtil';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {TemporalAmount} from './temporal/TemporalAmount';
+import {TemporalUnit} from './temporal/TemporalUnit';
 
 import {LocalTime} from './LocalTime';
 
@@ -206,13 +207,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * The unit must either have an exact duration or be ChronoUnit.DAYS which
      * is treated as 24 hours. If any other units are found then an exception is thrown.
      *
-     * @param {Number} amount - the temporal amount to convert, not null
+     * @param {TemporalAmount} amount - the temporal amount to convert, not null
      * @return {Duration} the resulting duration, not null
      * @throws DateTimeException if the amount cannot be converted
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
         requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount);
         var duration = Duration.ZERO;
         amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
@@ -363,12 +365,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (parsed == null || parsed.length === 0) {
             return 0;
         }
-        try {
-            parsed = (parsed + '000000000').substring(0, 9);
-            return parseFloat(parsed) * negate;
-        } catch (ex) {
-            throw new DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
-        }
+        parsed = (parsed + '000000000').substring(0, 9);
+        return parseFloat(parsed) * negate;
     }
 
     //-----------------------------------------------------------------------
@@ -552,19 +550,19 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *
      * if called with 1 arguments, then {@link Duration.plusDuration} is executed.
      *
-     * if called with 2 arguments and second argument is an instance of ChronoUnit, then {@link Duration.plusAmountUnit} is executed.
+     * if called with 2 arguments and second argument is an instance of TemporalUnit, then {@link Duration.plusAmountUnit} is executed.
      *
      * Otherwise {@link Duration.plusSecondsNanos} is executed.
      *
      * @param {!(Duration|number)} durationOrNumber
-     * @param {!ChronoUnit|number} unitOrNumber
+     * @param {!TemporaloUnit|number} unitOrNumber
      * @returns {Duration}
      */
     plus(durationOrNumber, unitOrNumber) {
         if (arguments.length === 1) {
             return this.plusDuration(durationOrNumber);
         }
-        else if (arguments.length === 2 && unitOrNumber instanceof ChronoUnit) {
+        else if (arguments.length === 2 && unitOrNumber instanceof TemporalUnit) {
             return this.plusAmountUnit(durationOrNumber, unitOrNumber);
         } else {
             return this.plusSecondsNanos(durationOrNumber, unitOrNumber);
@@ -748,7 +746,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         var secsToSubtract = duration.seconds();
         var nanosToSubtract = duration.nano();
         if (secsToSubtract === MIN_SAFE_INTEGER) {
-            return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
+            return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract);
         }
         return this.plus(-secsToSubtract, -nanosToSubtract);
     }
@@ -771,7 +769,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
-        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
+        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 
     //-----------------------------------------------------------------------
@@ -785,7 +783,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDays(daysToSubtract) {
-        return (daysToSubtract === MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract));
+        return (daysToSubtract === MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER) : this.plusDays(-daysToSubtract));
     }
 
     /**
@@ -798,7 +796,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusHours(hoursToSubtract) {
-        return (hoursToSubtract === MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract));
+        return (hoursToSubtract === MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER) : this.plusHours(-hoursToSubtract));
     }
 
     /**
@@ -813,7 +811,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMinutes(minutesToSubtract) {
-        return (minutesToSubtract === MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract));
+        return (minutesToSubtract === MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER) : this.plusMinutes(-minutesToSubtract));
     }
 
     /**
@@ -826,7 +824,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusSeconds(secondsToSubtract) {
-        return (secondsToSubtract === MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract));
+        return (secondsToSubtract === MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER) : this.plusSeconds(-secondsToSubtract));
     }
 
     /**
@@ -839,7 +837,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMillis(millisToSubtract) {
-        return (millisToSubtract === MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract));
+        return (millisToSubtract === MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER) : this.plusMillis(-millisToSubtract));
     }
 
     /**
@@ -852,7 +850,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusNanos(nanosToSubtract) {
-        return (nanosToSubtract === MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract));
+        return (nanosToSubtract === MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER) : this.plusNanos(-nanosToSubtract));
     }
 
     //-----------------------------------------------------------------------
