@@ -886,22 +886,18 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             check(test, 2012, 7, 28, 11, 30, 59, 500, OFFSET_0200, ZONE_PARIS);
         });
        
-/* TODO iana tzdb
         it('test_with_WithAdjuster_LocalTime', () => {
             var base = ZonedDateTime.of(TEST_PARIS_OVERLAP_2008_10_26_02_30, ZONE_PARIS);
             var test = base.with(LocalTime.of(2, 29));
             check(test, 2008, 10, 26, 2, 29, 0, 0, OFFSET_0200, ZONE_PARIS);
         });
-*/
 
-/* Year.of and Year adjuster not implemented
         it('test_with_WithAdjuster_Year', () => {
             var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
             var base = ZonedDateTime.of(ldt, ZONE_0100);
             var test = base.with(Year.of(2007));
             assertEquals(test, ZonedDateTime.of(ldt.withYear(2007), ZONE_0100));
         });
-*/
 
         it('test_with_WithAdjuster_Month_adjustedDayOfMonth', () => {
             var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
