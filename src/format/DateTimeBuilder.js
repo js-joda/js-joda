@@ -1,5 +1,5 @@
 /*
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -113,7 +113,7 @@ export class DateTimeBuilder extends Temporal {
     _addFieldValue(field, value) {
         requireNonNull(field, 'field');
         var old = this.getFieldValue0(field);  // check first for better error message
-        if (old != null && old.longValue() !== value) {
+        if (old != null && old !== value) {
             throw new DateTimeException('Conflict found: ' + field + ' ' + old + ' differs from ' + field + ' ' + value + ': ' + this);
         }
         return this._putFieldValue0(field, value);
@@ -132,12 +132,12 @@ export class DateTimeBuilder extends Temporal {
     /**
      * Resolves the builder, evaluating the date and time.
      * <p>
-     * This examines the contents of the builder and resolves it to produce the best
+     * This examines the contents of the build.er and resolves it to produce the best
      * available date and time, throwing an exception if a problem occurs.
      * Calling this method changes the state of the builder.
      *
      * @param {ResolverStyle} resolverStyle - how to resolve
-     * @param {Set<TemporalField>} resolverFields
+     * @param {TemporalField[]} resolverFields
      * @return {DateTimeBuilder} this, for method chaining
      */
     resolve(resolverStyle, resolverFields) {
@@ -188,22 +188,25 @@ export class DateTimeBuilder extends Temporal {
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
-            for (let field in this.fieldValues.keySet()) {
-                if (field instanceof ChronoField) {
-                    if (field.isDateBased()) {
-                        var val1;
-                        try {
-                            val1 = date.getLong(field);
-                        } catch (ex) {
-                            if(ex instanceof DateTimeException){
-                                continue;
-                            } else {
-                                throw ex;
+            for (let fieldName in this.fieldValues.keySet()) {
+                let field = ChronoField.byName(fieldName);
+                if (field !== null) {
+                    if (this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
+                        if (field.isDateBased()) {
+                            var val1;
+                            try {
+                                val1 = date.getLong(field);
+                            } catch (ex) {
+                                if (ex instanceof DateTimeException) {
+                                    continue;
+                                } else {
+                                    throw ex;
+                                }
                             }
-                        }
-                        var val2 = this.fieldValues.get(field);
-                        if (val1 !== val2) {
-                            throw new DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+                            var val2 = this.fieldValues.get(field);
+                            if (val1 !== val2) {
+                                throw new DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+                            }
                         }
                     }
                 }
@@ -320,24 +323,24 @@ export class DateTimeBuilder extends Temporal {
         if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND)) {
             let los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
             let cos = this.fieldValues.get(ChronoField.MICRO_OF_SECOND);
-            this._addFieldValue(ChronoField.MICRO_OF_SECOND, los * 1000 + (MathUtil.intMod(cos, 1000)));
+            this._putFieldValue0(ChronoField.MICRO_OF_SECOND, los * 1000 + (MathUtil.intMod(cos, 1000)));
         }
         if (this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND) && this.fieldValues.containsKey(ChronoField.NANO_OF_SECOND)) {
             let nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
-            this._addFieldValue(ChronoField.MICRO_OF_SECOND, MathUtil.intDiv(nos, 1000));
+            this._putFieldValue0(ChronoField.MICRO_OF_SECOND, MathUtil.intDiv(nos, 1000));
             this.fieldValues.remove(ChronoField.MICRO_OF_SECOND);
         }
         if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(ChronoField.NANO_OF_SECOND)) {
             let nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
-            this._addFieldValue(ChronoField.MILLI_OF_SECOND, MathUtil.intDiv(nos, 1000000));
+            this._putFieldValue0(ChronoField.MILLI_OF_SECOND, MathUtil.intDiv(nos, 1000000));
             this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
         }
         if (this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND)) {
             let cos = this.fieldValues.remove(ChronoField.MICRO_OF_SECOND);
-            this._addFieldValue(ChronoField.NANO_OF_SECOND, cos * 1000);
+            this._putFieldValue0(ChronoField.NANO_OF_SECOND, cos * 1000);
         } else if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND)) {
             let los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
-            this._addFieldValue(ChronoField.NANO_OF_SECOND, los * 1000000);
+            this._putFieldValue0(ChronoField.NANO_OF_SECOND, los * 1000000);
         }
     }
 
@@ -466,7 +469,7 @@ export class DateTimeBuilder extends Temporal {
         if (field == null) {
             return false;
         }
-        return this.fieldValues.containsKey(field) ||
+        return (this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined) ||
                 (this.date != null && this.date.isSupported(field)) ||
                 (this.time != null && this.time.isSupported(field));
     }

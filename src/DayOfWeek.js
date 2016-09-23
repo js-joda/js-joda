@@ -1,5 +1,5 @@
 /*
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -8,10 +8,9 @@ import {DateTimeException, UnsupportedTemporalTypeException, NullPointerExceptio
 import {MathUtil} from './MathUtil';
 import {assert, requireNonNull} from './assert';
 
-import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
-
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {IllegalArgumentException} from './errors';
 import {Temporal} from './temporal/Temporal';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
@@ -155,7 +154,8 @@ export class DayOfWeek extends Temporal {
      * @return {string} the text value of the day-of-week, not null
      */
     getDisplayName(style, locale) {
-        return new DateTimeFormatterBuilder().appendText(ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+        // return new DateTimeFormatterBuilder().appendText(ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
     }
 
     /**

@@ -1,5 +1,5 @@
 /**
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -14,9 +14,13 @@ import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {Duration} from '../../src/Duration';
 import {Instant} from '../../src/Instant';
 import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../../src/MathUtil';
+import {TemporalAmount} from '../../src/temporal/TemporalAmount';
+import {TemporalUnit} from '../../src/temporal/TemporalUnit';
 
 describe('org.threeten.bp.TestDuration', () => {
-
+    const SECONDS_PER_DAY = 86400;
+    const SECONDS_PER_HOUR = 60 * 60;
+    
     describe('constants', () => {
         it('test_zero', () => {
             expect(Duration.ZERO.seconds()).to.eql(0);
@@ -178,7 +182,6 @@ describe('org.threeten.bp.TestDuration', () => {
         });
 
         describe('ofDays()', () => {
-            const SECONDS_PER_DAY = 86400;
             it('factory_days', () => {
                 let test = Duration.ofDays(2);
                 expect(test.seconds()).to.eql(2 * SECONDS_PER_DAY);
@@ -294,10 +297,43 @@ describe('org.threeten.bp.TestDuration', () => {
             it('factory_of_longTemporalUnit_null', () => {
                 expect(() => Duration.of(1, null)).to.throw(NullPointerException);
             });
-
+    
         });
     });
-
+    describe('from(amount)', () => {
+        it('factory_from_amount', () => {
+            /* test implementation of TemporalAmount,
+             * that returns 1 for each supported ChronUnit
+             */
+            class TestTemporalAmount extends TemporalAmount {
+                units() {
+                    return [
+                        ChronoUnit.DAYS,
+                        ChronoUnit.MINUTES,
+                        ChronoUnit.SECONDS,
+                        ChronoUnit.MILLIS,
+                        ChronoUnit.MICROS,
+                        ChronoUnit.NANOS
+                    ];
+                }
+                
+                get() {
+                    return 1;
+                }
+            }
+            let amount = new TestTemporalAmount();
+            let test = Duration.from(amount);
+            expect(test.seconds()).to.eql(SECONDS_PER_DAY + 60 + 1);
+            expect(test.nano()).to.eql(1001001);
+        });
+        it('factory_from_duration', () => {
+            let amount = new Duration.ofSeconds(SECONDS_PER_DAY);
+            let test = Duration.from(amount);
+            expect(test.seconds()).to.eql(SECONDS_PER_DAY);
+            expect(test.nano()).to.eql(0);
+        });
+    });
+    
     describe('parse(String)', () => {
         let data_parse = [
             ['PT0S', 0, 0],
@@ -355,7 +391,13 @@ describe('org.threeten.bp.TestDuration', () => {
             ['P12DT0.35S', 12 * 24 * 3600, 350000000],
             ['P12DT1.35S', 12 * 24 * 3600 + 1, 350000000],
             ['P12DT-0.35S', 12 * 24 * 3600 - 1, 1000000000 - 350000000],
-            ['P12DT-1.35S', 12 * 24 * 3600 - 2, 1000000000 - 350000000]
+            ['P12DT-1.35S', 12 * 24 * 3600 - 2, 1000000000 - 350000000],
+
+            ['-P12D', -12 * 24 * 3600, 0],
+            ['-P12DT0.35S', -12 * 24 * 3600 - 1, 1000000000 - 350000000],
+            ['-P12DT1.35S', -12 * 24 * 3600 - 2, 1000000000 - 350000000],
+            ['-P12DT-0.35S', -12 * 24 * 3600, 350000000],
+            ['-P12DT-1.35S', -12 * 24 * 3600 + 1, 350000000]
         ];
 
         it('factory_parse', () => {
@@ -435,6 +477,12 @@ describe('org.threeten.bp.TestDuration', () => {
             }).to.throw(DateTimeParseException);
         });
 
+        it('factory_parse_tooBig_overflow', () => {
+            expect(() => {
+                Duration.parse('PT1M' + (MAX_SAFE_INTEGER - 1) + 'S');
+            }).to.throw(DateTimeParseException);
+        });
+
         it('factory_parse_tooBig_decimal', () => {
             expect(() => {
                 Duration.parse('PT' + MAX_SAFE_INTEGER + '1.1S');
@@ -464,10 +512,16 @@ describe('org.threeten.bp.TestDuration', () => {
     describe('between()', () => {
         let data_between_Instant_Instant = [
             [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 1],
+            [0, 1, 0, 0, -1, 999999999],
+            [0, 0, 1, 0, 1, 0],
+            [0, 0, -1, 1, -1, 1],
+            [1, 1, 2, 0, 0, 999999999],
             [3, 0, 7, 0, 4, 0],
             [3, 20, 7, 50, 4, 30],
             [3, 80, 7, 50, 3, 999999970],
-            [7, 0, 3, 0, -4, 0]
+            [7, 0, 3, 0, -4, 0],
+            [7, 0, 3, 1, -4, 1]
         ];
 
         it('factory_between_Instant_Instant', () => {
@@ -763,7 +817,24 @@ describe('org.threeten.bp.TestDuration', () => {
                     t.plus(1, null);
                 }).to.throw(NullPointerException);
             });
-
+            it('plus_longTemporalUnit_nonChronoUnit', () => {
+                /* test implementation of TemporalUnit,
+                 * that returns 5 days as duration
+                 */
+                class TestTemporalUnit extends TemporalUnit {
+                    duration() {
+                        return Duration.ofDays(5);
+                    }
+                    isDurationEstimated() {
+                        return false;
+                    }
+                }
+                let unit = new TestTemporalUnit();
+                let t = Duration.ZERO.plus(1, unit);
+                expect(t.seconds()).to.eql(5 * SECONDS_PER_DAY);
+                expect(t.nano()).to.eql(0);
+            });
+    
         });
 
         describe('plusSeconds()', () => {
@@ -1015,6 +1086,7 @@ describe('org.threeten.bp.TestDuration', () => {
     describe('minus', () => {
         describe('minusDuration()', () => {
             let data_minus = [
+                [MIN_SAFE_INTEGER, 0, MIN_SAFE_INTEGER, 0, 0, 0],
                 [MIN_SAFE_INTEGER, 0, MIN_SAFE_INTEGER + 1, 0, -1, 0],
 
                 [-4, 666666667, -4, 666666667, 0, 0],
@@ -1225,6 +1297,13 @@ describe('org.threeten.bp.TestDuration', () => {
                 expect(t.seconds()).to.eql(0);
                 expect(t.nano()).to.eql(0);
             });
+    
+            it('minus_longTemporalUnit_seconds_MIN_SAFE_INTEGER', () => {
+                let t = Duration.ofSeconds(MIN_SAFE_INTEGER);
+                t = t.minus(MIN_SAFE_INTEGER, ChronoUnit.SECONDS);
+                expect(t.seconds()).to.eql(0);
+                expect(t.nano()).to.eql(0);
+            });
 
             it('minus_longTemporalUnit_millis', () => {
                 let t = Duration.ofSeconds(1);
@@ -1255,7 +1334,127 @@ describe('org.threeten.bp.TestDuration', () => {
             });
 
         });
+    
+        describe('minusDays()', () => {
+            let data_minusDays = [
+                [0, 0, 0, 0],
+                [0, 1, -1 * SECONDS_PER_DAY, 0],
+                [0, -1, 1 * SECONDS_PER_DAY, 0],
+                [1, 0, 1 * SECONDS_PER_DAY, 0],
+                [1, 1, 0 * SECONDS_PER_DAY, 0],
+                [1, -1, 2 * SECONDS_PER_DAY, 0],
+                [-1, 0, -1 * SECONDS_PER_DAY, 0],
+                [-1, 1, -2 * SECONDS_PER_DAY, 0],
+                [-1, -1, 0 * SECONDS_PER_DAY, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY), MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY), 0, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY), MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY), 0, 0]
+            ];
+        
+            it('minusDays_long', () => {
+                data_minusDays.forEach((val) => {
+                    let [initialDays, subtractDays, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofDays(initialDays).minusDays(subtractDays);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+        
+            it('minusDays_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(1);
+                expect(() => {
+                    t.minusDays(MIN_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+            it('minusDays_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(-2);
+                expect(() => {
+                    t.minusDays(MAX_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+        });
 
+        describe('minusHours()', () => {
+            let data_minusHours = [
+                [0, 0, 0, 0],
+                [0, 1, -1 * SECONDS_PER_HOUR, 0],
+                [0, -1, 1 * SECONDS_PER_HOUR, 0],
+                [1, 0, 1 * SECONDS_PER_HOUR, 0],
+                [1, 1, 0 * SECONDS_PER_HOUR, 0],
+                [1, -1, 2 * SECONDS_PER_HOUR, 0],
+                [-1, 0, -1 * SECONDS_PER_HOUR, 0],
+                [-1, 1, -2 * SECONDS_PER_HOUR, 0],
+                [-1, -1, 0 * SECONDS_PER_HOUR, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR), MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR), 0, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR), MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR), 0, 0]
+            ];
+        
+            it('minusHours_long', () => {
+                data_minusHours.forEach((val) => {
+                    let [initialHours, subtractHours, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofHours(initialHours).minusHours(subtractHours);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+        
+            it('minusHours_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(1);
+                expect(() => {
+                    t.minusHours(MIN_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+            it('minusHours_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(-2);
+                expect(() => {
+                    t.minusHours(MAX_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+        });
+        
+        describe('minusMinutes()', () => {
+            let data_minusMinutes = [
+                [0, 0, 0, 0],
+                [0, 1, -1 * 60, 0],
+                [0, -1, 1 * 60, 0],
+                [1, 0, 1 * 60, 0],
+                [1, 1, 0 * 60, 0],
+                [1, -1, 2 * 60, 0],
+                [-1, 0, -1 * 60, 0],
+                [-1, 1, -2 * 60, 0],
+                [-1, -1, 0 * 60, 0],
+                [MathUtil.intDiv(MAX_SAFE_INTEGER, 60), MathUtil.intDiv(MAX_SAFE_INTEGER, 60), 0, 0],
+                [MathUtil.intDiv(MIN_SAFE_INTEGER, 60), MathUtil.intDiv(MIN_SAFE_INTEGER, 60), 0, 0]
+            ];
+        
+            it('minusMinutes_long', () => {
+                data_minusMinutes.forEach((val) => {
+                    let [initialMinutes, subtractMinutes, expectedSeconds, expectedNanos] = val;
+                    let t = Duration.ofMinutes(initialMinutes).minusMinutes(subtractMinutes);
+                    expect(t.seconds()).to.eql(expectedSeconds);
+                    expect(t.nano()).to.eql(expectedNanos);
+                });
+            });
+        
+            it('minusMinutes_long_overflowTooBig', () => {
+                let t = Duration.ofSeconds(1);
+                expect(() => {
+                    t.minusMinutes(MIN_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+            it('minusMinutes_long_overflowTooSmall', () => {
+                let t = Duration.ofSeconds(-2);
+                expect(() => {
+                    t.minusMinutes(MAX_SAFE_INTEGER);
+                }).to.throw(ArithmeticException);
+            });
+        
+        });
+        
         describe('minusSeconds()', () => {
             let data_minusSeconds = [
                 [0, 0, 0, 0, 0],
@@ -1410,7 +1609,19 @@ describe('org.threeten.bp.TestDuration', () => {
                     t.minusMillis(1);
                 }).to.throw(ArithmeticException);
             });
-
+    
+            it('minusMillis_ofMillis_MAX_SAFE_INTEGER', () => {
+                let t = Duration.ofMillis(MAX_SAFE_INTEGER).minusMillis(MAX_SAFE_INTEGER);
+                expect(t.seconds()).to.eql(0);
+                expect(t.nano()).to.eql(0);
+            });
+    
+            it('minusMillis_ofMillis_MIN_SAFE_INTEGER', () => {
+                let t = Duration.ofMillis(MIN_SAFE_INTEGER).minusMillis(MIN_SAFE_INTEGER);
+                expect(t.seconds()).to.eql(0);
+                expect(t.nano()).to.eql(0);
+            });
+    
         });
         describe('minusNanos()', () => {
             let data_minusNanos = [
@@ -1507,7 +1718,19 @@ describe('org.threeten.bp.TestDuration', () => {
                     t.minusNanos(1);
                 }).to.throw(ArithmeticException);
             });
-
+    
+            it('minusNanos_ofNanos_MAX_SAFE_INTEGER', () => {
+                let t = Duration.ofNanos(MAX_SAFE_INTEGER).minusNanos(MAX_SAFE_INTEGER);
+                expect(t.seconds()).to.eql(0);
+                expect(t.nano()).to.eql(0);
+            });
+    
+            it('minusNanos_ofNanos_MIN_SAFE_INTEGER', () => {
+                let t = Duration.ofNanos(MIN_SAFE_INTEGER).minusNanos(MIN_SAFE_INTEGER);
+                expect(t.seconds()).to.eql(0);
+                expect(t.nano()).to.eql(0);
+            });
+    
         });
     });
 
@@ -1806,6 +2029,60 @@ describe('org.threeten.bp.TestDuration', () => {
 
     });
     
+    describe('toDays()', ()=> {
+        it('test_toDays', () => {
+            let test = Duration.ofDays(1);
+            expect(test.toDays()).to.eql(1);
+        });
+
+        it('test_toDays_max', () => {
+            let test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toDays()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_DAY));
+        });
+
+        it('test_toDays_min', () => {
+            let test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toDays()).to.eql(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_DAY));
+        });
+
+    });
+
+    describe('toHours()', ()=> {
+        it('test_toHours', () => {
+            let test = Duration.ofHours(1);
+            expect(test.toHours()).to.eql(1);
+        });
+
+        it('test_toHours_max', () => {
+            let test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toHours()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR));
+        });
+
+        it('test_toHours_min', () => {
+            let test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toHours()).to.eql(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR));
+        });
+
+    });
+
+    describe('toMinutes()', ()=> {
+        it('test_toMinutes', () => {
+            let test = Duration.ofMinutes(1);
+            expect(test.toMinutes()).to.eql(1);
+        });
+
+        it('test_toMinutes_max', () => {
+            let test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toMinutes()).to.eql(MathUtil.intDiv(MAX_SAFE_INTEGER, 60));
+        });
+
+        it('test_toMinutes_min', () => {
+            let test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toMinutes()).to.eql(MathUtil.intDiv(MIN_SAFE_INTEGER, 60));
+        });
+
+    });
+
     describe('toMillis()', ()=> {
         it('test_toMillis', () => {
             let test = Duration.ofSeconds(321, 123456789);
@@ -1872,6 +2149,35 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(() => {
                 test.compareTo({});
             }).to.throw(Error);
+        });
+
+    });
+
+    describe('units(), get()', ()=> {
+
+        it('test_units_get', () => {
+            let duration = new Duration(1234, 5678);
+            expect(duration.units()).to.eql([ChronoUnit.SECONDS, ChronoUnit.NANOS]);
+            expect(duration.get(ChronoUnit.SECONDS)).to.eql(1234);
+            expect(duration.get(ChronoUnit.NANOS)).to.eql(5678);
+        });
+
+        it('test_units_invalid', () => {
+            expect(() => {
+                Duration.ZERO.get(ChronoUnit.DAYS);
+            }).to.throw(UnsupportedTemporalTypeException);
+        });
+
+    });
+
+    describe('withXXX()', ()=> {
+
+        it('test_withSeconds', () => {
+            expect(Duration.ZERO.withSeconds(1234).seconds()).to.eql(1234);
+        });
+
+        it('test_withNanos', () => {
+            expect(Duration.ZERO.withNanos(1234).nano()).to.eql(1234);
         });
 
     });

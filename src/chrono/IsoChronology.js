@@ -1,5 +1,5 @@
 /**
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -9,12 +9,14 @@ import {requireNonNull} from '../assert';
 import {DateTimeException} from '../errors';
 import {MathUtil} from '../MathUtil';
 
+import {DayOfWeek} from '../DayOfWeek';
 import {LocalDate} from '../LocalDate';
 import {Month} from '../Month';
 import {Year} from '../Year';
 
 import {ChronoField} from '../temporal/ChronoField';
 import {ResolverStyle} from '../format/ResolverStyle';
+import {TemporalAdjusters} from '../temporal/TemporalAdjusters';
 
 export class IsoChronology extends Enum{
     /**
@@ -65,16 +67,14 @@ export class IsoChronology extends Enum{
         }
 
         // normalize fields
-/*
-        var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
+        let prolepticMonth = fieldValues.remove(ChronoField.PROLEPTIC_MONTH);
         if (prolepticMonth != null) {
-            if (resolverStyle != ResolverStyle.LENIENT) {
-                PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+            if (resolverStyle !== ResolverStyle.LENIENT) {
+                ChronoField.PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
             }
-            updateResolveMap(fieldValues, ChronoField.MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
-            updateResolveMap(fieldValues, ChronoField.YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
+            this._updateResolveMap(fieldValues, ChronoField.MONTH_OF_YEAR, MathUtil.floorMod(prolepticMonth, 12) + 1);
+            this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.floorDiv(prolepticMonth, 12));
         }
-*/
 
         // eras
         let yoeLong = fieldValues.remove(ChronoField.YEAR_OF_ERA);
@@ -170,51 +170,47 @@ export class IsoChronology extends Enum{
                 }
 */
             }
-/*
-            if (fieldValues.containsKey(DAY_OF_YEAR)) {
-                int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                if (resolverStyle == ResolverStyle.LENIENT) {
-                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
+            if (fieldValues.containsKey(ChronoField.DAY_OF_YEAR)) {
+                let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                if (resolverStyle === ResolverStyle.LENIENT) {
+                    let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_YEAR), 1);
                     return LocalDate.ofYearDay(y, 1).plusDays(days);
                 }
-                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
+                let doy = ChronoField.DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_YEAR));
                 return LocalDate.ofYearDay(y, doy);
             }
-*/
-/*
-            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
-                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
-                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    if (resolverStyle == ResolverStyle.LENIENT) {
-                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+            if (fieldValues.containsKey(ChronoField.ALIGNED_WEEK_OF_YEAR)) {
+                if (fieldValues.containsKey(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+                    let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    if (resolverStyle === ResolverStyle.LENIENT) {
+                        let weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
-                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
-                    if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.YEAR) != y) {
-                        throw new DateTimeException("Strict mode rejected date parsed to a different year");
+                    let aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    let ad = ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+                    let date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+                    if (resolverStyle === ResolverStyle.STRICT && date.get(ChronoField.YEAR) !== y) {
+                        throw new DateTimeException('Strict mode rejected date parsed to a different year');
                     }
                     return date;
                 }
-                if (fieldValues.containsKey(DAY_OF_WEEK)) {
-                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    if (resolverStyle == ResolverStyle.LENIENT) {
-                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+                if (fieldValues.containsKey(ChronoField.DAY_OF_WEEK)) {
+                    let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    if (resolverStyle === ResolverStyle.LENIENT) {
+                        let weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_WEEK), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
-                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
-                    if (resolverStyle == ResolverStyle.STRICT && date.get(ChronoField.YEAR) != y) {
-                        throw new DateTimeException("Strict mode rejected date parsed to a different month");
+                    let aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    let dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_WEEK));
+                    let date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(TemporalAdjusters.nextOrSame(DayOfWeek.of(dow)));
+                    if (resolverStyle === ResolverStyle.STRICT && date.get(ChronoField.YEAR) !== y) {
+                        throw new DateTimeException('Strict mode rejected date parsed to a different month');
                     }
                     return date;
                 }
             }
-*/
         }
         return null;
     }

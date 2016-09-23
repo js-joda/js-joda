@@ -1,5 +1,5 @@
 /**
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -21,10 +21,10 @@ import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalAmount} from './temporal/TemporalAmount';
+import {TemporalField} from './temporal/TemporalField';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalUnit} from './temporal/TemporalUnit';
-import {ValueRange} from './temporal/ValueRange';
 import {YearConstants} from './YearConstants';
 import {YearMonth} from './YearMonth';
 import {ZoneId} from './ZoneId';
@@ -289,6 +289,64 @@ export class Year extends Temporal {
     }
     
     /**
+     * function overloading for {@link YearMonth.isSupported}
+     *
+     * if called with 1 argument and first argument is an instance of TemporalField, then {@link YearMonth.isSupportedField} is executed,
+     *
+     * otherwise {@link YearMonth.isSupportedUnit} is executed
+     *
+     * @param {!(TemporalField|ChronoUnit)} fieldOrUnit
+     * @returns {boolean}
+     */
+    isSupported(fieldOrUnit) {
+        if (arguments.length === 1 && fieldOrUnit instanceof TemporalField) {
+            return this.isSupportedField(fieldOrUnit);
+        } else {
+            return this.isSupportedUnit(fieldOrUnit);
+        }
+    }
+    
+    /**
+     * Checks if the specified field is supported.
+     * <p>
+     * This checks if this year can be queried for the specified field.
+     * If false, then calling the {@link #range(TemporalField) range} and
+     * {@link #get(TemporalField) get} methods will throw an exception.
+     * <p>
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * values based on this date-time.
+     * The supported fields are:
+     * <ul>
+     * <li>{@code YEAR_OF_ERA}
+     * <li>{@code YEAR}
+     * <li>{@code ERA}
+     * </ul>
+     * All other {@code ChronoField} instances will return false.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
+     * passing {@code this} as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField} field  the field to check, null returns false
+     * @return {boolean} true if the field is supported on this year, false if not
+     */
+    isSupportedField(field) {
+        if (field instanceof ChronoField) {
+            return field === ChronoField.YEAR || field === ChronoField.YEAR_OF_ERA || field === ChronoField.ERA;
+        }
+        return field != null && field.isSupportedBy(this);
+    }
+    
+    isSupportedUnit(unit) {
+        if (unit instanceof ChronoUnit) {
+            return unit === ChronoUnit.YEARS || unit === ChronoUnit.DECADES || unit === ChronoUnit.CENTURIES || unit === ChronoUnit.MILLENNIA || unit === ChronoUnit.ERAS;
+        }
+        return unit != null && unit.isSupportedBy(this);
+    }
+    
+    /**
      * Gets the range of valid values for the specified field.
      * <p>
      * The range object expresses the minimum and maximum valid values for a field.
@@ -311,8 +369,10 @@ export class Year extends Temporal {
      * @throws DateTimeException if the range for the field cannot be obtained
      */
     range(field) {
-        if (field === ChronoField.YEAR_OF_ERA) {
-            return (this._year <= 0 ? ValueRange.of(1, Year.MAX_VALUE + 1) : ValueRange.of(1, Year.MAX_VALUE));
+        if (this.isSupported(field)) {
+            return field.range();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
         }
         return super.range(field);
     }
@@ -403,6 +463,106 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
+    /**
+     * function overloading for {@link YearMonth.with}
+     *
+     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link Year.withFieldValue} is executed,
+
+     * otherwise {@link Year.withAdjuster} is executed,
+     *
+     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
+     * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
+     * @returns {Year}
+     */
+    with(adjusterOrFieldOrNumber, value) {
+        if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
+            return this.withFieldValue(adjusterOrFieldOrNumber, value);
+        } else {
+            return this.withAdjuster(adjusterOrFieldOrNumber);
+        }
+    }
+    
+    /**
+     * Returns an adjusted copy of this year.
+     * <p>
+     * This returns a new {@code Year}, based on this one, with the year adjusted.
+     * The adjustment takes place using the specified adjuster strategy object.
+     * Read the documentation of the adjuster to understand what adjustment will be made.
+     * <p>
+     * The result of this method is obtained by invoking the
+     * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
+     * specified adjuster passing {@code this} as the argument.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
+     * @returns {Year} based on {@code this} with the adjustment made, not null
+     * @throws DateTimeException if the adjustment cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    withAdjuster(adjuster) {
+        requireNonNull(adjuster, 'adjuster');
+        return adjuster.adjustInto(this);
+    }
+    
+    /**
+     * Returns a copy of this year with the specified field set to a new value.
+     * <p>
+     * This returns a new {@code Year}, based on this one, with the value
+     * for the specified field changed.
+     * If it is not possible to set the value, because the field is not supported or for
+     * some other reason, an exception is thrown.
+     * <p>
+     * If the field is a {@link ChronoField} then the adjustment is implemented here.
+     * The supported fields behave as follows:
+     * <ul>
+     * <li>{@code YEAR_OF_ERA} -
+     *  Returns a {@code Year} with the specified year-of-era
+     *  The era will be unchanged.
+     * <li>{@code YEAR} -
+     *  Returns a {@code Year} with the specified year.
+     *  This completely replaces the date and is equivalent to {@link #of(int)}.
+     * <li>{@code ERA} -
+     *  Returns a {@code Year} with the specified era.
+     *  The year-of-era will be unchanged.
+     * </ul>
+     * <p>
+     * In all cases, if the new value is outside the valid range of values for the field
+     * then a {@code DateTimeException} will be thrown.
+     * <p>
+     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
+     * <p>
+     * If the field is not a {@code ChronoField}, then the result of this method
+     * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
+     * passing {@code this} as the argument. In this case, the field determines
+     * whether and how to adjust the instant.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalField} field  the field to set in the result, not null
+     * @param {number} newValue  the new value of the field in the result
+     * @returns {Year} based on {@code this} with the specified field set, not null
+     * @throws DateTimeException if the field cannot be set
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    withFieldValue(field, newValue) {
+        requireNonNull(field, 'field');
+        requireInstance(field, TemporalField, 'field');
+        if (field instanceof ChronoField) {
+            field.checkValidValue(newValue);
+            switch (field) {
+                case ChronoField.YEAR_OF_ERA:
+                    return Year.of((this._year < 1 ? 1 - newValue : newValue));
+                case ChronoField.YEAR:
+                    return Year.of(newValue);
+                case ChronoField.ERA:
+                    return (this.getLong(ChronoField.ERA) === newValue ? this : Year.of(1 - this._year));
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
     /**
      * function overloading for {@link Year.plus}
      *
@@ -521,6 +681,8 @@ export class Year extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusAmount(amount) {
+        requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount, 'amount');
         return amount.subtractFrom(this);
     }
 
@@ -532,6 +694,9 @@ export class Year extends Temporal {
      * @throws ArithmeticException {@inheritDoc}
      */
     minusAmountToSubtractUnit(amountToSubtract, unit) {
+        requireNonNull(amountToSubtract, 'amountToSubtract');
+        requireNonNull(unit, 'unit');
+        requireInstance(unit, TemporalUnit, 'unit');
         return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plus(MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plus(-amountToSubtract, unit));
     }
 

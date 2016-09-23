@@ -1,5 +1,5 @@
 /**
- * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -86,6 +86,22 @@ import {YearConstants} from '../YearConstants';
  *
  */
 export class ChronoField extends TemporalField {
+    
+    /**
+     * helper function to get one of the static ChronoField defines by name, needed to resolve ChronoField from EnumMap
+     *
+     * @param {String} fieldName
+     * @return {ChronoField | null}
+     */
+    static byName(fieldName) {
+        for (let prop in ChronoField) {
+            if (ChronoField.hasOwnProperty(prop)) {
+                if ((ChronoField[prop] instanceof ChronoField) && ChronoField[prop].name() === fieldName) {
+                    return ChronoField[prop];
+                }
+            }
+        }
+    }
 
     /**
      *

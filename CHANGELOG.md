@@ -3,7 +3,20 @@ Changelog
 
 ### 1.1.12 (next)
 
+#### Test Coverage and more threetenbp Features
+
+increased Test Coverage by adding/extending more tests from threetenbp 
+but also adding own tests that increase the coverage. 
+
+This also led to missing features implemented, e.g. more Fields in `DateTimeBuilder` being handled
+
 #### Bugfixes
+
+fixes found by extended Tests in
+- `Duration`
+- `DateTimeBuilder`
+- `DateTimeFormatterBuilder`
+- `YearMonth`
 
 #### dependency updates
 
