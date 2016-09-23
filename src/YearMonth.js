@@ -529,7 +529,7 @@ export class YearMonth extends Temporal {
     }
     
     /**
-     * function overloading for {@link YearMonth.of}
+     * function overloading for {@link YearMonth.with}
      *
      * if called with 1 argument, then {@link YearMonth.withAdjuster} is executed,
      *
