@@ -111,7 +111,7 @@ describe('js-joda YearMonth', () => {
         });
     });
     
-    describe('with(TemporalField, valu)', () => {
+    describe('with(TemporalField, value)', () => {
         it('should set the given values', () => {
             let test = YearMonth.of(2015, 12);
             let testBeforeEra = YearMonth.of(-1, 12);
