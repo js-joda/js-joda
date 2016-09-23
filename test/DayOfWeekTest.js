@@ -128,7 +128,7 @@ describe('js-joda DayOfWeek', () => {
     
         it('should throw exception for unsupported ChronoFields', () => {
             expect(() => {
-                DayOfWeek.MONDAY.getLong(ChronoField.DAY_OF_MONTH);
+                DayOfWeek.MONDAY.get(ChronoField.DAY_OF_MONTH);
             }).to.throw(UnsupportedTemporalTypeException);
         });
     
