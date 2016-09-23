@@ -11,7 +11,7 @@ import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {MockSimplePeriod} from './MockSimplePeriod';
-import {CurrentStandardZoneCentralEuropeanTime} from '../zone/CurrentStandardZone';
+import {CurrentStandardZoneCentralEuropeanTime, CurrentStandardZoneEasternTime} from '../zone/CurrentStandardZone';
 
 import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
 //import {DateTimeParseException} from '../../src/errors';
@@ -49,6 +49,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     var ZONE_0200 = OFFSET_0200;
     var ZONE_M0100 = ZoneOffset.ofHours(-1);
     var ZONE_PARIS = new CurrentStandardZoneCentralEuropeanTime();
+    var ZONE_NEW_YORK = new CurrentStandardZoneEasternTime();
     var TEST_PARIS_GAP_2008_03_30_02_30;
     var TEST_PARIS_OVERLAP_2008_10_26_02_30;
     var TEST_LOCAL_2008_06_30_11_30_59_500;
@@ -803,11 +804,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             assertEquals(test, base);
         });
 
-/* TODO iana tzdb
         it('test_withZoneSameLocal_retainOffset1()', () => {
             var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
             var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-04:00') );
-            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            var test = base.withZoneSameLocal(ZONE_NEW_YORK);
             assertEquals(base.offset(), ZoneOffset.ofHours(-4));
             assertEquals(test.offset(), ZoneOffset.ofHours(-4));
         });
@@ -815,11 +815,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_withZoneSameLocal_retainOffset2()', () => {
             var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
             var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-05:00') );
-            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            var test = base.withZoneSameLocal(ZONE_NEW_YORK);
             assertEquals(base.offset(), ZoneOffset.ofHours(-5));
             assertEquals(test.offset(), ZoneOffset.ofHours(-5));
         });
-*/
 
         it('test_withZoneSameLocal_null', () => {
             expect(() => {
