@@ -25,8 +25,8 @@ describe('CurrentStandardZoneEasternTime', () => {
             [Instant.parse('2016-06-21T00:00:00Z'), ZoneOffset.ofHours(-4)],
             [Instant.parse('2016-03-13T06:59:59Z'), ZoneOffset.ofHours(-5)],
             [Instant.parse('2016-03-13T07:00:00Z'), ZoneOffset.ofHours(-4)],
-            [Instant.parse('2016-11-06T06:59:59Z'), ZoneOffset.ofHours(-4)],
-            [Instant.parse('2016-11-06T07:00:00Z'), ZoneOffset.ofHours(-5)]
+            [Instant.parse('2016-11-06T05:59:59Z'), ZoneOffset.ofHours(-4)],
+            [Instant.parse('2016-11-06T06:00:00Z'), ZoneOffset.ofHours(-5)]
         ];
 
         dataProviderTest(testData, (instant, offset) => {
@@ -44,7 +44,7 @@ describe('CurrentStandardZoneEasternTime', () => {
                 // gap
                 [LocalDateTime.parse('2016-03-13T02:30:00'), ZoneOffset.ofHours(-5)],
                 // overlap
-                [LocalDateTime.parse('2016-11-06T02:30:00'), ZoneOffset.ofHours(-4)],
+                [LocalDateTime.parse('2016-11-06T01:30:00'), ZoneOffset.ofHours(-4)],
             ];
         };
 
@@ -63,7 +63,7 @@ describe('CurrentStandardZoneEasternTime', () => {
                 // gap
                 [LocalDateTime.parse('2016-03-13T02:30:00'), ZoneOffset.ofHours(-5), false],
                 // overlap
-                [LocalDateTime.parse('2016-11-06T02:30:00'), ZoneOffset.ofHours(-4), true],
+                [LocalDateTime.parse('2016-11-06T01:30:00'), ZoneOffset.ofHours(-4), true],
             ];
         };
 
@@ -79,8 +79,8 @@ describe('CurrentStandardZoneEasternTime', () => {
                [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
                [LocalDateTime.parse('2016-03-13T02:30:00'),
                    ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-13T02:00:00'), ZoneOffset.ofHours(-5), ZoneOffset.ofHours(-4)), true, false],
-               [LocalDateTime.parse('2016-11-06T02:30:00'),
-                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-11-06T02:00:00'), ZoneOffset.ofHours(-4), ZoneOffset.ofHours(-5)), false, true],
+               [LocalDateTime.parse('2016-11-06T01:30:00'),
+                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-11-06T01:00:00'), ZoneOffset.ofHours(-4), ZoneOffset.ofHours(-5)), false, true],
                [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
         ];
 
