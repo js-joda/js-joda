@@ -741,7 +741,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
-/* TODO iana tzdb
     describe('withEarlierOffsetAtOverlap()', () => {
 
         it('test_withEarlierOffsetAtOverlap_notAtOverlap', () => {
@@ -764,9 +763,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-*/
 
-/* TODO iana tzdb
     describe('withLaterOffsetAtOverlap()', () => {
 
         it('test_withLaterOffsetAtOverlap_notAtOverlap', () => {
@@ -789,7 +786,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-*/
 
     describe('withZoneSameLocal(ZoneId)', () => {
 

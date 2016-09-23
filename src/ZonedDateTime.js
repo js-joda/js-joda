@@ -734,18 +734,16 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {ZonedDateTime} a {@code ZonedDateTime} based on this date-time with the earlier offset, not null
      */
-/* TODO implement for iana tzdb
     withEarlierOffsetAtOverlap() {
         var trans = this._zone.rules().transition(this._dateTime);
         if (trans != null && trans.isOverlap()) {
             var earlierOffset = trans.offsetBefore();
-            if (earlierOffset.equals(offset) === false) {
+            if (earlierOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, earlierOffset, this._zone);
             }
         }
         return this;
     }
-*/
 
     /**
      * Returns a copy of this date-time changing the zone offset to the
@@ -763,18 +761,16 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {ZonedDateTime} a {@code ZonedDateTime} based on this date-time with the later offset, not null
      */
-/* TODO implement for iana tzdb
     withLaterOffsetAtOverlap() {
-        var trans = zone().rules().transition(this.toLocalDateTime());
+        var trans = this._zone.rules().transition(this.toLocalDateTime());
         if (trans != null) {
             var laterOffset = trans.offsetAfter();
-            if (laterOffset.equals(offset) === false) {
+            if (laterOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, laterOffset, this._zone);
             }
         }
         return this;
     }
-*/
 
     //-----------------------------------------------------------------------
     /**
