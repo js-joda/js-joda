@@ -30,6 +30,7 @@ describe('ZonedDateTime', () => {
 
     const SYSTEM_DEFAULT_ZONE = new SystemDefaultZoneId();
     const FIXED_ZONE_01 = new ZoneOffset.ofHours(1);
+    const FIXED_ZONE_02 = new ZoneOffset.ofHours(2);
     const FIXED_ZONE_06 = new ZoneOffset.ofHours(6);
     const EUROPE_BERLIN = new CurrentStandardZoneCentralEuropeanTime();
     const AMERICA_NEW_YORCK = new CurrentStandardZoneEasternTime();
@@ -138,7 +139,7 @@ describe('ZonedDateTime', () => {
 
     });
 
-    describe('until()', () => {
+    describe('until() with units', () => {
 
         function provider_until() {
             return [
@@ -256,4 +257,53 @@ describe('ZonedDateTime', () => {
 
     });
 
+    describe('until() with days', ()=>{
+
+        function data_plusDays(){
+            return [
+                // normal
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    0, zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    0, zoneDateTimeOfStrict(2008, 7, 1, 23, 30, 58, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    1, zoneDateTimeOfStrict(2008, 7, 1, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    -1, zoneDateTimeOfStrict(2008, 6, 29, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                // skip over gap
+                [zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 3, 31, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                [zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    -1, zoneDateTimeOfStrict(2008, 3, 29, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // land in gap
+                [zoneDateTimeOfStrict(2008, 3, 29, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                [zoneDateTimeOfStrict(2008, 3, 31, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                     0, zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                // skip over overlap
+                [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 10, 27, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                [zoneDateTimeOfStrict(2008, 10, 25, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // land in overlap
+                [zoneDateTimeOfStrict(2008, 10, 25, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                [zoneDateTimeOfStrict(2008, 10, 27, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                    -1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
+            ];
+        }
+
+        it('should return expected days', () => {
+            dataProviderTest(data_plusDays, (start, expectedDays, end) => {
+                expect(start.until(end, ChronoUnit.DAYS)).to.equal(expectedDays);
+            });
+        });
+
+    });
+
 });
+
+function zoneDateTimeOfStrict(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
+    return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
+}
+
