@@ -293,9 +293,10 @@ describe('ZonedDateTime', () => {
             ];
         }
 
-        it('should return expected days', () => {
+        it('should calculate the distance for date based days unit', () => {
             dataProviderTest(data_plusDays, (start, expectedDays, end) => {
                 expect(start.until(end, ChronoUnit.DAYS)).to.equal(expectedDays);
+                expect(end.until(start, ChronoUnit.DAYS)).to.equal(-1 * expectedDays);
             });
         });
 
