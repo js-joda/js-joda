@@ -139,7 +139,7 @@ describe('ZonedDateTime', () => {
 
     });
 
-    describe('until() with units', () => {
+    describe('until() with units in fixed zone', () => {
 
         function provider_until() {
             return [
@@ -257,7 +257,7 @@ describe('ZonedDateTime', () => {
 
     });
 
-    describe('until() with days', ()=>{
+    describe('until() date based distance in same zone', ()=>{
 
         function data_plusDays(){
             return [
@@ -293,7 +293,7 @@ describe('ZonedDateTime', () => {
             ];
         }
 
-        it('should calculate the distance for date based days unit', () => {
+        it('should calculate the distance in days unit', () => {
             dataProviderTest(data_plusDays, (start, expectedDays, end) => {
                 expect(start.until(end, ChronoUnit.DAYS)).to.equal(expectedDays);
                 expect(end.until(start, ChronoUnit.DAYS)).to.equal(-1 * expectedDays);
@@ -302,6 +302,43 @@ describe('ZonedDateTime', () => {
 
     });
 
+    describe('until() time based distance', () => {
+
+        function data_plusTime(){
+            return [
+                // normal
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    0,  zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    1,  zoneDateTimeOfStrict(2008, 7, 1, 0, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                    -1, zoneDateTimeOfStrict(2008, 6, 30, 22, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                // gap
+                // [zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                //     1,  zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                // [zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                //     -1, zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // overlap
+                [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                // [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                //     2, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                //     3, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // [zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                //     1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                // [zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                //     2, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
+            ];
+        }
+
+        it('should calculate distance in hours unit', () => {
+            dataProviderTest(data_plusTime, (start, expectedHours, end) => {
+                expect(start.until(end, ChronoUnit.HOURS)).to.equal(expectedHours);
+                expect(end.until(start, ChronoUnit.HOURS)).to.equal(-1 * expectedHours);
+            });
+        });
+    });
 });
 
 function zoneDateTimeOfStrict(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
