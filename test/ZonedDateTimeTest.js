@@ -29,6 +29,7 @@ describe('ZonedDateTime', () => {
     const LOCAL_DATE_IN_WINTER = LocalDateTime.of(2016, 12, 21, 11, 30, 59, 500);
 
     const SYSTEM_DEFAULT_ZONE = new SystemDefaultZoneId();
+    const FIXED_ZONE_00 = new ZoneOffset.ofHours(0);
     const FIXED_ZONE_01 = new ZoneOffset.ofHours(1);
     const FIXED_ZONE_02 = new ZoneOffset.ofHours(2);
     const FIXED_ZONE_06 = new ZoneOffset.ofHours(6);
@@ -312,13 +313,20 @@ describe('ZonedDateTime', () => {
 
             function data_until_UTC_CET(){
                 return [
-                    // normal TODO define dates in strict mode
-                    [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 1, 2).atStartOfDay(EUROPE_BERLIN), 23],
-                    [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 1, 2, 1, 0).atZone(EUROPE_BERLIN), 24],
-                    [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 7, 2).atStartOfDay(EUROPE_BERLIN), 22],
-                    [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 1, 0).atZone(EUROPE_BERLIN), 23],
-                    [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 2, 0).atZone(EUROPE_BERLIN), 24],
-                    [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 3, 0).atZone(EUROPE_BERLIN), 25],
+                    // normal winter
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrictAtStartOfDay(2016, 1, 2, FIXED_ZONE_01, EUROPE_BERLIN), 23],
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrict(2016, 1, 2, 1, 0, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN), 24],
+                    // normal summer
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrictAtStartOfDay(2016, 7, 2, FIXED_ZONE_02, EUROPE_BERLIN), 22],
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrict(2016, 7, 2, 1, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 23],
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrict(2016, 7, 2, 2, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 24],
+                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeOfStrict(2016, 7, 2, 3, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 25],
 
                     // gap  TODO add cases
 
@@ -346,6 +354,10 @@ describe('ZonedDateTime', () => {
     });
 
 });
+
+function zoneDateTimeOfStrictAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
+    return ZonedDateTime.ofStrict(LocalDate.of(year, month, dayOfMonth).atStartOfDay(), offset, zoneId);
+}
 
 function zoneDateTimeOfStrict(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
     return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
