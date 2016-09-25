@@ -33,6 +33,8 @@ describe('ZonedDateTime', () => {
     const FIXED_ZONE_01 = new ZoneOffset.ofHours(1);
     const FIXED_ZONE_02 = new ZoneOffset.ofHours(2);
     const FIXED_ZONE_06 = new ZoneOffset.ofHours(6);
+    const FIXED_ZONE_M04 = new ZoneOffset.ofHours(-4);
+    const FIXED_ZONE_M05 = new ZoneOffset.ofHours(-5);
     const EUROPE_BERLIN = new CurrentStandardZoneCentralEuropeanTime();
     const AMERICA_NEW_YORCK = new CurrentStandardZoneEasternTime();
 
@@ -311,13 +313,14 @@ describe('ZonedDateTime', () => {
 
         describe('distance in different zones', () => {
 
-            function data_until_UTC_CET(){
+            function data_until_Zone1_Zone2(){
                 return [
                     // normal winter
                     [zoneDateTimeAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTimeAtStartOfDay(2016, 1, 2, FIXED_ZONE_01, EUROPE_BERLIN), 23],
                     [zoneDateTimeAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTime(2016, 1, 2, 1, 0, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN), 24],
+
                     // normal summer
                     [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTimeAtStartOfDay(2016, 7, 2, FIXED_ZONE_02, EUROPE_BERLIN), 22],
@@ -328,25 +331,38 @@ describe('ZonedDateTime', () => {
                     [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTime(2016, 7, 2, 3, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 25],
 
-                    // gap  TODO add cases
+                    // gap
+                    [zoneDateTimeAtStartOfDay(2016, 3, 27, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 22],
+                    [zoneDateTimeAtStartOfDay(2016, 3, 27, FIXED_ZONE_M04, AMERICA_NEW_YORCK),
+                        zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 18],
+                    [zoneDateTimeAtStartOfDay(2016, 3, 1, FIXED_ZONE_M05, AMERICA_NEW_YORCK),
+                        zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 26*24 + 17],
 
-                    // overlap TODO add cases
+                    // overlap
+                    [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeAtStartOfDay(2016, 10, 31, FIXED_ZONE_01, EUROPE_BERLIN), 23],
+                    [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_M04, AMERICA_NEW_YORCK),
+                        zoneDateTimeAtStartOfDay(2016, 10, 31, FIXED_ZONE_01, EUROPE_BERLIN), 19],
+
+                    [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_02, EUROPE_BERLIN),
+                        zoneDateTimeAtStartOfDay(2016, 11, 30, FIXED_ZONE_M05, AMERICA_NEW_YORCK), 31*24 + 7],
 
                 ];
             }
 
             it('should caclulate distance in hours', ()=> {
-                dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
-                    assertEquals(utc.until(cet, ChronoUnit.HOURS),  expectedHours);
-                    assertEquals(cet.until(utc, ChronoUnit.HOURS), -expectedHours);
+                dataProviderTest(data_until_Zone1_Zone2, (zone1, zone2, expectedHours) => {
+                    assertEquals(zone1.until(zone2, ChronoUnit.HOURS),  expectedHours);
+                    assertEquals(zone2.until(zone1, ChronoUnit.HOURS), -expectedHours);
                 });
             });
 
             it('should caclulate distance in days', ()=> {
-                dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
+                dataProviderTest(data_until_Zone1_Zone2, (zone1, zone2, expectedHours) => {
                     var expectedDays = Math.floor(expectedHours / 24);
-                    assertEquals(utc.until(cet, ChronoUnit.DAYS), expectedDays);
-                    assertEquals(cet.until(utc, ChronoUnit.DAYS), MathUtil.safeZero(-expectedDays));
+                    assertEquals(zone1.until(zone2, ChronoUnit.DAYS), expectedDays);
+                    assertEquals(zone2.until(zone1, ChronoUnit.DAYS), MathUtil.safeZero(-expectedDays));
                 });
             });
 
