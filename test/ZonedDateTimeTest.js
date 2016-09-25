@@ -231,34 +231,34 @@ describe('ZonedDateTime', () => {
             function data_plusDays(){
                 return [
                     // normal
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        0, zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        0, zoneDateTimeOfStrict(2008, 7, 1, 23, 30, 58, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        1, zoneDateTimeOfStrict(2008, 7, 1, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        -1, zoneDateTimeOfStrict(2008, 6, 29, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        0, zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        0, zoneDateTime(2008, 7, 1, 23, 30, 58, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        1, zoneDateTime(2008, 7, 1, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        -1, zoneDateTime(2008, 6, 29, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
                     // skip over gap
-                    [zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 3, 31, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
-                    [zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                        -1, zoneDateTimeOfStrict(2008, 3, 29, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 3, 31, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                        -1, zoneDateTime(2008, 3, 29, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
                     // land in gap
-                    [zoneDateTimeOfStrict(2008, 3, 29, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
-                    [zoneDateTimeOfStrict(2008, 3, 31, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                         0, zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 3, 29, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 3, 31, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                         0, zoneDateTime(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
                     // skip over overlap
-                    [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 10, 27, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
-                    [zoneDateTimeOfStrict(2008, 10, 25, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 10, 27, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 10, 25, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
                     // land in overlap
-                    [zoneDateTimeOfStrict(2008, 10, 25, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
-                    [zoneDateTimeOfStrict(2008, 10, 27, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
-                        -1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
+                    [zoneDateTime(2008, 10, 25, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    [zoneDateTime(2008, 10, 27, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                        -1, zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
                 ];
             }
 
@@ -276,28 +276,28 @@ describe('ZonedDateTime', () => {
             function data_plusTime(){
                 return [
                     // normal
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        0,  zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        1,  zoneDateTimeOfStrict(2008, 7, 1, 0, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
-                    [zoneDateTimeOfStrict(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
-                        -1, zoneDateTimeOfStrict(2008, 6, 30, 22, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        0,  zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        1,  zoneDateTime(2008, 7, 1, 0, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
+                    [zoneDateTime(2008, 6, 30, 23, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01),
+                        -1, zoneDateTime(2008, 6, 30, 22, 30, 59, 0, FIXED_ZONE_01, FIXED_ZONE_01)],
                     // gap  TODO fix it
-                    // [zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
-                    //     1,  zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
-                    // [zoneDateTimeOfStrict(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                    //     -1, zoneDateTimeOfStrict(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN),
+                    //     1,  zoneDateTime(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 3, 30, 3, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    //     -1, zoneDateTime(2008, 3, 30, 1, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
                     // overlap TODO fix it
-                    [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                        1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
-                    // [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                    //     2, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
-                    // [zoneDateTimeOfStrict(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                    //     3, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
-                    // [zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                    //     1, zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
-                    // [zoneDateTimeOfStrict(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
-                    //     2, zoneDateTimeOfStrict(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
+                    [zoneDateTime(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                        1, zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    //     2, zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 10, 26, 1, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    //     3, zoneDateTime(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    //     1, zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)],
+                    // [zoneDateTime(2008, 10, 26, 2, 30, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN),
+                    //     2, zoneDateTime(2008, 10, 26, 3, 30, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN)]
                 ];
             }
 
@@ -314,19 +314,19 @@ describe('ZonedDateTime', () => {
             function data_until_UTC_CET(){
                 return [
                     // normal winter
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrictAtStartOfDay(2016, 1, 2, FIXED_ZONE_01, EUROPE_BERLIN), 23],
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrict(2016, 1, 2, 1, 0, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN), 24],
+                    [zoneDateTimeAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeAtStartOfDay(2016, 1, 2, FIXED_ZONE_01, EUROPE_BERLIN), 23],
+                    [zoneDateTimeAtStartOfDay(2016, 1, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTime(2016, 1, 2, 1, 0, 0, 0, FIXED_ZONE_01, EUROPE_BERLIN), 24],
                     // normal summer
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrictAtStartOfDay(2016, 7, 2, FIXED_ZONE_02, EUROPE_BERLIN), 22],
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrict(2016, 7, 2, 1, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 23],
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrict(2016, 7, 2, 2, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 24],
-                    [zoneDateTimeOfStrictAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
-                        zoneDateTimeOfStrict(2016, 7, 2, 3, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 25],
+                    [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTimeAtStartOfDay(2016, 7, 2, FIXED_ZONE_02, EUROPE_BERLIN), 22],
+                    [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTime(2016, 7, 2, 1, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 23],
+                    [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTime(2016, 7, 2, 2, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 24],
+                    [zoneDateTimeAtStartOfDay(2016, 7, 1, FIXED_ZONE_00, ZoneOffset.UTC),
+                        zoneDateTime(2016, 7, 2, 3, 0, 0, 0, FIXED_ZONE_02, EUROPE_BERLIN), 25],
 
                     // gap  TODO add cases
 
@@ -355,11 +355,11 @@ describe('ZonedDateTime', () => {
 
 });
 
-function zoneDateTimeOfStrictAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
+function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
     return ZonedDateTime.ofStrict(LocalDate.of(year, month, dayOfMonth).atStartOfDay(), offset, zoneId);
 }
 
-function zoneDateTimeOfStrict(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
+function zoneDateTime(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset, zoneId) {
     return ZonedDateTime.ofStrict(LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond), offset, zoneId);
 }
 
