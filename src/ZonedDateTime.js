@@ -1925,13 +1925,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (unit.isDateBased()) {
                 return this._dateTime.until(end._dateTime, unit);
             } else {
-                // TODO check with iana tzdb, this might be wrong   
-                return this._dateTime.until(end._dateTime, unit);
-                // threeten says
-                // return toOffsetDateTime().until(end.toOffsetDateTime(), unit)
-                // OffsetDateTime.until ...
-                // end = end.withOffsetSameInstant(offset);
-                // return dateTime.until(end.dateTime, unit);
+                let difference = this._offset.totalSeconds() - end._offset.totalSeconds();
+                let adjustedEnd = end._dateTime.plusSeconds(difference);
+                return this._dateTime.until(adjustedEnd, unit);
             }
         }
         return unit.between(this, end);
