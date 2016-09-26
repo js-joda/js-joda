@@ -185,14 +185,6 @@ function yearOfInstant(instant){
     return LocalDate.ofInstant(instant, ZoneOffset.UTC).year();
 }
 
-function lastSundayOfMonthAtStartOfDay(year, month){
-    return LocalDate
-        .of(year, 1, 1)
-        .withMonth(month)
-        .with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY))
-        .atStartOfDay();
-}
-
 export class CurrentStandardZoneCentralEuropeanTime extends CurrentStandardZone{
     constructor(){
         super(
@@ -200,33 +192,29 @@ export class CurrentStandardZoneCentralEuropeanTime extends CurrentStandardZone{
             ZoneOffset.ofHours(1),
             ZoneOffset.ofHours(2),
             (year) => {
-                return lastSundayOfMonthAtStartOfDay(year, Month.MARCH).plusHours(2);
+                return this.lastSundayOfMonthAtStartOfDay(year, Month.MARCH).plusHours(2);
             },
             (year) => {
-                return lastSundayOfMonthAtStartOfDay(year, Month.OCTOBER).plusHours(3);
+                return this.lastSundayOfMonthAtStartOfDay(year, Month.OCTOBER).plusHours(3);
             }
         );
     }
-}
 
-function secondSundayOfMarchAtStartOfDay(year){
-    return LocalDate
-        .of(year, 1, 1)
-        .withMonth(Month.MARCH)
-        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
-        .with(TemporalAdjusters.next(DayOfWeek.SUNDAY))
-        .atStartOfDay()
-        .plusHours(2);
+    _validate(year){
+        if (year < 1996 || year > 2016) {
+            throw Error(`year ${year} not supported by pseudo berlin time`);
+        }
+    }
 
-}
+    lastSundayOfMonthAtStartOfDay(year, month){
+        this._validate(year);
+        return LocalDate
+            .of(year, 1, 1)
+            .withMonth(month)
+            .with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY))
+            .atStartOfDay();
+    }
 
-function firstSundayOfNovemberAtStartOfDay(year){
-    return LocalDate
-        .of(year, 1, 1)
-        .withMonth(Month.NOVEMBER)
-        .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
-        .atStartOfDay()
-        .plusHours(2);
 }
 
 export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
@@ -235,9 +223,38 @@ export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
             'Pseudo/America/New_York',
             ZoneOffset.ofHours(-5),
             ZoneOffset.ofHours(-4),
-            secondSundayOfMarchAtStartOfDay,
-            firstSundayOfNovemberAtStartOfDay
+            (year) => this.secondSundayOfMarchAtStartOfDay(year),
+            (year) => this.firstSundayOfNovemberAtStartOfDay(year)
         );
     }
+
+    _validate(year){
+        if (year < 2007 || year > 2016) {
+            throw Error(`year ${year} not supported by pseudo berlin time`);
+        }
+    }
+
+    secondSundayOfMarchAtStartOfDay(year){
+        this._validate(year);
+        return LocalDate
+            .of(year, 1, 1)
+            .withMonth(Month.MARCH)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+            .with(TemporalAdjusters.next(DayOfWeek.SUNDAY))
+            .atStartOfDay()
+            .plusHours(2);
+
+    }
+
+    firstSundayOfNovemberAtStartOfDay(year){
+        this._validate(year);
+        return LocalDate
+            .of(year, 1, 1)
+            .withMonth(Month.NOVEMBER)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
+            .atStartOfDay()
+            .plusHours(2);
+    }
+
 }
 

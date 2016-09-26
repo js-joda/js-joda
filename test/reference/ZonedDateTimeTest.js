@@ -1634,8 +1634,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         var diff = isCoverageTestRunner() || isBrowserTestRunner ? 179 : 7;
         it('test_toEpochSecond_afterEpoch', () => {
-            var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-            for (var i = 0; i < 100000; i+=diff) {
+            var ldt = LocalDateTime.of(2016, 1, 1, 0, 0).plusHours(1);
+            for (var i = 0 + 1451606400; i < 100000 + 1451606400; i+=diff) {
                 var a = ZonedDateTime.of(ldt, ZONE_PARIS);
                 assertEquals(a.toEpochSecond(), i);
                 ldt = ldt.plusSeconds(diff);
@@ -1645,7 +1645,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_toEpochSecond_beforeEpoch', () => {
             var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
             for (var i = 0; i < 100000; i+=diff) {
-                var a = ZonedDateTime.of(ldt, ZONE_PARIS);
+                var a = ZonedDateTime.of(ldt, ZONE_0100);
                 assertEquals(a.toEpochSecond(), MathUtil.safeZero(-i));
                 ldt = ldt.minusSeconds(diff);
             }
