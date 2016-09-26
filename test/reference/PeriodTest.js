@@ -215,17 +215,17 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         function data_parse() {
             return [
-                //['P0D', Period.ZERO],
-                //['P0W', Period.ZERO],
-                //['P0M', Period.ZERO],
-                //['P0Y', Period.ZERO],
-                //
-                //['P0Y0D', Period.ZERO],
-                //['P0Y0W', Period.ZERO],
-                //['P0Y0M', Period.ZERO],
-                //['P0M0D', Period.ZERO],
-                //['P0M0W', Period.ZERO],
-                //['P0W0D', Period.ZERO],
+                ['P0D', Period.ZERO],
+                ['P0W', Period.ZERO],
+                ['P0M', Period.ZERO],
+                ['P0Y', Period.ZERO],
+
+                ['P0Y0D', Period.ZERO],
+                ['P0Y0W', Period.ZERO],
+                ['P0Y0M', Period.ZERO],
+                ['P0M0D', Period.ZERO],
+                ['P0M0W', Period.ZERO],
+                ['P0W0D', Period.ZERO],
 
                 ['P1D', Period.ofDays(1)],
                 ['P2D', Period.ofDays(2)],

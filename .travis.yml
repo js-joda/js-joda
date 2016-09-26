@@ -16,7 +16,7 @@ script:
   - npm run test-ts-definitions
   - npm run build-dist
   - npm run test
-  - npm run test-browser -- --browsers Firefox,PhantomJS
+  - npm run test-browser -- --browsers Firefox,PhantomJS --browserNoActivityTimeout 20000
 #  run build-esdoc and coverage only for "node" (latest) version
   - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run build-esdoc; fi
   - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run test-coverage; fi
