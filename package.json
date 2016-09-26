@@ -49,7 +49,7 @@
     "karma-chai-plugins": "^0.8.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^1.1.1",
+    "karma-mocha": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
