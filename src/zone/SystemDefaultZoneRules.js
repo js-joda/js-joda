@@ -5,6 +5,7 @@
 
 import {ZoneRules} from './ZoneRules';
 import {ZoneOffset} from '../ZoneOffset';
+import {DateTimeException} from '../errors';
 
 export class SystemDefaultZoneRules extends ZoneRules {
 
@@ -55,20 +56,41 @@ export class SystemDefaultZoneRules extends ZoneRules {
 
     /**
      *
-     * @param {LocalDateTime} localDateTime
-     * @return {ZoneOffsetTransition} null because system default time will never return a a time in transition
-     */
-    transition(localDateTime){
-        return null;
-    }
-
-    /**
-     *
      * @param localDateTime
      * @return {ZoneOffset[]}
      */
     validOffsets(localDateTime){
         return [this.offsetOfLocalDateTime(localDateTime)];
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    transition(){
+        this._throwNotSupported();
+    }
+
+    /**
+     *
+     * @param instant
+     * @return {ZoneOffset}
+     */
+    standardOffset(instant){
+        return this.offsetOfInstant(instant)
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    daylightSavings(){
+        this._throwNotSupported();
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    isDaylightSavings(){
+        this._throwNotSupported();
     }
 
     /**
@@ -81,6 +103,40 @@ export class SystemDefaultZoneRules extends ZoneRules {
         return this.offsetOfLocalDateTime(dateTime).equals(offset);
     }
 
+    /**
+     * @throws DateTimeException not supported
+     */
+    nextTransition(){
+        this._throwNotSupported();
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    previousTransition(){
+        this._throwNotSupported();
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    transitions(){
+        this._throwNotSupported();
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    transitionRules(){
+        this._throwNotSupported();
+    }
+
+    /**
+     * @throws DateTimeException not supported
+     */
+    _throwNotSupported(){
+        throw new DateTimeException('not supported operation');
+    }
     //-----------------------------------------------------------------------
     /**
      *
