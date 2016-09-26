@@ -31,21 +31,22 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {CurrentStandardZoneEuropeBerlin} from '../zone/CurrentStandardZone';
+import {CurrentStandardZoneEuropeBerlin, CurrentStandardZoneAsiaGaza} from '../zone/CurrentStandardZone';
 
 import '../_init';
 
 describe('org.threeten.bp.TestLocalDateTime', () => {
 
-    var OFFSET_PONE;
-    var OFFSET_PTWO;
-    var OFFSET_MTWO;
-    var EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
-    var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
-    var MAX_DATE_TIME;
-    var MIN_DATE_TIME;
-    var MAX_INSTANT;
-    var MIN_INSTANT;
+    let OFFSET_PONE;
+    let OFFSET_PTWO;
+    let OFFSET_MTWO;
+    let EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
+    let ZONE_GAZA = new CurrentStandardZoneAsiaGaza();
+    let TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
+    let MAX_DATE_TIME;
+    let MIN_DATE_TIME;
+    let MAX_INSTANT;
+    let MIN_INSTANT;
 
     beforeEach('setUp', () => {
         OFFSET_PONE = ZoneOffset.ofHours(1);
@@ -2731,7 +2732,6 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
         });
 
-        /* TODO iana tzdb
         it('test_atZone_dstGap', () => {
             var t = LocalDateTime.of(2007, 4, 1, 0, 0);
             assertEquals(t.atZone(ZONE_GAZA),
@@ -2740,10 +2740,9 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_atZone_dstOverlap', () => {
             var t = LocalDateTime.of(2007, 10, 28, 2, 30);
-            assertEquals(t.atZone(ZONE_PARIS),
-                ZonedDateTime.ofStrict(LocalDateTime.of(2007, 10, 28, 2, 30), OFFSET_PTWO, ZONE_PARIS));
+            assertEquals(t.atZone(EUROPE_BERLIN),
+                ZonedDateTime.ofStrict(LocalDateTime.of(2007, 10, 28, 2, 30), OFFSET_PTWO, EUROPE_BERLIN));
         });
-        */
 
         it('test_atZone_nullTimeZone', () => {
             expect(() => {
