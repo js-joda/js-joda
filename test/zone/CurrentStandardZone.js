@@ -185,7 +185,7 @@ function yearOfInstant(instant){
     return LocalDate.ofInstant(instant, ZoneOffset.UTC).year();
 }
 
-export class CurrentStandardZoneCentralEuropeanTime extends CurrentStandardZone{
+export class CurrentStandardZoneEuropeBerlin extends CurrentStandardZone{
     constructor(){
         super(
             'Pseudo/Europe/Berlin',
@@ -217,20 +217,20 @@ export class CurrentStandardZoneCentralEuropeanTime extends CurrentStandardZone{
 
 }
 
-export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
+export class CurrentStandardZoneAmericaNew_York extends CurrentStandardZone{
     constructor(){
         super(
             'Pseudo/America/New_York',
             ZoneOffset.ofHours(-5),
             ZoneOffset.ofHours(-4),
-            (year) => this.secondSundayOfMarchAtStartOfDay(year),
-            (year) => this.firstSundayOfNovemberAtStartOfDay(year)
+            (year) => this.secondSundayOfMarchAtStartOfDay(year).plusHours(2),
+            (year) => this.firstSundayOfNovemberAtStartOfDay(year).plusHours(2)
         );
     }
 
     _validate(year){
         if (year < 2007 || year > 2016) {
-            throw Error(`year ${year} not supported by pseudo berlin time`);
+            throw Error(`year ${year} not supported by pseudo new york time`);
         }
     }
 
@@ -241,9 +241,7 @@ export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
             .withMonth(Month.MARCH)
             .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
             .with(TemporalAdjusters.next(DayOfWeek.SUNDAY))
-            .atStartOfDay()
-            .plusHours(2);
-
+            .atStartOfDay();
     }
 
     firstSundayOfNovemberAtStartOfDay(year){
@@ -252,8 +250,10 @@ export class CurrentStandardZoneEasternTime extends CurrentStandardZone{
             .of(year, 1, 1)
             .withMonth(Month.NOVEMBER)
             .with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY))
-            .atStartOfDay()
-            .plusHours(2);
+            .atStartOfDay();
+    }
+
+}
     }
 
 }

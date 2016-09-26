@@ -7,16 +7,16 @@ import '../_init';
 
 import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 
-import {CurrentStandardZoneEasternTime} from './CurrentStandardZone';
+import {CurrentStandardZoneAmericaNew_York} from './CurrentStandardZone';
 
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
-describe('CurrentStandardZoneEasternTime', () => {
+describe('CurrentZoneAmericaNewYorkTest', () => {
 
-    const EDT_EST = new CurrentStandardZoneEasternTime();
+    const ZONE_NEW_YORK = new CurrentStandardZoneAmericaNew_York();
 
     it('test_rules_offset_of_instant', function () {
 
@@ -30,7 +30,7 @@ describe('CurrentStandardZoneEasternTime', () => {
         ];
 
         dataProviderTest(testData, (instant, offset) => {
-            assertEquals(EDT_EST.rules().offset(instant), offset);
+            assertEquals(ZONE_NEW_YORK.rules().offset(instant), offset);
         });
 
     });
@@ -49,7 +49,7 @@ describe('CurrentStandardZoneEasternTime', () => {
         };
 
         dataProviderTest(testData, (localDateTime, offset) => {
-            assertEquals(EDT_EST.rules().offset(localDateTime), offset);
+            assertEquals(ZONE_NEW_YORK.rules().offset(localDateTime), offset);
         });
 
     });
@@ -68,7 +68,7 @@ describe('CurrentStandardZoneEasternTime', () => {
         };
 
         dataProviderTest(testData, (localDateTime, offset, isValid) => {
-            assertEquals(EDT_EST.rules().isValidOffset(localDateTime, offset), isValid);
+            assertEquals(ZONE_NEW_YORK.rules().isValidOffset(localDateTime, offset), isValid);
         });
 
     });
@@ -85,10 +85,10 @@ describe('CurrentStandardZoneEasternTime', () => {
         ];
 
         dataProviderTest(testData, (localDateTime, zoneOffsetTransition, isGap, isOverlap) => {
-            assertEquals(EDT_EST.rules().transition(localDateTime), zoneOffsetTransition);
+            assertEquals(ZONE_NEW_YORK.rules().transition(localDateTime), zoneOffsetTransition);
             if (zoneOffsetTransition != null) {
-                assertEquals(EDT_EST.rules().transition(localDateTime).isGap(), isGap);
-                assertEquals(EDT_EST.rules().transition(localDateTime).isOverlap(), isOverlap);
+                assertEquals(ZONE_NEW_YORK.rules().transition(localDateTime).isGap(), isGap);
+                assertEquals(ZONE_NEW_YORK.rules().transition(localDateTime).isOverlap(), isOverlap);
             }
         });
     });

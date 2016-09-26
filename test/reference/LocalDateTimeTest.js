@@ -31,7 +31,7 @@ import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {CurrentStandardZoneCentralEuropeanTime} from '../zone/CurrentStandardZone';
+import {CurrentStandardZoneEuropeBerlin} from '../zone/CurrentStandardZone';
 
 import '../_init';
 
@@ -40,7 +40,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     var OFFSET_PONE;
     var OFFSET_PTWO;
     var OFFSET_MTWO;
-    var EUROPE_BERLIN = new CurrentStandardZoneCentralEuropeanTime();
+    var EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
     var TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
     var MAX_DATE_TIME;
     var MIN_DATE_TIME;

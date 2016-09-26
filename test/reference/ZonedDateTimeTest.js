@@ -11,7 +11,7 @@ import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {MockSimplePeriod} from './MockSimplePeriod';
-import {CurrentStandardZoneCentralEuropeanTime, CurrentStandardZoneEasternTime} from '../zone/CurrentStandardZone';
+import {CurrentStandardZoneEuropeBerlin, CurrentStandardZoneAmericaNew_York} from '../zone/CurrentStandardZone';
 
 import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
 
@@ -47,8 +47,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     var ZONE_0100 = OFFSET_0100;
     var ZONE_0200 = OFFSET_0200;
     var ZONE_M0100 = ZoneOffset.ofHours(-1);
-    var ZONE_PARIS = new CurrentStandardZoneCentralEuropeanTime();
-    var ZONE_NEW_YORK = new CurrentStandardZoneEasternTime();
+    var ZONE_PARIS = new CurrentStandardZoneEuropeBerlin();
+    var ZONE_NEW_YORK = new CurrentStandardZoneAmericaNew_York();
     var TEST_PARIS_GAP_2008_03_30_02_30;
     var TEST_PARIS_OVERLAP_2008_10_26_02_30;
     var TEST_LOCAL_2008_06_30_11_30_59_500;

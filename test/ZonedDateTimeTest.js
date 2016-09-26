@@ -17,8 +17,8 @@ import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
 
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
 
-import {CurrentStandardZoneEasternTime} from './zone/CurrentStandardZone';
-import {CurrentStandardZoneCentralEuropeanTime} from './zone/CurrentStandardZone';
+import {CurrentStandardZoneAmericaNew_York} from './zone/CurrentStandardZone';
+import {CurrentStandardZoneEuropeBerlin} from './zone/CurrentStandardZone';
 
 /**
  * js-joda tests for use cases that are missing in the treeten bp reference tests
@@ -35,8 +35,8 @@ describe('ZonedDateTime', () => {
     const FIXED_ZONE_06 = new ZoneOffset.ofHours(6);
     const FIXED_ZONE_M04 = new ZoneOffset.ofHours(-4);
     const FIXED_ZONE_M05 = new ZoneOffset.ofHours(-5);
-    const EUROPE_BERLIN = new CurrentStandardZoneCentralEuropeanTime();
-    const AMERICA_NEW_YORCK = new CurrentStandardZoneEasternTime();
+    const EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
+    const AMERICA_NEW_YORCK = new CurrentStandardZoneAmericaNew_York();
 
     describe('ofLocal', () => {
 

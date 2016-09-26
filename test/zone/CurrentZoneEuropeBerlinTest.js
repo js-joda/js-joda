@@ -9,16 +9,16 @@ import '../_init';
 
 import {assertEquals, dataProviderTest} from '../testUtils';
 
-import {CurrentStandardZoneCentralEuropeanTime} from './CurrentStandardZone';
+import {CurrentStandardZoneEuropeBerlin} from './CurrentStandardZone';
 
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
 
-describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
+describe('CurrentZoneEuropeBerlinTest', () => {
 
-    const CEST = new CurrentStandardZoneCentralEuropeanTime();
+    const ZONE_EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
     const OFFSET_01 = ZoneOffset.ofHours(1); 
     const OFFSET_02 = ZoneOffset.ofHours(2);
 
@@ -34,7 +34,7 @@ describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
         ];
 
         dataProviderTest(testData, (instant, offset) => {
-            assertEquals(CEST.rules().offset(instant), offset);
+            assertEquals(ZONE_EUROPE_BERLIN.rules().offset(instant), offset);
         });
 
     });
@@ -61,7 +61,7 @@ describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
         };
 
         dataProviderTest(testData, (localDateTime, offset) => {
-            assertEquals(CEST.rules().offset(localDateTime), offset);
+            assertEquals(ZONE_EUROPE_BERLIN.rules().offset(localDateTime), offset);
         });
     });
 
@@ -103,7 +103,7 @@ describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
         };
 
         dataProviderTest(testData, (localDateTime, offset, isValid) => {
-            assertEquals(CEST.rules().isValidOffset(localDateTime, offset), isValid);
+            assertEquals(ZONE_EUROPE_BERLIN.rules().isValidOffset(localDateTime, offset), isValid);
         });
     });
 
@@ -121,7 +121,7 @@ describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
         ];
 
         dataProviderTest(testData, (localDateTime, validOffsets) => {
-            expect(CEST.rules().validOffsets(localDateTime)).to.deep.have.members(validOffsets);
+            expect(ZONE_EUROPE_BERLIN.rules().validOffsets(localDateTime)).to.deep.have.members(validOffsets);
         });
     });
 
@@ -137,10 +137,10 @@ describe('CurrentStandardZoneCentralEuropeanTimeTest', () => {
         ];
 
         dataProviderTest(testData, (localDateTime, zoneOffsetTransition, isGap, isOverlap) => {
-            assertEquals(CEST.rules().transition(localDateTime), zoneOffsetTransition);
+            assertEquals(ZONE_EUROPE_BERLIN.rules().transition(localDateTime), zoneOffsetTransition);
             if (zoneOffsetTransition != null) {
-                assertEquals(CEST.rules().transition(localDateTime).isGap(), isGap);
-                assertEquals(CEST.rules().transition(localDateTime).isOverlap(), isOverlap);
+                assertEquals(ZONE_EUROPE_BERLIN.rules().transition(localDateTime).isGap(), isGap);
+                assertEquals(ZONE_EUROPE_BERLIN.rules().transition(localDateTime).isOverlap(), isOverlap);
             }
         });
     });
