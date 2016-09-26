@@ -254,6 +254,30 @@ export class CurrentStandardZoneAmericaNew_York extends CurrentStandardZone{
     }
 
 }
+
+export class CurrentStandardZoneAsiaGaza extends CurrentStandardZone{
+    constructor(){
+        super(
+            'Pseudo/Asia/Gaza',
+            ZoneOffset.ofHours(2),
+            ZoneOffset.ofHours(3),
+            (year) => this.winterSummerTransition(year),
+            (year) => this.summerWinterTransition(year)
+        );
+    }
+
+    winterSummerTransition(year){
+        switch (year) {
+            case 2007: return LocalDate.of(2007, 4, 1).atStartOfDay();
+        }
+        throw Error(`year ${year} not supported by pseudo gaza time`);
+    }
+
+    summerWinterTransition(year){
+        switch (year) {
+            case 2007: return LocalDate.of(2007, 9, 13).atStartOfDay();
+        }
+        throw Error(`year ${year} not supported by pseudo gaza time`);
     }
 
 }
