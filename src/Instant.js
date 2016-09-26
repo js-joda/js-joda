@@ -15,6 +15,7 @@ import {Temporal} from './temporal/Temporal';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {TemporalQueries} from './temporal/TemporalQueries';
+import {TemporalUnit} from './temporal/TemporalUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
@@ -582,6 +583,9 @@ export class Instant extends Temporal {
      * @throws ArithmeticException
      */
     plus2(amountToAdd, unit) {
+        requireNonNull(amountToAdd, 'amountToAdd');
+        requireNonNull(unit, 'unit');
+        requireInstance(unit, TemporalUnit);
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
@@ -841,6 +845,8 @@ export class Instant extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     until(endExclusive, unit) {
+        requireNonNull(endExclusive, 'endExclusive');
+        requireNonNull(unit, 'unit');
         let end = Instant.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -925,24 +931,24 @@ export class Instant extends Temporal {
     //}
 
     //-----------------------------------------------------------------------
-     /**
-      * Converts this instant to the number of milliseconds from the epoch
-      * of 1970-01-01T00:00:00Z.
-      * <p>
-      * If this instant represents a point on the time-line too far in the future
-      * or past to fit in a {@code long} milliseconds, then an exception is thrown.
-      * <p>
-      * If this instant has greater than millisecond precision, then the conversion
-      * will drop any excess precision information as though the amount in nanoseconds
-      * was subject to integer division by one million.
-      *
-      * @return {number} the number of milliseconds since the epoch of 1970-01-01T00:00:00Z
-      * @throws ArithmeticException if numeric overflow occurs
-      */
-     toEpochMilli() {
-         var millis = MathUtil.safeMultiply(this._seconds, 1000);
-         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
-     }
+    /**
+     * Converts this instant to the number of milliseconds from the epoch
+     * of 1970-01-01T00:00:00Z.
+     * <p>
+     * If this instant represents a point on the time-line too far in the future
+     * or past to fit in a {@code long} milliseconds, then an exception is thrown.
+     * <p>
+     * If this instant has greater than millisecond precision, then the conversion
+     * will drop any excess precision information as though the amount in nanoseconds
+     * was subject to integer division by one million.
+     *
+     * @return {number} the number of milliseconds since the epoch of 1970-01-01T00:00:00Z
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    toEpochMilli() {
+        var millis = MathUtil.safeMultiply(this._seconds, 1000);
+        return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
+    }
 
     //-----------------------------------------------------------------------
     /**
