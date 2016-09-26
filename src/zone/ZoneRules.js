@@ -6,6 +6,7 @@
 
 import {requireNonNull, abstractMethodFail} from '../assert';
 
+import {Duration} from '../Duration';
 import {Instant} from '../Instant';
 
 export class ZoneRules {
@@ -364,12 +365,24 @@ class Fixed extends ZoneRules{
         return this._offset;
     }
 
-    transition(localDateTime){
+    validOffsets(){
+        return [this._offset];
+    }
+
+    transition(){
         return null;
     }
 
-    validOffsets(localDateTime){
-        return [this._offset];
+    standardOffset(){
+        return this._offset;
+    }
+
+    daylightSavings(){
+        return Duration.ZERO;
+    }
+
+    isDaylightSavings(){
+        return false;
     }
 
     /**
@@ -380,6 +393,22 @@ class Fixed extends ZoneRules{
      */
     isValidOffset(dateTime, offset) {
         return this._offset.equals(offset);
+    }
+
+    nextTransition(){
+        return null;
+    }
+
+    previousTransition(){
+        return null;
+    }
+
+    transitions(){
+        return [];
+    }
+
+    transitionRules(){
+        return [];
     }
 
     //-----------------------------------------------------------------------
