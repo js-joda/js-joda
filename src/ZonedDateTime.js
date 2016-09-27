@@ -408,7 +408,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @param {ZoneId} zone - the time-zone, not null
      * @return {ZonedDateTime} the zoned date-time, not null
      */
-    static _ofLenient(localDateTime, offset, zone) {
+    static ofLenient(localDateTime, offset, zone) {
         requireNonNull(localDateTime, 'localDateTime');
         requireNonNull(offset, 'offset');
         requireNonNull(zone, 'zone');
