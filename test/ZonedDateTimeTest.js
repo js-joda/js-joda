@@ -8,20 +8,24 @@ import {assertEquals, dataProviderTest} from './testUtils';
 
 import {expect} from 'chai';
 
+import {DateTimeException, IllegalArgumentException} from '../src/errors';
+
 import {LocalDate} from '../src/LocalDate';
 import {LocalDateTime} from '../src/LocalDateTime';
+import {LocalTime} from '../src/LocalTime';
 import {MathUtil} from '../src/MathUtil';
 import {ZonedDateTime} from '../src/ZonedDateTime';
 import {ZoneOffset} from '../src/ZoneOffset';
 import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
 
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
+import {TemporalQueries} from '../src/temporal/TemporalQueries';
 
 import {CurrentStandardZoneAmericaNew_York} from './zone/CurrentStandardZone';
 import {CurrentStandardZoneEuropeBerlin} from './zone/CurrentStandardZone';
 
 /**
- * js-joda tests for use cases that are missing in the treeten bp reference tests
+ * js-joda tests for use cases that are not covered in the treeten bp reference tests
  */
 describe('ZonedDateTime', () => {
 
@@ -367,6 +371,85 @@ describe('ZonedDateTime', () => {
             });
 
         });
+    });
+
+    describe('of() factories', function () {
+
+        it('of(date, time, zone)', function () {
+            let zdt = ZonedDateTime.of(LocalDate.of(2016, 9, 27), LocalTime.of(10, 0), FIXED_ZONE_00);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            assertEquals(expectedZdt, zdt);
+        });
+
+        it('of(year, month, dayOfMonth,hour, minute, second, nanoOfSecond, zone)', function () {
+            let zdt = ZonedDateTime.of(2016, 9, 27, 10, 0, 0, 0, FIXED_ZONE_00);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            assertEquals(expectedZdt, zdt);
+        });
+
+        it('ofInstant(dateTime, offset, zone)', function () {
+            let zdt = ZonedDateTime.ofInstant(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            assertEquals(expectedZdt, zdt);
+        });
+
+        describe('ofLenient(localDateTime, offset, zone)', function () {
+
+            it('should construct an invalid zoned data time instance', function () {
+                let zdt = ZonedDateTime.ofLenient(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, EUROPE_BERLIN);
+                assertEquals(LocalDateTime.of(2016, 9, 27, 10, 0), zdt.toLocalDateTime());
+                assertEquals(FIXED_ZONE_00, zdt.offset());
+                assertEquals(EUROPE_BERLIN, zdt.zone());
+            });
+
+            it('should fail for not equal zone offsets', function () {
+                expect(()=>{
+                    ZonedDateTime.ofLenient(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_02);
+                }).to.throw(IllegalArgumentException);                
+            });
+
+        });
+
+        describe('from(temporal not supporting INSTANT_SECONDS)', function () {
+
+            class ZDTTemporal {
+                constructor(ErrorClass){
+                    this.ErrorClass = ErrorClass;
+                }
+                query(query) {
+                    if (query === TemporalQueries.zone()) {
+                        return FIXED_ZONE_00;
+                    } else if(query === TemporalQueries.localDate()){
+                        return LocalDate.of(2016, 9, 27);
+                    } else if(query === TemporalQueries.localTime()){
+                        return LocalTime.of(10, 0);
+                    }
+                    return null;
+                }
+                isSupported(){
+                    return true;
+                }
+                getLong(field){
+                    throw new this.ErrorClass(field.toString() + ' not supported');
+                }
+            }
+
+            it('should ignore DateTimeException', function () {
+                let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+                let temporal = new ZDTTemporal(DateTimeException);
+                let zdt = ZonedDateTime.from(temporal);
+                assertEquals(expectedZdt, zdt);
+            });
+
+            it('should re-throw a not DateTimeException', function () {
+                let temporal = new ZDTTemporal(Error);
+                expect(() => {
+                    ZonedDateTime.from(temporal);
+                }).to.throw(Error);
+            });
+
+        });
+
     });
 
 });
