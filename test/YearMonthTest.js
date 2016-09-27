@@ -169,7 +169,7 @@ describe('js-joda YearMonth', () => {
             assertEquals(test.plus(0, ChronoUnit.ERAS), YearMonth.of(2015, 12));
         });
         
-        it('should return corresponding value of adddTo for TemporalUnit', () => {
+        it('should return corresponding value of addTo for TemporalUnit', () => {
             let yearMonth = new YearMonth(2016, 1);
             let unit = new TemporalUnit();
             unit.addTo = () => {
@@ -240,7 +240,7 @@ describe('js-joda YearMonth', () => {
             assertEquals(test.until(end, ChronoUnit.ERAS), 0);
         });
         
-        it('should return corresponding value of adddTo for TemporalUnit', () => {
+        it('should return corresponding value of addTo for TemporalUnit', () => {
             let test = YearMonth.of(2015, 12);
             let end = YearMonth.of(2016, 12);
             let unit = new TemporalUnit();
