@@ -3,6 +3,20 @@ Changelog
 
 ### 1.1.12 (next)
 
+#### Implement daylight saving transition functionality
+
+Complete / implement methods/ interfaces
+- LocalDate.atStartOfDayWithZone
+- ZonedDateTime.ofLocal
+- ZonedDateTime.ofStrict
+- ZonedDateTime.withEarlierOffsetAtOverlap
+- ZonedDateTime.withLaterOffsetAtOverlap
+- ZonedDateTime.until
+- ZoneRules
+- Pseudo zones for testing purpose
+
+Increased test coverage for zone related classes
+
 #### Test Coverage and more threetenbp Features
 
 increased Test Coverage by adding/extending more tests from threetenbp 
