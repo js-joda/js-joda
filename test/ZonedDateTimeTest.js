@@ -10,16 +10,22 @@ import {expect} from 'chai';
 
 import {DateTimeException, IllegalArgumentException} from '../src/errors';
 
+import {DayOfWeek} from '../src/DayOfWeek';
 import {LocalDate} from '../src/LocalDate';
 import {LocalDateTime} from '../src/LocalDateTime';
 import {LocalTime} from '../src/LocalTime';
 import {MathUtil} from '../src/MathUtil';
+import {Month} from '../src/Month';
 import {ZonedDateTime} from '../src/ZonedDateTime';
 import {ZoneOffset} from '../src/ZoneOffset';
 import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
 
+import {ChronoField} from '../src/temporal/ChronoField';
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
+import {TemporalField} from '../src/temporal/TemporalField';
+import {TemporalUnit} from '../src/temporal/TemporalUnit';
 import {TemporalQueries} from '../src/temporal/TemporalQueries';
+import {ValueRange} from '../src/temporal/ValueRange';
 
 import {CurrentStandardZoneAmericaNew_York} from './zone/CurrentStandardZone';
 import {CurrentStandardZoneEuropeBerlin} from './zone/CurrentStandardZone';
@@ -452,6 +458,65 @@ describe('ZonedDateTime', () => {
 
     });
 
+    describe('getters', function () {
+        const zdt = new ZonedDateTime.ofStrict(LocalDate.of(2016, 9, 28).atStartOfDay(), FIXED_ZONE_02, EUROPE_BERLIN);
+
+        describe('isSupported()', function () {
+
+            it('should support a ChronoField', function () {
+                expect(zdt.isSupported(ChronoField.DAY_OF_MONTH)).to.be.true;
+            });
+
+            it('should support date/ time based ChronoUnits', function () {
+                expect(zdt.isSupported(ChronoUnit.SECONDS)).to.be.true;
+                expect(zdt.isSupported(ChronoUnit.DAYS)).to.be.true;
+                expect(zdt.isSupported(ChronoUnit.FOREVER)).to.be.false;
+            });
+
+            it('should except custom units', function () {
+                class CustomUnit extends TemporalUnit{
+                    isSupportedBy(){
+                        return true;
+                    }
+                }
+                expect(zdt.isSupported(new CustomUnit())).to.be.true;
+            });
+        });
+
+        describe('range()', function () {
+
+            it('should return the value range of ChronoFields', function () {
+                assertEquals(zdt.range(ChronoField.INSTANT_SECONDS), ChronoField.INSTANT_SECONDS.range());
+                assertEquals(zdt.range(ChronoField.OFFSET_SECONDS), ChronoField.OFFSET_SECONDS.range());
+                assertEquals(zdt.range(ChronoField.SECOND_OF_DAY), ChronoField.SECOND_OF_DAY.range());
+                assertEquals(zdt.range(ChronoField.DAY_OF_MONTH), ValueRange.of(1, 30));
+            });
+
+            it('should return value range of custom fields', function () {
+                class CustomField extends TemporalField{
+                    rangeRefinedBy(){
+                        return ValueRange.of(1, 12);
+                    }
+                }
+                assertEquals(zdt.range(new CustomField()), ValueRange.of(1, 12));
+            });
+
+        });
+
+        it('should return year, month, monthValue, etc values', function () {
+            expect(zdt.year()).to.equal(2016);
+            expect(zdt.month()).to.equal(Month.SEPTEMBER);
+            expect(zdt.monthValue()).to.equal(9);
+            expect(zdt.dayOfMonth()).to.equal(28);
+            expect(zdt.dayOfWeek()).to.equal(DayOfWeek.WEDNESDAY);
+            expect(zdt.dayOfYear()).to.equal(272);
+            expect(zdt.hour()).to.equal(0);
+            expect(zdt.minute()).to.equal(0);
+            expect(zdt.second()).to.equal(0);
+            expect(zdt.nano()).to.equal(0);
+        });
+
+    });
 });
 
 function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
