@@ -53,7 +53,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
-    "markdown-toc": "^0.12.16",
+    "markdown-toc": "^0.13.0",
     "mocha": "^3.0.2",
     "nyc": "^8.1.0",
     "phantomjs-prebuilt": "^2.1.12",
