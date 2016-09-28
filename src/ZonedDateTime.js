@@ -543,8 +543,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} the zoned date-time, not null
      */
     _resolveOffset(offset) {
-        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, this._offset)) {
-            return new ZonedDateTime(this._dateTime, this._offset, this._zone);
+        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, offset)) {
+            return new ZonedDateTime(this._dateTime, offset, this._zone);
         }
         return this;
     }

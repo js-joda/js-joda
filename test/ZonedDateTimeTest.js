@@ -517,6 +517,33 @@ describe('ZonedDateTime', () => {
         });
 
     });
+
+    describe('with()', function () {
+
+        const zdt = ZonedDateTime.ofStrict(LocalDate.of(2016, 9, 28).atStartOfDay(), FIXED_ZONE_02, EUROPE_BERLIN);
+        const instant = LocalDate.of(2016, 9, 28).atTime(12,0,0,500).toInstant(FIXED_ZONE_02);
+
+        it('should adjust to instant', function () {
+            let adjustedZdt = zdt.with(instant);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,500), FIXED_ZONE_02, EUROPE_BERLIN);
+            assertEquals(expectedZdt, adjustedZdt);
+        });
+
+        it('should adjust to instant seconds', function () {
+            let adjustedZdt = zdt.with(ChronoField.INSTANT_SECONDS, instant.epochSecond());
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,0), FIXED_ZONE_02, EUROPE_BERLIN);
+            assertEquals(expectedZdt, adjustedZdt);
+        });
+
+        it('should adjust to instant seconds', function () {
+            // overlap
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN)
+            let adjustedZdt = zdt.with(ChronoField.OFFSET_SECONDS, FIXED_ZONE_01.totalSeconds());
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2,30), FIXED_ZONE_01, EUROPE_BERLIN);
+            assertEquals(expectedZdt, adjustedZdt);
+        });
+
+    });
 });
 
 function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
