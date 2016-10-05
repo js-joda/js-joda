@@ -12,6 +12,19 @@ import {Instant} from './Instant';
 export class ZoneId {
     //-----------------------------------------------------------------------
     /**
+     * Gets the unique time-zone ID.
+     * <p>
+     * This ID uniquely defines this object.
+     * The format of an offset based ID is defined by {@link ZoneOffset#getId()}.
+     *
+     * @return the time-zone unique ID, not null
+     */
+    id(){
+        abstractMethodFail('ZoneId.id');
+    }
+
+    //-----------------------------------------------------------------------
+    /**
      * Gets the time-zone rules for this ID allowing calculations to be performed.
      * <p>
      * The rules provide the functionality associated with a time-zone,
@@ -69,24 +82,24 @@ export class ZoneId {
       * @param {*} other  the object to check, null returns false
       * @return {boolean} true if this is equal to the other time-zone ID
       */
-     equals(other) {
-         if (this === other) {
-             return true;
-         }
-         if (other instanceof ZoneId) {
-             return this.id() === other.id();
-         }
-         return false;
-     }
+    equals(other) {
+        if (this === other) {
+            return true;
+        }
+        if (other instanceof ZoneId) {
+            return this.id() === other.id();
+        }
+        return false;
+    }
 
      /**
       * A hash code for this time-zone ID.
       *
       * @return {number} a suitable hash code
       */
-     hashCode() {
-         return StringUtil.hashCode(this.id());
-     }
+    hashCode() {
+        return StringUtil.hashCode(this.id());
+    }
 
      //-----------------------------------------------------------------------
      /**
@@ -94,8 +107,8 @@ export class ZoneId {
       *
       * @return {string} a string representation of this time-zone ID, not null
       */
-     toString() {
-         return this.id();
-     }
+    toString() {
+        return this.id();
+    }
 
 }

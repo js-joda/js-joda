@@ -11,10 +11,9 @@ import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
 import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import {MockSimplePeriod} from './MockSimplePeriod';
-import {CurrentCESTZone} from '../zone/CurrentCESTZone';
+import {CurrentStandardZoneEuropeBerlin, CurrentStandardZoneAmericaNew_York} from '../zone/CurrentStandardZone';
 
 import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
-//import {DateTimeParseException} from '../../src/errors';
 
 import {Clock} from '../../src/Clock';
 import {Duration} from '../../src/Duration';
@@ -48,7 +47,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     var ZONE_0100 = OFFSET_0100;
     var ZONE_0200 = OFFSET_0200;
     var ZONE_M0100 = ZoneOffset.ofHours(-1);
-    var ZONE_PARIS = new CurrentCESTZone();
+    var ZONE_BERLIN = new CurrentStandardZoneEuropeBerlin();
+    var ZONE_NEW_YORK = new CurrentStandardZoneAmericaNew_York();
     var TEST_PARIS_GAP_2008_03_30_02_30;
     var TEST_PARIS_OVERLAP_2008_10_26_02_30;
     var TEST_LOCAL_2008_06_30_11_30_59_500;
@@ -58,7 +58,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     beforeEach(function () {
         TEST_LOCAL_2008_06_30_11_30_59_500 = LocalDateTime.of(2008, 6, 30, 11, 30, 59, 500);
         TEST_DATE_TIME = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0100);
-        TEST_DATE_TIME_PARIS = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+        TEST_DATE_TIME_PARIS = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_BERLIN);
         TEST_PARIS_OVERLAP_2008_10_26_02_30 = LocalDateTime.of(2008, 10, 26, 2, 30);
         TEST_PARIS_GAP_2008_03_30_02_30 = LocalDateTime.of(2008, 3, 30, 2, 30);
     });
@@ -168,13 +168,13 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_of_LocalDateTime', () => {
             var base = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
-            var test = ZonedDateTime.of(base, ZONE_PARIS);
-            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
+            var test = ZonedDateTime.of(base, ZONE_BERLIN);
+            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_BERLIN);
         });
 
         it('factory_of_LocalDateTime_nullDateTime', () => {
             expect(() => {
-                ZonedDateTime.of(null, ZONE_PARIS);
+                ZonedDateTime.of(null, ZONE_BERLIN);
             }).to.throw(NullPointerException);
         });
 
@@ -190,8 +190,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_Instant_ZR', () => {
             var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 35).toInstant(OFFSET_0200);
-            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-            check(test, 2008, 6, 30, 11, 30, 10, 35, OFFSET_0200, ZONE_PARIS);
+            var test = ZonedDateTime.ofInstant(instant, ZONE_BERLIN);
+            check(test, 2008, 6, 30, 11, 30, 10, 35, OFFSET_0200, ZONE_BERLIN);
         });
 
         it('factory_ofInstant_Instant_ZO', () => {
@@ -202,26 +202,26 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofInstant_Instant_inGap', () => {
             var instant = TEST_PARIS_GAP_2008_03_30_02_30.toInstant(OFFSET_0100);
-            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-            check(test, 2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // one hour later in summer offset
+            var test = ZonedDateTime.ofInstant(instant, ZONE_BERLIN);
+            check(test, 2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN);  // one hour later in summer offset
         });
 
         it('factory_ofInstant_Instant_inOverlap_earlier', () => {
             var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0200);
-            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS);  // same time and offset
+            var test = ZonedDateTime.ofInstant(instant, ZONE_BERLIN);
+            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN);  // same time and offset
         });
 
         it('factory_ofInstant_Instant_inOverlap_later', () => {
             var instant = TEST_PARIS_OVERLAP_2008_10_26_02_30.toInstant(OFFSET_0100);
-            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS);  // same time and offset
+            var test = ZonedDateTime.ofInstant(instant, ZONE_BERLIN);
+            check(test, 2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN);  // same time and offset
         });
 
         it('factory_ofInstant_Instant_invalidOffset', () => {
             var instant = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500).toInstant(OFFSET_0130);
-            var test = ZonedDateTime.ofInstant(instant, ZONE_PARIS);
-            check(test, 2008, 6, 30, 12, 0, 10, 500, OFFSET_0200, ZONE_PARIS);  // corrected offset, thus altered time
+            var test = ZonedDateTime.ofInstant(instant, ZONE_BERLIN);
+            check(test, 2008, 6, 30, 12, 0, 10, 500, OFFSET_0200, ZONE_BERLIN);  // corrected offset, thus altered time
         });
 
         var diff = isBrowserTestRunner() || isCoverageTestRunner() ? 179 : 7;
@@ -366,27 +366,25 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofStrict_LDT_ZI_ZO', () => {
             var normal = LocalDateTime.of(2008, 6, 30, 11, 30, 10, 500);
-            var test = ZonedDateTime.ofStrict(normal, OFFSET_0200, ZONE_PARIS);
-            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_PARIS);
+            var test = ZonedDateTime.ofStrict(normal, OFFSET_0200, ZONE_BERLIN);
+            check(test, 2008, 6, 30, 11, 30, 10, 500, OFFSET_0200, ZONE_BERLIN);
         });
 
-        /* TODO iana tzdb
         it('factory_ofStrict_LDT_ZI_ZO_inGap()', () => {
             expect(() => {
                 try {
-                    ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_PARIS);
+                    ZonedDateTime.ofStrict(TEST_PARIS_GAP_2008_03_30_02_30, OFFSET_0100, ZONE_BERLIN);
                 } catch (ex) {
                     expect(ex.message).contains(' gap');
                     throw ex;
                 }
             }).to.throw(DateTimeException);
         });
-        */
 
         it('factory_ofStrict_LDT_ZI_ZO_inOverlap_invalidOfset()', () => {
             expect(() => {
                 try {
-                    ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0130, ZONE_PARIS);
+                    ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0130, ZONE_BERLIN);
                 } catch (ex) {
                     expect(ex.message).contains(' is not valid for ');
                     throw ex;
@@ -397,7 +395,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('factory_ofStrict_LDT_ZI_ZO_invalidOffset()', () => {
             expect(() => {
                 try {
-                    ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0130, ZONE_PARIS);
+                    ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0130, ZONE_BERLIN);
                 } catch (ex) {
                     expect(ex.message).contains(' is not valid for ');
                     throw ex;
@@ -407,13 +405,13 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('factory_ofStrict_LDT_ZI_ZO_nullLDT', () => {
             expect(() => {
-                ZonedDateTime.ofStrict(null, OFFSET_0100, ZONE_PARIS);
+                ZonedDateTime.ofStrict(null, OFFSET_0100, ZONE_BERLIN);
             }).to.throw(NullPointerException);
         });
 
         it('factory_ofStrict_LDT_ZI_ZO_nullZO', () => {
             expect(() => {
-                ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, null, ZONE_PARIS);
+                ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, null, ZONE_BERLIN);
             }).to.throw(NullPointerException);
         });
 
@@ -497,7 +495,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [2008, 6, 30, 11, 30, 59, 999, 'Z', '2008-06-30T11:30:59.000000999Z'],
             [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00']
 
-            // TODO iana tzdb
+            // TODO iana tzdb/ parser
             //[2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
             //[2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
         ];
@@ -528,7 +526,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 // special javascript ZoneId
                 ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM']
 
-                // TODO iana tzdb
+                // TODO iana tzdb/ parser
                 // ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London']
             ];
         }
@@ -602,8 +600,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         return[
             [2008, 6, 30, 11, 30, 20, 500, ZONE_0100],
             [2008, 6, 30, 11, 0, 0, 0, ZONE_0100],
-            [2008, 6, 30, 11, 30, 20, 500, ZONE_PARIS],
-            [2008, 6, 30, 11, 0, 0, 0, ZONE_PARIS],
+            [2008, 6, 30, 11, 30, 20, 500, ZONE_BERLIN],
+            [2008, 6, 30, 11, 0, 0, 0, ZONE_BERLIN],
             [2008, 6, 30, 23, 59, 59, 999999999, ZONE_0100],
             [-1, 1, 1, 0, 0, 0, 0, ZONE_0100]
         ];
@@ -743,55 +741,51 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     });
 
-/* TODO iana tzdb
     describe('withEarlierOffsetAtOverlap()', () => {
 
         it('test_withEarlierOffsetAtOverlap_notAtOverlap', () => {
-            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_BERLIN);
             var test = base.withEarlierOffsetAtOverlap();
             assertEquals(test, base);  // not changed
         });
 
         it('test_withEarlierOffsetAtOverlap_atOverlap', () => {
-            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_BERLIN);
             var test = base.withEarlierOffsetAtOverlap();
             assertEquals(test.offset(), OFFSET_0200);  // offset changed to earlier
             assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
         });
 
         it('test_withEarlierOffsetAtOverlap_atOverlap_noChange', () => {
-            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_BERLIN);
             var test = base.withEarlierOffsetAtOverlap();
             assertEquals(test, base);  // not changed
         });
 
     });
-*/
 
-/* TODO iana tzdb
     describe('withLaterOffsetAtOverlap()', () => {
 
         it('test_withLaterOffsetAtOverlap_notAtOverlap', () => {
-            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_LOCAL_2008_06_30_11_30_59_500, OFFSET_0200, ZONE_BERLIN);
             var test = base.withLaterOffsetAtOverlap();
             assertEquals(test, base);  // not changed
         });
 
         it('test_withLaterOffsetAtOverlap_atOverlap', () => {
-            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0200, ZONE_BERLIN);
             var test = base.withLaterOffsetAtOverlap();
             assertEquals(test.offset(), OFFSET_0100);  // offset changed to later
             assertEquals(test.toLocalDateTime(), base.toLocalDateTime());  // date-time not changed
         });
 
         it('test_withLaterOffsetAtOverlap_atOverlap_noChange', () => {
-            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_PARIS);
+            var base = ZonedDateTime.ofStrict(TEST_PARIS_OVERLAP_2008_10_26_02_30, OFFSET_0100, ZONE_BERLIN);
             var test = base.withLaterOffsetAtOverlap();
             assertEquals(test, base);  // not changed
         });
 
     });
-*/
 
     describe('withZoneSameLocal(ZoneId)', () => {
 
@@ -809,11 +803,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             assertEquals(test, base);
         });
 
-/* TODO iana tzdb
         it('test_withZoneSameLocal_retainOffset1()', () => {
             var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
             var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-04:00') );
-            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            var test = base.withZoneSameLocal(ZONE_NEW_YORK);
             assertEquals(base.offset(), ZoneOffset.ofHours(-4));
             assertEquals(test.offset(), ZoneOffset.ofHours(-4));
         });
@@ -821,11 +814,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_withZoneSameLocal_retainOffset2()', () => {
             var ldt = LocalDateTime.of(2008, 11, 2, 1, 30, 59, 0);  // overlap
             var base = ZonedDateTime.of(ldt, ZoneId.of('UTC-05:00') );
-            var test = base.withZoneSameLocal(ZoneId.of('America/New_York'));
+            var test = base.withZoneSameLocal(ZONE_NEW_YORK);
             assertEquals(base.offset(), ZoneOffset.ofHours(-5));
             assertEquals(test.offset(), ZoneOffset.ofHours(-5));
         });
-*/
 
         it('test_withZoneSameLocal_null', () => {
             expect(() => {
@@ -865,7 +857,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     describe('withFixedOffsetZone()', () => {
 
         it('test_withZoneLocked', () => {
-            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_BERLIN);
             var test = base.withFixedOffsetZone();
             var expected = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_0200);
             assertEquals(test, expected);
@@ -876,77 +868,70 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     describe('with(WithAdjuster)', () => {
 
         it('test_with_WithAdjuster_LocalDateTime_sameOffset', () => {
-            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_BERLIN);
             var test = base.with(LocalDateTime.of(2012, 7, 15, 14, 30));
-            check(test, 2012, 7, 15, 14, 30, 0, 0, OFFSET_0200, ZONE_PARIS);
+            check(test, 2012, 7, 15, 14, 30, 0, 0, OFFSET_0200, ZONE_BERLIN);
         });
        
         it('test_with_WithAdjuster_LocalDateTime_adjustedOffset', () => {
-            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_BERLIN);
             var test = base.with(LocalDateTime.of(2012, 1, 15, 14, 30));
-            check(test, 2012, 1, 15, 14, 30, 0, 0, OFFSET_0100, ZONE_PARIS);
+            check(test, 2012, 1, 15, 14, 30, 0, 0, OFFSET_0100, ZONE_BERLIN);
         });
        
         it('test_with_WithAdjuster_LocalDate', () => {
-            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_PARIS);
+            var base = ZonedDateTime.of(TEST_LOCAL_2008_06_30_11_30_59_500, ZONE_BERLIN);
             var test = base.with(LocalDate.of(2012, 7, 28));
-            check(test, 2012, 7, 28, 11, 30, 59, 500, OFFSET_0200, ZONE_PARIS);
+            check(test, 2012, 7, 28, 11, 30, 59, 500, OFFSET_0200, ZONE_BERLIN);
         });
        
-/* TODO iana tzdb
         it('test_with_WithAdjuster_LocalTime', () => {
-            var base = ZonedDateTime.of(TEST_PARIS_OVERLAP_2008_10_26_02_30, ZONE_PARIS);
+            var base = ZonedDateTime.of(TEST_PARIS_OVERLAP_2008_10_26_02_30, ZONE_BERLIN);
             var test = base.with(LocalTime.of(2, 29));
-            check(test, 2008, 10, 26, 2, 29, 0, 0, OFFSET_0200, ZONE_PARIS);
+            check(test, 2008, 10, 26, 2, 29, 0, 0, OFFSET_0200, ZONE_BERLIN);
         });
-*/
 
-/* Year.of and Year adjuster not implemented
         it('test_with_WithAdjuster_Year', () => {
             var ldt = LocalDateTime.of(2008, 6, 30, 23, 30, 59, 0);
             var base = ZonedDateTime.of(ldt, ZONE_0100);
             var test = base.with(Year.of(2007));
             assertEquals(test, ZonedDateTime.of(ldt.withYear(2007), ZONE_0100));
         });
-*/
 
         it('test_with_WithAdjuster_Month_adjustedDayOfMonth', () => {
-            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_BERLIN);
             var test = base.with(Month.JUNE);
-            check(test, 2012, 6, 30, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
+            check(test, 2012, 6, 30, 0, 0, 0, 0, OFFSET_0200, ZONE_BERLIN);
         });
        
         it('test_with_WithAdjuster_Offset_same', () => {
-            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_BERLIN);
             var test = base.with(ZoneOffset.ofHours(2));
-            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);
+            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_BERLIN);
         });
        
         it('test_with_WithAdjuster_Offset_ignored', () => {
-            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_PARIS);
+            var base = ZonedDateTime.of(LocalDateTime.of(2012, 7, 31, 0, 0), ZONE_BERLIN);
             var test = base.with(ZoneOffset.ofHours(1));
-            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_PARIS);  // offset ignored
+            check(test, 2012, 7, 31, 0, 0, 0, 0, OFFSET_0200, ZONE_BERLIN);  // offset ignored
         });
        
-/* TODO iana tzdb
         it('test_with_WithAdjuster_LocalDate_retainOffset1()', () => {
-            var newYork = ZoneId.of('America/New_York');
             var ldt = LocalDateTime.of(2008, 11, 1, 1, 30);
-            var base = ZonedDateTime.of(ldt, newYork);
+            var base = ZonedDateTime.of(ldt, ZONE_NEW_YORK);
             assertEquals(base.offset(), ZoneOffset.ofHours(-4));
             var test = base.with(LocalDate.of(2008, 11, 2));
             assertEquals(test.offset(), ZoneOffset.ofHours(-4));
         });
        
         it('test_with_WithAdjuster_LocalDate_retainOffset2()', () => {
-            var newYork = ZoneId.of('America/New_York');
+            var newYork = ZONE_NEW_YORK;
             var ldt = LocalDateTime.of(2008, 11, 3, 1, 30);
             var base = ZonedDateTime.of(ldt, newYork);
             assertEquals(base.offset(), ZoneOffset.ofHours(-5));
             var test = base.with(LocalDate.of(2008, 11, 2));
             assertEquals(test.offset(), ZoneOffset.ofHours(-5));
         });
-*/
 
         it('test_with_WithAdjuster_null', () => {
             expect(() => {
@@ -1034,7 +1019,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('test_withDayOfMonth_tooBig', () => {
             expect(() => {
-                LocalDateTime.of(2007, 7, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(32);
+                LocalDateTime.of(2007, 7, 2, 11, 30).atZone(ZONE_BERLIN).withDayOfMonth(32);
             }).to.throw(DateTimeException);
         });
 
@@ -1046,7 +1031,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('test_withDayOfMonth_invalid31', () => {
             expect(() => {
-                LocalDateTime.of(2007, 6, 2, 11, 30).atZone(ZONE_PARIS).withDayOfMonth(31);
+                LocalDateTime.of(2007, 6, 2, 11, 30).atZone(ZONE_BERLIN).withDayOfMonth(31);
             }).to.throw(DateTimeException);
         });
 
@@ -1081,7 +1066,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('test_withdayOfYear_invalid366', () => {
             expect(() => {
-                LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_PARIS).withDayOfYear(366);
+                LocalDateTime.of(2007, 2, 2, 11, 30).atZone(ZONE_BERLIN).withDayOfYear(366);
             }).to.throw(DateTimeException);
         });
 
@@ -1159,19 +1144,17 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1, dateTime9(2008, 7, 1, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
             [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime9(2008, 6, 29, 23, 30, 59, 0, OFFSET_0100, ZONE_0100)],
             // skip over gap
-            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 31, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 29, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_BERLIN), 1, dateTime9(2008, 3, 31, 1, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
+            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), -1, dateTime9(2008, 3, 29, 3, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
             // land in gap
-            // TODO iana tzdb
-            //[dateTime9(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
+            [dateTime9(2008, 3, 29, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN), 1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
+            [dateTime9(2008, 3, 31, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), -1, dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
             // skip over overlap
-            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 1, dateTime9(2008, 10, 27, 1, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 25, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 1, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
             // land in overlap
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS), -1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 25, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 27, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN), -1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)]
         ];
     }
    
@@ -1183,16 +1166,14 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), 1,  dateTime9(2008, 7, 1, 0, 30, 59, 0, OFFSET_0100, ZONE_0100)],
             [dateTime9(2008, 6, 30, 23, 30, 59, 0, OFFSET_0100, ZONE_0100), -1, dateTime9(2008, 6, 30, 22, 30, 59, 0, OFFSET_0100, ZONE_0100)],
             // gap
-            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS), 1,  dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_PARIS), -1, dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
+            [dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_BERLIN), 1,  dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
+            [dateTime9(2008, 3, 30, 3, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), -1, dateTime9(2008, 3, 30, 1, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
             // overlap
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
-            // TODO iana tzdb
-            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_PARIS)],
-            //[dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_PARIS), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_PARIS)]
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 2, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 26, 1, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 3, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 1, dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)],
+            [dateTime9(2008, 10, 26, 2, 30, 0, 0, OFFSET_0200, ZONE_BERLIN), 2, dateTime9(2008, 10, 26, 3, 30, 0, 0, OFFSET_0100, ZONE_BERLIN)]
         ];
     }
    
@@ -1652,9 +1633,9 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         var diff = isCoverageTestRunner() || isBrowserTestRunner ? 179 : 7;
         it('test_toEpochSecond_afterEpoch', () => {
-            var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
-            for (var i = 0; i < 100000; i+=diff) {
-                var a = ZonedDateTime.of(ldt, ZONE_PARIS);
+            var ldt = LocalDateTime.of(2016, 1, 1, 0, 0).plusHours(1);
+            for (var i = 0 + 1451606400; i < 100000 + 1451606400; i+=diff) {
+                var a = ZonedDateTime.of(ldt, ZONE_BERLIN);
                 assertEquals(a.toEpochSecond(), i);
                 ldt = ldt.plusSeconds(diff);
             }
@@ -1663,7 +1644,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         it('test_toEpochSecond_beforeEpoch', () => {
             var ldt = LocalDateTime.of(1970, 1, 1, 0, 0).plusHours(1);
             for (var i = 0; i < 100000; i+=diff) {
-                var a = ZonedDateTime.of(ldt, ZONE_PARIS);
+                var a = ZonedDateTime.of(ldt, ZONE_0100);
                 assertEquals(a.toEpochSecond(), MathUtil.safeZero(-i));
                 ldt = ldt.minusSeconds(diff);
             }
@@ -1690,127 +1671,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
                 var dt = ldt.atZone(ZONE_M0100);
                 assertEquals(dt.toEpochSecond(), expectedEpSec + 3600);
-            });
-        });
-
-    });
-
-    // missing in threeten
-    describe('until()', () => {
-
-        //@DataProvider(name='until')
-        function provider_until() {
-            // TODO date based ChronoUnit missing in threeten bp
-            return [
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.DAYS, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.WEEKS, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.MONTHS, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.YEARS, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.DECADES, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.CENTURIES, 0],
-                ['2012-06-30T01:00', '2012-06-30T00:00', ChronoUnit.MILLENNIA, 0],
-
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.DAYS, 364],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.WEEKS, 52],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.MONTHS, 11],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.YEARS, 0, -1],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.DECADES, 0],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.CENTURIES, 0],
-                ['2012-06-15T01:00', '2013-06-15T00:00', ChronoUnit.MILLENNIA, 0],
-
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.NANOS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MICROS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MILLIS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.MINUTES, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HOURS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00', ChronoUnit.HALF_DAYS, 0],
-
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.NANOS, 1000000000],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MICROS, 1000000],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MILLIS, 1000],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.SECONDS, 1],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.MINUTES, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HOURS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:00:01', ChronoUnit.HALF_DAYS, 0],
-
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.NANOS, 60000000000],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MICROS, 60000000],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MILLIS, 60000],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.SECONDS, 60],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.MINUTES, 1],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HOURS, 0],
-                ['2012-06-15T00:00', '2012-06-15T00:01', ChronoUnit.HALF_DAYS, 0],
-
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.499', ChronoUnit.SECONDS, -1],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.500', ChronoUnit.SECONDS, -1],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:39.501', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.499', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.500', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:40.501', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.499', ChronoUnit.SECONDS, 0],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.500', ChronoUnit.SECONDS, 1],
-                ['2012-06-15T12:30:40.500', '2012-06-15T12:30:41.501', ChronoUnit.SECONDS, 1],
-
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.499', ChronoUnit.SECONDS, 86400 - 2],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.500', ChronoUnit.SECONDS, 86400 - 1],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:39.501', ChronoUnit.SECONDS, 86400 - 1],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.499', ChronoUnit.SECONDS, 86400 - 1],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.500', ChronoUnit.SECONDS, 86400 + 0],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:40.501', ChronoUnit.SECONDS, 86400 + 0],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.499', ChronoUnit.SECONDS, 86400 + 0],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.500', ChronoUnit.SECONDS, 86400 + 1],
-                ['2012-06-15T12:30:40.500', '2012-06-16T12:30:41.501', ChronoUnit.SECONDS, 86400 + 1]
-            ];
-        }
-
-        it('test_until', function () {
-            dataProviderTest(provider_until,test_until);
-        });
-
-        // @Test(dataProvider = 'until')
-        function test_until(startStr, endStr, unit, expected) {
-            // console.log(startStr, endStr, unit.toString(), expected);
-            var start = LocalDateTime.parse(startStr).atZone(ZONE_0100);
-            var end = LocalDateTime.parse(endStr).atZone(ZONE_0100);
-            assertEquals(start.until(end, unit), expected);
-        }
-
-        it('test_until_reveresed', function () {
-            dataProviderTest(provider_until,test_until_reveresed);
-        });
-
-        // @Test(dataProvider = 'until')
-        function test_until_reveresed(startStr, endStr, unit, expected) {
-            // console.log(startStr, endStr, unit.toString(), expected);
-            var start = LocalDateTime.parse(startStr).atZone(ZONE_0100);
-            var end = LocalDateTime.parse(endStr).atZone(ZONE_0100);
-            assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
-        }
-
-        function data_until_UTC_CET(){
-            return [
-                 [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 1, 2).atStartOfDay(ZONE_PARIS), 23],
-                 [LocalDate.of(2016, 1, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 1, 2, 1, 0).atZone(ZONE_PARIS), 24],
-                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDate.of(2016, 7, 2).atStartOfDay(ZONE_PARIS), 22],
-                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 1, 0).atZone(ZONE_PARIS), 23],
-                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 2, 0).atZone(ZONE_PARIS), 24],
-                 [LocalDate.of(2016, 7, 1).atStartOfDay(ZoneOffset.UTC), LocalDateTime.of(2016, 7, 2, 3, 0).atZone(ZONE_PARIS), 25]
-            ];
-        }
-
-        it('test_until_UTC_CET_hours', ()=> {
-            dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
-                assertEquals(utc.until(cet, ChronoUnit.HOURS),  expectedHours);
-                assertEquals(cet.until(utc, ChronoUnit.HOURS), -expectedHours);
-            });
-        });
-
-        it('test_until_UTC_CET_days', ()=> {
-            dataProviderTest(data_until_UTC_CET, (utc, cet, expectedHours) => {
-                var expectedDays = Math.floor(expectedHours / 24);
-                assertEquals(utc.until(cet, ChronoUnit.DAYS), expectedDays);
-                assertEquals(cet.until(utc, ChronoUnit.DAYS), MathUtil.safeZero(-expectedDays));
             });
         });
 
@@ -2054,13 +1914,13 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         it('test_format_formatter', () => {
             var f = DateTimeFormatter.ofPattern('y M d H m s');
-            var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(f);
+            var t = ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_BERLIN).format(f);
             assertEquals(t, '2010 12 3 11 30 0');
         });
 
         it('test_format_formatter_null', () => {
             expect(() => {
-                ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_PARIS).format(null);
+                ZonedDateTime.of(dateTime5(2010, 12, 3, 11, 30), ZONE_BERLIN).format(null);
             }).to.throw(NullPointerException);
         });
     });

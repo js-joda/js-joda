@@ -6,6 +6,9 @@
 import {expect} from 'chai';
 
 import '../_init';
+import {assertEquals} from '../testUtils';
+
+import {DateTimeException} from '../../src/errors';
 
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Instant} from '../../src/Instant';
@@ -16,18 +19,21 @@ import {SystemDefaultZoneRules} from '../../src/zone/SystemDefaultZoneRules';
 describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     it('should return an offset for an Instant', function () {
-        var zone = ZoneId.systemDefault();
-        var instant = Instant.parse('2016-03-16T00:00:00Z');
-        var offset = zone.rules().offset(instant);
+        let zone = ZoneId.systemDefault();
+        let instant = Instant.parse('2016-03-16T00:00:00Z');
+        let offset = zone.rules().offset(instant);
 
         expect(offset).to.be.instanceOf(ZoneOffset);
         expect(offset.totalSeconds()).to.be.a('number');
         expect(offset.toString()).to.be.a('string');
         expect(offset.id()).to.be.a('string');
+
+        let standardOffset = zone.rules().standardOffset(instant);
+        assertEquals(offset, standardOffset);
     });
 
     it('should return an offset for epochMillis', function () {
-        var zone = ZoneId.systemDefault();
+        let zone = ZoneId.systemDefault();
         var instant = Instant.parse('2016-03-16T00:00:00Z');
         var offset = zone.rules().offsetOfEpochMilli(instant.toEpochMilli());
 
@@ -108,6 +114,52 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
             // console.log(str);
             logResult += str + '\n';
         }
+
+    });
+
+    describe('not supported methods', function () {
+
+        it('should fail for transition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for daylightSavings', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().daylightSavings();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for isDaylightSavings', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().isDaylightSavings();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for nextTransition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().nextTransition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for previousTransition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().previousTransition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for transitions', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transitions();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for transitionRules', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transitionRules();
+            }).to.throw(DateTimeException);
+        });
 
     });
 
