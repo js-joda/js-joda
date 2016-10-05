@@ -563,6 +563,18 @@ describe('ZonedDateTime', () => {
             assertEquals(expectedZdt, adjustedZdt);
         });
     });
+
+    describe('truncatedTo', function () {
+
+        it('should truncate to time based value', function () {
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 0), FIXED_ZONE_02, EUROPE_BERLIN);
+            let truncatedZdt = zdt.truncatedTo(ChronoUnit.HOURS);
+            assertEquals(expectedZdt, truncatedZdt);
+        });
+
+    });
+
 });
 
 function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
