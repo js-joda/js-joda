@@ -591,6 +591,22 @@ describe('ZonedDateTime', () => {
 
     });
 
+    describe('until with a custom unit', function () {
+
+        it('should calculate the difference in a custom unit', function () {
+            let startZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let endZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 14, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            let quarterDayUnit = {
+                between: (start, end) => {
+                    return MathUtil.intDiv(start.until(end, ChronoUnit.HOURS), 6);
+                }
+            };
+            expect(startZdt.until(endZdt, quarterDayUnit)).to.equal(2);
+            expect(endZdt.until(startZdt, quarterDayUnit)).to.equal(-2);
+        });
+
+    });
+
 });
 
 function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
