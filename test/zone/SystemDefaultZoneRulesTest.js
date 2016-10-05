@@ -7,6 +7,8 @@ import {expect} from 'chai';
 
 import '../_init';
 
+import {DateTimeException} from '../../src/errors';
+
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Instant} from '../../src/Instant';
 import {ZoneId} from '../../src/ZoneId';
@@ -108,6 +110,52 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
             // console.log(str);
             logResult += str + '\n';
         }
+
+    });
+
+    describe('not supported methods', function () {
+
+        it('should fail for transition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for daylightSavings', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().daylightSavings();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for isDaylightSavings', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().isDaylightSavings();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for nextTransition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().nextTransition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for previousTransition', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().previousTransition();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for transitions', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transitions();
+            }).to.throw(DateTimeException);
+        });
+
+        it('should fail for transitionRules', function () {
+            expect(()=>{
+                ZoneId.systemDefault().rules().transitionRules();
+            }).to.throw(DateTimeException);
+        });
 
     });
 
