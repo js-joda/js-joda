@@ -575,6 +575,22 @@ describe('ZonedDateTime', () => {
 
     });
 
+    describe('plus custom unit', function () {
+
+        it('should add a custom value', function () {
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 7, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            let quarterDayUnit = {
+                addTo: (thisZdt, amountToAdd) => {
+                    return thisZdt.plusHours(6 * amountToAdd);
+                }
+            };
+            let truncatedZdt = zdt.plus(1, quarterDayUnit);
+            assertEquals(expectedZdt, truncatedZdt);
+        });
+
+    });
+
 });
 
 function zoneDateTimeAtStartOfDay(year, month, dayOfMonth, offset, zoneId) {
