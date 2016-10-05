@@ -550,6 +550,18 @@ describe('ZonedDateTime', () => {
             let adjustedZdt = zdt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
             assertEquals(expectedZdt, adjustedZdt);
         });
+
+        it('should adjust into a custom field adjuster', () => {
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 6, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let customField = {
+                adjustInto: (thisZdt, newValue) => {
+                    return thisZdt.with(ChronoField.DAY_OF_MONTH, newValue);
+                }
+            };
+            let adjustedZdt = zdt.with(customField, 6);
+            assertEquals(expectedZdt, adjustedZdt);
+        });
     });
 });
 
