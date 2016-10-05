@@ -22,6 +22,7 @@ import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
 
 import {ChronoField} from '../src/temporal/ChronoField';
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
+import {TemporalAdjusters} from '../src/temporal/TemporalAdjusters';
 import {TemporalField} from '../src/temporal/TemporalField';
 import {TemporalUnit} from '../src/temporal/TemporalUnit';
 import {TemporalQueries} from '../src/temporal/TemporalQueries';
@@ -537,12 +538,18 @@ describe('ZonedDateTime', () => {
 
         it('should adjust to instant seconds', function () {
             // overlap
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN)
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
             let adjustedZdt = zdt.with(ChronoField.OFFSET_SECONDS, FIXED_ZONE_01.totalSeconds());
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2,30), FIXED_ZONE_01, EUROPE_BERLIN);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
             assertEquals(expectedZdt, adjustedZdt);
         });
 
+        it('should adjust into next week day', () => {
+            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 11, 6, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            let adjustedZdt = zdt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+            assertEquals(expectedZdt, adjustedZdt);
+        });
     });
 });
 
