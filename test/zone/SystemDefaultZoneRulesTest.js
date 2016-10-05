@@ -6,6 +6,7 @@
 import {expect} from 'chai';
 
 import '../_init';
+import {assertEquals} from '../testUtils';
 
 import {DateTimeException} from '../../src/errors';
 
@@ -18,18 +19,21 @@ import {SystemDefaultZoneRules} from '../../src/zone/SystemDefaultZoneRules';
 describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     it('should return an offset for an Instant', function () {
-        var zone = ZoneId.systemDefault();
-        var instant = Instant.parse('2016-03-16T00:00:00Z');
-        var offset = zone.rules().offset(instant);
+        let zone = ZoneId.systemDefault();
+        let instant = Instant.parse('2016-03-16T00:00:00Z');
+        let offset = zone.rules().offset(instant);
 
         expect(offset).to.be.instanceOf(ZoneOffset);
         expect(offset.totalSeconds()).to.be.a('number');
         expect(offset.toString()).to.be.a('string');
         expect(offset.id()).to.be.a('string');
+
+        let standardOffset = zone.rules().standardOffset(instant);
+        assertEquals(offset, standardOffset);
     });
 
     it('should return an offset for epochMillis', function () {
-        var zone = ZoneId.systemDefault();
+        let zone = ZoneId.systemDefault();
         var instant = Instant.parse('2016-03-16T00:00:00Z');
         var offset = zone.rules().offsetOfEpochMilli(instant.toEpochMilli());
 
