@@ -1,7 +1,11 @@
 Changelog
 =========
 
-### 1.1.12 (next)
+### 1.1.13 (next)
+
+...
+
+### 1.1.12 
 
 #### Implement daylight saving transition functionality
 

@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.11
+//! @version js-joda - 1.1.12
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -87,7 +87,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _DayOfWeek = __webpack_require__(45);
+	var _DayOfWeek = __webpack_require__(11);
 
 	Object.defineProperty(exports, 'DayOfWeek', {
 	  enumerable: true,
@@ -141,7 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
 	Object.defineProperty(exports, 'Month', {
 	  enumerable: true,
@@ -159,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _Period = __webpack_require__(32);
+	var _Period = __webpack_require__(36);
 
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ZonedDateTime = __webpack_require__(51);
+	var _ZonedDateTime = __webpack_require__(53);
 
 	Object.defineProperty(exports, 'ZonedDateTime', {
 	  enumerable: true,
@@ -195,7 +195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
 	Object.defineProperty(exports, 'ZoneOffset', {
 	  enumerable: true,
@@ -204,7 +204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	Object.defineProperty(exports, 'ZoneId', {
 	  enumerable: true,
@@ -213,7 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _convert = __webpack_require__(54);
+	var _convert = __webpack_require__(56);
 
 	Object.defineProperty(exports, 'convert', {
 	  enumerable: true,
@@ -222,7 +222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _NativeJsTemporal = __webpack_require__(55);
+	var _NativeJsTemporal = __webpack_require__(57);
 
 	Object.defineProperty(exports, 'nativeJs', {
 	  enumerable: true,
@@ -249,7 +249,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _IsoFields = __webpack_require__(44);
+	var _IsoFields = __webpack_require__(45);
 
 	Object.defineProperty(exports, 'IsoFields', {
 	  enumerable: true,
@@ -258,7 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _TemporalAdjusters = __webpack_require__(56);
+	var _TemporalAdjusters = __webpack_require__(51);
 
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -267,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	Object.defineProperty(exports, 'TemporalQueries', {
 	  enumerable: true,
@@ -276,7 +276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	Object.defineProperty(exports, 'DateTimeFormatter', {
 	  enumerable: true,
@@ -285,7 +285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	Object.defineProperty(exports, 'DateTimeFormatterBuilder', {
 	  enumerable: true,
@@ -294,7 +294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ResolverStyle = __webpack_require__(36);
+	var _ResolverStyle = __webpack_require__(40);
 
 	Object.defineProperty(exports, 'ResolverStyle', {
 	  enumerable: true,
@@ -318,9 +318,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Instant = __webpack_require__(4);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -474,7 +474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function abstractMethodFail(methodName) {
-	    throw new TypeError('abstract mehod "' + methodName + '" is not implemented');
+	    throw new TypeError('abstract method "' + methodName + '" is not implemented');
 	}
 
 /***/ },
@@ -490,7 +490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	function createErrorType(name, init) {
-	    var superErrorClass = arguments.length <= 2 || arguments[2] === undefined ? Error : arguments[2];
+	    var superErrorClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Error;
 
 	    function E(message) {
 	        if (!Error.captureStackTrace) {
@@ -516,7 +516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var NullPointerException = exports.NullPointerException = createErrorType('NullPointerException');
 
 	function messageWithCause(message) {
-	    var cause = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	    var cause = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
 	    var msg = message || this.name;
 	    if (cause !== null && cause instanceof Error) {
@@ -526,9 +526,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	function messageForDateTimeParseException(message) {
-	    var text = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
-	    var index = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	    var cause = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+	    var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+	    var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	    var cause = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
 	    var msg = message || this.name;
 	    msg += ': ' + text + ', at index: ' + index;
@@ -553,7 +553,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.Instant = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports._init = _init;
 
@@ -567,17 +567,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MathUtil = __webpack_require__(6);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalUnit = __webpack_require__(16);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _TemporalQuery = __webpack_require__(23);
+
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -595,13 +597,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(Instant, _Temporal);
 
 	    Instant.now = function now() {
-	        var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemUTC() : arguments[0];
+	        var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Clock.Clock.systemUTC();
 
 	        return clock.instant();
 	    };
 
 	    Instant.ofEpochSecond = function ofEpochSecond(epochSecond) {
-	        var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
 	        var secs = epochSecond + _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
 	        var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
@@ -768,6 +770,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    Instant.prototype.plus2 = function plus2(amountToAdd, unit) {
+	        (0, _assert.requireNonNull)(amountToAdd, 'amountToAdd');
+	        (0, _assert.requireNonNull)(unit, 'unit');
+	        (0, _assert.requireInstance)(unit, _TemporalUnit.TemporalUnit);
 	        if (unit instanceof _ChronoUnit.ChronoUnit) {
 	            switch (unit) {
 	                case _ChronoUnit.ChronoUnit.NANOS:
@@ -862,6 +867,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    Instant.prototype.until = function until(endExclusive, unit) {
+	        (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	        (0, _assert.requireNonNull)(unit, 'unit');
 	        var end = Instant.from(endExclusive);
 	        if (unit instanceof _ChronoUnit.ChronoUnit) {
 	            switch (unit) {
@@ -980,19 +987,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDateTime = __webpack_require__(7);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1018,14 +1025,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime._now = function _now() {
-	        var clock = arguments.length <= 0 || arguments[0] === undefined ? _Clock.Clock.systemDefaultZone() : arguments[0];
+	        var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Clock.Clock.systemDefaultZone();
 
 	        (0, _assert.requireNonNull)(clock, 'clock');
 	        return LocalTime.ofInstant(clock.instant(), clock.zone());
 	    };
 
 	    LocalTime.ofInstant = function ofInstant(instant) {
-	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
+	        var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _ZoneId.ZoneId.systemDefault();
 
 	        var offset = zone.rules().offset(instant);
 	        var secsOfDay = _MathUtil.MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
@@ -1041,8 +1048,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.ofSecondOfDay = function ofSecondOfDay() {
-	        var secondOfDay = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var nanoOfSecond = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var secondOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
 	        _ChronoField.ChronoField.SECOND_OF_DAY.checkValidValue(secondOfDay);
 	        _ChronoField.ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
@@ -1054,7 +1061,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.ofNanoOfDay = function ofNanoOfDay() {
-	        var nanoOfDay = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var nanoOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        _ChronoField.ChronoField.NANO_OF_DAY.checkValidValue(nanoOfDay);
 	        var hours = _MathUtil.MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
@@ -1076,17 +1083,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.parse = function parse(text) {
-	        var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_TIME : arguments[1];
+	        var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_TIME;
 
 	        (0, _assert.requireNonNull)(formatter, 'formatter');
 	        return formatter.parse(text, LocalTime.FROM);
 	    };
 
 	    function LocalTime() {
-	        var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var minute = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	        var second = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var nanoOfSecond = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+	        var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var minute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	        var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	        var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
 	        _classCallCheck(this, LocalTime);
 
@@ -1250,7 +1257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.prototype.withHour = function withHour() {
-	        var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        if (this._hour === hour) {
 	            return this;
@@ -1259,7 +1266,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.prototype.withMinute = function withMinute() {
-	        var minute = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var minute = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        if (this._minute === minute) {
 	            return this;
@@ -1268,7 +1275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.prototype.withSecond = function withSecond() {
-	        var second = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var second = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        if (this._second === second) {
 	            return this;
@@ -1277,7 +1284,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.prototype.withNano = function withNano() {
-	        var nanoOfSecond = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var nanoOfSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        if (this._nano === nanoOfSecond) {
 	            return this;
@@ -1575,10 +1582,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    function makeLocalTimeConst() {
-	        var hour = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var minute = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	        var second = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var nano = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+	        var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var minute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	        var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	        var nano = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
 	        var localTime = Object.create(LocalTime.prototype);
 	        _Temporal2.Temporal.call(localTime);
@@ -1806,23 +1813,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalTime = __webpack_require__(5);
 
-	var _ZonedDateTime = __webpack_require__(51);
+	var _ZonedDateTime = __webpack_require__(53);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _ChronoLocalDateTime2 = __webpack_require__(53);
+	var _ChronoLocalDateTime2 = __webpack_require__(55);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1871,13 +1878,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDateTime.ofNumbers = function ofNumbers() {
-	        var year = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var month = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	        var dayOfMonth = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var hour = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
-	        var minute = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
-	        var second = arguments.length <= 5 || arguments[5] === undefined ? 0 : arguments[5];
-	        var nanoOfSecond = arguments.length <= 6 || arguments[6] === undefined ? 0 : arguments[6];
+	        var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var month = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	        var dayOfMonth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	        var hour = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+	        var minute = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+	        var second = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+	        var nanoOfSecond = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
 
 	        var date = _LocalDate.LocalDate.of(year, month, dayOfMonth);
 	        var time = _LocalTime.LocalTime.of(hour, minute, second, nanoOfSecond);
@@ -1891,7 +1898,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDateTime.ofInstant = function ofInstant(instant) {
-	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
+	        var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _ZoneId.ZoneId.systemDefault();
 
 	        (0, _assert.requireNonNull)(instant, 'instant');
 	        (0, _assert.requireInstance)(instant, _Instant.Instant, 'instant');
@@ -1902,8 +1909,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDateTime.ofEpochSecond = function ofEpochSecond() {
-	        var epochSecond = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var nanoOfSecond = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var epochSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 	        var offset = arguments[2];
 
 	        if (arguments.length === 2 && nanoOfSecond instanceof _ZoneOffset.ZoneOffset) {
@@ -1936,7 +1943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDateTime.parse = function parse(text) {
-	        var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE_TIME : arguments[1];
+	        var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
 	        (0, _assert.requireNonNull)(formatter, 'formatter');
 	        return formatter.parse(text, LocalDateTime.FROM);
@@ -2335,22 +2342,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDateTime.prototype.isAfter = function isAfter(other) {
-	        (0, _assert.requireNonNull)(other, 'other');
-	        (0, _assert.requireInstance)(other, LocalDateTime, 'other');
-	        return this._compareTo0(other) > 0;
+	        return this.compareTo(other) > 0;
 	    };
 
 	    LocalDateTime.prototype.isBefore = function isBefore(other) {
-	        (0, _assert.requireNonNull)(other, 'other');
-	        (0, _assert.requireInstance)(other, LocalDateTime, 'other');
-	        return this._compareTo0(other) < 0;
+	        return this.compareTo(other) < 0;
 	    };
 
 	    LocalDateTime.prototype.isEqual = function isEqual(other) {
-	        if (other instanceof LocalDateTime) {
-	            return this._compareTo0(other) === 0;
-	        }
-	        return _ChronoLocalDateTime.prototype.isEqual.call(this, other);
+	        return this.compareTo(other) === 0;
 	    };
 
 	    LocalDateTime.prototype.equals = function equals(other) {
@@ -2416,25 +2416,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _ChronoLocalDate2 = __webpack_require__(30);
+	var _ChronoLocalDate2 = __webpack_require__(34);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
 	var _ValueRange = __webpack_require__(19);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	var _Clock = __webpack_require__(1);
 
-	var _DayOfWeek = __webpack_require__(45);
+	var _DayOfWeek = __webpack_require__(11);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
-	var _Period = __webpack_require__(32);
+	var _Period = __webpack_require__(36);
 
-	var _YearConstants = __webpack_require__(16);
+	var _YearConstants = __webpack_require__(17);
 
 	var _LocalTime = __webpack_require__(5);
 
@@ -2442,9 +2442,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Year = __webpack_require__(48);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _ZonedDateTime = __webpack_require__(51);
+	var _ZoneOffset = __webpack_require__(28);
+
+	var _ZonedDateTime = __webpack_require__(53);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2476,7 +2478,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDate.ofInstant = function ofInstant(instant) {
-	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
+	        var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _ZoneId.ZoneId.systemDefault();
 
 	        (0, _assert.requireNonNull)(instant, 'instant');
 	        var offset = zone.rules().offset(instant);
@@ -2506,7 +2508,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDate.ofEpochDay = function ofEpochDay() {
-	        var epochDay = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var epochDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 	        var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
 	        zeroDay = epochDay + DAYS_0000_TO_1970;
@@ -2543,7 +2545,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDate.parse = function parse(text) {
-	        var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE : arguments[1];
+	        var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE;
 
 	        (0, _assert.assert)(formatter != null, 'formatter', _errors.NullPointerException);
 	        return formatter.parse(text, LocalDate.FROM);
@@ -3008,8 +3010,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalDate.prototype.atTime4 = function atTime4(hour, minute) {
-	        var second = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var nanoOfSecond = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+	        var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+	        var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
 	        return this.atTime1(_LocalTime.LocalTime.of(hour, minute, second, nanoOfSecond));
 	    };
@@ -3026,6 +3028,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireNonNull)(zone, 'zone');
 	        var ldt = this.atTime(_LocalTime.LocalTime.MIDNIGHT);
 
+	        if (zone instanceof _ZoneOffset.ZoneOffset === false) {
+	            var rules = zone.rules();
+	            var trans = rules.transition(ldt);
+	            if (trans != null && trans.isGap()) {
+	                ldt = trans.dateTimeAfter();
+	            }
+	        }
 	        return _ZonedDateTime.ZonedDateTime.of(ldt, zone);
 	    };
 
@@ -3053,9 +3062,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    LocalDate.prototype.compareTo = function compareTo(other) {
 	        (0, _assert.requireNonNull)(other, 'other');
 	        (0, _assert.requireInstance)(other, LocalDate, 'other');
-	        if (other instanceof LocalDate) {
-	            return this._compareTo0(other);
-	        }
+	        return this._compareTo0(other);
 	    };
 
 	    LocalDate.prototype._compareTo0 = function _compareTo0(otherDate) {
@@ -3180,15 +3187,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MathUtil = __webpack_require__(6);
 
+	var _DayOfWeek = __webpack_require__(11);
+
 	var _LocalDate = __webpack_require__(8);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
 	var _Year = __webpack_require__(48);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _ResolverStyle = __webpack_require__(36);
+	var _ResolverStyle = __webpack_require__(40);
+
+	var _TemporalAdjusters = __webpack_require__(51);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3226,6 +3237,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    IsoChronology.prototype.resolveDate = function resolveDate(fieldValues, resolverStyle) {
 	        if (fieldValues.containsKey(_ChronoField.ChronoField.EPOCH_DAY)) {
 	            return _LocalDate.LocalDate.ofEpochDay(fieldValues.remove(_ChronoField.ChronoField.EPOCH_DAY));
+	        }
+
+	        var prolepticMonth = fieldValues.remove(_ChronoField.ChronoField.PROLEPTIC_MONTH);
+	        if (prolepticMonth != null) {
+	            if (resolverStyle !== _ResolverStyle.ResolverStyle.LENIENT) {
+	                _ChronoField.ChronoField.PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+	            }
+	            this._updateResolveMap(fieldValues, _ChronoField.ChronoField.MONTH_OF_YEAR, _MathUtil.MathUtil.floorMod(prolepticMonth, 12) + 1);
+	            this._updateResolveMap(fieldValues, _ChronoField.ChronoField.YEAR, _MathUtil.MathUtil.floorDiv(prolepticMonth, 12));
 	        }
 
 	        var yoeLong = fieldValues.remove(_ChronoField.ChronoField.YEAR_OF_ERA);
@@ -3279,6 +3299,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    }
 	                }
 	            }
+	            if (fieldValues.containsKey(_ChronoField.ChronoField.DAY_OF_YEAR)) {
+	                var _y = _ChronoField.ChronoField.YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.YEAR));
+	                if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                    var _days = _MathUtil.MathUtil.safeSubtract(fieldValues.remove(_ChronoField.ChronoField.DAY_OF_YEAR), 1);
+	                    return _LocalDate.LocalDate.ofYearDay(_y, 1).plusDays(_days);
+	                }
+	                var doy = _ChronoField.ChronoField.DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.DAY_OF_YEAR));
+	                return _LocalDate.LocalDate.ofYearDay(_y, doy);
+	            }
+	            if (fieldValues.containsKey(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR)) {
+	                if (fieldValues.containsKey(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+	                    var _y2 = _ChronoField.ChronoField.YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.YEAR));
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                        var weeks = _MathUtil.MathUtil.safeSubtract(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+	                        var _days2 = _MathUtil.MathUtil.safeSubtract(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+	                        return _LocalDate.LocalDate.of(_y2, 1, 1).plusWeeks(weeks).plusDays(_days2);
+	                    }
+	                    var aw = _ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR));
+	                    var ad = _ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+	                    var date = _LocalDate.LocalDate.of(_y2, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.STRICT && date.get(_ChronoField.ChronoField.YEAR) !== _y2) {
+	                        throw new _errors.DateTimeException('Strict mode rejected date parsed to a different year');
+	                    }
+	                    return date;
+	                }
+	                if (fieldValues.containsKey(_ChronoField.ChronoField.DAY_OF_WEEK)) {
+	                    var _y3 = _ChronoField.ChronoField.YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.YEAR));
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.LENIENT) {
+	                        var _weeks = _MathUtil.MathUtil.safeSubtract(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+	                        var _days3 = _MathUtil.MathUtil.safeSubtract(fieldValues.remove(_ChronoField.ChronoField.DAY_OF_WEEK), 1);
+	                        return _LocalDate.LocalDate.of(_y3, 1, 1).plusWeeks(_weeks).plusDays(_days3);
+	                    }
+	                    var _aw = _ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.ALIGNED_WEEK_OF_YEAR));
+	                    var dow = _ChronoField.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(_ChronoField.ChronoField.DAY_OF_WEEK));
+	                    var _date = _LocalDate.LocalDate.of(_y3, 1, 1).plusWeeks(_aw - 1).with(_TemporalAdjusters.TemporalAdjusters.nextOrSame(_DayOfWeek.DayOfWeek.of(dow)));
+	                    if (resolverStyle === _ResolverStyle.ResolverStyle.STRICT && _date.get(_ChronoField.ChronoField.YEAR) !== _y3) {
+	                        throw new _errors.DateTimeException('Strict mode rejected date parsed to a different month');
+	                    }
+	                    return _date;
+	                }
+	            }
 	        }
 	        return null;
 	    };
@@ -3329,6 +3390,1487 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.DayOfWeek = undefined;
+	exports._init = _init;
+
+	var _errors = __webpack_require__(3);
+
+	var _MathUtil = __webpack_require__(6);
+
+	var _assert = __webpack_require__(2);
+
+	var _ChronoField = __webpack_require__(12);
+
+	var _ChronoUnit = __webpack_require__(13);
+
+	var _Temporal2 = __webpack_require__(20);
+
+	var _TemporalQueries = __webpack_require__(22);
+
+	var _TemporalQuery = __webpack_require__(23);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var DayOfWeek = function (_Temporal) {
+	    _inherits(DayOfWeek, _Temporal);
+
+	    function DayOfWeek(ordinal, name) {
+	        _classCallCheck(this, DayOfWeek);
+
+	        var _this = _possibleConstructorReturn(this, _Temporal.call(this));
+
+	        _this._ordinal = ordinal;
+	        _this._name = name;
+	        return _this;
+	    }
+
+	    DayOfWeek.prototype.ordinal = function ordinal() {
+	        return this._ordinal;
+	    };
+
+	    DayOfWeek.prototype.name = function name() {
+	        return this._name;
+	    };
+
+	    DayOfWeek.values = function values() {
+	        return ENUMS.slice();
+	    };
+
+	    DayOfWeek.valueOf = function valueOf(name) {
+	        for (var ordinal = 0; ordinal < ENUMS.length; ordinal++) {
+	            if (ENUMS[ordinal].name() === name) {
+	                break;
+	            }
+	        }
+	        return DayOfWeek.of(ordinal + 1);
+	    };
+
+	    DayOfWeek.of = function of(dayOfWeek) {
+	        if (dayOfWeek < 1 || dayOfWeek > 7) {
+	            throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
+	        }
+	        return ENUMS[dayOfWeek - 1];
+	    };
+
+	    DayOfWeek.from = function from(temporal) {
+	        (0, _assert.assert)(temporal != null, 'temporal', _errors.NullPointerException);
+	        if (temporal instanceof DayOfWeek) {
+	            return temporal;
+	        }
+	        try {
+	            return DayOfWeek.of(temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK));
+	        } catch (ex) {
+	            if (ex instanceof _errors.DateTimeException) {
+	                throw new _errors.DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
+	            } else {
+	                throw ex;
+	            }
+	        }
+	    };
+
+	    DayOfWeek.prototype.value = function value() {
+	        return this._ordinal + 1;
+	    };
+
+	    DayOfWeek.prototype.getDisplayName = function getDisplayName(style, locale) {
+	        throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+	    };
+
+	    DayOfWeek.prototype.isSupported = function isSupported(field) {
+	        if (field instanceof _ChronoField.ChronoField) {
+	            return field === _ChronoField.ChronoField.DAY_OF_WEEK;
+	        }
+	        return field != null && field.isSupportedBy(this);
+	    };
+
+	    DayOfWeek.prototype.range = function range(field) {
+	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	            return field.range();
+	        } else if (field instanceof _ChronoField.ChronoField) {
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	        return field.rangeRefinedBy(this);
+	    };
+
+	    DayOfWeek.prototype.get = function get(field) {
+	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	            return this.value();
+	        }
+	        return this.range(field).checkValidIntValue(this.getLong(field), field);
+	    };
+
+	    DayOfWeek.prototype.getLong = function getLong(field) {
+	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
+	            return this.value();
+	        } else if (field instanceof _ChronoField.ChronoField) {
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	        return field.getFrom(this);
+	    };
+
+	    DayOfWeek.prototype.plus = function plus(days) {
+	        var amount = _MathUtil.MathUtil.floorMod(days, 7);
+	        return ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
+	    };
+
+	    DayOfWeek.prototype.minus = function minus(days) {
+	        return this.plus(-1 * _MathUtil.MathUtil.floorMod(days, 7));
+	    };
+
+	    DayOfWeek.prototype.query = function query(_query) {
+	        if (_query === _TemporalQueries.TemporalQueries.precision()) {
+	            return _ChronoUnit.ChronoUnit.DAYS;
+	        } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
+	            return null;
+	        }
+	        (0, _assert.assert)(_query != null, 'query', _errors.NullPointerException);
+	        return _query.queryFrom(this);
+	    };
+
+	    DayOfWeek.prototype.adjustInto = function adjustInto(temporal) {
+	        (0, _assert.requireNonNull)(temporal, 'temporal');
+	        return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
+	    };
+
+	    DayOfWeek.prototype.equals = function equals(other) {
+	        return this === other;
+	    };
+
+	    DayOfWeek.prototype.toString = function toString() {
+	        return this._name;
+	    };
+
+	    return DayOfWeek;
+	}(_Temporal2.Temporal);
+
+	exports.DayOfWeek = DayOfWeek;
+
+
+	var ENUMS;
+
+	function _init() {
+	    DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
+	    DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
+	    DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
+	    DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
+	    DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
+	    DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
+	    DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
+
+	    DayOfWeek.FROM = (0, _TemporalQuery.createTemporalQuery)('DayOfWeek.FROM', function (temporal) {
+	        return DayOfWeek.from(temporal);
+	    });
+
+	    ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
+	}
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.ChronoField = undefined;
+	exports._init = _init;
+
+	var _MathUtil = __webpack_require__(6);
+
+	var _ChronoUnit = __webpack_require__(13);
+
+	var _TemporalField2 = __webpack_require__(18);
+
+	var _ValueRange = __webpack_require__(19);
+
+	var _YearConstants = __webpack_require__(17);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var ChronoField = exports.ChronoField = function (_TemporalField) {
+	    _inherits(ChronoField, _TemporalField);
+
+	    ChronoField.byName = function byName(fieldName) {
+	        for (var prop in ChronoField) {
+	            if (ChronoField.hasOwnProperty(prop)) {
+	                if (ChronoField[prop] instanceof ChronoField && ChronoField[prop].name() === fieldName) {
+	                    return ChronoField[prop];
+	                }
+	            }
+	        }
+	    };
+
+	    function ChronoField(name, baseUnit, rangeUnit, range) {
+	        _classCallCheck(this, ChronoField);
+
+	        var _this = _possibleConstructorReturn(this, _TemporalField.call(this));
+
+	        _this._name = name;
+	        _this._baseUnit = baseUnit;
+	        _this._rangeUnit = rangeUnit;
+	        _this._range = range;
+	        return _this;
+	    }
+
+	    ChronoField.prototype.name = function name() {
+	        return this._name;
+	    };
+
+	    ChronoField.prototype.baseUnit = function baseUnit() {
+	        return this._baseUnit;
+	    };
+
+	    ChronoField.prototype.rangeUnit = function rangeUnit() {
+	        return this._rangeUnit;
+	    };
+
+	    ChronoField.prototype.range = function range() {
+	        return this._range;
+	    };
+
+	    ChronoField.prototype.displayName = function displayName() {
+	        return this.toString();
+	    };
+
+	    ChronoField.prototype.checkValidValue = function checkValidValue(value) {
+	        return this.range().checkValidValue(value, this.name());
+	    };
+
+	    ChronoField.prototype.isDateBased = function isDateBased() {
+	        var dateBased = this === ChronoField.DAY_OF_WEEK || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR || this === ChronoField.DAY_OF_MONTH || this === ChronoField.DAY_OF_YEAR || this === ChronoField.EPOCH_DAY || this === ChronoField.ALIGNED_WEEK_OF_MONTH || this === ChronoField.ALIGNED_WEEK_OF_YEAR || this === ChronoField.MONTH_OF_YEAR || this === ChronoField.YEAR_OF_ERA || this === ChronoField.YEAR || this === ChronoField.ERA;
+	        return dateBased;
+	    };
+
+	    ChronoField.prototype.isTimeBased = function isTimeBased() {
+	        var timeBased = this === ChronoField.NANO_OF_SECOND || this === ChronoField.NANO_OF_DAY || this === ChronoField.MICRO_OF_SECOND || this === ChronoField.MICRO_OF_DAY || this === ChronoField.MILLI_OF_SECOND || this === ChronoField.MILLI_OF_DAY || this === ChronoField.SECOND_OF_MINUTE || this === ChronoField.SECOND_OF_DAY || this === ChronoField.MINUTE_OF_HOUR || this === ChronoField.MINUTE_OF_DAY || this === ChronoField.HOUR_OF_AMPM || this === ChronoField.CLOCK_HOUR_OF_AMPM || this === ChronoField.HOUR_OF_DAY || this === ChronoField.CLOCK_HOUR_OF_DAY || this === ChronoField.AMPM_OF_DAY;
+	        return timeBased;
+	    };
+
+	    ChronoField.prototype.rangeRefinedBy = function rangeRefinedBy(temporal) {
+	        return temporal.range(this);
+	    };
+
+	    ChronoField.prototype.checkValidIntValue = function checkValidIntValue(value) {
+	        return this.range().checkValidIntValue(value, this);
+	    };
+
+	    ChronoField.prototype.getFrom = function getFrom(temporal) {
+	        return temporal.getLong(this);
+	    };
+
+	    ChronoField.prototype.toString = function toString() {
+	        return this.name();
+	    };
+
+	    ChronoField.prototype.equals = function equals(other) {
+	        return this === other;
+	    };
+
+	    return ChronoField;
+	}(_TemporalField2.TemporalField);
+
+	function _init() {
+
+	    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
+
+	    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
+
+	    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
+
+	    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000 - 1));
+
+	    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
+
+	    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000 - 1));
+
+	    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.MINUTES, _ValueRange.ValueRange.of(0, 59));
+
+	    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 - 1));
+
+	    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.HOURS, _ValueRange.ValueRange.of(0, 59));
+
+	    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 24 * 60 - 1));
+
+	    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(0, 11));
+
+	    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(1, 12));
+
+	    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
+
+	    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(1, 24));
+
+	    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', _ChronoUnit.ChronoUnit.HALF_DAYS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 1));
+
+	    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+
+	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
+
+	    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
+
+	    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
+
+	    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_YearConstants.YearConstants.MIN_VALUE * 365.25), Math.floor(_YearConstants.YearConstants.MAX_VALUE * 365.25)));
+
+	    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
+
+	    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
+
+	    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
+
+	    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_YearConstants.YearConstants.MIN_VALUE * 12, _YearConstants.YearConstants.MAX_VALUE * 12 + 11));
+
+	    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _YearConstants.YearConstants.MAX_VALUE, _YearConstants.YearConstants.MAX_VALUE + 1));
+
+	    ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_YearConstants.YearConstants.MIN_VALUE, _YearConstants.YearConstants.MAX_VALUE), 'year');
+
+	    ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
+
+	    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
+
+	    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
+	}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.ChronoUnit = undefined;
+	exports._init = _init;
+
+	var _MathUtil = __webpack_require__(6);
+
+	var _Duration = __webpack_require__(14);
+
+	var _YearConstants = __webpack_require__(17);
+
+	var _TemporalUnit2 = __webpack_require__(16);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var ChronoUnit = exports.ChronoUnit = function (_TemporalUnit) {
+	  _inherits(ChronoUnit, _TemporalUnit);
+
+	  function ChronoUnit(name, estimatedDuration) {
+	    _classCallCheck(this, ChronoUnit);
+
+	    var _this = _possibleConstructorReturn(this, _TemporalUnit.call(this));
+
+	    _this._name = name;
+	    _this._duration = estimatedDuration;
+	    return _this;
+	  }
+
+	  ChronoUnit.prototype.duration = function duration() {
+	    return this._duration;
+	  };
+
+	  ChronoUnit.prototype.isDurationEstimated = function isDurationEstimated() {
+	    return this.isDateBased() || this === ChronoUnit.FOREVER;
+	  };
+
+	  ChronoUnit.prototype.isDateBased = function isDateBased() {
+	    return this.compareTo(ChronoUnit.DAYS) >= 0 && this !== ChronoUnit.FOREVER;
+	  };
+
+	  ChronoUnit.prototype.isTimeBased = function isTimeBased() {
+	    return this.compareTo(ChronoUnit.DAYS) < 0;
+	  };
+
+	  ChronoUnit.prototype.isSupportedBy = function isSupportedBy(temporal) {
+	    if (this === ChronoUnit.FOREVER) {
+	      return false;
+	    }
+
+	    try {
+	      temporal.plus(1, this);
+	      return true;
+	    } catch (e) {
+	      try {
+	        temporal.plus(-1, this);
+	        return true;
+	      } catch (e2) {
+	        return false;
+	      }
+	    }
+	  };
+
+	  ChronoUnit.prototype.addTo = function addTo(temporal, amount) {
+	    return temporal.plus(amount, this);
+	  };
+
+	  ChronoUnit.prototype.between = function between(temporal1, temporal2) {
+	    return temporal1.until(temporal2, this);
+	  };
+
+	  ChronoUnit.prototype.toString = function toString() {
+	    return this._name;
+	  };
+
+	  ChronoUnit.prototype.compareTo = function compareTo(other) {
+	    return this.duration().compareTo(other.duration());
+	  };
+
+	  return ChronoUnit;
+	}(_TemporalUnit2.TemporalUnit);
+
+	function _init() {
+	  ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
+
+	  ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
+
+	  ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
+
+	  ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
+
+	  ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
+
+	  ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
+
+	  ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
+
+	  ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
+
+	  ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
+
+	  ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
+
+	  ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
+
+	  ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
+
+	  ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
+
+	  ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
+
+	  ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_YearConstants.YearConstants.MAX_VALUE + 1)));
+
+	  ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(_MathUtil.MathUtil.MAX_SAFE_INTEGER, 999999999));
+	}
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.Duration = undefined;
+	exports._init = _init;
+
+	var _assert = __webpack_require__(2);
+
+	var _errors = __webpack_require__(3);
+
+	var _MathUtil = __webpack_require__(6);
+
+	var _ChronoField = __webpack_require__(12);
+
+	var _ChronoUnit = __webpack_require__(13);
+
+	var _TemporalAmount2 = __webpack_require__(15);
+
+	var _TemporalUnit = __webpack_require__(16);
+
+	var _LocalTime = __webpack_require__(5);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+
+	var Duration = exports.Duration = function (_TemporalAmount) {
+	    _inherits(Duration, _TemporalAmount);
+
+	    function Duration(seconds, nanos) {
+	        _classCallCheck(this, Duration);
+
+	        var _this = _possibleConstructorReturn(this, _TemporalAmount.call(this));
+
+	        _this._seconds = seconds;
+	        _this._nanos = nanos;
+	        return _this;
+	    }
+
+	    Duration.ofDays = function ofDays(days) {
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	    };
+
+	    Duration.ofHours = function ofHours(hours) {
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
+	    };
+
+	    Duration.ofMinutes = function ofMinutes(minutes) {
+	        return Duration._create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
+	    };
+
+	    Duration.ofSeconds = function ofSeconds(seconds) {
+	        var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+	        var secs = _MathUtil.MathUtil.safeAdd(seconds, _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND));
+	        var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        return Duration._create(secs, nos);
+	    };
+
+	    Duration.ofMillis = function ofMillis(millis) {
+	        var secs = _MathUtil.MathUtil.intDiv(millis, 1000);
+	        var mos = _MathUtil.MathUtil.intMod(millis, 1000);
+	        if (mos < 0) {
+	            mos += 1000;
+	            secs--;
+	        }
+	        return Duration._create(secs, mos * 1000000);
+	    };
+
+	    Duration.ofNanos = function ofNanos(nanos) {
+	        var secs = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        var nos = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        if (nos < 0) {
+	            nos += _LocalTime.LocalTime.NANOS_PER_SECOND;
+	            secs--;
+	        }
+	        return this._create(secs, nos);
+	    };
+
+	    Duration.of = function of(amount, unit) {
+	        return Duration.ZERO.plus(amount, unit);
+	    };
+
+	    Duration.from = function from(amount) {
+	        (0, _assert.requireNonNull)(amount, 'amount');
+	        (0, _assert.requireInstance)(amount, _TemporalAmount2.TemporalAmount);
+	        var duration = Duration.ZERO;
+	        amount.units().forEach(function (unit) {
+	            duration = duration.plus(amount.get(unit), unit);
+	        });
+	        return duration;
+	    };
+
+	    Duration.between = function between(startInclusive, endExclusive) {
+	        (0, _assert.requireNonNull)(startInclusive, 'startInclusive');
+	        (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	        var secs = startInclusive.until(endExclusive, _ChronoUnit.ChronoUnit.SECONDS);
+	        var nanos = 0;
+	        if (startInclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)) {
+	            try {
+	                var startNos = startInclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND);
+	                nanos = endExclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND) - startNos;
+	                if (secs > 0 && nanos < 0) {
+	                    nanos += _LocalTime.LocalTime.NANOS_PER_SECOND;
+	                } else if (secs < 0 && nanos > 0) {
+	                    nanos -= _LocalTime.LocalTime.NANOS_PER_SECOND;
+	                } else if (secs === 0 && nanos !== 0) {
+	                    var adjustedEnd = endExclusive.with(_ChronoField.ChronoField.NANO_OF_SECOND, startNos);
+	                    secs = startInclusive.until(adjustedEnd, _ChronoUnit.ChronoUnit.SECONDS);
+	                }
+	            } catch (e) {}
+	        }
+	        return this.ofSeconds(secs, nanos);
+	    };
+
+	    Duration.parse = function parse(text) {
+	        (0, _assert.requireNonNull)(text, 'text');
+
+	        var PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
+	        var matches = PATTERN.exec(text);
+	        if (matches !== null) {
+	            if ('T' === matches[3] === false) {
+	                var negate = '-' === matches[1];
+	                var dayMatch = matches[2];
+	                var hourMatch = matches[4];
+	                var minuteMatch = matches[5];
+	                var secondMatch = matches[6];
+	                var fractionMatch = matches[7];
+	                if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
+	                    var daysAsSecs = Duration._parseNumber(text, dayMatch, _LocalTime.LocalTime.SECONDS_PER_DAY, 'days');
+	                    var hoursAsSecs = Duration._parseNumber(text, hourMatch, _LocalTime.LocalTime.SECONDS_PER_HOUR, 'hours');
+	                    var minsAsSecs = Duration._parseNumber(text, minuteMatch, _LocalTime.LocalTime.SECONDS_PER_MINUTE, 'minutes');
+	                    var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
+	                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
+	                    var nanos = Duration._parseFraction(text, fractionMatch, negativeSecs ? -1 : 1);
+	                    try {
+	                        return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
+	                    } catch (ex) {
+	                        throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
+	                    }
+	                }
+	            }
+	        }
+	        throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
+	    };
+
+	    Duration._parseNumber = function _parseNumber(text, parsed, multiplier, errorText) {
+	        if (parsed == null) {
+	            return 0;
+	        }
+	        try {
+	            if (parsed[0] === '+') {
+	                parsed = parsed.substring(1);
+	            }
+	            var val = parseFloat(parsed);
+	            return _MathUtil.MathUtil.safeMultiply(val, multiplier);
+	        } catch (ex) {
+	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
+	        }
+	    };
+
+	    Duration._parseFraction = function _parseFraction(text, parsed, negate) {
+	        if (parsed == null || parsed.length === 0) {
+	            return 0;
+	        }
+	        parsed = (parsed + '000000000').substring(0, 9);
+	        return parseFloat(parsed) * negate;
+	    };
+
+	    Duration._create = function _create() {
+	        if (arguments.length <= 2) {
+	            return Duration._createSecondsNanos(arguments[0], arguments[1]);
+	        } else {
+	            return Duration._createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
+	        }
+	    };
+
+	    Duration._createNegateDaysHoursMinutesSecondsNanos = function _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
+	        var seconds = _MathUtil.MathUtil.safeAdd(daysAsSecs, _MathUtil.MathUtil.safeAdd(hoursAsSecs, _MathUtil.MathUtil.safeAdd(minsAsSecs, secs)));
+	        if (negate) {
+	            return Duration.ofSeconds(seconds, nanos).negated();
+	        }
+	        return Duration.ofSeconds(seconds, nanos);
+	    };
+
+	    Duration._createSecondsNanos = function _createSecondsNanos() {
+	        var seconds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+	        if ((seconds | nanoAdjustment) === 0) {
+	            return Duration.ZERO;
+	        }
+	        return new Duration(seconds, nanoAdjustment);
+	    };
+
+	    Duration.prototype.get = function get(unit) {
+	        if (unit === _ChronoUnit.ChronoUnit.SECONDS) {
+	            return this._seconds;
+	        } else if (unit === _ChronoUnit.ChronoUnit.NANOS) {
+	            return this._nanos;
+	        } else {
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+	        }
+	    };
+
+	    Duration.prototype.units = function units() {
+	        return [_ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.NANOS];
+	    };
+
+	    Duration.prototype.isZero = function isZero() {
+	        return (this._seconds | this._nanos) === 0;
+	    };
+
+	    Duration.prototype.isNegative = function isNegative() {
+	        return this._seconds < 0;
+	    };
+
+	    Duration.prototype.seconds = function seconds() {
+	        return this._seconds;
+	    };
+
+	    Duration.prototype.nano = function nano() {
+	        return this._nanos;
+	    };
+
+	    Duration.prototype.withSeconds = function withSeconds(seconds) {
+	        return Duration._create(seconds, this._nanos);
+	    };
+
+	    Duration.prototype.withNanos = function withNanos(nanoOfSecond) {
+	        _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
+	        return Duration._create(this._seconds, nanoOfSecond);
+	    };
+
+	    Duration.prototype.plusDuration = function plusDuration(duration) {
+	        (0, _assert.requireNonNull)(duration, 'duration');
+	        return this.plus(duration.seconds(), duration.nano());
+	    };
+
+	    Duration.prototype.plus = function plus(durationOrNumber, unitOrNumber) {
+	        if (arguments.length === 1) {
+	            return this.plusDuration(durationOrNumber);
+	        } else if (arguments.length === 2 && unitOrNumber instanceof _TemporalUnit.TemporalUnit) {
+	            return this.plusAmountUnit(durationOrNumber, unitOrNumber);
+	        } else {
+	            return this.plusSecondsNanos(durationOrNumber, unitOrNumber);
+	        }
+	    };
+
+	    Duration.prototype.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
+	        (0, _assert.requireNonNull)(amountToAdd, 'amountToAdd');
+	        (0, _assert.requireNonNull)(unit, 'unit');
+	        if (unit === _ChronoUnit.ChronoUnit.DAYS) {
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	        }
+	        if (unit.isDurationEstimated()) {
+	            throw new _errors.UnsupportedTemporalTypeException('Unit must not have an estimated duration');
+	        }
+	        if (amountToAdd === 0) {
+	            return this;
+	        }
+	        if (unit instanceof _ChronoUnit.ChronoUnit) {
+	            switch (unit) {
+	                case _ChronoUnit.ChronoUnit.NANOS:
+	                    return this.plusNanos(amountToAdd);
+	                case _ChronoUnit.ChronoUnit.MICROS:
+	                    return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(amountToAdd, 1000000 * 1000) * 1000, _MathUtil.MathUtil.intMod(amountToAdd, 1000000 * 1000) * 1000);
+	                case _ChronoUnit.ChronoUnit.MILLIS:
+	                    return this.plusMillis(amountToAdd);
+	                case _ChronoUnit.ChronoUnit.SECONDS:
+	                    return this.plusSeconds(amountToAdd);
+	            }
+	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
+	        }
+	        var duration = unit.duration().multipliedBy(amountToAdd);
+	        return this.plusSecondsNanos(duration.seconds(), duration.nano());
+	    };
+
+	    Duration.prototype.plusDays = function plusDays(daysToAdd) {
+	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(daysToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
+	    };
+
+	    Duration.prototype.plusHours = function plusHours(hoursToAdd) {
+	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(hoursToAdd, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
+	    };
+
+	    Duration.prototype.plusMinutes = function plusMinutes(minutesToAdd) {
+	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(minutesToAdd, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
+	    };
+
+	    Duration.prototype.plusSeconds = function plusSeconds(secondsToAdd) {
+	        return this.plusSecondsNanos(secondsToAdd, 0);
+	    };
+
+	    Duration.prototype.plusMillis = function plusMillis(millisToAdd) {
+	        return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(millisToAdd, 1000), _MathUtil.MathUtil.intMod(millisToAdd, 1000) * 1000000);
+	    };
+
+	    Duration.prototype.plusNanos = function plusNanos(nanosToAdd) {
+	        return this.plusSecondsNanos(0, nanosToAdd);
+	    };
+
+	    Duration.prototype.plusSecondsNanos = function plusSecondsNanos(secondsToAdd, nanosToAdd) {
+	        (0, _assert.requireNonNull)(secondsToAdd, 'secondsToAdd');
+	        (0, _assert.requireNonNull)(nanosToAdd, 'nanosToAdd');
+	        if ((secondsToAdd | nanosToAdd) === 0) {
+	            return this;
+	        }
+	        var epochSec = _MathUtil.MathUtil.safeAdd(this._seconds, secondsToAdd);
+	        epochSec = _MathUtil.MathUtil.safeAdd(epochSec, _MathUtil.MathUtil.intDiv(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND));
+	        nanosToAdd = _MathUtil.MathUtil.intMod(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        var nanoAdjustment = _MathUtil.MathUtil.safeAdd(this._nanos, nanosToAdd);
+	        return Duration.ofSeconds(epochSec, nanoAdjustment);
+	    };
+
+	    Duration.prototype.minus = function minus(durationOrNumber, unit) {
+	        if (arguments.length === 1) {
+	            return this.minusDuration(durationOrNumber);
+	        } else {
+	            return this.minusAmountUnit(durationOrNumber, unit);
+	        }
+	    };
+
+	    Duration.prototype.minusDuration = function minusDuration(duration) {
+	        (0, _assert.requireNonNull)(duration, 'duration');
+	        var secsToSubtract = duration.seconds();
+	        var nanosToSubtract = duration.nano();
+	        if (secsToSubtract === _MathUtil.MIN_SAFE_INTEGER) {
+	            return this.plus(_MathUtil.MAX_SAFE_INTEGER, -nanosToSubtract);
+	        }
+	        return this.plus(-secsToSubtract, -nanosToSubtract);
+	    };
+
+	    Duration.prototype.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+	        (0, _assert.requireNonNull)(amountToSubtract, 'amountToSubtract');
+	        (0, _assert.requireNonNull)(unit, 'unit');
+	        return amountToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(_MathUtil.MAX_SAFE_INTEGER, unit) : this.plusAmountUnit(-amountToSubtract, unit);
+	    };
+
+	    Duration.prototype.minusDays = function minusDays(daysToSubtract) {
+	        return daysToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusDays(_MathUtil.MAX_SAFE_INTEGER) : this.plusDays(-daysToSubtract);
+	    };
+
+	    Duration.prototype.minusHours = function minusHours(hoursToSubtract) {
+	        return hoursToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusHours(_MathUtil.MAX_SAFE_INTEGER) : this.plusHours(-hoursToSubtract);
+	    };
+
+	    Duration.prototype.minusMinutes = function minusMinutes(minutesToSubtract) {
+	        return minutesToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMinutes(_MathUtil.MAX_SAFE_INTEGER) : this.plusMinutes(-minutesToSubtract);
+	    };
+
+	    Duration.prototype.minusSeconds = function minusSeconds(secondsToSubtract) {
+	        return secondsToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusSeconds(_MathUtil.MAX_SAFE_INTEGER) : this.plusSeconds(-secondsToSubtract);
+	    };
+
+	    Duration.prototype.minusMillis = function minusMillis(millisToSubtract) {
+	        return millisToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMillis(_MathUtil.MAX_SAFE_INTEGER) : this.plusMillis(-millisToSubtract);
+	    };
+
+	    Duration.prototype.minusNanos = function minusNanos(nanosToSubtract) {
+	        return nanosToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusNanos(_MathUtil.MAX_SAFE_INTEGER) : this.plusNanos(-nanosToSubtract);
+	    };
+
+	    Duration.prototype.multipliedBy = function multipliedBy(multiplicand) {
+	        if (multiplicand === 0) {
+	            return Duration.ZERO;
+	        }
+	        if (multiplicand === 1) {
+	            return this;
+	        }
+	        var secs = _MathUtil.MathUtil.safeMultiply(this._seconds, multiplicand);
+	        var nos = _MathUtil.MathUtil.safeMultiply(this._nanos, multiplicand);
+	        secs = secs + _MathUtil.MathUtil.intDiv(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        nos = _MathUtil.MathUtil.intMod(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        return Duration.ofSeconds(secs, nos);
+	    };
+
+	    Duration.prototype.dividedBy = function dividedBy(divisor) {
+	        if (divisor === 0) {
+	            throw new _errors.ArithmeticException('Cannot divide by zero');
+	        }
+	        if (divisor === 1) {
+	            return this;
+	        }
+	        var secs = _MathUtil.MathUtil.intDiv(this._seconds, divisor);
+	        var secsMod = _MathUtil.MathUtil.roundDown((this._seconds / divisor - secs) * _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        var nos = _MathUtil.MathUtil.intDiv(this._nanos, divisor);
+	        nos = secsMod + nos;
+	        return Duration.ofSeconds(secs, nos);
+	    };
+
+	    Duration.prototype.negated = function negated() {
+	        return this.multipliedBy(-1);
+	    };
+
+	    Duration.prototype.abs = function abs() {
+	        return this.isNegative() ? this.negated() : this;
+	    };
+
+	    Duration.prototype.addTo = function addTo(temporal) {
+	        (0, _assert.requireNonNull)(temporal, 'temporal');
+	        if (this._seconds !== 0) {
+	            temporal = temporal.plus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
+	        }
+	        if (this._nanos !== 0) {
+	            temporal = temporal.plus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
+	        }
+	        return temporal;
+	    };
+
+	    Duration.prototype.subtractFrom = function subtractFrom(temporal) {
+	        (0, _assert.requireNonNull)(temporal, 'temporal');
+	        if (this._seconds !== 0) {
+	            temporal = temporal.minus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
+	        }
+	        if (this._nanos !== 0) {
+	            temporal = temporal.minus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
+	        }
+	        return temporal;
+	    };
+
+	    Duration.prototype.toDays = function toDays() {
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_DAY);
+	    };
+
+	    Duration.prototype.toHours = function toHours() {
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
+	    };
+
+	    Duration.prototype.toMinutes = function toMinutes() {
+	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	    };
+
+	    Duration.prototype.toMillis = function toMillis() {
+	        var millis = Math.round(_MathUtil.MathUtil.safeMultiply(this._seconds, 1000));
+	        millis = _MathUtil.MathUtil.safeAdd(millis, _MathUtil.MathUtil.intDiv(this._nanos, 1000000));
+	        return millis;
+	    };
+
+	    Duration.prototype.toNanos = function toNanos() {
+	        var totalNanos = _MathUtil.MathUtil.safeMultiply(this._seconds, _LocalTime.LocalTime.NANOS_PER_SECOND);
+	        totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, this._nanos);
+	        return totalNanos;
+	    };
+
+	    Duration.prototype.compareTo = function compareTo(otherDuration) {
+	        (0, _assert.requireNonNull)(otherDuration, 'otherDuration');
+	        (0, _assert.requireInstance)(otherDuration, Duration, 'otherDuration');
+	        var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
+	        if (cmp !== 0) {
+	            return cmp;
+	        }
+	        return this._nanos - otherDuration.nano();
+	    };
+
+	    Duration.prototype.equals = function equals(otherDuration) {
+	        if (this === otherDuration) {
+	            return true;
+	        }
+	        if (otherDuration instanceof Duration) {
+	            return this.seconds() === otherDuration.seconds() && this.nano() === otherDuration.nano();
+	        }
+	        return false;
+	    };
+
+	    Duration.prototype.toString = function toString() {
+	        if (this === Duration.ZERO) {
+	            return 'PT0S';
+	        }
+	        var hours = _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
+	        var minutes = _MathUtil.MathUtil.intDiv(_MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR), _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	        var secs = _MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
+	        var rval = 'PT';
+	        if (hours !== 0) {
+	            rval += hours + 'H';
+	        }
+	        if (minutes !== 0) {
+	            rval += minutes + 'M';
+	        }
+	        if (secs === 0 && this._nanos === 0 && rval.length > 2) {
+	            return rval;
+	        }
+	        if (secs < 0 && this._nanos > 0) {
+	            if (secs === -1) {
+	                rval += '-0';
+	            } else {
+	                rval += secs + 1;
+	            }
+	        } else {
+	            rval += secs;
+	        }
+	        if (this._nanos > 0) {
+	            rval += '.';
+	            var nanoString = void 0;
+	            if (secs < 0) {
+	                nanoString = '' + (2 * _LocalTime.LocalTime.NANOS_PER_SECOND - this._nanos);
+	            } else {
+	                nanoString = '' + (_LocalTime.LocalTime.NANOS_PER_SECOND + this._nanos);
+	            }
+
+	            nanoString = nanoString.slice(1, nanoString.length);
+	            rval += nanoString;
+	            while (rval.charAt(rval.length - 1) === '0') {
+	                rval = rval.slice(0, rval.length - 1);
+	            }
+	        }
+	        rval += 'S';
+	        return rval;
+	    };
+
+	    Duration.prototype.toJSON = function toJSON() {
+	        return this.toString();
+	    };
+
+	    return Duration;
+	}(_TemporalAmount2.TemporalAmount);
+
+	function _init() {
+	    Duration.ZERO = new Duration(0, 0);
+	}
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.TemporalAmount = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var TemporalAmount = exports.TemporalAmount = function () {
+	  function TemporalAmount() {
+	    _classCallCheck(this, TemporalAmount);
+	  }
+
+	  TemporalAmount.prototype.get = function get(unit) {
+	    (0, _assert.abstractMethodFail)('get');
+	  };
+
+	  TemporalAmount.prototype.units = function units() {
+	    (0, _assert.abstractMethodFail)('units');
+	  };
+
+	  TemporalAmount.prototype.addTo = function addTo(temporal) {
+	    (0, _assert.abstractMethodFail)('addTo');
+	  };
+
+	  TemporalAmount.prototype.subtractFrom = function subtractFrom(temporal) {
+	    (0, _assert.abstractMethodFail)('subtractFrom');
+	  };
+
+	  return TemporalAmount;
+	}();
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.TemporalUnit = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var TemporalUnit = exports.TemporalUnit = function () {
+	  function TemporalUnit() {
+	    _classCallCheck(this, TemporalUnit);
+	  }
+
+	  TemporalUnit.prototype.duration = function duration() {
+	    (0, _assert.abstractMethodFail)('duration');
+	  };
+
+	  TemporalUnit.prototype.isDurationEstimated = function isDurationEstimated() {
+	    (0, _assert.abstractMethodFail)('isDurationEstimated');
+	  };
+
+	  TemporalUnit.prototype.isDateBased = function isDateBased() {
+	    (0, _assert.abstractMethodFail)('isDateBased');
+	  };
+
+	  TemporalUnit.prototype.isTimeBased = function isTimeBased() {
+	    (0, _assert.abstractMethodFail)('isTimeBased');
+	  };
+
+	  TemporalUnit.prototype.isSupportedBy = function isSupportedBy(temporal) {
+	    (0, _assert.abstractMethodFail)('isSupportedBy');
+	  };
+
+	  TemporalUnit.prototype.addTo = function addTo(dateTime, periodToAdd) {
+	    (0, _assert.abstractMethodFail)('addTo');
+	  };
+
+	  TemporalUnit.prototype.between = function between(temporal1, temporal2) {
+	    (0, _assert.abstractMethodFail)('between');
+	  };
+
+	  return TemporalUnit;
+	}();
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	exports._init = _init;
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/*
+	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+	 */
+
+	var YearConstants = exports.YearConstants = function YearConstants() {
+	  _classCallCheck(this, YearConstants);
+	};
+
+	function _init() {
+	  YearConstants.MIN_VALUE = -999999;
+
+	  YearConstants.MAX_VALUE = 999999;
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+
+	var TemporalField = exports.TemporalField = function TemporalField() {
+	  _classCallCheck(this, TemporalField);
+	};
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.ValueRange = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	var _errors = __webpack_require__(3);
+
+	var _MathUtil = __webpack_require__(6);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var ValueRange = exports.ValueRange = function () {
+	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
+	        _classCallCheck(this, ValueRange);
+
+	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'', _errors.IllegalArgumentException);
+	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'', _errors.IllegalArgumentException);
+	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'', _errors.IllegalArgumentException);
+
+	        this._minSmallest = minSmallest;
+	        this._minLargest = minLargest;
+	        this._maxLargest = maxLargest;
+	        this._maxSmallest = maxSmallest;
+	    }
+
+	    ValueRange.prototype.isFixed = function isFixed() {
+	        return this._minSmallest === this._minLargest && this._maxSmallest === this._maxLargest;
+	    };
+
+	    ValueRange.prototype.minimum = function minimum() {
+	        return this._minSmallest;
+	    };
+
+	    ValueRange.prototype.largestMinimum = function largestMinimum() {
+	        return this._minLargest;
+	    };
+
+	    ValueRange.prototype.maximum = function maximum() {
+	        return this._maxLargest;
+	    };
+
+	    ValueRange.prototype.smallestMaximum = function smallestMaximum() {
+	        return this._maxSmallest;
+	    };
+
+	    ValueRange.prototype.isValidValue = function isValidValue(value) {
+	        return this.minimum() <= value && value <= this.maximum();
+	    };
+
+	    ValueRange.prototype.checkValidValue = function checkValidValue(value, field) {
+	        var msg;
+	        if (!this.isValidValue(value)) {
+	            if (field != null) {
+	                msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
+	            } else {
+	                msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
+	            }
+	            return (0, _assert.assert)(false, msg, _errors.DateTimeException);
+	        }
+	    };
+
+	    ValueRange.prototype.checkValidIntValue = function checkValidIntValue(value, field) {
+	        if (this.isValidIntValue(value) === false) {
+	            throw new _errors.DateTimeException('Invalid int value for ' + field + ': ' + value);
+	        }
+	        return value;
+	    };
+
+	    ValueRange.prototype.isValidIntValue = function isValidIntValue(value) {
+	        return this.isIntValue() && this.isValidValue(value);
+	    };
+
+	    ValueRange.prototype.isIntValue = function isIntValue() {
+	        return this.minimum() >= _MathUtil.MathUtil.MIN_SAFE_INTEGER && this.maximum() <= _MathUtil.MathUtil.MAX_SAFE_INTEGER;
+	    };
+
+	    ValueRange.prototype.equals = function equals(other) {
+	        if (other === this) {
+	            return true;
+	        }
+	        if (other instanceof ValueRange) {
+	            return this._minSmallest === other._minSmallest && this._minLargest === other._minLargest && this._maxSmallest === other._maxSmallest && this._maxLargest === other._maxLargest;
+	        }
+	        return false;
+	    };
+
+	    ValueRange.prototype.hashCode = function hashCode() {
+	        var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 + this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
+	        return hash ^ hash >>> 32;
+	    };
+
+	    ValueRange.prototype.toString = function toString() {
+	        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
+	        str += ' - ';
+	        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
+	        return str;
+	    };
+
+	    ValueRange.of = function of() {
+	        if (arguments.length === 2) {
+	            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
+	        } else if (arguments.length === 3) {
+	            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
+	        } else if (arguments.length === 4) {
+	            return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
+	        } else {
+	            return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length, _errors.IllegalArgumentException);
+	        }
+	    };
+
+	    return ValueRange;
+	}();
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.Temporal = undefined;
+
+	var _TemporalAccessor2 = __webpack_require__(21);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var Temporal = exports.Temporal = function (_TemporalAccessor) {
+	  _inherits(Temporal, _TemporalAccessor);
+
+	  function Temporal() {
+	    _classCallCheck(this, Temporal);
+
+	    return _possibleConstructorReturn(this, _TemporalAccessor.apply(this, arguments));
+	  }
+
+	  return Temporal;
+	}(_TemporalAccessor2.TemporalAccessor);
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.TemporalAccessor = undefined;
+
+	var _errors = __webpack_require__(3);
+
+	var _ChronoField = __webpack_require__(12);
+
+	var _TemporalQueries = __webpack_require__(22);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var TemporalAccessor = function () {
+	    function TemporalAccessor() {
+	        _classCallCheck(this, TemporalAccessor);
+	    }
+
+	    TemporalAccessor.prototype.query = function query(_query) {
+	        if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
+	            return null;
+	        }
+	        return _query.queryFrom(this);
+	    };
+
+	    TemporalAccessor.prototype.get = function get(field) {
+	        return this.range(field).checkValidIntValue(this.getLong(field), field);
+	    };
+
+	    TemporalAccessor.prototype.range = function range(field) {
+	        if (field instanceof _ChronoField.ChronoField) {
+	            if (this.isSupported(field)) {
+	                return field.range();
+	            }
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	        return field.rangeRefinedBy(this);
+	    };
+
+	    return TemporalAccessor;
+	}();
+
+	exports.TemporalAccessor = TemporalAccessor;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+
+	var TemporalQueries = exports.TemporalQueries = function () {
+	  function TemporalQueries() {
+	    _classCallCheck(this, TemporalQueries);
+	  }
+
+	  TemporalQueries.zoneId = function zoneId() {
+	    return TemporalQueries.ZONE_ID;
+	  };
+
+	  TemporalQueries.chronology = function chronology() {
+	    return TemporalQueries.CHRONO;
+	  };
+
+	  TemporalQueries.precision = function precision() {
+	    return TemporalQueries.PRECISION;
+	  };
+
+	  TemporalQueries.zone = function zone() {
+	    return TemporalQueries.ZONE;
+	  };
+
+	  TemporalQueries.offset = function offset() {
+	    return TemporalQueries.OFFSET;
+	  };
+
+	  TemporalQueries.localDate = function localDate() {
+	    return TemporalQueries.LOCAL_DATE;
+	  };
+
+	  TemporalQueries.localTime = function localTime() {
+	    return TemporalQueries.LOCAL_TIME;
+	  };
+
+	  return TemporalQueries;
+	}();
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.TemporalQuery = undefined;
+	exports.createTemporalQuery = createTemporalQuery;
+
+	var _assert = __webpack_require__(2);
+
+	var _Enum2 = __webpack_require__(10);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
+	  _inherits(TemporalQuery, _Enum);
+
+	  function TemporalQuery() {
+	    _classCallCheck(this, TemporalQuery);
+
+	    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
+	  }
+
+	  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
+	    (0, _assert.abstractMethodFail)('queryFrom');
+	  };
+
+	  return TemporalQuery;
+	}(_Enum2.Enum);
+
+	function createTemporalQuery(name, queryFromFunction) {
+	  var ExtendedTemporalQuery = function (_TemporalQuery) {
+	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
+
+	    function ExtendedTemporalQuery() {
+	      _classCallCheck(this, ExtendedTemporalQuery);
+
+	      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
+	    }
+
+	    return ExtendedTemporalQuery;
+	  }(TemporalQuery);
+
+	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
+	  return new ExtendedTemporalQuery(name);
+	}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
 	exports.Month = undefined;
 	exports._init = _init;
 
@@ -3342,13 +4884,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3607,1073 +5149,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 12 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	exports.__esModule = true;
-	exports.ChronoField = undefined;
-	exports._init = _init;
-
-	var _MathUtil = __webpack_require__(6);
-
-	var _ChronoUnit = __webpack_require__(13);
-
-	var _TemporalField2 = __webpack_require__(18);
-
-	var _ValueRange = __webpack_require__(19);
-
-	var _YearConstants = __webpack_require__(16);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var ChronoField = exports.ChronoField = function (_TemporalField) {
-	    _inherits(ChronoField, _TemporalField);
-
-	    function ChronoField(name, baseUnit, rangeUnit, range) {
-	        _classCallCheck(this, ChronoField);
-
-	        var _this = _possibleConstructorReturn(this, _TemporalField.call(this));
-
-	        _this._name = name;
-	        _this._baseUnit = baseUnit;
-	        _this._rangeUnit = rangeUnit;
-	        _this._range = range;
-	        return _this;
-	    }
-
-	    ChronoField.prototype.name = function name() {
-	        return this._name;
-	    };
-
-	    ChronoField.prototype.baseUnit = function baseUnit() {
-	        return this._baseUnit;
-	    };
-
-	    ChronoField.prototype.rangeUnit = function rangeUnit() {
-	        return this._rangeUnit;
-	    };
-
-	    ChronoField.prototype.range = function range() {
-	        return this._range;
-	    };
-
-	    ChronoField.prototype.displayName = function displayName() {
-	        return this.toString();
-	    };
-
-	    ChronoField.prototype.checkValidValue = function checkValidValue(value) {
-	        return this.range().checkValidValue(value, this.name());
-	    };
-
-	    ChronoField.prototype.isDateBased = function isDateBased() {
-	        var dateBased = this === ChronoField.DAY_OF_WEEK || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH || this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR || this === ChronoField.DAY_OF_MONTH || this === ChronoField.DAY_OF_YEAR || this === ChronoField.EPOCH_DAY || this === ChronoField.ALIGNED_WEEK_OF_MONTH || this === ChronoField.ALIGNED_WEEK_OF_YEAR || this === ChronoField.MONTH_OF_YEAR || this === ChronoField.YEAR_OF_ERA || this === ChronoField.YEAR || this === ChronoField.ERA;
-	        return dateBased;
-	    };
-
-	    ChronoField.prototype.isTimeBased = function isTimeBased() {
-	        var timeBased = this === ChronoField.NANO_OF_SECOND || this === ChronoField.NANO_OF_DAY || this === ChronoField.MICRO_OF_SECOND || this === ChronoField.MICRO_OF_DAY || this === ChronoField.MILLI_OF_SECOND || this === ChronoField.MILLI_OF_DAY || this === ChronoField.SECOND_OF_MINUTE || this === ChronoField.SECOND_OF_DAY || this === ChronoField.MINUTE_OF_HOUR || this === ChronoField.MINUTE_OF_DAY || this === ChronoField.HOUR_OF_AMPM || this === ChronoField.CLOCK_HOUR_OF_AMPM || this === ChronoField.HOUR_OF_DAY || this === ChronoField.CLOCK_HOUR_OF_DAY || this === ChronoField.AMPM_OF_DAY;
-	        return timeBased;
-	    };
-
-	    ChronoField.prototype.rangeRefinedBy = function rangeRefinedBy(temporal) {
-	        return temporal.range(this);
-	    };
-
-	    ChronoField.prototype.checkValidIntValue = function checkValidIntValue(value) {
-	        return this.range().checkValidIntValue(value, this);
-	    };
-
-	    ChronoField.prototype.getFrom = function getFrom(temporal) {
-	        return temporal.getLong(this);
-	    };
-
-	    ChronoField.prototype.toString = function toString() {
-	        return this.name();
-	    };
-
-	    ChronoField.prototype.equals = function equals(other) {
-	        return this === other;
-	    };
-
-	    return ChronoField;
-	}(_TemporalField2.TemporalField);
-
-	function _init() {
-
-	    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999999));
-
-	    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', _ChronoUnit.ChronoUnit.NANOS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000000 - 1));
-
-	    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999999));
-
-	    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', _ChronoUnit.ChronoUnit.MICROS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000000 - 1));
-
-	    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.SECONDS, _ValueRange.ValueRange.of(0, 999));
-
-	    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', _ChronoUnit.ChronoUnit.MILLIS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 * 1000 - 1));
-
-	    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.MINUTES, _ValueRange.ValueRange.of(0, 59));
-
-	    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 86400 - 1));
-
-	    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.HOURS, _ValueRange.ValueRange.of(0, 59));
-
-	    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', _ChronoUnit.ChronoUnit.MINUTES, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 24 * 60 - 1));
-
-	    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(0, 11));
-
-	    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.HALF_DAYS, _ValueRange.ValueRange.of(1, 12));
-
-	    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 23));
-
-	    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', _ChronoUnit.ChronoUnit.HOURS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(1, 24));
-
-	    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', _ChronoUnit.ChronoUnit.HALF_DAYS, _ChronoUnit.ChronoUnit.DAYS, _ValueRange.ValueRange.of(0, 1));
-
-	    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-
-	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-
-	    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.WEEKS, _ValueRange.ValueRange.of(1, 7));
-
-	    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 28, 31), 'day');
-
-	    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 365, 366));
-
-	    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', _ChronoUnit.ChronoUnit.DAYS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(Math.floor(_YearConstants.YearConstants.MIN_VALUE * 365.25), Math.floor(_YearConstants.YearConstants.MAX_VALUE * 365.25)));
-
-	    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.MONTHS, _ValueRange.ValueRange.of(1, 4, 5));
-
-	    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', _ChronoUnit.ChronoUnit.WEEKS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 53));
-
-	    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.YEARS, _ValueRange.ValueRange.of(1, 12), 'month');
-
-	    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', _ChronoUnit.ChronoUnit.MONTHS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_YearConstants.YearConstants.MIN_VALUE * 12, _YearConstants.YearConstants.MAX_VALUE * 12 + 11));
-
-	    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(1, _YearConstants.YearConstants.MAX_VALUE, _YearConstants.YearConstants.MAX_VALUE + 1));
-
-	    ChronoField.YEAR = new ChronoField('Year', _ChronoUnit.ChronoUnit.YEARS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_YearConstants.YearConstants.MIN_VALUE, _YearConstants.YearConstants.MAX_VALUE), 'year');
-
-	    ChronoField.ERA = new ChronoField('Era', _ChronoUnit.ChronoUnit.ERAS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(0, 1));
-
-	    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(_MathUtil.MIN_SAFE_INTEGER, _MathUtil.MAX_SAFE_INTEGER));
-
-	    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', _ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.FOREVER, _ValueRange.ValueRange.of(-18 * 3600, 18 * 3600));
-	}
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.ChronoUnit = undefined;
-	exports._init = _init;
-
-	var _MathUtil = __webpack_require__(6);
-
-	var _Duration = __webpack_require__(14);
-
-	var _YearConstants = __webpack_require__(16);
-
-	var _TemporalUnit2 = __webpack_require__(17);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var ChronoUnit = exports.ChronoUnit = function (_TemporalUnit) {
-	  _inherits(ChronoUnit, _TemporalUnit);
-
-	  function ChronoUnit(name, estimatedDuration) {
-	    _classCallCheck(this, ChronoUnit);
-
-	    var _this = _possibleConstructorReturn(this, _TemporalUnit.call(this));
-
-	    _this._name = name;
-	    _this._duration = estimatedDuration;
-	    return _this;
-	  }
-
-	  ChronoUnit.prototype.duration = function duration() {
-	    return this._duration;
-	  };
-
-	  ChronoUnit.prototype.isDurationEstimated = function isDurationEstimated() {
-	    return this.isDateBased() || this === ChronoUnit.FOREVER;
-	  };
-
-	  ChronoUnit.prototype.isDateBased = function isDateBased() {
-	    return this.compareTo(ChronoUnit.DAYS) >= 0 && this !== ChronoUnit.FOREVER;
-	  };
-
-	  ChronoUnit.prototype.isTimeBased = function isTimeBased() {
-	    return this.compareTo(ChronoUnit.DAYS) < 0;
-	  };
-
-	  ChronoUnit.prototype.isSupportedBy = function isSupportedBy(temporal) {
-	    if (this === ChronoUnit.FOREVER) {
-	      return false;
-	    }
-
-	    try {
-	      temporal.plus(1, this);
-	      return true;
-	    } catch (e) {
-	      try {
-	        temporal.plus(-1, this);
-	        return true;
-	      } catch (e2) {
-	        return false;
-	      }
-	    }
-	  };
-
-	  ChronoUnit.prototype.addTo = function addTo(temporal, amount) {
-	    return temporal.plus(amount, this);
-	  };
-
-	  ChronoUnit.prototype.between = function between(temporal1, temporal2) {
-	    return temporal1.until(temporal2, this);
-	  };
-
-	  ChronoUnit.prototype.toString = function toString() {
-	    return this._name;
-	  };
-
-	  ChronoUnit.prototype.compareTo = function compareTo(other) {
-	    return this.duration().compareTo(other.duration());
-	  };
-
-	  return ChronoUnit;
-	}(_TemporalUnit2.TemporalUnit);
-
-	function _init() {
-	  ChronoUnit.NANOS = new ChronoUnit('Nanos', _Duration.Duration.ofNanos(1));
-
-	  ChronoUnit.MICROS = new ChronoUnit('Micros', _Duration.Duration.ofNanos(1000));
-
-	  ChronoUnit.MILLIS = new ChronoUnit('Millis', _Duration.Duration.ofNanos(1000000));
-
-	  ChronoUnit.SECONDS = new ChronoUnit('Seconds', _Duration.Duration.ofSeconds(1));
-
-	  ChronoUnit.MINUTES = new ChronoUnit('Minutes', _Duration.Duration.ofSeconds(60));
-
-	  ChronoUnit.HOURS = new ChronoUnit('Hours', _Duration.Duration.ofSeconds(3600));
-
-	  ChronoUnit.HALF_DAYS = new ChronoUnit('HalfDays', _Duration.Duration.ofSeconds(43200));
-
-	  ChronoUnit.DAYS = new ChronoUnit('Days', _Duration.Duration.ofSeconds(86400));
-
-	  ChronoUnit.WEEKS = new ChronoUnit('Weeks', _Duration.Duration.ofSeconds(7 * 86400));
-
-	  ChronoUnit.MONTHS = new ChronoUnit('Months', _Duration.Duration.ofSeconds(31556952 / 12));
-
-	  ChronoUnit.YEARS = new ChronoUnit('Years', _Duration.Duration.ofSeconds(31556952));
-
-	  ChronoUnit.DECADES = new ChronoUnit('Decades', _Duration.Duration.ofSeconds(31556952 * 10));
-
-	  ChronoUnit.CENTURIES = new ChronoUnit('Centuries', _Duration.Duration.ofSeconds(31556952 * 100));
-
-	  ChronoUnit.MILLENNIA = new ChronoUnit('Millennia', _Duration.Duration.ofSeconds(31556952 * 1000));
-
-	  ChronoUnit.ERAS = new ChronoUnit('Eras', _Duration.Duration.ofSeconds(31556952 * (_YearConstants.YearConstants.MAX_VALUE + 1)));
-
-	  ChronoUnit.FOREVER = new ChronoUnit('Forever', _Duration.Duration.ofSeconds(_MathUtil.MathUtil.MAX_SAFE_INTEGER, 999999999));
-	}
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.Duration = undefined;
-	exports._init = _init;
-
-	var _assert = __webpack_require__(2);
-
-	var _errors = __webpack_require__(3);
-
-	var _MathUtil = __webpack_require__(6);
-
-	var _ChronoField = __webpack_require__(12);
-
-	var _ChronoUnit = __webpack_require__(13);
-
-	var _TemporalAmount2 = __webpack_require__(15);
-
-	var _LocalTime = __webpack_require__(5);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-
-	var Duration = exports.Duration = function (_TemporalAmount) {
-	    _inherits(Duration, _TemporalAmount);
-
-	    function Duration(seconds, nanos) {
-	        _classCallCheck(this, Duration);
-
-	        var _this = _possibleConstructorReturn(this, _TemporalAmount.call(this));
-
-	        _this._seconds = seconds;
-	        _this._nanos = nanos;
-	        return _this;
-	    }
-
-	    Duration.ofDays = function ofDays(days) {
-	        return Duration._create(_MathUtil.MathUtil.safeMultiply(days, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	    };
-
-	    Duration.ofHours = function ofHours(hours) {
-	        return Duration._create(_MathUtil.MathUtil.safeMultiply(hours, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
-	    };
-
-	    Duration.ofMinutes = function ofMinutes(minutes) {
-	        return Duration._create(_MathUtil.MathUtil.safeMultiply(minutes, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
-	    };
-
-	    Duration.ofSeconds = function ofSeconds(seconds) {
-	        var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-
-	        var secs = _MathUtil.MathUtil.safeAdd(seconds, _MathUtil.MathUtil.floorDiv(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND));
-	        var nos = _MathUtil.MathUtil.floorMod(nanoAdjustment, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        return Duration._create(secs, nos);
-	    };
-
-	    Duration.ofMillis = function ofMillis(millis) {
-	        var secs = _MathUtil.MathUtil.intDiv(millis, 1000);
-	        var mos = _MathUtil.MathUtil.intMod(millis, 1000);
-	        if (mos < 0) {
-	            mos += 1000;
-	            secs--;
-	        }
-	        return Duration._create(secs, mos * 1000000);
-	    };
-
-	    Duration.ofNanos = function ofNanos(nanos) {
-	        var secs = _MathUtil.MathUtil.intDiv(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        var nos = _MathUtil.MathUtil.intMod(nanos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        if (nos < 0) {
-	            nos += _LocalTime.LocalTime.NANOS_PER_SECOND;
-	            secs--;
-	        }
-	        return this._create(secs, nos);
-	    };
-
-	    Duration.of = function of(amount, unit) {
-	        return Duration.ZERO.plus(amount, unit);
-	    };
-
-	    Duration.from = function from(amount) {
-	        (0, _assert.requireNonNull)(amount, 'amount');
-	        var duration = Duration.ZERO;
-	        amount.units().forEach(function (unit) {
-	            duration = duration.plus(amount.get(unit), unit);
-	        });
-	        return duration;
-	    };
-
-	    Duration.between = function between(startInclusive, endExclusive) {
-	        (0, _assert.requireNonNull)(startInclusive, 'startInclusive');
-	        (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
-	        var secs = startInclusive.until(endExclusive, _ChronoUnit.ChronoUnit.SECONDS);
-	        var nanos = 0;
-	        if (startInclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)) {
-	            try {
-	                var startNos = startInclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND);
-	                nanos = endExclusive.getLong(_ChronoField.ChronoField.NANO_OF_SECOND) - startNos;
-	                if (secs > 0 && nanos < 0) {
-	                    nanos += _LocalTime.LocalTime.NANOS_PER_SECOND;
-	                } else if (secs < 0 && nanos > 0) {
-	                    nanos -= _LocalTime.LocalTime.NANOS_PER_SECOND;
-	                } else if (secs === 0 && nanos !== 0) {
-	                    var adjustedEnd = endExclusive.with(_ChronoField.ChronoField.NANO_OF_SECOND, startNos);
-	                    secs = startInclusive.until(adjustedEnd, _ChronoUnit.ChronoUnit.SECONDS);
-	                }
-	            } catch (e) {}
-	        }
-	        return this.ofSeconds(secs, nanos);
-	    };
-
-	    Duration.parse = function parse(text) {
-	        (0, _assert.requireNonNull)(text, 'text');
-
-	        var PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
-	        var matches = PATTERN.exec(text);
-	        if (matches !== null) {
-	            if ('T' === matches[3] === false) {
-	                var negate = '-' === matches[1];
-	                var dayMatch = matches[2];
-	                var hourMatch = matches[4];
-	                var minuteMatch = matches[5];
-	                var secondMatch = matches[6];
-	                var fractionMatch = matches[7];
-	                if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-	                    var daysAsSecs = Duration._parseNumber(text, dayMatch, _LocalTime.LocalTime.SECONDS_PER_DAY, 'days');
-	                    var hoursAsSecs = Duration._parseNumber(text, hourMatch, _LocalTime.LocalTime.SECONDS_PER_HOUR, 'hours');
-	                    var minsAsSecs = Duration._parseNumber(text, minuteMatch, _LocalTime.LocalTime.SECONDS_PER_MINUTE, 'minutes');
-	                    var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
-	                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
-	                    var nanos = Duration._parseFraction(text, fractionMatch, negativeSecs ? -1 : 1);
-	                    try {
-	                        return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
-	                    } catch (ex) {
-	                        throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: overflow', text, 0, ex);
-	                    }
-	                }
-	            }
-	        }
-	        throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration', text, 0);
-	    };
-
-	    Duration._parseNumber = function _parseNumber(text, parsed, multiplier, errorText) {
-	        if (parsed == null) {
-	            return 0;
-	        }
-	        try {
-	            if (parsed[0] === '+') {
-	                parsed = parsed.substring(1);
-	            }
-	            var val = parseFloat(parsed);
-	            return _MathUtil.MathUtil.safeMultiply(val, multiplier);
-	        } catch (ex) {
-	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
-	        }
-	    };
-
-	    Duration._parseFraction = function _parseFraction(text, parsed, negate) {
-	        if (parsed == null || parsed.length === 0) {
-	            return 0;
-	        }
-	        try {
-	            parsed = (parsed + '000000000').substring(0, 9);
-	            return parseFloat(parsed) * negate;
-	        } catch (ex) {
-	            throw new _errors.DateTimeParseException('Text cannot be parsed to a Duration: fraction', text, 0, ex);
-	        }
-	    };
-
-	    Duration._create = function _create() {
-	        if (arguments.length <= 2) {
-	            return Duration._createSecondsNanos(arguments[0], arguments[1]);
-	        } else {
-	            return Duration._createNegateDaysHoursMinutesSecondsNanos(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
-	        }
-	    };
-
-	    Duration._createNegateDaysHoursMinutesSecondsNanos = function _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
-	        var seconds = _MathUtil.MathUtil.safeAdd(daysAsSecs, _MathUtil.MathUtil.safeAdd(hoursAsSecs, _MathUtil.MathUtil.safeAdd(minsAsSecs, secs)));
-	        if (negate) {
-	            return Duration.ofSeconds(seconds, nanos).negated();
-	        }
-	        return Duration.ofSeconds(seconds, nanos);
-	    };
-
-	    Duration._createSecondsNanos = function _createSecondsNanos() {
-	        var seconds = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var nanoAdjustment = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-
-	        if ((seconds | nanoAdjustment) === 0) {
-	            return Duration.ZERO;
-	        }
-	        return new Duration(seconds, nanoAdjustment);
-	    };
-
-	    Duration.prototype.get = function get(unit) {
-	        if (unit === _ChronoUnit.ChronoUnit.SECONDS) {
-	            return this._seconds;
-	        } else if (unit === _ChronoUnit.ChronoUnit.NANOS) {
-	            return this._nanos;
-	        } else {
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
-	        }
-	    };
-
-	    Duration.prototype.units = function units() {
-	        return [_ChronoUnit.ChronoUnit.SECONDS, _ChronoUnit.ChronoUnit.NANOS];
-	    };
-
-	    Duration.prototype.isZero = function isZero() {
-	        return (this._seconds | this._nanos) === 0;
-	    };
-
-	    Duration.prototype.isNegative = function isNegative() {
-	        return this._seconds < 0;
-	    };
-
-	    Duration.prototype.seconds = function seconds() {
-	        return this._seconds;
-	    };
-
-	    Duration.prototype.nano = function nano() {
-	        return this._nanos;
-	    };
-
-	    Duration.prototype.withSeconds = function withSeconds(seconds) {
-	        return Duration._create(seconds, this._nanos);
-	    };
-
-	    Duration.prototype.withNanos = function withNanos(nanoOfSecond) {
-	        _ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(nanoOfSecond);
-	        return Duration._create(this._seconds, nanoOfSecond);
-	    };
-
-	    Duration.prototype.plusDuration = function plusDuration(duration) {
-	        (0, _assert.requireNonNull)(duration, 'duration');
-	        return this.plus(duration.seconds(), duration.nano());
-	    };
-
-	    Duration.prototype.plus = function plus(durationOrNumber, unitOrNumber) {
-	        if (arguments.length === 1) {
-	            return this.plusDuration(durationOrNumber);
-	        } else if (arguments.length === 2 && unitOrNumber instanceof _ChronoUnit.ChronoUnit) {
-	            return this.plusAmountUnit(durationOrNumber, unitOrNumber);
-	        } else {
-	            return this.plusSecondsNanos(durationOrNumber, unitOrNumber);
-	        }
-	    };
-
-	    Duration.prototype.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
-	        (0, _assert.requireNonNull)(amountToAdd, 'amountToAdd');
-	        (0, _assert.requireNonNull)(unit, 'unit');
-	        if (unit === _ChronoUnit.ChronoUnit.DAYS) {
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(amountToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	        }
-	        if (unit.isDurationEstimated()) {
-	            throw new _errors.UnsupportedTemporalTypeException('Unit must not have an estimated duration');
-	        }
-	        if (amountToAdd === 0) {
-	            return this;
-	        }
-	        if (unit instanceof _ChronoUnit.ChronoUnit) {
-	            switch (unit) {
-	                case _ChronoUnit.ChronoUnit.NANOS:
-	                    return this.plusNanos(amountToAdd);
-	                case _ChronoUnit.ChronoUnit.MICROS:
-	                    return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(amountToAdd, 1000000 * 1000) * 1000, _MathUtil.MathUtil.intMod(amountToAdd, 1000000 * 1000) * 1000);
-	                case _ChronoUnit.ChronoUnit.MILLIS:
-	                    return this.plusMillis(amountToAdd);
-	                case _ChronoUnit.ChronoUnit.SECONDS:
-	                    return this.plusSeconds(amountToAdd);
-	            }
-	            return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
-	        }
-	        var duration = unit.duration().multipliedBy(amountToAdd);
-	        return this.plusSecondsNanos(duration.seconds(), duration.nano());
-	    };
-
-	    Duration.prototype.plusDays = function plusDays(daysToAdd) {
-	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(daysToAdd, _LocalTime.LocalTime.SECONDS_PER_DAY), 0);
-	    };
-
-	    Duration.prototype.plusHours = function plusHours(hoursToAdd) {
-	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(hoursToAdd, _LocalTime.LocalTime.SECONDS_PER_HOUR), 0);
-	    };
-
-	    Duration.prototype.plusMinutes = function plusMinutes(minutesToAdd) {
-	        return this.plusSecondsNanos(_MathUtil.MathUtil.safeMultiply(minutesToAdd, _LocalTime.LocalTime.SECONDS_PER_MINUTE), 0);
-	    };
-
-	    Duration.prototype.plusSeconds = function plusSeconds(secondsToAdd) {
-	        return this.plusSecondsNanos(secondsToAdd, 0);
-	    };
-
-	    Duration.prototype.plusMillis = function plusMillis(millisToAdd) {
-	        return this.plusSecondsNanos(_MathUtil.MathUtil.intDiv(millisToAdd, 1000), _MathUtil.MathUtil.intMod(millisToAdd, 1000) * 1000000);
-	    };
-
-	    Duration.prototype.plusNanos = function plusNanos(nanosToAdd) {
-	        return this.plusSecondsNanos(0, nanosToAdd);
-	    };
-
-	    Duration.prototype.plusSecondsNanos = function plusSecondsNanos(secondsToAdd, nanosToAdd) {
-	        (0, _assert.requireNonNull)(secondsToAdd, 'secondsToAdd');
-	        (0, _assert.requireNonNull)(nanosToAdd, 'nanosToAdd');
-	        if ((secondsToAdd | nanosToAdd) === 0) {
-	            return this;
-	        }
-	        var epochSec = _MathUtil.MathUtil.safeAdd(this._seconds, secondsToAdd);
-	        epochSec = _MathUtil.MathUtil.safeAdd(epochSec, _MathUtil.MathUtil.intDiv(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND));
-	        nanosToAdd = _MathUtil.MathUtil.intMod(nanosToAdd, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        var nanoAdjustment = _MathUtil.MathUtil.safeAdd(this._nanos, nanosToAdd);
-	        return Duration.ofSeconds(epochSec, nanoAdjustment);
-	    };
-
-	    Duration.prototype.minus = function minus(durationOrNumber, unit) {
-	        if (arguments.length === 1) {
-	            return this.minusDuration(durationOrNumber);
-	        } else {
-	            return this.minusAmountUnit(durationOrNumber, unit);
-	        }
-	    };
-
-	    Duration.prototype.minusDuration = function minusDuration(duration) {
-	        (0, _assert.requireNonNull)(duration, 'duration');
-	        var secsToSubtract = duration.seconds();
-	        var nanosToSubtract = duration.nano();
-	        if (secsToSubtract === _MathUtil.MIN_SAFE_INTEGER) {
-	            return this.plus(_MathUtil.MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
-	        }
-	        return this.plus(-secsToSubtract, -nanosToSubtract);
-	    };
-
-	    Duration.prototype.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
-	        (0, _assert.requireNonNull)(amountToSubtract, 'amountToSubtract');
-	        (0, _assert.requireNonNull)(unit, 'unit');
-	        return amountToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(_MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit);
-	    };
-
-	    Duration.prototype.minusDays = function minusDays(daysToSubtract) {
-	        return daysToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusDays(_MathUtil.MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract);
-	    };
-
-	    Duration.prototype.minusHours = function minusHours(hoursToSubtract) {
-	        return hoursToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusHours(_MathUtil.MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract);
-	    };
-
-	    Duration.prototype.minusMinutes = function minusMinutes(minutesToSubtract) {
-	        return minutesToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMinutes(_MathUtil.MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract);
-	    };
-
-	    Duration.prototype.minusSeconds = function minusSeconds(secondsToSubtract) {
-	        return secondsToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusSeconds(_MathUtil.MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract);
-	    };
-
-	    Duration.prototype.minusMillis = function minusMillis(millisToSubtract) {
-	        return millisToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusMillis(_MathUtil.MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract);
-	    };
-
-	    Duration.prototype.minusNanos = function minusNanos(nanosToSubtract) {
-	        return nanosToSubtract === _MathUtil.MIN_SAFE_INTEGER ? this.plusNanos(_MathUtil.MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract);
-	    };
-
-	    Duration.prototype.multipliedBy = function multipliedBy(multiplicand) {
-	        if (multiplicand === 0) {
-	            return Duration.ZERO;
-	        }
-	        if (multiplicand === 1) {
-	            return this;
-	        }
-	        var secs = _MathUtil.MathUtil.safeMultiply(this._seconds, multiplicand);
-	        var nos = _MathUtil.MathUtil.safeMultiply(this._nanos, multiplicand);
-	        secs = secs + _MathUtil.MathUtil.intDiv(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        nos = _MathUtil.MathUtil.intMod(nos, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        return Duration.ofSeconds(secs, nos);
-	    };
-
-	    Duration.prototype.dividedBy = function dividedBy(divisor) {
-	        if (divisor === 0) {
-	            throw new _errors.ArithmeticException('Cannot divide by zero');
-	        }
-	        if (divisor === 1) {
-	            return this;
-	        }
-	        var secs = _MathUtil.MathUtil.intDiv(this._seconds, divisor);
-	        var secsMod = _MathUtil.MathUtil.roundDown((this._seconds / divisor - secs) * _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        var nos = _MathUtil.MathUtil.intDiv(this._nanos, divisor);
-	        nos = secsMod + nos;
-	        return Duration.ofSeconds(secs, nos);
-	    };
-
-	    Duration.prototype.negated = function negated() {
-	        return this.multipliedBy(-1);
-	    };
-
-	    Duration.prototype.abs = function abs() {
-	        return this.isNegative() ? this.negated() : this;
-	    };
-
-	    Duration.prototype.addTo = function addTo(temporal) {
-	        (0, _assert.requireNonNull)(temporal, 'temporal');
-	        if (this._seconds !== 0) {
-	            temporal = temporal.plus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
-	        }
-	        if (this._nanos !== 0) {
-	            temporal = temporal.plus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
-	        }
-	        return temporal;
-	    };
-
-	    Duration.prototype.subtractFrom = function subtractFrom(temporal) {
-	        (0, _assert.requireNonNull)(temporal, 'temporal');
-	        if (this._seconds !== 0) {
-	            temporal = temporal.minus(this._seconds, _ChronoUnit.ChronoUnit.SECONDS);
-	        }
-	        if (this._nanos !== 0) {
-	            temporal = temporal.minus(this._nanos, _ChronoUnit.ChronoUnit.NANOS);
-	        }
-	        return temporal;
-	    };
-
-	    Duration.prototype.toDays = function toDays() {
-	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_DAY);
-	    };
-
-	    Duration.prototype.toHours = function toHours() {
-	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
-	    };
-
-	    Duration.prototype.toMinutes = function toMinutes() {
-	        return _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	    };
-
-	    Duration.prototype.toMillis = function toMillis() {
-	        var millis = Math.round(_MathUtil.MathUtil.safeMultiply(this._seconds, 1000));
-	        millis = _MathUtil.MathUtil.safeAdd(millis, _MathUtil.MathUtil.intDiv(this._nanos, 1000000));
-	        return millis;
-	    };
-
-	    Duration.prototype.toNanos = function toNanos() {
-	        var totalNanos = _MathUtil.MathUtil.safeMultiply(this._seconds, _LocalTime.LocalTime.NANOS_PER_SECOND);
-	        totalNanos = _MathUtil.MathUtil.safeAdd(totalNanos, this._nanos);
-	        return totalNanos;
-	    };
-
-	    Duration.prototype.compareTo = function compareTo(otherDuration) {
-	        (0, _assert.requireNonNull)(otherDuration, 'otherDuration');
-	        (0, _assert.requireInstance)(otherDuration, Duration, 'otherDuration');
-	        var cmp = _MathUtil.MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
-	        if (cmp !== 0) {
-	            return cmp;
-	        }
-	        return this._nanos - otherDuration.nano();
-	    };
-
-	    Duration.prototype.equals = function equals(otherDuration) {
-	        if (this === otherDuration) {
-	            return true;
-	        }
-	        if (otherDuration instanceof Duration) {
-	            return this.seconds() === otherDuration.seconds() && this.nano() === otherDuration.nano();
-	        }
-	        return false;
-	    };
-
-	    Duration.prototype.toString = function toString() {
-	        if (this === Duration.ZERO) {
-	            return 'PT0S';
-	        }
-	        var hours = _MathUtil.MathUtil.intDiv(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR);
-	        var minutes = _MathUtil.MathUtil.intDiv(_MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_HOUR), _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	        var secs = _MathUtil.MathUtil.intMod(this._seconds, _LocalTime.LocalTime.SECONDS_PER_MINUTE);
-	        var rval = 'PT';
-	        if (hours !== 0) {
-	            rval += hours + 'H';
-	        }
-	        if (minutes !== 0) {
-	            rval += minutes + 'M';
-	        }
-	        if (secs === 0 && this._nanos === 0 && rval.length > 2) {
-	            return rval;
-	        }
-	        if (secs < 0 && this._nanos > 0) {
-	            if (secs === -1) {
-	                rval += '-0';
-	            } else {
-	                rval += secs + 1;
-	            }
-	        } else {
-	            rval += secs;
-	        }
-	        if (this._nanos > 0) {
-	            rval += '.';
-	            var nanoString = void 0;
-	            if (secs < 0) {
-	                nanoString = '' + (2 * _LocalTime.LocalTime.NANOS_PER_SECOND - this._nanos);
-	            } else {
-	                nanoString = '' + (_LocalTime.LocalTime.NANOS_PER_SECOND + this._nanos);
-	            }
-
-	            nanoString = nanoString.slice(1, nanoString.length);
-	            rval += nanoString;
-	            while (rval.charAt(rval.length - 1) === '0') {
-	                rval = rval.slice(0, rval.length - 1);
-	            }
-	        }
-	        rval += 'S';
-	        return rval;
-	    };
-
-	    Duration.prototype.toJSON = function toJSON() {
-	        return this.toString();
-	    };
-
-	    return Duration;
-	}(_TemporalAmount2.TemporalAmount);
-
-	function _init() {
-	    Duration.ZERO = new Duration(0, 0);
-	}
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.TemporalAmount = undefined;
-
-	var _assert = __webpack_require__(2);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-
-	var TemporalAmount = exports.TemporalAmount = function () {
-	  function TemporalAmount() {
-	    _classCallCheck(this, TemporalAmount);
-	  }
-
-	  TemporalAmount.prototype.get = function get(unit) {
-	    (0, _assert.abstractMethodFail)('adjustInto');
-	  };
-
-	  TemporalAmount.prototype.getUnits = function getUnits() {
-	    (0, _assert.abstractMethodFail)('adjustInto');
-	  };
-
-	  TemporalAmount.prototype.addTo = function addTo(temporal) {
-	    (0, _assert.abstractMethodFail)('adjustInto');
-	  };
-
-	  TemporalAmount.prototype.subtractFrom = function subtractFrom(temporal) {
-	    (0, _assert.abstractMethodFail)('adjustInto');
-	  };
-
-	  return TemporalAmount;
-	}();
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-	exports._init = _init;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/*
-	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-	 */
-
-	var YearConstants = exports.YearConstants = function YearConstants() {
-	  _classCallCheck(this, YearConstants);
-	};
-
-	function _init() {
-	  YearConstants.MIN_VALUE = -999999;
-
-	  YearConstants.MAX_VALUE = 999999;
-	}
-
-/***/ },
-/* 17 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/*
+	'use strict';exports.__esModule=true;exports.DateTimeFormatterBuilder=undefined;exports._init=_init;var _assert=__webpack_require__(2);var _errors=__webpack_require__(3);var _MathUtil=__webpack_require__(6);var _Enum2=__webpack_require__(10);var _ZoneIdFactory=__webpack_require__(26);var _LocalDate=__webpack_require__(8);var _LocalDateTime=__webpack_require__(7);var _ZoneOffset=__webpack_require__(28);var _ZoneId=__webpack_require__(29);var _ChronoLocalDate=__webpack_require__(34);var _IsoChronology=__webpack_require__(9);var _ChronoField=__webpack_require__(12);var _IsoFields=__webpack_require__(45);var _TemporalQueries=__webpack_require__(22);var _DateTimeFormatter=__webpack_require__(35);var _DecimalStyle=__webpack_require__(46);var _SignStyle=__webpack_require__(43);var _TextStyle=__webpack_require__(47);var _ResolverStyle=__webpack_require__(40);function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}/**
 	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
 	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-
-	var TemporalUnit = exports.TemporalUnit = function TemporalUnit() {
-	  _classCallCheck(this, TemporalUnit);
-	};
+	 */var MAX_WIDTH=15;var DateTimeFormatterBuilder=exports.DateTimeFormatterBuilder=function(){function DateTimeFormatterBuilder(){var parent=arguments.length>0&&arguments[0]!==undefined?arguments[0]:null;var optional=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;_classCallCheck(this,DateTimeFormatterBuilder);this._active=this;this._parent=parent;this._printerParsers=[];this._optional=optional;this._padNextWidth=0;this._padNextChar=null;this._valueParserIndex=-1;}DateTimeFormatterBuilder.prototype.parseCaseSensitive=function parseCaseSensitive(){this._appendInternalPrinterParser(SettingsParser.SENSITIVE);return this;};DateTimeFormatterBuilder.prototype.parseCaseInsensitive=function parseCaseInsensitive(){this._appendInternalPrinterParser(SettingsParser.INSENSITIVE);return this;};DateTimeFormatterBuilder.prototype.parseStrict=function parseStrict(){this._appendInternalPrinterParser(SettingsParser.STRICT);return this;};DateTimeFormatterBuilder.prototype.parseLenient=function parseLenient(){this._appendInternalPrinterParser(SettingsParser.LENIENT);return this;};DateTimeFormatterBuilder.prototype.appendValue=function appendValue(){if(arguments.length===1){return this._appendValue1.apply(this,arguments);}else if(arguments.length===2){return this._appendValue2.apply(this,arguments);}else{return this._appendValue4.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._appendValue1=function _appendValue1(field){(0,_assert.requireNonNull)(field);this._appendValuePrinterParser(new NumberPrinterParser(field,1,MAX_WIDTH,_SignStyle.SignStyle.NORMAL));return this;};DateTimeFormatterBuilder.prototype._appendValue2=function _appendValue2(field,width){(0,_assert.requireNonNull)(field);if(width<1||width>MAX_WIDTH){throw new _errors.IllegalArgumentException('The width must be from 1 to '+MAX_WIDTH+' inclusive but was '+width);}var pp=new NumberPrinterParser(field,width,width,_SignStyle.SignStyle.NOT_NEGATIVE);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValue4=function _appendValue4(field,minWidth,maxWidth,signStyle){(0,_assert.requireNonNull)(field);(0,_assert.requireNonNull)(signStyle);if(minWidth===maxWidth&&signStyle===_SignStyle.SignStyle.NOT_NEGATIVE){return this._appendValue2(field,maxWidth);}if(minWidth<1||minWidth>MAX_WIDTH){throw new _errors.IllegalArgumentException('The minimum width must be from 1 to '+MAX_WIDTH+' inclusive but was '+minWidth);}if(maxWidth<1||maxWidth>MAX_WIDTH){throw new _errors.IllegalArgumentException('The minimum width must be from 1 to '+MAX_WIDTH+' inclusive but was '+maxWidth);}if(maxWidth<minWidth){throw new _errors.IllegalArgumentException('The maximum width must exceed or equal the minimum width but '+maxWidth+' < '+minWidth);}var pp=new NumberPrinterParser(field,minWidth,maxWidth,signStyle);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype.appendValueReduced=function appendValueReduced(){if(arguments.length===4&&arguments[3]instanceof _ChronoLocalDate.ChronoLocalDate){return this._appendValueReducedFieldWidthMaxWidthBaseDate.apply(this,arguments);}else{return this._appendValueReducedFieldWidthMaxWidthBaseValue.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._appendValueReducedFieldWidthMaxWidthBaseValue=function _appendValueReducedFieldWidthMaxWidthBaseValue(field,width,maxWidth,baseValue){(0,_assert.requireNonNull)(field,'field');var pp=new ReducedPrinterParser(field,width,maxWidth,baseValue,null);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValueReducedFieldWidthMaxWidthBaseDate=function _appendValueReducedFieldWidthMaxWidthBaseDate(field,width,maxWidth,baseDate){(0,_assert.requireNonNull)(field,'field');(0,_assert.requireNonNull)(baseDate,'baseDate');(0,_assert.requireInstance)(baseDate,_ChronoLocalDate.ChronoLocalDate,'baseDate');var pp=new ReducedPrinterParser(field,width,maxWidth,0,baseDate);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValuePrinterParser=function _appendValuePrinterParser(pp){(0,_assert.assert)(pp!=null);if(this._active._valueParserIndex>=0&&this._active._printerParsers[this._active._valueParserIndex]instanceof NumberPrinterParser){var activeValueParser=this._active._valueParserIndex;var basePP=this._active._printerParsers[activeValueParser];if(pp.minWidth()===pp.maxWidth()&&pp.signStyle()===_SignStyle.SignStyle.NOT_NEGATIVE){basePP=basePP.withSubsequentWidth(pp.maxWidth());this._appendInternal(pp.withFixedWidth());this._active._valueParserIndex=activeValueParser;}else{basePP=basePP.withFixedWidth();this._active._valueParserIndex=this._appendInternal(pp);}this._active._printerParsers[activeValueParser]=basePP;}else{this._active._valueParserIndex=this._appendInternal(pp);}return this;};DateTimeFormatterBuilder.prototype.appendFraction=function appendFraction(field,minWidth,maxWidth,decimalPoint){this._appendInternal(new FractionPrinterParser(field,minWidth,maxWidth,decimalPoint));return this;};DateTimeFormatterBuilder.prototype.appendInstant=function appendInstant(){var fractionalDigits=arguments.length>0&&arguments[0]!==undefined?arguments[0]:-2;if(fractionalDigits<-2||fractionalDigits>9){throw new _errors.IllegalArgumentException('Invalid fractional digits: '+fractionalDigits);}this._appendInternal(new InstantPrinterParser(fractionalDigits));return this;};DateTimeFormatterBuilder.prototype.appendOffsetId=function appendOffsetId(){this._appendInternal(OffsetIdPrinterParser.INSTANCE_ID);return this;};DateTimeFormatterBuilder.prototype.appendOffset=function appendOffset(pattern,noOffsetText){this._appendInternalPrinterParser(new OffsetIdPrinterParser(noOffsetText,pattern));return this;};DateTimeFormatterBuilder.prototype.appendZoneId=function appendZoneId(){this._appendInternal(new ZoneIdPrinterParser(_TemporalQueries.TemporalQueries.zoneId(),'ZoneId()'));return this;};DateTimeFormatterBuilder.prototype.appendPattern=function appendPattern(pattern){(0,_assert.requireNonNull)(pattern,'pattern');this._parsePattern(pattern);return this;};DateTimeFormatterBuilder.prototype._parsePattern=function _parsePattern(pattern){var FIELD_MAP={'G':_ChronoField.ChronoField.ERA,'y':_ChronoField.ChronoField.YEAR_OF_ERA,'u':_ChronoField.ChronoField.YEAR,'Q':_IsoFields.IsoFields.QUARTER_OF_YEAR,'q':_IsoFields.IsoFields.QUARTER_OF_YEAR,'M':_ChronoField.ChronoField.MONTH_OF_YEAR,'L':_ChronoField.ChronoField.MONTH_OF_YEAR,'D':_ChronoField.ChronoField.DAY_OF_YEAR,'d':_ChronoField.ChronoField.DAY_OF_MONTH,'F':_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH,'E':_ChronoField.ChronoField.DAY_OF_WEEK,'c':_ChronoField.ChronoField.DAY_OF_WEEK,'e':_ChronoField.ChronoField.DAY_OF_WEEK,'a':_ChronoField.ChronoField.AMPM_OF_DAY,'H':_ChronoField.ChronoField.HOUR_OF_DAY,'k':_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY,'K':_ChronoField.ChronoField.HOUR_OF_AMPM,'h':_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM,'m':_ChronoField.ChronoField.MINUTE_OF_HOUR,'s':_ChronoField.ChronoField.SECOND_OF_MINUTE,'S':_ChronoField.ChronoField.NANO_OF_SECOND,'A':_ChronoField.ChronoField.MILLI_OF_DAY,'n':_ChronoField.ChronoField.NANO_OF_SECOND,'N':_ChronoField.ChronoField.NANO_OF_DAY};for(var pos=0;pos<pattern.length;pos++){var cur=pattern.charAt(pos);if(cur>='A'&&cur<='Z'||cur>='a'&&cur<='z'){var start=pos++;for(;pos<pattern.length&&pattern.charAt(pos)===cur;pos++){}var count=pos-start;if(cur==='p'){var pad=0;if(pos<pattern.length){cur=pattern.charAt(pos);if(cur>='A'&&cur<='Z'||cur>='a'&&cur<='z'){pad=count;start=pos++;for(;pos<pattern.length&&pattern.charAt(pos)===cur;pos++){}count=pos-start;}}if(pad===0){throw new _errors.IllegalArgumentException('Pad letter \'p\' must be followed by valid pad pattern: '+pattern);}this.padNext(pad);}var field=FIELD_MAP[cur];if(field!=null){this._parseField(cur,count,field);}else if(cur==='z'){if(count>4){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}else if(count===4){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendZoneText(_TextStyle.TextStyle.FULL);}else{throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendZoneText(_TextStyle.TextStyle.SHORT);}}else if(cur==='V'){if(count!==2){throw new _errors.IllegalArgumentException('Pattern letter count must be 2: '+cur);}this.appendZoneId();}else if(cur==='Z'){if(count<4){this.appendOffset('+HHMM','+0000');}else if(count===4){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendLocalizedOffset(_TextStyle.TextStyle.FULL);}else if(count===5){this.appendOffset('+HH:MM:ss','Z');}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}}else if(cur==='O'){if(count===1){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendLocalizedOffset(_TextStyle.TextStyle.SHORT);}else if(count===4){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendLocalizedOffset(_TextStyle.TextStyle.FULL);}else{throw new _errors.IllegalArgumentException('Pattern letter count must be 1 or 4: '+cur);}}else if(cur==='X'){if(count>5){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this.appendOffset(OffsetIdPrinterParser.PATTERNS[count+(count===1?0:1)],'Z');}else if(cur==='x'){if(count>5){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}var zero=count===1?'+00':count%2===0?'+0000':'+00:00';this.appendOffset(OffsetIdPrinterParser.PATTERNS[count+(count===1?0:1)],zero);}else if(cur==='W'){if(count>1){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this._appendInternal(new OffsetIdPrinterParser('W',count));}else if(cur==='w'){if(count>2){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this._appendInternal(new OffsetIdPrinterParser('w',count));}else if(cur==='Y'){this._appendInternal(new OffsetIdPrinterParser('Y',count));}else{throw new _errors.IllegalArgumentException('Unknown pattern letter: '+cur);}pos--;}else if(cur==='\''){var _start=pos++;for(;pos<pattern.length;pos++){if(pattern.charAt(pos)==='\''){if(pos+1<pattern.length&&pattern.charAt(pos+1)==='\''){pos++;}else{break;}}}if(pos>=pattern.length){throw new _errors.IllegalArgumentException('Pattern ends with an incomplete string literal: '+pattern);}var str=pattern.substring(_start+1,pos);if(str.length===0){this.appendLiteral('\'');}else{this.appendLiteral(str.replace('\'\'','\''));}}else if(cur==='['){this.optionalStart();}else if(cur===']'){if(this._active._parent===null){throw new _errors.IllegalArgumentException('Pattern invalid as it contains ] without previous [');}this.optionalEnd();}else if(cur==='{'||cur==='}'||cur==='#'){throw new _errors.IllegalArgumentException('Pattern includes reserved character: \''+cur+'\'');}else{this.appendLiteral(cur);}}};DateTimeFormatterBuilder.prototype._parseField=function _parseField(cur,count,field){switch(cur){case'u':case'y':if(count===2){this.appendValueReduced(field,2,2,ReducedPrinterParser.BASE_DATE);}else if(count<4){this.appendValue(field,count,MAX_WIDTH,_SignStyle.SignStyle.NORMAL);}else{this.appendValue(field,count,MAX_WIDTH,_SignStyle.SignStyle.EXCEEDS_PAD);}break;case'M':case'Q':switch(count){case 1:this.appendValue(field);break;case 2:this.appendValue(field,2);break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'L':case'q':switch(count){case 1:this.appendValue(field);break;case 2:this.appendValue(field,2);break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT_STANDALONE);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL_STANDALONE);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW_STANDALONE);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'e':switch(count){case 1:case 2:throw new _errors.IllegalArgumentException('Pattern using WeekFields not implemented yet!');break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'c':switch(count){case 1:throw new _errors.IllegalArgumentException('Pattern using WeekFields not implemented yet!');break;case 2:throw new _errors.IllegalArgumentException('Invalid number of pattern letters: '+cur);case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT_STANDALONE);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL_STANDALONE);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW_STANDALONE);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'a':if(count===1){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'E':case'G':switch(count){case 1:case 2:case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'S':this.appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND,count,count,false);break;case'F':if(count===1){this.appendValue(field);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'd':case'h':case'H':case'k':case'K':case'm':case's':if(count===1){this.appendValue(field);}else if(count===2){this.appendValue(field,count);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'D':if(count===1){this.appendValue(field);}else if(count<=3){this.appendValue(field,count);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;default:if(count===1){this.appendValue(field);}else{this.appendValue(field,count);}break;}};DateTimeFormatterBuilder.prototype.padNext=function padNext(){if(arguments.length===1){return this._padNext1.apply(this,arguments);}else{return this._padNext2.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._padNext1=function _padNext1(padWidth){return this._padNext2(padWidth,' ');};DateTimeFormatterBuilder.prototype._padNext2=function _padNext2(padWidth,padChar){if(padWidth<1){throw new _errors.IllegalArgumentException('The pad width must be at least one but was '+padWidth);}this._active._padNextWidth=padWidth;this._active._padNextChar=padChar;this._active._valueParserIndex=-1;return this;};DateTimeFormatterBuilder.prototype.optionalStart=function optionalStart(){this._active._valueParserIndex=-1;this._active=new DateTimeFormatterBuilder(this._active,true);return this;};DateTimeFormatterBuilder.prototype.optionalEnd=function optionalEnd(){if(this._active._parent==null){throw new _errors.IllegalStateException('Cannot call optionalEnd() as there was no previous call to optionalStart()');}if(this._active._printerParsers.length>0){var cpp=new CompositePrinterParser(this._active._printerParsers,this._active._optional);this._active=this._active._parent;this._appendInternal(cpp);}else{this._active=this._active._parent;}return this;};DateTimeFormatterBuilder.prototype._appendInternal=function _appendInternal(pp){(0,_assert.assert)(pp!=null);if(this._active._padNextWidth>0){if(pp!=null){pp=new PadPrinterParserDecorator(pp,this._active._padNextWidth,this._active._padNextChar);}this._active._padNextWidth=0;this._active._padNextChar=0;}this._active._printerParsers.push(pp);this._active._valueParserIndex=-1;return this._active._printerParsers.length-1;};DateTimeFormatterBuilder.prototype.appendLiteral=function appendLiteral(literal){(0,_assert.assert)(literal!=null);if(literal.length>0){if(literal.length===1){this._appendInternalPrinterParser(new CharLiteralPrinterParser(literal.charAt(0)));}else{this._appendInternalPrinterParser(new StringLiteralPrinterParser(literal));}}return this;};DateTimeFormatterBuilder.prototype._appendInternalPrinterParser=function _appendInternalPrinterParser(pp){(0,_assert.assert)(pp!=null);if(this._active._padNextWidth>0){if(pp!=null){pp=new PadPrinterParserDecorator(pp,this._active._padNextWidth,this._active._padNextChar);}this._active._padNextWidth=0;this._active._padNextChar=0;}this._active._printerParsers.push(pp);this._active._valueParserIndex=-1;return this._active._printerParsers.length-1;};DateTimeFormatterBuilder.prototype.append=function append(formatter){(0,_assert.requireNonNull)(formatter,'formatter');this._appendInternal(formatter.toPrinterParser(false));return this;};DateTimeFormatterBuilder.prototype.toFormatter=function toFormatter(){var resolverStyle=arguments.length>0&&arguments[0]!==undefined?arguments[0]:_ResolverStyle.ResolverStyle.SMART;while(this._active._parent!=null){this.optionalEnd();}var pp=new CompositePrinterParser(this._printerParsers,false);return new _DateTimeFormatter.DateTimeFormatter(pp,null,_DecimalStyle.DecimalStyle.STANDARD,resolverStyle,null,null,null);};return DateTimeFormatterBuilder;}();var EXCEED_POINTS=[0,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000];var CompositePrinterParser=function(){function CompositePrinterParser(printerParsers,optional){_classCallCheck(this,CompositePrinterParser);this._printerParsers=printerParsers;this._optional=optional;}CompositePrinterParser.prototype.withOptional=function withOptional(optional){if(optional===this._optional){return this;}return new CompositePrinterParser(this._printerParsers,optional);};CompositePrinterParser.prototype.print=function print(context,buf){var length=buf.length();if(this._optional){context.startOptional();}try{for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];if(pp.print(context,buf)===false){buf.setLength(length);return true;}}}finally{if(this._optional){context.endOptional();}}return true;};CompositePrinterParser.prototype.parse=function parse(context,text,position){if(this._optional){context.startOptional();var pos=position;for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];pos=pp.parse(context,text,pos);if(pos<0){context.endOptional(false);return position;}}context.endOptional(true);return pos;}else{for(var _i=0;_i<this._printerParsers.length;_i++){var _pp=this._printerParsers[_i];position=_pp.parse(context,text,position);if(position<0){break;}}return position;}};CompositePrinterParser.prototype.toString=function toString(){var buf='';if(this._printerParsers!=null){buf+=this._optional?'[':'(';for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];buf+=pp.toString();}buf+=this._optional?']':')';}return buf;};return CompositePrinterParser;}();var PadPrinterParserDecorator=function(){function PadPrinterParserDecorator(printerParser,padWidth,padChar){_classCallCheck(this,PadPrinterParserDecorator);this._printerParser=printerParser;this._padWidth=padWidth;this._padChar=padChar;}PadPrinterParserDecorator.prototype.print=function print(context,buf){var preLen=buf.length();if(this._printerParser.print(context,buf)===false){return false;}var len=buf.length()-preLen;if(len>this._padWidth){throw new _errors.DateTimeException('Cannot print as output of '+len+' characters exceeds pad width of '+this._padWidth);}for(var i=0;i<this._padWidth-len;i++){buf.insert(preLen,this._padChar);}return true;};PadPrinterParserDecorator.prototype.parse=function parse(context,text,position){var strict=context.isStrict();var caseSensitive=context.isCaseSensitive();(0,_assert.assert)(!(position>text.length));(0,_assert.assert)(position>=0);if(position===text.length){return~position;}var endPos=position+this._padWidth;if(endPos>text.length){if(strict){return~position;}endPos=text.length;}var pos=position;while(pos<endPos&&(caseSensitive?text[pos]===this._padChar:context.charEquals(text[pos],this._padChar))){pos++;}text=text.substring(0,endPos);var resultPos=this._printerParser.parse(context,text,pos);if(resultPos!==endPos&&strict){return~(position+pos);}return resultPos;};PadPrinterParserDecorator.prototype.toString=function toString(){return'Pad('+this._printerParser+','+this._padWidth+(this._padChar===' '?')':',\''+this._padChar+'\')');};return PadPrinterParserDecorator;}();var SettingsParser=function(_Enum){_inherits(SettingsParser,_Enum);function SettingsParser(){_classCallCheck(this,SettingsParser);return _possibleConstructorReturn(this,_Enum.apply(this,arguments));}SettingsParser.prototype.print=function print(){return true;};SettingsParser.prototype.parse=function parse(context,text,position){switch(this){case SettingsParser.SENSITIVE:context.setCaseSensitive(true);break;case SettingsParser.INSENSITIVE:context.setCaseSensitive(false);break;case SettingsParser.STRICT:context.setStrict(true);break;case SettingsParser.LENIENT:context.setStrict(false);break;}return position;};SettingsParser.prototype.toString=function toString(){switch(this){case SettingsParser.SENSITIVE:return'ParseCaseSensitive(true)';case SettingsParser.INSENSITIVE:return'ParseCaseSensitive(false)';case SettingsParser.STRICT:return'ParseStrict(true)';case SettingsParser.LENIENT:return'ParseStrict(false)';}};return SettingsParser;}(_Enum2.Enum);SettingsParser.SENSITIVE=new SettingsParser('SENSITIVE');SettingsParser.INSENSITIVE=new SettingsParser('INSENSITIVE');SettingsParser.STRICT=new SettingsParser('STRICT');SettingsParser.LENIENT=new SettingsParser('LENIENT');var StringLiteralPrinterParser=function(){function StringLiteralPrinterParser(literal){_classCallCheck(this,StringLiteralPrinterParser);this._literal=literal;}StringLiteralPrinterParser.prototype.print=function print(context,buf){buf.append(this._literal);return true;};StringLiteralPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;(0,_assert.assert)(!(position>length||position<0));if(context.subSequenceEquals(text,position,this._literal,0,this._literal.length)===false){return~position;}return position+this._literal.length;};StringLiteralPrinterParser.prototype.toString=function toString(){var converted=this._literal.replace("'","''");return'\''+converted+'\'';};return StringLiteralPrinterParser;}();var CharLiteralPrinterParser=function(){function CharLiteralPrinterParser(literal){_classCallCheck(this,CharLiteralPrinterParser);if(literal.length>1){throw new _errors.IllegalArgumentException('invalid literal, too long: "'+literal+'"');}this._literal=literal;}CharLiteralPrinterParser.prototype.print=function print(context,buf){buf.append(this._literal);return true;};CharLiteralPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position===length){return~position;}var ch=text.charAt(position);if(context.charEquals(this._literal,ch)===false){return~position;}return position+this._literal.length;};CharLiteralPrinterParser.prototype.toString=function toString(){if(this._literal==='\''){return"''";}return"'"+this._literal+"'";};return CharLiteralPrinterParser;}();var NumberPrinterParser=function(){function NumberPrinterParser(field,minWidth,maxWidth,signStyle){var subsequentWidth=arguments.length>4&&arguments[4]!==undefined?arguments[4]:0;_classCallCheck(this,NumberPrinterParser);this._field=field;this._minWidth=minWidth;this._maxWidth=maxWidth;this._signStyle=signStyle;this._subsequentWidth=subsequentWidth;}NumberPrinterParser.prototype.field=function field(){return this._field;};NumberPrinterParser.prototype.minWidth=function minWidth(){return this._minWidth;};NumberPrinterParser.prototype.maxWidth=function maxWidth(){return this._maxWidth;};NumberPrinterParser.prototype.signStyle=function signStyle(){return this._signStyle;};NumberPrinterParser.prototype.withFixedWidth=function withFixedWidth(){if(this._subsequentWidth===-1){return this;}return new NumberPrinterParser(this._field,this._minWidth,this._maxWidth,this._signStyle,-1);};NumberPrinterParser.prototype.withSubsequentWidth=function withSubsequentWidth(subsequentWidth){return new NumberPrinterParser(this._field,this._minWidth,this._maxWidth,this._signStyle,this._subsequentWidth+subsequentWidth);};NumberPrinterParser.prototype._isFixedWidth=function _isFixedWidth(){return this._subsequentWidth===-1||this._subsequentWidth>0&&this._minWidth===this._maxWidth&&this._signStyle===_SignStyle.SignStyle.NOT_NEGATIVE;};NumberPrinterParser.prototype.print=function print(context,buf){var value=context.getValue(this._field);if(value==null){return false;}var symbols=context.symbols();var str=''+Math.abs(value);if(str.length>this._maxWidth){throw new _errors.DateTimeException('Field '+this._field+' cannot be printed as the value '+value+' exceeds the maximum print width of '+this._maxWidth);}str=symbols.convertNumberToI18N(str);if(value>=0){switch(this._signStyle){case _SignStyle.SignStyle.EXCEEDS_PAD:if(this._minWidth<MAX_WIDTH&&value>=EXCEED_POINTS[this._minWidth]){buf.append(symbols.positiveSign());}break;case _SignStyle.SignStyle.ALWAYS:buf.append(symbols.positiveSign());break;}}else{switch(this._signStyle){case _SignStyle.SignStyle.NORMAL:case _SignStyle.SignStyle.EXCEEDS_PAD:case _SignStyle.SignStyle.ALWAYS:buf.append(symbols.negativeSign());break;case _SignStyle.SignStyle.NOT_NEGATIVE:throw new _errors.DateTimeException('Field '+this._field+' cannot be printed as the value '+value+' cannot be negative according to the SignStyle');}}for(var i=0;i<this._minWidth-str.length;i++){buf.append(symbols.zeroDigit());}buf.append(str);return true;};NumberPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position===length){return~position;}(0,_assert.assert)(position>=0&&position<length);var sign=text.charAt(position);var negative=false;var positive=false;if(sign===context.symbols().positiveSign()){if(this._signStyle.parse(true,context.isStrict(),this._minWidth===this._maxWidth)===false){return~position;}positive=true;position++;}else if(sign===context.symbols().negativeSign()){if(this._signStyle.parse(false,context.isStrict(),this._minWidth===this._maxWidth)===false){return~position;}negative=true;position++;}else{if(this._signStyle===_SignStyle.SignStyle.ALWAYS&&context.isStrict()){return~position;}}var effMinWidth=context.isStrict()||this._isFixedWidth()?this._minWidth:1;var minEndPos=position+effMinWidth;if(minEndPos>length){return~position;}var effMaxWidth=(context.isStrict()||this._isFixedWidth()?this._maxWidth:9)+Math.max(this._subsequentWidth,0);var total=0;var pos=position;for(var pass=0;pass<2;pass++){var maxEndPos=Math.min(pos+effMaxWidth,length);while(pos<maxEndPos){var ch=text.charAt(pos++);var digit=context.symbols().convertToDigit(ch);if(digit<0){pos--;if(pos<minEndPos){return~position;}break;}if(pos-position>MAX_WIDTH){throw new _errors.ArithmeticException('number text exceeds length');}else{total=total*10+digit;}}if(this._subsequentWidth>0&&pass===0){var parseLen=pos-position;effMaxWidth=Math.max(effMinWidth,parseLen-this._subsequentWidth);pos=position;total=0;}else{break;}}if(negative){if(total===0&&context.isStrict()){return~(position-1);}if(total!==0){total=-total;}}else if(this._signStyle===_SignStyle.SignStyle.EXCEEDS_PAD&&context.isStrict()){var _parseLen=pos-position;if(positive){if(_parseLen<=this._minWidth){return~(position-1);}}else{if(_parseLen>this._minWidth){return~position;}}}return this._setValue(context,total,position,pos);};NumberPrinterParser.prototype._setValue=function _setValue(context,value,errorPos,successPos){return context.setParsedField(this._field,value,errorPos,successPos);};NumberPrinterParser.prototype.toString=function toString(){if(this._minWidth===1&&this._maxWidth===MAX_WIDTH&&this._signStyle===_SignStyle.SignStyle.NORMAL){return'Value('+this._field+')';}if(this._minWidth===this._maxWidth&&this._signStyle===_SignStyle.SignStyle.NOT_NEGATIVE){return'Value('+this._field+','+this._minWidth+')';}return'Value('+this._field+','+this._minWidth+','+this._maxWidth+','+this._signStyle+')';};return NumberPrinterParser;}();var ReducedPrinterParser=function(_NumberPrinterParser){_inherits(ReducedPrinterParser,_NumberPrinterParser);function ReducedPrinterParser(field,width,maxWidth,baseValue,baseDate){_classCallCheck(this,ReducedPrinterParser);var _this2=_possibleConstructorReturn(this,_NumberPrinterParser.call(this,field,width,maxWidth,_SignStyle.SignStyle.NOT_NEGATIVE));if(width<1||width>10){throw new _errors.IllegalArgumentException('The width must be from 1 to 10 inclusive but was '+width);}if(maxWidth<1||maxWidth>10){throw new _errors.IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was '+maxWidth);}if(maxWidth<width){throw new _errors.IllegalArgumentException('The maxWidth must be greater than the width');}if(baseDate===null){if(field.range().isValidValue(baseValue)===false){throw new _errors.IllegalArgumentException('The base value must be within the range of the field');}if(baseValue+EXCEED_POINTS[width]>_MathUtil.MathUtil.MAX_SAFE_INTEGER){throw new _errors.DateTimeException('Unable to add printer-parser as the range exceeds the capacity of an int');}}_this2._baseValue=baseValue;_this2._baseDate=baseDate;return _this2;}ReducedPrinterParser.prototype.getValue=function getValue(context,value){var absValue=Math.abs(value);var baseValue=this._baseValue;if(this._baseDate!==null){context.temporal();var chrono=_IsoChronology.IsoChronology.INSTANCE;baseValue=chrono.date(this._baseDate).get(this._field);}if(value>=baseValue&&value<baseValue+EXCEED_POINTS[this._minWidth]){return absValue%EXCEED_POINTS[this._minWidth];}return absValue%EXCEED_POINTS[this._maxWidth];};ReducedPrinterParser.prototype._setValue=function _setValue(context,value,errorPos,successPos){var baseValue=this._baseValue;if(this._baseDate!=null){var chrono=context.getEffectiveChronology();baseValue=chrono.date(this._baseDate).get(this._field);context.addChronologyChangedParser(this,value,errorPos,successPos);}var parseLen=successPos-errorPos;if(parseLen===this._minWidth&&value>=0){var range=EXCEED_POINTS[this._minWidth];var lastPart=baseValue%range;var basePart=baseValue-lastPart;if(baseValue>0){value=basePart+value;}else{value=basePart-value;}if(value<baseValue){value+=range;}}return context.setParsedField(this._field,value,errorPos,successPos);};ReducedPrinterParser.prototype.withFixedWidth=function withFixedWidth(){if(this._subsequentWidth===-1){return this;}return new ReducedPrinterParser(this._field,this._minWidth,this._maxWidth,this._baseValue,this._baseDate,-1);};ReducedPrinterParser.prototype.withSubsequentWidth=function withSubsequentWidth(subsequentWidth){return new ReducedPrinterParser(this._field,this._minWidth,this._maxWidth,this._baseValue,this._baseDate,this._subsequentWidth+subsequentWidth);};ReducedPrinterParser.prototype.isFixedWidth=function isFixedWidth(context){if(context.isStrict()===false){return false;}return _NumberPrinterParser.prototype.isFixedWidth.call(this,context);};ReducedPrinterParser.prototype.toString=function toString(){return'ReducedValue('+this._field+','+this._minWidth+','+this._maxWidth+','+(this._baseDate!=null?this._baseDate:this._baseValue)+')';};return ReducedPrinterParser;}(NumberPrinterParser);var FractionPrinterParser=function(){function FractionPrinterParser(field,minWidth,maxWidth,decimalPoint){_classCallCheck(this,FractionPrinterParser);(0,_assert.requireNonNull)(field,'field');if(field.range().isFixed()===false){throw new _errors.IllegalArgumentException('Field must have a fixed set of values: '+field);}if(minWidth<0||minWidth>9){throw new _errors.IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was '+minWidth);}if(maxWidth<1||maxWidth>9){throw new _errors.IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was '+maxWidth);}if(maxWidth<minWidth){throw new _errors.IllegalArgumentException('Maximum width must exceed or equal the minimum width but '+maxWidth+' < '+minWidth);}this.field=field;this.minWidth=minWidth;this.maxWidth=maxWidth;this.decimalPoint=decimalPoint;}FractionPrinterParser.prototype.print=function print(context,buf){var value=context.getValue(this.field);if(value===null){return false;}var symbols=context.symbols();if(value===0){if(this.minWidth>0){if(this.decimalPoint){buf.append(symbols.decimalSeparator());}for(var i=0;i<this.minWidth;i++){buf.append(symbols.zeroDigit());}}}else{var fraction=this.convertToFraction(value,symbols.zeroDigit());var outputScale=Math.min(Math.max(fraction.length,this.minWidth),this.maxWidth);fraction=fraction.substr(0,outputScale);if(fraction*1>0){while(fraction.length>this.minWidth&&fraction[fraction.length-1]==='0'){fraction=fraction.substr(0,fraction.length-1);}}var str=fraction;str=symbols.convertNumberToI18N(str);if(this.decimalPoint){buf.append(symbols.decimalSeparator());}buf.append(str);}return true;};FractionPrinterParser.prototype.parse=function parse(context,text,position){var effectiveMin=context.isStrict()?this.minWidth:0;var effectiveMax=context.isStrict()?this.maxWidth:9;var length=text.length;if(position===length){return effectiveMin>0?~position:position;}if(this.decimalPoint){if(text[position]!==context.symbols().decimalSeparator()){return effectiveMin>0?~position:position;}position++;}var minEndPos=position+effectiveMin;if(minEndPos>length){return~position;}var maxEndPos=Math.min(position+effectiveMax,length);var total=0;var pos=position;while(pos<maxEndPos){var ch=text.charAt(pos++);var digit=context.symbols().convertToDigit(ch);if(digit<0){if(pos<minEndPos){return~position;}pos--;break;}total=total*10+digit;}var moveLeft=pos-position;var scale=Math.pow(10,moveLeft);var value=this.convertFromFraction(total,scale);return context.setParsedField(this.field,value,position,pos);};FractionPrinterParser.prototype.convertToFraction=function convertToFraction(value,zeroDigit){var range=this.field.range();range.checkValidValue(value,this.field);var _min=range.minimum();var _range=range.maximum()-_min+1;var _value=value-_min;var _scaled=_MathUtil.MathUtil.intDiv(_value*1000000000,_range);var fraction=''+_scaled;while(fraction.length<9){fraction=zeroDigit+fraction;}return fraction;};FractionPrinterParser.prototype.convertFromFraction=function convertFromFraction(total,scale){var range=this.field.range();var _min=range.minimum();var _range=range.maximum()-_min+1;var _value=_MathUtil.MathUtil.intDiv(total*_range,scale);return _value;};FractionPrinterParser.prototype.toString=function toString(){var decimal=this.decimalPoint?',DecimalPoint':'';return'Fraction('+this.field+','+this.minWidth+','+this.maxWidth+decimal+')';};return FractionPrinterParser;}();var SECONDS_PER_10000_YEARS=146097*25*86400;var SECONDS_0000_TO_1970=(146097*5-(30*365+7))*86400;var InstantPrinterParser=function(){function InstantPrinterParser(fractionalDigits){_classCallCheck(this,InstantPrinterParser);this.fractionalDigits=fractionalDigits;}InstantPrinterParser.prototype.print=function print(context,buf){var inSecs=context.getValue(_ChronoField.ChronoField.INSTANT_SECONDS);var inNanos=0;if(context.temporal().isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)){inNanos=context.temporal().getLong(_ChronoField.ChronoField.NANO_OF_SECOND);}if(inSecs==null){return false;}var inSec=inSecs;var inNano=_ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);if(inSec>=-SECONDS_0000_TO_1970){var zeroSecs=inSec-SECONDS_PER_10000_YEARS+SECONDS_0000_TO_1970;var hi=_MathUtil.MathUtil.floorDiv(zeroSecs,SECONDS_PER_10000_YEARS)+1;var lo=_MathUtil.MathUtil.floorMod(zeroSecs,SECONDS_PER_10000_YEARS);var ldt=_LocalDateTime.LocalDateTime.ofEpochSecond(lo-SECONDS_0000_TO_1970,0,_ZoneOffset.ZoneOffset.UTC);if(hi>0){buf.append('+').append(hi);}buf.append(ldt);if(ldt.second()===0){buf.append(':00');}}else{var _zeroSecs=inSec+SECONDS_0000_TO_1970;var _hi=_MathUtil.MathUtil.intDiv(_zeroSecs,SECONDS_PER_10000_YEARS);var _lo=_MathUtil.MathUtil.intMod(_zeroSecs,SECONDS_PER_10000_YEARS);var _ldt=_LocalDateTime.LocalDateTime.ofEpochSecond(_lo-SECONDS_0000_TO_1970,0,_ZoneOffset.ZoneOffset.UTC);var pos=buf.length();buf.append(_ldt);if(_ldt.second()===0){buf.append(':00');}if(_hi<0){if(_ldt.year()===-10000){buf.replace(pos,pos+2,''+(_hi-1));}else if(_lo===0){buf.insert(pos,_hi);}else{buf.insert(pos+1,Math.abs(_hi));}}}if(this.fractionalDigits===-2){if(inNano!==0){buf.append('.');if(_MathUtil.MathUtil.intMod(inNano,1000000)===0){buf.append((''+(_MathUtil.MathUtil.intDiv(inNano,1000000)+1000)).substring(1));}else if(_MathUtil.MathUtil.intMod(inNano,1000)===0){buf.append((''+(_MathUtil.MathUtil.intDiv(inNano,1000)+1000000)).substring(1));}else{buf.append((''+(inNano+1000000000)).substring(1));}}}else if(this.fractionalDigits>0||this.fractionalDigits===-1&&inNano>0){buf.append('.');var div=100000000;for(var i=0;this.fractionalDigits===-1&&inNano>0||i<this.fractionalDigits;i++){var digit=_MathUtil.MathUtil.intDiv(inNano,div);buf.append(digit);inNano=inNano-digit*div;div=_MathUtil.MathUtil.intDiv(div,10);}}buf.append('Z');return true;};InstantPrinterParser.prototype.parse=function parse(context,text,position){var newContext=context.copy();var minDigits=this.fractionalDigits<0?0:this.fractionalDigits;var maxDigits=this.fractionalDigits<0?9:this.fractionalDigits;var parser=new DateTimeFormatterBuilder().append(_DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').appendValue(_ChronoField.ChronoField.HOUR_OF_DAY,2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR,2).appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE,2).appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND,minDigits,maxDigits,true).appendLiteral('Z').toFormatter().toPrinterParser(false);var pos=parser.parse(newContext,text,position);if(pos<0){return pos;}var yearParsed=newContext.getParsed(_ChronoField.ChronoField.YEAR);var month=newContext.getParsed(_ChronoField.ChronoField.MONTH_OF_YEAR);var day=newContext.getParsed(_ChronoField.ChronoField.DAY_OF_MONTH);var hour=newContext.getParsed(_ChronoField.ChronoField.HOUR_OF_DAY);var min=newContext.getParsed(_ChronoField.ChronoField.MINUTE_OF_HOUR);var secVal=newContext.getParsed(_ChronoField.ChronoField.SECOND_OF_MINUTE);var nanoVal=newContext.getParsed(_ChronoField.ChronoField.NANO_OF_SECOND);var sec=secVal!=null?secVal:0;var nano=nanoVal!=null?nanoVal:0;var year=_MathUtil.MathUtil.intMod(yearParsed,10000);var days=0;if(hour===24&&min===0&&sec===0&&nano===0){hour=0;days=1;}else if(hour===23&&min===59&&sec===60){context.setParsedLeapSecond();sec=59;}var instantSecs;try{var ldt=_LocalDateTime.LocalDateTime.of(year,month,day,hour,min,sec,0).plusDays(days);instantSecs=ldt.toEpochSecond(_ZoneOffset.ZoneOffset.UTC);instantSecs+=_MathUtil.MathUtil.safeMultiply(_MathUtil.MathUtil.intDiv(yearParsed,10000),SECONDS_PER_10000_YEARS);}catch(ex){return~position;}var successPos=pos;successPos=context.setParsedField(_ChronoField.ChronoField.INSTANT_SECONDS,instantSecs,position,successPos);return context.setParsedField(_ChronoField.ChronoField.NANO_OF_SECOND,nano,position,successPos);};InstantPrinterParser.prototype.toString=function toString(){return'Instant()';};return InstantPrinterParser;}();var PATTERNS=['+HH','+HHmm','+HH:mm','+HHMM','+HH:MM','+HHMMss','+HH:MM:ss','+HHMMSS','+HH:MM:SS'];var OffsetIdPrinterParser=function(){function OffsetIdPrinterParser(noOffsetText,pattern){_classCallCheck(this,OffsetIdPrinterParser);(0,_assert.requireNonNull)(noOffsetText,'noOffsetText');(0,_assert.requireNonNull)(pattern,'pattern');this.noOffsetText=noOffsetText;this.type=this._checkPattern(pattern);}OffsetIdPrinterParser.prototype._checkPattern=function _checkPattern(pattern){for(var i=0;i<PATTERNS.length;i++){if(PATTERNS[i]===pattern){return i;}}throw new _errors.IllegalArgumentException('Invalid zone offset pattern: '+pattern);};OffsetIdPrinterParser.prototype.print=function print(context,buf){var offsetSecs=context.getValue(_ChronoField.ChronoField.OFFSET_SECONDS);if(offsetSecs==null){return false;}var totalSecs=_MathUtil.MathUtil.safeToInt(offsetSecs);if(totalSecs===0){buf.append(this.noOffsetText);}else{var absHours=Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs,3600),100));var absMinutes=Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs,60),60));var absSeconds=Math.abs(_MathUtil.MathUtil.intMod(totalSecs,60));var bufPos=buf.length();var output=absHours;buf.append(totalSecs<0?'-':'+').appendChar(_MathUtil.MathUtil.intDiv(absHours,10)+'0').appendChar(_MathUtil.MathUtil.intMod(absHours,10)+'0');if(this.type>=3||this.type>=1&&absMinutes>0){buf.append(this.type%2===0?':':'').appendChar(_MathUtil.MathUtil.intDiv(absMinutes,10)+'0').appendChar(absMinutes%10+'0');output+=absMinutes;if(this.type>=7||this.type>=5&&absSeconds>0){buf.append(this.type%2===0?':':'').appendChar(_MathUtil.MathUtil.intDiv(absSeconds,10)+'0').appendChar(absSeconds%10+'0');output+=absSeconds;}}if(output===0){buf.setLength(bufPos);buf.append(this.noOffsetText);}}return true;};OffsetIdPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;var noOffsetLen=this.noOffsetText.length;if(noOffsetLen===0){if(position===length){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position);}}else{if(position===length){return~position;}if(context.subSequenceEquals(text,position,this.noOffsetText,0,noOffsetLen)){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position+noOffsetLen);}}var sign=text[position];if(sign==='+'||sign==='-'){var negative=sign==='-'?-1:1;var array=[0,0,0,0];array[0]=position+1;if((this._parseNumber(array,1,text,true)||this._parseNumber(array,2,text,this.type>=3)||this._parseNumber(array,3,text,false))===false){var offsetSecs=_MathUtil.MathUtil.safeZero(negative*(array[1]*3600+array[2]*60+array[3]));return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,offsetSecs,position,array[0]);}}if(noOffsetLen===0){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position+noOffsetLen);}return~position;};OffsetIdPrinterParser.prototype._parseNumber=function _parseNumber(array,arrayIndex,parseText,required){if((this.type+3)/2<arrayIndex){return false;}var pos=array[0];if(this.type%2===0&&arrayIndex>1){if(pos+1>parseText.length||parseText[pos]!==':'){return required;}pos++;}if(pos+2>parseText.length){return required;}var ch1=parseText[pos++];var ch2=parseText[pos++];if(ch1<'0'||ch1>'9'||ch2<'0'||ch2>'9'){return required;}var value=(ch1.charCodeAt(0)-48)*10+(ch2.charCodeAt(0)-48);if(value<0||value>59){return required;}array[arrayIndex]=value;array[0]=pos;return false;};OffsetIdPrinterParser.prototype.toString=function toString(){var converted=this.noOffsetText.replace('\'','\'\'');return'Offset('+PATTERNS[this.type]+',\''+converted+'\')';};return OffsetIdPrinterParser;}();OffsetIdPrinterParser.INSTANCE_ID=new OffsetIdPrinterParser('Z','+HH:MM:ss');OffsetIdPrinterParser.PATTERNS=PATTERNS;var ZoneIdPrinterParser=function(){function ZoneIdPrinterParser(query,description){_classCallCheck(this,ZoneIdPrinterParser);this.query=query;this.description=description;}ZoneIdPrinterParser.prototype.print=function print(context,buf){var zone=context.getValueQuery(this.query);if(zone==null){return false;}buf.append(zone.id());return true;};ZoneIdPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position>length){return~position;}if(position===length){return~position;}var nextChar=text.charAt(position);if(nextChar==='+'||nextChar==='-'){var newContext=context.copy();var endPos=OffsetIdPrinterParser.INSTANCE_ID.parse(newContext,text,position);if(endPos<0){return endPos;}var offset=newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);var zone=_ZoneOffset.ZoneOffset.ofTotalSeconds(offset);context.setParsedZone(zone);return endPos;}else if(length>=position+2){var nextNextChar=text.charAt(position+1);if(context.charEquals(nextChar,'U')&&context.charEquals(nextNextChar,'T')){if(length>=position+3&&context.charEquals(text.charAt(position+2),'C')){return this._parsePrefixedOffset(context,text,position,position+3);}return this._parsePrefixedOffset(context,text,position,position+2);}else if(context.charEquals(nextChar,'G')&&length>=position+3&&context.charEquals(nextNextChar,'M')&&context.charEquals(text.charAt(position+2),'T')){return this._parsePrefixedOffset(context,text,position,position+3);}}if(text.substr(position,6)==='SYSTEM'){context.setParsedZone(_ZoneId.ZoneId.systemDefault());return position+6;}if(context.charEquals(nextChar,'Z')){context.setParsedZone(_ZoneOffset.ZoneOffset.UTC);return position+1;}return~position;};ZoneIdPrinterParser.prototype._parsePrefixedOffset=function _parsePrefixedOffset(context,text,prefixPos,position){var prefix=text.substring(prefixPos,position).toUpperCase();var newContext=context.copy();if(position<text.length&&context.charEquals(text.charAt(position),'Z')){context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,_ZoneOffset.ZoneOffset.UTC));return position;}var endPos=OffsetIdPrinterParser.INSTANCE_ID.parse(newContext,text,position);if(endPos<0){context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,_ZoneOffset.ZoneOffset.UTC));return position;}var offsetSecs=newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);var offset=_ZoneOffset.ZoneOffset.ofTotalSeconds(offsetSecs);context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,offset));return endPos;};ZoneIdPrinterParser.prototype.toString=function toString(){return this.description;};return ZoneIdPrinterParser;}();function _init(){ReducedPrinterParser.BASE_DATE=_LocalDate.LocalDate.of(2000,1,1);DateTimeFormatterBuilder.CompositePrinterParser=CompositePrinterParser;DateTimeFormatterBuilder.PadPrinterParserDecorator=PadPrinterParserDecorator;DateTimeFormatterBuilder.SettingsParser=SettingsParser;DateTimeFormatterBuilder.CharLiteralPrinterParser=StringLiteralPrinterParser;DateTimeFormatterBuilder.StringLiteralPrinterParser=StringLiteralPrinterParser;DateTimeFormatterBuilder.CharLiteralPrinterParser=CharLiteralPrinterParser;DateTimeFormatterBuilder.NumberPrinterParser=NumberPrinterParser;DateTimeFormatterBuilder.ReducedPrinterParser=ReducedPrinterParser;DateTimeFormatterBuilder.FractionPrinterParser=FractionPrinterParser;DateTimeFormatterBuilder.OffsetIdPrinterParser=OffsetIdPrinterParser;DateTimeFormatterBuilder.ZoneIdPrinterParser=ZoneIdPrinterParser;}
 
 /***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-
-	var TemporalField = exports.TemporalField = function TemporalField() {
-	  _classCallCheck(this, TemporalField);
-	};
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.ValueRange = undefined;
-
-	var _assert = __webpack_require__(2);
-
-	var _errors = __webpack_require__(3);
-
-	var _MathUtil = __webpack_require__(6);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-
-	var ValueRange = exports.ValueRange = function () {
-	    function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
-	        _classCallCheck(this, ValueRange);
-
-	        (0, _assert.assert)(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'', _errors.IllegalArgumentException);
-	        (0, _assert.assert)(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'', _errors.IllegalArgumentException);
-	        (0, _assert.assert)(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'', _errors.IllegalArgumentException);
-
-	        this._minSmallest = minSmallest;
-	        this._minLargest = minLargest;
-	        this._maxLargest = maxLargest;
-	        this._maxSmallest = maxSmallest;
-	    }
-
-	    ValueRange.prototype.isFixed = function isFixed() {
-	        return this._minSmallest === this._minLargest && this._maxSmallest === this._maxLargest;
-	    };
-
-	    ValueRange.prototype.minimum = function minimum() {
-	        return this._minSmallest;
-	    };
-
-	    ValueRange.prototype.largestMinimum = function largestMinimum() {
-	        return this._minLargest;
-	    };
-
-	    ValueRange.prototype.maximum = function maximum() {
-	        return this._maxLargest;
-	    };
-
-	    ValueRange.prototype.smallestMaximum = function smallestMaximum() {
-	        return this._maxSmallest;
-	    };
-
-	    ValueRange.prototype.isValidValue = function isValidValue(value) {
-	        return this.minimum() <= value && value <= this.maximum();
-	    };
-
-	    ValueRange.prototype.checkValidValue = function checkValidValue(value, field) {
-	        var msg;
-	        if (!this.isValidValue(value)) {
-	            if (field != null) {
-	                msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
-	            } else {
-	                msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
-	            }
-	            return (0, _assert.assert)(false, msg, _errors.DateTimeException);
-	        }
-	    };
-
-	    ValueRange.prototype.checkValidIntValue = function checkValidIntValue(value, field) {
-	        if (this.isValidIntValue(value) === false) {
-	            throw new _errors.DateTimeException('Invalid int value for ' + field + ': ' + value);
-	        }
-	        return value;
-	    };
-
-	    ValueRange.prototype.isValidIntValue = function isValidIntValue(value) {
-	        return this.isIntValue() && this.isValidValue(value);
-	    };
-
-	    ValueRange.prototype.isIntValue = function isIntValue() {
-	        return this.minimum() >= _MathUtil.MathUtil.MIN_SAFE_INTEGER && this.maximum() <= _MathUtil.MathUtil.MAX_SAFE_INTEGER;
-	    };
-
-	    ValueRange.prototype.equals = function equals(other) {
-	        if (other === this) {
-	            return true;
-	        }
-	        if (other instanceof ValueRange) {
-	            return this._minSmallest === other._minSmallest && this._minLargest === other._minLargest && this._maxSmallest === other._maxSmallest && this._maxLargest === other._maxLargest;
-	        }
-	        return false;
-	    };
-
-	    ValueRange.prototype.hashCode = function hashCode() {
-	        var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 + this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
-	        return hash ^ hash >>> 32;
-	    };
-
-	    ValueRange.prototype.toString = function toString() {
-	        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
-	        str += ' - ';
-	        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
-	        return str;
-	    };
-
-	    ValueRange.of = function of() {
-	        if (arguments.length === 2) {
-	            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[1]);
-	        } else if (arguments.length === 3) {
-	            return new ValueRange(arguments[0], arguments[0], arguments[1], arguments[2]);
-	        } else if (arguments.length === 4) {
-	            return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
-	        } else {
-	            return (0, _assert.assert)(false, 'Invalid number of arguments ' + arguments.length, _errors.IllegalArgumentException);
-	        }
-	    };
-
-	    return ValueRange;
-	}();
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';exports.__esModule=true;exports.DateTimeFormatterBuilder=undefined;exports._init=_init;var _assert=__webpack_require__(2);var _errors=__webpack_require__(3);var _MathUtil=__webpack_require__(6);var _Enum2=__webpack_require__(10);var _ZoneIdFactory=__webpack_require__(21);var _LocalDate=__webpack_require__(8);var _LocalDateTime=__webpack_require__(7);var _ZoneOffset=__webpack_require__(23);var _ZoneId=__webpack_require__(24);var _ChronoLocalDate=__webpack_require__(30);var _IsoChronology=__webpack_require__(9);var _ChronoField=__webpack_require__(12);var _IsoFields=__webpack_require__(44);var _TemporalQueries=__webpack_require__(25);var _DateTimeFormatter=__webpack_require__(31);var _DecimalStyle=__webpack_require__(46);var _SignStyle=__webpack_require__(41);var _TextStyle=__webpack_require__(47);var _ResolverStyle=__webpack_require__(36);function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}/**
-	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */var MAX_WIDTH=15;var DateTimeFormatterBuilder=exports.DateTimeFormatterBuilder=function(){function DateTimeFormatterBuilder(){var parent=arguments.length<=0||arguments[0]===undefined?null:arguments[0];var optional=arguments.length<=1||arguments[1]===undefined?false:arguments[1];_classCallCheck(this,DateTimeFormatterBuilder);this._active=this;this._parent=parent;this._printerParsers=[];this._optional=optional;this._padNextWidth=0;this._padNextChar=null;this._valueParserIndex=-1;}DateTimeFormatterBuilder.prototype.parseCaseSensitive=function parseCaseSensitive(){this._appendInternalPrinterParser(SettingsParser.SENSITIVE);return this;};DateTimeFormatterBuilder.prototype.parseCaseInsensitive=function parseCaseInsensitive(){this._appendInternalPrinterParser(SettingsParser.INSENSITIVE);return this;};DateTimeFormatterBuilder.prototype.parseStrict=function parseStrict(){this._appendInternalPrinterParser(SettingsParser.STRICT);return this;};DateTimeFormatterBuilder.prototype.parseLenient=function parseLenient(){this._appendInternalPrinterParser(SettingsParser.LENIENT);return this;};DateTimeFormatterBuilder.prototype.appendValue=function appendValue(){if(arguments.length===1){return this._appendValue1.apply(this,arguments);}else if(arguments.length===2){return this._appendValue2.apply(this,arguments);}else{return this._appendValue4.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._appendValue1=function _appendValue1(field){(0,_assert.assert)(field!=null);this._appendValuePrinterParser(new NumberPrinterParser(field,1,MAX_WIDTH,_SignStyle.SignStyle.NORMAL));return this;};DateTimeFormatterBuilder.prototype._appendValue2=function _appendValue2(field,width){(0,_assert.assert)(field!=null);if(width<1||width>MAX_WIDTH){throw new _errors.IllegalArgumentException('The width must be from 1 to '+MAX_WIDTH+' inclusive but was '+width);}var pp=new NumberPrinterParser(field,width,width,_SignStyle.SignStyle.NOT_NEGATIVE);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValue4=function _appendValue4(field,minWidth,maxWidth,signStyle){(0,_assert.assert)(field!=null);if(minWidth===maxWidth&&signStyle===_SignStyle.SignStyle.NOT_NEGATIVE){return this._appendValue2(field,maxWidth);}if(minWidth<1||minWidth>MAX_WIDTH){throw new _errors.IllegalArgumentException('The minimum width must be from 1 to '+MAX_WIDTH+' inclusive but was '+minWidth);}if(maxWidth<1||maxWidth>MAX_WIDTH){throw new _errors.IllegalArgumentException('The minimum width must be from 1 to '+MAX_WIDTH+' inclusive but was '+maxWidth);}if(maxWidth<minWidth){throw new _errors.IllegalArgumentException('The maximum width must exceed or equal the minimum width but '+maxWidth+' < '+minWidth);}var pp=new NumberPrinterParser(field,minWidth,maxWidth,signStyle);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype.appendValueReduced=function appendValueReduced(){if(arguments.length===4&&arguments[3]instanceof _ChronoLocalDate.ChronoLocalDate){return this._appendValueReducedFieldWidthMaxWidthBaseDate.apply(this,arguments);}else{return this._appendValueReducedFieldWidthMaxWidthBaseValue.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._appendValueReducedFieldWidthMaxWidthBaseValue=function _appendValueReducedFieldWidthMaxWidthBaseValue(field,width,maxWidth,baseValue){(0,_assert.requireNonNull)(field,'field');var pp=new ReducedPrinterParser(field,width,maxWidth,baseValue,null);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValueReducedFieldWidthMaxWidthBaseDate=function _appendValueReducedFieldWidthMaxWidthBaseDate(field,width,maxWidth,baseDate){(0,_assert.requireNonNull)(field,'field');(0,_assert.requireNonNull)(baseDate,'baseDate');(0,_assert.requireInstance)(baseDate,_ChronoLocalDate.ChronoLocalDate,'baseDate');var pp=new ReducedPrinterParser(field,width,maxWidth,0,baseDate);this._appendValuePrinterParser(pp);return this;};DateTimeFormatterBuilder.prototype._appendValuePrinterParser=function _appendValuePrinterParser(pp){(0,_assert.assert)(pp!=null);if(this._active._valueParserIndex>=0&&this._active._printerParsers[this._active._valueParserIndex]instanceof NumberPrinterParser){var activeValueParser=this._active._valueParserIndex;var basePP=this._active._printerParsers[activeValueParser];if(pp.minWidth()===pp.maxWidth()&&pp.signStyle()===_SignStyle.SignStyle.NOT_NEGATIVE){basePP=basePP.withSubsequentWidth(pp.maxWidth());this._appendInternal(pp.withFixedWidth());this._active._valueParserIndex=activeValueParser;}else{basePP=basePP.withFixedWidth();this._active._valueParserIndex=this._appendInternal(pp);}this._active._printerParsers[activeValueParser]=basePP;}else{this._active._valueParserIndex=this._appendInternal(pp);}return this;};DateTimeFormatterBuilder.prototype.appendFraction=function appendFraction(field,minWidth,maxWidth,decimalPoint){this._appendInternal(new FractionPrinterParser(field,minWidth,maxWidth,decimalPoint));return this;};DateTimeFormatterBuilder.prototype.appendInstant=function appendInstant(){var fractionalDigits=arguments.length<=0||arguments[0]===undefined?-2:arguments[0];if(fractionalDigits<-2||fractionalDigits>9){throw new _errors.IllegalArgumentException('Invalid fractional digits: '+fractionalDigits);}this._appendInternal(new InstantPrinterParser(fractionalDigits));return this;};DateTimeFormatterBuilder.prototype.appendOffsetId=function appendOffsetId(){this._appendInternal(OffsetIdPrinterParser.INSTANCE_ID);return this;};DateTimeFormatterBuilder.prototype.appendOffset=function appendOffset(pattern,noOffsetText){this._appendInternalPrinterParser(new OffsetIdPrinterParser(noOffsetText,pattern));return this;};DateTimeFormatterBuilder.prototype.appendZoneId=function appendZoneId(){this._appendInternal(new ZoneIdPrinterParser(_TemporalQueries.TemporalQueries.zoneId(),'ZoneId()'));return this;};DateTimeFormatterBuilder.prototype.appendPattern=function appendPattern(pattern){(0,_assert.requireNonNull)(pattern,'pattern');this._parsePattern(pattern);return this;};DateTimeFormatterBuilder.prototype._parsePattern=function _parsePattern(pattern){var FIELD_MAP={'G':_ChronoField.ChronoField.ERA,'y':_ChronoField.ChronoField.YEAR_OF_ERA,'u':_ChronoField.ChronoField.YEAR,'Q':_IsoFields.IsoFields.QUARTER_OF_YEAR,'q':_IsoFields.IsoFields.QUARTER_OF_YEAR,'M':_ChronoField.ChronoField.MONTH_OF_YEAR,'L':_ChronoField.ChronoField.MONTH_OF_YEAR,'D':_ChronoField.ChronoField.DAY_OF_YEAR,'d':_ChronoField.ChronoField.DAY_OF_MONTH,'F':_ChronoField.ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH,'E':_ChronoField.ChronoField.DAY_OF_WEEK,'c':_ChronoField.ChronoField.DAY_OF_WEEK,'e':_ChronoField.ChronoField.DAY_OF_WEEK,'a':_ChronoField.ChronoField.AMPM_OF_DAY,'H':_ChronoField.ChronoField.HOUR_OF_DAY,'k':_ChronoField.ChronoField.CLOCK_HOUR_OF_DAY,'K':_ChronoField.ChronoField.HOUR_OF_AMPM,'h':_ChronoField.ChronoField.CLOCK_HOUR_OF_AMPM,'m':_ChronoField.ChronoField.MINUTE_OF_HOUR,'s':_ChronoField.ChronoField.SECOND_OF_MINUTE,'S':_ChronoField.ChronoField.NANO_OF_SECOND,'A':_ChronoField.ChronoField.MILLI_OF_DAY,'n':_ChronoField.ChronoField.NANO_OF_SECOND,'N':_ChronoField.ChronoField.NANO_OF_DAY};for(var pos=0;pos<pattern.length;pos++){var cur=pattern.charAt(pos);if(cur>='A'&&cur<='Z'||cur>='a'&&cur<='z'){var start=pos++;for(;pos<pattern.length&&pattern.charAt(pos)===cur;pos++){}var count=pos-start;if(cur==='p'){var pad=0;if(pos<pattern.length){cur=pattern.charAt(pos);if(cur>='A'&&cur<='Z'||cur>='a'&&cur<='z'){pad=count;start=pos++;for(;pos<pattern.length&&pattern.charAt(pos)===cur;pos++){}count=pos-start;}}if(pad===0){throw new _errors.IllegalArgumentException('Pad letter \'p\' must be followed by valid pad pattern: '+pattern);}this.padNext(pad);}var field=FIELD_MAP[cur];if(field!=null){this._parseField(cur,count,field);}else if(cur==='z'){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');if(count>4){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}else if(count===4){this.appendZoneText(_TextStyle.TextStyle.FULL);}else{this.appendZoneText(_TextStyle.TextStyle.SHORT);}}else if(cur==='V'){if(count!==2){throw new _errors.IllegalArgumentException('Pattern letter count must be 2: '+cur);}this.appendZoneId();}else if(cur==='Z'){if(count<4){this.appendOffset('+HHMM','+0000');}else if(count===4){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendLocalizedOffset(_TextStyle.TextStyle.FULL);}else if(count===5){this.appendOffset('+HH:MM:ss','Z');}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}}else if(cur==='O'){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');if(count===1){this.appendLocalizedOffset(_TextStyle.TextStyle.SHORT);}else if(count===4){this.appendLocalizedOffset(_TextStyle.TextStyle.FULL);}else{throw new _errors.IllegalArgumentException('Pattern letter count must be 1 or 4: '+cur);}}else if(cur==='X'){if(count>5){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this.appendOffset(OffsetIdPrinterParser.PATTERNS[count+(count===1?0:1)],'Z');}else if(cur==='x'){if(count>5){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}var zero=count===1?'+00':count%2===0?'+0000':'+00:00';this.appendOffset(OffsetIdPrinterParser.PATTERNS[count+(count===1?0:1)],zero);}else if(cur==='W'){if(count>1){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this._appendInternal(new OffsetIdPrinterParser('W',count));}else if(cur==='w'){if(count>2){throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}this._appendInternal(new OffsetIdPrinterParser('w',count));}else if(cur==='Y'){this._appendInternal(new OffsetIdPrinterParser('Y',count));}else{throw new _errors.IllegalArgumentException('Unknown pattern letter: '+cur);}pos--;}else if(cur==='\''){var _start=pos++;for(;pos<pattern.length;pos++){if(pattern.charAt(pos)==='\''){if(pos+1<pattern.length&&pattern.charAt(pos+1)==='\''){pos++;}else{break;}}}if(pos>=pattern.length){throw new _errors.IllegalArgumentException('Pattern ends with an incomplete string literal: '+pattern);}var str=pattern.substring(_start+1,pos);if(str.length===0){this.appendLiteral('\'');}else{this.appendLiteral(str.replace('\'\'','\''));}}else if(cur==='['){this.optionalStart();}else if(cur===']'){if(this._active._parent===null){throw new _errors.IllegalArgumentException('Pattern invalid as it contains ] without previous [');}this.optionalEnd();}else if(cur==='{'||cur==='}'||cur==='#'){throw new _errors.IllegalArgumentException('Pattern includes reserved character: \''+cur+'\'');}else{this.appendLiteral(cur);}}};DateTimeFormatterBuilder.prototype._parseField=function _parseField(cur,count,field){switch(cur){case'u':case'y':if(count===2){this.appendValueReduced(field,2,2,ReducedPrinterParser.BASE_DATE);}else if(count<4){this.appendValue(field,count,MAX_WIDTH,_SignStyle.SignStyle.NORMAL);}else{this.appendValue(field,count,MAX_WIDTH,_SignStyle.SignStyle.EXCEEDS_PAD);}break;case'M':case'Q':switch(count){case 1:this.appendValue(field);break;case 2:this.appendValue(field,2);break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'L':case'q':switch(count){case 1:this.appendValue(field);break;case 2:this.appendValue(field,2);break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT_STANDALONE);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL_STANDALONE);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW_STANDALONE);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'e':switch(count){case 1:case 2:throw new _errors.IllegalArgumentException('Pattern using WeekFields not implemented yet!');break;case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'c':switch(count){case 1:throw new _errors.IllegalArgumentException('Pattern using WeekFields not implemented yet!');break;case 2:throw new _errors.IllegalArgumentException('Invalid number of pattern letters: '+cur);case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT_STANDALONE);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL_STANDALONE);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW_STANDALONE);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'a':if(count===1){throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'E':case'G':switch(count){case 1:case 2:case 3:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.SHORT);break;case 4:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.FULL);break;case 5:throw new _errors.IllegalArgumentException('Pattern using (localized) text not implemented yet!');this.appendText(field,_TextStyle.TextStyle.NARROW);break;default:throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'S':this.appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND,count,count,false);break;case'F':if(count===1){this.appendValue(field);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'd':case'h':case'H':case'k':case'K':case'm':case's':if(count===1){this.appendValue(field);}else if(count===2){this.appendValue(field,count);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;case'D':if(count===1){this.appendValue(field);}else if(count<=3){this.appendValue(field,count);}else{throw new _errors.IllegalArgumentException('Too many pattern letters: '+cur);}break;default:if(count===1){this.appendValue(field);}else{this.appendValue(field,count);}break;}};DateTimeFormatterBuilder.prototype.padNext=function padNext(){if(arguments.length===1){return this._padNext1.apply(this,arguments);}else{return this._padNext2.apply(this,arguments);}};DateTimeFormatterBuilder.prototype._padNext1=function _padNext1(padWidth){return this._padNext2(padWidth,' ');};DateTimeFormatterBuilder.prototype._padNext2=function _padNext2(padWidth,padChar){if(padWidth<1){throw new _errors.IllegalArgumentException('The pad width must be at least one but was '+padWidth);}this._active._padNextWidth=padWidth;this._active._padNextChar=padChar;this._active._valueParserIndex=-1;return this;};DateTimeFormatterBuilder.prototype.optionalStart=function optionalStart(){this._active._valueParserIndex=-1;this._active=new DateTimeFormatterBuilder(this._active,true);return this;};DateTimeFormatterBuilder.prototype.optionalEnd=function optionalEnd(){if(this._active._parent==null){throw new _errors.IllegalStateException('Cannot call optionalEnd() as there was no previous call to optionalStart()');}if(this._active._printerParsers.length>0){var cpp=new CompositePrinterParser(this._active._printerParsers,this._active._optional);this._active=this._active._parent;this._appendInternal(cpp);}else{this._active=this._active._parent;}return this;};DateTimeFormatterBuilder.prototype._appendInternal=function _appendInternal(pp){(0,_assert.assert)(pp!=null);if(this._active._padNextWidth>0){if(pp!=null){pp=new PadPrinterParserDecorator(pp,this._active._padNextWidth,this._active._padNextChar);}this._active._padNextWidth=0;this._active._padNextChar=0;}this._active._printerParsers.push(pp);this._active._valueParserIndex=-1;return this._active._printerParsers.length-1;};DateTimeFormatterBuilder.prototype.appendLiteral=function appendLiteral(literal){(0,_assert.assert)(literal!=null);if(literal.length>0){if(literal.length===1){this._appendInternalPrinterParser(new CharLiteralPrinterParser(literal.charAt(0)));}else{this._appendInternalPrinterParser(new StringLiteralPrinterParser(literal));}}return this;};DateTimeFormatterBuilder.prototype._appendInternalPrinterParser=function _appendInternalPrinterParser(pp){(0,_assert.assert)(pp!=null);if(this._active._padNextWidth>0){if(pp!=null){pp=new PadPrinterParserDecorator(pp,this._active._padNextWidth,this._active._padNextChar);}this._active._padNextWidth=0;this._active._padNextChar=0;}this._active._printerParsers.push(pp);this._active._valueParserIndex=-1;return this._active._printerParsers.length-1;};DateTimeFormatterBuilder.prototype.append=function append(formatter){(0,_assert.requireNonNull)(formatter,'formatter');this._appendInternal(formatter.toPrinterParser(false));return this;};DateTimeFormatterBuilder.prototype.toFormatter=function toFormatter(){var resolverStyle=arguments.length<=0||arguments[0]===undefined?_ResolverStyle.ResolverStyle.SMART:arguments[0];while(this._active._parent!=null){this.optionalEnd();}var pp=new CompositePrinterParser(this._printerParsers,false);return new _DateTimeFormatter.DateTimeFormatter(pp,null,_DecimalStyle.DecimalStyle.STANDARD,resolverStyle,null,null,null);};return DateTimeFormatterBuilder;}();var EXCEED_POINTS=[0,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000];var CompositePrinterParser=function(){function CompositePrinterParser(printerParsers,optional){_classCallCheck(this,CompositePrinterParser);this._printerParsers=printerParsers;this._optional=optional;}CompositePrinterParser.prototype.withOptional=function withOptional(optional){if(optional===this._optional){return this;}return new CompositePrinterParser(this._printerParsers,optional);};CompositePrinterParser.prototype.print=function print(context,buf){var length=buf.length();if(this._optional){context.startOptional();}try{for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];if(pp.print(context,buf)===false){buf.setLength(length);return true;}}}finally{if(this._optional){context.endOptional();}}return true;};CompositePrinterParser.prototype.parse=function parse(context,text,position){if(this._optional){context.startOptional();var pos=position;for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];pos=pp.parse(context,text,pos);if(pos<0){context.endOptional(false);return position;}}context.endOptional(true);return pos;}else{for(var _i=0;_i<this._printerParsers.length;_i++){var _pp=this._printerParsers[_i];position=_pp.parse(context,text,position);if(position<0){break;}}return position;}};CompositePrinterParser.prototype.toString=function toString(){var buf='';if(this._printerParsers!=null){buf+=this._optional?'[':'(';for(var i=0;i<this._printerParsers.length;i++){var pp=this._printerParsers[i];buf+=pp.toString();}buf+=this._optional?']':')';}return buf;};return CompositePrinterParser;}();var PadPrinterParserDecorator=function(){function PadPrinterParserDecorator(printerParser,padWidth,padChar){_classCallCheck(this,PadPrinterParserDecorator);this._printerParser=printerParser;this._padWidth=padWidth;this._padChar=padChar;}PadPrinterParserDecorator.prototype.print=function print(context,buf){var preLen=buf.length();if(this._printerParser.print(context,buf)===false){return false;}var len=buf.length()-preLen;if(len>this._padWidth){throw new _errors.DateTimeException('Cannot print as output of '+len+' characters exceeds pad width of '+this._padWidth);}for(var i=0;i<this._padWidth-len;i++){buf.insert(preLen,this._padChar);}return true;};PadPrinterParserDecorator.prototype.parse=function parse(context,text,position){var strict=context.isStrict();var caseSensitive=context.isCaseSensitive();(0,_assert.assert)(!(position>text.length));(0,_assert.assert)(position>=0);if(position===text.length){return~position;}var endPos=position+this._padWidth;if(endPos>text.length){if(strict){return~position;}endPos=text.length;}var pos=position;while(pos<endPos&&(caseSensitive?text[pos]===this._padChar:context.charEquals(text[pos],this._padChar))){pos++;}text=text.substring(0,endPos);var resultPos=this._printerParser.parse(context,text,pos);if(resultPos!==endPos&&strict){return~(position+pos);}return resultPos;};PadPrinterParserDecorator.prototype.toString=function toString(){return'Pad('+this._printerParser+','+this._padWidth+(this._padChar===' '?')':',\''+this._padChar+'\')');};return PadPrinterParserDecorator;}();var SettingsParser=function(_Enum){_inherits(SettingsParser,_Enum);function SettingsParser(){_classCallCheck(this,SettingsParser);return _possibleConstructorReturn(this,_Enum.apply(this,arguments));}SettingsParser.prototype.print=function print(){return true;};SettingsParser.prototype.parse=function parse(context,text,position){switch(this){case SettingsParser.SENSITIVE:context.setCaseSensitive(true);break;case SettingsParser.INSENSITIVE:context.setCaseSensitive(false);break;case SettingsParser.STRICT:context.setStrict(true);break;case SettingsParser.LENIENT:context.setStrict(false);break;}return position;};SettingsParser.prototype.toString=function toString(){switch(this){case SettingsParser.SENSITIVE:return'ParseCaseSensitive(true)';case SettingsParser.INSENSITIVE:return'ParseCaseSensitive(false)';case SettingsParser.STRICT:return'ParseStrict(true)';case SettingsParser.LENIENT:return'ParseStrict(false)';}};return SettingsParser;}(_Enum2.Enum);SettingsParser.SENSITIVE=new SettingsParser('SENSITIVE');SettingsParser.INSENSITIVE=new SettingsParser('INSENSITIVE');SettingsParser.STRICT=new SettingsParser('STRICT');SettingsParser.LENIENT=new SettingsParser('LENIENT');var StringLiteralPrinterParser=function(){function StringLiteralPrinterParser(literal){_classCallCheck(this,StringLiteralPrinterParser);this._literal=literal;}StringLiteralPrinterParser.prototype.print=function print(context,buf){buf.append(this._literal);return true;};StringLiteralPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;(0,_assert.assert)(!(position>length||position<0));if(context.subSequenceEquals(text,position,this._literal,0,this._literal.length)===false){return~position;}return position+this._literal.length;};StringLiteralPrinterParser.prototype.toString=function toString(){var converted=this._literal.replace("'","''");return'\''+converted+'\'';};return StringLiteralPrinterParser;}();var CharLiteralPrinterParser=function(){function CharLiteralPrinterParser(literal){_classCallCheck(this,CharLiteralPrinterParser);if(literal.length>1){throw new _errors.IllegalArgumentException('invalid literal, too long: "'+literal+'"');}this._literal=literal;}CharLiteralPrinterParser.prototype.print=function print(context,buf){buf.append(this._literal);return true;};CharLiteralPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position===length){return~position;}var ch=text.charAt(position);if(context.charEquals(this._literal,ch)===false){return~position;}return position+this._literal.length;};CharLiteralPrinterParser.prototype.toString=function toString(){if(this._literal==='\''){return"''";}return"'"+this._literal+"'";};return CharLiteralPrinterParser;}();var NumberPrinterParser=function(){function NumberPrinterParser(field,minWidth,maxWidth,signStyle){var subsequentWidth=arguments.length<=4||arguments[4]===undefined?0:arguments[4];_classCallCheck(this,NumberPrinterParser);this._field=field;this._minWidth=minWidth;this._maxWidth=maxWidth;this._signStyle=signStyle;this._subsequentWidth=subsequentWidth;}NumberPrinterParser.prototype.field=function field(){return this._field;};NumberPrinterParser.prototype.minWidth=function minWidth(){return this._minWidth;};NumberPrinterParser.prototype.maxWidth=function maxWidth(){return this._maxWidth;};NumberPrinterParser.prototype.signStyle=function signStyle(){return this._signStyle;};NumberPrinterParser.prototype.withSubsequentWidth=function withSubsequentWidth(subsequentWidth){return new NumberPrinterParser(this._field,this._minWidth,this._maxWidth,this._signStyle,this._subsequentWidth+subsequentWidth);};NumberPrinterParser.prototype._isFixedWidth=function _isFixedWidth(){return this._subsequentWidth===-1||this._subsequentWidth>0&&this._minWidth===this._maxWidth&&this._signStyle===_SignStyle.SignStyle.NOT_NEGATIVE;};NumberPrinterParser.prototype.print=function print(context,buf){var value=context.getValue(this._field);if(value==null){return false;}var symbols=context.symbols();var str=''+Math.abs(value);if(str.length>this._maxWidth){throw new _errors.DateTimeException('Field '+this._field+' cannot be printed as the value '+value+' exceeds the maximum print width of '+this._maxWidth);}str=symbols.convertNumberToI18N(str);if(value>=0){switch(this._signStyle){case _SignStyle.SignStyle.EXCEEDS_PAD:if(this._minWidth<MAX_WIDTH&&value>=EXCEED_POINTS[this._minWidth]){buf.append(symbols.positiveSign());}break;case _SignStyle.SignStyle.ALWAYS:buf.append(symbols.positiveSign());break;}}else{switch(this._signStyle){case _SignStyle.SignStyle.NORMAL:case _SignStyle.SignStyle.EXCEEDS_PAD:case _SignStyle.SignStyle.ALWAYS:buf.append(symbols.negativeSign());break;case _SignStyle.SignStyle.NOT_NEGATIVE:throw new _errors.DateTimeException('Field '+this._field+' cannot be printed as the value '+value+' cannot be negative according to the SignStyle');}}for(var i=0;i<this._minWidth-str.length;i++){buf.append(symbols.zeroDigit());}buf.append(str);return true;};NumberPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position===length){return~position;}(0,_assert.assert)(position>=0&&position<length);var sign=text.charAt(position);var negative=false;var positive=false;if(sign===context.symbols().positiveSign()){if(this._signStyle.parse(true,context.isStrict(),this._minWidth===this._maxWidth)===false){return~position;}positive=true;position++;}else if(sign===context.symbols().negativeSign()){if(this._signStyle.parse(false,context.isStrict(),this._minWidth===this._maxWidth)===false){return~position;}negative=true;position++;}else{if(this._signStyle===_SignStyle.SignStyle.ALWAYS&&context.isStrict()){return~position;}}var effMinWidth=context.isStrict()||this._isFixedWidth()?this._minWidth:1;var minEndPos=position+effMinWidth;if(minEndPos>length){return~position;}var effMaxWidth=(context.isStrict()||this._isFixedWidth()?this._maxWidth:9)+Math.max(this._subsequentWidth,0);var total=0;var pos=position;for(var pass=0;pass<2;pass++){var maxEndPos=Math.min(pos+effMaxWidth,length);while(pos<maxEndPos){var ch=text.charAt(pos++);var digit=context.symbols().convertToDigit(ch);if(digit<0){pos--;if(pos<minEndPos){return~position;}break;}if(pos-position>MAX_WIDTH){throw new _errors.ArithmeticException('number text exceeds length');}else{total=total*10+digit;}}if(this._subsequentWidth>0&&pass===0){var parseLen=pos-position;effMaxWidth=Math.max(effMinWidth,parseLen-this._subsequentWidth);pos=position;total=0;}else{break;}}if(negative){if(total===0&&context.isStrict()){return~(position-1);}if(total!==0){total=-total;}}else if(this._signStyle===_SignStyle.SignStyle.EXCEEDS_PAD&&context.isStrict()){var _parseLen=pos-position;if(positive){if(_parseLen<=this._minWidth){return~(position-1);}}else{if(_parseLen>this._minWidth){return~position;}}}return this._setValue(context,total,position,pos);};NumberPrinterParser.prototype._setValue=function _setValue(context,value,errorPos,successPos){return context.setParsedField(this._field,value,errorPos,successPos);};NumberPrinterParser.prototype.toString=function toString(){if(this._minWidth===1&&this._maxWidth===MAX_WIDTH&&this._signStyle===_SignStyle.SignStyle.NORMAL){return'Value('+this._field+')';}if(this._minWidth===this._maxWidth&&this._signStyle===_SignStyle.SignStyle.NOT_NEGATIVE){return'Value('+this._field+','+this._minWidth+')';}return'Value('+this._field+','+this._minWidth+','+this._maxWidth+','+this._signStyle+')';};return NumberPrinterParser;}();var ReducedPrinterParser=function(_NumberPrinterParser){_inherits(ReducedPrinterParser,_NumberPrinterParser);function ReducedPrinterParser(field,width,maxWidth,baseValue,baseDate){_classCallCheck(this,ReducedPrinterParser);var _this2=_possibleConstructorReturn(this,_NumberPrinterParser.call(this,field,width,maxWidth,_SignStyle.SignStyle.NOT_NEGATIVE));if(width<1||width>10){throw new _errors.IllegalArgumentException('The width must be from 1 to 10 inclusive but was '+width);}if(maxWidth<1||maxWidth>10){throw new _errors.IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was '+maxWidth);}if(maxWidth<width){throw new _errors.IllegalArgumentException('The maxWidth must be greater than the width');}if(baseDate===null){if(field.range().isValidValue(baseValue)===false){throw new _errors.IllegalArgumentException('The base value must be within the range of the field');}if(baseValue+EXCEED_POINTS[width]>_MathUtil.MathUtil.MAX_SAFE_INTEGER){throw new _errors.DateTimeException('Unable to add printer-parser as the range exceeds the capacity of an int');}}_this2._baseValue=baseValue;_this2._baseDate=baseDate;return _this2;}ReducedPrinterParser.prototype.getValue=function getValue(context,value){var absValue=Math.abs(value);var baseValue=this._baseValue;if(this._baseDate!==null){context.temporal();var chrono=_IsoChronology.IsoChronology.INSTANCE;baseValue=chrono.date(this._baseDate).get(this._field);}if(value>=baseValue&&value<baseValue+EXCEED_POINTS[this._minWidth]){return absValue%EXCEED_POINTS[this._minWidth];}return absValue%EXCEED_POINTS[this._maxWidth];};ReducedPrinterParser.prototype.setValue=function setValue(context,value,errorPos,successPos){var baseValue=this._baseValue;if(this._baseDate!=null){var chrono=context.getEffectiveChronology();baseValue=chrono.date(this._baseDate).get(this._field);context.addChronologyChangedParser(this,value,errorPos,successPos);}var parseLen=successPos-errorPos;if(parseLen===this._minWidth&&value>=0){var range=EXCEED_POINTS[this._minWidth];var lastPart=baseValue%range;var basePart=baseValue-lastPart;if(baseValue>0){value=basePart+value;}else{value=basePart-value;}if(value<baseValue){value+=range;}}return context.setParsedField(this._field,value,errorPos,successPos);};ReducedPrinterParser.prototype.withFixedWidth=function withFixedWidth(){if(this.subsequentWidth()===-1){return this;}return new ReducedPrinterParser(this._field,this._minWidth,this._maxWidth,this._baseValue,this._baseDate,-1);};ReducedPrinterParser.prototype.withSubsequentWidth=function withSubsequentWidth(subsequentWidth){return new ReducedPrinterParser(this._field,this._minWidth,this._maxWidth,this._baseValue,this._baseDate,this._subsequentWidth+subsequentWidth);};ReducedPrinterParser.prototype.isFixedWidth=function isFixedWidth(context){if(context.isStrict()===false){return false;}return _NumberPrinterParser.prototype.isFixedWidth.call(this,context);};ReducedPrinterParser.prototype.toString=function toString(){return'ReducedValue('+this._field+','+this._minWidth+','+this._maxWidth+','+(this._baseDate!=null?this._baseDate:this._baseValue)+')';};return ReducedPrinterParser;}(NumberPrinterParser);var FractionPrinterParser=function(){function FractionPrinterParser(field,minWidth,maxWidth,decimalPoint){_classCallCheck(this,FractionPrinterParser);(0,_assert.requireNonNull)(field,'field');if(field.range().isFixed()===false){throw new _errors.IllegalArgumentException('Field must have a fixed set of values: '+field);}if(minWidth<0||minWidth>9){throw new _errors.IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was '+minWidth);}if(maxWidth<1||maxWidth>9){throw new _errors.IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was '+maxWidth);}if(maxWidth<minWidth){throw new _errors.IllegalArgumentException('Maximum width must exceed or equal the minimum width but '+maxWidth+' < '+minWidth);}this.field=field;this.minWidth=minWidth;this.maxWidth=maxWidth;this.decimalPoint=decimalPoint;}FractionPrinterParser.prototype.print=function print(context,buf){var value=context.getValue(this.field);if(value===null){return false;}var symbols=context.symbols();if(value===0){if(this.minWidth>0){if(this.decimalPoint){buf.append(symbols.decimalSeparator());}for(var i=0;i<this.minWidth;i++){buf.append(symbols.zeroDigit());}}}else{var fraction=this.convertToFraction(value,symbols.zeroDigit());var outputScale=Math.min(Math.max(fraction.length,this.minWidth),this.maxWidth);fraction=fraction.substr(0,outputScale);if(fraction*1>0){while(fraction.length>this.minWidth&&fraction[fraction.length-1]==='0'){fraction=fraction.substr(0,fraction.length-1);}}var str=fraction;str=symbols.convertNumberToI18N(str);if(this.decimalPoint){buf.append(symbols.decimalSeparator());}buf.append(str);}return true;};FractionPrinterParser.prototype.parse=function parse(context,text,position){var effectiveMin=context.isStrict()?this.minWidth:0;var effectiveMax=context.isStrict()?this.maxWidth:9;var length=text.length;if(position===length){return effectiveMin>0?~position:position;}if(this.decimalPoint){if(text[position]!==context.symbols().decimalSeparator()){return effectiveMin>0?~position:position;}position++;}var minEndPos=position+effectiveMin;if(minEndPos>length){return~position;}var maxEndPos=Math.min(position+effectiveMax,length);var total=0;var pos=position;while(pos<maxEndPos){var ch=text.charAt(pos++);var digit=context.symbols().convertToDigit(ch);if(digit<0){if(pos<minEndPos){return~position;}pos--;break;}total=total*10+digit;}var moveLeft=pos-position;var scale=Math.pow(10,moveLeft);var value=this.convertFromFraction(total,scale);return context.setParsedField(this.field,value,position,pos);};FractionPrinterParser.prototype.convertToFraction=function convertToFraction(value,zeroDigit){var range=this.field.range();range.checkValidValue(value,this.field);var _min=range.minimum();var _range=range.maximum()-_min+1;var _value=value-_min;var _scaled=_MathUtil.MathUtil.intDiv(_value*1000000000,_range);var fraction=''+_scaled;while(fraction.length<9){fraction=zeroDigit+fraction;}return fraction;};FractionPrinterParser.prototype.convertFromFraction=function convertFromFraction(total,scale){var range=this.field.range();var _min=range.minimum();var _range=range.maximum()-_min+1;var _value=_MathUtil.MathUtil.intDiv(total*_range,scale);return _value;};FractionPrinterParser.prototype.toString=function toString(){var decimal=this.decimalPoint?',DecimalPoint':'';return'Fraction('+this.field+','+this.minWidth+','+this.maxWidth+decimal+')';};return FractionPrinterParser;}();var SECONDS_PER_10000_YEARS=146097*25*86400;var SECONDS_0000_TO_1970=(146097*5-(30*365+7))*86400;var InstantPrinterParser=function(){function InstantPrinterParser(fractionalDigits){_classCallCheck(this,InstantPrinterParser);this.fractionalDigits=fractionalDigits;}InstantPrinterParser.prototype.print=function print(context,buf){var inSecs=context.getValue(_ChronoField.ChronoField.INSTANT_SECONDS);var inNanos=0;if(context.temporal().isSupported(_ChronoField.ChronoField.NANO_OF_SECOND)){inNanos=context.temporal().getLong(_ChronoField.ChronoField.NANO_OF_SECOND);}if(inSecs==null){return false;}var inSec=inSecs;var inNano=_ChronoField.ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);if(inSec>=-SECONDS_0000_TO_1970){var zeroSecs=inSec-SECONDS_PER_10000_YEARS+SECONDS_0000_TO_1970;var hi=_MathUtil.MathUtil.floorDiv(zeroSecs,SECONDS_PER_10000_YEARS)+1;var lo=_MathUtil.MathUtil.floorMod(zeroSecs,SECONDS_PER_10000_YEARS);var ldt=_LocalDateTime.LocalDateTime.ofEpochSecond(lo-SECONDS_0000_TO_1970,0,_ZoneOffset.ZoneOffset.UTC);if(hi>0){buf.append('+').append(hi);}buf.append(ldt);if(ldt.second()===0){buf.append(':00');}}else{var _zeroSecs=inSec+SECONDS_0000_TO_1970;var _hi=_MathUtil.MathUtil.intDiv(_zeroSecs,SECONDS_PER_10000_YEARS);var _lo=_MathUtil.MathUtil.intMod(_zeroSecs,SECONDS_PER_10000_YEARS);var _ldt=_LocalDateTime.LocalDateTime.ofEpochSecond(_lo-SECONDS_0000_TO_1970,0,_ZoneOffset.ZoneOffset.UTC);var pos=buf.length();buf.append(_ldt);if(_ldt.second()===0){buf.append(':00');}if(_hi<0){if(_ldt.year()===-10000){buf.replace(pos,pos+2,''+(_hi-1));}else if(_lo===0){buf.insert(pos,_hi);}else{buf.insert(pos+1,Math.abs(_hi));}}}if(this.fractionalDigits===-2){if(inNano!==0){buf.append('.');if(_MathUtil.MathUtil.intMod(inNano,1000000)===0){buf.append((''+(_MathUtil.MathUtil.intDiv(inNano,1000000)+1000)).substring(1));}else if(_MathUtil.MathUtil.intMod(inNano,1000)===0){buf.append((''+(_MathUtil.MathUtil.intDiv(inNano,1000)+1000000)).substring(1));}else{buf.append((''+(inNano+1000000000)).substring(1));}}}else if(this.fractionalDigits>0||this.fractionalDigits===-1&&inNano>0){buf.append('.');var div=100000000;for(var i=0;this.fractionalDigits===-1&&inNano>0||i<this.fractionalDigits;i++){var digit=_MathUtil.MathUtil.intDiv(inNano,div);buf.append(digit);inNano=inNano-digit*div;div=_MathUtil.MathUtil.intDiv(div,10);}}buf.append('Z');return true;};InstantPrinterParser.prototype.parse=function parse(context,text,position){var newContext=context.copy();var minDigits=this.fractionalDigits<0?0:this.fractionalDigits;var maxDigits=this.fractionalDigits<0?9:this.fractionalDigits;var parser=new DateTimeFormatterBuilder().append(_DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').appendValue(_ChronoField.ChronoField.HOUR_OF_DAY,2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR,2).appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE,2).appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND,minDigits,maxDigits,true).appendLiteral('Z').toFormatter().toPrinterParser(false);var pos=parser.parse(newContext,text,position);if(pos<0){return pos;}var yearParsed=newContext.getParsed(_ChronoField.ChronoField.YEAR);var month=newContext.getParsed(_ChronoField.ChronoField.MONTH_OF_YEAR);var day=newContext.getParsed(_ChronoField.ChronoField.DAY_OF_MONTH);var hour=newContext.getParsed(_ChronoField.ChronoField.HOUR_OF_DAY);var min=newContext.getParsed(_ChronoField.ChronoField.MINUTE_OF_HOUR);var secVal=newContext.getParsed(_ChronoField.ChronoField.SECOND_OF_MINUTE);var nanoVal=newContext.getParsed(_ChronoField.ChronoField.NANO_OF_SECOND);var sec=secVal!=null?secVal:0;var nano=nanoVal!=null?nanoVal:0;var year=_MathUtil.MathUtil.intMod(yearParsed,10000);var days=0;if(hour===24&&min===0&&sec===0&&nano===0){hour=0;days=1;}else if(hour===23&&min===59&&sec===60){context.setParsedLeapSecond();sec=59;}var instantSecs;try{var ldt=_LocalDateTime.LocalDateTime.of(year,month,day,hour,min,sec,0).plusDays(days);instantSecs=ldt.toEpochSecond(_ZoneOffset.ZoneOffset.UTC);instantSecs+=_MathUtil.MathUtil.safeMultiply(_MathUtil.MathUtil.intDiv(yearParsed,10000),SECONDS_PER_10000_YEARS);}catch(ex){return~position;}var successPos=pos;successPos=context.setParsedField(_ChronoField.ChronoField.INSTANT_SECONDS,instantSecs,position,successPos);return context.setParsedField(_ChronoField.ChronoField.NANO_OF_SECOND,nano,position,successPos);};InstantPrinterParser.prototype.toString=function toString(){return'Instant()';};return InstantPrinterParser;}();var PATTERNS=['+HH','+HHmm','+HH:mm','+HHMM','+HH:MM','+HHMMss','+HH:MM:ss','+HHMMSS','+HH:MM:SS'];var OffsetIdPrinterParser=function(){function OffsetIdPrinterParser(noOffsetText,pattern){_classCallCheck(this,OffsetIdPrinterParser);(0,_assert.requireNonNull)(noOffsetText,'noOffsetText');(0,_assert.requireNonNull)(pattern,'pattern');this.noOffsetText=noOffsetText;this.type=this._checkPattern(pattern);}OffsetIdPrinterParser.prototype._checkPattern=function _checkPattern(pattern){for(var i=0;i<PATTERNS.length;i++){if(PATTERNS[i]===pattern){return i;}}throw new _errors.IllegalArgumentException('Invalid zone offset pattern: '+pattern);};OffsetIdPrinterParser.prototype.print=function print(context,buf){var offsetSecs=context.getValue(_ChronoField.ChronoField.OFFSET_SECONDS);if(offsetSecs==null){return false;}var totalSecs=_MathUtil.MathUtil.safeToInt(offsetSecs);if(totalSecs===0){buf.append(this.noOffsetText);}else{var absHours=Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs,3600),100));var absMinutes=Math.abs(_MathUtil.MathUtil.intMod(_MathUtil.MathUtil.intDiv(totalSecs,60),60));var absSeconds=Math.abs(_MathUtil.MathUtil.intMod(totalSecs,60));var bufPos=buf.length();var output=absHours;buf.append(totalSecs<0?'-':'+').appendChar(_MathUtil.MathUtil.intDiv(absHours,10)+'0').appendChar(_MathUtil.MathUtil.intMod(absHours,10)+'0');if(this.type>=3||this.type>=1&&absMinutes>0){buf.append(this.type%2===0?':':'').appendChar(_MathUtil.MathUtil.intDiv(absMinutes,10)+'0').appendChar(absMinutes%10+'0');output+=absMinutes;if(this.type>=7||this.type>=5&&absSeconds>0){buf.append(this.type%2===0?':':'').appendChar(_MathUtil.MathUtil.intDiv(absSeconds,10)+'0').appendChar(absSeconds%10+'0');output+=absSeconds;}}if(output===0){buf.setLength(bufPos);buf.append(this.noOffsetText);}}return true;};OffsetIdPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;var noOffsetLen=this.noOffsetText.length;if(noOffsetLen===0){if(position===length){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position);}}else{if(position===length){return~position;}if(context.subSequenceEquals(text,position,this.noOffsetText,0,noOffsetLen)){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position+noOffsetLen);}}var sign=text[position];if(sign==='+'||sign==='-'){var negative=sign==='-'?-1:1;var array=[0,0,0,0];array[0]=position+1;if((this._parseNumber(array,1,text,true)||this._parseNumber(array,2,text,this.type>=3)||this._parseNumber(array,3,text,false))===false){var offsetSecs=_MathUtil.MathUtil.safeZero(negative*(array[1]*3600+array[2]*60+array[3]));return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,offsetSecs,position,array[0]);}}if(noOffsetLen===0){return context.setParsedField(_ChronoField.ChronoField.OFFSET_SECONDS,0,position,position+noOffsetLen);}return~position;};OffsetIdPrinterParser.prototype._parseNumber=function _parseNumber(array,arrayIndex,parseText,required){if((this.type+3)/2<arrayIndex){return false;}var pos=array[0];if(this.type%2===0&&arrayIndex>1){if(pos+1>parseText.length||parseText[pos]!==':'){return required;}pos++;}if(pos+2>parseText.length){return required;}var ch1=parseText[pos++];var ch2=parseText[pos++];if(ch1<'0'||ch1>'9'||ch2<'0'||ch2>'9'){return required;}var value=(ch1.charCodeAt(0)-48)*10+(ch2.charCodeAt(0)-48);if(value<0||value>59){return required;}array[arrayIndex]=value;array[0]=pos;return false;};OffsetIdPrinterParser.prototype.toString=function toString(){var converted=this.noOffsetText.replace('\'','\'\'');return'Offset('+PATTERNS[this.type]+',\''+converted+'\')';};return OffsetIdPrinterParser;}();OffsetIdPrinterParser.INSTANCE_ID=new OffsetIdPrinterParser('Z','+HH:MM:ss');OffsetIdPrinterParser.PATTERNS=PATTERNS;var ZoneIdPrinterParser=function(){function ZoneIdPrinterParser(query,description){_classCallCheck(this,ZoneIdPrinterParser);this.query=query;this.description=description;}ZoneIdPrinterParser.prototype.print=function print(context,buf){var zone=context.getValueQuery(this.query);if(zone==null){return false;}buf.append(zone.id());return true;};ZoneIdPrinterParser.prototype.parse=function parse(context,text,position){var length=text.length;if(position>length){return~position;}if(position===length){return~position;}var nextChar=text.charAt(position);if(nextChar==='+'||nextChar==='-'){var newContext=context.copy();var endPos=OffsetIdPrinterParser.INSTANCE_ID.parse(newContext,text,position);if(endPos<0){return endPos;}var offset=newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);var zone=_ZoneOffset.ZoneOffset.ofTotalSeconds(offset);context.setParsedZone(zone);return endPos;}else if(length>=position+2){var nextNextChar=text.charAt(position+1);if(context.charEquals(nextChar,'U')&&context.charEquals(nextNextChar,'T')){if(length>=position+3&&context.charEquals(text.charAt(position+2),'C')){return this._parsePrefixedOffset(context,text,position,position+3);}return this._parsePrefixedOffset(context,text,position,position+2);}else if(context.charEquals(nextChar,'G')&&length>=position+3&&context.charEquals(nextNextChar,'M')&&context.charEquals(text.charAt(position+2),'T')){return this._parsePrefixedOffset(context,text,position,position+3);}}if(text.substr(position,6)==='SYSTEM'){context.setParsedZone(_ZoneId.ZoneId.systemDefault());return position+6;}if(context.charEquals(nextChar,'Z')){context.setParsedZone(_ZoneOffset.ZoneOffset.UTC);return position+1;}return~position;};ZoneIdPrinterParser.prototype._parsePrefixedOffset=function _parsePrefixedOffset(context,text,prefixPos,position){var prefix=text.substring(prefixPos,position).toUpperCase();var newContext=context.copy();if(position<text.length&&context.charEquals(text.charAt(position),'Z')){context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,_ZoneOffset.ZoneOffset.UTC));return position;}var endPos=OffsetIdPrinterParser.INSTANCE_ID.parse(newContext,text,position);if(endPos<0){context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,_ZoneOffset.ZoneOffset.UTC));return position;}var offsetSecs=newContext.getParsed(_ChronoField.ChronoField.OFFSET_SECONDS);var offset=_ZoneOffset.ZoneOffset.ofTotalSeconds(offsetSecs);context.setParsedZone(_ZoneIdFactory.ZoneIdFactory.ofOffset(prefix,offset));return endPos;};ZoneIdPrinterParser.prototype.toString=function toString(){return this.description;};return ZoneIdPrinterParser;}();function _init(){ReducedPrinterParser.BASE_DATE=_LocalDate.LocalDate.of(2000,1,1);DateTimeFormatterBuilder.CompositePrinterParser=CompositePrinterParser;DateTimeFormatterBuilder.PadPrinterParserDecorator=PadPrinterParserDecorator;DateTimeFormatterBuilder.SettingsParser=SettingsParser;DateTimeFormatterBuilder.CharLiteralPrinterParser=StringLiteralPrinterParser;DateTimeFormatterBuilder.StringLiteralPrinterParser=StringLiteralPrinterParser;DateTimeFormatterBuilder.CharLiteralPrinterParser=CharLiteralPrinterParser;DateTimeFormatterBuilder.NumberPrinterParser=NumberPrinterParser;DateTimeFormatterBuilder.ReducedPrinterParser=ReducedPrinterParser;DateTimeFormatterBuilder.FractionPrinterParser=FractionPrinterParser;DateTimeFormatterBuilder.OffsetIdPrinterParser=OffsetIdPrinterParser;DateTimeFormatterBuilder.ZoneIdPrinterParser=ZoneIdPrinterParser;}
-
-/***/ },
-/* 21 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4686,17 +5172,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _StringUtil = __webpack_require__(22);
+	var _StringUtil = __webpack_require__(27);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
-	var _ZoneRegion = __webpack_require__(27);
+	var _ZoneRegion = __webpack_require__(31);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _SystemDefaultZoneId = __webpack_require__(28);
+	var _SystemDefaultZoneId = __webpack_require__(32);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -4791,7 +5277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4832,7 +5318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4849,13 +5335,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalTime = __webpack_require__(5);
 
-	var _ZoneId2 = __webpack_require__(24);
+	var _ZoneId2 = __webpack_require__(29);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _ZoneRules = __webpack_require__(26);
+	var _ZoneRules = __webpack_require__(30);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5108,7 +5594,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 24 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5118,7 +5604,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _assert = __webpack_require__(2);
 
-	var _StringUtil = __webpack_require__(22);
+	var _StringUtil = __webpack_require__(27);
 
 	var _Instant = __webpack_require__(4);
 
@@ -5132,6 +5618,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function ZoneId() {
 	        _classCallCheck(this, ZoneId);
 	    }
+
+	    ZoneId.prototype.id = function id() {
+	        (0, _assert.abstractMethodFail)('ZoneId.id');
+	    };
 
 	    ZoneId.prototype.rules = function rules() {
 	        (0, _assert.abstractMethodFail)('ZoneId.rules');
@@ -5168,59 +5658,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-
-	var TemporalQueries = exports.TemporalQueries = function () {
-	  function TemporalQueries() {
-	    _classCallCheck(this, TemporalQueries);
-	  }
-
-	  TemporalQueries.zoneId = function zoneId() {
-	    return TemporalQueries.ZONE_ID;
-	  };
-
-	  TemporalQueries.chronology = function chronology() {
-	    return TemporalQueries.CHRONO;
-	  };
-
-	  TemporalQueries.precision = function precision() {
-	    return TemporalQueries.PRECISION;
-	  };
-
-	  TemporalQueries.zone = function zone() {
-	    return TemporalQueries.ZONE;
-	  };
-
-	  TemporalQueries.offset = function offset() {
-	    return TemporalQueries.OFFSET;
-	  };
-
-	  TemporalQueries.localDate = function localDate() {
-	    return TemporalQueries.LOCAL_DATE;
-	  };
-
-	  TemporalQueries.localTime = function localTime() {
-	    return TemporalQueries.LOCAL_TIME;
-	  };
-
-	  return TemporalQueries;
-	}();
-
-/***/ },
-/* 26 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5229,6 +5667,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ZoneRules = undefined;
 
 	var _assert = __webpack_require__(2);
+
+	var _Duration = __webpack_require__(14);
 
 	var _Instant = __webpack_require__(4);
 
@@ -5276,8 +5716,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.abstractMethodFail)('ZoneRules.offsetLocalDateTime');
 	    };
 
+	    ZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.validOffsets');
+	    };
+
+	    ZoneRules.prototype.transition = function transition(localDateTime) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.transition');
+	    };
+
+	    ZoneRules.prototype.standardOffset = function standardOffset(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.standardOffset');
+	    };
+
+	    ZoneRules.prototype.daylightSavings = function daylightSavings(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.daylightSavings');
+	    };
+
+	    ZoneRules.prototype.isDaylightSavings = function isDaylightSavings(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.isDaylightSavings');
+	    };
+
 	    ZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
 	        (0, _assert.abstractMethodFail)('ZoneRules.isValidOffset');
+	    };
+
+	    ZoneRules.prototype.nextTransition = function nextTransition(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.nextTransition');
+	    };
+
+	    ZoneRules.prototype.previousTransition = function previousTransition(instant) {
+	        (0, _assert.abstractMethodFail)('ZoneRules.previousTransition');
+	    };
+
+	    ZoneRules.prototype.transitions = function transitions() {
+	        (0, _assert.abstractMethodFail)('ZoneRules.transitions');
+	    };
+
+	    ZoneRules.prototype.transitionRules = function transitionRules() {
+	        (0, _assert.abstractMethodFail)('ZoneRules.transitionRules');
 	    };
 
 	    return ZoneRules;
@@ -5311,8 +5787,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return this._offset;
 	    };
 
+	    Fixed.prototype.validOffsets = function validOffsets() {
+	        return [this._offset];
+	    };
+
+	    Fixed.prototype.transition = function transition() {
+	        return null;
+	    };
+
+	    Fixed.prototype.standardOffset = function standardOffset() {
+	        return this._offset;
+	    };
+
+	    Fixed.prototype.daylightSavings = function daylightSavings() {
+	        return _Duration.Duration.ZERO;
+	    };
+
+	    Fixed.prototype.isDaylightSavings = function isDaylightSavings() {
+	        return false;
+	    };
+
 	    Fixed.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
 	        return this._offset.equals(offset);
+	    };
+
+	    Fixed.prototype.nextTransition = function nextTransition() {
+	        return null;
+	    };
+
+	    Fixed.prototype.previousTransition = function previousTransition() {
+	        return null;
+	    };
+
+	    Fixed.prototype.transitions = function transitions() {
+	        return [];
+	    };
+
+	    Fixed.prototype.transitionRules = function transitionRules() {
+	        return [];
 	    };
 
 	    Fixed.prototype.equals = function equals(other) {
@@ -5333,7 +5845,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(ZoneRules);
 
 /***/ },
-/* 27 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5343,9 +5855,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _ZoneId2 = __webpack_require__(24);
+	var _ZoneId2 = __webpack_require__(29);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5390,7 +5902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneId2.ZoneId);
 
 /***/ },
-/* 28 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5398,9 +5910,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.SystemDefaultZoneId = undefined;
 
-	var _SystemDefaultZoneRules = __webpack_require__(29);
+	var _SystemDefaultZoneRules = __webpack_require__(33);
 
-	var _ZoneId2 = __webpack_require__(24);
+	var _ZoneId2 = __webpack_require__(29);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5442,7 +5954,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneId2.ZoneId);
 
 /***/ },
-/* 29 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5450,9 +5962,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.SystemDefaultZoneRules = undefined;
 
-	var _ZoneRules2 = __webpack_require__(26);
+	var _ZoneRules2 = __webpack_require__(30);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
+
+	var _errors = __webpack_require__(3);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5494,8 +6008,48 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _ZoneOffset.ZoneOffset.ofTotalMinutes(offsetInMinutesAfterPossibleTransition * -1);
 	    };
 
+	    SystemDefaultZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
+	        return [this.offsetOfLocalDateTime(localDateTime)];
+	    };
+
+	    SystemDefaultZoneRules.prototype.transition = function transition() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype.standardOffset = function standardOffset(instant) {
+	        return this.offsetOfInstant(instant);
+	    };
+
+	    SystemDefaultZoneRules.prototype.daylightSavings = function daylightSavings() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype.isDaylightSavings = function isDaylightSavings() {
+	        this._throwNotSupported();
+	    };
+
 	    SystemDefaultZoneRules.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
 	        return this.offsetOfLocalDateTime(dateTime).equals(offset);
+	    };
+
+	    SystemDefaultZoneRules.prototype.nextTransition = function nextTransition() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype.previousTransition = function previousTransition() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype.transitions = function transitions() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype.transitionRules = function transitionRules() {
+	        this._throwNotSupported();
+	    };
+
+	    SystemDefaultZoneRules.prototype._throwNotSupported = function _throwNotSupported() {
+	        throw new _errors.DateTimeException('not supported operation');
 	    };
 
 	    SystemDefaultZoneRules.prototype.equals = function equals(other) {
@@ -5514,7 +6068,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneRules2.ZoneRules);
 
 /***/ },
-/* 30 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5528,11 +6082,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
 	var _LocalDate = __webpack_require__(8);
 
@@ -5593,7 +6147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDate = ChronoLocalDate;
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5606,29 +6160,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _Period = __webpack_require__(32);
+	var _Period = __webpack_require__(36);
 
-	var _ParsePosition = __webpack_require__(33);
+	var _ParsePosition = __webpack_require__(37);
 
-	var _DateTimeBuilder = __webpack_require__(34);
+	var _DateTimeBuilder = __webpack_require__(38);
 
-	var _DateTimeParseContext = __webpack_require__(39);
+	var _DateTimeParseContext = __webpack_require__(41);
 
-	var _DateTimePrintContext = __webpack_require__(40);
+	var _DateTimePrintContext = __webpack_require__(42);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
-	var _SignStyle = __webpack_require__(41);
+	var _SignStyle = __webpack_require__(43);
 
-	var _StringBuilder = __webpack_require__(42);
+	var _StringBuilder = __webpack_require__(44);
 
-	var _ResolverStyle = __webpack_require__(36);
+	var _ResolverStyle = __webpack_require__(40);
 
 	var _IsoChronology = __webpack_require__(9);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -5650,7 +6204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
-	        var chrono = arguments.length <= 5 || arguments[5] === undefined ? _IsoChronology.IsoChronology.INSTANCE : arguments[5];
+	        var chrono = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : _IsoChronology.IsoChronology.INSTANCE;
 	        var zone = arguments[6];
 
 	        _classCallCheck(this, DateTimeFormatter);
@@ -5837,7 +6391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6218,7 +6772,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6260,7 +6814,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6274,25 +6828,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MathUtil = __webpack_require__(6);
 
-	var _EnumMap = __webpack_require__(35);
+	var _EnumMap = __webpack_require__(39);
 
-	var _ResolverStyle = __webpack_require__(36);
+	var _ResolverStyle = __webpack_require__(40);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _ChronoLocalDate = __webpack_require__(30);
+	var _ChronoLocalDate = __webpack_require__(34);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	var _LocalTime = __webpack_require__(5);
 
 	var _LocalDate = __webpack_require__(8);
 
-	var _Period = __webpack_require__(32);
+	var _Period = __webpack_require__(36);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6341,7 +6895,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DateTimeBuilder.prototype._addFieldValue = function _addFieldValue(field, value) {
 	        (0, _assert.requireNonNull)(field, 'field');
 	        var old = this.getFieldValue0(field);
-	        if (old != null && old.longValue() !== value) {
+	        if (old != null && old !== value) {
 	            throw new _errors.DateTimeException('Conflict found: ' + field + ' ' + old + ' differs from ' + field + ' ' + value + ': ' + this);
 	        }
 	        return this._putFieldValue0(field, value);
@@ -6377,22 +6931,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	    DateTimeBuilder.prototype._checkDate = function _checkDate(date) {
 	        if (date != null) {
 	            this._addObject(date);
-	            for (var field in this.fieldValues.keySet()) {
-	                if (field instanceof _ChronoField.ChronoField) {
-	                    if (field.isDateBased()) {
-	                        var val1;
-	                        try {
-	                            val1 = date.getLong(field);
-	                        } catch (ex) {
-	                            if (ex instanceof _errors.DateTimeException) {
-	                                continue;
-	                            } else {
-	                                throw ex;
+	            for (var fieldName in this.fieldValues.keySet()) {
+	                var field = _ChronoField.ChronoField.byName(fieldName);
+	                if (field !== null) {
+	                    if (this.fieldValues.get(field) !== undefined) {
+	                        if (field.isDateBased()) {
+	                            var val1;
+	                            try {
+	                                val1 = date.getLong(field);
+	                            } catch (ex) {
+	                                if (ex instanceof _errors.DateTimeException) {
+	                                    continue;
+	                                } else {
+	                                    throw ex;
+	                                }
 	                            }
-	                        }
-	                        var val2 = this.fieldValues.get(field);
-	                        if (val1 !== val2) {
-	                            throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+	                            var val2 = this.fieldValues.get(field);
+	                            if (val1 !== val2) {
+	                                throw new _errors.DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+	                            }
 	                        }
 	                    }
 	                }
@@ -6486,24 +7043,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
 	            var los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
 	            var cos = this.fieldValues.get(_ChronoField.ChronoField.MICRO_OF_SECOND);
-	            this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, los * 1000 + _MathUtil.MathUtil.intMod(cos, 1000));
+	            this._putFieldValue0(_ChronoField.ChronoField.MICRO_OF_SECOND, los * 1000 + _MathUtil.MathUtil.intMod(cos, 1000));
 	        }
 	        if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
 	            var nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	            this._addFieldValue(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000));
+	            this._putFieldValue0(_ChronoField.ChronoField.MICRO_OF_SECOND, _MathUtil.MathUtil.intDiv(nos, 1000));
 	            this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
 	        }
 	        if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND) && this.fieldValues.containsKey(_ChronoField.ChronoField.NANO_OF_SECOND)) {
 	            var _nos = this.fieldValues.get(_ChronoField.ChronoField.NANO_OF_SECOND);
-	            this._addFieldValue(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intDiv(_nos, 1000000));
+	            this._putFieldValue0(_ChronoField.ChronoField.MILLI_OF_SECOND, _MathUtil.MathUtil.intDiv(_nos, 1000000));
 	            this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
 	        }
 	        if (this.fieldValues.containsKey(_ChronoField.ChronoField.MICRO_OF_SECOND)) {
 	            var _cos = this.fieldValues.remove(_ChronoField.ChronoField.MICRO_OF_SECOND);
-	            this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, _cos * 1000);
+	            this._putFieldValue0(_ChronoField.ChronoField.NANO_OF_SECOND, _cos * 1000);
 	        } else if (this.fieldValues.containsKey(_ChronoField.ChronoField.MILLI_OF_SECOND)) {
 	            var _los = this.fieldValues.remove(_ChronoField.ChronoField.MILLI_OF_SECOND);
-	            this._addFieldValue(_ChronoField.ChronoField.NANO_OF_SECOND, _los * 1000000);
+	            this._putFieldValue0(_ChronoField.ChronoField.NANO_OF_SECOND, _los * 1000000);
 	        }
 	    };
 
@@ -6603,7 +7160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (field == null) {
 	            return false;
 	        }
-	        return this.fieldValues.containsKey(field) || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
+	        return this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
 	    };
 
 	    DateTimeBuilder.prototype.getLong = function getLong(field) {
@@ -6645,7 +7202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6674,7 +7231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    EnumMap.prototype.containsKey = function containsKey(key) {
-	        return this._map.hasOwnProperty(key.name());
+	        return this._map.hasOwnProperty(key.name()) && this.get(key) !== undefined;
 	    };
 
 	    EnumMap.prototype.get = function get(key) {
@@ -6719,7 +7276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6758,92 +7315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
 /***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.Temporal = undefined;
-
-	var _TemporalAccessor2 = __webpack_require__(38);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var Temporal = exports.Temporal = function (_TemporalAccessor) {
-	  _inherits(Temporal, _TemporalAccessor);
-
-	  function Temporal() {
-	    _classCallCheck(this, Temporal);
-
-	    return _possibleConstructorReturn(this, _TemporalAccessor.apply(this, arguments));
-	  }
-
-	  return Temporal;
-	}(_TemporalAccessor2.TemporalAccessor);
-
-/***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.TemporalAccessor = undefined;
-
-	var _errors = __webpack_require__(3);
-
-	var _ChronoField = __webpack_require__(12);
-
-	var _TemporalQueries = __webpack_require__(25);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-
-	var TemporalAccessor = function () {
-	    function TemporalAccessor() {
-	        _classCallCheck(this, TemporalAccessor);
-	    }
-
-	    TemporalAccessor.prototype.query = function query(_query) {
-	        if (_query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.precision()) {
-	            return null;
-	        }
-	        return _query.queryFrom(this);
-	    };
-
-	    TemporalAccessor.prototype.get = function get(field) {
-	        return this.range(field).checkValidIntValue(this.getLong(field), field);
-	    };
-
-	    TemporalAccessor.prototype.range = function range(field) {
-	        if (field instanceof _ChronoField.ChronoField) {
-	            if (this.isSupported(field)) {
-	                return field.range();
-	            }
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	        }
-	        return field.rangeRefinedBy(this);
-	    };
-
-	    return TemporalAccessor;
-	}();
-
-	exports.TemporalAccessor = TemporalAccessor;
-
-/***/ },
-/* 39 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6853,15 +7325,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _assert = __webpack_require__(2);
 
-	var _DateTimeBuilder = __webpack_require__(34);
+	var _DateTimeBuilder = __webpack_require__(38);
 
-	var _EnumMap = __webpack_require__(35);
+	var _EnumMap = __webpack_require__(39);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -7090,7 +7562,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_Temporal2.Temporal);
 
 /***/ },
-/* 40 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7100,7 +7572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -7171,7 +7643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 41 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7222,7 +7694,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 42 */
+/* 44 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7280,64 +7752,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 43 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.TemporalQuery = undefined;
-	exports.createTemporalQuery = createTemporalQuery;
-
-	var _assert = __webpack_require__(2);
-
-	var _Enum2 = __webpack_require__(10);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var TemporalQuery = exports.TemporalQuery = function (_Enum) {
-	  _inherits(TemporalQuery, _Enum);
-
-	  function TemporalQuery() {
-	    _classCallCheck(this, TemporalQuery);
-
-	    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
-	  }
-
-	  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
-	    (0, _assert.abstractMethodFail)('queryFrom');
-	  };
-
-	  return TemporalQuery;
-	}(_Enum2.Enum);
-
-	function createTemporalQuery(name, queryFromFunction) {
-	  var ExtendedTemporalQuery = function (_TemporalQuery) {
-	    _inherits(ExtendedTemporalQuery, _TemporalQuery);
-
-	    function ExtendedTemporalQuery() {
-	      _classCallCheck(this, ExtendedTemporalQuery);
-
-	      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
-	    }
-
-	    return ExtendedTemporalQuery;
-	  }(TemporalQuery);
-
-	  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
-	  return new ExtendedTemporalQuery(name);
-	}
-
-/***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7348,7 +7763,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _DayOfWeek = __webpack_require__(45);
+	var _DayOfWeek = __webpack_require__(11);
 
 	var _Duration = __webpack_require__(14);
 
@@ -7362,13 +7777,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TemporalField2 = __webpack_require__(18);
 
-	var _TemporalUnit2 = __webpack_require__(17);
+	var _TemporalUnit2 = __webpack_require__(16);
 
 	var _ValueRange = __webpack_require__(19);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _ResolverStyle = __webpack_require__(36);
+	var _ResolverStyle = __webpack_require__(40);
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -7877,197 +8292,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.DayOfWeek = undefined;
-	exports._init = _init;
-
-	var _errors = __webpack_require__(3);
-
-	var _MathUtil = __webpack_require__(6);
-
-	var _assert = __webpack_require__(2);
-
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
-
-	var _ChronoField = __webpack_require__(12);
-
-	var _ChronoUnit = __webpack_require__(13);
-
-	var _Temporal2 = __webpack_require__(37);
-
-	var _TemporalQueries = __webpack_require__(25);
-
-	var _TemporalQuery = __webpack_require__(43);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var DayOfWeek = function (_Temporal) {
-	    _inherits(DayOfWeek, _Temporal);
-
-	    function DayOfWeek(ordinal, name) {
-	        _classCallCheck(this, DayOfWeek);
-
-	        var _this = _possibleConstructorReturn(this, _Temporal.call(this));
-
-	        _this._ordinal = ordinal;
-	        _this._name = name;
-	        return _this;
-	    }
-
-	    DayOfWeek.prototype.ordinal = function ordinal() {
-	        return this._ordinal;
-	    };
-
-	    DayOfWeek.prototype.name = function name() {
-	        return this._name;
-	    };
-
-	    DayOfWeek.values = function values() {
-	        return ENUMS.slice();
-	    };
-
-	    DayOfWeek.valueOf = function valueOf(name) {
-	        for (var ordinal = 0; ordinal < ENUMS.length; ordinal++) {
-	            if (ENUMS[ordinal].name() === name) {
-	                break;
-	            }
-	        }
-	        return DayOfWeek.of(ordinal + 1);
-	    };
-
-	    DayOfWeek.of = function of(dayOfWeek) {
-	        if (dayOfWeek < 1 || dayOfWeek > 7) {
-	            throw new _errors.DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
-	        }
-	        return ENUMS[dayOfWeek - 1];
-	    };
-
-	    DayOfWeek.from = function from(temporal) {
-	        (0, _assert.assert)(temporal != null, 'temporal', _errors.NullPointerException);
-	        if (temporal instanceof DayOfWeek) {
-	            return temporal;
-	        }
-	        try {
-	            return DayOfWeek.of(temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK));
-	        } catch (ex) {
-	            if (ex instanceof _errors.DateTimeException) {
-	                throw new _errors.DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
-	            } else {
-	                throw ex;
-	            }
-	        }
-	    };
-
-	    DayOfWeek.prototype.value = function value() {
-	        return this._ordinal + 1;
-	    };
-
-	    DayOfWeek.prototype.getDisplayName = function getDisplayName(style, locale) {
-	        return new _DateTimeFormatterBuilder.DateTimeFormatterBuilder().appendText(_ChronoField.ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
-	    };
-
-	    DayOfWeek.prototype.isSupported = function isSupported(field) {
-	        if (field instanceof _ChronoField.ChronoField) {
-	            return field === _ChronoField.ChronoField.DAY_OF_WEEK;
-	        }
-	        return field != null && field.isSupportedBy(this);
-	    };
-
-	    DayOfWeek.prototype.range = function range(field) {
-	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	            return field.range();
-	        } else if (field instanceof _ChronoField.ChronoField) {
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	        }
-	        return field.rangeRefinedBy(this);
-	    };
-
-	    DayOfWeek.prototype.get = function get(field) {
-	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	            return this.value();
-	        }
-	        return this.range(field).checkValidIntValue(this.getLong(field), field);
-	    };
-
-	    DayOfWeek.prototype.getLong = function getLong(field) {
-	        if (field === _ChronoField.ChronoField.DAY_OF_WEEK) {
-	            return this.value();
-	        } else if (field instanceof _ChronoField.ChronoField) {
-	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
-	        }
-	        return field.getFrom(this);
-	    };
-
-	    DayOfWeek.prototype.plus = function plus(days) {
-	        var amount = _MathUtil.MathUtil.floorMod(days, 7);
-	        return ENUMS[_MathUtil.MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
-	    };
-
-	    DayOfWeek.prototype.minus = function minus(days) {
-	        return this.plus(-1 * _MathUtil.MathUtil.floorMod(days, 7));
-	    };
-
-	    DayOfWeek.prototype.query = function query(_query) {
-	        if (_query === _TemporalQueries.TemporalQueries.precision()) {
-	            return _ChronoUnit.ChronoUnit.DAYS;
-	        } else if (_query === _TemporalQueries.TemporalQueries.localDate() || _query === _TemporalQueries.TemporalQueries.localTime() || _query === _TemporalQueries.TemporalQueries.chronology() || _query === _TemporalQueries.TemporalQueries.zone() || _query === _TemporalQueries.TemporalQueries.zoneId() || _query === _TemporalQueries.TemporalQueries.offset()) {
-	            return null;
-	        }
-	        (0, _assert.assert)(_query != null, 'query', _errors.NullPointerException);
-	        return _query.queryFrom(this);
-	    };
-
-	    DayOfWeek.prototype.adjustInto = function adjustInto(temporal) {
-	        (0, _assert.requireNonNull)(temporal, 'temporal');
-	        return temporal.with(_ChronoField.ChronoField.DAY_OF_WEEK, this.value());
-	    };
-
-	    DayOfWeek.prototype.equals = function equals(other) {
-	        return this === other;
-	    };
-
-	    DayOfWeek.prototype.toString = function toString() {
-	        return this._name;
-	    };
-
-	    return DayOfWeek;
-	}(_Temporal2.Temporal);
-
-	exports.DayOfWeek = DayOfWeek;
-
-
-	var ENUMS;
-
-	function _init() {
-	    DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
-	    DayOfWeek.TUESDAY = new DayOfWeek(1, 'TUESDAY');
-	    DayOfWeek.WEDNESDAY = new DayOfWeek(2, 'WEDNESDAY');
-	    DayOfWeek.THURSDAY = new DayOfWeek(3, 'THURSDAY');
-	    DayOfWeek.FRIDAY = new DayOfWeek(4, 'FRIDAY');
-	    DayOfWeek.SATURDAY = new DayOfWeek(5, 'SATURDAY');
-	    DayOfWeek.SUNDAY = new DayOfWeek(6, 'SUNDAY');
-
-	    DayOfWeek.FROM = (0, _TemporalQuery.createTemporalQuery)('DayOfWeek.FROM', function (temporal) {
-	        return DayOfWeek.from(temporal);
-	    });
-
-	    ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
-	}
-
-/***/ },
 /* 46 */
 /***/ function(module, exports) {
 
@@ -8289,39 +8513,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Clock = __webpack_require__(1);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	var _IsoChronology = __webpack_require__(9);
 
 	var _LocalDate = __webpack_require__(8);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
 	var _MonthDay = __webpack_require__(49);
 
-	var _SignStyle = __webpack_require__(41);
+	var _SignStyle = __webpack_require__(43);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalAccessor = __webpack_require__(38);
+	var _TemporalAccessor = __webpack_require__(21);
 
 	var _TemporalAmount = __webpack_require__(15);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalField = __webpack_require__(18);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalUnit = __webpack_require__(17);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _ValueRange = __webpack_require__(19);
+	var _TemporalUnit = __webpack_require__(16);
 
-	var _YearConstants = __webpack_require__(16);
+	var _YearConstants = __webpack_require__(17);
 
 	var _YearMonth = __webpack_require__(50);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8350,7 +8574,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    Year.now = function now() {
-	        var zoneIdOrClock = arguments.length <= 0 || arguments[0] === undefined ? undefined : arguments[0];
+	        var zoneIdOrClock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
 
 	        if (zoneIdOrClock === undefined) {
 	            return Year.now0();
@@ -8411,7 +8635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    Year.parseTextFormatter = function parseTextFormatter(text) {
-	        var formatter = arguments.length <= 1 || arguments[1] === undefined ? PARSER : arguments[1];
+	        var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : PARSER;
 
 	        (0, _assert.requireNonNull)(text, 'text');
 	        (0, _assert.requireNonNull)(formatter, 'formatter');
@@ -8423,9 +8647,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return _MathUtil.MathUtil.intMod(year, 4) === 0 && (_MathUtil.MathUtil.intMod(year, 100) !== 0 || _MathUtil.MathUtil.intMod(year, 400) === 0);
 	    };
 
+	    Year.prototype.isSupported = function isSupported(fieldOrUnit) {
+	        if (arguments.length === 1 && fieldOrUnit instanceof _TemporalField.TemporalField) {
+	            return this.isSupportedField(fieldOrUnit);
+	        } else {
+	            return this.isSupportedUnit(fieldOrUnit);
+	        }
+	    };
+
+	    Year.prototype.isSupportedField = function isSupportedField(field) {
+	        if (field instanceof _ChronoField.ChronoField) {
+	            return field === _ChronoField.ChronoField.YEAR || field === _ChronoField.ChronoField.YEAR_OF_ERA || field === _ChronoField.ChronoField.ERA;
+	        }
+	        return field != null && field.isSupportedBy(this);
+	    };
+
+	    Year.prototype.isSupportedUnit = function isSupportedUnit(unit) {
+	        if (unit instanceof _ChronoUnit.ChronoUnit) {
+	            return unit === _ChronoUnit.ChronoUnit.YEARS || unit === _ChronoUnit.ChronoUnit.DECADES || unit === _ChronoUnit.ChronoUnit.CENTURIES || unit === _ChronoUnit.ChronoUnit.MILLENNIA || unit === _ChronoUnit.ChronoUnit.ERAS;
+	        }
+	        return unit != null && unit.isSupportedBy(this);
+	    };
+
 	    Year.prototype.range = function range(field) {
-	        if (field === _ChronoField.ChronoField.YEAR_OF_ERA) {
-	            return this._year <= 0 ? _ValueRange.ValueRange.of(1, Year.MAX_VALUE + 1) : _ValueRange.ValueRange.of(1, Year.MAX_VALUE);
+	        if (this.isSupported(field)) {
+	            return field.range();
+	        } else if (field instanceof _ChronoField.ChronoField) {
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
 	        }
 	        return _Temporal.prototype.range.call(this, field);
 	    };
@@ -8452,6 +8700,37 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Year.prototype.isLeap = function isLeap() {
 	        return Year.isLeap(this._year);
+	    };
+
+	    Year.prototype.with = function _with(adjusterOrFieldOrNumber, value) {
+	        if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof _TemporalField.TemporalField) {
+	            return this.withFieldValue(adjusterOrFieldOrNumber, value);
+	        } else {
+	            return this.withAdjuster(adjusterOrFieldOrNumber);
+	        }
+	    };
+
+	    Year.prototype.withAdjuster = function withAdjuster(adjuster) {
+	        (0, _assert.requireNonNull)(adjuster, 'adjuster');
+	        return adjuster.adjustInto(this);
+	    };
+
+	    Year.prototype.withFieldValue = function withFieldValue(field, newValue) {
+	        (0, _assert.requireNonNull)(field, 'field');
+	        (0, _assert.requireInstance)(field, _TemporalField.TemporalField, 'field');
+	        if (field instanceof _ChronoField.ChronoField) {
+	            field.checkValidValue(newValue);
+	            switch (field) {
+	                case _ChronoField.ChronoField.YEAR_OF_ERA:
+	                    return Year.of(this._year < 1 ? 1 - newValue : newValue);
+	                case _ChronoField.ChronoField.YEAR:
+	                    return Year.of(newValue);
+	                case _ChronoField.ChronoField.ERA:
+	                    return this.getLong(_ChronoField.ChronoField.ERA) === newValue ? this : Year.of(1 - this._year);
+	            }
+	            throw new _errors.UnsupportedTemporalTypeException('Unsupported field: ' + field);
+	        }
+	        return field.adjustInto(this, newValue);
 	    };
 
 	    Year.prototype.plus = function plus(amountOrNumber, unit) {
@@ -8506,10 +8785,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    Year.prototype.minusAmount = function minusAmount(amount) {
+	        (0, _assert.requireNonNull)(amount, 'amount');
+	        (0, _assert.requireInstance)(amount, _TemporalAmount.TemporalAmount, 'amount');
 	        return amount.subtractFrom(this);
 	    };
 
 	    Year.prototype.minusAmountToSubtractUnit = function minusAmountToSubtractUnit(amountToSubtract, unit) {
+	        (0, _assert.requireNonNull)(amountToSubtract, 'amountToSubtract');
+	        (0, _assert.requireNonNull)(unit, 'unit');
+	        (0, _assert.requireInstance)(unit, _TemporalUnit.TemporalUnit, 'unit');
 	        return amountToSubtract === _MathUtil.MathUtil.MIN_SAFE_INTEGER ? this.plus(_MathUtil.MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plus(-amountToSubtract, unit);
 	    };
 
@@ -8649,29 +8933,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Clock = __webpack_require__(1);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	var _IsoChronology = __webpack_require__(9);
 
 	var _LocalDate = __webpack_require__(8);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalAccessor = __webpack_require__(38);
+	var _TemporalAccessor = __webpack_require__(21);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	var _ValueRange = __webpack_require__(19);
 
 	var _Year = __webpack_require__(48);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8946,33 +9230,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Clock = __webpack_require__(1);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	var _IsoChronology = __webpack_require__(9);
 
 	var _LocalDate = __webpack_require__(8);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
-	var _SignStyle = __webpack_require__(41);
+	var _SignStyle = __webpack_require__(43);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
 	var _TemporalAmount = __webpack_require__(15);
 
 	var _TemporalField = __webpack_require__(18);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _TemporalUnit = __webpack_require__(17);
+	var _TemporalUnit = __webpack_require__(16);
 
 	var _ValueRange = __webpack_require__(19);
 
 	var _Year = __webpack_require__(48);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9169,6 +9453,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    YearMonth.prototype.withYearMonth = function withYearMonth(newYear, newMonth) {
+	        (0, _assert.requireNonNull)(newYear);
+	        (0, _assert.requireNonNull)(newMonth);
 	        if (this._year === newYear && this._month === newMonth) {
 	            return this;
 	        }
@@ -9217,7 +9503,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (arguments.length === 1) {
 	            return this.plusAmount(amountOrNumber);
 	        } else {
-	            return this.plusAmountToAddUnit(amountOrNumber, unit);
+	            return this.plusAmountUnit(amountOrNumber, unit);
 	        }
 	    };
 
@@ -9230,7 +9516,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    YearMonth.prototype.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
 	        (0, _assert.requireNonNull)(unit, 'unit');
 	        (0, _assert.requireInstance)(unit, _TemporalUnit.TemporalUnit, 'unit');
-	        if (unit instanceof _ChronoField.ChronoField) {
+	        if (unit instanceof _ChronoUnit.ChronoUnit) {
 	            switch (unit) {
 	                case _ChronoUnit.ChronoUnit.MONTHS:
 	                    return this.plusMonths(amountToAdd);
@@ -9278,6 +9564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    YearMonth.prototype.minusAmount = function minusAmount(amount) {
+	        (0, _assert.requireNonNull)(amount, 'amount');
 	        return amount.subtractFrom(this);
 	    };
 
@@ -9314,6 +9601,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    YearMonth.prototype.until = function until(endExclusive, unit) {
+	        (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	        (0, _assert.requireNonNull)(unit, 'unit');
+	        (0, _assert.requireInstance)(endExclusive, _Temporal2.Temporal, 'endExclusive');
+	        (0, _assert.requireInstance)(unit, _TemporalUnit.TemporalUnit, 'unit');
+
 	        var end = YearMonth.from(endExclusive);
 	        if (unit instanceof _ChronoUnit.ChronoUnit) {
 	            var monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();
@@ -9406,6 +9698,240 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.TemporalAdjusters = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	var _errors = __webpack_require__(3);
+
+	var _TemporalAdjuster4 = __webpack_require__(52);
+
+	var _ChronoField = __webpack_require__(12);
+
+	var _ChronoUnit = __webpack_require__(13);
+
+	var _MathUtil = __webpack_require__(6);
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var TemporalAdjusters = exports.TemporalAdjusters = function () {
+	    function TemporalAdjusters() {
+	        _classCallCheck(this, TemporalAdjusters);
+	    }
+
+	    TemporalAdjusters.firstDayOfMonth = function firstDayOfMonth() {
+	        return Impl.FIRST_DAY_OF_MONTH;
+	    };
+
+	    TemporalAdjusters.lastDayOfMonth = function lastDayOfMonth() {
+	        return Impl.LAST_DAY_OF_MONTH;
+	    };
+
+	    TemporalAdjusters.firstDayOfNextMonth = function firstDayOfNextMonth() {
+	        return Impl.FIRST_DAY_OF_NEXT_MONTH;
+	    };
+
+	    TemporalAdjusters.firstDayOfYear = function firstDayOfYear() {
+	        return Impl.FIRST_DAY_OF_YEAR;
+	    };
+
+	    TemporalAdjusters.lastDayOfYear = function lastDayOfYear() {
+	        return Impl.LAST_DAY_OF_YEAR;
+	    };
+
+	    TemporalAdjusters.firstDayOfNextYear = function firstDayOfNextYear() {
+	        return Impl.FIRST_DAY_OF_NEXT_YEAR;
+	    };
+
+	    TemporalAdjusters.firstInMonth = function firstInMonth(dayOfWeek) {
+	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
+	        return new DayOfWeekInMonth(1, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.lastInMonth = function lastInMonth(dayOfWeek) {
+	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
+	        return new DayOfWeekInMonth(-1, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.dayOfWeekInMonth = function dayOfWeekInMonth(ordinal, dayOfWeek) {
+	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
+	        return new DayOfWeekInMonth(ordinal, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.next = function next(dayOfWeek) {
+	        return new RelativeDayOfWeek(2, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.nextOrSame = function nextOrSame(dayOfWeek) {
+	        return new RelativeDayOfWeek(0, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.previous = function previous(dayOfWeek) {
+	        return new RelativeDayOfWeek(3, dayOfWeek);
+	    };
+
+	    TemporalAdjusters.previousOrSame = function previousOrSame(dayOfWeek) {
+	        return new RelativeDayOfWeek(1, dayOfWeek);
+	    };
+
+	    return TemporalAdjusters;
+	}();
+
+	var Impl = function (_TemporalAdjuster) {
+	    _inherits(Impl, _TemporalAdjuster);
+
+	    function Impl(ordinal) {
+	        _classCallCheck(this, Impl);
+
+	        var _this = _possibleConstructorReturn(this, _TemporalAdjuster.call(this));
+
+	        _this._ordinal = ordinal;
+	        return _this;
+	    }
+
+	    Impl.prototype.adjustInto = function adjustInto(temporal) {
+	        switch (this._ordinal) {
+	            case 0:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1);
+	            case 1:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, temporal.range(_ChronoField.ChronoField.DAY_OF_MONTH).maximum());
+	            case 2:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1).plus(1, _ChronoUnit.ChronoUnit.MONTHS);
+	            case 3:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, 1);
+	            case 4:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, temporal.range(_ChronoField.ChronoField.DAY_OF_YEAR).maximum());
+	            case 5:
+	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, 1).plus(1, _ChronoUnit.ChronoUnit.YEARS);
+	        }
+	        throw new _errors.IllegalStateException('Unreachable');
+	    };
+
+	    return Impl;
+	}(_TemporalAdjuster4.TemporalAdjuster);
+
+	Impl.FIRST_DAY_OF_MONTH = new Impl(0);
+
+	Impl.LAST_DAY_OF_MONTH = new Impl(1);
+
+	Impl.FIRST_DAY_OF_NEXT_MONTH = new Impl(2);
+
+	Impl.FIRST_DAY_OF_YEAR = new Impl(3);
+
+	Impl.LAST_DAY_OF_YEAR = new Impl(4);
+
+	Impl.FIRST_DAY_OF_NEXT_YEAR = new Impl(5);
+
+	var DayOfWeekInMonth = function (_TemporalAdjuster2) {
+	    _inherits(DayOfWeekInMonth, _TemporalAdjuster2);
+
+	    function DayOfWeekInMonth(ordinal, dow) {
+	        _classCallCheck(this, DayOfWeekInMonth);
+
+	        var _this2 = _possibleConstructorReturn(this, _TemporalAdjuster2.call(this));
+
+	        _this2._ordinal = ordinal;
+	        _this2._dowValue = dow.value();
+	        return _this2;
+	    }
+
+	    DayOfWeekInMonth.prototype.adjustInto = function adjustInto(temporal) {
+	        if (this._ordinal >= 0) {
+	            var temp = temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1);
+	            var curDow = temp.get(_ChronoField.ChronoField.DAY_OF_WEEK);
+	            var dowDiff = _MathUtil.MathUtil.intMod(this._dowValue - curDow + 7, 7);
+	            dowDiff += (this._ordinal - 1) * 7;
+	            return temp.plus(dowDiff, _ChronoUnit.ChronoUnit.DAYS);
+	        } else {
+	            var _temp = temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, temporal.range(_ChronoField.ChronoField.DAY_OF_MONTH).maximum());
+	            var _curDow = _temp.get(_ChronoField.ChronoField.DAY_OF_WEEK);
+	            var daysDiff = this._dowValue - _curDow;
+	            daysDiff = daysDiff === 0 ? 0 : daysDiff > 0 ? daysDiff - 7 : daysDiff;
+	            daysDiff -= (-this._ordinal - 1) * 7;
+	            return _temp.plus(daysDiff, _ChronoUnit.ChronoUnit.DAYS);
+	        }
+	    };
+
+	    return DayOfWeekInMonth;
+	}(_TemporalAdjuster4.TemporalAdjuster);
+
+	var RelativeDayOfWeek = function (_TemporalAdjuster3) {
+	    _inherits(RelativeDayOfWeek, _TemporalAdjuster3);
+
+	    function RelativeDayOfWeek(relative, dayOfWeek) {
+	        _classCallCheck(this, RelativeDayOfWeek);
+
+	        var _this3 = _possibleConstructorReturn(this, _TemporalAdjuster3.call(this));
+
+	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
+
+	        _this3._relative = relative;
+
+	        _this3._dowValue = dayOfWeek.value();
+	        return _this3;
+	    }
+
+	    RelativeDayOfWeek.prototype.adjustInto = function adjustInto(temporal) {
+	        var calDow = temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK);
+	        if (this._relative < 2 && calDow === this._dowValue) {
+	            return temporal;
+	        }
+	        if ((this._relative & 1) === 0) {
+	            var daysDiff = calDow - this._dowValue;
+	            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, _ChronoUnit.ChronoUnit.DAYS);
+	        } else {
+	            var _daysDiff = this._dowValue - calDow;
+	            return temporal.minus(_daysDiff >= 0 ? 7 - _daysDiff : -_daysDiff, _ChronoUnit.ChronoUnit.DAYS);
+	        }
+	    };
+
+	    return RelativeDayOfWeek;
+	}(_TemporalAdjuster4.TemporalAdjuster);
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.TemporalAdjuster = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var TemporalAdjuster = exports.TemporalAdjuster = function () {
+	  function TemporalAdjuster() {
+	    _classCallCheck(this, TemporalAdjuster);
+	  }
+
+	  TemporalAdjuster.prototype.adjustInto = function adjustInto(temporal) {
+	    (0, _assert.abstractMethodFail)('adjustInto');
+	  };
+
+	  return TemporalAdjuster;
+	}();
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
 	exports.ZonedDateTime = undefined;
 	exports._init = _init;
 
@@ -9423,21 +9949,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalTime = __webpack_require__(5);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
-	var _ChronoZonedDateTime2 = __webpack_require__(52);
+	var _ChronoZonedDateTime2 = __webpack_require__(54);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9491,8 +10017,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (zone instanceof _ZoneOffset.ZoneOffset) {
 	            return new ZonedDateTime(localDateTime, zone, zone);
 	        }
+	        var offset = null;
 	        var rules = zone.rules();
-	        var offset = rules.offsetOfLocalDateTime(localDateTime);
+	        var validOffsets = rules.validOffsets(localDateTime);
+	        if (validOffsets.length === 1) {
+	            offset = validOffsets[0];
+	        } else if (validOffsets.length === 0) {
+	            var trans = rules.transition(localDateTime);
+	            localDateTime = localDateTime.plusSeconds(trans.duration().seconds());
+	            offset = trans.offsetAfter();
+	        } else {
+	            if (preferredOffset != null && validOffsets.some(function (validOffset) {
+	                return validOffset.equals(preferredOffset);
+	            })) {
+	                offset = preferredOffset;
+	            } else {
+	                offset = (0, _assert.requireNonNull)(validOffsets[0], 'offset');
+	            }
+	        }
 
 	        return new ZonedDateTime(localDateTime, offset, zone);
 	    };
@@ -9532,12 +10074,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireNonNull)(zone, 'zone');
 	        var rules = zone.rules();
 	        if (rules.isValidOffset(localDateTime, offset) === false) {
+	            var trans = rules.transition(localDateTime);
+	            if (trans != null && trans.isGap()) {
+	                throw new _errors.DateTimeException('LocalDateTime ' + localDateTime + ' does not exist in zone ' + zone + ' due to a gap in the local time-line, typically caused by daylight savings');
+	            }
 	            throw new _errors.DateTimeException('ZoneOffset "' + offset + '" is not valid for LocalDateTime "' + localDateTime + '" in zone "' + zone + '"');
 	        }
 	        return new ZonedDateTime(localDateTime, offset, zone);
 	    };
 
-	    ZonedDateTime._ofLenient = function _ofLenient(localDateTime, offset, zone) {
+	    ZonedDateTime.ofLenient = function ofLenient(localDateTime, offset, zone) {
 	        (0, _assert.requireNonNull)(localDateTime, 'localDateTime');
 	        (0, _assert.requireNonNull)(offset, 'offset');
 	        (0, _assert.requireNonNull)(zone, 'zone');
@@ -9576,7 +10122,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    ZonedDateTime.parse = function parse(text) {
-	        var formatter = arguments.length <= 1 || arguments[1] === undefined ? _DateTimeFormatter.DateTimeFormatter.ISO_ZONED_DATE_TIME : arguments[1];
+	        var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _DateTimeFormatter.DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
 	        (0, _assert.requireNonNull)(formatter, 'fromatter');
 	        return formatter.parse(text, ZonedDateTime.FROM);
@@ -9609,8 +10155,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    ZonedDateTime.prototype._resolveOffset = function _resolveOffset(offset) {
-	        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, this._offset)) {
-	            return new ZonedDateTime(this._dateTime, this._offset, this._zone);
+	        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, offset)) {
+	            return new ZonedDateTime(this._dateTime, offset, this._zone);
 	        }
 	        return this;
 	    };
@@ -9654,6 +10200,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    ZonedDateTime.prototype.offset = function offset() {
 	        return this._offset;
+	    };
+
+	    ZonedDateTime.prototype.withEarlierOffsetAtOverlap = function withEarlierOffsetAtOverlap() {
+	        var trans = this._zone.rules().transition(this._dateTime);
+	        if (trans != null && trans.isOverlap()) {
+	            var earlierOffset = trans.offsetBefore();
+	            if (earlierOffset.equals(this._offset) === false) {
+	                return new ZonedDateTime(this._dateTime, earlierOffset, this._zone);
+	            }
+	        }
+	        return this;
+	    };
+
+	    ZonedDateTime.prototype.withLaterOffsetAtOverlap = function withLaterOffsetAtOverlap() {
+	        var trans = this._zone.rules().transition(this.toLocalDateTime());
+	        if (trans != null) {
+	            var laterOffset = trans.offsetAfter();
+	            if (laterOffset.equals(this._offset) === false) {
+	                return new ZonedDateTime(this._dateTime, laterOffset, this._zone);
+	            }
+	        }
+	        return this;
 	    };
 
 	    ZonedDateTime.prototype.zone = function zone() {
@@ -9912,7 +10480,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (unit.isDateBased()) {
 	                return this._dateTime.until(end._dateTime, unit);
 	            } else {
-	                return this._dateTime.until(end._dateTime, unit);
+	                var difference = this._offset.totalSeconds() - end._offset.totalSeconds();
+	                var adjustedEnd = end._dateTime.plusSeconds(difference);
+	                return this._dateTime.until(adjustedEnd, unit);
 	            }
 	        }
 	        return unit.between(this, end);
@@ -9928,10 +10498,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    ZonedDateTime.prototype.toLocalTime = function toLocalTime() {
 	        return this._dateTime.toLocalTime();
-	    };
-
-	    ZonedDateTime.prototype.toOffsetDateTime = function toOffsetDateTime() {
-	        return OffsetDateTime.of(this._dateTime, this._offset);
 	    };
 
 	    ZonedDateTime.prototype.equals = function equals(other) {
@@ -9979,7 +10545,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9997,9 +10563,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10114,7 +10680,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10134,9 +10700,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _Temporal2 = __webpack_require__(37);
+	var _Temporal2 = __webpack_require__(20);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10198,7 +10764,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDateTime = ChronoLocalDateTime;
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10212,9 +10778,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDateTime = __webpack_require__(7);
 
-	var _ZonedDateTime = __webpack_require__(51);
+	var _ZonedDateTime = __webpack_require__(53);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -10262,7 +10828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10282,13 +10848,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MathUtil = __webpack_require__(6);
 
-	var _ZoneId = __webpack_require__(24);
+	var _ZoneId = __webpack_require__(29);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
-	var _TemporalAccessor2 = __webpack_require__(38);
+	var _TemporalAccessor2 = __webpack_require__(21);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10303,7 +10869,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(NativeJsTemporal, _TemporalAccessor);
 
 	    function NativeJsTemporal(date) {
-	        var zone = arguments.length <= 1 || arguments[1] === undefined ? _ZoneId.ZoneId.systemDefault() : arguments[1];
+	        var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _ZoneId.ZoneId.systemDefault();
 
 	        _classCallCheck(this, NativeJsTemporal);
 
@@ -10363,248 +10929,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 56 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.TemporalAdjusters = undefined;
-
-	var _assert = __webpack_require__(2);
-
-	var _errors = __webpack_require__(3);
-
-	var _TemporalAdjuster4 = __webpack_require__(57);
-
-	var _ChronoField = __webpack_require__(12);
-
-	var _ChronoUnit = __webpack_require__(13);
-
-	var _MathUtil = __webpack_require__(6);
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-
-	var TemporalAdjusters = exports.TemporalAdjusters = function () {
-	    function TemporalAdjusters() {
-	        _classCallCheck(this, TemporalAdjusters);
-	    }
-
-	    TemporalAdjusters.firstDayOfMonth = function firstDayOfMonth() {
-	        return Impl.FIRST_DAY_OF_MONTH;
-	    };
-
-	    TemporalAdjusters.lastDayOfMonth = function lastDayOfMonth() {
-	        return Impl.LAST_DAY_OF_MONTH;
-	    };
-
-	    TemporalAdjusters.firstDayOfNextMonth = function firstDayOfNextMonth() {
-	        return Impl.FIRST_DAY_OF_NEXT_MONTH;
-	    };
-
-	    TemporalAdjusters.firstDayOfYear = function firstDayOfYear() {
-	        return Impl.FIRST_DAY_OF_YEAR;
-	    };
-
-	    TemporalAdjusters.lastDayOfYear = function lastDayOfYear() {
-	        return Impl.LAST_DAY_OF_YEAR;
-	    };
-
-	    TemporalAdjusters.firstDayOfNextYear = function firstDayOfNextYear() {
-	        return Impl.FIRST_DAY_OF_NEXT_YEAR;
-	    };
-
-	    TemporalAdjusters.firstInMonth = function firstInMonth(dayOfWeek) {
-	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
-	        return new DayOfWeekInMonth(1, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.lastInMonth = function lastInMonth(dayOfWeek) {
-	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
-	        return new DayOfWeekInMonth(-1, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.dayOfWeekInMonth = function dayOfWeekInMonth(ordinal, dayOfWeek) {
-	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
-	        return new DayOfWeekInMonth(ordinal, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.next = function next(dayOfWeek) {
-	        return new RelativeDayOfWeek(2, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.nextOrSame = function nextOrSame(dayOfWeek) {
-	        return new RelativeDayOfWeek(0, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.previous = function previous(dayOfWeek) {
-	        return new RelativeDayOfWeek(3, dayOfWeek);
-	    };
-
-	    TemporalAdjusters.previousOrSame = function previousOrSame(dayOfWeek) {
-	        return new RelativeDayOfWeek(1, dayOfWeek);
-	    };
-
-	    return TemporalAdjusters;
-	}();
-
-	var Impl = function (_TemporalAdjuster) {
-	    _inherits(Impl, _TemporalAdjuster);
-
-	    function Impl(ordinal) {
-	        _classCallCheck(this, Impl);
-
-	        var _this = _possibleConstructorReturn(this, _TemporalAdjuster.call(this));
-
-	        _this._ordinal = ordinal;
-	        return _this;
-	    }
-
-	    Impl.prototype.adjustInto = function adjustInto(temporal) {
-	        switch (this._ordinal) {
-	            case 0:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1);
-	            case 1:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, temporal.range(_ChronoField.ChronoField.DAY_OF_MONTH).maximum());
-	            case 2:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1).plus(1, _ChronoUnit.ChronoUnit.MONTHS);
-	            case 3:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, 1);
-	            case 4:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, temporal.range(_ChronoField.ChronoField.DAY_OF_YEAR).maximum());
-	            case 5:
-	                return temporal.with(_ChronoField.ChronoField.DAY_OF_YEAR, 1).plus(1, _ChronoUnit.ChronoUnit.YEARS);
-	        }
-	        throw new _errors.IllegalStateException('Unreachable');
-	    };
-
-	    return Impl;
-	}(_TemporalAdjuster4.TemporalAdjuster);
-
-	Impl.FIRST_DAY_OF_MONTH = new Impl(0);
-
-	Impl.LAST_DAY_OF_MONTH = new Impl(1);
-
-	Impl.FIRST_DAY_OF_NEXT_MONTH = new Impl(2);
-
-	Impl.FIRST_DAY_OF_YEAR = new Impl(3);
-
-	Impl.LAST_DAY_OF_YEAR = new Impl(4);
-
-	Impl.FIRST_DAY_OF_NEXT_YEAR = new Impl(5);
-
-	var DayOfWeekInMonth = function (_TemporalAdjuster2) {
-	    _inherits(DayOfWeekInMonth, _TemporalAdjuster2);
-
-	    function DayOfWeekInMonth(ordinal, dow) {
-	        _classCallCheck(this, DayOfWeekInMonth);
-
-	        var _this2 = _possibleConstructorReturn(this, _TemporalAdjuster2.call(this));
-
-	        _this2._ordinal = ordinal;
-	        _this2._dowValue = dow.value();
-	        return _this2;
-	    }
-
-	    DayOfWeekInMonth.prototype.adjustInto = function adjustInto(temporal) {
-	        if (this._ordinal >= 0) {
-	            var temp = temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, 1);
-	            var curDow = temp.get(_ChronoField.ChronoField.DAY_OF_WEEK);
-	            var dowDiff = _MathUtil.MathUtil.intMod(this._dowValue - curDow + 7, 7);
-	            dowDiff += (this._ordinal - 1) * 7;
-	            return temp.plus(dowDiff, _ChronoUnit.ChronoUnit.DAYS);
-	        } else {
-	            var _temp = temporal.with(_ChronoField.ChronoField.DAY_OF_MONTH, temporal.range(_ChronoField.ChronoField.DAY_OF_MONTH).maximum());
-	            var _curDow = _temp.get(_ChronoField.ChronoField.DAY_OF_WEEK);
-	            var daysDiff = this._dowValue - _curDow;
-	            daysDiff = daysDiff === 0 ? 0 : daysDiff > 0 ? daysDiff - 7 : daysDiff;
-	            daysDiff -= (-this._ordinal - 1) * 7;
-	            return _temp.plus(daysDiff, _ChronoUnit.ChronoUnit.DAYS);
-	        }
-	    };
-
-	    return DayOfWeekInMonth;
-	}(_TemporalAdjuster4.TemporalAdjuster);
-
-	var RelativeDayOfWeek = function (_TemporalAdjuster3) {
-	    _inherits(RelativeDayOfWeek, _TemporalAdjuster3);
-
-	    function RelativeDayOfWeek(relative, dayOfWeek) {
-	        _classCallCheck(this, RelativeDayOfWeek);
-
-	        var _this3 = _possibleConstructorReturn(this, _TemporalAdjuster3.call(this));
-
-	        (0, _assert.requireNonNull)(dayOfWeek, 'dayOfWeek');
-
-	        _this3._relative = relative;
-
-	        _this3._dowValue = dayOfWeek.value();
-	        return _this3;
-	    }
-
-	    RelativeDayOfWeek.prototype.adjustInto = function adjustInto(temporal) {
-	        var calDow = temporal.get(_ChronoField.ChronoField.DAY_OF_WEEK);
-	        if (this._relative < 2 && calDow === this._dowValue) {
-	            return temporal;
-	        }
-	        if ((this._relative & 1) === 0) {
-	            var daysDiff = calDow - this._dowValue;
-	            return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, _ChronoUnit.ChronoUnit.DAYS);
-	        } else {
-	            var _daysDiff = this._dowValue - calDow;
-	            return temporal.minus(_daysDiff >= 0 ? 7 - _daysDiff : -_daysDiff, _ChronoUnit.ChronoUnit.DAYS);
-	        }
-	    };
-
-	    return RelativeDayOfWeek;
-	}(_TemporalAdjuster4.TemporalAdjuster);
-
-/***/ },
-/* 57 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.TemporalAdjuster = undefined;
-
-	var _assert = __webpack_require__(2);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
-	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                           */
-
-	var TemporalAdjuster = exports.TemporalAdjuster = function () {
-	  function TemporalAdjuster() {
-	    _classCallCheck(this, TemporalAdjuster);
-	  }
-
-	  TemporalAdjuster.prototype.adjustInto = function adjustInto(temporal) {
-	    (0, _assert.abstractMethodFail)('adjustInto');
-	  };
-
-	  return TemporalAdjuster;
-	}();
-
-/***/ },
 /* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
-	var _DayOfWeek = __webpack_require__(45);
+	var _DayOfWeek = __webpack_require__(11);
 
 	var _Duration = __webpack_require__(14);
 
@@ -10616,35 +10948,35 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDateTime = __webpack_require__(7);
 
-	var _Month = __webpack_require__(11);
+	var _Month = __webpack_require__(24);
 
 	var _MonthDay = __webpack_require__(49);
 
-	var _Period = __webpack_require__(32);
+	var _Period = __webpack_require__(36);
 
 	var _Year = __webpack_require__(48);
 
-	var _YearConstants = __webpack_require__(16);
+	var _YearConstants = __webpack_require__(17);
 
 	var _YearMonth = __webpack_require__(50);
 
-	var _ZonedDateTime = __webpack_require__(51);
+	var _ZonedDateTime = __webpack_require__(53);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _DateTimeFormatter = __webpack_require__(31);
+	var _DateTimeFormatter = __webpack_require__(35);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _IsoFields = __webpack_require__(44);
+	var _IsoFields = __webpack_require__(45);
 
-	var _DateTimeFormatterBuilder = __webpack_require__(20);
+	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
 	var _TemporalQueriesFactory = __webpack_require__(59);
 
-	var _ZoneIdFactory = __webpack_require__(21);
+	var _ZoneIdFactory = __webpack_require__(26);
 
 	/*
 	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -10698,15 +11030,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _TemporalQuery = __webpack_require__(43);
+	var _TemporalQuery = __webpack_require__(23);
 
-	var _TemporalQueries = __webpack_require__(25);
+	var _TemporalQueries = __webpack_require__(22);
 
 	var _LocalDate = __webpack_require__(8);
 
 	var _LocalTime = __webpack_require__(5);
 
-	var _ZoneOffset = __webpack_require__(23);
+	var _ZoneOffset = __webpack_require__(28);
 
 	/*
 	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
