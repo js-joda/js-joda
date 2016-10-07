@@ -2,7 +2,10 @@ module.exports = function(config) {
     config.set({
         files: [
             {pattern: 'test/*Test.js'},
-            {pattern: 'test/**/*Test.js'}
+            {pattern: 'test/**/*Test.js'},
+        ],
+        exclude: [
+            'test/plugTest.js'
         ],
         frameworks: [
             'mocha',

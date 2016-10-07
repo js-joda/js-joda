@@ -6,8 +6,11 @@
 import {expect} from 'chai';
 
 import {use} from '../src/js-joda';
-import {LocalDate} from '../src/LocalDate';
+import {LocalDate} from '../src/js-joda';
 
+/**
+ * this test is not executable with webpack because it has a reference to the webpack entry point
+ */
 describe('plugTest', () => {
 
     const localDateConvenientPlugin = (jsJoda) => {
@@ -21,6 +24,10 @@ describe('plugTest', () => {
 
     it('should not fail using the localDateConvenientPlugin', function () {
         use(localDateConvenientPlugin);
+    });
+
+    it('should be chainable', function () {
+        use(() => {}).use(() => {});
     });
 
     it('should use the previously added plugin', function () {
