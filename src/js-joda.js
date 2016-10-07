@@ -34,3 +34,5 @@ export {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 export {ResolverStyle} from './format/ResolverStyle';
 
 import './_init';
+
+export {use} from './plug';
