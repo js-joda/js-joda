@@ -34,11 +34,6 @@ export class ZoneRegion extends ZoneId {
      * @return {ZoneId}
      */
     static ofId(zoneId){
-        // special case as removed from data file
-        if (zoneId === 'GMT0') {
-            var rules = ZoneOffset.UTC.rules();
-            return new ZoneRegion(zoneId, rules);
-        }
         throw new DateTimeException('ZoneRegion.ofId() is not yet implemented');
     }
     
