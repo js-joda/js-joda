@@ -3,7 +3,9 @@ Changelog
 
 ### 1.1.13 (next)
 
-...
+#### Provide a way to extend js-joda
+
+[Implement a use function](https://github.com/js-joda/js-joda/pull/100#issuecomment-252425196)
 
 ### 1.1.12 
 
