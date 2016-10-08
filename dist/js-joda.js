@@ -302,8 +302,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _ResolverStyle.ResolverStyle;
 	  }
 	});
+	exports.use = use;
 
 	__webpack_require__(58);
+
+	var used = [];
+	function use(fn) {
+	  if (!~used.indexOf(fn)) {
+	    fn(exports);
+	    used.push(fn);
+	  }
+	  return exports;
+	}
 
 /***/ },
 /* 1 */
