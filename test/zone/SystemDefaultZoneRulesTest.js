@@ -119,10 +119,8 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     describe('not supported methods', function () {
 
-        it('should fail for transition', function () {
-            expect(()=>{
-                ZoneId.systemDefault().rules().transition();
-            }).to.throw(DateTimeException);
+        it('should return null for transition', function () {
+            expect(ZoneId.systemDefault().rules().transition()).to.be.null;
         });
 
         it('should fail for daylightSavings', function () {

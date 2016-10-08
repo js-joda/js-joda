@@ -84,7 +84,7 @@ export class ZoneIdFactory {
         if (StringUtil.startsWith(zoneId, '+') || StringUtil.startsWith(zoneId, '-')) {
             return ZoneOffset.of(zoneId);
         }
-        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'UT') {
+        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'GMT0' || zoneId === 'UT') {
             return new ZoneRegion(zoneId, ZoneOffset.UTC.rules());
         }
         if (StringUtil.startsWith(zoneId, 'UTC+') || StringUtil.startsWith(zoneId, 'GMT+') ||

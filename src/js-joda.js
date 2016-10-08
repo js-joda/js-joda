@@ -19,6 +19,7 @@ export { YearMonth } from './YearMonth';
 export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
 export { ZoneId } from './ZoneId';
+export { ZoneRegion } from './ZoneRegion';
 
 export {convert} from './convert';
 

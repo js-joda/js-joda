@@ -67,7 +67,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @throws DateTimeException not supported
      */
     transition(){
-        this._throwNotSupported();
+        return null;
     }
 
     /**
