@@ -249,6 +249,7 @@ d1.compareTo(d1) === 0; // true
 d1.compareTo(d2) < 0;   // true
 d2.compareTo(d1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 d1.hashCode(); // 4129560
 d2.hashCode(); // 4129562
 d1.hashCode() !== d2.hashCode(); // true
@@ -465,6 +466,7 @@ t1.compareTo(t1) === 0; // true
 t1.compareTo(t2) < 0;   // true
 t2.compareTo(t1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 t1.hashCode(); // 916974646
 t2.hashCode(); // -1743180648
 t1.hashCode() !== t2.hashCode(); // true
@@ -698,6 +700,7 @@ dt1.compareTo(dt1) === 0; // true
 dt1.compareTo(dt2) < 0;   // true
 dt2.compareTo(dt1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 dt1.hashCode(); // -2036645668
 dt2.hashCode(); // 1459191821
 dt1.hashCode() !== dt2.hashCode(); // true
