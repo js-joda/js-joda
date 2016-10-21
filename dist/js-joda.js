@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
-	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.convert = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.convert = exports.ZoneRulesProvider = exports.ZoneRegion = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 
 	var _Clock = __webpack_require__(1);
 
@@ -150,7 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _MonthDay = __webpack_require__(49);
+	var _MonthDay = __webpack_require__(50);
 
 	Object.defineProperty(exports, 'MonthDay', {
 	  enumerable: true,
@@ -159,7 +159,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _Period = __webpack_require__(36);
+	var _Period = __webpack_require__(37);
 
 	Object.defineProperty(exports, 'Period', {
 	  enumerable: true,
@@ -168,7 +168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	Object.defineProperty(exports, 'Year', {
 	  enumerable: true,
@@ -177,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _YearMonth = __webpack_require__(50);
+	var _YearMonth = __webpack_require__(51);
 
 	Object.defineProperty(exports, 'YearMonth', {
 	  enumerable: true,
@@ -186,7 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ZonedDateTime = __webpack_require__(53);
+	var _ZonedDateTime = __webpack_require__(54);
 
 	Object.defineProperty(exports, 'ZonedDateTime', {
 	  enumerable: true,
@@ -213,7 +213,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _convert = __webpack_require__(56);
+	var _ZoneRegion = __webpack_require__(31);
+
+	Object.defineProperty(exports, 'ZoneRegion', {
+	  enumerable: true,
+	  get: function get() {
+	    return _ZoneRegion.ZoneRegion;
+	  }
+	});
+
+	var _ZoneRulesProvider = __webpack_require__(32);
+
+	Object.defineProperty(exports, 'ZoneRulesProvider', {
+	  enumerable: true,
+	  get: function get() {
+	    return _ZoneRulesProvider.ZoneRulesProvider;
+	  }
+	});
+
+	var _convert = __webpack_require__(57);
 
 	Object.defineProperty(exports, 'convert', {
 	  enumerable: true,
@@ -222,7 +240,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _NativeJsTemporal = __webpack_require__(57);
+	var _NativeJsTemporal = __webpack_require__(58);
 
 	Object.defineProperty(exports, 'nativeJs', {
 	  enumerable: true,
@@ -249,7 +267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _IsoFields = __webpack_require__(45);
+	var _IsoFields = __webpack_require__(46);
 
 	Object.defineProperty(exports, 'IsoFields', {
 	  enumerable: true,
@@ -258,7 +276,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _TemporalAdjusters = __webpack_require__(51);
+	var _TemporalAdjusters = __webpack_require__(52);
 
 	Object.defineProperty(exports, 'TemporalAdjusters', {
 	  enumerable: true,
@@ -276,7 +294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	Object.defineProperty(exports, 'DateTimeFormatter', {
 	  enumerable: true,
@@ -294,7 +312,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _ResolverStyle = __webpack_require__(40);
+	var _ResolverStyle = __webpack_require__(41);
 
 	Object.defineProperty(exports, 'ResolverStyle', {
 	  enumerable: true,
@@ -304,7 +322,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.use = use;
 
-	__webpack_require__(58);
+	__webpack_require__(59);
 
 	var used = [];
 	function use(fn) {
@@ -589,7 +607,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TemporalQuery = __webpack_require__(23);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -999,7 +1017,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ZoneId = __webpack_require__(29);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _ChronoField = __webpack_require__(12);
 
@@ -1823,13 +1841,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalTime = __webpack_require__(5);
 
-	var _ZonedDateTime = __webpack_require__(53);
+	var _ZonedDateTime = __webpack_require__(54);
 
 	var _ZoneId = __webpack_require__(29);
 
 	var _ZoneOffset = __webpack_require__(28);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _ChronoField = __webpack_require__(12);
 
@@ -1839,7 +1857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TemporalQuery = __webpack_require__(23);
 
-	var _ChronoLocalDateTime2 = __webpack_require__(55);
+	var _ChronoLocalDateTime2 = __webpack_require__(56);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2426,7 +2444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _ChronoLocalDate2 = __webpack_require__(34);
+	var _ChronoLocalDate2 = __webpack_require__(35);
 
 	var _TemporalQueries = __webpack_require__(22);
 
@@ -2434,7 +2452,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ValueRange = __webpack_require__(19);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _Clock = __webpack_require__(1);
 
@@ -2442,7 +2460,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Month = __webpack_require__(24);
 
-	var _Period = __webpack_require__(36);
+	var _Period = __webpack_require__(37);
 
 	var _YearConstants = __webpack_require__(17);
 
@@ -2450,13 +2468,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDateTime = __webpack_require__(7);
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	var _ZoneId = __webpack_require__(29);
 
 	var _ZoneOffset = __webpack_require__(28);
 
-	var _ZonedDateTime = __webpack_require__(53);
+	var _ZonedDateTime = __webpack_require__(54);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3203,13 +3221,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Month = __webpack_require__(24);
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	var _ChronoField = __webpack_require__(12);
 
-	var _ResolverStyle = __webpack_require__(40);
+	var _ResolverStyle = __webpack_require__(41);
 
-	var _TemporalAdjusters = __webpack_require__(51);
+	var _TemporalAdjusters = __webpack_require__(52);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5162,7 +5180,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';exports.__esModule=true;exports.DateTimeFormatterBuilder=undefined;exports._init=_init;var _assert=__webpack_require__(2);var _errors=__webpack_require__(3);var _MathUtil=__webpack_require__(6);var _Enum2=__webpack_require__(10);var _ZoneIdFactory=__webpack_require__(26);var _LocalDate=__webpack_require__(8);var _LocalDateTime=__webpack_require__(7);var _ZoneOffset=__webpack_require__(28);var _ZoneId=__webpack_require__(29);var _ChronoLocalDate=__webpack_require__(34);var _IsoChronology=__webpack_require__(9);var _ChronoField=__webpack_require__(12);var _IsoFields=__webpack_require__(45);var _TemporalQueries=__webpack_require__(22);var _DateTimeFormatter=__webpack_require__(35);var _DecimalStyle=__webpack_require__(46);var _SignStyle=__webpack_require__(43);var _TextStyle=__webpack_require__(47);var _ResolverStyle=__webpack_require__(40);function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}/**
+	'use strict';exports.__esModule=true;exports.DateTimeFormatterBuilder=undefined;exports._init=_init;var _assert=__webpack_require__(2);var _errors=__webpack_require__(3);var _MathUtil=__webpack_require__(6);var _Enum2=__webpack_require__(10);var _ZoneIdFactory=__webpack_require__(26);var _LocalDate=__webpack_require__(8);var _LocalDateTime=__webpack_require__(7);var _ZoneOffset=__webpack_require__(28);var _ZoneId=__webpack_require__(29);var _ChronoLocalDate=__webpack_require__(35);var _IsoChronology=__webpack_require__(9);var _ChronoField=__webpack_require__(12);var _IsoFields=__webpack_require__(46);var _TemporalQueries=__webpack_require__(22);var _DateTimeFormatter=__webpack_require__(36);var _DecimalStyle=__webpack_require__(47);var _SignStyle=__webpack_require__(44);var _TextStyle=__webpack_require__(48);var _ResolverStyle=__webpack_require__(41);function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&(typeof call==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+typeof superClass);}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}/**
 	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
 	 * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -5192,7 +5210,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TemporalQueries = __webpack_require__(22);
 
-	var _SystemDefaultZoneId = __webpack_require__(32);
+	var _SystemDefaultZoneId = __webpack_require__(33);
+
+	var _ZoneRulesProvider = __webpack_require__(32);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -5209,6 +5229,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
 	    };
 
+	    ZoneIdFactory.getAvailableZoneIds = function getAvailableZoneIds() {
+	        return _ZoneRulesProvider.ZoneRulesProvider.getAvailableZoneIds();
+	    };
+
 	    ZoneIdFactory.of = function of(zoneId) {
 	        (0, _assert.requireNonNull)(zoneId, 'zoneId');
 	        if (zoneId === 'Z') {
@@ -5220,7 +5244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (_StringUtil.StringUtil.startsWith(zoneId, '+') || _StringUtil.StringUtil.startsWith(zoneId, '-')) {
 	            return _ZoneOffset.ZoneOffset.of(zoneId);
 	        }
-	        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'UT') {
+	        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'GMT0' || zoneId === 'UT') {
 	            return new _ZoneRegion.ZoneRegion(zoneId, _ZoneOffset.ZoneOffset.UTC.rules());
 	        }
 	        if (_StringUtil.StringUtil.startsWith(zoneId, 'UTC+') || _StringUtil.StringUtil.startsWith(zoneId, 'GMT+') || _StringUtil.StringUtil.startsWith(zoneId, 'UTC-') || _StringUtil.StringUtil.startsWith(zoneId, 'GMT-')) {
@@ -5241,7 +5265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (zoneId === 'SYSTEM') {
 	            return _ZoneId.ZoneId.systemDefault();
 	        }
-	        return _ZoneRegion.ZoneRegion.ofId(zoneId, true);
+	        return _ZoneRegion.ZoneRegion.ofId(zoneId);
 	    };
 
 	    ZoneIdFactory.ofOffset = function ofOffset(prefix, offset) {
@@ -5277,6 +5301,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new _SystemDefaultZoneId.SystemDefaultZoneId();
 
 	    _ZoneId.ZoneId.systemDefault = ZoneIdFactory.systemDefault;
+	    _ZoneId.ZoneId.getAvailableZoneIds = ZoneIdFactory.getAvailableZoneIds;
 	    _ZoneId.ZoneId.of = ZoneIdFactory.of;
 	    _ZoneId.ZoneId.ofOffset = ZoneIdFactory.ofOffset;
 	    _ZoneId.ZoneId.from = ZoneIdFactory.from;
@@ -5863,11 +5888,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.ZoneRegion = undefined;
 
-	var _errors = __webpack_require__(3);
-
 	var _ZoneId2 = __webpack_require__(29);
 
-	var _ZoneOffset = __webpack_require__(28);
+	var _ZoneRulesProvider = __webpack_require__(32);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5883,11 +5906,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _inherits(ZoneRegion, _ZoneId);
 
 	  ZoneRegion.ofId = function ofId(zoneId) {
-	    if (zoneId === 'GMT0') {
-	      var rules = _ZoneOffset.ZoneOffset.UTC.rules();
-	      return new ZoneRegion(zoneId, rules);
-	    }
-	    throw new _errors.DateTimeException('ZoneRegion.ofId() is not yet implemented');
+	    var rules = _ZoneRulesProvider.ZoneRulesProvider.getRules(zoneId);
+	    return new ZoneRegion(zoneId, rules);
 	  };
 
 	  function ZoneRegion(id, rules) {
@@ -5918,9 +5938,42 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.ZoneRulesProvider = undefined;
+
+	var _errors = __webpack_require__(3);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var ZoneRulesProvider = exports.ZoneRulesProvider = function () {
+	  function ZoneRulesProvider() {
+	    _classCallCheck(this, ZoneRulesProvider);
+	  }
+
+	  ZoneRulesProvider.getRules = function getRules(zoneId) {
+	    throw new _errors.DateTimeException('unsupported ZoneId:' + zoneId);
+	  };
+
+	  ZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
+	    return [];
+	  };
+
+	  return ZoneRulesProvider;
+	}();
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
 	exports.SystemDefaultZoneId = undefined;
 
-	var _SystemDefaultZoneRules = __webpack_require__(33);
+	var _SystemDefaultZoneRules = __webpack_require__(34);
 
 	var _ZoneId2 = __webpack_require__(29);
 
@@ -5964,7 +6017,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneId2.ZoneId);
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6023,7 +6076,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    SystemDefaultZoneRules.prototype.transition = function transition() {
-	        this._throwNotSupported();
+	        return null;
 	    };
 
 	    SystemDefaultZoneRules.prototype.standardOffset = function standardOffset(instant) {
@@ -6078,7 +6131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneRules2.ZoneRules);
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6092,7 +6145,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _TemporalQueries = __webpack_require__(22);
 
@@ -6157,7 +6210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDate = ChronoLocalDate;
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6170,23 +6223,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _Period = __webpack_require__(36);
+	var _Period = __webpack_require__(37);
 
-	var _ParsePosition = __webpack_require__(37);
+	var _ParsePosition = __webpack_require__(38);
 
-	var _DateTimeBuilder = __webpack_require__(38);
+	var _DateTimeBuilder = __webpack_require__(39);
 
-	var _DateTimeParseContext = __webpack_require__(41);
+	var _DateTimeParseContext = __webpack_require__(42);
 
-	var _DateTimePrintContext = __webpack_require__(42);
+	var _DateTimePrintContext = __webpack_require__(43);
 
 	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
-	var _SignStyle = __webpack_require__(43);
+	var _SignStyle = __webpack_require__(44);
 
-	var _StringBuilder = __webpack_require__(44);
+	var _StringBuilder = __webpack_require__(45);
 
-	var _ResolverStyle = __webpack_require__(40);
+	var _ResolverStyle = __webpack_require__(41);
 
 	var _IsoChronology = __webpack_require__(9);
 
@@ -6401,7 +6454,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6782,7 +6835,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6824,7 +6877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6838,13 +6891,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MathUtil = __webpack_require__(6);
 
-	var _EnumMap = __webpack_require__(39);
+	var _EnumMap = __webpack_require__(40);
 
-	var _ResolverStyle = __webpack_require__(40);
+	var _ResolverStyle = __webpack_require__(41);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _ChronoLocalDate = __webpack_require__(34);
+	var _ChronoLocalDate = __webpack_require__(35);
 
 	var _ChronoField = __webpack_require__(12);
 
@@ -6856,7 +6909,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDate = __webpack_require__(8);
 
-	var _Period = __webpack_require__(36);
+	var _Period = __webpack_require__(37);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7212,7 +7265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.DateTimeBuilder = DateTimeBuilder;
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7286,7 +7339,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7325,7 +7378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7335,9 +7388,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _assert = __webpack_require__(2);
 
-	var _DateTimeBuilder = __webpack_require__(38);
+	var _DateTimeBuilder = __webpack_require__(39);
 
-	var _EnumMap = __webpack_require__(39);
+	var _EnumMap = __webpack_require__(40);
 
 	var _IsoChronology = __webpack_require__(9);
 
@@ -7572,7 +7625,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_Temporal2.Temporal);
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7582,7 +7635,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
 	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -7653,7 +7706,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7704,7 +7757,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7762,7 +7815,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7793,7 +7846,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _ResolverStyle = __webpack_require__(40);
+	var _ResolverStyle = __webpack_require__(41);
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -8302,7 +8355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8421,7 +8474,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8502,7 +8555,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	TextStyle.NARROW_STANDALONE = new TextStyle('NARROW_STANDALONE');
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8523,7 +8576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Clock = __webpack_require__(1);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
@@ -8533,9 +8586,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Month = __webpack_require__(24);
 
-	var _MonthDay = __webpack_require__(49);
+	var _MonthDay = __webpack_require__(50);
 
-	var _SignStyle = __webpack_require__(43);
+	var _SignStyle = __webpack_require__(44);
 
 	var _Temporal2 = __webpack_require__(20);
 
@@ -8553,7 +8606,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _YearConstants = __webpack_require__(17);
 
-	var _YearMonth = __webpack_require__(50);
+	var _YearMonth = __webpack_require__(51);
 
 	var _ZoneId = __webpack_require__(29);
 
@@ -8926,7 +8979,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8943,7 +8996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Clock = __webpack_require__(1);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
@@ -8963,7 +9016,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ValueRange = __webpack_require__(19);
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	var _ZoneId = __webpack_require__(29);
 
@@ -9219,7 +9272,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9248,7 +9301,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Month = __webpack_require__(24);
 
-	var _SignStyle = __webpack_require__(43);
+	var _SignStyle = __webpack_require__(44);
 
 	var _Temporal2 = __webpack_require__(20);
 
@@ -9264,7 +9317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ValueRange = __webpack_require__(19);
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	var _ZoneId = __webpack_require__(29);
 
@@ -9702,7 +9755,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9714,7 +9767,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _errors = __webpack_require__(3);
 
-	var _TemporalAdjuster4 = __webpack_require__(52);
+	var _TemporalAdjuster4 = __webpack_require__(53);
 
 	var _ChronoField = __webpack_require__(12);
 
@@ -9907,7 +9960,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_TemporalAdjuster4.TemporalAdjuster);
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9936,7 +9989,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9963,9 +10016,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ZoneOffset = __webpack_require__(28);
 
-	var _ChronoZonedDateTime2 = __webpack_require__(54);
+	var _ChronoZonedDateTime2 = __webpack_require__(55);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _ChronoField = __webpack_require__(12);
 
@@ -10555,7 +10608,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10690,7 +10743,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10774,7 +10827,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.ChronoLocalDateTime = ChronoLocalDateTime;
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10788,7 +10841,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LocalDateTime = __webpack_require__(7);
 
-	var _ZonedDateTime = __webpack_require__(53);
+	var _ZonedDateTime = __webpack_require__(54);
 
 	var _ZoneId = __webpack_require__(29);
 
@@ -10838,7 +10891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10939,7 +10992,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10960,31 +11013,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Month = __webpack_require__(24);
 
-	var _MonthDay = __webpack_require__(49);
+	var _MonthDay = __webpack_require__(50);
 
-	var _Period = __webpack_require__(36);
+	var _Period = __webpack_require__(37);
 
-	var _Year = __webpack_require__(48);
+	var _Year = __webpack_require__(49);
 
 	var _YearConstants = __webpack_require__(17);
 
-	var _YearMonth = __webpack_require__(50);
+	var _YearMonth = __webpack_require__(51);
 
-	var _ZonedDateTime = __webpack_require__(53);
+	var _ZonedDateTime = __webpack_require__(54);
 
 	var _IsoChronology = __webpack_require__(9);
 
-	var _DateTimeFormatter = __webpack_require__(35);
+	var _DateTimeFormatter = __webpack_require__(36);
 
 	var _ChronoField = __webpack_require__(12);
 
 	var _ChronoUnit = __webpack_require__(13);
 
-	var _IsoFields = __webpack_require__(45);
+	var _IsoFields = __webpack_require__(46);
 
 	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
-	var _TemporalQueriesFactory = __webpack_require__(59);
+	var _TemporalQueriesFactory = __webpack_require__(60);
 
 	var _ZoneIdFactory = __webpack_require__(26);
 
@@ -11030,7 +11083,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	init();
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
