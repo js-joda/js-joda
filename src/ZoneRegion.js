@@ -4,10 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException} from './errors';
 
 import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
+import {ZoneRulesProvider} from './zone/ZoneRulesProvider';
 
 /**
  * A geographical region where the same time-zone rules apply.
@@ -34,7 +33,8 @@ export class ZoneRegion extends ZoneId {
      * @return {ZoneId}
      */
     static ofId(zoneId){
-        throw new DateTimeException('ZoneRegion.ofId() is not yet implemented');
+        let rules = ZoneRulesProvider.getRules(zoneId);
+        return new ZoneRegion(zoneId, rules);
     }
     
      //-------------------------------------------------------------------------
