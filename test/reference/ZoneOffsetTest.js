@@ -11,6 +11,7 @@ import '../_init';
 
 import {DateTimeException, NullPointerException} from '../../src/errors';
 
+import {Duration} from '../../src/Duration';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
@@ -412,21 +413,22 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             var offset = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
             assertEquals(offset.rules().isFixedOffset(), true);
             assertEquals(offset.rules().offset(null), offset);
-            // TODO iana tzdb
-            //assertEquals(offset.rules().getDaylightSavings(null), Duration.ZERO);
-            //assertEquals(offset.rules().getStandardOffset(null), offset);
-            //assertEquals(offset.rules().nextTransition(null), null);
-            //assertEquals(offset.rules().previousTransition(null), null);
+
+            assertEquals(offset.rules().daylightSavings(null), Duration.ZERO);
+            assertEquals(offset.rules().isDaylightSavings(null), false);
+            assertEquals(offset.rules().standardOffset(null), offset);
+            assertEquals(offset.rules().nextTransition(null), null);
+            assertEquals(offset.rules().previousTransition(null), null);
     
             assertEquals(offset.rules().isValidOffset(null, offset), true);
             assertEquals(offset.rules().isValidOffset(null, ZoneOffset.UTC), false);
             assertEquals(offset.rules().isValidOffset(null, null), false);
             assertEquals(offset.rules().offset(null), offset);
-            // TODO iana tzdb
-            //assertEquals(offset.rules().getValidOffsets(null), Arrays.asList(offset));
-            //assertEquals(offset.rules().getTransition(null), null);
-            //assertEquals(offset.rules().getTransitions().size(), 0);
-            //assertEquals(offset.rules().getTransitionRules().size(), 0);
+
+            assertEquals(offset.rules().validOffsets(null), [offset]);
+            assertEquals(offset.rules().transition(null), null);
+            assertEquals(offset.rules().transitions().length, 0);
+            assertEquals(offset.rules().transitionRules().length, 0);
         });
 
     });

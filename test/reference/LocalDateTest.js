@@ -38,14 +38,17 @@ import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 
+import {CurrentStandardZoneAsiaGaza} from '../zone/CurrentStandardZone';
+
 describe('org.threeten.bp.TestLocalDate', () => {
-    var TEST_2007_07_15;
-    var MAX_VALID_EPOCHDAYS;
-    var MIN_VALID_EPOCHDAYS;
-    var MAX_DATE;
-    var MIN_DATE;
-    var MAX_INSTANT;
-    var MIN_INSTANT;
+    let TEST_2007_07_15;
+    let MAX_VALID_EPOCHDAYS;
+    let MIN_VALID_EPOCHDAYS;
+    let MAX_DATE;
+    let MIN_DATE;
+    let MAX_INSTANT;
+    let MIN_INSTANT;
+    let ZONE_GAZA;
     before(() => {
         TEST_2007_07_15 = LocalDate.of(2007, 7, 15);
 
@@ -54,7 +57,9 @@ describe('org.threeten.bp.TestLocalDate', () => {
         MAX_VALID_EPOCHDAYS = MAX_DATE.toEpochDay();
         MIN_VALID_EPOCHDAYS = MIN_DATE.toEpochDay();
         MAX_INSTANT = MAX_DATE.atStartOfDay(ZoneOffset.UTC).toInstant();
-        MIN_INSTANT = MIN_DATE.atStartOfDay(ZoneOffset.UTC).toInstant();    
+        MIN_INSTANT = MIN_DATE.atStartOfDay(ZoneOffset.UTC).toInstant();
+
+        ZONE_GAZA = new CurrentStandardZoneAsiaGaza();
     });
 
     /**
@@ -1756,14 +1761,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 0, 0), zone));
         });
 
-        /* TODO iana tzdb
-            it('test_atStartOfDay_dstGap', () => {
-                var t = LocalDate.of(2007, 4, 1);
-                assertEquals(t.atStartOfDay(ZONE_GAZA),
-                    ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
-            });
-        */
-        
+        it('test_atStartOfDay_dstGap', () => {
+            var t = LocalDate.of(2007, 4, 1);
+            assertEquals(t.atStartOfDay(ZONE_GAZA),
+                ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
+        });
+
     });
 
     describe('toEpochDay()', function () {

@@ -14,6 +14,7 @@ import {ZoneId} from './ZoneId';
 
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {SystemDefaultZoneId} from './zone/SystemDefaultZoneId';
+import {ZoneRulesProvider} from './zone/ZoneRulesProvider';
 
 /**
  * @see {@link ZoneId}
@@ -31,6 +32,22 @@ export class ZoneIdFactory {
      */
     static systemDefault() {
         return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
+    }
+
+    /**
+     * Gets the set of available zone IDs.
+     * <p>
+     * This set includes the string form of all available region-based IDs.
+     * Offset-based zone IDs are not included in the returned set.
+     * The ID can be passed to {@link #of(String)} to create a {@code ZoneId}.
+     * <p>
+     * The set of zone IDs can increase over time, although in a typical application
+     * the set of IDs is fixed. Each call to this method is thread-safe.
+     *
+     * @return {string[]} a modifiable copy of the set of zone IDs, not null
+     */
+    static getAvailableZoneIds() {
+        return ZoneRulesProvider.getAvailableZoneIds();
     }
 
     /**
@@ -84,7 +101,7 @@ export class ZoneIdFactory {
         if (StringUtil.startsWith(zoneId, '+') || StringUtil.startsWith(zoneId, '-')) {
             return ZoneOffset.of(zoneId);
         }
-        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'UT') {
+        if (zoneId === 'UTC' || zoneId === 'GMT' || zoneId === 'GMT0' || zoneId === 'UT') {
             return new ZoneRegion(zoneId, ZoneOffset.UTC.rules());
         }
         if (StringUtil.startsWith(zoneId, 'UTC+') || StringUtil.startsWith(zoneId, 'GMT+') ||
@@ -106,7 +123,7 @@ export class ZoneIdFactory {
         if(zoneId === 'SYSTEM'){
             return ZoneId.systemDefault();
         }
-        return ZoneRegion.ofId(zoneId, true);
+        return ZoneRegion.ofId(zoneId);
     }
 
     /**
@@ -172,6 +189,7 @@ export function _init(){
 
     // a bit magic to stay a bit more to the threeten bp impl.
     ZoneId.systemDefault = ZoneIdFactory.systemDefault;
+    ZoneId.getAvailableZoneIds = ZoneIdFactory.getAvailableZoneIds;
     ZoneId.of = ZoneIdFactory.of;
     ZoneId.ofOffset = ZoneIdFactory.ofOffset;
     ZoneId.from = ZoneIdFactory.from;

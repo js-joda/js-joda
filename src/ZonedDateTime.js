@@ -254,25 +254,24 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (zone instanceof ZoneOffset) {
             return new ZonedDateTime(localDateTime, zone, zone);
         }
-        var rules = zone.rules();
-        var offset = rules.offsetOfLocalDateTime(localDateTime);
-
-/* TODO implement for iana tzdb
-        var validOffsets = rules.validOffsets(localDateTime);
-        if (validOffsets.size() == 1) {
-            offset = validOffsets.get(0);
-        } else if (validOffsets.size() == 0) {
-            var trans = rules.transition(localDateTime);
+        let offset = null;
+        let rules = zone.rules();
+        let validOffsets = rules.validOffsets(localDateTime);
+        if (validOffsets.length === 1) {
+            offset = validOffsets[0];
+        } else if (validOffsets.length === 0) {
+            let trans = rules.transition(localDateTime);
             localDateTime = localDateTime.plusSeconds(trans.duration().seconds());
             offset = trans.offsetAfter();
         } else {
-            if (preferredOffset != null && validOffsets.contains(preferredOffset)) {
+            if (preferredOffset != null &&
+                    validOffsets.some((validOffset) => {return validOffset.equals(preferredOffset);})) {
                 offset = preferredOffset;
             } else {
-                offset = requireNonNull(validOffsets.get(0), 'offset');  // protect against bad ZoneRules
+                offset = requireNonNull(validOffsets[0], 'offset');  // protect against bad ZoneRules
             }
         }
-*/
+
         return new ZonedDateTime(localDateTime, offset, zone);
     }
 
@@ -374,16 +373,14 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         requireNonNull(zone, 'zone');
         var rules = zone.rules();
         if (rules.isValidOffset(localDateTime, offset) === false) {
-        /* TODO implement for iana tzdb
             var trans = rules.transition(localDateTime);
             if (trans != null && trans.isGap()) {
                 // error message says daylight savings for simplicity
                 // even though there are other kinds of gaps
-                throw new DateTimeException('LocalDateTime '' + localDateTime +
-                        '' does not exist in zone '' + zone +
-                        '' due to a gap in the local time-line, typically caused by daylight savings');
+                throw new DateTimeException('LocalDateTime ' + localDateTime +
+                        ' does not exist in zone ' + zone +
+                        ' due to a gap in the local time-line, typically caused by daylight savings');
             }
-        */
             throw new DateTimeException('ZoneOffset "' + offset + '" is not valid for LocalDateTime "' +
                 localDateTime + '" in zone "' + zone + '"');
         }
@@ -411,7 +408,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @param {ZoneId} zone - the time-zone, not null
      * @return {ZonedDateTime} the zoned date-time, not null
      */
-    static _ofLenient(localDateTime, offset, zone) {
+    static ofLenient(localDateTime, offset, zone) {
         requireNonNull(localDateTime, 'localDateTime');
         requireNonNull(offset, 'offset');
         requireNonNull(zone, 'zone');
@@ -546,8 +543,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} the zoned date-time, not null
      */
     _resolveOffset(offset) {
-        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, this._offset)) {
-            return new ZonedDateTime(this._dateTime, this._offset, this._zone);
+        if (offset.equals(this._offset) === false && this._zone.rules().isValidOffset(this._dateTime, offset)) {
+            return new ZonedDateTime(this._dateTime, offset, this._zone);
         }
         return this;
     }
@@ -737,18 +734,16 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {ZonedDateTime} a {@code ZonedDateTime} based on this date-time with the earlier offset, not null
      */
-/* TODO implement for iana tzdb
     withEarlierOffsetAtOverlap() {
         var trans = this._zone.rules().transition(this._dateTime);
         if (trans != null && trans.isOverlap()) {
             var earlierOffset = trans.offsetBefore();
-            if (earlierOffset.equals(offset) === false) {
+            if (earlierOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, earlierOffset, this._zone);
             }
         }
         return this;
     }
-*/
 
     /**
      * Returns a copy of this date-time changing the zone offset to the
@@ -766,18 +761,16 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {ZonedDateTime} a {@code ZonedDateTime} based on this date-time with the later offset, not null
      */
-/* TODO implement for iana tzdb
     withLaterOffsetAtOverlap() {
-        var trans = zone().rules().transition(this.toLocalDateTime());
+        var trans = this._zone.rules().transition(this.toLocalDateTime());
         if (trans != null) {
             var laterOffset = trans.offsetAfter();
-            if (laterOffset.equals(offset) === false) {
+            if (laterOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, laterOffset, this._zone);
             }
         }
         return this;
     }
-*/
 
     //-----------------------------------------------------------------------
     /**
@@ -1932,13 +1925,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (unit.isDateBased()) {
                 return this._dateTime.until(end._dateTime, unit);
             } else {
-                // TODO check with iana tzdb, this might be wrong   
-                return this._dateTime.until(end._dateTime, unit);
-                // threeten says
-                // return toOffsetDateTime().until(end.toOffsetDateTime(), unit)
-                // OffsetDateTime.until ...
-                // end = end.withOffsetSameInstant(offset);
-                // return dateTime.until(end.dateTime, unit);
+                let difference = this._offset.totalSeconds() - end._offset.totalSeconds();
+                let adjustedEnd = end._dateTime.plusSeconds(difference);
+                return this._dateTime.until(adjustedEnd, unit);
             }
         }
         return unit.between(this, end);
@@ -1989,10 +1978,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {OffsetDateTime} an offset date-time representing the same local date-time and offset, not null
      */
-    toOffsetDateTime() {
-        // TODO we do not support OffsetDateTime, clean up
-        return OffsetDateTime.of(this._dateTime, this._offset);
-    }
+    /**
+     * we will not support OffsetDateTime in the near future
+        toOffsetDateTime() {
+            return OffsetDateTime.of(this._dateTime, this._offset);
+        }
+    */
 
     //-----------------------------------------------------------------------
     /**

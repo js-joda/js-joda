@@ -13,8 +13,8 @@ js-joda Cheat sheet
 - [LocalDate](#localdate)
   * [Create a LocalDate](#create-a-localdate)
   * [Get values from LocalDate](#get-values-from-localdate)
-  * [Get weeks of week based year, get year quarters and the day of quarter](#get-weeks-of-week-based-year--get-year-quarters-and-the-day-of-quarter)
-  * [Adding to/ subtracting from a LocalDate](#adding-to--subtracting-from-a-localdate)
+  * [Get weeks of week based year, get year quarters and the day of quarter](#get-weeks-of-week-based-year-get-year-quarters-and-the-day-of-quarter)
+  * [Adding to/ subtracting from a LocalDate](#adding-to-subtracting-from-a-localdate)
   * [Alter certain fields of a LocalDate](#alter-certain-fields-of-a-localdate)
   * [Compare LocalDates](#compare-localdates)
   * [Distance on the timeline](#distance-on-the-timeline)
@@ -23,7 +23,7 @@ js-joda Cheat sheet
 - [LocalTime](#localtime)
   * [Create a LocalTime instance](#create-a-localtime-instance)
   * [Get values from LocalTime](#get-values-from-localtime)
-  * [Adding to/ subtracting from a LocalTime instance](#adding-to--subtracting-from-a-localtime-instance)
+  * [Adding to/ subtracting from a LocalTime instance](#adding-to-subtracting-from-a-localtime-instance)
   * [Alter certain fields of a LocalTime instance](#alter-certain-fields-of-a-localtime-instance)
   * [Truncate a LocalTime instance](#truncate-a-localtime-instance)
   * [Compare LocalTime instances](#compare-localtime-instances)
@@ -32,7 +32,7 @@ js-joda Cheat sheet
 - [LocalDateTime](#localdatetime)
   * [Create a LocalDateTime instance](#create-a-localdatetime-instance)
   * [Get values from LocalDateTime](#get-values-from-localdatetime)
-  * [Adding to/ subtracting from a LocalDateTime instance](#adding-to--subtracting-from-a-localdatetime-instance)
+  * [Adding to/ subtracting from a LocalDateTime instance](#adding-to-subtracting-from-a-localdatetime-instance)
   * [Alter certain fields of a LocalDateTime instance](#alter-certain-fields-of-a-localdatetime-instance)
   * [Truncate a LocalDateTime instance](#truncate-a-localdatetime-instance)
   * [Compare LocalDateTime instances](#compare-localdatetime-instances)
@@ -249,6 +249,7 @@ d1.compareTo(d1) === 0; // true
 d1.compareTo(d2) < 0;   // true
 d2.compareTo(d1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 d1.hashCode(); // 4129560
 d2.hashCode(); // 4129562
 d1.hashCode() !== d2.hashCode(); // true
@@ -465,6 +466,7 @@ t1.compareTo(t1) === 0; // true
 t1.compareTo(t2) < 0;   // true
 t2.compareTo(t1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 t1.hashCode(); // 916974646
 t2.hashCode(); // -1743180648
 t1.hashCode() !== t2.hashCode(); // true
@@ -698,6 +700,7 @@ dt1.compareTo(dt1) === 0; // true
 dt1.compareTo(dt2) < 0;   // true
 dt2.compareTo(dt1) > 0;   // true
 
+// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
 dt1.hashCode(); // -2036645668
 dt2.hashCode(); // 1459191821
 dt1.hashCode() !== dt2.hashCode(); // true

@@ -27,6 +27,7 @@ import {LocalTime} from './LocalTime';
 import {LocalDateTime} from './LocalDateTime';
 import {Year} from './Year';
 import {ZoneId} from './ZoneId';
+import {ZoneOffset} from './ZoneOffset';
 import {ZonedDateTime} from './ZonedDateTime';
 
 /**
@@ -1478,17 +1479,15 @@ export class LocalDate extends ChronoLocalDate{
     atStartOfDayWithZone(zone) {
         requireNonNull(zone, 'zone');
         var ldt = this.atTime(LocalTime.MIDNIGHT);
-/*      TODO iana tzdb
         // need to handle case where there is a gap from 11:30 to 00:30
         // standard ZDT factory would result in 01:00 rather than 00:30
         if (zone instanceof ZoneOffset === false) {
-            var rules = zone.getRules();
-            var trans = rules.getTransition(ldt);
+            var rules = zone.rules();
+            var trans = rules.transition(ldt);
             if (trans != null && trans.isGap()) {
-                ldt = trans.getDateTimeAfter();
+                ldt = trans.dateTimeAfter();
             }
         }
-*/
         return ZonedDateTime.of(ldt, zone);
     }
 

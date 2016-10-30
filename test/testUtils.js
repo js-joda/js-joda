@@ -8,7 +8,7 @@ export function dataProviderTest(dataProvider, test, log){
     var data = typeof dataProvider === 'function' ? dataProvider() : dataProvider;
     data.forEach((data)=>{
         if(log) console.log(data);
-        test.apply(this, data);
+        test.apply(this, [].concat(data));
     });
 }
 

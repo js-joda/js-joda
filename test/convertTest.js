@@ -11,7 +11,6 @@ import {IllegalArgumentException} from '../src/errors';
 
 import {LocalDate} from '../src/LocalDate';
 import {LocalDateTime} from '../src/LocalDateTime';
-import {ZonedDateTime} from '../src/ZonedDateTime';
 import {ZoneId} from '../src/ZoneId';
 
 import {convert} from '../src/convert';

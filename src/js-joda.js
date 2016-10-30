@@ -19,6 +19,8 @@ export { YearMonth } from './YearMonth';
 export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
 export { ZoneId } from './ZoneId';
+export { ZoneRegion } from './ZoneRegion';
+export { ZoneRulesProvider } from './zone/ZoneRulesProvider';
 
 export {convert} from './convert';
 
@@ -34,3 +36,20 @@ export {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 export {ResolverStyle} from './format/ResolverStyle';
 
 import './_init';
+
+const used = [];
+/**
+ * use
+ *
+ * Provides a way to extend the internals of js-joda
+ *
+ * @param {function} fn - function to extend js-joda public api
+ * @returns {this} for chaining
+ */
+export function use(fn) {
+    if (!~used.indexOf(fn)) {
+        fn(exports);
+        used.push(fn);
+    }
+    return exports;
+}

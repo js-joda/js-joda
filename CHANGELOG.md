@@ -1,7 +1,31 @@
 Changelog
 =========
 
-### 1.1.12 (next)
+### 1.1.13 (next)
+
+#### Add ZoneRulesProvider stub
+
+Add the ZoneRulesProvider. This should be the last step to enable js-joda for an external js-joda-timezone plugin.
+
+#### Provide a way to extend js-joda
+
+[Implement a use function](https://github.com/js-joda/js-joda/pull/100#issuecomment-252425196)
+
+### 1.1.12 
+
+#### Implement daylight saving transition functionality
+
+Complete / implement methods/ interfaces
+- LocalDate.atStartOfDayWithZone
+- ZonedDateTime.ofLocal
+- ZonedDateTime.ofStrict
+- ZonedDateTime.withEarlierOffsetAtOverlap
+- ZonedDateTime.withLaterOffsetAtOverlap
+- ZonedDateTime.until
+- ZoneRules
+- Pseudo zones for testing purpose
+
+Increased test coverage for zone related classes
 
 #### Test Coverage and more threetenbp Features
 
