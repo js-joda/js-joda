@@ -4,8 +4,6 @@ os:
 #  TODO: for osx we need to fix the before_script (no xvfb) and find out how to install firefox and phantom?
 #  - osx
 node_js:
-  - "0.10"
-  - "4"
   - "node"
 before_script:
   - "export DISPLAY=:99.0"
@@ -18,6 +16,7 @@ script:
   - npm run test
   - npm run test-browser -- --browsers Firefox,PhantomJS --browserNoActivityTimeout 20000
 #  run build-esdoc and coverage only for "node" (latest) version
+  - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run test-saucelabs; fi
   - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run build-esdoc; fi
   - if [[ "$TRAVIS_NODE_VERSION" == "node" ]]; then npm run test-coverage; fi
 
