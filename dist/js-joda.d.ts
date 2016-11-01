@@ -437,7 +437,7 @@ declare namespace JSJoda {
         nano(): number
 
         plus(amount: TemporalAmount): LocalTime
-        plus(amountToAdd: number, unit: ChronoUnit): LocalTime
+        plus(amountToAdd: number, unit: TemporalUnit): LocalTime
 
         plusHours(hoursToAdd: number): LocalTime
 
@@ -466,7 +466,7 @@ declare namespace JSJoda {
         until(endExclusive: TemporalAccessor, unit: TemporalUnit): number
 
         with(adjuster: TemporalAdjuster): LocalTime
-        with(field: ChronoField, newValue: number): LocalTime
+        with(field: TemporalField, newValue: number): LocalTime
 
         withHour(hour: number): LocalTime
 

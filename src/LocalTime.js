@@ -18,6 +18,7 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {Temporal} from './temporal/Temporal';
+import {TemporalField} from './temporal/TemporalField';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
@@ -608,7 +609,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {!ChronoField} field - the field to set in the result, not null
+     * @param {!TemporalField} field - the field to set in the result, not null
      * @param {number} newValue - the new value of the field in the result
      * @return {LocalTime} a {@link LocalTime} based on this with the specified field set, not null
      * @throws {DateTimeException} if the field cannot be set
@@ -616,6 +617,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      */
     with2(field, newValue) {
         requireNonNull(field, 'field');
+        requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
             field.checkValidValue(newValue);
             switch (field) {
@@ -794,7 +796,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
-     * @param {ChronoUnit} unit - the unit of the period to add, not null
+     * @param {TemporalUnit} unit - the unit of the period to add, not null
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
@@ -1143,6 +1145,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {ArithmeticException} if numeric overflow occurs
      */
     until(endExclusive, unit) {
+        requireNonNull(endExclusive, 'endExclusive');
+        requireNonNull(unit, 'unit');
         var end = LocalTime.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             var nanosUntil = end.toNanoOfDay() - this.toNanoOfDay();  // no overflow
