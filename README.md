@@ -3,7 +3,10 @@ Immutable date and time library for javascript
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
 [![Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
 ## Introduction
 
