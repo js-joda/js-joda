@@ -19,7 +19,7 @@ export class ZoneRulesProvider {
      */
     static getRules(zoneId){
         throw new DateTimeException('unsupported ZoneId:' + zoneId);
-    };
+    }
 
 
     /**

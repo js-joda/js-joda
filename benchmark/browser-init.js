@@ -18,7 +18,7 @@ function next(suite){
             s.run({'async': true});
             running = true;
         } else {
-            log('all benchmarks done')
+            log('all benchmarks done');
         }
     }
 }

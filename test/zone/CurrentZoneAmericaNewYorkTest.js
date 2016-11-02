@@ -77,10 +77,10 @@ describe('CurrentZoneAmericaNewYorkTest', () => {
 
         const testData = [
                [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
-               [LocalDateTime.parse('2016-03-13T02:30:00'),
-                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-13T02:00:00'), ZoneOffset.ofHours(-5), ZoneOffset.ofHours(-4)), true, false],
-               [LocalDateTime.parse('2016-11-06T01:30:00'),
-                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-11-06T01:00:00'), ZoneOffset.ofHours(-4), ZoneOffset.ofHours(-5)), false, true],
+            [LocalDateTime.parse('2016-03-13T02:30:00'),
+                ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-13T02:00:00'), ZoneOffset.ofHours(-5), ZoneOffset.ofHours(-4)), true, false],
+            [LocalDateTime.parse('2016-11-06T01:30:00'),
+                ZoneOffsetTransition.of(LocalDateTime.parse('2016-11-06T01:00:00'), ZoneOffset.ofHours(-4), ZoneOffset.ofHours(-5)), false, true],
                [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
         ];
 

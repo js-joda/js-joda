@@ -129,10 +129,10 @@ describe('CurrentZoneEuropeBerlinTest', () => {
 
         const testData = [
                [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
-               [LocalDateTime.parse('2016-03-27T02:30:00'),
-                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, OFFSET_02), true, false],
-               [LocalDateTime.parse('2016-10-30T02:30:00'),
-                   ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, OFFSET_01), false, true],
+            [LocalDateTime.parse('2016-03-27T02:30:00'),
+                ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, OFFSET_02), true, false],
+            [LocalDateTime.parse('2016-10-30T02:30:00'),
+                ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, OFFSET_01), false, true],
                [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
         ];
 

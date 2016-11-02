@@ -99,9 +99,9 @@ export class DateTimePrintContext{
      *
      * @return {TemporalAccessor} the temporal object, not null
      */
-     temporal() {
-         return this._temporal;
-     }
+    temporal() {
+        return this._temporal;
+    }
 
     //-------------------------------------------------------------------------
     // for testing

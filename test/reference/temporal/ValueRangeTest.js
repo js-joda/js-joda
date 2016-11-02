@@ -210,7 +210,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(ValueRange.of(1, 2, 4, 4).toString(), '1/2 - 4');
         });
 
-	});
+    });
 
 });
 

@@ -76,7 +76,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @return {ZoneOffset}
      */
     standardOffset(instant){
-        return this.offsetOfInstant(instant)
+        return this.offsetOfInstant(instant);
     }
 
     /**
