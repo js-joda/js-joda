@@ -44,7 +44,7 @@ script:
     fi
   # CI_STEP = saucelabs steps to run,
   # since it needs encrypted env variables, it cannot run on Pull Requests!
-  - if [[ "$CI_STEP" == "saucelabs" -a "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+  - if [[ "$CI_STEP" == "saucelabs" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
       (
       set -evx;
       npm run test-saucelabs;
