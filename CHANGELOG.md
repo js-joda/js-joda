@@ -1,7 +1,10 @@
 Changelog
 =========
 
-### 1.1.13 (next)
+### 1.1.14 (next)
+
+
+### 1.1.13
 
 #### Add ZoneRulesProvider stub
 
@@ -10,6 +13,10 @@ Add the ZoneRulesProvider. This should be the last step to enable js-joda for an
 #### Provide a way to extend js-joda
 
 [Implement a use function](https://github.com/js-joda/js-joda/pull/100#issuecomment-252425196)
+
+### Bugfixes
+
+ * Fix SystemDefaultZoneRules transition (fix a bug in convert and LocalDate.startOfDay)
 
 ### 1.1.12 
 
