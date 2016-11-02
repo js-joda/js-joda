@@ -11,6 +11,10 @@ Add the ZoneRulesProvider. This should be the last step to enable js-joda for an
 
 [Implement a use function](https://github.com/js-joda/js-joda/pull/100#issuecomment-252425196)
 
+### Bugfixes
+
+ * Fix SystemDefaultZoneRules transition (fix a bug in convert and LocalDate.startOfDay)
+
 ### 1.1.12 
 
 #### Implement daylight saving transition functionality
