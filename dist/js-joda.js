@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.12
+//! @version js-joda - 1.1.13
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1025,6 +1025,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Temporal2 = __webpack_require__(20);
 
+	var _TemporalField = __webpack_require__(18);
+
 	var _TemporalQueries = __webpack_require__(22);
 
 	var _TemporalQuery = __webpack_require__(23);
@@ -1245,6 +1247,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    LocalTime.prototype.with2 = function with2(field, newValue) {
 	        (0, _assert.requireNonNull)(field, 'field');
+	        (0, _assert.requireInstance)(field, _TemporalField.TemporalField, 'field');
 	        if (field instanceof _ChronoField.ChronoField) {
 	            field.checkValidValue(newValue);
 	            switch (field) {
@@ -1481,6 +1484,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    LocalTime.prototype.until = function until(endExclusive, unit) {
+	        (0, _assert.requireNonNull)(endExclusive, 'endExclusive');
+	        (0, _assert.requireNonNull)(unit, 'unit');
 	        var end = LocalTime.from(endExclusive);
 	        if (unit instanceof _ChronoUnit.ChronoUnit) {
 	            var nanosUntil = end.toNanoOfDay() - this.toNanoOfDay();

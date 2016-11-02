@@ -118,14 +118,14 @@ describe('js-joda Instant', () => {
     });
     
     describe('range', () => {
-        it('should return the range of the corresponding filed', () => {
+        it('should return the range of the corresponding field', () => {
             assertEquals(testInstant.range(ChronoField.INSTANT_SECONDS), ChronoField.INSTANT_SECONDS.range());
             assertEquals(testInstant.range(ChronoField.NANO_OF_SECOND), ChronoField.NANO_OF_SECOND.range());
             assertEquals(testInstant.range(ChronoField.MICRO_OF_SECOND), ChronoField.MICRO_OF_SECOND.range());
             assertEquals(testInstant.range(ChronoField.MILLI_OF_SECOND), ChronoField.MILLI_OF_SECOND.range());
         });
         
-        it('should return corresponding value of rangeRefindeBy for TemporalField', () => {
+        it('should return corresponding value of rangeRefinedBy for TemporalField', () => {
             let field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return 'Test Value';
@@ -171,7 +171,7 @@ describe('js-joda Instant', () => {
     describe('plus', () => {
         it('should add the given values', () => {
             // plus(amount, TemporalUnit)
-            // only test the units not already testeed in the reference tests!
+            // only test the units not already tested in the reference tests!
             assertEquals(testInstant.plus(1, ChronoUnit.MICROS), Instant.ofEpochSecond(testInstant.epochSecond(), testInstant.nano() + 1000));
             assertEquals(testInstant.plus(1, ChronoUnit.MILLIS), Instant.ofEpochSecond(testInstant.epochSecond(), testInstant.nano() + 1000000));
             assertEquals(testInstant.plus(1, ChronoUnit.MINUTES), Instant.ofEpochSecond(testInstant.epochSecond() + LocalTime.SECONDS_PER_MINUTE, testInstant.nano()));
@@ -179,7 +179,7 @@ describe('js-joda Instant', () => {
             assertEquals(testInstant.plus(1, ChronoUnit.HALF_DAYS), Instant.ofEpochSecond(testInstant.epochSecond() + LocalTime.SECONDS_PER_DAY / 2, testInstant.nano()));
         });
         
-        it('should return corresponding value of adddTo for TemporalUnit', () => {
+        it('should return corresponding value of addTo for TemporalUnit', () => {
             let unit = new TemporalUnit();
             unit.addTo = () => {
                 return 'Test Value';
@@ -230,7 +230,7 @@ describe('js-joda Instant', () => {
             assertEquals(testInstant.until(end, ChronoUnit.DAYS), 1);
         });
         
-        it('should return corresponding value of adddTo for TemporalUnit', () => {
+        it('should return corresponding value of addTo for TemporalUnit', () => {
             let unit = new TemporalUnit();
             unit.between = () => {
                 return 'Test Value';
