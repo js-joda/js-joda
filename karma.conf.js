@@ -13,6 +13,19 @@ module.exports = function(config) {
             platform: 'Windows 10',
             version: 'latest'
         },
+        sl_firefox: {
+            base: 'SauceLabs',
+            browserName: 'firefox',
+            platform: 'Windows 10',
+            version: 'latest'
+        },
+        // doesn't work yet
+        sl_safari: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            platform: 'OS X 10.11',
+            version: 'latest'
+        },
     };
     
     config.set({
