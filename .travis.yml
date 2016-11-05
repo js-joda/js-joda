@@ -24,6 +24,7 @@ script:
       set -evx;
       npm run build-dist;
       npm run build-esdoc;
+      npm run lint;
       )
     fi
   # CI_STEP = node steps to run
