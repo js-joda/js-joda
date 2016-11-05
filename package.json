@@ -14,8 +14,7 @@
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
-    "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",
-    "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -alh ./dist/js-joda.min.js*"
+    "lint": "./node_modules/.bin/eslint ."
   },
   "keywords": [
     "date",
@@ -27,6 +26,7 @@
     "instrument": false
   },
   "author": "phueper",
+  "contributors": ["pithu", "phueper"],
   "license": "BSD-3-Clause",
   "dependencies": {
     "js-joda": "^1.1.13"
