@@ -1,7 +1,7 @@
 {
   "name": "js-joda-extra",
   "version": "0.0.1",
-  "description": "additional date-time classes that complement those in js-joda",
+  "description": " additional date-time classes that complement those in js-joda",
   "repository": {
     "type": "git",
     "url": "https://github.com/phueper/js-joda-extra.git"
