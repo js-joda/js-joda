@@ -82,6 +82,7 @@ export class TemporalAdjuster {
      *
      * @abstract
      */
+    // eslint-disable-next-line no-unused-vars
     adjustInto(temporal){
         abstractMethodFail('adjustInto');
     }

@@ -153,6 +153,7 @@ export class DayOfWeek extends Temporal {
      * @param {Locale} locale - the locale to use, not null
      * @return {string} the text value of the day-of-week, not null
      */
+    // eslint-disable-next-line no-unused-vars
     getDisplayName(style, locale) {
         throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
         // return new DateTimeFormatterBuilder().appendText(ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);

@@ -97,11 +97,13 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
     describe.skip('getDisplayName()', function () {
         // TODO: skipped because it needs locale support
         it('test_getDisplayName', () => {
+            // eslint-disable-next-line no-undef
             assertEquals(DayOfWeek.MONDAY.getDisplayName(TextStyle.SHORT, Locale.US), 'Mon');
         });
         
         it('test_getDisplayName_nullStyle', () => {
             expect(() => {
+                // eslint-disable-next-line no-undef
                 DayOfWeek.MONDAY.getDisplayName(null, Locale.US);
             }).to.throw(NullPointerException);
         });

@@ -334,7 +334,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
     function createLDT(year, month, day) {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
-
+    
+    // eslint-disable-next-line no-unused-vars
     function checkOffset(rules, dateTime, offset, type) {
         //List<ZoneOffset> validOffsets = rules.getValidOffsets(dateTime);
         //assertEquals(validOffsets.size(), type);

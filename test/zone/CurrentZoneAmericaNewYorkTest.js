@@ -5,7 +5,7 @@
 
 import '../_init';
 
-import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
+import {assertEquals, dataProviderTest} from '../testUtils';
 
 import {CurrentStandardZoneAmericaNew_York} from './CurrentStandardZone';
 

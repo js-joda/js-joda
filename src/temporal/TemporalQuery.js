@@ -82,6 +82,7 @@ export class TemporalQuery  extends Enum {
      * @throws DateTimeException if unable to query
      * @throws ArithmeticException if numeric overflow occurs
      */
+    // eslint-disable-next-line no-unused-vars
     queryFrom(temporal){
         abstractMethodFail('queryFrom');
     }

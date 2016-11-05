@@ -6,7 +6,6 @@ import '../../_init';
 import {IllegalArgumentException} from '../../../src/errors';
 import {Instant} from '../../../src/Instant';
 import {LocalDateTime} from '../../../src/LocalDateTime';
-import {Period} from '../../../src/Period';
 import {ZoneOffset} from '../../../src/ZoneOffset';
 
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';

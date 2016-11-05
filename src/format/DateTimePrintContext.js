@@ -34,6 +34,7 @@ export class DateTimePrintContext{
      * @param {DateTimeFormatter} formatter
      * @returns {TemporalAccessor}
      */
+    // eslint-disable-next-line no-unused-vars
     static adjust(temporal, formatter) {
         // TODO implement
         return temporal;

@@ -7,6 +7,7 @@ import {expect, assert} from 'chai';
 export function dataProviderTest(dataProvider, test, log){
     var data = typeof dataProvider === 'function' ? dataProvider() : dataProvider;
     data.forEach((data)=>{
+        // eslint-disable-next-line no-console
         if(log) console.log(data);
         test.apply(this, [].concat(data));
     });

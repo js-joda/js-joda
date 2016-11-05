@@ -22,7 +22,9 @@ import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestSettingsParser', () => {
     var parseContext;
+    // eslint-disable-next-line no-unused-vars
     var printEmptyContext, printContext;
+    // eslint-disable-next-line no-unused-vars
     var buf;
 
     beforeEach(() => {

@@ -1652,7 +1652,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         //@Test(dataProvider="toInstant")
         it('test_toEpochSecond_UTC', function () {
-            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec) =>{
                 var dt = ldt.atZone(ZoneOffset.UTC);
                 assertEquals(dt.toEpochSecond(), expectedEpSec);
             });
@@ -1660,7 +1660,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         //@Test(dataProvider="toInstant")
         it('test_toEpochSecond_P0100', function () {
-            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec) =>{
                 var dt = ldt.atZone(ZONE_0100);
                 assertEquals(dt.toEpochSecond(), expectedEpSec - 3600);
             });
@@ -1668,7 +1668,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
         //@Test(dataProvider="toInstant")
         it('test_toEpochSecond_M0100', function () {
-            dataProviderTest(data_toInstant, (ldt, expectedEpSec, expectedNos) =>{
+            dataProviderTest(data_toInstant, (ldt, expectedEpSec) =>{
                 var dt = ldt.atZone(ZONE_M0100);
                 assertEquals(dt.toEpochSecond(), expectedEpSec + 3600);
             });

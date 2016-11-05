@@ -386,13 +386,13 @@ function test_ZonedDateTime() {
     ZonedDateTime.parse('2016-03-18T11:38:23.561Z');
     ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]');
     LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM);
-    ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM)
-    ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM)
+    ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM);
+    ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM);
 
-    ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM)
+    ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM);
 
-    var d = LocalDate.of(2016, 3, 18)
-    var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00'))
+    var d = LocalDate.of(2016, 3, 18);
+    var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00'));
 
     zdt.withZoneSameLocal(ZoneId.UTC);
 
@@ -437,7 +437,7 @@ function test_Duration() {
     var dt = LocalDateTime.parse('2012-12-24T12:00');
 
     dt.plus(Duration.ofHours(10).plusMinutes(30)).toString();
-    dt.minus(Duration.ofHours(12).multipliedBy(10)).toString()
+    dt.minus(Duration.ofHours(12).multipliedBy(10)).toString();
 
     var dt1 = LocalDateTime.parse('2012-12-24T12:00');
 

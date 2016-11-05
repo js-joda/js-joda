@@ -9,7 +9,7 @@ import {MathUtil} from './MathUtil';
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from './errors';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
 import {Temporal} from './temporal/Temporal';
@@ -71,6 +71,7 @@ export class Month extends Temporal {
     getDisplayName(style, locale) {
         // TODO:
         throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
+        //eslint-disable-next-line no-unreachable
         return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
     }
 

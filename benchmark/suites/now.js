@@ -1,5 +1,5 @@
 if(typeof require === 'function') { require('../node-init'); }
-
+/* eslint-disable no-undef */
 addSuite(
     new Benchmark.Suite('now()')
         .add('js-joda Instant', function() {

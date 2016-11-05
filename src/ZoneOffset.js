@@ -176,6 +176,7 @@ export class ZoneOffset extends ZoneId {
         switch (offsetId.length) {
             case 2:
                 offsetId = offsetId[0] + '0' + offsetId[1];  // fallthru
+            // eslint-disable-next-line no-fallthrough
             case 3:
                 hours = ZoneOffset._parseNumber(offsetId, 1, false);
                 minutes = 0;
@@ -465,14 +466,6 @@ export class ZoneOffset extends ZoneId {
      */
     hashCode(){
         return this._totalSeconds;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    id() {
-        return this._id;
     }
 
     /**

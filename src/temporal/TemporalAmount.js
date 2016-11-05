@@ -49,6 +49,7 @@ export class TemporalAmount {
      * @throws DateTimeException if a value for the unit cannot be obtained
      * @throws UnsupportedTemporalTypeException if the {@code unit} is not supported
      */
+    // eslint-disable-next-line no-unused-vars
     get(unit) {
         abstractMethodFail('get');
     }
@@ -112,6 +113,7 @@ export class TemporalAmount {
      * @throws DateTimeException if unable to add
      * @throws ArithmeticException if numeric overflow occurs
      */
+    // eslint-disable-next-line no-unused-vars
     addTo(temporal) {
         abstractMethodFail('addTo');
     }
@@ -156,6 +158,7 @@ export class TemporalAmount {
      * @throws DateTimeException if unable to subtract
      * @throws ArithmeticException if numeric overflow occurs
      */
+    // eslint-disable-next-line no-unused-vars
     subtractFrom(temporal) {
         abstractMethodFail('subtractFrom');
     }

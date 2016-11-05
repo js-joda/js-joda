@@ -88,6 +88,7 @@ export class TemporalUnit {
      * @param {Temporal} temporal  the temporal object to check, not null
      * @return {boolean} true if the unit is supported
      */
+    // eslint-disable-next-line no-unused-vars
     isSupportedBy(temporal) {
         abstractMethodFail('isSupportedBy');
     }
@@ -124,6 +125,7 @@ export class TemporalUnit {
      * @return {Temporal} the adjusted temporal object, not null
      * @throws DateTimeException if the period cannot be added
      */
+    // eslint-disable-next-line no-unused-vars
     addTo(dateTime, periodToAdd) {
         abstractMethodFail('addTo');
     }
@@ -170,6 +172,7 @@ export class TemporalUnit {
      * @throws DateTimeException if the period cannot be calculated
      * @throws ArithmeticException if numeric overflow occurs
      */
+    // eslint-disable-next-line no-unused-vars
     between(temporal1, temporal2) {
         abstractMethodFail('between');
     }

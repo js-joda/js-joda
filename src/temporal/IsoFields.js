@@ -155,14 +155,6 @@ class Field extends TemporalField{
 
     /**
      *
-     * @returns {TemporalAccessor}
-     */
-    resolve() {
-        return null;
-    }
-
-    /**
-     *
      * @returns {boolean}
      */
     isDateBased() {
@@ -467,6 +459,7 @@ class QUARTER_OF_YEAR_FIELD extends Field {
      * @param {TemporalAccessor} temporal
      * @returns {ValueRange}
      */
+    //eslint-disable-next-line no-unused-vars
     rangeRefinedBy(temporal) {
         return this.range();
     }
@@ -680,6 +673,7 @@ class WEEK_BASED_YEAR_FIELD extends Field {
      * @param {TemporalAccessor} temporal
      * @returns {ValueRange}
      */
+    //eslint-disable-next-line no-unused-vars
     rangeRefinedBy(temporal) {
         return ChronoField.YEAR.range();
     }

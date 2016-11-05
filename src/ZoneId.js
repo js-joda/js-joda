@@ -17,7 +17,7 @@ export class ZoneId {
      * This ID uniquely defines this object.
      * The format of an offset based ID is defined by {@link ZoneOffset#getId()}.
      *
-     * @return the time-zone unique ID, not null
+     * @return {String} the time-zone unique ID, not null
      */
     id(){
         abstractMethodFail('ZoneId.id');

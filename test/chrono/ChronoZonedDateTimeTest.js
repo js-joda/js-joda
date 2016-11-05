@@ -12,7 +12,6 @@ import {ChronoZonedDateTime} from '../../src/chrono/ChronoZonedDateTime';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {TemporalQuery} from '../../src/temporal/TemporalQuery';
-import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
 /* these are not covered by the threetenbp ported tests */

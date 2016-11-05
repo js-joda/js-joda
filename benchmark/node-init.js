@@ -1,3 +1,4 @@
+/* eslint-disable no-console, no-undef */
 //global.JSJoda = require('../dist/js-joda');
 global.JSJoda = require('js-joda');
 global.moment = require('moment');

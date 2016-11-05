@@ -100,10 +100,12 @@ describe('org.threeten.bp.TestMonth', () => {
 
     describe.skip('getDisplayName()', () => {
         it('test_ggetDisplayName', () => {
+            //eslint-disable-next-line no-undef
             expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql('Jan');
         });
         it('test_getDisplayName_nullStyle', () => {
             expect(() => {
+                //eslint-disable-next-line no-undef
                 Month.JANUARY.getDisplayName(null, Locale.US);
             }).to.throw(DateTimeException); //NullPointerException in JDK
         });

@@ -1,5 +1,6 @@
 // log it
 function log(msg){
+    // eslint-disable-next-line no-console
     console.log(msg);
     document.getElementById('result').textContent += msg + '\n';
 }
@@ -23,7 +24,7 @@ function next(suite){
     }
 }
 
-
+//eslint-disable-next-line no-unused-vars
 function addSuite(suite){
     // add listeners
     suite.on('cycle', function(event) {
