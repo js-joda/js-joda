@@ -32,7 +32,6 @@ script:
       (
       set -evx;
       npm run test;
-      npm run test-ts-definitions;
       npm run test-coverage;
       )
     fi
