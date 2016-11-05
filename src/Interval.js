@@ -2,7 +2,7 @@ import {Duration, Instant} from 'js-joda';
 
 //TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, DateTimeParseException} from './errors';
+import {DateTimeException} from './errors';
 
 /**
  * An immutable interval of time between two instants.
@@ -30,8 +30,9 @@ export class Interval {
      *
      * Otherwise {@link Interval.ofInstantDuration} is executed.
      *
-     * @param {!(ZoneId|Clock)} zoneIdOrClock
-     * @returns {Year}
+     * @param {!(Instant)} startInstant
+     * @param {!(Instant|Duration)} endInstantOrDuration
+     * @returns {Interval}
      */
     static of(startInstant, endInstantOrDuration) {
         if (endInstantOrDuration instanceof Duration) {
