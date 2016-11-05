@@ -58,4 +58,4 @@ after_script:
 notifications:
   slack:
     rooms:
-      - js-joda:WtVY1EJYfAiiDW3QMnAWJZe2#travis
+#      - js-joda:WtVY1EJYfAiiDW3QMnAWJZe2#travis
