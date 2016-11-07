@@ -1,5 +1,5 @@
 if(typeof require === 'function') { require('../node-init'); }
-
+/* eslint-disable no-undef */
 (function() {
     var d1 = '2015-12-24';
     var d2 = '2016-12-24';

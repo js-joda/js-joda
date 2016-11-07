@@ -101,7 +101,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(test.largestMinimum(), lMin);
             assertEquals(test.smallestMaximum(), sMax);
             assertEquals(test.maximum(), lMax);
-            assertEquals(test.isFixed(), sMin == lMin && sMax == lMax);
+            assertEquals(test.isFixed(), sMin === lMin && sMax === lMax);
             assertEquals(test.isIntValue(), true);
         }
     
@@ -210,7 +210,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(ValueRange.of(1, 2, 4, 4).toString(), '1/2 - 4');
         });
 
-	});
+    });
 
 });
 

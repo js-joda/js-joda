@@ -80,7 +80,7 @@ export class DecimalStyle {
         }
         if (other instanceof DecimalStyle) {
             return (this._zeroDigit === other._zeroDigit && this._positiveSign === other._positiveSign &&
-                this._negativeSign === other._negativeSign && this._decimalSeparator == other._decimalSeparator);
+                this._negativeSign === other._negativeSign && this._decimalSeparator === other._decimalSeparator);
         }
         return false;
     }

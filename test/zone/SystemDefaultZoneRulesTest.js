@@ -80,6 +80,7 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
     });
 
     it('manual daylight savings scan', function () {
+        // eslint-disable-next-line no-unused-vars
         var logResult = '';
 
         // CET transition

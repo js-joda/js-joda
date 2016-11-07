@@ -1,5 +1,5 @@
 if(typeof require === 'function') { require('../node-init'); }
-
+/* eslint-disable no-undef */
 (function() {
     var dateStr = '2015-12-24T12:00';
     var dt = JSJoda.LocalDateTime.parse(dateStr);

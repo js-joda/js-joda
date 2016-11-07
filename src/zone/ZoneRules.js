@@ -61,6 +61,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     offsetOfInstant(instant){
         abstractMethodFail('ZoneRules.offsetInstant');
     }
@@ -74,6 +75,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     offsetOfEpochMilli(epochMilli){
         abstractMethodFail('ZoneRules.offsetOfEpochMilli');
     }
@@ -107,6 +109,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the best available offset for the local date-time, not null
      */
+    // eslint-disable-next-line no-unused-vars
     offsetOfLocalDateTime(localDateTime){
         abstractMethodFail('ZoneRules.offsetLocalDateTime');
     }
@@ -153,6 +156,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset[]} the list of valid offsets, may be immutable, not null
      */
+    // eslint-disable-next-line no-unused-vars
     validOffsets(localDateTime){
         abstractMethodFail('ZoneRules.validOffsets');
     }
@@ -191,6 +195,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the offset transition, null if the local date-time is not in transition
      */
+    // eslint-disable-next-line no-unused-vars
     transition(localDateTime){
         abstractMethodFail('ZoneRules.transition');
     }
@@ -208,6 +213,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the standard offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     standardOffset(instant){
         abstractMethodFail('ZoneRules.standardOffset');
     }
@@ -225,6 +231,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {Duration} the difference between the standard and actual offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     daylightSavings(instant){
         abstractMethodFail('ZoneRules.daylightSavings');
         //    default {
@@ -243,6 +250,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {boolean} the standard offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     isDaylightSavings(instant) {
         abstractMethodFail('ZoneRules.isDaylightSavings');
         //    default {
@@ -261,6 +269,7 @@ export class ZoneRules {
      * @param {ZoneOffset} offset - the offset to check, null returns false
      * @return {boolean} true if the offset date-time is valid for these rules
      */
+    // eslint-disable-next-line no-unused-vars
     isValidOffset(localDateTime, offset){
         abstractMethodFail('ZoneRules.isValidOffset');
     }
@@ -277,6 +286,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the next transition after the specified instant, null if this is after the last transition
      */
+    // eslint-disable-next-line no-unused-vars
     nextTransition(instant){
         abstractMethodFail('ZoneRules.nextTransition');
     }
@@ -292,6 +302,7 @@ export class ZoneRules {
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the previous transition after the specified instant, null if this is before the first transition
      */
+    // eslint-disable-next-line no-unused-vars
     previousTransition(instant){
         abstractMethodFail('ZoneRules.previousTransition');
     }

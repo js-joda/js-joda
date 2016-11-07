@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../testUtils';
+import {dataProviderTest} from '../testUtils';
 
 import '../_init';
 

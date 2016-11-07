@@ -1,5 +1,5 @@
 if(typeof require === 'function') { require('../node-init'); }
-
+/* eslint-disable no-undef, no-unused-vars */
 (function() {
     var instantDateStr = '2015-12-24T16:30:00Z';
     var dateStr = '2015-12-24';
