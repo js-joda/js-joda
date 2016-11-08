@@ -11,6 +11,7 @@ npm-debug.log
 esdoc.json
 karma.conf.js
 webpack.config.js
+yarn.lock
 .*
 
 # build output
