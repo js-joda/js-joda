@@ -32,9 +32,7 @@ import {ZoneOffset} from './ZoneOffset';
  * The {@link system} factory methods provide clocks based on the best available
  * system clock This may use {@link System#currentTimeMillis}, or a higher
  * resolution clock if one is available.
- */
-
-/**
+ *
  * The javascript Clock implementation differs from the openjdk.
  *
  * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.
