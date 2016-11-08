@@ -32,7 +32,7 @@ export class ChronoZonedDateTime  extends Temporal {
     }
 
     /**
-     * Outputs this date-time as a {@link String} using the formatter.
+     * Outputs this date-time as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter - the formatter to use, not null
      * @return {string} the formatted date-time string, not null

@@ -1678,7 +1678,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this date-time as a {@link String}, such as `2007-12-03T10:15:30`.
+     * Outputs this date-time as a string, such as `2007-12-03T10:15:30`.
      * <p>
      * The output will be one of the following ISO-8601 formats:
      * <p><ul>
@@ -1706,7 +1706,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     }
 
     /**
-     * Outputs this date-time as a {@link String} using the formatter.
+     * Outputs this date-time as a string using the formatter.
      *
      * @param {!DateTimeFormatter} formatter  the formatter to use, not null
      * @return {String} the formatted date-time string, not null

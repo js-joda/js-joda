@@ -1307,7 +1307,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this time as a {@link String}, such as `10:15`.
+     * Outputs this time as a string, such as `10:15`.
      * <p>
      * The output will be one of the following ISO-8601 formats:
      * <p><ul>
@@ -1358,7 +1358,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * Outputs this time as a {@link String} using the formatter.
+     * Outputs this time as a string using the formatter.
      *
      * @param {DateTineFormatter} formatter - the formatter to use, not null
      * @return {string} the formatted time string, not null

@@ -103,7 +103,7 @@ export class ZoneId {
 
      //-----------------------------------------------------------------------
      /**
-      * Outputs this zone as a {@link String}, using the ID.
+      * Outputs this zone as a string, using the ID.
       *
       * @return {string} a string representation of this time-zone ID, not null
       */

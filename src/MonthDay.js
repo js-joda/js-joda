@@ -672,7 +672,7 @@ export class MonthDay extends Temporal {
     }
     //-----------------------------------------------------------------------
     /**
-     * Outputs this month-day as a {@link String}, such as `--12-03`.
+     * Outputs this month-day as a string, such as `--12-03`.
      * <p>
      * The output will be in the format `--MM-dd`:
      *
@@ -685,7 +685,7 @@ export class MonthDay extends Temporal {
     }
 
     /**
-     * Outputs this month-day as a {@link String} using the formatter.
+     * Outputs this month-day as a string using the formatter.
      * <p>
      * This month-day will be passed to the formatter
      * print method (see {@link DateTimeFormatter#format}).

@@ -886,7 +886,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this period as a {@link String}, such as {@link P6Y3M1D}.
+     * Outputs this period as a string, such as {@link P6Y3M1D}.
      * <p>
      * The output will be in the ISO-8601 period format.
      * A zero period will be represented as zero days, 'P0D'.

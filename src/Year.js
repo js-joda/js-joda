@@ -933,7 +933,7 @@ export class Year extends Temporal {
         return this._year < other._year;
     }
     /**
-     * Outputs this year as a {@link String} using the formatter.
+     * Outputs this year as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter  the formatter to use, not null
      * @return {String} the formatted year string, not null
@@ -963,7 +963,7 @@ export class Year extends Temporal {
         return false;
     }
     /**
-     * Outputs this year as a {@link String}.
+     * Outputs this year as a string.
      *
      * @return {String} a string representation of this year, not null
      */

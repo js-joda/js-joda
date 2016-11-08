@@ -2007,7 +2007,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this date-time as a {@link String}, such as
+     * Outputs this date-time as a string, such as
      * `2007-12-03T10:15:30+01:00[Europe/Paris]`.
      * <p>
      * The format consists of the {@link LocalDateTime} followed by the {@link ZoneOffset}.
@@ -2033,7 +2033,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     }
 
     /**
-     * Outputs this date-time as a {@link String} using the formatter.
+     * Outputs this date-time as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter  the formatter to use, not null
      * @return {string} the formatted date-time string, not null

@@ -617,7 +617,7 @@ export class LocalDate extends ChronoLocalDate{
      * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster
      * and {@link LocalDate.withTemporalAdjuster} is called.
      *
-     * Otherwise a TemporalField and {@link Number} newValue argument is expected and
+     * Otherwise a TemporalField and newValue argument is expected and
      * {@link LocalDate.withFieldAndValue} is called.
      *
      * @param {!(TemporalAdjuster|TemporalField)} fieldOrAdjuster
@@ -1722,7 +1722,7 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * Outputs this date as a {@link String} using the formatter.
+     * Outputs this date as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter  the formatter to use, not null
      * @return {String} the formatted date string, not null

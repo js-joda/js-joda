@@ -1103,7 +1103,7 @@ export class YearMonth extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this year-month as a {@link String}, such as `2007-12`.
+     * Outputs this year-month as a string, such as `2007-12`.
      * <p>
      * The output will be in the format {@link yyyy-MM}:
      *
@@ -1114,7 +1114,7 @@ export class YearMonth extends Temporal {
     }
 
     /**
-     * Outputs this year-month as a {@link String} using the formatter.
+     * Outputs this year-month as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter  the formatter to use, not null
      * @return {String} the formatted year-month string, not null
