@@ -40,6 +40,11 @@ module.exports = function(config) {
         },
     };
     
+    var webpackConfig = require('./webpack.config.js');
+    // for the karma test runs, we don't want to have any externals,
+    // especially js-joda should be included!
+    webpackConfig.externals = undefined;
+    
     config.set({
         files: [
             {pattern: 'test/karmaWebpackTestEntry.js'}
@@ -51,7 +56,7 @@ module.exports = function(config) {
         preprocessors: {
             'test/karmaWebpackTestEntry.js': ['webpack']
         },
-        webpack: require('./webpack.config.js'),
+        webpack: webpackConfig,
         webpackMiddleware: {
             noInfo: true
         },
