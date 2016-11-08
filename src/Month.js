@@ -22,10 +22,10 @@ import {TemporalQueries} from './temporal/TemporalQueries';
  * January, February, March, April, May, June, July, August, September, October,
  * November and December.
  * <p>
- * In addition to the textual name, each month-of-year has an {@code int} value.
- * The {@code int} value follows normal usage and the ISO-8601 standard,
+ * In addition to the textual name, each month-of-year has an `int` value.
+ * The `int` value follows normal usage and the ISO-8601 standard,
  * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
- * rather than the {@code int} value to ensure code clarity.
+ * rather than the `int` value to ensure code clarity.
  * <p>
  * This class represents a common concept that is found in many calendar systems.
  * As such, this class may be used by any calendar system that has the month-of-year
@@ -62,7 +62,7 @@ export class Month extends Temporal {
      * This returns the textual name used to identify the month-of-year.
      * The parameters control the length of the returned text and the locale.
      * <p>
-     * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
+     * If no textual mapping is found then the numeric value (see {@link getValue}) is returned.
      *
      * @param {TextStyle} style - the length of the text required, not null
      * @param {Locale} locale - the locale to use, not null
@@ -79,16 +79,16 @@ export class Month extends Temporal {
      * Checks if the specified field is supported.
      * <p>
      * This checks if this month-of-year can be queried for the specified field.
-     * If false, then calling the {@link #range(TemporalField) range} and
-     * {@link #get(TemporalField) get} methods will throw an exception.
+     * If false, then calling the range (see {@link range}) and
+     * get (see {@link get}) methods will throw an exception.
      * <p>
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then
      * this method returns true.
-     * All other {@code ChronoField} instances will return false.
+     * All other {@link ChronoField} instances will return false.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
      * @param {TemporalField} field - the field to check, null returns false
@@ -105,20 +105,20 @@ export class Month extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this month-of-year as an {@code int}.
+     * Gets the value of the specified field from this month-of-year as an `int`.
      * <p>
      * This queries this month for the value of the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
      * <p>
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
-     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -126,7 +126,7 @@ export class Month extends Temporal {
      * @throws DateTimeException if a value for the field cannot be obtained or
      *         the value is outside the range of valid values for the field
      * @throws UnsupportedTemporalTypeException if the field is not supported or
-     *         the range of values exceeds an {@code int}
+     *         the range of values exceeds an `int`
      * @throws ArithmeticException if numeric overflow occurs
      */
     get(field) {
@@ -137,19 +137,19 @@ export class Month extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this month-of-year as a {@code long}.
+     * Gets the value of the specified field from this month-of-year as a `long`.
      * <p>
      * This queries this month for the value of the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
      * <p>
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
-     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -351,13 +351,13 @@ export class Month extends Temporal {
      * Queries this month-of-year using the specified query.
      * <p>
      * This queries this month-of-year using the specified query strategy object.
-     * The {@code TemporalQuery} object defines the logic to be used to
+     * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
      * <p>
      * The result of this method is obtained by invoking the
-     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-     * specified query passing {@code this} as the argument.
+     * {@link TemporalQuery#queryFrom} method on the
+     * specified query passing `this` as the argument.
      *
      * @param {TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
@@ -418,13 +418,13 @@ export class Month extends Temporal {
      * This returns a temporal object of the same observable type as the input
      * with the month-of-year changed to be the same as this.
      * <p>
-     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     * The adjustment is equivalent to using {@link Temporal#with}
      * passing {@link ChronoField#MONTH_OF_YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
-     * a {@code DateTimeException} is thrown.
+     * a {@link DateTimeException} is thrown.
      * <p>
      * In most cases, it is clearer to reverse the calling pattern by using
-     * {@link Temporal#with(TemporalAdjuster)}:
+     * {@link Temporal#with}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisMonth.adjustInto(temporal);
@@ -477,22 +477,22 @@ export class Month extends Temporal {
     }
     
     /**
-     * Obtains an instance of {@code Month} from a temporal object.
+     * Obtains an instance of {@link Month} from a temporal object.
      * <p>
      * This obtains a month based on the specified temporal.
-     * A {@code TemporalAccessor} represents an arbitrary set of date and time information,
-     * which this factory converts to an instance of {@code Month}.
+     * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
+     * which this factory converts to an instance of {@link Month}.
      * <p>
-     * The conversion extracts the {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} field.
+     * The conversion extracts the MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) field.
      * The extraction is only permitted if the temporal object has an ISO
-     * chronology, or can be converted to a {@code LocalDate}.
+     * chronology, or can be converted to a {@link LocalDate}.
      * <p>
      * This method matches the signature of the functional interface {@link TemporalQuery}
-     * allowing it to be used in queries via method reference, {@code Month::from}.
+     * allowing it to be used in queries via method reference, {@link Month::from}.
      *
      * @param {TemporalAccessor} temporal  the temporal object to convert, not null
      * @return {Month} the month-of-year, not null
-     * @throws DateTimeException if unable to convert to a {@code Month}
+     * @throws DateTimeException if unable to convert to a {@link Month}
      */
     static from(temporal) {
         if (temporal instanceof Month) {

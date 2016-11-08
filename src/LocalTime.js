@@ -24,7 +24,7 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
 
 /**
  * A time without time-zone in the ISO-8601 calendar system,
- * such as {@code 10:15:30}.
+ * such as `10:15:30`.
  * <p>
  * {@link LocalTime} is an immutable date-time object that represents a time,
  * often viewed as hour-minute-second.
@@ -111,13 +111,13 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  */
 export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuster */ {
     /**
-     * Obtains the current time from the specified clock. 
-     * If no argument is specified the system default clock is queried, 
+     * Obtains the current time from the specified clock.
+     * If no argument is specified the system default clock is queried,
      * if a zone-id is passed a system clock with the specified zone is queried.
      * <p>
      * This will query the specified clock to obtain the current time.
      * Using this method allows the use of an alternate clock for testing.
-     * The alternate clock may be introduced using {@link Clock dependency injection}.
+     * The alternate clock may be introduced using dependency injection.
      *
      * @param {Clock|ZoneId} clockOrZone - the zone ID or clock to use, if null Clock.systemDefaultZone() is used.
      * @return {LocalDateTime} the current time using the system clock, not null
@@ -137,7 +137,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * <p>
      * This will query the specified clock to obtain the current time.
      * Using this method allows the use of an alternate clock for testing.
-     * The alternate clock may be introduced using {@link Clock dependency injection}.
+     * The alternate clock may be introduced using dependency injection (see {@link Clock}).
      *
      * @param {Clock} [clock=Clock.systemDefaultZone()] - the clock to use, not null
      * @return {LocalTime} the current time, not null
@@ -187,8 +187,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * <p>
      * This factory may return a cached value, but applications must not rely on this.
      *
-     * @param {number} [secondOfDay=0] - the second-of-day, from {@code 0} to {@code 24 * 60 * 60 - 1}
-     * @param {number} [nanoOfSecond=0] - the nano-of-second, from 0 to 999,999,999
+     * @param {number} [secondOfDay=0] - the second-of-day, from `0` to `24 * 60 * 60 - 1`
+     * @param {number} [nanoOfSecond=0] - the nano-of-second, from `0` to `999,999,999`
      * @return {LocalTime} the local time, not null
      * @throws {DateTimeException} if the either input value is invalid
      */
@@ -201,13 +201,13 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         secondOfDay -= minutes * LocalTime.SECONDS_PER_MINUTE;
         return new LocalTime(hours, minutes, secondOfDay, nanoOfSecond);
     }
-    
+
     /**
      * Obtains an instance of {@link LocalTime} from a nanos-of-day value.
      * <p>
      * This factory may return a cached value, but applications must not rely on this.
      *
-     * @param {number} [nanoOfDay=0] - the nano of day, from {@code 0} to {@code 24 * 60 * 60 * 1,000,000,000 - 1}
+     * @param {number} [nanoOfDay=0] - the nano of day, from `0` to `24 * 60 * 60 * 1,000,000,000 - 1`
      * @return {LocalTime} the local time, not null
      * @throws {DateTimeException} if the nanos of day value is invalid
      */
@@ -229,8 +229,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * A {@link TemporalAccessor} represents some form of date and time information.
      * This factory converts the arbitrary temporal object to an instance of {@link LocalTime}.
      * <p>
-     * The conversion uses the {@link TemporalQueries#localTime()} query, which relies
-     * on extracting the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY} field.
+     * The conversion uses the {@link TemporalQueries#localTime} query, which relies
+     * on extracting {@link ChronoField#NANO_OF_DAY}.
      * <p>
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link LocalTime::from}.
@@ -288,15 +288,14 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         ChronoField.MINUTE_OF_HOUR.checkValidValue(minute);
         ChronoField.SECOND_OF_MINUTE.checkValidValue(second);
         ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
-        
+
     }
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
      * <p>
      * This checks if this time can be queried for the specified field.
-     * If false, then calling the {@link #range(TemporalField) range} and
-     * {@link #get(TemporalField) get} methods will throw an exception.
+     * If false, then calling {@link range} and {@link get} will throw an exception.
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
@@ -345,12 +344,12 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * or for some other reason, an exception is thrown.
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return
+     * The supported fields (see {@link isSupported}) will return
      * appropriate range instances.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
      * If the field is not a {@link ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
+     * is obtained by invoking {@link TemporalField.rangeRefinedBy}
      * passing this as the argument.
      * Whether the range can be obtained is determined by the field.
      *
@@ -364,7 +363,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * Gets the value of the specified field from this time as an {@code int}.
+     * Gets the value of the specified field from this time as an `int`.
      * <p>
      * This queries this time for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
@@ -372,9 +371,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * or for some other reason, an exception is thrown.
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * The supported fields (see {@link isSupported}) will return valid
      * values based on this time, except {@link ChronoField.NANO_OF_DAY} and {@link ChronoField.MICRO_OF_DAY}
-     * which are too large to fit in an {@code int} and throw a {@link DateTimeException}.
+     * which are too large to fit in an `int` and throw a {@link DateTimeException}.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
      * If the field is not a {@link ChronoField}, then the result of this method
@@ -392,14 +391,14 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * Gets the value of the specified field from this time as a {@code long}.
+     * Gets the value of the specified field from this time as a `long`.
      * <p>
      * This queries this time for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
      * <p>
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * The supported fields (see {@link isSupported}) will return valid
      * values based on this time.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
      * <p>
@@ -422,7 +421,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * 
+     *
      * @param {ChronoField} field
      * @returns {number}
      * @private
@@ -487,7 +486,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
 
     /**
      * function overloading for {@link LocalDate.with}
-     * 
+     *
      * if called with 1 (or less) arguments {@link LocalTime.withTemporalAdjuster} is called.
      * Otherwise {@link LocalTime.with2} is called.
      *
@@ -551,14 +550,14 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *  The hour, minute and second will be unchanged.
      * <li>{@link ChronoField.NANO_OF_DAY} -
      *  Returns a {@link LocalTime} with the specified nano-of-day.
-     *  This completely replaces the time and is equivalent to {@link #ofNanoOfDay(long)}.
+     *  This completely replaces the time and is equivalent to {@link ofNanoOfDay}.
      * <li>{@link ChronoField.MICRO_OF_SECOND} -
      *  Returns a {@link LocalTime} with the nano-of-second replaced by the specified
      *  micro-of-second multiplied by 1,000.
      *  The hour, minute and second will be unchanged.
      * <li>{@link ChronoField.MICRO_OF_DAY} -
      *  Returns a {@link LocalTime} with the specified micro-of-day.
-     *  This completely replaces the time and is equivalent to using {@link #ofNanoOfDay(long)}
+     *  This completely replaces the time and is equivalent to using {@link ofNanoOfDay}
      *  with the micro-of-day multiplied by 1,000.
      * <li>{@link ChronoField.MILLI_OF_SECOND} -
      *  Returns a {@link LocalTime} with the nano-of-second replaced by the specified
@@ -566,7 +565,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *  The hour, minute and second will be unchanged.
      * <li>{@link ChronoField.MILLI_OF_DAY} -
      *  Returns a {@link LocalTime} with the specified milli-of-day.
-     *  This completely replaces the time and is equivalent to using {@link #ofNanoOfDay(long)}
+     *  This completely replaces the time and is equivalent to using {@link ofNanoOfDay}
      *  with the milli-of-day multiplied by 1,000,000.
      * <li>{@link ChronoField.SECOND_OF_MINUTE} -
      *  Returns a {@link LocalTime} with the specified second-of-minute.
@@ -716,7 +715,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * For example, truncating with the {@link ChronoUnit.MINUTES} minutes unit
      * will set the second-of-minute and nano-of-second field to zero.
      * <p>
-     * The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+     * The unit must have a duration (see {@link TemporalUnit#getDuration})
      * that divides into the length of a standard day without remainder.
      * This includes all supplied time units on {@link ChronoUnit} and
      * {@link ChronoUnit.DAYS}. Other units throw an exception.
@@ -771,7 +770,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The amount is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link #plus(long, TemporalUnit)}.
+     * back to {@link plus}.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
@@ -943,7 +942,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The amount is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link #minus(long, TemporalUnit)}.
+     * back to {@link minus}.
      * <p>
      * This instance is immutable and unaffected by this method call.
      *
@@ -1049,7 +1048,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * what the result of this method will be.
      * <p>
      * The result of this method is obtained by invoking the
-     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
+     * {@link TemporalQuery#queryFrom} method on the
      * specified query passing this as the argument.
      *
      * @param {TemporalQuery} query - the query to invoke, not null
@@ -1110,7 +1109,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The result will be negative if the end is before the start.
      * The {@link Temporal} passed to this method must be a {@link LocalTime}.
      * For example, the period in hours between two times can be calculated
-     * using {@code startTime.until(endTime, HOURS)}.
+     * using {@link startTime.until}.
      * <p>
      * The calculation returns a whole number, representing the number of
      * complete units between the two times.
@@ -1118,8 +1117,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * be one hour as it is one minute short of two hours.
      * <p>
      * This method operates in association with {@link TemporalUnit.between}.
-     * The result of this method is a {@code long} representing the amount of
-     * the specified unit. By contrast, the result of {@code between} is an
+     * The result of this method is a `long` representing the amount of
+     * the specified unit. By contrast, the result of {@link between} is an
      * object that can be used directly in addition/subtraction:
      * <pre>
      *   long period = start.until(end, HOURS);   // this method
@@ -1195,8 +1194,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
 
     //-----------------------------------------------------------------------
     /**
-     * Extracts the time as seconds of day,
-     * from {@code 0} to {@code 24 * 60 * 60 - 1}.
+     * Extracts the time as seconds of day, from `0` to `24 * 60 * 60 - 1`.
      *
      * @return {number} the second-of-day equivalent to this time
      */
@@ -1208,8 +1206,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * Extracts the time as nanos of day,
-     * from {@code 0} to {@code 24 * 60 * 60 * 1,000,000,000 - 1}.
+     * Extracts the time as nanos of day, from `0` to `24 * 60 * 60 * 1,000,000,000 - 1`.
      *
      * @return {number} the nano of day equivalent to this time
      */
@@ -1230,7 +1227,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *
      * @param {LocalTime} other - the other time to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
-     * @throws {NullPointerException} if {@code other} is null
+     * @throws {NullPointerException} if `other` is null
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -1255,7 +1252,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *
      * @param {LocalTime} other - the other time to compare to, not null
      * @return {boolean}true if this is after the specified time
-     * @throws {NullPointerException} if {@code other} is null
+     * @throws {NullPointerException} if `other` is null
      */
     isAfter(other) {
         return this.compareTo(other) > 0;
@@ -1268,7 +1265,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *
      * @param {LocalTime} other - the other time to compare to, not null
      * @return {boolean}true if this point is before the specified time
-     * @throws {NullPointerException} if {@code other} is null
+     * @throws {NullPointerException} if `other` is null
      */
     isBefore(other) {
         return this.compareTo(other) < 0;
@@ -1310,15 +1307,15 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this time as a {@link String}, such as {@code 10:15}.
+     * Outputs this time as a {@link String}, such as `10:15`.
      * <p>
      * The output will be one of the following ISO-8601 formats:
      * <p><ul>
-     * <li>{@code HH:mm}</li>
-     * <li>{@code HH:mm:ss}</li>
-     * <li>{@code HH:mm:ss.SSS}</li>
-     * <li>{@code HH:mm:ss.SSSSSS}</li>
-     * <li>{@code HH:mm:ss.SSSSSSSSS}</li>
+     * <li>{@link HH:mm}</li>
+     * <li>{@link HH:mm:ss}</li>
+     * <li>{@link HH:mm:ss.SSS}</li>
+     * <li>{@link HH:mm:ss.SSSSSS}</li>
+     * <li>{@link HH:mm:ss.SSSSSSSSS}</li>
      * </ul><p>
      * The format used will be the shortest that outputs the full value of
      * the time where the omitted parts are implied to be zero.
@@ -1359,12 +1356,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     toJSON() {
         return this.toString();
     }
-    
+
     /**
      * Outputs this time as a {@link String} using the formatter.
-     * <p>
-     * This time will be passed to the formatter
-     * {@link DateTimeFormatter#format(TemporalAccessor) print method}.
      *
      * @param {DateTineFormatter} formatter - the formatter to use, not null
      * @return {string} the formatted time string, not null

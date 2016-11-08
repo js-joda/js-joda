@@ -29,10 +29,10 @@ import {Period} from '../Period';
  * The builder is used to hold onto different elements of date and time.
  * It is designed as two separate maps:
  * <p><ul>
- * <li>from {@link TemporalField} to {@code long} value, where the value may be
+ * <li>from {@link TemporalField} to `long` value, where the value may be
  * outside the valid range for the field
- * <li>from {@code Class} to {@link TemporalAccessor}, holding larger scale objects
- * like {@code LocalDateTime}.
+ * <li>from {@link Class} to {@link TemporalAccessor}, holding larger scale objects
+ * like {@link LocalDateTime}.
  * </ul><p>
  *
  */
@@ -41,7 +41,7 @@ export class DateTimeBuilder extends Temporal {
     /**
      * Creates a new instance of the builder with a single field-value.
      * <p>
-     * This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an empty builder.
+     * This is equivalent to using {@link addFieldValue} on an empty builder.
      *
      * @param {TemporalField} field - the field to add, not null
      * @param {number} value - the value to add, not null
@@ -88,7 +88,7 @@ export class DateTimeBuilder extends Temporal {
     }
 
     /**
-     * 
+     *
      * @param {TemporalField} field
      * @return {Number} field value
      */
@@ -345,7 +345,7 @@ export class DateTimeBuilder extends Temporal {
     }
 
     /**
-     * 
+     *
      * @param {ResolverStyle} resolverStyle
      * @private
      */
@@ -452,7 +452,7 @@ export class DateTimeBuilder extends Temporal {
      * This attempts to build the specified type from this builder.
      * If the builder cannot return the type, an exception is thrown.
      *
-     * @param {!TemporalQuery} type - the type to invoke {@code from} on, not null
+     * @param {!TemporalQuery} type - the type to invoke `from` on, not null
      * @return {*} the extracted value, not null
      * @throws DateTimeException if an error occurs
      */
@@ -519,4 +519,3 @@ export class DateTimeBuilder extends Temporal {
     }
 
 }
-

@@ -38,9 +38,9 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * <p>
  * The complete date is expressed using three fields:
  * <p><ul>
- * <li>{@link #DAY_OF_QUARTER DAY_OF_QUARTER} - the day within the quarter, from 1 to 90, 91 or 92
- * <li>{@link #QUARTER_OF_YEAR QUARTER_OF_YEAR} - the week within the week-based-year
- * <li>{@link ChronoField#YEAR YEAR} - the standard ISO year
+ * <li>{@link DAY_OF_QUARTER} - the day within the quarter, from 1 to 90, 91 or 92
+ * <li>{@link QUARTER_OF_YEAR} - the week within the week-based-year
+ * <li>{@link ChronoField#YEAR} - the standard ISO year
  * </ul><p>
  *
  * <h3>Week based years</h3>
@@ -50,10 +50,10 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * <p>
  * The date is expressed using three fields:
  * <p><ul>
- * <li>{@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} - the standard field defining the
- *  day-of-week from Monday (1) to Sunday (7)
- * <li>{@link #WEEK_OF_WEEK_BASED_YEAR} - the week within the week-based-year
- * <li>{@link #WEEK_BASED_YEAR WEEK_BASED_YEAR} - the week-based-year
+ * <li>{@link ChronoField#DAY_OF_WEEK} - the standard field defining the
+ * day-of-week from Monday (1) to Sunday (7)
+ * <li>{@link WEEK_OF_WEEK_BASED_YEAR} - the week within the week-based-year
+ * <li>{@link WEEK_BASED_YEAR} - the week-based-year
  * </ul><p>
  * The week-based-year itself is defined relative to the standard ISO proleptic year.
  * It differs from the standard year in that it always starts on a Monday.
@@ -129,7 +129,7 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * This allows a number of week-based-years to be added to, or subtracted from, a date.
  * The unit is equal to either 52 or 53 weeks.
  * The estimated duration of a week-based-year is the same as that of a standard ISO
- * year at {@code 365.2425 Days}.
+ * year at 365.2425 days.
  * <p>
  * The rules for addition add the number of week-based-years to the existing value
  * for the week-based-year field. If the resulting week-based-year only has 52 weeks,
@@ -139,7 +139,7 @@ import {ResolverStyle} from '../format/ResolverStyle';
  *
  * Unit that represents the concept of a quarter-year.
  * For the ISO calendar system, it is equal to 3 months.
- * The estimated duration of a quarter-year is one quarter of {@code 365.2425 Days}.
+ * The estimated duration of a quarter-year is one quarter of 365.2425 days.
  */
 export class IsoFields {
 }
@@ -836,7 +836,7 @@ export function _init() {
     IsoFields.WEEK_BASED_YEAR = WEEK_BASED_YEAR;
     IsoFields.WEEK_BASED_YEARS = WEEK_BASED_YEARS;
     IsoFields.QUARTER_YEARS = QUARTER_YEARS;
-    
+
     // this differs from threeten, but for ease of use we bring back good old joda time functionality
     /**
      * the week of the week based year as defined by the ISO8601 Standard with a Monday-based week
@@ -855,4 +855,3 @@ export function _init() {
         return this.get(IsoFields.WEEK_BASED_YEAR);
     };
 }
-

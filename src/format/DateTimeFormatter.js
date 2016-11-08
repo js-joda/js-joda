@@ -40,28 +40,28 @@ export class DateTimeFormatter {
     /**
      * A query that provides access to the excess days that were parsed.
      * <p>
-     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     * This returns a singleton {@link TemporalQuery} that provides
      * access to additional information from the parse. The query always returns
      * a non-null period, with a zero period returned instead of null.
      * <p>
      * There are two situations where this query may return a non-zero period.
      * <ul>
-     * <li>If the {@code ResolverStyle} is {@code LENIENT} and a time is parsed
+     * <li>If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed
      *  without a date, then the complete result of the parse consists of a
-     *  {@code LocalTime} and an excess {@code Period} in days.
+     *  {@link LocalTime} and an excess {@link Period} in days.
      *
-     * <li>If the {@code ResolverStyle} is {@code SMART} and a time is parsed
+     * <li>If the {@link ResolverStyle} is {@link SMART} and a time is parsed
      *  without a date where the time is 24:00:00, then the complete result of
-     *  the parse consists of a {@code LocalTime} of 00:00:00 and an excess
-     *  {@code Period} of one day.
+     *  the parse consists of a {@link LocalTime} of 00:00:00 and an excess
+     *  {@link Period} of one day.
      * </ul>
      * <p>
-     * In both cases, if a complete {@code ChronoLocalDateTime} or {@code Instant}
+     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}
      * is parsed, then the excess days are added to the date part.
      * As a result, this query will return a zero period.
      * <p>
-     * The {@code SMART} behaviour handles the common "end of day" 24:00 value.
-     * Processing in {@code LENIENT} mode also produces the same result:
+     * The {@link SMART} behaviour handles the common "end of day" 24:00 value.
+     * Processing in {@link LENIENT} mode also produces the same result:
      * <pre>
      *  Text to parse        Parsed object                         Excess days
      *  "2012-12-03T00:00"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO
@@ -84,7 +84,7 @@ export class DateTimeFormatter {
     /**
      * A query that provides access to whether a leap-second was parsed.
      * <p>
-     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     * This returns a singleton {@link TemporalQuery} that provides
      * access to additional information from the parse. The query always returns
      * a non-null boolean, true if parsing saw a leap-second, false if not.
      * <p>
@@ -92,7 +92,7 @@ export class DateTimeFormatter {
      * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other
      * local times in different time-zones. To avoid this potential ambiguity,
      * the handling of leap-seconds is limited to
-     * {@link DateTimeFormatterBuilder#appendInstant()}, as that method
+     * {@link DateTimeFormatterBuilder#appendInstant}, as that method
      * always parses the instant with the UTC zone offset.
      * <p>
      * If the time '23:59:60' is received, then a simple conversion is applied,
@@ -326,14 +326,14 @@ export class DateTimeFormatter {
      *
      * If an override is added, then any date that is printed or parsed will be affected.
      *
-     * When printing, if the {@code Temporal} object contains a date then it will
+     * When printing, if the {@link Temporal} object contains a date then it will
      * be converted to a date in the override chronology.
      * Any time or zone will be retained unless overridden.
      * The converted result will behave in a manner equivalent to an implementation
-     * of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.
+     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.
      *
      * When parsing, the override chronology will be used to interpret the
-     * {@linkplain ChronoField fields} into a date unless the
+     * {@link ChronoField} into a date unless the
      * formatter directly parses a valid chronology.
      *
      * This instance is immutable and unaffected by this method call.
@@ -375,15 +375,15 @@ export class DateTimeFormatter {
 
     //-----------------------------------------------------------------------
     /**
-     * Formats a date-time object to an {@code Appendable} using this formatter.
+     * Formats a date-time object to an {@link Appendable} using this formatter.
      * <p>
      * This formats the date-time to the specified destination.
      * {@link Appendable} is a general purpose interface that is implemented by all
-     * key character output classes including {@code StringBuffer}, {@code StringBuilder},
-     * {@code PrintStream} and {@code Writer}.
+     * key character output classes including {@link StringBuffer}, {@link StringBuilder},
+     * {@link PrintStream} and {@link Writer}.
      * <p>
-     * Although {@code Appendable} methods throw an {@code IOException}, this method does not.
-     * Instead, any {@code IOException} is wrapped in a runtime exception.
+     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.
+     * Instead, any {@link IOException} is wrapped in a runtime exception.
      *
      * @param {TemporalAccessor} temporal - the temporal object to print, not null
      * @param {StringBuilder} appendable - the appendable to print to, not null
@@ -418,8 +418,8 @@ export class DateTimeFormatter {
      * Fully parses the text producing a temporal object.
      * <p>
      * This parses the entire text producing a temporal object.
-     * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-     * The result of this method is {@code TemporalAccessor} which has been resolved,
+     * It is typically more useful to use {@link parse}.
+     * The result of this method is {@link TemporalAccessor} which has been resolved,
      * applying basic validation checks to help ensure a valid date-time.
      * <p>
      * If the parse completes without reading the entire length of the text,
@@ -446,8 +446,8 @@ export class DateTimeFormatter {
      * Fully parses the text producing a temporal object.
      *
      * This parses the entire text producing a temporal object.
-     * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-     * The result of this method is {@code TemporalAccessor} which has been resolved,
+     * It is typically more useful to use {@link parse}.
+     * The result of this method is {@link TemporalAccessor} which has been resolved,
      * applying basic validation checks to help ensure a valid date-time.
      *
      * If the parse completes without reading the entire length of the text,
@@ -487,9 +487,9 @@ export class DateTimeFormatter {
     /**
      * Parses the text to a builder.
      * <p>
-     * This parses to a {@code DateTimeBuilder} ensuring that the text is fully parsed.
+     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.
      * This method throws {@link DateTimeParseException} if unable to parse, or
-     * some other {@code DateTimeException} if another date/time problem occurs.
+     * some other {@link DateTimeException} if another date/time problem occurs.
      *
      * @param text  the text to parse, not null
      * @param position  the position to parse from, updated with length parsed
@@ -524,22 +524,22 @@ export class DateTimeFormatter {
      * <p>
      * Parsing is implemented as a two-phase operation.
      * First, the text is parsed using the layout defined by the formatter, producing
-     * a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
+     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.
      * Second, the parsed data is <em>resolved</em>, by validating, combining and
      * simplifying the various fields into more useful ones.
      * This method performs the parsing stage but not the resolving stage.
      * <p>
-     * The result of this method is {@code TemporalAccessor} which represents the
+     * The result of this method is {@link TemporalAccessor} which represents the
      * data as seen in the input. Values are not validated, thus parsing a date string
      * of '2012-00-65' would result in a temporal with three fields - year of '2012',
      * month of '0' and day-of-month of '65'.
      * <p>
-     * The text will be parsed from the specified start {@code ParsePosition}.
-     * The entire length of the text does not have to be parsed, the {@code ParsePosition}
+     * The text will be parsed from the specified start {@link ParsePosition}.
+     * The entire length of the text does not have to be parsed, the {@link ParsePosition}
      * will be updated with the index at the end of parsing.
      * <p>
-     * Errors are returned using the error index field of the {@code ParsePosition}
-     * instead of {@code DateTimeParseException}.
+     * Errors are returned using the error index field of the {@link ParsePosition}
+     * instead of {@link DateTimeParseException}.
      * The returned error index will be set to an index indicative of the error.
      * Callers must check for errors before using the context.
      * <p>
@@ -548,7 +548,7 @@ export class DateTimeFormatter {
      * <p>
      * This method is intended for advanced use cases that need access to the
      * internal state during parsing. Typical application code should use
-     * {@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.
+     * {@link parse} or the parse method on the target type.
      *
      * @param text  the text to parse, not null
      * @param position  the position to parse from, updated with length parsed

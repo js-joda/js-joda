@@ -20,7 +20,7 @@ import {abstractMethodFail} from '../assert';
  * Units can also be written by application code by implementing this interface.
  * <p>
  * The unit works using double dispatch. Client code calls methods on a date-time like
- * {@code LocalDateTime} which check if the unit is a {@code ChronoUnit}.
+ * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.
  * If it is, then the date-time must handle it.
  * Otherwise, the method call is re-dispatched to the matching method in this interface.
  *
@@ -32,19 +32,19 @@ export class TemporalUnit {
      * <p>
      * All units return a duration measured in standard nanoseconds from this method.
      * The duration will be positive and non-zero.
-     * For example, an hour has a duration of {@code 60 * 60 * 1,000,000,000ns}.
+     * For example, an hour has a duration of `60 * 60 * 1,000,000,000ns`.
      * <p>
      * Some units may return an accurate duration while others return an estimate.
      * For example, days have an estimated duration due to the possibility of
      * daylight saving time changes.
-     * To determine if the duration is an estimate, use {@link #isDurationEstimated()}.
+     * To determine if the duration is an estimate, use {@link isDurationEstimated}.
      *
      * @return {Duration} the duration of this unit, which may be an estimate, not null
      */
     duration() {
         abstractMethodFail('duration');
     }
-    
+
     /**
      * Checks if the duration of the unit is an estimate.
      * <p>
@@ -59,7 +59,7 @@ export class TemporalUnit {
     isDurationEstimated() {
         abstractMethodFail('isDurationEstimated');
     }
-    
+
     /**
      * Checks if this unit is date-based.
      *
@@ -68,7 +68,7 @@ export class TemporalUnit {
     isDateBased() {
         abstractMethodFail('isDateBased');
     }
-    
+
     /**
      * Checks if this unit is time-based.
      *
@@ -77,7 +77,7 @@ export class TemporalUnit {
     isTimeBased() {
         abstractMethodFail('isTimeBased');
     }
-    
+
     //-----------------------------------------------------------------------
     /**
      * Checks if this unit is supported by the specified temporal object.
@@ -92,7 +92,7 @@ export class TemporalUnit {
     isSupportedBy(temporal) {
         abstractMethodFail('isSupportedBy');
     }
-    
+
     /**
      * Returns a copy of the specified temporal object with the specified period added.
      * <p>
@@ -103,18 +103,18 @@ export class TemporalUnit {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#plus(long, TemporalUnit)}:
+     * The second is to use {@link Temporal#plus}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisUnit.doPlus(temporal);
      *   temporal = temporal.plus(thisUnit);
      * </pre>
-     * It is recommended to use the second approach, {@code plus(TemporalUnit)},
+     * It is recommended to use the second approach, {@link plus},
      * as it is a lot clearer to read in code.
      * <p>
      * Implementations should perform any queries or calculations using the units
      * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.
-     * If the field is not supported a {@code DateTimeException} must be thrown.
+     * If the field is not supported a {@link DateTimeException} must be thrown.
      * <p>
      * Implementations must not alter the specified temporal object.
      * Instead, an adjusted copy of the original must be returned.
@@ -129,7 +129,7 @@ export class TemporalUnit {
     addTo(dateTime, periodToAdd) {
         abstractMethodFail('addTo');
     }
-    
+
     //-----------------------------------------------------------------------
     /**
      * Calculates the period in terms of this unit between two temporal objects of the same type.
@@ -138,7 +138,7 @@ export class TemporalUnit {
      * The start and end points are supplied as temporal objects and must be of the same type.
      * The result will be negative if the end is before the start.
      * For example, the period in hours between two temporal objects can be calculated
-     * using {@code HOURS.between(startTime, endTime)}.
+     * using {@link HOURS.between}.
      * <p>
      * The calculation returns a whole number, representing the number of complete units between the two temporals.
      * For example, the period in hours between the times 11:30 and 13:29 will only b
@@ -146,7 +146,7 @@ export class TemporalUnit {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#until(Temporal, TemporalUnit)}:
+     * The second is to use {@link Temporal#until}:
      * <pre>
      *   // these two lines are equivalent
      *   between = thisUnit.between(start, end);
@@ -176,5 +176,5 @@ export class TemporalUnit {
     between(temporal1, temporal2) {
         abstractMethodFail('between');
     }
-    
+
 }

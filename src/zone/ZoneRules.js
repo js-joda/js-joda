@@ -12,7 +12,7 @@ import {Instant} from '../Instant';
 export class ZoneRules {
 
     /**
-     * Obtains an instance of {@code ZoneRules} that always uses the same offset.
+     * Obtains an instance of {@link ZoneRules} that always uses the same offset.
      * <p>
      * The returned rules always have the same offset.
      *
@@ -103,7 +103,7 @@ export class ZoneRules {
      * Since, in the case of Gap and Overlap, the offset returned is a "best" value, rather
      * than the "correct" value, it should be treated with care. Applications that care
      * about the correct offset should use a combination of this method,
-     * {@link #getValidOffsets(LocalDateTime)} and {@link #getTransition(LocalDateTime)}.
+     * {@link getValidOffsets} and {@link getTransition}.
      *
      * @param {LocalDateTime} localDateTime - the local date-time to query, not null, but null
      *  may be ignored if the rules have a single offset for all instants
@@ -134,7 +134,7 @@ export class ZoneRules {
      * In the case where there are two offsets, the earlier offset is returned at index 0
      * and the later offset at index 1.
      * <p>
-     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
      * One technique, using this method, would be:
      * <pre>
      *  List<ZoneOffset> validOffsets = rules.getOffset(localDT);
@@ -179,7 +179,7 @@ export class ZoneRules {
      * A transition is used to model the cases of a Gap or Overlap.
      * The Normal case will return null.
      * <p>
-     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
      * One technique, using this method, would be:
      * <pre>
      *  ZoneOffsetTransition trans = rules.getTransition(localDT);
@@ -311,7 +311,7 @@ export class ZoneRules {
      * Gets the complete list of fully defined transitions.
      * <p>
      * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitionRules()}. This method returns those transitions that have
+     * and {@link getTransitionRules}. This method returns those transitions that have
      * been fully defined. These are typically historical, but may be in the future.
      * <p>
      * The list will be empty for fixed offset rules and for any time-zone where there has
@@ -327,10 +327,10 @@ export class ZoneRules {
      * Gets the list of transition rules for years beyond those defined in the transition list.
      * <p>
      * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitions()}. This method returns instances of {@link ZoneOffsetTransitionRule}
+     * and {@link getTransitions}. This method returns instances of {@link ZoneOffsetTransitionRule}
      * that define an algorithm for when transitions will occur.
      * <p>
-     * For any given {@code ZoneRules}, this list contains the transition rules for years
+     * For any given {@link ZoneRules}, this list contains the transition rules for years
      * beyond those years that have been fully defined. These rules typically refer to future
      * daylight saving time rule changes.
      * <p>

@@ -39,7 +39,7 @@ export class ZoneIdFactory {
      * <p>
      * This set includes the string form of all available region-based IDs.
      * Offset-based zone IDs are not included in the returned set.
-     * The ID can be passed to {@link #of(String)} to create a {@code ZoneId}.
+     * The ID can be passed to {@link of} to create a {@link ZoneId}.
      * <p>
      * The set of zone IDs can increase over time, although in a typical application
      * the set of IDs is fixed. Each call to this method is thread-safe.
@@ -51,34 +51,34 @@ export class ZoneIdFactory {
     }
 
     /**
-     * Obtains an instance of {@code ZoneId} from an ID ensuring that the
+     * Obtains an instance of {@link ZoneId} from an ID ensuring that the
      * ID is valid and available for use.
      * <p>
-     * This method parses the ID producing a {@code ZoneId} or {@code ZoneOffset}.
-     * A {@code ZoneOffset} is returned if the ID is 'Z', or starts with '+' or '-'.
+     * This method parses the ID producing a {@link ZoneId} or {@link ZoneOffset}.
+     * A {@link ZoneOffset} is returned if the ID is 'Z', or starts with '+' or '-'.
      * The result will always be a valid ID for which {@link ZoneRules} can be obtained.
      * <p>
      * Parsing matches the zone ID step by step as follows.
      * <ul>
-     * <li>If the zone ID equals 'Z', the result is {@code ZoneOffset.UTC}.
+     * <li>If the zone ID equals 'Z', the result is {@link ZoneOffset.UTC}.
      * <li>If the zone ID consists of a single letter, the zone ID is invalid
-     *  and {@code DateTimeException} is thrown.
+     *  and {@link DateTimeException} is thrown.
      * <li>If the zone ID starts with '+' or '-', the ID is parsed as a
-     *  {@code ZoneOffset} using {@link ZoneOffset#of(String)}.
-     * <li>If the zone ID equals 'GMT', 'UTC' or 'UT' then the result is a {@code ZoneId}
-     *  with the same ID and rules equivalent to {@code ZoneOffset.UTC}.
+     *  {@link ZoneOffset} using {@link ZoneOffset#of}.
+     * <li>If the zone ID equals 'GMT', 'UTC' or 'UT' then the result is a {@link ZoneId}
+     *  with the same ID and rules equivalent to {@link ZoneOffset.UTC}.
      * <li>If the zone ID starts with 'UTC+', 'UTC-', 'GMT+', 'GMT-', 'UT+' or 'UT-'
      *  then the ID is a prefixed offset-based ID. The ID is split in two, with
      *  a two or three letter prefix and a suffix starting with the sign.
-     *  The suffix is parsed as a {@link ZoneOffset#of(String) ZoneOffset}.
-     *  The result will be a {@code ZoneId} with the specified UTC/GMT/UT prefix
-     *  and the normalized offset ID as per {@link ZoneOffset#getId()}.
-     *  The rules of the returned {@code ZoneId} will be equivalent to the
-     *  parsed {@code ZoneOffset}.
+     *  The suffix is parsed as a {@link ZoneOffset}.
+     *  The result will be a {@link ZoneId} with the specified UTC/GMT/UT prefix
+     *  and the normalized offset ID as per {@link ZoneOffset#getId}.
+     *  The rules of the returned {@link ZoneId} will be equivalent to the
+     *  parsed {@link ZoneOffset}.
      * <li>All other IDs are parsed as region-based zone IDs. Region IDs must
      *  match the regular expression <code>[A-Za-z][A-Za-z0-9~/._+-]+</code>
-     *  otherwise a {@code DateTimeException} is thrown. If the zone ID is not
-     *  in the configured set of IDs, {@code ZoneRulesException} is thrown.
+     *  otherwise a {@link DateTimeException} is thrown. If the zone ID is not
+     *  in the configured set of IDs, {@link ZoneRulesException} is thrown.
      *  The detailed format of the region ID depends on the group supplying the data.
      *  The default set of data is supplied by the IANA Time Zone Database (TZDB).
      *  This has region IDs of the form '{area}/{city}', such as 'Europe/Paris' or 'America/New_York'.
@@ -127,11 +127,11 @@ export class ZoneIdFactory {
     }
 
     /**
-     * Obtains an instance of {@code ZoneId} wrapping an offset.
+     * Obtains an instance of {@link ZoneId} wrapping an offset.
      * <p>
-     * If the prefix is 'GMT', 'UTC', or 'UT' a {@code ZoneId}
+     * If the prefix is 'GMT', 'UTC', or 'UT' a {@link ZoneId}
      * with the prefix and the non-zero offset is returned.
-     * If the prefix is empty {@code ''} the {@code ZoneOffset} is returned.
+     * If the prefix is empty `''` the {@link ZoneOffset} is returned.
      *
      * @param {string} prefix  the time-zone ID, not null
      * @param {ZoneOffset} offset  the offset, not null
@@ -156,20 +156,20 @@ export class ZoneIdFactory {
 
 
     /**
-     * Obtains an instance of {@code ZoneId} from a temporal object.
+     * Obtains an instance of {@link ZoneId} from a temporal object.
      * <p>
-     * A {@code TemporalAccessor} represents some form of date and time information.
-     * This factory converts the arbitrary temporal object to an instance of {@code ZoneId}.
+     * A {@link TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@link ZoneId}.
      * <p>
      * The conversion will try to obtain the zone in a way that favours region-based
-     * zones over offset-based zones using {@link TemporalQueries#zone()}.
+     * zones over offset-based zones using {@link TemporalQueries#zone}.
      * <p>
      * This method matches the signature of the functional interface {@link TemporalQuery}
-     * allowing it to be used in queries via method reference, {@code ZoneId::from}.
+     * allowing it to be used in queries via method reference, {@link ZoneId::from}.
      *
      * @param {!TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {ZoneId} the zone ID, not null
-     * @throws DateTimeException if unable to convert to a {@code ZoneId}
+     * @throws DateTimeException if unable to convert to a {@link ZoneId}
      */
     static from(temporal) {
         requireNonNull(temporal, 'temporal');
@@ -199,4 +199,3 @@ export function _init(){
     ZoneId.SYSTEM = SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
     ZoneId.UTC = ZoneOffset.ofTotalSeconds(0);
 }
-

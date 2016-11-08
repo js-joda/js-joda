@@ -114,8 +114,8 @@ export class DateTimeParseContext{
     }
 
     /**
-     * Helper to compare two {@code CharSequence} instances.
-     * This uses {@link #isCaseSensitive()}.
+     * Helper to compare two {@link CharSequence} instances.
+     * This uses {@link isCaseSensitive}.
      *
      * @param cs1  the first character sequence, not null
      * @param offset1  the offset into the first sequence, valid
@@ -143,8 +143,8 @@ export class DateTimeParseContext{
     }
 
     /**
-     * Helper to compare two {@code char}.
-     * This uses {@link #isCaseSensitive()}.
+     * Helper to compare two `char`.
+     * This uses {@link isCaseSensitive}.
      *
      * @param ch1  the first character
      * @param ch2  the second character

@@ -21,19 +21,19 @@ import {TemporalQueries} from '../temporal/TemporalQueries';
  * <b>Most applications should declare method signatures, fields and variables
  * as {@link LocalDateTime}, not this interface.</b>
  * <p>
- * A {@code ChronoLocalDateTime} is the abstract representation of a local date-time
- * where the {@code Chronology chronology}, or calendar system, is pluggable.
+ * A {@link ChronoLocalDateTime} is the abstract representation of a local date-time
+ * where the {@link Chronology}, or calendar system, is pluggable.
  * The date-time is defined in terms of fields expressed by {@link TemporalField},
  * where most common implementations are defined in {@link ChronoField}.
  * The chronology defines how the calendar system operates and the meaning of
  * the standard fields.
  *
  * <h4>When to use this interface</h4>
- * The design of the API encourages the use of {@code LocalDateTime} rather than this
+ * The design of the API encourages the use of {@link LocalDateTime} rather than this
  * interface, even in the case where the application needs to deal with multiple
  * calendar systems. The rationale for this is explored in detail in {@link ChronoLocalDate}.
  * <p>
- * Ensure that the discussion in {@code ChronoLocalDate} has been read and understood
+ * Ensure that the discussion in {@link ChronoLocalDate} has been read and understood
  * before using this interface.
  *
  * <h3>Specification for implementors</h3>
@@ -55,7 +55,7 @@ export class ChronoLocalDateTime extends Temporal {
     /**
      * Gets the chronology of this date-time.
      * <p>
-     * The {@code Chronology} represents the calendar system in use.
+     * The {@link Chronology} represents the calendar system in use.
      * The era and other fields in {@link ChronoField} are defined by the chronology.
      *
      * @return the chronology, not null
@@ -92,13 +92,13 @@ export class ChronoLocalDateTime extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * Converts this date-time to an {@code Instant}.
+     * Converts this date-time to an {@link Instant}.
      * <p>
      * This combines this local date-time and the specified offset to form
-     * an {@code Instant}.
+     * an {@link Instant}.
      *
      * @param {ZoneOffset} offset  the offset to use for the conversion, not null
-     * @return {Instant} an {@code Instant} representing the same instant, not null
+     * @return {Instant} an {@link Instant} representing the same instant, not null
      */
     toInstant(offset) {
         return Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());

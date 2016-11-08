@@ -25,7 +25,7 @@ export class ZoneRulesProvider {
     /**
      * Gets the set of available zone IDs.
      * <p>
-     * These zone IDs are loaded and available for use by {@code ZoneId}.
+     * These zone IDs are loaded and available for use by {@link ZoneId}.
      *
      * @return {string[]} a modifiable copy of the set of zone IDs, not null
      */

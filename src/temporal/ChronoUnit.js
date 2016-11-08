@@ -63,7 +63,7 @@ import {TemporalUnit} from './TemporalUnit';
  *
  * Unit that represents the concept of a day.
  * For the ISO calendar system, it is the standard day from midnight to midnight.
- * The estimated duration of a day is {@code 24 Hours}.
+ * The estimated duration of a day is 24 hours.
  * <p>
  * When used with other calendar systems it must correspond to the day defined by
  * the rising and setting of the Sun on Earth. It is not required that days begin
@@ -81,7 +81,7 @@ import {TemporalUnit} from './TemporalUnit';
  *
  * Unit that represents the concept of a month.
  * For the ISO calendar system, the length of the month varies by month-of-year.
- * The estimated duration of a month is one twelfth of {@code 365.2425 Days}.
+ * The estimated duration of a month is one twelfth of 365.2425 days.
  * <p>
  * When used with other calendar systems it must correspond to an integral number of days.
  *
@@ -89,7 +89,7 @@ import {TemporalUnit} from './TemporalUnit';
  *
  * Unit that represents the concept of a year.
  * For the ISO calendar system, it is equal to 12 months.
- * The estimated duration of a year is {@code 365.2425 Days}.
+ * The estimated duration of a year is 365.2425 days.
  * <p>
  * When used with other calendar systems it must correspond to an integral number of days
  * or months roughly equal to a year defined by the passage of the Earth around the Sun.
@@ -133,13 +133,13 @@ import {TemporalUnit} from './TemporalUnit';
  * This is primarily used with {@link TemporalField} to represent unbounded fields
  * such as the year or era.
  * The estimated duration of the era is artificially defined as the largest duration
- * supported by {@code Duration}.
+ * supported by {@link Duration}.
  *
  */
 export class ChronoUnit extends TemporalUnit {
 
     /**
-     * 
+     *
      * @param {String} name
      * @param {Duration} estimatedDuration
      */
@@ -204,7 +204,7 @@ export class ChronoUnit extends TemporalUnit {
      * This can be used to avoid throwing an exception.
      * <p>
      * This default implementation derives the value using
-     * {@link Temporal#plus(long, TemporalUnit)}.
+     * {@link Temporal#plus}.
      *
      * @param {Temporal} temporal  the temporal object to check, not null
      * @return {boolean} true if the unit is supported
@@ -245,18 +245,18 @@ export class ChronoUnit extends TemporalUnit {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#plus(long, TemporalUnit)}:
+     * The second is to use {@link Temporal#plus}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisUnit.addTo(temporal);
      *   temporal = temporal.plus(thisUnit);
      * </pre>
-     * It is recommended to use the second approach, {@code plus(TemporalUnit)},
+     * It is recommended to use the second approach, {@link plus},
      * as it is a lot clearer to read in code.
      * <p>
      * Implementations should perform any queries or calculations using the units
      * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.
-     * If the unit is not supported an {@code UnsupportedTemporalTypeException} must be thrown.
+     * If the unit is not supported an {@link UnsupportedTemporalTypeException} must be thrown.
      * <p>
      * Implementations must not alter the specified temporal object.
      * Instead, an adjusted copy of the original must be returned.
@@ -282,7 +282,7 @@ export class ChronoUnit extends TemporalUnit {
      * first type before the calculating the amount.
      * The result will be negative if the end is before the start.
      * For example, the amount in hours between two temporal objects can be
-     * calculated using {@code HOURS.between(startTime, endTime)}.
+     * calculated using {@link HOURS.between}.
      * <p>
      * The calculation returns a whole number, representing the number of
      * complete units between the two temporals.
@@ -291,7 +291,7 @@ export class ChronoUnit extends TemporalUnit {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#until(Temporal, TemporalUnit)}:
+     * The second is to use {@link Temporal#until}:
      * <pre>
      *   // these two lines are equivalent
      *   between = thisUnit.between(start, end);
@@ -309,13 +309,13 @@ export class ChronoUnit extends TemporalUnit {
      * <p>
      * Implementations should perform any queries or calculations using the units
      * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.
-     * If the unit is not supported an {@code UnsupportedTemporalTypeException} must be thrown.
+     * If the unit is not supported an {@link UnsupportedTemporalTypeException} must be thrown.
      * Implementations must not alter the specified temporal objects.
      *
      * @implSpec
      * Implementations must begin by checking to if the two temporals have the
-     * same type using {@code .constructor.name}. If they do not, then the result must be
-     * obtained by calling {@code temporal1.until(temporal2, this)}.
+     * same type using `.constructor.name`. If they do not, then the result must be
+     * obtained by calling `temporal1.until`.
      *
      * @param {Temporal} temporal1  the base temporal object, not null
      * @param {Temporal} temporal2  the other temporal object, exclusive, not null
@@ -390,7 +390,7 @@ export function _init() {
     /**
      * Unit that represents the concept of a day.
      * For the ISO calendar system, it is the standard day from midnight to midnight.
-     * The estimated duration of a day is {@code 24 Hours}.
+     * The estimated duration of a day is 24 hours.
      * <p>
      * When used with other calendar systems it must correspond to the day defined by
      * the rising and setting of the Sun on Earth. It is not required that days begin
@@ -408,7 +408,7 @@ export function _init() {
     /**
      * Unit that represents the concept of a month.
      * For the ISO calendar system, the length of the month varies by month-of-year.
-     * The estimated duration of a month is one twelfth of {@code 365.2425 Days}.
+     * The estimated duration of a month is one twelfth of 365.2425 days.
      * <p>
      * When used with other calendar systems it must correspond to an integral number of days.
      */
@@ -416,7 +416,7 @@ export function _init() {
     /**
      * Unit that represents the concept of a year.
      * For the ISO calendar system, it is equal to 12 months.
-     * The estimated duration of a year is {@code 365.2425 Days}.
+     * The estimated duration of a year is 365.2425 days.
      * <p>
      * When used with other calendar systems it must correspond to an integral number of days
      * or months roughly equal to a year defined by the passage of the Earth around the Sun.
@@ -460,7 +460,7 @@ export function _init() {
      * This is primarily used with {@link TemporalField} to represent unbounded fields
      * such as the year or era.
      * The estimated duration of the era is artificially defined as the largest duration
-     * supported by {@code Duration}.
+     * supported by {@link Duration}.
      */
     ChronoUnit.FOREVER = new ChronoUnit('Forever', Duration.ofSeconds(MathUtil.MAX_SAFE_INTEGER, 999999999));
 }

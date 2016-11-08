@@ -220,26 +220,26 @@ export class ChronoField extends TemporalField {
      * refine the result.
      * <p>
      * This uses the temporal object to find the range of valid values for the field.
-     * This is similar to {@link #range()}, however this method refines the result
-     * using the temporal. For example, if the field is {@code DAY_OF_MONTH} the
-     * {@code range} method is not accurate as there are four possible month lengths,
+     * This is similar to {@link range}, however this method refines the result
+     * using the temporal. For example, if the field is {@link DAY_OF_MONTH} the
+     * {@link range} method is not accurate as there are four possible month lengths,
      * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
      * accurate, returning just one of those four options.
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link TemporalAccessor#range(TemporalField)}:
+     * The second is to use {@link TemporalAccessor#range}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisField.rangeRefinedBy(temporal);
      *   temporal = temporal.range(thisField);
      * </pre>
-     * It is recommended to use the second approach, {@code range(TemporalField)},
+     * It is recommended to use the second approach, {@link range},
      * as it is a lot clearer to read in code.
      * <p>
      * Implementations should perform any queries or calculations using the fields
      * available in {@link ChronoField}.
-     * If the field is not supported a {@code DateTimeException} must be thrown.
+     * If the field is not supported a {@link DateTimeException} must be thrown.
      *
      * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
      * @return {ValueRange} the range of valid values for this field, not null
@@ -250,15 +250,15 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     * Checks that the specified value is valid and fits in an {@code int}.
+     * Checks that the specified value is valid and fits in an `int`.
      * <p>
      * This validates that the value is within the outer range of valid values
-     * returned by {@link #range()}.
-     * It also checks that all valid values are within the bounds of an {@code int}.
+     * returned by {@link range}.
+     * It also checks that all valid values are within the bounds of an `int`.
      * <p>
      * This method checks against the range of the field in the ISO-8601 calendar system.
      * This range may be incorrect for other calendar systems.
-     * Use {@link Chronology#range(ChronoField)} to access the correct range
+     * Use {@link Chronology#range} to access the correct range
      * for a different calendar system.
      *
      * @param {number} value - the value to check

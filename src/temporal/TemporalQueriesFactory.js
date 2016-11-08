@@ -16,14 +16,14 @@ import {ZoneOffset} from '../ZoneOffset';
 export function _init() {
     //-----------------------------------------------------------------------
     /**
-     * A strict query for the {@code ZoneId}.
+     * A strict query for the {@link ZoneId}.
      */
     TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', (temporal) => {
         return temporal.query(TemporalQueries.ZONE_ID);
     });
 
     /**
-     * A query for the {@code Chronology}.
+     * A query for the {@link Chronology}.
      */
     TemporalQueries.CHRONO = createTemporalQuery('CHRONO', (temporal) => {
         return temporal.query(TemporalQueries.CHRONO);
@@ -38,7 +38,7 @@ export function _init() {
 
     //-----------------------------------------------------------------------
     /**
-     * A query for {@code ZoneOffset} returning null if not found.
+     * A query for {@link ZoneOffset} returning null if not found.
      */
     TemporalQueries.OFFSET = createTemporalQuery('OFFSET', (temporal) => {
         if (temporal.isSupported(ChronoField.OFFSET_SECONDS)) {
@@ -48,7 +48,7 @@ export function _init() {
     });
 
     /**
-     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.
      */
     TemporalQueries.ZONE = createTemporalQuery('ZONE', (temporal) => {
         var zone = temporal.query(TemporalQueries.ZONE_ID);
@@ -56,7 +56,7 @@ export function _init() {
     });
 
     /**
-     * A query for {@code LocalDate} returning null if not found.
+     * A query for {@link LocalDate} returning null if not found.
      */
     TemporalQueries.LOCAL_DATE = createTemporalQuery('LOCAL_DATE', (temporal) => {
         if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
@@ -66,7 +66,7 @@ export function _init() {
     });
 
     /**
-     * A query for {@code LocalTime} returning null if not found.
+     * A query for {@link LocalTime} returning null if not found.
      */
     TemporalQueries.LOCAL_TIME = createTemporalQuery('LOCAL_TIME', (temporal) => {
         if (temporal.isSupported(ChronoField.NANO_OF_DAY)) {

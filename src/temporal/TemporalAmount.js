@@ -14,8 +14,8 @@ import {abstractMethodFail} from '../assert';
  * An amount is distinct from a date or time-of-day in that it is not tied
  * to any specific point on the time-line.
  * <p>
- * The amount can be thought of as a {@code Map} of {@link TemporalUnit} to
- * {@code long}, exposed via {@link #getUnits()} and {@link #get(TemporalUnit)}.
+ * The amount can be thought of as a {@link Map} of {@link TemporalUnit} to
+ * `long`, exposed via {@link getUnits} and {@link get}.
  * A simple case might have a single unit-value pair, such as "6 hours".
  * A more complex case may have multiple unit-value pairs, such as
  * "7 years, 3 months and 5 days".
@@ -28,26 +28,26 @@ import {abstractMethodFail} from '../assert';
  * <p>
  * This interface is a framework-level interface that should not be widely
  * used in application code. Instead, applications should create and pass
- * around instances of concrete types, such as {@code Period} and {@code Duration}.
+ * around instances of concrete types, such as {@link Period} and {@link Duration}.
  *
  * @interface
  */
 export class TemporalAmount {
     /**
      * Returns the value of the requested unit.
-     * The units returned from {@link #getUnits()} uniquely define the
-     * value of the {@code TemporalAmount}.  A value must be returned
-     * for each unit listed in {@code getUnits}.
+     * The units returned from {@link getUnits} uniquely define the
+     * value of the {@link TemporalAmount}.  A value must be returned
+     * for each unit listed in {@link getUnits}.
      *
      * @implSpec
-     * Implementations may declare support for units not listed by {@link #getUnits()}.
+     * Implementations may declare support for units not listed by {@link getUnits}.
      * Typically, the implementation would define additional units
      * as conversions for the convenience of developers.
      *
-     * @param {TemporalUnit} unit - the {@code TemporalUnit} for which to return the value
+     * @param {TemporalUnit} unit - the {@link TemporalUnit} for which to return the value
      * @return {number} the long value of the unit
      * @throws DateTimeException if a value for the unit cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the {@code unit} is not supported
+     * @throws UnsupportedTemporalTypeException if the {@link unit} is not supported
      */
     // eslint-disable-next-line no-unused-vars
     get(unit) {
@@ -56,8 +56,8 @@ export class TemporalAmount {
     
     /**
      * Returns the list of units uniquely defining the value of this TemporalAmount.
-     * The list of {@code TemporalUnits} is defined by the implementation class.
-     * The list is a snapshot of the units at the time {@code getUnits}
+     * The list of {@link TemporalUnits} is defined by the implementation class.
+     * The list is a snapshot of the units at the time {@link getUnits}
      * is called and is not mutable.
      * The units are ordered from longest duration to the shortest duration
      * of the unit.
@@ -67,7 +67,7 @@ export class TemporalAmount {
      * state of the object without omissions, overlaps or duplication.
      * The units are in order from longest duration to shortest.
      *
-     * @return {TemporalUnit[]} the List of {@code TemporalUnits}; not null
+     * @return {TemporalUnit[]} the List of {@link TemporalUnits}; not null
      */
     units() {
         abstractMethodFail('units');
@@ -81,19 +81,19 @@ export class TemporalAmount {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#plus(TemporalAmount)}:
+     * The second is to use {@link Temporal#plus}:
      * <pre>
      *   // These two lines are equivalent, but the second approach is recommended
      *   dateTime = amount.addTo(dateTime);
      *   dateTime = dateTime.plus(adder);
      * </pre>
-     * It is recommended to use the second approach, {@code plus(TemporalAmount)},
+     * It is recommended to use the second approach, {@link plus},
      * as it is a lot clearer to read in code.
      *
      * @implSpec
      * The implementation must take the input object and add to it.
      * The implementation defines the logic of the addition and is responsible for
-     * documenting that logic. It may use any method on {@code Temporal} to
+     * documenting that logic. It may use any method on {@link Temporal} to
      * query the temporal object and perform the addition.
      * The returned object must have the same observable type as the input object
      * <p>
@@ -103,7 +103,7 @@ export class TemporalAmount {
      * <p>
      * The input temporal object may be in a calendar system other than ISO.
      * Implementations may choose to document compatibility with other calendar systems,
-     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.
+     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).
      * <p>
      * This method may be called from multiple threads in parallel.
      * It must be thread-safe when invoked.
@@ -126,19 +126,19 @@ export class TemporalAmount {
      * <p>
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#minus(TemporalAmount)}:
+     * The second is to use {@link Temporal#minus}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   dateTime = amount.subtractFrom(dateTime);
      *   dateTime = dateTime.minus(amount);
      * </pre>
-     * It is recommended to use the second approach, {@code minus(TemporalAmount)},
+     * It is recommended to use the second approach, {@link minus},
      * as it is a lot clearer to read in code.
      *
      * @implSpec
      * The implementation must take the input object and subtract from it.
      * The implementation defines the logic of the subtraction and is responsible for
-     * documenting that logic. It may use any method on {@code Temporal} to
+     * documenting that logic. It may use any method on {@link Temporal} to
      * query the temporal object and perform the subtraction.
      * The returned object must have the same observable type as the input object
      * <p>
@@ -148,7 +148,7 @@ export class TemporalAmount {
      * <p>
      * The input temporal object may be in a calendar system other than ISO.
      * Implementations may choose to document compatibility with other calendar systems,
-     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.
+     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).
      * <p>
      * This method may be called from multiple threads in parallel.
      * It must be thread-safe when invoked.

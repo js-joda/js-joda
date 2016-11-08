@@ -13,7 +13,7 @@ import {ChronoUnit} from '../temporal/ChronoUnit';
 import {MathUtil} from '../MathUtil';
 
 /**
- * Common implementations of {@code TemporalAdjuster}.
+ * Common implementations of {@link TemporalAdjuster}.
  * <p>
  * This class provides common implementations of {@link TemporalAdjuster}.
  * They are especially useful to document the intent of business logic and
@@ -26,15 +26,15 @@ import {MathUtil} from '../MathUtil';
  *  // use of an adjuster from this class
  *  date.with(lastDayOfMonth());
  * </pre>
- * There are two equivalent ways of using a {@code TemporalAdjuster}.
+ * There are two equivalent ways of using a {@link TemporalAdjuster}.
  * The first is to invoke the method on the interface directly.
- * The second is to use {@link Temporal#with(TemporalAdjuster)}:
+ * The second is to use {@link Temporal#with}:
  * <pre>
  *   // these two lines are equivalent, but the second approach is recommended
  *   dateTime = adjuster.adjustInto(dateTime);
  *   dateTime = dateTime.with(adjuster);
  * </pre>
- * It is recommended to use the second approach, {@code with(TemporalAdjuster)},
+ * It is recommended to use the second approach, {@link with},
  * as it is a lot clearer to read in code.
  *
  * <h3>Specification for implementors</h3>
@@ -181,8 +181,8 @@ export class TemporalAdjusters {
      * The input 2011-12-15 for (FRIDAY) will return 2011-12-02.<br>
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
      * @return {TemporalAdjuster} the first in month adjuster, not null
@@ -202,8 +202,8 @@ export class TemporalAdjusters {
      * The input 2011-12-15 for (FRIDAY) will return 2011-12-30.<br>
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
      * @return {TemporalAdjuster} the first in month adjuster, not null
@@ -238,8 +238,8 @@ export class TemporalAdjusters {
      * the last matching day-of-week in the previous month.
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {Number} ordinal  the week within the month, unbounded but typically from -5 to 5
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
@@ -261,7 +261,7 @@ export class TemporalAdjusters {
      * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-22 (seven days later).
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to move the date to, not null
@@ -282,7 +282,7 @@ export class TemporalAdjusters {
      * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to check for or move the date to, not null
@@ -302,7 +302,7 @@ export class TemporalAdjusters {
      * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-08 (seven days earlier).
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to move the date to, not null
@@ -323,7 +323,7 @@ export class TemporalAdjusters {
      * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
      * <p>
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek the day-of-week to check for or move the date to, not null

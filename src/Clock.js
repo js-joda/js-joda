@@ -14,23 +14,23 @@ import {ZoneOffset} from './ZoneOffset';
  * <p>
  * Instances of this class are used to find the current instant, which can be
  * interpreted using the stored time-zone to find the current date and time.
- * As such, a clock can be used instead of {@link System#currentTimeMillis()}
- * and {@link TimeZone#getDefault()}.
+ * As such, a clock can be used instead of {@link System#currentTimeMillis}
+ * and {@link TimeZone#getDefault}.
  * <p>
- * Use of a {@code Clock} is optional. All key date-time classes also have a
- * {@code now()} factory method that uses the system clock in the default time zone.
+ * Use of a {@link Clock} is optional. All key date-time classes also have a
+ * `now()` factory method that uses the system clock in the default time zone.
  * The primary purpose of this abstraction is to allow alternate clocks to be
  * plugged in as and when required. Applications use an object to obtain the
  * current time rather than a static method. This can simplify testing.
  * <p>
- * Best practice for applications is to pass a {@code Clock} into any method
+ * Best practice for applications is to pass a {@link Clock} into any method
  * that requires the current instant.
  *
- * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}
- * or {@link #offset(Clock, Duration) offset} to be used during testing.
+ * This approach allows an alternate clock, such as {@link fixed}
+ * or {@link offset} to be used during testing.
  * <p>
- * The {@code system} factory methods provide clocks based on the best available
- * system clock This may use {@link System#currentTimeMillis()}, or a higher
+ * The {@link system} factory methods provide clocks based on the best available
+ * system clock This may use {@link System#currentTimeMillis}, or a higher
  * resolution clock if one is available.
  */
 
@@ -54,7 +54,7 @@ export class Clock {
      * Obtains a clock that returns the current instant using the
      * system clock, converting to date and time using the Date.getTime() UTC millis.
      * <p>
-     * This clock, rather than {@link #systemDefaultZone()}, should be used when
+     * This clock, rather than {@link systemDefaultZone}, should be used when
      * you need the current instant without the date or time.
      * <p>
      * @return {Clock} a clock that uses the system clock in the UTC zone, not null
@@ -71,7 +71,7 @@ export class Clock {
      * <p>
      * Using this method hard codes a dependency to the default time-zone into your application.
      *
-     * The {@link #systemUTC() UTC clock} should be used when you need the current instant
+     * The UTC clock (see {@link systemUTC}) should be used when you need the current instant
      * without the date or time.
      * <p>
      *
@@ -111,14 +111,14 @@ export class Clock {
       * Gets the current millisecond instant of the clock.
       * <p>
       * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).
-      * This is equivalent to the definition of {@link Date#getTime()}.
+      * This is equivalent to the definition of {@link Date#getTime}.
       * <p>
       * Most applications should avoid this method and use {@link Instant} to represent
       * an instant on the time-line rather than a raw millisecond value.
       * This method is provided to allow the use of the clock in high performance use cases
       * where the creation of an object would be unacceptable.
       * <p>
-      * The default implementation currently calls {@link #instant}.
+      * The default implementation currently calls {@link instant}.
       *
       * @return the current millisecond instant from this clock, measured from
       *  the Java epoch of 1970-01-01T00:00Z (UTC), not null
@@ -145,7 +145,7 @@ export class Clock {
 
 /**
  * Implementation of a clock that always returns the latest time from
- * {@link Date#getTime()}.
+ * {@link Date#getTime}.
  */
 class SystemClock extends Clock {
     /**
@@ -206,7 +206,7 @@ class FixedClock extends Clock{
     instant() {
         return this._instant;
     }
-    
+
     millis(){
         return this._instant.toEpochMilli();
     }
@@ -219,4 +219,3 @@ class FixedClock extends Clock{
         return 'FixedClock[]';
     }
 }
-

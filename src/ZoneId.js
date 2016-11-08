@@ -15,7 +15,7 @@ export class ZoneId {
      * Gets the unique time-zone ID.
      * <p>
      * This ID uniquely defines this object.
-     * The format of an offset based ID is defined by {@link ZoneOffset#getId()}.
+     * The format of an offset based ID is defined by {@link ZoneOffset#getId}.
      *
      * @return {String} the time-zone unique ID, not null
      */
@@ -32,7 +32,7 @@ export class ZoneId {
      * <p>
      * A time-zone can be invalid if it is deserialized in a Java Runtime which
      * does not have the same rules loaded as the Java Runtime that stored it.
-     * In this case, calling this method will throw a {@code ZoneRulesException}.
+     * In this case, calling this method will throw a {@link ZoneRulesException}.
      * <p>
      * The rules are supplied by {@link ZoneRulesProvider}. An advanced provider may
      * support dynamic updates to the rules without restarting the Java Runtime.
@@ -49,15 +49,15 @@ export class ZoneId {
     }
 
     /**
-      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.
+      * Normalizes the time-zone ID, returning a {@link ZoneOffset} where possible.
       * <p>
-      * The returns a normalized {@code ZoneId} that can be used in place of this ID.
-      * The result will have {@code ZoneRules} equivalent to those returned by this object,
-      * however the ID returned by {@code getId()} may be different.
+      * The returns a normalized {@link ZoneId} that can be used in place of this ID.
+      * The result will have {@link ZoneRules} equivalent to those returned by this object,
+      * however the ID returned by {@link getId} may be different.
       * <p>
-      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.
-      * If they do, then the {@code ZoneOffset} equal to that offset is returned.
-      * Otherwise {@code this} is returned.
+      * The normalization checks if the rules of this {@link ZoneId} have a fixed offset.
+      * If they do, then the {@link ZoneOffset} equal to that offset is returned.
+      * Otherwise `this` is returned.
       *
       * @return {ZoneId} the time-zone unique ID, not null
       */
@@ -103,7 +103,7 @@ export class ZoneId {
 
      //-----------------------------------------------------------------------
      /**
-      * Outputs this zone as a {@code String}, using the ID.
+      * Outputs this zone as a {@link String}, using the ID.
       *
       * @return {string} a string representation of this time-zone ID, not null
       */
