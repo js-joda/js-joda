@@ -17,34 +17,36 @@ import {TemporalQueries} from '../temporal/TemporalQueries';
 /**
  * A date-time without a time-zone in an arbitrary chronology, intended
  * for advanced globalization use cases.
- * <p>
- * <b>Most applications should declare method signatures, fields and variables
- * as {@link LocalDateTime}, not this interface.</b>
- * <p>
- * A {@code ChronoLocalDateTime} is the abstract representation of a local date-time
- * where the {@code Chronology chronology}, or calendar system, is pluggable.
+ *
+ * **Most applications should declare method signatures, fields and variables
+ * as {@link LocalDateTime}, not this interface.**
+ *
+ * A {@link ChronoLocalDateTime} is the abstract representation of a local date-time
+ * where the {@link Chronology}, or calendar system, is pluggable.
  * The date-time is defined in terms of fields expressed by {@link TemporalField},
  * where most common implementations are defined in {@link ChronoField}.
  * The chronology defines how the calendar system operates and the meaning of
  * the standard fields.
  *
- * <h4>When to use this interface</h4>
- * The design of the API encourages the use of {@code LocalDateTime} rather than this
+ * #### When to use this interface
+ *
+ * The design of the API encourages the use of {@link LocalDateTime} rather than this
  * interface, even in the case where the application needs to deal with multiple
  * calendar systems. The rationale for this is explored in detail in {@link ChronoLocalDate}.
- * <p>
- * Ensure that the discussion in {@code ChronoLocalDate} has been read and understood
+ *
+ * Ensure that the discussion in {@link ChronoLocalDate} has been read and understood
  * before using this interface.
  *
- * <h3>Specification for implementors</h3>
+ * ### Specification for implementors
+ *
  * This interface must be implemented with care to ensure other classes operate correctly.
  * All implementations that can be instantiated must be final, immutable and thread-safe.
  * Subclasses should be Serializable wherever possible.
- * <p>
+ *
  * In JDK 8, this is an interface with default methods.
  * Since there are no default methods in JDK 7, an abstract class is used.
  *
- * @param <D> the date type
+ * @param D the date type
  */
 export class ChronoLocalDateTime extends Temporal {
         /* <D extends ChronoLocalDate>
@@ -54,8 +56,8 @@ export class ChronoLocalDateTime extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the chronology of this date-time.
-     * <p>
-     * The {@code Chronology} represents the calendar system in use.
+     *
+     * The {@link Chronology} represents the calendar system in use.
      * The era and other fields in {@link ChronoField} are defined by the chronology.
      *
      * @return the chronology, not null
@@ -92,13 +94,13 @@ export class ChronoLocalDateTime extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * Converts this date-time to an {@code Instant}.
-     * <p>
+     * Converts this date-time to an {@link Instant}.
+     *
      * This combines this local date-time and the specified offset to form
-     * an {@code Instant}.
+     * an {@link Instant}.
      *
      * @param {ZoneOffset} offset  the offset to use for the conversion, not null
-     * @return {Instant} an {@code Instant} representing the same instant, not null
+     * @return {Instant} an {@link Instant} representing the same instant, not null
      */
     toInstant(offset) {
         return Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());
@@ -107,7 +109,7 @@ export class ChronoLocalDateTime extends Temporal {
     /**
      * Converts this date-time to the number of seconds from the epoch
      * of 1970-01-01T00:00:00Z.
-     * <p>
+     *
      * This combines this local date-time and the specified offset to calculate the
      * epoch-second value, which is the number of elapsed seconds from 1970-01-01T00:00:00Z.
      * Instants on the time-line after the epoch are positive, earlier are negative.

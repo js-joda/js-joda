@@ -23,20 +23,20 @@ const NANOS_PER_MILLI = 1000000;
 
 /**
  * An instantaneous point on the time-line.
- * 
+ *
  * This class models a single instantaneous point on the time-line.
  * This might be used to record event time-stamps in the application.
- * 
+ *
  * Time-scale
- * 
+ *
  * The length of the solar day is the standard way that humans measure time.
  * This has traditionally been subdivided into 24 hours of 60 minutes of 60 seconds,
  * forming a 86400 second day.
- * 
+ *
  * Modern timekeeping is based on atomic clocks which precisely define an SI second
  * relative to the transitions of a Caesium atom. The length of an SI second was defined
  * to be very close to the 86400th fraction of a day.
- * 
+ *
  * Unfortunately, as the Earth rotates the length of the day varies.
  * In addition, over time the average length of the day is getting longer as the Earth slows.
  * As a result, the length of a solar day in 2012 is slightly longer than 86400 SI seconds.
@@ -44,52 +44,52 @@ const NANOS_PER_MILLI = 1000000;
  * are not predictable and can only be determined by measurement.
  * The UT1 time-scale captures the accurate length of day, but is only available some
  * time after the day has completed.
- * 
+ *
  * The UTC time-scale is a standard approach to bundle up all the additional fractions
- * of a second from UT1 into whole seconds, known as <i>leap-seconds</i>.
+ * of a second from UT1 into whole seconds, known as *leap-seconds*.
  * A leap-second may be added or removed depending on the Earth's rotational changes.
  * As such, UTC permits a day to have 86399 SI seconds or 86401 SI seconds where
  * necessary in order to keep the day aligned with the Sun.
- * 
+ *
  * The modern UTC time-scale was introduced in 1972, introducing the concept of whole leap-seconds.
  * Between 1958 and 1972, the definition of UTC was complex, with minor sub-second leaps and
  * alterations to the length of the notional second. As of 2012, discussions are underway
  * to change the definition of UTC again, with the potential to remove leap seconds or
  * introduce other changes.
- * 
+ *
  * Given the complexity of accurate timekeeping described above, this Java API defines
- * its own time-scale, the <i>Java Time-Scale</i>.
- * 
+ * its own time-scale, the *Java Time-Scale*.
+ *
  * The Java Time-Scale divides each calendar day into exactly 86400
  * subdivisions, known as seconds.  These seconds may differ from the
  * SI second.  It closely matches the de facto international civil time
  * scale, the definition of which changes from time to time.
- * 
+ *
  * The Java Time-Scale has slightly different definitions for different
  * segments of the time-line, each based on the consensus international
  * time scale that is used as the basis for civil time. Whenever the
  * internationally-agreed time scale is modified or replaced, a new
  * segment of the Java Time-Scale must be defined for it.  Each segment
  * must meet these requirements:
- * <ul>
- * <li>the Java Time-Scale shall closely match the underlying international
- *  civil time scale;</li>
- * <li>the Java Time-Scale shall exactly match the international civil
- *  time scale at noon each day;</li>
- * <li>the Java Time-Scale shall have a precisely-defined relationship to
- *  the international civil time scale.</li>
- * </ul>
+ *
+ * * the Java Time-Scale shall closely match the underlying international
+ *   civil time scale;
+ * * the Java Time-Scale shall exactly match the international civil
+ *   time scale at noon each day;
+ * * the Java Time-Scale shall have a precisely-defined relationship to
+ *   the international civil time scale.
+ *
  * There are currently, as of 2013, two segments in the Java time-scale.
- * 
+ *
  * For the segment from 1972-11-03 (exact boundary discussed below) until
  * further notice, the consensus international time scale is UTC (with
  * leap seconds).  In this segment, the Java Time-Scale is identical to
- * <a href="http://www.cl.cam.ac.uk/~mgk25/time/utc-sls/">UTC-SLS</a>.
+ * [UTC-SLS](http://www.cl.cam.ac.uk/~mgk25/time/utc-sls/).
  * This is identical to UTC on days that do not have a leap second.
  * On days that do have a leap second, the leap second is spread equally
  * over the last 1000 seconds of the day, maintaining the appearance of
  * exactly 86400 seconds per day.
- * 
+ *
  * For the segment prior to 1972-11-03, extending back arbitrarily far,
  * the consensus international time scale is defined to be UT1, applied
  * proleptically, which is equivalent to the (mean) solar time on the
@@ -97,7 +97,7 @@ const NANOS_PER_MILLI = 1000000;
  * identical to the consensus international time scale. The exact
  * boundary between the two segments is the instant where UT1 = UTC
  * between 1972-11-03T00:00 and 1972-11-04T12:00.
- * 
+ *
  * Implementations of the Java time-scale using the JSR-310 API are not
  * required to provide any clock that is sub-second accurate, or that
  * progresses monotonically or smoothly. Implementations are therefore
@@ -106,12 +106,12 @@ const NANOS_PER_MILLI = 1000000;
  * implementations must document the approach they use when defining a
  * clock representing the current instant.
  * See {@link Clock} for details on the available clocks.
- * 
- * The Java time-scale is used for all date-time classes.
- * This includes {@code Instant}, {@code LocalDate}, {@code LocalTime}, {@code OffsetDateTime},
- * {@code ZonedDateTime} and {@code Duration}.
  *
- * <h3>Static properties of Class {@link Instant}</h3>
+ * The Java time-scale is used for all date-time classes.
+ * This includes {@link Instant}, {@link LocalDate}, {@link LocalTime}, {@link OffsetDateTime},
+ * {@link ZonedDateTime} and {@link Duration}.
+ *
+ * ### Static properties of Class {@link Instant}
  *
  * Instant.EPOCH
  *
@@ -140,7 +140,7 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Obtains an instance of {@code Instant} using seconds from the
+     * Obtains an instance of {@link Instant} using seconds from the
      * epoch of 1970-01-01T00:00:00Z.
      *
      * @param {number} epochSecond - the number of seconds from 1970-01-01T00:00:00Z
@@ -155,9 +155,9 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Obtains an instance of {@code Instant} using milliseconds from the
+     * Obtains an instance of {@link Instant} using milliseconds from the
      * epoch of 1970-01-01T00:00:00Z.
-     * <p>
+     *
      * The seconds and nanoseconds are extracted from the specified milliseconds.
      *
      * @param {number} epochMilli - the number of milliseconds from 1970-01-01T00:00:00Z
@@ -171,20 +171,20 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Obtains an instance of {@code Instant} from a temporal object.
-     * <p>
-     * A {@code TemporalAccessor} represents some form of date and time information.
-     * This factory converts the arbitrary temporal object to an instance of {@code Instant}.
-     * <p>
-     * The conversion extracts the {@link ChronoField#INSTANT_SECONDS INSTANT_SECONDS}
-     * and {@link ChronoField#NANO_OF_SECOND NANO_OF_SECOND} fields.
-     * <p>
+     * Obtains an instance of {@link Instant} from a temporal object.
+     *
+     * A {@link TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@link Instant}.
+     *
+     * The conversion extracts the {@link ChronoField#INSTANT_SECONDS}
+     * and {@link ChronoField#NANO_OF_SECOND} fields.
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
-     * allowing it to be used as a query via method reference, {@code Instant::from}.
+     * allowing it to be used as a query via method reference, {@link Instant::from}.
      *
      * @param {TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {Instant} the instant, not null
-     * @throws DateTimeException if unable to convert to an {@code Instant}
+     * @throws DateTimeException if unable to convert to an {@link Instant}
      */
     static from(temporal) {
         try {
@@ -198,9 +198,9 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Obtains an instance of {@code Instant} from a text string such as
-     * {@code 2007-12-03T10:15:30.000Z}.
-     * <p>
+     * Obtains an instance of {@link Instant} from a text string such as
+     * `2007-12-03T10:15:30.000Z`.
+     *
      * The string must represent a valid instant in UTC and is parsed using
      * {@link DateTimeFormatter#ISO_INSTANT}.
      *
@@ -242,7 +242,7 @@ export class Instant extends Temporal {
     }
 
     /**
-     * 
+     *
      * @param {number} seconds
      * @param {number} nanoOfSecond
      * @private
@@ -256,24 +256,23 @@ export class Instant extends Temporal {
 
     /**
      * Checks if the specified field is supported.
-     * <p>
+     *
      * This checks if this instant can be queried for the specified field.
-     * If false, then calling the {@link #range(TemporalField) range} and
-     * {@link #get(TemporalField) get} methods will throw an exception.
-     * <p>
+     * If false, then calling {@link range} and {@link get} will throw an exception.
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
-     * <ul>
-     * <li>{@code NANO_OF_SECOND}
-     * <li>{@code MICRO_OF_SECOND}
-     * <li>{@code MILLI_OF_SECOND}
-     * <li>{@code INSTANT_SECONDS}
-     * </ul>
-     * All other {@code ChronoField} instances will return false.
-     * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     *
+     * * {@link NANO_OF_SECOND}
+     * * {@link MICRO_OF_SECOND}
+     * * {@link MILLI_OF_SECOND}
+     * * {@link INSTANT_SECONDS}
+     *
+     * All other {@link ChronoField} instances will return false.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
      * @param {TemporalField|TemporalUnit} fieldOrUnit - the field to check, null returns false
@@ -291,20 +290,20 @@ export class Instant extends Temporal {
 
     /**
      * Gets the range of valid values for the specified field.
-     * <p>
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This instant is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return
+     * The supported fields (see {@link isSupported}) will return
      * appropriate range instances.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-     * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.rangeRefinedBy}
+     * passing `this` as the argument.
      * Whether the range can be obtained is determined by the field.
      *
      * @param {TemporalField} field - the field to query the range for, not null
@@ -316,22 +315,22 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this instant as an {@code int}.
-     * <p>
+     * Gets the value of the specified field from this instant as an `int`.
+     *
      * This queries this instant for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return valid
-     * values based on this date-time, except {@code INSTANT_SECONDS} which is too
-     * large to fit in an {@code int} and throws a {@code DateTimeException}.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-     * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * The supported fields (see {@link isSupported}) will return valid
+     * values based on this date-time, except {@link INSTANT_SECONDS} which is too
+     * large to fit in an `int` and throws a {@link DateTimeException}.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -344,20 +343,20 @@ export class Instant extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this instant as a {@code long}.
-     * <p>
+     * Gets the value of the specified field from this instant as a `long`.
+     *
      * This queries this instant for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
-     * The {@link #isSupported(TemporalField) supported fields} will return valid
+     * The supported fields (see {@link isSupported}) will return valid
      * values based on this date-time.
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-     * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -383,7 +382,7 @@ export class Instant extends Temporal {
      *
      * The epoch second count is a simple incrementing count of seconds where
      * second 0 is 1970-01-01T00:00:00Z.
-     * The nanosecond part of the day is returned by {@code getNanosOfSecond}.
+     * The nanosecond part of the day is returned by {@link getNanosOfSecond}.
      *
      * @return {number} the seconds from the epoch of 1970-01-01T00:00:00Z
      */
@@ -396,7 +395,7 @@ export class Instant extends Temporal {
      * of the second.
      *
      * The nanosecond-of-second value measures the total number of nanoseconds from
-     * the second returned by {@code getEpochSecond}.
+     * the second returned by {@link getEpochSecond}.
      *
      * @return {number} the nanoseconds within the second, always positive, never exceeds 999,999,999
      */
@@ -424,19 +423,19 @@ export class Instant extends Temporal {
     }
     /**
      * Returns an adjusted copy of this instant.
-     * <p>
-     * This returns a new {@code Instant}, based on this one, with the date adjusted.
+     *
+     * This returns a new {@link Instant}, based on this one, with the date adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
-     * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
-     * specified adjuster passing {@code this} as the argument.
-     * <p>
+     * {@link TemporalAdjuster#adjustInto} method on the
+     * specified adjuster passing `this` as the argument.
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {!TemporalAdjuster} adjuster - the adjuster to use, not null
-     * @return {Instant} an {@code Instant} based on {@code this} with the adjustment made, not null
+     * @return {Instant} an {@link Instant} based on `this` with the adjustment made, not null
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -447,44 +446,44 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified field set to a new value.
-     * <p>
-     * This returns a new {@code Instant}, based on this one, with the value
+     *
+     * This returns a new {@link Instant}, based on this one, with the value
      * for the specified field changed.
      * If it is not possible to set the value, because the field is not supported or for
      * some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
      * The supported fields behave as follows:
-     * <ul>
-     * <li>{@code NANO_OF_SECOND} -
-     *  Returns an {@code Instant} with the specified nano-of-second.
+     *
+     * * {@link NANO_OF_SECOND} -
+     *  Returns an {@link Instant} with the specified nano-of-second.
      *  The epoch-second will be unchanged.
-     * <li>{@code MICRO_OF_SECOND} -
-     *  Returns an {@code Instant} with the nano-of-second replaced by the specified
+     * * {@link MICRO_OF_SECOND} -
+     *  Returns an {@link Instant} with the nano-of-second replaced by the specified
      *  micro-of-second multiplied by 1,000. The epoch-second will be unchanged.
-     * <li>{@code MILLI_OF_SECOND} -
-     *  Returns an {@code Instant} with the nano-of-second replaced by the specified
+     * * {@link MILLI_OF_SECOND} -
+     *  Returns an {@link Instant} with the nano-of-second replaced by the specified
      *  milli-of-second multiplied by 1,000,000. The epoch-second will be unchanged.
-     * <li>{@code INSTANT_SECONDS} -
-     *  Returns an {@code Instant} with the specified epoch-second.
+     * * {@link INSTANT_SECONDS} -
+     *  Returns an {@link Instant} with the specified epoch-second.
      *  The nano-of-second will be unchanged.
-     * </ul>
-     * <p>
+     *
+     *
      * In all cases, if the new value is outside the valid range of values for the field
-     * then a {@code DateTimeException} will be thrown.
-     * <p>
-     * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-     * <p>
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
-     * passing {@code this} as the argument. In this case, the field determines
+     * then a {@link DateTimeException} will be thrown.
+     *
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.adjustInto}
+     * passing `this` as the argument. In this case, the field determines
      * whether and how to adjust the instant.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field - the field to set in the result, not null
      * @param {number} newValue - the new value of the field in the result
-     * @return {Instant} an {@code Instant} based on {@code this} with the specified field set, not null
+     * @return {Instant} an {@link Instant} based on `this` with the specified field set, not null
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -511,24 +510,24 @@ export class Instant extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * Returns a copy of this {@code Instant} truncated to the specified unit.
-     * <p>
+     * Returns a copy of this {@link Instant} truncated to the specified unit.
+     *
      * Truncating the instant returns a copy of the original with fields
      * smaller than the specified unit set to zero.
      * The fields are calculated on the basis of using a UTC offset as seen
-     * in {@code toString}.
-     * For example, truncating with the {@link ChronoUnit#MINUTES MINUTES} unit will
+     * in {@link toString}.
+     * For example, truncating with {@link ChronoUnit#MINUTES} will
      * round down to the nearest minute, setting the seconds and nanoseconds to zero.
-     * <p>
-     * The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+     *
+     * The unit must have a duration (see {@link TemporalUnit#getDuration})
      * that divides into the length of a standard day without remainder.
      * This includes all supplied time units on {@link ChronoUnit} and
-     * {@link ChronoUnit#DAYS DAYS}. Other units throw an exception.
-     * <p>
+     * {@link ChronoUnit#DAYS}. Other units throw an exception.
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {!TemporalUnit} unit - the unit to truncate to, not null
-     * @return {Instant} an {@code Instant} based on this instant with the time truncated, not null
+     * @return {Instant} an {@link Instant} based on this instant with the time truncated, not null
      * @throws DateTimeException if the unit is invalid for truncation
      */
     truncatedTo(unit) {
@@ -604,11 +603,11 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration in seconds added.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} secondsToAdd  the seconds to add, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified seconds added, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified seconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     plusSeconds(secondsToAdd) {
@@ -617,11 +616,11 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration in milliseconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} millisToAdd - the milliseconds to add, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified milliseconds added, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified milliseconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -631,11 +630,11 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration in nanoseconds added.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} nanosToAdd - the nanoseconds to add, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified nanoseconds added, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified nanoseconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     plusNanos(nanosToAdd) {
@@ -644,12 +643,12 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} secondsToAdd - the seconds to add, positive or negative
      * @param {number} nanosToAdd - the nanos to add, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified seconds added, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified seconds added, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     _plus(secondsToAdd, nanosToAdd) {
@@ -706,7 +705,7 @@ export class Instant extends Temporal {
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} secondsToSubtract - the seconds to subtract, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified seconds subtracted, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified seconds subtracted, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     minusSeconds(secondsToSubtract) {
@@ -715,11 +714,11 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration in milliseconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} millisToSubtract - the milliseconds to subtract, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified milliseconds subtracted, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified milliseconds subtracted, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -729,11 +728,11 @@ export class Instant extends Temporal {
 
     /**
      * Returns a copy of this instant with the specified duration in nanoseconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} nanosToSubtract  the nanoseconds to subtract, positive or negative
-     * @return {Instant} an {@code Instant} based on this instant with the specified nanoseconds subtracted, not null
+     * @return {Instant} an {@link Instant} based on this instant with the specified nanoseconds subtracted, not null
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -744,15 +743,15 @@ export class Instant extends Temporal {
     //-------------------------------------------------------------------------
     /**
      * Queries this instant using the specified query.
-     * <p>
+     *
      * This queries this instant using the specified query strategy object.
-     * The {@code TemporalQuery} object defines the logic to be used to
+     * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
-     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-     * specified query passing {@code this} as the argument.
+     * {@link TemporalQuery#queryFrom} method on the
+     * specified query passing `this` as the argument.
      *
      * @param {!TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
@@ -775,22 +774,22 @@ export class Instant extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this instant.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with the instant changed to be the same as this.
-     * <p>
-     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     *
+     * The adjustment is equivalent to using {@link Temporal#with}
      * twice, passing {@link ChronoField#INSTANT_SECONDS} and
      * {@link ChronoField#NANO_OF_SECOND} as the fields.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
-     * {@link Temporal#with(TemporalAdjuster)}:
+     * {@link Temporal#with}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisInstant.adjustInto(temporal);
      *   temporal = temporal.with(thisInstant);
      * </pre>
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {!Temporal} temporal - the target object to be adjusted, not null
@@ -806,39 +805,39 @@ export class Instant extends Temporal {
     /**
      * Calculates the period between this instant and another instant in
      * terms of the specified unit.
-     * <p>
+     *
      * This calculates the period between two instants in terms of a single unit.
-     * The start and end points are {@code this} and the specified instant.
+     * The start and end points are `this` and the specified instant.
      * The result will be negative if the end is before the start.
      * The calculation returns a whole number, representing the number of
      * complete units between the two instants.
-     * The {@code Temporal} passed to this method is converted to a
-     * {@code Instant} using {@link #from(TemporalAccessor)}.
+     * The {@link Temporal} passed to this method is converted to a
+     * {@link Instant} using {@link from}.
      * For example, the period in days between two dates can be calculated
-     * using {@code startInstant.until(endInstant, SECONDS)}.
-     * <p>
+     * using `startInstant.until(endInstant, SECONDS)`.
+     *
      * This method operates in association with {@link TemporalUnit#between}.
-     * The result of this method is a {@code long} representing the amount of
-     * the specified unit. By contrast, the result of {@code between} is an
+     * The result of this method is a `long` representing the amount of
+     * the specified unit. By contrast, the result of {@link between} is an
      * object that can be used directly in addition/subtraction:
      * <pre>
      *   long period = start.until(end, SECONDS);   // this method
      *   dateTime.plus(SECONDS.between(start, end));      // use in plus/minus
      * </pre>
-     * <p>
+     *
      * The calculation is implemented in this method for {@link ChronoUnit}.
-     * The units {@code NANOS}, {@code MICROS}, {@code MILLIS}, {@code SECONDS},
-     * {@code MINUTES}, {@code HOURS}, {@code HALF_DAYS} and {@code DAYS}
-     * are supported. Other {@code ChronoUnit} values will throw an exception.
-     * <p>
-     * If the unit is not a {@code ChronoUnit}, then the result of this method
-     * is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
-     * passing {@code this} as the first argument and the input temporal as
+     * The units {@link NANOS}, {@link MICROS}, {@link MILLIS}, {@link SECONDS},
+     * {@link MINUTES}, {@link HOURS}, {@link HALF_DAYS} and {@link DAYS}
+     * are supported. Other {@link ChronoUnit} values will throw an exception.
+     *
+     * If the unit is not a {@link ChronoUnit}, then the result of this method
+     * is obtained by invoking {@link TemporalUnit.between}
+     * passing `this` as the first argument and the input temporal as
      * the second argument.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} endExclusive - the end date, which is converted to an {@code Instant}, not null
+     * @param {Temporal} endExclusive - the end date, which is converted to an {@link Instant}, not null
      * @param {TemporalUnit} unit - the unit to measure the period in, not null
      * @return {number} the amount of the period between this date and the end date
      * @throws DateTimeException if the period cannot be calculated
@@ -895,14 +894,13 @@ export class Instant extends Temporal {
 
     //-----------------------------------------------------------------------
     /**
-     * Combines this instant with an offset to create an {@code OffsetDateTime}.
-     * <p>
-     * This returns an {@code OffsetDateTime} formed from this instant at the
+     * Combines this instant with an offset to create an {@link OffsetDateTime}.
+     *
+     * This returns an {@link OffsetDateTime} formed from this instant at the
      * specified offset from UTC/Greenwich. An exception will be thrown if the
      * instant is too large to fit into an offset date-time.
-     * <p>
-     * This method is equivalent to
-     * {@link OffsetDateTime#ofInstant(Instant, ZoneId) OffsetDateTime.ofInstant(this, offset)}.
+     *
+     * This method is equivalent to {@link OffsetDateTime#ofInstant}.
      *
      * @param {ZoneOffset} offset - the offset to combine with, not null
      * @return {OffsetDateTime} the offset date-time formed from this instant and the specified offset, not null
@@ -913,14 +911,13 @@ export class Instant extends Temporal {
     //}
 
     /**
-     * Combines this instant with a time-zone to create a {@code ZonedDateTime}.
-     * <p>
-     * This returns an {@code ZonedDateTime} formed from this instant at the
+     * Combines this instant with a time-zone to create a {@link ZonedDateTime}.
+     *
+     * This returns an {@link ZonedDateTime} formed from this instant at the
      * specified time-zone. An exception will be thrown if the instant is too
      * large to fit into a zoned date-time.
-     * <p>
-     * This method is equivalent to
-     * {@link ZonedDateTime#ofInstant(Instant, ZoneId) ZonedDateTime.ofInstant(this, zone)}.
+     *
+     * This method is equivalent to {@link ZonedDateTime#ofInstant}.
      *
      * @param {ZoneId} zone - the zone to combine with, not null
      * @return {ZonedDateTime} the zoned date-time formed from this instant and the specified zone, not null
@@ -934,10 +931,10 @@ export class Instant extends Temporal {
     /**
      * Converts this instant to the number of milliseconds from the epoch
      * of 1970-01-01T00:00:00Z.
-     * <p>
+     *
      * If this instant represents a point on the time-line too far in the future
-     * or past to fit in a {@code long} milliseconds, then an exception is thrown.
-     * <p>
+     * or past to fit in a `long` milliseconds, then an exception is thrown.
+     *
      * If this instant has greater than millisecond precision, then the conversion
      * will drop any excess precision information as though the amount in nanoseconds
      * was subject to integer division by one million.
@@ -953,7 +950,7 @@ export class Instant extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Compares this instant to the specified instant.
-     * <p>
+     *
      * The comparison is based on the time-line position of the instants.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *
@@ -973,7 +970,7 @@ export class Instant extends Temporal {
 
     /**
      * Checks if this instant is after the specified instant.
-     * <p>
+     *
      * The comparison is based on the time-line position of the instants.
      *
      * @param {Instant} otherInstant  the other instant to compare to, not null
@@ -986,7 +983,7 @@ export class Instant extends Temporal {
 
     /**
      * Checks if this instant is before the specified instant.
-     * <p>
+     *
      * The comparison is based on the time-line position of the instants.
      *
      * @param {Instant} otherInstant  the other instant to compare to, not null
@@ -999,7 +996,7 @@ export class Instant extends Temporal {
 
     /**
      * Checks if this instant is equal to the specified instant.
-     * <p>
+     *
      * The comparison is based on the time-line position of the instants.
      *
      * @param {*} otherInstant - the other instant, null/ undefined returns false
@@ -1027,7 +1024,7 @@ export class Instant extends Temporal {
 
     /**
      * A string representation of this instant using ISO-8601 representation.
-     * <p>
+     *
      * The format used is the same as {@link DateTimeFormatter#ISO_INSTANT}.
      *
      * @return {string} an ISO-8601 representation of this instant, not null

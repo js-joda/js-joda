@@ -25,7 +25,7 @@ import {createTemporalQuery} from '../temporal/TemporalQuery';
 
 /**
  *
- * <h3>Static properties of Class {@link DateTimeFormatter}</h3>
+ * ### Static properties of Class {@link DateTimeFormatter}
  *
  * DateTimeFormatter.ISO_LOCAL_DATE
  *
@@ -39,29 +39,27 @@ export class DateTimeFormatter {
     //-----------------------------------------------------------------------
     /**
      * A query that provides access to the excess days that were parsed.
-     * <p>
-     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     *
+     * This returns a singleton {@link TemporalQuery} that provides
      * access to additional information from the parse. The query always returns
      * a non-null period, with a zero period returned instead of null.
-     * <p>
-     * There are two situations where this query may return a non-zero period.
-     * <ul>
-     * <li>If the {@code ResolverStyle} is {@code LENIENT} and a time is parsed
-     *  without a date, then the complete result of the parse consists of a
-     *  {@code LocalTime} and an excess {@code Period} in days.
      *
-     * <li>If the {@code ResolverStyle} is {@code SMART} and a time is parsed
-     *  without a date where the time is 24:00:00, then the complete result of
-     *  the parse consists of a {@code LocalTime} of 00:00:00 and an excess
-     *  {@code Period} of one day.
-     * </ul>
-     * <p>
-     * In both cases, if a complete {@code ChronoLocalDateTime} or {@code Instant}
+     * There are two situations where this query may return a non-zero period.
+     *
+     * * If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed
+     *   without a date, then the complete result of the parse consists of a
+     *   {@link LocalTime} and an excess {@link Period} in days.
+     * * If the {@link ResolverStyle} is {@link SMART} and a time is parsed
+     *   without a date where the time is 24:00:00, then the complete result of
+     *   the parse consists of a {@link LocalTime} of 00:00:00 and an excess
+     *   {@link Period} of one day.
+     *
+     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}
      * is parsed, then the excess days are added to the date part.
      * As a result, this query will return a zero period.
-     * <p>
-     * The {@code SMART} behaviour handles the common "end of day" 24:00 value.
-     * Processing in {@code LENIENT} mode also produces the same result:
+     *
+     * The {@link SMART} behaviour handles the common "end of day" 24:00 value.
+     * Processing in {@link LENIENT} mode also produces the same result:
      * <pre>
      *  Text to parse        Parsed object                         Excess days
      *  "2012-12-03T00:00"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO
@@ -83,18 +81,18 @@ export class DateTimeFormatter {
 
     /**
      * A query that provides access to whether a leap-second was parsed.
-     * <p>
-     * This returns a singleton {@linkplain TemporalQuery query} that provides
+     *
+     * This returns a singleton {@link TemporalQuery} that provides
      * access to additional information from the parse. The query always returns
      * a non-null boolean, true if parsing saw a leap-second, false if not.
-     * <p>
+     *
      * Instant parsing handles the special "leap second" time of '23:59:60'.
      * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other
      * local times in different time-zones. To avoid this potential ambiguity,
      * the handling of leap-seconds is limited to
-     * {@link DateTimeFormatterBuilder#appendInstant()}, as that method
+     * {@link DateTimeFormatterBuilder#appendInstant}, as that method
      * always parses the instant with the UTC zone offset.
-     * <p>
+     *
      * If the time '23:59:60' is received, then a simple conversion is applied,
      * replacing the second-of-minute of 60 with 59. This query can be used
      * on the parse result to determine if the leap-second adjustment was made.
@@ -117,12 +115,12 @@ export class DateTimeFormatter {
 
     /**
      * Creates a formatter using the specified pattern.
-     * <p>
+     *
      * This method will create a formatter based on a simple pattern of letters and symbols.
-     * <p>
+     *
      * The returned formatter will use the default locale, but this can be changed
      * using {@link DateTimeFormatter.withLocale}.
-     * <p>
+     *
      * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.
      * The following pattern letters are defined:
      * <pre>
@@ -169,24 +167,24 @@ export class DateTimeFormatter {
      *  | ]      | optional section end       |                  |
      *  | {}     | reserved for future use    |                  |
      * </pre>
-     * <p>
+     *
      * The count of pattern letters determine the format.
-     * <p>
+     *
      * **Text**: The text style is determined based on the number of pattern letters used.
      * Less than 4 pattern letters will use the short form `TextStyle.SHORT`.
      * Exactly 4 pattern letters will use the full form `TextStyle.FULL`.
      * Exactly 5 pattern letters will use the narrow form `TextStyle.NARROW`.
-     * <p>
+     *
      * **NOTE**: since text styles require locale support, they are currently not supported in js-joda!
-     * <p>
+     *
      * **Number**: If the count of letters is one, then the value is printed using the minimum number
      * of digits and without padding as per {@link DateTimeFormatterBuilder.appendValue}.
      * Otherwise, the count of digits is used as the width of the output field as per
      * {@link DateTimeFormatterBuilder.appendValue}.
-     * <p>
+     *
      * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.
      * Otherwise use the Number rules above.
-     * <p>
+     *
      * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.
      * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.
      * If it is less than 9, then the nano-of-second value is truncated, with only the most
@@ -194,7 +192,7 @@ export class DateTimeFormatter {
      * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.
      * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern
      * letters, up to 9 digits.
-     * <p>
+     *
      * **Year**: The count of letters determines the minimum field width below which padding is used.
      * If the count of letters is two, then a {@link DateTimeFormatterBuilder.appendValueReduced}
      * two digit form is used.
@@ -203,18 +201,18 @@ export class DateTimeFormatter {
      * If the count of letters is less than four (but not two), then the sign is only output for negative
      * years as per `SignStyle.NORMAL`.
      * Otherwise, the sign is output if the pad width is exceeded, as per `SignStyle.EXCEEDS_PAD`
-     * <p>
+     *
      * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.
      * If the count of letters is two, then the time-zone ID is output.
      * Any other count of letters throws `IllegalArgumentException`.
-     * <p>
+     *
      * **Zone names**: This outputs the display name of the time-zone ID.
      * If the count of letters is one, two or three, then the short name is output.
      * If the count of letters is four, then the full name is output.
      * Five or more letters throws `IllegalArgumentException`.
-     * <p>
+     *
      * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!
-     * <p>
+     *
      * **Offset X and x**: This formats the offset based on the number of pattern letters.
      * One letter outputs just the hour', such as '+01', unless the minute is non-zero
      * in which case the minute is also output, such as '+0130'.
@@ -225,21 +223,21 @@ export class DateTimeFormatter {
      * Six or more letters throws `IllegalArgumentException`.
      * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,
      * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.
-     * <p>
+     *
      * **Offset Z**: This formats the offset based on the number of pattern letters.
      * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.
      * Four or more letters throws `IllegalArgumentException`.
      * The output will be '+0000' when the offset is zero.
-     * <p>
+     *
      * **Optional section**: The optional section markers work exactly like calling
      * {@link DateTimeFormatterBuilder.optionalStart} and {@link DateTimeFormatterBuilder.optionalEnd}.
-     * <p>
+     *
      * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.
      * The pad width is determined by the number of pattern letters.
      * This is the same as calling {@link DateTimeFormatterBuilder.padNext}.
-     * <p>
+     *
      * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.
-     * <p>
+     *
      * Any unrecognized letter is an error.
      * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.
      * Despite this, it is recommended to use single quotes around all characters that you want to
@@ -326,14 +324,14 @@ export class DateTimeFormatter {
      *
      * If an override is added, then any date that is printed or parsed will be affected.
      *
-     * When printing, if the {@code Temporal} object contains a date then it will
+     * When printing, if the {@link Temporal} object contains a date then it will
      * be converted to a date in the override chronology.
      * Any time or zone will be retained unless overridden.
      * The converted result will behave in a manner equivalent to an implementation
-     * of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.
+     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.
      *
      * When parsing, the override chronology will be used to interpret the
-     * {@linkplain ChronoField fields} into a date unless the
+     * {@link ChronoField} into a date unless the
      * formatter directly parses a valid chronology.
      *
      * This instance is immutable and unaffected by this method call.
@@ -360,7 +358,7 @@ export class DateTimeFormatter {
     //-----------------------------------------------------------------------
     /**
      * Formats a date-time object using this formatter.
-     * <p>
+     *
      * This formats the date-time to a String using the rules of the formatter.
      *
      * @param {TemporalAccessor} temporal  the temporal object to print, not null
@@ -375,15 +373,15 @@ export class DateTimeFormatter {
 
     //-----------------------------------------------------------------------
     /**
-     * Formats a date-time object to an {@code Appendable} using this formatter.
-     * <p>
+     * Formats a date-time object to an {@link Appendable} using this formatter.
+     *
      * This formats the date-time to the specified destination.
      * {@link Appendable} is a general purpose interface that is implemented by all
-     * key character output classes including {@code StringBuffer}, {@code StringBuilder},
-     * {@code PrintStream} and {@code Writer}.
-     * <p>
-     * Although {@code Appendable} methods throw an {@code IOException}, this method does not.
-     * Instead, any {@code IOException} is wrapped in a runtime exception.
+     * key character output classes including {@link StringBuffer}, {@link StringBuilder},
+     * {@link PrintStream} and {@link Writer}.
+     *
+     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.
+     * Instead, any {@link IOException} is wrapped in a runtime exception.
      *
      * @param {TemporalAccessor} temporal - the temporal object to print, not null
      * @param {StringBuilder} appendable - the appendable to print to, not null
@@ -416,12 +414,12 @@ export class DateTimeFormatter {
 
     /**
      * Fully parses the text producing a temporal object.
-     * <p>
+     *
      * This parses the entire text producing a temporal object.
-     * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-     * The result of this method is {@code TemporalAccessor} which has been resolved,
+     * It is typically more useful to use {@link parse}.
+     * The result of this method is {@link TemporalAccessor} which has been resolved,
      * applying basic validation checks to help ensure a valid date-time.
-     * <p>
+     *
      * If the parse completes without reading the entire length of the text,
      * or a problem occurs during parsing or merging, then an exception is thrown.
      *
@@ -446,8 +444,8 @@ export class DateTimeFormatter {
      * Fully parses the text producing a temporal object.
      *
      * This parses the entire text producing a temporal object.
-     * It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-     * The result of this method is {@code TemporalAccessor} which has been resolved,
+     * It is typically more useful to use {@link parse}.
+     * The result of this method is {@link TemporalAccessor} which has been resolved,
      * applying basic validation checks to help ensure a valid date-time.
      *
      * If the parse completes without reading the entire length of the text,
@@ -486,10 +484,10 @@ export class DateTimeFormatter {
 
     /**
      * Parses the text to a builder.
-     * <p>
-     * This parses to a {@code DateTimeBuilder} ensuring that the text is fully parsed.
+     *
+     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.
      * This method throws {@link DateTimeParseException} if unable to parse, or
-     * some other {@code DateTimeException} if another date/time problem occurs.
+     * some other {@link DateTimeException} if another date/time problem occurs.
      *
      * @param text  the text to parse, not null
      * @param position  the position to parse from, updated with length parsed
@@ -521,34 +519,34 @@ export class DateTimeFormatter {
     /**
      * Parses the text using this formatter, without resolving the result, intended
      * for advanced use cases.
-     * <p>
+     *
      * Parsing is implemented as a two-phase operation.
      * First, the text is parsed using the layout defined by the formatter, producing
-     * a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
-     * Second, the parsed data is <em>resolved</em>, by validating, combining and
+     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.
+     * Second, the parsed data is *resolved*, by validating, combining and
      * simplifying the various fields into more useful ones.
      * This method performs the parsing stage but not the resolving stage.
-     * <p>
-     * The result of this method is {@code TemporalAccessor} which represents the
+     *
+     * The result of this method is {@link TemporalAccessor} which represents the
      * data as seen in the input. Values are not validated, thus parsing a date string
      * of '2012-00-65' would result in a temporal with three fields - year of '2012',
      * month of '0' and day-of-month of '65'.
-     * <p>
-     * The text will be parsed from the specified start {@code ParsePosition}.
-     * The entire length of the text does not have to be parsed, the {@code ParsePosition}
+     *
+     * The text will be parsed from the specified start {@link ParsePosition}.
+     * The entire length of the text does not have to be parsed, the {@link ParsePosition}
      * will be updated with the index at the end of parsing.
-     * <p>
-     * Errors are returned using the error index field of the {@code ParsePosition}
-     * instead of {@code DateTimeParseException}.
+     *
+     * Errors are returned using the error index field of the {@link ParsePosition}
+     * instead of {@link DateTimeParseException}.
      * The returned error index will be set to an index indicative of the error.
      * Callers must check for errors before using the context.
-     * <p>
+     *
      * If the formatter parses the same field more than once with different values,
      * the result will be an error.
-     * <p>
+     *
      * This method is intended for advanced use cases that need access to the
      * internal state during parsing. Typical application code should use
-     * {@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.
+     * {@link parse} or the parse method on the target type.
      *
      * @param text  the text to parse, not null
      * @param position  the position to parse from, updated with length parsed

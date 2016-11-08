@@ -10,70 +10,72 @@ import {Enum} from '../Enum';
 
 /**
  * Strategy for querying a temporal object.
- * <p>
+ *
  * Queries are a key tool for extracting information from temporal objects.
  * They exist to externalize the process of querying, permitting different
  * approaches, as per the strategy design pattern.
  * Examples might be a query that checks if the date is the day before February 29th
  * in a leap year, or calculates the number of days to your next birthday.
- * <p>
+ *
  * The {@link TemporalField} interface provides another mechanism for querying
- * temporal objects. That interface is limited to returning a {@code long}.
+ * temporal objects. That interface is limited to returning a `long`.
  * By contrast, queries can return any type.
- * <p>
- * There are two equivalent ways of using a {@code TemporalQuery}.
+ *
+ * There are two equivalent ways of using a {@link TemporalQuery}.
  * The first is to invoke the method on this interface directly.
- * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:
+ * The second is to use {@link TemporalAccessor#query}:
  * <pre>
  *   // these two lines are equivalent, but the second approach is recommended
  *   temporal = thisQuery.queryFrom(temporal);
  *   temporal = temporal.query(thisQuery);
  * </pre>
- * It is recommended to use the second approach, {@code query(TemporalQuery)},
+ * It is recommended to use the second approach, {@link query},
  * as it is a lot clearer to read in code.
- * <p>
+ *
  * The most common implementations are method references, such as
- * {@code LocalDate::from} and {@code ZoneId::from}.
+ * {@link LocalDate::from} and {@link ZoneId::from}.
  * Further implementations are on {@link TemporalQueries}.
  * Queries may also be defined by applications.
  *
- * <h3>Specification for implementors</h3>
+ * ### Specification for implementors
+ *
  * This interface places no restrictions on the mutability of implementations,
  * however immutability is strongly recommended.
- * 
+ *
  * @interface
  */
 export class TemporalQuery  extends Enum {
     /**
      * Queries the specified temporal object.
-     * <p>
+     *
      * This queries the specified temporal object to return an object using the logic
      * encapsulated in the implementing class.
      * Examples might be a query that checks if the date is the day before February 29th
      * in a leap year, or calculates the number of days to your next birthday.
-     * <p>
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:
+     * The second is to use {@link TemporalAccessor#query}:
      * <pre>
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisQuery.queryFrom(temporal);
      *   temporal = temporal.query(thisQuery);
      * </pre>
-     * It is recommended to use the second approach, {@code query(TemporalQuery)},
+     * It is recommended to use the second approach, {@link query},
      * as it is a lot clearer to read in code.
      *
-     * <h3>Specification for implementors</h3>
+     * ### Specification for implementors
+     *
      * The implementation must take the input object and query it.
      * The implementation defines the logic of the query and is responsible for
      * documenting that logic.
-     * It may use any method on {@code TemporalAccessor} to determine the result.
+     * It may use any method on {@link TemporalAccessor} to determine the result.
      * The input object must not be altered.
-     * <p>
+     *
      * The input temporal object may be in a calendar system other than ISO.
      * Implementations may choose to document compatibility with other calendar systems,
-     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.
-     * <p>
+     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).
+     *
      * This method may be called from multiple threads in parallel.
      * It must be thread-safe when invoked.
      *
@@ -103,4 +105,3 @@ export function createTemporalQuery(name, queryFromFunction) {
     ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
     return new ExtendedTemporalQuery(name);
 }
-

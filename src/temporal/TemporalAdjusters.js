@@ -13,8 +13,8 @@ import {ChronoUnit} from '../temporal/ChronoUnit';
 import {MathUtil} from '../MathUtil';
 
 /**
- * Common implementations of {@code TemporalAdjuster}.
- * <p>
+ * Common implementations of {@link TemporalAdjuster}.
+ *
  * This class provides common implementations of {@link TemporalAdjuster}.
  * They are especially useful to document the intent of business logic and
  * often link well to requirements.
@@ -26,21 +26,22 @@ import {MathUtil} from '../MathUtil';
  *  // use of an adjuster from this class
  *  date.with(lastDayOfMonth());
  * </pre>
- * There are two equivalent ways of using a {@code TemporalAdjuster}.
+ * There are two equivalent ways of using a {@link TemporalAdjuster}.
  * The first is to invoke the method on the interface directly.
- * The second is to use {@link Temporal#with(TemporalAdjuster)}:
+ * The second is to use {@link Temporal#with}:
  * <pre>
  *   // these two lines are equivalent, but the second approach is recommended
  *   dateTime = adjuster.adjustInto(dateTime);
  *   dateTime = dateTime.with(adjuster);
  * </pre>
- * It is recommended to use the second approach, {@code with(TemporalAdjuster)},
+ * It is recommended to use the second approach, {@link with},
  * as it is a lot clearer to read in code.
  *
- * <h3>Specification for implementors</h3>
+ * ### Specification for implementors
+ *
  * This is a thread-safe utility class.
  * All returned adjusters are immutable and thread-safe.
- * <p>
+ *
  * The JDK 8 ofDateAdjuster(UnaryOperator) method is not backported.
  */
 export class TemporalAdjusters {
@@ -49,11 +50,12 @@ export class TemporalAdjusters {
     /**
      * Returns the 'first day of month' adjuster, which returns a new date set to
      * the first day of the current month.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2011-01-01.<br>
-     * The input 2011-02-15 will return 2011-02-01.
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2011-01-01.
+     * * The input 2011-02-15 will return 2011-02-01.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -69,13 +71,14 @@ export class TemporalAdjusters {
     /**
      * Returns the 'last day of month' adjuster, which returns a new date set to
      * the last day of the current month.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2011-01-31.<br>
-     * The input 2011-02-15 will return 2011-02-28.<br>
-     * The input 2012-02-15 will return 2012-02-29 (leap year).<br>
-     * The input 2011-04-15 will return 2011-04-30.
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2011-01-31.
+     * * The input 2011-02-15 will return 2011-02-28.
+     * * The input 2012-02-15 will return 2012-02-29 (leap year).
+     * * The input 2011-04-15 will return 2011-04-30.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -92,11 +95,12 @@ export class TemporalAdjusters {
     /**
      * Returns the 'first day of next month' adjuster, which returns a new date set to
      * the first day of the next month.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2011-02-01.<br>
-     * The input 2011-02-15 will return 2011-03-01.
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2011-02-01.
+     * * The input 2011-02-15 will return 2011-03-01.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -113,11 +117,12 @@ export class TemporalAdjusters {
     /**
      * Returns the 'first day of year' adjuster, which returns a new date set to
      * the first day of the current year.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2011-01-01.<br>
-     * The input 2011-02-15 will return 2011-01-01.<br>
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2011-01-01.
+     * * The input 2011-02-15 will return 2011-01-01.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -133,11 +138,12 @@ export class TemporalAdjusters {
     /**
      * Returns the 'last day of year' adjuster, which returns a new date set to
      * the last day of the current year.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2011-12-31.<br>
-     * The input 2011-02-15 will return 2011-12-31.<br>
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2011-12-31.
+     * * The input 2011-02-15 will return 2011-12-31.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -154,10 +160,11 @@ export class TemporalAdjusters {
     /**
      * Returns the 'first day of next year' adjuster, which returns a new date set to
      * the first day of the next year.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 will return 2012-01-01.
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 will return 2012-01-01.
+     *
      * The behavior is suitable for use with most calendar systems.
      * It is equivalent to:
      * <pre>
@@ -175,14 +182,15 @@ export class TemporalAdjusters {
      * Returns the first in month adjuster, which returns a new date
      * in the same month with the first matching day-of-week.
      * This is used for expressions like 'first Tuesday in March'.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-12-15 for (MONDAY) will return 2011-12-05.<br>
-     * The input 2011-12-15 for (FRIDAY) will return 2011-12-02.<br>
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-12-15 for (MONDAY) will return 2011-12-05.
+     * * The input 2011-12-15 for (FRIDAY) will return 2011-12-02.
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
      * @return {TemporalAdjuster} the first in month adjuster, not null
@@ -196,14 +204,15 @@ export class TemporalAdjusters {
      * Returns the last in month adjuster, which returns a new date
      * in the same month with the last matching day-of-week.
      * This is used for expressions like 'last Tuesday in March'.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-12-15 for (MONDAY) will return 2011-12-26.<br>
-     * The input 2011-12-15 for (FRIDAY) will return 2011-12-30.<br>
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-12-15 for (MONDAY) will return 2011-12-26.
+     * * The input 2011-12-15 for (FRIDAY) will return 2011-12-30.
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
      * @return {TemporalAdjuster} the first in month adjuster, not null
@@ -217,18 +226,19 @@ export class TemporalAdjusters {
      * Returns the day-of-week in month adjuster, which returns a new date
      * in the same month with the ordinal day-of-week.
      * This is used for expressions like the 'second Tuesday in March'.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-12-15 for (1,TUESDAY) will return 2011-12-06.<br>
-     * The input 2011-12-15 for (2,TUESDAY) will return 2011-12-13.<br>
-     * The input 2011-12-15 for (3,TUESDAY) will return 2011-12-20.<br>
-     * The input 2011-12-15 for (4,TUESDAY) will return 2011-12-27.<br>
-     * The input 2011-12-15 for (5,TUESDAY) will return 2012-01-03.<br>
-     * The input 2011-12-15 for (-1,TUESDAY) will return 2011-12-27 (last in month).<br>
-     * The input 2011-12-15 for (-4,TUESDAY) will return 2011-12-06 (3 weeks before last in month).<br>
-     * The input 2011-12-15 for (-5,TUESDAY) will return 2011-11-29 (4 weeks before last in month).<br>
-     * The input 2011-12-15 for (0,TUESDAY) will return 2011-11-29 (last in previous month).<br>
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-12-15 for (1,TUESDAY) will return 2011-12-06.
+     * * The input 2011-12-15 for (2,TUESDAY) will return 2011-12-13.
+     * * The input 2011-12-15 for (3,TUESDAY) will return 2011-12-20.
+     * * The input 2011-12-15 for (4,TUESDAY) will return 2011-12-27.
+     * * The input 2011-12-15 for (5,TUESDAY) will return 2012-01-03.
+     * * The input 2011-12-15 for (-1,TUESDAY) will return 2011-12-27 (last in month).
+     * * The input 2011-12-15 for (-4,TUESDAY) will return 2011-12-06 (3 weeks before last in month).
+     * * The input 2011-12-15 for (-5,TUESDAY) will return 2011-11-29 (4 weeks before last in month).
+     * * The input 2011-12-15 for (0,TUESDAY) will return 2011-11-29 (last in previous month).
+     *
      * For a positive or zero ordinal, the algorithm is equivalent to finding the first
      * day-of-week that matches within the month and then adding a number of weeks to it.
      * For a negative ordinal, the algorithm is equivalent to finding the last
@@ -236,10 +246,10 @@ export class TemporalAdjusters {
      * The ordinal number of weeks is not validated and is interpreted leniently
      * according to this algorithm. This definition means that an ordinal of zero finds
      * the last matching day-of-week in the previous month.
-     * <p>
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-     * and the {@code DAYS} unit, and assumes a seven day week.
+     * It uses the {@link DAY_OF_WEEK} and {@link DAY_OF_MONTH} fields
+     * and the {@link DAYS} unit, and assumes a seven day week.
      *
      * @param {Number} ordinal  the week within the month, unbounded but typically from -5 to 5
      * @param {DayOfWeek} dayOfWeek  the day-of-week, not null
@@ -254,14 +264,15 @@ export class TemporalAdjusters {
     /**
      * Returns the next day-of-week adjuster, which adjusts the date to the
      * first occurrence of the specified day-of-week after the date being adjusted.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-22 (seven days later).
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).
+     * * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).
+     * * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-22 (seven days later).
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to move the date to, not null
@@ -275,14 +286,15 @@ export class TemporalAdjusters {
      * Returns the next-or-same day-of-week adjuster, which adjusts the date to the
      * first occurrence of the specified day-of-week after the date being adjusted
      * unless it is already on that day in which case the same object is returned.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).
+     * * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).
+     * * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to check for or move the date to, not null
@@ -295,14 +307,15 @@ export class TemporalAdjusters {
     /**
      * Returns the previous day-of-week adjuster, which adjusts the date to the
      * first occurrence of the specified day-of-week before the date being adjusted.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-08 (seven days earlier).
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).
+     * * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).
+     * * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-08 (seven days earlier).
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek  the day-of-week to move the date to, not null
@@ -316,14 +329,15 @@ export class TemporalAdjusters {
      * Returns the previous-or-same day-of-week adjuster, which adjusts the date to the
      * first occurrence of the specified day-of-week before the date being adjusted
      * unless it is already on that day in which case the same object is returned.
-     * <p>
-     * The ISO calendar system behaves as follows:<br>
-     * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).<br>
-     * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
-     * <p>
+     *
+     * The ISO calendar system behaves as follows:
+     *
+     * * The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).
+     * * The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).
+     * * The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).
+     *
      * The behavior is suitable for use with most calendar systems.
-     * It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+     * It uses the {@link DAY_OF_WEEK} field and the {@link DAYS} unit,
      * and assumes a seven day week.
      *
      * @param {DayOfWeek} dayOfWeek the day-of-week to check for or move the date to, not null
@@ -384,7 +398,7 @@ class DayOfWeekInMonth extends TemporalAdjuster {
         this._ordinal = ordinal;
         this._dowValue = dow.value();
     }
-    
+
     adjustInto(temporal) {
         if (this._ordinal >= 0) {
             let temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
@@ -431,4 +445,3 @@ class RelativeDayOfWeek extends TemporalAdjuster {
         }
     }
 }
-

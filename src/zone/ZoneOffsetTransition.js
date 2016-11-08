@@ -12,17 +12,17 @@ import {LocalDateTime} from '../LocalDateTime';
 
 /**
  * A transition between two offsets caused by a discontinuity in the local time-line.
- * <p>
+ *
  * A transition between two offsets is normally the result of a daylight savings cutover.
  * The discontinuity is normally a gap in spring and an overlap in autumn.
- * {@code ZoneOffsetTransition} models the transition between the two offsets.
- * <p>
+ * {@link ZoneOffsetTransition} models the transition between the two offsets.
+ *
  * Gaps occur where there are local date-times that simply do not not exist.
- * An example would be when the offset changes from {@code +03:00} to {@code +04:00}.
+ * An example would be when the offset changes from `+03:00` to `+04:00`.
  * This might be described as 'the clocks will move forward one hour tonight at 1am'.
- * <p>
+ *
  * Overlaps occur where there are local date-times that exist twice.
- * An example would be when the offset changes from {@code +04:00} to {@code +03:00}.
+ * An example would be when the offset changes from `+04:00` to `+03:00`.
  * This might be described as 'the clocks will move back one hour tonight at 2am'.
  *
  */
@@ -31,7 +31,7 @@ export class ZoneOffsetTransition {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance defining a transition between two offsets.
-     * <p>
+     *
      * Applications should normally obtain an instance from {@link ZoneRules}.
      * This factory is only intended for use when creating {@link ZoneRules}.
      *
@@ -40,8 +40,8 @@ export class ZoneOffsetTransition {
      * @param {ZoneOffset} offsetBefore - the offset before the transition, not null
      * @param {ZoneOffset} offsetAfter - the offset at and after the transition, not null
      * @return {ZoneOffsetTransition} the transition, not null
-     * @throws IllegalArgumentException if {@code offsetBefore} and {@code offsetAfter}
-     *         are equal, or {@code transition.getNano()} returns non-zero value
+     * @throws IllegalArgumentException if {@link offsetBefore} and {@link offsetAfter}
+     *         are equal, or {@link transition.getNano} returns non-zero value
      */
     static of(transition, offsetBefore, offsetAfter) {
         return new ZoneOffsetTransition(transition, offsetBefore, offsetAfter);
@@ -77,11 +77,11 @@ export class ZoneOffsetTransition {
     //-----------------------------------------------------------------------
     /**
      * Gets the transition instant.
-     * <p>
+     *
      * This is the instant of the discontinuity, which is defined as the first
      * instant that the 'after' offset applies.
-     * <p>
-     * The methods {@link #getInstant()}, {@link #getDateTimeBefore()} and {@link #getDateTimeAfter()}
+     *
+     * The methods {@link getInstant}, {@link getDateTimeBefore} and {@link getDateTimeAfter}
      * all represent the same instant.
      *
      * @return {Instant} the transition instant, not null
@@ -102,11 +102,11 @@ export class ZoneOffsetTransition {
     //-------------------------------------------------------------------------
     /**
      * Gets the local transition date-time, as would be expressed with the 'before' offset.
-     * <p>
+     *
      * This is the date-time where the discontinuity begins expressed with the 'before' offset.
      * At this instant, the 'after' offset is actually used, therefore the combination of this
      * date-time and the 'before' offset will never occur.
-     * <p>
+     *
      * The combination of the 'before' date-time and offset represents the same instant
      * as the 'after' date-time and offset.
      *
@@ -118,9 +118,9 @@ export class ZoneOffsetTransition {
 
     /**
      * Gets the local transition date-time, as would be expressed with the 'after' offset.
-     * <p>
+     *
      * This is the first date-time after the discontinuity, when the new offset applies.
-     * <p>
+     *
      * The combination of the 'before' date-time and offset represents the same instant
      * as the 'after' date-time and offset.
      *
@@ -132,7 +132,7 @@ export class ZoneOffsetTransition {
 
     /**
      * Gets the offset before the transition.
-     * <p>
+     *
      * This is the offset in use before the instant of the transition.
      *
      * @return {ZoneOffset} the offset before the transition, not null
@@ -143,7 +143,7 @@ export class ZoneOffsetTransition {
 
     /**
      * Gets the offset after the transition.
-     * <p>
+     *
      * This is the offset in use on and after the instant of the transition.
      *
      * @return {ZoneOffset} the offset after the transition, not null
@@ -154,7 +154,7 @@ export class ZoneOffsetTransition {
 
     /**
      * Gets the duration of the transition.
-     * <p>
+     *
      * In most cases, the transition duration is one hour, however this is not always the case.
      * The duration will be positive for a gap and negative for an overlap.
      * Time-zones are second-based, so the nanosecond part of the duration will be zero.
@@ -176,9 +176,9 @@ export class ZoneOffsetTransition {
 
     /**
      * Does this transition represent a gap in the local time-line.
-     * <p>
+     *
      * Gaps occur where there are local date-times that simply do not not exist.
-     * An example would be when the offset changes from {@code +01:00} to {@code +02:00}.
+     * An example would be when the offset changes from `+01:00` to `+02:00`.
      * This might be described as 'the clocks will move forward one hour tonight at 1am'.
      *
      * @return {boolean} true if this transition is a gap, false if it is an overlap
@@ -189,9 +189,9 @@ export class ZoneOffsetTransition {
 
     /**
      * Does this transition represent a gap in the local time-line.
-     * <p>
+     *
      * Overlaps occur where there are local date-times that exist twice.
-     * An example would be when the offset changes from {@code +02:00} to {@code +01:00}.
+     * An example would be when the offset changes from `+02:00` to `+01:00`.
      * This might be described as 'the clocks will move back one hour tonight at 2am'.
      *
      * @return {boolean} true if this transition is an overlap, false if it is a gap
@@ -202,7 +202,7 @@ export class ZoneOffsetTransition {
 
     /**
      * Checks if the specified offset is valid during this transition.
-     * <p>
+     *
      * This checks to see if the given offset will be valid at some point in the transition.
      * A gap will always return false.
      * An overlap will return true if the offset is either the before or after offset.
@@ -216,7 +216,7 @@ export class ZoneOffsetTransition {
 
     /**
      * Gets the valid offsets during this transition.
-     * <p>
+     *
      * A gap will return an empty list, while an overlap will return both offsets.
      *
      * @return {ZoneOffset[]} the list of valid offsets
@@ -232,7 +232,7 @@ export class ZoneOffsetTransition {
     //-----------------------------------------------------------------------
     /**
      * Compares this transition to another based on the transition instant.
-     * <p>
+     *
      * This compares the instants of each transition.
      * The offsets are ignored, making this order inconsistent with equals.
      *
@@ -246,7 +246,7 @@ export class ZoneOffsetTransition {
     //-----------------------------------------------------------------------
     /**
      * Checks if this object equals another.
-     * <p>
+     *
      * The entire state of the object is compared.
      *
      * @param {*} other - the other object to compare to, null returns false

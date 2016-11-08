@@ -14,7 +14,7 @@ import {Enum} from '../Enum';
  * Phase 2 resolves the parsed field-value pairs into date and/or time objects.
  * This style is used to control how phase 2, resolving, happens.
  *
- * <h3>Static properties of Class {@link DateTimeFormatter}</h3>
+ * ### Static properties of Class {@link DateTimeFormatter}
  *
  * ResolverStyle.STRICT = new ResolverStyle('STRICT');
  *

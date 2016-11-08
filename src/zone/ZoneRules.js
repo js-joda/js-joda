@@ -12,8 +12,8 @@ import {Instant} from '../Instant';
 export class ZoneRules {
 
     /**
-     * Obtains an instance of {@code ZoneRules} that always uses the same offset.
-     * <p>
+     * Obtains an instance of {@link ZoneRules} that always uses the same offset.
+     *
      * The returned rules always have the same offset.
      *
      * @param {ZoneOffset} offset - the offset, not null
@@ -49,10 +49,10 @@ export class ZoneRules {
             return this.offsetOfLocalDateTime(instantOrLocalDateTime);
         }
     }
-    
+
     /**
      * Gets the offset applicable at the specified instant in these rules.
-     * <p>
+     *
      * The mapping from an instant to an offset is simple, there is only
      * one valid offset for each instant.
      * This method returns that offset.
@@ -65,10 +65,10 @@ export class ZoneRules {
     offsetOfInstant(instant){
         abstractMethodFail('ZoneRules.offsetInstant');
     }
-    
+
     /**
      * Gets the offset applicable at the specified epochMilli in these rules.
-     * 
+     *
      * The method is for javascript performance optimisation.
      *
      * @param {number} epochMilli - the epoch millisecond to find the offset for, not null, but null
@@ -79,31 +79,31 @@ export class ZoneRules {
     offsetOfEpochMilli(epochMilli){
         abstractMethodFail('ZoneRules.offsetOfEpochMilli');
     }
-    
+
 
     /**
      * Gets a suitable offset for the specified local date-time in these rules.
-     * <p>
+     *
      * The mapping from a local date-time to an offset is not straightforward.
      * There are three cases:
-     * <p><ul>
-     * <li>Normal, with one valid offset. For the vast majority of the year, the normal
-     *  case applies, where there is a single valid offset for the local date-time.</li>
-     * <li>Gap, with zero valid offsets. This is when clocks jump forward typically
-     *  due to the spring daylight savings change from "winter" to "summer".
-     *  In a gap there are local date-time values with no valid offset.</li>
-     * <li>Overlap, with two valid offsets. This is when clocks are set back typically
-     *  due to the autumn daylight savings change from "summer" to "winter".
-     *  In an overlap there are local date-time values with two valid offsets.</li>
-     * </ul><p>
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from "winter" to "summer".
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from "summer" to "winter".
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
      * Thus, for any given local date-time there can be zero, one or two valid offsets.
      * This method returns the single offset in the Normal case, and in the Gap or Overlap
      * case it returns the offset before the transition.
-     * <p>
+     *
      * Since, in the case of Gap and Overlap, the offset returned is a "best" value, rather
      * than the "correct" value, it should be treated with care. Applications that care
      * about the correct offset should use a combination of this method,
-     * {@link #getValidOffsets(LocalDateTime)} and {@link #getTransition(LocalDateTime)}.
+     * {@link getValidOffsets} and {@link getTransition}.
      *
      * @param {LocalDateTime} localDateTime - the local date-time to query, not null, but null
      *  may be ignored if the rules have a single offset for all instants
@@ -116,25 +116,25 @@ export class ZoneRules {
 
     /**
      * Gets the offset applicable at the specified local date-time in these rules.
-     * <p>
+     *
      * The mapping from a local date-time to an offset is not straightforward.
      * There are three cases:
-     * <p><ul>
-     * <li>Normal, with one valid offset. For the vast majority of the year, the normal
-     *  case applies, where there is a single valid offset for the local date-time.</li>
-     * <li>Gap, with zero valid offsets. This is when clocks jump forward typically
-     *  due to the spring daylight savings change from "winter" to "summer".
-     *  In a gap there are local date-time values with no valid offset.</li>
-     * <li>Overlap, with two valid offsets. This is when clocks are set back typically
-     *  due to the autumn daylight savings change from "summer" to "winter".
-     *  In an overlap there are local date-time values with two valid offsets.</li>
-     * </ul><p>
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from "winter" to "summer".
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from "summer" to "winter".
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
      * Thus, for any given local date-time there can be zero, one or two valid offsets.
      * This method returns that list of valid offsets, which is a list of size 0, 1 or 2.
      * In the case where there are two offsets, the earlier offset is returned at index 0
      * and the later offset at index 1.
-     * <p>
-     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     *
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
      * One technique, using this method, would be:
      * <pre>
      *  List<ZoneOffset> validOffsets = rules.getOffset(localDT);
@@ -146,7 +146,7 @@ export class ZoneRules {
      *    ZoneOffsetTransition trans = rules.getTransition(localDT);
      *  }
      * </pre>
-     * <p>
+     *
      * In theory, it is possible for there to be more than two valid offsets.
      * This would happen if clocks to be put back more than once in quick succession.
      * This has never happened in the history of time-zones and thus has no special handling.
@@ -163,23 +163,23 @@ export class ZoneRules {
 
     /**
      * Gets the offset transition applicable at the specified local date-time in these rules.
-     * <p>
+     *
      * The mapping from a local date-time to an offset is not straightforward.
      * There are three cases:
-     * <p><ul>
-     * <li>Normal, with one valid offset. For the vast majority of the year, the normal
-     *  case applies, where there is a single valid offset for the local date-time.</li>
-     * <li>Gap, with zero valid offsets. This is when clocks jump forward typically
-     *  due to the spring daylight savings change from "winter" to "summer".
-     *  In a gap there are local date-time values with no valid offset.</li>
-     * <li>Overlap, with two valid offsets. This is when clocks are set back typically
-     *  due to the autumn daylight savings change from "summer" to "winter".
-     *  In an overlap there are local date-time values with two valid offsets.</li>
-     * </ul><p>
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from "winter" to "summer".
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from "summer" to "winter".
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
      * A transition is used to model the cases of a Gap or Overlap.
      * The Normal case will return null.
-     * <p>
-     * There are various ways to handle the conversion from a {@code LocalDateTime}.
+     *
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
      * One technique, using this method, would be:
      * <pre>
      *  ZoneOffsetTransition trans = rules.getTransition(localDT);
@@ -203,7 +203,7 @@ export class ZoneRules {
     //-----------------------------------------------------------------------
     /**
      * Gets the standard offset for the specified instant in this zone.
-     * <p>
+     *
      * This provides access to historic information on how the standard offset
      * has changed over time.
      * The standard offset is the offset before any daylight saving time is applied.
@@ -220,7 +220,7 @@ export class ZoneRules {
 
     /**
      * Gets the amount of daylight savings in use for the specified instant in this zone.
-     * <p>
+     *
      * This provides access to historic information on how the amount of daylight
      * savings has changed over time.
      * This is the difference between the standard offset and the actual offset.
@@ -243,7 +243,7 @@ export class ZoneRules {
 
     /**
      * Checks if the specified instant is in daylight savings.
-     * <p>
+     *
      * This checks if the standard and actual offsets are the same at the specified instant.
      *
      * @param {Instant} instant - the instant to find the offset information for, not null, but null
@@ -260,7 +260,7 @@ export class ZoneRules {
 
     /**
      * Checks if the offset date-time is valid for these rules.
-     * <p>
+     *
      * To be valid, the local date-time must not be in a gap and the offset
      * must match the valid offsets.
      *
@@ -277,7 +277,7 @@ export class ZoneRules {
     //-----------------------------------------------------------------------
     /**
      * Gets the next transition after the specified instant.
-     * <p>
+     *
      * This returns details of the next transition after the specified instant.
      * For example, if the instant represents a point where "Summer" daylight savings time
      * applies, then the method will return the transition to the next "Winter" time.
@@ -293,7 +293,7 @@ export class ZoneRules {
 
     /**
      * Gets the previous transition before the specified instant.
-     * <p>
+     *
      * This returns details of the previous transition after the specified instant.
      * For example, if the instant represents a point where "summer" daylight saving time
      * applies, then the method will return the transition from the previous "winter" time.
@@ -309,11 +309,11 @@ export class ZoneRules {
 
     /**
      * Gets the complete list of fully defined transitions.
-     * <p>
+     *
      * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitionRules()}. This method returns those transitions that have
+     * and {@link getTransitionRules}. This method returns those transitions that have
      * been fully defined. These are typically historical, but may be in the future.
-     * <p>
+     *
      * The list will be empty for fixed offset rules and for any time-zone where there has
      * only ever been a single offset. The list will also be empty if the transition rules are unknown.
      *
@@ -325,20 +325,20 @@ export class ZoneRules {
 
     /**
      * Gets the list of transition rules for years beyond those defined in the transition list.
-     * <p>
+     *
      * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitions()}. This method returns instances of {@link ZoneOffsetTransitionRule}
+     * and {@link getTransitions}. This method returns instances of {@link ZoneOffsetTransitionRule}
      * that define an algorithm for when transitions will occur.
-     * <p>
-     * For any given {@code ZoneRules}, this list contains the transition rules for years
+     *
+     * For any given {@link ZoneRules}, this list contains the transition rules for years
      * beyond those years that have been fully defined. These rules typically refer to future
      * daylight saving time rule changes.
-     * <p>
+     *
      * If the zone defines daylight savings into the future, then the list will normally
      * be of size two and hold information about entering and exiting daylight savings.
      * If the zone does not have daylight savings, or information about future changes
      * is uncertain, then the list will be empty.
-     * <p>
+     *
      * The list will be empty for fixed offset rules and for any time-zone where there is no
      * daylight saving time. The list will also be empty if the transition rules are unknown.
      *

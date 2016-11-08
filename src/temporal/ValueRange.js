@@ -48,7 +48,7 @@ export class ValueRange {
 
     /**
      * Is the value range fixed and fully known.
-     * <p>
+     *
      * For example, the ISO day-of-month runs from 1 to between 28 and 31.
      * Since there is uncertainty about the maximum value, the range is not fixed.
      * However, for the month of January, the range is always 1 to 31, thus it is fixed.
@@ -117,10 +117,10 @@ export class ValueRange {
     }
 
     /**
-     * Checks that the specified value is valid and fits in an {@code int}.
-     * <p>
+     * Checks that the specified value is valid and fits in an `int`.
+     *
      * This validates that the value is within the valid range of values and that
-     * all valid values are within the bounds of an {@code int}.
+     * all valid values are within the bounds of an `int`.
      * The field is only used to improve the error message.
      *
      * @param {number} value - the value to check
@@ -137,28 +137,28 @@ export class ValueRange {
 
     /**
      * Checks if the value is within the valid range and that all values
-     * in the range fit in an {@code int}.
-     * <p>
-     * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+     * in the range fit in an `int`.
+     *
+     * This method combines {@link isIntValue} and {@link isValidValue}.
      *
      * @param {number} value - the value to check
-     * @return true if the value is valid and fits in an {@code int}
+     * @return true if the value is valid and fits in an `int`
      */
     isValidIntValue(value) {
         return this.isIntValue() && this.isValidValue(value);
     }
 
     /**
-     * Checks if all values in the range fit in an {@code int}.
-     * <p>
-     * This checks that all valid values are within the bounds of an {@code int}.
-     * <p>
-     * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
-     * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
-     * <p>
-     * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+     * Checks if all values in the range fit in an `int`.
      *
-     * @return boolean if a valid value always fits in an {@code int}
+     * This checks that all valid values are within the bounds of an `int`.
+     *
+     * For example, the ISO month-of-year has values from 1 to 12, which fits in an `int`.
+     * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an `int`.
+     *
+     * This implementation uses {@link getMinimum} and {@link getMaximum}.
+     *
+     * @return boolean if a valid value always fits in an `int`
      */
     isIntValue() { // should be isSafeIntegerValue
         return this.minimum() >= MathUtil.MIN_SAFE_INTEGER && this.maximum() <= MathUtil.MAX_SAFE_INTEGER;
@@ -166,10 +166,10 @@ export class ValueRange {
 
     /**
      * Checks if this range is equal to another range.
-     * <p>
+     *
      * The comparison is based on the four values, minimum, largest minimum,
      * smallest maximum and maximum.
-     * Only objects of type {@code ValueRange} are compared, other types return false.
+     * Only objects of type {@link ValueRange} are compared, other types return false.
      *
      * @param {*} other - the object to check, null returns false
      * @return {boolean} true if this is equal to the other range

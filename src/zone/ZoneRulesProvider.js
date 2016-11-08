@@ -9,9 +9,9 @@ import {DateTimeException} from '../errors';
 export class ZoneRulesProvider {
     /**
      * Gets the rules for the zone ID.
-     * <p>
+     *
      * This returns the latest available rules for the zone ID.
-     * <p>
+     *
      * This method relies on time-zone data provider files that are configured.
      *
      * @param {string} zoneId
@@ -24,8 +24,8 @@ export class ZoneRulesProvider {
 
     /**
      * Gets the set of available zone IDs.
-     * <p>
-     * These zone IDs are loaded and available for use by {@code ZoneId}.
+     *
+     * These zone IDs are loaded and available for use by {@link ZoneId}.
      *
      * @return {string[]} a modifiable copy of the set of zone IDs, not null
      */
