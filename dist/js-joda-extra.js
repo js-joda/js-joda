@@ -10,7 +10,7 @@
 	else if(typeof exports === 'object')
 		exports["JSJodaExtra"] = factory(require("js-joda"));
 	else
-		root["JSJodaExtra"] = factory(root["js-joda"]);
+		root["JSJodaExtra"] = factory(root["JSJoda"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
