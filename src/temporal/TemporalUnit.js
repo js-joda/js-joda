@@ -8,17 +8,17 @@ import {abstractMethodFail} from '../assert';
 
 /**
  * A unit of date-time, such as Days or Hours.
- * <p>
+ *
  * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.
  * Implementations of this interface represent those units.
- * <p>
+ *
  * An instance of this interface represents the unit itself, rather than an amount of the unit.
  * See {@link Period} for a class that represents an amount in terms of the common units.
- * <p>
+ *
  * The most commonly used units are defined in {@link ChronoUnit}.
  * Further units are supplied in {@link IsoFields}.
  * Units can also be written by application code by implementing this interface.
- * <p>
+ *
  * The unit works using double dispatch. Client code calls methods on a date-time like
  * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.
  * If it is, then the date-time must handle it.
@@ -29,11 +29,11 @@ import {abstractMethodFail} from '../assert';
 export class TemporalUnit {
     /**
      * Gets the duration of this unit, which may be an estimate.
-     * <p>
+     *
      * All units return a duration measured in standard nanoseconds from this method.
      * The duration will be positive and non-zero.
      * For example, an hour has a duration of `60 * 60 * 1,000,000,000ns`.
-     * <p>
+     *
      * Some units may return an accurate duration while others return an estimate.
      * For example, days have an estimated duration due to the possibility of
      * daylight saving time changes.
@@ -47,7 +47,7 @@ export class TemporalUnit {
 
     /**
      * Checks if the duration of the unit is an estimate.
-     * <p>
+     *
      * All units have a duration, however the duration is not always accurate.
      * For example, days have an estimated duration due to the possibility of
      * daylight saving time changes.
@@ -81,7 +81,7 @@ export class TemporalUnit {
     //-----------------------------------------------------------------------
     /**
      * Checks if this unit is supported by the specified temporal object.
-     * <p>
+     *
      * This checks that the implementing date-time can add/subtract this unit.
      * This can be used to avoid throwing an exception.
      *
@@ -95,12 +95,12 @@ export class TemporalUnit {
 
     /**
      * Returns a copy of the specified temporal object with the specified period added.
-     * <p>
+     *
      * The period added is a multiple of this unit. For example, this method
      * could be used to add "3 days" to a date by calling this method on the
      * instance representing "days", passing the date and the period "3".
      * The period to be added may be negative, which is equivalent to subtraction.
-     * <p>
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
      * The second is to use {@link Temporal#plus}:
@@ -111,11 +111,11 @@ export class TemporalUnit {
      * </pre>
      * It is recommended to use the second approach, {@link plus},
      * as it is a lot clearer to read in code.
-     * <p>
+     *
      * Implementations should perform any queries or calculations using the units
      * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.
      * If the field is not supported a {@link DateTimeException} must be thrown.
-     * <p>
+     *
      * Implementations must not alter the specified temporal object.
      * Instead, an adjusted copy of the original must be returned.
      * This provides equivalent, safe behavior for immutable and mutable implementations.
@@ -133,17 +133,17 @@ export class TemporalUnit {
     //-----------------------------------------------------------------------
     /**
      * Calculates the period in terms of this unit between two temporal objects of the same type.
-     * <p>
+     *
      * This calculates the period between two temporals in terms of this unit.
      * The start and end points are supplied as temporal objects and must be of the same type.
      * The result will be negative if the end is before the start.
      * For example, the period in hours between two temporal objects can be calculated
      * using {@link HOURS.between}.
-     * <p>
+     *
      * The calculation returns a whole number, representing the number of complete units between the two temporals.
      * For example, the period in hours between the times 11:30 and 13:29 will only b
      * one hour as it is one minute short of two hours.
-     * <p>
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
      * The second is to use {@link Temporal#until}:
@@ -153,7 +153,7 @@ export class TemporalUnit {
      *   between = start.until(end, thisUnit);
      * </pre>
      * The choice should be made based on which makes the code more readable.
-     * <p>
+     *
      * For example, this method allows the number of days between two dates to be calculated:
      * <pre>
      *   long daysBetween = DAYS.between(start, end);

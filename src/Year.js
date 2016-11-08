@@ -32,21 +32,21 @@ import {ZoneId} from './ZoneId';
 
 /**
  * A year in the ISO-8601 calendar system, such as `2007`.
- * <p>
+ *
  * {@link Year} is an immutable date-time object that represents a year.
  * Any field that can be derived from a year can be obtained.
- * <p>
- * <b>Note that years in the ISO chronology only align with years in the
+ *
+ * **Note that years in the ISO chronology only align with years in the
  * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
  * modern Gregorian/ISO rules until 1920.
- * As such, historical years must be treated with caution.</b>
- * <p>
+ * As such, historical years must be treated with caution.**
+ *
  * This class does not store or represent a month, day, time or time-zone.
  * For example, the value "2007" can be stored in a {@link Year}.
- * <p>
+ *
  * Years represented by this class follow the ISO-8601 standard and use
  * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
- * <p>
+ *
  * The ISO-8601 calendar system is the modern civil calendar system used today
  * in most of the world. It is equivalent to the proleptic Gregorian calendar
  * system, in which today's rules for leap years are applied for all time.
@@ -54,7 +54,7 @@ import {ZoneId} from './ZoneId';
  * However, any application that makes use of historical dates, and requires them
  * to be accurate will find the ISO-8601 approach unsuitable.
  *
- * <h3>Static properties of Class {@link LocalDate}</h3>
+ * ### Static properties of Class {@link LocalDate}
  *
  * Year.MIN_VALUE = -999.999;
  *
@@ -110,10 +110,10 @@ export class Year extends Temporal {
 
     /**
      * Obtains the current year from the system clock in the default time-zone.
-     * <p>
+     *
      * This will query the system clock (see {@link Clock#systemDefaultZone}) in the default
      * time-zone to obtain the current year.
-     * <p>
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -125,10 +125,10 @@ export class Year extends Temporal {
 
     /**
      * Obtains the current year from the system clock in the specified time-zone.
-     * <p>
+     *
      * This will query the system clock (see {@link Clock#system}) to obtain the current year.
      * Specifying the time-zone avoids dependence on the default time-zone.
-     * <p>
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -143,7 +143,7 @@ export class Year extends Temporal {
 
     /**
      * Obtains the current year from the specified clock.
-     * <p>
+     *
      * This will query the specified clock to obtain the current year.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using dependency injection.
@@ -159,13 +159,13 @@ export class Year extends Temporal {
     }
     /**
      * Obtains an instance of {@link Year}.
-     * <p>
+     *
      * This method accepts a year value from the proleptic ISO calendar system.
-     * <p>
-     * The year 2AD/CE is represented by 2.<br>
-     * The year 1AD/CE is represented by 1.<br>
-     * The year 1BC/BCE is represented by 0.<br>
-     * The year 2BC/BCE is represented by -1.<br>
+     *
+     * * The year 2AD/CE is represented by 2.
+     * * The year 1AD/CE is represented by 1.
+     * * The year 1BC/BCE is represented by 0.
+     * * The year 2BC/BCE is represented by -1.
      *
      * @param {Number} isoYear  the ISO proleptic year to represent, from {@link MIN_VALUE} to {@link MAX_VALUE}
      * @return {Year} the year, not null
@@ -180,14 +180,14 @@ export class Year extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Year} from a temporal object.
-     * <p>
+     *
      * A {@link TemporalAccessor} represents some form of date and time information.
      * This factory converts the arbitrary temporal object to an instance of {@link Year}.
-     * <p>
+     *
      * The conversion extracts the {@link ChronoField#YEAR} field.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a {@link LocalDate}.
-     * <p>
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link Year::from}.
      *
@@ -234,7 +234,7 @@ export class Year extends Temporal {
 
     /**
      * Obtains an instance of {@link Year} from a text string such as `2007`.
-     * <p>
+     *
      * The string must represent a valid year.
      * Years outside the range 0000 to 9999 must be prefixed by the plus or minus symbol.
      *
@@ -249,7 +249,7 @@ export class Year extends Temporal {
 
     /**
      * Obtains an instance of {@link Year} from a text string using a specific formatter.
-     * <p>
+     *
      * The text is parsed using the formatter, returning a year.
      *
      * @param {String} text  the text to parse, not null
@@ -268,16 +268,16 @@ export class Year extends Temporal {
     /**
      * Checks if the year is a leap year, according to the ISO proleptic
      * calendar system rules.
-     * <p>
+     *
      * This method applies the current rules for leap years across the whole time-line.
      * In general, a year is a leap year if it is divisible by four without
      * remainder. However, years divisible by 100, are not leap years, with
      * the exception of years divisible by 400 which are.
-     * <p>
+     *
      * For example, 1904 is a leap year it is divisible by 4.
      * 1900 was not a leap year as it is divisible by 100, however 2000 was a
      * leap year as it is divisible by 400.
-     * <p>
+     *
      * The calculation is proleptic - applying the same rules into the far future and far past.
      * This is historically inaccurate, but is correct for the ISO-8601 standard.
      *
@@ -308,21 +308,21 @@ export class Year extends Temporal {
 
     /**
      * Checks if the specified field is supported.
-     * <p>
+     *
      * This checks if this year can be queried for the specified field.
      * If false, then calling {@link range} and {@link get} will throw an exception.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return valid
      * values based on this date-time.
      * The supported fields are:
-     * <ul>
-     * <li>{@link YEAR_OF_ERA}
-     * <li>{@link YEAR}
-     * <li>{@link ERA}
-     * </ul>
+     *
+     * * {@link YEAR_OF_ERA}
+     * * {@link YEAR}
+     * * {@link ERA}
+     *
      * All other {@link ChronoField} instances will return false.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.isSupportedBy}
      * passing `this` as the argument.
@@ -347,17 +347,17 @@ export class Year extends Temporal {
 
     /**
      * Gets the range of valid values for the specified field.
-     * <p>
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This year is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return
      * appropriate range instances.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.rangeRefinedBy}
      * passing `this` as the argument.
@@ -378,17 +378,17 @@ export class Year extends Temporal {
 
     /**
      * Gets the value of the specified field from this year as an `int`.
-     * <p>
+     *
      * This queries this year for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return valid
      * values based on this year.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -405,16 +405,16 @@ export class Year extends Temporal {
 
     /**
      * Gets the value of the specified field from this year as a `long`.
-     * <p>
+     *
      * This queries this year for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return valid
      * values based on this year.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -442,16 +442,16 @@ export class Year extends Temporal {
     /**
      * Checks if the year is a leap year, according to the ISO proleptic
      * calendar system rules.
-     * <p>
+     *
      * This method applies the current rules for leap years across the whole time-line.
      * In general, a year is a leap year if it is divisible by four without
      * remainder. However, years divisible by 100, are not leap years, with
      * the exception of years divisible by 400 which are.
-     * <p>
+     *
      * For example, 1904 is a leap year it is divisible by 4.
      * 1900 was not a leap year as it is divisible by 100, however 2000 was a
      * leap year as it is divisible by 400.
-     * <p>
+     *
      * The calculation is proleptic - applying the same rules into the far future and far past.
      * This is historically inaccurate, but is correct for the ISO-8601 standard.
      *
@@ -483,15 +483,15 @@ export class Year extends Temporal {
 
     /**
      * Returns an adjusted copy of this year.
-     * <p>
+     *
      * This returns a new {@link Year}, based on this one, with the year adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster#adjustInto} method on the
      * specified adjuster passing `this` as the argument.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjuster} adjuster the adjuster to use, not null
@@ -506,36 +506,35 @@ export class Year extends Temporal {
 
     /**
      * Returns a copy of this year with the specified field set to a new value.
-     * <p>
+     *
      * This returns a new {@link Year}, based on this one, with the value
      * for the specified field changed.
      * If it is not possible to set the value, because the field is not supported or for
      * some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
      * The supported fields behave as follows:
-     * <ul>
-     * <li>{@link YEAR_OF_ERA} -
-     *  Returns a {@link Year} with the specified year-of-era
-     *  The era will be unchanged.
-     * <li>{@link YEAR} -
-     *  Returns a {@link Year} with the specified year.
-     *  This completely replaces the date and is equivalent to {@link of}.
-     * <li>{@link ERA} -
-     *  Returns a {@link Year} with the specified era.
-     *  The year-of-era will be unchanged.
-     * </ul>
-     * <p>
+     *
+     * * {@link YEAR_OF_ERA} -
+     *   Returns a {@link Year} with the specified year-of-era
+     *   The era will be unchanged.
+     * * {@link YEAR} -
+     *   Returns a {@link Year} with the specified year.
+     *   This completely replaces the date and is equivalent to {@link of}.
+     * * {@link ERA} -
+     *   Returns a {@link Year} with the specified era.
+     *   The year-of-era will be unchanged.
+     *
      * In all cases, if the new value is outside the valid range of values for the field
      * then a {@link DateTimeException} will be thrown.
-     * <p>
+     *
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.adjustInto}
      * passing `this` as the argument. In this case, the field determines
      * whether and how to adjust the instant.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field  the field to set in the result, not null
@@ -583,13 +582,13 @@ export class Year extends Temporal {
 
     /**
      * Returns a copy of this year with the specified period added.
-     * <p>
+     *
      * This method returns a new year based on this year with the specified period added.
      * The adder is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
      * back to {@link plus}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAmount} amount  the amount to add, not null
@@ -629,7 +628,7 @@ export class Year extends Temporal {
 
     /**
      * Returns a copy of this year with the specified number of years added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} yearsToAdd  the years to add, may be negative
@@ -665,13 +664,13 @@ export class Year extends Temporal {
 
     /**
      * Returns a copy of this year with the specified period subtracted.
-     * <p>
+     *
      * This method returns a new year based on this year with the specified period subtracted.
      * The subtractor is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
      * back to {@link minus}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAmount} amount  the amount to subtract, not null
@@ -701,7 +700,7 @@ export class Year extends Temporal {
 
     /**
      * Returns a copy of this year with the specified number of years subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} yearsToSubtract  the years to subtract, may be negative
@@ -714,15 +713,15 @@ export class Year extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this year.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with the year changed to be the same as this.
-     * <p>
+     *
      * The adjustment is equivalent to using {@link Temporal#with}
      * passing {@link ChronoField#YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
      * a {@link DateTimeException} is thrown.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#with}:
      * <pre>
@@ -730,7 +729,7 @@ export class Year extends Temporal {
      *   temporal = thisYear.adjustInto(temporal);
      *   temporal = temporal.with(thisYear);
      * </pre>
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal  the target object to be adjusted, not null
@@ -749,7 +748,7 @@ export class Year extends Temporal {
 
     /**
      * Checks if the month-day is valid for this year.
-     * <p>
+     *
      * This method checks whether this year and the input month and day form
      * a valid date.
      *
@@ -772,9 +771,9 @@ export class Year extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Combines this year with a day-of-year to create a {@link LocalDate}.
-     * <p>
+     *
      * This returns a {@link LocalDate} formed from this year and the specified day-of-year.
-     * <p>
+     *
      * The day-of-year value 366 is only valid in a leap year.
      *
      * @param {number} dayOfYear  the day-of-year to use, not null
@@ -806,10 +805,10 @@ export class Year extends Temporal {
 
     /**
      * Combines this year with a month to create a {@link YearMonth}.
-     * <p>
+     *
      * This returns a {@link YearMonth} formed from this year and the specified month.
      * All possible combinations of year and month are valid.
-     * <p>
+     *
      * This method can be used as part of a chain to produce a date:
      * <pre>
      *  LocalDate date = year.atMonth(month).atDay(day);
@@ -826,10 +825,10 @@ export class Year extends Temporal {
 
     /**
      * Combines this year with a month to create a {@link YearMonth}.
-     * <p>
+     *
      * This returns a {@link YearMonth} formed from this year and the specified month.
      * All possible combinations of year and month are valid.
-     * <p>
+     *
      * This method can be used as part of a chain to produce a date:
      * <pre>
      *  LocalDate date = year.atMonth(month).atDay(day);
@@ -846,9 +845,9 @@ export class Year extends Temporal {
 
     /**
      * Combines this year with a month-day to create a {@link LocalDate}.
-     * <p>
+     *
      * This returns a {@link LocalDate} formed from this year and the specified month-day.
-     * <p>
+     *
      * A month-day of February 29th will be adjusted to February 28th in the resulting
      * date if the year is not a leap year.
      *
@@ -865,12 +864,12 @@ export class Year extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Queries this year using the specified query.
-     * <p>
+     *
      * This queries this year using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery#queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -896,7 +895,7 @@ export class Year extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Compares this year to another year.
-     * <p>
+     *
      * The comparison is based on the value of the year.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *
@@ -947,7 +946,7 @@ export class Year extends Temporal {
 
     /**
      * Checks if this year is equal to the specified {@link Year}.
-     * <p>
+     *
      * The comparison is based on the value
      *
      * @param {*} otherYear - the other year, null returns false

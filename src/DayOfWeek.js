@@ -16,7 +16,7 @@ import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
 /**
- * <h3>Static properties of Class {@link DayOfWeek}</h3>
+ * ### Static properties of Class {@link DayOfWeek}
  *
  * DayOfWeek.MONDAY,
  * DayOfWeek.TUESDAY,
@@ -81,7 +81,7 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Obtains an instance of {@link DayOfWeek} from an `int` value.
-     * <p>
+     *
      * {@link DayOfWeek} is an enum representing the 7 days of the week.
      * This factory allows the enum to be obtained from the `int` value.
      * The `int` value follows the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
@@ -99,12 +99,12 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Obtains an instance of {@link DayOfWeek} from a temporal object.
-     * <p>
+     *
      * A {@link TemporalAccessor} represents some form of date and time information.
      * This factory converts the arbitrary temporal object to an instance of {@link DayOfWeek}.
-     * <p>
+     *
      * The conversion extracts the {@link ChronoField#DAY_OF_WEEK} field.
-     * <p>
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used as a query via method reference, {@link DayOfWeek::from}.
      *
@@ -131,7 +131,7 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Gets the day-of-week `int` value.
-     * <p>
+     *
      * The values are numbered following the ISO-8601 standard, from 1 (Monday) to 7 (Sunday).
      * See {@link WeekFields#dayOfWeek} for localized week-numbering.
      *
@@ -143,10 +143,10 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Gets the textual representation, such as 'Mon' or 'Friday'.
-     * <p>
+     *
      * This returns the textual name used to identify the day-of-week.
      * The parameters control the length of the returned text and the locale.
-     * <p>
+     *
      * If no textual mapping is found then the numeric value (see {@link getValue}) is returned.
      *
      * @param {TextStyle} style - the length of the text required, not null
@@ -161,15 +161,15 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Checks if the specified field is supported.
-     * <p>
+     *
      * This checks if this day-of-week can be queried for the specified field.
      * If false, then calling the {@link range} and
      * {@link get} methods will throw an exception.
-     * <p>
+     *
      * If the field is {@link ChronoField#DAY_OF_WEEK} then
      * this method returns true.
      * All other {@link ChronoField} instances will return false.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking `TemporalField.isSupportedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -187,16 +187,16 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Gets the range of valid values for the specified field.
-     * <p>
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This day-of-week is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is {@link ChronoField#DAY_OF_WEEK} then the
      * range of the day-of-week, from 1 to 7, will be returned.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking `TemporalField.rangeRefinedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -217,16 +217,16 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Gets the value of the specified field from this day-of-week as an `int`.
-     * <p>
+     *
      * This queries this day-of-week for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is {@link ChronoField#DAY_OF_WEEK} then the
      * value of the day-of-week, from 1 to 7, will be returned.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -248,15 +248,15 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Gets the value of the specified field from this day-of-week as a `long`.
-     * <p>
+     *
      * This queries this day-of-week for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is {@link ChronoField#DAY_OF_WEEK} then the
      * value of the day-of-week, from 1 to 7, will be returned.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -279,10 +279,10 @@ export class DayOfWeek extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns the day-of-week that is the specified number of days after this one.
-     * <p>
+     *
      * The calculation rolls around the end of the week from Sunday to Monday.
      * The specified period may be negative.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to add, positive or negative
@@ -295,10 +295,10 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Returns the day-of-week that is the specified number of days before this one.
-     * <p>
+     *
      * The calculation rolls around the start of the year from Monday to Sunday.
      * The specified period may be negative.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to subtract, positive or negative
@@ -311,12 +311,12 @@ export class DayOfWeek extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Queries this day-of-week using the specified query.
-     * <p>
+     *
      * This queries this day-of-week using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery#queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -339,17 +339,17 @@ export class DayOfWeek extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this day-of-week.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with the day-of-week changed to be the same as this.
-     * <p>
+     *
      * The adjustment is equivalent to using {@link Temporal#with}
      * passing {@link ChronoField#DAY_OF_WEEK} as the field.
      * Note that this adjusts forwards or backwards within a Monday to Sunday week.
      * See {@link WeekFields#dayOfWeek} for localized week start days.
      * See {@link TemporalAdjusters} for other adjusters
      * with more control, such as `next(MONDAY)`.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#with}:
      * <pre>
@@ -357,7 +357,7 @@ export class DayOfWeek extends Temporal {
      *   temporal = thisDayOfWeek.adjustInto(temporal);
      *   temporal = temporal.with(thisDayOfWeek);
      * </pre>
-     * <p>
+     *
      * For example, given a date that is a Wednesday, the following are output:
      * <pre>
      *   dateOnWed.with(MONDAY);     // two days earlier
@@ -368,7 +368,7 @@ export class DayOfWeek extends Temporal {
      *   dateOnWed.with(SATURDAY);   // three days later
      *   dateOnWed.with(SUNDAY);     // four days later
      * </pre>
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjusters} temporal  the target object to be adjusted, not null

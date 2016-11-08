@@ -48,7 +48,7 @@ export class ValueRange {
 
     /**
      * Is the value range fixed and fully known.
-     * <p>
+     *
      * For example, the ISO day-of-month runs from 1 to between 28 and 31.
      * Since there is uncertainty about the maximum value, the range is not fixed.
      * However, for the month of January, the range is always 1 to 31, thus it is fixed.
@@ -118,7 +118,7 @@ export class ValueRange {
 
     /**
      * Checks that the specified value is valid and fits in an `int`.
-     * <p>
+     *
      * This validates that the value is within the valid range of values and that
      * all valid values are within the bounds of an `int`.
      * The field is only used to improve the error message.
@@ -138,7 +138,7 @@ export class ValueRange {
     /**
      * Checks if the value is within the valid range and that all values
      * in the range fit in an `int`.
-     * <p>
+     *
      * This method combines {@link isIntValue} and {@link isValidValue}.
      *
      * @param {number} value - the value to check
@@ -150,12 +150,12 @@ export class ValueRange {
 
     /**
      * Checks if all values in the range fit in an `int`.
-     * <p>
+     *
      * This checks that all valid values are within the bounds of an `int`.
-     * <p>
+     *
      * For example, the ISO month-of-year has values from 1 to 12, which fits in an `int`.
      * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an `int`.
-     * <p>
+     *
      * This implementation uses {@link getMinimum} and {@link getMaximum}.
      *
      * @return boolean if a valid value always fits in an `int`
@@ -166,7 +166,7 @@ export class ValueRange {
 
     /**
      * Checks if this range is equal to another range.
-     * <p>
+     *
      * The comparison is based on the four values, minimum, largest minimum,
      * smallest maximum and maximum.
      * Only objects of type {@link ValueRange} are compared, other types return false.

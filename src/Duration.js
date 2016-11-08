@@ -16,29 +16,29 @@ import {LocalTime} from './LocalTime';
 
 /**
  * A time-based amount of time, such as '34.5 seconds'.
- * <p>
+ *
  * This class models a quantity or amount of time in terms of seconds and nanoseconds.
  * It can be accessed using other duration-based units, such as minutes and hours.
  * In addition, the {@link ChronoUnit#DAYS} unit can be used and is treated as
  * exactly equal to 24 hours, thus ignoring daylight savings effects.
  * See {@link Period} for the date-based equivalent to this class.
- * <p>
+ *
  * A physical duration could be of infinite length.
  * For practicality, the duration is stored with constraints similar to {@link Instant}.
  * The duration uses nanosecond resolution with a maximum value of the seconds that can
  * be held in a `long`. This is greater than the current estimated age of the universe.
- * <p>
+ *
  * The range of a duration requires the storage of a number larger than a `long`.
  * To achieve this, the class stores a `long` representing seconds and an `int`
  * representing nanosecond-of-second, which will always be between 0 and 999,999,999.
- * <p>
+ *
  * The duration is measured in "seconds", but these are not necessarily identical to
  * the scientific "SI second" definition based on atomic clocks.
  * This difference only impacts durations measured near a leap-second and should not affect
  * most applications.
  * See {@link Instant} for a discussion as to the meaning of the second and time-scales.
  *
- * <h3>Static properties of Class {@link Duration}</h3>
+ * ### Static properties of Class {@link Duration}
  *
  * Duration.ZERO
  *
@@ -63,7 +63,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of standard 24 hour days.
-     * <p>
+     *
      * The seconds are calculated based on the standard definition of a day,
      * where each day is 86400 seconds which implies a 24 hour day.
      * The nanosecond in second field is set to zero.
@@ -78,7 +78,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Obtains an instance of {@link Duration} from a number of standard hours.
-     * <p>
+     *
      * The seconds are calculated based on the standard definition of an hour,
      * where each hour is 3600 seconds.
      * The nanosecond in second field is set to zero.
@@ -93,7 +93,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Obtains an instance of {@link Duration} from a number of standard minutes.
-     * <p>
+     *
      * The seconds are calculated based on the standard definition of a minute,
      * where each minute is 60 seconds.
      * The nanosecond in second field is set to zero.
@@ -110,7 +110,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     /**
      * Obtains an instance of {@link Duration} from a number of seconds
      * and an adjustment in nanoseconds.
-     * <p>
+     *
      * This method allows an arbitrary number of nanoseconds to be passed in.
      * The factory will alter the values of the second and nanosecond in order
      * to ensure that the stored nanosecond is in the range 0 to 999,999,999.
@@ -135,7 +135,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of milliseconds.
-     * <p>
+     *
      * The seconds and nanoseconds are extracted from the specified milliseconds.
      *
      * @param {Number} millis - the number of milliseconds, positive or negative
@@ -154,7 +154,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of nanoseconds.
-     * <p>
+     *
      * The seconds and nanoseconds are extracted from the specified nanoseconds.
      *
      * @param {Number} nanos - the number of nanoseconds, positive or negative
@@ -173,7 +173,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a duration in the specified unit.
-     * <p>
+     *
      * The parameters represent the two parts of a phrase like '6 Hours'. For example:
      * <pre>
      *  Duration.of(3, SECONDS);
@@ -196,11 +196,11 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from an amount.
-     * <p>
+     *
      * This obtains a duration based on the specified amount.
      * A TemporalAmount represents an amount of time, which may be date-based
      * or time-based, which this factory extracts to a duration.
-     * <p>
+     *
      * The conversion loops around the set of units from the amount and uses
      * the duration of the unit to calculate the total Duration.
      * Only a subset of units are accepted by this method.
@@ -224,13 +224,13 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Obtains an instance of {@link Duration} representing the duration between two instants.
-     * <p>
+     *
      * Obtains a {@link Duration} representing the duration between two instants.
      * This calculates the duration between two temporal objects of the same type.
      * The difference in seconds is calculated using {@link Temporal#until}.
      * The difference in nanoseconds is calculated using by querying the
      * {@link ChronoField#NANO_OF_SECOND} field.
-     * <p>
+     *
      * The result of this method can be a negative period if the end is before the start.
      * To guarantee to obtain a positive duration call abs() on the result.
      *
@@ -268,12 +268,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains a {@link Duration} from a text string such as {@link PnDTnHnMn.nS}.
-     * <p>
+     *
      * This will parse a textual representation of a duration, including the
      * string produced by {@link toString}. The formats accepted are based
      * on the ISO-8601 duration format {@link PnDTnHnMn.nS} with days
      * considered to be exactly 24 hours.
-     * <p>
+     *
      * The string starts with an optional sign, denoted by the ASCII negative
      * or positive symbol. If negative, the whole period is negated.
      * The ASCII letter "P" is next in upper or lower case.
@@ -290,10 +290,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * The number of seconds must parse to a `long` with optional fraction.
      * The decimal point may be either a dot or a comma.
      * The fractional part may have from zero to 9 digits.
-     * <p>
+     *
      * The leading plus/minus sign, and negative values for other units are
      * not part of the ISO-8601 standard.
-     * <p>
+     *
      * Examples:
      * <pre>
      *    "PT20.345S" -> parses as "20.345 seconds"
@@ -408,7 +408,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Gets the value of the requested unit.
-     * <p>
+     *
      * This returns a value for each of the two supported units,
      * {@link ChronoUnit#SECONDS} and {@link ChronoUnit#NANOS}.
      * All other units throw an exception.
@@ -435,7 +435,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Checks if this duration is zero length.
-     * <p>
+     *
      * A {@link Duration} represents a directed distance between two points on
      * the time-line and can therefore be positive, zero or negative.
      * This method checks whether the length is zero.
@@ -448,7 +448,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Checks if this duration is negative, excluding zero.
-     * <p>
+     *
      * A {@link Duration} represents a directed distance between two points on
      * the time-line and can therefore be positive, zero or negative.
      * This method checks whether the length is less than zero.
@@ -462,12 +462,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Gets the number of seconds in this duration.
-     * <p>
+     *
      * The length of the duration is stored using two fields - seconds and nanoseconds.
      * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
      * the length in seconds.
      * The total duration is defined by calling this method and {@link getNano}.
-     * <p>
+     *
      * A {@link Duration} represents a directed distance between two points on the time-line.
      * A negative duration is expressed by the negative sign of the seconds part.
      * A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds.
@@ -480,12 +480,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of nanoseconds within the second in this duration.
-     * <p>
+     *
      * The length of the duration is stored using two fields - seconds and nanoseconds.
      * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
      * the length in seconds.
      * The total duration is defined by calling this method and {@link getSeconds}.
-     * <p>
+     *
      * A {@link Duration} represents a directed distance between two points on the time-line.
      * A negative duration is expressed by the negative sign of the seconds part.
      * A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds.
@@ -499,10 +499,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified amount of seconds.
-     * <p>
+     *
      * This returns a duration with the specified seconds, retaining the
      * nano-of-second part of this duration.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} seconds - the seconds to represent, may be negative
@@ -514,10 +514,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified nano-of-second.
-     * <p>
+     *
      * This returns a duration with the specified nano-of-second, retaining the
      * seconds part of this duration.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanoOfSecond - the nano-of-second to represent, from 0 to 999,999,999
@@ -532,7 +532,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Duration} duration - the duration to add, positive or negative, not null
@@ -571,12 +571,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration added.
-     * <p>
+     *
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
      * The unit must either have an exact duration (see {@link TemporalUnit#isDurationEstimated}) or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} amountToAdd - the amount to add, measured in terms of the unit, positive or negative
@@ -613,7 +613,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration in 24 hour days added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} daysToAdd - the days to add, positive or negative
@@ -626,7 +626,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in hours added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} hoursToAdd - the hours to add, positive or negative
@@ -639,7 +639,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in minutes added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} minutesToAdd - the minutes to add, positive or negative
@@ -652,7 +652,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in seconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToAdd - the seconds to add, positive or negative
@@ -665,7 +665,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in milliseconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} millisToAdd - the milliseconds to add, positive or negative
@@ -678,7 +678,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in nanoseconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanosToAdd - the nanoseconds to add, positive or negative
@@ -691,7 +691,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToAdd - the seconds to add, positive or negative
@@ -734,7 +734,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Duration} duration - the duration to subtract, positive or negative, not null
@@ -753,12 +753,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration subtracted.
-     * <p>
+     *
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
      * The unit must either have an exact duration (see {@link TemporalUnit#isDurationEstimated}) or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} amountToSubtract - the amount to subtract, measured in terms of the unit, positive or negative
@@ -775,7 +775,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration in 24 hour days subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} daysToSubtract - the days to subtract, positive or negative
@@ -788,7 +788,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in hours subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} hoursToSubtract - the hours to subtract, positive or negative
@@ -801,9 +801,9 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in minutes subtracted.
-     * <p>
+     *
      * The number of hours is multiplied by 60 to obtain the number of seconds to subtract.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} minutesToSubtract - the minutes to subtract, positive or negative
@@ -816,7 +816,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in seconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToSubtract - the seconds to subtract, positive or negative
@@ -829,7 +829,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in milliseconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} millisToSubtract - the milliseconds to subtract, positive or negative
@@ -842,7 +842,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in nanoseconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanosToSubtract - the nanoseconds to subtract, positive or negative
@@ -856,7 +856,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration multiplied by the scalar.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} multiplicand - the value to multiply the duration by, positive or negative
@@ -879,7 +879,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration divided by the specified value.
-     * <p>
+     *
      * In opposite to the threeten implementation the division is realized by floating point not by
      * fixed point arithmetic. Expect floating point rounding errors for {@link Duration.dividedBy}.
      *
@@ -904,10 +904,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the length negated.
-     * <p>
+     *
      * This method swaps the sign of the total length of this duration.
      * For example, {@link PT1.3S} will be returned as {@link PT-1.3S}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {Duration} based on this duration with the amount negated, not null
@@ -919,10 +919,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with a positive length.
-     * <p>
+     *
      * This method returns a positive duration by effectively removing the sign from any negative total length.
      * For example, {@link PT-1.3S} will be returned as {@link PT1.3S}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {Duration} based on this duration with an absolute length, not null
@@ -935,10 +935,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-------------------------------------------------------------------------
     /**
      * Adds this duration to the specified temporal object.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with this duration added.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#plus}.
      * <pre>
@@ -946,10 +946,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *   dateTime = thisDuration.addTo(dateTime);
      *   dateTime = dateTime.plus(thisDuration);
      * </pre>
-     * <p>
+     *
      * The calculation will add the seconds, then nanos.
      * Only non-zero amounts will be added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the temporal object to adjust, not null
@@ -970,10 +970,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Subtracts this duration from the specified temporal object.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with this duration subtracted.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#minus}.
      * <pre>
@@ -981,10 +981,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *   dateTime = thisDuration.subtractFrom(dateTime);
      *   dateTime = dateTime.minus(thisDuration);
      * </pre>
-     * <p>
+     *
      * The calculation will subtract the seconds, then nanos.
      * Only non-zero amounts will be added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the temporal object to adjust, not null
@@ -1006,11 +1006,11 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Gets the number of days in this duration.
-     * <p>
+     *
      * This returns the total number of days in the duration by dividing the
      * number of seconds by 86400.
      * This is based on the standard definition of a day as 24 hours.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of days in the duration, may be negative
@@ -1021,10 +1021,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of hours in this duration.
-     * <p>
+     *
      * This returns the total number of hours in the duration by dividing the
      * number of seconds by 3600.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of hours in the duration, may be negative
@@ -1035,10 +1035,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of minutes in this duration.
-     * <p>
+     *
      * This returns the total number of minutes in the duration by dividing the
      * number of seconds by 60.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of minutes in the duration, may be negative
@@ -1049,10 +1049,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Converts this duration to the total length in milliseconds.
-     * <p>
+     *
      * If this duration is too large to fit in a `long` milliseconds, then an
      * exception is thrown.
-     * <p>
+     *
      * If this duration has greater than millisecond precision, then the conversion
      * will drop any excess precision information as though the amount in nanoseconds
      * was subject to integer division by one million.
@@ -1068,7 +1068,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Converts this duration to the total length in nanoseconds expressed as a `long`.
-     * <p>
+     *
      * If this duration is too large to fit in a `long` nanoseconds, then an
      * exception is thrown.
      *
@@ -1084,7 +1084,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Compares this duration to the specified {@link Duration}.
-     * <p>
+     *
      * The comparison is based on the total length of the durations.
      *
      * @param {Duration} otherDuration - the other duration to compare to, not null
@@ -1103,7 +1103,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Checks if this duration is equal to the specified {@link Duration}.
-     * <p>
+     *
      * The comparison is based on the total length of the durations.
      *
      * @param {*} otherDuration - the other duration, null returns false
@@ -1124,13 +1124,13 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     /**
      * A string representation of this duration using ISO-8601 seconds
      * based representation, such as {@link PT8H6M12.345S}.
-     * <p>
+     *
      * The format of the returned string will be {@link PTnHnMnS}, where n is
      * the relevant hours, minutes or seconds part of the duration.
      * Any fractional seconds are placed after a decimal povar i the seconds section.
      * If a section has a zero value, it is omitted.
      * The hours, minutes and seconds will all have the same sign.
-     * <p>
+     *
      * Examples:
      * <pre>
      *    "20.345 seconds"                 -> "PT20.345S

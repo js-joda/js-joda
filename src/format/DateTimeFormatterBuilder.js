@@ -309,12 +309,12 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Appends the reduced value of a date-time field to the formatter.
-     * <p>
+     *
      * Since fields such as year vary by chronology, it is recommended to use the
      * {@link appendValueReduced} date}
      * variant of this method in most cases. This variant is suitable for
      * simple fields or working with only the ISO chronology.
-     * <p>
+     *
      * For formatting, the `width` and `maxWidth` are used to
      * determine the number of characters to format.
      * If they are equal then the format is fixed width.
@@ -322,7 +322,7 @@ export class DateTimeFormatterBuilder {
      * `width` characters then the reduced value is formatted otherwise the value is
      * truncated to fit `maxWidth`.
      * The rightmost characters are output to match the width, left padding with zero.
-     * <p>
+     *
      * For strict parsing, the number of characters allowed by `width` to `maxWidth` are parsed.
      * For lenient parsing, the number of characters must be at least 1 and less than 10.
      * If the number of digits parsed is equal to `width` and the value is positive,
@@ -331,7 +331,7 @@ export class DateTimeFormatterBuilder {
      * otherwise the value parsed is the field value.
      * This allows a reduced value to be entered for values in range of the baseValue
      * and width and absolute values can be entered for values outside the range.
-     * <p>
+     *
      * For example, a base value of `1980` and a width of `2` will have
      * valid values from `1980` to `2079`.
      * During parsing, the text `"12"` will result in the value `2012` as that
@@ -354,9 +354,9 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Appends the reduced value of a date-time field to the formatter.
-     * <p>
+     *
      * This is typically used for formatting and parsing a two digit year.
-     * <p>
+     *
      * The base date is used to calculate the full value during parsing.
      * For example, if the base date is 1950-01-01 then parsed values for
      * a two digit year parse will be in the range 1950-01-01 to 2049-12-31.
@@ -365,14 +365,14 @@ export class DateTimeFormatterBuilder {
      * This behavior is necessary to support fields such as week-based-year
      * or other calendar systems where the parsed value does not align with
      * standard ISO years.
-     * <p>
+     *
      * The exact behavior is as follows. Parse the full set of fields and
      * determine the effective chronology using the last chronology if
      * it appears more than once. Then convert the base date to the
      * effective chronology. Then extract the specified field from the
      * chronology-specific base date and use it to determine the
      * `baseValue` used below.
-     * <p>
+     *
      * For formatting, the `width` and `maxWidth` are used to
      * determine the number of characters to format.
      * If they are equal then the format is fixed width.
@@ -380,7 +380,7 @@ export class DateTimeFormatterBuilder {
      * `width` characters then the reduced value is formatted otherwise the value is
      * truncated to fit `maxWidth`.
      * The rightmost characters are output to match the width, left padding with zero.
-     * <p>
+     *
      * For strict parsing, the number of characters allowed by `width` to `maxWidth` are parsed.
      * For lenient parsing, the number of characters must be at least 1 and less than 10.
      * If the number of digits parsed is equal to `width` and the value is positive,
@@ -389,7 +389,7 @@ export class DateTimeFormatterBuilder {
      * otherwise the value parsed is the field value.
      * This allows a reduced value to be entered for values in range of the baseValue
      * and width and absolute values can be entered for values outside the range.
-     * <p>
+     *
      * For example, a base value of `1980` and a width of `2` will have
      * valid values from `1980` to `2079`.
      * During parsing, the text `"12"` will result in the value `2012` as that
@@ -452,21 +452,21 @@ export class DateTimeFormatterBuilder {
     //-----------------------------------------------------------------------
     /**
      * Appends the fractional value of a date-time field to the formatter.
-     * <p>
+     *
      * The fractional value of the field will be output including the
      * preceding decimal point. The preceding value is not output.
      * For example, the second-of-minute value of 15 would be output as `.25`.
-     * <p>
+     *
      * The width of the printed fraction can be controlled. Setting the
      * minimum width to zero will cause no output to be generated.
      * The printed fraction will have the minimum width necessary between
      * the minimum and maximum widths - trailing zeroes are omitted.
      * No rounding occurs due to the maximum width - digits are simply dropped.
-     * <p>
+     *
      * When parsing in strict mode, the number of parsed digits must be between
      * the minimum and maximum width. When parsing in lenient mode, the minimum
      * width is considered to be zero and the maximum is nine.
-     * <p>
+     *
      * If the value cannot be obtained then an exception will be thrown.
      * If the value is negative an exception will be thrown.
      * If the field does not have a fixed set of valid values then an
@@ -490,31 +490,31 @@ export class DateTimeFormatterBuilder {
     /**
      * Appends an instant using ISO-8601 to the formatter with control over
      * the number of fractional digits.
-     * <p>
+     *
      * Instants have a fixed output format, although this method provides some
      * control over the fractional digits. They are converted to a date-time
      * with a zone-offset of UTC and printed using the standard ISO-8601 format.
      * The localized decimal style is not used.
-     * <p>
+     *
      * The {@link this.fractionalDigits} parameter allows the output of the fractional
      * second to be controlled. Specifying zero will cause no fractional digits
      * to be output. From 1 to 9 will output an increasing number of digits, using
      * zero right-padding if necessary. The special value -1 is used to output as
      * many digits as necessary to avoid any trailing zeroes.
-     * <p>
+     *
      * When parsing in strict mode, the number of parsed digits must match the
      * fractional digits. When parsing in lenient mode, any number of fractional
      * digits from zero to nine are accepted.
-     * <p>
+     *
      * The instant is obtained using {@link ChronoField#INSTANT_SECONDS}
      * and optionally (@code NANO_OF_SECOND). The value of {@link INSTANT_SECONDS}
      * may be outside the maximum range of {@link LocalDateTime}.
-     * <p>
+     *
      * The {@link ResolverStyle} has no effect on instant parsing.
      * The end-of-day time of '24:00' is handled as midnight at the start of the following day.
      * The leap-second time of '23:59:59' is handled to some degree, see
      * {@link DateTimeFormatter#parsedLeapSecond} for full details.
-     * <p>
+     *
      * An alternative to this method is to format/parse the instant as a single
      * epoch-seconds value. That is achieved using `appendValue(INSTANT_SECONDS)`.
      *
@@ -533,7 +533,7 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Appends the zone offset, such as '+01:00', to the formatter.
-     * <p>
+     *
      * This appends an instruction to print/parse the offset ID to the builder.
      * This is equivalent to calling `appendOffset("HH:MM:ss", "Z")`.
      *
@@ -546,32 +546,32 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Appends the zone offset, such as '+01:00', to the formatter.
-     * <p>
+     *
      * This appends an instruction to print/parse the offset ID to the builder.
-     * <p>
+     *
      * During printing, the offset is obtained using a mechanism equivalent
      * to querying the temporal with {@link TemporalQueries#offset}.
      * It will be printed using the format defined below.
      * If the offset cannot be obtained then an exception is thrown unless the
      * section of the formatter is optional.
-     * <p>
+     *
      * During parsing, the offset is parsed using the format defined below.
      * If the offset cannot be parsed then an exception is thrown unless the
      * section of the formatter is optional.
-     * <p>
+     *
      * The format of the offset is controlled by a pattern which must be one
      * of the following:
-     * <p><ul>
-     * <li>`+HH` - hour only, ignoring minute and second
-     * <li>`+HHmm` - hour, with minute if non-zero, ignoring second, no colon
-     * <li>`+HH:mm` - hour, with minute if non-zero, ignoring second, with colon
-     * <li>`+HHMM` - hour and minute, ignoring second, no colon
-     * <li>`+HH:MM` - hour and minute, ignoring second, with colon
-     * <li>`+HHMMss` - hour and minute, with second if non-zero, no colon
-     * <li>`+HH:MM:ss` - hour and minute, with second if non-zero, with colon
-     * <li>`+HHMMSS` - hour, minute and second, no colon
-     * <li>`+HH:MM:SS` - hour, minute and second, with colon
-     * </ul><p>
+     *
+     * * `+HH` - hour only, ignoring minute and second
+     * * `+HHmm` - hour, with minute if non-zero, ignoring second, no colon
+     * * `+HH:mm` - hour, with minute if non-zero, ignoring second, with colon
+     * * `+HHMM` - hour and minute, ignoring second, no colon
+     * * `+HH:MM` - hour and minute, ignoring second, with colon
+     * * `+HHMMss` - hour and minute, with second if non-zero, no colon
+     * * `+HH:MM:ss` - hour and minute, with second if non-zero, with colon
+     * * `+HHMMSS` - hour, minute and second, no colon
+     * * `+HH:MM:SS` - hour, minute and second, with colon
+     *
      * The "no offset" text controls what text is printed when the total amount of
      * the offset fields to be output is zero.
      * Example values would be 'Z', '+00:00', 'UTC' or 'GMT'.
@@ -589,18 +589,18 @@ export class DateTimeFormatterBuilder {
 
     /**
       * Appends the time-zone ID, such as 'Europe/Paris' or '+02:00', to the formatter.
-      * <p>
+      *
       * This appends an instruction to print/parse the zone ID to the builder.
       * The zone ID is obtained in a strict manner suitable for {@link ZonedDateTime}.
       * By contrast, {@link OffsetDateTime} does not have a zone ID suitable
       * for use with this method, see {@link appendZoneOrOffsetId}.
-      * <p>
+      *
       * During printing, the zone is obtained using a mechanism equivalent
       * to querying the temporal with {@link TemporalQueries#zoneId}.
       * It will be printed using the result of {@link ZoneId#getId}.
       * If the zone cannot be obtained then an exception is thrown unless the
       * section of the formatter is optional.
-      * <p>
+      *
       * During parsing, the zone is parsed and must match a known zone or offset.
       * If the zone cannot be parsed then an exception is thrown unless the
       * section of the formatter is optional.
@@ -616,7 +616,7 @@ export class DateTimeFormatterBuilder {
     //-----------------------------------------------------------------------
     /**
      * Appends the elements defined by the specified pattern to the builder.
-     * <p>
+     *
      * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.
      * The characters '{' and '}' are reserved for future use.
      * The characters '[' and ']' indicate optional patterns.
@@ -665,46 +665,46 @@ export class DateTimeFormatterBuilder {
      *   ]       optional section end
      *   {}      reserved for future use
      * </pre>
-     * <p>
+     *
      * The count of pattern letters determine the format.
-     * <p>
-     * <b>Text</b>: The text style is determined based on the number of pattern letters used.
+     *
+     * **Text**: The text style is determined based on the number of pattern letters used.
      * Less than 4 pattern letters will use the short form (see {@link TextStyle#SHORT}).
      * Exactly 4 pattern letters will use the full form (see {@link TextStyle#FULL}).
      * Exactly 5 pattern letters will use the narrow form (see {@link TextStyle#NARROW}).
-     * <p>
-     * <b>Number</b>: If the count of letters is one, then the value is printed using the minimum number
+     *
+     * **Number**: If the count of letters is one, then the value is printed using the minimum number
      * of digits and without padding as per {@link appendValue}. Otherwise, the
      * count of digits is used as the width of the output field as per {@link appendValue}.
-     * <p>
-     * <b>Number/Text</b>: If the count of pattern letters is 3 or greater, use the Text rules above.
+     *
+     * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.
      * Otherwise use the Number rules above.
-     * <p>
-     * <b>Fraction</b>: Outputs the nano-of-second field as a fraction-of-second.
+     *
+     * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.
      * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.
      * If it is less than 9, then the nano-of-second value is truncated, with only the most
      * significant digits being output.
      * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.
      * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern
      * letters, up to 9 digits.
-     * <p>
-     * <b>Year</b>: The count of letters determines the minimum field width below which padding is used.
+     *
+     * **Year**: The count of letters determines the minimum field width below which padding is used.
      * If the count of letters is two, then a reduced (see {@link appendValueReduced}) two digit form is used.
      * For printing, this outputs the rightmost two digits. For parsing, this will parse using the
      * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.
      * If the count of letters is less than four (but not two), then the sign is only output for negative
      * years as per {@link SignStyle#NORMAL}.
      * Otherwise, the sign is output if the pad width is exceeded, as per {@link SignStyle#EXCEEDS_PAD}
-     * <p>
-     * <b>ZoneId</b>: This outputs the time-zone ID, such as 'Europe/Paris'.
+     *
+     * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.
      * If the count of letters is two, then the time-zone ID is output.
      * Any other count of letters throws {@link IllegalArgumentException}.
      * <pre>
      *  Pattern     Equivalent builder methods
      *   VV          appendZoneId()
      * </pre>
-     * <p>
-     * <b>Zone names</b>: This outputs the display name of the time-zone ID.
+     *
+     * **Zone names**: This outputs the display name of the time-zone ID.
      * If the count of letters is one, two or three, then the short name is output.
      * If the count of letters is four, then the full name is output.
      * Five or more letters throws {@link IllegalArgumentException}.
@@ -715,8 +715,8 @@ export class DateTimeFormatterBuilder {
      *   zzz         appendZoneText(TextStyle.SHORT)
      *   zzzz        appendZoneText(TextStyle.FULL)
      * </pre>
-     * <p>
-     * <b>Offset X and x</b>: This formats the offset based on the number of pattern letters.
+     *
+     * **Offset X and x**: This formats the offset based on the number of pattern letters.
      * One letter outputs just the hour', such as '+01', unless the minute is non-zero
      * in which case the minute is also output, such as '+0130'.
      * Two letters outputs the hour and minute, without a colon, such as '+0130'.
@@ -739,8 +739,8 @@ export class DateTimeFormatterBuilder {
      *   xxxx        appendOffset("+HHMMss","+0000")
      *   xxxxx       appendOffset("+HH:MM:ss","+00:00")
      * </pre>
-     * <p>
-     * <b>Offset Z</b>: This formats the offset based on the number of pattern letters.
+     *
+     * **Offset Z**: This formats the offset based on the number of pattern letters.
      * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.
      * Four or more letters throws {@link IllegalArgumentException}.
      * The output will be '+0000' when the offset is zero.
@@ -750,21 +750,21 @@ export class DateTimeFormatterBuilder {
      *   ZZ          appendOffset("+HHMM","+0000")
      *   ZZZ         appendOffset("+HHMM","+0000")
      * </pre>
-     * <p>
-     * <b>Optional section</b>: The optional section markers work exactly like calling {@link optionalStart}
+     *
+     * **Optional section**: The optional section markers work exactly like calling {@link optionalStart}
      * and {@link optionalEnd}.
-     * <p>
-     * <b>Pad modifier</b>: Modifies the pattern that immediately follows to be padded with spaces.
+     *
+     * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.
      * The pad width is determined by the number of pattern letters.
      * This is the same as calling {@link padNext}.
-     * <p>
+     *
      * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.
-     * <p>
+     *
      * Any unrecognized letter is an error.
      * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.
      * Despite this, it is recommended to use single quotes around all characters that you want to
      * output directly to ensure that future changes do not break your application.
-     * <p>
+     *
      * Note that the pattern string is similar, but not identical, to
      * {@link java.text.SimpleDateFormat}.
      * The pattern string is also similar, but not identical, to that defined by the
@@ -1190,13 +1190,13 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Causes the next added printer/parser to pad to a fixed width using a space.
-     * <p>
+     *
      * This padding will pad to a fixed width using spaces.
-     * <p>
+     *
      * During formatting, the decorated element will be output and then padded
      * to the specified width. An exception will be thrown during printing if
      * the pad width is exceeded.
-     * <p>
+     *
      * During parsing, the padding and decorated element are parsed.
      * If parsing is lenient, then the pad width is treated as a maximum.
      * If parsing is case insensitive, then the pad character is matched ignoring case.
@@ -1213,14 +1213,14 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Causes the next added printer/parser to pad to a fixed width.
-     * <p>
+     *
      * This padding is intended for padding other than zero-padding.
      * Zero-padding should be achieved using the appendValue methods.
-     * <p>
+     *
      * During formatting, the decorated element will be output and then padded
      * to the specified width. An exception will be thrown during printing if
      * the pad width is exceeded.
-     * <p>
+     *
      * During parsing, the padding and decorated element are parsed.
      * If parsing is lenient, then the pad width is treated as a maximum.
      * If parsing is case insensitive, then the pad character is matched ignoring case.
@@ -1246,16 +1246,16 @@ export class DateTimeFormatterBuilder {
     //-----------------------------------------------------------------------
     /**
      * Mark the start of an optional section.
-     * <p>
+     *
      * The output of printing can include optional sections, which may be nested.
      * An optional section is started by calling this method and ended by calling
      * {@link optionalEnd} or by ending the build process.
-     * <p>
+     *
      * All elements in the optional section are treated as optional.
      * During printing, the section is only output if data is available in the
      * {@link TemporalAccessor} for all the elements in the section.
      * During parsing, the whole section may be missing from the parsed string.
-     * <p>
+     *
      * For example, consider a builder setup as
      * `builder.appendValue(HOUR_OF_DAY,2).optionalStart().appendValue(MINUTE_OF_HOUR,2)`.
      * The optional section ends automatically at the end of the builder.
@@ -1272,21 +1272,21 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Ends an optional section.
-     * <p>
+     *
      * The output of printing can include optional sections, which may be nested.
      * An optional section is started by calling {@link optionalStart} and ended
      * using this method (or at the end of the builder).
-     * <p>
+     *
      * Calling this method without having previously called `optionalStart`
      * will throw an exception.
      * Calling this method immediately after calling `optionalStart` has no effect
      * on the formatter other than ending the (empty) optional section.
-     * <p>
+     *
      * All elements in the optional section are treated as optional.
      * During printing, the section is only output if data is available in the
      * {@link TemporalAccessor} for all the elements in the section.
      * During parsing, the whole section may be missing from the parsed string.
-     * <p>
+     *
      * For example, consider a builder setup as
      * `builder.appendValue(HOUR_OF_DAY,2).optionalStart().appendValue(MINUTE_OF_HOUR,2).optionalEnd()`.
      * During printing, the minute will only be output if its value can be obtained from the date-time.
@@ -1374,7 +1374,7 @@ export class DateTimeFormatterBuilder {
     //-----------------------------------------------------------------------
     /**
      * Appends all the elements of a formatter to the builder.
-     * <p>
+     *
      * This method has the same effect as appending each of the constituent
      * parts of the formatter directly to this builder.
      *
@@ -2487,7 +2487,7 @@ class ZoneIdPrinterParser {
      * This implementation looks for the longest matching string.
      * For example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just
      * Etc/GMC although both are valid.
-     * <p>
+     *
      * This implementation uses a tree to search for valid time-zone names in
      * the parseText. The top level node of the tree has a length equal to the
      * length of the shortest time-zone as well as the beginning characters of

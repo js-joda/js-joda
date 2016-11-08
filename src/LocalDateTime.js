@@ -28,20 +28,20 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
 /**
  * A date-time without a time-zone in the ISO-8601 calendar system,
  * such as `2007-12-03T10:15:30`.
- * <p>
+ *
  * {@link LocalDateTime} is an immutable date-time object that represents a date-time,
  * often viewed as year-month-day-hour-minute-second. Other date and time fields,
  * such as day-of-year, day-of-week and week-of-year, can also be accessed.
  * Time is represented to nanosecond precision.
  * For example, the value '2nd October 2007 at 13:45.30.123456789' can be
  * stored in a {@link LocalDateTime}.
- * <p>
+ *
  * This class does not store or represent a time-zone.
  * Instead, it is a description of the date, as used for birthdays, combined with
  * the local time as seen on a wall clock.
  * It cannot represent an instant on the time-line without additional information
  * such as an offset or time-zone.
- * <p>
+ *
  * The ISO-8601 calendar system is the modern civil calendar system used today
  * in most of the world. It is equivalent to the proleptic Gregorian calendar
  * system, in which today's rules for leap years are applied for all time.
@@ -49,7 +49,7 @@ import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
  * However, any application that makes use of historical dates, and requires them
  * to be accurate will find the ISO-8601 approach unsuitable.
  *
- * <h3>Static properties of Class {@link LocalTime}</h3>
+ * ### Static properties of Class {@link LocalTime}
  *
  * LocalDateTime.MIN
  *
@@ -73,16 +73,16 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Obtains the current date-time from from the specified clock or the system clock in the specified time-zone.
-     * <p>
+     *
      * If the argument is an instance of Clock this will query the specified clock to obtain the current date-time.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using dependency injection.
-     * <p>
+     *
      * If the argument is an instance of ZoneId this will query the system clock (see {@link Clock#system}) to obtain the current date-time.
      * Specifying the time-zone avoids dependence on the default time-zone.
-     * <p>
+     *
      * If nor argument is applied, the system default time zone is used to obtain the current date-time.
-     * <p>
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -101,7 +101,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Obtains the current date-time from the specified clock.
-     * <p>
+     *
      * This will query the specified clock to obtain the current date-time.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using dependency injection.
@@ -159,7 +159,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Obtains an instance of {@link LocalDateTime} from year, month,
      * day, hour, minute, second and nanosecond.
-     * <p>
+     *
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
      * @param {number} [year=0] - the year to represent, from MIN_YEAR to MAX_YEAR
@@ -195,7 +195,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-------------------------------------------------------------------------
     /**
      * Obtains an instance of {@link LocalDateTime} from an {@link Instant} and zone ID.
-     * <p>
+     *
      * This creates a local date-time based on the specified instant.
      * First, the offset from UTC/Greenwich is obtained using the zone ID and instant,
      * which is simple as there is only one valid offset for each instant.
@@ -218,7 +218,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Obtains an instance of {@link LocalDateTime} using seconds from the
      * epoch of 1970-01-01T00:00:00Z.
-     * <p>
+     *
      * This allows the {@link ChronoField.INSTANT_SECONDS} epoch-second field
      * to be converted to a local date-time. This is primarily intended for
      * low-level conversions rather than general application usage.
@@ -246,12 +246,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link LocalDateTime} from a temporal object.
-     * <p>
+     *
      * A {@link TemporalAccessor} represents some form of date and time information.
      * This factory converts the arbitrary temporal object to an instance of {@link LocalDateTime}.
-     * <p>
+     *
      * The conversion extracts and combines {@link LocalDate} and {@link LocalTime}.
-     * <p>
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used as a query via method reference, {@link LocalDateTime::from}.
      *
@@ -278,7 +278,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link LocalDateTime} from a text string using a specific formatter.
-     * <p>
+     *
      * The text is parsed using the formatter, returning a date-time.
      *
      * @param {!string} text - the text to parse, not null
@@ -325,45 +325,45 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * <p>
+     *
      * This checks if this date-time can be queried for the specified field.
      * If false, then calling the {@link LocalDateTime.range} range and
      * {@link LocalDateTime.get} get methods will throw an exception.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
-     * <ul>
-     * <li>{@link ChronoField.NANO_OF_SECOND}
-     * <li>{@link ChronoField.NANO_OF_DAY}
-     * <li>{@link ChronoField.MICRO_OF_SECOND}
-     * <li>{@link ChronoField.MICRO_OF_DAY}
-     * <li>{@link ChronoField.MILLI_OF_SECOND}
-     * <li>{@link ChronoField.MILLI_OF_DAY}
-     * <li>{@link ChronoField.SECOND_OF_MINUTE}
-     * <li>{@link ChronoField.SECOND_OF_DAY}
-     * <li>{@link ChronoField.MINUTE_OF_HOUR}
-     * <li>{@link ChronoField.MINUTE_OF_DAY}
-     * <li>{@link ChronoField.HOUR_OF_AMPM}
-     * <li>{@link ChronoField.CLOCK_HOUR_OF_AMPM}
-     * <li>{@link ChronoField.HOUR_OF_DAY}
-     * <li>{@link ChronoField.CLOCK_HOUR_OF_DAY}
-     * <li>{@link ChronoField.AMPM_OF_DAY}
-     * <li>{@link ChronoField.DAY_OF_WEEK}
-     * <li>{@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH}
-     * <li>{@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR}
-     * <li>{@link ChronoField.DAY_OF_MONTH}
-     * <li>{@link ChronoField.DAY_OF_YEAR}
-     * <li>{@link ChronoField.EPOCH_DAY}
-     * <li>{@link ChronoField.ALIGNED_WEEK_OF_MONTH}
-     * <li>{@link ChronoField.ALIGNED_WEEK_OF_YEAR}
-     * <li>{@link ChronoField.MONTH_OF_YEAR}
-     * <li>{@link ChronoField.EPOCH_MONTH}
-     * <li>{@link ChronoField.YEAR_OF_ERA}
-     * <li>{@link ChronoField.YEAR}
-     * <li>{@link ChronoField.ERA}
-     * </ul>
+     *
+     * * {@link ChronoField.NANO_OF_SECOND}
+     * * {@link ChronoField.NANO_OF_DAY}
+     * * {@link ChronoField.MICRO_OF_SECOND}
+     * * {@link ChronoField.MICRO_OF_DAY}
+     * * {@link ChronoField.MILLI_OF_SECOND}
+     * * {@link ChronoField.MILLI_OF_DAY}
+     * * {@link ChronoField.SECOND_OF_MINUTE}
+     * * {@link ChronoField.SECOND_OF_DAY}
+     * * {@link ChronoField.MINUTE_OF_HOUR}
+     * * {@link ChronoField.MINUTE_OF_DAY}
+     * * {@link ChronoField.HOUR_OF_AMPM}
+     * * {@link ChronoField.CLOCK_HOUR_OF_AMPM}
+     * * {@link ChronoField.HOUR_OF_DAY}
+     * * {@link ChronoField.CLOCK_HOUR_OF_DAY}
+     * * {@link ChronoField.AMPM_OF_DAY}
+     * * {@link ChronoField.DAY_OF_WEEK}
+     * * {@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH}
+     * * {@link ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR}
+     * * {@link ChronoField.DAY_OF_MONTH}
+     * * {@link ChronoField.DAY_OF_YEAR}
+     * * {@link ChronoField.EPOCH_DAY}
+     * * {@link ChronoField.ALIGNED_WEEK_OF_MONTH}
+     * * {@link ChronoField.ALIGNED_WEEK_OF_YEAR}
+     * * {@link ChronoField.MONTH_OF_YEAR}
+     * * {@link ChronoField.EPOCH_MONTH}
+     * * {@link ChronoField.YEAR_OF_ERA}
+     * * {@link ChronoField.YEAR}
+     * * {@link ChronoField.ERA}
+     *
      * All other {@link ChronoField} instances will return false.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.isSupportedBy}
      * passing `this` as the argument.
@@ -383,17 +383,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the range of valid values for the specified field.
-     * <p>
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This date-time is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return
      * appropriate range instances.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.rangeRefinedBy}
      * passing `this` as the argument.
@@ -412,19 +412,19 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the value of the specified field from this date-time as an `int`.
-     * <p>
+     *
      * This queries this date-time for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return valid
      * values based on this date-time, except {@link NANO_OF_DAY}, {@link MICRO_OF_DAY},
      * {@link EPOCH_DAY} and {@link EPOCH_MONTH} which are too large to fit in
      * an `int` and throw a {@link DateTimeException}.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -444,16 +444,16 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the value of the specified field from this date-time as a `long`.
-     * <p>
+     *
      * This queries this date-time for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields (see {@link isSupported}) will return valid
      * values based on this date-time.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -475,9 +475,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Gets the year field.
-     * <p>
+     *
      * This method returns the primitive `int` value for the year.
-     * <p>
+     *
      * The year returned by this method is proleptic as per `get(YEAR)`.
      * To obtain the year-of-era, use `get(YEAR_OF_ERA)`.
      *
@@ -489,7 +489,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the month-of-year field from 1 to 12.
-     * <p>
+     *
      * This method returns the month as an `int` from 1 to 12.
      * Application code is frequently clearer if the enum {@link Month}
      * is used by calling {@link getMonth}.
@@ -503,7 +503,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the month-of-year field using the {@link Month} enum.
-     * <p>
+     *
      * This method returns the enum {@link Month} for the month.
      * This avoids confusion as to what `int` values mean.
      * If you need access to the primitive `int` value, use
@@ -518,7 +518,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the day-of-month field.
-     * <p>
+     *
      * This method returns the primitive `int` value for the day-of-month.
      *
      * @return {number} the day-of-month, from 1 to 31
@@ -529,7 +529,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the day-of-year field.
-     * <p>
+     *
      * This method returns the primitive `int` value for the day-of-year.
      *
      * @return {number} the day-of-year, from 1 to 365, or 366 in a leap year
@@ -540,12 +540,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the day-of-week field, which is an enum {@link DayOfWeek}.
-     * <p>
+     *
      * This method returns the enum {@link DayOfWeek} for the day-of-week.
      * This avoids confusion as to what `int` values mean.
      * If you need access to the primitive `int` value, use
      * {@link DayOfWeek#getValue}.
-     * <p>
+     *
      * Additional information can be obtained from the {@link DayOfWeek}.
      * This includes textual names of the values.
      *
@@ -613,11 +613,11 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns an adjusted copy of this date-time.
-     * <p>
+     *
      * This returns a new {@link LocalDateTime}, based on this one, with the date-time adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * <p>
+     *
      * A simple adjuster might simply set the one of the fields, such as the year field.
      * A more complex adjuster might set the date to the last day of the month.
      * A selection of common adjustments is provided in {@link TemporalAdjusters}.
@@ -626,7 +626,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * such as {@link Month} and {@link MonthDay}.
      * The adjuster is responsible for handling special cases, such as the varying
      * lengths of month and leap years.
-     * <p>
+     *
      * For example this code returns a date on the last day of July:
      * <pre>
      *  import static org.threeten.bp.Month.*;
@@ -634,18 +634,18 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      *  result = localDateTime.with(JULY).with(lastDayOfMonth());
      * </pre>
-     * <p>
+     *
      * The classes {@link LocalDate} and {@link LocalTime} implement {@link TemporalAdjuster},
      * thus this method can be used to change the date, time or offset:
      * <pre>
      *  result = localDateTime.with(date);
      *  result = localDateTime.with(time);
      * </pre>
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster#adjustInto} method on the
      * specified adjuster passing `this` as the argument.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjuster} adjuster the adjuster to use, not null
@@ -669,28 +669,28 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this date-time with the specified field set to a new value.
-     * <p>
+     *
      * This returns a new {@link LocalDateTime}, based on this one, with the value
      * for the specified field changed.
      * This can be used to change any supported field, such as the year, month or day-of-month.
      * If it is not possible to set the value, because the field is not supported or for
      * some other reason, an exception is thrown.
-     * <p>
+     *
      * In some cases, changing the specified field can cause the resulting date-time to become invalid,
      * such as changing the month from 31st January to February would make the day-of-month invalid.
      * In cases like this, the field is responsible for resolving the date. Typically it will choose
      * the previous valid date, which would be the last valid day of February in this example.
-     * <p>
+     *
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
      * The supported fields (see {@link isSupported}) will behave as in
      * {@link LocalDate#with} or {@link LocalTime#with}.
      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.adjustInto}
      * passing `this` as the argument. In this case, the field determines
      * whether and how to adjust the instant.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field - the field to set in the result, not null
@@ -716,7 +716,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * Returns a copy of this {@link LocalDateTime} with the year altered.
      * The time does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} year - the year to set in the result, from MIN_YEAR to MAX_YEAR
@@ -731,7 +731,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * Returns a copy of this {@link LocalDateTime} with the month-of-year altered.
      * The time does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {!(number|Month)} month - the month-of-year to set in the result, from 1 (January) to 12 (December)
@@ -746,7 +746,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * Returns a copy of this {@link LocalDateTime} with the day-of-month altered.
      * If the resulting {@link LocalDateTime} is invalid, an exception is thrown.
      * The time does not affect the calculation and will be the same in the result.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} dayOfMonth - the day-of-month to set in the result, from 1 to 28-31
@@ -761,7 +761,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Returns a copy of this {@link LocalDateTime} with the day-of-year altered.
      * If the resulting {@link LocalDateTime} is invalid, an exception is thrown.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} dayOfYear - the day-of-year to set in the result, from 1 to 365-366
@@ -776,7 +776,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the hour-of-day value altered.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} hour - the hour-of-day to set in the result, from 0 to 23
@@ -790,7 +790,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the minute-of-hour value altered.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} minute - the minute-of-hour to set in the result, from 0 to 59
@@ -804,7 +804,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the second-of-minute value altered.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} second - the second-of-minute to set in the result, from 0 to 59
@@ -818,7 +818,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the nano-of-second value altered.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} nanoOfSecond - the nano-of-second to set in the result, from 0 to 999,999,999
@@ -833,17 +833,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the time truncated.
-     * <p>
+     *
      * Truncation returns a copy of the original date-time with fields
      * smaller than the specified unit set to zero.
      * For example, truncating with {@link ChronoUnit#MINUTES}
      * will set the second-of-minute and nano-of-second field to zero.
-     * <p>
+     *
      * The unit must have a duration (see {@link TemporalUnit#getDuration})
      * that divides into the length of a standard day without remainder.
      * This includes all supplied time units on {@link ChronoUnit} and
      * {@link ChronoUnit#DAYS}. Other units throw an exception.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalUnit} unit - the unit to truncate to, not null
@@ -875,13 +875,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this date-time with the specified period added.
-     * <p>
+     *
      * This method returns a new date-time based on this time with the specified period added.
      * The amount is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
      * back to {@link plus}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAmount} amount - the amount to add, not null
@@ -896,12 +896,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this date-time with the specified period added.
-     * <p>
+     *
      * This method returns a new date-time based on this date-time with the specified period added.
      * This can be used to add any period that is defined by a unit, for example to add years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
      * of any edge cases in the calculation.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
@@ -929,18 +929,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in years added.
-     * <p>
+     *
      * This method adds the specified amount to the years field in three steps:
-     * <ol>
-     * <li>Add the input years to the year field</li>
-     * <li>Check if the resulting date would be invalid</li>
-     * <li>Adjust the day-of-month to the last valid day if necessary</li>
-     * </ol>
-     * <p>
+     *
+     * 1. Add the input years to the year field
+     * 2. Check if the resulting date would be invalid
+     * 3. Adjust the day-of-month to the last valid day if necessary
+     *
      * For example, 2008-02-29 (leap year) plus one year would result in the
      * invalid date 2009-02-29 (standard year). Instead of returning an invalid
      * result, the last valid day of the month, 2009-02-28, is selected instead.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} years - the years to add, may be negative
@@ -954,18 +953,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in months added.
-     * <p>
+     *
      * This method adds the specified amount to the months field in three steps:
-     * <ol>
-     * <li>Add the input months to the month-of-year field</li>
-     * <li>Check if the resulting date would be invalid</li>
-     * <li>Adjust the day-of-month to the last valid day if necessary</li>
-     * </ol>
-     * <p>
+     *
+     * 1. Add the input months to the month-of-year field
+     * 2. Check if the resulting date would be invalid
+     * 3. Adjust the day-of-month to the last valid day if necessary
+     *
      * For example, 2007-03-31 plus one month would result in the invalid date
      * 2007-04-31. Instead of returning an invalid result, the last valid day
      * of the month, 2007-04-30, is selected instead.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to add, may be negative
@@ -979,13 +977,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in weeks added.
-     * <p>
+     *
      * This method adds the specified amount in weeks to the days field incrementing
      * the month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * <p>
+     *
      * For example, 2008-12-31 plus one week would result in 2009-01-07.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} weeks - the weeks to add, may be negative
@@ -999,13 +997,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in days added.
-     * <p>
+     *
      * This method adds the specified amount to the days field incrementing the
      * month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * <p>
+     *
      * For example, 2008-12-31 plus one day would result in 2009-01-01.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to add, may be negative
@@ -1020,7 +1018,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in hours added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} hours - the hours to add, may be negative
@@ -1033,7 +1031,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in minutes added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} minutes - the minutes to add, may be negative
@@ -1046,7 +1044,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in seconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} seconds - the seconds to add, may be negative
@@ -1059,7 +1057,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in nanoseconds added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} nanos - the nanos to add, may be negative
@@ -1091,13 +1089,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this date-time with the specified period subtracted.
-     * <p>
+     *
      * This method returns a new date-time based on this time with the specified period subtracted.
      * The amount is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
      * back to {@link minus}.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAmount} amount - the amount to subtract, not null
@@ -1112,12 +1110,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this date-time with the specified period subtracted.
-     * <p>
+     *
      * This method returns a new date-time based on this date-time with the specified period subtracted.
      * This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
      * of any edge cases in the calculation.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} amountToSubtract - the amount of the unit to subtract from the result, may be negative
@@ -1133,18 +1131,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in years subtracted.
-     * <p>
+     *
      * This method subtracts the specified amount from the years field in three steps:
-     * <ol>
-     * <li>Subtract the input years from the year field</li>
-     * <li>Check if the resulting date would be invalid</li>
-     * <li>Adjust the day-of-month to the last valid day if necessary</li>
-     * </ol>
-     * <p>
+     *
+     * 1. Subtract the input years from the year field
+     * 2. Check if the resulting date would be invalid
+     * 3. Adjust the day-of-month to the last valid day if necessary
+     *
      * For example, 2008-02-29 (leap year) minus one year would result in the
      * invalid date 2009-02-29 (standard year). Instead of returning an invalid
      * result, the last valid day of the month, 2009-02-28, is selected instead.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} years - the years to subtract, may be negative
@@ -1157,18 +1154,17 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in months subtracted.
-     * <p>
+     *
      * This method subtracts the specified amount from the months field in three steps:
-     * <ol>
-     * <li>Subtract the input months from the month-of-year field</li>
-     * <li>Check if the resulting date would be invalid</li>
-     * <li>Adjust the day-of-month to the last valid day if necessary</li>
-     * </ol>
-     * <p>
+     *
+     * 1. Subtract the input months from the month-of-year field
+     * 2. Check if the resulting date would be invalid
+     * 3. Adjust the day-of-month to the last valid day if necessary
+     *
      * For example, 2007-03-31 minus one month would result in the invalid date
      * 2007-04-31. Instead of returning an invalid result, the last valid day
      * of the month, 2007-04-30, is selected instead.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to subtract, may be negative
@@ -1181,13 +1177,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in weeks subtracted.
-     * <p>
+     *
      * This method subtracts the specified amount in weeks from the days field decrementing
      * the month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * <p>
+     *
      * For example, 2009-01-07 minus one week would result in 2008-12-31.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} weeks - the weeks to subtract, may be negative
@@ -1200,13 +1196,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in days subtracted.
-     * <p>
+     *
      * This method subtracts the specified amount from the days field incrementing the
      * month and year fields as necessary to ensure the result remains valid.
      * The result is only invalid if the maximum/minimum year is exceeded.
-     * <p>
+     *
      * For example, 2009-01-01 minus one day would result in 2008-12-31.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to subtract, may be negative
@@ -1220,7 +1216,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in hours subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} hours - the hours to subtract, may be negative
@@ -1233,7 +1229,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in minutes subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} minutes - the minutes to subtract, may be negative
@@ -1246,7 +1242,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in seconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} seconds - the seconds to subtract, may be negative
@@ -1259,7 +1255,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period in nanoseconds subtracted.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanos - the nanos to subtract, may be negative
@@ -1273,7 +1269,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this {@link LocalDateTime} with the specified period added.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {LocalDate} newDate  the new date to base the calculation on, not null
@@ -1309,12 +1305,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Queries this date-time using the specified query.
-     * <p>
+     *
      * This queries this date-time using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery#queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -1334,14 +1330,14 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Adjusts the specified temporal object to have the same date and time as this object.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with the date and time changed to be the same as this.
-     * <p>
+     *
      * The adjustment is equivalent to using {@link Temporal#with}
      * twice, passing {@link ChronoField#EPOCH_DAY} and
      * {@link ChronoField#NANO_OF_DAY} as the fields.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#with}:
      * <pre>
@@ -1349,7 +1345,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *   temporal = thisLocalDateTime.adjustInto(temporal);
      *   temporal = temporal.with(thisLocalDateTime);
      * </pre>
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjuster} temporal - the target object to be adjusted, not null
@@ -1364,19 +1360,19 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Calculates the period between this date-time and another date-time in
      * terms of the specified unit.
-     * <p>
+     *
      * This calculates the period between two date-times in terms of a single unit.
      * The start and end points are `this` and the specified date-time.
      * The result will be negative if the end is before the start.
      * The {@link Temporal} passed to this method must be a {@link LocalDateTime}.
      * For example, the period in days between two date-times can be calculated
      * using `startDateTime.until(endDateTime, DAYS)`.
-     * <p>
+     *
      * The calculation returns a whole number, representing the number of
      * complete units between the two date-times.
      * For example, the period in months between 2012-06-15T00:00 and 2012-08-14T23:59
      * will only be one month as it is one minute short of two months.
-     * <p>
+     *
      * This method operates in association with {@link TemporalUnit#between}.
      * The result of this method is a `long` representing the amount of
      * the specified unit. By contrast, the result of {@link between} is an
@@ -1385,19 +1381,19 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *   long period = start.until(end, MONTHS);   // this method
      *   dateTime.plus(MONTHS.between(start, end));      // use in plus/minus
      * </pre>
-     * <p>
+     *
      * The calculation is implemented in this method for {@link ChronoUnit}.
      * The units {@link NANOS}, {@link MICROS}, {@link MILLIS}, {@link SECONDS},
      * {@link MINUTES}, {@link HOURS} and {@link HALF_DAYS}, {@link DAYS},
      * {@link WEEKS}, {@link MONTHS}, {@link YEARS}, {@link DECADES},
      * {@link CENTURIES}, {@link MILLENNIA} and {@link ERAS} are supported.
      * Other {@link ChronoUnit} values will throw an exception.
-     * <p>
+     *
      * If the unit is not a {@link ChronoUnit}, then the result of this method
      * is obtained by invoking {@link TemporalUnit.between}
      * passing `this` as the first argument and the input temporal as
      * the second argument.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} endExclusive - the end date-time, which is converted to a {@link LocalDateTime}, not null
@@ -1462,7 +1458,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Combines this date-time with an offset to create an {@link OffsetDateTime}.
-     * <p>
+     *
      * This returns an {@link OffsetDateTime} formed from this date-time at the specified offset.
      * All possible combinations of date-time and offset are valid.
      *
@@ -1477,25 +1473,25 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Combines this date-time with a time-zone to create a {@link ZonedDateTime}.
-     * <p>
+     *
      * This returns a {@link ZonedDateTime} formed from this date-time at the
      * specified time-zone. The result will match this date-time as closely as possible.
      * Time-zone rules, such as daylight savings, mean that not every local date-time
      * is valid for the specified zone, thus the local date-time may be adjusted.
-     * <p>
+     *
      * The local date-time is resolved to a single instant on the time-line.
      * This is achieved by finding a valid offset from UTC/Greenwich for the local
      * date-time as defined by the {@link ZoneRules} of the zone ID.
-     *<p>
+     *
      * In most cases, there is only one valid offset for a local date-time.
      * In the case of an overlap, where clocks are set back, there are two valid offsets.
      * This method uses the earlier offset typically corresponding to 'summer'.
-     * <p>
+     *
      * In the case of a gap, where clocks jump forward, there is no valid offset.
      * Instead, the local date-time is adjusted to be later by the length of the gap.
      * For a typical one hour daylight savings change, the local date-time will be
      * moved one hour later into the offset typically corresponding to 'summer'.
-     * <p>
+     *
      * To obtain the later offset during an overlap, call
      * {@link ZonedDateTime#withLaterOffsetAtOverlap} on the result of this method.
      * To throw an exception when there is a gap or overlap, use
@@ -1511,7 +1507,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Gets the {@link LocalDate} part of this date-time.
-     * <p>
+     *
      * This returns a {@link LocalDate} with the same year, month and day
      * as this date-time.
      *
@@ -1523,7 +1519,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Gets the {@link LocalTime} part of this date-time.
-     * <p>
+     *
      * This returns a {@link LocalTime} with the same hour, minute, second and
      * nanosecond as this date-time.
      *
@@ -1536,10 +1532,10 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Compares this date-time to another date-time.
-     * <p>
+     *
      * The comparison is primarily based on the date-time, from earliest to latest.
      * It is 'consistent with equals', as defined by {@link Comparable}.
-     * <p>
+     *
      * If all the date-times being compared are instances of {@link LocalDateTime},
      * then the comparison will be entirely based on the date-time.
      * If some dates being compared are in different chronologies, then the
@@ -1571,7 +1567,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Checks if this date-time is after the specified date-time.
-     * <p>
+     *
      * This checks to see if this date-time represents a point on the
      * local time-line after the other date-time.
      * <pre>
@@ -1581,7 +1577,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *   a.isAfter(a) == false
      *   b.isAfter(a) == true
      * </pre>
-     * <p>
+     *
      * This method only considers the position of the two date-times on the local time-line.
      * It does not take into account the chronology, or calendar system.
      * This is different from the comparison in {@link compareTo},
@@ -1597,7 +1593,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Checks if this date-time is before the specified date-time.
-     * <p>
+     *
      * This checks to see if this date-time represents a point on the
      * local time-line before the other date-time.
      * <pre>
@@ -1607,7 +1603,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *   a.isBefore(a) == false
      *   b.isBefore(a) == false
      * </pre>
-     * <p>
+     *
      * This method only considers the position of the two date-times on the local time-line.
      * It does not take into account the chronology, or calendar system.
      * This is different from the comparison in {@link compareTo},
@@ -1623,7 +1619,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
 
     /**
      * Checks if this date-time is equal to the specified date-time.
-     * <p>
+     *
      * This checks to see if this date-time represents the same point on the
      * local time-line as the other date-time.
      * <pre>
@@ -1633,7 +1629,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *   a.isEqual(a) == true
      *   b.isEqual(a) == false
      * </pre>
-     * <p>
+     *
      * This method only considers the position of the two date-times on the local time-line.
      * It does not take into account the chronology, or calendar system.
      * This is different from the comparison in {@link compareTo},
@@ -1650,7 +1646,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Checks if this date-time is equal to another date-time.
-     * <p>
+     *
      * Compares this {@link LocalDateTime} with another ensuring that the date-time is the same.
      * Only objects of type {@link LocalDateTime} are compared, other types return false.
      *
@@ -1679,15 +1675,15 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     //-----------------------------------------------------------------------
     /**
      * Outputs this date-time as a string, such as `2007-12-03T10:15:30`.
-     * <p>
+     *
      * The output will be one of the following ISO-8601 formats:
-     * <p><ul>
-     * <li>`yyyy-MM-dd'T'HH:mm`</li>
-     * <li>`yyyy-MM-dd'T'HH:mm:ss`</li>
-     * <li>`yyyy-MM-dd'T'HH:mm:ss.SSS`</li>
-     * <li>`yyyy-MM-dd'T'HH:mm:ss.SSSSSS`</li>
-     * <li>`yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS`</li>
-     * </ul><p>
+     *
+     * * `yyyy-MM-dd'T'HH:mm`
+     * * `yyyy-MM-dd'T'HH:mm:ss`
+     * * `yyyy-MM-dd'T'HH:mm:ss.SSS`
+     * * `yyyy-MM-dd'T'HH:mm:ss.SSSSSS`
+     * * `yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS`
+     *
      * The format used will be the shortest that outputs the full value of
      * the time where the omitted parts are implied to be zero.
      *

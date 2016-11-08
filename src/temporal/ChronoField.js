@@ -13,16 +13,16 @@ import {YearConstants} from '../YearConstants';
 
 /**
  * A standard set of fields.
- * <p>
+ *
  * This set of fields provide field-based access to manipulate a date, time or date-time.
  * The standard set of fields can be extended by implementing {@link TemporalField}.
- * <p>
+ *
  * These fields are intended to be applicable in multiple calendar systems.
  * For example, most non-ISO calendar systems define dates as a year, month and day,
  * just with slightly different rules.
  * The documentation of each field explains how it operates.
  * 
- * <h3>Static properties of Class {@link ChronoField}</h3>
+ * ### Static properties of Class {@link ChronoField}
  * 
  * ChronoField.NANO_OF_SECOND
  *
@@ -218,14 +218,14 @@ export class ChronoField extends TemporalField {
     /**
      * Get the range of valid values for this field using the temporal object to
      * refine the result.
-     * <p>
+     *
      * This uses the temporal object to find the range of valid values for the field.
      * This is similar to {@link range}, however this method refines the result
      * using the temporal. For example, if the field is {@link DAY_OF_MONTH} the
      * {@link range} method is not accurate as there are four possible month lengths,
      * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
      * accurate, returning just one of those four options.
-     * <p>
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
      * The second is to use {@link TemporalAccessor#range}:
@@ -236,7 +236,7 @@ export class ChronoField extends TemporalField {
      * </pre>
      * It is recommended to use the second approach, {@link range},
      * as it is a lot clearer to read in code.
-     * <p>
+     *
      * Implementations should perform any queries or calculations using the fields
      * available in {@link ChronoField}.
      * If the field is not supported a {@link DateTimeException} must be thrown.
@@ -251,11 +251,11 @@ export class ChronoField extends TemporalField {
 
     /**
      * Checks that the specified value is valid and fits in an `int`.
-     * <p>
+     *
      * This validates that the value is within the outer range of valid values
      * returned by {@link range}.
      * It also checks that all valid values are within the bounds of an `int`.
-     * <p>
+     *
      * This method checks against the range of the field in the ISO-8601 calendar system.
      * This range may be incorrect for other calendar systems.
      * Use {@link Chronology#range} to access the correct range

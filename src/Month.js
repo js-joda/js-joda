@@ -17,21 +17,21 @@ import {TemporalQueries} from './temporal/TemporalQueries';
 
 /**
  * A month-of-year, such as 'July'.
- * <p>
+ *
  * {@link Month} is representing the 12 months of the year -
  * January, February, March, April, May, June, July, August, September, October,
  * November and December.
- * <p>
+ *
  * In addition to the textual name, each month-of-year has an `int` value.
  * The `int` value follows normal usage and the ISO-8601 standard,
  * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
  * rather than the `int` value to ensure code clarity.
- * <p>
+ *
  * This class represents a common concept that is found in many calendar systems.
  * As such, this class may be used by any calendar system that has the month-of-year
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
- * <h3>Static properties of Class {@link Month}</h3>
+ * ### Static properties of Class {@link Month}
  *
  * Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
  * Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
@@ -58,10 +58,10 @@ export class Month extends Temporal {
     
     /**
      * Gets the textual representation, such as 'Jan' or 'December'.
-     * <p>
+     *
      * This returns the textual name used to identify the month-of-year.
      * The parameters control the length of the returned text and the locale.
-     * <p>
+     *
      * If no textual mapping is found then the numeric value (see {@link getValue}) is returned.
      *
      * @param {TextStyle} style - the length of the text required, not null
@@ -77,15 +77,15 @@ export class Month extends Temporal {
 
     /**
      * Checks if the specified field is supported.
-     * <p>
+     *
      * This checks if this month-of-year can be queried for the specified field.
      * If false, then calling the range (see {@link range}) and
      * get (see {@link get}) methods will throw an exception.
-     * <p>
+     *
      * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then
      * this method returns true.
      * All other {@link ChronoField} instances will return false.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.isSupportedBy}
      * passing `this` as the argument.
@@ -106,16 +106,16 @@ export class Month extends Temporal {
 
     /**
      * Gets the value of the specified field from this month-of-year as an `int`.
-     * <p>
+     *
      * This queries this month for the value of the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -138,15 +138,15 @@ export class Month extends Temporal {
 
     /**
      * Gets the value of the specified field from this month-of-year as a `long`.
-     * <p>
+     *
      * This queries this month for the value of the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * <p>
+     *
      * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * <p>
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing `this` as the argument. Whether the value can be obtained,
@@ -169,10 +169,10 @@ export class Month extends Temporal {
     
     /**
      * Returns the month-of-year that is the specified number of months after this one.
-     * <p>
+     *
      * The calculation rolls around the end of the year from December to January.
      * The specified period may be negative.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to add, positive or negative
@@ -188,10 +188,10 @@ export class Month extends Temporal {
 
     /**
      * Returns the month-of-year that is the specified number of months before this one.
-     * <p>
+     *
      * The calculation rolls around the start of the year from January to December.
      * The specified period may be negative.
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to subtract, positive or negative
@@ -203,9 +203,9 @@ export class Month extends Temporal {
 
     /**
      * Gets the length of this month in days.
-     * <p>
+     *
      * This takes a flag to determine whether to return the length for a leap year or not.
-     * <p>
+     *
      * February has 28 days in a standard year and 29 days in a leap year.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -229,7 +229,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the minimum length of this month in days.
-     * <p>
+     *
      * February has a minimum length of 28 days.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -252,7 +252,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the maximum length of this month in days.
-     * <p>
+     *
      * February has a maximum length of 29 days.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -275,7 +275,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the day-of-year corresponding to the first day of this month.
-     * <p>
+     *
      * This returns the day-of-year that this month begins on, using the leap
      * year flag to determine the length of February.
      *
@@ -315,7 +315,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the month corresponding to the first month of this quarter.
-     * <p>
+     *
      * The year can be divided into four quarters.
      * This method returns the first month of the quarter for the base month.
      * January, February and March return January.
@@ -349,12 +349,12 @@ export class Month extends Temporal {
     
     /**
      * Queries this month-of-year using the specified query.
-     * <p>
+     *
      * This queries this month-of-year using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * <p>
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery#queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -414,15 +414,15 @@ export class Month extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this month-of-year.
-     * <p>
+     *
      * This returns a temporal object of the same observable type as the input
      * with the month-of-year changed to be the same as this.
-     * <p>
+     *
      * The adjustment is equivalent to using {@link Temporal#with}
      * passing {@link ChronoField#MONTH_OF_YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
      * a {@link DateTimeException} is thrown.
-     * <p>
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal#with}:
      * <pre>
@@ -430,7 +430,7 @@ export class Month extends Temporal {
      *   temporal = thisMonth.adjustInto(temporal);
      *   temporal = temporal.with(thisMonth);
      * </pre>
-     * <p>
+     *
      * For example, given a date in May, the following are output:
      * <pre>
      *   dateInMay.with(JANUARY);    // four months earlier
@@ -439,7 +439,7 @@ export class Month extends Temporal {
      *   dateInMay.with(JUNE);       // one month later
      *   dateInMay.with(DECEMBER);   // seven months later
      * </pre>
-     * <p>
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -478,15 +478,15 @@ export class Month extends Temporal {
     
     /**
      * Obtains an instance of {@link Month} from a temporal object.
-     * <p>
+     *
      * This obtains a month based on the specified temporal.
      * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
      * which this factory converts to an instance of {@link Month}.
-     * <p>
+     *
      * The conversion extracts the MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) field.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a {@link LocalDate}.
-     * <p>
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link Month::from}.
      *

@@ -45,7 +45,7 @@ export class ChronoZonedDateTime  extends Temporal {
 
     /**
      * Converts this date-time to an {@link Instant}.
-     * <p>
+     *
      * This returns an {@link Instant} representing the same point on the
      * time-line as this date-time. The calculation combines the
      * local date-time (see {@link toLocalDateTime}) and
@@ -60,7 +60,7 @@ export class ChronoZonedDateTime  extends Temporal {
     /**
      * Converts this date-time to the number of seconds from the epoch
      * of 1970-01-01T00:00:00Z.
-     * <p>
+     *
      * This uses the local date-time (see {@link toLocalDateTime}) and
      * offset (see {@link getOffset}) to calculate the epoch-second value,
      * which is the number of elapsed seconds from 1970-01-01T00:00:00Z.
@@ -77,11 +77,11 @@ export class ChronoZonedDateTime  extends Temporal {
 
     /**
       * Compares this date-time to another date-time, including the chronology.
-      * <p>
+      *
       * The comparison is based first on the instant, then on the local date-time,
       * then on the zone ID, then on the chronology.
       * It is "consistent with equals", as defined by {@link Comparable}.
-      * <p>
+      *
       * If all the date-time objects being compared are in the same chronology, then the
       * additional chronology stage is not required.
       *
@@ -110,7 +110,7 @@ export class ChronoZonedDateTime  extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if the instant of this date-time is after that of the specified date-time.
-     * <p>
+     *
      * This method differs from the comparison in {@link compareTo} in that it
      * only compares the instant of the date-time. This is equivalent to using
      * `dateTime1.toInstant().isAfter(dateTime2.toInstant())`.
@@ -128,7 +128,7 @@ export class ChronoZonedDateTime  extends Temporal {
 
     /**
      * Checks if the instant of this date-time is before that of the specified date-time.
-     * <p>
+     *
      * This method differs from the comparison in {@link compareTo} in that it
      * only compares the instant of the date-time. This is equivalent to using
      * `dateTime1.toInstant().isBefore(dateTime2.toInstant())`.
@@ -146,7 +146,7 @@ export class ChronoZonedDateTime  extends Temporal {
 
     /**
      * Checks if the instant of this date-time is equal to that of the specified date-time.
-     * <p>
+     *
      * This method differs from the comparison in {@link compareTo} and {@link equals}
      * in that it only compares the instant of the date-time. This is equivalent to using
      * `dateTime1.toInstant().equals(dateTime2.toInstant())`.
@@ -163,7 +163,7 @@ export class ChronoZonedDateTime  extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if this date-time is equal to another date-time.
-     * <p>
+     *
      * The comparison is based on the offset date-time and the zone.
      * To compare for the same instant on the time-line, use {@link compareTo}.
      * Only objects of type {@link ChronoZoneDateTime} are compared, other types return false.
