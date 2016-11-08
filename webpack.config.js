@@ -29,6 +29,9 @@ module.exports = {
         libraryTarget: minify ? 'var' : 'umd',
         library: 'JSJodaExtra'
     },
+    externals: [
+        'js-joda'
+    ],
     module: {
         loaders: [{
             loader: 'babel-loader',
