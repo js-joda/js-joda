@@ -12,3 +12,7 @@ additional date-time classes that complement those in js-joda
 Attempt to port https://github.com/ThreeTen/threeten-extra to https://github.com/js-joda/js-joda as a js-joda plugin.
 
 **Incomplete and Work In Progress!**
+
+### Usage ###
+
+see examples in  [examples folder](examples/) or [![on requirebin](http://requirebin.com/badge.png)](http://requirebin.com/?gist=38e66bbb34d477a698be12f097a8a9f3)

@@ -26,8 +26,16 @@ module.exports = {
     output: {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda-extra.min.js' : 'js-joda-extra.js',
-        libraryTarget: minify ? 'var' : 'umd',
+        libraryTarget: 'umd',
         library: 'JSJodaExtra'
+    },
+    externals: {
+        'js-joda': {
+            amd: 'js-joda',
+            commonjs: 'js-joda',
+            commonjs2: 'js-joda',
+            root: 'JSJoda'
+        }
     },
     module: {
         loaders: [{
