@@ -1127,7 +1127,7 @@ export class YearMonth extends Temporal {
 
 }
 
-var PARSER;
+let PARSER;
 
 export function _init() {
 

@@ -180,7 +180,7 @@ class Field extends TemporalField{
      * @returns {ValueRange}
      */
     static _getWeekRangeByLocalDate(date) {
-        var wby = Field._getWeekBasedYear(date);
+        const wby = Field._getWeekBasedYear(date);
         return ValueRange.of(1, Field._getWeekRangeByYear(wby));
     }
 
@@ -190,7 +190,7 @@ class Field extends TemporalField{
      * @returns {number}
      */
     static _getWeekRangeByYear(wby) {
-        var date = LocalDate.of(wby, 1, 1);
+        const date = LocalDate.of(wby, 1, 1);
         // 53 weeks if standard year starts on Thursday, or Wed in a leap year
         if (date.dayOfWeek() === DayOfWeek.THURSDAY || (date.dayOfWeek() === DayOfWeek.WEDNESDAY && date.isLeapYear())) {
             return 53;
@@ -204,19 +204,19 @@ class Field extends TemporalField{
      * @returns {number}
      */
     static _getWeek(date) {
-        var dow0 = date.dayOfWeek().ordinal();
-        var doy0 = date.dayOfYear() - 1;
-        var doyThu0 = doy0 + (3 - dow0);  // adjust to mid-week Thursday (which is 3 indexed from zero)
-        var alignedWeek = MathUtil.intDiv(doyThu0, 7);
-        var firstThuDoy0 = doyThu0 - (alignedWeek * 7);
-        var firstMonDoy0 = firstThuDoy0 - 3;
+        const dow0 = date.dayOfWeek().ordinal();
+        const doy0 = date.dayOfYear() - 1;
+        const doyThu0 = doy0 + (3 - dow0);  // adjust to mid-week Thursday (which is 3 indexed from zero)
+        const alignedWeek = MathUtil.intDiv(doyThu0, 7);
+        const firstThuDoy0 = doyThu0 - (alignedWeek * 7);
+        let firstMonDoy0 = firstThuDoy0 - 3;
         if (firstMonDoy0 < -3) {
             firstMonDoy0 += 7;
         }
         if (doy0 < firstMonDoy0) {
             return Field._getWeekRangeByLocalDate(date.withDayOfYear(180).minusYears(1)).maximum();
         }
-        var week = MathUtil.intDiv((doy0 - firstMonDoy0), 7) + 1;
+        let week = MathUtil.intDiv((doy0 - firstMonDoy0), 7) + 1;
         if (week === 53) {
             if ((firstMonDoy0 === -3 || (firstMonDoy0 === -2 && date.isLeapYear())) === false) {
                 week = 1;
@@ -231,8 +231,8 @@ class Field extends TemporalField{
      * @returns {number}
      */
     static _getWeekBasedYear(date) {
-        var year = date.year();
-        var doy = date.dayOfYear();
+        let year = date.year();
+        let doy = date.dayOfYear();
         if (doy <= 3) {
             let dow = date.dayOfWeek().ordinal();
             if (doy - dow < -2) {
@@ -325,9 +325,9 @@ class DAY_OF_QUARTER_FIELD extends Field {
         if (temporal.isSupported(this) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: DayOfQuarter');
         }
-        var qoy = temporal.getLong(QUARTER_OF_YEAR);
+        const qoy = temporal.getLong(QUARTER_OF_YEAR);
         if (qoy === 1) {
-            var year = temporal.getLong(ChronoField.YEAR);
+            const year = temporal.getLong(ChronoField.YEAR);
             return (IsoChronology.isLeapYear(year) ? ValueRange.of(1, 91) : ValueRange.of(1, 90));
         } else if (qoy === 2) {
             return ValueRange.of(1, 91);
@@ -346,9 +346,9 @@ class DAY_OF_QUARTER_FIELD extends Field {
         if (temporal.isSupported(this) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: DayOfQuarter');
         }
-        var doy = temporal.get(ChronoField.DAY_OF_YEAR);
-        var moy = temporal.get(ChronoField.MONTH_OF_YEAR);
-        var year = temporal.getLong(ChronoField.YEAR);
+        const doy = temporal.get(ChronoField.DAY_OF_YEAR);
+        const moy = temporal.get(ChronoField.MONTH_OF_YEAR);
+        const year = temporal.getLong(ChronoField.YEAR);
         return doy - QUARTER_DAYS[MathUtil.intDiv((moy - 1), 3) + (IsoChronology.isLeapYear(year) ? 4 : 0)];
     }
 
@@ -359,7 +359,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
      * @returns {temporal}
      */
     adjustInto(temporal, newValue) {
-        var curValue = this.getFrom(temporal);
+        const curValue = this.getFrom(temporal);
         this.range().checkValidValue(newValue, this);
         return temporal.with(ChronoField.DAY_OF_YEAR, temporal.getLong(ChronoField.DAY_OF_YEAR) + (newValue - curValue));
     }
@@ -372,14 +372,14 @@ class DAY_OF_QUARTER_FIELD extends Field {
      * @returns {ValueRange}
      */
     resolve(fieldValues, partialTemporal, resolverStyle) {
-        var yearLong = fieldValues.get(ChronoField.YEAR);
-        var qoyLong = fieldValues.get(QUARTER_OF_YEAR);
+        const yearLong = fieldValues.get(ChronoField.YEAR);
+        const qoyLong = fieldValues.get(QUARTER_OF_YEAR);
         if (yearLong == null || qoyLong == null) {
             return null;
         }
-        var y = ChronoField.YEAR.checkValidIntValue(yearLong);
-        var doq = fieldValues.get(DAY_OF_QUARTER);
-        var date;
+        const y = ChronoField.YEAR.checkValidIntValue(yearLong);
+        const doq = fieldValues.get(DAY_OF_QUARTER);
+        let date;
         if (resolverStyle === ResolverStyle.LENIENT) {
             let qoy = qoyLong;
             date = LocalDate.of(y, 1, 1);
@@ -388,7 +388,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
         } else {
             let qoy = QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, QUARTER_OF_YEAR);
             if (resolverStyle === ResolverStyle.STRICT) {
-                var max = 92;
+                let max = 92;
                 if (qoy === 1) {
                     max = (IsoChronology.isLeapYear(y) ? 91 : 90);
                 } else if (qoy === 2) {
@@ -470,7 +470,7 @@ class QUARTER_OF_YEAR_FIELD extends Field {
         if (temporal.isSupported(this) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: QuarterOfYear');
         }
-        var moy = temporal.getLong(ChronoField.MONTH_OF_YEAR);
+        const moy = temporal.getLong(ChronoField.MONTH_OF_YEAR);
         return MathUtil.intDiv((moy + 2), 3);
     }
 
@@ -481,7 +481,7 @@ class QUARTER_OF_YEAR_FIELD extends Field {
      * @returns {temporal}
      */
     adjustInto(temporal, newValue) {
-        var curValue = this.getFrom(temporal);
+        const curValue = this.getFrom(temporal);
         this.range().checkValidValue(newValue, this);
         return temporal.with(ChronoField.MONTH_OF_YEAR, temporal.getLong(ChronoField.MONTH_OF_YEAR) + (newValue - curValue) * 3);
     }
@@ -575,14 +575,14 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
      * @returns {ValueRange}
      */
     resolve(fieldValues, partialTemporal, resolverStyle) {
-        var wbyLong = fieldValues.get(WEEK_BASED_YEAR);
-        var dowLong = fieldValues.get(ChronoField.DAY_OF_WEEK);
+        const wbyLong = fieldValues.get(WEEK_BASED_YEAR);
+        const dowLong = fieldValues.get(ChronoField.DAY_OF_WEEK);
         if (wbyLong == null || dowLong == null) {
             return null;
         }
-        var wby = WEEK_BASED_YEAR.range().checkValidIntValue(wbyLong, WEEK_BASED_YEAR);
-        var wowby = fieldValues.get(WEEK_OF_WEEK_BASED_YEAR);
-        var date;
+        const wby = WEEK_BASED_YEAR.range().checkValidIntValue(wbyLong, WEEK_BASED_YEAR);
+        const wowby = fieldValues.get(WEEK_OF_WEEK_BASED_YEAR);
+        let date;
         if (resolverStyle === ResolverStyle.LENIENT) {
             let dow = dowLong;
             let weeks = 0;
@@ -697,15 +697,15 @@ class WEEK_BASED_YEAR_FIELD extends Field {
         if (this.isSupportedBy(temporal) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: WeekBasedYear');
         }
-        var newWby = this.range().checkValidIntValue(newValue, WEEK_BASED_YEAR);  // strict check
-        var date = LocalDate.from(temporal);
-        var dow = date.get(ChronoField.DAY_OF_WEEK);
-        var week = Field._getWeek(date);
+        const newWby = this.range().checkValidIntValue(newValue, WEEK_BASED_YEAR);  // strict check
+        const date = LocalDate.from(temporal);
+        const dow = date.get(ChronoField.DAY_OF_WEEK);
+        let week = Field._getWeek(date);
         if (week === 53 && Field._getWeekRangeByYear(newWby) === 52) {
             week = 52;
         }
-        var resolved = LocalDate.of(newWby, 1, 4);  // 4th is guaranteed to be in week one
-        var days = (dow - resolved.get(ChronoField.DAY_OF_WEEK)) + ((week - 1) * 7);
+        let resolved = LocalDate.of(newWby, 1, 4);  // 4th is guaranteed to be in week one
+        const days = (dow - resolved.get(ChronoField.DAY_OF_WEEK)) + ((week - 1) * 7);
         resolved = resolved.plusDays(days);
         return temporal.with(resolved);
     }
@@ -777,9 +777,9 @@ class Unit extends TemporalUnit {
      * @returns {number}
      */
     addTo(temporal, periodToAdd) {
+        const added = MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
         switch(this) {
             case WEEK_BASED_YEARS:
-                var added = MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
                 return temporal.with(WEEK_BASED_YEAR, added);
             case QUARTER_YEARS:
                 // no overflow (256 is multiple of 4)
@@ -811,12 +811,12 @@ class Unit extends TemporalUnit {
     }
 }
 
-var DAY_OF_QUARTER = null;
-var QUARTER_OF_YEAR = null;
-var WEEK_OF_WEEK_BASED_YEAR = null;
-var WEEK_BASED_YEAR = null;
-var WEEK_BASED_YEARS = null;
-var QUARTER_YEARS = null;
+let DAY_OF_QUARTER = null;
+let QUARTER_OF_YEAR = null;
+let WEEK_OF_WEEK_BASED_YEAR = null;
+let WEEK_BASED_YEAR = null;
+let WEEK_BASED_YEARS = null;
+let QUARTER_YEARS = null;
 
 export function _init() {
     DAY_OF_QUARTER = new DAY_OF_QUARTER_FIELD();

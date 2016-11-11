@@ -195,13 +195,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         }
 */
         requireNonNull(amount, 'amount');
-        var years = 0;
-        var months = 0;
-        var days = 0;
-        var units = amount.units();
+        let years = 0;
+        let months = 0;
+        let days = 0;
+        const units = amount.units();
         for (let i=0; i<units.length; i++) {
-            var unit = units[i];
-            var unitAmount = amount.get(unit);
+            const unit = units[i];
+            const unitAmount = amount.get(unit);
             if (unit === ChronoUnit.YEARS) {
                 years = MathUtil.safeToInt(unitAmount);
             } else if (unit === ChronoUnit.MONTHS) {
@@ -302,18 +302,18 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * we put the code in a sub function.
      */
     static _parse(text){
-        var matches = PATTERN.exec(text);
+        const matches = PATTERN.exec(text);
         if (matches != null) {
-            var negate = '-' === matches[1] ? -1 : 1;
-            var yearMatch = matches[2];
-            var monthMatch = matches[3];
-            var weekMatch = matches[4];
-            var dayMatch = matches[5];
+            const negate = '-' === matches[1] ? -1 : 1;
+            const yearMatch = matches[2];
+            const monthMatch = matches[3];
+            const weekMatch = matches[4];
+            const dayMatch = matches[5];
             if (yearMatch != null || monthMatch != null || weekMatch != null || dayMatch != null) {
-                var years = Period._parseNumber(text, yearMatch, negate);
-                var months = Period._parseNumber(text, monthMatch, negate);
-                var weeks = Period._parseNumber(text, weekMatch, negate);
-                var days = Period._parseNumber(text, dayMatch, negate);
+                const years = Period._parseNumber(text, yearMatch, negate);
+                const months = Period._parseNumber(text, monthMatch, negate);
+                const weeks = Period._parseNumber(text, weekMatch, negate);
+                let days = Period._parseNumber(text, dayMatch, negate);
                 days = MathUtil.safeAdd(days, MathUtil.safeMultiply(weeks, 7));
                 return Period.create(years, months, days);
             }
@@ -325,7 +325,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (str == null) {
             return 0;
         }
-        var val = MathUtil.parseInt(str);
+        const val = MathUtil.parseInt(str);
         return MathUtil.safeMultiply(val, negate);
     }
 
@@ -536,7 +536,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @throws ArithmeticException if numeric overflow occurs
      */
     plus(amountToAdd) {
-        var amount = Period.from(amountToAdd);
+        const amount = Period.from(amountToAdd);
         return Period.create(
             MathUtil.safeAdd(this._years, amount._years),
             MathUtil.safeAdd(this._months, amount._months),
@@ -620,7 +620,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @throws ArithmeticException if numeric overflow occurs
      */
     minus(amountToSubtract) {
-        var amount = Period.from(amountToSubtract);
+        const amount = Period.from(amountToSubtract);
         return Period.create(
                 MathUtil.safeSubtract(this._years, amount._years),
                 MathUtil.safeSubtract(this._months, amount._months),
@@ -732,9 +732,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @throws ArithmeticException if numeric overflow occurs
      */
     normalized() {
-        var totalMonths = this.toTotalMonths();
-        var splitYears = MathUtil.intDiv(totalMonths, 12);
-        var splitMonths = MathUtil.intMod(totalMonths, 12);  // no overflow
+        const totalMonths = this.toTotalMonths();
+        const splitYears = MathUtil.intDiv(totalMonths, 12);
+        const splitMonths = MathUtil.intMod(totalMonths, 12);  // no overflow
         if (splitYears === this._years && splitMonths === this._months) {
             return this;
         }
@@ -867,7 +867,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             return true;
         }
         if (obj instanceof Period) {
-            var other = obj;
+            const other = obj;
             return this._years === other._years &&
                 this._months === other._months &&
                 this._days === other._days;
@@ -897,7 +897,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (this === Period.ZERO) {
             return 'P0D';
         } else {
-            var buf = 'P';
+            let buf = 'P';
             if (this._years !== 0) {
                 buf += '' + this._years + 'Y';
             }
@@ -927,7 +927,7 @@ export function _init() {
     Period.ZERO = makeZeroPeriod();
 
     function makeZeroPeriod() {
-        var zero = Object.create(Period.prototype);
+        const zero = Object.create(Period.prototype);
         TemporalAmount.call(zero);
         zero._years = 0;
         zero._months = 0;

@@ -58,7 +58,7 @@ export class DecimalStyle {
     }
 
     convertToDigit(char){
-        var val = char.charCodeAt(0) - this._zeroDigitCharCode;
+        const val = char.charCodeAt(0) - this._zeroDigitCharCode;
         return (val >= 0 && val <= 9) ? val : -1;
     }
 
@@ -66,8 +66,8 @@ export class DecimalStyle {
         if (this._zeroDigit === '0') {
             return numericText;
         }
-        var diff = this._zeroDigitCharCode - '0'.charCodeAt(0);
-        var convertedText = '';
+        const diff = this._zeroDigitCharCode - '0'.charCodeAt(0);
+        let convertedText = '';
         for (let i = 0; i < numericText.length; i++) {
             convertedText += String.fromCharCode(numericText.charCodeAt(i) + diff);
         }

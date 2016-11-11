@@ -33,7 +33,7 @@ export class EnumMap {
     }
 
     retainAll(keyList){
-        var map = {};
+        const map = {};
         for(let i=0; i<keyList.length; i++){
             let key = keyList[i].name();
             map[key] = this._map[key];
@@ -50,8 +50,8 @@ export class EnumMap {
      * @returns {*}
      */
     remove(key){
-        var keyName = key.name();
-        var val = this._map[keyName];
+        const keyName = key.name();
+        const val = this._map[keyName];
         this._map[keyName] = undefined;
         return val;
     }

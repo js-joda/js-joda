@@ -127,8 +127,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if the adjustment causes the seconds to exceed the capacity of {@link Duration}
      */
     static ofSeconds(seconds, nanoAdjustment = 0) {
-        var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
-        var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        const secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
+        const nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         return Duration._create(secs, nos);
     }
 
@@ -142,8 +142,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @return {!Duration}
      */
     static ofMillis(millis) {
-        var secs = MathUtil.intDiv(millis, 1000);
-        var mos = MathUtil.intMod(millis, 1000);
+        let secs = MathUtil.intDiv(millis, 1000);
+        let mos = MathUtil.intMod(millis, 1000);
         if (mos < 0) {
             mos += 1000;
             secs--;
@@ -161,8 +161,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @return {!Duration}
      */
     static ofNanos(nanos) {
-        var secs = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
+        let secs = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
+        let nos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
         if (nos < 0) {
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
@@ -215,7 +215,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     static from(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount);
-        var duration = Duration.ZERO;
+        let duration = Duration.ZERO;
         amount.units().forEach((unit) => {
             duration = duration.plus(amount.get(unit), unit);
         });
@@ -243,8 +243,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     static between(startInclusive, endExclusive) {
         requireNonNull(startInclusive, 'startInclusive');
         requireNonNull(endExclusive, 'endExclusive');
-        var secs = startInclusive.until(endExclusive, ChronoUnit.SECONDS);
-        var nanos = 0;
+        let secs = startInclusive.until(endExclusive, ChronoUnit.SECONDS);
+        let nanos = 0;
         if (startInclusive.isSupported(ChronoField.NANO_OF_SECOND) && endExclusive.isSupported(ChronoField.NANO_OF_SECOND)) {
             try {
                 let startNos = startInclusive.getLong(ChronoField.NANO_OF_SECOND);
@@ -316,23 +316,23 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
          * The pattern for parsing.
          */
         const PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
-        var matches = PATTERN.exec(text);
+        const matches = PATTERN.exec(text);
         if (matches !== null) {
             // check for letter T but no time sections
             if ('T' === matches[3] === false) {
-                var negate = '-' === matches[1];
-                var dayMatch = matches[2];
-                var hourMatch = matches[4];
-                var minuteMatch = matches[5];
-                var secondMatch = matches[6];
-                var fractionMatch = matches[7];
+                const negate = '-' === matches[1];
+                const dayMatch = matches[2];
+                const hourMatch = matches[4];
+                const minuteMatch = matches[5];
+                const secondMatch = matches[6];
+                const fractionMatch = matches[7];
                 if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-                    var daysAsSecs = Duration._parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, 'days');
-                    var hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
-                    var minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
-                    var seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
-                    var negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
-                    var nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
+                    const daysAsSecs = Duration._parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, 'days');
+                    const hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, 'hours');
+                    const minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, 'minutes');
+                    const seconds = Duration._parseNumber(text, secondMatch, 1, 'seconds');
+                    const negativeSecs = secondMatch != null && secondMatch.charAt(0) === '-';
+                    const nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
                         return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
                     } catch (ex) {
@@ -353,7 +353,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             if (parsed[0] === '+') {
                 parsed = parsed.substring(1);
             }
-            var val = parseFloat(parsed);
+            const val = parseFloat(parsed);
             return MathUtil.safeMultiply(val, multiplier);
         } catch (ex) {
             throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
@@ -385,7 +385,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     }
 
     static _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
-        var seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
+        const seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
         if (negate) {
             return Duration.ofSeconds(seconds, nanos).negated();
         }
@@ -414,7 +414,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * All other units throw an exception.
      *
      * @param {TemporalUnit} unit the {@link TemporalUnit} for which to return the value
-     * @return {number} the var value of the unit
+     * @return {number} the const value of the unit
      * @throws DateTimeException if the unit is not supported
      * @throws UnsupportedTemporalTypeException if the unit is not supported
      */
@@ -606,7 +606,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             }
             return this.plusSecondsNanos(MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
         }
-        var duration = unit.duration().multipliedBy(amountToAdd);
+        const duration = unit.duration().multipliedBy(amountToAdd);
         return this.plusSecondsNanos(duration.seconds(), duration.nano());
     }
 
@@ -705,10 +705,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
-        var epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
+        let epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
         epochSec = MathUtil.safeAdd(epochSec, MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND));
         nanosToAdd = MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        var nanoAdjustment = MathUtil.safeAdd(this._nanos, nanosToAdd);  // safe int+LocalTime.NANOS_PER_SECOND
+        const nanoAdjustment = MathUtil.safeAdd(this._nanos, nanosToAdd);  // safe int+LocalTime.NANOS_PER_SECOND
         return Duration.ofSeconds(epochSec, nanoAdjustment);
     }
 
@@ -743,8 +743,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      */
     minusDuration(duration) {
         requireNonNull(duration, 'duration');
-        var secsToSubtract = duration.seconds();
-        var nanosToSubtract = duration.nano();
+        const secsToSubtract = duration.seconds();
+        const nanosToSubtract = duration.nano();
         if (secsToSubtract === MIN_SAFE_INTEGER) {
             return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract);
         }
@@ -894,9 +894,9 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (divisor === 1) {
             return this;
         }
-        var secs = MathUtil.intDiv(this._seconds, divisor);
-        var secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.intDiv(this._nanos, divisor);
+        const secs = MathUtil.intDiv(this._seconds, divisor);
+        const secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
+        let nos = MathUtil.intDiv(this._nanos, divisor);
         nos = secsMod + nos;
         return Duration.ofSeconds(secs, nos);
     }
@@ -1061,7 +1061,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     toMillis() {
-        var millis = Math.round(MathUtil.safeMultiply(this._seconds, 1000));
+        let millis = Math.round(MathUtil.safeMultiply(this._seconds, 1000));
         millis = MathUtil.safeAdd(millis, MathUtil.intDiv(this._nanos, 1000000));
         return millis;
     }
@@ -1076,7 +1076,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     toNanos() {
-        var totalNanos = MathUtil.safeMultiply(this._seconds, LocalTime.NANOS_PER_SECOND);
+        let totalNanos = MathUtil.safeMultiply(this._seconds, LocalTime.NANOS_PER_SECOND);
         totalNanos = MathUtil.safeAdd(totalNanos, this._nanos);
         return totalNanos;
     }
@@ -1093,7 +1093,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     compareTo(otherDuration) {
         requireNonNull(otherDuration, 'otherDuration');
         requireInstance(otherDuration, Duration, 'otherDuration');
-        var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
+        const cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
         if (cmp !== 0) {
             return cmp;
         }
@@ -1147,10 +1147,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (this === Duration.ZERO) {
             return 'PT0S';
         }
-        var hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
-        var minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
-        var secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
-        var rval = 'PT';
+        const hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
+        const minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
+        const secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
+        let rval = 'PT';
         if (hours !== 0) {
             rval += hours + 'H';
         }

@@ -242,7 +242,7 @@ export class DateTimeFormatterBuilder {
         if (width < 1 || width > MAX_WIDTH) {
             throw new IllegalArgumentException(`The width must be from 1 to ${MAX_WIDTH} inclusive but was ${width}`);
         }
-        var pp = new NumberPrinterParser(field, width, width, SignStyle.NOT_NEGATIVE);
+        const pp = new NumberPrinterParser(field, width, width, SignStyle.NOT_NEGATIVE);
         this._appendValuePrinterParser(pp);
         return this;
     }
@@ -291,7 +291,7 @@ export class DateTimeFormatterBuilder {
         if (maxWidth < minWidth) {
             throw new IllegalArgumentException(`The maximum width must exceed or equal the minimum width but ${maxWidth} < ${minWidth}`);
         }
-        var pp = new NumberPrinterParser(field, minWidth, maxWidth, signStyle);
+        const pp = new NumberPrinterParser(field, minWidth, maxWidth, signStyle);
         this._appendValuePrinterParser(pp);
         return this;
     }
@@ -347,7 +347,7 @@ export class DateTimeFormatterBuilder {
      */
     _appendValueReducedFieldWidthMaxWidthBaseValue(field, width, maxWidth, baseValue) {
         requireNonNull(field, 'field');
-        let pp = new ReducedPrinterParser(field, width, maxWidth, baseValue, null);
+        const pp = new ReducedPrinterParser(field, width, maxWidth, baseValue, null);
         this._appendValuePrinterParser(pp);
         return this;
     }
@@ -408,7 +408,7 @@ export class DateTimeFormatterBuilder {
         requireNonNull(field, 'field');
         requireNonNull(baseDate, 'baseDate');
         requireInstance(baseDate, ChronoLocalDate, 'baseDate');
-        let pp = new ReducedPrinterParser(field, width, maxWidth, 0, baseDate);
+        const pp = new ReducedPrinterParser(field, width, maxWidth, 0, baseDate);
         this._appendValuePrinterParser(pp);
         return this;
     }
@@ -423,10 +423,10 @@ export class DateTimeFormatterBuilder {
         assert(pp != null);
         if (this._active._valueParserIndex >= 0 &&
                 this._active._printerParsers[this._active._valueParserIndex] instanceof NumberPrinterParser) {
-            var activeValueParser = this._active._valueParserIndex;
+            const activeValueParser = this._active._valueParserIndex;
 
             // adjacent parsing mode, update setting in previous parsers
-            var basePP = this._active._printerParsers[activeValueParser];
+            let basePP = this._active._printerParsers[activeValueParser];
             if (pp.minWidth() === pp.maxWidth() && pp.signStyle() === SignStyle.NOT_NEGATIVE) {
                 // Append the width to the subsequentWidth of the active parser
                 basePP = basePP.withSubsequentWidth(pp.maxWidth());
@@ -839,7 +839,7 @@ export class DateTimeFormatterBuilder {
                     this.padNext(pad); // pad and continue parsing
                 }
                 // main rules
-                let field = FIELD_MAP[cur];
+                const field = FIELD_MAP[cur];
                 if (field != null) {
                     this._parseField(cur, count, field);
                 } else if (cur === 'z') {
@@ -918,7 +918,7 @@ export class DateTimeFormatterBuilder {
 
             } else if (cur === '\'') {
                 // parse literals
-                let start = pos++;
+                const start = pos++;
                 for (; pos < pattern.length; pos++) {
                     if (pattern.charAt(pos) === '\'') {
                         if (pos + 1 < pattern.length && pattern.charAt(pos + 1) === '\'') {
@@ -931,7 +931,7 @@ export class DateTimeFormatterBuilder {
                 if (pos >= pattern.length) {
                     throw new IllegalArgumentException('Pattern ends with an incomplete string literal: ' + pattern);
                 }
-                let str = pattern.substring(start + 1, pos);
+                const str = pattern.substring(start + 1, pos);
                 if (str.length === 0) {
                     this.appendLiteral('\'');
                 } else {
@@ -1300,7 +1300,7 @@ export class DateTimeFormatterBuilder {
             throw new IllegalStateException('Cannot call optionalEnd() as there was no previous call to optionalStart()');
         }
         if (this._active._printerParsers.length > 0) {
-            var cpp = new CompositePrinterParser(this._active._printerParsers, this._active._optional);
+            const cpp = new CompositePrinterParser(this._active._printerParsers, this._active._optional);
             this._active = this._active._parent;
             this._appendInternal(cpp);
         } else {
@@ -1406,7 +1406,7 @@ export class DateTimeFormatterBuilder {
         while (this._active._parent != null) {
             this.optionalEnd();
         }
-        var pp = new CompositePrinterParser(this._printerParsers, false);
+        const pp = new CompositePrinterParser(this._printerParsers, false);
         return new DateTimeFormatter(pp, null, DecimalStyle.STANDARD, resolverStyle, null, null, null);
     }
 
@@ -1446,7 +1446,7 @@ class CompositePrinterParser {
     }
 
     print(context, buf) {
-        var length = buf.length();
+        const length = buf.length();
         if (this._optional) {
             context.startOptional();
         }
@@ -1469,7 +1469,7 @@ class CompositePrinterParser {
     parse(context, text, position) {
         if (this._optional) {
             context.startOptional();
-            var pos = position;
+            let pos = position;
             for (let i=0; i<this._printerParsers.length; i++) {
                 let pp = this._printerParsers[i];
                 pos = pp.parse(context, text, pos);
@@ -1482,7 +1482,7 @@ class CompositePrinterParser {
             return pos;
         } else {
             for (let i=0; i<this._printerParsers.length; i++) {
-                let pp = this._printerParsers[i];
+                const pp = this._printerParsers[i];
                 position = pp.parse(context, text, position);
                 if (position < 0) {
                     break;
@@ -1493,11 +1493,11 @@ class CompositePrinterParser {
     }
 
     toString() {
-        var buf = '';
+        let buf = '';
         if (this._printerParsers != null) {
             buf += this._optional ? '[' : '(';
             for (let i=0; i<this._printerParsers.length; i++) {
-                let pp = this._printerParsers[i];
+                const pp = this._printerParsers[i];
                 buf += pp.toString();
             }
             buf += this._optional ? ']' : ')';
@@ -1526,11 +1526,11 @@ class PadPrinterParserDecorator {
     }
 
     print(context, buf) {
-        var preLen = buf.length();
+        const preLen = buf.length();
         if (this._printerParser.print(context, buf) === false) {
             return false;
         }
-        var len = buf.length() - preLen;
+        const len = buf.length() - preLen;
         if (len > this._padWidth) {
             throw new DateTimeException(
                 `Cannot print as output of ${len} characters exceeds pad width of ${this._padWidth}`);
@@ -1543,28 +1543,28 @@ class PadPrinterParserDecorator {
 
     parse(context, text, position) {
         // cache context before changed by decorated parser
-        var strict = context.isStrict();
-        var caseSensitive = context.isCaseSensitive();
+        const strict = context.isStrict();
+        const caseSensitive = context.isCaseSensitive();
         // parse
         assert(!(position > text.length));
         assert(position >= 0);
         if (position === text.length) {
             return ~position;  // no more characters in the string
         }
-        var endPos = position + this._padWidth;
+        let endPos = position + this._padWidth;
         if (endPos > text.length) {
             if (strict) {
                 return ~position;  // not enough characters in the string to meet the parse width
             }
             endPos = text.length;
         }
-        var pos = position;
+        let pos = position;
         while (pos < endPos &&
                 (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {
             pos++;
         }
         text = text.substring(0, endPos);
-        var resultPos = this._printerParser.parse(context, text, pos);
+        const resultPos = this._printerParser.parse(context, text, pos);
         if (resultPos !== endPos && strict) {
             return ~(position + pos);  // parse of decorated field didn't parse to the end
         }
@@ -1624,7 +1624,7 @@ class StringLiteralPrinterParser {
     }
 
     parse(context, text, position) {
-        var length = text.length;
+        const length = text.length;
         assert(!(position > length || position < 0));
 
         if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {
@@ -1657,7 +1657,7 @@ class CharLiteralPrinterParser {
     }
 
     parse(context, text, position) {
-        var length = text.length;
+        const length = text.length;
         if (position === length) {
             return ~position;
         }
@@ -1718,12 +1718,12 @@ class NumberPrinterParser {
     }
 
     print(context, buf) {
-        var value = context.getValue(this._field);
+        const value = context.getValue(this._field);
         if (value == null) {
             return false;
         }
-        var symbols = context.symbols();
-        var str = '' + Math.abs(value);
+        const symbols = context.symbols();
+        let str = '' + Math.abs(value);
         if (str.length > this._maxWidth) {
             throw new DateTimeException('Field ' + this._field +
                 ' cannot be printed as the value ' + value +
@@ -1763,14 +1763,14 @@ class NumberPrinterParser {
     }
 
     parse(context, text, position){
-        var length = text.length;
+        const length = text.length;
         if (position === length) {
             return ~position;
         }
         assert(position>=0 && position<length);
-        var sign = text.charAt(position);  // IOOBE if invalid position
-        var negative = false;
-        var positive = false;
+        const sign = text.charAt(position);  // IOOBE if invalid position
+        let negative = false;
+        let positive = false;
         if (sign === context.symbols().positiveSign()) {
             if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {
                 return ~position;
@@ -1788,14 +1788,14 @@ class NumberPrinterParser {
                 return ~position;
             }
         }
-        var effMinWidth = (context.isStrict() || this._isFixedWidth() ? this._minWidth : 1);
-        var minEndPos = position + effMinWidth;
+        const effMinWidth = (context.isStrict() || this._isFixedWidth() ? this._minWidth : 1);
+        const minEndPos = position + effMinWidth;
         if (minEndPos > length) {
             return ~position;
         }
-        var effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);
-        var total = 0;
-        var pos = position;
+        let effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);
+        let total = 0;
+        let pos = position;
         for (let pass = 0; pass < 2; pass++) {
             let maxEndPos = Math.min(pos + effMaxWidth, length);
             while (pos < maxEndPos) {
@@ -2034,11 +2034,11 @@ class FractionPrinterParser {
     }
 
     print(context, buf) {
-        var value = context.getValue(this.field);
+        const value = context.getValue(this.field);
         if (value === null) {
             return false;
         }
-        var symbols = context.symbols();
+        const symbols = context.symbols();
         if (value === 0) {  // scale is zero if value is zero
             if (this.minWidth > 0) {
                 if (this.decimalPoint) {
@@ -2049,15 +2049,15 @@ class FractionPrinterParser {
                 }
             }
         } else {
-            var fraction = this.convertToFraction(value, symbols.zeroDigit());
-            var outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);
+            let fraction = this.convertToFraction(value, symbols.zeroDigit());
+            const outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);
             fraction = fraction.substr(0, outputScale);
             if(fraction * 1 > 0 ) {
                 while (fraction.length > this.minWidth && fraction[fraction.length - 1] === '0') {
                     fraction = fraction.substr(0, fraction.length - 1);
                 }
             }
-            var str = fraction;
+            let str = fraction;
             str = symbols.convertNumberToI18N(str);
             if (this.decimalPoint) {
                 buf.append(symbols.decimalSeparator());
@@ -2068,9 +2068,9 @@ class FractionPrinterParser {
     }
 
     parse(context, text, position) {
-        var effectiveMin = (context.isStrict() ? this.minWidth : 0);
-        var effectiveMax = (context.isStrict() ? this.maxWidth : 9);
-        var length = text.length;
+        const effectiveMin = (context.isStrict() ? this.minWidth : 0);
+        const effectiveMax = (context.isStrict() ? this.maxWidth : 9);
+        const length = text.length;
         if (position === length) {
             // valid if whole field is optional, invalid if minimum width
             return (effectiveMin > 0 ? ~position : position);
@@ -2082,16 +2082,16 @@ class FractionPrinterParser {
             }
             position++;
         }
-        var minEndPos = position + effectiveMin;
+        const minEndPos = position + effectiveMin;
         if (minEndPos > length) {
             return ~position;  // need at least min width digits
         }
-        var maxEndPos = Math.min(position + effectiveMax, length);
-        var total = 0;  // can use int because we are only parsing up to 9 digits
-        var pos = position;
+        const maxEndPos = Math.min(position + effectiveMax, length);
+        let total = 0;  // can use int because we are only parsing up to 9 digits
+        let pos = position;
         while (pos < maxEndPos) {
-            var ch = text.charAt(pos++);
-            var digit = context.symbols().convertToDigit(ch);
+            const ch = text.charAt(pos++);
+            const digit = context.symbols().convertToDigit(ch);
             if (digit < 0) {
                 if (pos < minEndPos) {
                     return ~position;  // need at least min width digits
@@ -2101,9 +2101,9 @@ class FractionPrinterParser {
             }
             total = total * 10 + digit;
         }
-        var moveLeft = pos - position;
-        var scale = Math.pow(10, moveLeft);
-        var value = this.convertFromFraction(total, scale);
+        const moveLeft = pos - position;
+        const scale = Math.pow(10, moveLeft);
+        const value = this.convertFromFraction(total, scale);
         return context.setParsedField(this.field, value, position, pos);
     }
 
@@ -2113,13 +2113,13 @@ class FractionPrinterParser {
      * @return {String} the value as a fraction within the range, from 0 to 1, not null
      */
     convertToFraction(value, zeroDigit) {
-        var range = this.field.range();
+        const range = this.field.range();
         range.checkValidValue(value, this.field);
-        var _min = range.minimum();
-        var _range = range.maximum() - _min + 1;
-        var _value = value - _min;
-        var _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
-        var fraction = '' + _scaled;
+        const _min = range.minimum();
+        const _range = range.maximum() - _min + 1;
+        const _value = value - _min;
+        const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
+        let fraction = '' + _scaled;
         while(fraction.length < 9){
             fraction = zeroDigit + fraction;
         }
@@ -2133,15 +2133,15 @@ class FractionPrinterParser {
      * @throws DateTimeException if the value cannot be converted
      */
     convertFromFraction(total, scale) {
-        var range = this.field.range();
-        var _min = range.minimum();
-        var _range = range.maximum() - _min + 1;
-        var _value = MathUtil.intDiv((total * _range), scale);
+        const range = this.field.range();
+        const _min = range.minimum();
+        const _range = range.maximum() - _min + 1;
+        const _value = MathUtil.intDiv((total * _range), scale);
         return _value;
     }
 
     toString() {
-        var decimal = (this.decimalPoint ? ',DecimalPoint' : '');
+        const decimal = (this.decimalPoint ? ',DecimalPoint' : '');
         return 'Fraction(' + this.field + ',' + this.minWidth + ',' + this.maxWidth + decimal + ')';
     }
 }
@@ -2165,16 +2165,16 @@ class InstantPrinterParser  {
 
     print(context, buf) {
         // use INSTANT_SECONDS, thus this code is not bound by Instant.MAX
-        var inSecs = context.getValue(ChronoField.INSTANT_SECONDS);
-        var inNanos = 0;
+        const inSecs = context.getValue(ChronoField.INSTANT_SECONDS);
+        let inNanos = 0;
         if (context.temporal().isSupported(ChronoField.NANO_OF_SECOND)) {
             inNanos = context.temporal().getLong(ChronoField.NANO_OF_SECOND);
         }
         if (inSecs == null) {
             return false;
         }
-        var inSec = inSecs;
-        var inNano = ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
+        const inSec = inSecs;
+        let inNano = ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
         if (inSec >= -SECONDS_0000_TO_1970) {
             // current era
             let zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
@@ -2237,31 +2237,31 @@ class InstantPrinterParser  {
 
     parse(context, text, position) {
         // new context to avoid overwriting fields like year/month/day
-        var newContext = context.copy();
-        var minDigits = (this.fractionalDigits < 0 ? 0 : this.fractionalDigits);
-        var maxDigits = (this.fractionalDigits < 0 ? 9 : this.fractionalDigits);
-        var parser = new DateTimeFormatterBuilder()
+        const newContext = context.copy();
+        const minDigits = (this.fractionalDigits < 0 ? 0 : this.fractionalDigits);
+        const maxDigits = (this.fractionalDigits < 0 ? 9 : this.fractionalDigits);
+        const parser = new DateTimeFormatterBuilder()
                 .append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T')
                 .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':')
                 .appendValue(ChronoField.SECOND_OF_MINUTE, 2).appendFraction(ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z')
                 .toFormatter().toPrinterParser(false);
-        var pos = parser.parse(newContext, text, position);
+        const pos = parser.parse(newContext, text, position);
         if (pos < 0) {
             return pos;
         }
         // parser restricts most fields to 2 digits, so definitely int
         // correctly parsed nano is also guaranteed to be valid
-        var yearParsed = newContext.getParsed(ChronoField.YEAR);
-        var month = newContext.getParsed(ChronoField.MONTH_OF_YEAR);
-        var day = newContext.getParsed(ChronoField.DAY_OF_MONTH);
-        var hour = newContext.getParsed(ChronoField.HOUR_OF_DAY);
-        var min = newContext.getParsed(ChronoField.MINUTE_OF_HOUR);
-        var secVal = newContext.getParsed(ChronoField.SECOND_OF_MINUTE);
-        var nanoVal = newContext.getParsed(ChronoField.NANO_OF_SECOND);
-        var sec = (secVal != null ? secVal : 0);
-        var nano = (nanoVal != null ? nanoVal : 0);
-        var year = MathUtil.intMod(yearParsed, 10000);
-        var days = 0;
+        const yearParsed = newContext.getParsed(ChronoField.YEAR);
+        const month = newContext.getParsed(ChronoField.MONTH_OF_YEAR);
+        const day = newContext.getParsed(ChronoField.DAY_OF_MONTH);
+        let hour = newContext.getParsed(ChronoField.HOUR_OF_DAY);
+        const min = newContext.getParsed(ChronoField.MINUTE_OF_HOUR);
+        const secVal = newContext.getParsed(ChronoField.SECOND_OF_MINUTE);
+        const nanoVal = newContext.getParsed(ChronoField.NANO_OF_SECOND);
+        let sec = (secVal != null ? secVal : 0);
+        const nano = (nanoVal != null ? nanoVal : 0);
+        const year = MathUtil.intMod(yearParsed, 10000);
+        let days = 0;
         if (hour === 24 && min === 0 && sec === 0 && nano === 0) {
             hour = 0;
             days = 1;
@@ -2269,15 +2269,15 @@ class InstantPrinterParser  {
             context.setParsedLeapSecond();
             sec = 59;
         }
-        var instantSecs;
+        let instantSecs;
         try {
-            var ldt = LocalDateTime.of(year, month, day, hour, min, sec, 0).plusDays(days);
+            const ldt = LocalDateTime.of(year, month, day, hour, min, sec, 0).plusDays(days);
             instantSecs = ldt.toEpochSecond(ZoneOffset.UTC);
             instantSecs += MathUtil.safeMultiply(MathUtil.intDiv(yearParsed, 10000), SECONDS_PER_10000_YEARS);
         } catch (ex) {
             return ~position;
         }
-        var successPos = pos;
+        let successPos = pos;
         successPos = context.setParsedField(ChronoField.INSTANT_SECONDS, instantSecs, position, successPos);
         return context.setParsedField(ChronoField.NANO_OF_SECOND, nano, position, successPos);
     }
@@ -2328,19 +2328,19 @@ class OffsetIdPrinterParser  {
      * @return {boolean}
      */
     print(context, buf) {
-        var offsetSecs = context.getValue(ChronoField.OFFSET_SECONDS);
+        const offsetSecs = context.getValue(ChronoField.OFFSET_SECONDS);
         if (offsetSecs == null) {
             return false;
         }
-        var totalSecs = MathUtil.safeToInt(offsetSecs);
+        const totalSecs = MathUtil.safeToInt(offsetSecs);
         if (totalSecs === 0) {
             buf.append(this.noOffsetText);
         } else {
-            var absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));  // anything larger than 99 silently dropped
-            var absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));
-            var absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
-            var bufPos = buf.length();
-            var output = absHours;
+            const absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));  // anything larger than 99 silently dropped
+            const absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));
+            const absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
+            const bufPos = buf.length();
+            let output = absHours;
             buf.append(totalSecs < 0 ? '-' : '+')
                 .appendChar((MathUtil.intDiv(absHours, 10) + '0')).appendChar(MathUtil.intMod(absHours, 10) + '0');
             if (this.type >= 3 || (this.type >= 1 && absMinutes > 0)) {
@@ -2368,8 +2368,8 @@ class OffsetIdPrinterParser  {
      * @return {number}
      */
     parse(context, text, position) {
-        var length = text.length;
-        var noOffsetLen = this.noOffsetText.length;
+        const length = text.length;
+        const noOffsetLen = this.noOffsetText.length;
         if (noOffsetLen === 0) {
             if (position === length) {
                 return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position);
@@ -2384,17 +2384,17 @@ class OffsetIdPrinterParser  {
         }
 
         // parse normal plus/minus offset
-        var sign = text[position];  // IOOBE if invalid position
+        const sign = text[position];  // IOOBE if invalid position
         if (sign === '+' || sign === '-') {
             // starts
-            var negative = (sign === '-' ? -1 : 1);
-            var array = [0,0,0,0];
+            const negative = (sign === '-' ? -1 : 1);
+            const array = [0,0,0,0];
             array[0] = position + 1;
             if ((this._parseNumber(array, 1, text, true) ||
                     this._parseNumber(array, 2, text, this.type >=3) ||
                     this._parseNumber(array, 3, text, false)) === false) {
                 // success
-                var offsetSecs = MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));
+                const offsetSecs = MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));
                 return context.setParsedField(ChronoField.OFFSET_SECONDS, offsetSecs, position, array[0]);
             }
         }
@@ -2418,7 +2418,7 @@ class OffsetIdPrinterParser  {
         if ((this.type + 3) / 2 < arrayIndex) {
             return false;  // ignore seconds/minutes
         }
-        var pos = array[0];
+        let pos = array[0];
         if ((this.type % 2) === 0 && arrayIndex > 1) {
             if (pos + 1 > parseText.length || parseText[pos] !== ':') {
                 return required;
@@ -2428,12 +2428,12 @@ class OffsetIdPrinterParser  {
         if (pos + 2 > parseText.length) {
             return required;
         }
-        var ch1 = parseText[pos++];
-        var ch2 = parseText[pos++];
+        let ch1 = parseText[pos++];
+        let ch2 = parseText[pos++];
         if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
             return required;
         }
-        var value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
+        const value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
         if (value < 0 || value > 59) {
             return required;
         }
@@ -2444,7 +2444,7 @@ class OffsetIdPrinterParser  {
 
 
     toString() {
-        var converted = this.noOffsetText.replace('\'', '\'\'');
+        const converted = this.noOffsetText.replace('\'', '\'\'');
         return 'Offset(' + PATTERNS[this.type] + ',\'' + converted + '\')';
     }
 }
@@ -2474,7 +2474,7 @@ class ZoneIdPrinterParser {
      * @returns {boolean}
      */
     print(context, buf) {
-        var zone = context.getValueQuery(this.query);
+        const zone = context.getValueQuery(this.query);
         if (zone == null) {
             return false;
         }
@@ -2499,7 +2499,7 @@ class ZoneIdPrinterParser {
      * @return {number}
      */
     parse(context, text, position) {
-        var length = text.length;
+        const length = text.length;
         if (position > length) {
             return ~position;
         }
@@ -2508,19 +2508,19 @@ class ZoneIdPrinterParser {
         }
 
         // handle fixed time-zone IDs
-        var nextChar = text.charAt(position);
+        const nextChar = text.charAt(position);
         if (nextChar === '+' || nextChar === '-') {
-            var newContext = context.copy();
-            var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+            const newContext = context.copy();
+            const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
             if (endPos < 0) {
                 return endPos;
             }
-            var offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);
-            var zone = ZoneOffset.ofTotalSeconds(offset);
+            const offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+            const zone = ZoneOffset.ofTotalSeconds(offset);
             context.setParsedZone(zone);
             return endPos;
         } else if (length >= position + 2) {
-            var nextNextChar = text.charAt(position + 1);
+            const nextNextChar = text.charAt(position + 1);
             if (context.charEquals(nextChar, 'U') &&
                             context.charEquals(nextNextChar, 'T')) {
                 if (length >= position + 3 &&
@@ -2559,19 +2559,19 @@ class ZoneIdPrinterParser {
      * @return {number}
      */
     _parsePrefixedOffset(context, text, prefixPos, position) {
-        var prefix = text.substring(prefixPos, position).toUpperCase();
-        var newContext = context.copy();
+        const prefix = text.substring(prefixPos, position).toUpperCase();
+        const newContext = context.copy();
         if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {
             context.setParsedZone(ZoneIdFactory.ofOffset(prefix, ZoneOffset.UTC));
             return position;
         }
-        var endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+        const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
         if (endPos < 0) {
             context.setParsedZone(ZoneIdFactory.ofOffset(prefix, ZoneOffset.UTC));
             return position;
         }
-        var offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
-        var offset = ZoneOffset.ofTotalSeconds(offsetSecs);
+        const offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+        const offset = ZoneOffset.ofTotalSeconds(offsetSecs);
         context.setParsedZone(ZoneIdFactory.ofOffset(prefix, offset));
         return endPos;
     }

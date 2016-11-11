@@ -16,8 +16,8 @@ import {TemporalQueries} from './temporal/TemporalQueries';
 
 import {ZoneRules} from './zone/ZoneRules';
 
-var SECONDS_CACHE = {};
-var ID_CACHE = {};
+const SECONDS_CACHE = {};
+const ID_CACHE = {};
 
 /**
  *
@@ -70,13 +70,13 @@ export class ZoneOffset extends ZoneId {
         if (totalSeconds === 0) {
             return 'Z';
         } else {
-            var absTotalSeconds = Math.abs(totalSeconds);
-            var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
-            var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-            var buf = '' + (totalSeconds < 0 ? '-' : '+')
+            const absTotalSeconds = Math.abs(totalSeconds);
+            const absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
+            const absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+            let buf = '' + (totalSeconds < 0 ? '-' : '+')
                 + (absHours < 10 ? '0' : '') + (absHours)
                 + (absMinutes < 10 ? ':0' : ':') + (absMinutes);
-            var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
+            const absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
             if (absSeconds !== 0) {
                 buf += (absSeconds < 10 ? ':0' : ':') + (absSeconds);
             }
@@ -166,13 +166,13 @@ export class ZoneOffset extends ZoneId {
     static of(offsetId) {
         requireNonNull(offsetId, 'offsetId');
         // "Z" is always in the cache
-        var offset = ID_CACHE[offsetId];
+        const offset = ID_CACHE[offsetId];
         if (offset != null) {
             return offset;
         }
 
         // parse - +h, +hh, +hhmm, +hh:mm, +hhmmss, +hh:mm:ss
-        var hours, minutes, seconds;
+        let hours, minutes, seconds;
         switch (offsetId.length) {
             case 2:
                 offsetId = offsetId[0] + '0' + offsetId[1];  // fallthru
@@ -205,7 +205,7 @@ export class ZoneOffset extends ZoneId {
             default:
                 throw new DateTimeException('Invalid ID for ZoneOffset, invalid format: ' + offsetId);
         }
-        var first = offsetId[0];
+        const first = offsetId[0];
         if (first !== '+' && first !== '-') {
             throw new DateTimeException('Invalid ID for ZoneOffset, plus/minus not found when expected: ' + offsetId);
         }
@@ -228,8 +228,8 @@ export class ZoneOffset extends ZoneId {
         if (precededByColon && offsetId[pos - 1] !== ':') {
             throw new DateTimeException('Invalid ID for ZoneOffset, colon not found when expected: ' + offsetId);
         }
-        var ch1 = offsetId[pos];
-        var ch2 = offsetId[pos + 1];
+        const ch1 = offsetId[pos];
+        const ch2 = offsetId[pos + 1];
         if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
             throw new DateTimeException('Invalid ID for ZoneOffset, non numeric characters found: ' + offsetId);
         }
@@ -264,7 +264,7 @@ export class ZoneOffset extends ZoneId {
      */
     static ofHoursMinutesSeconds(hours, minutes, seconds) {
         ZoneOffset._validate(hours, minutes, seconds);
-        var totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
+        const totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
@@ -274,7 +274,7 @@ export class ZoneOffset extends ZoneId {
      * @returns {ZoneOffset}
      */
     static ofTotalMinutes(totalMinutes) {
-        var totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
+        const totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
@@ -285,8 +285,8 @@ export class ZoneOffset extends ZoneId {
      */
     static ofTotalSeconds(totalSeconds) {
         if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
-            var totalSecs = totalSeconds;
-            var result = SECONDS_CACHE[totalSecs];
+            const totalSecs = totalSeconds;
+            let result = SECONDS_CACHE[totalSecs];
             if (result == null) {
                 result = new ZoneOffset(totalSeconds);
                 SECONDS_CACHE[totalSecs] = result;

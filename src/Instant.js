@@ -149,8 +149,8 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
     static ofEpochSecond(epochSecond, nanoAdjustment=0){
-        var secs = epochSecond + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        const secs = epochSecond + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        const nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         return Instant._create(secs, nos);
     }
 
@@ -165,8 +165,8 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the instant exceeds the maximum or minimum instant
      */
     static ofEpochMilli(epochMilli) {
-        var secs = MathUtil.floorDiv(epochMilli, 1000);
-        var mos = MathUtil.floorMod(epochMilli, 1000);
+        const secs = MathUtil.floorDiv(epochMilli, 1000);
+        const mos = MathUtil.floorMod(epochMilli, 1000);
         return Instant._create(secs, mos * 1000000);
     }
 
@@ -655,10 +655,10 @@ export class Instant extends Temporal {
         if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
-        var epochSec = this._seconds + secondsToAdd;
+        let epochSec = this._seconds + secondsToAdd;
         epochSec = epochSec + MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        var _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
-        var nanoAdjustment = this._nanos + _nanosToAdd;
+        const _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
+        const nanoAdjustment = this._nanos + _nanosToAdd;
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);
     }
 
@@ -943,7 +943,7 @@ export class Instant extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     toEpochMilli() {
-        var millis = MathUtil.safeMultiply(this._seconds, 1000);
+        const millis = MathUtil.safeMultiply(this._seconds, 1000);
         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
     }
 
@@ -961,7 +961,7 @@ export class Instant extends Temporal {
     compareTo(otherInstant) {
         requireNonNull(otherInstant, 'otherInstant');
         requireInstance(otherInstant, Instant, 'otherInstant');
-        var cmp = MathUtil.compareNumbers(this._seconds, otherInstant._seconds);
+        const cmp = MathUtil.compareNumbers(this._seconds, otherInstant._seconds);
         if (cmp !== 0) {
             return cmp;
         }

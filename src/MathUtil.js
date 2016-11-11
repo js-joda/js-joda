@@ -19,7 +19,7 @@ export class MathUtil {
      * @returns {number}
      */
     static intDiv(x, y) {
-        var r = x/y;
+        let r = x/y;
         r = MathUtil.roundDown(r);
         return MathUtil.safeZero(r);
     }
@@ -31,7 +31,7 @@ export class MathUtil {
      * @returns {number}
      */
     static intMod(x, y) {
-        var r = x - MathUtil.intDiv(x, y) * y;
+        let r = x - MathUtil.intDiv(x, y) * y;
         r = MathUtil.roundDown(r);
         return MathUtil.safeZero(r);
     }
@@ -56,7 +56,7 @@ export class MathUtil {
      * @returns {number}
      */
     static floorDiv(x, y){
-        var r = Math.floor(x / y);
+        const r = Math.floor(x / y);
         return MathUtil.safeZero(r);
     }
 
@@ -67,7 +67,7 @@ export class MathUtil {
      * @returns {number}
      */
     static floorMod(x, y){
-        var r = x - MathUtil.floorDiv(x, y) * y;
+        const r = x - MathUtil.floorDiv(x, y) * y;
         return MathUtil.safeZero(r);
     }
 
@@ -86,7 +86,7 @@ export class MathUtil {
         if (y === 0) {
             return MathUtil.safeZero(x);
         }
-        var r = MathUtil.safeToInt(x + y);
+        const r = MathUtil.safeToInt(x + y);
         if (r === x || r === y) {
             throw new ArithmeticException('Invalid addition beyond MAX_SAFE_INTEGER!');
         }
@@ -143,7 +143,7 @@ export class MathUtil {
      * @returns {number}
      */
     static parseInt(value) {
-        var r = parseInt(value);
+        const r = parseInt(value);
         return MathUtil.safeToInt(r);
     }
 

@@ -170,8 +170,8 @@ export class DateTimeParseContext{
     }
 
     setParsedField(field, value, errorPos, successPos){
-        var currentParsedFieldValues = this.currentParsed().fieldValues;
-        var old = currentParsedFieldValues.get(field);
+        const currentParsedFieldValues = this.currentParsed().fieldValues;
+        const old = currentParsedFieldValues.get(field);
         currentParsedFieldValues.set(field, value);
         return (old != null && old !== value) ? ~errorPos : successPos;
     }
@@ -214,7 +214,7 @@ export class DateTimeParseContext{
      * @return the effective parsing chronology, not null
      */
     getEffectiveChronology() {
-        var chrono = this.currentParsed().chrono;
+        let chrono = this.currentParsed().chrono;
         if (chrono == null) {
             chrono = this._overrideChronology;
             if (chrono == null) {
@@ -238,7 +238,7 @@ class Parsed extends Temporal {
     }
 
     copy() {
-        var cloned = new Parsed();
+        const cloned = new Parsed();
         cloned.chrono = this.chrono;
         cloned.zone = this.zone;
         cloned.fieldValues.putAll(this.fieldValues);
@@ -256,7 +256,7 @@ class Parsed extends Temporal {
     }
 
     get(field) {
-        var val = this.fieldValues.get(field);
+        const val = this.fieldValues.get(field);
         assert(val != null);
         return val;
     }
@@ -272,7 +272,7 @@ class Parsed extends Temporal {
     }
 
     toBuilder() {
-        var builder = new DateTimeBuilder();
+        const builder = new DateTimeBuilder();
         builder.fieldValues.putAll(this.fieldValues);
         builder.chrono = this.dateTimeParseContext.getEffectiveChronology();
         if (this.zone != null) {

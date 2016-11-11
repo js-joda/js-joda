@@ -172,7 +172,7 @@ export class ZoneIdFactory {
      */
     static from(temporal) {
         requireNonNull(temporal, 'temporal');
-        var obj = temporal.query(TemporalQueries.zone());
+        const obj = temporal.query(TemporalQueries.zone());
         if (obj == null) {
             throw new DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' +
                     temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
@@ -181,7 +181,7 @@ export class ZoneIdFactory {
     }
 }
 
-var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
+let SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
 
 export function _init(){
     SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new SystemDefaultZoneId();

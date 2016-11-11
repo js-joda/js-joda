@@ -173,7 +173,7 @@ export class ChronoField extends TemporalField {
      * @return {boolean} true if it is a component of a date
      */
     isDateBased() {
-        var dateBased =
+        const dateBased =
             this === ChronoField.DAY_OF_WEEK ||
             this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
             this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
@@ -196,7 +196,7 @@ export class ChronoField extends TemporalField {
      * @return {boolean} true if it is a component of a time
      */
     isTimeBased() {
-        var timeBased =
+        const timeBased =
             this === ChronoField.NANO_OF_SECOND     ||
             this === ChronoField.NANO_OF_DAY        ||
             this === ChronoField.MICRO_OF_SECOND    ||

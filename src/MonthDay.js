@@ -703,7 +703,7 @@ export class MonthDay extends Temporal {
 
 }
 
-var PARSER;
+let PARSER;
 
 export function _init() {
     PARSER = new DateTimeFormatterBuilder()

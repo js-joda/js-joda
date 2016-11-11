@@ -69,8 +69,8 @@ export class ChronoZonedDateTime  extends Temporal {
      * @return {number} the number of seconds from the epoch of 1970-01-01T00:00:00Z
      */
     toEpochSecond() {
-        var epochDay = this.toLocalDate().toEpochDay();
-        var secs = epochDay * 86400 + this.toLocalTime().toSecondOfDay();
+        const epochDay = this.toLocalDate().toEpochDay();
+        let secs = epochDay * 86400 + this.toLocalTime().toSecondOfDay();
         secs -= this.offset().totalSeconds();
         return secs;
     }
@@ -90,7 +90,7 @@ export class ChronoZonedDateTime  extends Temporal {
       */
     compareTo(other) {
         requireNonNull(other, 'other');
-        var cmp = MathUtil.compareNumbers(this.toEpochSecond(), other.toEpochSecond());
+        let cmp = MathUtil.compareNumbers(this.toEpochSecond(), other.toEpochSecond());
         if (cmp === 0) {
             cmp = this.toLocalTime().nano() - other.toLocalTime().nano();
             if (cmp === 0) {
@@ -120,8 +120,8 @@ export class ChronoZonedDateTime  extends Temporal {
      */
     isAfter(other) {
         requireNonNull(other, 'other');
-        var thisEpochSec = this.toEpochSecond();
-        var otherEpochSec = other.toEpochSecond();
+        const thisEpochSec = this.toEpochSecond();
+        const otherEpochSec = other.toEpochSecond();
         return thisEpochSec > otherEpochSec ||
             (thisEpochSec === otherEpochSec && this.toLocalTime().nano() > other.toLocalTime().nano());
     }
@@ -138,8 +138,8 @@ export class ChronoZonedDateTime  extends Temporal {
      */
     isBefore(other) {
         requireNonNull(other, 'other');
-        var thisEpochSec = this.toEpochSecond();
-        var otherEpochSec = other.toEpochSecond();
+        const thisEpochSec = this.toEpochSecond();
+        const otherEpochSec = other.toEpochSecond();
         return thisEpochSec < otherEpochSec ||
             (thisEpochSec === otherEpochSec && this.toLocalTime().nano() < other.toLocalTime().nano());
     }

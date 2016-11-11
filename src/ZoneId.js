@@ -62,7 +62,7 @@ export class ZoneId {
       * @return {ZoneId} the time-zone unique ID, not null
       */
     normalized() {
-        var rules = this.rules();
+        const rules = this.rules();
         if (rules.isFixedOffset()) {
             return rules.offset(Instant.EPOCH);
         }

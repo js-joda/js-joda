@@ -20,13 +20,13 @@ function createErrorType(name, init, superErrorClass = Error) {
     return E;
 }
 
-export var DateTimeException = createErrorType('DateTimeException', messageWithCause);
-export var DateTimeParseException = createErrorType('DateTimeParseException', messageForDateTimeParseException);
-export var UnsupportedTemporalTypeException = createErrorType('UnsupportedTemporalTypeException', null, DateTimeException);
-export var ArithmeticException = createErrorType('ArithmeticException');
-export var IllegalArgumentException = createErrorType('IllegalArgumentException');
-export var IllegalStateException = createErrorType('IllegalStateException');
-export var NullPointerException = createErrorType('NullPointerException');
+export const DateTimeException = createErrorType('DateTimeException', messageWithCause);
+export const DateTimeParseException = createErrorType('DateTimeParseException', messageForDateTimeParseException);
+export const UnsupportedTemporalTypeException = createErrorType('UnsupportedTemporalTypeException', null, DateTimeException);
+export const ArithmeticException = createErrorType('ArithmeticException');
+export const IllegalArgumentException = createErrorType('IllegalArgumentException');
+export const IllegalStateException = createErrorType('IllegalStateException');
+export const NullPointerException = createErrorType('NullPointerException');
 
 function messageWithCause(message, cause = null) {
     let msg = message || this.name;
