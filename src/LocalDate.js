@@ -1477,8 +1477,7 @@ export class LocalDate extends ChronoLocalDate{
         // need to handle case where there is a gap from 11:30 to 00:30
         // standard ZDT factory would result in 01:00 rather than 00:30
         if (zone instanceof ZoneOffset === false) {
-            const rules = zone.rules();
-            const trans = rules.transition(ldt);
+            const trans = zone.rules().transition(ldt);
             if (trans != null && trans.isGap()) {
                 ldt = trans.dateTimeAfter();
             }
@@ -1496,8 +1495,8 @@ export class LocalDate extends ChronoLocalDate{
      * @return {number} the Epoch Day equivalent to this date
      */
     toEpochDay() {
-        const y = this.year();
-        const m = this.monthValue();
+        const y = this._year;
+        const m = this._month;
         let total = 0;
         total += 365 * y;
         if (y >= 0) {
@@ -1673,9 +1672,9 @@ export class LocalDate extends ChronoLocalDate{
     toString() {
         let dayString, monthString, yearString;
 
-        const yearValue = this.year();
-        const monthValue = this.monthValue();
-        const dayValue = this.dayOfMonth();
+        const yearValue = this._year;
+        const monthValue = this._month;
+        const dayValue = this._day;
 
         const absYear = Math.abs(yearValue);
 

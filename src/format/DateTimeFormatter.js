@@ -248,7 +248,7 @@ export class DateTimeFormatter {
      * @throws IllegalArgumentException if the pattern is invalid
      * @see DateTimeFormatterBuilder#appendPattern(String)
      * @example
-     * const s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));
+     * var s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));
      * console.log(s); // '1 04 2016'
      *
      */

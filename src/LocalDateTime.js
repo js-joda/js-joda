@@ -210,8 +210,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         requireNonNull(instant, 'instant');
         requireInstance(instant, Instant, 'instant');
         requireNonNull(zone, 'zone');
-        const rules = zone.rules();
-        const offset = rules.offset(instant);
+        const offset = zone.rules().offset(instant);
         return LocalDateTime.ofEpochSecond(instant.epochSecond(), instant.nano(), offset);
     }
 

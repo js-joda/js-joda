@@ -777,10 +777,11 @@ class Unit extends TemporalUnit {
      * @returns {number}
      */
     addTo(temporal, periodToAdd) {
-        const added = MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
         switch(this) {
-            case WEEK_BASED_YEARS:
+            case WEEK_BASED_YEARS: {
+                const added = MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
                 return temporal.with(WEEK_BASED_YEAR, added);
+            }
             case QUARTER_YEARS:
                 // no overflow (256 is multiple of 4)
                 return temporal.plus(MathUtil.intDiv(periodToAdd, 256), ChronoUnit.YEARS).plus(MathUtil.intMod(periodToAdd, 256) * 3, ChronoUnit.MONTHS);

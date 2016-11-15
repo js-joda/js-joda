@@ -353,8 +353,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             if (parsed[0] === '+') {
                 parsed = parsed.substring(1);
             }
-            const val = parseFloat(parsed);
-            return MathUtil.safeMultiply(val, multiplier);
+            return MathUtil.safeMultiply(parseFloat(parsed), multiplier);
         } catch (ex) {
             throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
         }

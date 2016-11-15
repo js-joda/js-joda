@@ -71,14 +71,13 @@ export class DayOfWeek extends Temporal {
      * @returns {DayOfWeek}
      */
     static valueOf(name) {
-        let ordinalResult = 0;
-        for(let ordinal=0; ordinal < ENUMS.length; ordinal++){
+        let ordinal = 0;
+        for(ordinal; ordinal < ENUMS.length; ordinal++){
             if(ENUMS[ordinal].name() === name){
-                ordinalResult = ordinal;
                 break;
             }
         }
-        return DayOfWeek.of(ordinalResult+1);
+        return DayOfWeek.of(ordinal+1);
     }
 
     /**

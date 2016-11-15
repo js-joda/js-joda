@@ -427,7 +427,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @private
      */
     _get0(field) {
-        const ham = MathUtil.intMod(this._hour, 12); 
         switch (field) {
             case ChronoField.NANO_OF_SECOND: return this._nano;
             case ChronoField.NANO_OF_DAY: return this.toNanoOfDay();
@@ -440,7 +439,10 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.MINUTE_OF_HOUR: return this._minute;
             case ChronoField.MINUTE_OF_DAY: return this._hour * 60 + this._minute;
             case ChronoField.HOUR_OF_AMPM: return MathUtil.intMod(this._hour, 12);
-            case ChronoField.CLOCK_HOUR_OF_AMPM: return (ham % 12 === 0 ? 12 : ham);
+            case ChronoField.CLOCK_HOUR_OF_AMPM: {
+                const ham = MathUtil.intMod(this._hour, 12); 
+                return (ham % 12 === 0 ? 12 : ham);
+            }
             case ChronoField.HOUR_OF_DAY: return this._hour;
             case ChronoField.CLOCK_HOUR_OF_DAY: return (this._hour === 0 ? 24 : this._hour);
             case ChronoField.AMPM_OF_DAY: return MathUtil.intDiv(this._hour, 12);

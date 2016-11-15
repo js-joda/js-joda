@@ -657,8 +657,7 @@ export class Instant extends Temporal {
         }
         let epochSec = this._seconds + secondsToAdd;
         epochSec = epochSec + MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        const _nanosToAdd = nanosToAdd % LocalTime.NANOS_PER_SECOND;
-        const nanoAdjustment = this._nanos + _nanosToAdd;
+        const nanoAdjustment = this._nanos + nanosToAdd % LocalTime.NANOS_PER_SECOND;
         return Instant.ofEpochSecond(epochSec, nanoAdjustment);
     }
 
