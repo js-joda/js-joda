@@ -20,6 +20,7 @@ export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
 export { ZoneId } from './ZoneId';
 export { ZoneRegion } from './ZoneRegion';
+export { ZoneRules } from './zone/ZoneRules';
 export { ZoneRulesProvider } from './zone/ZoneRulesProvider';
 
 export {convert} from './convert';
