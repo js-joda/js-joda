@@ -95,7 +95,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} the current date, not null
      */
     static now(clockOrZone) {
-        var clock;
+        let clock;
         if(clockOrZone == null){
             clock = Clock.systemDefaultZone();
         } else if(clockOrZone instanceof ZoneId){
@@ -116,9 +116,9 @@ export class LocalDate extends ChronoLocalDate{
      */
     static ofInstant(instant, zone=ZoneId.systemDefault()){
         requireNonNull(instant, 'instant');
-        var offset = zone.rules().offset(instant);
-        var epochSec = instant.epochSecond() + offset.totalSeconds();
-        var epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
+        const offset = zone.rules().offset(instant);
+        const epochSec = instant.epochSecond() + offset.totalSeconds();
+        const epochDay = MathUtil.floorDiv(epochSec, LocalTime.SECONDS_PER_DAY);
         return LocalDate.ofEpochDay(epochDay);
     }
 
@@ -154,16 +154,16 @@ export class LocalDate extends ChronoLocalDate{
     static ofYearDay(year, dayOfYear) {
         ChronoField.YEAR.checkValidValue(year);
         //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
-        var leap = IsoChronology.isLeapYear(year);
+        const leap = IsoChronology.isLeapYear(year);
         if (dayOfYear === 366 && leap === false) {
             assert(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', DateTimeException);
         }
-        var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
-        var monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
+        let moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
+        const monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
         if (dayOfYear > monthEnd) {
             moy = moy.plus(1);
         }
-        var dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
+        const dom = dayOfYear - moy.firstDayOfYear(leap) + 1;
         return new LocalDate(year, moy.value(), dom);
     }
 
@@ -179,7 +179,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {AssertionError} if the epoch days exceeds the supported date range
      */
     static ofEpochDay(epochDay=0) {
-        var adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
+        let adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
         zeroDay = epochDay + DAYS_0000_TO_1970;
         zeroDay -= 60;
         adjust = 0;
@@ -222,7 +222,7 @@ export class LocalDate extends ChronoLocalDate{
      */
     static from(temporal) {
         requireNonNull(temporal, 'temporal');
-        var date = temporal.query(TemporalQueries.localDate());
+        const date = temporal.query(TemporalQueries.localDate());
         if (date == null) {
             throw new DateTimeException(
                 `Unable to obtain LocalDate from TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`);
@@ -298,7 +298,7 @@ export class LocalDate extends ChronoLocalDate{
      * @private
      */
     static _validate(year, month, dayOfMonth) {
-        var dom;
+        let dom;
         ChronoField.YEAR.checkValidValue(year);
         ChronoField.MONTH_OF_YEAR.checkValidValue(month);
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
@@ -552,7 +552,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return {DayOfWeek} the day-of-week, not null
      */
     dayOfWeek() {
-        var dow0 = MathUtil.floorMod(this.toEpochDay() + 3, 7);
+        const dow0 = MathUtil.floorMod(this.toEpochDay() + 3, 7);
         return DayOfWeek.of(dow0 + 1);
     }
 
@@ -778,7 +778,7 @@ export class LocalDate extends ChronoLocalDate{
     withFieldAndValue(field, newValue) {
         assert(field != null, 'field', NullPointerException);
         if (field instanceof ChronoField) {
-            var f = field;
+            const f = field;
             f.checkValidValue(newValue);
             switch (f) {
                 case ChronoField.DAY_OF_WEEK: return this.plusDays(newValue - this.dayOfWeek().value());
@@ -825,7 +825,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the month-of-year value is invalid
      */
     withMonth(month) {
-        var m = (month instanceof Month) ? month.value() : month;
+        const m = (month instanceof Month) ? month.value() : month;
         if (this._month === m) {
             return this;
         }
@@ -958,7 +958,7 @@ export class LocalDate extends ChronoLocalDate{
         if (yearsToAdd === 0) {
             return this;
         }
-        var newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
+        const newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
         return LocalDate._resolvePreviousValid(newYear, this._month, this._day);
     }
 
@@ -983,10 +983,10 @@ export class LocalDate extends ChronoLocalDate{
         if (monthsToAdd === 0) {
             return this;
         }
-        var monthCount = this._year * 12 + (this._month - 1);
-        var calcMonths = monthCount + monthsToAdd;  // safe overflow
-        var newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
-        var newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
+        const monthCount = this._year * 12 + (this._month - 1);
+        const calcMonths = monthCount + monthsToAdd;  // safe overflow
+        const newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
+        const newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
         return LocalDate._resolvePreviousValid(newYear, newMonth, this._day);
     }
 
@@ -1025,7 +1025,7 @@ export class LocalDate extends ChronoLocalDate{
         if (daysToAdd === 0) {
             return this;
         }
-        var mjDay = MathUtil.safeAdd(this.toEpochDay(), daysToAdd);
+        const mjDay = MathUtil.safeAdd(this.toEpochDay(), daysToAdd);
         return LocalDate.ofEpochDay(mjDay);
     }
 
@@ -1274,7 +1274,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {ArithmeticException} if numeric overflow occurs
      */
     until2(endExclusive, unit) {
-        var end = LocalDate.from(endExclusive);
+        const end = LocalDate.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.DAYS: return this.daysUntil(end);
@@ -1308,8 +1308,8 @@ export class LocalDate extends ChronoLocalDate{
      * @private
      */
     _monthsUntil(end) {
-        var packed1 = this._prolepticMonth() * 32 + this.dayOfMonth();  // no overflow
-        var packed2 = end._prolepticMonth() * 32 + end.dayOfMonth();  // no overflow
+        const packed1 = this._prolepticMonth() * 32 + this.dayOfMonth();  // no overflow
+        const packed2 = end._prolepticMonth() * 32 + end.dayOfMonth();  // no overflow
         return MathUtil.intDiv((packed2 - packed1), 32);
     }
 
@@ -1348,19 +1348,19 @@ export class LocalDate extends ChronoLocalDate{
      * @return {Period} the period between this date and the end date, not null
      */
     until1(endDate) {
-        var end = LocalDate.from(endDate);
-        var totalMonths = end._prolepticMonth() - this._prolepticMonth();  // safe
-        var days = end._day - this._day;
+        const end = LocalDate.from(endDate);
+        let totalMonths = end._prolepticMonth() - this._prolepticMonth();  // safe
+        let days = end._day - this._day;
         if (totalMonths > 0 && days < 0) {
             totalMonths--;
-            var calcDate = this.plusMonths(totalMonths);
+            const calcDate = this.plusMonths(totalMonths);
             days = (end.toEpochDay() - calcDate.toEpochDay());  // safe
         } else if (totalMonths < 0 && days > 0) {
             totalMonths++;
             days -= end.lengthOfMonth();
         }
-        var years = MathUtil.intDiv(totalMonths, 12);  // safe
-        var months = MathUtil.intMod(totalMonths, 12);  // safe
+        const years = MathUtil.intDiv(totalMonths, 12);  // safe
+        const months = MathUtil.intMod(totalMonths, 12);  // safe
         return Period.of(MathUtil.safeToInt(years), months, days);
     }
 
@@ -1473,12 +1473,11 @@ export class LocalDate extends ChronoLocalDate{
      */
     atStartOfDayWithZone(zone) {
         requireNonNull(zone, 'zone');
-        var ldt = this.atTime(LocalTime.MIDNIGHT);
+        let ldt = this.atTime(LocalTime.MIDNIGHT);
         // need to handle case where there is a gap from 11:30 to 00:30
         // standard ZDT factory would result in 01:00 rather than 00:30
         if (zone instanceof ZoneOffset === false) {
-            var rules = zone.rules();
-            var trans = rules.transition(ldt);
+            const trans = zone.rules().transition(ldt);
             if (trans != null && trans.isGap()) {
                 ldt = trans.dateTimeAfter();
             }
@@ -1496,9 +1495,9 @@ export class LocalDate extends ChronoLocalDate{
      * @return {number} the Epoch Day equivalent to this date
      */
     toEpochDay() {
-        var y = this.year();
-        var m = this.monthValue();
-        var total = 0;
+        const y = this._year;
+        const m = this._month;
+        let total = 0;
         total += 365 * y;
         if (y >= 0) {
             total += MathUtil.intDiv(y + 3, 4) - MathUtil.intDiv(y + 99, 100) + MathUtil.intDiv(y + 399, 400);
@@ -1544,7 +1543,7 @@ export class LocalDate extends ChronoLocalDate{
      * @private
      */
     _compareTo0(otherDate) {
-        var cmp = (this._year - otherDate._year);
+        let cmp = (this._year - otherDate._year);
         if (cmp === 0) {
             cmp = (this._month - otherDate._month);
             if (cmp === 0) {
@@ -1658,9 +1657,9 @@ export class LocalDate extends ChronoLocalDate{
      * @return {number} a suitable hash code
      */
     hashCode() {
-        var yearValue = this._year;
-        var monthValue = this._month;
-        var dayValue = this._day;
+        const yearValue = this._year;
+        const monthValue = this._month;
+        const dayValue = this._day;
         return (yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6) + (dayValue));
     }
 
@@ -1671,13 +1670,13 @@ export class LocalDate extends ChronoLocalDate{
      * @return {string} a string representation of this date, not null
      */
     toString() {
-        var dayString, monthString, yearString;
+        let dayString, monthString, yearString;
 
-        var yearValue = this.year();
-        var monthValue = this.monthValue();
-        var dayValue = this.dayOfMonth();
+        const yearValue = this._year;
+        const monthValue = this._month;
+        const dayValue = this._day;
 
-        var absYear = Math.abs(yearValue);
+        const absYear = Math.abs(yearValue);
 
         if (absYear < 1000) {
             if (yearValue < 0) {

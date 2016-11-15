@@ -51,7 +51,7 @@ export function _init() {
      * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.
      */
     TemporalQueries.ZONE = createTemporalQuery('ZONE', (temporal) => {
-        var zone = temporal.query(TemporalQueries.ZONE_ID);
+        const zone = temporal.query(TemporalQueries.ZONE_ID);
         return (zone != null ? zone : temporal.query(TemporalQueries.OFFSET));
     });
 

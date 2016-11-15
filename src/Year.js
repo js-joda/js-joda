@@ -971,7 +971,7 @@ export class Year extends Temporal {
     }
 }
 
-var PARSER;
+let PARSER;
 
 export function _init() {
 

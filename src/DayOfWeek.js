@@ -71,7 +71,8 @@ export class DayOfWeek extends Temporal {
      * @returns {DayOfWeek}
      */
     static valueOf(name) {
-        for(var ordinal=0; ordinal < ENUMS.length; ordinal++){
+        let ordinal = 0;
+        for(ordinal; ordinal < ENUMS.length; ordinal++){
             if(ENUMS[ordinal].name() === name){
                 break;
             }
@@ -289,7 +290,7 @@ export class DayOfWeek extends Temporal {
      * @return {DayOfWeek} the resulting day-of-week, not null
      */
     plus(days) {
-        var amount = MathUtil.floorMod(days, 7);
+        const amount = MathUtil.floorMod(days, 7);
         return ENUMS[MathUtil.floorMod(this._ordinal + (amount + 7), 7)];
     }
 
@@ -398,7 +399,7 @@ export class DayOfWeek extends Temporal {
     }
 }
 
-var ENUMS;
+let ENUMS;
 
 export function _init() {
     DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');

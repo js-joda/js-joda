@@ -105,7 +105,7 @@ export class ValueRange {
      * @param {TemporalField} field
      */
     checkValidValue(value, field) {
-        var msg;
+        let msg;
         if (!this.isValidValue(value)) {
             if (field != null) {
                 msg = ('Invalid value for ' + field + ' (valid values ' + (this.toString()) + '): ') + value;
@@ -191,7 +191,7 @@ export class ValueRange {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 +
+        const hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 +
             this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
         return (hash ^ (hash >>> 32));
     }
@@ -206,7 +206,7 @@ export class ValueRange {
      * @return {string} a string representation of this range, not null
      */
     toString() {
-        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + (this.largestMinimum()) : '');
+        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + (this.largestMinimum()) : '');
         str += ' - ';
         str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + (this.maximum()) : '');
         return str;

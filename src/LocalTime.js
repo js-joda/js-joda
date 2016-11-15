@@ -156,8 +156,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @returns {LocalTime} the current date, not null
      */
     static ofInstant(instant, zone=ZoneId.systemDefault()){
-        var offset = zone.rules().offset(instant);
-        var secsOfDay = MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
+        const offset = zone.rules().offset(instant);
+        let secsOfDay = MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
         secsOfDay = MathUtil.intMod((secsOfDay + offset.totalSeconds()), LocalTime.SECONDS_PER_DAY);
         if (secsOfDay < 0) {
             secsOfDay += LocalTime.SECONDS_PER_DAY;
@@ -195,9 +195,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     static ofSecondOfDay(secondOfDay=0, nanoOfSecond=0) {
         ChronoField.SECOND_OF_DAY.checkValidValue(secondOfDay);
         ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
-        var hours = MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_HOUR);
+        const hours = MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_HOUR);
         secondOfDay -= hours * LocalTime.SECONDS_PER_HOUR;
-        var minutes = MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_MINUTE);
+        const minutes = MathUtil.intDiv(secondOfDay, LocalTime.SECONDS_PER_MINUTE);
         secondOfDay -= minutes * LocalTime.SECONDS_PER_MINUTE;
         return new LocalTime(hours, minutes, secondOfDay, nanoOfSecond);
     }
@@ -213,11 +213,11 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      */
     static ofNanoOfDay(nanoOfDay=0) {
         ChronoField.NANO_OF_DAY.checkValidValue(nanoOfDay);
-        var hours = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
+        const hours = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
         nanoOfDay -= hours * LocalTime.NANOS_PER_HOUR;
-        var minutes = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_MINUTE);
+        const minutes = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_MINUTE);
         nanoOfDay -= minutes * LocalTime.NANOS_PER_MINUTE;
-        var seconds = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_SECOND);
+        const seconds = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_SECOND);
         nanoOfDay -= seconds * LocalTime.NANOS_PER_SECOND;
         return new LocalTime(hours, minutes, seconds, nanoOfDay);
     }
@@ -241,7 +241,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      */
     static from(temporal) {
         requireNonNull(temporal, 'temporal');
-        var time = temporal.query(TemporalQueries.localTime());
+        const time = temporal.query(TemporalQueries.localTime());
         if (time == null) {
             throw new DateTimeException(`Unable to obtain LocalTime TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
@@ -439,7 +439,10 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.MINUTE_OF_HOUR: return this._minute;
             case ChronoField.MINUTE_OF_DAY: return this._hour * 60 + this._minute;
             case ChronoField.HOUR_OF_AMPM: return MathUtil.intMod(this._hour, 12);
-            case ChronoField.CLOCK_HOUR_OF_AMPM: var ham = MathUtil.intMod(this._hour, 12); return (ham % 12 === 0 ? 12 : ham);
+            case ChronoField.CLOCK_HOUR_OF_AMPM: {
+                const ham = MathUtil.intMod(this._hour, 12); 
+                return (ham % 12 === 0 ? 12 : ham);
+            }
             case ChronoField.HOUR_OF_DAY: return this._hour;
             case ChronoField.CLOCK_HOUR_OF_DAY: return (this._hour === 0 ? 24 : this._hour);
             case ChronoField.AMPM_OF_DAY: return MathUtil.intDiv(this._hour, 12);
@@ -730,15 +733,15 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         if (unit === ChronoUnit.NANOS) {
             return this;
         }
-        var unitDur = unit.duration();
+        const unitDur = unit.duration();
         if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
             throw new DateTimeException('Unit is too large to be used for truncation');
         }
-        var dur = unitDur.toNanos();
+        const dur = unitDur.toNanos();
         if (MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
-        var nod = this.toNanoOfDay();
+        const nod = this.toNanoOfDay();
         return LocalTime.ofNanoOfDay(MathUtil.intDiv(nod, dur) * dur);
     }
 
@@ -832,7 +835,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             return this;
         }
 
-        var newHour = MathUtil.intMod(MathUtil.intMod(hoursToAdd, LocalTime.HOURS_PER_DAY) + this._hour + LocalTime.HOURS_PER_DAY, LocalTime.HOURS_PER_DAY);
+        const newHour = MathUtil.intMod(MathUtil.intMod(hoursToAdd, LocalTime.HOURS_PER_DAY) + this._hour + LocalTime.HOURS_PER_DAY, LocalTime.HOURS_PER_DAY);
         return new LocalTime(newHour, this._minute, this._second, this._nano);
     }
 
@@ -851,13 +854,13 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         if (minutesToAdd === 0) {
             return this;
         }
-        var mofd = this._hour * LocalTime.MINUTES_PER_HOUR + this._minute;
-        var newMofd = MathUtil.intMod(MathUtil.intMod(minutesToAdd, LocalTime.MINUTES_PER_DAY) + mofd + LocalTime.MINUTES_PER_DAY, LocalTime.MINUTES_PER_DAY);
+        const mofd = this._hour * LocalTime.MINUTES_PER_HOUR + this._minute;
+        const newMofd = MathUtil.intMod(MathUtil.intMod(minutesToAdd, LocalTime.MINUTES_PER_DAY) + mofd + LocalTime.MINUTES_PER_DAY, LocalTime.MINUTES_PER_DAY);
         if (mofd === newMofd) {
             return this;
         }
-        var newHour = MathUtil.intDiv(newMofd, LocalTime.MINUTES_PER_HOUR);
-        var newMinute = MathUtil.intMod(newMofd, LocalTime.MINUTES_PER_HOUR);
+        const newHour = MathUtil.intDiv(newMofd, LocalTime.MINUTES_PER_HOUR);
+        const newMinute = MathUtil.intMod(newMofd, LocalTime.MINUTES_PER_HOUR);
         return new LocalTime(newHour, newMinute, this._second, this._nano);
     }
 
@@ -876,15 +879,15 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         if (secondstoAdd === 0) {
             return this;
         }
-        var sofd = this._hour * LocalTime.SECONDS_PER_HOUR +
+        const sofd = this._hour * LocalTime.SECONDS_PER_HOUR +
                     this._minute * LocalTime.SECONDS_PER_MINUTE + this._second;
-        var newSofd = MathUtil.intMod((MathUtil.intMod(secondstoAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY), LocalTime.SECONDS_PER_DAY);
+        const newSofd = MathUtil.intMod((MathUtil.intMod(secondstoAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY), LocalTime.SECONDS_PER_DAY);
         if (sofd === newSofd) {
             return this;
         }
-        var newHour = MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_HOUR);
-        var newMinute = MathUtil.intMod(MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-        var newSecond = MathUtil.intMod(newSofd, LocalTime.SECONDS_PER_MINUTE);
+        const newHour = MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_HOUR);
+        const newMinute = MathUtil.intMod(MathUtil.intDiv(newSofd, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+        const newSecond = MathUtil.intMod(newSofd, LocalTime.SECONDS_PER_MINUTE);
         return new LocalTime(newHour, newMinute, newSecond, this._nano);
     }
 
@@ -903,15 +906,15 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         if (nanosToAdd === 0) {
             return this;
         }
-        var nofd = this.toNanoOfDay();
-        var newNofd = MathUtil.intMod((MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY), LocalTime.NANOS_PER_DAY);
+        const nofd = this.toNanoOfDay();
+        const newNofd = MathUtil.intMod((MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_DAY) + nofd + LocalTime.NANOS_PER_DAY), LocalTime.NANOS_PER_DAY);
         if (nofd === newNofd) {
             return this;
         }
-        var newHour = MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_HOUR);
-        var newMinute = MathUtil.intMod(MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-        var newSecond = MathUtil.intMod(MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_SECOND), LocalTime.SECONDS_PER_MINUTE);
-        var newNano = MathUtil.intMod(newNofd, LocalTime.NANOS_PER_SECOND);
+        const newHour = MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_HOUR);
+        const newMinute = MathUtil.intMod(MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+        const newSecond = MathUtil.intMod(MathUtil.intDiv(newNofd, LocalTime.NANOS_PER_SECOND), LocalTime.SECONDS_PER_MINUTE);
+        const newNano = MathUtil.intMod(newNofd, LocalTime.NANOS_PER_SECOND);
         return new LocalTime(newHour, newMinute, newSecond, newNano);
     }
 
@@ -1145,9 +1148,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     until(endExclusive, unit) {
         requireNonNull(endExclusive, 'endExclusive');
         requireNonNull(unit, 'unit');
-        var end = LocalTime.from(endExclusive);
+        const end = LocalTime.from(endExclusive);
         if (unit instanceof ChronoUnit) {
-            var nanosUntil = end.toNanoOfDay() - this.toNanoOfDay();  // no overflow
+            const nanosUntil = end.toNanoOfDay() - this.toNanoOfDay();  // no overflow
             switch (unit) {
                 case ChronoUnit.NANOS: return nanosUntil;
                 case ChronoUnit.MICROS: return MathUtil.intDiv(nanosUntil, 1000);
@@ -1198,7 +1201,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {number} the second-of-day equivalent to this time
      */
     toSecondOfDay() {
-        var total = this._hour * LocalTime.SECONDS_PER_HOUR;
+        let total = this._hour * LocalTime.SECONDS_PER_HOUR;
         total += this._minute * LocalTime.SECONDS_PER_MINUTE;
         total += this._second;
         return total;
@@ -1210,7 +1213,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {number} the nano of day equivalent to this time
      */
     toNanoOfDay() {
-        var total = this._hour * LocalTime.NANOS_PER_HOUR;
+        let total = this._hour * LocalTime.NANOS_PER_HOUR;
         total += this._minute * LocalTime.NANOS_PER_MINUTE;
         total += this._second * LocalTime.NANOS_PER_SECOND;
         total += this._nano;
@@ -1231,7 +1234,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     compareTo(other) {
         requireNonNull(other, 'other');
         requireInstance(other, LocalTime, 'other');
-        var cmp = MathUtil.compareNumbers(this._hour, other._hour);
+        let cmp = MathUtil.compareNumbers(this._hour, other._hour);
         if (cmp === 0) {
             cmp = MathUtil.compareNumbers(this._minute, other._minute);
             if (cmp === 0) {
@@ -1300,7 +1303,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {number} a suitable hash code
      */
     hashCode() {
-        var nod = this.toNanoOfDay();
+        const nod = this.toNanoOfDay();
         return (nod ^ (nod >>> 24));
     }
 
@@ -1322,11 +1325,11 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {string} a string representation of this time, not null
      */
     toString() {
-        var buf = '';
-        var hourValue = this._hour;
-        var minuteValue = this._minute;
-        var secondValue = this._second;
-        var nanoValue = this._nano;
+        let buf = '';
+        const hourValue = this._hour;
+        const minuteValue = this._minute;
+        const secondValue = this._second;
+        const nanoValue = this._nano;
         buf += hourValue < 10 ? '0' : '';
         buf += hourValue;
         buf += minuteValue < 10 ? ':0' : ':';
@@ -1379,7 +1382,7 @@ export function _init() {
     }
 
     function makeLocalTimeConst(hour = 0, minute = 0, second = 0, nano = 0) {
-        var localTime = Object.create(LocalTime.prototype);
+        const localTime = Object.create(LocalTime.prototype);
         Temporal.call(localTime);
         localTime._hour = hour;
         localTime._minute = minute;

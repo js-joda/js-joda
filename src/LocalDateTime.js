@@ -114,8 +114,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         return LocalDateTime.ofInstant(clock.instant(), clock.zone());
 
         // this is an alternative implementation with better performance.
-        // var epochMilli = clock.millis();
-        // var offset = clock.zone().rules().offsetOfEpochMilli(epochMilli);
+        // const epochMilli = clock.millis();
+        // const offset = clock.zone().rules().offsetOfEpochMilli(epochMilli);
         // return LocalDateTime._ofEpochMillis(epochMilli, offset);
 
     }
@@ -128,12 +128,12 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      */
     static _ofEpochMillis(epochMilli, offset){
-        var localSecond = MathUtil.floorDiv(epochMilli, 1000) + offset.totalSeconds();
-        var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
-        var secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
-        var nanoOfSecond = MathUtil.floorMod(epochMilli, 1000) * 1000000;
-        var date = LocalDate.ofEpochDay(localEpochDay);
-        var time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
+        const localSecond = MathUtil.floorDiv(epochMilli, 1000) + offset.totalSeconds();
+        const localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
+        const secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
+        const nanoOfSecond = MathUtil.floorMod(epochMilli, 1000) * 1000000;
+        const date = LocalDate.ofEpochDay(localEpochDay);
+        const time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
         return new LocalDateTime(date, time);
 
     }
@@ -174,8 +174,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the day-of-month is invalid for the month-year
      */
     static ofNumbers(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
-        var date = LocalDate.of(year, month, dayOfMonth);
-        var time = LocalTime.of(hour, minute, second, nanoOfSecond);
+        const date = LocalDate.of(year, month, dayOfMonth);
+        const time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
     }
 
@@ -210,8 +210,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         requireNonNull(instant, 'instant');
         requireInstance(instant, Instant, 'instant');
         requireNonNull(zone, 'zone');
-        var rules = zone.rules();
-        var offset = rules.offset(instant);
+        const offset = zone.rules().offset(instant);
         return LocalDateTime.ofEpochSecond(instant.epochSecond(), instant.nano(), offset);
     }
 
@@ -235,11 +234,11 @@ implements Temporal, TemporalAdjuster, Serializable */ {
             nanoOfSecond = 0;
         }
         requireNonNull(offset, 'offset');
-        var localSecond = epochSecond + offset.totalSeconds();  // overflow caught later
-        var localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
-        var secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
-        var date = LocalDate.ofEpochDay(localEpochDay);
-        var time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
+        const localSecond = epochSecond + offset.totalSeconds();  // overflow caught later
+        const localEpochDay = MathUtil.floorDiv(localSecond, LocalTime.SECONDS_PER_DAY);
+        const secsOfDay = MathUtil.floorMod(localSecond, LocalTime.SECONDS_PER_DAY);
+        const date = LocalDate.ofEpochDay(localEpochDay);
+        const time = LocalTime.ofSecondOfDay(secsOfDay, nanoOfSecond);
         return new LocalDateTime(date, time);
     }
 
@@ -267,8 +266,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
             return temporal.toLocalDateTime();
         }
         try {
-            var date = LocalDate.from(temporal);
-            var time = LocalTime.from(temporal);
+            const date = LocalDate.from(temporal);
+            const time = LocalTime.from(temporal);
             return new LocalDateTime(date, time);
         } catch (ex) {
             throw new DateTimeException(`Unable to obtain LocalDateTime TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`);
@@ -784,7 +783,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the hour value is invalid
      */
     withHour(hour) {
-        var newTime = this._time.withHour(hour);
+        const newTime = this._time.withHour(hour);
         return this._withDateTime(this._date, newTime);
     }
 
@@ -798,7 +797,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the minute value is invalid
      */
     withMinute(minute) {
-        var newTime = this._time.withMinute(minute);
+        const newTime = this._time.withMinute(minute);
         return this._withDateTime(this._date, newTime);
     }
 
@@ -812,7 +811,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the second value is invalid
      */
     withSecond(second) {
-        var newTime = this._time.withSecond(second);
+        const newTime = this._time.withSecond(second);
         return this._withDateTime(this._date, newTime);
     }
 
@@ -826,7 +825,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the nano value is invalid
      */
     withNano(nanoOfSecond) {
-        var newTime = this._time.withNano(nanoOfSecond);
+        const newTime = this._time.withNano(nanoOfSecond);
         return this._withDateTime(this._date, newTime);
     }
 
@@ -947,7 +946,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusYears(years) {
-        var newDate = this._date.plusYears(years);
+        const newDate = this._date.plusYears(years);
         return this._withDateTime(newDate, this._time);
     }
 
@@ -971,7 +970,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusMonths(months) {
-        var newDate = this._date.plusMonths(months);
+        const newDate = this._date.plusMonths(months);
         return this._withDateTime(newDate, this._time);
     }
 
@@ -991,7 +990,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusWeeks(weeks) {
-        var newDate = this._date.plusWeeks(weeks);
+        const newDate = this._date.plusWeeks(weeks);
         return this._withDateTime(newDate, this._time);
     }
 
@@ -1011,7 +1010,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusDays(days) {
-        var newDate = this._date.plusDays(days);
+        const newDate = this._date.plusDays(days);
         return this._withDateTime(newDate, this._time);
     }
 
@@ -1285,20 +1284,20 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         if ((hours | minutes | seconds | nanos) === 0) {
             return this._withDateTime(newDate, this._time);
         }
-        var totDays = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_DAY) +             //   max/24*60*60*1B
+        let totDays = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_DAY) +             //   max/24*60*60*1B
                 MathUtil.intDiv(seconds, LocalTime.SECONDS_PER_DAY) +                //   max/24*60*60
                 MathUtil.intDiv(minutes, LocalTime.MINUTES_PER_DAY) +                //   max/24*60
                 MathUtil.intDiv(hours, LocalTime.HOURS_PER_DAY);                     //   max/24
         totDays *= sign;                                   // total max*0.4237...
-        var totNanos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_DAY) +                    //   max  86400000000000
+        let totNanos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_DAY) +                    //   max  86400000000000
                 (MathUtil.intMod(seconds, LocalTime.SECONDS_PER_DAY)) * LocalTime.NANOS_PER_SECOND +   //   max  86400000000000
                 (MathUtil.intMod(minutes, LocalTime.MINUTES_PER_DAY)) * LocalTime.NANOS_PER_MINUTE +   //   max  86400000000000
                 (MathUtil.intMod(hours, LocalTime.HOURS_PER_DAY)) * LocalTime.NANOS_PER_HOUR;          //   max  86400000000000
-        var curNoD = this._time.toNanoOfDay();                       //   max  86400000000000
+        const curNoD = this._time.toNanoOfDay();                       //   max  86400000000000
         totNanos = totNanos * sign + curNoD;                    // total 432000000000000
         totDays += MathUtil.floorDiv(totNanos, LocalTime.NANOS_PER_DAY);
-        var newNoD = MathUtil.floorMod(totNanos, LocalTime.NANOS_PER_DAY);
-        var newTime = (newNoD === curNoD ? this._time : LocalTime.ofNanoOfDay(newNoD));
+        const newNoD = MathUtil.floorMod(totNanos, LocalTime.NANOS_PER_DAY);
+        const newTime = (newNoD === curNoD ? this._time : LocalTime.ofNanoOfDay(newNoD));
         return this._withDateTime(newDate.plusDays(totDays), newTime);
     }
 
@@ -1405,11 +1404,11 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     until(endExclusive, unit) {
         requireNonNull(endExclusive, 'endExclusive');
         requireNonNull(unit, 'unit');
-        var end = LocalDateTime.from(endExclusive);
+        const end = LocalDateTime.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             if (unit.isTimeBased()) {
-                var daysUntil = this._date.daysUntil(end._date);
-                var timeUntil = end._time.toNanoOfDay() - this._time.toNanoOfDay();
+                let daysUntil = this._date.daysUntil(end._date);
+                let timeUntil = end._time.toNanoOfDay() - this._time.toNanoOfDay();
                 if (daysUntil > 0 && timeUntil < 0) {
                     daysUntil--;
                     timeUntil += LocalTime.NANOS_PER_DAY;
@@ -1417,7 +1416,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
                     daysUntil++;
                     timeUntil -= LocalTime.NANOS_PER_DAY;
                 }
-                var amount = daysUntil;
+                let amount = daysUntil;
                 switch (unit) {
                     case ChronoUnit.NANOS:
                         amount = MathUtil.safeMultiply(amount, LocalTime.NANOS_PER_DAY);
@@ -1443,8 +1442,8 @@ implements Temporal, TemporalAdjuster, Serializable */ {
                 }
                 throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
             }
-            var endDate = end._date;
-            var endTime = end._time;
+            let endDate = end._date;
+            const endTime = end._time;
             if (endDate.isAfter(this._date) && endTime.isBefore(this._time)) {
                 endDate = endDate.minusDays(1);
             } else if (endDate.isBefore(this._date) && endTime.isAfter(this._time)) {
@@ -1558,7 +1557,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @private
      */
     _compareTo0(other) {
-        var cmp = this._date.compareTo(other.toLocalDate());
+        let cmp = this._date.compareTo(other.toLocalDate());
         if (cmp === 0) {
             cmp = this._time.compareTo(other.toLocalTime());
         }

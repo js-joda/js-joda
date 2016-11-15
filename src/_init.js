@@ -27,7 +27,7 @@ import {_init as DateTimeFormatterBuilderInit} from './format/DateTimeFormatterB
 import {_init as TemporalQueriesInit} from './temporal/TemporalQueriesFactory';
 import {_init as ZoneIdInit} from './ZoneIdFactory';
 
-var isInit = false;
+let isInit = false;
 
 function init() {
 

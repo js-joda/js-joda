@@ -179,8 +179,8 @@ export class Month extends Temporal {
      * @return {Month} the resulting month, not null
      */
     plus(months) {
-        var amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
-        var newMonthVal = MathUtil.intMod((this.value() + amount), 12);
+        const amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is "corrected" by the next % 12
+        let newMonthVal = MathUtil.intMod((this.value() + amount), 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
         return Month.of(newMonthVal);
@@ -283,7 +283,7 @@ export class Month extends Temporal {
      * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
      */
     firstDayOfYear(leapYear) {
-        var leap = leapYear ? 1 : 0;
+        const leap = leapYear ? 1 : 0;
         switch (this) {
             case Month.JANUARY:
                 return 1;
@@ -511,7 +511,7 @@ export class Month extends Temporal {
     }
 }
 
-var MONTHS;
+let MONTHS;
 
 export function _init() {
     Month.JANUARY = new Month(1);

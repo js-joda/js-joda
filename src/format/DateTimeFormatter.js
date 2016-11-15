@@ -366,7 +366,7 @@ export class DateTimeFormatter {
      * @throws DateTimeException if an error occurs during formatting
      */
     format(temporal) {
-        var buf = new StringBuilder(32);
+        const buf = new StringBuilder(32);
         this._formatTo(temporal, buf);
         return buf.toString();
     }
@@ -390,7 +390,7 @@ export class DateTimeFormatter {
     _formatTo(temporal, appendable) {
         requireNonNull(temporal, 'temporal');
         requireNonNull(appendable, 'appendable');
-        var context = new DateTimePrintContext(temporal, this);
+        const context = new DateTimePrintContext(temporal, this);
         this._printerParser.print(context, appendable);
     }
 
@@ -460,7 +460,7 @@ export class DateTimeFormatter {
         requireNonNull(text, 'text');
         requireNonNull(type, 'type');
         try {
-            var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+            const builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
             return builder.build(type);
         } catch (ex) {
             if(ex instanceof DateTimeParseException){
@@ -472,7 +472,7 @@ export class DateTimeFormatter {
     }
 
     _createError(text, ex) {
-        var abbr = '';
+        let abbr = '';
         if (text.length > 64) {
             abbr = text.subString(0, 64) + '...';
         } else {
@@ -496,10 +496,10 @@ export class DateTimeFormatter {
      * @throws DateTimeParseException if the parse fails
      */
     _parseToBuilder(text, position) {
-        var pos = (position != null ? position : new ParsePosition(0));
-        var result = this._parseUnresolved0(text, pos);
+        const pos = (position != null ? position : new ParsePosition(0));
+        const result = this._parseUnresolved0(text, pos);
         if (result == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text.length)) {
-            var abbr = '';
+            let abbr = '';
             if (text.length > 64) {
                 abbr = text.substr(0, 64).toString() + '...';
             } else {
@@ -562,8 +562,8 @@ export class DateTimeFormatter {
     _parseUnresolved0(text, position) {
         assert(text != null, 'text', NullPointerException);
         assert(position != null, 'position', NullPointerException);
-        var context = new DateTimeParseContext(this);
-        var pos = position.getIndex();
+        const context = new DateTimeParseContext(this);
+        let pos = position.getIndex();
         pos = this._printerParser.parse(context, text, pos);
         if (pos < 0) {
             position.setErrorIndex(~pos);  // index not updated from input
@@ -584,7 +584,7 @@ export class DateTimeFormatter {
     }
 
     toString() {
-        var pattern = this._printerParser.toString();
+        const pattern = this._printerParser.toString();
         return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
     }
 

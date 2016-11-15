@@ -432,7 +432,7 @@ class RelativeDayOfWeek extends TemporalAdjuster {
     }
 
     adjustInto(temporal) {
-        var calDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        const calDow = temporal.get(ChronoField.DAY_OF_WEEK);
         if (this._relative < 2 && calDow === this._dowValue) {
             return temporal;
         }

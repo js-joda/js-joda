@@ -112,12 +112,12 @@ export class IsoChronology extends Enum{
         if (fieldValues.containsKey(ChronoField.YEAR)) {
             if (fieldValues.containsKey(ChronoField.MONTH_OF_YEAR)) {
                 if (fieldValues.containsKey(ChronoField.DAY_OF_MONTH)) {
-                    var y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    var moy = fieldValues.remove(ChronoField.MONTH_OF_YEAR);
-                    var dom = fieldValues.remove(ChronoField.DAY_OF_MONTH);
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    const moy = fieldValues.remove(ChronoField.MONTH_OF_YEAR);
+                    let dom = fieldValues.remove(ChronoField.DAY_OF_MONTH);
                     if (resolverStyle === ResolverStyle.LENIENT) {
-                        var months = moy - 1;
-                        var days = dom - 1;
+                        const months = moy - 1;
+                        const days = dom - 1;
                         return LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
                     } else if (resolverStyle === ResolverStyle.SMART){
                         ChronoField.DAY_OF_MONTH.checkValidValue(dom);
@@ -171,40 +171,40 @@ export class IsoChronology extends Enum{
 */
             }
             if (fieldValues.containsKey(ChronoField.DAY_OF_YEAR)) {
-                let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
                 if (resolverStyle === ResolverStyle.LENIENT) {
-                    let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_YEAR), 1);
+                    const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_YEAR), 1);
                     return LocalDate.ofYearDay(y, 1).plusDays(days);
                 }
-                let doy = ChronoField.DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_YEAR));
+                const doy = ChronoField.DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_YEAR));
                 return LocalDate.ofYearDay(y, doy);
             }
             if (fieldValues.containsKey(ChronoField.ALIGNED_WEEK_OF_YEAR)) {
                 if (fieldValues.containsKey(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
-                    let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
                     if (resolverStyle === ResolverStyle.LENIENT) {
-                        let weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
-                        let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+                        const weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    let aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
-                    let ad = ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
-                    let date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+                    const aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    const ad = ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+                    const date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
                     if (resolverStyle === ResolverStyle.STRICT && date.get(ChronoField.YEAR) !== y) {
                         throw new DateTimeException('Strict mode rejected date parsed to a different year');
                     }
                     return date;
                 }
                 if (fieldValues.containsKey(ChronoField.DAY_OF_WEEK)) {
-                    let y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
                     if (resolverStyle === ResolverStyle.LENIENT) {
-                        let weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
-                        let days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_WEEK), 1);
+                        const weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_WEEK), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    let aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
-                    let dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_WEEK));
-                    let date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(TemporalAdjusters.nextOrSame(DayOfWeek.of(dow)));
+                    const aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    const dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_WEEK));
+                    const date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(TemporalAdjusters.nextOrSame(DayOfWeek.of(dow)));
                     if (resolverStyle === ResolverStyle.STRICT && date.get(ChronoField.YEAR) !== y) {
                         throw new DateTimeException('Strict mode rejected date parsed to a different month');
                     }

@@ -94,7 +94,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} the current date-time using the system clock, not null
      */
     static now(clockOrZone) {
-        var clock;
+        let clock;
         if(clockOrZone instanceof ZoneId){
             clock = Clock.system(clockOrZone);
         } else {
@@ -221,7 +221,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     static of8(
             year, month, dayOfMonth,
             hour, minute, second, nanoOfSecond, zone) {
-        var dt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
+        const dt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
         return ZonedDateTime.ofLocal(dt, zone, null);
     }
 
@@ -345,10 +345,10 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the result exceeds the supported range
      */
     static _create(epochSecond, nanoOfSecond, zone) {
-        var rules = zone.rules();
-        var instant = Instant.ofEpochSecond(epochSecond, nanoOfSecond);  // TODO: rules should be queryable by epochSeconds
-        var offset = rules.offset(instant);
-        var ldt = LocalDateTime.ofEpochSecond(epochSecond, nanoOfSecond, offset);
+        const rules = zone.rules();
+        const instant = Instant.ofEpochSecond(epochSecond, nanoOfSecond);  // TODO: rules should be queryable by epochSeconds
+        const offset = rules.offset(instant);
+        const ldt = LocalDateTime.ofEpochSecond(epochSecond, nanoOfSecond, offset);
         return new ZonedDateTime(ldt, offset, zone);
     }
 
@@ -370,9 +370,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         requireNonNull(localDateTime, 'localDateTime');
         requireNonNull(offset, 'offset');
         requireNonNull(zone, 'zone');
-        var rules = zone.rules();
+        const rules = zone.rules();
         if (rules.isValidOffset(localDateTime, offset) === false) {
-            var trans = rules.transition(localDateTime);
+            const trans = rules.transition(localDateTime);
             if (trans != null && trans.isGap()) {
                 // error message says daylight savings for simplicity
                 // even though there are other kinds of gaps
@@ -441,12 +441,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         if (temporal instanceof ZonedDateTime) {
             return temporal;
         }
-        var zone = ZoneId.from(temporal);
+        const zone = ZoneId.from(temporal);
         if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
-            var zdt = ZonedDateTime._from(temporal, zone);
+            const zdt = ZonedDateTime._from(temporal, zone);
             if(zdt != null) return zdt;
         }
-        var ldt = LocalDateTime.from(temporal);
+        const ldt = LocalDateTime.from(temporal);
         return ZonedDateTime.of2(ldt, zone);
     }
 
@@ -460,8 +460,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     }
 
     static __from(temporal, zone){
-        var epochSecond = temporal.getLong(ChronoField.INSTANT_SECONDS);
-        var nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
+        const epochSecond = temporal.getLong(ChronoField.INSTANT_SECONDS);
+        const nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
         return ZonedDateTime._create(epochSecond, nanoOfSecond, zone);
     }
 
@@ -733,9 +733,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the earlier offset, not null
      */
     withEarlierOffsetAtOverlap() {
-        var trans = this._zone.rules().transition(this._dateTime);
+        const trans = this._zone.rules().transition(this._dateTime);
         if (trans != null && trans.isOverlap()) {
-            var earlierOffset = trans.offsetBefore();
+            const earlierOffset = trans.offsetBefore();
             if (earlierOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, earlierOffset, this._zone);
             }
@@ -760,9 +760,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the later offset, not null
      */
     withLaterOffsetAtOverlap() {
-        var trans = this._zone.rules().transition(this.toLocalDateTime());
+        const trans = this._zone.rules().transition(this.toLocalDateTime());
         if (trans != null) {
-            var laterOffset = trans.offsetAfter();
+            const laterOffset = trans.offsetAfter();
             if (laterOffset.equals(this._offset) === false) {
                 return new ZonedDateTime(this._dateTime, laterOffset, this._zone);
             }
@@ -1048,7 +1048,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         } else if (adjuster instanceof LocalDateTime) {
             return this._resolveLocal(adjuster);
         } else if (adjuster instanceof Instant) {
-            var instant = adjuster;
+            const instant = adjuster;
             return ZonedDateTime._create(instant.epochSecond(), instant.nano(), this._zone);
         } else if (adjuster instanceof ZoneOffset) {
             return this._resolveOffset(adjuster);
@@ -1113,7 +1113,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             switch (field) {
                 case ChronoField.INSTANT_SECONDS: return ZonedDateTime._create(newValue, this.nano(), this._zone);
                 case ChronoField.OFFSET_SECONDS: {
-                    var offset = ZoneOffset.ofTotalSeconds(field.checkValidIntValue(newValue));
+                    const offset = ZoneOffset.ofTotalSeconds(field.checkValidIntValue(newValue));
                     return this._resolveOffset(offset);
                 }
             }
@@ -1902,7 +1902,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws ArithmeticException if numeric overflow occurs
      */
     until(endExclusive, unit) {
-        var end = ZonedDateTime.from(endExclusive);
+        let end = ZonedDateTime.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             end = end.withZoneSameInstant(this._zone);
             if (unit.isDateBased()) {
@@ -1996,7 +1996,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        var r = 17;
+        let r = 17;
         r = 31 * r + this._dateTime.hashCode();
         r = 31 * r + this._offset.hashCode();
         r = 31 * r + this._zone.hashCode();
@@ -2015,7 +2015,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {string} a string representation of this date-time, not null
      */
     toString() {
-        var str = this._dateTime.toString() + this._offset.toString();
+        let str = this._dateTime.toString() + this._offset.toString();
         if (this._offset !== this._zone) {
             str += '[' + this._zone.toString() + ']';
         }

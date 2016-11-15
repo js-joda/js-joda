@@ -19,7 +19,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfInstant(instant){
-        var offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
+        const offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
@@ -29,7 +29,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfEpochMilli(epochMilli){
-        var offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
+        const offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
@@ -47,10 +47,10 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfLocalDateTime(localDateTime){
-        var epochMilli = localDateTime.toEpochSecond(ZoneOffset.UTC) * 1000;
-        var offsetInMinutesBeforePossibleTransition = new Date(epochMilli).getTimezoneOffset();
-        var epochMilliSystemZone = epochMilli + offsetInMinutesBeforePossibleTransition * 60000;
-        var offsetInMinutesAfterPossibleTransition = new Date(epochMilliSystemZone).getTimezoneOffset();
+        const epochMilli = localDateTime.toEpochSecond(ZoneOffset.UTC) * 1000;
+        const offsetInMinutesBeforePossibleTransition = new Date(epochMilli).getTimezoneOffset();
+        const epochMilliSystemZone = epochMilli + offsetInMinutesBeforePossibleTransition * 60000;
+        const offsetInMinutesAfterPossibleTransition = new Date(epochMilliSystemZone).getTimezoneOffset();
         return ZoneOffset.ofTotalMinutes(offsetInMinutesAfterPossibleTransition * -1);
     }
 

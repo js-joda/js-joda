@@ -67,7 +67,7 @@ export class DateTimePrintContext{
      * @throws DateTimeException if the type is not available and the section is not optional
      */
     getValueQuery(query) {
-        var result = this._temporal.query(query);
+        const result = this._temporal.query(query);
         if (result == null && this._optional === 0) {
             throw new DateTimeException('Unable to extract value: ' + this._temporal);
         }

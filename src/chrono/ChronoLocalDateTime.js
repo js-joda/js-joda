@@ -119,8 +119,8 @@ export class ChronoLocalDateTime extends Temporal {
      */
     toEpochSecond(offset) {
         requireNonNull(offset, 'offset');
-        var epochDay = this.toLocalDate().toEpochDay();
-        var secs = epochDay * 86400 + this.toLocalTime().toSecondOfDay();
+        const epochDay = this.toLocalDate().toEpochDay();
+        let secs = epochDay * 86400 + this.toLocalTime().toSecondOfDay();
         secs -= offset.totalSeconds();
         return MathUtil.safeToInt(secs);
     }
