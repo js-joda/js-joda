@@ -4,7 +4,9 @@
  */
 
 export { Clock } from './Clock';
-export { DateTimeException, DateTimeParseException } from './errors';
+export {
+    DateTimeException, DateTimeParseException, IllegalArgumentException, IllegalStateException, NullPointerException
+} from './errors';
 export { DayOfWeek } from './DayOfWeek';
 export { Duration } from './Duration';
 export { Instant } from './Instant';
