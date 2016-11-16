@@ -3,7 +3,11 @@ Immutable date and time library for javascript
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
 [![Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
+[![Tested node version](https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat)]()
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
 ## Introduction
 
@@ -15,10 +19,9 @@ Immutable date and time library for javascript
  
 + js-joda supports **ECMAScript 5** browsers down to ie9.          
 
-+ js-joda is a **port of the threeten** backport **aka Joda-Time**, the predecessor project of threetenbp, that is the base for JSR-310 implementation of the Java SE 8 java.time package.
++ js-joda is a **port of the threeten** backport, that is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
 
-+ js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project.
-We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
++ js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
      
 
 ## Why yet another javascript date and time library
@@ -94,8 +97,9 @@ Then add it as a script tag to your page
 
 ## Documentation
 
-+ [Cheat Sheet](cheat-sheet.html) Quick start guide
-+ [API](https://doc.esdoc.org/github.com/js-joda/js-joda/) ESDoc generated API documentation hosted by the ESDoc Hosting Service
++ [Cheat Sheet](CheatSheet.md) Quick start guide
++ [API](//js-joda.github.io/js-joda/esdoc/) ESDoc generated API documentation
++ [js-joda Homepage](http://js-joda.github.io/js-joda/) Project homepage
 
 ## Roadmap
 
@@ -105,10 +109,30 @@ We reached milestone 1 with version v1.0.0 supporting the domain models LocalDat
 and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
 only fixed offsets like UTC or UTC+02:00 and the system default time zone.
  
+### Milestone 2
+
+Add iana timezone database support to js-joda. 
+
+Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
+can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. 
+ 
+### Milestone 3
+
+Add locale support.
+
+Extend pattern parser/ formatter for text with locale support.
+  
 ### Future Milestones
 
-Any further timezone converting and localization is not part of the first milestone and will be saved for later.
-This might also be an extra package to reduce library size if Timezone functionality is not needed.
+* Reduce library size be removing redundant code, especially by refactoring code for formatting/ parsing dates.
+* Increase test coverage (ongoing task)
+* Cleanup documentation (ongoing task)
+* Improve static factory API design and make it more javascript style. 
+One idea is to remove static factory methods like parse, from, of and unify it to one factory methods per domain. 
+E.g. localDate(isoDate: string), localDate(year: number, month: number, dayOfMonth: number)
+* merge methods get and getLong, differ between int and long values make no sense with javascript 
+* simplify temporal adjusters (amount, etc) by using functions instead of classes or objects
+* ...
 
 ## Contributing
 
