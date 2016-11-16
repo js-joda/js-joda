@@ -27,6 +27,9 @@
       "pithu",
       "phueper"
     ],
+    "peerDependencies": {
+         "js-joda": "^1.1.14"
+     },
     "devDependencies": {
      "babel-cli": "^6.18.0",
      "babel-core": "^6.18.2",
@@ -40,15 +43,12 @@
      "eslint-config-standard": "^6.2.1",
      "eslint-plugin-promise": "^3.3.0",
      "eslint-plugin-standard": "^2.0.1",
-     "js-joda": "^1.1.13",
+     "js-joda": "^1.1.14",
      "markdown-toc": "^0.13.0",
      "mocha": "^3.1.2",
      "webpack": "^1.13.3"
    },
    "license": "BSD-3-Clause",
-   "peerDependencies": {
-        "js-joda": "^1.1.13"
-    },
     "bugs": {
     "url": "https://github.com/js-joda/js-joda-timezone/issues"
     },
