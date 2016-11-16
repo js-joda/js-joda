@@ -1,8 +1,10 @@
 Changelog
 =========
 
-### 1.1.14 (next)
+### 1.1.15 (next)
 
+
+### 1.1.14
 
 #### Add more classes to public export
 
