@@ -327,15 +327,15 @@ export class Interval {
         if (this.isConnected(other) === false) {
             throw new DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
         }
-        let cmpStart = this._start.compareTo(other.start());
-        let cmpEnd = this._end.compareTo(other.end());
+        const cmpStart = this._start.compareTo(other.start());
+        const cmpEnd = this._end.compareTo(other.end());
         if (cmpStart >= 0 && cmpEnd <= 0) {
             return this;
         } else if (cmpStart <= 0 && cmpEnd >= 0) {
             return other;
         } else {
-            let newStart = (cmpStart >= 0 ? this._start : other.start());
-            let newEnd = (cmpEnd <= 0 ? this._end : other.end());
+            const newStart = (cmpStart >= 0 ? this._start : other.start());
+            const newEnd = (cmpEnd <= 0 ? this._end : other.end());
             return Interval.of(newStart, newEnd);
         }
     }
@@ -356,15 +356,15 @@ export class Interval {
         if (this.isConnected(other) === false) {
             throw new DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
         }
-        let cmpStart = this._start.compareTo(other.start());
-        let cmpEnd = this._end.compareTo(other.end());
+        const cmpStart = this._start.compareTo(other.start());
+        const cmpEnd = this._end.compareTo(other.end());
         if (cmpStart >= 0 && cmpEnd <= 0) {
             return other;
         } else if (cmpStart <= 0 && cmpEnd >= 0) {
             return this;
         } else {
-            let newStart = (cmpStart >= 0 ? other.start() : this._start);
-            let newEnd = (cmpEnd <= 0 ? other.end() : this._end);
+            const newStart = (cmpStart >= 0 ? other.start() : this._start);
+            const newEnd = (cmpEnd <= 0 ? other.end() : this._end);
             return Interval.of(newStart, newEnd);
         }
     }
@@ -381,10 +381,10 @@ export class Interval {
     span(other) {
         requireNonNull(other, 'other');
         requireInstance(other, Interval, 'other');
-        let cmpStart = this._start.compareTo(other.start());
-        let cmpEnd = this._end.compareTo(other.end());
-        let newStart = (cmpStart >= 0 ? other.start() : this._start);
-        let newEnd = (cmpEnd <= 0 ? other.end() : this._end);
+        const cmpStart = this._start.compareTo(other.start());
+        const cmpEnd = this._end.compareTo(other.end());
+        const newStart = (cmpStart >= 0 ? other.start() : this._start);
+        const newEnd = (cmpEnd <= 0 ? other.end() : this._end);
         return Interval.of(newStart, newEnd);
     }
 

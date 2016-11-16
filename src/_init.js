@@ -5,7 +5,7 @@
 
 import {_init as IntervalInit} from './Interval';
 
-var isInit = false;
+let isInit = false;
 
 function init() {
 
