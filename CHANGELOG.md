@@ -4,6 +4,19 @@ Changelog
 ### 1.1.14 (next)
 
 
+#### Add more classes to public export
+
+ * add all error classes
+ * add zone/ZoneRules
+ 
+#### code cleanup
+
+ * fix lint issues
+ * fix ESDoc tags
+ * Replace var by let/ const declaration
+
+#### dependency updates
+
 ### 1.1.13
 
 #### Add ZoneRulesProvider stub
