@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -174,7 +177,7 @@ for advanced globalization use cases.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span><span data-ice="signature">(<d>: <span>*</span>)</d></span>
+           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span><span data-ice="signature">(D: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -258,7 +261,7 @@ for advanced globalization use cases.</p>
       <div>
         
         
-        <div data-ice="description"><p>The javascript Clock implementation differs from the openjdk.</p>
+        <div data-ice="description"><p>A clock providing access to the current instant, date and time using a time-zone.</p>
 </div>
       </div>
     </td>
@@ -310,8 +313,7 @@ for advanced globalization use cases.</p>
       <div>
         
         
-        <div data-ice="description"><p></p><h3>Static properties of Class <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></h3>
-<p></p>
+        <div data-ice="description"><h3 id="static-properties-of-class-span-a-href-class-src-format-datetimeformatter-js-datetimeformatter-html-datetimeformatter-a-span-">Static properties of Class <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></h3>
 </div>
       </div>
     </td>
@@ -412,8 +414,7 @@ for advanced globalization use cases.</p>
       <div>
         
         
-        <div data-ice="description"><p></p><h3>Static properties of Class <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></h3>
-<p></p>
+        <div data-ice="description"><h3 id="static-properties-of-class-span-a-href-class-src-dayofweek-js-dayofweek-html-dayofweek-a-span-">Static properties of Class <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></h3>
 </div>
       </div>
     </td>
@@ -647,7 +648,7 @@ such as 2007-12-03.</p>
         
         
         <div data-ice="description"><p>A date-time without a time-zone in the ISO-8601 calendar system,
-such as {@code 2007-12-03T10:15:30}.</p>
+such as <code>2007-12-03T10:15:30</code>.</p>
 </div>
       </div>
     </td>
@@ -674,7 +675,7 @@ such as {@code 2007-12-03T10:15:30}.</p>
         
         
         <div data-ice="description"><p>A time without time-zone in the ISO-8601 calendar system,
-such as {@code 10:15:30}.</p>
+such as <code>10:15:30</code>.</p>
 </div>
       </div>
     </td>
@@ -752,7 +753,7 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p>A month-day in the ISO-8601 calendar system, such as {@code --12-03}.</p>
+        <div data-ice="description"><p>A month-day in the ISO-8601 calendar system, such as <code>--12-03</code>.</p>
 </div>
       </div>
     </td>
@@ -1005,7 +1006,7 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p>Common implementations of {@code TemporalAdjuster}.</p>
+        <div data-ice="description"><p>Common implementations of <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.</p>
 </div>
       </div>
     </td>
@@ -1031,7 +1032,7 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p>Common implementations of {@code TemporalQuery}.</p>
+        <div data-ice="description"><p>Common implementations of <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.</p>
 </div>
       </div>
     </td>
@@ -1109,7 +1110,7 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p>A year in the ISO-8601 calendar system, such as {@code 2007}.</p>
+        <div data-ice="description"><p>A year in the ISO-8601 calendar system, such as <code>2007</code>.</p>
 </div>
       </div>
     </td>
@@ -1161,7 +1162,7 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p>A year-month in the ISO-8601 calendar system, such as {@code 2007-12}.</p>
+        <div data-ice="description"><p>A year-month in the ISO-8601 calendar system, such as <code>2007-12</code>.</p>
 </div>
       </div>
     </td>
@@ -1237,8 +1238,33 @@ such as {@code 10:15:30}.</p>
       <div>
         
         
-        <div data-ice="description"><p></p><h3>Static properties of Class <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></h3>
-<p></p>
+        <div data-ice="description"><h3 id="static-properties-of-class-span-a-href-class-src-localdate-js-localdate-html-localdate-a-span-">Static properties of Class <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></h3>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>A transition between two offsets caused by a discontinuity in the local time-line.</p>
 </div>
       </div>
     </td>
@@ -1309,6 +1335,31 @@ such as {@code 10:15:30}.</p>
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
@@ -1316,7 +1367,7 @@ such as {@code 10:15:30}.</p>
         
         
         <div data-ice="description"><p>A date-time with a time-zone in the ISO-8601 calendar system,
-such as {@code 2007-12-03T10:15:30+01:00 Europe/Paris}.</p>
+such as <code>2007-12-03T10:15:30+01:00 Europe/Paris</code>.</p>
 </div>
       </div>
     </td>
@@ -1675,6 +1726,32 @@ as the queryFrom() function.</p>
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span><span data-ice="signature">(fn: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span>): <span>this</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>use</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -1915,7 +1992,7 @@ as the queryFrom() function.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/temporal/TemporalQueriesFactory.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -124,14 +127,14 @@ import {ZoneOffset} from &apos;../ZoneOffset&apos;;
 export function _init() {
     //-----------------------------------------------------------------------
     /**
-     * A strict query for the {@code ZoneId}.
+     * A strict query for the {@link ZoneId}.
      */
     TemporalQueries.ZONE_ID = createTemporalQuery(&apos;ZONE_ID&apos;, (temporal) =&gt; {
         return temporal.query(TemporalQueries.ZONE_ID);
     });
 
     /**
-     * A query for the {@code Chronology}.
+     * A query for the {@link Chronology}.
      */
     TemporalQueries.CHRONO = createTemporalQuery(&apos;CHRONO&apos;, (temporal) =&gt; {
         return temporal.query(TemporalQueries.CHRONO);
@@ -146,7 +149,7 @@ export function _init() {
 
     //-----------------------------------------------------------------------
     /**
-     * A query for {@code ZoneOffset} returning null if not found.
+     * A query for {@link ZoneOffset} returning null if not found.
      */
     TemporalQueries.OFFSET = createTemporalQuery(&apos;OFFSET&apos;, (temporal) =&gt; {
         if (temporal.isSupported(ChronoField.OFFSET_SECONDS)) {
@@ -156,15 +159,15 @@ export function _init() {
     });
 
     /**
-     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.
+     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.
      */
     TemporalQueries.ZONE = createTemporalQuery(&apos;ZONE&apos;, (temporal) =&gt; {
-        var zone = temporal.query(TemporalQueries.ZONE_ID);
+        const zone = temporal.query(TemporalQueries.ZONE_ID);
         return (zone != null ? zone : temporal.query(TemporalQueries.OFFSET));
     });
 
     /**
-     * A query for {@code LocalDate} returning null if not found.
+     * A query for {@link LocalDate} returning null if not found.
      */
     TemporalQueries.LOCAL_DATE = createTemporalQuery(&apos;LOCAL_DATE&apos;, (temporal) =&gt; {
         if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
@@ -174,7 +177,7 @@ export function _init() {
     });
 
     /**
-     * A query for {@code LocalTime} returning null if not found.
+     * A query for {@link LocalTime} returning null if not found.
      */
     TemporalQueries.LOCAL_TIME = createTemporalQuery(&apos;LOCAL_TIME&apos;, (temporal) =&gt; {
         if (temporal.isSupported(ChronoField.NANO_OF_DAY)) {
@@ -182,12 +185,13 @@ export function _init() {
         }
         return null;
     });
-}</code></pre>
+}
+</code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

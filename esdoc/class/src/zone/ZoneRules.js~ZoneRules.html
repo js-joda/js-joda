@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ZoneRules} from &apos;<span><a href="file/src/zone/ZoneRules.js.html#lineNumber11">js-joda/src/zone/ZoneRules.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ZoneRules} from &apos;<span><a href="file/src/zone/ZoneRules.js.html#lineNumber12">js-joda/src/zone/ZoneRules.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/zone/ZoneRules.js.html#lineNumber11">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/zone/ZoneRules.js.html#lineNumber12">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -165,7 +168,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZoneRules} that always uses the same offset.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> that always uses the same offset.</p>
 </div>
       </div>
     </td>
@@ -184,6 +187,58 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-daylightSavings">daylightSavings</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the amount of daylight savings in use for the specified instant in this zone.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-isDaylightSavings">isDaylightSavings</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the specified instant is in daylight savings.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -227,6 +282,32 @@
         
         
         <div data-ice="description"><p>Checks if the offset date-time is valid for these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-nextTransition">nextTransition</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the next transition after the specified instant.</p>
 </div>
       </div>
     </td>
@@ -338,6 +419,162 @@
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-previousTransition">previousTransition</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the previous transition before the specified instant.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-standardOffset">standardOffset</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the standard offset for the specified instant in this zone.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transition">transition</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset transition applicable at the specified local date-time in these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitionRules">transitionRules</a></span></span><span data-ice="signature">(): <span><span>ZoneOffsetTransitionRule</span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the list of transition rules for years beyond those defined in the transition list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitions">transitions</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the complete list of fully defined transitions.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-validOffsets">validOffsets</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset applicable at the specified local date-time in these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -358,16 +595,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber22">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZoneRules} that always uses the same offset.</p>
-<p></p><p>
-The returned rules always have the same offset.</p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> that always uses the same offset.</p>
+<p>The returned rules always have the same offset.</p>
 </div>
 
   
@@ -424,6 +660,152 @@ The returned rules always have the same offset.</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-daylightSavings">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">daylightSavings</span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber235">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the amount of daylight savings in use for the specified instant in this zone.</p>
+<p>This provides access to historic information on how the amount of daylight
+savings has changed over time.
+This is the difference between the standard offset and the actual offset.
+Typically the amount is zero during winter and one hour during summer.
+Time-zones are second-based, so the nanosecond part of the duration will be zero.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the instant to find the daylight savings for, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the difference between the standard and actual offset, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isDaylightSavings">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isDaylightSavings</span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber254">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if the specified instant is in daylight savings.</p>
+<p>This checks if the standard and actual offsets are the same at the specified instant.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the instant to find the offset information for, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the standard offset, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isFixedOffset">
     <span class="access" data-ice="access">public</span>
     
@@ -434,7 +816,7 @@ The returned rules always have the same offset.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -486,7 +868,7 @@ The returned rules always have the same offset.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber124">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber273">source</a></span></span>
     </span>
   </h3>
 
@@ -494,8 +876,7 @@ The returned rules always have the same offset.</p>
   
   
   <div data-ice="description"><p>Checks if the offset date-time is valid for these rules.</p>
-<p></p><p>
-To be valid, the local date-time must not be in a gap and the offset
+<p>To be valid, the local date-time must not be in a gap and the offset
 must match the valid offsets.</p>
 </div>
 
@@ -556,6 +937,79 @@ must match the valid offsets.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-nextTransition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">nextTransition</span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber290">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the next transition after the specified instant.</p>
+<p>This returns details of the next transition after the specified instant.
+For example, if the instant represents a point where &quot;Summer&quot; daylight savings time
+applies, then the method will return the transition to the next &quot;Winter&quot; time.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the instant to get the next transition after, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the next transition after the specified instant, null if this is after the last transition</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-offset">
     <span class="access" data-ice="access">public</span>
     
@@ -566,7 +1020,7 @@ must match the valid offsets.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -632,7 +1086,7 @@ must match the valid offsets.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber76">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
@@ -703,7 +1157,7 @@ must match the valid offsets.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -711,8 +1165,7 @@ must match the valid offsets.</p>
   
   
   <div data-ice="description"><p>Gets the offset applicable at the specified instant in these rules.</p>
-<p></p><p>
-The mapping from an instant to an offset is simple, there is only
+<p>The mapping from an instant to an offset is simple, there is only
 one valid offset for each instant.
 This method returns that offset.</p>
 </div>
@@ -777,7 +1230,7 @@ This method returns that offset.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber109">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber113">source</a></span></span>
     </span>
   </h3>
 
@@ -785,27 +1238,25 @@ This method returns that offset.</p>
   
   
   <div data-ice="description"><p>Gets a suitable offset for the specified local date-time in these rules.</p>
-<p></p><p>
-The mapping from a local date-time to an offset is not straightforward.
+<p>The mapping from a local date-time to an offset is not straightforward.
 There are three cases:</p>
-<p></p><p><ul></ul></p>
-<p><li>Normal, with one valid offset. For the vast majority of the year, the normal
- case applies, where there is a single valid offset for the local date-time.</li></p>
-<p><li>Gap, with zero valid offsets. This is when clocks jump forward typically
- due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
- In a gap there are local date-time values with no valid offset.</li></p>
-<p><li>Overlap, with two valid offsets. This is when clocks are set back typically
- due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
- In an overlap there are local date-time values with two valid offsets.</li>
-</p><p>
-Thus, for any given local date-time there can be zero, one or two valid offsets.
+<ul>
+<li>Normal, with one valid offset. For the vast majority of the year, the normal
+case applies, where there is a single valid offset for the local date-time.</li>
+<li>Gap, with zero valid offsets. This is when clocks jump forward typically
+due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+In a gap there are local date-time values with no valid offset.</li>
+<li>Overlap, with two valid offsets. This is when clocks are set back typically
+due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+In an overlap there are local date-time values with two valid offsets.</li>
+</ul>
+<p>Thus, for any given local date-time there can be zero, one or two valid offsets.
 This method returns the single offset in the Normal case, and in the Gap or Overlap
 case it returns the offset before the transition.</p>
-<p></p><p>
-Since, in the case of Gap and Overlap, the offset returned is a &quot;best&quot; value, rather
+<p>Since, in the case of Gap and Overlap, the offset returned is a &quot;best&quot; value, rather
 than the &quot;correct&quot; value, it should be treated with care. Applications that care
 about the correct offset should use a combination of this method,
-{@link #getValidOffsets(LocalDateTime)} and {@link #getTransition(LocalDateTime)}.</p>
+<span>getValidOffsets</span> and <span>getTransition</span>.</p>
 </div>
 
   
@@ -857,11 +1308,478 @@ about the correct offset should use a combination of this method,
   
   
 </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-previousTransition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">previousTransition</span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber306">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the previous transition before the specified instant.</p>
+<p>This returns details of the previous transition after the specified instant.
+For example, if the instant represents a point where &quot;summer&quot; daylight saving time
+applies, then the method will return the transition from the previous &quot;winter&quot; time.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the instant to get the previous transition after, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the previous transition after the specified instant, null if this is before the first transition</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-standardOffset">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">standardOffset</span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber217">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the standard offset for the specified instant in this zone.</p>
+<p>This provides access to historic information on how the standard offset
+has changed over time.
+The standard offset is the offset before any daylight saving time is applied.
+This is typically the offset applicable during winter.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the instant to find the offset information for, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the standard offset, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transition</span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber199">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the offset transition applicable at the specified local date-time in these rules.</p>
+<p>The mapping from a local date-time to an offset is not straightforward.
+There are three cases:</p>
+<ul>
+<li>Normal, with one valid offset. For the vast majority of the year, the normal
+case applies, where there is a single valid offset for the local date-time.</li>
+<li>Gap, with zero valid offsets. This is when clocks jump forward typically
+due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+In a gap there are local date-time values with no valid offset.</li>
+<li>Overlap, with two valid offsets. This is when clocks are set back typically
+due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+In an overlap there are local date-time values with two valid offsets.</li>
+</ul>
+<p>A transition is used to model the cases of a Gap or Overlap.
+The Normal case will return null.</p>
+<p>There are various ways to handle the conversion from a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.
+One technique, using this method, would be:</p>
+<p><pre>
+ ZoneOffsetTransition trans = rules.getTransition(localDT);
+ if (trans != null) {
+   // Gap or Overlap: determine what to do from transition
+ } else {
+   // Normal case: only one valid offset
+   zoneOffset = rule.getOffset(localDT);
+ }
+</pre></p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">localDateTime</td>
+      <td data-ice="type"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the local date-time to query for offset transition, not null, but null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the offset transition, null if the local date-time is not in transition</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transitionRules">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transitionRules</span><span data-ice="signature">(): <span><span>ZoneOffsetTransitionRule</span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber347">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the list of transition rules for years beyond those defined in the transition list.</p>
+<p>The complete set of transitions for this rules instance is defined by this method
+and <span>getTransitions</span>. This method returns instances of <span>ZoneOffsetTransitionRule</span>
+that define an algorithm for when transitions will occur.</p>
+<p>For any given <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span>, this list contains the transition rules for years
+beyond those years that have been fully defined. These rules typically refer to future
+daylight saving time rule changes.</p>
+<p>If the zone defines daylight savings into the future, then the list will normally
+be of size two and hold information about entering and exiting daylight savings.
+If the zone does not have daylight savings, or information about future changes
+is uncertain, then the list will be empty.</p>
+<p>The list will be empty for fixed offset rules and for any time-zone where there is no
+daylight saving time. The list will also be empty if the transition rules are unknown.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><span>ZoneOffsetTransitionRule</span><span>[]</span></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>an immutable list of transition rules, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transitions">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transitions</span><span data-ice="signature">(): <span><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber322">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the complete list of fully defined transitions.</p>
+<p>The complete set of transitions for this rules instance is defined by this method
+and <span>getTransitionRules</span>. This method returns those transitions that have
+been fully defined. These are typically historical, but may be in the future.</p>
+<p>The list will be empty for fixed offset rules and for any time-zone where there has
+only ever been a single offset. The list will also be empty if the transition rules are unknown.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span><span>[]</span></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>an immutable list of fully defined transitions, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-validOffsets">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">validOffsets</span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/ZoneRules.js.html#lineNumber160">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the offset applicable at the specified local date-time in these rules.</p>
+<p>The mapping from a local date-time to an offset is not straightforward.
+There are three cases:</p>
+<ul>
+<li>Normal, with one valid offset. For the vast majority of the year, the normal
+case applies, where there is a single valid offset for the local date-time.</li>
+<li>Gap, with zero valid offsets. This is when clocks jump forward typically
+due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+In a gap there are local date-time values with no valid offset.</li>
+<li>Overlap, with two valid offsets. This is when clocks are set back typically
+due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+In an overlap there are local date-time values with two valid offsets.</li>
+</ul>
+<p>Thus, for any given local date-time there can be zero, one or two valid offsets.
+This method returns that list of valid offsets, which is a list of size 0, 1 or 2.
+In the case where there are two offsets, the earlier offset is returned at index 0
+and the later offset at index 1.</p>
+<p>There are various ways to handle the conversion from a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.
+One technique, using this method, would be:</p>
+<p><pre>
+ List&lt;ZoneOffset&gt; validOffsets = rules.getOffset(localDT);
+ if (validOffsets.size() == 1) {
+   // Normal case: only one valid offset
+   zoneOffset = validOffsets.get(0);
+ } else {
+   // Gap or Overlap: determine what to do from transition (which will be non-null)
+   ZoneOffsetTransition trans = rules.getTransition(localDT);
+ }
+</pre>
+
+</p>
+<p>In theory, it is possible for there to be more than two valid offsets.
+This would happen if clocks to be put back more than once in quick succession.
+This has never happened in the history of time-zones and thus has no special handling.
+However, if it were to happen, then the list would return more than 2 entries.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">localDateTime</td>
+      <td data-ice="type"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the local date-time to query for valid offsets, not null
+ may be ignored if the rules have a single offset for all instants</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the list of valid offsets, may be immutable, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 </div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

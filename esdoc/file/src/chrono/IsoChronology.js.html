@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/chrono/IsoChronology.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -117,12 +120,14 @@ import {requireNonNull} from &apos;../assert&apos;;
 import {DateTimeException} from &apos;../errors&apos;;
 import {MathUtil} from &apos;../MathUtil&apos;;
 
+import {DayOfWeek} from &apos;../DayOfWeek&apos;;
 import {LocalDate} from &apos;../LocalDate&apos;;
 import {Month} from &apos;../Month&apos;;
 import {Year} from &apos;../Year&apos;;
 
 import {ChronoField} from &apos;../temporal/ChronoField&apos;;
 import {ResolverStyle} from &apos;../format/ResolverStyle&apos;;
+import {TemporalAdjusters} from &apos;../temporal/TemporalAdjusters&apos;;
 
 export class IsoChronology extends Enum{
     /**
@@ -173,16 +178,14 @@ export class IsoChronology extends Enum{
         }
 
         // normalize fields
-/*
-        var prolepticMonth = fieldValues.remove(PROLEPTIC_MONTH);
+        let prolepticMonth = fieldValues.remove(ChronoField.PROLEPTIC_MONTH);
         if (prolepticMonth != null) {
-            if (resolverStyle != ResolverStyle.LENIENT) {
-                PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
+            if (resolverStyle !== ResolverStyle.LENIENT) {
+                ChronoField.PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
             }
-            updateResolveMap(fieldValues, ChronoField.MONTH_OF_YEAR, Jdk8Methods.floorMod(prolepticMonth, 12) + 1);
-            updateResolveMap(fieldValues, ChronoField.YEAR, Jdk8Methods.floorDiv(prolepticMonth, 12));
+            this._updateResolveMap(fieldValues, ChronoField.MONTH_OF_YEAR, MathUtil.floorMod(prolepticMonth, 12) + 1);
+            this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.floorDiv(prolepticMonth, 12));
         }
-*/
 
         // eras
         let yoeLong = fieldValues.remove(ChronoField.YEAR_OF_ERA);
@@ -220,12 +223,12 @@ export class IsoChronology extends Enum{
         if (fieldValues.containsKey(ChronoField.YEAR)) {
             if (fieldValues.containsKey(ChronoField.MONTH_OF_YEAR)) {
                 if (fieldValues.containsKey(ChronoField.DAY_OF_MONTH)) {
-                    var y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    var moy = fieldValues.remove(ChronoField.MONTH_OF_YEAR);
-                    var dom = fieldValues.remove(ChronoField.DAY_OF_MONTH);
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    const moy = fieldValues.remove(ChronoField.MONTH_OF_YEAR);
+                    let dom = fieldValues.remove(ChronoField.DAY_OF_MONTH);
                     if (resolverStyle === ResolverStyle.LENIENT) {
-                        var months = moy - 1;
-                        var days = dom - 1;
+                        const months = moy - 1;
+                        const days = dom - 1;
                         return LocalDate.of(y, 1, 1).plusMonths(months).plusDays(days);
                     } else if (resolverStyle === ResolverStyle.SMART){
                         ChronoField.DAY_OF_MONTH.checkValidValue(dom);
@@ -278,51 +281,47 @@ export class IsoChronology extends Enum{
                 }
 */
             }
-/*
-            if (fieldValues.containsKey(DAY_OF_YEAR)) {
-                int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                if (resolverStyle == ResolverStyle.LENIENT) {
-                    long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_YEAR), 1);
+            if (fieldValues.containsKey(ChronoField.DAY_OF_YEAR)) {
+                const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                if (resolverStyle === ResolverStyle.LENIENT) {
+                    const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_YEAR), 1);
                     return LocalDate.ofYearDay(y, 1).plusDays(days);
                 }
-                int doy = DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(DAY_OF_YEAR));
+                const doy = ChronoField.DAY_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_YEAR));
                 return LocalDate.ofYearDay(y, doy);
             }
-*/
-/*
-            if (fieldValues.containsKey(ALIGNED_WEEK_OF_YEAR)) {
-                if (fieldValues.containsKey(ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
-                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    if (resolverStyle == ResolverStyle.LENIENT) {
-                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
+            if (fieldValues.containsKey(ChronoField.ALIGNED_WEEK_OF_YEAR)) {
+                if (fieldValues.containsKey(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR)) {
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    if (resolverStyle === ResolverStyle.LENIENT) {
+                        const weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-                    int ad = ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_DAY_OF_WEEK_IN_YEAR));
-                    LocalDate date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
-                    if (resolverStyle == ResolverStyle.STRICT &amp;&amp; date.get(ChronoField.YEAR) != y) {
-                        throw new DateTimeException(&quot;Strict mode rejected date parsed to a different year&quot;);
+                    const aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    const ad = ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR));
+                    const date = LocalDate.of(y, 1, 1).plusDays((aw - 1) * 7 + (ad - 1));
+                    if (resolverStyle === ResolverStyle.STRICT &amp;&amp; date.get(ChronoField.YEAR) !== y) {
+                        throw new DateTimeException(&apos;Strict mode rejected date parsed to a different year&apos;);
                     }
                     return date;
                 }
-                if (fieldValues.containsKey(DAY_OF_WEEK)) {
-                    int y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
-                    if (resolverStyle == ResolverStyle.LENIENT) {
-                        long weeks = Jdk8Methods.safeSubtract(fieldValues.remove(ALIGNED_WEEK_OF_YEAR), 1);
-                        long days = Jdk8Methods.safeSubtract(fieldValues.remove(DAY_OF_WEEK), 1);
+                if (fieldValues.containsKey(ChronoField.DAY_OF_WEEK)) {
+                    const y = ChronoField.YEAR.checkValidIntValue(fieldValues.remove(ChronoField.YEAR));
+                    if (resolverStyle === ResolverStyle.LENIENT) {
+                        const weeks = MathUtil.safeSubtract(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR), 1);
+                        const days = MathUtil.safeSubtract(fieldValues.remove(ChronoField.DAY_OF_WEEK), 1);
                         return LocalDate.of(y, 1, 1).plusWeeks(weeks).plusDays(days);
                     }
-                    int aw = ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ALIGNED_WEEK_OF_YEAR));
-                    int dow = DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(DAY_OF_WEEK));
-                    LocalDate date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(nextOrSame(DayOfWeek.of(dow)));
-                    if (resolverStyle == ResolverStyle.STRICT &amp;&amp; date.get(ChronoField.YEAR) != y) {
-                        throw new DateTimeException(&quot;Strict mode rejected date parsed to a different month&quot;);
+                    const aw = ChronoField.ALIGNED_WEEK_OF_YEAR.checkValidIntValue(fieldValues.remove(ChronoField.ALIGNED_WEEK_OF_YEAR));
+                    const dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.remove(ChronoField.DAY_OF_WEEK));
+                    const date = LocalDate.of(y, 1, 1).plusWeeks(aw - 1).with(TemporalAdjusters.nextOrSame(DayOfWeek.of(dow)));
+                    if (resolverStyle === ResolverStyle.STRICT &amp;&amp; date.get(ChronoField.YEAR) !== y) {
+                        throw new DateTimeException(&apos;Strict mode rejected date parsed to a different month&apos;);
                     }
                     return date;
                 }
             }
-*/
         }
         return null;
     }
@@ -337,7 +336,7 @@ export function _init() {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

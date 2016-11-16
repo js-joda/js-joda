@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MonthDay} from &apos;<span><a href="file/src/MonthDay.js.html#lineNumber53">js-joda/src/MonthDay.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {MonthDay} from &apos;<span><a href="file/src/MonthDay.js.html#lineNumber54">js-joda/src/MonthDay.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/MonthDay.js.html#lineNumber53">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/MonthDay.js.html#lineNumber54">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -132,32 +135,27 @@
 
   
   
-  <div class="description" data-ice="description"><p>A month-day in the ISO-8601 calendar system, such as {@code --12-03}.</p>
-<p></p><p>
-{@code MonthDay} is an immutable date-time object that represents the combination
+  <div class="description" data-ice="description"><p>A month-day in the ISO-8601 calendar system, such as <code>--12-03</code>.</p>
+<p><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> is an immutable date-time object that represents the combination
 of a year and month. Any field that can be derived from a month and day, such as
 quarter-of-year, can be obtained.</p>
-<p></p><p>
-This class does not store or represent a year, time or time-zone.
-For example, the value &quot;December 3rd&quot; can be stored in a {@code MonthDay}.</p>
-<p></p><p>
-Since a {@code MonthDay} does not possess a year, the leap day of
+<p>This class does not store or represent a year, time or time-zone.
+For example, the value &quot;December 3rd&quot; can be stored in a <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
+<p>Since a <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> does not possess a year, the leap day of
 February 29th is considered valid.</p>
-<p></p><p>
-This class implements <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> rather than <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>.
+<p>This class implements <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> rather than <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>.
 This is because it is not possible to define whether February 29th is valid or not
 without external information, preventing the implementation of plus/minus.
-Related to this, {@code MonthDay} only provides access to query and set the fields
-{@code MONTH_OF_YEAR} and {@code DAY_OF_MONTH}.</p>
-<p></p><p>
-The ISO-8601 calendar system is the modern civil calendar system used today
+Related to this, <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> only provides access to query and set the fields
+<span>MONTH_OF_YEAR</span> and <span>DAY_OF_MONTH</span>.</p>
+<p>The ISO-8601 calendar system is the modern civil calendar system used today
 in most of the world. It is equivalent to the proleptic Gregorian calendar
 system, in which today&apos;s rules for leap years are applied for all time.
 For most applications written today, the ISO-8601 rules are entirely suitable.
 However, any application that makes use of historical dates, and requires them
 to be accurate will find the ISO-8601 approach unsuitable.</p>
-<p></p><h3>Specification for implementors</h3>
-This class is immutable and thread-safe.<p></p>
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>This class is immutable and thread-safe.</p>
 </div>
 
   
@@ -191,7 +189,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a temporal object.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a temporal object.</p>
 </div>
       </div>
     </td>
@@ -211,7 +209,7 @@ This class is immutable and thread-safe.<p></p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-now">now</a></span></span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-now">now</a></span></span><span data-ice="signature">(zoneIdOrClock: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
         </p>
       </div>
       <div>
@@ -315,7 +313,7 @@ This class is immutable and thread-safe.<p></p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-of">of</a></span></span><span data-ice="signature">(arg1: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, arg2: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-of">of</a></span></span><span data-ice="signature">(monthOrNumber: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, number: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
         </p>
       </div>
       <div>
@@ -347,7 +345,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code MonthDay}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
 </div>
       </div>
     </td>
@@ -373,7 +371,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code MonthDay}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
 </div>
       </div>
     </td>
@@ -393,7 +391,7 @@ This class is immutable and thread-safe.<p></p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parse">parse</a></span></span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+           <span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parse">parse</a></span></span><span data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
         </p>
       </div>
       <div>
@@ -425,7 +423,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a text string such as {@code --12-03}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a text string such as <code>--12-03</code>.</p>
 </div>
       </div>
     </td>
@@ -451,7 +449,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a text string using a specific formatter.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a text string using a specific formatter.</p>
 </div>
       </div>
     </td>
@@ -544,7 +542,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Combines this month-day with a year to create a {@code LocalDate}.</p>
+        <div data-ice="description"><p>Combines this month-day with a year to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
 </div>
       </div>
     </td>
@@ -648,7 +646,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this month-day as a {@code String} using the formatter.</p>
+        <div data-ice="description"><p>Outputs this month-day as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -674,7 +672,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this month-day as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this month-day as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -700,7 +698,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this month-day as a {@code long}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this month-day as a <code>long</code>.</p>
 </div>
       </div>
     </td>
@@ -830,7 +828,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the month-of-year field using the {@code Month} enum.</p>
+        <div data-ice="description"><p>Gets the month-of-year field using the <span><a href="class/src/Month.js~Month.html">Month</a></span> enum.</p>
 </div>
       </div>
     </td>
@@ -934,7 +932,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this month-day as a {@code String}, such as {@code --12-03}.</p>
+        <div data-ice="description"><p>Outputs this month-day as a string, such as <code>--12-03</code>.</p>
 </div>
       </div>
     </td>
@@ -960,7 +958,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the month-of-year altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the month-of-year altered.</p>
 </div>
       </div>
     </td>
@@ -986,7 +984,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the day-of-month altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the day-of-month altered.</p>
 </div>
       </div>
     </td>
@@ -1012,7 +1010,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the month-of-year altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the month-of-year altered.</p>
 </div>
       </div>
     </td>
@@ -1046,7 +1044,7 @@ This class is immutable and thread-safe.<p></p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -1125,24 +1123,21 @@ This class is immutable and thread-safe.<p></p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber206">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber207">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a temporal object.</p>
-<p></p><p>
-A {@code TemporalAccessor} represents some form of date and time information.
-This factory converts the arbitrary temporal object to an instance of {@code MonthDay}.</p>
-<p></p><p>
-The conversion extracts the {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} and
-{@link ChronoField#DAY_OF_MONTH DAY_OF_MONTH} fields.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a temporal object.</p>
+<p>A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
+This factory converts the arbitrary temporal object to an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
+<p>The conversion extracts the MONTH_OF_YEAR (see <span>ChronoField#MONTH_OF_YEAR</span>) and
+DAY_OF_MONTH (see <span>ChronoField#DAY_OF_MONTH</span>) fields.
 The extraction is only permitted if the date-time has an ISO chronology.</p>
-<p></p><p>
-This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
-allowing it to be used in queries via method reference, {@code MonthDay::from}.</p>
+<p>This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
+allowing it to be used in queries via method reference, <span>MonthDay::from</span>.</p>
 </div>
 
   
@@ -1191,7 +1186,7 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
       
       <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a {@code MonthDay}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></p>
 </td>
       </tr>
 </tbody>
@@ -1212,11 +1207,11 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
     
     
     
-    <span data-ice="name">now</span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+    <span data-ice="name">now</span><span data-ice="signature">(zoneIdOrClock: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber66">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber67">source</a></span></span>
     </span>
   </h3>
 
@@ -1224,9 +1219,9 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
   
   
   <div data-ice="description"><p>function overloading for <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-now">MonthDay.now</a></span></p>
-<p>if called with 0 argument <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-now0">MonthDay.now0</a></span> is applied,</p>
-<p>if called with 1 argument and first argument is an instance of ZoneId, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-nowZoneId">MonthDay.nowZoneId</a></span> is applied,</p>
-<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-nowClock">MonthDay.nowClock</a></span> is applied</p>
+<p>if called with 0 argument <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-now0">MonthDay.now0</a></span> is executed,</p>
+<p>if called with 1 argument and first argument is an instance of ZoneId, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-nowZoneId">MonthDay.nowZoneId</a></span> is executed,</p>
+<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-nowClock">MonthDay.nowClock</a></span> is executed</p>
 </div>
 
   
@@ -1240,9 +1235,9 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">arg1</td>
-      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="name" data-depth="0">zoneIdOrClock</td>
+      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -1286,7 +1281,7 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber86">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber87">source</a></span></span>
     </span>
   </h3>
 
@@ -1294,11 +1289,9 @@ allowing it to be used in queries via method reference, {@code MonthDay::from}.<
   
   
   <div data-ice="description"><p>Obtains the current month-day from the system clock in the default time-zone.</p>
-<p></p><p>
-This will query the {@link Clock#systemDefaultZone() system clock} in the default
+<p>This will query the system clock (see <span>Clock#systemDefaultZone</span>) in the default
 time-zone to obtain the current month-day.</p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -1344,7 +1337,7 @@ because the clock is hard-coded.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber117">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber118">source</a></span></span>
     </span>
   </h3>
 
@@ -1352,10 +1345,9 @@ because the clock is hard-coded.</p>
   
   
   <div data-ice="description"><p>Obtains the current month-day from the specified clock.</p>
-<p></p><p>
-This will query the specified clock to obtain the current month-day.
+<p>This will query the specified clock to obtain the current month-day.
 Using this method allows the use of an alternate clock for testing.
-The alternate clock may be introduced using {@link Clock dependency injection}.</p>
+The alternate clock may be introduced using dependency injection (see <span><a href="class/src/Clock.js~Clock.html">Clock</a></span>).</p>
 </div>
 
   
@@ -1417,7 +1409,7 @@ The alternate clock may be introduced using {@link Clock dependency injection}.<
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber102">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber103">source</a></span></span>
     </span>
   </h3>
 
@@ -1425,11 +1417,9 @@ The alternate clock may be introduced using {@link Clock dependency injection}.<
   
   
   <div data-ice="description"><p>Obtains the current month-day from the system clock in the specified time-zone.</p>
-<p></p><p>
-This will query the {@link Clock#system(ZoneId) system clock} to obtain the current month-day.
+<p>This will query the system clock (see <span>Clock#system</span>) to obtain the current month-day.
 Specifying the time-zone avoids dependence on the default time-zone.</p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -1488,11 +1478,11 @@ because the clock is hard-coded.</p>
     
     
     
-    <span data-ice="name">of</span><span data-ice="signature">(arg1: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, arg2: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+    <span data-ice="name">of</span><span data-ice="signature">(monthOrNumber: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, number: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber134">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber135">source</a></span></span>
     </span>
   </h3>
 
@@ -1500,8 +1490,8 @@ because the clock is hard-coded.</p>
   
   
   <div data-ice="description"><p>function overloading for <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-of">MonthDay.of</a></span></p>
-<p>if called with 2 argument and first argument is an instance of Month, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-ofMonthNumber">MonthDay.ofMonthNumber</a></span> is applied,</p>
-<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-ofNumberNumber">MonthDay.ofNumberNumber</a></span> is applied</p>
+<p>if called with 2 argument and first argument is an instance of Month, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-ofMonthNumber">MonthDay.ofMonthNumber</a></span> is executed,</p>
+<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-ofNumberNumber">MonthDay.ofNumberNumber</a></span> is executed</p>
 </div>
 
   
@@ -1515,15 +1505,15 @@ because the clock is hard-coded.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">arg1</td>
+      <td data-ice="name" data-depth="0">monthOrNumber</td>
       <td data-ice="type"><span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">arg2</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="name" data-depth="0">number</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -1567,19 +1557,17 @@ because the clock is hard-coded.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber157">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber158">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code MonthDay}.</p>
-<p></p><p>
-The day-of-month must be valid for the month within a leap year.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
+<p>The day-of-month must be valid for the month within a leap year.
 Hence, for February, day 29 is valid.</p>
-<p></p><p>
-For example, passing in April and day 31 will throw an exception, as
+<p>For example, passing in April and day 31 will throw an exception, as
 there can never be April 31st in any year. By contrast, passing in
 February 29th is permitted, as that month-day can sometimes be valid.</p>
 </div>
@@ -1667,19 +1655,17 @@ February 29th is permitted, as that month-day can sometimes be valid.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber183">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber184">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code MonthDay}.</p>
-<p></p><p>
-The day-of-month must be valid for the month within a leap year.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.</p>
+<p>The day-of-month must be valid for the month within a leap year.
 Hence, for month 2 (February), day 29 is valid.</p>
-<p></p><p>
-For example, passing in month 4 (April) and day 31 will throw an exception, as
+<p>For example, passing in month 4 (April) and day 31 will throw an exception, as
 there can never be April 31st in any year. By contrast, passing in
 February 29th is permitted, as that month-day can sometimes be valid.</p>
 </div>
@@ -1763,11 +1749,11 @@ February 29th is permitted, as that month-day can sometimes be valid.</p>
     
     
     
-    <span data-ice="name">parse</span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
+    <span data-ice="name">parse</span><span data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber234">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber236">source</a></span></span>
     </span>
   </h3>
 
@@ -1775,8 +1761,8 @@ February 29th is permitted, as that month-day can sometimes be valid.</p>
   
   
   <div data-ice="description"><p>function overloading for <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parse">MonthDay.parse</a></span></p>
-<p>if called with 1 argument, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parseString">MonthDay.parseString</a></span> is applied,</p>
-<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parseStringFormatter">MonthDay.parseStringFormatter</a></span> is applied</p>
+<p>if called with 1 argument, then <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parseString">MonthDay.parseString</a></span> is executed,</p>
+<p>otherwise <span><a href="class/src/MonthDay.js~MonthDay.html#static-method-parseStringFormatter">MonthDay.parseStringFormatter</a></span> is executed</p>
 </div>
 
   
@@ -1790,9 +1776,15 @@ February 29th is permitted, as that month-day can sometimes be valid.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">arg1</td>
-      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
+      <td data-ice="name" data-depth="0">text</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">formatter</td>
+      <td data-ice="type"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -1836,17 +1828,16 @@ February 29th is permitted, as that month-day can sometimes be valid.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber252">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber254">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a text string such as {@code --12-03}.</p>
-<p></p><p>
-The string must represent a valid month-day.
-The format is {@code --MM-dd}.</p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a text string such as <code>--12-03</code>.</p>
+<p>The string must represent a valid month-day.
+The format is <code>--MM-dd</code>.</p>
 </div>
 
   
@@ -1920,16 +1911,15 @@ The format is {@code --MM-dd}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber266">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber268">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code MonthDay} from a text string using a specific formatter.</p>
-<p></p><p>
-The text is parsed using the formatter, returning a month-day.</p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> from a text string using a specific formatter.</p>
+<p>The text is parsed using the formatter, returning a month-day.</p>
 </div>
 
   
@@ -2013,7 +2003,7 @@ The text is parsed using the formatter, returning a month-day.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber280">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber282">source</a></span></span>
     </span>
   </h3>
 
@@ -2082,7 +2072,7 @@ The text is parsed using the formatter, returning a month-day.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber580">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber582">source</a></span></span>
     </span>
   </h3>
 
@@ -2090,25 +2080,23 @@ The text is parsed using the formatter, returning a month-day.</p>
   
   
   <div data-ice="description"><p>Adjusts the specified temporal object to have this month-day.</p>
-<p></p><p>
-This returns a temporal object of the same observable type as the input
+<p>This returns a temporal object of the same observable type as the input
 with the month and day-of-month changed to be the same as this.</p>
-<p></p><p>
-The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+<p>The adjustment is equivalent to using <span>Temporal#with</span>
 twice, passing <span>ChronoField#MONTH_OF_YEAR</span> and
 <span>ChronoField#DAY_OF_MONTH</span> as the fields.
 If the specified temporal object does not use the ISO calendar system then
-a {@code DateTimeException} is thrown.</p>
-<p></p><p>
-In most cases, it is clearer to reverse the calling pattern by using
-{@link Temporal#with(TemporalAdjuster)}:</p>
+a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> is thrown.</p>
+<p>In most cases, it is clearer to reverse the calling pattern by using
+<span>Temporal#with</span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisMonthDay.adjustInto(temporal);
   temporal = temporal.with(thisMonthDay);
-</pre></p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+</pre>
+
+</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2187,21 +2175,18 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber605">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber607">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Combines this month-day with a year to create a {@code LocalDate}.</p>
-<p></p><p>
-This returns a {@code LocalDate} formed from this month-day and the specified year.</p>
-<p></p><p>
-A month-day of February 29th will be adjusted to February 28th in the resulting
+  <div data-ice="description"><p>Combines this month-day with a year to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
+<p>This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> formed from this month-day and the specified year.</p>
+<p>A month-day of February 29th will be adjusted to February 28th in the resulting
 date if the year is not a leap year.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2275,7 +2260,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber618">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber620">source</a></span></span>
     </span>
   </h3>
 
@@ -2283,8 +2268,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Compares this month-day to another month-day.</p>
-<p></p><p>
-The comparison is based first on value of the month, then on the value of the day.
+<p>The comparison is based first on value of the month, then on the value of the day.
 It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.</p>
 </div>
 
@@ -2347,7 +2331,7 @@ It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber323">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber325">source</a></span></span>
     </span>
   </h3>
 
@@ -2355,8 +2339,7 @@ It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.
   
   
   <div data-ice="description"><p>Gets the day-of-month field.</p>
-<p></p><p>
-This method returns the primitive {@code int} value for the day-of-month.</p>
+<p>This method returns the primitive <code>int</code> value for the day-of-month.</p>
 </div>
 
   
@@ -2401,7 +2384,7 @@ This method returns the primitive {@code int} value for the day-of-month.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber662">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber664">source</a></span></span>
     </span>
   </h3>
 
@@ -2409,8 +2392,7 @@ This method returns the primitive {@code int} value for the day-of-month.</p>
   
   
   <div data-ice="description"><p>Checks if this month-day is equal to another month-day.</p>
-<p></p><p>
-The comparison is based on the time-line position of the month-day within a year.</p>
+<p>The comparison is based on the time-line position of the month-day within a year.</p>
 </div>
 
   
@@ -2472,17 +2454,16 @@ The comparison is based on the time-line position of the month-day within a year
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber696">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber698">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this month-day as a {@code String} using the formatter.</p>
-<p></p><p>
-This month-day will be passed to the formatter
-{@link DateTimeFormatter#format(TemporalAccessor) print method}.</p>
+  <div data-ice="description"><p>Outputs this month-day as a string using the formatter.</p>
+<p>This month-day will be passed to the formatter
+print method (see <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-format">DateTimeFormatter#format</a></span>).</p>
 </div>
 
   
@@ -2556,28 +2537,25 @@ This month-day will be passed to the formatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber414">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber416">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this month-day as an {@code int}.</p>
-<p></p><p>
-This queries this month-day for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this month-day as an <code>int</code>.</p>
+<p>This queries this month-day for the value for the specified field.
 The returned value will always be within the valid range of values for the field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this month-day.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -2657,27 +2635,24 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber440">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber442">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this month-day as a {@code long}.</p>
-<p></p><p>
-This queries this month-day for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this month-day as a <code>long</code>.</p>
+<p>This queries this month-day for the value for the specified field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this month-day.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -2757,7 +2732,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber634">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber636">source</a></span></span>
     </span>
   </h3>
 
@@ -2826,7 +2801,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber646">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber648">source</a></span></span>
     </span>
   </h3>
 
@@ -2895,7 +2870,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber353">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber355">source</a></span></span>
     </span>
   </h3>
 
@@ -2903,24 +2878,21 @@ and what the value represents, is determined by the field.</p>
   
   
   <div data-ice="description"><p>Checks if the specified field is supported.</p>
-<p></p><p>
-This checks if this month-day can be queried for the specified field.
-If false, then calling the {@link #range(TemporalField) range} and
-{@link #get(TemporalField) get} methods will throw an exception.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>This checks if this month-day can be queried for the specified field.
+If false, then calling the range (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-range">range</a></span>) and
+get (see <span><a href="class/src/Period.js~Period.html#instance-method-get">get</a></span>) methods will throw an exception.</p>
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time.
 The supported fields are:</p>
-<p><ul>
-<li>{@code MONTH_OF_YEAR}
-</li><li>{@code YEAR}
-</li></ul>
-All other {@code ChronoField} instances will return false.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-passing {@code this} as the argument.
+<ul>
+<li><span>MONTH_OF_YEAR</span></li>
+<li><span>YEAR</span></li>
+</ul>
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.isSupportedBy</span>
+passing <code>this</code> as the argument.
 Whether the field is supported is determined by the field.</p>
 </div>
 
@@ -2983,7 +2955,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber463">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber465">source</a></span></span>
     </span>
   </h3>
 
@@ -2991,8 +2963,7 @@ Whether the field is supported is determined by the field.</p>
   
   
   <div data-ice="description"><p>Checks if the year is valid for this month-day.</p>
-<p></p><p>
-This method checks whether this month and day and the input year form
+<p>This method checks whether this month and day and the input year form
 a valid date. This can only return false for February 29th.</p>
 </div>
 
@@ -3055,19 +3026,18 @@ a valid date. This can only return false for February 29th.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber312">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber314">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the month-of-year field using the {@code Month} enum.</p>
-<p></p><p>
-This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
-This avoids confusion as to what {@code int} values mean.
-If you need access to the primitive {@code int} value then the enum
-provides the {@link Month#getValue() int value}.</p>
+  <div data-ice="description"><p>Gets the month-of-year field using the <span><a href="class/src/Month.js~Month.html">Month</a></span> enum.</p>
+<p>This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
+This avoids confusion as to what <code>int</code> values mean.
+If you need access to the primitive <code>int</code> value then the enum
+provides the int value (see <span>Month#getValue</span>).</p>
 </div>
 
   
@@ -3112,7 +3082,7 @@ provides the {@link Month#getValue() int value}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber297">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber299">source</a></span></span>
     </span>
   </h3>
 
@@ -3120,10 +3090,9 @@ provides the {@link Month#getValue() int value}.</p>
   
   
   <div data-ice="description"><p>Gets the month-of-year field from 1 to 12.</p>
-<p></p><p>
-This method returns the month as an {@code int} from 1 to 12.
+<p>This method returns the month as an <code>int</code> from 1 to 12.
 Application code is frequently clearer if the enum <span><a href="class/src/Month.js~Month.html">Month</a></span>
-is used by calling {@link #getMonth()}.</p>
+is used by calling <span>getMonth</span>.</p>
 </div>
 
   
@@ -3168,7 +3137,7 @@ is used by calling {@link #getMonth()}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber544">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber546">source</a></span></span>
     </span>
   </h3>
 
@@ -3176,15 +3145,13 @@ is used by calling {@link #getMonth()}.</p>
   
   
   <div data-ice="description"><p>Queries this month-day using the specified query.</p>
-<p></p><p>
-This queries this month-day using the specified query strategy object.
-The {@code TemporalQuery} object defines the logic to be used to
+<p>This queries this month-day using the specified query strategy object.
+The <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> object defines the logic to be used to
 obtain the result. Read the documentation of the query to understand
 what the result of this method will be.</p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-specified query passing {@code this} as the argument.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html#instance-method-queryFrom">TemporalQuery#queryFrom</a></span> method on the
+specified query passing <code>this</code> as the argument.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">TemporalAccessor#query</a></span></div>
@@ -3263,7 +3230,7 @@ specified query passing {@code this} as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber382">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber384">source</a></span></span>
     </span>
   </h3>
 
@@ -3271,20 +3238,17 @@ specified query passing {@code this} as the argument.</p>
   
   
   <div data-ice="description"><p>Gets the range of valid values for the specified field.</p>
-<p></p><p>
-The range object expresses the minimum and maximum valid values for a field.
+<p>The range object expresses the minimum and maximum valid values for a field.
 This month-day is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-passing {@code this} as the argument.
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.rangeRefinedBy</span>
+passing <code>this</code> as the argument.
 Whether the range can be obtained is determined by the field.</p>
 </div>
 
@@ -3359,16 +3323,15 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber680">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber682">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this month-day as a {@code String}, such as {@code --12-03}.</p>
-<p></p><p>
-The output will be in the format {@code --MM-dd}:</p>
+  <div data-ice="description"><p>Outputs this month-day as a string, such as <code>--12-03</code>.</p>
+<p>The output will be in the format <code>--MM-dd</code>:</p>
 </div>
 
   
@@ -3413,20 +3376,18 @@ The output will be in the format {@code --MM-dd}:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber497">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber499">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the month-of-year altered.</p>
-<p></p><p>
-This returns a month-day with the specified month.
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the month-of-year altered.</p>
+<p>This returns a month-day with the specified month.
 If the day-of-month is invalid for the specified month, the day will
 be adjusted to the last valid day-of-month.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3488,19 +3449,17 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber519">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber521">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the day-of-month altered.</p>
-<p></p><p>
-This returns a month-day with the specified day-of-month.
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the day-of-month altered.</p>
+<p>This returns a month-day with the specified day-of-month.
 If the day-of-month is invalid for the month, an exception is thrown.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3579,20 +3538,18 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber481">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/MonthDay.js.html#lineNumber483">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code MonthDay} with the month-of-year altered.</p>
-<p></p><p>
-This returns a month-day with the specified month.
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> with the month-of-year altered.</p>
+<p>This returns a month-day with the specified month.
 If the day-of-month is invalid for the specified month, the day will
 be adjusted to the last valid day-of-month.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3659,7 +3616,7 @@ This instance is immutable and unaffected by this method call.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDate} from &apos;<span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber178">js-joda/src/chrono/ChronoLocalDate.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDate} from &apos;<span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber183">js-joda/src/chrono/ChronoLocalDate.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber178">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber183">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -134,39 +137,33 @@
   
   <div class="description" data-ice="description"><p>A date without time-of-day or time-zone in an arbitrary chronology, intended
 for advanced globalization use cases.</p>
-<p></p><p>
-&lt;b&gt;Most applications should declare method signatures, fields and variables
-as <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>, not this interface.&lt;/b&gt;</p>
-<p></p><p>
-A {@code ChronoLocalDate} is the abstract representation of a date where the
-{@code Chronology chronology}, or calendar system, is pluggable.
+<p><strong>Most applications should declare method signatures, fields and variables
+as <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>, not this interface.</strong></p>
+<p>A <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> is the abstract representation of a date where the
+<span>Chronology</span>, or calendar system, is pluggable.
 The date is defined in terms of fields expressed by <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>,
 where most common implementations are defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
 The chronology defines how the calendar system operates and the meaning of
 the standard fields.</p>
-<p></p><h4>When to use this interface</h4>
-The design of the API encourages the use of {@code LocalDate} rather than this
+<h4 id="when-to-use-this-interface">When to use this interface</h4>
+<p>The design of the API encourages the use of <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> rather than this
 interface, even in the case where the application needs to deal with multiple
-calendar systems. The rationale for this is explored in the following documentation.<p></p>
-<p></p><p>
-The primary use case where this interface should be used is where the generic
-type parameter {@code &lt;C&gt;} is fully defined as a specific chronology.
+calendar systems. The rationale for this is explored in the following documentation.</p>
+<p>The primary use case where this interface should be used is where the generic
+type parameter <code>C</code> is fully defined as a specific chronology.
 In that case, the assumptions of that chronology are known at development
 time and specified in the code.</p>
-<p></p><p>
-When the chronology is defined in the generic type parameter as ? or otherwise
+<p>When the chronology is defined in the generic type parameter as ? or otherwise
 unknown at development time, the rest of the discussion below applies.</p>
-<p></p><p>
-To emphasize the point, declaring a method signature, field or variable as this
+<p>To emphasize the point, declaring a method signature, field or variable as this
 interface type can initially seem like the sensible way to globalize an application,
 however it is usually the wrong approach.
 As such, it should be considered an application-wide architectural decision to choose
-to use this interface as opposed to {@code LocalDate}.</p>
-<p></p><h4>Architectural issues to consider</h4>
-These are some of the points that must be considered before using this interface
-throughout an application.<p></p>
-<p></p><p>
-1) Applications using this interface, as opposed to using just {@code LocalDate},
+to use this interface as opposed to <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
+<h4 id="architectural-issues-to-consider">Architectural issues to consider</h4>
+<p>These are some of the points that must be considered before using this interface
+throughout an application.</p>
+<p>1) Applications using this interface, as opposed to using just <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>,
 face a significantly higher probability of bugs. This is because the calendar system
 in use is not known at development time. A key cause of bugs is where the developer
 applies assumptions from their day-to-day knowledge of the ISO calendar system
@@ -174,119 +171,101 @@ to code that is intended to deal with any arbitrary calendar system.
 The section below outlines how those assumptions can cause problems
 The primary mechanism for reducing this increased risk of bugs is a strong code review process.
 This should also be considered a extra cost in maintenance for the lifetime of the code.</p>
-<p></p><p>
-2) This interface does not enforce immutability of implementations.
+<p>2) This interface does not enforce immutability of implementations.
 While the implementation notes indicate that all implementations must be immutable
 there is nothing in the code or type system to enforce this. Any method declared
-to accept a {@code ChronoLocalDate} could therefore be passed a poorly or
+to accept a <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> could therefore be passed a poorly or
 maliciously written mutable implementation.</p>
-<p></p><p>
-3) Applications using this interface  must consider the impact of eras.
-{@code LocalDate} shields users from the concept of eras, by ensuring that {@code getYear()}
+<p>3) Applications using this interface  must consider the impact of eras.
+<span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> shields users from the concept of eras, by ensuring that <code>getYear()</code>
 returns the proleptic year. That decision ensures that developers can think of
-{@code LocalDate} instances as consisting of three fields - year, month-of-year and day-of-month.
+<span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> instances as consisting of three fields - year, month-of-year and day-of-month.
 By contrast, users of this interface must think of dates as consisting of four fields -
 era, year-of-era, month-of-year and day-of-month. The extra era field is frequently
 forgotten, yet it is of vital importance to dates in an arbitrary calendar system.
 For example, in the Japanese calendar system, the era represents the reign of an Emperor.
 Whenever one reign ends and another starts, the year-of-era is reset to one.</p>
-<p></p><p>
-4) The only agreed international standard for passing a date between two systems
+<p>4) The only agreed international standard for passing a date between two systems
 is the ISO-8601 standard which requires the ISO calendar system. Using this interface
 throughout the application will inevitably lead to the requirement to pass the date
 across a network or component boundary, requiring an application specific protocol or format.</p>
-<p></p><p>
-5) Long term persistence, such as a database, will almost always only accept dates in the
+<p>5) Long term persistence, such as a database, will almost always only accept dates in the
 ISO-8601 calendar system (or the related Julian-Gregorian). Passing around dates in other
 calendar systems increases the complications of interacting with persistence.</p>
-<p></p><p>
-6) Most of the time, passing a {@code ChronoLocalDate} throughout an application
+<p>6) Most of the time, passing a <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> throughout an application
 is unnecessary, as discussed in the last section below.</p>
-<p></p><h4>False assumptions causing bugs in multi-calendar system code</h4>
-As indicated above, there are many issues to consider when try to use and manipulate a
-date in an arbitrary calendar system. These are some of the key issues.<p></p>
-<p></p><p>
-Code that queries the day-of-month and assumes that the value will never be more than
+<h4 id="false-assumptions-causing-bugs-in-multi-calendar-system-code">False assumptions causing bugs in multi-calendar system code</h4>
+<p>As indicated above, there are many issues to consider when try to use and manipulate a
+date in an arbitrary calendar system. These are some of the key issues.</p>
+<p>Code that queries the day-of-month and assumes that the value will never be more than
 31 is invalid. Some calendar systems have more than 31 days in some months.</p>
-<p></p><p>
-Code that adds 12 months to a date and assumes that a year has been added is invalid.
+<p>Code that adds 12 months to a date and assumes that a year has been added is invalid.
 Some calendar systems have a different number of months, such as 13 in the Coptic or Ethiopic.</p>
-<p></p><p>
-Code that adds one month to a date and assumes that the month-of-year value will increase
+<p>Code that adds one month to a date and assumes that the month-of-year value will increase
 by one or wrap to the next year is invalid. Some calendar systems have a variable number
 of months in a year, such as the Hebrew.</p>
-<p></p><p>
-Code that adds one month, then adds a second one month and assumes that the day-of-month
+<p>Code that adds one month, then adds a second one month and assumes that the day-of-month
 will remain close to its original value is invalid. Some calendar systems have a large difference
 between the length of the longest month and the length of the shortest month.
 For example, the Coptic or Ethiopic have 12 months of 30 days and 1 month of 5 days.</p>
-<p></p><p>
-Code that adds seven days and assumes that a week has been added is invalid.
+<p>Code that adds seven days and assumes that a week has been added is invalid.
 Some calendar systems have weeks of other than seven days, such as the French Revolutionary.</p>
-<p></p><p>
-Code that assumes that because the year of {@code date1} is greater than the year of {@code date2}
-then {@code date1} is after {@code date2} is invalid. This is invalid for all calendar systems
+<p>Code that assumes that because the year of <code>date1</code> is greater than the year of <code>date2</code>
+then <code>date1</code> is after <code>date2</code> is invalid. This is invalid for all calendar systems
 when referring to the year-of-era, and especially untrue of the Japanese calendar system
 where the year-of-era restarts with the reign of every new Emperor.</p>
-<p></p><p>
-Code that treats month-of-year one and day-of-month one as the start of the year is invalid.
+<p>Code that treats month-of-year one and day-of-month one as the start of the year is invalid.
 Not all calendar systems start the year when the month value is one.</p>
-<p></p><p>
-In general, manipulating a date, and even querying a date, is wide open to bugs when the
+<p>In general, manipulating a date, and even querying a date, is wide open to bugs when the
 calendar system is unknown at development time. This is why it is essential that code using
 this interface is subjected to additional code reviews. It is also why an architectural
 decision to avoid this interface type is usually the correct one.</p>
-<p></p><h4>Using LocalDate instead</h4>
-The primary alternative to using this interface throughout your application is as follows.<p></p>
-<p></p><p><ul></ul></p>
-<p><li>Declare all method signatures referring to dates in terms of {@code LocalDate}.</li></p>
-<p><li>Either store the chronology (calendar system) in the user profile or lookup
- the chronology from the user locale</li></p>
-<p><li>Convert the ISO {@code LocalDate} to and from the user&apos;s preferred calendar system during
- printing and parsing
-<p>
-This approach treats the problem of globalized calendar systems as a localization issue
+<h4 id="using-localdate-instead">Using LocalDate instead</h4>
+<p>The primary alternative to using this interface throughout your application is as follows.</p>
+<ul>
+<li>Declare all method signatures referring to dates in terms of <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</li>
+<li>Either store the chronology (calendar system) in the user profile or lookup the chronology
+from the user locale.</li>
+<li>Convert the ISO <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> to and from the user&apos;s preferred calendar system during
+printing and parsing.</li>
+</ul>
+<p>This approach treats the problem of globalized calendar systems as a localization issue
 and confines it to the UI layer. This approach is in keeping with other localization
 issues in the java platform.</p>
-<p></p><p>
-As discussed above, performing calculations on a date where the rules of the calendar system
+<p>As discussed above, performing calculations on a date where the rules of the calendar system
 are pluggable requires skill and is not recommended.
 Fortunately, the need to perform calculations on a date in an arbitrary calendar system
 is extremely rare. For example, it is highly unlikely that the business rules of a library
 book rental scheme will allow rentals to be for one month, where meaning of the month
 is dependent on the user&apos;s preferred calendar system.</p>
-<p></p><p>
-A key use case for calculations on a date in an arbitrary calendar system is producing
+<p>A key use case for calculations on a date in an arbitrary calendar system is producing
 a month-by-month calendar for display and user interaction. Again, this is a UI issue,
 and use of this interface solely within a few methods of the UI layer may be justified.</p>
-<p></p><p>
-In any other part of the system, where a date must be manipulated in a calendar system
+<p>In any other part of the system, where a date must be manipulated in a calendar system
 other than ISO, the use case will generally specify the calendar system to use.
 For example, an application may need to calculate the next Islamic or Hebrew holiday
 which may require manipulating the date.
 This kind of use case can be handled as follows:</p>
-<p></p><p><ul></ul></p>
-<p><li>start from the ISO {@code LocalDate} being passed to the method</li></p>
-<p><li>convert the date to the alternate calendar system, which for this use case is known
- rather than arbitrary</li></p>
-<p><li>perform the calculation</li></p>
-<p><li>convert back to {@code LocalDate}
-<p>
-Developers writing low-level frameworks or libraries should also avoid this interface.
+<ul>
+<li>start from the ISO <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> being passed to the method</li>
+<li>convert the date to the alternate calendar system, which for this use case is known
+rather than arbitrary</li>
+<li>perform the calculation</li>
+<li>convert back to <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></li>
+</ul>
+<p>Developers writing low-level frameworks or libraries should also avoid this interface.
 Instead, one of the two general purpose access interfaces should be used.
 Use <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> if read-only access is required, or use <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>
 if read-write access is required.</p>
-<p></p><h3>Specification for implementors</h3>
-This interface must be implemented with care to ensure other classes operate correctly.
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>This interface must be implemented with care to ensure other classes operate correctly.
 All implementations that can be instantiated must be final, immutable and thread-safe.
-Subclasses should be Serializable wherever possible.</li></p>
-<p></p><p>
-Additional calendar systems may be added to the system.
+Subclasses should be Serializable wherever possible.</p>
+<p>Additional calendar systems may be added to the system.
 See <span>Chronology</span> for more details.</p>
-<p></p><p>
-In JDK 8, this is an interface with default methods.
+<p>In JDK 8, this is an interface with default methods.
 Since there are no default methods in JDK 7, an abstract class is used.</p>
-</li></p></div>
+</div>
 
   
 
@@ -431,7 +410,7 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -513,7 +492,7 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber203">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber208">source</a></span></span>
     </span>
   </h3>
 
@@ -579,7 +558,7 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber220">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber225">source</a></span></span>
     </span>
   </h3>
 
@@ -587,10 +566,8 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
   
   
   <div data-ice="description"><p>Formats this date using the specified formatter.</p>
-<p></p><p>
-This date will be passed to the formatter to produce a string.</p>
-<p></p><p>
-The default implementation must behave as follows:</p>
+<p>This date will be passed to the formatter to produce a string.</p>
+<p>The default implementation must behave as follows:</p>
 <p><pre>
  return formatter.format(this);
 </pre></p>
@@ -667,7 +644,7 @@ The default implementation must behave as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber180">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber185">source</a></span></span>
     </span>
   </h3>
 
@@ -733,7 +710,7 @@ The default implementation must behave as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber189">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDate.js.html#lineNumber194">source</a></span></span>
     </span>
   </h3>
 
@@ -792,7 +769,7 @@ The default implementation must behave as follows:</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

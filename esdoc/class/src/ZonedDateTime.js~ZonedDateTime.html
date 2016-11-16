@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -133,56 +136,50 @@
   
   
   <div class="description" data-ice="description"><p>A date-time with a time-zone in the ISO-8601 calendar system,
-such as {@code 2007-12-03T10:15:30+01:00 Europe/Paris}.</p>
-<p></p><p>
-{@code ZonedDateTime} is an immutable representation of a date-time with a time-zone.
+such as <code>2007-12-03T10:15:30+01:00 Europe/Paris</code>.</p>
+<p><code>ZonedDateTime</code> is an immutable representation of a date-time with a time-zone.
 This class stores all date and time fields, to a precision of nanoseconds,
 and a time-zone, with a zone offset used to handle ambiguous local date-times.
 For example, the value
 &apos;2nd October 2007 at 13:45.30.123456789 +02:00 in the Europe/Paris time-zone&apos;
-can be stored in a {@code ZonedDateTime}.</p>
-<p></p><p>
-This class handles conversion from the local time-line of {@code LocalDateTime}
-to the instant time-line of {@code Instant}.
+can be stored in a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>.</p>
+<p>This class handles conversion from the local time-line of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>
+to the instant time-line of <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.
 The difference between the two time-lines is the offset from UTC/Greenwich,
-represented by a {@code ZoneOffset}.</p>
-<p></p><p>
-Converting between the two time-lines involves calculating the offset using the
-{@link ZoneRules rules} accessed from the {@code ZoneId}.
+represented by a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</p>
+<p>Converting between the two time-lines involves calculating the offset using the
+<span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> rules accessed from the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.
 Obtaining the offset for an instant is simple, as there is exactly one valid
 offset for each instant. By contrast, obtaining the offset for a local date-time
 is not straightforward. There are three cases:</p>
-<p></p><p><ul></ul></p>
-<p><li>Normal, with one valid offset. For the vast majority of the year, the normal
- case applies, where there is a single valid offset for the local date-time.</li></p>
-<p><li>Gap, with zero valid offsets. This is when clocks jump forward typically
- due to the spring daylight savings change from &apos;winter&apos; to &apos;summer&apos;.
- In a gap there are local date-time values with no valid offset.</li></p>
-<p><li>Overlap, with two valid offsets. This is when clocks are set back typically
- due to the autumn daylight savings change from &apos;summer&apos; to &apos;winter&apos;.
- In an overlap there are local date-time values with two valid offsets.</li>
-</p><p></p>
-<p></p><p>
-Any method that converts directly or implicitly from a local date-time to an
+<ul>
+<li>Normal, with one valid offset. For the vast majority of the year, the normal
+case applies, where there is a single valid offset for the local date-time.</li>
+<li>Gap, with zero valid offsets. This is when clocks jump forward typically
+due to the spring daylight savings change from &apos;winter&apos; to &apos;summer&apos;.
+In a gap there are local date-time values with no valid offset.</li>
+<li>Overlap, with two valid offsets. This is when clocks are set back typically
+due to the autumn daylight savings change from &apos;summer&apos; to &apos;winter&apos;.
+In an overlap there are local date-time values with two valid offsets.</li>
+</ul>
+<p>Any method that converts directly or implicitly from a local date-time to an
 instant by obtaining the offset has the potential to be complicated.</p>
-<p></p><p>
-For Gaps, the general strategy is that if the local date-time falls in the
+<p>For Gaps, the general strategy is that if the local date-time falls in the
 middle of a Gap, then the resulting zoned date-time will have a local date-time
 shifted forwards by the length of the Gap, resulting in a date-time in the later
 offset, typically &apos;summer&apos; time.</p>
-<p></p><p>
-For Overlaps, the general strategy is that if the local date-time falls in the
+<p>For Overlaps, the general strategy is that if the local date-time falls in the
 middle of an Overlap, then the previous offset will be retained. If there is no
 previous offset, or the previous offset is invalid, then the earlier offset is
-used, typically &apos;summer&apos; time.. Two additional methods,
-{@link #withEarlierOffsetAtOverlap()} and {@link #withLaterOffsetAtOverlap()},
+used, typically &apos;summer&apos; time. Two additional methods,
+<span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap">withEarlierOffsetAtOverlap</a></span> and <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap">withLaterOffsetAtOverlap</a></span>,
 help manage the case of an overlap.</p>
-<p></p><h3>Specification for implementors</h3>
-A {@code ZonedDateTime} holds state equivalent to three separate objects,
-a {@code LocalDateTime}, a {@code ZoneId} and the resolved {@code ZoneOffset}.
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>A <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> holds state equivalent to three separate objects,
+a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> and the resolved <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
 The offset and local date-time are used to define an instant when necessary.
 The zone ID is used to obtain the rules for how and when the offset changes.
-The offset cannot be freely set, as the zone controls which offsets are valid.<p></p>
+The offset cannot be freely set, as the zone controls which offsets are valid.</p>
 </div>
 
   
@@ -216,7 +213,7 @@ The offset cannot be freely set, as the zone controls which offsets are valid.<p
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a temporal object.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a temporal object.</p>
 </div>
       </div>
     </td>
@@ -295,7 +292,7 @@ or default time zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date-time.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date-time.</p>
 </div>
       </div>
     </td>
@@ -321,7 +318,7 @@ or default time zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date and time.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date and time.</p>
 </div>
       </div>
     </td>
@@ -347,7 +344,7 @@ or default time zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a year, month, day,
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a year, month, day,
 hour, minute, second, nanosecond and time-zone.</p>
 </div>
       </div>
@@ -400,7 +397,7 @@ hour, minute, second, nanosecond and time-zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from an {@code Instant}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
       </div>
     </td>
@@ -426,8 +423,35 @@ hour, minute, second, nanosecond and time-zone.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from the instant formed by combining
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from the instant formed by combining
 the local date-time and offset.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLenient">ofLenient</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> leniently, for advanced use cases,
+allowing any combination of local date-time, offset and zone ID.</p>
 </div>
       </div>
     </td>
@@ -453,7 +477,7 @@ the local date-time and offset.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date-time
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date-time
 using the preferred offset if possible.</p>
 </div>
       </div>
@@ -480,7 +504,7 @@ using the preferred offset if possible.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} strictly validating the
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> strictly validating the
 combination of local date-time, offset and zone ID.</p>
 </div>
       </div>
@@ -507,8 +531,8 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a text string such as
-{@code 2007-12-03T10:15:30+01:00[Europe/Paris]}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a text string such as
+<code>2007-12-03T10:15:30+01:00[Europe/Paris]</code>.</p>
 </div>
       </div>
     </td>
@@ -601,7 +625,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the day-of-week field, which is an enum {@code DayOfWeek}.</p>
+        <div data-ice="description"><p>Gets the day-of-week field, which is an enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.</p>
 </div>
       </div>
     </td>
@@ -679,7 +703,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a {@code String} using the formatter.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -705,7 +729,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this date-time as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -731,7 +755,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this date-time as a {@code long}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <code>long</code>.</p>
 </div>
       </div>
     </td>
@@ -887,7 +911,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in days subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in days subtracted.</p>
 </div>
       </div>
     </td>
@@ -913,7 +937,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in hours subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in hours subtracted.</p>
 </div>
       </div>
     </td>
@@ -939,7 +963,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in minutes subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in minutes subtracted.</p>
 </div>
       </div>
     </td>
@@ -965,7 +989,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in months subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in months subtracted.</p>
 </div>
       </div>
     </td>
@@ -991,7 +1015,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in nanoseconds subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in nanoseconds subtracted.</p>
 </div>
       </div>
     </td>
@@ -1017,7 +1041,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in seconds subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in seconds subtracted.</p>
 </div>
       </div>
     </td>
@@ -1069,7 +1093,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in weeks subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in weeks subtracted.</p>
 </div>
       </div>
     </td>
@@ -1095,7 +1119,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in years subtracted.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in years subtracted.</p>
 </div>
       </div>
     </td>
@@ -1147,7 +1171,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the month-of-year field using the {@code Month} enum.</p>
+        <div data-ice="description"><p>Gets the month-of-year field using the <span><a href="class/src/Month.js~Month.html">Month</a></span> enum.</p>
 </div>
       </div>
     </td>
@@ -1303,7 +1327,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in days added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in days added.</p>
 </div>
       </div>
     </td>
@@ -1329,7 +1353,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in hours added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in hours added.</p>
 </div>
       </div>
     </td>
@@ -1355,7 +1379,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in minutes added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in minutes added.</p>
 </div>
       </div>
     </td>
@@ -1381,7 +1405,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in months added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in months added.</p>
 </div>
       </div>
     </td>
@@ -1407,7 +1431,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in nanoseconds added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in nanoseconds added.</p>
 </div>
       </div>
     </td>
@@ -1433,7 +1457,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in seconds added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in seconds added.</p>
 </div>
       </div>
     </td>
@@ -1485,7 +1509,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in weeks added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in weeks added.</p>
 </div>
       </div>
     </td>
@@ -1511,7 +1535,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in years added.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in years added.</p>
 </div>
       </div>
     </td>
@@ -1640,7 +1664,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the {@code LocalDate} part of this date-time.</p>
+        <div data-ice="description"><p>Gets the <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> part of this date-time.</p>
 </div>
       </div>
     </td>
@@ -1666,7 +1690,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the {@code LocalDateTime} part of this date-time.</p>
+        <div data-ice="description"><p>Gets the <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> part of this date-time.</p>
 </div>
       </div>
     </td>
@@ -1692,33 +1716,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the {@code LocalTime} part of this date-time.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toOffsetDateTime">toOffsetDateTime</a></span></span><span data-ice="signature">(): <span>OffsetDateTime</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Converts this date-time to an {@code OffsetDateTime}.</p>
+        <div data-ice="description"><p>Gets the <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> part of this date-time.</p>
 </div>
       </div>
     </td>
@@ -1744,8 +1742,8 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a {@code String}, such as
-{@code 2007-12-03T10:15:30+01:00[Europe/Paris]}.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string, such as
+<code>2007-12-03T10:15:30+01:00[Europe/Paris]</code>.</p>
 </div>
       </div>
     </td>
@@ -1771,7 +1769,7 @@ combination of local date-time, offset and zone ID.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the time truncated.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the time truncated.</p>
 </div>
       </div>
     </td>
@@ -1876,7 +1874,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the day-of-month value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the day-of-month value altered.</p>
 </div>
       </div>
     </td>
@@ -1902,7 +1900,34 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the day-of-year altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the day-of-year altered.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap">withEarlierOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this date-time changing the zone offset to the
+earlier of the two valid offsets at a local time-line overlap.</p>
 </div>
       </div>
     </td>
@@ -1954,7 +1979,34 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the hour-of-day value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the hour-of-day value altered.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap">withLaterOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this date-time changing the zone offset to the
+later of the two valid offsets at a local time-line overlap.</p>
 </div>
       </div>
     </td>
@@ -1980,7 +2032,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the minute-of-hour value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the minute-of-hour value altered.</p>
 </div>
       </div>
     </td>
@@ -2006,7 +2058,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the month-of-year value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the month-of-year value altered.</p>
 </div>
       </div>
     </td>
@@ -2032,7 +2084,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the nano-of-second value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the nano-of-second value altered.</p>
 </div>
       </div>
     </td>
@@ -2058,7 +2110,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the second-of-minute value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the second-of-minute value altered.</p>
 </div>
       </div>
     </td>
@@ -2110,7 +2162,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the year value altered.</p>
+        <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the year value altered.</p>
 </div>
       </div>
     </td>
@@ -2250,7 +2302,7 @@ retaining the local date-time if possible.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -2387,7 +2439,7 @@ retaining the local date-time if possible.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a {@code String} using the formatter.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -2543,7 +2595,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
+        <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
       </div>
     </td>
@@ -2570,25 +2622,22 @@ of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber443">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber439">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a temporal object.</p>
-<p></p><p>
-A {@code TemporalAccessor} represents some form of date and time information.
-This factory converts the arbitrary temporal object to an instance of {@code ZonedDateTime}.</p>
-<p></p><p>
-The conversion will first obtain a {@code ZoneId}. It will then try to obtain an instant.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a temporal object.</p>
+<p>A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
+This factory converts the arbitrary temporal object to an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>.</p>
+<p>The conversion will first obtain a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>. It will then try to obtain an instant.
 If that fails it will try to obtain a local date-time.
-The zoned date time will either be a combination of {@code ZoneId} and instant,
-or {@code ZoneId} and local date-time.</p>
-<p></p><p>
-This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
-allowing it to be used in queries via method reference, {@code ZonedDateTime::from}.</p>
+The zoned date time will either be a combination of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> and instant,
+or <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> and local date-time.</p>
+<p>This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
+allowing it to be used in queries via method reference, <span>ZonedDateTime::from</span>.</p>
 </div>
 
   
@@ -2637,7 +2686,7 @@ allowing it to be used in queries via method reference, {@code ZonedDateTime::fr
       
       <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to an {@code ZonedDateTime}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to an <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></p>
 </td>
       </tr>
 </tbody>
@@ -2671,12 +2720,10 @@ allowing it to be used in queries via method reference, {@code ZonedDateTime::fr
   
   <div data-ice="description"><p>Obtains the current date-time from the system clock in the specified time-zone or clock
 or default time zone.</p>
-<p></p><p>
-This will query the {@link Clock#systemDefaultZone() system clock} in the default
+<p>This will query the system clock (see <span>Clock#systemDefaultZone</span>) in the default
 time-zone to obtain the current date-time.
 The zone and offset will be set based on the time-zone in the clock.</p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -2800,21 +2847,17 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date-time.</p>
-<p></p><p>
-This creates a zoned date-time matching the input local date-time as closely as possible.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date-time.</p>
+<p>This creates a zoned date-time matching the input local date-time as closely as possible.
 Time-zone rules, such as daylight savings, mean that not every local date-time
 is valid for the specified zone, thus the local date-time may be adjusted.</p>
-<p></p><p>
-The local date-time is resolved to a single instant on the time-line.
+<p>The local date-time is resolved to a single instant on the time-line.
 This is achieved by finding a valid offset from UTC/Greenwich for the local
-date-time as defined by the {@link ZoneRules rules} of the zone ID.</p>
-<p></p><p>
-In most cases, there is only one valid offset for a local date-time.
+date-time as defined by the <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> of the zone ID.</p>
+<p>In most cases, there is only one valid offset for a local date-time.
 In the case of an overlap, when clocks are set back, there are two valid offsets.
 This method uses the earlier offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-In the case of a gap, when clocks jump forward, there is no valid offset.
+<p>In the case of a gap, when clocks jump forward, there is no valid offset.
 Instead, the local date-time is adjusted to be later by the length of the gap.
 For a typical one hour daylight savings change, the local date-time will be
 moved one hour later into the offset typically corresponding to &apos;summer&apos;.</p>
@@ -2893,22 +2936,18 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date and time.</p>
-<p></p><p>
-This creates a zoned date-time matching the input local date and time as closely as possible.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date and time.</p>
+<p>This creates a zoned date-time matching the input local date and time as closely as possible.
 Time-zone rules, such as daylight savings, mean that not every local date-time
 is valid for the specified zone, thus the local date-time may be adjusted.</p>
-<p></p><p>
-The local date time and first combined to form a local date-time.
+<p>The local date time and first combined to form a local date-time.
 The local date-time is then resolved to a single instant on the time-line.
 This is achieved by finding a valid offset from UTC/Greenwich for the local
-date-time as defined by the {@link ZoneRules rules} of the zone ID.</p>
-<p></p><p>
-In most cases, there is only one valid offset for a local date-time.
+date-time as defined by the <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> of the zone ID.</p>
+<p>In most cases, there is only one valid offset for a local date-time.
 In the case of an overlap, when clocks are set back, there are two valid offsets.
 This method uses the earlier offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-In the case of a gap, when clocks jump forward, there is no valid offset.
+<p>In the case of a gap, when clocks jump forward, there is no valid offset.
 Instead, the local date-time is adjusted to be later by the length of the gap.
 For a typical one hour daylight savings change, the local date-time will be
 moved one hour later into the offset typically corresponding to &apos;summer&apos;.</p>
@@ -2994,30 +3033,25 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a year, month, day,
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a year, month, day,
 hour, minute, second, nanosecond and time-zone.</p>
-<p></p><p>
-This creates a zoned date-time matching the local date-time of the seven
+<p>This creates a zoned date-time matching the local date-time of the seven
 specified fields as closely as possible.
 Time-zone rules, such as daylight savings, mean that not every local date-time
 is valid for the specified zone, thus the local date-time may be adjusted.</p>
-<p></p><p>
-The local date-time is resolved to a single instant on the time-line.
+<p>The local date-time is resolved to a single instant on the time-line.
 This is achieved by finding a valid offset from UTC/Greenwich for the local
-date-time as defined by the {@link ZoneRules rules} of the zone ID.</p>
-<p></p><p>
-In most cases, there is only one valid offset for a local date-time.
+date-time as defined by the <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> of the zone ID.</p>
+<p>In most cases, there is only one valid offset for a local date-time.
 In the case of an overlap, when clocks are set back, there are two valid offsets.
 This method uses the earlier offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-In the case of a gap, when clocks jump forward, there is no valid offset.
+<p>In the case of a gap, when clocks jump forward, there is no valid offset.
 Instead, the local date-time is adjusted to be later by the length of the gap.
 For a typical one hour daylight savings change, the local date-time will be
 moved one hour later into the offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-This method exists primarily for writing test cases.
+<p>This method exists primarily for writing test cases.
 Non test-code will typically use other methods to create an offset time.
-{@code LocalDateTime} has five additional convenience variants of the
+<span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> has five additional convenience variants of the
 equivalent factory method taking fewer arguments.
 They are not provided here to reduce the footprint of the API.</p>
 </div>
@@ -3143,7 +3177,7 @@ They are not provided here to reduce the footprint of the API.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber285">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber284">source</a></span></span>
     </span>
   </h3>
 
@@ -3196,19 +3230,17 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber306">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber305">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from an {@code Instant}.</p>
-<p></p><p>
-This creates a zoned date-time with the same instant as that specified.
-Calling {@link #toInstant()} will return an instant equal to the one used here.</p>
-<p></p><p>
-Converting an instant to a zoned date-time is simple as there is only one valid
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
+<p>This creates a zoned date-time with the same instant as that specified.
+Calling <span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-toInstant">toInstant</a></span> will return an instant equal to the one used here.</p>
+<p>Converting an instant to a zoned date-time is simple as there is only one valid
 offset for each instant.</p>
 </div>
 
@@ -3290,26 +3322,116 @@ offset for each instant.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber332">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber330">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from the instant formed by combining
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from the instant formed by combining
 the local date-time and offset.</p>
-<p></p><p>
-This creates a zoned date-time by {@link LocalDateTime#toInstant(ZoneOffset) combining}
-the {@code LocalDateTime} and {@code ZoneOffset}.
+<p>This creates a zoned date-time by combining the <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> and <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
 This combination uniquely specifies an instant without ambiguity.</p>
-<p></p><p>
-Converting an instant to a zoned date-time is simple as there is only one valid
+<p>Converting an instant to a zoned date-time is simple as there is only one valid
 offset for each instant. If the valid offset is different to the offset specified,
 the the date-time and offset of the zoned date-time will differ from those specified.</p>
-<p></p><p>
-If the {@code ZoneId} to be used is a {@code ZoneOffset}, this method is equivalent
-to {@link #of(LocalDateTime, ZoneId)}.</p>
+<p>If the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> to be used is a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, this method is equivalent
+to <span><a href="class/src/Year.js~Year.html#static-method-of">of</a></span>.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">localDateTime</td>
+      <td data-ice="type"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the local date-time, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">offset</td>
+      <td data-ice="type"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the zone offset, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">zone</td>
+      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the time-zone, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-ofLenient">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    <span data-ice="name">ofLenient</span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber410">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> leniently, for advanced use cases,
+allowing any combination of local date-time, offset and zone ID.</p>
+<p>This creates a zoned date-time with no checks other than no nulls.
+This means that the resulting zoned date-time may have an offset that is in conflict
+with the zone ID.</p>
+<p>This method is intended for advanced use cases.
+For example, consider the case where a zoned date-time with valid fields is created
+and then stored in a database or serialization-based store. At some later point,
+the object is then re-loaded. However, between those points in time, the government
+that defined the time-zone has changed the rules, such that the originally stored
+local date-time now does not occur. This method can be used to create the object
+in an &apos;invalid&apos; state, despite the change in rules.</p>
 </div>
 
   
@@ -3392,19 +3514,16 @@ to {@link #of(LocalDateTime, ZoneId)}.</p>
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a local date-time
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a local date-time
 using the preferred offset if possible.</p>
-<p></p><p>
-The local date-time is resolved to a single instant on the time-line.
+<p>The local date-time is resolved to a single instant on the time-line.
 This is achieved by finding a valid offset from UTC/Greenwich for the local
-date-time as defined by the {@link ZoneRules rules} of the zone ID.</p>
-<p></p><p>
-In most cases, there is only one valid offset for a local date-time.
+date-time as defined by the <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> of the zone ID.</p>
+<p>In most cases, there is only one valid offset for a local date-time.
 In the case of an overlap, where clocks are set back, there are two valid offsets.
 If the preferred offset is one of the valid offsets then it is used.
 Otherwise the earlier valid offset is used, typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-In the case of a gap, where clocks jump forward, there is no valid offset.
+<p>In the case of a gap, where clocks jump forward, there is no valid offset.
 Instead, the local date-time is adjusted to be later by the length of the gap.
 For a typical one hour daylight savings change, the local date-time will be
 moved one hour later into the offset typically corresponding to &apos;summer&apos;.</p>
@@ -3483,17 +3602,16 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber371">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber369">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} strictly validating the
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> strictly validating the
 combination of local date-time, offset and zone ID.</p>
-<p></p><p>
-This creates a zoned date-time ensuring that the offset is valid for the
+<p>This creates a zoned date-time ensuring that the offset is valid for the
 local date-time according to the rules of the specified zone.
 If the offset is invalid, an exception is thrown.</p>
 </div>
@@ -3571,17 +3689,16 @@ If the offset is invalid, an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber485">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber481">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZonedDateTime} from a text string such as
-{@code 2007-12-03T10:15:30+01:00[Europe/Paris]}.</p>
-<p></p><p>
-The string must represent a valid date-time and is parsed using
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> from a text string such as
+<code>2007-12-03T10:15:30+01:00[Europe/Paris]</code>.</p>
+<p>The string must represent a valid date-time and is parsed using
 <span>org.threeten.bp.format.DateTimeFormatter#ISO_ZONED_DATE_TIME</span>.</p>
 </div>
 
@@ -3668,7 +3785,7 @@ The string must represent a valid date-time and is parsed using
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber498">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber494">source</a></span></span>
     </span>
   </h3>
 
@@ -3744,7 +3861,7 @@ The string must represent a valid date-time and is parsed using
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber917">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber907">source</a></span></span>
     </span>
   </h3>
 
@@ -3752,8 +3869,7 @@ The string must represent a valid date-time and is parsed using
   
   
   <div data-ice="description"><p>Gets the day-of-month field.</p>
-<p></p><p>
-This method returns the primitive {@code int} value for the day-of-month.</p>
+<p>This method returns the primitive <code>int</code> value for the day-of-month.</p>
 </div>
 
   
@@ -3798,21 +3914,18 @@ This method returns the primitive {@code int} value for the day-of-month.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber945">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber934">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the day-of-week field, which is an enum {@code DayOfWeek}.</p>
-<p></p><p>
-This method returns the enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> for the day-of-week.
-This avoids confusion as to what {@code int} values mean.
-If you need access to the primitive {@code int} value then the enum
-provides the {@link DayOfWeek#getValue() int value}.</p>
-<p></p><p>
-Additional information can be obtained from the {@code DayOfWeek}.
+  <div data-ice="description"><p>Gets the day-of-week field, which is an enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.</p>
+<p>This method returns the enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> for the day-of-week.
+This avoids confusion as to what <code>int</code> values mean.
+If you need access to the primitive <code>int</code> value, use <span>DayOfWeek#getValue</span>.</p>
+<p>Additional information can be obtained from the <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.
 This includes textual names of the values.</p>
 </div>
 
@@ -3858,7 +3971,7 @@ This includes textual names of the values.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber928">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber918">source</a></span></span>
     </span>
   </h3>
 
@@ -3866,8 +3979,7 @@ This includes textual names of the values.</p>
   
   
   <div data-ice="description"><p>Gets the day-of-year field.</p>
-<p></p><p>
-This method returns the primitive {@code int} value for the day-of-year.</p>
+<p>This method returns the primitive <code>int</code> value for the day-of-year.</p>
 </div>
 
   
@@ -3912,7 +4024,7 @@ This method returns the primitive {@code int} value for the day-of-year.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2007">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1981">source</a></span></span>
     </span>
   </h3>
 
@@ -3920,9 +4032,8 @@ This method returns the primitive {@code int} value for the day-of-year.</p>
   
   
   <div data-ice="description"><p>Checks if this date-time is equal to another date-time.</p>
-<p></p><p>
-The comparison is based on the offset date-time and the zone.
-Only objects of type {@code ZonedDateTime} are compared, other types return false.</p>
+<p>The comparison is based on the offset date-time and the zone.
+Only objects of type <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> are compared, other types return false.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-equals">ChronoZonedDateTime#equals</a></span></div>
@@ -3984,17 +4095,14 @@ Only objects of type {@code ZonedDateTime} are compared, other types return fals
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2069">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2040">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this date-time as a {@code String} using the formatter.</p>
-<p></p><p>
-This date will be passed to the formatter
-{@link DateTimeFormatter#format(TemporalAccessor) print method}.</p>
+  <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-format">ChronoZonedDateTime#format</a></span></div>
@@ -4068,30 +4176,27 @@ This date will be passed to the formatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber674">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber669">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this date-time as an {@code int}.</p>
-<p></p><p>
-This queries this date-time for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <code>int</code>.</p>
+<p>This queries this date-time for the value for the specified field.
 The returned value will always be within the valid range of values for the field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
-values based on this date-time, except {@code NANO_OF_DAY}, {@code MICRO_OF_DAY},
-{@code EPOCH_DAY}, {@code EPOCH_MONTH} and {@code INSTANT_SECONDS} which are too
-large to fit in an {@code int} and throw a {@code DateTimeException}.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
+values based on this date-time, except <span>NANO_OF_DAY</span>, <span>MICRO_OF_DAY</span>,
+<span>EPOCH_DAY</span>, <span>EPOCH_MONTH</span> and <span>INSTANT_SECONDS</span> which are too
+large to fit in an <code>int</code> and throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -4171,27 +4276,24 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber700">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber695">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this date-time as a {@code long}.</p>
-<p></p><p>
-This queries this date-time for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <code>long</code>.</p>
+<p>This queries this date-time for the value for the specified field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -4271,7 +4373,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2024">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1998">source</a></span></span>
     </span>
   </h3>
 
@@ -4323,7 +4425,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber955">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber944">source</a></span></span>
     </span>
   </h3>
 
@@ -4375,7 +4477,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber607">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber602">source</a></span></span>
     </span>
   </h3>
 
@@ -4383,50 +4485,46 @@ and what the value represents, is determined by the field.</p>
   
   
   <div data-ice="description"><p>Checks if the specified field is supported.</p>
-<p></p><p>
-This checks if this date-time can be queried for the specified field.
-If false, then calling the {@link #range(TemporalField) range} and
-{@link #get(TemporalField) get} methods will throw an exception.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+<p>This checks if this date-time can be queried for the specified field.
+If false, then calling <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-range">range</a></span> and <span><a href="class/src/Period.js~Period.html#instance-method-get">get</a></span> will throw an exception.</p>
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
 The supported fields are:</p>
-<p><ul>
-<li>{@code NANO_OF_SECOND}
-</li><li>{@code NANO_OF_DAY}
-</li><li>{@code MICRO_OF_SECOND}
-</li><li>{@code MICRO_OF_DAY}
-</li><li>{@code MILLI_OF_SECOND}
-</li><li>{@code MILLI_OF_DAY}
-</li><li>{@code SECOND_OF_MINUTE}
-</li><li>{@code SECOND_OF_DAY}
-</li><li>{@code MINUTE_OF_HOUR}
-</li><li>{@code MINUTE_OF_DAY}
-</li><li>{@code HOUR_OF_AMPM}
-</li><li>{@code CLOCK_HOUR_OF_AMPM}
-</li><li>{@code HOUR_OF_DAY}
-</li><li>{@code CLOCK_HOUR_OF_DAY}
-</li><li>{@code AMPM_OF_DAY}
-</li><li>{@code DAY_OF_WEEK}
-</li><li>{@code ALIGNED_DAY_OF_WEEK_IN_MONTH}
-</li><li>{@code ALIGNED_DAY_OF_WEEK_IN_YEAR}
-</li><li>{@code DAY_OF_MONTH}
-</li><li>{@code DAY_OF_YEAR}
-</li><li>{@code EPOCH_DAY}
-</li><li>{@code ALIGNED_WEEK_OF_MONTH}
-</li><li>{@code ALIGNED_WEEK_OF_YEAR}
-</li><li>{@code MONTH_OF_YEAR}
-</li><li>{@code EPOCH_MONTH}
-</li><li>{@code YEAR_OF_ERA}
-</li><li>{@code YEAR}
-</li><li>{@code ERA}
-</li><li>{@code INSTANT_SECONDS}
-</li><li>{@code OFFSET_SECONDS}
-</li></ul>
-All other {@code ChronoField} instances will return false.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-passing {@code this} as the argument.
+<ul>
+<li><span>NANO_OF_SECOND</span></li>
+<li><span>NANO_OF_DAY</span></li>
+<li><span>MICRO_OF_SECOND</span></li>
+<li><span>MICRO_OF_DAY</span></li>
+<li><span>MILLI_OF_SECOND</span></li>
+<li><span>MILLI_OF_DAY</span></li>
+<li><span>SECOND_OF_MINUTE</span></li>
+<li><span>SECOND_OF_DAY</span></li>
+<li><span>MINUTE_OF_HOUR</span></li>
+<li><span>MINUTE_OF_DAY</span></li>
+<li><span>HOUR_OF_AMPM</span></li>
+<li><span>CLOCK_HOUR_OF_AMPM</span></li>
+<li><span>HOUR_OF_DAY</span></li>
+<li><span>CLOCK_HOUR_OF_DAY</span></li>
+<li><span>AMPM_OF_DAY</span></li>
+<li><span>DAY_OF_WEEK</span></li>
+<li><span>ALIGNED_DAY_OF_WEEK_IN_MONTH</span></li>
+<li><span>ALIGNED_DAY_OF_WEEK_IN_YEAR</span></li>
+<li><span>DAY_OF_MONTH</span></li>
+<li><span>DAY_OF_YEAR</span></li>
+<li><span>EPOCH_DAY</span></li>
+<li><span>ALIGNED_WEEK_OF_MONTH</span></li>
+<li><span>ALIGNED_WEEK_OF_YEAR</span></li>
+<li><span>MONTH_OF_YEAR</span></li>
+<li><span>EPOCH_MONTH</span></li>
+<li><span>YEAR_OF_ERA</span></li>
+<li><span>YEAR</span></li>
+<li><span>ERA</span></li>
+<li><span>INSTANT_SECONDS</span></li>
+<li><span>OFFSET_SECONDS</span></li>
+</ul>
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.isSupportedBy</span>
+passing <code>this</code> as the argument.
 Whether the field is supported is determined by the field.</p>
 </div>
 
@@ -4489,7 +4587,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1606">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1587">source</a></span></span>
     </span>
   </h3>
 
@@ -4542,7 +4640,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1664">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1645">source</a></span></span>
     </span>
   </h3>
 
@@ -4550,27 +4648,22 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period subtracted.</p>
-<p></p><p>
-This method returns a new date-time based on this date-time with the specified period subtracted.
+<p>This method returns a new date-time based on this date-time with the specified period subtracted.
 This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
 The unit is responsible for the details of the calculation, including the resolution
 of any edge cases in the calculation.</p>
-<p></p><p>
-The calculation for date and time units differ.</p>
-<p></p><p>
-Date units operate on the local time-line.
+<p>The calculation for date and time units differ.</p>
+<p>Date units operate on the local time-line.
 The period is first subtracted from the local date-time, then converted back
 to a zoned date-time using the zone ID.
-The conversion uses {@link #ofLocal(LocalDateTime, ZoneId, ZoneOffset)}
+The conversion uses <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLocal">ofLocal</a></span>
 with the offset before the subtraction.</p>
-<p></p><p>
-Time units operate on the instant time-line.
+<p>Time units operate on the instant time-line.
 The period is first subtracted from the local date-time, then converted back to
 a zoned date-time using the zone ID.
-The conversion uses {@link #ofInstant(LocalDateTime, ZoneOffset, ZoneId)}
+The conversion uses <span><a href="class/src/LocalDate.js~LocalDate.html#static-method-ofInstant">ofInstant</a></span>
 with the offset before the subtraction.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4607,7 +4700,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the specified period subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -4651,25 +4744,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1753">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1730">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in days subtracted.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#minusDays(long) subtracting days} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in days subtracted.</p>
+<p>This operates on the local time-line, subtracting days from the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4699,7 +4788,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the days subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -4743,32 +4832,29 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1782">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1758">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in hours subtracted.</p>
-<p></p><p>
-This operates on the instant time-line, such that subtracting one hour will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in hours subtracted.</p>
+<p>This operates on the instant time-line, such that subtracting one hour will
 always be a duration of one hour earlier.
 This may cause the local date-time to change by an amount other than one hour.
 Note that this is a different approach to that used by days, months and years,
 thus subtracting one day is not the same as adding 24 hours.</p>
-<p></p><p>
-For example, consider a time-zone where the spring DST cutover means that the
+<p>For example, consider a time-zone where the spring DST cutover means that the
 local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p>
-<p></p><p><ul></ul></p>
-<p><li>Subtracting one hour from 02:30+01:00 will result in 01:30+02:00</li></p>
-<p><li>Subtracting one hour from 01:30+01:00 will result in 01:30+02:00</li></p>
-<p><li>Subtracting one hour from 01:30+02:00 will result in 00:30+01:00</li></p>
-<p><li>Subtracting three hours from 02:30+01:00 will result in 00:30+02:00
-<p></p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
-</li></p></div>
+<ul>
+<li>Subtracting one hour from 02:30+01:00 will result in 01:30+02:00</li>
+<li>Subtracting one hour from 01:30+01:00 will result in 01:30+02:00</li>
+<li>Subtracting one hour from 01:30+02:00 will result in 00:30+01:00</li>
+<li>Subtracting three hours from 02:30+01:00 will result in 00:30+02:00</li>
+</ul>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
 
   
 
@@ -4797,7 +4883,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the hours subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -4841,21 +4927,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1800">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1776">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in minutes subtracted.</p>
-<p></p><p>
-This operates on the instant time-line, such that subtracting one minute will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in minutes subtracted.</p>
+<p>This operates on the instant time-line, such that subtracting one minute will
 always be a duration of one minute earlier.
 This may cause the local date-time to change by an amount other than one minute.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4885,7 +4969,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the minutes subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -4929,25 +5013,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1709">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1688">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in months subtracted.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#minusMonths(long) subtracting months} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in months subtracted.</p>
+<p>This operates on the local time-line, subtracting months from the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4977,7 +5057,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the months subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -5021,21 +5101,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1836">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1812">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in nanoseconds subtracted.</p>
-<p></p><p>
-This operates on the instant time-line, such that subtracting one nano will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in nanoseconds subtracted.</p>
+<p>This operates on the instant time-line, such that subtracting one nano will
 always be a duration of one nano earlier.
 This may cause the local date-time to change by an amount other than one nano.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5065,7 +5143,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the nanoseconds subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -5109,21 +5187,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1818">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1794">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in seconds subtracted.</p>
-<p></p><p>
-This operates on the instant time-line, such that subtracting one second will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in seconds subtracted.</p>
+<p>This operates on the instant time-line, such that subtracting one second will
 always be a duration of one second earlier.
 This may cause the local date-time to change by an amount other than one second.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5153,7 +5229,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the seconds subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -5197,7 +5273,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1630">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1611">source</a></span></span>
     </span>
   </h3>
 
@@ -5205,14 +5281,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period subtracted.</p>
-<p></p><p>
-This method returns a new date-time based on this time with the specified period subtracted.
+<p>This method returns a new date-time based on this time with the specified period subtracted.
 The amount is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #minus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-minus">minus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5242,7 +5316,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the subtraction made, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the subtraction made, not null</p>
 </td>
       </tr>
     </table>
@@ -5291,25 +5365,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1731">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1709">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in weeks subtracted.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#minusWeeks(long) subtracting weeks} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in weeks subtracted.</p>
+<p>This operates on the local time-line, subtracting weeks from the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5339,7 +5409,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the weeks subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -5383,25 +5453,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1687">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1667">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in years subtracted.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#minusYears(long) subtracting years} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in years subtracted.</p>
+<p>This operates on the local time-line, subtracting years from the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5431,7 +5497,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the years subtracted, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years subtracted, not null</p>
 </td>
       </tr>
     </table>
@@ -5475,7 +5541,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber964">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber953">source</a></span></span>
     </span>
   </h3>
 
@@ -5527,19 +5593,17 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber906">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber896">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the month-of-year field using the {@code Month} enum.</p>
-<p></p><p>
-This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
-This avoids confusion as to what {@code int} values mean.
-If you need access to the primitive {@code int} value then the enum
-provides the {@link Month#getValue() int value}.</p>
+  <div data-ice="description"><p>Gets the month-of-year field using the <span><a href="class/src/Month.js~Month.html">Month</a></span> enum.</p>
+<p>This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
+This avoids confusion as to what <code>int</code> values mean.
+If you need access to the primitive <code>int</code> value, use <span>Month#getValue</span>.</p>
 </div>
 
   
@@ -5584,7 +5648,7 @@ provides the {@link Month#getValue() int value}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber891">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber882">source</a></span></span>
     </span>
   </h3>
 
@@ -5592,10 +5656,9 @@ provides the {@link Month#getValue() int value}.</p>
   
   
   <div data-ice="description"><p>Gets the month-of-year field from 1 to 12.</p>
-<p></p><p>
-This method returns the month as an {@code int} from 1 to 12.
+<p>This method returns the month as an <code>int</code> from 1 to 12.
 Application code is frequently clearer if the enum <span><a href="class/src/Month.js~Month.html">Month</a></span>
-is used by calling {@link #getMonth()}.</p>
+is used by calling <span>getMonth</span>.</p>
 </div>
 
   
@@ -5640,7 +5703,7 @@ is used by calling {@link #getMonth()}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber982">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber971">source</a></span></span>
     </span>
   </h3>
 
@@ -5692,7 +5755,7 @@ is used by calling {@link #getMonth()}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber720">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber715">source</a></span></span>
     </span>
   </h3>
 
@@ -5700,8 +5763,7 @@ is used by calling {@link #getMonth()}.</p>
   
   
   <div data-ice="description"><p>Gets the zone offset, such as &apos;+01:00&apos;.</p>
-<p></p><p>
-This is the offset of the local date-time from UTC/Greenwich.</p>
+<p>This is the offset of the local date-time from UTC/Greenwich.</p>
 </div>
 
   
@@ -5746,7 +5808,7 @@ This is the offset of the local date-time from UTC/Greenwich.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1357">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1343">source</a></span></span>
     </span>
   </h3>
 
@@ -5799,7 +5861,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1415">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1401">source</a></span></span>
     </span>
   </h3>
 
@@ -5807,27 +5869,22 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period added.</p>
-<p></p><p>
-This method returns a new date-time based on this date-time with the specified period added.
+<p>This method returns a new date-time based on this date-time with the specified period added.
 This can be used to add any period that is defined by a unit, for example to add years, months or days.
 The unit is responsible for the details of the calculation, including the resolution
 of any edge cases in the calculation.</p>
-<p></p><p>
-The calculation for date and time units differ.</p>
-<p></p><p>
-Date units operate on the local time-line.
+<p>The calculation for date and time units differ.</p>
+<p>Date units operate on the local time-line.
 The period is first added to the local date-time, then converted back
 to a zoned date-time using the zone ID.
-The conversion uses {@link #ofLocal(LocalDateTime, ZoneId, ZoneOffset)}
+The conversion uses <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLocal">ofLocal</a></span>
 with the offset before the addition.</p>
-<p></p><p>
-Time units operate on the instant time-line.
+<p>Time units operate on the instant time-line.
 The period is first added to the local date-time, then converted back to
 a zoned date-time using the zone ID.
-The conversion uses {@link #ofInstant(LocalDateTime, ZoneOffset, ZoneId)}
+The conversion uses <span><a href="class/src/LocalDate.js~LocalDate.html#static-method-ofInstant">ofInstant</a></span>
 with the offset before the addition.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5864,7 +5921,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the specified period added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period added, not null</p>
 </td>
       </tr>
     </table>
@@ -5908,25 +5965,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1512">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1494">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in days added.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#plusDays(long) adding days} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in days added.</p>
+<p>This operates on the local time-line, adding days to the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5956,7 +6009,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a {@code ZonedDateTime} based on this date-time with the days added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days added, not null</p>
 </td>
       </tr>
     </table>
@@ -6000,32 +6053,29 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1541">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1522">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in hours added.</p>
-<p></p><p>
-This operates on the instant time-line, such that adding one hour will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in hours added.</p>
+<p>This operates on the instant time-line, such that adding one hour will
 always be a duration of one hour later.
 This may cause the local date-time to change by an amount other than one hour.
 Note that this is a different approach to that used by days, months and years,
 thus adding one day is not the same as adding 24 hours.</p>
-<p></p><p>
-For example, consider a time-zone where the spring DST cutover means that the
+<p>For example, consider a time-zone where the spring DST cutover means that the
 local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p>
-<p></p><p><ul></ul></p>
-<p><li>Adding one hour to 00:30+02:00 will result in 01:30+02:00</li></p>
-<p><li>Adding one hour to 01:30+02:00 will result in 01:30+01:00</li></p>
-<p><li>Adding one hour to 01:30+01:00 will result in 02:30+01:00</li></p>
-<p><li>Adding three hours to 00:30+02:00 will result in 02:30+01:00
-<p></p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
-</li></p></div>
+<ul>
+<li>Adding one hour to 00:30+02:00 will result in 01:30+02:00</li>
+<li>Adding one hour to 01:30+02:00 will result in 01:30+01:00</li>
+<li>Adding one hour to 01:30+01:00 will result in 02:30+01:00</li>
+<li>Adding three hours to 00:30+02:00 will result in 02:30+01:00</li>
+</ul>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
 
   
 
@@ -6054,7 +6104,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the hours added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours added, not null</p>
 </td>
       </tr>
     </table>
@@ -6098,21 +6148,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1559">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1540">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in minutes added.</p>
-<p></p><p>
-This operates on the instant time-line, such that adding one minute will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in minutes added.</p>
+<p>This operates on the instant time-line, such that adding one minute will
 always be a duration of one minute later.
 This may cause the local date-time to change by an amount other than one minute.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6142,7 +6190,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the minutes added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes added, not null</p>
 </td>
       </tr>
     </table>
@@ -6186,25 +6234,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1468">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1452">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in months added.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#plusMonths(long) adding months} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in months added.</p>
+<p>This operates on the local time-line, adding months to the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6234,7 +6278,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the months added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months added, not null</p>
 </td>
       </tr>
     </table>
@@ -6278,21 +6322,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1595">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1576">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in nanoseconds added.</p>
-<p></p><p>
-This operates on the instant time-line, such that adding one nano will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in nanoseconds added.</p>
+<p>This operates on the instant time-line, such that adding one nano will
 always be a duration of one nano later.
 This may cause the local date-time to change by an amount other than one nano.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6322,7 +6364,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the nanoseconds added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds added, not null</p>
 </td>
       </tr>
     </table>
@@ -6366,21 +6408,19 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1577">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1558">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in seconds added.</p>
-<p></p><p>
-This operates on the instant time-line, such that adding one second will
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in seconds added.</p>
+<p>This operates on the instant time-line, such that adding one second will
 always be a duration of one second later.
 This may cause the local date-time to change by an amount other than one second.
 Note that this is a different approach to that used by days, months and years.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6410,7 +6450,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the seconds added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds added, not null</p>
 </td>
       </tr>
     </table>
@@ -6454,7 +6494,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1381">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1367">source</a></span></span>
     </span>
   </h3>
 
@@ -6462,14 +6502,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period added.</p>
-<p></p><p>
-This method returns a new date-time based on this time with the specified period added.
+<p>This method returns a new date-time based on this time with the specified period added.
 The amount is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #plus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6499,7 +6537,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the addition made, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the addition made, not null</p>
 </td>
       </tr>
     </table>
@@ -6548,25 +6586,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1490">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1473">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in weeks added.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#plusWeeks(long) adding weeks} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in weeks added.</p>
+<p>This operates on the local time-line, adding weeks to the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6596,7 +6630,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a {@code ZonedDateTime} based on this date-time with the weeks added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks added, not null</p>
 </td>
       </tr>
     </table>
@@ -6640,25 +6674,21 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1446">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1431">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the specified period in years added.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#plusYears(long) adding years} to the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the specified period in years added.</p>
+<p>This operates on the local time-line, adding years to the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6688,7 +6718,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the years added, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years added, not null</p>
 </td>
       </tr>
     </table>
@@ -6732,7 +6762,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1858">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1834">source</a></span></span>
     </span>
   </h3>
 
@@ -6740,15 +6770,13 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Queries this date-time using the specified query.</p>
-<p></p><p>
-This queries this date-time using the specified query strategy object.
-The {@code TemporalQuery} object defines the logic to be used to
+<p>This queries this date-time using the specified query strategy object.
+The <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> object defines the logic to be used to
 obtain the result. Read the documentation of the query to understand
 what the result of this method will be.</p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-specified query passing {@code this} as the argument.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html#instance-method-queryFrom">TemporalQuery#queryFrom</a></span> method on the
+specified query passing <code>this</code> as the argument.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-query">ChronoZonedDateTime#query</a></span></div>
@@ -6827,7 +6855,7 @@ specified query passing {@code this} as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber639">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber634">source</a></span></span>
     </span>
   </h3>
 
@@ -6835,20 +6863,17 @@ specified query passing {@code this} as the argument.</p>
   
   
   <div data-ice="description"><p>Gets the range of valid values for the specified field.</p>
-<p></p><p>
-The range object expresses the minimum and maximum valid values for a field.
+<p>The range object expresses the minimum and maximum valid values for a field.
 This date-time is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-passing {@code this} as the argument.
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.rangeRefinedBy</span>
+passing <code>this</code> as the argument.
 Whether the range can be obtained is determined by the field.</p>
 </div>
 
@@ -6923,7 +6948,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber973">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber962">source</a></span></span>
     </span>
   </h3>
 
@@ -6975,7 +7000,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2055">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2029">source</a></span></span>
     </span>
   </h3>
 
@@ -7026,16 +7051,15 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1968">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1940">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the {@code LocalDate} part of this date-time.</p>
-<p></p><p>
-This returns a {@code LocalDate} with the same year, month and day
+  <div data-ice="description"><p>Gets the <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> part of this date-time.</p>
+<p>This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> with the same year, month and day
 as this date-time.</p>
 </div>
 
@@ -7081,16 +7105,15 @@ as this date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1956">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1928">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the {@code LocalDateTime} part of this date-time.</p>
-<p></p><p>
-This returns a {@code LocalDateTime} with the same year, month, day and time
+  <div data-ice="description"><p>Gets the <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> part of this date-time.</p>
+<p>This returns a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the same year, month, day and time
 as this date-time.</p>
 </div>
 
@@ -7136,16 +7159,15 @@ as this date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1980">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1952">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the {@code LocalTime} part of this date-time.</p>
-<p></p><p>
-This returns a {@code LocalTime} with the same hour, minute, second and
+  <div data-ice="description"><p>Gets the <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> part of this date-time.</p>
+<p>This returns a <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> with the same hour, minute, second and
 nanosecond as this date-time.</p>
 </div>
 
@@ -7181,61 +7203,6 @@ nanosecond as this date-time.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-toOffsetDateTime">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">toOffsetDateTime</span><span data-ice="signature">(): <span>OffsetDateTime</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1992">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Converts this date-time to an {@code OffsetDateTime}.</p>
-<p></p><p>
-This creates an offset date-time using the local date-time and offset.
-The zone ID is ignored.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>OffsetDateTime</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>an offset date-time representing the same local date-time and offset, not null</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
     
@@ -7246,18 +7213,17 @@ The zone ID is ignored.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2043">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber2017">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this date-time as a {@code String}, such as
-{@code 2007-12-03T10:15:30+01:00[Europe/Paris]}.</p>
-<p></p><p>
-The format consists of the {@code LocalDateTime} followed by the {@code ZoneOffset}.
-If the {@code ZoneId} is not the same as the offset, then the ID is output.
+  <div data-ice="description"><p>Outputs this date-time as a string, such as
+<code>2007-12-03T10:15:30+01:00[Europe/Paris]</code>.</p>
+<p>The format consists of the <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> followed by the <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
+If the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> is not the same as the offset, then the ID is output.
 The output is compatible with ISO-8601 if the offset and ID are the same.</p>
 </div>
 
@@ -7303,35 +7269,28 @@ The output is compatible with ISO-8601 if the offset and ID are the same.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1346">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1332">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the time truncated.</p>
-<p></p><p>
-Truncation returns a copy of the original date-time with fields
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the time truncated.</p>
+<p>Truncation returns a copy of the original date-time with fields
 smaller than the specified unit set to zero.
-For example, truncating with the {@link ChronoUnit#MINUTES minutes} unit
+For example, truncating with <span>ChronoUnit#MINUTES</span>
 will set the second-of-minute and nano-of-second field to zero.</p>
-<p></p><p>
-The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+<p>The unit must have a duration (see <span>TemporalUnit#getDuration</span>)
 that divides into the length of a standard day without remainder.
 This includes all supplied time units on <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> and
-{@link ChronoUnit#DAYS DAYS}. Other units throw an exception.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#truncatedTo(TemporalUnit) truncating}
-the underlying local date-time. This is then converted back to a
-{@code ZonedDateTime}, using the zone ID to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<span>ChronoUnit#DAYS</span>. Other units throw an exception.</p>
+<p>This operates on the local time-line, truncating the underlying local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID to obtain the offset.</p>
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7361,7 +7320,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the time truncated, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the time truncated, not null</p>
 </td>
       </tr>
     </table>
@@ -7405,7 +7364,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1928">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1904">source</a></span></span>
     </span>
   </h3>
 
@@ -7414,58 +7373,50 @@ This instance is immutable and unaffected by this method call.</p>
   
   <div data-ice="description"><p>Calculates the period between this date-time and another date-time in
 terms of the specified unit.</p>
-<p></p><p>
-This calculates the period between two date-times in terms of a single unit.
-The start and end points are {@code this} and the specified date-time.
+<p>This calculates the period between two date-times in terms of a single unit.
+The start and end points are <code>this</code> and the specified date-time.
 The result will be negative if the end is before the start.
 For example, the period in days between two date-times can be calculated
-using {@code startDateTime.until(endDateTime, DAYS)}.</p>
-<p></p><p>
-The {@code Temporal} passed to this method must be a {@code ZonedDateTime}.
+using <span>startDateTime.until</span>.</p>
+<p>The <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span> passed to this method must be a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>.
 If the time-zone differs between the two zoned date-times, the specified
 end date-time is normalized to have the same zone as this date-time.</p>
-<p></p><p>
-The calculation returns a whole number, representing the number of
+<p>The calculation returns a whole number, representing the number of
 complete units between the two date-times.
 For example, the period in months between 2012-06-15T00:00Z and 2012-08-14T23:59Z
 will only be one month as it is one minute short of two months.</p>
-<p></p><p>
-This method operates in association with <span>TemporalUnit#between</span>.
-The result of this method is a {@code long} representing the amount of
-the specified unit. By contrast, the result of {@code between} is an
+<p>This method operates in association with <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">TemporalUnit#between</a></span>.
+The result of this method is a <code>long</code> representing the amount of
+the specified unit. By contrast, the result of <span><a href="class/src/Duration.js~Duration.html#static-method-between">between</a></span> is an
 object that can be used directly in addition/subtraction:</p>
 <p><pre>
   long period = start.until(end, MONTHS);   // this method
   dateTime.plus(MONTHS.between(start, end));      // use in plus/minus
-</pre></p>
-<p></p><p>
-The calculation is implemented in this method for <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
-The units {@code NANOS}, {@code MICROS}, {@code MILLIS}, {@code SECONDS},
-{@code MINUTES}, {@code HOURS} and {@code HALF_DAYS}, {@code DAYS},
-{@code WEEKS}, {@code MONTHS}, {@code YEARS}, {@code DECADES},
-{@code CENTURIES}, {@code MILLENNIA} and {@code ERAS} are supported.
-Other {@code ChronoUnit} values will throw an exception.</p>
-<p></p><p>
-The calculation for date and time units differ.</p>
-<p></p><p>
-Date units operate on the local time-line, using the local date-time.
+</pre>
+
+</p>
+<p>The calculation is implemented in this method for <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
+The units <span>NANOS</span>, <span>MICROS</span>, <span>MILLIS</span>, <span>SECONDS</span>,
+<span>MINUTES</span>, <span>HOURS</span> and <span>HALF_DAYS</span>, <span>DAYS</span>,
+<span>WEEKS</span>, <span>MONTHS</span>, <span>YEARS</span>, <span>DECADES</span>,
+<span>CENTURIES</span>, <span>MILLENNIA</span> and <span>ERAS</span> are supported.
+Other <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> values will throw an exception.</p>
+<p>The calculation for date and time units differ.</p>
+<p>Date units operate on the local time-line, using the local date-time.
 For example, the period from noon on day 1 to noon the following day
 in days will always be counted as exactly one day, irrespective of whether
 there was a daylight savings change or not.</p>
-<p></p><p>
-Time units operate on the instant time-line.
+<p>Time units operate on the instant time-line.
 The calculation effectively converts both zoned date-times to instants
 and then calculates the period between the instants.
 For example, the period from noon on day 1 to noon the following day
 in hours may be 23, 24 or 25 hours (or some other amount) depending on
 whether there was a daylight savings change or not.</p>
-<p></p><p>
-If the unit is not a {@code ChronoUnit}, then the result of this method
-is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
-passing {@code this} as the first argument and the input temporal as
+<p>If the unit is not a <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>, then the result of this method
+is obtained by invoking <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">TemporalUnit.between</a></span>
+passing <code>this</code> as the first argument and the input temporal as
 the second argument.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7482,7 +7433,7 @@ This instance is immutable and unaffected by this method call.</p>
       <td data-ice="name" data-depth="0">endExclusive</td>
       <td data-ice="type"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the end date-time, which is converted to a {@code ZonedDateTime}, not null</p>
+      <td data-ice="description"><p>the end date-time, which is converted to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, not null</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="0">
@@ -7551,7 +7502,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber993">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber982">source</a></span></span>
     </span>
   </h3>
 
@@ -7604,7 +7555,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1123">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1111">source</a></span></span>
     </span>
   </h3>
 
@@ -7612,48 +7563,38 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified field set to a new value.</p>
-<p></p><p>
-This returns a {@code ZonedDateTime}, based on this one, with the value
+<p>This returns a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, based on this one, with the value
 for the specified field changed.
 This can be used to change any supported field, such as the year, month or day-of-month.
 If it is not possible to set the value, because the field is not supported or for
 some other reason, an exception is thrown.</p>
-<p></p><p>
-In some cases, changing the specified field can cause the resulting date-time to become invalid,
+<p>In some cases, changing the specified field can cause the resulting date-time to become invalid,
 such as changing the month from 31st January to February would make the day-of-month invalid.
 In cases like this, the field is responsible for resolving the date. Typically it will choose
 the previous valid date, which would be the last valid day of February in this example.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.</p>
-<p></p><p>
-The {@code INSTANT_SECONDS} field will return a date-time with the specified instant.
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.</p>
+<p>The <span>INSTANT_SECONDS</span> field will return a date-time with the specified instant.
 The zone and nano-of-second are unchanged.
 The result will have an offset derived from the new instant and original zone.
-If the new instant value is outside the valid range then a {@code DateTimeException} will be thrown.</p>
-<p></p><p>
-The {@code OFFSET_SECONDS} field will typically be ignored.
-The offset of a {@code ZonedDateTime} is controlled primarily by the time-zone.
+If the new instant value is outside the valid range then a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> will be thrown.</p>
+<p>The <span>OFFSET_SECONDS</span> field will typically be ignored.
+The offset of a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> is controlled primarily by the time-zone.
 As such, changing the offset does not generally make sense, because there is only
 one valid offset for the local date-time and zone.
 If the zoned date-time is in a daylight savings overlap, then the offset is used
 to switch between the two valid offsets. In all other cases, the offset is ignored.
-If the new offset value is outside the valid range then a {@code DateTimeException} will be thrown.</p>
-<p></p><p>
-The other {@link #isSupported(TemporalField) supported fields} will behave as per
-the matching method on {@link LocalDateTime#with(TemporalField, long) LocalDateTime}.
+If the new offset value is outside the valid range then a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> will be thrown.</p>
+<p>The other supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will behave as in <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-with">LocalDateTime#with</a></span>.
 The zone is not part of the calculation and will be unchanged.
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
-passing {@code this} as the argument. In this case, the field determines
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw an <span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.adjustInto</span>
+passing <code>this</code> as the argument. In this case, the field determines
 whether and how to adjust the instant.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7690,7 +7631,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on {@code this} with the specified field set, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the specified field set, not null</p>
 </td>
       </tr>
     </table>
@@ -7744,25 +7685,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1201">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1189">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the day-of-month value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withDayOfMonth(int) changing the day-of-month} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the day-of-month value altered.</p>
+<p>This operates on the local time-line,
+changing the day-of-month (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withDayOfMonth">LocalDateTime#withDayOfMonth</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7792,7 +7730,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested day, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested day, not null</p>
 </td>
       </tr>
     </table>
@@ -7841,25 +7779,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1224">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1212">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the day-of-year altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withDayOfYear(int) changing the day-of-year} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the day-of-year altered.</p>
+<p>This operates on the local time-line,
+changing the day-of-year (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withDayOfYear">LocalDateTime#withDayOfYear</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7889,7 +7824,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date with the requested day, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date with the requested day, not null</p>
 </td>
       </tr>
     </table>
@@ -7928,36 +7863,32 @@ This instance is immutable and unaffected by this method call.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-withFixedOffsetZone">
+  <h3 data-ice="anchor" id="instance-method-withEarlierOffsetAtOverlap">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">withFixedOffsetZone</span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+    <span data-ice="name">withEarlierOffsetAtOverlap</span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber862">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber735">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this date-time with the zone ID set to the offset.</p>
-<p></p><p>
-This returns a zoned date-time where the zone ID is the same as {@link #getOffset()}.
-The local date-time, offset and instant of the result will be the same as in this date-time.</p>
-<p></p><p>
-Setting the date-time to a fixed single offset means that any future
-calculations, such as addition or subtraction, have no complex edge cases
-due to time-zone rules.
-This might also be useful when sending a zoned date-time across a network,
-as most protocols, such as ISO-8601, only handle offsets,
-and not region-based zone IDs.</p>
-<p></p><p>
-This is equivalent to {@code ZonedDateTime.of(zdt.getDateTime(), zdt.getOffset())}.</p>
+  <div data-ice="description"><p>Returns a copy of this date-time changing the zone offset to the
+earlier of the two valid offsets at a local time-line overlap.</p>
+<p>This method only has any effect when the local time-line overlaps, such as
+at an autumn daylight savings cutover. In this scenario, there are two
+valid offsets for the local date-time. Calling this method will return
+a zoned date-time with the earlier of the two selected.</p>
+<p>If this method is called when it is not an overlap, <code>this</code>
+is returned.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7970,7 +7901,68 @@ This is equivalent to {@code ZonedDateTime.of(zdt.getDateTime(), zdt.getOffset()
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} with the zone ID set to the offset, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the earlier offset, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-withFixedOffsetZone">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withFixedOffsetZone</span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber853">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this date-time with the zone ID set to the offset.</p>
+<p>This returns a zoned date-time where the zone ID is the same as <span>getOffset</span>.
+The local date-time, offset and instant of the result will be the same as in this date-time.</p>
+<p>Setting the date-time to a fixed single offset means that any future
+calculations, such as addition or subtraction, have no complex edge cases
+due to time-zone rules.
+This might also be useful when sending a zoned date-time across a network,
+as most protocols, such as ISO-8601, only handle offsets,
+and not region-based zone IDs.</p>
+<p>This is equivalent to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of">ZonedDateTime.of</a></span>.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the zone ID set to the offset, not null</p>
 </td>
       </tr>
     </table>
@@ -8002,25 +7994,22 @@ This is equivalent to {@code ZonedDateTime.of(zdt.getDateTime(), zdt.getOffset()
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1247">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1235">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the hour-of-day value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withHour(int) changing the time} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the hour-of-day value altered.</p>
+<p>This operates on the local time-line,
+changing the time (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withHour">LocalDateTime#withHour</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8050,7 +8039,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested hour, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested hour, not null</p>
 </td>
       </tr>
     </table>
@@ -8084,6 +8073,66 @@ This instance is immutable and unaffected by this method call.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-withLaterOffsetAtOverlap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withLaterOffsetAtOverlap</span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber762">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this date-time changing the zone offset to the
+later of the two valid offsets at a local time-line overlap.</p>
+<p>This method only has any effect when the local time-line overlaps, such as
+at an autumn daylight savings cutover. In this scenario, there are two
+valid offsets for the local date-time. Calling this method will return
+a zoned date-time with the later of the two selected.</p>
+<p>If this method is called when it is not an overlap, <code>this</code>
+is returned.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the later offset, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withMinute">
     <span class="access" data-ice="access">public</span>
     
@@ -8094,25 +8143,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1269">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1257">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the minute-of-hour value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withMinute(int) changing the time} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the minute-of-hour value altered.</p>
+<p>This operates on the local time-line,
+changing the time (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withMinute">LocalDateTime#withMinute</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8142,7 +8188,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested minute, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested minute, not null</p>
 </td>
       </tr>
     </table>
@@ -8186,25 +8232,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1178">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1166">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the month-of-year value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withMonth(int) changing the month} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the month-of-year value altered.</p>
+<p>This operates on the local time-line,
+changing the month (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withMonth">LocalDateTime#withMonth</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8234,7 +8277,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested month, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested month, not null</p>
 </td>
       </tr>
     </table>
@@ -8278,25 +8321,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1313">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1301">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the nano-of-second value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withNano(int) changing the time} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the nano-of-second value altered.</p>
+<p>This operates on the local time-line,
+changing the time (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withNano">LocalDateTime#withNano</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8326,7 +8366,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested nanosecond, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested nanosecond, not null</p>
 </td>
       </tr>
     </table>
@@ -8370,25 +8410,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1291">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1279">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the second-of-minute value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withSecond(int) changing the time} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the second-of-minute value altered.</p>
+<p>This operates on the local time-line,
+changing the time (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withSecond">LocalDateTime#withSecond</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8418,7 +8455,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested second, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested second, not null</p>
 </td>
       </tr>
     </table>
@@ -8462,7 +8499,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1053">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1042">source</a></span></span>
     </span>
   </h3>
 
@@ -8470,49 +8507,47 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns an adjusted copy of this date-time.</p>
-<p></p><p>
-This returns a new {@code ZonedDateTime}, based on this one, with the date-time adjusted.
+<p>This returns a new <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, based on this one, with the date-time adjusted.
 The adjustment takes place using the specified adjuster strategy object.
 Read the documentation of the adjuster to understand what adjustment will be made.</p>
-<p></p><p>
-A simple adjuster might simply set the one of the fields, such as the year field.
+<p>A simple adjuster might simply set the one of the fields, such as the year field.
 A more complex adjuster might set the date to the last day of the month.
 A selection of common adjustments is provided in <span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span>.
 These include finding the &apos;last day of the month&apos; and &apos;next Wednesday&apos;.
-Key date-time classes also implement the {@code TemporalAdjuster} interface,
+Key date-time classes also implement the <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> interface,
 such as <span><a href="class/src/Month.js~Month.html">Month</a></span> and <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.
 The adjuster is responsible for handling special cases, such as the varying
 lengths of month and leap years.</p>
-<p></p><p>
-For example this code returns a date on the last day of July:</p>
+<p>For example this code returns a date on the last day of July:</p>
 <p><pre>
  import static org.threeten.bp.Month.<em>;
- import static org.threeten.bp.temporal.Adjusters.</em>;</pre></p>
-<p> result = zonedDateTime.with(JULY).with(lastDayOfMonth());
+ import static org.threeten.bp.temporal.Adjusters.</em>;
+
+ result = zonedDateTime.with(JULY).with(lastDayOfMonth());
+</pre>
+
 </p>
-<p></p><p>
-The classes <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> implement {@code TemporalAdjuster},
+<p>The classes <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> implement <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>,
 thus this method can be used to change the date, time or offset:</p>
 <p><pre>
  result = zonedDateTime.with(date);
  result = zonedDateTime.with(time);
-</pre></p>
-<p></p><p>
-<span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> also implements {@code TemporalAdjuster} however it is less likely
+</pre>
+
+</p>
+<p><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> also implements <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> however it is less likely
 that setting the offset will have the effect you expect. When an offset is passed in,
-the local date-time is combined with the new offset to form an {@code Instant}.
+the local date-time is combined with the new offset to form an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.
 The instant and original zone are then used to create the result.
 This algorithm means that it is quite likely that the output has a different offset
 to the specified offset. It will however work correctly when passing in the offset
 applicable for the instant of the zoned date-time, and will work correctly if passing
 one of the two valid offsets during a daylight savings overlap when the same local time
 occurs twice.</p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalAdjuster#adjustInto(Temporal)} method on the
-specified adjuster passing {@code this} as the argument.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html#instance-method-adjustInto">TemporalAdjuster#adjustInto</a></span> method on the
+specified adjuster passing <code>this</code> as the argument.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8542,7 +8577,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on {@code this} with the adjustment made, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the adjustment made, not null</p>
 </td>
       </tr>
     </table>
@@ -8591,25 +8626,22 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1156">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber1144">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Returns a copy of this {@code ZonedDateTime} with the year value altered.</p>
-<p></p><p>
-This operates on the local time-line,
-{@link LocalDateTime#withYear(int) changing the year} of the local date-time.
-This is then converted back to a {@code ZonedDateTime}, using the zone ID
+  <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the year value altered.</p>
+<p>This operates on the local time-line,
+changing the year (see <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-withYear">LocalDateTime#withYear</a></span>) of the local date-time.
+This is then converted back to a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, using the zone ID
 to obtain the offset.</p>
-<p></p><p>
-When converting back to {@code ZonedDateTime}, if the local date-time is in an overlap,
+<p>When converting back to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, if the local date-time is in an overlap,
 then the offset will be retained if possible, otherwise the earlier offset will be used.
 If in a gap, the local date-time will be adjusted forward by the length of the gap.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8639,7 +8671,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested year, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested year, not null</p>
 </td>
       </tr>
     </table>
@@ -8683,7 +8715,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber839">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber830">source</a></span></span>
     </span>
   </h3>
 
@@ -8692,15 +8724,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   <div data-ice="description"><p>Returns a copy of this date-time with a different time-zone,
 retaining the instant.</p>
-<p></p><p>
-This method changes the time-zone and retains the instant.
+<p>This method changes the time-zone and retains the instant.
 This normally results in a change to the local date-time.</p>
-<p></p><p>
-This method is based on retaining the same instant, thus gaps and overlaps
+<p>This method is based on retaining the same instant, thus gaps and overlaps
 in the local time-line have no effect on the result.</p>
-<p></p><p>
-To change the offset while keeping the local time,
-use {@link #withZoneSameLocal(ZoneId)}.</p>
+<p>To change the offset while keeping the local time,
+use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameLocal">withZoneSameLocal</a></span>.</p>
 </div>
 
   
@@ -8730,7 +8759,7 @@ use {@link #withZoneSameLocal(ZoneId)}.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested zone, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
 </td>
       </tr>
     </table>
@@ -8774,7 +8803,7 @@ use {@link #withZoneSameLocal(ZoneId)}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber817">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber808">source</a></span></span>
     </span>
   </h3>
 
@@ -8783,16 +8812,13 @@ use {@link #withZoneSameLocal(ZoneId)}.</p>
   
   <div data-ice="description"><p>Returns a copy of this date-time with a different time-zone,
 retaining the local date-time if possible.</p>
-<p></p><p>
-This method changes the time-zone and retains the local date-time.
+<p>This method changes the time-zone and retains the local date-time.
 The local date-time is only changed if it is invalid for the new zone,
 determined using the same approach as
-{@link #ofLocal(LocalDateTime, ZoneId, ZoneOffset)}.</p>
-<p></p><p>
-To change the zone and adjust the local date-time,
-use {@link #withZoneSameInstant(ZoneId)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLocal">ofLocal</a></span>.</p>
+<p>To change the zone and adjust the local date-time,
+use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameInstant">withZoneSameInstant</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8822,7 +8848,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a {@code ZonedDateTime} based on this date-time with the requested zone, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
 </td>
       </tr>
     </table>
@@ -8854,7 +8880,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber877">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber868">source</a></span></span>
     </span>
   </h3>
 
@@ -8862,11 +8888,9 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the year field.</p>
-<p></p><p>
-This method returns the primitive {@code int} value for the year.</p>
-<p></p><p>
-The year returned by this method is proleptic as per {@code get(YEAR)}.
-To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.</p>
+<p>This method returns the primitive <code>int</code> value for the year.</p>
+<p>The year returned by this method is proleptic as per <span><a href="class/src/Period.js~Period.html#instance-method-get">get</a></span>.
+To obtain the year-of-era, use <code>get(YEAR_OF_ERA)</code>.</p>
 </div>
 
   
@@ -8911,7 +8935,7 @@ To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber796">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZonedDateTime.js.html#lineNumber787">source</a></span></span>
     </span>
   </h3>
 
@@ -8919,14 +8943,12 @@ To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.</p>
   
   
   <div data-ice="description"><p>Gets the time-zone, such as &apos;Europe/Paris&apos;.</p>
-<p></p><p>
-This returns the zone ID. This identifies the time-zone {@link ZoneRules rules}
+<p>This returns the zone ID. This identifies the time-zone <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span>
 that determine when and how the offset from UTC/Greenwich changes.</p>
-<p></p><p>
-The zone ID may be same as the {@link #getOffset() offset}.
+<p>The zone ID may be same as the offset (see <span>getOffset</span>).
 If this is true, then any future calculations, such as addition or subtraction,
 have no complex edge cases due to time-zone rules.
-See also {@link #withFixedOffsetZone()}.</p>
+See also <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withFixedOffsetZone">withFixedOffsetZone</a></span>.</p>
 </div>
 
   
@@ -8964,7 +8986,7 @@ See also {@link #withFixedOffsetZone()}.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

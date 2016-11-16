@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -214,13 +217,39 @@
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#instance-method-id">id</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the unique time-zone ID.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#instance-method-normalized">normalized</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.</p>
+        <div data-ice="description"><p>Normalizes the time-zone ID, returning a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> where possible.</p>
 </div>
       </div>
     </td>
@@ -272,7 +301,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Outputs this zone as a {@code String}, using the ID.</p>
+        <div data-ice="description"><p>Outputs this zone as a string, using the ID.</p>
 </div>
       </div>
     </td>
@@ -304,7 +333,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber72">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber85">source</a></span></span>
     </span>
   </h3>
 
@@ -312,8 +341,7 @@
   
   
   <div data-ice="description"><p>Checks if this time-zone ID is equal to another time-zone ID.</p>
-<p></p><p>
-The comparison is based on the ID.</p>
+<p>The comparison is based on the ID.</p>
 </div>
 
   
@@ -375,7 +403,7 @@ The comparison is based on the ID.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
@@ -417,6 +445,60 @@ The comparison is based on the ID.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-id">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">id</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber22">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the unique time-zone ID.</p>
+<p>This ID uniquely defines this object.
+The format of an offset based ID is defined by <span>ZoneOffset#getId</span>.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the time-zone unique ID, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-normalized">
     <span class="access" data-ice="access">public</span>
     
@@ -427,22 +509,20 @@ The comparison is based on the ID.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber64">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.</p>
-<p></p><p>
-The returns a normalized {@code ZoneId} that can be used in place of this ID.
-The result will have {@code ZoneRules} equivalent to those returned by this object,
-however the ID returned by {@code getId()} may be different.</p>
-<p></p><p>
-The normalization checks if the rules of this {@code ZoneId} have a fixed offset.
-If they do, then the {@code ZoneOffset} equal to that offset is returned.
-Otherwise {@code this} is returned.</p>
+  <div data-ice="description"><p>Normalizes the time-zone ID, returning a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> where possible.</p>
+<p>The returns a normalized <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> that can be used in place of this ID.
+The result will have <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> equivalent to those returned by this object,
+however the ID returned by <span>getId</span> may be different.</p>
+<p>The normalization checks if the rules of this <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> have a fixed offset.
+If they do, then the <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> equal to that offset is returned.
+Otherwise <code>this</code> is returned.</p>
 </div>
 
   
@@ -487,7 +567,7 @@ Otherwise {@code this} is returned.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
@@ -495,20 +575,16 @@ Otherwise {@code this} is returned.</p>
   
   
   <div data-ice="description"><p>Gets the time-zone rules for this ID allowing calculations to be performed.</p>
-<p></p><p>
-The rules provide the functionality associated with a time-zone,
+<p>The rules provide the functionality associated with a time-zone,
 such as finding the offset for a given instant or local date-time.</p>
-<p></p><p>
-A time-zone can be invalid if it is deserialized in a Java Runtime which
+<p>A time-zone can be invalid if it is deserialized in a Java Runtime which
 does not have the same rules loaded as the Java Runtime that stored it.
-In this case, calling this method will throw a {@code ZoneRulesException}.</p>
-<p></p><p>
-The rules are supplied by <span>ZoneRulesProvider</span>. An advanced provider may
+In this case, calling this method will throw a <span>ZoneRulesException</span>.</p>
+<p>The rules are supplied by <span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span>. An advanced provider may
 support dynamic updates to the rules without restarting the Java Runtime.
 If so, then the result of this method may change over time.
 Each individual call will be still remain thread-safe.</p>
-<p></p><p>
-<span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> will always return a set of rules where the offset never changes.</p>
+<p><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> will always return a set of rules where the offset never changes.</p>
 </div>
 
   
@@ -565,14 +641,14 @@ Each individual call will be still remain thread-safe.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber97">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneId.js.html#lineNumber110">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this zone as a {@code String}, using the ID.</p>
+  <div data-ice="description"><p>Outputs this zone as a string, using the ID.</p>
 </div>
 
   
@@ -610,7 +686,7 @@ Each individual call will be still remain thread-safe.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

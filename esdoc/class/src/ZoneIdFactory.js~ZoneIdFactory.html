@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ZoneIdFactory} from &apos;<span><a href="file/src/ZoneIdFactory.js.html#lineNumber24">js-joda/src/ZoneIdFactory.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ZoneIdFactory} from &apos;<span><a href="file/src/ZoneIdFactory.js.html#lineNumber25">js-joda/src/ZoneIdFactory.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/ZoneIdFactory.js.html#lineNumber24">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/ZoneIdFactory.js.html#lineNumber25">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -168,7 +171,33 @@ Static methods of the class ZoneIdFactory are added automatically to class ZoneI
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZoneId} from a temporal object.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from a temporal object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-getAvailableZoneIds">getAvailableZoneIds</a></span></span><span data-ice="signature">(): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the set of available zone IDs.</p>
 </div>
       </div>
     </td>
@@ -194,7 +223,7 @@ Static methods of the class ZoneIdFactory are added automatically to class ZoneI
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZoneId} from an ID ensuring that the
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from an ID ensuring that the
 ID is valid and available for use.</p>
 </div>
       </div>
@@ -221,7 +250,7 @@ ID is valid and available for use.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZoneId} wrapping an offset.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> wrapping an offset.</p>
 </div>
       </div>
     </td>
@@ -279,23 +308,20 @@ ID is valid and available for use.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber157">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber173">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZoneId} from a temporal object.</p>
-<p></p><p>
-A {@code TemporalAccessor} represents some form of date and time information.
-This factory converts the arbitrary temporal object to an instance of {@code ZoneId}.</p>
-<p></p><p>
-The conversion will try to obtain the zone in a way that favours region-based
-zones over offset-based zones using {@link TemporalQueries#zone()}.</p>
-<p></p><p>
-This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
-allowing it to be used in queries via method reference, {@code ZoneId::from}.</p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from a temporal object.</p>
+<p>A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
+This factory converts the arbitrary temporal object to an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.</p>
+<p>The conversion will try to obtain the zone in a way that favours region-based
+zones over offset-based zones using <span>TemporalQueries#zone</span>.</p>
+<p>This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
+allowing it to be used in queries via method reference, <span>ZoneId::from</span>.</p>
 </div>
 
   
@@ -344,12 +370,69 @@ allowing it to be used in queries via method reference, {@code ZoneId::from}.</p
       
       <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a {@code ZoneId}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></p>
 </td>
       </tr>
 </tbody>
     </table>
   </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-getAvailableZoneIds">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    <span data-ice="name">getAvailableZoneIds</span><span data-ice="signature">(): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber49">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the set of available zone IDs.</p>
+<p>This set includes the string form of all available region-based IDs.
+Offset-based zone IDs are not included in the returned set.
+The ID can be passed to <span><a href="class/src/Year.js~Year.html#static-method-of">of</a></span> to create a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.</p>
+<p>The set of zone IDs can increase over time, although in a typical application
+the set of IDs is fixed. Each call to this method is thread-safe.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>a modifiable copy of the set of zone IDs, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
 
   
 
@@ -369,46 +452,44 @@ allowing it to be used in queries via method reference, {@code ZoneId::from}.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber76">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber92">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZoneId} from an ID ensuring that the
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from an ID ensuring that the
 ID is valid and available for use.</p>
-<p></p><p>
-This method parses the ID producing a {@code ZoneId} or {@code ZoneOffset}.
-A {@code ZoneOffset} is returned if the ID is &apos;Z&apos;, or starts with &apos;+&apos; or &apos;-&apos;.
+<p>This method parses the ID producing a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> or <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
+A <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> is returned if the ID is &apos;Z&apos;, or starts with &apos;+&apos; or &apos;-&apos;.
 The result will always be a valid ID for which <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> can be obtained.</p>
-<p></p><p>
-Parsing matches the zone ID step by step as follows.</p>
-<p><ul>
-<li>If the zone ID equals &apos;Z&apos;, the result is {@code ZoneOffset.UTC}.
-</li><li>If the zone ID consists of a single letter, the zone ID is invalid
- and {@code DateTimeException} is thrown.
-</li><li>If the zone ID starts with &apos;+&apos; or &apos;-&apos;, the ID is parsed as a
- {@code ZoneOffset} using {@link ZoneOffset#of(String)}.
-</li><li>If the zone ID equals &apos;GMT&apos;, &apos;UTC&apos; or &apos;UT&apos; then the result is a {@code ZoneId}
- with the same ID and rules equivalent to {@code ZoneOffset.UTC}.
-</li><li>If the zone ID starts with &apos;UTC+&apos;, &apos;UTC-&apos;, &apos;GMT+&apos;, &apos;GMT-&apos;, &apos;UT+&apos; or &apos;UT-&apos;
- then the ID is a prefixed offset-based ID. The ID is split in two, with
- a two or three letter prefix and a suffix starting with the sign.
- The suffix is parsed as a {@link ZoneOffset#of(String) ZoneOffset}.
- The result will be a {@code ZoneId} with the specified UTC/GMT/UT prefix
- and the normalized offset ID as per {@link ZoneOffset#getId()}.
- The rules of the returned {@code ZoneId} will be equivalent to the
- parsed {@code ZoneOffset}.
-</li><li>All other IDs are parsed as region-based zone IDs. Region IDs must
- match the regular expression <code>[A-Za-z][A-Za-z0-9~/._+-]+</code>
- otherwise a {@code DateTimeException} is thrown. If the zone ID is not
- in the configured set of IDs, {@code ZoneRulesException} is thrown.
- The detailed format of the region ID depends on the group supplying the data.
- The default set of data is supplied by the IANA Time Zone Database (TZDB).
- This has region IDs of the form &apos;{area}/{city}&apos;, such as &apos;Europe/Paris&apos; or &apos;America/New_York&apos;.
- This is compatible with most IDs from <span>java.util.TimeZone</span>.
-</li></ul></p>
+<p>Parsing matches the zone ID step by step as follows.</p>
+<ul>
+<li>If the zone ID equals &apos;Z&apos;, the result is <span>ZoneOffset.UTC</span>.</li>
+<li>If the zone ID consists of a single letter, the zone ID is invalid
+and <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> is thrown.</li>
+<li>If the zone ID starts with &apos;+&apos; or &apos;-&apos;, the ID is parsed as a
+<span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> using <span>ZoneOffset#of</span>.</li>
+<li>If the zone ID equals &apos;GMT&apos;, &apos;UTC&apos; or &apos;UT&apos; then the result is a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>
+with the same ID and rules equivalent to <span>ZoneOffset.UTC</span>.</li>
+<li>If the zone ID starts with &apos;UTC+&apos;, &apos;UTC-&apos;, &apos;GMT+&apos;, &apos;GMT-&apos;, &apos;UT+&apos; or &apos;UT-&apos;
+then the ID is a prefixed offset-based ID. The ID is split in two, with
+a two or three letter prefix and a suffix starting with the sign.
+The suffix is parsed as a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
+The result will be a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> with the specified UTC/GMT/UT prefix
+and the normalized offset ID as per <span>ZoneOffset#getId</span>.
+The rules of the returned <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> will be equivalent to the
+parsed <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</li>
+<li>All other IDs are parsed as region-based zone IDs. Region IDs must
+match the regular expression <code>[A-Za-z][A-Za-z0-9~/._+-]+</code>,
+otherwise a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> is thrown. If the zone ID is not
+in the configured set of IDs, <span>ZoneRulesException</span> is thrown.
+The detailed format of the region ID depends on the group supplying the data.
+The default set of data is supplied by the IANA Time Zone Database (TZDB).
+This has region IDs of the form &apos;{area}/{city}&apos;, such as &apos;Europe/Paris&apos; or &apos;America/New_York&apos;.
+This is compatible with most IDs from <span>java.util.TimeZone</span>.</li>
+</ul>
 </div>
 
   
@@ -487,18 +568,17 @@ Parsing matches the zone ID step by step as follows.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber125">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber141">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code ZoneId} wrapping an offset.</p>
-<p></p><p>
-If the prefix is &apos;GMT&apos;, &apos;UTC&apos;, or &apos;UT&apos; a {@code ZoneId}
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> wrapping an offset.</p>
+<p>If the prefix is &apos;GMT&apos;, &apos;UTC&apos;, or &apos;UT&apos; a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>
 with the prefix and the non-zero offset is returned.
-If the prefix is empty {@code &apos;&apos;} the {@code ZoneOffset} is returned.</p>
+If the prefix is empty <code>&apos;&apos;</code> the <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> is returned.</p>
 </div>
 
   
@@ -580,7 +660,7 @@ If the prefix is empty {@code &apos;&apos;} the {@code ZoneOffset} is returned.<
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneIdFactory.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -588,7 +668,6 @@ If the prefix is empty {@code &apos;&apos;} the {@code ZoneOffset} is returned.<
   
   
   <div data-ice="description"><p>Gets the system default time-zone.</p>
-<p></p><p></p>
 </div>
 
   
@@ -629,7 +708,7 @@ If the prefix is empty {@code &apos;&apos;} the {@code ZoneOffset} is returned.<
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

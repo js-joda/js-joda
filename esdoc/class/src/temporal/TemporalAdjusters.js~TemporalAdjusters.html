@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TemporalAdjusters} from &apos;<span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber46">js-joda/src/temporal/TemporalAdjusters.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TemporalAdjusters} from &apos;<span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber47">js-joda/src/temporal/TemporalAdjusters.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber46">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber47">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -132,9 +135,8 @@
 
   
   
-  <div class="description" data-ice="description"><p>Common implementations of {@code TemporalAdjuster}.</p>
-<p></p><p>
-This class provides common implementations of <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.
+  <div class="description" data-ice="description"><p>Common implementations of <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.</p>
+<p>This class provides common implementations of <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.
 They are especially useful to document the intent of business logic and
 often link well to requirements.
 For example, these two pieces of code do the same thing, but the second
@@ -145,21 +147,20 @@ one is clearer (assuming that there is a static import of this class):</p>
  // use of an adjuster from this class
  date.with(lastDayOfMonth());
 </pre>
-There are two equivalent ways of using a {@code TemporalAdjuster}.
+There are two equivalent ways of using a <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.
 The first is to invoke the method on the interface directly.
-The second is to use {@link Temporal#with(TemporalAdjuster)}:</p>
+The second is to use <span>Temporal#with</span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = adjuster.adjustInto(dateTime);
   dateTime = dateTime.with(adjuster);
 </pre>
-It is recommended to use the second approach, {@code with(TemporalAdjuster)},
+It is recommended to use the second approach, <span><a href="class/src/Instant.js~Instant.html#instance-method-with">with</a></span>,
 as it is a lot clearer to read in code.</p>
-<p></p><h3>Specification for implementors</h3>
-This is a thread-safe utility class.
-All returned adjusters are immutable and thread-safe.<p></p>
-<p></p><p>
-The JDK 8 ofDateAdjuster(UnaryOperator) method is not backported.</p>
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>This is a thread-safe utility class.
+All returned adjusters are immutable and thread-safe.</p>
+<p>The JDK 8 ofDateAdjuster(UnaryOperator) method is not backported.</p>
 </div>
 
   
@@ -552,7 +553,7 @@ unless it is already on that day in which case the same object is returned.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber248">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber258">source</a></span></span>
     </span>
   </h3>
 
@@ -562,29 +563,28 @@ unless it is already on that day in which case the same object is returned.</p>
   <div data-ice="description"><p>Returns the day-of-week in month adjuster, which returns a new date
 in the same month with the ordinal day-of-week.
 This is used for expressions like the &apos;second Tuesday in March&apos;.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-12-15 for (1,TUESDAY) will return 2011-12-06.<br>
-The input 2011-12-15 for (2,TUESDAY) will return 2011-12-13.<br>
-The input 2011-12-15 for (3,TUESDAY) will return 2011-12-20.<br>
-The input 2011-12-15 for (4,TUESDAY) will return 2011-12-27.<br>
-The input 2011-12-15 for (5,TUESDAY) will return 2012-01-03.<br>
-The input 2011-12-15 for (-1,TUESDAY) will return 2011-12-27 (last in month).<br>
-The input 2011-12-15 for (-4,TUESDAY) will return 2011-12-06 (3 weeks before last in month).<br>
-The input 2011-12-15 for (-5,TUESDAY) will return 2011-11-29 (4 weeks before last in month).<br>
-The input 2011-12-15 for (0,TUESDAY) will return 2011-11-29 (last in previous month).<br></p>
-<p></p><p>
-For a positive or zero ordinal, the algorithm is equivalent to finding the first
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-12-15 for (1,TUESDAY) will return 2011-12-06.</li>
+<li>The input 2011-12-15 for (2,TUESDAY) will return 2011-12-13.</li>
+<li>The input 2011-12-15 for (3,TUESDAY) will return 2011-12-20.</li>
+<li>The input 2011-12-15 for (4,TUESDAY) will return 2011-12-27.</li>
+<li>The input 2011-12-15 for (5,TUESDAY) will return 2012-01-03.</li>
+<li>The input 2011-12-15 for (-1,TUESDAY) will return 2011-12-27 (last in month).</li>
+<li>The input 2011-12-15 for (-4,TUESDAY) will return 2011-12-06 (3 weeks before last in month).</li>
+<li>The input 2011-12-15 for (-5,TUESDAY) will return 2011-11-29 (4 weeks before last in month).</li>
+<li>The input 2011-12-15 for (0,TUESDAY) will return 2011-11-29 (last in previous month).</li>
+</ul>
+<p>For a positive or zero ordinal, the algorithm is equivalent to finding the first
 day-of-week that matches within the month and then adding a number of weeks to it.
 For a negative ordinal, the algorithm is equivalent to finding the last
 day-of-week that matches within the month and then subtracting a number of weeks to it.
 The ordinal number of weeks is not validated and is interpreted leniently
 according to this algorithm. This definition means that an ordinal of zero finds
 the last matching day-of-week in the previous month.</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-and the {@code DAYS} unit, and assumes a seven day week.</p>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> and <span>DAY_OF_MONTH</span> fields
+and the <span>DAYS</span> unit, and assumes a seven day week.</p>
 </div>
 
   
@@ -653,7 +653,7 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber65">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber67">source</a></span></span>
     </span>
   </h3>
 
@@ -662,12 +662,12 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
   
   <div data-ice="description"><p>Returns the &apos;first day of month&apos; adjuster, which returns a new date set to
 the first day of the current month.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2011-01-01.<br>
-The input 2011-02-15 will return 2011-02-01.</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2011-01-01.</li>
+<li>The input 2011-02-15 will return 2011-02-01.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  temporal.with(DAY_OF_MONTH, 1);
@@ -716,7 +716,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber108">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber112">source</a></span></span>
     </span>
   </h3>
 
@@ -725,12 +725,12 @@ It is equivalent to:</p>
   
   <div data-ice="description"><p>Returns the &apos;first day of next month&apos; adjuster, which returns a new date set to
 the first day of the next month.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2011-02-01.<br>
-The input 2011-02-15 will return 2011-03-01.</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2011-02-01.</li>
+<li>The input 2011-02-15 will return 2011-03-01.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  temporal.with(DAY_OF_MONTH, 1).plus(1, MONTHS);
@@ -779,7 +779,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber169">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber176">source</a></span></span>
     </span>
   </h3>
 
@@ -788,11 +788,11 @@ It is equivalent to:</p>
   
   <div data-ice="description"><p>Returns the &apos;first day of next year&apos; adjuster, which returns a new date set to
 the first day of the next year.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2012-01-01.</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2012-01-01.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  temporal.with(DAY_OF_YEAR, 1).plus(1, YEARS);
@@ -841,7 +841,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber134">source</a></span></span>
     </span>
   </h3>
 
@@ -850,12 +850,12 @@ It is equivalent to:</p>
   
   <div data-ice="description"><p>Returns the &apos;first day of year&apos; adjuster, which returns a new date set to
 the first day of the current year.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2011-01-01.<br>
-The input 2011-02-15 will return 2011-01-01.<br></p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2011-01-01.</li>
+<li>The input 2011-02-15 will return 2011-01-01.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  temporal.with(DAY_OF_YEAR, 1);
@@ -904,7 +904,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber190">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber198">source</a></span></span>
     </span>
   </h3>
 
@@ -914,14 +914,14 @@ It is equivalent to:</p>
   <div data-ice="description"><p>Returns the first in month adjuster, which returns a new date
 in the same month with the first matching day-of-week.
 This is used for expressions like &apos;first Tuesday in March&apos;.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-12-15 for (MONDAY) will return 2011-12-05.<br>
-The input 2011-12-15 for (FRIDAY) will return 2011-12-02.<br></p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-and the {@code DAYS} unit, and assumes a seven day week.</p>
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-12-15 for (MONDAY) will return 2011-12-05.</li>
+<li>The input 2011-12-15 for (FRIDAY) will return 2011-12-02.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> and <span>DAY_OF_MONTH</span> fields
+and the <span>DAYS</span> unit, and assumes a seven day week.</p>
 </div>
 
   
@@ -983,7 +983,7 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber88">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -992,14 +992,14 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
   
   <div data-ice="description"><p>Returns the &apos;last day of month&apos; adjuster, which returns a new date set to
 the last day of the current month.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2011-01-31.<br>
-The input 2011-02-15 will return 2011-02-28.<br>
-The input 2012-02-15 will return 2012-02-29 (leap year).<br>
-The input 2011-04-15 will return 2011-04-30.</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2011-01-31.</li>
+<li>The input 2011-02-15 will return 2011-02-28.</li>
+<li>The input 2012-02-15 will return 2012-02-29 (leap year).</li>
+<li>The input 2011-04-15 will return 2011-04-30.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  long lastDay = temporal.range(DAY_OF_MONTH).getMaximum();
@@ -1049,7 +1049,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber150">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber156">source</a></span></span>
     </span>
   </h3>
 
@@ -1058,12 +1058,12 @@ It is equivalent to:</p>
   
   <div data-ice="description"><p>Returns the &apos;last day of year&apos; adjuster, which returns a new date set to
 the last day of the current year.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 will return 2011-12-31.<br>
-The input 2011-02-15 will return 2011-12-31.<br></p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 will return 2011-12-31.</li>
+<li>The input 2011-02-15 will return 2011-12-31.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
 It is equivalent to:</p>
 <p><pre>
  long lastDay = temporal.range(DAY_OF_YEAR).getMaximum();
@@ -1113,7 +1113,7 @@ It is equivalent to:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber211">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber220">source</a></span></span>
     </span>
   </h3>
 
@@ -1123,14 +1123,14 @@ It is equivalent to:</p>
   <div data-ice="description"><p>Returns the last in month adjuster, which returns a new date
 in the same month with the last matching day-of-week.
 This is used for expressions like &apos;last Tuesday in March&apos;.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-12-15 for (MONDAY) will return 2011-12-26.<br>
-The input 2011-12-15 for (FRIDAY) will return 2011-12-30.<br></p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} and {@code DAY_OF_MONTH} fields
-and the {@code DAYS} unit, and assumes a seven day week.</p>
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-12-15 for (MONDAY) will return 2011-12-26.</li>
+<li>The input 2011-12-15 for (FRIDAY) will return 2011-12-30.</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> and <span>DAY_OF_MONTH</span> fields
+and the <span>DAYS</span> unit, and assumes a seven day week.</p>
 </div>
 
   
@@ -1192,7 +1192,7 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber270">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber281">source</a></span></span>
     </span>
   </h3>
 
@@ -1201,14 +1201,14 @@ and the {@code DAYS} unit, and assumes a seven day week.</p>
   
   <div data-ice="description"><p>Returns the next day-of-week adjuster, which adjusts the date to the
 first occurrence of the specified day-of-week after the date being adjusted.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).<br>
-The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).<br>
-The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-22 (seven days later).</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-22 (seven days later).</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> field and the <span>DAYS</span> unit,
 and assumes a seven day week.</p>
 </div>
 
@@ -1271,7 +1271,7 @@ and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber291">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber303">source</a></span></span>
     </span>
   </h3>
 
@@ -1281,14 +1281,14 @@ and assumes a seven day week.</p>
   <div data-ice="description"><p>Returns the next-or-same day-of-week adjuster, which adjusts the date to the
 first occurrence of the specified day-of-week after the date being adjusted
 unless it is already on that day in which case the same object is returned.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).<br>
-The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).<br>
-The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-17 (two days later).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-19 (four days later).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> field and the <span>DAYS</span> unit,
 and assumes a seven day week.</p>
 </div>
 
@@ -1351,7 +1351,7 @@ and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber311">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber324">source</a></span></span>
     </span>
   </h3>
 
@@ -1360,14 +1360,14 @@ and assumes a seven day week.</p>
   
   <div data-ice="description"><p>Returns the previous day-of-week adjuster, which adjusts the date to the
 first occurrence of the specified day-of-week before the date being adjusted.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).<br>
-The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).<br>
-The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-08 (seven days earlier).</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-08 (seven days earlier).</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> field and the <span>DAYS</span> unit,
 and assumes a seven day week.</p>
 </div>
 
@@ -1430,7 +1430,7 @@ and assumes a seven day week.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber332">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAdjusters.js.html#lineNumber346">source</a></span></span>
     </span>
   </h3>
 
@@ -1440,14 +1440,14 @@ and assumes a seven day week.</p>
   <div data-ice="description"><p>Returns the previous-or-same day-of-week adjuster, which adjusts the date to the
 first occurrence of the specified day-of-week before the date being adjusted
 unless it is already on that day in which case the same object is returned.</p>
-<p></p><p>
-The ISO calendar system behaves as follows:<br>
-The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).<br>
-The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).<br>
-The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).</p>
-<p></p><p>
-The behavior is suitable for use with most calendar systems.
-It uses the {@code DAY_OF_WEEK} field and the {@code DAYS} unit,
+<p>The ISO calendar system behaves as follows:</p>
+<ul>
+<li>The input 2011-01-15 (a Saturday) for parameter (MONDAY) will return 2011-01-10 (five days earlier).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (WEDNESDAY) will return 2011-01-12 (three days earlier).</li>
+<li>The input 2011-01-15 (a Saturday) for parameter (SATURDAY) will return 2011-01-15 (same as input).</li>
+</ul>
+<p>The behavior is suitable for use with most calendar systems.
+It uses the <span>DAY_OF_WEEK</span> field and the <span>DAYS</span> unit,
 and assumes a seven day week.</p>
 </div>
 
@@ -1506,7 +1506,7 @@ and assumes a seven day week.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

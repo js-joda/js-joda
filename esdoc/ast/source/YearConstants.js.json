@@ -9,8 +9,8 @@
           "type": "Identifier",
           "name": "YearConstants",
           "range": [
-            366,
-            379
+            363,
+            376
           ],
           "loc": {
             "start": {
@@ -28,8 +28,8 @@
           "type": "ClassBody",
           "body": [],
           "range": [
-            380,
-            382
+            377,
+            379
           ],
           "loc": {
             "start": {
@@ -43,8 +43,8 @@
           }
         },
         "range": [
-          360,
-          382
+          357,
+          379
         ],
         "loc": {
           "start": {
@@ -59,10 +59,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
             "range": [
               0,
-              154
+              151
             ],
             "loc": {
               "start": {
@@ -79,8 +79,8 @@
             "type": "Block",
             "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
             "range": [
-              156,
-              352
+              153,
+              349
             ],
             "loc": {
               "start": {
@@ -99,8 +99,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        353,
-        382
+        350,
+        379
       ],
       "loc": {
         "start": {
@@ -115,10 +115,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
+          "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
           "range": [
             0,
-            154
+            151
           ],
           "loc": {
             "start": {
@@ -135,8 +135,8 @@
           "type": "Block",
           "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
           "range": [
-            156,
-            352
+            153,
+            349
           ],
           "loc": {
             "start": {
@@ -159,8 +159,8 @@
           "type": "Identifier",
           "name": "_init",
           "range": [
-            400,
-            405
+            397,
+            402
           ],
           "loc": {
             "start": {
@@ -189,8 +189,8 @@
                     "type": "Identifier",
                     "name": "YearConstants",
                     "range": [
-                      464,
-                      477
+                      461,
+                      474
                     ],
                     "loc": {
                       "start": {
@@ -207,8 +207,8 @@
                     "type": "Identifier",
                     "name": "MIN_VALUE",
                     "range": [
-                      478,
-                      487
+                      475,
+                      484
                     ],
                     "loc": {
                       "start": {
@@ -222,8 +222,8 @@
                     }
                   },
                   "range": [
-                    464,
-                    487
+                    461,
+                    484
                   ],
                   "loc": {
                     "start": {
@@ -244,8 +244,8 @@
                     "value": 999999,
                     "raw": "999999",
                     "range": [
-                      491,
-                      497
+                      488,
+                      494
                     ],
                     "loc": {
                       "start": {
@@ -260,8 +260,8 @@
                   },
                   "prefix": true,
                   "range": [
-                    490,
-                    497
+                    487,
+                    494
                   ],
                   "loc": {
                     "start": {
@@ -275,8 +275,8 @@
                   }
                 },
                 "range": [
-                  464,
-                  497
+                  461,
+                  494
                 ],
                 "loc": {
                   "start": {
@@ -290,8 +290,8 @@
                 }
               },
               "range": [
-                464,
-                498
+                461,
+                495
               ],
               "loc": {
                 "start": {
@@ -308,8 +308,8 @@
                   "type": "Block",
                   "value": "*\n     * The minimum supported year\n     ",
                   "range": [
-                    414,
-                    459
+                    411,
+                    456
                   ],
                   "loc": {
                     "start": {
@@ -328,8 +328,8 @@
                   "type": "Block",
                   "value": "*\n     * The maximum supported year\n     ",
                   "range": [
-                    503,
-                    548
+                    500,
+                    545
                   ],
                   "loc": {
                     "start": {
@@ -356,8 +356,8 @@
                     "type": "Identifier",
                     "name": "YearConstants",
                     "range": [
-                      553,
-                      566
+                      550,
+                      563
                     ],
                     "loc": {
                       "start": {
@@ -374,8 +374,8 @@
                     "type": "Identifier",
                     "name": "MAX_VALUE",
                     "range": [
-                      567,
-                      576
+                      564,
+                      573
                     ],
                     "loc": {
                       "start": {
@@ -389,8 +389,8 @@
                     }
                   },
                   "range": [
-                    553,
-                    576
+                    550,
+                    573
                   ],
                   "loc": {
                     "start": {
@@ -408,8 +408,8 @@
                   "value": 999999,
                   "raw": "999999",
                   "range": [
-                    579,
-                    585
+                    576,
+                    582
                   ],
                   "loc": {
                     "start": {
@@ -423,8 +423,8 @@
                   }
                 },
                 "range": [
-                  553,
-                  585
+                  550,
+                  582
                 ],
                 "loc": {
                   "start": {
@@ -438,8 +438,8 @@
                 }
               },
               "range": [
-                553,
-                586
+                550,
+                583
               ],
               "loc": {
                 "start": {
@@ -456,8 +456,8 @@
                   "type": "Block",
                   "value": "*\n     * The maximum supported year\n     ",
                   "range": [
-                    503,
-                    548
+                    500,
+                    545
                   ],
                   "loc": {
                     "start": {
@@ -474,8 +474,8 @@
             }
           ],
           "range": [
-            408,
-            588
+            405,
+            585
           ],
           "loc": {
             "start": {
@@ -491,8 +491,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          391,
-          588
+          388,
+          585
         ],
         "loc": {
           "start": {
@@ -510,8 +510,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        384,
-        588
+        381,
+        585
       ],
       "loc": {
         "start": {
@@ -527,8 +527,8 @@
   ],
   "sourceType": "module",
   "range": [
-    353,
-    588
+    350,
+    585
   ],
   "loc": {
     "start": {
@@ -543,10 +543,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
       "range": [
         0,
-        154
+        151
       ],
       "loc": {
         "start": {
@@ -563,8 +563,8 @@
       "type": "Block",
       "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
       "range": [
-        156,
-        352
+        153,
+        349
       ],
       "loc": {
         "start": {
@@ -581,8 +581,8 @@
       "type": "Block",
       "value": "*\n     * The minimum supported year\n     ",
       "range": [
-        414,
-        459
+        411,
+        456
       ],
       "loc": {
         "start": {
@@ -599,8 +599,8 @@
       "type": "Block",
       "value": "*\n     * The maximum supported year\n     ",
       "range": [
-        503,
-        548
+        500,
+        545
       ],
       "loc": {
         "start": {

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/format/DateTimeBuilder.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -133,30 +136,28 @@ import {Period} from &apos;../Period&apos;;
 
 /**
  * Builder that can holds date and time fields and related date and time objects.
- * &lt;p&gt;
+ *
  * The builder is used to hold onto different elements of date and time.
  * It is designed as two separate maps:
- * &lt;p&gt;&lt;ul&gt;
- * &lt;li&gt;from {@link TemporalField} to {@code long} value, where the value may be
- * outside the valid range for the field
- * &lt;li&gt;from {@code Class} to {@link TemporalAccessor}, holding larger scale objects
- * like {@code LocalDateTime}.
- * &lt;/ul&gt;&lt;p&gt;
  *
+ * * from {@link TemporalField} to `long` value, where the value may be
+ *   outside the valid range for the field
+ * * from {@link Class} to {@link TemporalAccessor}, holding larger scale objects
+ *   like {@link LocalDateTime}.
  */
 export class DateTimeBuilder extends Temporal {
 
     /**
      * Creates a new instance of the builder with a single field-value.
-     * &lt;p&gt;
-     * This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an empty builder.
+     *
+     * This is equivalent to using {@link addFieldValue} on an empty builder.
      *
      * @param {TemporalField} field - the field to add, not null
      * @param {number} value - the value to add, not null
      * @return {DateTimeBuilder}
      */
     static create(field, value) {
-        var dtb = new DateTimeBuilder();
+        const dtb = new DateTimeBuilder();
         dtb._addFieldValue(field, value);
         return dtb;
     }
@@ -196,7 +197,7 @@ export class DateTimeBuilder extends Temporal {
     }
 
     /**
-     * 
+     *
      * @param {TemporalField} field
      * @return {Number} field value
      */
@@ -206,7 +207,7 @@ export class DateTimeBuilder extends Temporal {
 
     /**
      * Adds a field-value pair to the builder.
-     * &lt;p&gt;
+     *
      * This adds a field to the builder.
      * If the field is not already present, then the field-value pair is added to the map.
      * If the field is already present and it has the same value as that specified, no action occurs.
@@ -220,8 +221,8 @@ export class DateTimeBuilder extends Temporal {
      */
     _addFieldValue(field, value) {
         requireNonNull(field, &apos;field&apos;);
-        var old = this.getFieldValue0(field);  // check first for better error message
-        if (old != null &amp;&amp; old.longValue() !== value) {
+        const old = this.getFieldValue0(field);  // check first for better error message
+        if (old != null &amp;&amp; old !== value) {
             throw new DateTimeException(&apos;Conflict found: &apos; + field + &apos; &apos; + old + &apos; differs from &apos; + field + &apos; &apos; + value + &apos;: &apos; + this);
         }
         return this._putFieldValue0(field, value);
@@ -239,13 +240,13 @@ export class DateTimeBuilder extends Temporal {
 
     /**
      * Resolves the builder, evaluating the date and time.
-     * &lt;p&gt;
-     * This examines the contents of the builder and resolves it to produce the best
+     *
+     * This examines the contents of the build.er and resolves it to produce the best
      * available date and time, throwing an exception if a problem occurs.
      * Calling this method changes the state of the builder.
      *
      * @param {ResolverStyle} resolverStyle - how to resolve
-     * @param {Set&lt;TemporalField&gt;} resolverFields
+     * @param {TemporalField[]} resolverFields
      * @return {DateTimeBuilder} this, for method chaining
      */
     resolve(resolverStyle, resolverFields) {
@@ -296,22 +297,25 @@ export class DateTimeBuilder extends Temporal {
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
-            for (let field in this.fieldValues.keySet()) {
-                if (field instanceof ChronoField) {
-                    if (field.isDateBased()) {
-                        var val1;
-                        try {
-                            val1 = date.getLong(field);
-                        } catch (ex) {
-                            if(ex instanceof DateTimeException){
-                                continue;
-                            } else {
-                                throw ex;
+            for (let fieldName in this.fieldValues.keySet()) {
+                let field = ChronoField.byName(fieldName);
+                if (field !== null) {
+                    if (this.fieldValues.get(field) !== undefined) { // undefined if &quot;removed&quot; in EnumMap
+                        if (field.isDateBased()) {
+                            let val1;
+                            try {
+                                val1 = date.getLong(field);
+                            } catch (ex) {
+                                if (ex instanceof DateTimeException) {
+                                    continue;
+                                } else {
+                                    throw ex;
+                                }
                             }
-                        }
-                        var val2 = this.fieldValues.get(field);
-                        if (val1 !== val2) {
-                            throw new DateTimeException(&apos;Conflict found: Field &apos; + field + &apos; &apos; + val1 + &apos; differs from &apos; + field + &apos; &apos; + val2 + &apos; derived from &apos; + date);
+                            const val2 = this.fieldValues.get(field);
+                            if (val1 !== val2) {
+                                throw new DateTimeException(&apos;Conflict found: Field &apos; + field + &apos; &apos; + val1 + &apos; differs from &apos; + field + &apos; &apos; + val2 + &apos; derived from &apos; + date);
+                            }
                         }
                     }
                 }
@@ -326,7 +330,7 @@ export class DateTimeBuilder extends Temporal {
      */
     _mergeTime(resolverStyle) {
         if (this.fieldValues.containsKey(ChronoField.CLOCK_HOUR_OF_DAY)) {
-            let ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_DAY);
+            const ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 if (resolverStyle === ResolverStyle.SMART &amp;&amp; ch === 0) {
                     // ok
@@ -337,7 +341,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.HOUR_OF_DAY, ch === 24 ? 0 : ch);
         }
         if (this.fieldValues.containsKey(ChronoField.CLOCK_HOUR_OF_AMPM)) {
-            let ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_AMPM);
+            const ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_AMPM);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 if (resolverStyle === ResolverStyle.SMART &amp;&amp; ch === 0) {
                     // ok
@@ -356,22 +360,22 @@ export class DateTimeBuilder extends Temporal {
             }
         }
         if (this.fieldValues.containsKey(ChronoField.AMPM_OF_DAY) &amp;&amp; this.fieldValues.containsKey(ChronoField.HOUR_OF_AMPM)) {
-            let ap = this.fieldValues.remove(ChronoField.AMPM_OF_DAY);
-            let hap = this.fieldValues.remove(ChronoField.HOUR_OF_AMPM);
+            const ap = this.fieldValues.remove(ChronoField.AMPM_OF_DAY);
+            const hap = this.fieldValues.remove(ChronoField.HOUR_OF_AMPM);
             this._addFieldValue(ChronoField.HOUR_OF_DAY, ap * 12 + hap);
         }
 //        if (timeFields.containsKey(HOUR_OF_DAY) &amp;&amp; timeFields.containsKey(MINUTE_OF_HOUR)) {
-//            let hod = timeFields.remove(HOUR_OF_DAY);
-//            let moh = timeFields.remove(MINUTE_OF_HOUR);
+//            const hod = timeFields.remove(HOUR_OF_DAY);
+//            const moh = timeFields.remove(MINUTE_OF_HOUR);
 //            this._addFieldValue(MINUTE_OF_DAY, hod * 60 + moh);
 //        }
 //        if (timeFields.containsKey(MINUTE_OF_DAY) &amp;&amp; timeFields.containsKey(SECOND_OF_MINUTE)) {
-//            let mod = timeFields.remove(MINUTE_OF_DAY);
-//            let som = timeFields.remove(SECOND_OF_MINUTE);
+//            const mod = timeFields.remove(MINUTE_OF_DAY);
+//            const som = timeFields.remove(SECOND_OF_MINUTE);
 //            this._addFieldValue(SECOND_OF_DAY, mod * 60 + som);
 //        }
         if (this.fieldValues.containsKey(ChronoField.NANO_OF_DAY)) {
-            let nod = this.fieldValues.remove(ChronoField.NANO_OF_DAY);
+            const nod = this.fieldValues.remove(ChronoField.NANO_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.NANO_OF_DAY.checkValidValue(nod);
             }
@@ -379,7 +383,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.NANO_OF_SECOND, MathUtil.intMod(nod, 1000000000));
         }
         if (this.fieldValues.containsKey(ChronoField.MICRO_OF_DAY)) {
-            let cod = this.fieldValues.remove(ChronoField.MICRO_OF_DAY);
+            const cod = this.fieldValues.remove(ChronoField.MICRO_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.MICRO_OF_DAY.checkValidValue(cod);
             }
@@ -387,7 +391,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.MICRO_OF_SECOND, MathUtil.intMod(cod, 1000000));
         }
         if (this.fieldValues.containsKey(ChronoField.MILLI_OF_DAY)) {
-            let lod = this.fieldValues.remove(ChronoField.MILLI_OF_DAY);
+            const lod = this.fieldValues.remove(ChronoField.MILLI_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.MILLI_OF_DAY.checkValidValue(lod);
             }
@@ -395,7 +399,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.MILLI_OF_SECOND, MathUtil.intMod(lod, 1000));
         }
         if (this.fieldValues.containsKey(ChronoField.SECOND_OF_DAY)) {
-            let sod = this.fieldValues.remove(ChronoField.SECOND_OF_DAY);
+            const sod = this.fieldValues.remove(ChronoField.SECOND_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.SECOND_OF_DAY.checkValidValue(sod);
             }
@@ -404,7 +408,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.SECOND_OF_MINUTE, MathUtil.intMod(sod, 60));
         }
         if (this.fieldValues.containsKey(ChronoField.MINUTE_OF_DAY)) {
-            let mod = this.fieldValues.remove(ChronoField.MINUTE_OF_DAY);
+            const mod = this.fieldValues.remove(ChronoField.MINUTE_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.MINUTE_OF_DAY.checkValidValue(mod);
             }
@@ -412,7 +416,7 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.MINUTE_OF_HOUR, MathUtil.intMod(mod, 60));
         }
 
-//            let sod = MathUtil.intDiv(nod, 1000000000L);
+//            const sod = MathUtil.intDiv(nod, 1000000000L);
 //            this._addFieldValue(HOUR_OF_DAY, MathUtil.intDiv(sod, 3600));
 //            this._addFieldValue(MINUTE_OF_HOUR, MathUtil.intMod(MathUtil.intDiv(sod, 60), 60));
 //            this._addFieldValue(SECOND_OF_MINUTE, MathUtil.intMod(sod, 60));
@@ -426,38 +430,38 @@ export class DateTimeBuilder extends Temporal {
             }
         }
         if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND) &amp;&amp; this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND)) {
-            let los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
-            let cos = this.fieldValues.get(ChronoField.MICRO_OF_SECOND);
-            this._addFieldValue(ChronoField.MICRO_OF_SECOND, los * 1000 + (MathUtil.intMod(cos, 1000)));
+            const los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
+            const cos = this.fieldValues.get(ChronoField.MICRO_OF_SECOND);
+            this._putFieldValue0(ChronoField.MICRO_OF_SECOND, los * 1000 + (MathUtil.intMod(cos, 1000)));
         }
         if (this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND) &amp;&amp; this.fieldValues.containsKey(ChronoField.NANO_OF_SECOND)) {
-            let nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
-            this._addFieldValue(ChronoField.MICRO_OF_SECOND, MathUtil.intDiv(nos, 1000));
+            const nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
+            this._putFieldValue0(ChronoField.MICRO_OF_SECOND, MathUtil.intDiv(nos, 1000));
             this.fieldValues.remove(ChronoField.MICRO_OF_SECOND);
         }
         if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND) &amp;&amp; this.fieldValues.containsKey(ChronoField.NANO_OF_SECOND)) {
-            let nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
-            this._addFieldValue(ChronoField.MILLI_OF_SECOND, MathUtil.intDiv(nos, 1000000));
+            const nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
+            this._putFieldValue0(ChronoField.MILLI_OF_SECOND, MathUtil.intDiv(nos, 1000000));
             this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
         }
         if (this.fieldValues.containsKey(ChronoField.MICRO_OF_SECOND)) {
-            let cos = this.fieldValues.remove(ChronoField.MICRO_OF_SECOND);
-            this._addFieldValue(ChronoField.NANO_OF_SECOND, cos * 1000);
+            const cos = this.fieldValues.remove(ChronoField.MICRO_OF_SECOND);
+            this._putFieldValue0(ChronoField.NANO_OF_SECOND, cos * 1000);
         } else if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND)) {
-            let los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
-            this._addFieldValue(ChronoField.NANO_OF_SECOND, los * 1000000);
+            const los = this.fieldValues.remove(ChronoField.MILLI_OF_SECOND);
+            this._putFieldValue0(ChronoField.NANO_OF_SECOND, los * 1000000);
         }
     }
 
     /**
-     * 
+     *
      * @param {ResolverStyle} resolverStyle
      * @private
      */
     _resolveTimeInferZeroes(resolverStyle) {
         let hod =  this.fieldValues.get(ChronoField.HOUR_OF_DAY);
-        let moh =  this.fieldValues.get(ChronoField.MINUTE_OF_HOUR);
-        let som =  this.fieldValues.get(ChronoField.SECOND_OF_MINUTE);
+        const moh =  this.fieldValues.get(ChronoField.MINUTE_OF_HOUR);
+        const som =  this.fieldValues.get(ChronoField.SECOND_OF_MINUTE);
         let nos =  this.fieldValues.get(ChronoField.NANO_OF_SECOND);
         if (hod == null) {
             return;
@@ -557,7 +561,7 @@ export class DateTimeBuilder extends Temporal {
      * This attempts to build the specified type from this builder.
      * If the builder cannot return the type, an exception is thrown.
      *
-     * @param {!TemporalQuery} type - the type to invoke {@code from} on, not null
+     * @param {!TemporalQuery} type - the type to invoke `from` on, not null
      * @return {*} the extracted value, not null
      * @throws DateTimeException if an error occurs
      */
@@ -574,7 +578,7 @@ export class DateTimeBuilder extends Temporal {
         if (field == null) {
             return false;
         }
-        return this.fieldValues.containsKey(field) ||
+        return (this.fieldValues.containsKey(field) &amp;&amp; this.fieldValues.get(field) !== undefined) ||
                 (this.date != null &amp;&amp; this.date.isSupported(field)) ||
                 (this.time != null &amp;&amp; this.time.isSupported(field));
     }
@@ -586,7 +590,7 @@ export class DateTimeBuilder extends Temporal {
      */
     getLong(field) {
         requireNonNull(field, &apos;field&apos;);
-        var value = this.getFieldValue0(field);
+        const value = this.getFieldValue0(field);
         if (value == null) {
             if (this.date != null &amp;&amp; this.date.isSupported(field)) {
                 return this.date.getLong(field);
@@ -624,13 +628,12 @@ export class DateTimeBuilder extends Temporal {
     }
 
 }
-
 </code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -132,24 +135,22 @@
 
   
   
-  <div class="description" data-ice="description"><p>Common implementations of {@code TemporalQuery}.</p>
-<p></p><p>
-This class provides common implementations of <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.
+  <div class="description" data-ice="description"><p>Common implementations of <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.</p>
+<p>This class provides common implementations of <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.
 These queries are primarily used as optimizations, allowing the internals
 of other objects to be extracted effectively. Note that application code
-can also use the {@code from(TemporalAccessor)} method on most temporal
+can also use the <span><a href="class/src/Month.js~Month.html#static-method-from">from</a></span> method on most temporal
 objects as a method reference matching the query interface, such as
-{@code LocalDate::from} and {@code ZoneId::from}.</p>
-<p></p><p>
-There are two equivalent ways of using a {@code TemporalQuery}.
+<span>LocalDate::from</span> and <span>ZoneId::from</span>.</p>
+<p>There are two equivalent ways of using a <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.
 The first is to invoke the method on the interface directly.
-The second is to use {@link TemporalAccessor#query(TemporalQuery)}:</p>
+The second is to use <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">TemporalAccessor#query</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = query.queryFrom(dateTime);
   dateTime = dateTime.query(query);
 </pre>
-It is recommended to use the second approach, {@code query(TemporalQuery)},
+It is recommended to use the second approach, <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-query">query</a></span>,
 as it is a lot clearer to read in code.</p>
 </div>
 
@@ -184,7 +185,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A query for the {@code Chronology}.</p>
+        <div data-ice="description"><p>A query for the <span>Chronology</span>.</p>
 </div>
       </div>
     </td>
@@ -210,7 +211,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A query for {@code LocalDate} returning null if not found.</p>
+        <div data-ice="description"><p>A query for <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> returning null if not found.</p>
 </div>
       </div>
     </td>
@@ -236,7 +237,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A query for {@code LocalTime} returning null if not found.</p>
+        <div data-ice="description"><p>A query for <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> returning null if not found.</p>
 </div>
       </div>
     </td>
@@ -262,7 +263,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A query for {@code ZoneOffset} returning null if not found.</p>
+        <div data-ice="description"><p>A query for <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> returning null if not found.</p>
 </div>
       </div>
     </td>
@@ -314,7 +315,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.</p>
+        <div data-ice="description"><p>A lenient query for the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>, falling back to the <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</p>
 </div>
       </div>
     </td>
@@ -340,7 +341,7 @@ as it is a lot clearer to read in code.</p>
       <div>
         
         
-        <div data-ice="description"><p>A strict query for the {@code ZoneId}.</p>
+        <div data-ice="description"><p>A strict query for the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.</p>
 </div>
       </div>
     </td>
@@ -372,42 +373,41 @@ as it is a lot clearer to read in code.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber104">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A query for the {@code Chronology}.</p>
-<p></p><p>
-This queries a {@code TemporalAccessor} for the chronology.
-If the target {@code TemporalAccessor} represents a date, or part of a date,
+  <div data-ice="description"><p>A query for the <span>Chronology</span>.</p>
+<p>This queries a <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> for the chronology.
+If the target <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents a date, or part of a date,
 then it should return the chronology that the date is expressed in.
 As a result of this definition, objects only representing time, such as
-{@code LocalTime}, will return null.</p>
-<p></p><p>
-The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-{@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>
-{@code LocalTime} returns null (does not represent a date)<br>
-{@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>
-{@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>
-{@code OffsetTime} returns null (does not represent a date)<br>
-{@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>
-{@code ChronoLocalDate} returns the associated chronology<br>
-{@code ChronoLocalDateTime} returns the associated chronology<br>
-{@code ChronoZonedDateTime} returns the associated chronology<br>
-{@code Era} returns the associated chronology<br>
-{@code DayOfWeek} returns null (shared across chronologies)<br>
-{@code Month} returns {@code IsoChronology.INSTANCE}<br>
-{@code Year} returns {@code IsoChronology.INSTANCE}<br>
-{@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>
-{@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>
-{@code ZoneOffset} returns null (does not represent a date)<br>
-{@code Instant} returns null (does not represent a date)<br></p>
-<p></p><p>
-The method {@link Chronology#from(TemporalAccessor)} can be used as a
-{@code TemporalQuery}
+<span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>, will return null.</p>
+<p>The result from js-joda classes implementing <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> is as follows:</p>
+<ul>
+<li><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> returns null (does not represent a date)</li>
+<li><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span>OffsetTime</span> returns null (does not represent a date)</li>
+<li><span>OffsetDateTime</span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> returns the associated chronology</li>
+<li><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> returns the associated chronology</li>
+<li><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span> returns the associated chronology</li>
+<li><span>Era</span> returns the associated chronology</li>
+<li><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> returns null (shared across chronologies)</li>
+<li><span><a href="class/src/Month.js~Month.html">Month</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/Year.js~Year.html">Year</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span> returns * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> returns null * <span>IsoChronology.INSTANCE</span></li>
+<li><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> returns null (does not represent a date)</li>
+<li><span><a href="class/src/Instant.js~Instant.html">Instant</a></span> returns null (does not represent a date)</li>
+</ul>
+<p>The method <span>Chronology#from</span> can be used as a
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
 That method is equivalent to this query, except that it throws an
 exception if a chronology cannot be obtained.</p>
 </div>
@@ -454,21 +454,19 @@ exception if a chronology cannot be obtained.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber202">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber204">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A query for {@code LocalDate} returning null if not found.</p>
-<p></p><p>
-This returns a {@code TemporalQuery} that can be used to query a temporal
+  <div data-ice="description"><p>A query for <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> returning null if not found.</p>
+<p>This returns a <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> that can be used to query a temporal
 object for the local date. The query will return null if the temporal
 object cannot supply a local date.</p>
-<p></p><p>
-The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}
-field and uses it to create a {@code LocalDate}.</p>
+<p>The query implementation examines the <span>ChronoField#EPOCH_DAY</span>
+field and uses it to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
 </div>
 
   
@@ -513,21 +511,19 @@ field and uses it to create a {@code LocalDate}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber218">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber220">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A query for {@code LocalTime} returning null if not found.</p>
-<p></p><p>
-This returns a {@code TemporalQuery} that can be used to query a temporal
+  <div data-ice="description"><p>A query for <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> returning null if not found.</p>
+<p>This returns a <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> that can be used to query a temporal
 object for the local time. The query will return null if the temporal
 object cannot supply a local time.</p>
-<p></p><p>
-The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}
-field and uses it to create a {@code LocalTime}.</p>
+<p>The query implementation examines the <span>ChronoField#NANO_OF_DAY</span>
+field and uses it to create a <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>.</p>
 </div>
 
   
@@ -572,25 +568,22 @@ field and uses it to create a {@code LocalTime}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber186">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber188">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A query for {@code ZoneOffset} returning null if not found.</p>
-<p></p><p>
-This returns a {@code TemporalQuery} that can be used to query a temporal
+  <div data-ice="description"><p>A query for <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> returning null if not found.</p>
+<p>This returns a <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> that can be used to query a temporal
 object for the offset. The query will return null if the temporal
 object cannot supply an offset.</p>
-<p></p><p>
-The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}
-field and uses it to create a {@code ZoneOffset}.</p>
-<p></p><p>
-The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a
-{@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.
-This query and {@code ZoneOffset::from} will return the same result if the
+<p>The query implementation examines the <span>ChronoField#OFFSET_SECONDS</span>
+field and uses it to create a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</p>
+<p>The method <span>java.time.ZoneOffset#from</span> can be used as a
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> via a method reference, <span>ZoneOffset::from</span>.
+This query and <span>ZoneOffset::from</span> will return the same result if the
 temporal object contains an offset. If the temporal object does not contain
 an offset, then the method reference will throw an exception, whereas this
 query will return null.</p>
@@ -638,7 +631,7 @@ query will return null.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber140">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber142">source</a></span></span>
     </span>
   </h3>
 
@@ -646,34 +639,32 @@ query will return null.</p>
   
   
   <div data-ice="description"><p>A query for the smallest supported unit.</p>
-<p></p><p>
-This queries a {@code TemporalAccessor} for the time precision.
-If the target {@code TemporalAccessor} represents a consistent or complete date-time,
+<p>This queries a <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> for the time precision.
+If the target <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents a consistent or complete date-time,
 date or time then this must return the smallest precision actually supported.
-Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}
+Note that fields such as <span>NANO_OF_DAY</span> and <span>NANO_OF_SECOND</span>
 are defined to always return ignoring the precision, thus this is the only
 way to find the actual smallest supported unit.
-For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}
-it would return a precision of {@code MILLIS}.</p>
-<p></p><p>
-The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>
-{@code LocalDate} returns {@code DAYS}<br>
-{@code LocalTime} returns {@code NANOS}<br>
-{@code LocalDateTime} returns {@code NANOS}<br>
-{@code ZonedDateTime} returns {@code NANOS}<br>
-{@code OffsetTime} returns {@code NANOS}<br>
-{@code OffsetDateTime} returns {@code NANOS}<br>
-{@code ChronoLocalDate} returns {@code DAYS}<br>
-{@code ChronoLocalDateTime} returns {@code NANOS}<br>
-{@code ChronoZonedDateTime} returns {@code NANOS}<br>
-{@code Era} returns {@code ERAS}<br>
-{@code DayOfWeek} returns {@code DAYS}<br>
-{@code Month} returns {@code MONTHS}<br>
-{@code Year} returns {@code YEARS}<br>
-{@code YearMonth} returns {@code MONTHS}<br>
-{@code MonthDay} returns null (does not represent a complete date or time)<br>
-{@code ZoneOffset} returns null (does not represent a date or time)<br>
-{@code Instant} returns {@code NANOS}<br></p>
+For example, were <span>GregorianCalendar</span> to implement <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>
+it would return a precision of <span>MILLIS</span>.</p>
+<p>The result from js-joda classes implementing <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> is as follows:</p>
+<p><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> returns <span>DAYS</span>
+<span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> returns <span>NANOS</span>
+<span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> returns <span>NANOS</span>
+<span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> returns <span>NANOS</span>
+<span>OffsetTime</span> returns <span>NANOS</span>
+<span>OffsetDateTime</span> returns <span>NANOS</span>
+<span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> returns <span>DAYS</span>
+<span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> returns <span>NANOS</span>
+<span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span> returns <span>NANOS</span>
+<span>Era</span> returns <span>ERAS</span>
+<span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> returns <span>DAYS</span>
+<span><a href="class/src/Month.js~Month.html">Month</a></span> returns <span>MONTHS</span>
+<span><a href="class/src/Year.js~Year.html">Year</a></span> returns <span>YEARS</span>
+<span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span> returns <span>MONTHS</span>
+<span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> returns null (does not represent a complete date or time)
+<span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> returns null (does not represent a date or time)
+<span><a href="class/src/Instant.js~Instant.html">Instant</a></span> returns <span>NANOS</span></p>
 </div>
 
   
@@ -718,26 +709,22 @@ The result from js-joda classes implementing {@code TemporalAccessor} is as foll
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber163">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalQueries.js.html#lineNumber165">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.</p>
-<p></p><p>
-This queries a {@code TemporalAccessor} for the zone.
-It first tries to obtain the zone, using {@link #zoneId()}.
-If that is not found it tries to obtain the {@link #offset()}.</p>
-<p></p><p>
-In most cases, applications should use this query rather than {@code #zoneId()}.</p>
-<p></p><p>
-This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}
-field and uses it to create a {@code ZoneOffset}.</p>
-<p></p><p>
-The method {@link ZoneId#from(TemporalAccessor)} can be used as a
-{@code TemporalQuery} via a method reference, {@code ZoneId::from}.
+  <div data-ice="description"><p>A lenient query for the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>, falling back to the <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</p>
+<p>This queries a <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> for the zone.
+It first tries to obtain the zone, using <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html#static-method-zoneId">zoneId</a></span>.
+If that is not found it tries to obtain the <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-offset">offset</a></span>.</p>
+<p>In most cases, applications should use this query rather than <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html#static-method-zoneId">zoneId</a></span>.</p>
+<p>This query examines the <span>ChronoField#OFFSET_SECONDS</span>
+field and uses it to create a <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.</p>
+<p>The method <span>ZoneId#from</span> can be used as a
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> via a method reference, <span>ZoneId::from</span>.
 That method is equivalent to this query, except that it throws an
 exception if a zone cannot be obtained.</p>
 </div>
@@ -791,35 +778,37 @@ exception if a zone cannot be obtained.</p>
   
   
   
-  <div data-ice="description"><p>A strict query for the {@code ZoneId}.</p>
-<p></p><p>
-This queries a {@code TemporalAccessor} for the zone.
-The zone is only returned if the date-time conceptually contains a {@code ZoneId}.
-It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.
+  <div data-ice="description"><p>A strict query for the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.</p>
+<p>This queries a <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> for the zone.
+The zone is only returned if the date-time conceptually contains a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.
+It will not be returned if the date-time only conceptually has an <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>.
 Thus a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> will return the result of
-{@code getZone()}, but an <span>OffsetDateTime</span> will
+<span>getZone</span>, but an <span>OffsetDateTime</span> will
 return null.</p>
-<p></p><p>
-In most cases, applications should use <span>#ZONE</span> as this query is too strict.</p>
-<p></p><p>
-The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>
-{@code LocalDate} returns null<br>
-{@code LocalTime} returns null<br>
-{@code LocalDateTime} returns null<br>
-{@code ZonedDateTime} returns the associated zone<br>
-{@code OffsetTime} returns null<br>
-{@code OffsetDateTime} returns null<br>
-{@code ChronoLocalDate} returns null<br>
-{@code ChronoLocalDateTime} returns null<br>
-{@code ChronoZonedDateTime} returns the associated zone<br>
-{@code Era} returns null<br>
-{@code DayOfWeek} returns null<br>
-{@code Month} returns null<br>
-{@code Year} returns null<br>
-{@code YearMonth} returns null<br>
-{@code MonthDay} returns null<br>
-{@code ZoneOffset} returns null<br>
-{@code Instant} returns null<br></p>
+<p>In most cases, applications should use <span>ZONE</span> as this query is too strict.</p>
+<p>The result from JDK classes implementing <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> is as follows:</p>
+<ul>
+<li><ul>
+<li><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> returns null</li>
+</ul>
+</li>
+<li><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> returns null</li>
+<li><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> returns null</li>
+<li><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> returns the associated zone</li>
+<li><span>OffsetTime</span> returns null</li>
+<li><span>OffsetDateTime</span> returns null</li>
+<li><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> returns null</li>
+<li><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> returns null</li>
+<li><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span> returns the associated zone</li>
+<li><span>Era</span> returns null</li>
+<li><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> returns null</li>
+<li><span><a href="class/src/Month.js~Month.html">Month</a></span> returns null</li>
+<li><span><a href="class/src/Year.js~Year.html">Year</a></span> returns null</li>
+<li><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span> returns null</li>
+<li><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span> returns null</li>
+<li><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span> returns null</li>
+<li><span><a href="class/src/Instant.js~Instant.html">Instant</a></span> returns null</li>
+</ul>
 </div>
 
   
@@ -860,7 +849,7 @@ The result from JDK classes implementing {@code TemporalAccessor} is as follows:
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -10,8 +10,8 @@
             "type": "Identifier",
             "name": "abstractMethodFail",
             "range": [
-              241,
-              259
+              238,
+              256
             ],
             "loc": {
               "start": {
@@ -28,8 +28,8 @@
             "type": "Identifier",
             "name": "abstractMethodFail",
             "range": [
-              241,
-              259
+              238,
+              256
             ],
             "loc": {
               "start": {
@@ -43,8 +43,8 @@
             }
           },
           "range": [
-            241,
-            259
+            238,
+            256
           ],
           "loc": {
             "start": {
@@ -63,8 +63,8 @@
             "type": "Identifier",
             "name": "requireNonNull",
             "range": [
-              261,
-              275
+              258,
+              272
             ],
             "loc": {
               "start": {
@@ -81,8 +81,8 @@
             "type": "Identifier",
             "name": "requireNonNull",
             "range": [
-              261,
-              275
+              258,
+              272
             ],
             "loc": {
               "start": {
@@ -96,8 +96,8 @@
             }
           },
           "range": [
-            261,
-            275
+            258,
+            272
           ],
           "loc": {
             "start": {
@@ -116,8 +116,8 @@
         "value": "./assert",
         "raw": "'./assert'",
         "range": [
-          282,
-          292
+          279,
+          289
         ],
         "loc": {
           "start": {
@@ -131,8 +131,8 @@
         }
       },
       "range": [
-        233,
-        293
+        230,
+        290
       ],
       "loc": {
         "start": {
@@ -147,10 +147,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            231
+            228
           ],
           "loc": {
             "start": {
@@ -174,8 +174,8 @@
             "type": "Identifier",
             "name": "Instant",
             "range": [
-              302,
-              309
+              299,
+              306
             ],
             "loc": {
               "start": {
@@ -192,8 +192,8 @@
             "type": "Identifier",
             "name": "Instant",
             "range": [
-              302,
-              309
+              299,
+              306
             ],
             "loc": {
               "start": {
@@ -207,8 +207,8 @@
             }
           },
           "range": [
-            302,
-            309
+            299,
+            306
           ],
           "loc": {
             "start": {
@@ -227,8 +227,8 @@
         "value": "./Instant",
         "raw": "'./Instant'",
         "range": [
-          316,
-          327
+          313,
+          324
         ],
         "loc": {
           "start": {
@@ -242,8 +242,8 @@
         }
       },
       "range": [
-        294,
-        328
+        291,
+        325
       ],
       "loc": {
         "start": {
@@ -265,8 +265,8 @@
             "type": "Identifier",
             "name": "ZoneId",
             "range": [
-              337,
-              343
+              334,
+              340
             ],
             "loc": {
               "start": {
@@ -283,8 +283,8 @@
             "type": "Identifier",
             "name": "ZoneId",
             "range": [
-              337,
-              343
+              334,
+              340
             ],
             "loc": {
               "start": {
@@ -298,8 +298,8 @@
             }
           },
           "range": [
-            337,
-            343
+            334,
+            340
           ],
           "loc": {
             "start": {
@@ -318,8 +318,8 @@
         "value": "./ZoneId",
         "raw": "'./ZoneId'",
         "range": [
-          350,
-          360
+          347,
+          357
         ],
         "loc": {
           "start": {
@@ -333,8 +333,8 @@
         }
       },
       "range": [
-        329,
-        361
+        326,
+        358
       ],
       "loc": {
         "start": {
@@ -356,8 +356,8 @@
             "type": "Identifier",
             "name": "ZoneOffset",
             "range": [
-              370,
-              380
+              367,
+              377
             ],
             "loc": {
               "start": {
@@ -374,8 +374,8 @@
             "type": "Identifier",
             "name": "ZoneOffset",
             "range": [
-              370,
-              380
+              367,
+              377
             ],
             "loc": {
               "start": {
@@ -389,8 +389,8 @@
             }
           },
           "range": [
-            370,
-            380
+            367,
+            377
           ],
           "loc": {
             "start": {
@@ -409,8 +409,8 @@
         "value": "./ZoneOffset",
         "raw": "'./ZoneOffset'",
         "range": [
-          387,
-          401
+          384,
+          398
         ],
         "loc": {
           "start": {
@@ -424,8 +424,8 @@
         }
       },
       "range": [
-        362,
-        402
+        359,
+        399
       ],
       "loc": {
         "start": {
@@ -440,10 +440,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n *\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis}\n * and {@link TimeZone#getDefault}.\n *\n * Use of a {@link Clock} is optional. All key date-time classes also have a\n * `now()` factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n *\n * Best practice for applications is to pass a {@link Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link fixed}\n * or {@link offset} to be used during testing.\n *\n * The {@link system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis}, or a higher\n * resolution clock if one is available.\n *\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
           "range": [
-            404,
-            1664
+            401,
+            2265
           ],
           "loc": {
             "start": {
@@ -451,25 +451,7 @@
               "column": 0
             },
             "end": {
-              "line": 35,
-              "column": 3
-            }
-          }
-        },
-        {
-          "type": "Block",
-          "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
-          "range": [
-            1666,
-            2351
-          ],
-          "loc": {
-            "start": {
-              "line": 37,
-              "column": 0
-            },
-            "end": {
-              "line": 50,
+              "line": 48,
               "column": 3
             }
           }
@@ -484,16 +466,16 @@
           "type": "Identifier",
           "name": "Clock",
           "range": [
-            2366,
-            2371
+            2280,
+            2285
           ],
           "loc": {
             "start": {
-              "line": 52,
+              "line": 50,
               "column": 13
             },
             "end": {
-              "line": 52,
+              "line": 50,
               "column": 18
             }
           }
@@ -508,16 +490,16 @@
                 "type": "Identifier",
                 "name": "systemUTC",
                 "range": [
-                  2802,
-                  2811
+                  2705,
+                  2714
                 ],
                 "loc": {
                   "start": {
-                    "line": 62,
+                    "line": 60,
                     "column": 11
                   },
                   "end": {
-                    "line": 62,
+                    "line": 60,
                     "column": 20
                   }
                 }
@@ -537,16 +519,16 @@
                           "type": "Identifier",
                           "name": "SystemClock",
                           "range": [
-                            2835,
-                            2846
+                            2738,
+                            2749
                           ],
                           "loc": {
                             "start": {
-                              "line": 63,
+                              "line": 61,
                               "column": 19
                             },
                             "end": {
-                              "line": 63,
+                              "line": 61,
                               "column": 30
                             }
                           }
@@ -559,16 +541,16 @@
                               "type": "Identifier",
                               "name": "ZoneOffset",
                               "range": [
-                                2847,
-                                2857
+                                2750,
+                                2760
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 63,
+                                  "line": 61,
                                   "column": 31
                                 },
                                 "end": {
-                                  "line": 63,
+                                  "line": 61,
                                   "column": 41
                                 }
                               }
@@ -577,78 +559,78 @@
                               "type": "Identifier",
                               "name": "UTC",
                               "range": [
-                                2858,
-                                2861
+                                2761,
+                                2764
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 63,
+                                  "line": 61,
                                   "column": 42
                                 },
                                 "end": {
-                                  "line": 63,
+                                  "line": 61,
                                   "column": 45
                                 }
                               }
                             },
                             "range": [
-                              2847,
-                              2861
+                              2750,
+                              2764
                             ],
                             "loc": {
                               "start": {
-                                "line": 63,
+                                "line": 61,
                                 "column": 31
                               },
                               "end": {
-                                "line": 63,
+                                "line": 61,
                                 "column": 45
                               }
                             }
                           }
                         ],
                         "range": [
-                          2831,
-                          2862
+                          2734,
+                          2765
                         ],
                         "loc": {
                           "start": {
-                            "line": 63,
+                            "line": 61,
                             "column": 15
                           },
                           "end": {
-                            "line": 63,
+                            "line": 61,
                             "column": 46
                           }
                         }
                       },
                       "range": [
-                        2824,
-                        2863
+                        2727,
+                        2766
                       ],
                       "loc": {
                         "start": {
-                          "line": 63,
+                          "line": 61,
                           "column": 8
                         },
                         "end": {
-                          "line": 63,
+                          "line": 61,
                           "column": 47
                         }
                       }
                     }
                   ],
                   "range": [
-                    2814,
-                    2869
+                    2717,
+                    2772
                   ],
                   "loc": {
                     "start": {
-                      "line": 62,
+                      "line": 60,
                       "column": 23
                     },
                     "end": {
-                      "line": 64,
+                      "line": 62,
                       "column": 5
                     }
                   }
@@ -656,16 +638,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  2811,
-                  2869
+                  2714,
+                  2772
                 ],
                 "loc": {
                   "start": {
-                    "line": 62,
+                    "line": 60,
                     "column": 20
                   },
                   "end": {
-                    "line": 64,
+                    "line": 62,
                     "column": 5
                   }
                 }
@@ -673,34 +655,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                2795,
-                2869
+                2698,
+                2772
               ],
               "loc": {
                 "start": {
-                  "line": 62,
+                  "line": 60,
                   "column": 4
                 },
                 "end": {
-                  "line": 64,
+                  "line": 62,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     * <p>\n     * This clock, rather than {@link #systemDefaultZone()}, should be used when\n     * you need the current instant without the date or time.\n     * <p>\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     *\n     * This clock, rather than {@link systemDefaultZone}, should be used when\n     * you need the current instant without the date or time.\n     *\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
                   "range": [
-                    2378,
-                    2790
+                    2292,
+                    2693
                   ],
                   "loc": {
                     "start": {
-                      "line": 53,
+                      "line": 51,
                       "column": 4
                     },
                     "end": {
-                      "line": 61,
+                      "line": 59,
                       "column": 7
                     }
                   }
@@ -709,18 +691,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     *\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     *\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The UTC clock (see {@link systemUTC}) should be used when you need the current instant\n     * without the date or time.\n     *\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
                   "range": [
-                    2875,
-                    3529
+                    2778,
+                    3423
                   ],
                   "loc": {
                     "start": {
-                      "line": 66,
+                      "line": 64,
                       "column": 4
                     },
                     "end": {
-                      "line": 80,
+                      "line": 78,
                       "column": 7
                     }
                   }
@@ -734,16 +716,16 @@
                 "type": "Identifier",
                 "name": "systemDefaultZone",
                 "range": [
-                  3541,
-                  3558
+                  3435,
+                  3452
                 ],
                 "loc": {
                   "start": {
-                    "line": 81,
+                    "line": 79,
                     "column": 11
                   },
                   "end": {
-                    "line": 81,
+                    "line": 79,
                     "column": 28
                   }
                 }
@@ -763,16 +745,16 @@
                           "type": "Identifier",
                           "name": "SystemClock",
                           "range": [
-                            3582,
-                            3593
+                            3476,
+                            3487
                           ],
                           "loc": {
                             "start": {
-                              "line": 82,
+                              "line": 80,
                               "column": 19
                             },
                             "end": {
-                              "line": 82,
+                              "line": 80,
                               "column": 30
                             }
                           }
@@ -787,16 +769,16 @@
                                 "type": "Identifier",
                                 "name": "ZoneId",
                                 "range": [
-                                  3594,
-                                  3600
+                                  3488,
+                                  3494
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 80,
                                     "column": 31
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 80,
                                     "column": 37
                                   }
                                 }
@@ -805,94 +787,94 @@
                                 "type": "Identifier",
                                 "name": "systemDefault",
                                 "range": [
-                                  3601,
-                                  3614
+                                  3495,
+                                  3508
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 80,
                                     "column": 38
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 80,
                                     "column": 51
                                   }
                                 }
                               },
                               "range": [
-                                3594,
-                                3614
+                                3488,
+                                3508
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 82,
+                                  "line": 80,
                                   "column": 31
                                 },
                                 "end": {
-                                  "line": 82,
+                                  "line": 80,
                                   "column": 51
                                 }
                               }
                             },
                             "arguments": [],
                             "range": [
-                              3594,
-                              3616
+                              3488,
+                              3510
                             ],
                             "loc": {
                               "start": {
-                                "line": 82,
+                                "line": 80,
                                 "column": 31
                               },
                               "end": {
-                                "line": 82,
+                                "line": 80,
                                 "column": 53
                               }
                             }
                           }
                         ],
                         "range": [
-                          3578,
-                          3617
+                          3472,
+                          3511
                         ],
                         "loc": {
                           "start": {
-                            "line": 82,
+                            "line": 80,
                             "column": 15
                           },
                           "end": {
-                            "line": 82,
+                            "line": 80,
                             "column": 54
                           }
                         }
                       },
                       "range": [
-                        3571,
-                        3618
+                        3465,
+                        3512
                       ],
                       "loc": {
                         "start": {
-                          "line": 82,
+                          "line": 80,
                           "column": 8
                         },
                         "end": {
-                          "line": 82,
+                          "line": 80,
                           "column": 55
                         }
                       }
                     }
                   ],
                   "range": [
-                    3561,
-                    3624
+                    3455,
+                    3518
                   ],
                   "loc": {
                     "start": {
-                      "line": 81,
+                      "line": 79,
                       "column": 31
                     },
                     "end": {
-                      "line": 83,
+                      "line": 81,
                       "column": 5
                     }
                   }
@@ -900,16 +882,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  3558,
-                  3624
+                  3452,
+                  3518
                 ],
                 "loc": {
                   "start": {
-                    "line": 81,
+                    "line": 79,
                     "column": 28
                   },
                   "end": {
-                    "line": 83,
+                    "line": 81,
                     "column": 5
                   }
                 }
@@ -917,34 +899,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                3534,
-                3624
+                3428,
+                3518
               ],
               "loc": {
                 "start": {
-                  "line": 81,
+                  "line": 79,
                   "column": 4
                 },
                 "end": {
-                  "line": 83,
+                  "line": 81,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+                  "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     *\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     *\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The UTC clock (see {@link systemUTC}) should be used when you need the current instant\n     * without the date or time.\n     *\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
                   "range": [
-                    2875,
-                    3529
+                    2778,
+                    3423
                   ],
                   "loc": {
                     "start": {
-                      "line": 66,
+                      "line": 64,
                       "column": 4
                     },
                     "end": {
-                      "line": 80,
+                      "line": 78,
                       "column": 7
                     }
                   }
@@ -955,16 +937,16 @@
                   "type": "Block",
                   "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
                   "range": [
-                    3630,
-                    3741
+                    3524,
+                    3635
                   ],
                   "loc": {
                     "start": {
-                      "line": 85,
+                      "line": 83,
                       "column": 4
                     },
                     "end": {
-                      "line": 89,
+                      "line": 87,
                       "column": 7
                     }
                   }
@@ -978,16 +960,16 @@
                 "type": "Identifier",
                 "name": "system",
                 "range": [
-                  3753,
-                  3759
+                  3647,
+                  3653
                 ],
                 "loc": {
                   "start": {
-                    "line": 90,
+                    "line": 88,
                     "column": 11
                   },
                   "end": {
-                    "line": 90,
+                    "line": 88,
                     "column": 17
                   }
                 }
@@ -1000,16 +982,16 @@
                     "type": "Identifier",
                     "name": "zone",
                     "range": [
-                      3760,
-                      3764
+                      3654,
+                      3658
                     ],
                     "loc": {
                       "start": {
-                        "line": 90,
+                        "line": 88,
                         "column": 18
                       },
                       "end": {
-                        "line": 90,
+                        "line": 88,
                         "column": 22
                       }
                     }
@@ -1026,16 +1008,16 @@
                           "type": "Identifier",
                           "name": "SystemClock",
                           "range": [
-                            3786,
-                            3797
+                            3680,
+                            3691
                           ],
                           "loc": {
                             "start": {
-                              "line": 91,
+                              "line": 89,
                               "column": 19
                             },
                             "end": {
-                              "line": 91,
+                              "line": 89,
                               "column": 30
                             }
                           }
@@ -1045,63 +1027,63 @@
                             "type": "Identifier",
                             "name": "zone",
                             "range": [
-                              3798,
-                              3802
+                              3692,
+                              3696
                             ],
                             "loc": {
                               "start": {
-                                "line": 91,
+                                "line": 89,
                                 "column": 31
                               },
                               "end": {
-                                "line": 91,
+                                "line": 89,
                                 "column": 35
                               }
                             }
                           }
                         ],
                         "range": [
-                          3782,
-                          3803
+                          3676,
+                          3697
                         ],
                         "loc": {
                           "start": {
-                            "line": 91,
+                            "line": 89,
                             "column": 15
                           },
                           "end": {
-                            "line": 91,
+                            "line": 89,
                             "column": 36
                           }
                         }
                       },
                       "range": [
-                        3775,
-                        3804
+                        3669,
+                        3698
                       ],
                       "loc": {
                         "start": {
-                          "line": 91,
+                          "line": 89,
                           "column": 8
                         },
                         "end": {
-                          "line": 91,
+                          "line": 89,
                           "column": 37
                         }
                       }
                     }
                   ],
                   "range": [
-                    3765,
-                    3810
+                    3659,
+                    3704
                   ],
                   "loc": {
                     "start": {
-                      "line": 90,
+                      "line": 88,
                       "column": 23
                     },
                     "end": {
-                      "line": 92,
+                      "line": 90,
                       "column": 5
                     }
                   }
@@ -1109,16 +1091,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  3759,
-                  3810
+                  3653,
+                  3704
                 ],
                 "loc": {
                   "start": {
-                    "line": 90,
+                    "line": 88,
                     "column": 17
                   },
                   "end": {
-                    "line": 92,
+                    "line": 90,
                     "column": 5
                   }
                 }
@@ -1126,16 +1108,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                3746,
-                3810
+                3640,
+                3704
               ],
               "loc": {
                 "start": {
-                  "line": 90,
+                  "line": 88,
                   "column": 4
                 },
                 "end": {
-                  "line": 92,
+                  "line": 90,
                   "column": 5
                 }
               },
@@ -1144,16 +1126,16 @@
                   "type": "Block",
                   "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
                   "range": [
-                    3630,
-                    3741
+                    3524,
+                    3635
                   ],
                   "loc": {
                     "start": {
-                      "line": 85,
+                      "line": 83,
                       "column": 4
                     },
                     "end": {
-                      "line": 89,
+                      "line": 87,
                       "column": 7
                     }
                   }
@@ -1162,18 +1144,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     *\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
                   "range": [
-                    3816,
-                    4399
+                    3710,
+                    4289
                   ],
                   "loc": {
                     "start": {
-                      "line": 94,
+                      "line": 92,
                       "column": 4
                     },
                     "end": {
-                      "line": 105,
+                      "line": 103,
                       "column": 7
                     }
                   }
@@ -1187,16 +1169,16 @@
                 "type": "Identifier",
                 "name": "fixed",
                 "range": [
-                  4411,
-                  4416
+                  4301,
+                  4306
                 ],
                 "loc": {
                   "start": {
-                    "line": 106,
+                    "line": 104,
                     "column": 11
                   },
                   "end": {
-                    "line": 106,
+                    "line": 104,
                     "column": 16
                   }
                 }
@@ -1209,16 +1191,16 @@
                     "type": "Identifier",
                     "name": "fixedInstant",
                     "range": [
-                      4417,
-                      4429
+                      4307,
+                      4319
                     ],
                     "loc": {
                       "start": {
-                        "line": 106,
+                        "line": 104,
                         "column": 17
                       },
                       "end": {
-                        "line": 106,
+                        "line": 104,
                         "column": 29
                       }
                     }
@@ -1227,16 +1209,16 @@
                     "type": "Identifier",
                     "name": "zoneOffset",
                     "range": [
-                      4431,
-                      4441
+                      4321,
+                      4331
                     ],
                     "loc": {
                       "start": {
-                        "line": 106,
+                        "line": 104,
                         "column": 31
                       },
                       "end": {
-                        "line": 106,
+                        "line": 104,
                         "column": 41
                       }
                     }
@@ -1253,16 +1235,16 @@
                           "type": "Identifier",
                           "name": "FixedClock",
                           "range": [
-                            4464,
-                            4474
+                            4354,
+                            4364
                           ],
                           "loc": {
                             "start": {
-                              "line": 107,
+                              "line": 105,
                               "column": 19
                             },
                             "end": {
-                              "line": 107,
+                              "line": 105,
                               "column": 29
                             }
                           }
@@ -1272,16 +1254,16 @@
                             "type": "Identifier",
                             "name": "fixedInstant",
                             "range": [
-                              4475,
-                              4487
+                              4365,
+                              4377
                             ],
                             "loc": {
                               "start": {
-                                "line": 107,
+                                "line": 105,
                                 "column": 30
                               },
                               "end": {
-                                "line": 107,
+                                "line": 105,
                                 "column": 42
                               }
                             }
@@ -1290,63 +1272,63 @@
                             "type": "Identifier",
                             "name": "zoneOffset",
                             "range": [
-                              4489,
-                              4499
+                              4379,
+                              4389
                             ],
                             "loc": {
                               "start": {
-                                "line": 107,
+                                "line": 105,
                                 "column": 44
                               },
                               "end": {
-                                "line": 107,
+                                "line": 105,
                                 "column": 54
                               }
                             }
                           }
                         ],
                         "range": [
-                          4460,
-                          4500
+                          4350,
+                          4390
                         ],
                         "loc": {
                           "start": {
-                            "line": 107,
+                            "line": 105,
                             "column": 15
                           },
                           "end": {
-                            "line": 107,
+                            "line": 105,
                             "column": 55
                           }
                         }
                       },
                       "range": [
-                        4453,
-                        4501
+                        4343,
+                        4391
                       ],
                       "loc": {
                         "start": {
-                          "line": 107,
+                          "line": 105,
                           "column": 8
                         },
                         "end": {
-                          "line": 107,
+                          "line": 105,
                           "column": 56
                         }
                       }
                     }
                   ],
                   "range": [
-                    4443,
-                    4507
+                    4333,
+                    4397
                   ],
                   "loc": {
                     "start": {
-                      "line": 106,
+                      "line": 104,
                       "column": 43
                     },
                     "end": {
-                      "line": 108,
+                      "line": 106,
                       "column": 5
                     }
                   }
@@ -1354,16 +1336,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  4416,
-                  4507
+                  4306,
+                  4397
                 ],
                 "loc": {
                   "start": {
-                    "line": 106,
+                    "line": 104,
                     "column": 16
                   },
                   "end": {
-                    "line": 108,
+                    "line": 106,
                     "column": 5
                   }
                 }
@@ -1371,34 +1353,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                4404,
-                4507
+                4294,
+                4397
               ],
               "loc": {
                 "start": {
-                  "line": 106,
+                  "line": 104,
                   "column": 4
                 },
                 "end": {
-                  "line": 108,
+                  "line": 106,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+                  "value": "*\n     * Obtains a clock that always returns the same instant.\n     *\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
                   "range": [
-                    3816,
-                    4399
+                    3710,
+                    4289
                   ],
                   "loc": {
                     "start": {
-                      "line": 94,
+                      "line": 92,
                       "column": 4
                     },
                     "end": {
-                      "line": 105,
+                      "line": 103,
                       "column": 7
                     }
                   }
@@ -1407,18 +1389,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      *\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime}.\n      *\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      *\n      * The default implementation currently calls {@link instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
                   "range": [
-                    4513,
-                    5316
+                    4403,
+                    5191
                   ],
                   "loc": {
                     "start": {
-                      "line": 110,
+                      "line": 108,
                       "column": 4
                     },
                     "end": {
-                      "line": 125,
+                      "line": 123,
                       "column": 8
                     }
                   }
@@ -1432,16 +1414,16 @@
                 "type": "Identifier",
                 "name": "millis",
                 "range": [
-                  5321,
-                  5327
+                  5196,
+                  5202
                 ],
                 "loc": {
                   "start": {
-                    "line": 126,
+                    "line": 124,
                     "column": 4
                   },
                   "end": {
-                    "line": 126,
+                    "line": 124,
                     "column": 10
                   }
                 }
@@ -1461,16 +1443,16 @@
                           "type": "Identifier",
                           "name": "abstractMethodFail",
                           "range": [
-                            5339,
-                            5357
+                            5214,
+                            5232
                           ],
                           "loc": {
                             "start": {
-                              "line": 127,
+                              "line": 125,
                               "column": 8
                             },
                             "end": {
-                              "line": 127,
+                              "line": 125,
                               "column": 26
                             }
                           }
@@ -1481,63 +1463,63 @@
                             "value": "Clock.millis",
                             "raw": "'Clock.millis'",
                             "range": [
-                              5358,
-                              5372
+                              5233,
+                              5247
                             ],
                             "loc": {
                               "start": {
-                                "line": 127,
+                                "line": 125,
                                 "column": 27
                               },
                               "end": {
-                                "line": 127,
+                                "line": 125,
                                 "column": 41
                               }
                             }
                           }
                         ],
                         "range": [
-                          5339,
-                          5373
+                          5214,
+                          5248
                         ],
                         "loc": {
                           "start": {
-                            "line": 127,
+                            "line": 125,
                             "column": 8
                           },
                           "end": {
-                            "line": 127,
+                            "line": 125,
                             "column": 42
                           }
                         }
                       },
                       "range": [
-                        5339,
-                        5374
+                        5214,
+                        5249
                       ],
                       "loc": {
                         "start": {
-                          "line": 127,
+                          "line": 125,
                           "column": 8
                         },
                         "end": {
-                          "line": 127,
+                          "line": 125,
                           "column": 43
                         }
                       }
                     }
                   ],
                   "range": [
-                    5329,
-                    5380
+                    5204,
+                    5255
                   ],
                   "loc": {
                     "start": {
-                      "line": 126,
+                      "line": 124,
                       "column": 12
                     },
                     "end": {
-                      "line": 128,
+                      "line": 126,
                       "column": 5
                     }
                   }
@@ -1545,16 +1527,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  5327,
-                  5380
+                  5202,
+                  5255
                 ],
                 "loc": {
                   "start": {
-                    "line": 126,
+                    "line": 124,
                     "column": 10
                   },
                   "end": {
-                    "line": 128,
+                    "line": 126,
                     "column": 5
                   }
                 }
@@ -1562,34 +1544,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                5321,
-                5380
+                5196,
+                5255
               ],
               "loc": {
                 "start": {
-                  "line": 126,
+                  "line": 124,
                   "column": 4
                 },
                 "end": {
-                  "line": 128,
+                  "line": 126,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+                  "value": "*\n      * Gets the current millisecond instant of the clock.\n      *\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime}.\n      *\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      *\n      * The default implementation currently calls {@link instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
                   "range": [
-                    4513,
-                    5316
+                    4403,
+                    5191
                   ],
                   "loc": {
                     "start": {
-                      "line": 110,
+                      "line": 108,
                       "column": 4
                     },
                     "end": {
-                      "line": 125,
+                      "line": 123,
                       "column": 8
                     }
                   }
@@ -1598,18 +1580,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+                  "value": "*\n     * Gets the current instant of the clock.\n     *\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
                   "range": [
-                    5386,
-                    5621
+                    5261,
+                    5492
                   ],
                   "loc": {
                     "start": {
-                      "line": 130,
+                      "line": 128,
                       "column": 4
                     },
                     "end": {
-                      "line": 136,
+                      "line": 134,
                       "column": 7
                     }
                   }
@@ -1623,16 +1605,16 @@
                 "type": "Identifier",
                 "name": "instant",
                 "range": [
-                  5626,
-                  5633
+                  5497,
+                  5504
                 ],
                 "loc": {
                   "start": {
-                    "line": 137,
+                    "line": 135,
                     "column": 4
                   },
                   "end": {
-                    "line": 137,
+                    "line": 135,
                     "column": 11
                   }
                 }
@@ -1652,16 +1634,16 @@
                           "type": "Identifier",
                           "name": "abstractMethodFail",
                           "range": [
-                            5645,
-                            5663
+                            5516,
+                            5534
                           ],
                           "loc": {
                             "start": {
-                              "line": 138,
+                              "line": 136,
                               "column": 8
                             },
                             "end": {
-                              "line": 138,
+                              "line": 136,
                               "column": 26
                             }
                           }
@@ -1672,63 +1654,63 @@
                             "value": "Clock.instant",
                             "raw": "'Clock.instant'",
                             "range": [
-                              5664,
-                              5679
+                              5535,
+                              5550
                             ],
                             "loc": {
                               "start": {
-                                "line": 138,
+                                "line": 136,
                                 "column": 27
                               },
                               "end": {
-                                "line": 138,
+                                "line": 136,
                                 "column": 42
                               }
                             }
                           }
                         ],
                         "range": [
-                          5645,
-                          5680
+                          5516,
+                          5551
                         ],
                         "loc": {
                           "start": {
-                            "line": 138,
+                            "line": 136,
                             "column": 8
                           },
                           "end": {
-                            "line": 138,
+                            "line": 136,
                             "column": 43
                           }
                         }
                       },
                       "range": [
-                        5645,
-                        5681
+                        5516,
+                        5552
                       ],
                       "loc": {
                         "start": {
-                          "line": 138,
+                          "line": 136,
                           "column": 8
                         },
                         "end": {
-                          "line": 138,
+                          "line": 136,
                           "column": 44
                         }
                       }
                     }
                   ],
                   "range": [
-                    5635,
-                    5687
+                    5506,
+                    5558
                   ],
                   "loc": {
                     "start": {
-                      "line": 137,
+                      "line": 135,
                       "column": 13
                     },
                     "end": {
-                      "line": 139,
+                      "line": 137,
                       "column": 5
                     }
                   }
@@ -1736,16 +1718,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  5633,
-                  5687
+                  5504,
+                  5558
                 ],
                 "loc": {
                   "start": {
-                    "line": 137,
+                    "line": 135,
                     "column": 11
                   },
                   "end": {
-                    "line": 139,
+                    "line": 137,
                     "column": 5
                   }
                 }
@@ -1753,34 +1735,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                5626,
-                5687
+                5497,
+                5558
               ],
               "loc": {
                 "start": {
-                  "line": 137,
+                  "line": 135,
                   "column": 4
                 },
                 "end": {
-                  "line": 139,
+                  "line": 137,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+                  "value": "*\n     * Gets the current instant of the clock.\n     *\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
                   "range": [
-                    5386,
-                    5621
+                    5261,
+                    5492
                   ],
                   "loc": {
                     "start": {
-                      "line": 130,
+                      "line": 128,
                       "column": 4
                     },
                     "end": {
-                      "line": 136,
+                      "line": 134,
                       "column": 7
                     }
                   }
@@ -1794,16 +1776,16 @@
                 "type": "Identifier",
                 "name": "zone",
                 "range": [
-                  5693,
-                  5697
+                  5564,
+                  5568
                 ],
                 "loc": {
                   "start": {
-                    "line": 141,
+                    "line": 139,
                     "column": 4
                   },
                   "end": {
-                    "line": 141,
+                    "line": 139,
                     "column": 8
                   }
                 }
@@ -1823,16 +1805,16 @@
                           "type": "Identifier",
                           "name": "abstractMethodFail",
                           "range": [
-                            5709,
-                            5727
+                            5580,
+                            5598
                           ],
                           "loc": {
                             "start": {
-                              "line": 142,
+                              "line": 140,
                               "column": 8
                             },
                             "end": {
-                              "line": 142,
+                              "line": 140,
                               "column": 26
                             }
                           }
@@ -1843,63 +1825,63 @@
                             "value": "Clock.zone",
                             "raw": "'Clock.zone'",
                             "range": [
-                              5728,
-                              5740
+                              5599,
+                              5611
                             ],
                             "loc": {
                               "start": {
-                                "line": 142,
+                                "line": 140,
                                 "column": 27
                               },
                               "end": {
-                                "line": 142,
+                                "line": 140,
                                 "column": 39
                               }
                             }
                           }
                         ],
                         "range": [
-                          5709,
-                          5741
+                          5580,
+                          5612
                         ],
                         "loc": {
                           "start": {
-                            "line": 142,
+                            "line": 140,
                             "column": 8
                           },
                           "end": {
-                            "line": 142,
+                            "line": 140,
                             "column": 40
                           }
                         }
                       },
                       "range": [
-                        5709,
-                        5742
+                        5580,
+                        5613
                       ],
                       "loc": {
                         "start": {
-                          "line": 142,
+                          "line": 140,
                           "column": 8
                         },
                         "end": {
-                          "line": 142,
+                          "line": 140,
                           "column": 41
                         }
                       }
                     }
                   ],
                   "range": [
-                    5699,
-                    5748
+                    5570,
+                    5619
                   ],
                   "loc": {
                     "start": {
-                      "line": 141,
+                      "line": 139,
                       "column": 10
                     },
                     "end": {
-                      "line": 143,
+                      "line": 141,
                       "column": 5
                     }
                   }
@@ -1907,16 +1889,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  5697,
-                  5748
+                  5568,
+                  5619
                 ],
                 "loc": {
                   "start": {
-                    "line": 141,
+                    "line": 139,
                     "column": 8
                   },
                   "end": {
-                    "line": 143,
+                    "line": 141,
                     "column": 5
                   }
                 }
@@ -1924,16 +1906,16 @@
               "kind": "method",
               "computed": false,
               "range": [
-                5693,
-                5748
+                5564,
+                5619
               ],
               "loc": {
                 "start": {
-                  "line": 141,
+                  "line": 139,
                   "column": 4
                 },
                 "end": {
-                  "line": 143,
+                  "line": 141,
                   "column": 5
                 }
               },
@@ -1941,41 +1923,41 @@
             }
           ],
           "range": [
-            2372,
-            5750
+            2286,
+            5621
           ],
           "loc": {
             "start": {
-              "line": 52,
+              "line": 50,
               "column": 19
             },
             "end": {
-              "line": 144,
+              "line": 142,
               "column": 1
             }
           }
         },
         "range": [
-          2360,
-          5750
+          2274,
+          5621
         ],
         "loc": {
           "start": {
-            "line": 52,
+            "line": 50,
             "column": 7
           },
           "end": {
-            "line": 144,
+            "line": 142,
             "column": 1
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+            "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n *\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis}\n * and {@link TimeZone#getDefault}.\n *\n * Use of a {@link Clock} is optional. All key date-time classes also have a\n * `now()` factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n *\n * Best practice for applications is to pass a {@link Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link fixed}\n * or {@link offset} to be used during testing.\n *\n * The {@link system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis}, or a higher\n * resolution clock if one is available.\n *\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
             "range": [
-              404,
-              1664
+              401,
+              2265
             ],
             "loc": {
               "start": {
@@ -1983,25 +1965,7 @@
                 "column": 0
               },
               "end": {
-                "line": 35,
-                "column": 3
-              }
-            }
-          },
-          {
-            "type": "Block",
-            "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
-            "range": [
-              1666,
-              2351
-            ],
-            "loc": {
-              "start": {
-                "line": 37,
-                "column": 0
-              },
-              "end": {
-                "line": 50,
+                "line": 48,
                 "column": 3
               }
             }
@@ -2010,18 +1974,18 @@
         "trailingComments": [
           {
             "type": "Block",
-            "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+            "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime}.\n ",
             "range": [
-              5752,
-              5856
+              5623,
+              5725
             ],
             "loc": {
               "start": {
-                "line": 146,
+                "line": 144,
                 "column": 0
               },
               "end": {
-                "line": 149,
+                "line": 147,
                 "column": 3
               }
             }
@@ -2031,26 +1995,26 @@
       "specifiers": [],
       "source": null,
       "range": [
-        2353,
-        5750
+        2267,
+        5621
       ],
       "loc": {
         "start": {
-          "line": 52,
+          "line": 50,
           "column": 0
         },
         "end": {
-          "line": 144,
+          "line": 142,
           "column": 1
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+          "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n *\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis}\n * and {@link TimeZone#getDefault}.\n *\n * Use of a {@link Clock} is optional. All key date-time classes also have a\n * `now()` factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n *\n * Best practice for applications is to pass a {@link Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link fixed}\n * or {@link offset} to be used during testing.\n *\n * The {@link system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis}, or a higher\n * resolution clock if one is available.\n *\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
           "range": [
-            404,
-            1664
+            401,
+            2265
           ],
           "loc": {
             "start": {
@@ -2058,25 +2022,7 @@
               "column": 0
             },
             "end": {
-              "line": 35,
-              "column": 3
-            }
-          }
-        },
-        {
-          "type": "Block",
-          "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
-          "range": [
-            1666,
-            2351
-          ],
-          "loc": {
-            "start": {
-              "line": 37,
-              "column": 0
-            },
-            "end": {
-              "line": 50,
+              "line": 48,
               "column": 3
             }
           }
@@ -2085,18 +2031,18 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime}.\n ",
           "range": [
-            5752,
-            5856
+            5623,
+            5725
           ],
           "loc": {
             "start": {
-              "line": 146,
+              "line": 144,
               "column": 0
             },
             "end": {
-              "line": 149,
+              "line": 147,
               "column": 3
             }
           }
@@ -2109,16 +2055,16 @@
         "type": "Identifier",
         "name": "SystemClock",
         "range": [
-          5863,
-          5874
+          5732,
+          5743
         ],
         "loc": {
           "start": {
-            "line": 150,
+            "line": 148,
             "column": 6
           },
           "end": {
-            "line": 150,
+            "line": 148,
             "column": 17
           }
         }
@@ -2127,16 +2073,16 @@
         "type": "Identifier",
         "name": "Clock",
         "range": [
-          5883,
-          5888
+          5752,
+          5757
         ],
         "loc": {
           "start": {
-            "line": 150,
+            "line": 148,
             "column": 26
           },
           "end": {
-            "line": 150,
+            "line": 148,
             "column": 31
           }
         }
@@ -2150,16 +2096,16 @@
               "type": "Identifier",
               "name": "constructor",
               "range": [
-                5947,
-                5958
+                5816,
+                5827
               ],
               "loc": {
                 "start": {
-                  "line": 155,
+                  "line": 153,
                   "column": 4
                 },
                 "end": {
-                  "line": 155,
+                  "line": 153,
                   "column": 15
                 }
               }
@@ -2172,16 +2118,16 @@
                   "type": "Identifier",
                   "name": "zone",
                   "range": [
-                    5959,
-                    5963
+                    5828,
+                    5832
                   ],
                   "loc": {
                     "start": {
-                      "line": 155,
+                      "line": 153,
                       "column": 16
                     },
                     "end": {
-                      "line": 155,
+                      "line": 153,
                       "column": 20
                     }
                   }
@@ -2198,16 +2144,16 @@
                         "type": "Identifier",
                         "name": "requireNonNull",
                         "range": [
-                          5974,
-                          5988
+                          5843,
+                          5857
                         ],
                         "loc": {
                           "start": {
-                            "line": 156,
+                            "line": 154,
                             "column": 8
                           },
                           "end": {
-                            "line": 156,
+                            "line": 154,
                             "column": 22
                           }
                         }
@@ -2217,16 +2163,16 @@
                           "type": "Identifier",
                           "name": "zone",
                           "range": [
-                            5989,
-                            5993
+                            5858,
+                            5862
                           ],
                           "loc": {
                             "start": {
-                              "line": 156,
+                              "line": 154,
                               "column": 23
                             },
                             "end": {
-                              "line": 156,
+                              "line": 154,
                               "column": 27
                             }
                           }
@@ -2236,47 +2182,47 @@
                           "value": "zone",
                           "raw": "'zone'",
                           "range": [
-                            5995,
-                            6001
+                            5864,
+                            5870
                           ],
                           "loc": {
                             "start": {
-                              "line": 156,
+                              "line": 154,
                               "column": 29
                             },
                             "end": {
-                              "line": 156,
+                              "line": 154,
                               "column": 35
                             }
                           }
                         }
                       ],
                       "range": [
-                        5974,
-                        6002
+                        5843,
+                        5871
                       ],
                       "loc": {
                         "start": {
-                          "line": 156,
+                          "line": 154,
                           "column": 8
                         },
                         "end": {
-                          "line": 156,
+                          "line": 154,
                           "column": 36
                         }
                       }
                     },
                     "range": [
-                      5974,
-                      6003
+                      5843,
+                      5872
                     ],
                     "loc": {
                       "start": {
-                        "line": 156,
+                        "line": 154,
                         "column": 8
                       },
                       "end": {
-                        "line": 156,
+                        "line": 154,
                         "column": 37
                       }
                     }
@@ -2288,47 +2234,47 @@
                       "callee": {
                         "type": "Super",
                         "range": [
-                          6012,
-                          6017
+                          5881,
+                          5886
                         ],
                         "loc": {
                           "start": {
-                            "line": 157,
+                            "line": 155,
                             "column": 8
                           },
                           "end": {
-                            "line": 157,
+                            "line": 155,
                             "column": 13
                           }
                         }
                       },
                       "arguments": [],
                       "range": [
-                        6012,
-                        6019
+                        5881,
+                        5888
                       ],
                       "loc": {
                         "start": {
-                          "line": 157,
+                          "line": 155,
                           "column": 8
                         },
                         "end": {
-                          "line": 157,
+                          "line": 155,
                           "column": 15
                         }
                       }
                     },
                     "range": [
-                      6012,
-                      6020
+                      5881,
+                      5889
                     ],
                     "loc": {
                       "start": {
-                        "line": 157,
+                        "line": 155,
                         "column": 8
                       },
                       "end": {
-                        "line": 157,
+                        "line": 155,
                         "column": 16
                       }
                     }
@@ -2344,16 +2290,16 @@
                         "object": {
                           "type": "ThisExpression",
                           "range": [
-                            6029,
-                            6033
+                            5898,
+                            5902
                           ],
                           "loc": {
                             "start": {
-                              "line": 158,
+                              "line": 156,
                               "column": 8
                             },
                             "end": {
-                              "line": 158,
+                              "line": 156,
                               "column": 12
                             }
                           }
@@ -2362,31 +2308,31 @@
                           "type": "Identifier",
                           "name": "_zone",
                           "range": [
-                            6034,
-                            6039
+                            5903,
+                            5908
                           ],
                           "loc": {
                             "start": {
-                              "line": 158,
+                              "line": 156,
                               "column": 13
                             },
                             "end": {
-                              "line": 158,
+                              "line": 156,
                               "column": 18
                             }
                           }
                         },
                         "range": [
-                          6029,
-                          6039
+                          5898,
+                          5908
                         ],
                         "loc": {
                           "start": {
-                            "line": 158,
+                            "line": 156,
                             "column": 8
                           },
                           "end": {
-                            "line": 158,
+                            "line": 156,
                             "column": 18
                           }
                         }
@@ -2395,62 +2341,62 @@
                         "type": "Identifier",
                         "name": "zone",
                         "range": [
-                          6042,
-                          6046
+                          5911,
+                          5915
                         ],
                         "loc": {
                           "start": {
-                            "line": 158,
+                            "line": 156,
                             "column": 21
                           },
                           "end": {
-                            "line": 158,
+                            "line": 156,
                             "column": 25
                           }
                         }
                       },
                       "range": [
-                        6029,
-                        6046
+                        5898,
+                        5915
                       ],
                       "loc": {
                         "start": {
-                          "line": 158,
+                          "line": 156,
                           "column": 8
                         },
                         "end": {
-                          "line": 158,
+                          "line": 156,
                           "column": 25
                         }
                       }
                     },
                     "range": [
-                      6029,
-                      6047
+                      5898,
+                      5916
                     ],
                     "loc": {
                       "start": {
-                        "line": 158,
+                        "line": 156,
                         "column": 8
                       },
                       "end": {
-                        "line": 158,
+                        "line": 156,
                         "column": 26
                       }
                     }
                   }
                 ],
                 "range": [
-                  5964,
-                  6053
+                  5833,
+                  5922
                 ],
                 "loc": {
                   "start": {
-                    "line": 155,
+                    "line": 153,
                     "column": 21
                   },
                   "end": {
-                    "line": 159,
+                    "line": 157,
                     "column": 5
                   }
                 }
@@ -2458,16 +2404,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                5958,
-                6053
+                5827,
+                5922
               ],
               "loc": {
                 "start": {
-                  "line": 155,
+                  "line": 153,
                   "column": 15
                 },
                 "end": {
-                  "line": 159,
+                  "line": 157,
                   "column": 5
                 }
               }
@@ -2475,16 +2421,16 @@
             "kind": "constructor",
             "computed": false,
             "range": [
-              5947,
-              6053
+              5816,
+              5922
             ],
             "loc": {
               "start": {
-                "line": 155,
+                "line": 153,
                 "column": 4
               },
               "end": {
-                "line": 159,
+                "line": 157,
                 "column": 5
               }
             },
@@ -2493,16 +2439,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @param {!ZoneId} zone\n     ",
                 "range": [
-                  5895,
-                  5942
+                  5764,
+                  5811
                 ],
                 "loc": {
                   "start": {
-                    "line": 151,
+                    "line": 149,
                     "column": 4
                   },
                   "end": {
-                    "line": 154,
+                    "line": 152,
                     "column": 7
                   }
                 }
@@ -2513,16 +2459,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
                 "range": [
-                  6059,
-                  6103
+                  5928,
+                  5972
                 ],
                 "loc": {
                   "start": {
-                    "line": 161,
+                    "line": 159,
                     "column": 4
                   },
                   "end": {
-                    "line": 164,
+                    "line": 162,
                     "column": 7
                   }
                 }
@@ -2536,16 +2482,16 @@
               "type": "Identifier",
               "name": "zone",
               "range": [
-                6108,
-                6112
+                5977,
+                5981
               ],
               "loc": {
                 "start": {
-                  "line": 165,
+                  "line": 163,
                   "column": 4
                 },
                 "end": {
-                  "line": 165,
+                  "line": 163,
                   "column": 8
                 }
               }
@@ -2565,16 +2511,16 @@
                       "object": {
                         "type": "ThisExpression",
                         "range": [
-                          6132,
-                          6136
+                          6001,
+                          6005
                         ],
                         "loc": {
                           "start": {
-                            "line": 166,
+                            "line": 164,
                             "column": 15
                           },
                           "end": {
-                            "line": 166,
+                            "line": 164,
                             "column": 19
                           }
                         }
@@ -2583,62 +2529,62 @@
                         "type": "Identifier",
                         "name": "_zone",
                         "range": [
-                          6137,
-                          6142
+                          6006,
+                          6011
                         ],
                         "loc": {
                           "start": {
-                            "line": 166,
+                            "line": 164,
                             "column": 20
                           },
                           "end": {
-                            "line": 166,
+                            "line": 164,
                             "column": 25
                           }
                         }
                       },
                       "range": [
-                        6132,
-                        6142
+                        6001,
+                        6011
                       ],
                       "loc": {
                         "start": {
-                          "line": 166,
+                          "line": 164,
                           "column": 15
                         },
                         "end": {
-                          "line": 166,
+                          "line": 164,
                           "column": 25
                         }
                       }
                     },
                     "range": [
-                      6125,
-                      6143
+                      5994,
+                      6012
                     ],
                     "loc": {
                       "start": {
-                        "line": 166,
+                        "line": 164,
                         "column": 8
                       },
                       "end": {
-                        "line": 166,
+                        "line": 164,
                         "column": 26
                       }
                     }
                   }
                 ],
                 "range": [
-                  6115,
-                  6149
+                  5984,
+                  6018
                 ],
                 "loc": {
                   "start": {
-                    "line": 165,
+                    "line": 163,
                     "column": 11
                   },
                   "end": {
-                    "line": 167,
+                    "line": 165,
                     "column": 5
                   }
                 }
@@ -2646,16 +2592,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6112,
-                6149
+                5981,
+                6018
               ],
               "loc": {
                 "start": {
-                  "line": 165,
+                  "line": 163,
                   "column": 8
                 },
                 "end": {
-                  "line": 167,
+                  "line": 165,
                   "column": 5
                 }
               }
@@ -2663,16 +2609,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6108,
-              6149
+              5977,
+              6018
             ],
             "loc": {
               "start": {
-                "line": 165,
+                "line": 163,
                 "column": 4
               },
               "end": {
-                "line": 167,
+                "line": 165,
                 "column": 5
               }
             },
@@ -2681,16 +2627,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
                 "range": [
-                  6059,
-                  6103
+                  5928,
+                  5972
                 ],
                 "loc": {
                   "start": {
-                    "line": 161,
+                    "line": 159,
                     "column": 4
                   },
                   "end": {
-                    "line": 164,
+                    "line": 162,
                     "column": 7
                   }
                 }
@@ -2701,16 +2647,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {number}\n     ",
                 "range": [
-                  6155,
-                  6198
+                  6024,
+                  6067
                 ],
                 "loc": {
                   "start": {
-                    "line": 169,
+                    "line": 167,
                     "column": 4
                   },
                   "end": {
-                    "line": 172,
+                    "line": 170,
                     "column": 7
                   }
                 }
@@ -2724,16 +2670,16 @@
               "type": "Identifier",
               "name": "millis",
               "range": [
-                6203,
-                6209
+                6072,
+                6078
               ],
               "loc": {
                 "start": {
-                  "line": 173,
+                  "line": 171,
                   "column": 4
                 },
                 "end": {
-                  "line": 173,
+                  "line": 171,
                   "column": 10
                 }
               }
@@ -2758,32 +2704,32 @@
                             "type": "Identifier",
                             "name": "Date",
                             "range": [
-                              6233,
-                              6237
+                              6102,
+                              6106
                             ],
                             "loc": {
                               "start": {
-                                "line": 174,
+                                "line": 172,
                                 "column": 19
                               },
                               "end": {
-                                "line": 174,
+                                "line": 172,
                                 "column": 23
                               }
                             }
                           },
                           "arguments": [],
                           "range": [
-                            6229,
-                            6239
+                            6098,
+                            6108
                           ],
                           "loc": {
                             "start": {
-                              "line": 174,
+                              "line": 172,
                               "column": 15
                             },
                             "end": {
-                              "line": 174,
+                              "line": 172,
                               "column": 25
                             }
                           }
@@ -2792,78 +2738,78 @@
                           "type": "Identifier",
                           "name": "getTime",
                           "range": [
-                            6240,
-                            6247
+                            6109,
+                            6116
                           ],
                           "loc": {
                             "start": {
-                              "line": 174,
+                              "line": 172,
                               "column": 26
                             },
                             "end": {
-                              "line": 174,
+                              "line": 172,
                               "column": 33
                             }
                           }
                         },
                         "range": [
-                          6229,
-                          6247
+                          6098,
+                          6116
                         ],
                         "loc": {
                           "start": {
-                            "line": 174,
+                            "line": 172,
                             "column": 15
                           },
                           "end": {
-                            "line": 174,
+                            "line": 172,
                             "column": 33
                           }
                         }
                       },
                       "arguments": [],
                       "range": [
-                        6229,
-                        6249
+                        6098,
+                        6118
                       ],
                       "loc": {
                         "start": {
-                          "line": 174,
+                          "line": 172,
                           "column": 15
                         },
                         "end": {
-                          "line": 174,
+                          "line": 172,
                           "column": 35
                         }
                       }
                     },
                     "range": [
-                      6222,
-                      6250
+                      6091,
+                      6119
                     ],
                     "loc": {
                       "start": {
-                        "line": 174,
+                        "line": 172,
                         "column": 8
                       },
                       "end": {
-                        "line": 174,
+                        "line": 172,
                         "column": 36
                       }
                     }
                   }
                 ],
                 "range": [
-                  6212,
-                  6256
+                  6081,
+                  6125
                 ],
                 "loc": {
                   "start": {
-                    "line": 173,
+                    "line": 171,
                     "column": 13
                   },
                   "end": {
-                    "line": 175,
+                    "line": 173,
                     "column": 5
                   }
                 }
@@ -2871,16 +2817,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6209,
-                6256
+                6078,
+                6125
               ],
               "loc": {
                 "start": {
-                  "line": 173,
+                  "line": 171,
                   "column": 10
                 },
                 "end": {
-                  "line": 175,
+                  "line": 173,
                   "column": 5
                 }
               }
@@ -2888,16 +2834,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6203,
-              6256
+              6072,
+              6125
             ],
             "loc": {
               "start": {
-                "line": 173,
+                "line": 171,
                 "column": 4
               },
               "end": {
-                "line": 175,
+                "line": 173,
                 "column": 5
               }
             },
@@ -2906,16 +2852,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {number}\n     ",
                 "range": [
-                  6155,
-                  6198
+                  6024,
+                  6067
                 ],
                 "loc": {
                   "start": {
-                    "line": 169,
+                    "line": 167,
                     "column": 4
                   },
                   "end": {
-                    "line": 172,
+                    "line": 170,
                     "column": 7
                   }
                 }
@@ -2926,16 +2872,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {Instant}\n     ",
                 "range": [
-                  6262,
-                  6306
+                  6131,
+                  6175
                 ],
                 "loc": {
                   "start": {
-                    "line": 177,
+                    "line": 175,
                     "column": 4
                   },
                   "end": {
-                    "line": 180,
+                    "line": 178,
                     "column": 7
                   }
                 }
@@ -2949,16 +2895,16 @@
               "type": "Identifier",
               "name": "instant",
               "range": [
-                6311,
-                6318
+                6180,
+                6187
               ],
               "loc": {
                 "start": {
-                  "line": 181,
+                  "line": 179,
                   "column": 4
                 },
                 "end": {
-                  "line": 181,
+                  "line": 179,
                   "column": 11
                 }
               }
@@ -2981,16 +2927,16 @@
                           "type": "Identifier",
                           "name": "Instant",
                           "range": [
-                            6338,
-                            6345
+                            6207,
+                            6214
                           ],
                           "loc": {
                             "start": {
-                              "line": 182,
+                              "line": 180,
                               "column": 15
                             },
                             "end": {
-                              "line": 182,
+                              "line": 180,
                               "column": 22
                             }
                           }
@@ -2999,31 +2945,31 @@
                           "type": "Identifier",
                           "name": "ofEpochMilli",
                           "range": [
-                            6346,
-                            6358
+                            6215,
+                            6227
                           ],
                           "loc": {
                             "start": {
-                              "line": 182,
+                              "line": 180,
                               "column": 23
                             },
                             "end": {
-                              "line": 182,
+                              "line": 180,
                               "column": 35
                             }
                           }
                         },
                         "range": [
-                          6338,
-                          6358
+                          6207,
+                          6227
                         ],
                         "loc": {
                           "start": {
-                            "line": 182,
+                            "line": 180,
                             "column": 15
                           },
                           "end": {
-                            "line": 182,
+                            "line": 180,
                             "column": 35
                           }
                         }
@@ -3037,16 +2983,16 @@
                             "object": {
                               "type": "ThisExpression",
                               "range": [
-                                6359,
-                                6363
+                                6228,
+                                6232
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 182,
+                                  "line": 180,
                                   "column": 36
                                 },
                                 "end": {
-                                  "line": 182,
+                                  "line": 180,
                                   "column": 40
                                 }
                               }
@@ -3055,94 +3001,94 @@
                               "type": "Identifier",
                               "name": "millis",
                               "range": [
-                                6364,
-                                6370
+                                6233,
+                                6239
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 182,
+                                  "line": 180,
                                   "column": 41
                                 },
                                 "end": {
-                                  "line": 182,
+                                  "line": 180,
                                   "column": 47
                                 }
                               }
                             },
                             "range": [
-                              6359,
-                              6370
+                              6228,
+                              6239
                             ],
                             "loc": {
                               "start": {
-                                "line": 182,
+                                "line": 180,
                                 "column": 36
                               },
                               "end": {
-                                "line": 182,
+                                "line": 180,
                                 "column": 47
                               }
                             }
                           },
                           "arguments": [],
                           "range": [
-                            6359,
-                            6372
+                            6228,
+                            6241
                           ],
                           "loc": {
                             "start": {
-                              "line": 182,
+                              "line": 180,
                               "column": 36
                             },
                             "end": {
-                              "line": 182,
+                              "line": 180,
                               "column": 49
                             }
                           }
                         }
                       ],
                       "range": [
-                        6338,
-                        6373
+                        6207,
+                        6242
                       ],
                       "loc": {
                         "start": {
-                          "line": 182,
+                          "line": 180,
                           "column": 15
                         },
                         "end": {
-                          "line": 182,
+                          "line": 180,
                           "column": 50
                         }
                       }
                     },
                     "range": [
-                      6331,
-                      6374
+                      6200,
+                      6243
                     ],
                     "loc": {
                       "start": {
-                        "line": 182,
+                        "line": 180,
                         "column": 8
                       },
                       "end": {
-                        "line": 182,
+                        "line": 180,
                         "column": 51
                       }
                     }
                   }
                 ],
                 "range": [
-                  6321,
-                  6380
+                  6190,
+                  6249
                 ],
                 "loc": {
                   "start": {
-                    "line": 181,
+                    "line": 179,
                     "column": 14
                   },
                   "end": {
-                    "line": 183,
+                    "line": 181,
                     "column": 5
                   }
                 }
@@ -3150,16 +3096,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6318,
-                6380
+                6187,
+                6249
               ],
               "loc": {
                 "start": {
-                  "line": 181,
+                  "line": 179,
                   "column": 11
                 },
                 "end": {
-                  "line": 183,
+                  "line": 181,
                   "column": 5
                 }
               }
@@ -3167,16 +3113,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6311,
-              6380
+              6180,
+              6249
             ],
             "loc": {
               "start": {
-                "line": 181,
+                "line": 179,
                 "column": 4
               },
               "end": {
-                "line": 183,
+                "line": 181,
                 "column": 5
               }
             },
@@ -3185,16 +3131,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {Instant}\n     ",
                 "range": [
-                  6262,
-                  6306
+                  6131,
+                  6175
                 ],
                 "loc": {
                   "start": {
-                    "line": 177,
+                    "line": 175,
                     "column": 4
                   },
                   "end": {
-                    "line": 180,
+                    "line": 178,
                     "column": 7
                   }
                 }
@@ -3205,16 +3151,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {string}\n     ",
                 "range": [
-                  6386,
-                  6429
+                  6255,
+                  6298
                 ],
                 "loc": {
                   "start": {
-                    "line": 185,
+                    "line": 183,
                     "column": 4
                   },
                   "end": {
-                    "line": 188,
+                    "line": 186,
                     "column": 7
                   }
                 }
@@ -3228,16 +3174,16 @@
               "type": "Identifier",
               "name": "toString",
               "range": [
-                6434,
-                6442
+                6303,
+                6311
               ],
               "loc": {
                 "start": {
-                  "line": 189,
+                  "line": 187,
                   "column": 4
                 },
                 "end": {
-                  "line": 189,
+                  "line": 187,
                   "column": 12
                 }
               }
@@ -3262,16 +3208,16 @@
                           "value": "SystemClock[",
                           "raw": "'SystemClock['",
                           "range": [
-                            6461,
-                            6475
+                            6330,
+                            6344
                           ],
                           "loc": {
                             "start": {
-                              "line": 190,
+                              "line": 188,
                               "column": 15
                             },
                             "end": {
-                              "line": 190,
+                              "line": 188,
                               "column": 29
                             }
                           }
@@ -3287,16 +3233,16 @@
                               "object": {
                                 "type": "ThisExpression",
                                 "range": [
-                                  6478,
-                                  6482
+                                  6347,
+                                  6351
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 190,
+                                    "line": 188,
                                     "column": 32
                                   },
                                   "end": {
-                                    "line": 190,
+                                    "line": 188,
                                     "column": 36
                                   }
                                 }
@@ -3305,31 +3251,31 @@
                                 "type": "Identifier",
                                 "name": "_zone",
                                 "range": [
-                                  6483,
-                                  6488
+                                  6352,
+                                  6357
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 190,
+                                    "line": 188,
                                     "column": 37
                                   },
                                   "end": {
-                                    "line": 190,
+                                    "line": 188,
                                     "column": 42
                                   }
                                 }
                               },
                               "range": [
-                                6478,
-                                6488
+                                6347,
+                                6357
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 190,
+                                  "line": 188,
                                   "column": 32
                                 },
                                 "end": {
-                                  "line": 190,
+                                  "line": 188,
                                   "column": 42
                                 }
                               }
@@ -3338,62 +3284,62 @@
                               "type": "Identifier",
                               "name": "toString",
                               "range": [
-                                6489,
-                                6497
+                                6358,
+                                6366
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 190,
+                                  "line": 188,
                                   "column": 43
                                 },
                                 "end": {
-                                  "line": 190,
+                                  "line": 188,
                                   "column": 51
                                 }
                               }
                             },
                             "range": [
-                              6478,
-                              6497
+                              6347,
+                              6366
                             ],
                             "loc": {
                               "start": {
-                                "line": 190,
+                                "line": 188,
                                 "column": 32
                               },
                               "end": {
-                                "line": 190,
+                                "line": 188,
                                 "column": 51
                               }
                             }
                           },
                           "arguments": [],
                           "range": [
-                            6478,
-                            6499
+                            6347,
+                            6368
                           ],
                           "loc": {
                             "start": {
-                              "line": 190,
+                              "line": 188,
                               "column": 32
                             },
                             "end": {
-                              "line": 190,
+                              "line": 188,
                               "column": 53
                             }
                           }
                         },
                         "range": [
-                          6461,
-                          6499
+                          6330,
+                          6368
                         ],
                         "loc": {
                           "start": {
-                            "line": 190,
+                            "line": 188,
                             "column": 15
                           },
                           "end": {
-                            "line": 190,
+                            "line": 188,
                             "column": 53
                           }
                         }
@@ -3403,62 +3349,62 @@
                         "value": "]",
                         "raw": "']'",
                         "range": [
-                          6502,
-                          6505
+                          6371,
+                          6374
                         ],
                         "loc": {
                           "start": {
-                            "line": 190,
+                            "line": 188,
                             "column": 56
                           },
                           "end": {
-                            "line": 190,
+                            "line": 188,
                             "column": 59
                           }
                         }
                       },
                       "range": [
-                        6461,
-                        6505
+                        6330,
+                        6374
                       ],
                       "loc": {
                         "start": {
-                          "line": 190,
+                          "line": 188,
                           "column": 15
                         },
                         "end": {
-                          "line": 190,
+                          "line": 188,
                           "column": 59
                         }
                       }
                     },
                     "range": [
-                      6454,
-                      6506
+                      6323,
+                      6375
                     ],
                     "loc": {
                       "start": {
-                        "line": 190,
+                        "line": 188,
                         "column": 8
                       },
                       "end": {
-                        "line": 190,
+                        "line": 188,
                         "column": 60
                       }
                     }
                   }
                 ],
                 "range": [
-                  6444,
-                  6512
+                  6313,
+                  6381
                 ],
                 "loc": {
                   "start": {
-                    "line": 189,
+                    "line": 187,
                     "column": 14
                   },
                   "end": {
-                    "line": 191,
+                    "line": 189,
                     "column": 5
                   }
                 }
@@ -3466,16 +3412,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6442,
-                6512
+                6311,
+                6381
               ],
               "loc": {
                 "start": {
-                  "line": 189,
+                  "line": 187,
                   "column": 12
                 },
                 "end": {
-                  "line": 191,
+                  "line": 189,
                   "column": 5
                 }
               }
@@ -3483,16 +3429,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6434,
-              6512
+              6303,
+              6381
             ],
             "loc": {
               "start": {
-                "line": 189,
+                "line": 187,
                 "column": 4
               },
               "end": {
-                "line": 191,
+                "line": 189,
                 "column": 5
               }
             },
@@ -3501,16 +3447,16 @@
                 "type": "Block",
                 "value": "*\n     *\n     * @returns {string}\n     ",
                 "range": [
-                  6386,
-                  6429
+                  6255,
+                  6298
                 ],
                 "loc": {
                   "start": {
-                    "line": 185,
+                    "line": 183,
                     "column": 4
                   },
                   "end": {
-                    "line": 188,
+                    "line": 186,
                     "column": 7
                   }
                 }
@@ -3520,49 +3466,49 @@
           }
         ],
         "range": [
-          5889,
-          6515
+          5758,
+          6384
         ],
         "loc": {
           "start": {
-            "line": 150,
+            "line": 148,
             "column": 32
           },
           "end": {
-            "line": 193,
+            "line": 191,
             "column": 1
           }
         }
       },
       "range": [
-        5857,
-        6515
+        5726,
+        6384
       ],
       "loc": {
         "start": {
-          "line": 150,
+          "line": 148,
           "column": 0
         },
         "end": {
-          "line": 193,
+          "line": 191,
           "column": 1
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+          "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime}.\n ",
           "range": [
-            5752,
-            5856
+            5623,
+            5725
           ],
           "loc": {
             "start": {
-              "line": 146,
+              "line": 144,
               "column": 0
             },
             "end": {
-              "line": 149,
+              "line": 147,
               "column": 3
             }
           }
@@ -3573,16 +3519,16 @@
           "type": "Block",
           "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
           "range": [
-            6517,
-            6630
+            6386,
+            6499
           ],
           "loc": {
             "start": {
-              "line": 195,
+              "line": 193,
               "column": 0
             },
             "end": {
-              "line": 198,
+              "line": 196,
               "column": 3
             }
           }
@@ -3595,16 +3541,16 @@
         "type": "Identifier",
         "name": "FixedClock",
         "range": [
-          6637,
-          6647
+          6506,
+          6516
         ],
         "loc": {
           "start": {
-            "line": 199,
+            "line": 197,
             "column": 6
           },
           "end": {
-            "line": 199,
+            "line": 197,
             "column": 16
           }
         }
@@ -3613,16 +3559,16 @@
         "type": "Identifier",
         "name": "Clock",
         "range": [
-          6656,
-          6661
+          6525,
+          6530
         ],
         "loc": {
           "start": {
-            "line": 199,
+            "line": 197,
             "column": 25
           },
           "end": {
-            "line": 199,
+            "line": 197,
             "column": 30
           }
         }
@@ -3636,16 +3582,16 @@
               "type": "Identifier",
               "name": "constructor",
               "range": [
-                6667,
-                6678
+                6536,
+                6547
               ],
               "loc": {
                 "start": {
-                  "line": 200,
+                  "line": 198,
                   "column": 4
                 },
                 "end": {
-                  "line": 200,
+                  "line": 198,
                   "column": 15
                 }
               }
@@ -3658,16 +3604,16 @@
                   "type": "Identifier",
                   "name": "fixedInstant",
                   "range": [
-                    6679,
-                    6691
+                    6548,
+                    6560
                   ],
                   "loc": {
                     "start": {
-                      "line": 200,
+                      "line": 198,
                       "column": 16
                     },
                     "end": {
-                      "line": 200,
+                      "line": 198,
                       "column": 28
                     }
                   }
@@ -3676,16 +3622,16 @@
                   "type": "Identifier",
                   "name": "zoneId",
                   "range": [
-                    6693,
-                    6699
+                    6562,
+                    6568
                   ],
                   "loc": {
                     "start": {
-                      "line": 200,
+                      "line": 198,
                       "column": 30
                     },
                     "end": {
-                      "line": 200,
+                      "line": 198,
                       "column": 36
                     }
                   }
@@ -3701,47 +3647,47 @@
                       "callee": {
                         "type": "Super",
                         "range": [
-                          6711,
-                          6716
+                          6580,
+                          6585
                         ],
                         "loc": {
                           "start": {
-                            "line": 201,
+                            "line": 199,
                             "column": 8
                           },
                           "end": {
-                            "line": 201,
+                            "line": 199,
                             "column": 13
                           }
                         }
                       },
                       "arguments": [],
                       "range": [
-                        6711,
-                        6718
+                        6580,
+                        6587
                       ],
                       "loc": {
                         "start": {
-                          "line": 201,
+                          "line": 199,
                           "column": 8
                         },
                         "end": {
-                          "line": 201,
+                          "line": 199,
                           "column": 15
                         }
                       }
                     },
                     "range": [
-                      6711,
-                      6719
+                      6580,
+                      6588
                     ],
                     "loc": {
                       "start": {
-                        "line": 201,
+                        "line": 199,
                         "column": 8
                       },
                       "end": {
-                        "line": 201,
+                        "line": 199,
                         "column": 16
                       }
                     }
@@ -3757,16 +3703,16 @@
                         "object": {
                           "type": "ThisExpression",
                           "range": [
-                            6728,
-                            6732
+                            6597,
+                            6601
                           ],
                           "loc": {
                             "start": {
-                              "line": 202,
+                              "line": 200,
                               "column": 8
                             },
                             "end": {
-                              "line": 202,
+                              "line": 200,
                               "column": 12
                             }
                           }
@@ -3775,31 +3721,31 @@
                           "type": "Identifier",
                           "name": "_instant",
                           "range": [
-                            6733,
-                            6741
+                            6602,
+                            6610
                           ],
                           "loc": {
                             "start": {
-                              "line": 202,
+                              "line": 200,
                               "column": 13
                             },
                             "end": {
-                              "line": 202,
+                              "line": 200,
                               "column": 21
                             }
                           }
                         },
                         "range": [
-                          6728,
-                          6741
+                          6597,
+                          6610
                         ],
                         "loc": {
                           "start": {
-                            "line": 202,
+                            "line": 200,
                             "column": 8
                           },
                           "end": {
-                            "line": 202,
+                            "line": 200,
                             "column": 21
                           }
                         }
@@ -3808,46 +3754,46 @@
                         "type": "Identifier",
                         "name": "fixedInstant",
                         "range": [
-                          6744,
-                          6756
+                          6613,
+                          6625
                         ],
                         "loc": {
                           "start": {
-                            "line": 202,
+                            "line": 200,
                             "column": 24
                           },
                           "end": {
-                            "line": 202,
+                            "line": 200,
                             "column": 36
                           }
                         }
                       },
                       "range": [
-                        6728,
-                        6756
+                        6597,
+                        6625
                       ],
                       "loc": {
                         "start": {
-                          "line": 202,
+                          "line": 200,
                           "column": 8
                         },
                         "end": {
-                          "line": 202,
+                          "line": 200,
                           "column": 36
                         }
                       }
                     },
                     "range": [
-                      6728,
-                      6757
+                      6597,
+                      6626
                     ],
                     "loc": {
                       "start": {
-                        "line": 202,
+                        "line": 200,
                         "column": 8
                       },
                       "end": {
-                        "line": 202,
+                        "line": 200,
                         "column": 37
                       }
                     }
@@ -3863,16 +3809,16 @@
                         "object": {
                           "type": "ThisExpression",
                           "range": [
-                            6766,
-                            6770
+                            6635,
+                            6639
                           ],
                           "loc": {
                             "start": {
-                              "line": 203,
+                              "line": 201,
                               "column": 8
                             },
                             "end": {
-                              "line": 203,
+                              "line": 201,
                               "column": 12
                             }
                           }
@@ -3881,31 +3827,31 @@
                           "type": "Identifier",
                           "name": "_zoneId",
                           "range": [
-                            6771,
-                            6778
+                            6640,
+                            6647
                           ],
                           "loc": {
                             "start": {
-                              "line": 203,
+                              "line": 201,
                               "column": 13
                             },
                             "end": {
-                              "line": 203,
+                              "line": 201,
                               "column": 20
                             }
                           }
                         },
                         "range": [
-                          6766,
-                          6778
+                          6635,
+                          6647
                         ],
                         "loc": {
                           "start": {
-                            "line": 203,
+                            "line": 201,
                             "column": 8
                           },
                           "end": {
-                            "line": 203,
+                            "line": 201,
                             "column": 20
                           }
                         }
@@ -3914,62 +3860,62 @@
                         "type": "Identifier",
                         "name": "zoneId",
                         "range": [
-                          6781,
-                          6787
+                          6650,
+                          6656
                         ],
                         "loc": {
                           "start": {
-                            "line": 203,
+                            "line": 201,
                             "column": 23
                           },
                           "end": {
-                            "line": 203,
+                            "line": 201,
                             "column": 29
                           }
                         }
                       },
                       "range": [
-                        6766,
-                        6787
+                        6635,
+                        6656
                       ],
                       "loc": {
                         "start": {
-                          "line": 203,
+                          "line": 201,
                           "column": 8
                         },
                         "end": {
-                          "line": 203,
+                          "line": 201,
                           "column": 29
                         }
                       }
                     },
                     "range": [
-                      6766,
-                      6788
+                      6635,
+                      6657
                     ],
                     "loc": {
                       "start": {
-                        "line": 203,
+                        "line": 201,
                         "column": 8
                       },
                       "end": {
-                        "line": 203,
+                        "line": 201,
                         "column": 30
                       }
                     }
                   }
                 ],
                 "range": [
-                  6701,
-                  6794
+                  6570,
+                  6663
                 ],
                 "loc": {
                   "start": {
-                    "line": 200,
+                    "line": 198,
                     "column": 38
                   },
                   "end": {
-                    "line": 204,
+                    "line": 202,
                     "column": 5
                   }
                 }
@@ -3977,16 +3923,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6678,
-                6794
+                6547,
+                6663
               ],
               "loc": {
                 "start": {
-                  "line": 200,
+                  "line": 198,
                   "column": 15
                 },
                 "end": {
-                  "line": 204,
+                  "line": 202,
                   "column": 5
                 }
               }
@@ -3994,16 +3940,16 @@
             "kind": "constructor",
             "computed": false,
             "range": [
-              6667,
-              6794
+              6536,
+              6663
             ],
             "loc": {
               "start": {
-                "line": 200,
+                "line": 198,
                 "column": 4
               },
               "end": {
-                "line": 204,
+                "line": 202,
                 "column": 5
               }
             },
@@ -4015,16 +3961,16 @@
               "type": "Identifier",
               "name": "instant",
               "range": [
-                6800,
-                6807
+                6669,
+                6676
               ],
               "loc": {
                 "start": {
-                  "line": 206,
+                  "line": 204,
                   "column": 4
                 },
                 "end": {
-                  "line": 206,
+                  "line": 204,
                   "column": 11
                 }
               }
@@ -4044,16 +3990,16 @@
                       "object": {
                         "type": "ThisExpression",
                         "range": [
-                          6827,
-                          6831
+                          6696,
+                          6700
                         ],
                         "loc": {
                           "start": {
-                            "line": 207,
+                            "line": 205,
                             "column": 15
                           },
                           "end": {
-                            "line": 207,
+                            "line": 205,
                             "column": 19
                           }
                         }
@@ -4062,62 +4008,62 @@
                         "type": "Identifier",
                         "name": "_instant",
                         "range": [
-                          6832,
-                          6840
+                          6701,
+                          6709
                         ],
                         "loc": {
                           "start": {
-                            "line": 207,
+                            "line": 205,
                             "column": 20
                           },
                           "end": {
-                            "line": 207,
+                            "line": 205,
                             "column": 28
                           }
                         }
                       },
                       "range": [
-                        6827,
-                        6840
+                        6696,
+                        6709
                       ],
                       "loc": {
                         "start": {
-                          "line": 207,
+                          "line": 205,
                           "column": 15
                         },
                         "end": {
-                          "line": 207,
+                          "line": 205,
                           "column": 28
                         }
                       }
                     },
                     "range": [
-                      6820,
-                      6841
+                      6689,
+                      6710
                     ],
                     "loc": {
                       "start": {
-                        "line": 207,
+                        "line": 205,
                         "column": 8
                       },
                       "end": {
-                        "line": 207,
+                        "line": 205,
                         "column": 29
                       }
                     }
                   }
                 ],
                 "range": [
-                  6810,
-                  6847
+                  6679,
+                  6716
                 ],
                 "loc": {
                   "start": {
-                    "line": 206,
+                    "line": 204,
                     "column": 14
                   },
                   "end": {
-                    "line": 208,
+                    "line": 206,
                     "column": 5
                   }
                 }
@@ -4125,16 +4071,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6807,
-                6847
+                6676,
+                6716
               ],
               "loc": {
                 "start": {
-                  "line": 206,
+                  "line": 204,
                   "column": 11
                 },
                 "end": {
-                  "line": 208,
+                  "line": 206,
                   "column": 5
                 }
               }
@@ -4142,16 +4088,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6800,
-              6847
+              6669,
+              6716
             ],
             "loc": {
               "start": {
-                "line": 206,
+                "line": 204,
                 "column": 4
               },
               "end": {
-                "line": 208,
+                "line": 206,
                 "column": 5
               }
             },
@@ -4163,16 +4109,16 @@
               "type": "Identifier",
               "name": "millis",
               "range": [
-                6857,
-                6863
+                6722,
+                6728
               ],
               "loc": {
                 "start": {
-                  "line": 210,
+                  "line": 208,
                   "column": 4
                 },
                 "end": {
-                  "line": 210,
+                  "line": 208,
                   "column": 10
                 }
               }
@@ -4197,16 +4143,16 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              6882,
-                              6886
+                              6747,
+                              6751
                             ],
                             "loc": {
                               "start": {
-                                "line": 211,
+                                "line": 209,
                                 "column": 15
                               },
                               "end": {
-                                "line": 211,
+                                "line": 209,
                                 "column": 19
                               }
                             }
@@ -4215,31 +4161,31 @@
                             "type": "Identifier",
                             "name": "_instant",
                             "range": [
-                              6887,
-                              6895
+                              6752,
+                              6760
                             ],
                             "loc": {
                               "start": {
-                                "line": 211,
+                                "line": 209,
                                 "column": 20
                               },
                               "end": {
-                                "line": 211,
+                                "line": 209,
                                 "column": 28
                               }
                             }
                           },
                           "range": [
-                            6882,
-                            6895
+                            6747,
+                            6760
                           ],
                           "loc": {
                             "start": {
-                              "line": 211,
+                              "line": 209,
                               "column": 15
                             },
                             "end": {
-                              "line": 211,
+                              "line": 209,
                               "column": 28
                             }
                           }
@@ -4248,78 +4194,78 @@
                           "type": "Identifier",
                           "name": "toEpochMilli",
                           "range": [
-                            6896,
-                            6908
+                            6761,
+                            6773
                           ],
                           "loc": {
                             "start": {
-                              "line": 211,
+                              "line": 209,
                               "column": 29
                             },
                             "end": {
-                              "line": 211,
+                              "line": 209,
                               "column": 41
                             }
                           }
                         },
                         "range": [
-                          6882,
-                          6908
+                          6747,
+                          6773
                         ],
                         "loc": {
                           "start": {
-                            "line": 211,
+                            "line": 209,
                             "column": 15
                           },
                           "end": {
-                            "line": 211,
+                            "line": 209,
                             "column": 41
                           }
                         }
                       },
                       "arguments": [],
                       "range": [
-                        6882,
-                        6910
+                        6747,
+                        6775
                       ],
                       "loc": {
                         "start": {
-                          "line": 211,
+                          "line": 209,
                           "column": 15
                         },
                         "end": {
-                          "line": 211,
+                          "line": 209,
                           "column": 43
                         }
                       }
                     },
                     "range": [
-                      6875,
-                      6911
+                      6740,
+                      6776
                     ],
                     "loc": {
                       "start": {
-                        "line": 211,
+                        "line": 209,
                         "column": 8
                       },
                       "end": {
-                        "line": 211,
+                        "line": 209,
                         "column": 44
                       }
                     }
                   }
                 ],
                 "range": [
-                  6865,
-                  6917
+                  6730,
+                  6782
                 ],
                 "loc": {
                   "start": {
-                    "line": 210,
+                    "line": 208,
                     "column": 12
                   },
                   "end": {
-                    "line": 212,
+                    "line": 210,
                     "column": 5
                   }
                 }
@@ -4327,16 +4273,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6863,
-                6917
+                6728,
+                6782
               ],
               "loc": {
                 "start": {
-                  "line": 210,
+                  "line": 208,
                   "column": 10
                 },
                 "end": {
-                  "line": 212,
+                  "line": 210,
                   "column": 5
                 }
               }
@@ -4344,16 +4290,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6857,
-              6917
+              6722,
+              6782
             ],
             "loc": {
               "start": {
-                "line": 210,
+                "line": 208,
                 "column": 4
               },
               "end": {
-                "line": 212,
+                "line": 210,
                 "column": 5
               }
             },
@@ -4365,16 +4311,16 @@
               "type": "Identifier",
               "name": "zone",
               "range": [
-                6923,
-                6927
+                6788,
+                6792
               ],
               "loc": {
                 "start": {
-                  "line": 214,
+                  "line": 212,
                   "column": 4
                 },
                 "end": {
-                  "line": 214,
+                  "line": 212,
                   "column": 8
                 }
               }
@@ -4394,16 +4340,16 @@
                       "object": {
                         "type": "ThisExpression",
                         "range": [
-                          6947,
-                          6951
+                          6812,
+                          6816
                         ],
                         "loc": {
                           "start": {
-                            "line": 215,
+                            "line": 213,
                             "column": 15
                           },
                           "end": {
-                            "line": 215,
+                            "line": 213,
                             "column": 19
                           }
                         }
@@ -4412,62 +4358,62 @@
                         "type": "Identifier",
                         "name": "_zoneId",
                         "range": [
-                          6952,
-                          6959
+                          6817,
+                          6824
                         ],
                         "loc": {
                           "start": {
-                            "line": 215,
+                            "line": 213,
                             "column": 20
                           },
                           "end": {
-                            "line": 215,
+                            "line": 213,
                             "column": 27
                           }
                         }
                       },
                       "range": [
-                        6947,
-                        6959
+                        6812,
+                        6824
                       ],
                       "loc": {
                         "start": {
-                          "line": 215,
+                          "line": 213,
                           "column": 15
                         },
                         "end": {
-                          "line": 215,
+                          "line": 213,
                           "column": 27
                         }
                       }
                     },
                     "range": [
-                      6940,
-                      6960
+                      6805,
+                      6825
                     ],
                     "loc": {
                       "start": {
-                        "line": 215,
+                        "line": 213,
                         "column": 8
                       },
                       "end": {
-                        "line": 215,
+                        "line": 213,
                         "column": 28
                       }
                     }
                   }
                 ],
                 "range": [
-                  6930,
-                  6966
+                  6795,
+                  6831
                 ],
                 "loc": {
                   "start": {
-                    "line": 214,
+                    "line": 212,
                     "column": 11
                   },
                   "end": {
-                    "line": 216,
+                    "line": 214,
                     "column": 5
                   }
                 }
@@ -4475,16 +4421,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6927,
-                6966
+                6792,
+                6831
               ],
               "loc": {
                 "start": {
-                  "line": 214,
+                  "line": 212,
                   "column": 8
                 },
                 "end": {
-                  "line": 216,
+                  "line": 214,
                   "column": 5
                 }
               }
@@ -4492,16 +4438,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6923,
-              6966
+              6788,
+              6831
             ],
             "loc": {
               "start": {
-                "line": 214,
+                "line": 212,
                 "column": 4
               },
               "end": {
-                "line": 216,
+                "line": 214,
                 "column": 5
               }
             },
@@ -4513,16 +4459,16 @@
               "type": "Identifier",
               "name": "toString",
               "range": [
-                6972,
-                6980
+                6837,
+                6845
               ],
               "loc": {
                 "start": {
-                  "line": 218,
+                  "line": 216,
                   "column": 4
                 },
                 "end": {
-                  "line": 218,
+                  "line": 216,
                   "column": 12
                 }
               }
@@ -4541,47 +4487,47 @@
                       "value": "FixedClock[]",
                       "raw": "'FixedClock[]'",
                       "range": [
-                        6999,
-                        7013
+                        6864,
+                        6878
                       ],
                       "loc": {
                         "start": {
-                          "line": 219,
+                          "line": 217,
                           "column": 15
                         },
                         "end": {
-                          "line": 219,
+                          "line": 217,
                           "column": 29
                         }
                       }
                     },
                     "range": [
-                      6992,
-                      7014
+                      6857,
+                      6879
                     ],
                     "loc": {
                       "start": {
-                        "line": 219,
+                        "line": 217,
                         "column": 8
                       },
                       "end": {
-                        "line": 219,
+                        "line": 217,
                         "column": 30
                       }
                     }
                   }
                 ],
                 "range": [
-                  6982,
-                  7020
+                  6847,
+                  6885
                 ],
                 "loc": {
                   "start": {
-                    "line": 218,
+                    "line": 216,
                     "column": 14
                   },
                   "end": {
-                    "line": 220,
+                    "line": 218,
                     "column": 5
                   }
                 }
@@ -4589,16 +4535,16 @@
               "generator": false,
               "expression": false,
               "range": [
-                6980,
-                7020
+                6845,
+                6885
               ],
               "loc": {
                 "start": {
-                  "line": 218,
+                  "line": 216,
                   "column": 12
                 },
                 "end": {
-                  "line": 220,
+                  "line": 218,
                   "column": 5
                 }
               }
@@ -4606,16 +4552,16 @@
             "kind": "method",
             "computed": false,
             "range": [
-              6972,
-              7020
+              6837,
+              6885
             ],
             "loc": {
               "start": {
-                "line": 218,
+                "line": 216,
                 "column": 4
               },
               "end": {
-                "line": 220,
+                "line": 218,
                 "column": 5
               }
             },
@@ -4623,31 +4569,31 @@
           }
         ],
         "range": [
-          6661,
-          7022
+          6530,
+          6887
         ],
         "loc": {
           "start": {
-            "line": 199,
+            "line": 197,
             "column": 30
           },
           "end": {
-            "line": 221,
+            "line": 219,
             "column": 1
           }
         }
       },
       "range": [
-        6631,
-        7022
+        6500,
+        6887
       ],
       "loc": {
         "start": {
-          "line": 199,
+          "line": 197,
           "column": 0
         },
         "end": {
-          "line": 221,
+          "line": 219,
           "column": 1
         }
       },
@@ -4656,16 +4602,16 @@
           "type": "Block",
           "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
           "range": [
-            6517,
-            6630
+            6386,
+            6499
           ],
           "loc": {
             "start": {
-              "line": 195,
+              "line": 193,
               "column": 0
             },
             "end": {
-              "line": 198,
+              "line": 196,
               "column": 3
             }
           }
@@ -4675,8 +4621,8 @@
   ],
   "sourceType": "module",
   "range": [
-    233,
-    7022
+    230,
+    6887
   ],
   "loc": {
     "start": {
@@ -4684,17 +4630,17 @@
       "column": 0
     },
     "end": {
-      "line": 221,
+      "line": 219,
       "column": 1
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        231
+        228
       ],
       "loc": {
         "start": {
@@ -4709,10 +4655,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n * <p>\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis()}\n * and {@link TimeZone#getDefault()}.\n * <p>\n * Use of a {@code Clock} is optional. All key date-time classes also have a\n * {@code now()} factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n * <p>\n * Best practice for applications is to pass a {@code Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link #fixed(Instant, ZoneId) fixed}\n * or {@link #offset(Clock, Duration) offset} to be used during testing.\n * <p>\n * The {@code system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis()}, or a higher\n * resolution clock if one is available.\n ",
+      "value": "*\n * A clock providing access to the current instant, date and time using a time-zone.\n *\n * Instances of this class are used to find the current instant, which can be\n * interpreted using the stored time-zone to find the current date and time.\n * As such, a clock can be used instead of {@link System#currentTimeMillis}\n * and {@link TimeZone#getDefault}.\n *\n * Use of a {@link Clock} is optional. All key date-time classes also have a\n * `now()` factory method that uses the system clock in the default time zone.\n * The primary purpose of this abstraction is to allow alternate clocks to be\n * plugged in as and when required. Applications use an object to obtain the\n * current time rather than a static method. This can simplify testing.\n *\n * Best practice for applications is to pass a {@link Clock} into any method\n * that requires the current instant.\n *\n * This approach allows an alternate clock, such as {@link fixed}\n * or {@link offset} to be used during testing.\n *\n * The {@link system} factory methods provide clocks based on the best available\n * system clock This may use {@link System#currentTimeMillis}, or a higher\n * resolution clock if one is available.\n *\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
       "range": [
-        404,
-        1664
+        401,
+        2265
       ],
       "loc": {
         "start": {
@@ -4720,61 +4666,43 @@
           "column": 0
         },
         "end": {
-          "line": 35,
+          "line": 48,
           "column": 3
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n * The javascript Clock implementation differs from the openjdk.\n *\n * Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.\n * Javascript do not provide the system default ZoneId.\n *\n * the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId\n * with the same ZoneOffset.\n *\n * Therefore we are doing a shortcut here, by defining a SystemUTCClock and a SystemDefaultClock, the Clock itself\n * is returning the ZoneOffset and not the ZoneRules as in the jdk. We should change it, when introducing the iana\n * timezone database and implementing the timezone domains.\n *\n ",
+      "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     *\n     * This clock, rather than {@link systemDefaultZone}, should be used when\n     * you need the current instant without the date or time.\n     *\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
       "range": [
-        1666,
-        2351
+        2292,
+        2693
       ],
       "loc": {
         "start": {
-          "line": 37,
-          "column": 0
-        },
-        "end": {
-          "line": 50,
-          "column": 3
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\n     * Obtains a clock that returns the current instant using the\n     * system clock, converting to date and time using the Date.getTime() UTC millis.\n     * <p>\n     * This clock, rather than {@link #systemDefaultZone()}, should be used when\n     * you need the current instant without the date or time.\n     * <p>\n     * @return {Clock} a clock that uses the system clock in the UTC zone, not null\n     ",
-      "range": [
-        2378,
-        2790
-      ],
-      "loc": {
-        "start": {
-          "line": 53,
+          "line": 51,
           "column": 4
         },
         "end": {
-          "line": 61,
+          "line": 59,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     * <p>\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     * <p>\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The {@link #systemUTC() UTC clock} should be used when you need the current instant\n     * without the date or time.\n     * <p>\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
+      "value": "*\n     * Obtains a clock that returns the current instant using the best available\n     * system clock, converting to date and time using the default time-zone.\n     *\n     * This clock is based on the available system clock using the Date.getTime() UTC millis\n     *\n     * Using this method hard codes a dependency to the default time-zone into your application.\n     *\n     * The UTC clock (see {@link systemUTC}) should be used when you need the current instant\n     * without the date or time.\n     *\n     *\n     * @return {Clock} a clock that uses the system clock in the default zone, not null\n     * @see ZoneId#systemDefault()\n     ",
       "range": [
-        2875,
-        3529
+        2778,
+        3423
       ],
       "loc": {
         "start": {
-          "line": 66,
+          "line": 64,
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 78,
           "column": 7
         }
       }
@@ -4783,88 +4711,88 @@
       "type": "Block",
       "value": "*\n     *\n     * @param {ZoneId} zone\n     * @return {Clock} a clock that uses the specified time zone\n     ",
       "range": [
-        3630,
-        3741
+        3524,
+        3635
       ],
       "loc": {
         "start": {
-          "line": 85,
+          "line": 83,
           "column": 4
         },
         "end": {
-          "line": 89,
+          "line": 87,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * Obtains a clock that always returns the same instant.\n     * <p>\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
+      "value": "*\n     * Obtains a clock that always returns the same instant.\n     *\n     * This clock simply returns the specified instant.\n     * As such, it is not a clock in the conventional sense.\n     * The main use case for this is in testing, where the fixed clock ensures\n     * tests are not dependent on the current clock.\n     *\n     * @param {Instant} fixedInstant  the instant to use as the clock, not null\n     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null\n     * @return {Clock} a clock that always returns the same instant, not null\n     ",
       "range": [
-        3816,
-        4399
+        3710,
+        4289
       ],
       "loc": {
         "start": {
-          "line": 94,
+          "line": 92,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 103,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n      * Gets the current millisecond instant of the clock.\n      * <p>\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime()}.\n      * <p>\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      * <p>\n      * The default implementation currently calls {@link #instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
+      "value": "*\n      * Gets the current millisecond instant of the clock.\n      *\n      * This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).\n      * This is equivalent to the definition of {@link Date#getTime}.\n      *\n      * Most applications should avoid this method and use {@link Instant} to represent\n      * an instant on the time-line rather than a raw millisecond value.\n      * This method is provided to allow the use of the clock in high performance use cases\n      * where the creation of an object would be unacceptable.\n      *\n      * The default implementation currently calls {@link instant}.\n      *\n      * @return the current millisecond instant from this clock, measured from\n      *  the Java epoch of 1970-01-01T00:00Z (UTC), not null\n      ",
       "range": [
-        4513,
-        5316
+        4403,
+        5191
       ],
       "loc": {
         "start": {
-          "line": 110,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 125,
+          "line": 123,
           "column": 8
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * Gets the current instant of the clock.\n     * <p>\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
+      "value": "*\n     * Gets the current instant of the clock.\n     *\n     * This returns an instant representing the current instant as defined by the clock.\n     *\n     * @return {Instant} the current instant from this clock, not null\n     ",
       "range": [
-        5386,
-        5621
+        5261,
+        5492
       ],
       "loc": {
         "start": {
-          "line": 130,
+          "line": 128,
           "column": 4
         },
         "end": {
-          "line": 136,
+          "line": 134,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime()}.\n ",
+      "value": "*\n * Implementation of a clock that always returns the latest time from\n * {@link Date#getTime}.\n ",
       "range": [
-        5752,
-        5856
+        5623,
+        5725
       ],
       "loc": {
         "start": {
-          "line": 146,
+          "line": 144,
           "column": 0
         },
         "end": {
-          "line": 149,
+          "line": 147,
           "column": 3
         }
       }
@@ -4873,16 +4801,16 @@
       "type": "Block",
       "value": "*\n     *\n     * @param {!ZoneId} zone\n     ",
       "range": [
-        5895,
-        5942
+        5764,
+        5811
       ],
       "loc": {
         "start": {
-          "line": 151,
+          "line": 149,
           "column": 4
         },
         "end": {
-          "line": 154,
+          "line": 152,
           "column": 7
         }
       }
@@ -4891,16 +4819,16 @@
       "type": "Block",
       "value": "*\n     *\n     * @returns {!ZoneId}\n     ",
       "range": [
-        6059,
-        6103
+        5928,
+        5972
       ],
       "loc": {
         "start": {
-          "line": 161,
+          "line": 159,
           "column": 4
         },
         "end": {
-          "line": 164,
+          "line": 162,
           "column": 7
         }
       }
@@ -4909,16 +4837,16 @@
       "type": "Block",
       "value": "*\n     *\n     * @returns {number}\n     ",
       "range": [
-        6155,
-        6198
+        6024,
+        6067
       ],
       "loc": {
         "start": {
-          "line": 169,
+          "line": 167,
           "column": 4
         },
         "end": {
-          "line": 172,
+          "line": 170,
           "column": 7
         }
       }
@@ -4927,16 +4855,16 @@
       "type": "Block",
       "value": "*\n     *\n     * @returns {Instant}\n     ",
       "range": [
-        6262,
-        6306
+        6131,
+        6175
       ],
       "loc": {
         "start": {
-          "line": 177,
+          "line": 175,
           "column": 4
         },
         "end": {
-          "line": 180,
+          "line": 178,
           "column": 7
         }
       }
@@ -4945,16 +4873,16 @@
       "type": "Block",
       "value": "*\n     *\n     * @returns {string}\n     ",
       "range": [
-        6386,
-        6429
+        6255,
+        6298
       ],
       "loc": {
         "start": {
-          "line": 185,
+          "line": 183,
           "column": 4
         },
         "end": {
-          "line": 188,
+          "line": 186,
           "column": 7
         }
       }
@@ -4963,16 +4891,16 @@
       "type": "Block",
       "value": "*\n * Implementation of a clock that always returns the same instant.\n * This is typically used for testing.\n ",
       "range": [
-        6517,
-        6630
+        6386,
+        6499
       ],
       "loc": {
         "start": {
-          "line": 195,
+          "line": 193,
           "column": 0
         },
         "end": {
-          "line": 198,
+          "line": 196,
           "column": 3
         }
       }

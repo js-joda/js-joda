@@ -10,8 +10,8 @@
             "type": "Identifier",
             "name": "UnsupportedTemporalTypeException",
             "range": [
-              241,
-              273
+              238,
+              270
             ],
             "loc": {
               "start": {
@@ -28,8 +28,8 @@
             "type": "Identifier",
             "name": "UnsupportedTemporalTypeException",
             "range": [
-              241,
-              273
+              238,
+              270
             ],
             "loc": {
               "start": {
@@ -43,8 +43,8 @@
             }
           },
           "range": [
-            241,
-            273
+            238,
+            270
           ],
           "loc": {
             "start": {
@@ -63,8 +63,8 @@
         "value": "../errors",
         "raw": "'../errors'",
         "range": [
-          280,
-          291
+          277,
+          288
         ],
         "loc": {
           "start": {
@@ -78,8 +78,8 @@
         }
       },
       "range": [
-        233,
-        292
+        230,
+        289
       ],
       "loc": {
         "start": {
@@ -94,10 +94,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            231
+            228
           ],
           "loc": {
             "start": {
@@ -121,8 +121,8 @@
             "type": "Identifier",
             "name": "ChronoField",
             "range": [
-              302,
-              313
+              299,
+              310
             ],
             "loc": {
               "start": {
@@ -139,8 +139,8 @@
             "type": "Identifier",
             "name": "ChronoField",
             "range": [
-              302,
-              313
+              299,
+              310
             ],
             "loc": {
               "start": {
@@ -154,8 +154,8 @@
             }
           },
           "range": [
-            302,
-            313
+            299,
+            310
           ],
           "loc": {
             "start": {
@@ -174,8 +174,8 @@
         "value": "./ChronoField",
         "raw": "'./ChronoField'",
         "range": [
-          320,
-          335
+          317,
+          332
         ],
         "loc": {
           "start": {
@@ -189,8 +189,8 @@
         }
       },
       "range": [
-        294,
-        336
+        291,
+        333
       ],
       "loc": {
         "start": {
@@ -212,8 +212,8 @@
             "type": "Identifier",
             "name": "TemporalQueries",
             "range": [
-              345,
-              360
+              342,
+              357
             ],
             "loc": {
               "start": {
@@ -230,8 +230,8 @@
             "type": "Identifier",
             "name": "TemporalQueries",
             "range": [
-              345,
-              360
+              342,
+              357
             ],
             "loc": {
               "start": {
@@ -245,8 +245,8 @@
             }
           },
           "range": [
-            345,
-            360
+            342,
+            357
           ],
           "loc": {
             "start": {
@@ -265,8 +265,8 @@
         "value": "./TemporalQueries",
         "raw": "'./TemporalQueries'",
         "range": [
-          367,
-          386
+          364,
+          383
         ],
         "loc": {
           "start": {
@@ -280,8 +280,8 @@
         }
       },
       "range": [
-        337,
-        387
+        334,
+        384
       ],
       "loc": {
         "start": {
@@ -302,8 +302,8 @@
           "type": "Identifier",
           "name": "TemporalAccessor",
           "range": [
-            402,
-            418
+            399,
+            415
           ],
           "loc": {
             "start": {
@@ -326,8 +326,8 @@
                 "type": "Identifier",
                 "name": "query",
                 "range": [
-                  1817,
-                  1822
+                  1802,
+                  1807
                 ],
                 "loc": {
                   "start": {
@@ -348,8 +348,8 @@
                     "type": "Identifier",
                     "name": "query",
                     "range": [
-                      1823,
-                      1828
+                      1808,
+                      1813
                     ],
                     "loc": {
                       "start": {
@@ -381,8 +381,8 @@
                               "type": "Identifier",
                               "name": "query",
                               "range": [
-                                1844,
-                                1849
+                                1829,
+                                1834
                               ],
                               "loc": {
                                 "start": {
@@ -404,8 +404,8 @@
                                   "type": "Identifier",
                                   "name": "TemporalQueries",
                                   "range": [
-                                    1854,
-                                    1869
+                                    1839,
+                                    1854
                                   ],
                                   "loc": {
                                     "start": {
@@ -422,8 +422,8 @@
                                   "type": "Identifier",
                                   "name": "zoneId",
                                   "range": [
-                                    1870,
-                                    1876
+                                    1855,
+                                    1861
                                   ],
                                   "loc": {
                                     "start": {
@@ -437,8 +437,8 @@
                                   }
                                 },
                                 "range": [
-                                  1854,
-                                  1876
+                                  1839,
+                                  1861
                                 ],
                                 "loc": {
                                   "start": {
@@ -453,8 +453,8 @@
                               },
                               "arguments": [],
                               "range": [
-                                1854,
-                                1878
+                                1839,
+                                1863
                               ],
                               "loc": {
                                 "start": {
@@ -468,8 +468,8 @@
                               }
                             },
                             "range": [
-                              1844,
-                              1878
+                              1829,
+                              1863
                             ],
                             "loc": {
                               "start": {
@@ -489,8 +489,8 @@
                               "type": "Identifier",
                               "name": "query",
                               "range": [
-                                1898,
-                                1903
+                                1883,
+                                1888
                               ],
                               "loc": {
                                 "start": {
@@ -512,8 +512,8 @@
                                   "type": "Identifier",
                                   "name": "TemporalQueries",
                                   "range": [
-                                    1908,
-                                    1923
+                                    1893,
+                                    1908
                                   ],
                                   "loc": {
                                     "start": {
@@ -530,8 +530,8 @@
                                   "type": "Identifier",
                                   "name": "chronology",
                                   "range": [
-                                    1924,
-                                    1934
+                                    1909,
+                                    1919
                                   ],
                                   "loc": {
                                     "start": {
@@ -545,8 +545,8 @@
                                   }
                                 },
                                 "range": [
-                                  1908,
-                                  1934
+                                  1893,
+                                  1919
                                 ],
                                 "loc": {
                                   "start": {
@@ -561,8 +561,8 @@
                               },
                               "arguments": [],
                               "range": [
-                                1908,
-                                1936
+                                1893,
+                                1921
                               ],
                               "loc": {
                                 "start": {
@@ -576,8 +576,8 @@
                               }
                             },
                             "range": [
-                              1898,
-                              1936
+                              1883,
+                              1921
                             ],
                             "loc": {
                               "start": {
@@ -591,8 +591,8 @@
                             }
                           },
                           "range": [
-                            1844,
-                            1936
+                            1829,
+                            1921
                           ],
                           "loc": {
                             "start": {
@@ -612,8 +612,8 @@
                             "type": "Identifier",
                             "name": "query",
                             "range": [
-                              1956,
-                              1961
+                              1941,
+                              1946
                             ],
                             "loc": {
                               "start": {
@@ -635,8 +635,8 @@
                                 "type": "Identifier",
                                 "name": "TemporalQueries",
                                 "range": [
-                                  1966,
-                                  1981
+                                  1951,
+                                  1966
                                 ],
                                 "loc": {
                                   "start": {
@@ -653,8 +653,8 @@
                                 "type": "Identifier",
                                 "name": "precision",
                                 "range": [
-                                  1982,
-                                  1991
+                                  1967,
+                                  1976
                                 ],
                                 "loc": {
                                   "start": {
@@ -668,8 +668,8 @@
                                 }
                               },
                               "range": [
-                                1966,
-                                1991
+                                1951,
+                                1976
                               ],
                               "loc": {
                                 "start": {
@@ -684,8 +684,8 @@
                             },
                             "arguments": [],
                             "range": [
-                              1966,
-                              1993
+                              1951,
+                              1978
                             ],
                             "loc": {
                               "start": {
@@ -699,8 +699,8 @@
                             }
                           },
                           "range": [
-                            1956,
-                            1993
+                            1941,
+                            1978
                           ],
                           "loc": {
                             "start": {
@@ -714,8 +714,8 @@
                           }
                         },
                         "range": [
-                          1844,
-                          1993
+                          1829,
+                          1978
                         ],
                         "loc": {
                           "start": {
@@ -738,8 +738,8 @@
                               "value": null,
                               "raw": "null",
                               "range": [
-                                2016,
-                                2020
+                                2001,
+                                2005
                               ],
                               "loc": {
                                 "start": {
@@ -753,8 +753,8 @@
                               }
                             },
                             "range": [
-                              2009,
-                              2021
+                              1994,
+                              2006
                             ],
                             "loc": {
                               "start": {
@@ -769,8 +769,8 @@
                           }
                         ],
                         "range": [
-                          1995,
-                          2031
+                          1980,
+                          2016
                         ],
                         "loc": {
                           "start": {
@@ -785,8 +785,8 @@
                       },
                       "alternate": null,
                       "range": [
-                        1840,
-                        2031
+                        1825,
+                        2016
                       ],
                       "loc": {
                         "start": {
@@ -810,8 +810,8 @@
                             "type": "Identifier",
                             "name": "query",
                             "range": [
-                              2047,
-                              2052
+                              2032,
+                              2037
                             ],
                             "loc": {
                               "start": {
@@ -828,8 +828,8 @@
                             "type": "Identifier",
                             "name": "queryFrom",
                             "range": [
-                              2053,
-                              2062
+                              2038,
+                              2047
                             ],
                             "loc": {
                               "start": {
@@ -843,8 +843,8 @@
                             }
                           },
                           "range": [
-                            2047,
-                            2062
+                            2032,
+                            2047
                           ],
                           "loc": {
                             "start": {
@@ -861,8 +861,8 @@
                           {
                             "type": "ThisExpression",
                             "range": [
-                              2063,
-                              2067
+                              2048,
+                              2052
                             ],
                             "loc": {
                               "start": {
@@ -877,8 +877,8 @@
                           }
                         ],
                         "range": [
-                          2047,
-                          2068
+                          2032,
+                          2053
                         ],
                         "loc": {
                           "start": {
@@ -892,8 +892,8 @@
                         }
                       },
                       "range": [
-                        2040,
-                        2069
+                        2025,
+                        2054
                       ],
                       "loc": {
                         "start": {
@@ -908,8 +908,8 @@
                     }
                   ],
                   "range": [
-                    1830,
-                    2075
+                    1815,
+                    2060
                   ],
                   "loc": {
                     "start": {
@@ -925,8 +925,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  1822,
-                  2075
+                  1807,
+                  2060
                 ],
                 "loc": {
                   "start": {
@@ -942,8 +942,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                1817,
-                2075
+                1802,
+                2060
               ],
               "loc": {
                 "start": {
@@ -958,10 +958,10 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Queries this date-time.\n     * <p>\n     * This queries this date-time using the specified query strategy object.\n     * <p>\n     * Queries are a key tool for extracting information from date-times.\n     * They exists to externalize the process of querying, permitting different\n     * approaches, as per the strategy design pattern.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     * <p>\n     * The most common query implementations are method references, such as\n     * {@code LocalDate::from} and {@code ZoneId::from}.\n     * Further implementations are on {@link TemporalQueries}.\n     * Queries may also be defined by applications.\n     *\n     * @implSpec\n     * Implementations of this method must behave as follows:\n     * <pre>\n        if (query == TemporalQueries.zoneId()\n            || query == TemporalQueries.chronology()\n            || query == TemporalQueries.precision()) {\n                return null;\n        }\n        return query.queryFrom(this);\n     * </pre>\n     *\n     * @param {TemporalQuery} query  the query to invoke, not null\n     * @return the query result, null may be returned (defined by the query)\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "value": "*\n     * Queries this date-time.\n     *\n     * This queries this date-time using the specified query strategy object.\n     *\n     * Queries are a key tool for extracting information from date-times.\n     * They exists to externalize the process of querying, permitting different\n     * approaches, as per the strategy design pattern.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     *\n     * The most common query implementations are method references, such as\n     * {@link LocalDate::from} and {@link ZoneId::from}.\n     * Further implementations are on {@link TemporalQueries}.\n     * Queries may also be defined by applications.\n     *\n     * @implSpec\n     * Implementations of this method must behave as follows:\n     * <pre>\n        if (query == TemporalQueries.zoneId()\n            || query == TemporalQueries.chronology()\n            || query == TemporalQueries.precision()) {\n                return null;\n        }\n        return query.queryFrom(this);\n     * </pre>\n     *\n     * @param {TemporalQuery} query  the query to invoke, not null\n     * @return the query result, null may be returned (defined by the query)\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
                   "range": [
-                    425,
-                    1812
+                    422,
+                    1797
                   ],
                   "loc": {
                     "start": {
@@ -978,10 +978,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the value of the specified field as an {@code int}.\n     * <p>\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an {@code int} range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "value": "*\n     * Gets the value of the specified field as an `int`.\n     *\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an `int` range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.getFrom}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an `int`\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
                   "range": [
-                    2081,
-                    3577
+                    2066,
+                    3510
                   ],
                   "loc": {
                     "start": {
@@ -989,7 +989,7 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 80,
+                      "line": 81,
                       "column": 7
                     }
                   }
@@ -1003,16 +1003,16 @@
                 "type": "Identifier",
                 "name": "get",
                 "range": [
-                  3582,
-                  3585
+                  3515,
+                  3518
                 ],
                 "loc": {
                   "start": {
-                    "line": 81,
+                    "line": 82,
                     "column": 4
                   },
                   "end": {
-                    "line": 81,
+                    "line": 82,
                     "column": 7
                   }
                 }
@@ -1025,16 +1025,16 @@
                     "type": "Identifier",
                     "name": "field",
                     "range": [
-                      3586,
-                      3591
+                      3519,
+                      3524
                     ],
                     "loc": {
                       "start": {
-                        "line": 81,
+                        "line": 82,
                         "column": 8
                       },
                       "end": {
-                        "line": 81,
+                        "line": 82,
                         "column": 13
                       }
                     }
@@ -1058,16 +1058,16 @@
                               "object": {
                                 "type": "ThisExpression",
                                 "range": [
-                                  3610,
-                                  3614
+                                  3543,
+                                  3547
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 15
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 19
                                   }
                                 }
@@ -1076,31 +1076,31 @@
                                 "type": "Identifier",
                                 "name": "range",
                                 "range": [
-                                  3615,
-                                  3620
+                                  3548,
+                                  3553
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 20
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 25
                                   }
                                 }
                               },
                               "range": [
-                                3610,
-                                3620
+                                3543,
+                                3553
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 82,
+                                  "line": 83,
                                   "column": 15
                                 },
                                 "end": {
-                                  "line": 82,
+                                  "line": 83,
                                   "column": 25
                                 }
                               }
@@ -1110,32 +1110,32 @@
                                 "type": "Identifier",
                                 "name": "field",
                                 "range": [
-                                  3621,
-                                  3626
+                                  3554,
+                                  3559
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 26
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 31
                                   }
                                 }
                               }
                             ],
                             "range": [
-                              3610,
-                              3627
+                              3543,
+                              3560
                             ],
                             "loc": {
                               "start": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 15
                               },
                               "end": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 32
                               }
                             }
@@ -1144,31 +1144,31 @@
                             "type": "Identifier",
                             "name": "checkValidIntValue",
                             "range": [
-                              3628,
-                              3646
+                              3561,
+                              3579
                             ],
                             "loc": {
                               "start": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 33
                               },
                               "end": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 51
                               }
                             }
                           },
                           "range": [
-                            3610,
-                            3646
+                            3543,
+                            3579
                           ],
                           "loc": {
                             "start": {
-                              "line": 82,
+                              "line": 83,
                               "column": 15
                             },
                             "end": {
-                              "line": 82,
+                              "line": 83,
                               "column": 51
                             }
                           }
@@ -1182,16 +1182,16 @@
                               "object": {
                                 "type": "ThisExpression",
                                 "range": [
-                                  3647,
-                                  3651
+                                  3580,
+                                  3584
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 52
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 56
                                   }
                                 }
@@ -1200,31 +1200,31 @@
                                 "type": "Identifier",
                                 "name": "getLong",
                                 "range": [
-                                  3652,
-                                  3659
+                                  3585,
+                                  3592
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 57
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 64
                                   }
                                 }
                               },
                               "range": [
-                                3647,
-                                3659
+                                3580,
+                                3592
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 82,
+                                  "line": 83,
                                   "column": 52
                                 },
                                 "end": {
-                                  "line": 82,
+                                  "line": 83,
                                   "column": 64
                                 }
                               }
@@ -1234,32 +1234,32 @@
                                 "type": "Identifier",
                                 "name": "field",
                                 "range": [
-                                  3660,
-                                  3665
+                                  3593,
+                                  3598
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 65
                                   },
                                   "end": {
-                                    "line": 82,
+                                    "line": 83,
                                     "column": 70
                                   }
                                 }
                               }
                             ],
                             "range": [
-                              3647,
-                              3666
+                              3580,
+                              3599
                             ],
                             "loc": {
                               "start": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 52
                               },
                               "end": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 71
                               }
                             }
@@ -1268,63 +1268,63 @@
                             "type": "Identifier",
                             "name": "field",
                             "range": [
-                              3668,
-                              3673
+                              3601,
+                              3606
                             ],
                             "loc": {
                               "start": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 73
                               },
                               "end": {
-                                "line": 82,
+                                "line": 83,
                                 "column": 78
                               }
                             }
                           }
                         ],
                         "range": [
-                          3610,
-                          3674
+                          3543,
+                          3607
                         ],
                         "loc": {
                           "start": {
-                            "line": 82,
+                            "line": 83,
                             "column": 15
                           },
                           "end": {
-                            "line": 82,
+                            "line": 83,
                             "column": 79
                           }
                         }
                       },
                       "range": [
-                        3603,
-                        3675
+                        3536,
+                        3608
                       ],
                       "loc": {
                         "start": {
-                          "line": 82,
+                          "line": 83,
                           "column": 8
                         },
                         "end": {
-                          "line": 82,
+                          "line": 83,
                           "column": 80
                         }
                       }
                     }
                   ],
                   "range": [
-                    3593,
-                    3681
+                    3526,
+                    3614
                   ],
                   "loc": {
                     "start": {
-                      "line": 81,
+                      "line": 82,
                       "column": 15
                     },
                     "end": {
-                      "line": 83,
+                      "line": 84,
                       "column": 5
                     }
                   }
@@ -1332,16 +1332,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  3585,
-                  3681
+                  3518,
+                  3614
                 ],
                 "loc": {
                   "start": {
-                    "line": 81,
+                    "line": 82,
                     "column": 7
                   },
                   "end": {
-                    "line": 83,
+                    "line": 84,
                     "column": 5
                   }
                 }
@@ -1349,26 +1349,26 @@
               "kind": "method",
               "computed": false,
               "range": [
-                3582,
-                3681
+                3515,
+                3614
               ],
               "loc": {
                 "start": {
-                  "line": 81,
+                  "line": 82,
                   "column": 4
                 },
                 "end": {
-                  "line": 83,
+                  "line": 84,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the value of the specified field as an {@code int}.\n     * <p>\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an {@code int} range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                  "value": "*\n     * Gets the value of the specified field as an `int`.\n     *\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an `int` range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.getFrom}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an `int`\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
                   "range": [
-                    2081,
-                    3577
+                    2066,
+                    3510
                   ],
                   "loc": {
                     "start": {
@@ -1376,7 +1376,7 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 80,
+                      "line": 81,
                       "column": 7
                     }
                   }
@@ -1385,18 +1385,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the range of valid values for the specified field.\n     * <p>\n     * All fields can be expressed as a {@code long} integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     * <p>\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
+                  "value": "*\n     * Gets the range of valid values for the specified field.\n     *\n     * All fields can be expressed as a `long` integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.rangeRefinedBy}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
                   "range": [
-                    3687,
-                    5230
+                    3620,
+                    5118
                   ],
                   "loc": {
                     "start": {
-                      "line": 85,
+                      "line": 86,
                       "column": 4
                     },
                     "end": {
-                      "line": 112,
+                      "line": 114,
                       "column": 7
                     }
                   }
@@ -1410,16 +1410,16 @@
                 "type": "Identifier",
                 "name": "range",
                 "range": [
-                  5235,
-                  5240
+                  5123,
+                  5128
                 ],
                 "loc": {
                   "start": {
-                    "line": 113,
+                    "line": 115,
                     "column": 4
                   },
                   "end": {
-                    "line": 113,
+                    "line": 115,
                     "column": 9
                   }
                 }
@@ -1432,16 +1432,16 @@
                     "type": "Identifier",
                     "name": "field",
                     "range": [
-                      5241,
-                      5246
+                      5129,
+                      5134
                     ],
                     "loc": {
                       "start": {
-                        "line": 113,
+                        "line": 115,
                         "column": 10
                       },
                       "end": {
-                        "line": 113,
+                        "line": 115,
                         "column": 15
                       }
                     }
@@ -1459,16 +1459,16 @@
                           "type": "Identifier",
                           "name": "field",
                           "range": [
-                            5262,
-                            5267
+                            5150,
+                            5155
                           ],
                           "loc": {
                             "start": {
-                              "line": 114,
+                              "line": 116,
                               "column": 12
                             },
                             "end": {
-                              "line": 114,
+                              "line": 116,
                               "column": 17
                             }
                           }
@@ -1477,31 +1477,31 @@
                           "type": "Identifier",
                           "name": "ChronoField",
                           "range": [
-                            5279,
-                            5290
+                            5167,
+                            5178
                           ],
                           "loc": {
                             "start": {
-                              "line": 114,
+                              "line": 116,
                               "column": 29
                             },
                             "end": {
-                              "line": 114,
+                              "line": 116,
                               "column": 40
                             }
                           }
                         },
                         "range": [
-                          5262,
-                          5290
+                          5150,
+                          5178
                         ],
                         "loc": {
                           "start": {
-                            "line": 114,
+                            "line": 116,
                             "column": 12
                           },
                           "end": {
-                            "line": 114,
+                            "line": 116,
                             "column": 40
                           }
                         }
@@ -1519,16 +1519,16 @@
                                 "object": {
                                   "type": "ThisExpression",
                                   "range": [
-                                    5310,
-                                    5314
+                                    5198,
+                                    5202
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 16
                                     },
                                     "end": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 20
                                     }
                                   }
@@ -1537,31 +1537,31 @@
                                   "type": "Identifier",
                                   "name": "isSupported",
                                   "range": [
-                                    5315,
-                                    5326
+                                    5203,
+                                    5214
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 21
                                     },
                                     "end": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 32
                                     }
                                   }
                                 },
                                 "range": [
-                                  5310,
-                                  5326
+                                  5198,
+                                  5214
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 115,
+                                    "line": 117,
                                     "column": 16
                                   },
                                   "end": {
-                                    "line": 115,
+                                    "line": 117,
                                     "column": 32
                                   }
                                 }
@@ -1571,32 +1571,32 @@
                                   "type": "Identifier",
                                   "name": "field",
                                   "range": [
-                                    5327,
-                                    5332
+                                    5215,
+                                    5220
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 33
                                     },
                                     "end": {
-                                      "line": 115,
+                                      "line": 117,
                                       "column": 38
                                     }
                                   }
                                 }
                               ],
                               "range": [
-                                5310,
-                                5333
+                                5198,
+                                5221
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 115,
+                                  "line": 117,
                                   "column": 16
                                 },
                                 "end": {
-                                  "line": 115,
+                                  "line": 117,
                                   "column": 39
                                 }
                               }
@@ -1615,16 +1615,16 @@
                                         "type": "Identifier",
                                         "name": "field",
                                         "range": [
-                                          5360,
-                                          5365
+                                          5248,
+                                          5253
                                         ],
                                         "loc": {
                                           "start": {
-                                            "line": 116,
+                                            "line": 118,
                                             "column": 23
                                           },
                                           "end": {
-                                            "line": 116,
+                                            "line": 118,
                                             "column": 28
                                           }
                                         }
@@ -1633,94 +1633,94 @@
                                         "type": "Identifier",
                                         "name": "range",
                                         "range": [
-                                          5366,
-                                          5371
+                                          5254,
+                                          5259
                                         ],
                                         "loc": {
                                           "start": {
-                                            "line": 116,
+                                            "line": 118,
                                             "column": 29
                                           },
                                           "end": {
-                                            "line": 116,
+                                            "line": 118,
                                             "column": 34
                                           }
                                         }
                                       },
                                       "range": [
-                                        5360,
-                                        5371
+                                        5248,
+                                        5259
                                       ],
                                       "loc": {
                                         "start": {
-                                          "line": 116,
+                                          "line": 118,
                                           "column": 23
                                         },
                                         "end": {
-                                          "line": 116,
+                                          "line": 118,
                                           "column": 34
                                         }
                                       }
                                     },
                                     "arguments": [],
                                     "range": [
-                                      5360,
-                                      5373
+                                      5248,
+                                      5261
                                     ],
                                     "loc": {
                                       "start": {
-                                        "line": 116,
+                                        "line": 118,
                                         "column": 23
                                       },
                                       "end": {
-                                        "line": 116,
+                                        "line": 118,
                                         "column": 36
                                       }
                                     }
                                   },
                                   "range": [
-                                    5353,
-                                    5374
+                                    5241,
+                                    5262
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 116,
+                                      "line": 118,
                                       "column": 16
                                     },
                                     "end": {
-                                      "line": 116,
+                                      "line": 118,
                                       "column": 37
                                     }
                                   }
                                 }
                               ],
                               "range": [
-                                5335,
-                                5388
+                                5223,
+                                5276
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 115,
+                                  "line": 117,
                                   "column": 41
                                 },
                                 "end": {
-                                  "line": 117,
+                                  "line": 119,
                                   "column": 13
                                 }
                               }
                             },
                             "alternate": null,
                             "range": [
-                              5306,
-                              5388
+                              5194,
+                              5276
                             ],
                             "loc": {
                               "start": {
-                                "line": 115,
+                                "line": 117,
                                 "column": 12
                               },
                               "end": {
-                                "line": 117,
+                                "line": 119,
                                 "column": 13
                               }
                             }
@@ -1733,16 +1733,16 @@
                                 "type": "Identifier",
                                 "name": "UnsupportedTemporalTypeException",
                                 "range": [
-                                  5411,
-                                  5443
+                                  5299,
+                                  5331
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 118,
+                                    "line": 120,
                                     "column": 22
                                   },
                                   "end": {
-                                    "line": 118,
+                                    "line": 120,
                                     "column": 54
                                   }
                                 }
@@ -1756,16 +1756,16 @@
                                     "value": "Unsupported field: ",
                                     "raw": "'Unsupported field: '",
                                     "range": [
-                                      5444,
-                                      5465
+                                      5332,
+                                      5353
                                     ],
                                     "loc": {
                                       "start": {
-                                        "line": 118,
+                                        "line": 120,
                                         "column": 55
                                       },
                                       "end": {
-                                        "line": 118,
+                                        "line": 120,
                                         "column": 76
                                       }
                                     }
@@ -1774,94 +1774,94 @@
                                     "type": "Identifier",
                                     "name": "field",
                                     "range": [
-                                      5468,
-                                      5473
+                                      5356,
+                                      5361
                                     ],
                                     "loc": {
                                       "start": {
-                                        "line": 118,
+                                        "line": 120,
                                         "column": 79
                                       },
                                       "end": {
-                                        "line": 118,
+                                        "line": 120,
                                         "column": 84
                                       }
                                     }
                                   },
                                   "range": [
-                                    5444,
-                                    5473
+                                    5332,
+                                    5361
                                   ],
                                   "loc": {
                                     "start": {
-                                      "line": 118,
+                                      "line": 120,
                                       "column": 55
                                     },
                                     "end": {
-                                      "line": 118,
+                                      "line": 120,
                                       "column": 84
                                     }
                                   }
                                 }
                               ],
                               "range": [
-                                5407,
-                                5474
+                                5295,
+                                5362
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 118,
+                                  "line": 120,
                                   "column": 18
                                 },
                                 "end": {
-                                  "line": 118,
+                                  "line": 120,
                                   "column": 85
                                 }
                               }
                             },
                             "range": [
-                              5401,
-                              5475
+                              5289,
+                              5363
                             ],
                             "loc": {
                               "start": {
-                                "line": 118,
+                                "line": 120,
                                 "column": 12
                               },
                               "end": {
-                                "line": 118,
+                                "line": 120,
                                 "column": 86
                               }
                             }
                           }
                         ],
                         "range": [
-                          5292,
-                          5485
+                          5180,
+                          5373
                         ],
                         "loc": {
                           "start": {
-                            "line": 114,
+                            "line": 116,
                             "column": 42
                           },
                           "end": {
-                            "line": 119,
+                            "line": 121,
                             "column": 9
                           }
                         }
                       },
                       "alternate": null,
                       "range": [
-                        5258,
-                        5485
+                        5146,
+                        5373
                       ],
                       "loc": {
                         "start": {
-                          "line": 114,
+                          "line": 116,
                           "column": 8
                         },
                         "end": {
-                          "line": 119,
+                          "line": 121,
                           "column": 9
                         }
                       }
@@ -1877,16 +1877,16 @@
                             "type": "Identifier",
                             "name": "field",
                             "range": [
-                              5501,
-                              5506
+                              5389,
+                              5394
                             ],
                             "loc": {
                               "start": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 15
                               },
                               "end": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 20
                               }
                             }
@@ -1895,31 +1895,31 @@
                             "type": "Identifier",
                             "name": "rangeRefinedBy",
                             "range": [
-                              5507,
-                              5521
+                              5395,
+                              5409
                             ],
                             "loc": {
                               "start": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 21
                               },
                               "end": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 35
                               }
                             }
                           },
                           "range": [
-                            5501,
-                            5521
+                            5389,
+                            5409
                           ],
                           "loc": {
                             "start": {
-                              "line": 120,
+                              "line": 122,
                               "column": 15
                             },
                             "end": {
-                              "line": 120,
+                              "line": 122,
                               "column": 35
                             }
                           }
@@ -1928,63 +1928,63 @@
                           {
                             "type": "ThisExpression",
                             "range": [
-                              5522,
-                              5526
+                              5410,
+                              5414
                             ],
                             "loc": {
                               "start": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 36
                               },
                               "end": {
-                                "line": 120,
+                                "line": 122,
                                 "column": 40
                               }
                             }
                           }
                         ],
                         "range": [
-                          5501,
-                          5527
+                          5389,
+                          5415
                         ],
                         "loc": {
                           "start": {
-                            "line": 120,
+                            "line": 122,
                             "column": 15
                           },
                           "end": {
-                            "line": 120,
+                            "line": 122,
                             "column": 41
                           }
                         }
                       },
                       "range": [
-                        5494,
-                        5528
+                        5382,
+                        5416
                       ],
                       "loc": {
                         "start": {
-                          "line": 120,
+                          "line": 122,
                           "column": 8
                         },
                         "end": {
-                          "line": 120,
+                          "line": 122,
                           "column": 42
                         }
                       }
                     }
                   ],
                   "range": [
-                    5248,
-                    5534
+                    5136,
+                    5422
                   ],
                   "loc": {
                     "start": {
-                      "line": 113,
+                      "line": 115,
                       "column": 17
                     },
                     "end": {
-                      "line": 121,
+                      "line": 123,
                       "column": 5
                     }
                   }
@@ -1992,16 +1992,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  5240,
-                  5534
+                  5128,
+                  5422
                 ],
                 "loc": {
                   "start": {
-                    "line": 113,
+                    "line": 115,
                     "column": 9
                   },
                   "end": {
-                    "line": 121,
+                    "line": 123,
                     "column": 5
                   }
                 }
@@ -2009,34 +2009,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                5235,
-                5534
+                5123,
+                5422
               ],
               "loc": {
                 "start": {
-                  "line": 113,
+                  "line": 115,
                   "column": 4
                 },
                 "end": {
-                  "line": 121,
+                  "line": 123,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * Gets the range of valid values for the specified field.\n     * <p>\n     * All fields can be expressed as a {@code long} integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     * <p>\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
+                  "value": "*\n     * Gets the range of valid values for the specified field.\n     *\n     * All fields can be expressed as a `long` integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.rangeRefinedBy}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
                   "range": [
-                    3687,
-                    5230
+                    3620,
+                    5118
                   ],
                   "loc": {
                     "start": {
-                      "line": 85,
+                      "line": 86,
                       "column": 4
                     },
                     "end": {
-                      "line": 112,
+                      "line": 114,
                       "column": 7
                     }
                   }
@@ -2046,8 +2046,8 @@
             }
           ],
           "range": [
-            419,
-            5537
+            416,
+            5425
           ],
           "loc": {
             "start": {
@@ -2055,14 +2055,14 @@
               "column": 30
             },
             "end": {
-              "line": 123,
+              "line": 125,
               "column": 1
             }
           }
         },
         "range": [
-          396,
-          5537
+          393,
+          5425
         ],
         "loc": {
           "start": {
@@ -2070,7 +2070,7 @@
             "column": 7
           },
           "end": {
-            "line": 123,
+            "line": 125,
             "column": 1
           }
         },
@@ -2080,8 +2080,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        389,
-        5537
+        386,
+        5425
       ],
       "loc": {
         "start": {
@@ -2089,7 +2089,7 @@
           "column": 0
         },
         "end": {
-          "line": 123,
+          "line": 125,
           "column": 1
         }
       }
@@ -2097,8 +2097,8 @@
   ],
   "sourceType": "module",
   "range": [
-    233,
-    5537
+    230,
+    5425
   ],
   "loc": {
     "start": {
@@ -2106,17 +2106,17 @@
       "column": 0
     },
     "end": {
-      "line": 123,
+      "line": 125,
       "column": 1
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        231
+        228
       ],
       "loc": {
         "start": {
@@ -2131,10 +2131,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * Queries this date-time.\n     * <p>\n     * This queries this date-time using the specified query strategy object.\n     * <p>\n     * Queries are a key tool for extracting information from date-times.\n     * They exists to externalize the process of querying, permitting different\n     * approaches, as per the strategy design pattern.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     * <p>\n     * The most common query implementations are method references, such as\n     * {@code LocalDate::from} and {@code ZoneId::from}.\n     * Further implementations are on {@link TemporalQueries}.\n     * Queries may also be defined by applications.\n     *\n     * @implSpec\n     * Implementations of this method must behave as follows:\n     * <pre>\n        if (query == TemporalQueries.zoneId()\n            || query == TemporalQueries.chronology()\n            || query == TemporalQueries.precision()) {\n                return null;\n        }\n        return query.queryFrom(this);\n     * </pre>\n     *\n     * @param {TemporalQuery} query  the query to invoke, not null\n     * @return the query result, null may be returned (defined by the query)\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "value": "*\n     * Queries this date-time.\n     *\n     * This queries this date-time using the specified query strategy object.\n     *\n     * Queries are a key tool for extracting information from date-times.\n     * They exists to externalize the process of querying, permitting different\n     * approaches, as per the strategy design pattern.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     *\n     * The most common query implementations are method references, such as\n     * {@link LocalDate::from} and {@link ZoneId::from}.\n     * Further implementations are on {@link TemporalQueries}.\n     * Queries may also be defined by applications.\n     *\n     * @implSpec\n     * Implementations of this method must behave as follows:\n     * <pre>\n        if (query == TemporalQueries.zoneId()\n            || query == TemporalQueries.chronology()\n            || query == TemporalQueries.precision()) {\n                return null;\n        }\n        return query.queryFrom(this);\n     * </pre>\n     *\n     * @param {TemporalQuery} query  the query to invoke, not null\n     * @return the query result, null may be returned (defined by the query)\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
       "range": [
-        425,
-        1812
+        422,
+        1797
       ],
       "loc": {
         "start": {
@@ -2149,10 +2149,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * Gets the value of the specified field as an {@code int}.\n     * <p>\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an {@code int} range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "value": "*\n     * Gets the value of the specified field as an `int`.\n     *\n     * This queries the date-time for the value for the specified field.\n     * The returned value will always be within the valid range of values for the field.\n     * If the date-time cannot return the value, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported and has an `int` range, then the value of\n     * the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.getFrom}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field - the field to get, not null\n     * @return {number} the value for the field, within the valid range of values\n     * @throws DateTimeException if a value for the field cannot be obtained\n     * @throws DateTimeException if the range of valid values for the field exceeds an `int`\n     * @throws DateTimeException if the value is outside the range of valid values for the field\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
       "range": [
-        2081,
-        3577
+        2066,
+        3510
       ],
       "loc": {
         "start": {
@@ -2160,25 +2160,25 @@
           "column": 4
         },
         "end": {
-          "line": 80,
+          "line": 81,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * Gets the range of valid values for the specified field.\n     * <p>\n     * All fields can be expressed as a {@code long} integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     * <p>\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * <h3>Specification for implementors</h3>\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@code DateTimeException} must be thrown.\n     * <p>\n     * If the field is not a {@code ChronoField}, then the result of this method\n     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}\n     * passing {@code this} as the argument.\n     * <p>\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
+      "value": "*\n     * Gets the range of valid values for the specified field.\n     *\n     * All fields can be expressed as a `long` integer.\n     * This method returns an object that describes the valid range for that value.\n     * The value of this temporal object is used to enhance the accuracy of the returned range.\n     * If the date-time cannot return the range, because the field is unsupported or for\n     * some other reason, an exception will be thrown.\n     *\n     * Note that the result only describes the minimum and maximum valid values\n     * and it is important not to read too much into them. For example, there\n     * could be values within the range that are invalid for the field.\n     *\n     * ### Specification for implementors\n     *\n     * Implementations must check and handle all fields defined in {@link ChronoField}.\n     * If the field is supported, then the range of the field must be returned.\n     * If unsupported, then a {@link DateTimeException} must be thrown.\n     *\n     * If the field is not a {@link ChronoField}, then the result of this method\n     * is obtained by invoking {@link TemporalField.rangeRefinedBy}\n     * passing `this` as the argument.\n     *\n     * Implementations must not alter either this object.\n     *\n     * @param {TemporalField} field  the field to query the range for, not null\n     * @return {ValueRange} the range of valid values for the field, not null\n     * @throws DateTimeException if the range for the field cannot be obtained\n     ",
       "range": [
-        3687,
-        5230
+        3620,
+        5118
       ],
       "loc": {
         "start": {
-          "line": 85,
+          "line": 86,
           "column": 4
         },
         "end": {
-          "line": 112,
+          "line": 114,
           "column": 7
         }
       }

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {SystemDefaultZoneRules} from &apos;<span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber9">js-joda/src/zone/SystemDefaultZoneRules.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {SystemDefaultZoneRules} from &apos;<span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber10">js-joda/src/zone/SystemDefaultZoneRules.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber9">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber10">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -162,7 +165,57 @@
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-daylightSavings">daylightSavings</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-isDaylightSavings">isDaylightSavings</a></span></span><span data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -213,6 +266,31 @@
       <div>
         <p>
            <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-isValidOffset">isValidOffset</a></span></span><span data-ice="signature">(dateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-nextTransition">nextTransition</a></span></span><span data-ice="signature">()</span>
         </p>
       </div>
       <div>
@@ -314,7 +392,157 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-previousTransition">previousTransition</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-standardOffset">standardOffset</a></span></span><span data-ice="signature">(instant: <span>*</span>): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transition">transition</a></span></span><span data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transitionRules">transitionRules</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transitions">transitions</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-validOffsets">validOffsets</a></span></span><span data-ice="signature">(localDateTime: <span>*</span>): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
         </p>
       </div>
       <div>
@@ -353,7 +581,59 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code ZoneRules} that always uses the same offset.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> that always uses the same offset.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-daylightSavings">daylightSavings</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the amount of daylight savings in use for the specified instant in this zone.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-isDaylightSavings">isDaylightSavings</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the specified instant is in daylight savings.</p>
 </div>
       </div>
     </td>
@@ -406,6 +686,32 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
         
         
         <div data-ice="description"><p>Checks if the offset date-time is valid for these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-nextTransition">nextTransition</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the next transition after the specified instant.</p>
 </div>
       </div>
     </td>
@@ -517,6 +823,162 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-previousTransition">previousTransition</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the previous transition before the specified instant.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-standardOffset">standardOffset</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the standard offset for the specified instant in this zone.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transition">transition</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset transition applicable at the specified local date-time in these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitionRules">transitionRules</a></span></span><span data-ice="signature">(): <span><span>ZoneOffsetTransitionRule</span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the list of transition rules for years beyond those defined in the transition list.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitions">transitions</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the complete list of fully defined transitions.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-validOffsets">validOffsets</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset applicable at the specified local date-time in these rules.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -528,6 +990,58 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-daylightSavings">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">daylightSavings</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber85">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-daylightSavings">ZoneRules#daylightSavings</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-equals">
     <span class="access" data-ice="access">public</span>
     
@@ -538,7 +1052,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber72">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
@@ -594,6 +1108,58 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isDaylightSavings">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isDaylightSavings</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber92">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-isDaylightSavings">ZoneRules#isDaylightSavings</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isFixedOffset">
     <span class="access" data-ice="access">public</span>
     
@@ -604,7 +1170,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber12">source</a></span></span>
     </span>
   </h3>
 
@@ -654,7 +1220,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber102">source</a></span></span>
     </span>
   </h3>
 
@@ -716,6 +1282,58 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-nextTransition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">nextTransition</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber109">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-nextTransition">ZoneRules#nextTransition</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-offsetOfEpochMilli">
     <span class="access" data-ice="access">public</span>
     
@@ -726,7 +1344,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
@@ -792,7 +1410,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
@@ -858,7 +1476,7 @@ as specified at <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instan
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
@@ -920,6 +1538,124 @@ other browsers/ engines might do it in the same way.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-previousTransition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">previousTransition</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber116">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-previousTransition">ZoneRules#previousTransition</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-standardOffset">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">standardOffset</span><span data-ice="signature">(instant: <span>*</span>): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber78">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-standardOffset">ZoneRules#standardOffset</a></span></div>
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">instant</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
     
@@ -930,7 +1666,7 @@ other browsers/ engines might do it in the same way.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber84">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber158">source</a></span></span>
     </span>
   </h3>
 
@@ -969,11 +1705,243 @@ other browsers/ engines might do it in the same way.</p>
   
   
 </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transition">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transition</span><span data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber69">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transition">ZoneRules#transition</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transitionRules">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transitionRules</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber130">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitionRules">ZoneRules#transitionRules</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-transitions">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">transitions</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber123">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitions">ZoneRules#transitions</a></span></div>
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException not supported</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-validOffsets">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">validOffsets</span><span data-ice="signature">(localDateTime: <span>*</span>): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/zone/SystemDefaultZoneRules.js.html#lineNumber62">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-validOffsets">ZoneRules#validOffsets</a></span></div>
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">localDateTime</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 </div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

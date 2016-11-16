@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/ZoneId.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -120,20 +123,33 @@ import {Instant} from &apos;./Instant&apos;;
 export class ZoneId {
     //-----------------------------------------------------------------------
     /**
+     * Gets the unique time-zone ID.
+     *
+     * This ID uniquely defines this object.
+     * The format of an offset based ID is defined by {@link ZoneOffset#getId}.
+     *
+     * @return {String} the time-zone unique ID, not null
+     */
+    id(){
+        abstractMethodFail(&apos;ZoneId.id&apos;);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
      * Gets the time-zone rules for this ID allowing calculations to be performed.
-     * &lt;p&gt;
+     *
      * The rules provide the functionality associated with a time-zone,
      * such as finding the offset for a given instant or local date-time.
-     * &lt;p&gt;
+     *
      * A time-zone can be invalid if it is deserialized in a Java Runtime which
      * does not have the same rules loaded as the Java Runtime that stored it.
-     * In this case, calling this method will throw a {@code ZoneRulesException}.
-     * &lt;p&gt;
+     * In this case, calling this method will throw a {@link ZoneRulesException}.
+     *
      * The rules are supplied by {@link ZoneRulesProvider}. An advanced provider may
      * support dynamic updates to the rules without restarting the Java Runtime.
      * If so, then the result of this method may change over time.
      * Each individual call will be still remain thread-safe.
-     * &lt;p&gt;
+     *
      * {@link ZoneOffset} will always return a set of rules where the offset never changes.
      *
      * @return {!ZoneRules} the rules, not null
@@ -144,20 +160,20 @@ export class ZoneId {
     }
 
     /**
-      * Normalizes the time-zone ID, returning a {@code ZoneOffset} where possible.
-      * &lt;p&gt;
-      * The returns a normalized {@code ZoneId} that can be used in place of this ID.
-      * The result will have {@code ZoneRules} equivalent to those returned by this object,
-      * however the ID returned by {@code getId()} may be different.
-      * &lt;p&gt;
-      * The normalization checks if the rules of this {@code ZoneId} have a fixed offset.
-      * If they do, then the {@code ZoneOffset} equal to that offset is returned.
-      * Otherwise {@code this} is returned.
+      * Normalizes the time-zone ID, returning a {@link ZoneOffset} where possible.
+      *
+      * The returns a normalized {@link ZoneId} that can be used in place of this ID.
+      * The result will have {@link ZoneRules} equivalent to those returned by this object,
+      * however the ID returned by {@link getId} may be different.
+      *
+      * The normalization checks if the rules of this {@link ZoneId} have a fixed offset.
+      * If they do, then the {@link ZoneOffset} equal to that offset is returned.
+      * Otherwise `this` is returned.
       *
       * @return {ZoneId} the time-zone unique ID, not null
       */
     normalized() {
-        var rules = this.rules();
+        const rules = this.rules();
         if (rules.isFixedOffset()) {
             return rules.offset(Instant.EPOCH);
         }
@@ -171,40 +187,40 @@ export class ZoneId {
      //-----------------------------------------------------------------------
      /**
       * Checks if this time-zone ID is equal to another time-zone ID.
-      * &lt;p&gt;
+      *
       * The comparison is based on the ID.
       *
       * @param {*} other  the object to check, null returns false
       * @return {boolean} true if this is equal to the other time-zone ID
       */
-     equals(other) {
-         if (this === other) {
-             return true;
-         }
-         if (other instanceof ZoneId) {
-             return this.id() === other.id();
-         }
-         return false;
-     }
+    equals(other) {
+        if (this === other) {
+            return true;
+        }
+        if (other instanceof ZoneId) {
+            return this.id() === other.id();
+        }
+        return false;
+    }
 
      /**
       * A hash code for this time-zone ID.
       *
       * @return {number} a suitable hash code
       */
-     hashCode() {
-         return StringUtil.hashCode(this.id());
-     }
+    hashCode() {
+        return StringUtil.hashCode(this.id());
+    }
 
      //-----------------------------------------------------------------------
      /**
-      * Outputs this zone as a {@code String}, using the ID.
+      * Outputs this zone as a string, using the ID.
       *
       * @return {string} a string representation of this time-zone ID, not null
       */
-     toString() {
-         return this.id();
-     }
+    toString() {
+        return this.id();
+    }
 
 }
 </code></pre>
@@ -212,7 +228,7 @@ export class ZoneId {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

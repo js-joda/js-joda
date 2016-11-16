@@ -9,8 +9,8 @@
           "type": "Identifier",
           "name": "Enum",
           "range": [
-            207,
-            211
+            204,
+            208
           ],
           "loc": {
             "start": {
@@ -33,8 +33,8 @@
                 "type": "Identifier",
                 "name": "constructor",
                 "range": [
-                  218,
-                  229
+                  215,
+                  226
                 ],
                 "loc": {
                   "start": {
@@ -55,8 +55,8 @@
                     "type": "Identifier",
                     "name": "name",
                     "range": [
-                      230,
-                      234
+                      227,
+                      231
                     ],
                     "loc": {
                       "start": {
@@ -84,8 +84,8 @@
                           "object": {
                             "type": "ThisExpression",
                             "range": [
-                              245,
-                              249
+                              242,
+                              246
                             ],
                             "loc": {
                               "start": {
@@ -102,8 +102,8 @@
                             "type": "Identifier",
                             "name": "_name",
                             "range": [
-                              250,
-                              255
+                              247,
+                              252
                             ],
                             "loc": {
                               "start": {
@@ -117,8 +117,8 @@
                             }
                           },
                           "range": [
-                            245,
-                            255
+                            242,
+                            252
                           ],
                           "loc": {
                             "start": {
@@ -135,8 +135,8 @@
                           "type": "Identifier",
                           "name": "name",
                           "range": [
-                            258,
-                            262
+                            255,
+                            259
                           ],
                           "loc": {
                             "start": {
@@ -150,8 +150,8 @@
                           }
                         },
                         "range": [
-                          245,
-                          262
+                          242,
+                          259
                         ],
                         "loc": {
                           "start": {
@@ -165,8 +165,8 @@
                         }
                       },
                       "range": [
-                        245,
-                        263
+                        242,
+                        260
                       ],
                       "loc": {
                         "start": {
@@ -181,8 +181,8 @@
                     }
                   ],
                   "range": [
-                    235,
-                    269
+                    232,
+                    266
                   ],
                   "loc": {
                     "start": {
@@ -198,8 +198,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  229,
-                  269
+                  226,
+                  266
                 ],
                 "loc": {
                   "start": {
@@ -215,8 +215,8 @@
               "kind": "constructor",
               "computed": false,
               "range": [
-                218,
-                269
+                215,
+                266
               ],
               "loc": {
                 "start": {
@@ -236,8 +236,8 @@
                 "type": "Identifier",
                 "name": "equals",
                 "range": [
-                  275,
-                  281
+                  272,
+                  278
                 ],
                 "loc": {
                   "start": {
@@ -258,8 +258,8 @@
                     "type": "Identifier",
                     "name": "other",
                     "range": [
-                      282,
-                      287
+                      279,
+                      284
                     ],
                     "loc": {
                       "start": {
@@ -284,8 +284,8 @@
                         "left": {
                           "type": "ThisExpression",
                           "range": [
-                            305,
-                            309
+                            302,
+                            306
                           ],
                           "loc": {
                             "start": {
@@ -302,8 +302,8 @@
                           "type": "Identifier",
                           "name": "other",
                           "range": [
-                            314,
-                            319
+                            311,
+                            316
                           ],
                           "loc": {
                             "start": {
@@ -317,8 +317,8 @@
                           }
                         },
                         "range": [
-                          305,
-                          319
+                          302,
+                          316
                         ],
                         "loc": {
                           "start": {
@@ -332,8 +332,8 @@
                         }
                       },
                       "range": [
-                        298,
-                        320
+                        295,
+                        317
                       ],
                       "loc": {
                         "start": {
@@ -348,8 +348,8 @@
                     }
                   ],
                   "range": [
-                    288,
-                    326
+                    285,
+                    323
                   ],
                   "loc": {
                     "start": {
@@ -365,8 +365,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  281,
-                  326
+                  278,
+                  323
                 ],
                 "loc": {
                   "start": {
@@ -382,8 +382,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                275,
-                326
+                272,
+                323
               ],
               "loc": {
                 "start": {
@@ -403,8 +403,8 @@
                 "type": "Identifier",
                 "name": "toString",
                 "range": [
-                  332,
-                  340
+                  329,
+                  337
                 ],
                 "loc": {
                   "start": {
@@ -432,8 +432,8 @@
                         "object": {
                           "type": "ThisExpression",
                           "range": [
-                            360,
-                            364
+                            357,
+                            361
                           ],
                           "loc": {
                             "start": {
@@ -450,8 +450,8 @@
                           "type": "Identifier",
                           "name": "_name",
                           "range": [
-                            365,
-                            370
+                            362,
+                            367
                           ],
                           "loc": {
                             "start": {
@@ -465,8 +465,8 @@
                           }
                         },
                         "range": [
-                          360,
-                          370
+                          357,
+                          367
                         ],
                         "loc": {
                           "start": {
@@ -480,8 +480,8 @@
                         }
                       },
                       "range": [
-                        353,
-                        371
+                        350,
+                        368
                       ],
                       "loc": {
                         "start": {
@@ -496,8 +496,8 @@
                     }
                   ],
                   "range": [
-                    343,
-                    377
+                    340,
+                    374
                   ],
                   "loc": {
                     "start": {
@@ -513,8 +513,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  340,
-                  377
+                  337,
+                  374
                 ],
                 "loc": {
                   "start": {
@@ -530,8 +530,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                332,
-                377
+                329,
+                374
               ],
               "loc": {
                 "start": {
@@ -547,8 +547,8 @@
             }
           ],
           "range": [
-            212,
-            379
+            209,
+            376
           ],
           "loc": {
             "start": {
@@ -562,8 +562,8 @@
           }
         },
         "range": [
-          201,
-          379
+          198,
+          376
         ],
         "loc": {
           "start": {
@@ -578,10 +578,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "range": [
               0,
-              152
+              149
             ],
             "loc": {
               "start": {
@@ -598,8 +598,8 @@
             "type": "Block",
             "value": "**\n * Base class for a pseudo enum\n ",
             "range": [
-              153,
-              193
+              150,
+              190
             ],
             "loc": {
               "start": {
@@ -618,8 +618,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        194,
-        379
+        191,
+        376
       ],
       "loc": {
         "start": {
@@ -634,10 +634,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            152
+            149
           ],
           "loc": {
             "start": {
@@ -654,8 +654,8 @@
           "type": "Block",
           "value": "**\n * Base class for a pseudo enum\n ",
           "range": [
-            153,
-            193
+            150,
+            190
           ],
           "loc": {
             "start": {
@@ -673,8 +673,8 @@
   ],
   "sourceType": "module",
   "range": [
-    194,
-    379
+    191,
+    376
   ],
   "loc": {
     "start": {
@@ -689,10 +689,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        152
+        149
       ],
       "loc": {
         "start": {
@@ -709,8 +709,8 @@
       "type": "Block",
       "value": "**\n * Base class for a pseudo enum\n ",
       "range": [
-        153,
-        193
+        150,
+        190
       ],
       "loc": {
         "start": {

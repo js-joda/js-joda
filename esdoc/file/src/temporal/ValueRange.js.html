@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/temporal/ValueRange.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -156,7 +159,7 @@ export class ValueRange {
 
     /**
      * Is the value range fixed and fully known.
-     * &lt;p&gt;
+     *
      * For example, the ISO day-of-month runs from 1 to between 28 and 31.
      * Since there is uncertainty about the maximum value, the range is not fixed.
      * However, for the month of January, the range is always 1 to 31, thus it is fixed.
@@ -213,7 +216,7 @@ export class ValueRange {
      * @param {TemporalField} field
      */
     checkValidValue(value, field) {
-        var msg;
+        let msg;
         if (!this.isValidValue(value)) {
             if (field != null) {
                 msg = (&apos;Invalid value for &apos; + field + &apos; (valid values &apos; + (this.toString()) + &apos;): &apos;) + value;
@@ -225,10 +228,10 @@ export class ValueRange {
     }
 
     /**
-     * Checks that the specified value is valid and fits in an {@code int}.
-     * &lt;p&gt;
+     * Checks that the specified value is valid and fits in an `int`.
+     *
      * This validates that the value is within the valid range of values and that
-     * all valid values are within the bounds of an {@code int}.
+     * all valid values are within the bounds of an `int`.
      * The field is only used to improve the error message.
      *
      * @param {number} value - the value to check
@@ -245,28 +248,28 @@ export class ValueRange {
 
     /**
      * Checks if the value is within the valid range and that all values
-     * in the range fit in an {@code int}.
-     * &lt;p&gt;
-     * This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.
+     * in the range fit in an `int`.
+     *
+     * This method combines {@link isIntValue} and {@link isValidValue}.
      *
      * @param {number} value - the value to check
-     * @return true if the value is valid and fits in an {@code int}
+     * @return true if the value is valid and fits in an `int`
      */
     isValidIntValue(value) {
         return this.isIntValue() &amp;&amp; this.isValidValue(value);
     }
 
     /**
-     * Checks if all values in the range fit in an {@code int}.
-     * &lt;p&gt;
-     * This checks that all valid values are within the bounds of an {@code int}.
-     * &lt;p&gt;
-     * For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
-     * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.
-     * &lt;p&gt;
-     * This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.
+     * Checks if all values in the range fit in an `int`.
      *
-     * @return boolean if a valid value always fits in an {@code int}
+     * This checks that all valid values are within the bounds of an `int`.
+     *
+     * For example, the ISO month-of-year has values from 1 to 12, which fits in an `int`.
+     * By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an `int`.
+     *
+     * This implementation uses {@link getMinimum} and {@link getMaximum}.
+     *
+     * @return boolean if a valid value always fits in an `int`
      */
     isIntValue() { // should be isSafeIntegerValue
         return this.minimum() &gt;= MathUtil.MIN_SAFE_INTEGER &amp;&amp; this.maximum() &lt;= MathUtil.MAX_SAFE_INTEGER;
@@ -274,10 +277,10 @@ export class ValueRange {
 
     /**
      * Checks if this range is equal to another range.
-     * &lt;p&gt;
+     *
      * The comparison is based on the four values, minimum, largest minimum,
      * smallest maximum and maximum.
-     * Only objects of type {@code ValueRange} are compared, other types return false.
+     * Only objects of type {@link ValueRange} are compared, other types return false.
      *
      * @param {*} other - the object to check, null returns false
      * @return {boolean} true if this is equal to the other range
@@ -299,7 +302,7 @@ export class ValueRange {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        var hash = this._minSmallest + this._minLargest &lt;&lt; 16 + this._minLargest &gt;&gt; 48 + this._maxSmallest &lt;&lt; 32 +
+        const hash = this._minSmallest + this._minLargest &lt;&lt; 16 + this._minLargest &gt;&gt; 48 + this._maxSmallest &lt;&lt; 32 +
             this._maxSmallest &gt;&gt; 32 + this._maxLargest &lt;&lt; 48 + this._maxLargest &gt;&gt; 16;
         return (hash ^ (hash &gt;&gt;&gt; 32));
     }
@@ -314,7 +317,7 @@ export class ValueRange {
      * @return {string} a string representation of this range, not null
      */
     toString() {
-        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? &apos;/&apos; + (this.largestMinimum()) : &apos;&apos;);
+        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? &apos;/&apos; + (this.largestMinimum()) : &apos;&apos;);
         str += &apos; - &apos;;
         str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? &apos;/&apos; + (this.maximum()) : &apos;&apos;);
         return str;
@@ -362,12 +365,13 @@ export class ValueRange {
             return assert(false, &apos;Invalid number of arguments &apos; + arguments.length, IllegalArgumentException);
         }
     }
-}</code></pre>
+}
+</code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

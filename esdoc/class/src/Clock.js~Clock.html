@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Clock} from &apos;<span><a href="file/src/Clock.js.html#lineNumber52">js-joda/src/Clock.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Clock} from &apos;<span><a href="file/src/Clock.js.html#lineNumber50">js-joda/src/Clock.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/Clock.js.html#lineNumber52">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/Clock.js.html#lineNumber50">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -132,7 +135,24 @@
 
   
   
-  <div class="description" data-ice="description"><p>The javascript Clock implementation differs from the openjdk.</p>
+  <div class="description" data-ice="description"><p>A clock providing access to the current instant, date and time using a time-zone.</p>
+<p>Instances of this class are used to find the current instant, which can be
+interpreted using the stored time-zone to find the current date and time.
+As such, a clock can be used instead of <span>System#currentTimeMillis</span>
+and <span>TimeZone#getDefault</span>.</p>
+<p>Use of a <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> is optional. All key date-time classes also have a
+<code>now()</code> factory method that uses the system clock in the default time zone.
+The primary purpose of this abstraction is to allow alternate clocks to be
+plugged in as and when required. Applications use an object to obtain the
+current time rather than a static method. This can simplify testing.</p>
+<p>Best practice for applications is to pass a <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> into any method
+that requires the current instant.</p>
+<p>This approach allows an alternate clock, such as <span><a href="class/src/Clock.js~Clock.html#static-method-fixed">fixed</a></span>
+or <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-offset">offset</a></span> to be used during testing.</p>
+<p>The <span><a href="class/src/Clock.js~Clock.html#static-method-system">system</a></span> factory methods provide clocks based on the best available
+system clock This may use <span>System#currentTimeMillis</span>, or a higher
+resolution clock if one is available.</p>
+<p>The javascript Clock implementation differs from the openjdk.</p>
 <p>Javascript only provides the UTC millis of epoch and the ZoneOffset in minutes of the system default time.
 Javascript do not provide the system default ZoneId.</p>
 <p>the system default ZoneId is only guessable by the ZoneOffset, like moment-timezone does by returning one ZoneId
@@ -367,7 +387,7 @@ system clock, converting to date and time using the Date.getTime() UTC millis.</
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber106">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber104">source</a></span></span>
     </span>
   </h3>
 
@@ -375,8 +395,7 @@ system clock, converting to date and time using the Date.getTime() UTC millis.</
   
   
   <div data-ice="description"><p>Obtains a clock that always returns the same instant.</p>
-<p></p><p>
-This clock simply returns the specified instant.
+<p>This clock simply returns the specified instant.
 As such, it is not a clock in the conventional sense.
 The main use case for this is in testing, where the fixed clock ensures
 tests are not dependent on the current clock.</p>
@@ -448,7 +467,7 @@ tests are not dependent on the current clock.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber88">source</a></span></span>
     </span>
   </h3>
 
@@ -515,7 +534,7 @@ tests are not dependent on the current clock.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber81">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
@@ -524,13 +543,10 @@ tests are not dependent on the current clock.</p>
   
   <div data-ice="description"><p>Obtains a clock that returns the current instant using the best available
 system clock, converting to date and time using the default time-zone.</p>
-<p></p><p>
-This clock is based on the available system clock using the Date.getTime() UTC millis</p>
-<p></p><p>
-Using this method hard codes a dependency to the default time-zone into your application.</p>
-<p>The {@link #systemUTC() UTC clock} should be used when you need the current instant
+<p>This clock is based on the available system clock using the Date.getTime() UTC millis</p>
+<p>Using this method hard codes a dependency to the default time-zone into your application.</p>
+<p>The UTC clock (see <span><a href="class/src/Clock.js~Clock.html#static-method-systemUTC">systemUTC</a></span>) should be used when you need the current instant
 without the date or time.</p>
-<p></p><p></p>
 </div>
 
   
@@ -575,7 +591,7 @@ without the date or time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber60">source</a></span></span>
     </span>
   </h3>
 
@@ -584,10 +600,8 @@ without the date or time.</p>
   
   <div data-ice="description"><p>Obtains a clock that returns the current instant using the
 system clock, converting to date and time using the Date.getTime() UTC millis.</p>
-<p></p><p>
-This clock, rather than {@link #systemDefaultZone()}, should be used when
+<p>This clock, rather than <span><a href="class/src/Clock.js~Clock.html#static-method-systemDefaultZone">systemDefaultZone</a></span>, should be used when
 you need the current instant without the date or time.</p>
-<p></p><p></p>
 </div>
 
   
@@ -637,7 +651,7 @@ you need the current instant without the date or time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber137">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber135">source</a></span></span>
     </span>
   </h3>
 
@@ -645,8 +659,7 @@ you need the current instant without the date or time.</p>
   
   
   <div data-ice="description"><p>Gets the current instant of the clock.</p>
-<p></p><p>
-This returns an instant representing the current instant as defined by the clock.</p>
+<p>This returns an instant representing the current instant as defined by the clock.</p>
 </div>
 
   
@@ -691,7 +704,7 @@ This returns an instant representing the current instant as defined by the clock
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber126">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber124">source</a></span></span>
     </span>
   </h3>
 
@@ -699,16 +712,13 @@ This returns an instant representing the current instant as defined by the clock
   
   
   <div data-ice="description"><p>Gets the current millisecond instant of the clock.</p>
-<p></p><p>
-This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).
-This is equivalent to the definition of {@link Date#getTime()}.</p>
-<p></p><p>
-Most applications should avoid this method and use <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> to represent
+<p>This returns the millisecond-based instant, measured from 1970-01-01T00:00Z (UTC).
+This is equivalent to the definition of <span>Date#getTime</span>.</p>
+<p>Most applications should avoid this method and use <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> to represent
 an instant on the time-line rather than a raw millisecond value.
 This method is provided to allow the use of the clock in high performance use cases
 where the creation of an object would be unacceptable.</p>
-<p></p><p>
-The default implementation currently calls <span>#instant</span>.</p>
+<p>The default implementation currently calls <span><a href="class/src/Clock.js~Clock.html#instance-method-instant">instant</a></span>.</p>
 </div>
 
   
@@ -754,7 +764,7 @@ The default implementation currently calls <span>#instant</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber141">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Clock.js.html#lineNumber139">source</a></span></span>
     </span>
   </h3>
 
@@ -787,7 +797,7 @@ The default implementation currently calls <span>#instant</span>.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

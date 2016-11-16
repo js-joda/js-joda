@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Month.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -117,7 +120,7 @@ import {MathUtil} from &apos;./MathUtil&apos;;
 
 import {ChronoField} from &apos;./temporal/ChronoField&apos;;
 import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
+import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
 import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
 import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
 import {Temporal} from &apos;./temporal/Temporal&apos;;
@@ -125,21 +128,21 @@ import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
 
 /**
  * A month-of-year, such as &apos;July&apos;.
- * &lt;p&gt;
+ *
  * {@link Month} is representing the 12 months of the year -
  * January, February, March, April, May, June, July, August, September, October,
  * November and December.
- * &lt;p&gt;
- * In addition to the textual name, each month-of-year has an {@code int} value.
- * The {@code int} value follows normal usage and the ISO-8601 standard,
+ *
+ * In addition to the textual name, each month-of-year has an `int` value.
+ * The `int` value follows normal usage and the ISO-8601 standard,
  * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
- * rather than the {@code int} value to ensure code clarity.
- * &lt;p&gt;
+ * rather than the `int` value to ensure code clarity.
+ *
  * This class represents a common concept that is found in many calendar systems.
  * As such, this class may be used by any calendar system that has the month-of-year
  * concept defined exactly equivalent to the ISO-8601 calendar system.
  *
- * &lt;h3&gt;Static properties of Class {@link Month}&lt;/h3&gt;
+ * ### Static properties of Class {@link Month}
  *
  * Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
  * Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
@@ -166,11 +169,11 @@ export class Month extends Temporal {
     
     /**
      * Gets the textual representation, such as &apos;Jan&apos; or &apos;December&apos;.
-     * &lt;p&gt;
+     *
      * This returns the textual name used to identify the month-of-year.
      * The parameters control the length of the returned text and the locale.
-     * &lt;p&gt;
-     * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
+     *
+     * If no textual mapping is found then the numeric value (see {@link getValue}) is returned.
      *
      * @param {TextStyle} style - the length of the text required, not null
      * @param {Locale} locale - the locale to use, not null
@@ -179,23 +182,24 @@ export class Month extends Temporal {
     getDisplayName(style, locale) {
         // TODO:
         throw new IllegalArgumentException(&apos;Pattern using (localized) text not implemented yet!&apos;);
+        //eslint-disable-next-line no-unreachable
         return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
     }
 
     /**
      * Checks if the specified field is supported.
-     * &lt;p&gt;
+     *
      * This checks if this month-of-year can be queried for the specified field.
-     * If false, then calling the {@link #range(TemporalField) range} and
-     * {@link #get(TemporalField) get} methods will throw an exception.
-     * &lt;p&gt;
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then
+     * If false, then calling the range (see {@link range}) and
+     * get (see {@link get}) methods will throw an exception.
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then
      * this method returns true.
-     * All other {@code ChronoField} instances will return false.
-     * &lt;p&gt;
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.isSupportedBy(TemporalAccessor)}
-     * passing {@code this} as the argument.
+     * All other {@link ChronoField} instances will return false.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
      * @param {TemporalField} field - the field to check, null returns false
@@ -212,20 +216,20 @@ export class Month extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this month-of-year as an {@code int}.
-     * &lt;p&gt;
+     * Gets the value of the specified field from this month-of-year as an `int`.
+     *
      * This queries this month for the value of the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * &lt;p&gt;
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
-     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
-     * &lt;p&gt;
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -233,7 +237,7 @@ export class Month extends Temporal {
      * @throws DateTimeException if a value for the field cannot be obtained or
      *         the value is outside the range of valid values for the field
      * @throws UnsupportedTemporalTypeException if the field is not supported or
-     *         the range of values exceeds an {@code int}
+     *         the range of values exceeds an `int`
      * @throws ArithmeticException if numeric overflow occurs
      */
     get(field) {
@@ -244,19 +248,19 @@ export class Month extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this month-of-year as a {@code long}.
-     * &lt;p&gt;
+     * Gets the value of the specified field from this month-of-year as a `long`.
+     *
      * This queries this month for the value of the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * &lt;p&gt;
-     * If the field is {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} then the
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
      * value of the month-of-year, from 1 to 12, will be returned.
-     * All other {@code ChronoField} instances will throw an {@code UnsupportedTemporalTypeException}.
-     * &lt;p&gt;
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument. Whether the value can be obtained,
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
      * @param {TemporalField} field - the field to get, not null
@@ -276,18 +280,18 @@ export class Month extends Temporal {
     
     /**
      * Returns the month-of-year that is the specified number of months after this one.
-     * &lt;p&gt;
+     *
      * The calculation rolls around the end of the year from December to January.
      * The specified period may be negative.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to add, positive or negative
      * @return {Month} the resulting month, not null
      */
     plus(months) {
-        var amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is &quot;corrected&quot; by the next % 12
-        var newMonthVal = MathUtil.intMod((this.value() + amount), 12);
+        const amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is &quot;corrected&quot; by the next % 12
+        let newMonthVal = MathUtil.intMod((this.value() + amount), 12);
         /* December is 12, not 0, but 12 % 12 = 0 */
         newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
         return Month.of(newMonthVal);
@@ -295,10 +299,10 @@ export class Month extends Temporal {
 
     /**
      * Returns the month-of-year that is the specified number of months before this one.
-     * &lt;p&gt;
+     *
      * The calculation rolls around the start of the year from January to December.
      * The specified period may be negative.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to subtract, positive or negative
@@ -310,9 +314,9 @@ export class Month extends Temporal {
 
     /**
      * Gets the length of this month in days.
-     * &lt;p&gt;
+     *
      * This takes a flag to determine whether to return the length for a leap year or not.
-     * &lt;p&gt;
+     *
      * February has 28 days in a standard year and 29 days in a leap year.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -336,7 +340,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the minimum length of this month in days.
-     * &lt;p&gt;
+     *
      * February has a minimum length of 28 days.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -359,7 +363,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the maximum length of this month in days.
-     * &lt;p&gt;
+     *
      * February has a maximum length of 29 days.
      * April, June, September and November have 30 days.
      * All other months have 31 days.
@@ -382,7 +386,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the day-of-year corresponding to the first day of this month.
-     * &lt;p&gt;
+     *
      * This returns the day-of-year that this month begins on, using the leap
      * year flag to determine the length of February.
      *
@@ -390,7 +394,7 @@ export class Month extends Temporal {
      * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
      */
     firstDayOfYear(leapYear) {
-        var leap = leapYear ? 1 : 0;
+        const leap = leapYear ? 1 : 0;
         switch (this) {
             case Month.JANUARY:
                 return 1;
@@ -422,7 +426,7 @@ export class Month extends Temporal {
 
     /**
      * Gets the month corresponding to the first month of this quarter.
-     * &lt;p&gt;
+     *
      * The year can be divided into four quarters.
      * This method returns the first month of the quarter for the base month.
      * January, February and March return January.
@@ -456,15 +460,15 @@ export class Month extends Temporal {
     
     /**
      * Queries this month-of-year using the specified query.
-     * &lt;p&gt;
+     *
      * This queries this month-of-year using the specified query strategy object.
-     * The {@code TemporalQuery} object defines the logic to be used to
+     * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * &lt;p&gt;
+     *
      * The result of this method is obtained by invoking the
-     * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-     * specified query passing {@code this} as the argument.
+     * {@link TemporalQuery#queryFrom} method on the
+     * specified query passing `this` as the argument.
      *
      * @param {TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
@@ -521,23 +525,23 @@ export class Month extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this month-of-year.
-     * &lt;p&gt;
+     *
      * This returns a temporal object of the same observable type as the input
      * with the month-of-year changed to be the same as this.
-     * &lt;p&gt;
-     * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+     *
+     * The adjustment is equivalent to using {@link Temporal#with}
      * passing {@link ChronoField#MONTH_OF_YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
-     * a {@code DateTimeException} is thrown.
-     * &lt;p&gt;
+     * a {@link DateTimeException} is thrown.
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
-     * {@link Temporal#with(TemporalAdjuster)}:
+     * {@link Temporal#with}:
      * &lt;pre&gt;
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisMonth.adjustInto(temporal);
      *   temporal = temporal.with(thisMonth);
      * &lt;/pre&gt;
-     * &lt;p&gt;
+     *
      * For example, given a date in May, the following are output:
      * &lt;pre&gt;
      *   dateInMay.with(JANUARY);    // four months earlier
@@ -546,7 +550,7 @@ export class Month extends Temporal {
      *   dateInMay.with(JUNE);       // one month later
      *   dateInMay.with(DECEMBER);   // seven months later
      * &lt;/pre&gt;
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -584,22 +588,22 @@ export class Month extends Temporal {
     }
     
     /**
-     * Obtains an instance of {@code Month} from a temporal object.
-     * &lt;p&gt;
+     * Obtains an instance of {@link Month} from a temporal object.
+     *
      * This obtains a month based on the specified temporal.
-     * A {@code TemporalAccessor} represents an arbitrary set of date and time information,
-     * which this factory converts to an instance of {@code Month}.
-     * &lt;p&gt;
-     * The conversion extracts the {@link ChronoField#MONTH_OF_YEAR MONTH_OF_YEAR} field.
+     * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
+     * which this factory converts to an instance of {@link Month}.
+     *
+     * The conversion extracts the MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) field.
      * The extraction is only permitted if the temporal object has an ISO
-     * chronology, or can be converted to a {@code LocalDate}.
-     * &lt;p&gt;
+     * chronology, or can be converted to a {@link LocalDate}.
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
-     * allowing it to be used in queries via method reference, {@code Month::from}.
+     * allowing it to be used in queries via method reference, {@link Month::from}.
      *
      * @param {TemporalAccessor} temporal  the temporal object to convert, not null
      * @return {Month} the month-of-year, not null
-     * @throws DateTimeException if unable to convert to a {@code Month}
+     * @throws DateTimeException if unable to convert to a {@link Month}
      */
     static from(temporal) {
         if (temporal instanceof Month) {
@@ -618,7 +622,7 @@ export class Month extends Temporal {
     }
 }
 
-var MONTHS;
+let MONTHS;
 
 export function _init() {
     Month.JANUARY = new Month(1);
@@ -644,7 +648,7 @@ export function _init() {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

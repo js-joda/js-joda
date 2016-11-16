@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -133,30 +136,25 @@
   
   
   <div class="description" data-ice="description"><p>A date-time without a time-zone in the ISO-8601 calendar system,
-such as {@code 2007-12-03T10:15:30}.</p>
-<p></p><p>
-<span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> is an immutable date-time object that represents a date-time,
+such as <code>2007-12-03T10:15:30</code>.</p>
+<p><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> is an immutable date-time object that represents a date-time,
 often viewed as year-month-day-hour-minute-second. Other date and time fields,
 such as day-of-year, day-of-week and week-of-year, can also be accessed.
 Time is represented to nanosecond precision.
 For example, the value &apos;2nd October 2007 at 13:45.30.123456789&apos; can be
 stored in a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.</p>
-<p></p><p>
-This class does not store or represent a time-zone.
+<p>This class does not store or represent a time-zone.
 Instead, it is a description of the date, as used for birthdays, combined with
 the local time as seen on a wall clock.
 It cannot represent an instant on the time-line without additional information
 such as an offset or time-zone.</p>
-<p></p><p>
-The ISO-8601 calendar system is the modern civil calendar system used today
+<p>The ISO-8601 calendar system is the modern civil calendar system used today
 in most of the world. It is equivalent to the proleptic Gregorian calendar
 system, in which today&apos;s rules for leap years are applied for all time.
 For most applications written today, the ISO-8601 rules are entirely suitable.
 However, any application that makes use of historical dates, and requires them
 to be accurate will find the ISO-8601 approach unsuitable.</p>
-<p></p><h3>Static properties of Class <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></h3>
-
-<p></p>
+<h3 id="static-properties-of-class-span-a-href-class-src-localtime-js-localtime-html-localtime-a-span-">Static properties of Class <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></h3>
 <p>LocalDateTime.MIN</p>
 <p>The minimum supported <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, &apos;-999999999-01-01T00:00:00&apos;.
 This is the local date-time of midnight at the start of the minimum date.
@@ -549,7 +547,7 @@ day, hour, minute, second and nanosecond.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-dayOfWeek">dayOfWeek</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+           <span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-dayOfWeek">dayOfWeek</a></span></span><span data-ice="signature">(): <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
         </p>
       </div>
       <div>
@@ -633,7 +631,7 @@ day, hour, minute, second and nanosecond.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> using the formatter.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -659,7 +657,7 @@ day, hour, minute, second and nanosecond.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <span>int</span>.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -685,7 +683,7 @@ day, hour, minute, second and nanosecond.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <span>long</span>.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <code>long</code>.</p>
 </div>
       </div>
     </td>
@@ -1698,7 +1696,7 @@ day, hour, minute, second and nanosecond.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, such as {@code 2007-12-03T10:15:30}.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string, such as <code>2007-12-03T10:15:30</code>.</p>
 </div>
       </div>
     </td>
@@ -2097,7 +2095,7 @@ terms of the specified unit.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -2285,7 +2283,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
+        <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
       </div>
     </td>
@@ -2312,7 +2310,7 @@ of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber262">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber261">source</a></span></span>
     </span>
   </h3>
 
@@ -2320,14 +2318,11 @@ of 1970-01-01T00:00:00Z.</p>
   
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> from a temporal object.</p>
-<p></p><p>
-A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
+<p>A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
 This factory converts the arbitrary temporal object to an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.</p>
-<p></p><p>
-The conversion extracts and combines <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>.</p>
-<p></p><p>
-This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
-allowing it to be used as a query via method reference, {@code LocalDateTime::from}.</p>
+<p>The conversion extracts and combines <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>.</p>
+<p>This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
+allowing it to be used as a query via method reference, <span>LocalDateTime::from</span>.</p>
 </div>
 
   
@@ -2409,17 +2404,13 @@ allowing it to be used as a query via method reference, {@code LocalDateTime::fr
   
   
   <div data-ice="description"><p>Obtains the current date-time from from the specified clock or the system clock in the specified time-zone.</p>
-<p></p><p>
-If the argument is an instance of Clock this will query the specified clock to obtain the current date-time.
+<p>If the argument is an instance of Clock this will query the specified clock to obtain the current date-time.
 Using this method allows the use of an alternate clock for testing.
-The alternate clock may be introduced using {@link Clock dependency injection}.</p>
-<p></p><p>
-If the argument is an instance of ZoneId this will query the {@link Clock#system(ZoneId) system clock} to obtain the current date-time.
+The alternate clock may be introduced using dependency injection.</p>
+<p>If the argument is an instance of ZoneId this will query the system clock (see <span>Clock#system</span>) to obtain the current date-time.
 Specifying the time-zone avoids dependence on the default time-zone.</p>
-<p></p><p>
-If nor argument is applied, the system default time zone is used to obtain the current date-time.    </p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>If nor argument is applied, the system default time zone is used to obtain the current date-time.</p>
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -2612,7 +2603,7 @@ instance of LocalTime, then <span><a href="class/src/LocalDateTime.js~LocalDateT
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber232">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber231">source</a></span></span>
     </span>
   </h3>
 
@@ -2621,8 +2612,7 @@ instance of LocalTime, then <span><a href="class/src/LocalDateTime.js~LocalDateT
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> using seconds from the
 epoch of 1970-01-01T00:00:00Z.</p>
-<p></p><p>
-This allows the <span>ChronoField.INSTANT_SECONDS</span> epoch-second field
+<p>This allows the <span>ChronoField.INSTANT_SECONDS</span> epoch-second field
 to be converted to a local date-time. This is primarily intended for
 low-level conversions rather than general application usage.</p>
 </div>
@@ -2720,8 +2710,7 @@ low-level conversions rather than general application usage.</p>
   
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> from an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> and zone ID.</p>
-<p></p><p>
-This creates a local date-time based on the specified instant.
+<p>This creates a local date-time based on the specified instant.
 First, the offset from UTC/Greenwich is obtained using the zone ID and instant,
 which is simple as there is only one valid offset for each instant.
 Then, the instant and offset are used to calculate the local date-time.</p>
@@ -2816,8 +2805,7 @@ Then, the instant and offset are used to calculate the local date-time.</p>
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> from year, month,
 day, hour, minute, second and nanosecond.</p>
-<p></p><p>
-The day must be valid for the year and month, otherwise an exception will be thrown.</p>
+<p>The day must be valid for the year and month, otherwise an exception will be thrown.</p>
 </div>
 
   
@@ -2945,7 +2933,7 @@ The day must be valid for the year and month, otherwise an exception will be thr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber290">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber289">source</a></span></span>
     </span>
   </h3>
 
@@ -2953,8 +2941,7 @@ The day must be valid for the year and month, otherwise an exception will be thr
   
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> from a text string using a specific formatter.</p>
-<p></p><p>
-The text is parsed using the formatter, returning a date-time.</p>
+<p>The text is parsed using the formatter, returning a date-time.</p>
 </div>
 
   
@@ -3040,7 +3027,7 @@ defaults to DateTimeFormatter.ISO_LOCAL_DATE_TIME</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber302">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber301">source</a></span></span>
     </span>
   </h3>
 
@@ -3109,7 +3096,7 @@ defaults to DateTimeFormatter.ISO_LOCAL_DATE_TIME</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1361">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1355">source</a></span></span>
     </span>
   </h3>
 
@@ -3117,23 +3104,21 @@ defaults to DateTimeFormatter.ISO_LOCAL_DATE_TIME</p>
   
   
   <div data-ice="description"><p>Adjusts the specified temporal object to have the same date and time as this object.</p>
-<p></p><p>
-This returns a temporal object of the same observable type as the input
+<p>This returns a temporal object of the same observable type as the input
 with the date and time changed to be the same as this.</p>
-<p></p><p>
-The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+<p>The adjustment is equivalent to using <span>Temporal#with</span>
 twice, passing <span>ChronoField#EPOCH_DAY</span> and
 <span>ChronoField#NANO_OF_DAY</span> as the fields.</p>
-<p></p><p>
-In most cases, it is clearer to reverse the calling pattern by using
-{@link Temporal#with(TemporalAdjuster)}:</p>
+<p>In most cases, it is clearer to reverse the calling pattern by using
+<span>Temporal#with</span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisLocalDateTime.adjustInto(temporal);
   temporal = temporal.with(thisLocalDateTime);
-</pre></p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+</pre>
+
+</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-adjustInto">ChronoLocalDateTime#adjustInto</a></span></div>
@@ -3212,7 +3197,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1508">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1502">source</a></span></span>
     </span>
   </h3>
 
@@ -3220,29 +3205,24 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Combines this date-time with a time-zone to create a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>.</p>
-<p></p><p>
-This returns a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> formed from this date-time at the
+<p>This returns a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> formed from this date-time at the
 specified time-zone. The result will match this date-time as closely as possible.
 Time-zone rules, such as daylight savings, mean that not every local date-time
 is valid for the specified zone, thus the local date-time may be adjusted.</p>
-<p></p><p>
-The local date-time is resolved to a single instant on the time-line.
+<p>The local date-time is resolved to a single instant on the time-line.
 This is achieved by finding a valid offset from UTC/Greenwich for the local
-date-time as defined by the {@link ZoneRules rules} of the zone ID.</p>
-<p></p><p>
-In most cases, there is only one valid offset for a local date-time.
+date-time as defined by the <span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span> of the zone ID.</p>
+<p>In most cases, there is only one valid offset for a local date-time.
 In the case of an overlap, where clocks are set back, there are two valid offsets.
 This method uses the earlier offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-In the case of a gap, where clocks jump forward, there is no valid offset.
+<p>In the case of a gap, where clocks jump forward, there is no valid offset.
 Instead, the local date-time is adjusted to be later by the length of the gap.
 For a typical one hour daylight savings change, the local date-time will be
 moved one hour later into the offset typically corresponding to &apos;summer&apos;.</p>
-<p></p><p>
-To obtain the later offset during an overlap, call
-{@link ZonedDateTime#withLaterOffsetAtOverlap()} on the result of this method.
+<p>To obtain the later offset during an overlap, call
+<span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap">ZonedDateTime#withLaterOffsetAtOverlap</a></span> on the result of this method.
 To throw an exception when there is a gap or overlap, use
-{@link ZonedDateTime#ofStrict(LocalDateTime, ZoneOffset, ZoneId)}.</p>
+<span>ZonedDateTime#ofStrict</span>.</p>
 </div>
 
   
@@ -3304,7 +3284,7 @@ To throw an exception when there is a gap or overlap, use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1552">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1546">source</a></span></span>
     </span>
   </h3>
 
@@ -3312,11 +3292,9 @@ To throw an exception when there is a gap or overlap, use
   
   
   <div data-ice="description"><p>Compares this date-time to another date-time.</p>
-<p></p><p>
-The comparison is primarily based on the date-time, from earliest to latest.
+<p>The comparison is primarily based on the date-time, from earliest to latest.
 It is &apos;consistent with equals&apos;, as defined by <span>Comparable</span>.</p>
-<p></p><p>
-If all the date-times being compared are instances of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>,
+<p>If all the date-times being compared are instances of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>,
 then the comparison will be entirely based on the date-time.
 If some dates being compared are in different chronologies, then the
 chronology is also considered, see <span>ChronoLocalDateTime#compareTo</span>.</p>
@@ -3381,7 +3359,7 @@ chronology is also considered, see <span>ChronoLocalDateTime#compareTo</span>.</
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber526">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber525">source</a></span></span>
     </span>
   </h3>
 
@@ -3389,8 +3367,7 @@ chronology is also considered, see <span>ChronoLocalDateTime#compareTo</span>.</
   
   
   <div data-ice="description"><p>Gets the day-of-month field.</p>
-<p></p><p>
-This method returns the primitive <span>int</span> value for the day-of-month.</p>
+<p>This method returns the primitive <code>int</code> value for the day-of-month.</p>
 </div>
 
   
@@ -3431,11 +3408,11 @@ This method returns the primitive <span>int</span> value for the day-of-month.</
     
     
     
-    <span data-ice="name">dayOfWeek</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span data-ice="name">dayOfWeek</span><span data-ice="signature">(): <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber554">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber553">source</a></span></span>
     </span>
   </h3>
 
@@ -3443,13 +3420,11 @@ This method returns the primitive <span>int</span> value for the day-of-month.</
   
   
   <div data-ice="description"><p>Gets the day-of-week field, which is an enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.</p>
-<p></p><p>
-This method returns the enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> for the day-of-week.
-This avoids confusion as to what <span>int</span> values mean.
-If you need access to the primitive <span>int</span> value then the enum
-provides the {@link DayOfWeek#getValue() int value}.</p>
-<p></p><p>
-Additional information can be obtained from the <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.
+<p>This method returns the enum <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span> for the day-of-week.
+This avoids confusion as to what <code>int</code> values mean.
+If you need access to the primitive <code>int</code> value, use
+<span>DayOfWeek#getValue</span>.</p>
+<p>Additional information can be obtained from the <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>.
 This includes textual names of the values.</p>
 </div>
 
@@ -3462,7 +3437,7 @@ This includes textual names of the values.</p>
     <h4>Return:</h4>
     <table>
       <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></td>
         <td class="return-desc" data-ice="returnDescription"><p>the day-of-week, not null</p>
 </td>
       </tr>
@@ -3495,7 +3470,7 @@ This includes textual names of the values.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber537">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber536">source</a></span></span>
     </span>
   </h3>
 
@@ -3503,8 +3478,7 @@ This includes textual names of the values.</p>
   
   
   <div data-ice="description"><p>Gets the day-of-year field.</p>
-<p></p><p>
-This method returns the primitive <span>int</span> value for the day-of-year.</p>
+<p>This method returns the primitive <code>int</code> value for the day-of-year.</p>
 </div>
 
   
@@ -3549,7 +3523,7 @@ This method returns the primitive <span>int</span> value for the day-of-year.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1682">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1655">source</a></span></span>
     </span>
   </h3>
 
@@ -3557,8 +3531,7 @@ This method returns the primitive <span>int</span> value for the day-of-year.</p
   
   
   <div data-ice="description"><p>Checks if this date-time is equal to another date-time.</p>
-<p></p><p>
-Compares this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with another ensuring that the date-time is the same.
+<p>Compares this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with another ensuring that the date-time is the same.
 Only objects of type <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> are compared, other types return false.</p>
 </div>
 
@@ -3621,17 +3594,14 @@ Only objects of type <span><a href="class/src/LocalDateTime.js~LocalDateTime.htm
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1740">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1710">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this date-time as a <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span> using the formatter.</p>
-<p></p><p>
-This date-time will be passed to the formatter
-{@link DateTimeFormatter#format(TemporalAccessor) print method}.</p>
+  <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
 
   
@@ -3705,30 +3675,27 @@ This date-time will be passed to the formatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber438">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber437">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <span>int</span>.</p>
-<p></p><p>
-This queries this date-time for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this date-time as an <code>int</code>.</p>
+<p>This queries this date-time for the value for the specified field.
 The returned value will always be within the valid range of values for the field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time, except <span>NANO_OF_DAY</span>, <span>MICRO_OF_DAY</span>,
 <span>EPOCH_DAY</span> and <span>EPOCH_MONTH</span> which are too large to fit in
-an <span>int</span> and throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.
+an <code>int</code> and throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
-<p></p><p>
-If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing <span>this</span> as the argument. Whether the value can be obtained,
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -3808,27 +3775,24 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber467">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber466">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <span>long</span>.</p>
-<p></p><p>
-This queries this date-time for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this date-time as a <code>long</code>.</p>
+<p>This queries this date-time for the value for the specified field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
-<p></p><p>
-If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing <span>this</span> as the argument. Whether the value can be obtained,
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -3908,7 +3872,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1697">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1670">source</a></span></span>
     </span>
   </h3>
 
@@ -3960,7 +3924,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber564">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber563">source</a></span></span>
     </span>
   </h3>
 
@@ -4012,7 +3976,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1599">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1588">source</a></span></span>
     </span>
   </h3>
 
@@ -4020,8 +3984,7 @@ and what the value represents, is determined by the field.</p>
   
   
   <div data-ice="description"><p>Checks if this date-time is after the specified date-time.</p>
-<p></p><p>
-This checks to see if this date-time represents a point on the
+<p>This checks to see if this date-time represents a point on the
 local time-line after the other date-time.</p>
 <p><pre>
   LocalDate a = LocalDateTime.of(2012, 6, 30, 12, 00);
@@ -4029,12 +3992,13 @@ local time-line after the other date-time.</p>
   a.isAfter(b) == false
   a.isAfter(a) == false
   b.isAfter(a) == true
-</pre></p>
-<p></p><p>
-This method only considers the position of the two date-times on the local time-line.
+</pre>
+
+</p>
+<p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
-but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
+This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
   
@@ -4096,7 +4060,7 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1632">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1614">source</a></span></span>
     </span>
   </h3>
 
@@ -4104,8 +4068,7 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
   
   
   <div data-ice="description"><p>Checks if this date-time is before the specified date-time.</p>
-<p></p><p>
-This checks to see if this date-time represents a point on the
+<p>This checks to see if this date-time represents a point on the
 local time-line before the other date-time.</p>
 <p><pre>
   LocalDate a = LocalDateTime.of(2012, 6, 30, 12, 00);
@@ -4113,12 +4076,13 @@ local time-line before the other date-time.</p>
   a.isBefore(b) == true
   a.isBefore(a) == false
   b.isBefore(a) == false
-</pre></p>
-<p></p><p>
-This method only considers the position of the two date-times on the local time-line.
+</pre>
+
+</p>
+<p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
-but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
+This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
   
@@ -4180,7 +4144,7 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1665">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1640">source</a></span></span>
     </span>
   </h3>
 
@@ -4188,8 +4152,7 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
   
   
   <div data-ice="description"><p>Checks if this date-time is equal to the specified date-time.</p>
-<p></p><p>
-This checks to see if this date-time represents the same point on the
+<p>This checks to see if this date-time represents the same point on the
 local time-line as the other date-time.</p>
 <p><pre>
   LocalDate a = LocalDateTime.of(2012, 6, 30, 12, 00);
@@ -4197,12 +4160,13 @@ local time-line as the other date-time.</p>
   a.isEqual(b) == false
   a.isEqual(a) == true
   b.isEqual(a) == false
-</pre></p>
-<p></p><p>
-This method only considers the position of the two date-times on the local time-line.
+</pre>
+
+</p>
+<p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in {@link #compareTo(ChronoLocalDateTime)},
-but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
+This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
   
@@ -4264,7 +4228,7 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber375">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber374">source</a></span></span>
     </span>
   </h3>
 
@@ -4272,48 +4236,45 @@ but is the same approach as <span>#DATE_TIME_COMPARATOR</span>.</p>
   
   
   <div data-ice="description"><p>Checks if the specified field is supported.</p>
-<p></p><p>
-This checks if this date-time can be queried for the specified field.
+<p>This checks if this date-time can be queried for the specified field.
 If false, then calling the <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-range">LocalDateTime.range</a></span> range and
 <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-method-get">LocalDateTime.get</a></span> get methods will throw an exception.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
 The supported fields are:</p>
-<p><ul></ul></p>
-<p><li><span>ChronoField.NANO_OF_SECOND</span></li></p>
-<p><li><span>ChronoField.NANO_OF_DAY</span></li></p>
-<p><li><span>ChronoField.MICRO_OF_SECOND</span></li></p>
-<p><li><span>ChronoField.MICRO_OF_DAY</span></li></p>
-<p><li><span>ChronoField.MILLI_OF_SECOND</span></li></p>
-<p><li><span>ChronoField.MILLI_OF_DAY</span></li></p>
-<p><li><span>ChronoField.SECOND_OF_MINUTE</span></li></p>
-<p><li><span>ChronoField.SECOND_OF_DAY</span></li></p>
-<p><li><span>ChronoField.MINUTE_OF_HOUR</span></li></p>
-<p><li><span>ChronoField.MINUTE_OF_DAY</span></li></p>
-<p><li><span>ChronoField.HOUR_OF_AMPM</span></li></p>
-<p><li><span>ChronoField.CLOCK_HOUR_OF_AMPM</span></li></p>
-<p><li><span>ChronoField.HOUR_OF_DAY</span></li></p>
-<p><li><span>ChronoField.CLOCK_HOUR_OF_DAY</span></li></p>
-<p><li><span>ChronoField.AMPM_OF_DAY</span></li></p>
-<p><li><span>ChronoField.DAY_OF_WEEK</span></li></p>
-<p><li><span>ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH</span></li></p>
-<p><li><span>ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR</span></li></p>
-<p><li><span>ChronoField.DAY_OF_MONTH</span></li></p>
-<p><li><span>ChronoField.DAY_OF_YEAR</span></li></p>
-<p><li><span>ChronoField.EPOCH_DAY</span></li></p>
-<p><li><span>ChronoField.ALIGNED_WEEK_OF_MONTH</span></li></p>
-<p><li><span>ChronoField.ALIGNED_WEEK_OF_YEAR</span></li></p>
-<p><li><span>ChronoField.MONTH_OF_YEAR</span></li></p>
-<p><li><span>ChronoField.EPOCH_MONTH</span></li></p>
-<p><li><span>ChronoField.YEAR_OF_ERA</span></li></p>
-<p><li><span>ChronoField.YEAR</span></li></p>
-<p><li><span>ChronoField.ERA</span>
-
-All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</li></p>
-<p></p><p>
-If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+<ul>
+<li><span>ChronoField.NANO_OF_SECOND</span></li>
+<li><span>ChronoField.NANO_OF_DAY</span></li>
+<li><span>ChronoField.MICRO_OF_SECOND</span></li>
+<li><span>ChronoField.MICRO_OF_DAY</span></li>
+<li><span>ChronoField.MILLI_OF_SECOND</span></li>
+<li><span>ChronoField.MILLI_OF_DAY</span></li>
+<li><span>ChronoField.SECOND_OF_MINUTE</span></li>
+<li><span>ChronoField.SECOND_OF_DAY</span></li>
+<li><span>ChronoField.MINUTE_OF_HOUR</span></li>
+<li><span>ChronoField.MINUTE_OF_DAY</span></li>
+<li><span>ChronoField.HOUR_OF_AMPM</span></li>
+<li><span>ChronoField.CLOCK_HOUR_OF_AMPM</span></li>
+<li><span>ChronoField.HOUR_OF_DAY</span></li>
+<li><span>ChronoField.CLOCK_HOUR_OF_DAY</span></li>
+<li><span>ChronoField.AMPM_OF_DAY</span></li>
+<li><span>ChronoField.DAY_OF_WEEK</span></li>
+<li><span>ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH</span></li>
+<li><span>ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR</span></li>
+<li><span>ChronoField.DAY_OF_MONTH</span></li>
+<li><span>ChronoField.DAY_OF_YEAR</span></li>
+<li><span>ChronoField.EPOCH_DAY</span></li>
+<li><span>ChronoField.ALIGNED_WEEK_OF_MONTH</span></li>
+<li><span>ChronoField.ALIGNED_WEEK_OF_YEAR</span></li>
+<li><span>ChronoField.MONTH_OF_YEAR</span></li>
+<li><span>ChronoField.EPOCH_MONTH</span></li>
+<li><span>ChronoField.YEAR_OF_ERA</span></li>
+<li><span>ChronoField.YEAR</span></li>
+<li><span>ChronoField.ERA</span></li>
+</ul>
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
 is obtained by invoking <span>TemporalField.isSupportedBy</span>
-passing <span>this</span> as the argument.
+passing <code>this</code> as the argument.
 Whether the field is supported is determined by the field.</p>
 </div>
 
@@ -4376,7 +4337,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1085">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1081">source</a></span></span>
     </span>
   </h3>
 
@@ -4451,7 +4412,7 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1129">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1125">source</a></span></span>
     </span>
   </h3>
 
@@ -4459,13 +4420,11 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period subtracted.</p>
-<p></p><p>
-This method returns a new date-time based on this date-time with the specified period subtracted.
+<p>This method returns a new date-time based on this date-time with the specified period subtracted.
 This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
 The unit is responsible for the details of the calculation, including the resolution
 of any edge cases in the calculation.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4546,7 +4505,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1217">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1211">source</a></span></span>
     </span>
   </h3>
 
@@ -4554,14 +4513,11 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in days subtracted.</p>
-<p></p><p>
-This method subtracts the specified amount from the days field incrementing the
+<p>This method subtracts the specified amount from the days field incrementing the
 month and year fields as necessary to ensure the result remains valid.
 The result is only invalid if the maximum/minimum year is exceeded.</p>
-<p></p><p>
-For example, 2009-01-01 minus one day would result in 2008-12-31.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>For example, 2009-01-01 minus one day would result in 2008-12-31.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4635,7 +4591,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1231">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1225">source</a></span></span>
     </span>
   </h3>
 
@@ -4643,8 +4599,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in hours subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4718,7 +4673,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1244">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1238">source</a></span></span>
     </span>
   </h3>
 
@@ -4726,8 +4681,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in minutes subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4801,7 +4755,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1179">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1173">source</a></span></span>
     </span>
   </h3>
 
@@ -4809,19 +4763,16 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in months subtracted.</p>
-<p></p><p>
-This method subtracts the specified amount from the months field in three steps:</p>
-<p><ol></ol></p>
-<p><li>Subtract the input months from the month-of-year field</li></p>
-<p><li>Check if the resulting date would be invalid</li></p>
-<p><li>Adjust the day-of-month to the last valid day if necessary</li>
-</p>
-<p></p><p>
-For example, 2007-03-31 minus one month would result in the invalid date
+<p>This method subtracts the specified amount from the months field in three steps:</p>
+<ol>
+<li>Subtract the input months from the month-of-year field</li>
+<li>Check if the resulting date would be invalid</li>
+<li>Adjust the day-of-month to the last valid day if necessary</li>
+</ol>
+<p>For example, 2007-03-31 minus one month would result in the invalid date
 2007-04-31. Instead of returning an invalid result, the last valid day
 of the month, 2007-04-30, is selected instead.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4895,7 +4846,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1270">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1264">source</a></span></span>
     </span>
   </h3>
 
@@ -4903,8 +4854,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in nanoseconds subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4978,7 +4928,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1257">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1251">source</a></span></span>
     </span>
   </h3>
 
@@ -4986,8 +4936,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in seconds subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5061,7 +5010,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1109">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1105">source</a></span></span>
     </span>
   </h3>
 
@@ -5069,14 +5018,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period subtracted.</p>
-<p></p><p>
-This method returns a new date-time based on this time with the specified period subtracted.
+<p>This method returns a new date-time based on this time with the specified period subtracted.
 The amount is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #minus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-minus">minus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5155,7 +5102,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1198">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1192">source</a></span></span>
     </span>
   </h3>
 
@@ -5163,14 +5110,11 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in weeks subtracted.</p>
-<p></p><p>
-This method subtracts the specified amount in weeks from the days field decrementing
+<p>This method subtracts the specified amount in weeks from the days field decrementing
 the month and year fields as necessary to ensure the result remains valid.
 The result is only invalid if the maximum/minimum year is exceeded.</p>
-<p></p><p>
-For example, 2009-01-07 minus one week would result in 2008-12-31.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>For example, 2009-01-07 minus one week would result in 2008-12-31.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5244,7 +5188,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1155">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1150">source</a></span></span>
     </span>
   </h3>
 
@@ -5252,19 +5196,16 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in years subtracted.</p>
-<p></p><p>
-This method subtracts the specified amount from the years field in three steps:</p>
-<p><ol></ol></p>
-<p><li>Subtract the input years from the year field</li></p>
-<p><li>Check if the resulting date would be invalid</li></p>
-<p><li>Adjust the day-of-month to the last valid day if necessary</li>
-</p>
-<p></p><p>
-For example, 2008-02-29 (leap year) minus one year would result in the
+<p>This method subtracts the specified amount from the years field in three steps:</p>
+<ol>
+<li>Subtract the input years from the year field</li>
+<li>Check if the resulting date would be invalid</li>
+<li>Adjust the day-of-month to the last valid day if necessary</li>
+</ol>
+<p>For example, 2008-02-29 (leap year) minus one year would result in the
 invalid date 2009-02-29 (standard year). Instead of returning an invalid
 result, the last valid day of the month, 2009-02-28, is selected instead.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5338,7 +5279,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber573">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber572">source</a></span></span>
     </span>
   </h3>
 
@@ -5390,7 +5331,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber515">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber514">source</a></span></span>
     </span>
   </h3>
 
@@ -5398,11 +5339,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the month-of-year field using the <span><a href="class/src/Month.js~Month.html">Month</a></span> enum.</p>
-<p></p><p>
-This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
-This avoids confusion as to what <span>int</span> values mean.
-If you need access to the primitive <span>int</span> value then the enum
-provides the {@link Month#getValue() int value}.</p>
+<p>This method returns the enum <span><a href="class/src/Month.js~Month.html">Month</a></span> for the month.
+This avoids confusion as to what <code>int</code> values mean.
+If you need access to the primitive <code>int</code> value, use
+<span>Month#getValue</span>.</p>
 </div>
 
   
@@ -5447,7 +5387,7 @@ provides the {@link Month#getValue() int value}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber500">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber499">source</a></span></span>
     </span>
   </h3>
 
@@ -5455,10 +5395,9 @@ provides the {@link Month#getValue() int value}.</p>
   
   
   <div data-ice="description"><p>Gets the month-of-year field from 1 to 12.</p>
-<p></p><p>
-This method returns the month as an <span>int</span> from 1 to 12.
+<p>This method returns the month as an <code>int</code> from 1 to 12.
 Application code is frequently clearer if the enum <span><a href="class/src/Month.js~Month.html">Month</a></span>
-is used by calling {@link #getMonth()}.</p>
+is used by calling <span>getMonth</span>.</p>
 </div>
 
   
@@ -5503,7 +5442,7 @@ is used by calling {@link #getMonth()}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber591">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber590">source</a></span></span>
     </span>
   </h3>
 
@@ -5555,7 +5494,7 @@ is used by calling {@link #getMonth()}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber869">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber867">source</a></span></span>
     </span>
   </h3>
 
@@ -5630,7 +5569,7 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber913">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber911">source</a></span></span>
     </span>
   </h3>
 
@@ -5638,13 +5577,11 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period added.</p>
-<p></p><p>
-This method returns a new date-time based on this date-time with the specified period added.
+<p>This method returns a new date-time based on this date-time with the specified period added.
 This can be used to add any period that is defined by a unit, for example to add years, months or days.
 The unit is responsible for the details of the calculation, including the resolution
 of any edge cases in the calculation.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5725,7 +5662,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1016">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1012">source</a></span></span>
     </span>
   </h3>
 
@@ -5733,14 +5670,11 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in days added.</p>
-<p></p><p>
-This method adds the specified amount to the days field incrementing the
+<p>This method adds the specified amount to the days field incrementing the
 month and year fields as necessary to ensure the result remains valid.
 The result is only invalid if the maximum/minimum year is exceeded.</p>
-<p></p><p>
-For example, 2008-12-31 plus one day would result in 2009-01-01.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>For example, 2008-12-31 plus one day would result in 2009-01-01.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5814,7 +5748,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1031">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1027">source</a></span></span>
     </span>
   </h3>
 
@@ -5822,8 +5756,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in hours added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5897,7 +5830,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1044">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1040">source</a></span></span>
     </span>
   </h3>
 
@@ -5905,8 +5838,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in minutes added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -5980,7 +5912,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber976">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber972">source</a></span></span>
     </span>
   </h3>
 
@@ -5988,19 +5920,16 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in months added.</p>
-<p></p><p>
-This method adds the specified amount to the months field in three steps:</p>
-<p><ol></ol></p>
-<p><li>Add the input months to the month-of-year field</li></p>
-<p><li>Check if the resulting date would be invalid</li></p>
-<p><li>Adjust the day-of-month to the last valid day if necessary</li>
-</p>
-<p></p><p>
-For example, 2007-03-31 plus one month would result in the invalid date
+<p>This method adds the specified amount to the months field in three steps:</p>
+<ol>
+<li>Add the input months to the month-of-year field</li>
+<li>Check if the resulting date would be invalid</li>
+<li>Adjust the day-of-month to the last valid day if necessary</li>
+</ol>
+<p>For example, 2007-03-31 plus one month would result in the invalid date
 2007-04-31. Instead of returning an invalid result, the last valid day
 of the month, 2007-04-30, is selected instead.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6074,7 +6003,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1070">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1066">source</a></span></span>
     </span>
   </h3>
 
@@ -6082,8 +6011,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in nanoseconds added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6157,7 +6085,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1057">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1053">source</a></span></span>
     </span>
   </h3>
 
@@ -6165,8 +6093,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in seconds added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6240,7 +6167,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber893">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber891">source</a></span></span>
     </span>
   </h3>
 
@@ -6248,14 +6175,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified period added.</p>
-<p></p><p>
-This method returns a new date-time based on this time with the specified period added.
+<p>This method returns a new date-time based on this time with the specified period added.
 The amount is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #plus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6334,7 +6259,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber996">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber992">source</a></span></span>
     </span>
   </h3>
 
@@ -6342,14 +6267,11 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in weeks added.</p>
-<p></p><p>
-This method adds the specified amount in weeks to the days field incrementing
+<p>This method adds the specified amount in weeks to the days field incrementing
 the month and year fields as necessary to ensure the result remains valid.
 The result is only invalid if the maximum/minimum year is exceeded.</p>
-<p></p><p>
-For example, 2008-12-31 plus one week would result in 2009-01-07.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>For example, 2008-12-31 plus one week would result in 2009-01-07.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6423,7 +6345,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber951">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber948">source</a></span></span>
     </span>
   </h3>
 
@@ -6431,19 +6353,16 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the specified period in years added.</p>
-<p></p><p>
-This method adds the specified amount to the years field in three steps:</p>
-<p><ol></ol></p>
-<p><li>Add the input years to the year field</li></p>
-<p><li>Check if the resulting date would be invalid</li></p>
-<p><li>Adjust the day-of-month to the last valid day if necessary</li>
-</p>
-<p></p><p>
-For example, 2008-02-29 (leap year) plus one year would result in the
+<p>This method adds the specified amount to the years field in three steps:</p>
+<ol>
+<li>Add the input years to the year field</li>
+<li>Check if the resulting date would be invalid</li>
+<li>Adjust the day-of-month to the last valid day if necessary</li>
+</ol>
+<p>For example, 2008-02-29 (leap year) plus one year would result in the
 invalid date 2009-02-29 (standard year). Instead of returning an invalid
 result, the last valid day of the month, 2009-02-28, is selected instead.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -6517,7 +6436,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1328">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1322">source</a></span></span>
     </span>
   </h3>
 
@@ -6525,15 +6444,13 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Queries this date-time using the specified query.</p>
-<p></p><p>
-This queries this date-time using the specified query strategy object.
+<p>This queries this date-time using the specified query strategy object.
 The <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> object defines the logic to be used to
 obtain the result. Read the documentation of the query to understand
 what the result of this method will be.</p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-specified query passing <span>this</span> as the argument.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html#instance-method-queryFrom">TemporalQuery#queryFrom</a></span> method on the
+specified query passing <code>this</code> as the argument.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-query">ChronoLocalDateTime#query</a></span></div>
@@ -6612,7 +6529,7 @@ specified query passing <span>this</span> as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber406">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber405">source</a></span></span>
     </span>
   </h3>
 
@@ -6620,20 +6537,17 @@ specified query passing <span>this</span> as the argument.</p>
   
   
   <div data-ice="description"><p>Gets the range of valid values for the specified field.</p>
-<p></p><p>
-The range object expresses the minimum and maximum valid values for a field.
+<p>The range object expresses the minimum and maximum valid values for a field.
 This date-time is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
-<p></p><p>
-If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
-is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-passing <span>this</span> as the argument.
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.rangeRefinedBy</span>
+passing <code>this</code> as the argument.
 Whether the range can be obtained is determined by the field.</p>
 </div>
 
@@ -6708,7 +6622,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber582">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber581">source</a></span></span>
     </span>
   </h3>
 
@@ -6760,7 +6674,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1726">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1699">source</a></span></span>
     </span>
   </h3>
 
@@ -6811,7 +6725,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1521">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1515">source</a></span></span>
     </span>
   </h3>
 
@@ -6819,8 +6733,7 @@ Whether the range can be obtained is determined by the field.</p>
   
   
   <div data-ice="description"><p>Gets the <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> part of this date-time.</p>
-<p></p><p>
-This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> with the same year, month and day
+<p>This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> with the same year, month and day
 as this date-time.</p>
 </div>
 
@@ -6866,7 +6779,7 @@ as this date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1533">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1527">source</a></span></span>
     </span>
   </h3>
 
@@ -6874,8 +6787,7 @@ as this date-time.</p>
   
   
   <div data-ice="description"><p>Gets the <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> part of this date-time.</p>
-<p></p><p>
-This returns a <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> with the same hour, minute, second and
+<p>This returns a <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> with the same hour, minute, second and
 nanosecond as this date-time.</p>
 </div>
 
@@ -6921,24 +6833,23 @@ nanosecond as this date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1718">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1691">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this date-time as a <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, such as {@code 2007-12-03T10:15:30}.</p>
-<p></p><p>
-The output will be one of the following ISO-8601 formats:</p>
-<p></p><p><ul>
-<li>{@code yyyy-MM-dd&apos;T&apos;HH:mm}</li>
-<li>{@code yyyy-MM-dd&apos;T&apos;HH:mm:ss}</li>
-<li>{@code yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSS}</li>
-<li>{@code yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSS}</li>
-<li>{@code yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSSSSS}</li>
-</ul></p><p>
-The format used will be the shortest that outputs the full value of
+  <div data-ice="description"><p>Outputs this date-time as a string, such as <code>2007-12-03T10:15:30</code>.</p>
+<p>The output will be one of the following ISO-8601 formats:</p>
+<ul>
+<li><code>yyyy-MM-dd&apos;T&apos;HH:mm</code></li>
+<li><code>yyyy-MM-dd&apos;T&apos;HH:mm:ss</code></li>
+<li><code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSS</code></li>
+<li><code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSS</code></li>
+<li><code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSSSSS</code></li>
+</ul>
+<p>The format used will be the shortest that outputs the full value of
 the time where the omitted parts are implied to be zero.</p>
 </div>
 
@@ -6984,7 +6895,7 @@ the time where the omitted parts are implied to be zero.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber854">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber852">source</a></span></span>
     </span>
   </h3>
 
@@ -6992,18 +6903,15 @@ the time where the omitted parts are implied to be zero.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the time truncated.</p>
-<p></p><p>
-Truncation returns a copy of the original date-time with fields
+<p>Truncation returns a copy of the original date-time with fields
 smaller than the specified unit set to zero.
-For example, truncating with the {@link ChronoUnit#MINUTES minutes} unit
+For example, truncating with <span>ChronoUnit#MINUTES</span>
 will set the second-of-minute and nano-of-second field to zero.</p>
-<p></p><p>
-The unit must have a {@linkplain TemporalUnit#getDuration() duration}
+<p>The unit must have a duration (see <span>TemporalUnit#getDuration</span>)
 that divides into the length of a standard day without remainder.
 This includes all supplied time units on <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> and
-{@link ChronoUnit#DAYS DAYS}. Other units throw an exception.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<span>ChronoUnit#DAYS</span>. Other units throw an exception.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7077,7 +6985,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1410">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber1404">source</a></span></span>
     </span>
   </h3>
 
@@ -7086,41 +6994,37 @@ This instance is immutable and unaffected by this method call.</p>
   
   <div data-ice="description"><p>Calculates the period between this date-time and another date-time in
 terms of the specified unit.</p>
-<p></p><p>
-This calculates the period between two date-times in terms of a single unit.
-The start and end points are <span>this</span> and the specified date-time.
+<p>This calculates the period between two date-times in terms of a single unit.
+The start and end points are <code>this</code> and the specified date-time.
 The result will be negative if the end is before the start.
 The <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span> passed to this method must be a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.
 For example, the period in days between two date-times can be calculated
-using {@code startDateTime.until(endDateTime, DAYS)}.</p>
-<p></p><p>
-The calculation returns a whole number, representing the number of
+using <code>startDateTime.until(endDateTime, DAYS)</code>.</p>
+<p>The calculation returns a whole number, representing the number of
 complete units between the two date-times.
 For example, the period in months between 2012-06-15T00:00 and 2012-08-14T23:59
 will only be one month as it is one minute short of two months.</p>
-<p></p><p>
-This method operates in association with <span>TemporalUnit#between</span>.
-The result of this method is a <span>long</span> representing the amount of
+<p>This method operates in association with <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">TemporalUnit#between</a></span>.
+The result of this method is a <code>long</code> representing the amount of
 the specified unit. By contrast, the result of <span><a href="class/src/Duration.js~Duration.html#static-method-between">between</a></span> is an
 object that can be used directly in addition/subtraction:</p>
 <p><pre>
   long period = start.until(end, MONTHS);   // this method
   dateTime.plus(MONTHS.between(start, end));      // use in plus/minus
-</pre></p>
-<p></p><p>
-The calculation is implemented in this method for <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
+</pre>
+
+</p>
+<p>The calculation is implemented in this method for <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
 The units <span>NANOS</span>, <span>MICROS</span>, <span>MILLIS</span>, <span>SECONDS</span>,
 <span>MINUTES</span>, <span>HOURS</span> and <span>HALF_DAYS</span>, <span>DAYS</span>,
 <span>WEEKS</span>, <span>MONTHS</span>, <span>YEARS</span>, <span>DECADES</span>,
 <span>CENTURIES</span>, <span>MILLENNIA</span> and <span>ERAS</span> are supported.
 Other <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> values will throw an exception.</p>
-<p></p><p>
-If the unit is not a <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>, then the result of this method
-is obtained by invoking {@code TemporalUnit.between(Temporal, Temporal)}
-passing <span>this</span> as the first argument and the input temporal as
+<p>If the unit is not a <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>, then the result of this method
+is obtained by invoking <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">TemporalUnit.between</a></span>
+passing <code>this</code> as the first argument and the input temporal as
 the second argument.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7206,7 +7110,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber606">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber605">source</a></span></span>
     </span>
   </h3>
 
@@ -7282,7 +7186,7 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber703">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber701">source</a></span></span>
     </span>
   </h3>
 
@@ -7290,30 +7194,24 @@ otherwise <span><a href="class/src/LocalDateTime.js~LocalDateTime.html#instance-
   
   
   <div data-ice="description"><p>Returns a copy of this date-time with the specified field set to a new value.</p>
-<p></p><p>
-This returns a new <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, based on this one, with the value
+<p>This returns a new <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, based on this one, with the value
 for the specified field changed.
 This can be used to change any supported field, such as the year, month or day-of-month.
 If it is not possible to set the value, because the field is not supported or for
 some other reason, an exception is thrown.</p>
-<p></p><p>
-In some cases, changing the specified field can cause the resulting date-time to become invalid,
+<p>In some cases, changing the specified field can cause the resulting date-time to become invalid,
 such as changing the month from 31st January to February would make the day-of-month invalid.
 In cases like this, the field is responsible for resolving the date. Typically it will choose
 the previous valid date, which would be the last valid day of February in this example.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will behave as per
-the matching method on {@link LocalDate#with(TemporalField, long) LocalDate}
-or {@link LocalTime#with(TemporalField, long) LocalTime}.
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will behave as in
+<span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-with">LocalDate#with</a></span> or <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-with">LocalTime#with</a></span>.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
-<p></p><p>
-If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
-is obtained by invoking {@code TemporalField.adjustInto(Temporal, long)}
-passing <span>this</span> as the argument. In this case, the field determines
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.adjustInto</span>
+passing <code>this</code> as the argument. In this case, the field determines
 whether and how to adjust the instant.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7350,7 +7248,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> based on <span>this</span> with the specified field set, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> based on <code>this</code> with the specified field set, not null</p>
 </td>
       </tr>
     </table>
@@ -7399,7 +7297,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber758">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber756">source</a></span></span>
     </span>
   </h3>
 
@@ -7409,8 +7307,7 @@ This instance is immutable and unaffected by this method call.</p>
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the day-of-month altered.
 If the resulting <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> is invalid, an exception is thrown.
 The time does not affect the calculation and will be the same in the result.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7489,7 +7386,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber773">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber771">source</a></span></span>
     </span>
   </h3>
 
@@ -7498,8 +7395,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the day-of-year altered.
 If the resulting <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> is invalid, an exception is thrown.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7578,7 +7474,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber787">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber785">source</a></span></span>
     </span>
   </h3>
 
@@ -7586,8 +7482,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the hour-of-day value altered.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7661,7 +7556,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber801">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber799">source</a></span></span>
     </span>
   </h3>
 
@@ -7669,8 +7564,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the minute-of-hour value altered.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7744,7 +7638,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber742">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber740">source</a></span></span>
     </span>
   </h3>
 
@@ -7754,8 +7648,7 @@ This instance is immutable and unaffected by this method call.</p>
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the month-of-year altered.
 The time does not affect the calculation and will be the same in the result.
 If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7829,7 +7722,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber829">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber827">source</a></span></span>
     </span>
   </h3>
 
@@ -7837,8 +7730,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the nano-of-second value altered.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7912,7 +7804,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber815">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber813">source</a></span></span>
     </span>
   </h3>
 
@@ -7920,8 +7812,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the second-of-minute value altered.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -7995,7 +7886,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber656">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber655">source</a></span></span>
     </span>
   </h3>
 
@@ -8003,39 +7894,38 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns an adjusted copy of this date-time.</p>
-<p></p><p>
-This returns a new <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, based on this one, with the date-time adjusted.
+<p>This returns a new <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, based on this one, with the date-time adjusted.
 The adjustment takes place using the specified adjuster strategy object.
 Read the documentation of the adjuster to understand what adjustment will be made.</p>
-<p></p><p>
-A simple adjuster might simply set the one of the fields, such as the year field.
+<p>A simple adjuster might simply set the one of the fields, such as the year field.
 A more complex adjuster might set the date to the last day of the month.
 A selection of common adjustments is provided in <span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span>.
 These include finding the &apos;last day of the month&apos; and &apos;next Wednesday&apos;.
 Key date-time classes also implement the <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> interface,
-such as <span><a href="class/src/Month.js~Month.html">Month</a></span> and {@link MonthDay MonthDay}.
+such as <span><a href="class/src/Month.js~Month.html">Month</a></span> and <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>.
 The adjuster is responsible for handling special cases, such as the varying
 lengths of month and leap years.</p>
-<p></p><p>
-For example this code returns a date on the last day of July:</p>
+<p>For example this code returns a date on the last day of July:</p>
 <p><pre>
  import static org.threeten.bp.Month.<em>;
- import static org.threeten.bp.temporal.Adjusters.</em>;</pre></p>
-<p> result = localDateTime.with(JULY).with(lastDayOfMonth());
+ import static org.threeten.bp.temporal.Adjusters.</em>;
+
+ result = localDateTime.with(JULY).with(lastDayOfMonth());
+</pre>
+
 </p>
-<p></p><p>
-The classes <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> implement <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>,
+<p>The classes <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> and <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> implement <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>,
 thus this method can be used to change the date, time or offset:</p>
 <p><pre>
  result = localDateTime.with(date);
  result = localDateTime.with(time);
-</pre></p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalAdjuster#adjustInto(Temporal)} method on the
-specified adjuster passing <span>this</span> as the argument.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+</pre>
+
+</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html#instance-method-adjustInto">TemporalAdjuster#adjustInto</a></span> method on the
+specified adjuster passing <code>this</code> as the argument.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8065,7 +7955,7 @@ This instance is immutable and unaffected by this method call.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> based on <span>this</span> with the adjustment made, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> based on <code>this</code> with the adjustment made, not null</p>
 </td>
       </tr>
     </table>
@@ -8114,7 +8004,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber727">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber725">source</a></span></span>
     </span>
   </h3>
 
@@ -8124,8 +8014,7 @@ This instance is immutable and unaffected by this method call.</p>
   <div data-ice="description"><p>Returns a copy of this <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> with the year altered.
 The time does not affect the calculation and will be the same in the result.
 If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -8199,7 +8088,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber486">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/LocalDateTime.js.html#lineNumber485">source</a></span></span>
     </span>
   </h3>
 
@@ -8207,11 +8096,9 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the year field.</p>
-<p></p><p>
-This method returns the primitive <span>int</span> value for the year.</p>
-<p></p><p>
-The year returned by this method is proleptic as per {@code get(YEAR)}.
-To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.</p>
+<p>This method returns the primitive <code>int</code> value for the year.</p>
+<p>The year returned by this method is proleptic as per <code>get(YEAR)</code>.
+To obtain the year-of-era, use <code>get(YEAR_OF_ERA)</code>.</p>
 </div>
 
   
@@ -8249,7 +8136,7 @@ To obtain the year-of-era, use {@code get(YEAR_OF_ERA}.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

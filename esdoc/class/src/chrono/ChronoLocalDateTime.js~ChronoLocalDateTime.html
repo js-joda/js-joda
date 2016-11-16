@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDateTime} from &apos;<span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber49">js-joda/src/chrono/ChronoLocalDateTime.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDateTime} from &apos;<span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber51">js-joda/src/chrono/ChronoLocalDateTime.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber49">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber51">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -134,29 +137,25 @@
   
   <div class="description" data-ice="description"><p>A date-time without a time-zone in an arbitrary chronology, intended
 for advanced globalization use cases.</p>
-<p></p><p>
-&lt;b&gt;Most applications should declare method signatures, fields and variables
-as <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, not this interface.&lt;/b&gt;</p>
-<p></p><p>
-A {@code ChronoLocalDateTime} is the abstract representation of a local date-time
-where the {@code Chronology chronology}, or calendar system, is pluggable.
+<p><strong>Most applications should declare method signatures, fields and variables
+as <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, not this interface.</strong></p>
+<p>A <span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> is the abstract representation of a local date-time
+where the <span>Chronology</span>, or calendar system, is pluggable.
 The date-time is defined in terms of fields expressed by <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>,
 where most common implementations are defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
 The chronology defines how the calendar system operates and the meaning of
 the standard fields.</p>
-<p></p><h4>When to use this interface</h4>
-The design of the API encourages the use of {@code LocalDateTime} rather than this
+<h4 id="when-to-use-this-interface">When to use this interface</h4>
+<p>The design of the API encourages the use of <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> rather than this
 interface, even in the case where the application needs to deal with multiple
-calendar systems. The rationale for this is explored in detail in <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span>.<p></p>
-<p></p><p>
-Ensure that the discussion in {@code ChronoLocalDate} has been read and understood
+calendar systems. The rationale for this is explored in detail in <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span>.</p>
+<p>Ensure that the discussion in <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> has been read and understood
 before using this interface.</p>
-<p></p><h3>Specification for implementors</h3>
-This interface must be implemented with care to ensure other classes operate correctly.
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>This interface must be implemented with care to ensure other classes operate correctly.
 All implementations that can be instantiated must be final, immutable and thread-safe.
-Subclasses should be Serializable wherever possible.<p></p>
-<p></p><p>
-In JDK 8, this is an interface with default methods.
+Subclasses should be Serializable wherever possible.</p>
+<p>In JDK 8, this is an interface with default methods.
 Since there are no default methods in JDK 7, an abstract class is used.</p>
 </div>
 
@@ -297,7 +296,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
+        <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
       </div>
     </td>
@@ -331,7 +330,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -413,7 +412,7 @@ of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
@@ -479,7 +478,7 @@ of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -487,8 +486,7 @@ of 1970-01-01T00:00:00Z.</p>
   
   
   <div data-ice="description"><p>Gets the chronology of this date-time.</p>
-<p></p><p>
-The {@code Chronology} represents the calendar system in use.
+<p>The <span>Chronology</span> represents the calendar system in use.
 The era and other fields in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> are defined by the chronology.</p>
 </div>
 
@@ -534,7 +532,7 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber72">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber74">source</a></span></span>
     </span>
   </h3>
 
@@ -600,7 +598,7 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber118">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber120">source</a></span></span>
     </span>
   </h3>
 
@@ -609,8 +607,7 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
   
   <div data-ice="description"><p>Converts this date-time to the number of seconds from the epoch
 of 1970-01-01T00:00:00Z.</p>
-<p></p><p>
-This combines this local date-time and the specified offset to calculate the
+<p>This combines this local date-time and the specified offset to calculate the
 epoch-second value, which is the number of elapsed seconds from 1970-01-01T00:00:00Z.
 Instants on the time-line after the epoch are positive, earlier are negative.</p>
 </div>
@@ -674,17 +671,16 @@ Instants on the time-line after the epoch are positive, earlier are negative.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber105">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
-<p></p><p>
-This combines this local date-time and the specified offset to form
-an {@code Instant}.</p>
+  <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
+<p>This combines this local date-time and the specified offset to form
+an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
 
   
@@ -714,7 +710,7 @@ an {@code Instant}.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>an {@code Instant} representing the same instant, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> representing the same instant, not null</p>
 </td>
       </tr>
     </table>
@@ -739,7 +735,7 @@ an {@code Instant}.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

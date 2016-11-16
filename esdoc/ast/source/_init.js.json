@@ -10,8 +10,8 @@
             "type": "Identifier",
             "name": "ZoneOffsetInit",
             "range": [
-              170,
-              184
+              167,
+              181
             ],
             "loc": {
               "start": {
@@ -28,8 +28,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              161,
-              166
+              158,
+              163
             ],
             "loc": {
               "start": {
@@ -43,8 +43,8 @@
             }
           },
           "range": [
-            161,
-            184
+            158,
+            181
           ],
           "loc": {
             "start": {
@@ -63,8 +63,8 @@
         "value": "./ZoneOffset",
         "raw": "'./ZoneOffset'",
         "range": [
-          191,
-          205
+          188,
+          202
         ],
         "loc": {
           "start": {
@@ -78,8 +78,8 @@
         }
       },
       "range": [
-        153,
-        206
+        150,
+        203
       ],
       "loc": {
         "start": {
@@ -94,10 +94,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            151
+            148
           ],
           "loc": {
             "start": {
@@ -121,8 +121,8 @@
             "type": "Identifier",
             "name": "DayOfWeekInit",
             "range": [
-              224,
-              237
+              221,
+              234
             ],
             "loc": {
               "start": {
@@ -139,8 +139,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              215,
-              220
+              212,
+              217
             ],
             "loc": {
               "start": {
@@ -154,8 +154,8 @@
             }
           },
           "range": [
-            215,
-            237
+            212,
+            234
           ],
           "loc": {
             "start": {
@@ -174,8 +174,8 @@
         "value": "./DayOfWeek",
         "raw": "'./DayOfWeek'",
         "range": [
-          244,
-          257
+          241,
+          254
         ],
         "loc": {
           "start": {
@@ -189,8 +189,8 @@
         }
       },
       "range": [
-        207,
-        258
+        204,
+        255
       ],
       "loc": {
         "start": {
@@ -212,8 +212,8 @@
             "type": "Identifier",
             "name": "DurationInit",
             "range": [
-              276,
-              288
+              273,
+              285
             ],
             "loc": {
               "start": {
@@ -230,8 +230,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              267,
-              272
+              264,
+              269
             ],
             "loc": {
               "start": {
@@ -245,8 +245,8 @@
             }
           },
           "range": [
-            267,
-            288
+            264,
+            285
           ],
           "loc": {
             "start": {
@@ -265,8 +265,8 @@
         "value": "./Duration",
         "raw": "'./Duration'",
         "range": [
-          295,
-          307
+          292,
+          304
         ],
         "loc": {
           "start": {
@@ -280,8 +280,8 @@
         }
       },
       "range": [
-        259,
-        308
+        256,
+        305
       ],
       "loc": {
         "start": {
@@ -303,8 +303,8 @@
             "type": "Identifier",
             "name": "InstantInit",
             "range": [
-              326,
-              337
+              323,
+              334
             ],
             "loc": {
               "start": {
@@ -321,8 +321,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              317,
-              322
+              314,
+              319
             ],
             "loc": {
               "start": {
@@ -336,8 +336,8 @@
             }
           },
           "range": [
-            317,
-            337
+            314,
+            334
           ],
           "loc": {
             "start": {
@@ -356,8 +356,8 @@
         "value": "./Instant",
         "raw": "'./Instant'",
         "range": [
-          344,
-          355
+          341,
+          352
         ],
         "loc": {
           "start": {
@@ -371,8 +371,8 @@
         }
       },
       "range": [
-        309,
-        356
+        306,
+        353
       ],
       "loc": {
         "start": {
@@ -394,8 +394,8 @@
             "type": "Identifier",
             "name": "LocalDateInit",
             "range": [
-              374,
-              387
+              371,
+              384
             ],
             "loc": {
               "start": {
@@ -412,8 +412,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              365,
-              370
+              362,
+              367
             ],
             "loc": {
               "start": {
@@ -427,8 +427,8 @@
             }
           },
           "range": [
-            365,
-            387
+            362,
+            384
           ],
           "loc": {
             "start": {
@@ -447,8 +447,8 @@
         "value": "./LocalDate",
         "raw": "'./LocalDate'",
         "range": [
-          394,
-          407
+          391,
+          404
         ],
         "loc": {
           "start": {
@@ -462,8 +462,8 @@
         }
       },
       "range": [
-        357,
-        408
+        354,
+        405
       ],
       "loc": {
         "start": {
@@ -485,8 +485,8 @@
             "type": "Identifier",
             "name": "LocalTimeInit",
             "range": [
-              426,
-              439
+              423,
+              436
             ],
             "loc": {
               "start": {
@@ -503,8 +503,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              417,
-              422
+              414,
+              419
             ],
             "loc": {
               "start": {
@@ -518,8 +518,8 @@
             }
           },
           "range": [
-            417,
-            439
+            414,
+            436
           ],
           "loc": {
             "start": {
@@ -538,8 +538,8 @@
         "value": "./LocalTime",
         "raw": "'./LocalTime'",
         "range": [
-          446,
-          459
+          443,
+          456
         ],
         "loc": {
           "start": {
@@ -553,8 +553,8 @@
         }
       },
       "range": [
-        409,
-        460
+        406,
+        457
       ],
       "loc": {
         "start": {
@@ -576,8 +576,8 @@
             "type": "Identifier",
             "name": "LocalDateTimeInit",
             "range": [
-              478,
-              495
+              475,
+              492
             ],
             "loc": {
               "start": {
@@ -594,8 +594,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              469,
-              474
+              466,
+              471
             ],
             "loc": {
               "start": {
@@ -609,8 +609,8 @@
             }
           },
           "range": [
-            469,
-            495
+            466,
+            492
           ],
           "loc": {
             "start": {
@@ -629,8 +629,8 @@
         "value": "./LocalDateTime",
         "raw": "'./LocalDateTime'",
         "range": [
-          502,
-          519
+          499,
+          516
         ],
         "loc": {
           "start": {
@@ -644,8 +644,8 @@
         }
       },
       "range": [
-        461,
-        520
+        458,
+        517
       ],
       "loc": {
         "start": {
@@ -667,8 +667,8 @@
             "type": "Identifier",
             "name": "MonthInit",
             "range": [
-              538,
-              547
+              535,
+              544
             ],
             "loc": {
               "start": {
@@ -685,8 +685,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              529,
-              534
+              526,
+              531
             ],
             "loc": {
               "start": {
@@ -700,8 +700,8 @@
             }
           },
           "range": [
-            529,
-            547
+            526,
+            544
           ],
           "loc": {
             "start": {
@@ -720,8 +720,8 @@
         "value": "./Month",
         "raw": "'./Month'",
         "range": [
-          554,
-          563
+          551,
+          560
         ],
         "loc": {
           "start": {
@@ -735,8 +735,8 @@
         }
       },
       "range": [
-        521,
-        564
+        518,
+        561
       ],
       "loc": {
         "start": {
@@ -758,8 +758,8 @@
             "type": "Identifier",
             "name": "MonthDayInit",
             "range": [
-              582,
-              594
+              579,
+              591
             ],
             "loc": {
               "start": {
@@ -776,8 +776,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              573,
-              578
+              570,
+              575
             ],
             "loc": {
               "start": {
@@ -791,8 +791,8 @@
             }
           },
           "range": [
-            573,
-            594
+            570,
+            591
           ],
           "loc": {
             "start": {
@@ -811,8 +811,8 @@
         "value": "./MonthDay",
         "raw": "'./MonthDay'",
         "range": [
-          601,
-          613
+          598,
+          610
         ],
         "loc": {
           "start": {
@@ -826,8 +826,8 @@
         }
       },
       "range": [
-        565,
-        614
+        562,
+        611
       ],
       "loc": {
         "start": {
@@ -849,8 +849,8 @@
             "type": "Identifier",
             "name": "PeriodInit",
             "range": [
-              632,
-              642
+              629,
+              639
             ],
             "loc": {
               "start": {
@@ -867,8 +867,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              623,
-              628
+              620,
+              625
             ],
             "loc": {
               "start": {
@@ -882,8 +882,8 @@
             }
           },
           "range": [
-            623,
-            642
+            620,
+            639
           ],
           "loc": {
             "start": {
@@ -902,8 +902,8 @@
         "value": "./Period",
         "raw": "'./Period'",
         "range": [
-          649,
-          659
+          646,
+          656
         ],
         "loc": {
           "start": {
@@ -917,8 +917,8 @@
         }
       },
       "range": [
-        615,
-        660
+        612,
+        657
       ],
       "loc": {
         "start": {
@@ -940,8 +940,8 @@
             "type": "Identifier",
             "name": "YearInit",
             "range": [
-              678,
-              686
+              675,
+              683
             ],
             "loc": {
               "start": {
@@ -958,8 +958,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              669,
-              674
+              666,
+              671
             ],
             "loc": {
               "start": {
@@ -973,8 +973,8 @@
             }
           },
           "range": [
-            669,
-            686
+            666,
+            683
           ],
           "loc": {
             "start": {
@@ -993,8 +993,8 @@
         "value": "./Year",
         "raw": "'./Year'",
         "range": [
-          693,
-          701
+          690,
+          698
         ],
         "loc": {
           "start": {
@@ -1008,8 +1008,8 @@
         }
       },
       "range": [
-        661,
-        702
+        658,
+        699
       ],
       "loc": {
         "start": {
@@ -1031,8 +1031,8 @@
             "type": "Identifier",
             "name": "YearConstantsInit",
             "range": [
-              720,
-              737
+              717,
+              734
             ],
             "loc": {
               "start": {
@@ -1049,8 +1049,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              711,
-              716
+              708,
+              713
             ],
             "loc": {
               "start": {
@@ -1064,8 +1064,8 @@
             }
           },
           "range": [
-            711,
-            737
+            708,
+            734
           ],
           "loc": {
             "start": {
@@ -1084,8 +1084,8 @@
         "value": "./YearConstants",
         "raw": "'./YearConstants'",
         "range": [
-          744,
-          761
+          741,
+          758
         ],
         "loc": {
           "start": {
@@ -1099,8 +1099,8 @@
         }
       },
       "range": [
-        703,
-        762
+        700,
+        759
       ],
       "loc": {
         "start": {
@@ -1122,8 +1122,8 @@
             "type": "Identifier",
             "name": "YearMonthInit",
             "range": [
-              780,
-              793
+              777,
+              790
             ],
             "loc": {
               "start": {
@@ -1140,8 +1140,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              771,
-              776
+              768,
+              773
             ],
             "loc": {
               "start": {
@@ -1155,8 +1155,8 @@
             }
           },
           "range": [
-            771,
-            793
+            768,
+            790
           ],
           "loc": {
             "start": {
@@ -1175,8 +1175,8 @@
         "value": "./YearMonth",
         "raw": "'./YearMonth'",
         "range": [
-          800,
-          813
+          797,
+          810
         ],
         "loc": {
           "start": {
@@ -1190,8 +1190,8 @@
         }
       },
       "range": [
-        763,
-        814
+        760,
+        811
       ],
       "loc": {
         "start": {
@@ -1213,8 +1213,8 @@
             "type": "Identifier",
             "name": "ZonedDateTimeInit",
             "range": [
-              832,
-              849
+              829,
+              846
             ],
             "loc": {
               "start": {
@@ -1231,8 +1231,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              823,
-              828
+              820,
+              825
             ],
             "loc": {
               "start": {
@@ -1246,8 +1246,8 @@
             }
           },
           "range": [
-            823,
-            849
+            820,
+            846
           ],
           "loc": {
             "start": {
@@ -1266,8 +1266,8 @@
         "value": "./ZonedDateTime",
         "raw": "'./ZonedDateTime'",
         "range": [
-          856,
-          873
+          853,
+          870
         ],
         "loc": {
           "start": {
@@ -1281,8 +1281,8 @@
         }
       },
       "range": [
-        815,
-        874
+        812,
+        871
       ],
       "loc": {
         "start": {
@@ -1304,8 +1304,8 @@
             "type": "Identifier",
             "name": "IsoChronologyInit",
             "range": [
-              892,
-              909
+              889,
+              906
             ],
             "loc": {
               "start": {
@@ -1322,8 +1322,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              883,
-              888
+              880,
+              885
             ],
             "loc": {
               "start": {
@@ -1337,8 +1337,8 @@
             }
           },
           "range": [
-            883,
-            909
+            880,
+            906
           ],
           "loc": {
             "start": {
@@ -1357,8 +1357,8 @@
         "value": "./chrono/IsoChronology",
         "raw": "'./chrono/IsoChronology'",
         "range": [
-          916,
-          940
+          913,
+          937
         ],
         "loc": {
           "start": {
@@ -1372,8 +1372,8 @@
         }
       },
       "range": [
-        875,
-        941
+        872,
+        938
       ],
       "loc": {
         "start": {
@@ -1395,8 +1395,8 @@
             "type": "Identifier",
             "name": "DateTimeFormatterInit",
             "range": [
-              959,
-              980
+              956,
+              977
             ],
             "loc": {
               "start": {
@@ -1413,8 +1413,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              950,
-              955
+              947,
+              952
             ],
             "loc": {
               "start": {
@@ -1428,8 +1428,8 @@
             }
           },
           "range": [
-            950,
-            980
+            947,
+            977
           ],
           "loc": {
             "start": {
@@ -1448,8 +1448,8 @@
         "value": "./format/DateTimeFormatter",
         "raw": "'./format/DateTimeFormatter'",
         "range": [
-          987,
-          1015
+          984,
+          1012
         ],
         "loc": {
           "start": {
@@ -1463,8 +1463,8 @@
         }
       },
       "range": [
-        942,
-        1016
+        939,
+        1013
       ],
       "loc": {
         "start": {
@@ -1486,8 +1486,8 @@
             "type": "Identifier",
             "name": "ChronoFieldInit",
             "range": [
-              1034,
-              1049
+              1031,
+              1046
             ],
             "loc": {
               "start": {
@@ -1504,8 +1504,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1025,
-              1030
+              1022,
+              1027
             ],
             "loc": {
               "start": {
@@ -1519,8 +1519,8 @@
             }
           },
           "range": [
-            1025,
-            1049
+            1022,
+            1046
           ],
           "loc": {
             "start": {
@@ -1539,8 +1539,8 @@
         "value": "./temporal/ChronoField",
         "raw": "'./temporal/ChronoField'",
         "range": [
-          1056,
-          1080
+          1053,
+          1077
         ],
         "loc": {
           "start": {
@@ -1554,8 +1554,8 @@
         }
       },
       "range": [
-        1017,
-        1081
+        1014,
+        1078
       ],
       "loc": {
         "start": {
@@ -1577,8 +1577,8 @@
             "type": "Identifier",
             "name": "ChronoUnitInit",
             "range": [
-              1099,
-              1113
+              1096,
+              1110
             ],
             "loc": {
               "start": {
@@ -1595,8 +1595,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1090,
-              1095
+              1087,
+              1092
             ],
             "loc": {
               "start": {
@@ -1610,8 +1610,8 @@
             }
           },
           "range": [
-            1090,
-            1113
+            1087,
+            1110
           ],
           "loc": {
             "start": {
@@ -1630,8 +1630,8 @@
         "value": "./temporal/ChronoUnit",
         "raw": "'./temporal/ChronoUnit'",
         "range": [
-          1120,
-          1143
+          1117,
+          1140
         ],
         "loc": {
           "start": {
@@ -1645,8 +1645,8 @@
         }
       },
       "range": [
-        1082,
-        1144
+        1079,
+        1141
       ],
       "loc": {
         "start": {
@@ -1668,8 +1668,8 @@
             "type": "Identifier",
             "name": "IsoFieldsInit",
             "range": [
-              1162,
-              1175
+              1159,
+              1172
             ],
             "loc": {
               "start": {
@@ -1686,8 +1686,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1153,
-              1158
+              1150,
+              1155
             ],
             "loc": {
               "start": {
@@ -1701,8 +1701,8 @@
             }
           },
           "range": [
-            1153,
-            1175
+            1150,
+            1172
           ],
           "loc": {
             "start": {
@@ -1721,8 +1721,8 @@
         "value": "./temporal/IsoFields",
         "raw": "'./temporal/IsoFields'",
         "range": [
-          1182,
-          1204
+          1179,
+          1201
         ],
         "loc": {
           "start": {
@@ -1736,8 +1736,8 @@
         }
       },
       "range": [
-        1145,
-        1205
+        1142,
+        1202
       ],
       "loc": {
         "start": {
@@ -1759,8 +1759,8 @@
             "type": "Identifier",
             "name": "DateTimeFormatterBuilderInit",
             "range": [
-              1223,
-              1251
+              1220,
+              1248
             ],
             "loc": {
               "start": {
@@ -1777,8 +1777,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1214,
-              1219
+              1211,
+              1216
             ],
             "loc": {
               "start": {
@@ -1792,8 +1792,8 @@
             }
           },
           "range": [
-            1214,
-            1251
+            1211,
+            1248
           ],
           "loc": {
             "start": {
@@ -1812,8 +1812,8 @@
         "value": "./format/DateTimeFormatterBuilder",
         "raw": "'./format/DateTimeFormatterBuilder'",
         "range": [
-          1258,
-          1293
+          1255,
+          1290
         ],
         "loc": {
           "start": {
@@ -1827,8 +1827,8 @@
         }
       },
       "range": [
-        1206,
-        1294
+        1203,
+        1291
       ],
       "loc": {
         "start": {
@@ -1850,8 +1850,8 @@
             "type": "Identifier",
             "name": "TemporalQueriesInit",
             "range": [
-              1313,
-              1332
+              1310,
+              1329
             ],
             "loc": {
               "start": {
@@ -1868,8 +1868,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1304,
-              1309
+              1301,
+              1306
             ],
             "loc": {
               "start": {
@@ -1883,8 +1883,8 @@
             }
           },
           "range": [
-            1304,
-            1332
+            1301,
+            1329
           ],
           "loc": {
             "start": {
@@ -1903,8 +1903,8 @@
         "value": "./temporal/TemporalQueriesFactory",
         "raw": "'./temporal/TemporalQueriesFactory'",
         "range": [
-          1339,
-          1374
+          1336,
+          1371
         ],
         "loc": {
           "start": {
@@ -1918,8 +1918,8 @@
         }
       },
       "range": [
-        1296,
-        1375
+        1293,
+        1372
       ],
       "loc": {
         "start": {
@@ -1941,8 +1941,8 @@
             "type": "Identifier",
             "name": "ZoneIdInit",
             "range": [
-              1393,
-              1403
+              1390,
+              1400
             ],
             "loc": {
               "start": {
@@ -1959,8 +1959,8 @@
             "type": "Identifier",
             "name": "_init",
             "range": [
-              1384,
-              1389
+              1381,
+              1386
             ],
             "loc": {
               "start": {
@@ -1974,8 +1974,8 @@
             }
           },
           "range": [
-            1384,
-            1403
+            1381,
+            1400
           ],
           "loc": {
             "start": {
@@ -1994,8 +1994,8 @@
         "value": "./ZoneIdFactory",
         "raw": "'./ZoneIdFactory'",
         "range": [
-          1410,
-          1427
+          1407,
+          1424
         ],
         "loc": {
           "start": {
@@ -2009,8 +2009,8 @@
         }
       },
       "range": [
-        1376,
-        1428
+        1373,
+        1425
       ],
       "loc": {
         "start": {
@@ -2032,8 +2032,8 @@
             "type": "Identifier",
             "name": "isInit",
             "range": [
-              1434,
-              1440
+              1431,
+              1437
             ],
             "loc": {
               "start": {
@@ -2051,8 +2051,8 @@
             "value": false,
             "raw": "false",
             "range": [
-              1443,
-              1448
+              1440,
+              1445
             ],
             "loc": {
               "start": {
@@ -2066,8 +2066,8 @@
             }
           },
           "range": [
-            1434,
-            1448
+            1431,
+            1445
           ],
           "loc": {
             "start": {
@@ -2081,10 +2081,10 @@
           }
         }
       ],
-      "kind": "var",
+      "kind": "let",
       "range": [
-        1430,
-        1449
+        1427,
+        1446
       ],
       "loc": {
         "start": {
@@ -2103,8 +2103,8 @@
         "type": "Identifier",
         "name": "init",
         "range": [
-          1460,
-          1464
+          1457,
+          1461
         ],
         "loc": {
           "start": {
@@ -2127,8 +2127,8 @@
               "type": "Identifier",
               "name": "isInit",
               "range": [
-                1478,
-                1484
+                1475,
+                1481
               ],
               "loc": {
                 "start": {
@@ -2148,8 +2148,8 @@
                   "type": "ReturnStatement",
                   "argument": null,
                   "range": [
-                    1496,
-                    1503
+                    1493,
+                    1500
                   ],
                   "loc": {
                     "start": {
@@ -2164,8 +2164,8 @@
                 }
               ],
               "range": [
-                1486,
-                1509
+                1483,
+                1506
               ],
               "loc": {
                 "start": {
@@ -2180,8 +2180,8 @@
             },
             "alternate": null,
             "range": [
-              1474,
-              1509
+              1471,
+              1506
             ],
             "loc": {
               "start": {
@@ -2203,8 +2203,8 @@
                 "type": "Identifier",
                 "name": "isInit",
                 "range": [
-                  1515,
-                  1521
+                  1512,
+                  1518
                 ],
                 "loc": {
                   "start": {
@@ -2222,8 +2222,8 @@
                 "value": true,
                 "raw": "true",
                 "range": [
-                  1524,
-                  1528
+                  1521,
+                  1525
                 ],
                 "loc": {
                   "start": {
@@ -2237,8 +2237,8 @@
                 }
               },
               "range": [
-                1515,
-                1528
+                1512,
+                1525
               ],
               "loc": {
                 "start": {
@@ -2252,8 +2252,8 @@
               }
             },
             "range": [
-              1515,
-              1529
+              1512,
+              1526
             ],
             "loc": {
               "start": {
@@ -2274,8 +2274,8 @@
                 "type": "Identifier",
                 "name": "YearConstantsInit",
                 "range": [
-                  1535,
-                  1552
+                  1532,
+                  1549
                 ],
                 "loc": {
                   "start": {
@@ -2290,8 +2290,8 @@
               },
               "arguments": [],
               "range": [
-                1535,
-                1554
+                1532,
+                1551
               ],
               "loc": {
                 "start": {
@@ -2305,8 +2305,8 @@
               }
             },
             "range": [
-              1535,
-              1555
+              1532,
+              1552
             ],
             "loc": {
               "start": {
@@ -2327,8 +2327,8 @@
                 "type": "Identifier",
                 "name": "DurationInit",
                 "range": [
-                  1560,
-                  1572
+                  1557,
+                  1569
                 ],
                 "loc": {
                   "start": {
@@ -2343,8 +2343,8 @@
               },
               "arguments": [],
               "range": [
-                1560,
-                1574
+                1557,
+                1571
               ],
               "loc": {
                 "start": {
@@ -2358,8 +2358,8 @@
               }
             },
             "range": [
-              1560,
-              1575
+              1557,
+              1572
             ],
             "loc": {
               "start": {
@@ -2380,8 +2380,8 @@
                 "type": "Identifier",
                 "name": "LocalTimeInit",
                 "range": [
-                  1580,
-                  1593
+                  1577,
+                  1590
                 ],
                 "loc": {
                   "start": {
@@ -2396,8 +2396,8 @@
               },
               "arguments": [],
               "range": [
-                1580,
-                1595
+                1577,
+                1592
               ],
               "loc": {
                 "start": {
@@ -2411,8 +2411,8 @@
               }
             },
             "range": [
-              1580,
-              1596
+              1577,
+              1593
             ],
             "loc": {
               "start": {
@@ -2433,8 +2433,8 @@
                 "type": "Identifier",
                 "name": "ChronoUnitInit",
                 "range": [
-                  1601,
-                  1615
+                  1598,
+                  1612
                 ],
                 "loc": {
                   "start": {
@@ -2449,8 +2449,8 @@
               },
               "arguments": [],
               "range": [
-                1601,
-                1617
+                1598,
+                1614
               ],
               "loc": {
                 "start": {
@@ -2464,8 +2464,8 @@
               }
             },
             "range": [
-              1601,
-              1618
+              1598,
+              1615
             ],
             "loc": {
               "start": {
@@ -2486,8 +2486,8 @@
                 "type": "Identifier",
                 "name": "ChronoFieldInit",
                 "range": [
-                  1623,
-                  1638
+                  1620,
+                  1635
                 ],
                 "loc": {
                   "start": {
@@ -2502,8 +2502,8 @@
               },
               "arguments": [],
               "range": [
-                1623,
-                1640
+                1620,
+                1637
               ],
               "loc": {
                 "start": {
@@ -2517,8 +2517,8 @@
               }
             },
             "range": [
-              1623,
-              1641
+              1620,
+              1638
             ],
             "loc": {
               "start": {
@@ -2539,8 +2539,8 @@
                 "type": "Identifier",
                 "name": "IsoFieldsInit",
                 "range": [
-                  1646,
-                  1659
+                  1643,
+                  1656
                 ],
                 "loc": {
                   "start": {
@@ -2555,8 +2555,8 @@
               },
               "arguments": [],
               "range": [
-                1646,
-                1661
+                1643,
+                1658
               ],
               "loc": {
                 "start": {
@@ -2570,8 +2570,8 @@
               }
             },
             "range": [
-              1646,
-              1662
+              1643,
+              1659
             ],
             "loc": {
               "start": {
@@ -2592,8 +2592,8 @@
                 "type": "Identifier",
                 "name": "TemporalQueriesInit",
                 "range": [
-                  1667,
-                  1686
+                  1664,
+                  1683
                 ],
                 "loc": {
                   "start": {
@@ -2608,8 +2608,8 @@
               },
               "arguments": [],
               "range": [
-                1667,
-                1688
+                1664,
+                1685
               ],
               "loc": {
                 "start": {
@@ -2623,8 +2623,8 @@
               }
             },
             "range": [
-              1667,
-              1689
+              1664,
+              1686
             ],
             "loc": {
               "start": {
@@ -2645,8 +2645,8 @@
                 "type": "Identifier",
                 "name": "DayOfWeekInit",
                 "range": [
-                  1694,
-                  1707
+                  1691,
+                  1704
                 ],
                 "loc": {
                   "start": {
@@ -2661,8 +2661,8 @@
               },
               "arguments": [],
               "range": [
-                1694,
-                1709
+                1691,
+                1706
               ],
               "loc": {
                 "start": {
@@ -2676,8 +2676,8 @@
               }
             },
             "range": [
-              1694,
-              1710
+              1691,
+              1707
             ],
             "loc": {
               "start": {
@@ -2698,8 +2698,8 @@
                 "type": "Identifier",
                 "name": "InstantInit",
                 "range": [
-                  1715,
-                  1726
+                  1712,
+                  1723
                 ],
                 "loc": {
                   "start": {
@@ -2714,8 +2714,8 @@
               },
               "arguments": [],
               "range": [
-                1715,
-                1728
+                1712,
+                1725
               ],
               "loc": {
                 "start": {
@@ -2729,8 +2729,8 @@
               }
             },
             "range": [
-              1715,
-              1729
+              1712,
+              1726
             ],
             "loc": {
               "start": {
@@ -2751,8 +2751,8 @@
                 "type": "Identifier",
                 "name": "LocalDateInit",
                 "range": [
-                  1734,
-                  1747
+                  1731,
+                  1744
                 ],
                 "loc": {
                   "start": {
@@ -2767,8 +2767,8 @@
               },
               "arguments": [],
               "range": [
-                1734,
-                1749
+                1731,
+                1746
               ],
               "loc": {
                 "start": {
@@ -2782,8 +2782,8 @@
               }
             },
             "range": [
-              1734,
-              1750
+              1731,
+              1747
             ],
             "loc": {
               "start": {
@@ -2804,8 +2804,8 @@
                 "type": "Identifier",
                 "name": "LocalDateTimeInit",
                 "range": [
-                  1755,
-                  1772
+                  1752,
+                  1769
                 ],
                 "loc": {
                   "start": {
@@ -2820,8 +2820,8 @@
               },
               "arguments": [],
               "range": [
-                1755,
-                1774
+                1752,
+                1771
               ],
               "loc": {
                 "start": {
@@ -2835,8 +2835,8 @@
               }
             },
             "range": [
-              1755,
-              1775
+              1752,
+              1772
             ],
             "loc": {
               "start": {
@@ -2857,8 +2857,8 @@
                 "type": "Identifier",
                 "name": "YearInit",
                 "range": [
-                  1780,
-                  1788
+                  1777,
+                  1785
                 ],
                 "loc": {
                   "start": {
@@ -2873,8 +2873,8 @@
               },
               "arguments": [],
               "range": [
-                1780,
-                1790
+                1777,
+                1787
               ],
               "loc": {
                 "start": {
@@ -2888,8 +2888,8 @@
               }
             },
             "range": [
-              1780,
-              1791
+              1777,
+              1788
             ],
             "loc": {
               "start": {
@@ -2910,8 +2910,8 @@
                 "type": "Identifier",
                 "name": "MonthInit",
                 "range": [
-                  1796,
-                  1805
+                  1793,
+                  1802
                 ],
                 "loc": {
                   "start": {
@@ -2926,8 +2926,8 @@
               },
               "arguments": [],
               "range": [
-                1796,
-                1807
+                1793,
+                1804
               ],
               "loc": {
                 "start": {
@@ -2941,8 +2941,8 @@
               }
             },
             "range": [
-              1796,
-              1808
+              1793,
+              1805
             ],
             "loc": {
               "start": {
@@ -2963,8 +2963,8 @@
                 "type": "Identifier",
                 "name": "YearMonthInit",
                 "range": [
-                  1813,
-                  1826
+                  1810,
+                  1823
                 ],
                 "loc": {
                   "start": {
@@ -2979,8 +2979,8 @@
               },
               "arguments": [],
               "range": [
-                1813,
-                1828
+                1810,
+                1825
               ],
               "loc": {
                 "start": {
@@ -2994,8 +2994,8 @@
               }
             },
             "range": [
-              1813,
-              1829
+              1810,
+              1826
             ],
             "loc": {
               "start": {
@@ -3016,8 +3016,8 @@
                 "type": "Identifier",
                 "name": "MonthDayInit",
                 "range": [
-                  1834,
-                  1846
+                  1831,
+                  1843
                 ],
                 "loc": {
                   "start": {
@@ -3032,8 +3032,8 @@
               },
               "arguments": [],
               "range": [
-                1834,
-                1848
+                1831,
+                1845
               ],
               "loc": {
                 "start": {
@@ -3047,8 +3047,8 @@
               }
             },
             "range": [
-              1834,
-              1849
+              1831,
+              1846
             ],
             "loc": {
               "start": {
@@ -3069,8 +3069,8 @@
                 "type": "Identifier",
                 "name": "PeriodInit",
                 "range": [
-                  1854,
-                  1864
+                  1851,
+                  1861
                 ],
                 "loc": {
                   "start": {
@@ -3085,8 +3085,8 @@
               },
               "arguments": [],
               "range": [
-                1854,
-                1866
+                1851,
+                1863
               ],
               "loc": {
                 "start": {
@@ -3100,8 +3100,8 @@
               }
             },
             "range": [
-              1854,
-              1867
+              1851,
+              1864
             ],
             "loc": {
               "start": {
@@ -3122,8 +3122,8 @@
                 "type": "Identifier",
                 "name": "ZoneOffsetInit",
                 "range": [
-                  1872,
-                  1886
+                  1869,
+                  1883
                 ],
                 "loc": {
                   "start": {
@@ -3138,8 +3138,8 @@
               },
               "arguments": [],
               "range": [
-                1872,
-                1888
+                1869,
+                1885
               ],
               "loc": {
                 "start": {
@@ -3153,8 +3153,8 @@
               }
             },
             "range": [
-              1872,
-              1889
+              1869,
+              1886
             ],
             "loc": {
               "start": {
@@ -3175,8 +3175,8 @@
                 "type": "Identifier",
                 "name": "ZonedDateTimeInit",
                 "range": [
-                  1894,
-                  1911
+                  1891,
+                  1908
                 ],
                 "loc": {
                   "start": {
@@ -3191,8 +3191,8 @@
               },
               "arguments": [],
               "range": [
-                1894,
-                1913
+                1891,
+                1910
               ],
               "loc": {
                 "start": {
@@ -3206,8 +3206,8 @@
               }
             },
             "range": [
-              1894,
-              1914
+              1891,
+              1911
             ],
             "loc": {
               "start": {
@@ -3228,8 +3228,8 @@
                 "type": "Identifier",
                 "name": "ZoneIdInit",
                 "range": [
-                  1919,
-                  1929
+                  1916,
+                  1926
                 ],
                 "loc": {
                   "start": {
@@ -3244,8 +3244,8 @@
               },
               "arguments": [],
               "range": [
-                1919,
-                1931
+                1916,
+                1928
               ],
               "loc": {
                 "start": {
@@ -3259,8 +3259,8 @@
               }
             },
             "range": [
-              1919,
-              1932
+              1916,
+              1929
             ],
             "loc": {
               "start": {
@@ -3281,8 +3281,8 @@
                 "type": "Identifier",
                 "name": "IsoChronologyInit",
                 "range": [
-                  1937,
-                  1954
+                  1934,
+                  1951
                 ],
                 "loc": {
                   "start": {
@@ -3297,8 +3297,8 @@
               },
               "arguments": [],
               "range": [
-                1937,
-                1956
+                1934,
+                1953
               ],
               "loc": {
                 "start": {
@@ -3312,8 +3312,8 @@
               }
             },
             "range": [
-              1937,
-              1957
+              1934,
+              1954
             ],
             "loc": {
               "start": {
@@ -3334,8 +3334,8 @@
                 "type": "Identifier",
                 "name": "DateTimeFormatterInit",
                 "range": [
-                  1962,
-                  1983
+                  1959,
+                  1980
                 ],
                 "loc": {
                   "start": {
@@ -3350,8 +3350,8 @@
               },
               "arguments": [],
               "range": [
-                1962,
-                1985
+                1959,
+                1982
               ],
               "loc": {
                 "start": {
@@ -3365,8 +3365,8 @@
               }
             },
             "range": [
-              1962,
-              1986
+              1959,
+              1983
             ],
             "loc": {
               "start": {
@@ -3387,8 +3387,8 @@
                 "type": "Identifier",
                 "name": "DateTimeFormatterBuilderInit",
                 "range": [
-                  1991,
-                  2019
+                  1988,
+                  2016
                 ],
                 "loc": {
                   "start": {
@@ -3403,8 +3403,8 @@
               },
               "arguments": [],
               "range": [
-                1991,
-                2021
+                1988,
+                2018
               ],
               "loc": {
                 "start": {
@@ -3418,8 +3418,8 @@
               }
             },
             "range": [
-              1991,
-              2022
+              1988,
+              2019
             ],
             "loc": {
               "start": {
@@ -3434,8 +3434,8 @@
           }
         ],
         "range": [
-          1467,
-          2024
+          1464,
+          2021
         ],
         "loc": {
           "start": {
@@ -3451,8 +3451,8 @@
       "generator": false,
       "expression": false,
       "range": [
-        1451,
-        2024
+        1448,
+        2021
       ],
       "loc": {
         "start": {
@@ -3473,8 +3473,8 @@
           "type": "Identifier",
           "name": "init",
           "range": [
-            2026,
-            2030
+            2023,
+            2027
           ],
           "loc": {
             "start": {
@@ -3489,8 +3489,8 @@
         },
         "arguments": [],
         "range": [
-          2026,
-          2032
+          2023,
+          2029
         ],
         "loc": {
           "start": {
@@ -3504,8 +3504,8 @@
         }
       },
       "range": [
-        2026,
-        2033
+        2023,
+        2030
       ],
       "loc": {
         "start": {
@@ -3521,8 +3521,8 @@
   ],
   "sourceType": "module",
   "range": [
-    153,
-    2033
+    150,
+    2030
   ],
   "loc": {
     "start": {
@@ -3537,10 +3537,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        151
+        148
       ],
       "loc": {
         "start": {

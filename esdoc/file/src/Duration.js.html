@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Duration.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -118,34 +121,35 @@ import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from &apos;./MathUtil&apos
 import {ChronoField} from &apos;./temporal/ChronoField&apos;;
 import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
 import {TemporalAmount} from &apos;./temporal/TemporalAmount&apos;;
+import {TemporalUnit} from &apos;./temporal/TemporalUnit&apos;;
 
 import {LocalTime} from &apos;./LocalTime&apos;;
 
 /**
  * A time-based amount of time, such as &apos;34.5 seconds&apos;.
- * &lt;p&gt;
+ *
  * This class models a quantity or amount of time in terms of seconds and nanoseconds.
  * It can be accessed using other duration-based units, such as minutes and hours.
- * In addition, the {@link ChronoUnit#DAYS DAYS} unit can be used and is treated as
+ * In addition, the {@link ChronoUnit#DAYS} unit can be used and is treated as
  * exactly equal to 24 hours, thus ignoring daylight savings effects.
  * See {@link Period} for the date-based equivalent to this class.
- * &lt;p&gt;
+ *
  * A physical duration could be of infinite length.
  * For practicality, the duration is stored with constraints similar to {@link Instant}.
  * The duration uses nanosecond resolution with a maximum value of the seconds that can
- * be held in a {@code long}. This is greater than the current estimated age of the universe.
- * &lt;p&gt;
- * The range of a duration requires the storage of a number larger than a {@code long}.
- * To achieve this, the class stores a {@code long} representing seconds and an {@code int}
+ * be held in a `long`. This is greater than the current estimated age of the universe.
+ *
+ * The range of a duration requires the storage of a number larger than a `long`.
+ * To achieve this, the class stores a `long` representing seconds and an `int`
  * representing nanosecond-of-second, which will always be between 0 and 999,999,999.
- * &lt;p&gt;
+ *
  * The duration is measured in &quot;seconds&quot;, but these are not necessarily identical to
  * the scientific &quot;SI second&quot; definition based on atomic clocks.
  * This difference only impacts durations measured near a leap-second and should not affect
  * most applications.
  * See {@link Instant} for a discussion as to the meaning of the second and time-scales.
  *
- * &lt;h3&gt;Static properties of Class {@link Duration}&lt;/h3&gt;
+ * ### Static properties of Class {@link Duration}
  *
  * Duration.ZERO
  *
@@ -170,7 +174,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of standard 24 hour days.
-     * &lt;p&gt;
+     *
      * The seconds are calculated based on the standard definition of a day,
      * where each day is 86400 seconds which implies a 24 hour day.
      * The nanosecond in second field is set to zero.
@@ -185,7 +189,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Obtains an instance of {@link Duration} from a number of standard hours.
-     * &lt;p&gt;
+     *
      * The seconds are calculated based on the standard definition of an hour,
      * where each hour is 3600 seconds.
      * The nanosecond in second field is set to zero.
@@ -200,7 +204,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Obtains an instance of {@link Duration} from a number of standard minutes.
-     * &lt;p&gt;
+     *
      * The seconds are calculated based on the standard definition of a minute,
      * where each minute is 60 seconds.
      * The nanosecond in second field is set to zero.
@@ -217,7 +221,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     /**
      * Obtains an instance of {@link Duration} from a number of seconds
      * and an adjustment in nanoseconds.
-     * &lt;p&gt;
+     *
      * This method allows an arbitrary number of nanoseconds to be passed in.
      * The factory will alter the values of the second and nanosecond in order
      * to ensure that the stored nanosecond is in the range 0 to 999,999,999.
@@ -234,23 +238,23 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if the adjustment causes the seconds to exceed the capacity of {@link Duration}
      */
     static ofSeconds(seconds, nanoAdjustment = 0) {
-        var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
-        var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
+        const secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
+        const nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
         return Duration._create(secs, nos);
     }
 
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of milliseconds.
-     * &lt;p&gt;
+     *
      * The seconds and nanoseconds are extracted from the specified milliseconds.
      *
      * @param {Number} millis - the number of milliseconds, positive or negative
      * @return {!Duration}
      */
     static ofMillis(millis) {
-        var secs = MathUtil.intDiv(millis, 1000);
-        var mos = MathUtil.intMod(millis, 1000);
+        let secs = MathUtil.intDiv(millis, 1000);
+        let mos = MathUtil.intMod(millis, 1000);
         if (mos &lt; 0) {
             mos += 1000;
             secs--;
@@ -261,15 +265,15 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of nanoseconds.
-     * &lt;p&gt;
+     *
      * The seconds and nanoseconds are extracted from the specified nanoseconds.
      *
      * @param {Number} nanos - the number of nanoseconds, positive or negative
      * @return {!Duration}
      */
     static ofNanos(nanos) {
-        var secs = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
+        let secs = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_SECOND);
+        let nos = MathUtil.intMod(nanos, LocalTime.NANOS_PER_SECOND);
         if (nos &lt; 0) {
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
@@ -280,14 +284,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a duration in the specified unit.
-     * &lt;p&gt;
+     *
      * The parameters represent the two parts of a phrase like &apos;6 Hours&apos;. For example:
      * &lt;pre&gt;
      *  Duration.of(3, SECONDS);
      *  Duration.of(465, HOURS);
      * &lt;/pre&gt;
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an exact duration (see {@link TemporalUnit#isDurationEstimated}) or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
      *
      * @param {Number} amount - the amount of the duration, measured in terms of the unit, positive or negative
@@ -303,40 +307,41 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from an amount.
-     * &lt;p&gt;
+     *
      * This obtains a duration based on the specified amount.
      * A TemporalAmount represents an amount of time, which may be date-based
      * or time-based, which this factory extracts to a duration.
-     * &lt;p&gt;
+     *
      * The conversion loops around the set of units from the amount and uses
      * the duration of the unit to calculate the total Duration.
      * Only a subset of units are accepted by this method.
      * The unit must either have an exact duration or be ChronoUnit.DAYS which
      * is treated as 24 hours. If any other units are found then an exception is thrown.
      *
-     * @param {Number} amount - the temporal amount to convert, not null
+     * @param {TemporalAmount} amount - the temporal amount to convert, not null
      * @return {Duration} the resulting duration, not null
      * @throws DateTimeException if the amount cannot be converted
      * @throws ArithmeticException if a numeric overflow occurs
      */
     static from(amount) {
         requireNonNull(amount, &apos;amount&apos;);
-        var duration = Duration.ZERO;
+        requireInstance(amount, TemporalAmount);
+        let duration = Duration.ZERO;
         amount.units().forEach((unit) =&gt; {
             duration = duration.plus(amount.get(unit), unit);
         });
         return duration;
     }
-    
+
     /**
      * Obtains an instance of {@link Duration} representing the duration between two instants.
-     * &lt;p&gt;
+     *
      * Obtains a {@link Duration} representing the duration between two instants.
      * This calculates the duration between two temporal objects of the same type.
-     * The difference in seconds is calculated using {@link Temporal#until(Temporal, TemporalUnit)}.
+     * The difference in seconds is calculated using {@link Temporal#until}.
      * The difference in nanoseconds is calculated using by querying the
-     * {@link ChronoField#NANO_OF_SECOND NANO_OF_SECOND} field.
-     * &lt;p&gt;
+     * {@link ChronoField#NANO_OF_SECOND} field.
+     *
      * The result of this method can be a negative period if the end is before the start.
      * To guarantee to obtain a positive duration call abs() on the result.
      *
@@ -349,8 +354,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     static between(startInclusive, endExclusive) {
         requireNonNull(startInclusive, &apos;startInclusive&apos;);
         requireNonNull(endExclusive, &apos;endExclusive&apos;);
-        var secs = startInclusive.until(endExclusive, ChronoUnit.SECONDS);
-        var nanos = 0;
+        let secs = startInclusive.until(endExclusive, ChronoUnit.SECONDS);
+        let nanos = 0;
         if (startInclusive.isSupported(ChronoField.NANO_OF_SECOND) &amp;&amp; endExclusive.isSupported(ChronoField.NANO_OF_SECOND)) {
             try {
                 let startNos = startInclusive.getLong(ChronoField.NANO_OF_SECOND);
@@ -373,13 +378,13 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains a {@link Duration} from a text string such as {@code PnDTnHnMn.nS}.
-     * &lt;p&gt;
+     * Obtains a {@link Duration} from a text string such as {@link PnDTnHnMn.nS}.
+     *
      * This will parse a textual representation of a duration, including the
-     * string produced by {@code toString()}. The formats accepted are based
-     * on the ISO-8601 duration format {@code PnDTnHnMn.nS} with days
+     * string produced by {@link toString}. The formats accepted are based
+     * on the ISO-8601 duration format {@link PnDTnHnMn.nS} with days
      * considered to be exactly 24 hours.
-     * &lt;p&gt;
+     *
      * The string starts with an optional sign, denoted by the ASCII negative
      * or positive symbol. If negative, the whole period is negated.
      * The ASCII letter &quot;P&quot; is next in upper or lower case.
@@ -392,14 +397,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * there must be at least one section after the &quot;T&quot;.
      * The number part of each section must consist of one or more ASCII digits.
      * The number may be prefixed by the ASCII negative or positive symbol.
-     * The number of days, hours and minutes must parse to a {@code long}.
-     * The number of seconds must parse to a {@code long} with optional fraction.
+     * The number of days, hours and minutes must parse to a `long`.
+     * The number of seconds must parse to a `long` with optional fraction.
      * The decimal point may be either a dot or a comma.
      * The fractional part may have from zero to 9 digits.
-     * &lt;p&gt;
+     *
      * The leading plus/minus sign, and negative values for other units are
      * not part of the ISO-8601 standard.
-     * &lt;p&gt;
+     *
      * Examples:
      * &lt;pre&gt;
      *    &quot;PT20.345S&quot; -&gt; parses as &quot;20.345 seconds&quot;
@@ -422,23 +427,23 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
          * The pattern for parsing.
          */
         const PATTERN = new RegExp(&apos;([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?&apos;, &apos;i&apos;);
-        var matches = PATTERN.exec(text);
+        const matches = PATTERN.exec(text);
         if (matches !== null) {
             // check for letter T but no time sections
             if (&apos;T&apos; === matches[3] === false) {
-                var negate = &apos;-&apos; === matches[1];
-                var dayMatch = matches[2];
-                var hourMatch = matches[4];
-                var minuteMatch = matches[5];
-                var secondMatch = matches[6];
-                var fractionMatch = matches[7];
+                const negate = &apos;-&apos; === matches[1];
+                const dayMatch = matches[2];
+                const hourMatch = matches[4];
+                const minuteMatch = matches[5];
+                const secondMatch = matches[6];
+                const fractionMatch = matches[7];
                 if (dayMatch != null || hourMatch != null || minuteMatch != null || secondMatch != null) {
-                    var daysAsSecs = Duration._parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, &apos;days&apos;);
-                    var hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, &apos;hours&apos;);
-                    var minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, &apos;minutes&apos;);
-                    var seconds = Duration._parseNumber(text, secondMatch, 1, &apos;seconds&apos;);
-                    var negativeSecs = secondMatch != null &amp;&amp; secondMatch.charAt(0) === &apos;-&apos;;
-                    var nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
+                    const daysAsSecs = Duration._parseNumber(text, dayMatch, LocalTime.SECONDS_PER_DAY, &apos;days&apos;);
+                    const hoursAsSecs = Duration._parseNumber(text, hourMatch, LocalTime.SECONDS_PER_HOUR, &apos;hours&apos;);
+                    const minsAsSecs = Duration._parseNumber(text, minuteMatch, LocalTime.SECONDS_PER_MINUTE, &apos;minutes&apos;);
+                    const seconds = Duration._parseNumber(text, secondMatch, 1, &apos;seconds&apos;);
+                    const negativeSecs = secondMatch != null &amp;&amp; secondMatch.charAt(0) === &apos;-&apos;;
+                    const nanos = Duration._parseFraction(text,  fractionMatch, negativeSecs ? -1 : 1);
                     try {
                         return Duration._create(negate, daysAsSecs, hoursAsSecs, minsAsSecs, seconds, nanos);
                     } catch (ex) {
@@ -459,8 +464,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             if (parsed[0] === &apos;+&apos;) {
                 parsed = parsed.substring(1);
             }
-            var val = parseFloat(parsed);
-            return MathUtil.safeMultiply(val, multiplier);
+            return MathUtil.safeMultiply(parseFloat(parsed), multiplier);
         } catch (ex) {
             throw new DateTimeParseException(&apos;Text cannot be parsed to a Duration: &apos; + errorText, text, 0, ex);
         }
@@ -471,12 +475,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (parsed == null || parsed.length === 0) {
             return 0;
         }
-        try {
-            parsed = (parsed + &apos;000000000&apos;).substring(0, 9);
-            return parseFloat(parsed) * negate;
-        } catch (ex) {
-            throw new DateTimeParseException(&apos;Text cannot be parsed to a Duration: fraction&apos;, text, 0, ex);
-        }
+        parsed = (parsed + &apos;000000000&apos;).substring(0, 9);
+        return parseFloat(parsed) * negate;
     }
 
     //-----------------------------------------------------------------------
@@ -495,7 +495,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     }
 
     static _createNegateDaysHoursMinutesSecondsNanos(negate, daysAsSecs, hoursAsSecs, minsAsSecs, secs, nanos) {
-        var seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
+        const seconds = MathUtil.safeAdd(daysAsSecs, MathUtil.safeAdd(hoursAsSecs, MathUtil.safeAdd(minsAsSecs, secs)));
         if (negate) {
             return Duration.ofSeconds(seconds, nanos).negated();
         }
@@ -514,17 +514,17 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         }
         return new Duration(seconds, nanoAdjustment);
     }
-    
+
     //-----------------------------------------------------------------------
     /**
      * Gets the value of the requested unit.
-     * &lt;p&gt;
+     *
      * This returns a value for each of the two supported units,
-     * {@link ChronoUnit#SECONDS SECONDS} and {@link ChronoUnit#NANOS NANOS}.
+     * {@link ChronoUnit#SECONDS} and {@link ChronoUnit#NANOS}.
      * All other units throw an exception.
      *
-     * @param {TemporalUnit} unit the {@code TemporalUnit} for which to return the value
-     * @return {number} the var value of the unit
+     * @param {TemporalUnit} unit the {@link TemporalUnit} for which to return the value
+     * @return {number} the const value of the unit
      * @throws DateTimeException if the unit is not supported
      * @throws UnsupportedTemporalTypeException if the unit is not supported
      */
@@ -545,7 +545,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Checks if this duration is zero length.
-     * &lt;p&gt;
+     *
      * A {@link Duration} represents a directed distance between two points on
      * the time-line and can therefore be positive, zero or negative.
      * This method checks whether the length is zero.
@@ -558,7 +558,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Checks if this duration is negative, excluding zero.
-     * &lt;p&gt;
+     *
      * A {@link Duration} represents a directed distance between two points on
      * the time-line and can therefore be positive, zero or negative.
      * This method checks whether the length is less than zero.
@@ -572,12 +572,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Gets the number of seconds in this duration.
-     * &lt;p&gt;
+     *
      * The length of the duration is stored using two fields - seconds and nanoseconds.
      * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
      * the length in seconds.
-     * The total duration is defined by calling this method and {@link #getNano()}.
-     * &lt;p&gt;
+     * The total duration is defined by calling this method and {@link getNano}.
+     *
      * A {@link Duration} represents a directed distance between two points on the time-line.
      * A negative duration is expressed by the negative sign of the seconds part.
      * A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds.
@@ -590,12 +590,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of nanoseconds within the second in this duration.
-     * &lt;p&gt;
+     *
      * The length of the duration is stored using two fields - seconds and nanoseconds.
      * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
      * the length in seconds.
-     * The total duration is defined by calling this method and {@link #getSeconds()}.
-     * &lt;p&gt;
+     * The total duration is defined by calling this method and {@link getSeconds}.
+     *
      * A {@link Duration} represents a directed distance between two points on the time-line.
      * A negative duration is expressed by the negative sign of the seconds part.
      * A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds.
@@ -609,10 +609,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified amount of seconds.
-     * &lt;p&gt;
+     *
      * This returns a duration with the specified seconds, retaining the
      * nano-of-second part of this duration.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} seconds - the seconds to represent, may be negative
@@ -624,10 +624,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified nano-of-second.
-     * &lt;p&gt;
+     *
      * This returns a duration with the specified nano-of-second, retaining the
      * seconds part of this duration.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanoOfSecond - the nano-of-second to represent, from 0 to 999,999,999
@@ -642,7 +642,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Duration} duration - the duration to add, positive or negative, not null
@@ -653,40 +653,40 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         requireNonNull(duration, &apos;duration&apos;);
         return this.plus(duration.seconds(), duration.nano());
     }
-    
-    
+
+
     /**
-     * function overloading for {@link Duration.of}
+     * function overloading for {@link Duration.plus}
      *
      * if called with 1 arguments, then {@link Duration.plusDuration} is executed.
      *
-     * if called with 2 arguments and second argument is an instance of ChronoUnit, then {@link Duration.plusAmountUnit} is executed.
+     * if called with 2 arguments and second argument is an instance of TemporalUnit, then {@link Duration.plusAmountUnit} is executed.
      *
      * Otherwise {@link Duration.plusSecondsNanos} is executed.
      *
-     * @param {!(Duration|number)} arg1
-     * @param {ChronoUnit|number} arg2
+     * @param {!(Duration|number)} durationOrNumber
+     * @param {!TemporaloUnit|number} unitOrNumber
      * @returns {Duration}
      */
-    plus() {
+    plus(durationOrNumber, unitOrNumber) {
         if (arguments.length === 1) {
-            return this.plusDuration.apply(this, arguments);
+            return this.plusDuration(durationOrNumber);
         }
-        else if (arguments.length === 2 &amp;&amp; arguments[1] instanceof ChronoUnit) {
-            return this.plusAmountUnit.apply(this, arguments);
+        else if (arguments.length === 2 &amp;&amp; unitOrNumber instanceof TemporalUnit) {
+            return this.plusAmountUnit(durationOrNumber, unitOrNumber);
         } else {
-            return this.plusSecondsNanos.apply(this, arguments);
+            return this.plusSecondsNanos(durationOrNumber, unitOrNumber);
         }
     }
-    
+
     /**
      * Returns a copy of this duration with the specified duration added.
-     * &lt;p&gt;
+     *
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an exact duration (see {@link TemporalUnit#isDurationEstimated}) or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} amountToAdd - the amount to add, measured in terms of the unit, positive or negative
@@ -716,14 +716,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             }
             return this.plusSecondsNanos(MathUtil.safeMultiply(unit.duration().seconds(), amountToAdd), 0);
         }
-        var duration = unit.duration().multipliedBy(amountToAdd);
+        const duration = unit.duration().multipliedBy(amountToAdd);
         return this.plusSecondsNanos(duration.seconds(), duration.nano());
     }
 
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration in 24 hour days added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} daysToAdd - the days to add, positive or negative
@@ -736,7 +736,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in hours added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} hoursToAdd - the hours to add, positive or negative
@@ -749,7 +749,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in minutes added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} minutesToAdd - the minutes to add, positive or negative
@@ -762,7 +762,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in seconds added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToAdd - the seconds to add, positive or negative
@@ -775,7 +775,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in milliseconds added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} millisToAdd - the milliseconds to add, positive or negative
@@ -788,7 +788,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration in nanoseconds added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanosToAdd - the nanoseconds to add, positive or negative
@@ -801,7 +801,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with the specified duration added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToAdd - the seconds to add, positive or negative
@@ -815,10 +815,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if ((secondsToAdd | nanosToAdd) === 0) {
             return this;
         }
-        var epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
+        let epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
         epochSec = MathUtil.safeAdd(epochSec, MathUtil.intDiv(nanosToAdd, LocalTime.NANOS_PER_SECOND));
         nanosToAdd = MathUtil.intMod(nanosToAdd, LocalTime.NANOS_PER_SECOND);
-        var nanoAdjustment = MathUtil.safeAdd(this._nanos, nanosToAdd);  // safe int+LocalTime.NANOS_PER_SECOND
+        const nanoAdjustment = MathUtil.safeAdd(this._nanos, nanosToAdd);  // safe int+LocalTime.NANOS_PER_SECOND
         return Duration.ofSeconds(epochSec, nanoAdjustment);
     }
 
@@ -830,21 +830,21 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *
      * Otherwise {@link Duration.minusAmountUnit} is executed.
      *
-     * @param {!(Duration|number)} arg1
-     * @param {ChronoUnit} arg2
+     * @param {!(Duration|number)} durationOrNumber
+     * @param {?ChronoUnit} unit
      * @return {Duration}
      */
-    minus() {
+    minus(durationOrNumber, unit) {
         if (arguments.length === 1) {
-            return this.minusDuration.apply(this, arguments);
+            return this.minusDuration(durationOrNumber);
         } else {
-            return this.minusAmountUnit.apply(this, arguments);
+            return this.minusAmountUnit(durationOrNumber, unit);
         }
     }
 
     /**
      * Returns a copy of this duration with the specified duration subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Duration} duration - the duration to subtract, positive or negative, not null
@@ -853,22 +853,22 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      */
     minusDuration(duration) {
         requireNonNull(duration, &apos;duration&apos;);
-        var secsToSubtract = duration.seconds();
-        var nanosToSubtract = duration.nano();
+        const secsToSubtract = duration.seconds();
+        const nanosToSubtract = duration.nano();
         if (secsToSubtract === MIN_SAFE_INTEGER) {
-            return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract).plus(1, 0);
+            return this.plus(MAX_SAFE_INTEGER, -nanosToSubtract);
         }
         return this.plus(-secsToSubtract, -nanosToSubtract);
     }
 
     /**
      * Returns a copy of this duration with the specified duration subtracted.
-     * &lt;p&gt;
+     *
      * The duration amount is measured in terms of the specified unit.
      * Only a subset of units are accepted by this method.
-     * The unit must either have an {@link TemporalUnit#isDurationEstimated() exact duration} or
+     * The unit must either have an exact duration (see {@link TemporalUnit#isDurationEstimated}) or
      * be {@link ChronoUnit#DAYS} which is treated as 24 hours. Other units throw an exception.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} amountToSubtract - the amount to subtract, measured in terms of the unit, positive or negative
@@ -879,13 +879,13 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, &apos;amountToSubtract&apos;);
         requireNonNull(unit, &apos;unit&apos;);
-        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
+        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit) : this.plusAmountUnit(-amountToSubtract, unit));
     }
 
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the specified duration in 24 hour days subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} daysToSubtract - the days to subtract, positive or negative
@@ -893,12 +893,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusDays(daysToSubtract) {
-        return (daysToSubtract === MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER).plusDays(1) : this.plusDays(-daysToSubtract));
+        return (daysToSubtract === MIN_SAFE_INTEGER ? this.plusDays(MAX_SAFE_INTEGER) : this.plusDays(-daysToSubtract));
     }
 
     /**
      * Returns a copy of this duration with the specified duration in hours subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} hoursToSubtract - the hours to subtract, positive or negative
@@ -906,14 +906,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusHours(hoursToSubtract) {
-        return (hoursToSubtract === MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER).plusHours(1) : this.plusHours(-hoursToSubtract));
+        return (hoursToSubtract === MIN_SAFE_INTEGER ? this.plusHours(MAX_SAFE_INTEGER) : this.plusHours(-hoursToSubtract));
     }
 
     /**
      * Returns a copy of this duration with the specified duration in minutes subtracted.
-     * &lt;p&gt;
+     *
      * The number of hours is multiplied by 60 to obtain the number of seconds to subtract.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} minutesToSubtract - the minutes to subtract, positive or negative
@@ -921,12 +921,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMinutes(minutesToSubtract) {
-        return (minutesToSubtract === MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER).plusMinutes(1) : this.plusMinutes(-minutesToSubtract));
+        return (minutesToSubtract === MIN_SAFE_INTEGER ? this.plusMinutes(MAX_SAFE_INTEGER) : this.plusMinutes(-minutesToSubtract));
     }
 
     /**
      * Returns a copy of this duration with the specified duration in seconds subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} secondsToSubtract - the seconds to subtract, positive or negative
@@ -934,12 +934,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusSeconds(secondsToSubtract) {
-        return (secondsToSubtract === MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER).plusSeconds(1) : this.plusSeconds(-secondsToSubtract));
+        return (secondsToSubtract === MIN_SAFE_INTEGER ? this.plusSeconds(MAX_SAFE_INTEGER) : this.plusSeconds(-secondsToSubtract));
     }
 
     /**
      * Returns a copy of this duration with the specified duration in milliseconds subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} millisToSubtract - the milliseconds to subtract, positive or negative
@@ -947,12 +947,12 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusMillis(millisToSubtract) {
-        return (millisToSubtract === MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER).plusMillis(1) : this.plusMillis(-millisToSubtract));
+        return (millisToSubtract === MIN_SAFE_INTEGER ? this.plusMillis(MAX_SAFE_INTEGER) : this.plusMillis(-millisToSubtract));
     }
 
     /**
      * Returns a copy of this duration with the specified duration in nanoseconds subtracted.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} nanosToSubtract - the nanoseconds to subtract, positive or negative
@@ -960,13 +960,13 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     minusNanos(nanosToSubtract) {
-        return (nanosToSubtract === MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER).plusNanos(1) : this.plusNanos(-nanosToSubtract));
+        return (nanosToSubtract === MIN_SAFE_INTEGER ? this.plusNanos(MAX_SAFE_INTEGER) : this.plusNanos(-nanosToSubtract));
     }
 
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration multiplied by the scalar.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Number} multiplicand - the value to multiply the duration by, positive or negative
@@ -989,8 +989,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration divided by the specified value.
-     * &lt;p&gt;
-     * In opposite to the threeten implementation the division is realized by floating point not by 
+     *
+     * In opposite to the threeten implementation the division is realized by floating point not by
      * fixed point arithmetic. Expect floating point rounding errors for {@link Duration.dividedBy}.
      *
      * @param {Number} divisor - the value to divide the duration by, positive or negative, not zero
@@ -1004,9 +1004,9 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (divisor === 1) {
             return this;
         }
-        var secs = MathUtil.intDiv(this._seconds, divisor);
-        var secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
-        var nos = MathUtil.intDiv(this._nanos, divisor);
+        const secs = MathUtil.intDiv(this._seconds, divisor);
+        const secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
+        let nos = MathUtil.intDiv(this._nanos, divisor);
         nos = secsMod + nos;
         return Duration.ofSeconds(secs, nos);
     }
@@ -1014,10 +1014,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this duration with the length negated.
-     * &lt;p&gt;
+     *
      * This method swaps the sign of the total length of this duration.
-     * For example, {@code PT1.3S} will be returned as {@code PT-1.3S}.
-     * &lt;p&gt;
+     * For example, {@link PT1.3S} will be returned as {@link PT-1.3S}.
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {Duration} based on this duration with the amount negated, not null
@@ -1029,10 +1029,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Returns a copy of this duration with a positive length.
-     * &lt;p&gt;
+     *
      * This method returns a positive duration by effectively removing the sign from any negative total length.
-     * For example, {@code PT-1.3S} will be returned as {@code PT1.3S}.
-     * &lt;p&gt;
+     * For example, {@link PT-1.3S} will be returned as {@link PT1.3S}.
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {Duration} based on this duration with an absolute length, not null
@@ -1045,21 +1045,21 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-------------------------------------------------------------------------
     /**
      * Adds this duration to the specified temporal object.
-     * &lt;p&gt;
+     *
      * This returns a temporal object of the same observable type as the input
      * with this duration added.
-     * &lt;p&gt;
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
-     * {@link Temporal#plus(TemporalAmount)}.
+     * {@link Temporal#plus}.
      * &lt;pre&gt;
      *   // these two lines are equivalent, but the second approach is recommended
      *   dateTime = thisDuration.addTo(dateTime);
      *   dateTime = dateTime.plus(thisDuration);
      * &lt;/pre&gt;
-     * &lt;p&gt;
+     *
      * The calculation will add the seconds, then nanos.
      * Only non-zero amounts will be added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the temporal object to adjust, not null
@@ -1080,21 +1080,21 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Subtracts this duration from the specified temporal object.
-     * &lt;p&gt;
+     *
      * This returns a temporal object of the same observable type as the input
      * with this duration subtracted.
-     * &lt;p&gt;
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
-     * {@link Temporal#minus(TemporalAmount)}.
+     * {@link Temporal#minus}.
      * &lt;pre&gt;
      *   // these two lines are equivalent, but the second approach is recommended
      *   dateTime = thisDuration.subtractFrom(dateTime);
      *   dateTime = dateTime.minus(thisDuration);
      * &lt;/pre&gt;
-     * &lt;p&gt;
+     *
      * The calculation will subtract the seconds, then nanos.
      * Only non-zero amounts will be added.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the temporal object to adjust, not null
@@ -1116,11 +1116,11 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Gets the number of days in this duration.
-     * &lt;p&gt;
+     *
      * This returns the total number of days in the duration by dividing the
      * number of seconds by 86400.
      * This is based on the standard definition of a day as 24 hours.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of days in the duration, may be negative
@@ -1131,10 +1131,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of hours in this duration.
-     * &lt;p&gt;
+     *
      * This returns the total number of hours in the duration by dividing the
      * number of seconds by 3600.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of hours in the duration, may be negative
@@ -1145,10 +1145,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Gets the number of minutes in this duration.
-     * &lt;p&gt;
+     *
      * This returns the total number of minutes in the duration by dividing the
      * number of seconds by 60.
-     * &lt;p&gt;
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @return {number} the number of minutes in the duration, may be negative
@@ -1159,10 +1159,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     /**
      * Converts this duration to the total length in milliseconds.
-     * &lt;p&gt;
-     * If this duration is too large to fit in a {@code long} milliseconds, then an
+     *
+     * If this duration is too large to fit in a `long` milliseconds, then an
      * exception is thrown.
-     * &lt;p&gt;
+     *
      * If this duration has greater than millisecond precision, then the conversion
      * will drop any excess precision information as though the amount in nanoseconds
      * was subject to integer division by one million.
@@ -1171,22 +1171,22 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @throws ArithmeticException if numeric overflow occurs
      */
     toMillis() {
-        var millis = Math.round(MathUtil.safeMultiply(this._seconds, 1000));
+        let millis = Math.round(MathUtil.safeMultiply(this._seconds, 1000));
         millis = MathUtil.safeAdd(millis, MathUtil.intDiv(this._nanos, 1000000));
         return millis;
     }
 
     /**
-     * Converts this duration to the total length in nanoseconds expressed as a {@code long}.
-     * &lt;p&gt;
-     * If this duration is too large to fit in a {@code long} nanoseconds, then an
+     * Converts this duration to the total length in nanoseconds expressed as a `long`.
+     *
+     * If this duration is too large to fit in a `long` nanoseconds, then an
      * exception is thrown.
      *
      * @return {number} the total length of the duration in nanoseconds
      * @throws ArithmeticException if numeric overflow occurs
      */
     toNanos() {
-        var totalNanos = MathUtil.safeMultiply(this._seconds, LocalTime.NANOS_PER_SECOND);
+        let totalNanos = MathUtil.safeMultiply(this._seconds, LocalTime.NANOS_PER_SECOND);
         totalNanos = MathUtil.safeAdd(totalNanos, this._nanos);
         return totalNanos;
     }
@@ -1194,7 +1194,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Compares this duration to the specified {@link Duration}.
-     * &lt;p&gt;
+     *
      * The comparison is based on the total length of the durations.
      *
      * @param {Duration} otherDuration - the other duration to compare to, not null
@@ -1203,7 +1203,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     compareTo(otherDuration) {
         requireNonNull(otherDuration, &apos;otherDuration&apos;);
         requireInstance(otherDuration, Duration, &apos;otherDuration&apos;);
-        var cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
+        const cmp = MathUtil.compareNumbers(this._seconds, otherDuration.seconds());
         if (cmp !== 0) {
             return cmp;
         }
@@ -1213,7 +1213,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * Checks if this duration is equal to the specified {@link Duration}.
-     * &lt;p&gt;
+     *
      * The comparison is based on the total length of the durations.
      *
      * @param {*} otherDuration - the other duration, null returns false
@@ -1233,14 +1233,14 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     //-----------------------------------------------------------------------
     /**
      * A string representation of this duration using ISO-8601 seconds
-     * based representation, such as {@code PT8H6M12.345S}.
-     * &lt;p&gt;
-     * The format of the returned string will be {@code PTnHnMnS}, where n is
+     * based representation, such as {@link PT8H6M12.345S}.
+     *
+     * The format of the returned string will be {@link PTnHnMnS}, where n is
      * the relevant hours, minutes or seconds part of the duration.
      * Any fractional seconds are placed after a decimal povar i the seconds section.
      * If a section has a zero value, it is omitted.
      * The hours, minutes and seconds will all have the same sign.
-     * &lt;p&gt;
+     *
      * Examples:
      * &lt;pre&gt;
      *    &quot;20.345 seconds&quot;                 -&gt; &quot;PT20.345S
@@ -1249,7 +1249,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *    &quot;2 days&quot; (2 * 86400 seconds)     -&gt; &quot;PT48H&quot;
      * &lt;/pre&gt;
      * Note that multiples of 24 hours are not output as days to avoid confusion
-     * with {@code Period}.
+     * with {@link Period}.
      *
      * @return {string} an ISO-8601 representation of this duration, not null
      */
@@ -1257,10 +1257,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (this === Duration.ZERO) {
             return &apos;PT0S&apos;;
         }
-        var hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
-        var minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
-        var secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
-        var rval = &apos;PT&apos;;
+        const hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
+        const minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
+        const secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
+        let rval = &apos;PT&apos;;
         if (hours !== 0) {
             rval += hours + &apos;H&apos;;
         }
@@ -1305,7 +1305,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     toJSON() {
         return this.toString();
     }
-    
+
 }
 
 export function _init() {
@@ -1313,12 +1313,13 @@ export function _init() {
      * Constant for a duration of zero.
      */
     Duration.ZERO = new Duration(0, 0);
-}</code></pre>
+}
+</code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

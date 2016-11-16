@@ -10,8 +10,8 @@
             "type": "Identifier",
             "name": "Enum",
             "range": [
-              241,
-              245
+              238,
+              242
             ],
             "loc": {
               "start": {
@@ -28,8 +28,8 @@
             "type": "Identifier",
             "name": "Enum",
             "range": [
-              241,
-              245
+              238,
+              242
             ],
             "loc": {
               "start": {
@@ -43,8 +43,8 @@
             }
           },
           "range": [
-            241,
-            245
+            238,
+            242
           ],
           "loc": {
             "start": {
@@ -63,8 +63,8 @@
         "value": "../Enum",
         "raw": "'../Enum'",
         "range": [
-          252,
-          261
+          249,
+          258
         ],
         "loc": {
           "start": {
@@ -78,8 +78,8 @@
         }
       },
       "range": [
-        233,
-        262
+        230,
+        259
       ],
       "loc": {
         "start": {
@@ -94,10 +94,10 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            231
+            228
           ],
           "loc": {
             "start": {
@@ -120,8 +120,8 @@
           "type": "Identifier",
           "name": "SignStyle",
           "range": [
-            277,
-            286
+            274,
+            283
           ],
           "loc": {
             "start": {
@@ -138,8 +138,8 @@
           "type": "Identifier",
           "name": "Enum",
           "range": [
-            295,
-            299
+            292,
+            296
           ],
           "loc": {
             "start": {
@@ -161,8 +161,8 @@
                 "type": "Identifier",
                 "name": "parse",
                 "range": [
-                  571,
-                  576
+                  568,
+                  573
                 ],
                 "loc": {
                   "start": {
@@ -183,8 +183,8 @@
                     "type": "Identifier",
                     "name": "positive",
                     "range": [
-                      577,
-                      585
+                      574,
+                      582
                     ],
                     "loc": {
                       "start": {
@@ -201,8 +201,8 @@
                     "type": "Identifier",
                     "name": "strict",
                     "range": [
-                      587,
-                      593
+                      584,
+                      590
                     ],
                     "loc": {
                       "start": {
@@ -219,8 +219,8 @@
                     "type": "Identifier",
                     "name": "fixedWidth",
                     "range": [
-                      595,
-                      605
+                      592,
+                      602
                     ],
                     "loc": {
                       "start": {
@@ -242,8 +242,8 @@
                       "discriminant": {
                         "type": "ThisExpression",
                         "range": [
-                          624,
-                          628
+                          621,
+                          625
                         ],
                         "loc": {
                           "start": {
@@ -266,8 +266,8 @@
                               "type": "Identifier",
                               "name": "SignStyle",
                               "range": [
-                                649,
-                                658
+                                646,
+                                655
                               ],
                               "loc": {
                                 "start": {
@@ -284,8 +284,8 @@
                               "type": "Identifier",
                               "name": "NORMAL",
                               "range": [
-                                659,
-                                665
+                                656,
+                                662
                               ],
                               "loc": {
                                 "start": {
@@ -299,8 +299,8 @@
                               }
                             },
                             "range": [
-                              649,
-                              665
+                              646,
+                              662
                             ],
                             "loc": {
                               "start": {
@@ -326,8 +326,8 @@
                                     "type": "Identifier",
                                     "name": "positive",
                                     "range": [
-                                      764,
-                                      772
+                                      761,
+                                      769
                                     ],
                                     "loc": {
                                       "start": {
@@ -342,8 +342,8 @@
                                   },
                                   "prefix": true,
                                   "range": [
-                                    763,
-                                    772
+                                    760,
+                                    769
                                   ],
                                   "loc": {
                                     "start": {
@@ -363,8 +363,8 @@
                                     "type": "Identifier",
                                     "name": "strict",
                                     "range": [
-                                      777,
-                                      783
+                                      774,
+                                      780
                                     ],
                                     "loc": {
                                       "start": {
@@ -379,8 +379,8 @@
                                   },
                                   "prefix": true,
                                   "range": [
-                                    776,
-                                    783
+                                    773,
+                                    780
                                   ],
                                   "loc": {
                                     "start": {
@@ -394,8 +394,8 @@
                                   }
                                 },
                                 "range": [
-                                  763,
-                                  783
+                                  760,
+                                  780
                                 ],
                                 "loc": {
                                   "start": {
@@ -409,8 +409,8 @@
                                 }
                               },
                               "range": [
-                                756,
-                                784
+                                753,
+                                781
                               ],
                               "loc": {
                                 "start": {
@@ -427,8 +427,8 @@
                                   "type": "Line",
                                   "value": " NORMAL",
                                   "range": [
-                                    667,
-                                    676
+                                    664,
+                                    673
                                   ],
                                   "loc": {
                                     "start": {
@@ -445,8 +445,8 @@
                                   "type": "Line",
                                   "value": " valid if negative or (positive and lenient)",
                                   "range": [
-                                    693,
-                                    739
+                                    690,
+                                    736
                                   ],
                                   "loc": {
                                     "start": {
@@ -463,8 +463,8 @@
                             }
                           ],
                           "range": [
-                            644,
-                            784
+                            641,
+                            781
                           ],
                           "loc": {
                             "start": {
@@ -486,8 +486,8 @@
                               "type": "Identifier",
                               "name": "SignStyle",
                               "range": [
-                                802,
-                                811
+                                799,
+                                808
                               ],
                               "loc": {
                                 "start": {
@@ -504,8 +504,8 @@
                               "type": "Identifier",
                               "name": "ALWAYS",
                               "range": [
-                                812,
-                                818
+                                809,
+                                815
                               ],
                               "loc": {
                                 "start": {
@@ -519,8 +519,8 @@
                               }
                             },
                             "range": [
-                              802,
-                              818
+                              799,
+                              815
                             ],
                             "loc": {
                               "start": {
@@ -535,8 +535,8 @@
                           },
                           "consequent": [],
                           "range": [
-                            797,
-                            819
+                            794,
+                            816
                           ],
                           "loc": {
                             "start": {
@@ -553,8 +553,8 @@
                               "type": "Line",
                               "value": " ALWAYS",
                               "range": [
-                                820,
-                                829
+                                817,
+                                826
                               ],
                               "loc": {
                                 "start": {
@@ -578,8 +578,8 @@
                               "type": "Identifier",
                               "name": "SignStyle",
                               "range": [
-                                847,
-                                856
+                                844,
+                                853
                               ],
                               "loc": {
                                 "start": {
@@ -596,8 +596,8 @@
                               "type": "Identifier",
                               "name": "EXCEEDS_PAD",
                               "range": [
-                                857,
-                                868
+                                854,
+                                865
                               ],
                               "loc": {
                                 "start": {
@@ -611,8 +611,8 @@
                               }
                             },
                             "range": [
-                              847,
-                              868
+                              844,
+                              865
                             ],
                             "loc": {
                               "start": {
@@ -633,8 +633,8 @@
                                 "value": true,
                                 "raw": "true",
                                 "range": [
-                                  908,
-                                  912
+                                  905,
+                                  909
                                 ],
                                 "loc": {
                                   "start": {
@@ -648,8 +648,8 @@
                                 }
                               },
                               "range": [
-                                901,
-                                913
+                                898,
+                                910
                               ],
                               "loc": {
                                 "start": {
@@ -666,8 +666,8 @@
                                   "type": "Line",
                                   "value": " EXCEEDS_PAD",
                                   "range": [
-                                    870,
-                                    884
+                                    867,
+                                    881
                                   ],
                                   "loc": {
                                     "start": {
@@ -684,8 +684,8 @@
                             }
                           ],
                           "range": [
-                            842,
-                            913
+                            839,
+                            910
                           ],
                           "loc": {
                             "start": {
@@ -702,8 +702,8 @@
                               "type": "Line",
                               "value": " ALWAYS",
                               "range": [
-                                820,
-                                829
+                                817,
+                                826
                               ],
                               "loc": {
                                 "start": {
@@ -734,8 +734,8 @@
                                     "type": "Identifier",
                                     "name": "strict",
                                     "range": [
-                                      1015,
-                                      1021
+                                      1012,
+                                      1018
                                     ],
                                     "loc": {
                                       "start": {
@@ -750,8 +750,8 @@
                                   },
                                   "prefix": true,
                                   "range": [
-                                    1014,
-                                    1021
+                                    1011,
+                                    1018
                                   ],
                                   "loc": {
                                     "start": {
@@ -771,8 +771,8 @@
                                     "type": "Identifier",
                                     "name": "fixedWidth",
                                     "range": [
-                                      1026,
-                                      1036
+                                      1023,
+                                      1033
                                     ],
                                     "loc": {
                                       "start": {
@@ -787,8 +787,8 @@
                                   },
                                   "prefix": true,
                                   "range": [
-                                    1025,
-                                    1036
+                                    1022,
+                                    1033
                                   ],
                                   "loc": {
                                     "start": {
@@ -802,8 +802,8 @@
                                   }
                                 },
                                 "range": [
-                                  1014,
-                                  1036
+                                  1011,
+                                  1033
                                 ],
                                 "loc": {
                                   "start": {
@@ -817,8 +817,8 @@
                                 }
                               },
                               "range": [
-                                1007,
-                                1037
+                                1004,
+                                1034
                               ],
                               "loc": {
                                 "start": {
@@ -835,8 +835,8 @@
                                   "type": "Line",
                                   "value": " valid if lenient and not fixed width",
                                   "range": [
-                                    951,
-                                    990
+                                    948,
+                                    987
                                   ],
                                   "loc": {
                                     "start": {
@@ -853,8 +853,8 @@
                             }
                           ],
                           "range": [
-                            926,
-                            1037
+                            923,
+                            1034
                           ],
                           "loc": {
                             "start": {
@@ -869,8 +869,8 @@
                         }
                       ],
                       "range": [
-                        616,
-                        1047
+                        613,
+                        1044
                       ],
                       "loc": {
                         "start": {
@@ -885,8 +885,8 @@
                     }
                   ],
                   "range": [
-                    606,
-                    1054
+                    603,
+                    1051
                   ],
                   "loc": {
                     "start": {
@@ -902,8 +902,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  576,
-                  1054
+                  573,
+                  1051
                 ],
                 "loc": {
                   "start": {
@@ -919,8 +919,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                571,
-                1054
+                568,
+                1051
               ],
               "loc": {
                 "start": {
@@ -937,8 +937,8 @@
                   "type": "Block",
                   "value": "*\n     * Parse helper.\n     *\n     * @param positive  true if positive sign parsed, false for negative sign\n     * @param strict  true if strict, false if lenient\n     * @param fixedWidth  true if fixed width, false if not\n     * @return true if valid\n     ",
                   "range": [
-                    305,
-                    566
+                    302,
+                    563
                   ],
                   "loc": {
                     "start": {
@@ -956,8 +956,8 @@
             }
           ],
           "range": [
-            299,
-            1056
+            296,
+            1053
           ],
           "loc": {
             "start": {
@@ -971,8 +971,8 @@
           }
         },
         "range": [
-          271,
-          1056
+          268,
+          1053
         ],
         "loc": {
           "start": {
@@ -990,8 +990,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        264,
-        1056
+        261,
+        1053
       ],
       "loc": {
         "start": {
@@ -1016,8 +1016,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1058,
-              1067
+              1055,
+              1064
             ],
             "loc": {
               "start": {
@@ -1034,8 +1034,8 @@
             "type": "Identifier",
             "name": "NORMAL",
             "range": [
-              1068,
-              1074
+              1065,
+              1071
             ],
             "loc": {
               "start": {
@@ -1049,8 +1049,8 @@
             }
           },
           "range": [
-            1058,
-            1074
+            1055,
+            1071
           ],
           "loc": {
             "start": {
@@ -1069,8 +1069,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1081,
-              1090
+              1078,
+              1087
             ],
             "loc": {
               "start": {
@@ -1089,8 +1089,8 @@
               "value": "NORMAL",
               "raw": "'NORMAL'",
               "range": [
-                1091,
-                1099
+                1088,
+                1096
               ],
               "loc": {
                 "start": {
@@ -1105,8 +1105,8 @@
             }
           ],
           "range": [
-            1077,
-            1100
+            1074,
+            1097
           ],
           "loc": {
             "start": {
@@ -1120,8 +1120,8 @@
           }
         },
         "range": [
-          1058,
-          1100
+          1055,
+          1097
         ],
         "loc": {
           "start": {
@@ -1135,8 +1135,8 @@
         }
       },
       "range": [
-        1058,
-        1101
+        1055,
+        1098
       ],
       "loc": {
         "start": {
@@ -1161,8 +1161,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1102,
-              1111
+              1099,
+              1108
             ],
             "loc": {
               "start": {
@@ -1179,8 +1179,8 @@
             "type": "Identifier",
             "name": "NEVER",
             "range": [
-              1112,
-              1117
+              1109,
+              1114
             ],
             "loc": {
               "start": {
@@ -1194,8 +1194,8 @@
             }
           },
           "range": [
-            1102,
-            1117
+            1099,
+            1114
           ],
           "loc": {
             "start": {
@@ -1214,8 +1214,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1124,
-              1133
+              1121,
+              1130
             ],
             "loc": {
               "start": {
@@ -1234,8 +1234,8 @@
               "value": "NEVER",
               "raw": "'NEVER'",
               "range": [
-                1134,
-                1141
+                1131,
+                1138
               ],
               "loc": {
                 "start": {
@@ -1250,8 +1250,8 @@
             }
           ],
           "range": [
-            1120,
-            1142
+            1117,
+            1139
           ],
           "loc": {
             "start": {
@@ -1265,8 +1265,8 @@
           }
         },
         "range": [
-          1102,
-          1142
+          1099,
+          1139
         ],
         "loc": {
           "start": {
@@ -1280,8 +1280,8 @@
         }
       },
       "range": [
-        1102,
-        1143
+        1099,
+        1140
       ],
       "loc": {
         "start": {
@@ -1306,8 +1306,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1144,
-              1153
+              1141,
+              1150
             ],
             "loc": {
               "start": {
@@ -1324,8 +1324,8 @@
             "type": "Identifier",
             "name": "ALWAYS",
             "range": [
-              1154,
-              1160
+              1151,
+              1157
             ],
             "loc": {
               "start": {
@@ -1339,8 +1339,8 @@
             }
           },
           "range": [
-            1144,
-            1160
+            1141,
+            1157
           ],
           "loc": {
             "start": {
@@ -1359,8 +1359,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1167,
-              1176
+              1164,
+              1173
             ],
             "loc": {
               "start": {
@@ -1379,8 +1379,8 @@
               "value": "ALWAYS",
               "raw": "'ALWAYS'",
               "range": [
-                1177,
-                1185
+                1174,
+                1182
               ],
               "loc": {
                 "start": {
@@ -1395,8 +1395,8 @@
             }
           ],
           "range": [
-            1163,
-            1186
+            1160,
+            1183
           ],
           "loc": {
             "start": {
@@ -1410,8 +1410,8 @@
           }
         },
         "range": [
-          1144,
-          1186
+          1141,
+          1183
         ],
         "loc": {
           "start": {
@@ -1425,8 +1425,8 @@
         }
       },
       "range": [
-        1144,
-        1187
+        1141,
+        1184
       ],
       "loc": {
         "start": {
@@ -1451,8 +1451,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1188,
-              1197
+              1185,
+              1194
             ],
             "loc": {
               "start": {
@@ -1469,8 +1469,8 @@
             "type": "Identifier",
             "name": "EXCEEDS_PAD",
             "range": [
-              1198,
-              1209
+              1195,
+              1206
             ],
             "loc": {
               "start": {
@@ -1484,8 +1484,8 @@
             }
           },
           "range": [
-            1188,
-            1209
+            1185,
+            1206
           ],
           "loc": {
             "start": {
@@ -1504,8 +1504,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1216,
-              1225
+              1213,
+              1222
             ],
             "loc": {
               "start": {
@@ -1524,8 +1524,8 @@
               "value": "EXCEEDS_PAD",
               "raw": "'EXCEEDS_PAD'",
               "range": [
-                1226,
-                1239
+                1223,
+                1236
               ],
               "loc": {
                 "start": {
@@ -1540,8 +1540,8 @@
             }
           ],
           "range": [
-            1212,
-            1240
+            1209,
+            1237
           ],
           "loc": {
             "start": {
@@ -1555,8 +1555,8 @@
           }
         },
         "range": [
-          1188,
-          1240
+          1185,
+          1237
         ],
         "loc": {
           "start": {
@@ -1570,8 +1570,8 @@
         }
       },
       "range": [
-        1188,
-        1241
+        1185,
+        1238
       ],
       "loc": {
         "start": {
@@ -1596,8 +1596,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1242,
-              1251
+              1239,
+              1248
             ],
             "loc": {
               "start": {
@@ -1614,8 +1614,8 @@
             "type": "Identifier",
             "name": "NOT_NEGATIVE",
             "range": [
-              1252,
-              1264
+              1249,
+              1261
             ],
             "loc": {
               "start": {
@@ -1629,8 +1629,8 @@
             }
           },
           "range": [
-            1242,
-            1264
+            1239,
+            1261
           ],
           "loc": {
             "start": {
@@ -1649,8 +1649,8 @@
             "type": "Identifier",
             "name": "SignStyle",
             "range": [
-              1271,
-              1280
+              1268,
+              1277
             ],
             "loc": {
               "start": {
@@ -1669,8 +1669,8 @@
               "value": "NOT_NEGATIVE",
               "raw": "'NOT_NEGATIVE'",
               "range": [
-                1281,
-                1295
+                1278,
+                1292
               ],
               "loc": {
                 "start": {
@@ -1685,8 +1685,8 @@
             }
           ],
           "range": [
-            1267,
-            1296
+            1264,
+            1293
           ],
           "loc": {
             "start": {
@@ -1700,8 +1700,8 @@
           }
         },
         "range": [
-          1242,
-          1296
+          1239,
+          1293
         ],
         "loc": {
           "start": {
@@ -1715,8 +1715,8 @@
         }
       },
       "range": [
-        1242,
-        1297
+        1239,
+        1294
       ],
       "loc": {
         "start": {
@@ -1732,8 +1732,8 @@
   ],
   "sourceType": "module",
   "range": [
-    233,
-    1297
+    230,
+    1294
   ],
   "loc": {
     "start": {
@@ -1748,10 +1748,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        231
+        228
       ],
       "loc": {
         "start": {
@@ -1768,8 +1768,8 @@
       "type": "Block",
       "value": "*\n     * Parse helper.\n     *\n     * @param positive  true if positive sign parsed, false for negative sign\n     * @param strict  true if strict, false if lenient\n     * @param fixedWidth  true if fixed width, false if not\n     * @return true if valid\n     ",
       "range": [
-        305,
-        566
+        302,
+        563
       ],
       "loc": {
         "start": {
@@ -1786,8 +1786,8 @@
       "type": "Line",
       "value": " NORMAL",
       "range": [
-        667,
-        676
+        664,
+        673
       ],
       "loc": {
         "start": {
@@ -1804,8 +1804,8 @@
       "type": "Line",
       "value": " valid if negative or (positive and lenient)",
       "range": [
-        693,
-        739
+        690,
+        736
       ],
       "loc": {
         "start": {
@@ -1822,8 +1822,8 @@
       "type": "Line",
       "value": " ALWAYS",
       "range": [
-        820,
-        829
+        817,
+        826
       ],
       "loc": {
         "start": {
@@ -1840,8 +1840,8 @@
       "type": "Line",
       "value": " EXCEEDS_PAD",
       "range": [
-        870,
-        884
+        867,
+        881
       ],
       "loc": {
         "start": {
@@ -1858,8 +1858,8 @@
       "type": "Line",
       "value": " valid if lenient and not fixed width",
       "range": [
-        951,
-        990
+        948,
+        987
       ],
       "loc": {
         "start": {

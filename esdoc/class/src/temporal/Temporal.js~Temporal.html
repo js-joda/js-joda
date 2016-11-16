@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Temporal} from &apos;<span><a href="file/src/temporal/Temporal.js.html#lineNumber66">js-joda/src/temporal/Temporal.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Temporal} from &apos;<span><a href="file/src/temporal/Temporal.js.html#lineNumber63">js-joda/src/temporal/Temporal.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">interface</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/temporal/Temporal.js.html#lineNumber66">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/temporal/Temporal.js.html#lineNumber63">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -134,57 +137,50 @@
   
   <div class="description" data-ice="description"><p>Framework-level interface defining read-write access to a temporal object,
 such as a date, time, offset or some combination of these.</p>
-<p></p><p>
-This is the base interface type for date, time and offset objects that
+<p>This is the base interface type for date, time and offset objects that
 are complete enough to be manipulated using plus and minus.
 It is implemented by those classes that can provide and manipulate information
-as {@link TemporalField fields} or {@link TemporalQuery queries}.
+as fields (see <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>) or queries (see <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>).
 See <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> for the read-only version of this interface.</p>
-<p></p><p>
-Most date and time information can be represented as a number.
-These are modeled using {@code TemporalField} with the number held using
-a {@code long} to handle large values. Year, month and day-of-month are
+<p>Most date and time information can be represented as a number.
+These are modeled using <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> with the number held using
+a <code>long</code> to handle large values. Year, month and day-of-month are
 simple examples of fields, but they also include instant and offsets.
 See <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> for the standard set of fields.</p>
-<p></p><p>
-Two pieces of date/time information cannot be represented by numbers,
-the {@link Chronology chronology} and the {@link ZoneId time-zone}.
-These can be accessed via {@link #query(TemporalQuery) queries} using
-the static methods defined on <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span>.</p>
-<p></p><p>
-This interface is a framework-level interface that should not be widely
+<p>Two pieces of date/time information cannot be represented by numbers,
+the <span>Chronology</span> and the <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>.
+These can be accessed using the static methods defined on <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span>.</p>
+<p>This interface is a framework-level interface that should not be widely
 used in application code. Instead, applications should create and pass
-around instances of concrete types, such as {@code LocalDate}.
+around instances of concrete types, such as <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.
 There are many reasons for this, part of which is that implementations
 of this interface may be in calendar systems other than ISO.
 See <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> for a fuller discussion of the issues.</p>
-<p></p><h3>When to implement</h3><p></p>
-<p></p><p>
-A class should implement this interface if it meets three criteria:</p>
-<p></p><p><ul></ul></p>
-<p><li>it provides access to date/time/offset information, as per {@code TemporalAccessor}</li></p>
-<p><li>the set of fields are contiguous from the largest to the smallest</li></p>
-<p><li>the set of fields are complete, such that no other field is needed to define the
- valid range of values for the fields that are represented
-<p></p>
-<p></p><p>
-Four examples make this clear:</p>
-<p></p><p><ul>
-<li>{@code LocalDate} implements this interface as it represents a set of fields
- that are contiguous from days to forever and require no external information to determine
- the validity of each date. It is therefore able to implement plus/minus correctly.
-</li><li>{@code LocalTime} implements this interface as it represents a set of fields
- that are contiguous from nanos to within days and require no external information to determine
- validity. It is able to implement plus/minus correctly, by wrapping around the day.
-</li><li>{@code MonthDay}, the combination of month-of-year and day-of-month, does not implement
- this interface.  While the combination is contiguous, from days to months within years,
- the combination does not have sufficient information to define the valid range of values
- for day-of-month.  As such, it is unable to implement plus/minus correctly.</li></ul></p>
-<p><li>The combination day-of-week and day-of-month (&quot;Friday the 13th&quot;) should not implement
- this interface. It does not represent a contiguous set of fields, as days to weeks overlaps
- days to months.
-<p></p>
-</li></p></li></p></div>
+<h3 id="when-to-implement">When to implement</h3>
+<p>A class should implement this interface if it meets three criteria:</p>
+<ul>
+<li>it provides access to date/time/offset information, as per <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></li>
+<li>the set of fields are contiguous from the largest to the smallest</li>
+<li>the set of fields are complete, such that no other field is needed to define the
+valid range of values for the fields that are represented</li>
+</ul>
+<p>Four examples make this clear:</p>
+<ul>
+<li><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> implements this interface as it represents a set of fields
+that are contiguous from days to forever and require no external information to determine
+the validity of each date. It is therefore able to implement plus/minus correctly.</li>
+<li><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> implements this interface as it represents a set of fields
+that are contiguous from nanos to within days and require no external information to determine
+validity. It is able to implement plus/minus correctly, by wrapping around the day.</li>
+<li><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>, the combination of month-of-year and day-of-month, does not implement
+this interface.  While the combination is contiguous, from days to months within years,
+the combination does not have sufficient information to define the valid range of values
+for day-of-month.  As such, it is unable to implement plus/minus correctly.</li>
+<li>The combination day-of-week and day-of-month (&quot;Friday the 13th&quot;) should not implement
+this interface. It does not represent a contiguous set of fields, as days to weeks overlaps
+days to months.</li>
+</ul>
+</div>
 
   
 
@@ -222,7 +218,7 @@ Four examples make this clear:</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -295,7 +291,7 @@ Four examples make this clear:</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -240,7 +243,7 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
       <div>
         
         
-        <div data-ice="description"><p>Checks that the specified value is valid and fits in an {@code int}.</p>
+        <div data-ice="description"><p>Checks that the specified value is valid and fits in an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -369,7 +372,7 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
       <div>
         
         
-        <div data-ice="description"><p>Checks if all values in the range fit in an {@code int}.</p>
+        <div data-ice="description"><p>Checks if all values in the range fit in an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -396,7 +399,7 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
         
         
         <div data-ice="description"><p>Checks if the value is within the valid range and that all values
-in the range fit in an {@code int}.</p>
+in the range fit in an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -713,10 +716,9 @@ in the range fit in an {@code int}.</p>
   
   
   
-  <div data-ice="description"><p>Checks that the specified value is valid and fits in an {@code int}.</p>
-<p></p><p>
-This validates that the value is within the valid range of values and that
-all valid values are within the bounds of an {@code int}.
+  <div data-ice="description"><p>Checks that the specified value is valid and fits in an <code>int</code>.</p>
+<p>This validates that the value is within the valid range of values and that
+all valid values are within the bounds of an <code>int</code>.
 The field is only used to improve the error message.</p>
 </div>
 
@@ -866,10 +868,9 @@ The field is only used to improve the error message.</p>
   
   
   <div data-ice="description"><p>Checks if this range is equal to another range.</p>
-<p></p><p>
-The comparison is based on the four values, minimum, largest minimum,
+<p>The comparison is based on the four values, minimum, largest minimum,
 smallest maximum and maximum.
-Only objects of type {@code ValueRange} are compared, other types return false.</p>
+Only objects of type <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span> are compared, other types return false.</p>
 </div>
 
   
@@ -991,8 +992,7 @@ Only objects of type {@code ValueRange} are compared, other types return false.<
   
   
   <div data-ice="description"><p>Is the value range fixed and fully known.</p>
-<p></p><p>
-For example, the ISO day-of-month runs from 1 to between 28 and 31.
+<p>For example, the ISO day-of-month runs from 1 to between 28 and 31.
 Since there is uncertainty about the maximum value, the range is not fixed.
 However, for the month of January, the range is always 1 to 31, thus it is fixed.</p>
 </div>
@@ -1046,14 +1046,11 @@ However, for the month of January, the range is always 1 to 31, thus it is fixed
   
   
   
-  <div data-ice="description"><p>Checks if all values in the range fit in an {@code int}.</p>
-<p></p><p>
-This checks that all valid values are within the bounds of an {@code int}.</p>
-<p></p><p>
-For example, the ISO month-of-year has values from 1 to 12, which fits in an {@code int}.
-By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an {@code int}.</p>
-<p></p><p>
-This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.</p>
+  <div data-ice="description"><p>Checks if all values in the range fit in an <code>int</code>.</p>
+<p>This checks that all valid values are within the bounds of an <code>int</code>.</p>
+<p>For example, the ISO month-of-year has values from 1 to 12, which fits in an <code>int</code>.
+By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not fit in an <code>int</code>.</p>
+<p>This implementation uses <span>getMinimum</span> and <span>getMaximum</span>.</p>
 </div>
 
   
@@ -1066,7 +1063,7 @@ This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>boolean if a valid value always fits in an {@code int}</p>
+        <td class="return-desc" data-ice="returnDescription"><p>boolean if a valid value always fits in an <code>int</code></p>
 </td>
       </tr>
     </table>
@@ -1106,9 +1103,8 @@ This implementation uses {@link #getMinimum()} and {@link #getMaximum()}.</p>
   
   
   <div data-ice="description"><p>Checks if the value is within the valid range and that all values
-in the range fit in an {@code int}.</p>
-<p></p><p>
-This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.</p>
+in the range fit in an <code>int</code>.</p>
+<p>This method combines <span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isIntValue">isIntValue</a></span> and <span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isValidValue">isValidValue</a></span>.</p>
 </div>
 
   
@@ -1138,7 +1134,7 @@ This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.</p>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if the value is valid and fits in an {@code int}</p>
+        <td class="return-desc" data-ice="returnDescription"><p>true if the value is valid and fits in an <code>int</code></p>
 </td>
       </tr>
     </table>
@@ -1479,7 +1475,7 @@ This method combines {@link #isIntValue()} and {@link #isValidValue(long)}.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

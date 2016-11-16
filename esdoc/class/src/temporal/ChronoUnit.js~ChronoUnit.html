@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -133,17 +136,13 @@
   
   
   <div class="description" data-ice="description"><p>A standard set of date periods units.</p>
-<p></p><p>
-This set of units provide unit-based access to manipulate a date, time or date-time.
+<p>This set of units provide unit-based access to manipulate a date, time or date-time.
 The standard set of units can be extended by implementing <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>.</p>
-<p></p><p>
-These units are intended to be applicable in multiple calendar systems.
+<p>These units are intended to be applicable in multiple calendar systems.
 For example, most non-ISO calendar systems define units of years, months and days,
 just with slightly different rules.
 The documentation of each unit explains how it operates.</p>
-<p></p><h3>Static properties of Class <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></h3>
-
-<p></p>
+<h3 id="static-properties-of-class-span-a-href-class-src-temporal-chronounit-js-chronounit-html-chronounit-a-span-">Static properties of Class <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></h3>
 <p>ChronoUnit.NANOS</p>
 <p>Unit that represents the concept of a nanosecond, the smallest supported unit of time.
 For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.</p>
@@ -169,61 +168,53 @@ For the ISO calendar system, it is equal to 12 hours.</p>
 <p>ChronoUnit.DAYS</p>
 <p>Unit that represents the concept of a day.
 For the ISO calendar system, it is the standard day from midnight to midnight.
-The estimated duration of a day is {@code 24 Hours}.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to the day defined by
+The estimated duration of a day is 24 hours.</p>
+<p>When used with other calendar systems it must correspond to the day defined by
 the rising and setting of the Sun on Earth. It is not required that days begin
 at midnight - when converting between calendar systems, the date should be
 equivalent at midday.</p>
 <p>ChronoUnit.WEEKS</p>
 <p>Unit that represents the concept of a week.
 For the ISO calendar system, it is equal to 7 days.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days.</p>
+<p>When used with other calendar systems it must correspond to an integral number of days.</p>
 <p>ChronoUnit.MONTHS</p>
 <p>Unit that represents the concept of a month.
 For the ISO calendar system, the length of the month varies by month-of-year.
-The estimated duration of a month is one twelfth of {@code 365.2425 Days}.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days.</p>
+The estimated duration of a month is one twelfth of 365.2425 days.</p>
+<p>When used with other calendar systems it must correspond to an integral number of days.</p>
 <p>ChronoUnit.YEARS</p>
 <p>Unit that represents the concept of a year.
 For the ISO calendar system, it is equal to 12 months.
-The estimated duration of a year is {@code 365.2425 Days}.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days
+The estimated duration of a year is 365.2425 days.</p>
+<p>When used with other calendar systems it must correspond to an integral number of days
 or months roughly equal to a year defined by the passage of the Earth around the Sun.</p>
 <p>ChronoUnit.DECADES</p>
 <p>Unit that represents the concept of a decade.
 For the ISO calendar system, it is equal to 10 years.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days
+<p>When used with other calendar systems it must correspond to an integral number of days
 and is normally an integral number of years.</p>
 <p>ChronoUnit.CENTURIES</p>
 <p>Unit that represents the concept of a century.
 For the ISO calendar system, it is equal to 100 years.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days
+<p>When used with other calendar systems it must correspond to an integral number of days
 and is normally an integral number of years.</p>
 <p>ChronoUnit.MILLENNIA</p>
 <p>Unit that represents the concept of a millennium.
 For the ISO calendar system, it is equal to 1000 years.</p>
-<p></p><p>
-When used with other calendar systems it must correspond to an integral number of days
+<p>When used with other calendar systems it must correspond to an integral number of days
 and is normally an integral number of years.</p>
 <p>ChronoUnit.ERAS</p>
 <p>Unit that represents the concept of an era.
 The ISO calendar system doesn&apos;t have eras thus it is impossible to add
 an era to a date or date-time.
 The estimated duration of the era is artificially defined as {Year.MAX_VALUE} + 1.</p>
-<p></p><p>
-When used with other calendar systems there are no restrictions on the unit.</p>
+<p>When used with other calendar systems there are no restrictions on the unit.</p>
 <p>ChronoUnit.FOREVER</p>
 <p>Artificial unit that represents the concept of forever.
 This is primarily used with <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> to represent unbounded fields
 such as the year or era.
 The estimated duration of the era is artificially defined as the largest duration
-supported by {@code Duration}.</p>
+supported by <span><a href="class/src/Duration.js~Duration.html">Duration</a></span>.</p>
 </div>
 
   
@@ -511,7 +502,195 @@ supported by {@code Duration}.</p>
 </table>
 </div>
 
-
+<div class="inherited-summary" data-ice="inheritedSummary"><h2>Inherited Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-addTo">addTo</a></span></span><span data-ice="signature">(dateTime: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, periodToAdd: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of the specified temporal object with the specified period added.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">between</a></span></span><span data-ice="signature">(temporal1: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, temporal2: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Calculates the period in terms of this unit between two temporal objects of the same type.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-duration">duration</a></span></span><span data-ice="signature">(): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the duration of this unit, which may be an estimate.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDateBased">isDateBased</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is date-based.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDurationEstimated">isDurationEstimated</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the duration of the unit is an estimate.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isSupportedBy">isSupportedBy</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is supported by the specified temporal object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isTimeBased">isTimeBased</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is time-based.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
 
 
@@ -602,33 +781,29 @@ supported by {@code Duration}.</p>
   
   
   <div data-ice="description"><p>Returns a copy of the specified temporal object with the specified period added.</p>
-<p></p><p>
-The period added is a multiple of this unit. For example, this method
+<p>The period added is a multiple of this unit. For example, this method
 could be used to add &quot;3 days&quot; to a date by calling this method on the
 instance representing &quot;days&quot;, passing the date and the period &quot;3&quot;.
 The period to be added may be negative, which is equivalent to subtraction.</p>
-<p></p><p>
-There are two equivalent ways of using this method.
+<p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use {@link Temporal#plus(long, TemporalUnit)}:</p>
+The second is to use <span>Temporal#plus</span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisUnit.addTo(temporal);
   temporal = temporal.plus(thisUnit);
 </pre>
-It is recommended to use the second approach, {@code plus(TemporalUnit)},
+It is recommended to use the second approach, <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>,
 as it is a lot clearer to read in code.</p>
-<p></p><p>
-Implementations should perform any queries or calculations using the units
+<p>Implementations should perform any queries or calculations using the units
 available in <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> or the fields available in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
-If the unit is not supported an {@code UnsupportedTemporalTypeException} must be thrown.</p>
-<p></p><p>
-Implementations must not alter the specified temporal object.
+If the unit is not supported an <span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span> must be thrown.</p>
+<p>Implementations must not alter the specified temporal object.
 Instead, an adjusted copy of the original must be returned.
 This provides equivalent, safe behavior for immutable and mutable implementations.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-addTo">TemporalUnit#addTo</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -719,45 +894,43 @@ This provides equivalent, safe behavior for immutable and mutable implementation
   
   
   <div data-ice="description"><p>Calculates the amount of time between two temporal objects.</p>
-<p></p><p>
-This calculates the amount in terms of this unit. The start and end
+<p>This calculates the amount in terms of this unit. The start and end
 points are supplied as temporal objects and must be of compatible types.
 The implementation will convert the second type to be an instance of the
 first type before the calculating the amount.
 The result will be negative if the end is before the start.
 For example, the amount in hours between two temporal objects can be
-calculated using {@code HOURS.between(startTime, endTime)}.</p>
-<p></p><p>
-The calculation returns a whole number, representing the number of
+calculated using <span>HOURS.between</span>.</p>
+<p>The calculation returns a whole number, representing the number of
 complete units between the two temporals.
 For example, the amount in hours between the times 11:30 and 13:29
 will only be one hour as it is one minute short of two hours.</p>
-<p></p><p>
-There are two equivalent ways of using this method.
+<p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use {@link Temporal#until(Temporal, TemporalUnit)}:</p>
+The second is to use <span>Temporal#until</span>:</p>
 <p><pre>
   // these two lines are equivalent
   between = thisUnit.between(start, end);
   between = start.until(end, thisUnit);
 </pre>
-The choice should be made based on which makes the code more readable.</p>
-<p></p><p>
+The choice should be made based on which makes the code more readable.
+
 For example, this method allows the number of days between two dates to
-be calculated:</p>
-<p><pre>
+be calculated:
+<pre>
  daysBetween = DAYS.between(start, end);
  // or alternatively
  daysBetween = start.until(end, DAYS);
-</pre></p>
-<p></p><p>
-Implementations should perform any queries or calculations using the units
+</pre>
+
+</p>
+<p>Implementations should perform any queries or calculations using the units
 available in <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> or the fields available in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
-If the unit is not supported an {@code UnsupportedTemporalTypeException} must be thrown.
+If the unit is not supported an <span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span> must be thrown.
 Implementations must not alter the specified temporal objects.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">TemporalUnit#between</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -856,8 +1029,7 @@ Implementations must not alter the specified temporal objects.</p>
   
   
   <div data-ice="description"><p>Compares this ChronoUnit to the specified {TemporalUnit}.</p>
-<p></p><p>
-The comparison is based on the total length of the durations.</p>
+<p>The comparison is based on the total length of the durations.</p>
 </div>
 
   
@@ -927,12 +1099,11 @@ The comparison is based on the total length of the durations.</p>
   
   
   <div data-ice="description"><p>Gets the estimated duration of this unit in the ISO calendar system.</p>
-<p></p><p>
-All of the units in this class have an estimated duration.
+<p>All of the units in this class have an estimated duration.
 Days vary due to daylight saving time, while months have different lengths.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-duration">TemporalUnit#duration</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -984,7 +1155,7 @@ Days vary due to daylight saving time, while months have different lengths.</p>
   <div data-ice="description"><p>Checks if this unit is a date unit.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDateBased">TemporalUnit#isDateBased</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -1034,15 +1205,13 @@ Days vary due to daylight saving time, while months have different lengths.</p>
   
   
   <div data-ice="description"><p>Checks if the duration of the unit is an estimate.</p>
-<p></p><p>
-All time units in this class are considered to be accurate, while all date
+<p>All time units in this class are considered to be accurate, while all date
 units in this class are considered to be estimated.</p>
-<p></p><p>
-This definition ignores leap seconds, but considers that Days vary due to
+<p>This definition ignores leap seconds, but considers that Days vary due to
 daylight saving time and months have different lengths.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDurationEstimated">TemporalUnit#isDurationEstimated</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -1092,15 +1261,13 @@ daylight saving time and months have different lengths.</p>
   
   
   <div data-ice="description"><p>Checks if this unit is supported by the specified temporal object.</p>
-<p></p><p>
-This checks that the implementing date-time can add/subtract this unit.
+<p>This checks that the implementing date-time can add/subtract this unit.
 This can be used to avoid throwing an exception.</p>
-<p></p><p>
-This default implementation derives the value using
-{@link Temporal#plus(long, TemporalUnit)}.</p>
+<p>This default implementation derives the value using
+<span>Temporal#plus</span>.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isSupportedBy">TemporalUnit#isSupportedBy</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -1169,7 +1336,7 @@ This default implementation derives the value using
   <div data-ice="description"><p>Checks if this unit is a time unit.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isTimeBased">TemporalUnit#isTimeBased</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -1254,7 +1421,7 @@ This default implementation derives the value using
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

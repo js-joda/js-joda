@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TextStyle} from &apos;<span><a href="file/src/format/TextStyle.js.html#lineNumber28">js-joda/src/format/TextStyle.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TextStyle} from &apos;<span><a href="file/src/format/TextStyle.js.html#lineNumber29">js-joda/src/format/TextStyle.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/format/TextStyle.js.html#lineNumber28">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/format/TextStyle.js.html#lineNumber29">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -133,22 +136,19 @@
   
   
   <div class="description" data-ice="description"><p>Enumeration of the style of text formatting and parsing.</p>
-<p></p><p>
-Text styles define three sizes for the formatted text - &apos;full&apos;, &apos;short&apos; and &apos;narrow&apos;.
+<p>Text styles define three sizes for the formatted text - &apos;full&apos;, &apos;short&apos; and &apos;narrow&apos;.
 Each of these three sizes is available in both &apos;standard&apos; and &apos;stand-alone&apos; variations.</p>
-<p></p><p>
-The difference between the three sizes is obvious in most languages.
+<p>The difference between the three sizes is obvious in most languages.
 For example, in English the &apos;full&apos; month is &apos;January&apos;, the &apos;short&apos; month is &apos;Jan&apos;
 and the &apos;narrow&apos; month is &apos;J&apos;. Note that the narrow size is often not unique.
 For example, &apos;January&apos;, &apos;June&apos; and &apos;July&apos; all have the &apos;narrow&apos; text &apos;J&apos;.</p>
-<p></p><p>
-The difference between the &apos;standard&apos; and &apos;stand-alone&apos; forms is trickier to describe
+<p>The difference between the &apos;standard&apos; and &apos;stand-alone&apos; forms is trickier to describe
 as there is no difference in English. However, in other languages there is a difference
 in the word used when the text is used alone, as opposed to in a complete date.
 For example, the word used for a month when used alone in a date picker is different
 to the word used for month in association with a day and year in a date.</p>
-<p></p><h3>Specification for implementors</h3>
-This is immutable and thread-safe enum.<p></p>
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>This is immutable and thread-safe enum.</p>
 </div>
 
   
@@ -325,7 +325,7 @@ This is immutable and thread-safe enum.<p></p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber69">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber70">source</a></span></span>
     </span>
   </h3>
 
@@ -377,7 +377,7 @@ This is immutable and thread-safe enum.<p></p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -429,7 +429,7 @@ This is immutable and thread-safe enum.<p></p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/TextStyle.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
@@ -474,7 +474,7 @@ This is immutable and thread-safe enum.<p></p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

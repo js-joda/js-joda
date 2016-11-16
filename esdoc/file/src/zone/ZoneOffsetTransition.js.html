@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/zone/ZoneOffsetTransition.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/js-joda/js-joda.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/StringUtil.js~StringUtil.html">StringUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html">ZoneIdFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeParseContext.js~DateTimeParseContext.html">DateTimeParseContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimePrintContext.js~DateTimePrintContext.html">DateTimePrintContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/EnumMap.js~EnumMap.html">EnumMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ParsePosition.js~ParsePosition.html">ParsePosition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/zone/ZoneOffsetTransition.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {requireNonNull} from &apos;../assert&apos;;
+import {IllegalArgumentException} from &apos;../errors&apos;;
+
+import {Duration} from &apos;../Duration&apos;;
+import {LocalDateTime} from &apos;../LocalDateTime&apos;;
+
+/**
+ * A transition between two offsets caused by a discontinuity in the local time-line.
+ *
+ * A transition between two offsets is normally the result of a daylight savings cutover.
+ * The discontinuity is normally a gap in spring and an overlap in autumn.
+ * {@link ZoneOffsetTransition} models the transition between the two offsets.
+ *
+ * Gaps occur where there are local date-times that simply do not not exist.
+ * An example would be when the offset changes from `+03:00` to `+04:00`.
+ * This might be described as &apos;the clocks will move forward one hour tonight at 1am&apos;.
+ *
+ * Overlaps occur where there are local date-times that exist twice.
+ * An example would be when the offset changes from `+04:00` to `+03:00`.
+ * This might be described as &apos;the clocks will move back one hour tonight at 2am&apos;.
+ *
+ */
+export class ZoneOffsetTransition {
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance defining a transition between two offsets.
+     *
+     * Applications should normally obtain an instance from {@link ZoneRules}.
+     * This factory is only intended for use when creating {@link ZoneRules}.
+     *
+     * @param {LocalDateTime} transition - the transition date-time at the transition, which never
+     *  actually occurs, expressed local to the before offset, not null
+     * @param {ZoneOffset} offsetBefore - the offset before the transition, not null
+     * @param {ZoneOffset} offsetAfter - the offset at and after the transition, not null
+     * @return {ZoneOffsetTransition} the transition, not null
+     * @throws IllegalArgumentException if {@link offsetBefore} and {@link offsetAfter}
+     *         are equal, or {@link transition.getNano} returns non-zero value
+     */
+    static of(transition, offsetBefore, offsetAfter) {
+        return new ZoneOffsetTransition(transition, offsetBefore, offsetAfter);
+    }
+
+    /**
+     * Creates an instance defining a transition between two offsets.
+     * Creates an instance from epoch-second if transition is not a LocalDateTimeInstance
+     *
+     * @param {(LocalDateTime \ number)} transition - the transition date-time with the offset before the transition, not null
+     * @param {ZoneOffset} offsetBefore - the offset before the transition, not null
+     * @param {ZoneOffset} offsetAfter - the offset at and after the transition, not null
+     */
+    constructor(transition, offsetBefore, offsetAfter) {
+        requireNonNull(transition, &apos;transition&apos;);
+        requireNonNull(offsetBefore, &apos;offsetBefore&apos;);
+        requireNonNull(offsetAfter, &apos;offsetAfter&apos;);
+        if (offsetBefore.equals(offsetAfter)) {
+            throw new IllegalArgumentException(&apos;Offsets must not be equal&apos;);
+        }
+        if (transition.nano() !== 0) {
+            throw new IllegalArgumentException(&apos;Nano-of-second must be zero&apos;);
+        }
+        if(transition instanceof LocalDateTime) {
+            this._transition = transition;
+        } else {
+            this._transition = LocalDateTime.ofEpochSecond(transition, 0, offsetBefore);
+        }
+        this._offsetBefore = offsetBefore;
+        this._offsetAfter = offsetAfter;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the transition instant.
+     *
+     * This is the instant of the discontinuity, which is defined as the first
+     * instant that the &apos;after&apos; offset applies.
+     *
+     * The methods {@link getInstant}, {@link getDateTimeBefore} and {@link getDateTimeAfter}
+     * all represent the same instant.
+     *
+     * @return {Instant} the transition instant, not null
+     */
+    instant() {
+        return this._transition.toInstant(this._offsetBefore);
+    }
+
+    /**
+     * Gets the transition instant as an epoch second.
+     *
+     * @return {number} the transition epoch second
+     */
+    toEpochSecond() {
+        return this._transition.toEpochSecond(this._offsetBefore);
+    }
+
+    //-------------------------------------------------------------------------
+    /**
+     * Gets the local transition date-time, as would be expressed with the &apos;before&apos; offset.
+     *
+     * This is the date-time where the discontinuity begins expressed with the &apos;before&apos; offset.
+     * At this instant, the &apos;after&apos; offset is actually used, therefore the combination of this
+     * date-time and the &apos;before&apos; offset will never occur.
+     *
+     * The combination of the &apos;before&apos; date-time and offset represents the same instant
+     * as the &apos;after&apos; date-time and offset.
+     *
+     * @return {LocalDateTime} the transition date-time expressed with the before offset, not null
+     */
+    dateTimeBefore(){
+        return this._transition;
+    }
+
+    /**
+     * Gets the local transition date-time, as would be expressed with the &apos;after&apos; offset.
+     *
+     * This is the first date-time after the discontinuity, when the new offset applies.
+     *
+     * The combination of the &apos;before&apos; date-time and offset represents the same instant
+     * as the &apos;after&apos; date-time and offset.
+     *
+     * @return {LocalDateTime} the transition date-time expressed with the after offset, not null
+     */
+    dateTimeAfter() {
+        return this._transition.plusSeconds(this.durationSeconds());
+    }
+
+    /**
+     * Gets the offset before the transition.
+     *
+     * This is the offset in use before the instant of the transition.
+     *
+     * @return {ZoneOffset} the offset before the transition, not null
+     */
+    offsetBefore() {
+        return this._offsetBefore;
+    }
+
+    /**
+     * Gets the offset after the transition.
+     *
+     * This is the offset in use on and after the instant of the transition.
+     *
+     * @return {ZoneOffset} the offset after the transition, not null
+     */
+    offsetAfter() {
+        return this._offsetAfter;
+    }
+
+    /**
+     * Gets the duration of the transition.
+     *
+     * In most cases, the transition duration is one hour, however this is not always the case.
+     * The duration will be positive for a gap and negative for an overlap.
+     * Time-zones are second-based, so the nanosecond part of the duration will be zero.
+     *
+     * @return {Duration} the duration of the transition, positive for gaps, negative for overlaps
+     */
+    duration() {
+        return Duration.ofSeconds(this.durationSeconds());
+    }
+
+    /**
+     * Gets the duration of the transition in seconds.
+     *
+     * @return {number} the duration in seconds
+     */
+    durationSeconds() {
+        return this._offsetAfter.totalSeconds() - this._offsetBefore.totalSeconds();
+    }
+
+    /**
+     * Does this transition represent a gap in the local time-line.
+     *
+     * Gaps occur where there are local date-times that simply do not not exist.
+     * An example would be when the offset changes from `+01:00` to `+02:00`.
+     * This might be described as &apos;the clocks will move forward one hour tonight at 1am&apos;.
+     *
+     * @return {boolean} true if this transition is a gap, false if it is an overlap
+     */
+    isGap() {
+        return this._offsetAfter.totalSeconds() &gt; this._offsetBefore.totalSeconds();
+    }
+
+    /**
+     * Does this transition represent a gap in the local time-line.
+     *
+     * Overlaps occur where there are local date-times that exist twice.
+     * An example would be when the offset changes from `+02:00` to `+01:00`.
+     * This might be described as &apos;the clocks will move back one hour tonight at 2am&apos;.
+     *
+     * @return {boolean} true if this transition is an overlap, false if it is a gap
+     */
+    isOverlap() {
+        return this._offsetAfter.totalSeconds() &lt; this._offsetBefore.totalSeconds();
+    }
+
+    /**
+     * Checks if the specified offset is valid during this transition.
+     *
+     * This checks to see if the given offset will be valid at some point in the transition.
+     * A gap will always return false.
+     * An overlap will return true if the offset is either the before or after offset.
+     *
+     * @param {ZoneOffset} offset - the offset to check, null returns false
+     * @return {boolean} true if the offset is valid during the transition
+     */
+    isValidOffset(offset) {
+        return this.isGap() ? false : (this._offsetBefore.equals(offset) || this._offsetAfter.equals(offset));
+    }
+
+    /**
+     * Gets the valid offsets during this transition.
+     *
+     * A gap will return an empty list, while an overlap will return both offsets.
+     *
+     * @return {ZoneOffset[]} the list of valid offsets
+     */
+    validOffsets() {
+        if (this.isGap()){
+            return [];
+        } else {
+            return [this._offsetBefore, this._offsetAfter];
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this transition to another based on the transition instant.
+     *
+     * This compares the instants of each transition.
+     * The offsets are ignored, making this order inconsistent with equals.
+     *
+     * @param {ZoneOffsetTransition} transition - the transition to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(transition) {
+        return this.instant().compareTo(transition.instant());
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this object equals another.
+     *
+     * The entire state of the object is compared.
+     *
+     * @param {*} other - the other object to compare to, null returns false
+     * @return true if equal
+     */
+    equals(other) {
+        if (other === this) {
+            return true;
+        }
+        if (other instanceof ZoneOffsetTransition) {
+            let d = other;
+            return this._transition.equals(d._transition) &amp;&amp;
+                this._offsetBefore.equals(d.offsetBefore()) &amp;&amp; this._offsetAfter.equals(d.offsetAfter());
+        }
+        return false;
+    }
+
+    /**
+     * Returns a suitable hash code.
+     *
+     * @return {number} the hash code
+     */
+    hashCode() {
+        return this._transition.hashCode() ^ this._offsetBefore.hashCode() ^ (this._offsetAfter.hashCode()&gt;&gt;&gt;16);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a string describing this object.
+     *
+     * @return {string} a string for debugging, not null
+     */
+    toString() {
+        return &apos;Transition[&apos; + (this.isGap() ? &apos;Gap&apos; : &apos;Overlap&apos;) +
+            &apos; at &apos; + this._transition.toString() + this._offsetBefore.toString() +
+            &apos; to &apos; + this._offsetAfter + &apos;]&apos;;
+    }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

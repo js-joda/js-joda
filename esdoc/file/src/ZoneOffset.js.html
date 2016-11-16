@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/ZoneOffset.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -124,12 +127,12 @@ import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
 
 import {ZoneRules} from &apos;./zone/ZoneRules&apos;;
 
-var SECONDS_CACHE = {};
-var ID_CACHE = {};
+const SECONDS_CACHE = {};
+const ID_CACHE = {};
 
 /**
  *
- * &lt;h3&gt;Static properties of Class {@link LocalDate}&lt;/h3&gt;
+ * ### Static properties of Class {@link LocalDate}
  *
  * ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
  *
@@ -142,7 +145,7 @@ var ID_CACHE = {};
  */
 export class ZoneOffset extends ZoneId {
     /**
-     * 
+     *
      * @param {number} totalSeconds
      */
     constructor(totalSeconds){
@@ -154,7 +157,7 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-     * 
+     *
      * @returns {number}
      */
     totalSeconds() {
@@ -178,13 +181,13 @@ export class ZoneOffset extends ZoneId {
         if (totalSeconds === 0) {
             return &apos;Z&apos;;
         } else {
-            var absTotalSeconds = Math.abs(totalSeconds);
-            var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
-            var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-            var buf = &apos;&apos; + (totalSeconds &lt; 0 ? &apos;-&apos; : &apos;+&apos;)
+            const absTotalSeconds = Math.abs(totalSeconds);
+            const absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
+            const absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+            let buf = &apos;&apos; + (totalSeconds &lt; 0 ? &apos;-&apos; : &apos;+&apos;)
                 + (absHours &lt; 10 ? &apos;0&apos; : &apos;&apos;) + (absHours)
                 + (absMinutes &lt; 10 ? &apos;:0&apos; : &apos;:&apos;) + (absMinutes);
-            var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
+            const absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
             if (absSeconds !== 0) {
                 buf += (absSeconds &lt; 10 ? &apos;:0&apos; : &apos;:&apos;) + (absSeconds);
             }
@@ -194,7 +197,7 @@ export class ZoneOffset extends ZoneId {
 
 
     /**
-     * 
+     *
      * @param {number} totalSeconds
      * @private
      */
@@ -205,7 +208,7 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-     * 
+     *
      * @param {number} hours
      * @param {number} minutes
      * @param {number} seconds
@@ -242,29 +245,29 @@ export class ZoneOffset extends ZoneId {
 
     //-----------------------------------------------------------------------
     /**
-     * Obtains an instance of {@code ZoneOffset} using the ID.
-     * &lt;p&gt;
-     * This method parses the string ID of a {@code ZoneOffset} to
+     * Obtains an instance of {@link ZoneOffset} using the ID.
+     *
+     * This method parses the string ID of a {@link ZoneOffset} to
      * return an instance. The parsing accepts all the formats generated by
-     * {@link #getId()}, plus some additional formats:
-     * &lt;p&gt;&lt;ul&gt;
-     * &lt;li&gt;{@code Z} - for UTC
-     * &lt;li&gt;{@code +h}
-     * &lt;li&gt;{@code +hh}
-     * &lt;li&gt;{@code +hh:mm}
-     * &lt;li&gt;{@code -hh:mm}
-     * &lt;li&gt;{@code +hhmm}
-     * &lt;li&gt;{@code -hhmm}
-     * &lt;li&gt;{@code +hh:mm:ss}
-     * &lt;li&gt;{@code -hh:mm:ss}
-     * &lt;li&gt;{@code +hhmmss}
-     * &lt;li&gt;{@code -hhmmss}
-     * &lt;/ul&gt;&lt;p&gt;
+     * {@link getId}, plus some additional formats:
+     *
+     * * {@link Z} - for UTC
+     * * `+h`
+     * * `+hh`
+     * * `+hh:mm`
+     * * `-hh:mm`
+     * * `+hhmm`
+     * * `-hhmm`
+     * * `+hh:mm:ss`
+     * * `-hh:mm:ss`
+     * * `+hhmmss`
+     * * `-hhmmss`
+     *
      * Note that &amp;plusmn; means either the plus or minus symbol.
-     * &lt;p&gt;
+     *
      * The ID of the returned offset will be normalized to one of the formats
-     * described by {@link #getId()}.
-     * &lt;p&gt;
+     * described by {@link getId}.
+     *
      * The maximum supported range is from +18:00 to -18:00 inclusive.
      *
      * @param {string} offsetId  the offset ID, not null
@@ -274,16 +277,17 @@ export class ZoneOffset extends ZoneId {
     static of(offsetId) {
         requireNonNull(offsetId, &apos;offsetId&apos;);
         // &quot;Z&quot; is always in the cache
-        var offset = ID_CACHE[offsetId];
+        const offset = ID_CACHE[offsetId];
         if (offset != null) {
             return offset;
         }
 
         // parse - +h, +hh, +hhmm, +hh:mm, +hhmmss, +hh:mm:ss
-        var hours, minutes, seconds;
+        let hours, minutes, seconds;
         switch (offsetId.length) {
             case 2:
                 offsetId = offsetId[0] + &apos;0&apos; + offsetId[1];  // fallthru
+            // eslint-disable-next-line no-fallthrough
             case 3:
                 hours = ZoneOffset._parseNumber(offsetId, 1, false);
                 minutes = 0;
@@ -312,7 +316,7 @@ export class ZoneOffset extends ZoneId {
             default:
                 throw new DateTimeException(&apos;Invalid ID for ZoneOffset, invalid format: &apos; + offsetId);
         }
-        var first = offsetId[0];
+        const first = offsetId[0];
         if (first !== &apos;+&apos; &amp;&amp; first !== &apos;-&apos;) {
             throw new DateTimeException(&apos;Invalid ID for ZoneOffset, plus/minus not found when expected: &apos; + offsetId);
         }
@@ -335,8 +339,8 @@ export class ZoneOffset extends ZoneId {
         if (precededByColon &amp;&amp; offsetId[pos - 1] !== &apos;:&apos;) {
             throw new DateTimeException(&apos;Invalid ID for ZoneOffset, colon not found when expected: &apos; + offsetId);
         }
-        var ch1 = offsetId[pos];
-        var ch2 = offsetId[pos + 1];
+        const ch1 = offsetId[pos];
+        const ch2 = offsetId[pos + 1];
         if (ch1 &lt; &apos;0&apos; || ch1 &gt; &apos;9&apos; || ch2 &lt; &apos;0&apos; || ch2 &gt; &apos;9&apos;) {
             throw new DateTimeException(&apos;Invalid ID for ZoneOffset, non numeric characters found: &apos; + offsetId);
         }
@@ -344,7 +348,7 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-     * 
+     *
      * @param {number} hours
      * @returns {ZoneOffset}
      */
@@ -353,7 +357,7 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-     * 
+     *
      * @param {number} hours
      * @param {number} minutes
      * @returns {ZoneOffset}
@@ -363,7 +367,7 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-     * 
+     *
      * @param {number} hours
      * @param {number} minutes
      * @param {number} seconds
@@ -371,29 +375,29 @@ export class ZoneOffset extends ZoneId {
      */
     static ofHoursMinutesSeconds(hours, minutes, seconds) {
         ZoneOffset._validate(hours, minutes, seconds);
-        var totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
+        const totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
     /**
-     * 
+     *
      * @param {number} totalMinutes
      * @returns {ZoneOffset}
      */
     static ofTotalMinutes(totalMinutes) {
-        var totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
+        const totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
         return ZoneOffset.ofTotalSeconds(totalSeconds);
     }
 
     /**
-     * 
+     *
      * @param {number} totalSeconds
      * @returns {ZoneOffset}
      */
     static ofTotalSeconds(totalSeconds) {
         if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
-            var totalSecs = totalSeconds;
-            var result = SECONDS_CACHE[totalSecs];
+            const totalSecs = totalSeconds;
+            let result = SECONDS_CACHE[totalSecs];
             if (result == null) {
                 result = new ZoneOffset(totalSeconds);
                 SECONDS_CACHE[totalSecs] = result;
@@ -407,7 +411,7 @@ export class ZoneOffset extends ZoneId {
 
     /**
      * Gets the associated time-zone rules.
-     * &lt;p&gt;
+     *
      * The rules will always return this offset when queried.
      * The implementation class is immutable, thread-safe and serializable.
      *
@@ -418,20 +422,20 @@ export class ZoneOffset extends ZoneId {
     }
 
     /**
-      * Gets the value of the specified field from this offset as an {@code int}.
-      * &lt;p&gt;
+      * Gets the value of the specified field from this offset as an `int`.
+      *
       * This queries this offset for the value for the specified field.
       * The returned value will always be within the valid range of values for the field.
       * If it is not possible to return the value, because the field is not supported
       * or for some other reason, an exception is thrown.
-      * &lt;p&gt;
+      *
       * If the field is a {@link ChronoField} then the query is implemented here.
-      * The {@code OFFSET_SECONDS} field returns the value of the offset.
-      * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-      * &lt;p&gt;
-      * If the field is not a {@code ChronoField}, then the result of this method
-      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-      * passing {@code this} as the argument. Whether the value can be obtained,
+      * The {@link OFFSET_SECONDS} field returns the value of the offset.
+      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+      *
+      * If the field is not a {@link ChronoField}, then the result of this method
+      * is obtained by invoking {@link TemporalField.getFrom}
+      * passing `this` as the argument. Whether the value can be obtained,
       * and what the value represents, is determined by the field.
       *
       * @param {TemporalField} field - the field to get, not null
@@ -439,24 +443,24 @@ export class ZoneOffset extends ZoneId {
       * @throws DateTimeException if a value for the field cannot be obtained
       * @throws ArithmeticException if numeric overflow occurs
       */
-     get(field) {
-         return this.getLong(field);
-     }
+    get(field) {
+        return this.getLong(field);
+    }
 
      /**
-      * Gets the value of the specified field from this offset as a {@code long}.
-      * &lt;p&gt;
+      * Gets the value of the specified field from this offset as a `long`.
+      *
       * This queries this offset for the value for the specified field.
       * If it is not possible to return the value, because the field is not supported
       * or for some other reason, an exception is thrown.
-      * &lt;p&gt;
+      *
       * If the field is a {@link ChronoField} then the query is implemented here.
-      * The {@code OFFSET_SECONDS} field returns the value of the offset.
-      * All other {@code ChronoField} instances will throw a {@code DateTimeException}.
-      * &lt;p&gt;
-      * If the field is not a {@code ChronoField}, then the result of this method
-      * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-      * passing {@code this} as the argument. Whether the value can be obtained,
+      * The {@link OFFSET_SECONDS} field returns the value of the offset.
+      * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+      *
+      * If the field is not a {@link ChronoField}, then the result of this method
+      * is obtained by invoking {@link TemporalField.getFrom}
+      * passing `this` as the argument. Whether the value can be obtained,
       * and what the value represents, is determined by the field.
       *
       * @param {TemporalField} field - the field to get, not null
@@ -464,61 +468,61 @@ export class ZoneOffset extends ZoneId {
       * @throws DateTimeException if a value for the field cannot be obtained
       * @throws ArithmeticException if numeric overflow occurs
       */
-     getLong(field) {
-         if (field === ChronoField.OFFSET_SECONDS) {
-             return this._totalSeconds;
-         } else if (field instanceof ChronoField) {
-             throw new DateTimeException(&apos;Unsupported field: &apos; + field);
-         }
-         return field.getFrom(this);
-     }
+    getLong(field) {
+        if (field === ChronoField.OFFSET_SECONDS) {
+            return this._totalSeconds;
+        } else if (field instanceof ChronoField) {
+            throw new DateTimeException(&apos;Unsupported field: &apos; + field);
+        }
+        return field.getFrom(this);
+    }
 
      //-----------------------------------------------------------------------
      /**
       * Queries this offset using the specified query.
-      * &lt;p&gt;
+      *
       * This queries this offset using the specified query strategy object.
-      * The {@code TemporalQuery} object defines the logic to be used to
+      * The {@link TemporalQuery} object defines the logic to be used to
       * obtain the result. Read the documentation of the query to understand
       * what the result of this method will be.
-      * &lt;p&gt;
+      *
       * The result of this method is obtained by invoking the
-      * {@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-      * specified query passing {@code this} as the argument.
+      * {@link TemporalQuery#queryFrom} method on the
+      * specified query passing `this` as the argument.
       *
       * @param {TemporalQuery} query - the query to invoke, not null
       * @return {*} the query result, null may be returned (defined by the query)
       * @throws DateTimeException if unable to query (defined by the query)
       * @throws ArithmeticException if numeric overflow occurs (defined by the query)
       */
-     query(query) {
-         requireNonNull(query, &apos;query&apos;);
-         if (query === TemporalQueries.offset() || query === TemporalQueries.zone()) {
-             return this;
-         } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+    query(query) {
+        requireNonNull(query, &apos;query&apos;);
+        if (query === TemporalQueries.offset() || query === TemporalQueries.zone()) {
+            return this;
+        } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
                  query === TemporalQueries.precision() || query === TemporalQueries.chronology() || query === TemporalQueries.zoneId()) {
-             return null;
-         }
-         return query.queryFrom(this);
-     }
+            return null;
+        }
+        return query.queryFrom(this);
+    }
 
      /**
       * Adjusts the specified temporal object to have the same offset as this object.
-      * &lt;p&gt;
+      *
       * This returns a temporal object of the same observable type as the input
       * with the offset changed to be the same as this.
-      * &lt;p&gt;
-      * The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+      *
+      * The adjustment is equivalent to using {@link Temporal#with}
       * passing {@link ChronoField#OFFSET_SECONDS} as the field.
-      * &lt;p&gt;
+      *
       * In most cases, it is clearer to reverse the calling pattern by using
-      * {@link Temporal#with(TemporalAdjuster)}:
+      * {@link Temporal#with}:
       * &lt;pre&gt;
       *   // these two lines are equivalent, but the second approach is recommended
       *   temporal = thisOffset.adjustInto(temporal);
       *   temporal = temporal.with(thisOffset);
       * &lt;/pre&gt;
-      * &lt;p&gt;
+      *
       * This instance is immutable and unaffected by this method call.
       *
       * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -526,22 +530,22 @@ export class ZoneOffset extends ZoneId {
       * @throws DateTimeException if unable to make the adjustment
       * @throws ArithmeticException if numeric overflow occurs
       */
-     adjustInto(temporal) {
-         return temporal.with(ChronoField.OFFSET_SECONDS, this._totalSeconds);
-     }
+    adjustInto(temporal) {
+        return temporal.with(ChronoField.OFFSET_SECONDS, this._totalSeconds);
+    }
 
     /**
      * Compares this offset to another offset in descending order.
-     * &lt;p&gt;
+     *
      * The offsets are compared in the order that they occur for the same time
-     * of day around the world. Thus, an offset of {@code +10:00} comes before an
-     * offset of {@code +09:00} and so on down to {@code -18:00}.
-     * &lt;p&gt;
+     * of day around the world. Thus, an offset of `+10:00` comes before an
+     * offset of `+09:00` and so on down to `-18:00`.
+     *
      * The comparison is &quot;consistent with equals&quot;, as defined by {@link Comparable}.
      *
      * @param {!ZoneOffset} other - the other date to compare to, not null
      * @return {number} the comparator value, negative if less, postive if greater
-     * @throws NullPointerException if {@code other} is null
+     * @throws NullPointerException if {@link other} is null
      */
     compareTo(other) {
         requireNonNull(other, &apos;other&apos;);
@@ -579,14 +583,6 @@ export class ZoneOffset extends ZoneId {
      *
      * @returns {string}
      */
-    id() {
-        return this._id;
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
     toString(){
         return this._id;
     }
@@ -597,12 +593,13 @@ export function _init() {
     ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
     ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
     ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
-}</code></pre>
+}
+</code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

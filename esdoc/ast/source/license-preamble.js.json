@@ -3,26 +3,26 @@
   "body": [],
   "sourceType": "module",
   "range": [
-    226,
-    226
+    251,
+    251
   ],
   "loc": {
     "start": {
-      "line": 3,
-      "column": 81
+      "line": 4,
+      "column": 0
     },
     "end": {
-      "line": 3,
-      "column": 81
+      "line": 4,
+      "column": 0
     }
   },
   "leadingComments": [
     {
       "type": "Line",
-      "value": "! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper",
+      "value": "! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors",
       "range": [
         0,
-        64
+        88
       ],
       "loc": {
         "start": {
@@ -31,7 +31,7 @@
         },
         "end": {
           "line": 1,
-          "column": 64
+          "column": 88
         }
       }
     },
@@ -39,8 +39,8 @@
       "type": "Line",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
       "range": [
-        65,
-        144
+        89,
+        168
       ],
       "loc": {
         "start": {
@@ -57,8 +57,8 @@
       "type": "Line",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
       "range": [
-        145,
-        226
+        169,
+        250
       ],
       "loc": {
         "start": {
@@ -75,10 +75,10 @@
   "comments": [
     {
       "type": "Line",
-      "value": "! @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper",
+      "value": "! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors",
       "range": [
         0,
-        64
+        88
       ],
       "loc": {
         "start": {
@@ -87,7 +87,7 @@
         },
         "end": {
           "line": 1,
-          "column": 64
+          "column": 88
         }
       }
     },
@@ -95,8 +95,8 @@
       "type": "Line",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
       "range": [
-        65,
-        144
+        89,
+        168
       ],
       "loc": {
         "start": {
@@ -113,8 +113,8 @@
       "type": "Line",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
       "range": [
-        145,
-        226
+        169,
+        250
       ],
       "loc": {
         "start": {

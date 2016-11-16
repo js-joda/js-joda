@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/temporal/TemporalAccessor.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -120,17 +123,17 @@ import {TemporalQueries} from &apos;./TemporalQueries&apos;;
 export class TemporalAccessor {
     /**
      * Queries this date-time.
-     * &lt;p&gt;
+     *
      * This queries this date-time using the specified query strategy object.
-     * &lt;p&gt;
+     *
      * Queries are a key tool for extracting information from date-times.
      * They exists to externalize the process of querying, permitting different
      * approaches, as per the strategy design pattern.
      * Examples might be a query that checks if the date is the day before February 29th
      * in a leap year, or calculates the number of days to your next birthday.
-     * &lt;p&gt;
+     *
      * The most common query implementations are method references, such as
-     * {@code LocalDate::from} and {@code ZoneId::from}.
+     * {@link LocalDate::from} and {@link ZoneId::from}.
      * Further implementations are on {@link TemporalQueries}.
      * Queries may also be defined by applications.
      *
@@ -160,29 +163,30 @@ export class TemporalAccessor {
     }
 
     /**
-     * Gets the value of the specified field as an {@code int}.
-     * &lt;p&gt;
+     * Gets the value of the specified field as an `int`.
+     *
      * This queries the date-time for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If the date-time cannot return the value, because the field is unsupported or for
      * some other reason, an exception will be thrown.
      *
-     * &lt;h3&gt;Specification for implementors&lt;/h3&gt;
+     * ### Specification for implementors
+     *
      * Implementations must check and handle all fields defined in {@link ChronoField}.
-     * If the field is supported and has an {@code int} range, then the value of
+     * If the field is supported and has an `int` range, then the value of
      * the field must be returned.
-     * If unsupported, then a {@code DateTimeException} must be thrown.
-     * &lt;p&gt;
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-     * passing {@code this} as the argument.
-     * &lt;p&gt;
+     * If unsupported, then a {@link DateTimeException} must be thrown.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument.
+     *
      * Implementations must not alter either this object.
      *
      * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field, within the valid range of values
      * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws DateTimeException if the range of valid values for the field exceeds an {@code int}
+     * @throws DateTimeException if the range of valid values for the field exceeds an `int`
      * @throws DateTimeException if the value is outside the range of valid values for the field
      * @throws ArithmeticException if numeric overflow occurs
      */
@@ -192,26 +196,27 @@ export class TemporalAccessor {
 
     /**
      * Gets the range of valid values for the specified field.
-     * &lt;p&gt;
-     * All fields can be expressed as a {@code long} integer.
+     *
+     * All fields can be expressed as a `long` integer.
      * This method returns an object that describes the valid range for that value.
      * The value of this temporal object is used to enhance the accuracy of the returned range.
      * If the date-time cannot return the range, because the field is unsupported or for
      * some other reason, an exception will be thrown.
-     * &lt;p&gt;
+     *
      * Note that the result only describes the minimum and maximum valid values
      * and it is important not to read too much into them. For example, there
      * could be values within the range that are invalid for the field.
      *
-     * &lt;h3&gt;Specification for implementors&lt;/h3&gt;
+     * ### Specification for implementors
+     *
      * Implementations must check and handle all fields defined in {@link ChronoField}.
      * If the field is supported, then the range of the field must be returned.
-     * If unsupported, then a {@code DateTimeException} must be thrown.
-     * &lt;p&gt;
-     * If the field is not a {@code ChronoField}, then the result of this method
-     * is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}
-     * passing {@code this} as the argument.
-     * &lt;p&gt;
+     * If unsupported, then a {@link DateTimeException} must be thrown.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.rangeRefinedBy}
+     * passing `this` as the argument.
+     *
      * Implementations must not alter either this object.
      *
      * @param {TemporalField} field  the field to query the range for, not null
@@ -228,12 +233,13 @@ export class TemporalAccessor {
         return field.rangeRefinedBy(this);
     }
 
-}</code></pre>
+}
+</code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -108,7 +111,10 @@
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for javascript</h1>
 <p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
 <a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg" alt="Build Status"></a>
-<a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a></p>
+<a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/buildstatus/js-joda" alt="Sauce Test Status"></a>
+<a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
+<a href=""><img src="https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat" alt="Tested node version"></a></p>
+<p><a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/browser-matrix/js-joda.svg" alt="Sauce Test Status"></a></p>
 <h2 id="introduction">Introduction</h2>
 <ul>
 <li><p><strong>js-joda</strong> is an <strong>immutable date and time library</strong> for javascript. It provides a <strong>simple, domain-driven and clean API</strong> based on the <strong>ISO8601</strong> calendar.</p>
@@ -119,10 +125,9 @@
 </li>
 <li><p>js-joda supports <strong>ECMAScript 5</strong> browsers down to ie9.          </p>
 </li>
-<li><p>js-joda is a <strong>port of the threeten</strong> backport <strong>aka Joda-Time</strong>, the predecessor project of threetenbp, that is the base for JSR-310 implementation of the Java SE 8 java.time package.</p>
+<li><p>js-joda is a <strong>port of the threeten</strong> backport, that is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by <strong>Joda-Time</strong>, having similar concepts and the same author.</p>
 </li>
-<li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project.
-We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
+<li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
 </li>
 </ul>
 <h2 id="why-yet-another-javascript-date-and-time-library">Why yet another javascript date and time library</h2>
@@ -200,9 +205,25 @@ var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); //
 <p>We reached milestone 1 with version v1.0.0 supporting the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
 and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
 only fixed offsets like UTC or UTC+02:00 and the system default time zone.</p>
+<h3 id="milestone-2">Milestone 2</h3>
+<p>Add iana timezone database support to js-joda. </p>
+<p>Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
+can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. </p>
+<h3 id="milestone-3">Milestone 3</h3>
+<p>Add locale support.</p>
+<p>Extend pattern parser/ formatter for text with locale support.</p>
 <h3 id="future-milestones">Future Milestones</h3>
-<p>Any further timezone converting and localization is not part of the first milestone and will be saved for later.
-This might also be an extra package to reduce library size if Timezone functionality is not needed.</p>
+<ul>
+<li>Reduce library size be removing redundant code, especially by refactoring code for formatting/ parsing dates.</li>
+<li>Increase test coverage (ongoing task)</li>
+<li>Cleanup documentation (ongoing task)</li>
+<li>Improve static factory API design and make it more javascript style. 
+One idea is to remove static factory methods like parse, from, of and unify it to one factory methods per domain. 
+E.g. localDate(isoDate: string), localDate(year: number, month: number, dayOfMonth: number)</li>
+<li>merge methods get and getLong, differ between int and long values make no sense with javascript </li>
+<li>simplify temporal adjusters (amount, etc) by using functions instead of classes or objects</li>
+<li>...</li>
+</ul>
 <h2 id="contributing">Contributing</h2>
 <p>Contributions are always welcome. Before contributing please read the <a href="http://contributor-covenant.org/version/1/4/">code of conduct</a> &amp; 
 search the issue tracker. We use GitHub issues.  Your issue may have already been discussed or fixed. 
@@ -235,7 +256,7 @@ are just copied but never equalled.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

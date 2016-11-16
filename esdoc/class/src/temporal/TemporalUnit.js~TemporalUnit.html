@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TemporalUnit} from &apos;<span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber27">js-joda/src/temporal/TemporalUnit.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {TemporalUnit} from &apos;<span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber29">js-joda/src/temporal/TemporalUnit.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">interface</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber27">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber29">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -133,19 +136,15 @@
   
   
   <div class="description" data-ice="description"><p>A unit of date-time, such as Days or Hours.</p>
-<p></p><p>
-Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.
+<p>Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.
 Implementations of this interface represent those units.</p>
-<p></p><p>
-An instance of this interface represents the unit itself, rather than an amount of the unit.
+<p>An instance of this interface represents the unit itself, rather than an amount of the unit.
 See <span><a href="class/src/Period.js~Period.html">Period</a></span> for a class that represents an amount in terms of the common units.</p>
-<p></p><p>
-The most commonly used units are defined in <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
+<p>The most commonly used units are defined in <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
 Further units are supplied in <span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span>.
 Units can also be written by application code by implementing this interface.</p>
-<p></p><p>
-The unit works using double dispatch. Client code calls methods on a date-time like
-{@code LocalDateTime} which check if the unit is a {@code ChronoUnit}.
+<p>The unit works using double dispatch. Client code calls methods on a date-time like
+<span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> which check if the unit is a <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>.
 If it is, then the date-time must handle it.
 Otherwise, the method call is re-dispatched to the matching method in this interface.</p>
 </div>
@@ -163,6 +162,195 @@ Otherwise, the method call is re-dispatched to the matching method in this inter
 
 
 
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-addTo">addTo</a></span></span><span data-ice="signature">(dateTime: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, periodToAdd: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of the specified temporal object with the specified period added.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between">between</a></span></span><span data-ice="signature">(temporal1: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, temporal2: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Calculates the period in terms of this unit between two temporal objects of the same type.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-duration">duration</a></span></span><span data-ice="signature">(): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the duration of this unit, which may be an estimate.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDateBased">isDateBased</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is date-based.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDurationEstimated">isDurationEstimated</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the duration of the unit is an estimate.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isSupportedBy">isSupportedBy</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is supported by the specified temporal object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isTimeBased">isTimeBased</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this unit is time-based.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
 
 
@@ -170,12 +358,533 @@ Otherwise, the method call is re-dispatched to the matching method in this inter
 
 
 
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-addTo">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">addTo</span><span data-ice="signature">(dateTime: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, periodToAdd: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber129">source</a></span></span>
+    </span>
+  </h3>
 
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of the specified temporal object with the specified period added.</p>
+<p>The period added is a multiple of this unit. For example, this method
+could be used to add &quot;3 days&quot; to a date by calling this method on the
+instance representing &quot;days&quot;, passing the date and the period &quot;3&quot;.
+The period to be added may be negative, which is equivalent to subtraction.</p>
+<p>There are two equivalent ways of using this method.
+The first is to invoke this method directly.
+The second is to use <span>Temporal#plus</span>:</p>
+<p><pre>
+  // these two lines are equivalent, but the second approach is recommended
+  temporal = thisUnit.doPlus(temporal);
+  temporal = temporal.plus(thisUnit);
+</pre>
+It is recommended to use the second approach, <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>,
+as it is a lot clearer to read in code.</p>
+<p>Implementations should perform any queries or calculations using the units
+available in <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> or the fields available in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
+If the field is not supported a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> must be thrown.</p>
+<p>Implementations must not alter the specified temporal object.
+Instead, an adjusted copy of the original must be returned.
+This provides equivalent, safe behavior for immutable and mutable implementations.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">dateTime</td>
+      <td data-ice="type"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the temporal object to adjust, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">periodToAdd</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the period of this unit to add, positive or negative</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the adjusted temporal object, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the period cannot be added</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-between">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">between</span><span data-ice="signature">(temporal1: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, temporal2: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber176">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Calculates the period in terms of this unit between two temporal objects of the same type.</p>
+<p>This calculates the period between two temporals in terms of this unit.
+The start and end points are supplied as temporal objects and must be of the same type.
+The result will be negative if the end is before the start.
+For example, the period in hours between two temporal objects can be calculated
+using <span>HOURS.between</span>.</p>
+<p>The calculation returns a whole number, representing the number of complete units between the two temporals.
+For example, the period in hours between the times 11:30 and 13:29 will only b
+one hour as it is one minute short of two hours.</p>
+<p>There are two equivalent ways of using this method.
+The first is to invoke this method directly.
+The second is to use <span>Temporal#until</span>:</p>
+<p><pre>
+  // these two lines are equivalent
+  between = thisUnit.between(start, end);
+  between = start.until(end, thisUnit);
+</pre>
+The choice should be made based on which makes the code more readable.</p>
+<p>For example, this method allows the number of days between two dates to be calculated:</p>
+<p><pre>
+  long daysBetween = DAYS.between(start, end);
+  // or alternatively
+  long daysBetween = start.until(end, DAYS);
+</pre>
+Implementations should perform any queries or calculations using the units available in
+<span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> or the fields available in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
+If the unit is not supported a DateTimeException must be thrown.
+Implementations must not alter the specified temporal objects.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">temporal1</td>
+      <td data-ice="type"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the base temporal object, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">temporal2</td>
+      <td data-ice="type"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the other temporal object, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the period between temporal1 and temporal2 in terms of this unit;
+ positive if temporal2 is later than temporal1, negative if earlier</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the period cannot be calculated</p>
+</td>
+      </tr>
+<tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-duration">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">duration</span><span data-ice="signature">(): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber44">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the duration of this unit, which may be an estimate.</p>
+<p>All units return a duration measured in standard nanoseconds from this method.
+The duration will be positive and non-zero.
+For example, an hour has a duration of <code>60 * 60 * 1,000,000,000ns</code>.</p>
+<p>Some units may return an accurate duration while others return an estimate.
+For example, days have an estimated duration due to the possibility of
+daylight saving time changes.
+To determine if the duration is an estimate, use <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html#instance-method-isDurationEstimated">isDurationEstimated</a></span>.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>the duration of this unit, which may be an estimate, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isDateBased">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isDateBased</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber68">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if this unit is date-based.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true if date-based</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isDurationEstimated">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isDurationEstimated</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber59">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if the duration of the unit is an estimate.</p>
+<p>All units have a duration, however the duration is not always accurate.
+For example, days have an estimated duration due to the possibility of
+daylight saving time changes.
+This method returns true if the duration is an estimate and false if it is
+accurate. Note that accurate/estimated ignores leap seconds.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true if the duration is estimated, false if accurate</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isSupportedBy">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isSupportedBy</span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber92">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if this unit is supported by the specified temporal object.</p>
+<p>This checks that the implementing date-time can add/subtract this unit.
+This can be used to avoid throwing an exception.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">temporal</td>
+      <td data-ice="type"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the temporal object to check, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true if the unit is supported</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isTimeBased">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isTimeBased</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalUnit.js.html#lineNumber77">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if this unit is time-based.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true if time-based</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

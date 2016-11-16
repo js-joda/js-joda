@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -132,9 +135,7 @@
 
   
   
-  <div class="description" data-ice="description"><p></p><h3>Static properties of Class <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></h3>
-
-<p></p>
+  <div class="description" data-ice="description"><h3 id="static-properties-of-class-span-a-href-class-src-format-datetimeformatter-js-datetimeformatter-html-datetimeformatter-a-span-">Static properties of Class <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></h3>
 <p>DateTimeFormatter.ISO_LOCAL_DATE</p>
 <p>DateTimeFormatter.ISO_LOCAL_TIME</p>
 <p>DateTimeFormatter.ISO_LOCAL_DATE_TIME</p>
@@ -602,7 +603,7 @@ for advanced use cases.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber257">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber255">source</a></span></span>
     </span>
   </h3>
 
@@ -610,13 +611,10 @@ for advanced use cases.</p>
   
   
   <div data-ice="description"><p>Creates a formatter using the specified pattern.</p>
-<p></p><p>
-This method will create a formatter based on a simple pattern of letters and symbols.</p>
-<p></p><p>
-The returned formatter will use the default locale, but this can be changed
+<p>This method will create a formatter based on a simple pattern of letters and symbols.</p>
+<p>The returned formatter will use the default locale, but this can be changed
 using <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-withLocale">DateTimeFormatter.withLocale</a></span>.</p>
-<p></p><p>
-All letters &apos;A&apos; to &apos;Z&apos; and &apos;a&apos; to &apos;z&apos; are reserved as pattern letters.
+<p>All letters &apos;A&apos; to &apos;Z&apos; and &apos;a&apos; to &apos;z&apos; are reserved as pattern letters.
 The following pattern letters are defined:</p>
 <p><pre>
  |Symbol  |Meaning                     |Presentation      |Examples
@@ -661,34 +659,29 @@ The following pattern letters are defined:</p>
  | [      | optional section start     |                  |
  | ]      | optional section end       |                  |
  | {}     | reserved for future use    |                  |
-</pre></p>
-<p></p><p>
-The count of pattern letters determine the format.</p>
-<p></p><p>
-<strong>Text</strong>: The text style is determined based on the number of pattern letters used.
+</pre>
+
+</p>
+<p>The count of pattern letters determine the format.</p>
+<p><strong>Text</strong>: The text style is determined based on the number of pattern letters used.
 Less than 4 pattern letters will use the short form <code>TextStyle.SHORT</code>.
 Exactly 4 pattern letters will use the full form <code>TextStyle.FULL</code>.
 Exactly 5 pattern letters will use the narrow form <code>TextStyle.NARROW</code>.</p>
-<p></p><p>
-<strong>NOTE</strong>: since text styles require locale support, they are currently not supported in js-joda!</p>
-<p></p><p>
-<strong>Number</strong>: If the count of letters is one, then the value is printed using the minimum number
+<p><strong>NOTE</strong>: since text styles require locale support, they are currently not supported in js-joda!</p>
+<p><strong>Number</strong>: If the count of letters is one, then the value is printed using the minimum number
 of digits and without padding as per <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendValue">DateTimeFormatterBuilder.appendValue</a></span>.
 Otherwise, the count of digits is used as the width of the output field as per
 <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendValue">DateTimeFormatterBuilder.appendValue</a></span>.</p>
-<p></p><p>
-<strong>Number/Text</strong>: If the count of pattern letters is 3 or greater, use the Text rules above.
+<p><strong>Number/Text</strong>: If the count of pattern letters is 3 or greater, use the Text rules above.
 Otherwise use the Number rules above.</p>
-<p></p><p>
-<strong>Fraction</strong>: Outputs the nano-of-second field as a fraction-of-second.
+<p><strong>Fraction</strong>: Outputs the nano-of-second field as a fraction-of-second.
 The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.
 If it is less than 9, then the nano-of-second value is truncated, with only the most
 significant digits being output.
 When parsing in strict mode, the number of parsed digits must match the count of pattern letters.
 When parsing in lenient mode, the number of parsed digits must be at least the count of pattern
 letters, up to 9 digits.</p>
-<p></p><p>
-<strong>Year</strong>: The count of letters determines the minimum field width below which padding is used.
+<p><strong>Year</strong>: The count of letters determines the minimum field width below which padding is used.
 If the count of letters is two, then a <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendValueReduced">DateTimeFormatterBuilder.appendValueReduced</a></span>
 two digit form is used.
 For printing, this outputs the rightmost two digits. For parsing, this will parse using the
@@ -696,19 +689,15 @@ base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.
 If the count of letters is less than four (but not two), then the sign is only output for negative
 years as per <code>SignStyle.NORMAL</code>.
 Otherwise, the sign is output if the pad width is exceeded, as per <code>SignStyle.EXCEEDS_PAD</code></p>
-<p></p><p>
-<strong>ZoneId</strong>: This outputs the time-zone ID, such as &apos;Europe/Paris&apos;.
+<p><strong>ZoneId</strong>: This outputs the time-zone ID, such as &apos;Europe/Paris&apos;.
 If the count of letters is two, then the time-zone ID is output.
 Any other count of letters throws <code>IllegalArgumentException</code>.</p>
-<p></p><p>
-<strong>Zone names</strong>: This outputs the display name of the time-zone ID.
+<p><strong>Zone names</strong>: This outputs the display name of the time-zone ID.
 If the count of letters is one, two or three, then the short name is output.
 If the count of letters is four, then the full name is output.
 Five or more letters throws <code>IllegalArgumentException</code>.</p>
-<p></p><p>
-<strong>NOTE</strong>: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!</p>
-<p></p><p>
-<strong>Offset X and x</strong>: This formats the offset based on the number of pattern letters.
+<p><strong>NOTE</strong>: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!</p>
+<p><strong>Offset X and x</strong>: This formats the offset based on the number of pattern letters.
 One letter outputs just the hour&apos;, such as &apos;+01&apos;, unless the minute is non-zero
 in which case the minute is also output, such as &apos;+0130&apos;.
 Two letters outputs the hour and minute, without a colon, such as &apos;+0130&apos;.
@@ -718,22 +707,17 @@ Five letters outputs the hour and minute and optional second, with a colon, such
 Six or more letters throws <code>IllegalArgumentException</code>.
 Pattern letter &apos;X&apos; (upper case) will output &apos;Z&apos; when the offset to be output would be zero,
 whereas pattern letter &apos;x&apos; (lower case) will output &apos;+00&apos;, &apos;+0000&apos;, or &apos;+00:00&apos;.</p>
-<p></p><p>
-<strong>Offset Z</strong>: This formats the offset based on the number of pattern letters.
+<p><strong>Offset Z</strong>: This formats the offset based on the number of pattern letters.
 One, two or three letters outputs the hour and minute, without a colon, such as &apos;+0130&apos;.
 Four or more letters throws <code>IllegalArgumentException</code>.
 The output will be &apos;+0000&apos; when the offset is zero.</p>
-<p></p><p>
-<strong>Optional section</strong>: The optional section markers work exactly like calling
+<p><strong>Optional section</strong>: The optional section markers work exactly like calling
 <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-optionalStart">DateTimeFormatterBuilder.optionalStart</a></span> and <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-optionalEnd">DateTimeFormatterBuilder.optionalEnd</a></span>.</p>
-<p></p><p>
-<strong>Pad modifier</strong>: Modifies the pattern that immediately follows to be padded with spaces.
+<p><strong>Pad modifier</strong>: Modifies the pattern that immediately follows to be padded with spaces.
 The pad width is determined by the number of pattern letters.
 This is the same as calling <span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-padNext">DateTimeFormatterBuilder.padNext</a></span>.</p>
-<p></p><p>
-For example, &apos;ppH&apos; outputs the hour-of-day padded on the left with spaces to a width of 2.</p>
-<p></p><p>
-Any unrecognized letter is an error.
+<p>For example, &apos;ppH&apos; outputs the hour-of-day padded on the left with spaces to a width of 2.</p>
+<p>Any unrecognized letter is an error.
 Any non-letter character, other than &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos; and the single quote will be output directly.
 Despite this, it is recommended to use single quotes around all characters that you want to
 output directly to ensure that future changes do not break your application.</p>
@@ -818,7 +802,7 @@ console.log(s); // &apos;1 04 2016&apos;</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber80">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
@@ -826,28 +810,24 @@ console.log(s); // &apos;1 04 2016&apos;</code></pre>
   
   
   <div data-ice="description"><p>A query that provides access to the excess days that were parsed.</p>
-<p></p><p>
-This returns a singleton {@linkplain TemporalQuery query} that provides
+<p>This returns a singleton <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> that provides
 access to additional information from the parse. The query always returns
 a non-null period, with a zero period returned instead of null.</p>
-<p></p><p>
-There are two situations where this query may return a non-zero period.</p>
-<p><ul></ul></p>
-<p><li>If the {@code ResolverStyle} is {@code LENIENT} and a time is parsed
- without a date, then the complete result of the parse consists of a
- {@code LocalTime} and an excess {@code Period} in days.</li></p>
-<p><li>If the {@code ResolverStyle} is {@code SMART} and a time is parsed
- without a date where the time is 24:00:00, then the complete result of
- the parse consists of a {@code LocalTime} of 00:00:00 and an excess
- {@code Period} of one day.
-</li></p>
-<p></p><p>
-In both cases, if a complete {@code ChronoLocalDateTime} or {@code Instant}
+<p>There are two situations where this query may return a non-zero period.</p>
+<ul>
+<li>If the <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span> is <span>LENIENT</span> and a time is parsed
+without a date, then the complete result of the parse consists of a
+<span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> and an excess <span><a href="class/src/Period.js~Period.html">Period</a></span> in days.</li>
+<li>If the <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span> is <span>SMART</span> and a time is parsed
+without a date where the time is 24:00:00, then the complete result of
+the parse consists of a <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span> of 00:00:00 and an excess
+<span><a href="class/src/Period.js~Period.html">Period</a></span> of one day.</li>
+</ul>
+<p>In both cases, if a complete <span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> or <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>
 is parsed, then the excess days are added to the date part.
 As a result, this query will return a zero period.</p>
-<p></p><p>
-The {@code SMART} behaviour handles the common &quot;end of day&quot; 24:00 value.
-Processing in {@code LENIENT} mode also produces the same result:</p>
+<p>The <span>SMART</span> behaviour handles the common &quot;end of day&quot; 24:00 value.
+Processing in <span>LENIENT</span> mode also produces the same result:</p>
 <p><pre>
  Text to parse        Parsed object                         Excess days
  &quot;2012-12-03T00:00&quot;   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO
@@ -905,7 +885,7 @@ The query can be used as follows:
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber114">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber112">source</a></span></span>
     </span>
   </h3>
 
@@ -913,19 +893,16 @@ The query can be used as follows:
   
   
   <div data-ice="description"><p>A query that provides access to whether a leap-second was parsed.</p>
-<p></p><p>
-This returns a singleton {@linkplain TemporalQuery query} that provides
+<p>This returns a singleton <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> that provides
 access to additional information from the parse. The query always returns
 a non-null boolean, true if parsing saw a leap-second, false if not.</p>
-<p></p><p>
-Instant parsing handles the special &quot;leap second&quot; time of &apos;23:59:60&apos;.
+<p>Instant parsing handles the special &quot;leap second&quot; time of &apos;23:59:60&apos;.
 Leap seconds occur at &apos;23:59:60&apos; in the UTC time-zone, but at other
 local times in different time-zones. To avoid this potential ambiguity,
 the handling of leap-seconds is limited to
-{@link DateTimeFormatterBuilder#appendInstant()}, as that method
+<span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendInstant">DateTimeFormatterBuilder#appendInstant</a></span>, as that method
 always parses the instant with the UTC zone offset.</p>
-<p></p><p>
-If the time &apos;23:59:60&apos; is received, then a simple conversion is applied,
+<p>If the time &apos;23:59:60&apos; is received, then a simple conversion is applied,
 replacing the second-of-minute of 60 with 59. This query can be used
 on the parse result to determine if the leap-second adjustment was made.
 The query will return one second of excess if it did adjust to remove
@@ -986,7 +963,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber274">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber272">source</a></span></span>
     </span>
   </h3>
 
@@ -1090,7 +1067,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber316">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber314">source</a></span></span>
     </span>
   </h3>
 
@@ -1140,7 +1117,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber312">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber310">source</a></span></span>
     </span>
   </h3>
 
@@ -1190,7 +1167,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber370">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber368">source</a></span></span>
     </span>
   </h3>
 
@@ -1198,8 +1175,7 @@ application, as follows:</p>
   
   
   <div data-ice="description"><p>Formats a date-time object using this formatter.</p>
-<p></p><p>
-This formats the date-time to a String using the rules of the formatter.</p>
+<p>This formats the date-time to a String using the rules of the formatter.</p>
 </div>
 
   
@@ -1273,7 +1249,7 @@ This formats the date-time to a String using the rules of the formatter.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber308">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber306">source</a></span></span>
     </span>
   </h3>
 
@@ -1323,7 +1299,7 @@ This formats the date-time to a String using the rules of the formatter.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber409">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber407">source</a></span></span>
     </span>
   </h3>
 
@@ -1398,7 +1374,7 @@ otherwise <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber432">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber430">source</a></span></span>
     </span>
   </h3>
 
@@ -1406,13 +1382,11 @@ otherwise <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter
   
   
   <div data-ice="description"><p>Fully parses the text producing a temporal object.</p>
-<p></p><p>
-This parses the entire text producing a temporal object.
-It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-The result of this method is {@code TemporalAccessor} which has been resolved,
+<p>This parses the entire text producing a temporal object.
+It is typically more useful to use <span><a href="class/src/Period.js~Period.html#static-method-parse">parse</a></span>.
+The result of this method is <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> which has been resolved,
 applying basic validation checks to help ensure a valid date-time.</p>
-<p></p><p>
-If the parse completes without reading the entire length of the text,
+<p>If the parse completes without reading the entire length of the text,
 or a problem occurs during parsing or merging, then an exception is thrown.</p>
 </div>
 
@@ -1487,7 +1461,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber461">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber459">source</a></span></span>
     </span>
   </h3>
 
@@ -1496,8 +1470,8 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
   
   <div data-ice="description"><p>Fully parses the text producing a temporal object.</p>
 <p>This parses the entire text producing a temporal object.
-It is typically more useful to use {@link #parse(CharSequence, TemporalQuery)}.
-The result of this method is {@code TemporalAccessor} which has been resolved,
+It is typically more useful to use <span><a href="class/src/Period.js~Period.html#static-method-parse">parse</a></span>.
+The result of this method is <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> which has been resolved,
 applying basic validation checks to help ensure a valid date-time.</p>
 <p>If the parse completes without reading the entire length of the text,
 or a problem occurs during parsing or merging, then an exception is thrown.</p>
@@ -1581,7 +1555,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber560">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber558">source</a></span></span>
     </span>
   </h3>
 
@@ -1590,34 +1564,28 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
   
   <div data-ice="description"><p>Parses the text using this formatter, without resolving the result, intended
 for advanced use cases.</p>
-<p></p><p>
-Parsing is implemented as a two-phase operation.
+<p>Parsing is implemented as a two-phase operation.
 First, the text is parsed using the layout defined by the formatter, producing
-a {@code Map} of field to value, a {@code ZoneId} and a {@code Chronology}.
-Second, the parsed data is &lt;em&gt;resolved&lt;/em&gt;, by validating, combining and
+a <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span> of field to value, a <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> and a <span>Chronology</span>.
+Second, the parsed data is <em>resolved</em>, by validating, combining and
 simplifying the various fields into more useful ones.
 This method performs the parsing stage but not the resolving stage.</p>
-<p></p><p>
-The result of this method is {@code TemporalAccessor} which represents the
+<p>The result of this method is <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> which represents the
 data as seen in the input. Values are not validated, thus parsing a date string
 of &apos;2012-00-65&apos; would result in a temporal with three fields - year of &apos;2012&apos;,
 month of &apos;0&apos; and day-of-month of &apos;65&apos;.</p>
-<p></p><p>
-The text will be parsed from the specified start {@code ParsePosition}.
-The entire length of the text does not have to be parsed, the {@code ParsePosition}
+<p>The text will be parsed from the specified start <span><a href="class/src/format/ParsePosition.js~ParsePosition.html">ParsePosition</a></span>.
+The entire length of the text does not have to be parsed, the <span><a href="class/src/format/ParsePosition.js~ParsePosition.html">ParsePosition</a></span>
 will be updated with the index at the end of parsing.</p>
-<p></p><p>
-Errors are returned using the error index field of the {@code ParsePosition}
-instead of {@code DateTimeParseException}.
+<p>Errors are returned using the error index field of the <span><a href="class/src/format/ParsePosition.js~ParsePosition.html">ParsePosition</a></span>
+instead of <span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span>.
 The returned error index will be set to an index indicative of the error.
 Callers must check for errors before using the context.</p>
-<p></p><p>
-If the formatter parses the same field more than once with different values,
+<p>If the formatter parses the same field more than once with different values,
 the result will be an error.</p>
-<p></p><p>
-This method is intended for advanced use cases that need access to the
+<p>This method is intended for advanced use cases that need access to the
 internal state during parsing. Typical application code should use
-{@link #parse(CharSequence, TemporalQuery)} or the parse method on the target type.</p>
+<span><a href="class/src/Period.js~Period.html#static-method-parse">parse</a></span> or the parse method on the target type.</p>
 </div>
 
   
@@ -1704,7 +1672,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber584">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber582">source</a></span></span>
     </span>
   </h3>
 
@@ -1773,7 +1741,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber588">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber586">source</a></span></span>
     </span>
   </h3>
 
@@ -1823,7 +1791,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber344">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber342">source</a></span></span>
     </span>
   </h3>
 
@@ -1835,13 +1803,13 @@ internal state during parsing. Typical application code should use
 with the override chronology set.
 By default, a formatter has no override chronology, returning null.</p>
 <p>If an override is added, then any date that is printed or parsed will be affected.</p>
-<p>When printing, if the {@code Temporal} object contains a date then it will
+<p>When printing, if the <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span> object contains a date then it will
 be converted to a date in the override chronology.
 Any time or zone will be retained unless overridden.
 The converted result will behave in a manner equivalent to an implementation
-of {@code ChronoLocalDate},{@code ChronoLocalDateTime} or {@code ChronoZonedDateTime}.</p>
+of <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span>,<span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span> or <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>.</p>
 <p>When parsing, the override chronology will be used to interpret the
-{@linkplain ChronoField fields} into a date unless the
+<span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> into a date unless the
 formatter directly parses a valid chronology.</p>
 <p>This instance is immutable and unaffected by this method call.</p>
 </div>
@@ -1905,7 +1873,7 @@ formatter directly parses a valid chronology.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber356">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber354">source</a></span></span>
     </span>
   </h3>
 
@@ -1949,7 +1917,7 @@ formatter directly parses a valid chronology.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

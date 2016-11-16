@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,15 +101,17 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/temporal/TemporalAdjuster.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
- * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos  
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
@@ -116,29 +119,30 @@ import {abstractMethodFail} from &apos;../assert&apos;;
 
 /**
  * Strategy for adjusting a temporal object.
- * &lt;p&gt;
+ *
  * Adjusters are a key tool for modifying temporal objects.
  * They exist to externalize the process of adjustment, permitting different
  * approaches, as per the strategy design pattern.
  * Examples might be an adjuster that sets the date avoiding weekends, or one that
  * sets the date to the last day of the month.
- * &lt;p&gt;
- * There are two equivalent ways of using a {@code TemporalAdjuster}.
+ *
+ * There are two equivalent ways of using a {@link TemporalAdjuster}.
  * The first is to invoke the method on this interface directly.
- * The second is to use {@link Temporal#with(TemporalAdjuster)}:
+ * The second is to use {@link Temporal#with}:
  * &lt;pre&gt;
  *   // these two lines are equivalent, but the second approach is recommended
  *   temporal = thisAdjuster.adjustInto(temporal);
  *   temporal = temporal.with(thisAdjuster);
  * &lt;/pre&gt;
- * It is recommended to use the second approach, {@code with(TemporalAdjuster)},
+ * It is recommended to use the second approach, {@link with},
  * as it is a lot clearer to read in code.
- * &lt;p&gt;
+ *
  * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the
  * last day of the month.
  * Adjusters may also be defined by applications.
  *
- * &lt;h3&gt;Specification for implementors&lt;/h3&gt;
+ * ### Specification for implementors
+ *
  * This interface places no restrictions on the mutability of implementations,
  * however immutability is strongly recommended.
  *
@@ -148,38 +152,39 @@ export class TemporalAdjuster {
 
     /**
      * Adjusts the specified temporal object.
-     * &lt;p&gt;
+     *
      * This adjusts the specified temporal object using the logic
      * encapsulated in the implementing class.
      * Examples might be an adjuster that sets the date avoiding weekends, or one that
      * sets the date to the last day of the month.
-     * &lt;p&gt;
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link Temporal#with(TemporalAdjuster)}:
+     * The second is to use {@link Temporal#with}:
      * &lt;pre&gt;
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisAdjuster.adjustInto(temporal);
      *   temporal = temporal.with(thisAdjuster);
      * &lt;/pre&gt;
-     * It is recommended to use the second approach, {@code with(TemporalAdjuster)},
+     * It is recommended to use the second approach, {@link with},
      * as it is a lot clearer to read in code.
      *
-     * &lt;h3&gt;Specification for implementors&lt;/h3&gt;
+     * ### Specification for implementors
+     *
      * The implementation must take the input object and adjust it.
      * The implementation defines the logic of the adjustment and is responsible for
-     * documenting that logic. It may use any method on {@code Temporal} to
+     * documenting that logic. It may use any method on {@link Temporal} to
      * query the temporal object and perform the adjustment.
      * The returned object must have the same observable type as the input object
-     * &lt;p&gt;
+     *
      * The input object must not be altered.
      * Instead, an adjusted copy of the original must be returned.
      * This provides equivalent, safe behavior for immutable and mutable temporal objects.
-     * &lt;p&gt;
+     *
      * The input temporal object may be in a calendar system other than ISO.
      * Implementations may choose to document compatibility with other calendar systems,
-     * or reject non-ISO temporal objects by {@link TemporalQueries#chronology() querying the chronology}.
-     * &lt;p&gt;
+     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).
+     *
      * This method may be called from multiple threads in parallel.
      * It must be thread-safe when invoked.
      *
@@ -190,6 +195,7 @@ export class TemporalAdjuster {
      *
      * @abstract
      */
+    // eslint-disable-next-line no-unused-vars
     adjustInto(temporal){
         abstractMethodFail(&apos;adjustInto&apos;);
     }
@@ -200,7 +206,7 @@ export class TemporalAdjuster {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

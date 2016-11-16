@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -168,7 +171,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -252,30 +255,27 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAccessor.js.html#lineNumber81">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAccessor.js.html#lineNumber82">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
-<p></p><p>
-This queries the date-time for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
+<p>This queries the date-time for the value for the specified field.
 The returned value will always be within the valid range of values for the field.
 If the date-time cannot return the value, because the field is unsupported or for
 some other reason, an exception will be thrown.</p>
-<p></p><h3>Specification for implementors</h3>
-Implementations must check and handle all fields defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
-If the field is supported and has an {@code int} range, then the value of
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>Implementations must check and handle all fields defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
+If the field is supported and has an <code>int</code> range, then the value of
 the field must be returned.
-If unsupported, then a {@code DateTimeException} must be thrown.<p></p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument.</p>
-<p></p><p>
-Implementations must not alter either this object.</p>
+If unsupported, then a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> must be thrown.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument.</p>
+<p>Implementations must not alter either this object.</p>
 </div>
 
   
@@ -329,7 +329,7 @@ Implementations must not alter either this object.</p>
       </tr>
 <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the range of valid values for the field exceeds an {@code int}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if the range of valid values for the field exceeds an <code>int</code></p>
 </td>
       </tr>
 <tr class="throw" data-ice="throw">
@@ -372,17 +372,14 @@ Implementations must not alter either this object.</p>
   
   
   <div data-ice="description"><p>Queries this date-time.</p>
-<p></p><p>
-This queries this date-time using the specified query strategy object.</p>
-<p></p><p>
-Queries are a key tool for extracting information from date-times.
+<p>This queries this date-time using the specified query strategy object.</p>
+<p>Queries are a key tool for extracting information from date-times.
 They exists to externalize the process of querying, permitting different
 approaches, as per the strategy design pattern.
 Examples might be a query that checks if the date is the day before February 29th
 in a leap year, or calculates the number of days to your next birthday.</p>
-<p></p><p>
-The most common query implementations are method references, such as
-{@code LocalDate::from} and {@code ZoneId::from}.
+<p>The most common query implementations are method references, such as
+<span>LocalDate::from</span> and <span>ZoneId::from</span>.
 Further implementations are on <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span>.
 Queries may also be defined by applications.</p>
 </div>
@@ -463,7 +460,7 @@ Queries may also be defined by applications.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/temporal/TemporalAccessor.js.html#lineNumber113">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/temporal/TemporalAccessor.js.html#lineNumber115">source</a></span></span>
     </span>
   </h3>
 
@@ -471,26 +468,22 @@ Queries may also be defined by applications.</p>
   
   
   <div data-ice="description"><p>Gets the range of valid values for the specified field.</p>
-<p></p><p>
-All fields can be expressed as a {@code long} integer.
+<p>All fields can be expressed as a <code>long</code> integer.
 This method returns an object that describes the valid range for that value.
 The value of this temporal object is used to enhance the accuracy of the returned range.
 If the date-time cannot return the range, because the field is unsupported or for
 some other reason, an exception will be thrown.</p>
-<p></p><p>
-Note that the result only describes the minimum and maximum valid values
+<p>Note that the result only describes the minimum and maximum valid values
 and it is important not to read too much into them. For example, there
 could be values within the range that are invalid for the field.</p>
-<p></p><h3>Specification for implementors</h3>
-Implementations must check and handle all fields defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
+<h3 id="specification-for-implementors">Specification for implementors</h3>
+<p>Implementations must check and handle all fields defined in <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
 If the field is supported, then the range of the field must be returned.
-If unsupported, then a {@code DateTimeException} must be thrown.<p></p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessorl)}
-passing {@code this} as the argument.</p>
-<p></p><p>
-Implementations must not alter either this object.</p>
+If unsupported, then a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> must be thrown.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.rangeRefinedBy</span>
+passing <code>this</code> as the argument.</p>
+<p>Implementations must not alter either this object.</p>
 </div>
 
   
@@ -557,7 +550,7 @@ Implementations must not alter either this object.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

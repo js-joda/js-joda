@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -133,37 +136,28 @@
   
   
   <div class="description" data-ice="description"><p>A date-based amount of time, such as &apos;2 years, 3 months and 4 days&apos;.</p>
-<p></p><p>
-This class models a quantity or amount of time in terms of years, months and days.
+<p>This class models a quantity or amount of time in terms of years, months and days.
 See <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> for the time-based equivalent to this class.</p>
-<p></p><p>
-Durations and period differ in their treatment of daylight savings time
-when added to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>. A {@code Duration} will add an exact
+<p>Durations and period differ in their treatment of daylight savings time
+when added to <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>. A <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> will add an exact
 number of seconds, thus a duration of one day is always exactly 24 hours.
 By contrast, a <span><a href="class/src/Period.js~Period.html">Period</a></span> will add a conceptual day, trying to maintain
 the local time.</p>
-<p></p><p>
-For example, consider adding a period of one day and a duration of one day to
+<p>For example, consider adding a period of one day and a duration of one day to
 18:00 on the evening before a daylight savings gap. The <span><a href="class/src/Period.js~Period.html">Period</a></span> will add
-the conceptual day and result in a {@code ZonedDateTime} at 18:00 the following day.
-By contrast, the {@code Duration} will add exactly 24 hours, resulting in a
-{@code ZonedDateTime} at 19:00 the following day (assuming a one hour DST gap).</p>
-<p></p><p>
-The supported units of a period are {@link ChronoUnit#YEARS YEARS},
-{@link ChronoUnit#MONTHS MONTHS} and {@link ChronoUnit#DAYS DAYS}.
+the conceptual day and result in a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> at 18:00 the following day.
+By contrast, the <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> will add exactly 24 hours, resulting in a
+<span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> at 19:00 the following day (assuming a one hour DST gap).</p>
+<p>The supported units of a period are <span>ChronoUnit#YEARS</span>,
+<span>ChronoUnit#MONTHS</span> and <span>ChronoUnit#DAYS</span>.
 All three fields are always present, but may be set to zero.</p>
-<p></p><p>
-The period may be used with any calendar system.
+<p>The period may be used with any calendar system.
 The meaning of a &apos;year&apos; or &apos;month&apos; is only applied when the object is added to a date.</p>
-<p></p><p>
-The period is modeled as a directed amount of time, meaning that individual parts of the
+<p>The period is modeled as a directed amount of time, meaning that individual parts of the
 period may be negative.</p>
-<p></p><p>
-The months and years fields may be {@linkplain #normalized() normalized}.
+<p>The months and years fields may be normalized (see <span><a href="class/src/Period.js~Period.html#instance-method-normalized">normalized</a></span>).
 The normalization assumes a 12 month year, so is not appropriate for all calendar systems.</p>
-<p></p><h3>Static properties of Class <span><a href="class/src/Period.js~Period.html">Period</a></span></h3>
-
-<p></p>
+<h3 id="static-properties-of-class-span-a-href-class-src-period-js-period-html-period-a-span-">Static properties of Class <span><a href="class/src/Period.js~Period.html">Period</a></span></h3>
 <p>Period.ZERO</p>
 <p>A constant for a period of zero.</p>
 </div>
@@ -408,7 +402,7 @@ and days between two dates.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> from a text string such as {@code PnYnMnD}.</p>
+        <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> from a text string such as <span>PnYnMnD</span>.</p>
 </div>
       </div>
     </td>
@@ -1016,7 +1010,7 @@ using a 12 month year.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this period as a {@code String}, such as {@code P6Y3M1D}.</p>
+        <div data-ice="description"><p>Outputs this period as a string, such as <span>P6Y3M1D</span>.</p>
 </div>
       </div>
     </td>
@@ -1252,13 +1246,13 @@ using a 12 month year.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-getUnits">getUnits</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span><span>[]</span></span></span>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-subtractFrom">subtractFrom</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Returns the list of units uniquely defining the value of this TemporalAmount.</p>
+        <div data-ice="description"><p>Subtracts this object from the specified temporal object.</p>
 </div>
       </div>
     </td>
@@ -1278,13 +1272,13 @@ using a 12 month year.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-subtractFrom">subtractFrom</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>): <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+           <span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-units">units</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span><span>[]</span></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Subtracts this object from the specified temporal object.</p>
+        <div data-ice="description"><p>Returns the list of units uniquely defining the value of this TemporalAmount.</p>
 </div>
       </div>
     </td>
@@ -1320,15 +1314,13 @@ using a 12 month year.</p>
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> consisting of the number of years, months,
 and days between two dates.</p>
-<p></p><p>
-The start date is included, but the end date is not.
+<p>The start date is included, but the end date is not.
 The period is calculated by removing complete months, then calculating
 the remaining number of days, adjusting to ensure that both have the same sign.
 The number of months is then split into years and months based on a 12 month year.
 A month is considered if the end day-of-month is greater than or equal to the start day-of-month.
-For example, from {@code 2010-01-15} to {@code 2011-03-18} is one year, two months and three days.</p>
-<p></p><p>
-The result of this method can be a negative period if the end is before the start.
+For example, from <code>2010-01-15</code> to <code>2011-03-18</code> is one year, two months and three days.</p>
+<p>The result of this method can be a negative period if the end is before the start.
 The negative sign will be the same in each of year, month and day.</p>
 <p>see <span>ChronoLocalDate.until</span></p>
 </div>
@@ -1489,17 +1481,14 @@ The negative sign will be the same in each of year, month and day.</p>
   
   
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Period.js~Period.html">Period</a></span> from a temporal amount.</p>
-<p></p><p>
-This obtains a period based on the specified amount.
-A {@code TemporalAmount} represents an - amount of time, which may be
+<p>This obtains a period based on the specified amount.
+A <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> represents an - amount of time, which may be
 date-based or time-based, which this factory extracts to a <span><a href="class/src/Period.js~Period.html">Period</a></span>.</p>
-<p></p><p>
-The conversion loops around the set of units from the amount and uses
-the {@link ChronoUnit#YEARS YEARS}, {@link ChronoUnit#MONTHS MONTHS}
-and {@link ChronoUnit#DAYS DAYS} units to create a period.
+<p>The conversion loops around the set of units from the amount and uses
+the <span>ChronoUnit#YEARS</span>, <span>ChronoUnit#MONTHS</span>
+and <span>ChronoUnit#DAYS</span> units to create a period.
 If any other units are found then an exception is thrown.</p>
-<p></p><p>
-If the amount is a {@code ChronoPeriod} then it must use the ISO chronology.</p>
+<p>If the amount is a <span>ChronoPeriod</span> then it must use the ISO chronology.</p>
 </div>
 
   
@@ -1586,8 +1575,7 @@ If the amount is a {@code ChronoPeriod} then it must use the ISO chronology.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> representing a number of years, months and days.</p>
-<p></p><p>
-This creates an instance based on years, months and days.</p>
+<p>This creates an instance based on years, months and days.</p>
 </div>
 
   
@@ -1671,8 +1659,7 @@ This creates an instance based on years, months and days.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> representing a number of days.</p>
-<p></p><p>
-The resulting period will have the specified days.
+<p>The resulting period will have the specified days.
 The years and months units will be zero.</p>
 </div>
 
@@ -1743,8 +1730,7 @@ The years and months units will be zero.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> representing a number of months.</p>
-<p></p><p>
-The resulting period will have the specified months.
+<p>The resulting period will have the specified months.
 The years and days units will be zero.</p>
 </div>
 
@@ -1815,8 +1801,7 @@ The years and days units will be zero.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> representing a number of weeks.</p>
-<p></p><p>
-The resulting period will have days equal to the weeks multiplied by seven.
+<p>The resulting period will have days equal to the weeks multiplied by seven.
 The years and months units will be zero.</p>
 </div>
 
@@ -1887,8 +1872,7 @@ The years and months units will be zero.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> representing a number of years.</p>
-<p></p><p>
-The resulting period will have the specified years.
+<p>The resulting period will have the specified years.
 The months and days units will be zero.</p>
 </div>
 
@@ -1958,12 +1942,10 @@ The months and days units will be zero.</p>
   
   
   
-  <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> from a text string such as {@code PnYnMnD}.</p>
-<p></p><p>
-This will parse the string produced by {@code toString()} which is
-based on the ISO-8601 period formats {@code PnYnMnD} and {@code PnW}.</p>
-<p></p><p>
-The string starts with an optional sign, denoted by the ASCII negative
+  <div data-ice="description"><p>Obtains a <span><a href="class/src/Period.js~Period.html">Period</a></span> from a text string such as <span>PnYnMnD</span>.</p>
+<p>This will parse the string produced by <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-toString">toString</a></span> which is
+based on the ISO-8601 period formats <span>PnYnMnD</span> and <span>PnW</span>.</p>
+<p>The string starts with an optional sign, denoted by the ASCII negative
 or positive symbol. If negative, the whole period is negated.
 The ASCII letter &apos;P&apos; is next in upper or lower case.
 There are then four sections, each consisting of a number and a suffix.
@@ -1973,14 +1955,12 @@ years, months, weeks and days, accepted in upper or lower case.
 The suffixes must occur in order.
 The number part of each section must consist of ASCII digits.
 The number may be prefixed by the ASCII negative or positive symbol.
-The number must parse to an {@code int}.</p>
-<p></p><p>
-The leading plus/minus sign, and negative values for other units are
+The number must parse to an <code>int</code>.</p>
+<p>The leading plus/minus sign, and negative values for other units are
 not part of the ISO-8601 standard. In addition, ISO-8601 does not
-permit mixing between the {@code PnYnMnD} and {@code PnW} formats.
+permit mixing between the <span>PnYnMnD</span> and <span>PnW</span> formats.
 Any week-based input is multiplied by 7 and treated as a number of days.</p>
-<p></p><p>
-For example, the following are valid inputs:</p>
+<p>For example, the following are valid inputs:</p>
 <p><pre>
   &apos;P2Y&apos;             -- Period.ofYears(2)
   &apos;P3M&apos;             -- Period.ofMonths(3)
@@ -2077,24 +2057,22 @@ For example, the following are valid inputs:</p>
   
   
   <div data-ice="description"><p>Adds this period to the specified temporal object.</p>
-<p></p><p>
-This returns a temporal object of the same observable type as the input
+<p>This returns a temporal object of the same observable type as the input
 with this period added.</p>
-<p></p><p>
-In most cases, it is clearer to reverse the calling pattern by using
-{@link Temporal#plus(TemporalAmount)}.</p>
+<p>In most cases, it is clearer to reverse the calling pattern by using
+<span>Temporal#plus</span>.</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = thisPeriod.addTo(dateTime);
   dateTime = dateTime.plus(thisPeriod);
-</pre></p>
-<p></p><p>
-The calculation will add the years, then months, then days.
+</pre>
+
+</p>
+<p>The calculation will add the years, then months, then days.
 Only non-zero amounts will be added.
 If the date-time has a calendar system with a fixed number of months in a
 year, then the years and months will be combined before being added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-addTo">TemporalAmount#addTo</a></span></div>
@@ -2181,10 +2159,9 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the chronology that defines the meaning of the supported units.</p>
-<p></p><p>
-The period is defined by the chronology.
+<p>The period is defined by the chronology.
 It controls the supported units and restricts addition/subtraction
-to {@code ChronoLocalDate} instances of the same chronology.</p>
+to <span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span> instances of the same chronology.</p>
 </div>
 
   
@@ -2237,8 +2214,7 @@ to {@code ChronoLocalDate} instances of the same chronology.</p>
   
   
   <div data-ice="description"><p>Gets the amount of days of this period.</p>
-<p></p><p>
-This returns the days unit.</p>
+<p>This returns the days unit.</p>
 </div>
 
   
@@ -2291,8 +2267,7 @@ This returns the days unit.</p>
   
   
   <div data-ice="description"><p>Checks if this period is equal to another period.</p>
-<p></p><p>
-The comparison is based on the amounts held in the period.
+<p>The comparison is based on the amounts held in the period.
 To be equal, the years, months and days units must be individually equal.
 Note that this means that a period of &apos;15 Months&apos; is not equal to a period
 of &apos;1 Year and 3 Months&apos;.</p>
@@ -2365,10 +2340,9 @@ of &apos;1 Year and 3 Months&apos;.</p>
   
   
   <div data-ice="description"><p>Gets the value of the requested unit.</p>
-<p></p><p>
-The supported units are chronology specific.
-They will typically be {@link ChronoUnit#YEARS YEARS},
-{@link ChronoUnit#MONTHS MONTHS} and {@link ChronoUnit#DAYS DAYS}.
+<p>The supported units are chronology specific.
+They will typically be <span>ChronoUnit#YEARS</span>,
+<span>ChronoUnit#MONTHS</span> and <span>ChronoUnit#DAYS</span>.
 Requesting an unsupported unit will throw an exception.</p>
 </div>
 
@@ -2386,7 +2360,7 @@ Requesting an unsupported unit will throw an exception.</p>
       <td data-ice="name" data-depth="0">unit</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the {@code TemporalUnit} for which to return the value</p>
+      <td data-ice="description"><p>the <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span> for which to return the value</p>
 </td>
     </tr>
 </tbody>
@@ -2508,8 +2482,7 @@ Requesting an unsupported unit will throw an exception.</p>
   
   
   <div data-ice="description"><p>Checks if any of the three units of this period are negative.</p>
-<p></p><p>
-This checks whether the years, months or days units are less than zero.</p>
+<p>This checks whether the years, months or days units are less than zero.</p>
 </div>
 
   
@@ -2562,8 +2535,7 @@ This checks whether the years, months or days units are less than zero.</p>
   
   
   <div data-ice="description"><p>Checks if all three units of this period are zero.</p>
-<p></p><p>
-A zero period has the value zero for the years, months and days units.</p>
+<p>A zero period has the value zero for the years, months and days units.</p>
 </div>
 
   
@@ -2616,14 +2588,11 @@ A zero period has the value zero for the years, months and days units.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount subtracted.</p>
-<p></p><p>
-This input amount is converted to a <span><a href="class/src/Period.js~Period.html">Period</a></span> using {@code from(TemporalAmount)}.
+<p>This input amount is converted to a <span><a href="class/src/Period.js~Period.html">Period</a></span> using <span><a href="class/src/Month.js~Month.html#static-method-from">from</a></span>.
 This operates separately on the years, months and days.</p>
-<p></p><p>
-For example, &apos;1 year, 6 months and 3 days&apos; minus &apos;2 years, 2 months and 2 days&apos;
+<p>For example, &apos;1 year, 6 months and 3 days&apos; minus &apos;2 years, 2 months and 2 days&apos;
 returns &apos;-1 years, 4 months and 1 day&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2705,12 +2674,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified days subtracted.</p>
-<p></p><p>
-This subtracts the amount from the days unit in a copy of this period.
+<p>This subtracts the amount from the days unit in a copy of this period.
 The years and months units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; minus 2 days returns &apos;1 year, 6 months and 1 day&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2792,12 +2759,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified months subtracted.</p>
-<p></p><p>
-This subtracts the amount from the months unit in a copy of this period.
+<p>This subtracts the amount from the months unit in a copy of this period.
 The years and days units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; minus 2 months returns &apos;1 year, 4 months and 3 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2879,12 +2844,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified years subtracted.</p>
-<p></p><p>
-This subtracts the amount from the years unit in a copy of this period.
+<p>This subtracts the amount from the years unit in a copy of this period.
 The months and days units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; minus 2 years returns &apos;-1 years, 6 months and 3 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2966,10 +2929,8 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the amount of months of this period.</p>
-<p></p><p>
-This returns the months unit.</p>
-<p></p><p>
-The months unit is not normalized with the years unit.
+<p>This returns the months unit.</p>
+<p>The months unit is not normalized with the years unit.
 This means that a period of &apos;15 months&apos; is different to a period
 of &apos;1 year and 3 months&apos;.</p>
 </div>
@@ -3025,8 +2986,7 @@ of &apos;1 year and 3 months&apos;.</p>
   
   <div data-ice="description"><p>Returns a new instance with each element in this period multiplied
 by the specified scalar.</p>
-<p></p><p>
-This simply multiplies each field, years, months, days and normalized time,
+<p>This simply multiplies each field, years, months, days and normalized time,
 by the scalar. No normalization is performed.</p>
 </div>
 
@@ -3174,19 +3134,15 @@ by the scalar. No normalization is performed.</p>
   
   <div data-ice="description"><p>Returns a copy of this period with the years and months normalized
 using a 12 month year.</p>
-<p></p><p>
-This normalizes the years and months units, leaving the days unit unchanged.
+<p>This normalizes the years and months units, leaving the days unit unchanged.
 The months unit is adjusted to have an absolute value less than 11,
 with the years unit being adjusted to compensate. For example, a period of
 &apos;1 Year and 15 months&apos; will be normalized to &apos;2 years and 3 months&apos;.</p>
-<p></p><p>
-The sign of the years and months units will be the same after normalization.
+<p>The sign of the years and months units will be the same after normalization.
 For example, a period of &apos;1 year and -25 months&apos; will be normalized to
 &apos;-1 year and -1 month&apos;.</p>
-<p></p><p>
-This normalization uses a 12 month year which is not valid for all calendar systems.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This normalization uses a 12 month year which is not valid for all calendar systems.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3251,14 +3207,11 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount added.</p>
-<p></p><p>
-This input amount is converted to a <span><a href="class/src/Period.js~Period.html">Period</a></span> using {@code from(TemporalAmount)}.
+<p>This input amount is converted to a <span><a href="class/src/Period.js~Period.html">Period</a></span> using <span><a href="class/src/Month.js~Month.html#static-method-from">from</a></span>.
 This operates separately on the years, months and days.</p>
-<p></p><p>
-For example, &apos;1 year, 6 months and 3 days&apos; plus &apos;2 years, 2 months and 2 days&apos;
+<p>For example, &apos;1 year, 6 months and 3 days&apos; plus &apos;2 years, 2 months and 2 days&apos;
 returns &apos;3 years, 8 months and 5 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3340,12 +3293,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified days added.</p>
-<p></p><p>
-This adds the amount to the days unit in a copy of this period.
+<p>This adds the amount to the days unit in a copy of this period.
 The years and months units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; plus 2 days returns &apos;1 year, 6 months and 5 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3427,12 +3378,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified months added.</p>
-<p></p><p>
-This adds the amount to the months unit in a copy of this period.
+<p>This adds the amount to the months unit in a copy of this period.
 The years and days units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; plus 2 months returns &apos;1 year, 8 months and 3 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3514,12 +3463,10 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified years added.</p>
-<p></p><p>
-This adds the amount to the years unit in a copy of this period.
+<p>This adds the amount to the years unit in a copy of this period.
 The months and days units are unaffected.
 For example, &apos;1 year, 6 months and 3 days&apos; plus 2 years returns &apos;3 years, 6 months and 3 days&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3601,19 +3548,18 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Subtracts this period from the specified temporal object.</p>
-<p></p><p>
-This returns a temporal object of the same observable type as the input
+<p>This returns a temporal object of the same observable type as the input
 with this period subtracted.</p>
-<p></p><p>
-In most cases, it is clearer to reverse the calling pattern by using
-{@link Temporal#minus(TemporalAmount)}.</p>
+<p>In most cases, it is clearer to reverse the calling pattern by using
+<span>Temporal#minus</span>.</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = thisPeriod.subtractFrom(dateTime);
   dateTime = dateTime.minus(thisPeriod);
-</pre></p>
-<p></p><p>
-The calculation operates as follows.
+</pre>
+
+</p>
+<p>The calculation operates as follows.
 First, the chronology of the temporal is checked to ensure it is ISO chronology or null.
 Second, if the months are zero, the years are added if non-zero, otherwise
 the combination of years and months is added if non-zero.
@@ -3622,8 +3568,7 @@ Finally, any days are added.</p>
 Only non-zero amounts will be subtracted.
 If the date-time has a calendar system with a fixed number of months in a
 year, then the years and months will be combined before being subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-subtractFrom">TemporalAmount#subtractFrom</a></span></div>
@@ -3760,9 +3705,8 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   
-  <div data-ice="description"><p>Outputs this period as a {@code String}, such as {@code P6Y3M1D}.</p>
-<p></p><p>
-The output will be in the ISO-8601 period format.
+  <div data-ice="description"><p>Outputs this period as a string, such as <span>P6Y3M1D</span>.</p>
+<p>The output will be in the ISO-8601 period format.
 A zero period will be represented as zero days, &apos;P0D&apos;.</p>
 </div>
 
@@ -3816,13 +3760,10 @@ A zero period will be represented as zero days, &apos;P0D&apos;.</p>
   
   
   <div data-ice="description"><p>Gets the total number of months in this period using a 12 month year.</p>
-<p></p><p>
-This returns the total number of months in the period by multiplying the
+<p>This returns the total number of months in the period by multiplying the
 number of years by 12 and adding the number of months.</p>
-<p></p><p>
-This uses a 12 month year which is not valid for all calendar systems.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This uses a 12 month year which is not valid for all calendar systems.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3877,7 +3818,7 @@ This instance is immutable and unaffected by this method call.</p>
   <div data-ice="description"><p>Gets the list of units, from largest to smallest, that fully define this amount.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-units">TemporalAmount#units</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -3927,11 +3868,9 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount of days.</p>
-<p></p><p>
-This sets the amount of the days unit in a copy of this period.
+<p>This sets the amount of the days unit in a copy of this period.
 The years and months units are unaffected.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4001,15 +3940,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount of months.</p>
-<p></p><p>
-This sets the amount of the months unit in a copy of this period.
+<p>This sets the amount of the months unit in a copy of this period.
 The years and days units are unaffected.</p>
-<p></p><p>
-The months unit is not normalized with the years unit.
+<p>The months unit is not normalized with the years unit.
 This means that a period of &apos;15 months&apos; is different to a period
 of &apos;1 year and 3 months&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4079,15 +4015,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount of years.</p>
-<p></p><p>
-This sets the amount of the years unit in a copy of this period.
+<p>This sets the amount of the years unit in a copy of this period.
 The months and days units are unaffected.</p>
-<p></p><p>
-The months unit is not normalized with the years unit.
+<p>The months unit is not normalized with the years unit.
 This means that a period of &apos;15 months&apos; is different to a period
 of &apos;1 year and 3 months&apos;.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4157,10 +4090,8 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Gets the amount of years of this period.</p>
-<p></p><p>
-This returns the years unit.</p>
-<p></p><p>
-The months unit is not normalized with the years unit.
+<p>This returns the years unit.</p>
+<p>The months unit is not normalized with the years unit.
 This means that a period of &apos;15 months&apos; is different to a period
 of &apos;1 year and 3 months&apos;.</p>
 </div>
@@ -4200,7 +4131,7 @@ of &apos;1 year and 3 months&apos;.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

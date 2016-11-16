@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -220,7 +223,7 @@
       <div>
         
         
-        <div data-ice="description"><p>Outputs this date-time as a {@code String} using the formatter.</p>
+        <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -376,7 +379,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
+        <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
       </div>
     </td>
@@ -410,7 +413,7 @@ of 1970-01-01T00:00:00Z.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -500,12 +503,10 @@ of 1970-01-01T00:00:00Z.</p>
   
   
   <div data-ice="description"><p>Compares this date-time to another date-time, including the chronology.</p>
-<p></p><p>
-The comparison is based first on the instant, then on the local date-time,
+<p>The comparison is based first on the instant, then on the local date-time,
 then on the zone ID, then on the chronology.
 It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.</p>
-<p></p><p>
-If all the date-time objects being compared are in the same chronology, then the
+<p>If all the date-time objects being compared are in the same chronology, then the
 additional chronology stage is not required.</p>
 </div>
 
@@ -576,10 +577,9 @@ additional chronology stage is not required.</p>
   
   
   <div data-ice="description"><p>Checks if this date-time is equal to another date-time.</p>
-<p></p><p>
-The comparison is based on the offset date-time and the zone.
-To compare for the same instant on the time-line, use <span>#compareTo</span>.
-Only objects of type {@code ChronoZoneDateTime} are compared, other types return false.</p>
+<p>The comparison is based on the offset date-time and the zone.
+To compare for the same instant on the time-line, use <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>.
+Only objects of type <span>ChronoZoneDateTime</span> are compared, other types return false.</p>
 </div>
 
   
@@ -648,7 +648,7 @@ Only objects of type {@code ChronoZoneDateTime} are compared, other types return
   
   
   
-  <div data-ice="description"><p>Outputs this date-time as a {@code String} using the formatter.</p>
+  <div data-ice="description"><p>Outputs this date-time as a string using the formatter.</p>
 </div>
 
   
@@ -730,10 +730,9 @@ Only objects of type {@code ChronoZoneDateTime} are compared, other types return
   
   
   <div data-ice="description"><p>Checks if the instant of this date-time is after that of the specified date-time.</p>
-<p></p><p>
-This method differs from the comparison in <span>#compareTo</span> in that it
+<p>This method differs from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span> in that it
 only compares the instant of the date-time. This is equivalent to using
-{@code dateTime1.toInstant().isAfter(dateTime2.toInstant());}.</p>
+<code>dateTime1.toInstant().isAfter(dateTime2.toInstant())</code>.</p>
 </div>
 
   
@@ -803,10 +802,9 @@ only compares the instant of the date-time. This is equivalent to using
   
   
   <div data-ice="description"><p>Checks if the instant of this date-time is before that of the specified date-time.</p>
-<p></p><p>
-This method differs from the comparison in <span>#compareTo</span> in that it
+<p>This method differs from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span> in that it
 only compares the instant of the date-time. This is equivalent to using
-{@code dateTime1.toInstant().isBefore(dateTime2.toInstant());}.</p>
+<code>dateTime1.toInstant().isBefore(dateTime2.toInstant())</code>.</p>
 </div>
 
   
@@ -876,10 +874,9 @@ only compares the instant of the date-time. This is equivalent to using
   
   
   <div data-ice="description"><p>Checks if the instant of this date-time is equal to that of the specified date-time.</p>
-<p></p><p>
-This method differs from the comparison in <span>#compareTo</span> and <span>#equals</span>
+<p>This method differs from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span> and <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-equals">equals</a></span>
 in that it only compares the instant of the date-time. This is equivalent to using
-{@code dateTime1.toInstant().equals(dateTime2.toInstant());}.</p>
+<code>dateTime1.toInstant().equals(dateTime2.toInstant())</code>.</p>
 </div>
 
   
@@ -1016,9 +1013,8 @@ in that it only compares the instant of the date-time. This is equivalent to usi
   
   <div data-ice="description"><p>Converts this date-time to the number of seconds from the epoch
 of 1970-01-01T00:00:00Z.</p>
-<p></p><p>
-This uses the {@linkplain #toLocalDateTime() local date-time} and
-{@linkplain #getOffset() offset} to calculate the epoch-second value,
+<p>This uses the local date-time (see <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDateTime">toLocalDateTime</a></span>) and
+offset (see <span>getOffset</span>) to calculate the epoch-second value,
 which is the number of elapsed seconds from 1970-01-01T00:00:00Z.
 Instants on the time-line after the epoch are positive, earlier are negative.</p>
 </div>
@@ -1072,12 +1068,11 @@ Instants on the time-line after the epoch are positive, earlier are negative.</p
   
   
   
-  <div data-ice="description"><p>Converts this date-time to an {@code Instant}.</p>
-<p></p><p>
-This returns an {@code Instant} representing the same point on the
+  <div data-ice="description"><p>Converts this date-time to an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
+<p>This returns an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> representing the same point on the
 time-line as this date-time. The calculation combines the
-{@linkplain #toLocalDateTime() local date-time} and
-{@linkplain #getOffset() offset}.</p>
+local date-time (see <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDateTime">toLocalDateTime</a></span>) and
+offset (see <span>getOffset</span>).</p>
 </div>
 
   
@@ -1090,7 +1085,7 @@ time-line as this date-time. The calculation combines the
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>an {@code Instant} representing the same instant, not null</p>
+        <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> representing the same instant, not null</p>
 </td>
       </tr>
     </table>
@@ -1115,7 +1110,7 @@ time-line as this date-time. The calculation combines the
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

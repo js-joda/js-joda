@@ -9,8 +9,8 @@
           "type": "Identifier",
           "name": "TemporalQueries",
           "range": [
-            1251,
-            1266
+            1192,
+            1207
           ],
           "loc": {
             "start": {
@@ -33,8 +33,8 @@
                 "type": "Identifier",
                 "name": "zoneId",
                 "range": [
-                  2793,
-                  2799
+                  2683,
+                  2689
                 ],
                 "loc": {
                   "start": {
@@ -63,8 +63,8 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            2819,
-                            2834
+                            2709,
+                            2724
                           ],
                           "loc": {
                             "start": {
@@ -81,8 +81,8 @@
                           "type": "Identifier",
                           "name": "ZONE_ID",
                           "range": [
-                            2835,
-                            2842
+                            2725,
+                            2732
                           ],
                           "loc": {
                             "start": {
@@ -96,8 +96,8 @@
                           }
                         },
                         "range": [
-                          2819,
-                          2842
+                          2709,
+                          2732
                         ],
                         "loc": {
                           "start": {
@@ -111,8 +111,8 @@
                         }
                       },
                       "range": [
-                        2812,
-                        2843
+                        2702,
+                        2733
                       ],
                       "loc": {
                         "start": {
@@ -127,8 +127,8 @@
                     }
                   ],
                   "range": [
-                    2802,
-                    2849
+                    2692,
+                    2739
                   ],
                   "loc": {
                     "start": {
@@ -144,8 +144,8 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  2799,
-                  2849
+                  2689,
+                  2739
                 ],
                 "loc": {
                   "start": {
@@ -161,8 +161,8 @@
               "kind": "method",
               "computed": false,
               "range": [
-                2786,
-                2849
+                2676,
+                2739
               ],
               "loc": {
                 "start": {
@@ -177,10 +177,10 @@
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A strict query for the {@code ZoneId}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the zone.\n     * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.\n     * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.\n     * Thus a {@link ZonedDateTime} will return the result of\n     * {@code getZone()}, but an {@link OffsetDateTime} will\n     * return null.\n     * <p>\n     * In most cases, applications should use {@link #ZONE} as this query is too strict.\n     * <p>\n     * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns null<br>\n     * {@code LocalTime} returns null<br>\n     * {@code LocalDateTime} returns null<br>\n     * {@code ZonedDateTime} returns the associated zone<br>\n     * {@code OffsetTime} returns null<br>\n     * {@code OffsetDateTime} returns null<br>\n     * {@code ChronoLocalDate} returns null<br>\n     * {@code ChronoLocalDateTime} returns null<br>\n     * {@code ChronoZonedDateTime} returns the associated zone<br>\n     * {@code Era} returns null<br>\n     * {@code DayOfWeek} returns null<br>\n     * {@code Month} returns null<br>\n     * {@code Year} returns null<br>\n     * {@code YearMonth} returns null<br>\n     * {@code MonthDay} returns null<br>\n     * {@code ZoneOffset} returns null<br>\n     * {@code Instant} returns null<br>\n     *\n     * @return a query that can obtain the zone ID of a temporal, not null\n     ",
+                  "value": "*\n     * A strict query for the {@link ZoneId}.\n     *\n     * This queries a {@link TemporalAccessor} for the zone.\n     * The zone is only returned if the date-time conceptually contains a {@link ZoneId}.\n     * It will not be returned if the date-time only conceptually has an {@link ZoneOffset}.\n     * Thus a {@link ZonedDateTime} will return the result of\n     * {@link getZone}, but an {@link OffsetDateTime} will\n     * return null.\n     *\n     * In most cases, applications should use {@link ZONE} as this query is too strict.\n     *\n     * The result from JDK classes implementing {@link TemporalAccessor} is as follows:\n     * * * {@link LocalDate} returns null\n     * * {@link LocalTime} returns null\n     * * {@link LocalDateTime} returns null\n     * * {@link ZonedDateTime} returns the associated zone\n     * * {@link OffsetTime} returns null\n     * * {@link OffsetDateTime} returns null\n     * * {@link ChronoLocalDate} returns null\n     * * {@link ChronoLocalDateTime} returns null\n     * * {@link ChronoZonedDateTime} returns the associated zone\n     * * {@link Era} returns null\n     * * {@link DayOfWeek} returns null\n     * * {@link Month} returns null\n     * * {@link Year} returns null\n     * * {@link YearMonth} returns null\n     * * {@link MonthDay} returns null\n     * * {@link ZoneOffset} returns null\n     * * {@link Instant} returns null\n     *\n     * @return a query that can obtain the zone ID of a temporal, not null\n     ",
                   "range": [
-                    1274,
-                    2781
+                    1215,
+                    2671
                   ],
                   "loc": {
                     "start": {
@@ -197,10 +197,10 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for the {@code Chronology}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the chronology.\n     * If the target {@code TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@code LocalTime}, will return null.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code LocalTime} returns null (does not represent a date)<br>\n     * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code OffsetTime} returns null (does not represent a date)<br>\n     * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ChronoLocalDate} returns the associated chronology<br>\n     * {@code ChronoLocalDateTime} returns the associated chronology<br>\n     * {@code ChronoZonedDateTime} returns the associated chronology<br>\n     * {@code Era} returns the associated chronology<br>\n     * {@code DayOfWeek} returns null (shared across chronologies)<br>\n     * {@code Month} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code Year} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>\n     * {@code ZoneOffset} returns null (does not represent a date)<br>\n     * {@code Instant} returns null (does not represent a date)<br>\n     * <p>\n     * The method {@link Chronology#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
+                  "value": "*\n     * A query for the {@link Chronology}.\n     *\n     * This queries a {@link TemporalAccessor} for the chronology.\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@link LocalTime}, will return null.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\n     * * {@link LocalTime} returns null (does not represent a date)\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link OffsetTime} returns null (does not represent a date)\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ChronoLocalDate} returns the associated chronology\n     * * {@link ChronoLocalDateTime} returns the associated chronology\n     * * {@link ChronoZonedDateTime} returns the associated chronology\n     * * {@link Era} returns the associated chronology\n     * * {@link DayOfWeek} returns null (shared across chronologies)\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\n     * * {@link ZoneOffset} returns null (does not represent a date)\n     * * {@link Instant} returns null (does not represent a date)\n     *\n     * The method {@link Chronology#from} can be used as a\n     * {@link TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
                   "range": [
-                    2855,
-                    4895
+                    2745,
+                    4740
                   ],
                   "loc": {
                     "start": {
@@ -208,7 +208,7 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 102,
+                      "line": 103,
                       "column": 7
                     }
                   }
@@ -222,16 +222,16 @@
                 "type": "Identifier",
                 "name": "chronology",
                 "range": [
-                  4907,
-                  4917
+                  4752,
+                  4762
                 ],
                 "loc": {
                   "start": {
-                    "line": 103,
+                    "line": 104,
                     "column": 11
                   },
                   "end": {
-                    "line": 103,
+                    "line": 104,
                     "column": 21
                   }
                 }
@@ -252,16 +252,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            4937,
-                            4952
+                            4782,
+                            4797
                           ],
                           "loc": {
                             "start": {
-                              "line": 104,
+                              "line": 105,
                               "column": 15
                             },
                             "end": {
-                              "line": 104,
+                              "line": 105,
                               "column": 30
                             }
                           }
@@ -270,62 +270,62 @@
                           "type": "Identifier",
                           "name": "CHRONO",
                           "range": [
-                            4953,
-                            4959
+                            4798,
+                            4804
                           ],
                           "loc": {
                             "start": {
-                              "line": 104,
+                              "line": 105,
                               "column": 31
                             },
                             "end": {
-                              "line": 104,
+                              "line": 105,
                               "column": 37
                             }
                           }
                         },
                         "range": [
-                          4937,
-                          4959
+                          4782,
+                          4804
                         ],
                         "loc": {
                           "start": {
-                            "line": 104,
+                            "line": 105,
                             "column": 15
                           },
                           "end": {
-                            "line": 104,
+                            "line": 105,
                             "column": 37
                           }
                         }
                       },
                       "range": [
-                        4930,
-                        4960
+                        4775,
+                        4805
                       ],
                       "loc": {
                         "start": {
-                          "line": 104,
+                          "line": 105,
                           "column": 8
                         },
                         "end": {
-                          "line": 104,
+                          "line": 105,
                           "column": 38
                         }
                       }
                     }
                   ],
                   "range": [
-                    4920,
-                    4966
+                    4765,
+                    4811
                   ],
                   "loc": {
                     "start": {
-                      "line": 103,
+                      "line": 104,
                       "column": 24
                     },
                     "end": {
-                      "line": 105,
+                      "line": 106,
                       "column": 5
                     }
                   }
@@ -333,16 +333,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  4917,
-                  4966
+                  4762,
+                  4811
                 ],
                 "loc": {
                   "start": {
-                    "line": 103,
+                    "line": 104,
                     "column": 21
                   },
                   "end": {
-                    "line": 105,
+                    "line": 106,
                     "column": 5
                   }
                 }
@@ -350,26 +350,26 @@
               "kind": "method",
               "computed": false,
               "range": [
-                4900,
-                4966
+                4745,
+                4811
               ],
               "loc": {
                 "start": {
-                  "line": 103,
+                  "line": 104,
                   "column": 4
                 },
                 "end": {
-                  "line": 105,
+                  "line": 106,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for the {@code Chronology}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the chronology.\n     * If the target {@code TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@code LocalTime}, will return null.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code LocalTime} returns null (does not represent a date)<br>\n     * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code OffsetTime} returns null (does not represent a date)<br>\n     * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ChronoLocalDate} returns the associated chronology<br>\n     * {@code ChronoLocalDateTime} returns the associated chronology<br>\n     * {@code ChronoZonedDateTime} returns the associated chronology<br>\n     * {@code Era} returns the associated chronology<br>\n     * {@code DayOfWeek} returns null (shared across chronologies)<br>\n     * {@code Month} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code Year} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>\n     * {@code ZoneOffset} returns null (does not represent a date)<br>\n     * {@code Instant} returns null (does not represent a date)<br>\n     * <p>\n     * The method {@link Chronology#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
+                  "value": "*\n     * A query for the {@link Chronology}.\n     *\n     * This queries a {@link TemporalAccessor} for the chronology.\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@link LocalTime}, will return null.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\n     * * {@link LocalTime} returns null (does not represent a date)\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link OffsetTime} returns null (does not represent a date)\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ChronoLocalDate} returns the associated chronology\n     * * {@link ChronoLocalDateTime} returns the associated chronology\n     * * {@link ChronoZonedDateTime} returns the associated chronology\n     * * {@link Era} returns the associated chronology\n     * * {@link DayOfWeek} returns null (shared across chronologies)\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\n     * * {@link ZoneOffset} returns null (does not represent a date)\n     * * {@link Instant} returns null (does not represent a date)\n     *\n     * The method {@link Chronology#from} can be used as a\n     * {@link TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
                   "range": [
-                    2855,
-                    4895
+                    2745,
+                    4740
                   ],
                   "loc": {
                     "start": {
@@ -377,7 +377,7 @@
                       "column": 4
                     },
                     "end": {
-                      "line": 102,
+                      "line": 103,
                       "column": 7
                     }
                   }
@@ -386,18 +386,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for the smallest supported unit.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the time precision.\n     * If the target {@code TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}\n     * it would return a precision of {@code MILLIS}.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code DAYS}<br>\n     * {@code LocalTime} returns {@code NANOS}<br>\n     * {@code LocalDateTime} returns {@code NANOS}<br>\n     * {@code ZonedDateTime} returns {@code NANOS}<br>\n     * {@code OffsetTime} returns {@code NANOS}<br>\n     * {@code OffsetDateTime} returns {@code NANOS}<br>\n     * {@code ChronoLocalDate} returns {@code DAYS}<br>\n     * {@code ChronoLocalDateTime} returns {@code NANOS}<br>\n     * {@code ChronoZonedDateTime} returns {@code NANOS}<br>\n     * {@code Era} returns {@code ERAS}<br>\n     * {@code DayOfWeek} returns {@code DAYS}<br>\n     * {@code Month} returns {@code MONTHS}<br>\n     * {@code Year} returns {@code YEARS}<br>\n     * {@code YearMonth} returns {@code MONTHS}<br>\n     * {@code MonthDay} returns null (does not represent a complete date or time)<br>\n     * {@code ZoneOffset} returns null (does not represent a date or time)<br>\n     * {@code Instant} returns {@code NANOS}<br>\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
+                  "value": "*\n     * A query for the smallest supported unit.\n     *\n     * This queries a {@link TemporalAccessor} for the time precision.\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\n     * it would return a precision of {@link MILLIS}.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * {@link LocalDate} returns {@link DAYS}\n     * {@link LocalTime} returns {@link NANOS}\n     * {@link LocalDateTime} returns {@link NANOS}\n     * {@link ZonedDateTime} returns {@link NANOS}\n     * {@link OffsetTime} returns {@link NANOS}\n     * {@link OffsetDateTime} returns {@link NANOS}\n     * {@link ChronoLocalDate} returns {@link DAYS}\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\n     * {@link Era} returns {@link ERAS}\n     * {@link DayOfWeek} returns {@link DAYS}\n     * {@link Month} returns {@link MONTHS}\n     * {@link Year} returns {@link YEARS}\n     * {@link YearMonth} returns {@link MONTHS}\n     * {@link MonthDay} returns null (does not represent a complete date or time)\n     * {@link ZoneOffset} returns null (does not represent a date or time)\n     * {@link Instant} returns {@link NANOS}\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
                   "range": [
-                    4972,
-                    6792
+                    4817,
+                    6564
                   ],
                   "loc": {
                     "start": {
-                      "line": 107,
+                      "line": 108,
                       "column": 4
                     },
                     "end": {
-                      "line": 139,
+                      "line": 141,
                       "column": 7
                     }
                   }
@@ -411,16 +411,16 @@
                 "type": "Identifier",
                 "name": "precision",
                 "range": [
-                  6804,
-                  6813
+                  6576,
+                  6585
                 ],
                 "loc": {
                   "start": {
-                    "line": 140,
+                    "line": 142,
                     "column": 11
                   },
                   "end": {
-                    "line": 140,
+                    "line": 142,
                     "column": 20
                   }
                 }
@@ -441,16 +441,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            6833,
-                            6848
+                            6605,
+                            6620
                           ],
                           "loc": {
                             "start": {
-                              "line": 141,
+                              "line": 143,
                               "column": 15
                             },
                             "end": {
-                              "line": 141,
+                              "line": 143,
                               "column": 30
                             }
                           }
@@ -459,62 +459,62 @@
                           "type": "Identifier",
                           "name": "PRECISION",
                           "range": [
-                            6849,
-                            6858
+                            6621,
+                            6630
                           ],
                           "loc": {
                             "start": {
-                              "line": 141,
+                              "line": 143,
                               "column": 31
                             },
                             "end": {
-                              "line": 141,
+                              "line": 143,
                               "column": 40
                             }
                           }
                         },
                         "range": [
-                          6833,
-                          6858
+                          6605,
+                          6630
                         ],
                         "loc": {
                           "start": {
-                            "line": 141,
+                            "line": 143,
                             "column": 15
                           },
                           "end": {
-                            "line": 141,
+                            "line": 143,
                             "column": 40
                           }
                         }
                       },
                       "range": [
-                        6826,
-                        6859
+                        6598,
+                        6631
                       ],
                       "loc": {
                         "start": {
-                          "line": 141,
+                          "line": 143,
                           "column": 8
                         },
                         "end": {
-                          "line": 141,
+                          "line": 143,
                           "column": 41
                         }
                       }
                     }
                   ],
                   "range": [
-                    6816,
-                    6865
+                    6588,
+                    6637
                   ],
                   "loc": {
                     "start": {
-                      "line": 140,
+                      "line": 142,
                       "column": 23
                     },
                     "end": {
-                      "line": 142,
+                      "line": 144,
                       "column": 5
                     }
                   }
@@ -522,16 +522,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  6813,
-                  6865
+                  6585,
+                  6637
                 ],
                 "loc": {
                   "start": {
-                    "line": 140,
+                    "line": 142,
                     "column": 20
                   },
                   "end": {
-                    "line": 142,
+                    "line": 144,
                     "column": 5
                   }
                 }
@@ -539,34 +539,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                6797,
-                6865
+                6569,
+                6637
               ],
               "loc": {
                 "start": {
-                  "line": 140,
+                  "line": 142,
                   "column": 4
                 },
                 "end": {
-                  "line": 142,
+                  "line": 144,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for the smallest supported unit.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the time precision.\n     * If the target {@code TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}\n     * it would return a precision of {@code MILLIS}.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code DAYS}<br>\n     * {@code LocalTime} returns {@code NANOS}<br>\n     * {@code LocalDateTime} returns {@code NANOS}<br>\n     * {@code ZonedDateTime} returns {@code NANOS}<br>\n     * {@code OffsetTime} returns {@code NANOS}<br>\n     * {@code OffsetDateTime} returns {@code NANOS}<br>\n     * {@code ChronoLocalDate} returns {@code DAYS}<br>\n     * {@code ChronoLocalDateTime} returns {@code NANOS}<br>\n     * {@code ChronoZonedDateTime} returns {@code NANOS}<br>\n     * {@code Era} returns {@code ERAS}<br>\n     * {@code DayOfWeek} returns {@code DAYS}<br>\n     * {@code Month} returns {@code MONTHS}<br>\n     * {@code Year} returns {@code YEARS}<br>\n     * {@code YearMonth} returns {@code MONTHS}<br>\n     * {@code MonthDay} returns null (does not represent a complete date or time)<br>\n     * {@code ZoneOffset} returns null (does not represent a date or time)<br>\n     * {@code Instant} returns {@code NANOS}<br>\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
+                  "value": "*\n     * A query for the smallest supported unit.\n     *\n     * This queries a {@link TemporalAccessor} for the time precision.\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\n     * it would return a precision of {@link MILLIS}.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * {@link LocalDate} returns {@link DAYS}\n     * {@link LocalTime} returns {@link NANOS}\n     * {@link LocalDateTime} returns {@link NANOS}\n     * {@link ZonedDateTime} returns {@link NANOS}\n     * {@link OffsetTime} returns {@link NANOS}\n     * {@link OffsetDateTime} returns {@link NANOS}\n     * {@link ChronoLocalDate} returns {@link DAYS}\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\n     * {@link Era} returns {@link ERAS}\n     * {@link DayOfWeek} returns {@link DAYS}\n     * {@link Month} returns {@link MONTHS}\n     * {@link Year} returns {@link YEARS}\n     * {@link YearMonth} returns {@link MONTHS}\n     * {@link MonthDay} returns null (does not represent a complete date or time)\n     * {@link ZoneOffset} returns null (does not represent a date or time)\n     * {@link Instant} returns {@link NANOS}\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
                   "range": [
-                    4972,
-                    6792
+                    4817,
+                    6564
                   ],
                   "loc": {
                     "start": {
-                      "line": 107,
+                      "line": 108,
                       "column": 4
                     },
                     "end": {
-                      "line": 139,
+                      "line": 141,
                       "column": 7
                     }
                   }
@@ -575,18 +575,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link #zoneId()}.\n     * If that is not found it tries to obtain the {@link #offset()}.\n     * <p>\n     * In most cases, applications should use this query rather than {@code #zoneId()}.\n     * <p>\n     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link ZoneId#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
+                  "value": "*\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\n     *\n     * This queries a {@link TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link zoneId}.\n     * If that is not found it tries to obtain the {@link offset}.\n     *\n     * In most cases, applications should use this query rather than {@link zoneId}.\n     *\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link ZoneId#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
                   "range": [
-                    6871,
-                    7797
+                    6643,
+                    7511
                   ],
                   "loc": {
                     "start": {
-                      "line": 144,
+                      "line": 146,
                       "column": 4
                     },
                     "end": {
-                      "line": 162,
+                      "line": 164,
                       "column": 7
                     }
                   }
@@ -600,16 +600,16 @@
                 "type": "Identifier",
                 "name": "zone",
                 "range": [
-                  7809,
-                  7813
+                  7523,
+                  7527
                 ],
                 "loc": {
                   "start": {
-                    "line": 163,
+                    "line": 165,
                     "column": 11
                   },
                   "end": {
-                    "line": 163,
+                    "line": 165,
                     "column": 15
                   }
                 }
@@ -630,16 +630,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            7833,
-                            7848
+                            7547,
+                            7562
                           ],
                           "loc": {
                             "start": {
-                              "line": 164,
+                              "line": 166,
                               "column": 15
                             },
                             "end": {
-                              "line": 164,
+                              "line": 166,
                               "column": 30
                             }
                           }
@@ -648,62 +648,62 @@
                           "type": "Identifier",
                           "name": "ZONE",
                           "range": [
-                            7849,
-                            7853
+                            7563,
+                            7567
                           ],
                           "loc": {
                             "start": {
-                              "line": 164,
+                              "line": 166,
                               "column": 31
                             },
                             "end": {
-                              "line": 164,
+                              "line": 166,
                               "column": 35
                             }
                           }
                         },
                         "range": [
-                          7833,
-                          7853
+                          7547,
+                          7567
                         ],
                         "loc": {
                           "start": {
-                            "line": 164,
+                            "line": 166,
                             "column": 15
                           },
                           "end": {
-                            "line": 164,
+                            "line": 166,
                             "column": 35
                           }
                         }
                       },
                       "range": [
-                        7826,
-                        7854
+                        7540,
+                        7568
                       ],
                       "loc": {
                         "start": {
-                          "line": 164,
+                          "line": 166,
                           "column": 8
                         },
                         "end": {
-                          "line": 164,
+                          "line": 166,
                           "column": 36
                         }
                       }
                     }
                   ],
                   "range": [
-                    7816,
-                    7860
+                    7530,
+                    7574
                   ],
                   "loc": {
                     "start": {
-                      "line": 163,
+                      "line": 165,
                       "column": 18
                     },
                     "end": {
-                      "line": 165,
+                      "line": 167,
                       "column": 5
                     }
                   }
@@ -711,16 +711,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  7813,
-                  7860
+                  7527,
+                  7574
                 ],
                 "loc": {
                   "start": {
-                    "line": 163,
+                    "line": 165,
                     "column": 15
                   },
                   "end": {
-                    "line": 165,
+                    "line": 167,
                     "column": 5
                   }
                 }
@@ -728,34 +728,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                7802,
-                7860
+                7516,
+                7574
               ],
               "loc": {
                 "start": {
-                  "line": 163,
+                  "line": 165,
                   "column": 4
                 },
                 "end": {
-                  "line": 165,
+                  "line": 167,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link #zoneId()}.\n     * If that is not found it tries to obtain the {@link #offset()}.\n     * <p>\n     * In most cases, applications should use this query rather than {@code #zoneId()}.\n     * <p>\n     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link ZoneId#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
+                  "value": "*\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\n     *\n     * This queries a {@link TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link zoneId}.\n     * If that is not found it tries to obtain the {@link offset}.\n     *\n     * In most cases, applications should use this query rather than {@link zoneId}.\n     *\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link ZoneId#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
                   "range": [
-                    6871,
-                    7797
+                    6643,
+                    7511
                   ],
                   "loc": {
                     "start": {
-                      "line": 144,
+                      "line": 146,
                       "column": 4
                     },
                     "end": {
-                      "line": 162,
+                      "line": 164,
                       "column": 7
                     }
                   }
@@ -764,18 +764,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code ZoneOffset} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     * <p>\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.\n     * This query and {@code ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link ZoneOffset} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     *\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link java.time.ZoneOffset#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\n     * This query and {@link ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
                   "range": [
-                    7866,
-                    8847
+                    7580,
+                    8516
                   ],
                   "loc": {
                     "start": {
-                      "line": 167,
+                      "line": 169,
                       "column": 4
                     },
                     "end": {
-                      "line": 185,
+                      "line": 187,
                       "column": 7
                     }
                   }
@@ -789,16 +789,16 @@
                 "type": "Identifier",
                 "name": "offset",
                 "range": [
-                  8859,
-                  8865
+                  8528,
+                  8534
                 ],
                 "loc": {
                   "start": {
-                    "line": 186,
+                    "line": 188,
                     "column": 11
                   },
                   "end": {
-                    "line": 186,
+                    "line": 188,
                     "column": 17
                   }
                 }
@@ -819,16 +819,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            8885,
-                            8900
+                            8554,
+                            8569
                           ],
                           "loc": {
                             "start": {
-                              "line": 187,
+                              "line": 189,
                               "column": 15
                             },
                             "end": {
-                              "line": 187,
+                              "line": 189,
                               "column": 30
                             }
                           }
@@ -837,62 +837,62 @@
                           "type": "Identifier",
                           "name": "OFFSET",
                           "range": [
-                            8901,
-                            8907
+                            8570,
+                            8576
                           ],
                           "loc": {
                             "start": {
-                              "line": 187,
+                              "line": 189,
                               "column": 31
                             },
                             "end": {
-                              "line": 187,
+                              "line": 189,
                               "column": 37
                             }
                           }
                         },
                         "range": [
-                          8885,
-                          8907
+                          8554,
+                          8576
                         ],
                         "loc": {
                           "start": {
-                            "line": 187,
+                            "line": 189,
                             "column": 15
                           },
                           "end": {
-                            "line": 187,
+                            "line": 189,
                             "column": 37
                           }
                         }
                       },
                       "range": [
-                        8878,
-                        8908
+                        8547,
+                        8577
                       ],
                       "loc": {
                         "start": {
-                          "line": 187,
+                          "line": 189,
                           "column": 8
                         },
                         "end": {
-                          "line": 187,
+                          "line": 189,
                           "column": 38
                         }
                       }
                     }
                   ],
                   "range": [
-                    8868,
-                    8914
+                    8537,
+                    8583
                   ],
                   "loc": {
                     "start": {
-                      "line": 186,
+                      "line": 188,
                       "column": 20
                     },
                     "end": {
-                      "line": 188,
+                      "line": 190,
                       "column": 5
                     }
                   }
@@ -900,16 +900,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  8865,
-                  8914
+                  8534,
+                  8583
                 ],
                 "loc": {
                   "start": {
-                    "line": 186,
+                    "line": 188,
                     "column": 17
                   },
                   "end": {
-                    "line": 188,
+                    "line": 190,
                     "column": 5
                   }
                 }
@@ -917,34 +917,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                8852,
-                8914
+                8521,
+                8583
               ],
               "loc": {
                 "start": {
-                  "line": 186,
+                  "line": 188,
                   "column": 4
                 },
                 "end": {
-                  "line": 188,
+                  "line": 190,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code ZoneOffset} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     * <p>\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.\n     * This query and {@code ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link ZoneOffset} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     *\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link java.time.ZoneOffset#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\n     * This query and {@link ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
                   "range": [
-                    7866,
-                    8847
+                    7580,
+                    8516
                   ],
                   "loc": {
                     "start": {
-                      "line": 167,
+                      "line": 169,
                       "column": 4
                     },
                     "end": {
-                      "line": 185,
+                      "line": 187,
                       "column": 7
                     }
                   }
@@ -953,18 +953,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code LocalDate} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     * <p>\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}\n     * field and uses it to create a {@code LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link LocalDate} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     *\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\n     * field and uses it to create a {@link LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
                   "range": [
-                    8920,
-                    9439
+                    8589,
+                    9090
                   ],
                   "loc": {
                     "start": {
-                      "line": 190,
+                      "line": 192,
                       "column": 4
                     },
                     "end": {
-                      "line": 201,
+                      "line": 203,
                       "column": 7
                     }
                   }
@@ -978,16 +978,16 @@
                 "type": "Identifier",
                 "name": "localDate",
                 "range": [
-                  9451,
-                  9460
+                  9102,
+                  9111
                 ],
                 "loc": {
                   "start": {
-                    "line": 202,
+                    "line": 204,
                     "column": 11
                   },
                   "end": {
-                    "line": 202,
+                    "line": 204,
                     "column": 20
                   }
                 }
@@ -1008,16 +1008,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            9480,
-                            9495
+                            9131,
+                            9146
                           ],
                           "loc": {
                             "start": {
-                              "line": 203,
+                              "line": 205,
                               "column": 15
                             },
                             "end": {
-                              "line": 203,
+                              "line": 205,
                               "column": 30
                             }
                           }
@@ -1026,62 +1026,62 @@
                           "type": "Identifier",
                           "name": "LOCAL_DATE",
                           "range": [
-                            9496,
-                            9506
+                            9147,
+                            9157
                           ],
                           "loc": {
                             "start": {
-                              "line": 203,
+                              "line": 205,
                               "column": 31
                             },
                             "end": {
-                              "line": 203,
+                              "line": 205,
                               "column": 41
                             }
                           }
                         },
                         "range": [
-                          9480,
-                          9506
+                          9131,
+                          9157
                         ],
                         "loc": {
                           "start": {
-                            "line": 203,
+                            "line": 205,
                             "column": 15
                           },
                           "end": {
-                            "line": 203,
+                            "line": 205,
                             "column": 41
                           }
                         }
                       },
                       "range": [
-                        9473,
-                        9507
+                        9124,
+                        9158
                       ],
                       "loc": {
                         "start": {
-                          "line": 203,
+                          "line": 205,
                           "column": 8
                         },
                         "end": {
-                          "line": 203,
+                          "line": 205,
                           "column": 42
                         }
                       }
                     }
                   ],
                   "range": [
-                    9463,
-                    9513
+                    9114,
+                    9164
                   ],
                   "loc": {
                     "start": {
-                      "line": 202,
+                      "line": 204,
                       "column": 23
                     },
                     "end": {
-                      "line": 204,
+                      "line": 206,
                       "column": 5
                     }
                   }
@@ -1089,16 +1089,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  9460,
-                  9513
+                  9111,
+                  9164
                 ],
                 "loc": {
                   "start": {
-                    "line": 202,
+                    "line": 204,
                     "column": 20
                   },
                   "end": {
-                    "line": 204,
+                    "line": 206,
                     "column": 5
                   }
                 }
@@ -1106,34 +1106,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                9444,
-                9513
+                9095,
+                9164
               ],
               "loc": {
                 "start": {
-                  "line": 202,
+                  "line": 204,
                   "column": 4
                 },
                 "end": {
-                  "line": 204,
+                  "line": 206,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code LocalDate} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     * <p>\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}\n     * field and uses it to create a {@code LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link LocalDate} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     *\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\n     * field and uses it to create a {@link LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
                   "range": [
-                    8920,
-                    9439
+                    8589,
+                    9090
                   ],
                   "loc": {
                     "start": {
-                      "line": 190,
+                      "line": 192,
                       "column": 4
                     },
                     "end": {
-                      "line": 201,
+                      "line": 203,
                       "column": 7
                     }
                   }
@@ -1142,18 +1142,18 @@
               "trailingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code LocalTime} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     * <p>\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}\n     * field and uses it to create a {@code LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link LocalTime} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     *\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\n     * field and uses it to create a {@link LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
                   "range": [
-                    9519,
-                    10042
+                    9170,
+                    9673
                   ],
                   "loc": {
                     "start": {
-                      "line": 206,
+                      "line": 208,
                       "column": 4
                     },
                     "end": {
-                      "line": 217,
+                      "line": 219,
                       "column": 7
                     }
                   }
@@ -1167,16 +1167,16 @@
                 "type": "Identifier",
                 "name": "localTime",
                 "range": [
-                  10054,
-                  10063
+                  9685,
+                  9694
                 ],
                 "loc": {
                   "start": {
-                    "line": 218,
+                    "line": 220,
                     "column": 11
                   },
                   "end": {
-                    "line": 218,
+                    "line": 220,
                     "column": 20
                   }
                 }
@@ -1197,16 +1197,16 @@
                           "type": "Identifier",
                           "name": "TemporalQueries",
                           "range": [
-                            10083,
-                            10098
+                            9714,
+                            9729
                           ],
                           "loc": {
                             "start": {
-                              "line": 219,
+                              "line": 221,
                               "column": 15
                             },
                             "end": {
-                              "line": 219,
+                              "line": 221,
                               "column": 30
                             }
                           }
@@ -1215,62 +1215,62 @@
                           "type": "Identifier",
                           "name": "LOCAL_TIME",
                           "range": [
-                            10099,
-                            10109
+                            9730,
+                            9740
                           ],
                           "loc": {
                             "start": {
-                              "line": 219,
+                              "line": 221,
                               "column": 31
                             },
                             "end": {
-                              "line": 219,
+                              "line": 221,
                               "column": 41
                             }
                           }
                         },
                         "range": [
-                          10083,
-                          10109
+                          9714,
+                          9740
                         ],
                         "loc": {
                           "start": {
-                            "line": 219,
+                            "line": 221,
                             "column": 15
                           },
                           "end": {
-                            "line": 219,
+                            "line": 221,
                             "column": 41
                           }
                         }
                       },
                       "range": [
-                        10076,
-                        10110
+                        9707,
+                        9741
                       ],
                       "loc": {
                         "start": {
-                          "line": 219,
+                          "line": 221,
                           "column": 8
                         },
                         "end": {
-                          "line": 219,
+                          "line": 221,
                           "column": 42
                         }
                       }
                     }
                   ],
                   "range": [
-                    10066,
-                    10116
+                    9697,
+                    9747
                   ],
                   "loc": {
                     "start": {
-                      "line": 218,
+                      "line": 220,
                       "column": 23
                     },
                     "end": {
-                      "line": 220,
+                      "line": 222,
                       "column": 5
                     }
                   }
@@ -1278,16 +1278,16 @@
                 "generator": false,
                 "expression": false,
                 "range": [
-                  10063,
-                  10116
+                  9694,
+                  9747
                 ],
                 "loc": {
                   "start": {
-                    "line": 218,
+                    "line": 220,
                     "column": 20
                   },
                   "end": {
-                    "line": 220,
+                    "line": 222,
                     "column": 5
                   }
                 }
@@ -1295,34 +1295,34 @@
               "kind": "method",
               "computed": false,
               "range": [
-                10047,
-                10116
+                9678,
+                9747
               ],
               "loc": {
                 "start": {
-                  "line": 218,
+                  "line": 220,
                   "column": 4
                 },
                 "end": {
-                  "line": 220,
+                  "line": 222,
                   "column": 5
                 }
               },
               "leadingComments": [
                 {
                   "type": "Block",
-                  "value": "*\n     * A query for {@code LocalTime} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     * <p>\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}\n     * field and uses it to create a {@code LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
+                  "value": "*\n     * A query for {@link LocalTime} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     *\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\n     * field and uses it to create a {@link LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
                   "range": [
-                    9519,
-                    10042
+                    9170,
+                    9673
                   ],
                   "loc": {
                     "start": {
-                      "line": 206,
+                      "line": 208,
                       "column": 4
                     },
                     "end": {
-                      "line": 217,
+                      "line": 219,
                       "column": 7
                     }
                   }
@@ -1332,8 +1332,8 @@
             }
           ],
           "range": [
-            1267,
-            10118
+            1208,
+            9749
           ],
           "loc": {
             "start": {
@@ -1341,14 +1341,14 @@
               "column": 29
             },
             "end": {
-              "line": 221,
+              "line": 223,
               "column": 1
             }
           }
         },
         "range": [
-          1245,
-          10118
+          1186,
+          9749
         ],
         "loc": {
           "start": {
@@ -1356,17 +1356,17 @@
             "column": 7
           },
           "end": {
-            "line": 221,
+            "line": 223,
             "column": 1
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "range": [
               0,
-              231
+              228
             ],
             "loc": {
               "start": {
@@ -1381,10 +1381,10 @@
           },
           {
             "type": "Block",
-            "value": "*\n * Common implementations of {@code TemporalQuery}.\n * <p>\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@code from(TemporalAccessor)} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@code LocalDate::from} and {@code ZoneId::from}.\n * <p>\n * There are two equivalent ways of using a {@code TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@code query(TemporalQuery)},\n * as it is a lot clearer to read in code.\n *\n ",
+            "value": "*\n * Common implementations of {@link TemporalQuery}.\n *\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@link from} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n ",
             "range": [
-              233,
-              1237
+              230,
+              1178
             ],
             "loc": {
               "start": {
@@ -1403,8 +1403,8 @@
       "specifiers": [],
       "source": null,
       "range": [
-        1238,
-        10118
+        1179,
+        9749
       ],
       "loc": {
         "start": {
@@ -1412,17 +1412,17 @@
           "column": 0
         },
         "end": {
-          "line": 221,
+          "line": 223,
           "column": 1
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+          "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
           "range": [
             0,
-            231
+            228
           ],
           "loc": {
             "start": {
@@ -1437,10 +1437,10 @@
         },
         {
           "type": "Block",
-          "value": "*\n * Common implementations of {@code TemporalQuery}.\n * <p>\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@code from(TemporalAccessor)} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@code LocalDate::from} and {@code ZoneId::from}.\n * <p>\n * There are two equivalent ways of using a {@code TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@code query(TemporalQuery)},\n * as it is a lot clearer to read in code.\n *\n ",
+          "value": "*\n * Common implementations of {@link TemporalQuery}.\n *\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@link from} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n ",
           "range": [
-            233,
-            1237
+            230,
+            1178
           ],
           "loc": {
             "start": {
@@ -1458,8 +1458,8 @@
   ],
   "sourceType": "module",
   "range": [
-    1238,
-    10118
+    1179,
+    9749
   ],
   "loc": {
     "start": {
@@ -1467,17 +1467,17 @@
       "column": 0
     },
     "end": {
-      "line": 221,
+      "line": 223,
       "column": 1
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "value": "*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "range": [
         0,
-        231
+        228
       ],
       "loc": {
         "start": {
@@ -1492,10 +1492,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n * Common implementations of {@code TemporalQuery}.\n * <p>\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@code from(TemporalAccessor)} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@code LocalDate::from} and {@code ZoneId::from}.\n * <p>\n * There are two equivalent ways of using a {@code TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query(TemporalQuery)}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@code query(TemporalQuery)},\n * as it is a lot clearer to read in code.\n *\n ",
+      "value": "*\n * Common implementations of {@link TemporalQuery}.\n *\n * This class provides common implementations of {@link TemporalQuery}.\n * These queries are primarily used as optimizations, allowing the internals\n * of other objects to be extracted effectively. Note that application code\n * can also use the {@link from} method on most temporal\n * objects as a method reference matching the query interface, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on the interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   dateTime = query.queryFrom(dateTime);\n *   dateTime = dateTime.query(query);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n ",
       "range": [
-        233,
-        1237
+        230,
+        1178
       ],
       "loc": {
         "start": {
@@ -1510,10 +1510,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * A strict query for the {@code ZoneId}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the zone.\n     * The zone is only returned if the date-time conceptually contains a {@code ZoneId}.\n     * It will not be returned if the date-time only conceptually has an {@code ZoneOffset}.\n     * Thus a {@link ZonedDateTime} will return the result of\n     * {@code getZone()}, but an {@link OffsetDateTime} will\n     * return null.\n     * <p>\n     * In most cases, applications should use {@link #ZONE} as this query is too strict.\n     * <p>\n     * The result from JDK classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns null<br>\n     * {@code LocalTime} returns null<br>\n     * {@code LocalDateTime} returns null<br>\n     * {@code ZonedDateTime} returns the associated zone<br>\n     * {@code OffsetTime} returns null<br>\n     * {@code OffsetDateTime} returns null<br>\n     * {@code ChronoLocalDate} returns null<br>\n     * {@code ChronoLocalDateTime} returns null<br>\n     * {@code ChronoZonedDateTime} returns the associated zone<br>\n     * {@code Era} returns null<br>\n     * {@code DayOfWeek} returns null<br>\n     * {@code Month} returns null<br>\n     * {@code Year} returns null<br>\n     * {@code YearMonth} returns null<br>\n     * {@code MonthDay} returns null<br>\n     * {@code ZoneOffset} returns null<br>\n     * {@code Instant} returns null<br>\n     *\n     * @return a query that can obtain the zone ID of a temporal, not null\n     ",
+      "value": "*\n     * A strict query for the {@link ZoneId}.\n     *\n     * This queries a {@link TemporalAccessor} for the zone.\n     * The zone is only returned if the date-time conceptually contains a {@link ZoneId}.\n     * It will not be returned if the date-time only conceptually has an {@link ZoneOffset}.\n     * Thus a {@link ZonedDateTime} will return the result of\n     * {@link getZone}, but an {@link OffsetDateTime} will\n     * return null.\n     *\n     * In most cases, applications should use {@link ZONE} as this query is too strict.\n     *\n     * The result from JDK classes implementing {@link TemporalAccessor} is as follows:\n     * * * {@link LocalDate} returns null\n     * * {@link LocalTime} returns null\n     * * {@link LocalDateTime} returns null\n     * * {@link ZonedDateTime} returns the associated zone\n     * * {@link OffsetTime} returns null\n     * * {@link OffsetDateTime} returns null\n     * * {@link ChronoLocalDate} returns null\n     * * {@link ChronoLocalDateTime} returns null\n     * * {@link ChronoZonedDateTime} returns the associated zone\n     * * {@link Era} returns null\n     * * {@link DayOfWeek} returns null\n     * * {@link Month} returns null\n     * * {@link Year} returns null\n     * * {@link YearMonth} returns null\n     * * {@link MonthDay} returns null\n     * * {@link ZoneOffset} returns null\n     * * {@link Instant} returns null\n     *\n     * @return a query that can obtain the zone ID of a temporal, not null\n     ",
       "range": [
-        1274,
-        2781
+        1215,
+        2671
       ],
       "loc": {
         "start": {
@@ -1528,10 +1528,10 @@
     },
     {
       "type": "Block",
-      "value": "*\n     * A query for the {@code Chronology}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the chronology.\n     * If the target {@code TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@code LocalTime}, will return null.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code LocalTime} returns null (does not represent a date)<br>\n     * {@code LocalDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ZonedDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code OffsetTime} returns null (does not represent a date)<br>\n     * {@code OffsetDateTime} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code ChronoLocalDate} returns the associated chronology<br>\n     * {@code ChronoLocalDateTime} returns the associated chronology<br>\n     * {@code ChronoZonedDateTime} returns the associated chronology<br>\n     * {@code Era} returns the associated chronology<br>\n     * {@code DayOfWeek} returns null (shared across chronologies)<br>\n     * {@code Month} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code Year} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code YearMonth} returns {@code IsoChronology.INSTANCE}<br>\n     * {@code MonthDay} returns null {@code IsoChronology.INSTANCE}<br>\n     * {@code ZoneOffset} returns null (does not represent a date)<br>\n     * {@code Instant} returns null (does not represent a date)<br>\n     * <p>\n     * The method {@link Chronology#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
+      "value": "*\n     * A query for the {@link Chronology}.\n     *\n     * This queries a {@link TemporalAccessor} for the chronology.\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\n     * then it should return the chronology that the date is expressed in.\n     * As a result of this definition, objects only representing time, such as\n     * {@link LocalTime}, will return null.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\n     * * {@link LocalTime} returns null (does not represent a date)\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link OffsetTime} returns null (does not represent a date)\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\n     * * {@link ChronoLocalDate} returns the associated chronology\n     * * {@link ChronoLocalDateTime} returns the associated chronology\n     * * {@link ChronoZonedDateTime} returns the associated chronology\n     * * {@link Era} returns the associated chronology\n     * * {@link DayOfWeek} returns null (shared across chronologies)\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\n     * * {@link ZoneOffset} returns null (does not represent a date)\n     * * {@link Instant} returns null (does not represent a date)\n     *\n     * The method {@link Chronology#from} can be used as a\n     * {@link TemporalQuery}\n     * That method is equivalent to this query, except that it throws an\n     * exception if a chronology cannot be obtained.\n     *\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\n     ",
       "range": [
-        2855,
-        4895
+        2745,
+        4740
       ],
       "loc": {
         "start": {
@@ -1539,97 +1539,97 @@
           "column": 4
         },
         "end": {
-          "line": 102,
+          "line": 103,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * A query for the smallest supported unit.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the time precision.\n     * If the target {@code TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@code NANO_OF_DAY} and {@code NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@code GregorianCalendar} to implement {@code TemporalAccessor}\n     * it would return a precision of {@code MILLIS}.\n     * <p>\n     * The result from js-joda classes implementing {@code TemporalAccessor} is as follows:<br>\n     * {@code LocalDate} returns {@code DAYS}<br>\n     * {@code LocalTime} returns {@code NANOS}<br>\n     * {@code LocalDateTime} returns {@code NANOS}<br>\n     * {@code ZonedDateTime} returns {@code NANOS}<br>\n     * {@code OffsetTime} returns {@code NANOS}<br>\n     * {@code OffsetDateTime} returns {@code NANOS}<br>\n     * {@code ChronoLocalDate} returns {@code DAYS}<br>\n     * {@code ChronoLocalDateTime} returns {@code NANOS}<br>\n     * {@code ChronoZonedDateTime} returns {@code NANOS}<br>\n     * {@code Era} returns {@code ERAS}<br>\n     * {@code DayOfWeek} returns {@code DAYS}<br>\n     * {@code Month} returns {@code MONTHS}<br>\n     * {@code Year} returns {@code YEARS}<br>\n     * {@code YearMonth} returns {@code MONTHS}<br>\n     * {@code MonthDay} returns null (does not represent a complete date or time)<br>\n     * {@code ZoneOffset} returns null (does not represent a date or time)<br>\n     * {@code Instant} returns {@code NANOS}<br>\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
+      "value": "*\n     * A query for the smallest supported unit.\n     *\n     * This queries a {@link TemporalAccessor} for the time precision.\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\n     * date or time then this must return the smallest precision actually supported.\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\n     * are defined to always return ignoring the precision, thus this is the only\n     * way to find the actual smallest supported unit.\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\n     * it would return a precision of {@link MILLIS}.\n     *\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\n     *\n     * {@link LocalDate} returns {@link DAYS}\n     * {@link LocalTime} returns {@link NANOS}\n     * {@link LocalDateTime} returns {@link NANOS}\n     * {@link ZonedDateTime} returns {@link NANOS}\n     * {@link OffsetTime} returns {@link NANOS}\n     * {@link OffsetDateTime} returns {@link NANOS}\n     * {@link ChronoLocalDate} returns {@link DAYS}\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\n     * {@link Era} returns {@link ERAS}\n     * {@link DayOfWeek} returns {@link DAYS}\n     * {@link Month} returns {@link MONTHS}\n     * {@link Year} returns {@link YEARS}\n     * {@link YearMonth} returns {@link MONTHS}\n     * {@link MonthDay} returns null (does not represent a complete date or time)\n     * {@link ZoneOffset} returns null (does not represent a date or time)\n     * {@link Instant} returns {@link NANOS}\n     *\n     * @return a query that can obtain the precision of a temporal, not null\n     ",
       "range": [
-        4972,
-        6792
+        4817,
+        6564
       ],
       "loc": {
         "start": {
-          "line": 107,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 139,
+          "line": 141,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * A lenient query for the {@code ZoneId}, falling back to the {@code ZoneOffset}.\n     * <p>\n     * This queries a {@code TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link #zoneId()}.\n     * If that is not found it tries to obtain the {@link #offset()}.\n     * <p>\n     * In most cases, applications should use this query rather than {@code #zoneId()}.\n     * <p>\n     * This query examines the {@link ChronoField#OFFSET_SECONDS offset-seconds}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link ZoneId#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
+      "value": "*\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\n     *\n     * This queries a {@link TemporalAccessor} for the zone.\n     * It first tries to obtain the zone, using {@link zoneId}.\n     * If that is not found it tries to obtain the {@link offset}.\n     *\n     * In most cases, applications should use this query rather than {@link zoneId}.\n     *\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link ZoneId#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\n     * That method is equivalent to this query, except that it throws an\n     * exception if a zone cannot be obtained.\n     *\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\n     ",
       "range": [
-        6871,
-        7797
+        6643,
+        7511
       ],
       "loc": {
         "start": {
-          "line": 144,
+          "line": 146,
           "column": 4
         },
         "end": {
-          "line": 162,
+          "line": 164,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * A query for {@code ZoneOffset} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     * <p>\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS OFFSET_SECONDS}\n     * field and uses it to create a {@code ZoneOffset}.\n     * <p>\n     * The method {@link java.time.ZoneOffset#from(TemporalAccessor)} can be used as a\n     * {@code TemporalQuery} via a method reference, {@code ZoneOffset::from}.\n     * This query and {@code ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
+      "value": "*\n     * A query for {@link ZoneOffset} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the offset. The query will return null if the temporal\n     * object cannot supply an offset.\n     *\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\n     * field and uses it to create a {@link ZoneOffset}.\n     *\n     * The method {@link java.time.ZoneOffset#from} can be used as a\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\n     * This query and {@link ZoneOffset::from} will return the same result if the\n     * temporal object contains an offset. If the temporal object does not contain\n     * an offset, then the method reference will throw an exception, whereas this\n     * query will return null.\n     *\n     * @return a query that can obtain the offset of a temporal, not null\n     ",
       "range": [
-        7866,
-        8847
+        7580,
+        8516
       ],
       "loc": {
         "start": {
-          "line": 167,
+          "line": 169,
           "column": 4
         },
         "end": {
-          "line": 185,
+          "line": 187,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * A query for {@code LocalDate} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     * <p>\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY EPOCH_DAY}\n     * field and uses it to create a {@code LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
+      "value": "*\n     * A query for {@link LocalDate} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local date. The query will return null if the temporal\n     * object cannot supply a local date.\n     *\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\n     * field and uses it to create a {@link LocalDate}.\n     *\n     * @return a query that can obtain the date of a temporal, not null\n     ",
       "range": [
-        8920,
-        9439
+        8589,
+        9090
       ],
       "loc": {
         "start": {
-          "line": 190,
+          "line": 192,
           "column": 4
         },
         "end": {
-          "line": 201,
+          "line": 203,
           "column": 7
         }
       }
     },
     {
       "type": "Block",
-      "value": "*\n     * A query for {@code LocalTime} returning null if not found.\n     * <p>\n     * This returns a {@code TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     * <p>\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY NANO_OF_DAY}\n     * field and uses it to create a {@code LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
+      "value": "*\n     * A query for {@link LocalTime} returning null if not found.\n     *\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\n     * object for the local time. The query will return null if the temporal\n     * object cannot supply a local time.\n     *\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\n     * field and uses it to create a {@link LocalTime}.\n     *\n     * @return a query that can obtain the time of a temporal, not null\n     ",
       "range": [
-        9519,
-        10042
+        9170,
+        9673
       ],
       "loc": {
         "start": {
-          "line": 206,
+          "line": 208,
           "column": 4
         },
         "end": {
-          "line": 217,
+          "line": 219,
           "column": 7
         }
       }

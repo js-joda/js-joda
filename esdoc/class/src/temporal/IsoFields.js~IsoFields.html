@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {IsoFields} from &apos;<span><a href="file/src/temporal/IsoFields.js.html#lineNumber144">js-joda/src/temporal/IsoFields.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {IsoFields} from &apos;<span><a href="file/src/temporal/IsoFields.js.html#lineNumber141">js-joda/src/temporal/IsoFields.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/temporal/IsoFields.js.html#lineNumber144">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/temporal/IsoFields.js.html#lineNumber141">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -134,111 +137,89 @@
   
   <div class="description" data-ice="description"><p>Fields and units specific to the ISO-8601 calendar system,
 including quarter-of-year and week-based-year.</p>
-<p></p><p>
-This class defines fields and units that are specific to the ISO calendar system.</p>
-<p></p><h3>Quarter of year</h3>
-The ISO-8601 standard is based on the standard civic 12 month year.
-This is commonly divided into four quarters, often abbreviated as Q1, Q2, Q3 and Q4.
-<p>
-January, February and March are in Q1.
+<p>This class defines fields and units that are specific to the ISO calendar system.</p>
+<h3 id="quarter-of-year">Quarter of year</h3>
+<p>The ISO-8601 standard is based on the standard civic 12 month year.
+This is commonly divided into four quarters, often abbreviated as Q1, Q2, Q3 and Q4.</p>
+<p>January, February and March are in Q1.
 April, May and June are in Q2.
 July, August and September are in Q3.
-October, November and December are in Q4.
-</p><p>
-The complete date is expressed using three fields:
-</p><p><ul>
-<li>{@link #DAY_OF_QUARTER DAY_OF_QUARTER} - the day within the quarter, from 1 to 90, 91 or 92
-</li><li>{@link #QUARTER_OF_YEAR QUARTER_OF_YEAR} - the week within the week-based-year
-</li><li>{@link ChronoField#YEAR YEAR} - the standard ISO year
-</li></ul></p><p>
-
-</p><h3>Week based years</h3>
-The ISO-8601 standard was originally intended as a data interchange format,
+October, November and December are in Q4.</p>
+<p>The complete date is expressed using three fields:</p>
+<ul>
+<li><span>DAY_OF_QUARTER</span> - the day within the quarter, from 1 to 90, 91 or 92</li>
+<li><span>QUARTER_OF_YEAR</span> - the week within the week-based-year</li>
+<li><span>ChronoField#YEAR</span> - the standard ISO year</li>
+</ul>
+<h3 id="week-based-years">Week based years</h3>
+<p>The ISO-8601 standard was originally intended as a data interchange format,
 defining a string format for dates and times. However, it also defines an
-alternate way of expressing the date, based on the concept of week-based-year.
-<p>
-The date is expressed using three fields:
-</p><p><ul>
-<li>{@link ChronoField#DAY_OF_WEEK DAY_OF_WEEK} - the standard field defining the
- day-of-week from Monday (1) to Sunday (7)
-</li><li><span>#WEEK_OF_WEEK_BASED_YEAR</span> - the week within the week-based-year
-</li><li>{@link #WEEK_BASED_YEAR WEEK_BASED_YEAR} - the week-based-year
-</li></ul></p><p>
-The week-based-year itself is defined relative to the standard ISO proleptic year.
-It differs from the standard year in that it always starts on a Monday.
-</p><p>
-The first week of a week-based-year is the first Monday-based week of the standard
-ISO year that has at least 4 days in the new year.
-</p><p><ul>
-<li>If January 1st is Monday then week 1 starts on January 1st
-</li><li>If January 1st is Tuesday then week 1 starts on December 31st of the previous standard year
-</li><li>If January 1st is Wednesday then week 1 starts on December 30th of the previous standard year
-</li><li>If January 1st is Thursday then week 1 starts on December 29th of the previous standard year
-</li><li>If January 1st is Friday then week 1 starts on January 4th
-</li><li>If January 1st is Saturday then week 1 starts on January 3rd
-</li><li>If January 1st is Sunday then week 1 starts on January 2nd
-</li></ul></p><p>
-There are 52 weeks in most week-based years, however on occasion there are 53 weeks.
-</p><p>
-For example:
-</p><p>
-&lt;table cellpadding=&apos;0&apos; cellspacing=&apos;3&apos; border=&apos;0&apos; style=&apos;text-align: left; width: 50%;&apos;&gt;
-&lt;caption&gt;Examples of Week based Years&lt;/caption&gt;
-&lt;tr&gt;&lt;th&gt;Date&lt;/th&gt;&lt;th&gt;Day-of-week&lt;/th&gt;&lt;th&gt;Field values&lt;/th&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2008-12-28&lt;/th&gt;&lt;td&gt;Sunday&lt;/td&gt;&lt;td&gt;Week 52 of week-based-year 2008&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2008-12-29&lt;/th&gt;&lt;td&gt;Monday&lt;/td&gt;&lt;td&gt;Week 1 of week-based-year 2009&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2008-12-31&lt;/th&gt;&lt;td&gt;Wednesday&lt;/td&gt;&lt;td&gt;Week 1 of week-based-year 2009&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2009-01-01&lt;/th&gt;&lt;td&gt;Thursday&lt;/td&gt;&lt;td&gt;Week 1 of week-based-year 2009&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2009-01-04&lt;/th&gt;&lt;td&gt;Sunday&lt;/td&gt;&lt;td&gt;Week 1 of week-based-year 2009&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;th&gt;2009-01-05&lt;/th&gt;&lt;td&gt;Monday&lt;/td&gt;&lt;td&gt;Week 2 of week-based-year 2009&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-
-</p><h3>Static properties of Class <span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></h3>
-
-<p></p>
+alternate way of expressing the date, based on the concept of week-based-year.</p>
+<p>The date is expressed using three fields:</p>
+<ul>
+<li><span>ChronoField#DAY_OF_WEEK</span> - the standard field defining the
+day-of-week from Monday (1) to Sunday (7)</li>
+<li><span>WEEK_OF_WEEK_BASED_YEAR</span> - the week within the week-based-year</li>
+<li><span>WEEK_BASED_YEAR</span> - the week-based-year</li>
+</ul>
+<p>The week-based-year itself is defined relative to the standard ISO proleptic year.
+It differs from the standard year in that it always starts on a Monday.</p>
+<p>The first week of a week-based-year is the first Monday-based week of the standard
+ISO year that has at least 4 days in the new year.</p>
+<ul>
+<li>If January 1st is Monday then week 1 starts on January 1st</li>
+<li>If January 1st is Tuesday then week 1 starts on December 31st of the previous standard year</li>
+<li>If January 1st is Wednesday then week 1 starts on December 30th of the previous standard year</li>
+<li>If January 1st is Thursday then week 1 starts on December 29th of the previous standard year</li>
+<li>If January 1st is Friday then week 1 starts on January 4th</li>
+<li>If January 1st is Saturday then week 1 starts on January 3rd</li>
+<li>If January 1st is Sunday then week 1 starts on January 2nd</li>
+</ul>
+<p>There are 52 weeks in most week-based years, however on occasion there are 53 weeks.</p>
+<p>For example:</p>
+<ul>
+<li>Sunday, 2008-12-28: Week 52 of week-based-year 2008</li>
+<li>Monday, 2008-12-29: Week 1 of week-based-year 2009</li>
+<li>Wednesday, 2008-12-31: Week 1 of week-based-year 2009</li>
+<li>Thursday, 2009-01-01: Week 1 of week-based-year 2009</li>
+<li>Sunday, 2009-01-04: Week 1 of week-based-year 2009</li>
+<li>Monday, 2009-01-05: Week 2 of week-based-year 2009</li>
+</ul>
+<h3 id="static-properties-of-class-span-a-href-class-src-temporal-isofields-js-isofields-html-isofields-a-span-">Static properties of Class <span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></h3>
 <p>IsoFields.DAY_OF_QUARTER</p>
 <p>The field that represents the day-of-quarter.</p>
-<p></p><p>
-This field allows the day-of-quarter value to be queried and set.
+<p>This field allows the day-of-quarter value to be queried and set.
 The day-of-quarter has values from 1 to 90 in Q1 of a standard year, from 1 to 91
 in Q1 of a leap year, from 1 to 91 in Q2 and from 1 to 92 in Q3 and Q4.</p>
-<p></p><p>
-The day-of-quarter can only be calculated if the day-of-year, month-of-year and year
+<p>The day-of-quarter can only be calculated if the day-of-year, month-of-year and year
 are available.</p>
-<p></p><p>
-When setting this field, the value is allowed to be partially lenient, taking any
+<p>When setting this field, the value is allowed to be partially lenient, taking any
 value from 1 to 92. If the quarter has less than 92 days, then day 92, and
 potentially day 91, is in the following quarter.</p>
 <p>IsoFields.QUARTER_OF_YEAR</p>
 <p>The field that represents the quarter-of-year.</p>
-<p></p><p>
-This field allows the quarter-of-year value to be queried and set.
+<p>This field allows the quarter-of-year value to be queried and set.
 The quarter-of-year has values from 1 to 4.</p>
-<p></p><p>
-The day-of-quarter can only be calculated if the month-of-year is available.</p>
+<p>The day-of-quarter can only be calculated if the month-of-year is available.</p>
 <p>IsoFields.WEEK_OF_WEEK_BASED_YEAR</p>
 <p>The field that represents the week-of-week-based-year.</p>
-<p></p><p>
-This field allows the week of the week-based-year value to be queried and set.</p>
+<p>This field allows the week of the week-based-year value to be queried and set.</p>
 <p>IsoFields.WEEK_BASED_YEAR</p>
 <p>The field that represents the week-based-year.</p>
-<p></p><p>
-This field allows the week-based-year value to be queried and set.</p>
+<p>This field allows the week-based-year value to be queried and set.</p>
 <p>IsoFields.WEEK_BASED_YEARS</p>
 <p>The unit that represents week-based-years for the purpose of addition and subtraction.</p>
-<p></p><p>
-This allows a number of week-based-years to be added to, or subtracted from, a date.
+<p>This allows a number of week-based-years to be added to, or subtracted from, a date.
 The unit is equal to either 52 or 53 weeks.
 The estimated duration of a week-based-year is the same as that of a standard ISO
-year at {@code 365.2425 Days}.</p>
-<p></p><p>
-The rules for addition add the number of week-based-years to the existing value
+year at 365.2425 days.</p>
+<p>The rules for addition add the number of week-based-years to the existing value
 for the week-based-year field. If the resulting week-based-year only has 52 weeks,
 then the date will be in week 1 of the following week-based-year.</p>
 <p>IsoFields.QUARTER_YEARS</p>
 <p>Unit that represents the concept of a quarter-year.
 For the ISO calendar system, it is equal to 3 months.
-The estimated duration of a quarter-year is one quarter of {@code 365.2425 Days}.</p>
+The estimated duration of a quarter-year is one quarter of 365.2425 days.</p>
 </div>
 
   
@@ -266,7 +247,7 @@ The estimated duration of a quarter-year is one quarter of {@code 365.2425 Days}
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

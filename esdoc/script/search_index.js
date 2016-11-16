@@ -354,6 +354,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "js-joda/src/zone/zoneoffsettransition.js~zoneoffsettransition",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html",
+    "<span>ZoneOffsetTransition</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneOffsetTransition.js</span>",
+    "class"
+  ],
+  [
     "js-joda/src/zoneregion.js~zoneregion",
     "class/src/ZoneRegion.js~ZoneRegion.html",
     "<span>ZoneRegion</span> <span class=\"search-result-import-path\">js-joda/src/ZoneRegion.js</span>",
@@ -363,6 +369,12 @@ window.esdocSearchIndex = [
     "js-joda/src/zone/zonerules.js~zonerules",
     "class/src/zone/ZoneRules.js~ZoneRules.html",
     "<span>ZoneRules</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneRules.js</span>",
+    "class"
+  ],
+  [
+    "js-joda/src/zone/zonerulesprovider.js~zonerulesprovider",
+    "class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html",
+    "<span>ZoneRulesProvider</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneRulesProvider.js</span>",
     "class"
   ],
   [
@@ -411,6 +423,12 @@ window.esdocSearchIndex = [
     "js-joda/src/assert.js~requirenonnull",
     "function/index.html#static-function-requireNonNull",
     "<span>requireNonNull</span> <span class=\"search-result-import-path\">js-joda/src/assert.js</span>",
+    "function"
+  ],
+  [
+    "js-joda/src/js-joda.js~use",
+    "function/index.html#static-function-use",
+    "<span>use</span> <span class=\"search-result-import-path\">js-joda/src/js-joda.js</span>",
     "function"
   ],
   [
@@ -3366,6 +3384,24 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/year.js~year#issupported",
+    "class/src/Year.js~Year.html#instance-method-isSupported",
+    "src/Year.js~Year#isSupported",
+    "method"
+  ],
+  [
+    "src/year.js~year#issupportedfield",
+    "class/src/Year.js~Year.html#instance-method-isSupportedField",
+    "src/Year.js~Year#isSupportedField",
+    "method"
+  ],
+  [
+    "src/year.js~year#issupportedunit",
+    "class/src/Year.js~Year.html#instance-method-isSupportedUnit",
+    "src/Year.js~Year#isSupportedUnit",
+    "method"
+  ],
+  [
     "src/year.js~year#isvalidmonthday",
     "class/src/Year.js~Year.html#instance-method-isValidMonthDay",
     "src/Year.js~Year#isValidMonthDay",
@@ -3447,6 +3483,24 @@ window.esdocSearchIndex = [
     "src/year.js~year#value",
     "class/src/Year.js~Year.html#instance-method-value",
     "src/Year.js~Year#value",
+    "method"
+  ],
+  [
+    "src/year.js~year#with",
+    "class/src/Year.js~Year.html#instance-method-with",
+    "src/Year.js~Year#with",
+    "method"
+  ],
+  [
+    "src/year.js~year#withadjuster",
+    "class/src/Year.js~Year.html#instance-method-withAdjuster",
+    "src/Year.js~Year#withAdjuster",
+    "method"
+  ],
+  [
+    "src/year.js~year#withfieldvalue",
+    "class/src/Year.js~Year.html#instance-method-withFieldValue",
+    "src/Year.js~Year#withFieldValue",
     "method"
   ],
   [
@@ -3852,6 +3906,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zoneid.js~zoneid#id",
+    "class/src/ZoneId.js~ZoneId.html#instance-method-id",
+    "src/ZoneId.js~ZoneId#id",
+    "method"
+  ],
+  [
     "src/zoneid.js~zoneid#normalized",
     "class/src/ZoneId.js~ZoneId.html#instance-method-normalized",
     "src/ZoneId.js~ZoneId#normalized",
@@ -3879,6 +3939,12 @@ window.esdocSearchIndex = [
     "src/zoneidfactory.js~zoneidfactory.from",
     "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-from",
     "src/ZoneIdFactory.js~ZoneIdFactory.from",
+    "method"
+  ],
+  [
+    "src/zoneidfactory.js~zoneidfactory.getavailablezoneids",
+    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-getAvailableZoneIds",
+    "src/ZoneIdFactory.js~ZoneIdFactory.getAvailableZoneIds",
     "method"
   ],
   [
@@ -3945,12 +4011,6 @@ window.esdocSearchIndex = [
     "src/zoneoffset.js~zoneoffset#hashcode",
     "class/src/ZoneOffset.js~ZoneOffset.html#instance-method-hashCode",
     "src/ZoneOffset.js~ZoneOffset#hashCode",
-    "method"
-  ],
-  [
-    "src/zoneoffset.js~zoneoffset#id",
-    "class/src/ZoneOffset.js~ZoneOffset.html#instance-method-id",
-    "src/ZoneOffset.js~ZoneOffset#id",
     "method"
   ],
   [
@@ -4326,12 +4386,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/zoneddatetime.js~zoneddatetime#tooffsetdatetime",
-    "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toOffsetDateTime",
-    "src/ZonedDateTime.js~ZonedDateTime#toOffsetDateTime",
-    "method"
-  ],
-  [
     "src/zoneddatetime.js~zoneddatetime#tostring",
     "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString",
     "src/ZonedDateTime.js~ZonedDateTime#toString",
@@ -4374,6 +4428,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zoneddatetime.js~zoneddatetime#withearlieroffsetatoverlap",
+    "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap",
+    "src/ZonedDateTime.js~ZonedDateTime#withEarlierOffsetAtOverlap",
+    "method"
+  ],
+  [
     "src/zoneddatetime.js~zoneddatetime#withfixedoffsetzone",
     "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withFixedOffsetZone",
     "src/ZonedDateTime.js~ZonedDateTime#withFixedOffsetZone",
@@ -4383,6 +4443,12 @@ window.esdocSearchIndex = [
     "src/zoneddatetime.js~zoneddatetime#withhour",
     "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withHour",
     "src/ZonedDateTime.js~ZonedDateTime#withHour",
+    "method"
+  ],
+  [
+    "src/zoneddatetime.js~zoneddatetime#withlateroffsetatoverlap",
+    "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap",
+    "src/ZonedDateTime.js~ZonedDateTime#withLaterOffsetAtOverlap",
     "method"
   ],
   [
@@ -4497,6 +4563,12 @@ window.esdocSearchIndex = [
     "src/zoneddatetime.js~zoneddatetime.ofinstant3",
     "class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant3",
     "src/ZonedDateTime.js~ZonedDateTime.ofInstant3",
+    "method"
+  ],
+  [
+    "src/zoneddatetime.js~zoneddatetime.oflenient",
+    "class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLenient",
+    "src/ZonedDateTime.js~ZonedDateTime.ofLenient",
     "method"
   ],
   [
@@ -5586,6 +5658,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/temporal/chronofield.js~chronofield.byname",
+    "class/src/temporal/ChronoField.js~ChronoField.html#static-method-byName",
+    "src/temporal/ChronoField.js~ChronoField.byName",
+    "method"
+  ],
+  [
     "src/temporal/chronounit.js",
     "file/src/temporal/ChronoUnit.js.html",
     "src/temporal/ChronoUnit.js",
@@ -5808,15 +5886,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/temporal/temporalamount.js~temporalamount#getunits",
-    "class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-getUnits",
-    "src/temporal/TemporalAmount.js~TemporalAmount#getUnits",
-    "method"
-  ],
-  [
     "src/temporal/temporalamount.js~temporalamount#subtractfrom",
     "class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-subtractFrom",
     "src/temporal/TemporalAmount.js~TemporalAmount#subtractFrom",
+    "method"
+  ],
+  [
+    "src/temporal/temporalamount.js~temporalamount#units",
+    "class/src/temporal/TemporalAmount.js~TemporalAmount.html#instance-method-units",
+    "src/temporal/TemporalAmount.js~TemporalAmount#units",
     "method"
   ],
   [
@@ -5896,6 +5974,48 @@ window.esdocSearchIndex = [
     "file/src/temporal/TemporalUnit.js.html",
     "src/temporal/TemporalUnit.js",
     "file"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#addto",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-addTo",
+    "src/temporal/TemporalUnit.js~TemporalUnit#addTo",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#between",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-between",
+    "src/temporal/TemporalUnit.js~TemporalUnit#between",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#duration",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-duration",
+    "src/temporal/TemporalUnit.js~TemporalUnit#duration",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#isdatebased",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDateBased",
+    "src/temporal/TemporalUnit.js~TemporalUnit#isDateBased",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#isdurationestimated",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isDurationEstimated",
+    "src/temporal/TemporalUnit.js~TemporalUnit#isDurationEstimated",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#issupportedby",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isSupportedBy",
+    "src/temporal/TemporalUnit.js~TemporalUnit#isSupportedBy",
+    "method"
+  ],
+  [
+    "src/temporal/temporalunit.js~temporalunit#istimebased",
+    "class/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isTimeBased",
+    "src/temporal/TemporalUnit.js~TemporalUnit#isTimeBased",
+    "method"
   ],
   [
     "src/temporal/valuerange.js",
@@ -6030,9 +6150,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#daylightsavings",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-daylightSavings",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#daylightSavings",
+    "method"
+  ],
+  [
     "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#equals",
     "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-equals",
     "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#equals",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#isdaylightsavings",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-isDaylightSavings",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#isDaylightSavings",
     "method"
   ],
   [
@@ -6045,6 +6177,12 @@ window.esdocSearchIndex = [
     "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#isvalidoffset",
     "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-isValidOffset",
     "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#isValidOffset",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#nexttransition",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-nextTransition",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#nextTransition",
     "method"
   ],
   [
@@ -6066,9 +6204,159 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#previoustransition",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-previousTransition",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#previousTransition",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#standardoffset",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-standardOffset",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#standardOffset",
+    "method"
+  ],
+  [
     "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#tostring",
     "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-toString",
     "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#toString",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#transition",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transition",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#transition",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#transitionrules",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transitionRules",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#transitionRules",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#transitions",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-transitions",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#transitions",
+    "method"
+  ],
+  [
+    "src/zone/systemdefaultzonerules.js~systemdefaultzonerules#validoffsets",
+    "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html#instance-method-validOffsets",
+    "src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules#validOffsets",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js",
+    "file/src/zone/ZoneOffsetTransition.js.html",
+    "src/zone/ZoneOffsetTransition.js",
+    "file"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#compareto",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-compareTo",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#compareTo",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#constructor",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-constructor-constructor",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#constructor",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#datetimeafter",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeAfter",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#dateTimeAfter",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#datetimebefore",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeBefore",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#dateTimeBefore",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#duration",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-duration",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#duration",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#durationseconds",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-durationSeconds",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#durationSeconds",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#equals",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-equals",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#equals",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#hashcode",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-hashCode",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#hashCode",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#instant",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-instant",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#instant",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#isgap",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isGap",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#isGap",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#isoverlap",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isOverlap",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#isOverlap",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#isvalidoffset",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isValidOffset",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#isValidOffset",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#offsetafter",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetAfter",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#offsetAfter",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#offsetbefore",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetBefore",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#offsetBefore",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#toepochsecond",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toEpochSecond",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#toEpochSecond",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#tostring",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toString",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#toString",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition#validoffsets",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-validOffsets",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#validOffsets",
+    "method"
+  ],
+  [
+    "src/zone/zoneoffsettransition.js~zoneoffsettransition.of",
+    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#static-method-of",
+    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.of",
     "method"
   ],
   [
@@ -6076,6 +6364,18 @@ window.esdocSearchIndex = [
     "file/src/zone/ZoneRules.js.html",
     "src/zone/ZoneRules.js",
     "file"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#daylightsavings",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-daylightSavings",
+    "src/zone/ZoneRules.js~ZoneRules#daylightSavings",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#isdaylightsavings",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-isDaylightSavings",
+    "src/zone/ZoneRules.js~ZoneRules#isDaylightSavings",
+    "method"
   ],
   [
     "src/zone/zonerules.js~zonerules#isfixedoffset",
@@ -6087,6 +6387,12 @@ window.esdocSearchIndex = [
     "src/zone/zonerules.js~zonerules#isvalidoffset",
     "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-isValidOffset",
     "src/zone/ZoneRules.js~ZoneRules#isValidOffset",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#nexttransition",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-nextTransition",
+    "src/zone/ZoneRules.js~ZoneRules#nextTransition",
     "method"
   ],
   [
@@ -6114,9 +6420,63 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zone/zonerules.js~zonerules#previoustransition",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-previousTransition",
+    "src/zone/ZoneRules.js~ZoneRules#previousTransition",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#standardoffset",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-standardOffset",
+    "src/zone/ZoneRules.js~ZoneRules#standardOffset",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#transition",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transition",
+    "src/zone/ZoneRules.js~ZoneRules#transition",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#transitionrules",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitionRules",
+    "src/zone/ZoneRules.js~ZoneRules#transitionRules",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#transitions",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-transitions",
+    "src/zone/ZoneRules.js~ZoneRules#transitions",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#validoffsets",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-validOffsets",
+    "src/zone/ZoneRules.js~ZoneRules#validOffsets",
+    "method"
+  ],
+  [
     "src/zone/zonerules.js~zonerules.of",
     "class/src/zone/ZoneRules.js~ZoneRules.html#static-method-of",
     "src/zone/ZoneRules.js~ZoneRules.of",
+    "method"
+  ],
+  [
+    "src/zone/zonerulesprovider.js",
+    "file/src/zone/ZoneRulesProvider.js.html",
+    "src/zone/ZoneRulesProvider.js",
+    "file"
+  ],
+  [
+    "src/zone/zonerulesprovider.js~zonerulesprovider.getavailablezoneids",
+    "class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html#static-method-getAvailableZoneIds",
+    "src/zone/ZoneRulesProvider.js~ZoneRulesProvider.getAvailableZoneIds",
+    "method"
+  ],
+  [
+    "src/zone/zonerulesprovider.js~zonerulesprovider.getrules",
+    "class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html#static-method-getRules",
+    "src/zone/ZoneRulesProvider.js~ZoneRulesProvider.getRules",
     "method"
   ]
 ]

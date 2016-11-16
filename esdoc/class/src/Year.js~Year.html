@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,7 +101,9 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -132,31 +135,24 @@
 
   
   
-  <div class="description" data-ice="description"><p>A year in the ISO-8601 calendar system, such as {@code 2007}.</p>
-<p></p><p>
-{@code Year} is an immutable date-time object that represents a year.
+  <div class="description" data-ice="description"><p>A year in the ISO-8601 calendar system, such as <code>2007</code>.</p>
+<p><span><a href="class/src/Year.js~Year.html">Year</a></span> is an immutable date-time object that represents a year.
 Any field that can be derived from a year can be obtained.</p>
-<p></p><p>
-&lt;b&gt;Note that years in the ISO chronology only align with years in the
+<p><strong>Note that years in the ISO chronology only align with years in the
 Gregorian-Julian system for modern years. Parts of Russia did not switch to the
 modern Gregorian/ISO rules until 1920.
-As such, historical years must be treated with caution.&lt;/b&gt;</p>
-<p></p><p>
-This class does not store or represent a month, day, time or time-zone.
-For example, the value &quot;2007&quot; can be stored in a {@code Year}.</p>
-<p></p><p>
-Years represented by this class follow the ISO-8601 standard and use
+As such, historical years must be treated with caution.</strong></p>
+<p>This class does not store or represent a month, day, time or time-zone.
+For example, the value &quot;2007&quot; can be stored in a <span><a href="class/src/Year.js~Year.html">Year</a></span>.</p>
+<p>Years represented by this class follow the ISO-8601 standard and use
 the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.</p>
-<p></p><p>
-The ISO-8601 calendar system is the modern civil calendar system used today
+<p>The ISO-8601 calendar system is the modern civil calendar system used today
 in most of the world. It is equivalent to the proleptic Gregorian calendar
 system, in which today&apos;s rules for leap years are applied for all time.
 For most applications written today, the ISO-8601 rules are entirely suitable.
 However, any application that makes use of historical dates, and requires them
 to be accurate will find the ISO-8601 approach unsuitable.</p>
-<p></p><h3>Static properties of Class <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></h3>
-
-<p></p>
+<h3 id="static-properties-of-class-span-a-href-class-src-localdate-js-localdate-html-localdate-a-span-">Static properties of Class <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></h3>
 <p>Year.MIN_VALUE = -999.999;</p>
 <p>The minimum supported year. Theoretically the minimum could be -28.542.4812 years in javascript.
 approx LocalDateTime.ofEpochSecond(Number.MIN_SAFE_INTEGER, 0, ZoneOffset.UTC).year()</p>
@@ -196,7 +192,7 @@ approx LocalDateTime.ofEpochSecond(Number.MAX_SAFE_INTEGER, 0, ZoneOffset.UTC).y
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code Year} from a temporal object.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a temporal object.</p>
 </div>
       </div>
     </td>
@@ -243,7 +239,7 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#static-method-now">now</a></span></span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#static-method-now">now</a></span></span><span data-ice="signature">(zoneIdOrClock: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
         </p>
       </div>
       <div>
@@ -353,7 +349,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code Year}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span>.</p>
 </div>
       </div>
     </td>
@@ -405,7 +401,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code Year} from a text string such as {@code 2007}.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a text string such as <code>2007</code>.</p>
 </div>
       </div>
     </td>
@@ -431,7 +427,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code Year} from a text string using a specific formatter.</p>
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a text string using a specific formatter.</p>
 </div>
       </div>
     </td>
@@ -523,7 +519,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Combines this year with a day-of-year to create a {@code LocalDate}.</p>
+        <div data-ice="description"><p>Combines this year with a day-of-year to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
 </div>
       </div>
     </td>
@@ -543,7 +539,7 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-atMonth">atMonth</a></span></span><span data-ice="signature">(unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-atMonth">atMonth</a></span></span><span data-ice="signature">(monthOrNumber: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span>
         </p>
       </div>
       <div>
@@ -575,7 +571,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Combines this year with a month-day to create a {@code LocalDate}.</p>
+        <div data-ice="description"><p>Combines this year with a month-day to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
 </div>
       </div>
     </td>
@@ -601,7 +597,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Combines this year with a month to create a {@code YearMonth}.</p>
+        <div data-ice="description"><p>Combines this year with a month to create a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span>.</p>
 </div>
       </div>
     </td>
@@ -627,7 +623,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Combines this year with a month to create a {@code YearMonth}.</p>
+        <div data-ice="description"><p>Combines this year with a month to create a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span>.</p>
 </div>
       </div>
     </td>
@@ -705,7 +701,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this year as a {@code String} using the formatter.</p>
+        <div data-ice="description"><p>Outputs this year as a string using the formatter.</p>
 </div>
       </div>
     </td>
@@ -731,7 +727,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this year as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this year as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -757,7 +753,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field from this year as a {@code long}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field from this year as a <code>long</code>.</p>
 </div>
       </div>
     </td>
@@ -856,6 +852,83 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-isSupported">isSupported</a></span></span><span data-ice="signature">(fieldOrUnit: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>function overloading for <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-isSupported">YearMonth.isSupported</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-isSupportedField">isSupportedField</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the specified field is supported.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-isSupportedUnit">isSupportedUnit</a></span></span><span data-ice="signature">(unit: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-isValidMonthDay">isValidMonthDay</a></span></span><span data-ice="signature">(monthDay: <span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
@@ -908,7 +981,7 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-minus">minus</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-minus">minus</a></span></span><span data-ice="signature">(amountOrNumber: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
         </p>
       </div>
       <div>
@@ -1011,7 +1084,7 @@ calendar system rules.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-plus">plus</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-plus">plus</a></span></span><span data-ice="signature">(amountOrNumber: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
         </p>
       </div>
       <div>
@@ -1172,7 +1245,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this year as a {@code String}.</p>
+        <div data-ice="description"><p>Outputs this year as a string.</p>
 </div>
       </div>
     </td>
@@ -1206,6 +1279,84 @@ calendar system rules.</p>
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-with">with</a></span></span><span data-ice="signature">(adjusterOrFieldOrNumber: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> | <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>function overloading for <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-with">YearMonth.with</a></span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-withAdjuster">withAdjuster</a></span></span><span data-ice="signature">(adjuster: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns an adjusted copy of this year.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/Year.js~Year.html#instance-method-withFieldValue">withFieldValue</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this year with the specified field set to a new value.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -1231,7 +1382,7 @@ calendar system rules.</p>
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -1317,17 +1468,14 @@ calendar system rules.</p>
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Year} from a temporal object.</p>
-<p></p><p>
-A {@code TemporalAccessor} represents some form of date and time information.
-This factory converts the arbitrary temporal object to an instance of {@code Year}.</p>
-<p></p><p>
-The conversion extracts the {@link ChronoField#YEAR year} field.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a temporal object.</p>
+<p>A <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> represents some form of date and time information.
+This factory converts the arbitrary temporal object to an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span>.</p>
+<p>The conversion extracts the <span>ChronoField#YEAR</span> field.
 The extraction is only permitted if the temporal object has an ISO
-chronology, or can be converted to a {@code LocalDate}.</p>
-<p></p><p>
-This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
-allowing it to be used in queries via method reference, {@code Year::from}.</p>
+chronology, or can be converted to a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
+<p>This method matches the signature of the functional interface <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>
+allowing it to be used in queries via method reference, <span>Year::from</span>.</p>
 </div>
 
   
@@ -1376,7 +1524,7 @@ allowing it to be used in queries via method reference, {@code Year::from}.</p>
       
       <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a {@code Year}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if unable to convert to a <span><a href="class/src/Year.js~Year.html">Year</a></span></p>
 </td>
       </tr>
 </tbody>
@@ -1410,17 +1558,14 @@ allowing it to be used in queries via method reference, {@code Year::from}.</p>
   
   <div data-ice="description"><p>Checks if the year is a leap year, according to the ISO proleptic
 calendar system rules.</p>
-<p></p><p>
-This method applies the current rules for leap years across the whole time-line.
+<p>This method applies the current rules for leap years across the whole time-line.
 In general, a year is a leap year if it is divisible by four without
 remainder. However, years divisible by 100, are not leap years, with
 the exception of years divisible by 400 which are.</p>
-<p></p><p>
-For example, 1904 is a leap year it is divisible by 4.
+<p>For example, 1904 is a leap year it is divisible by 4.
 1900 was not a leap year as it is divisible by 100, however 2000 was a
 leap year as it is divisible by 400.</p>
-<p></p><p>
-The calculation is proleptic - applying the same rules into the far future and far past.
+<p>The calculation is proleptic - applying the same rules into the far future and far past.
 This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
 </div>
 
@@ -1479,7 +1624,7 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
     
     
     
-    <span data-ice="name">now</span><span data-ice="signature">(arg1: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span data-ice="name">now</span><span data-ice="signature">(zoneIdOrClock: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
     <span class="right-info">
       
       
@@ -1507,8 +1652,8 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">arg1</td>
-      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
+      <td data-ice="name" data-depth="0">zoneIdOrClock</td>
+      <td data-ice="type"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> | <span><a href="class/src/Clock.js~Clock.html">Clock</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
       <td data-ice="description"></td>
     </tr>
@@ -1561,11 +1706,9 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
   
   
   <div data-ice="description"><p>Obtains the current year from the system clock in the default time-zone.</p>
-<p></p><p>
-This will query the {@link Clock#systemDefaultZone() system clock} in the default
+<p>This will query the system clock (see <span>Clock#systemDefaultZone</span>) in the default
 time-zone to obtain the current year.</p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -1619,10 +1762,9 @@ because the clock is hard-coded.</p>
   
   
   <div data-ice="description"><p>Obtains the current year from the specified clock.</p>
-<p></p><p>
-This will query the specified clock to obtain the current year.
+<p>This will query the specified clock to obtain the current year.
 Using this method allows the use of an alternate clock for testing.
-The alternate clock may be introduced using {@link Clock dependency injection}.</p>
+The alternate clock may be introduced using dependency injection.</p>
 </div>
 
   
@@ -1692,11 +1834,9 @@ The alternate clock may be introduced using {@link Clock dependency injection}.<
   
   
   <div data-ice="description"><p>Obtains the current year from the system clock in the specified time-zone.</p>
-<p></p><p>
-This will query the {@link Clock#system(ZoneId) system clock} to obtain the current year.
+<p>This will query the system clock (see <span>Clock#system</span>) to obtain the current year.
 Specifying the time-zone avoids dependence on the default time-zone.</p>
-<p></p><p>
-Using this method will prevent the ability to use an alternate clock for testing
+<p>Using this method will prevent the ability to use an alternate clock for testing
 because the clock is hard-coded.</p>
 </div>
 
@@ -1766,14 +1906,14 @@ because the clock is hard-coded.</p>
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Year}.</p>
-<p></p><p>
-This method accepts a year value from the proleptic ISO calendar system.</p>
-<p></p><p>
-The year 2AD/CE is represented by 2.<br>
-The year 1AD/CE is represented by 1.<br>
-The year 1BC/BCE is represented by 0.<br>
-The year 2BC/BCE is represented by -1.<br></p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span>.</p>
+<p>This method accepts a year value from the proleptic ISO calendar system.</p>
+<ul>
+<li>The year 2AD/CE is represented by 2.</li>
+<li>The year 1AD/CE is represented by 1.</li>
+<li>The year 1BC/BCE is represented by 0.</li>
+<li>The year 2BC/BCE is represented by -1.</li>
+</ul>
 </div>
 
   
@@ -1790,7 +1930,7 @@ The year 2BC/BCE is represented by -1.<br></p>
       <td data-ice="name" data-depth="0">isoYear</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the ISO proleptic year to represent, from {@code MIN_VALUE} to {@code MAX_VALUE}</p>
+      <td data-ice="description"><p>the ISO proleptic year to represent, from <span>MIN_VALUE</span> to <span>MAX_VALUE</span></p>
 </td>
     </tr>
 </tbody>
@@ -1878,7 +2018,7 @@ The year 2BC/BCE is represented by -1.<br></p>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">formatter</td>
       <td data-ice="type"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -1929,9 +2069,8 @@ The year 2BC/BCE is represented by -1.<br></p>
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Year} from a text string such as {@code 2007}.</p>
-<p></p><p>
-The string must represent a valid year.
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a text string such as <code>2007</code>.</p>
+<p>The string must represent a valid year.
 Years outside the range 0000 to 9999 must be prefixed by the plus or minus symbol.</p>
 </div>
 
@@ -2013,9 +2152,8 @@ Years outside the range 0000 to 9999 must be prefixed by the plus or minus symbo
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Year} from a text string using a specific formatter.</p>
-<p></p><p>
-The text is parsed using the formatter, returning a year.</p>
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/Year.js~Year.html">Year</a></span> from a text string using a specific formatter.</p>
+<p>The text is parsed using the formatter, returning a year.</p>
 </div>
 
   
@@ -2159,7 +2297,7 @@ The text is parsed using the formatter, returning a year.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber577">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber740">source</a></span></span>
     </span>
   </h3>
 
@@ -2167,24 +2305,22 @@ The text is parsed using the formatter, returning a year.</p>
   
   
   <div data-ice="description"><p>Adjusts the specified temporal object to have this year.</p>
-<p></p><p>
-This returns a temporal object of the same observable type as the input
+<p>This returns a temporal object of the same observable type as the input
 with the year changed to be the same as this.</p>
-<p></p><p>
-The adjustment is equivalent to using {@link Temporal#with(TemporalField, long)}
+<p>The adjustment is equivalent to using <span>Temporal#with</span>
 passing <span>ChronoField#YEAR</span> as the field.
 If the specified temporal object does not use the ISO calendar system then
-a {@code DateTimeException} is thrown.</p>
-<p></p><p>
-In most cases, it is clearer to reverse the calling pattern by using
-{@link Temporal#with(TemporalAdjuster)}:</p>
+a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> is thrown.</p>
+<p>In most cases, it is clearer to reverse the calling pattern by using
+<span>Temporal#with</span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisYear.adjustInto(temporal);
   temporal = temporal.with(thisYear);
-</pre></p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+</pre>
+
+</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -2263,18 +2399,16 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber621">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber784">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Combines this year with a day-of-year to create a {@code LocalDate}.</p>
-<p></p><p>
-This returns a {@code LocalDate} formed from this year and the specified day-of-year.</p>
-<p></p><p>
-The day-of-year value 366 is only valid in a leap year.</p>
+  <div data-ice="description"><p>Combines this year with a day-of-year to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
+<p>This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> formed from this year and the specified day-of-year.</p>
+<p>The day-of-year value 366 is only valid in a leap year.</p>
 </div>
 
   
@@ -2345,11 +2479,11 @@ The day-of-year value 366 is only valid in a leap year.</p>
     
     
     
-    <span data-ice="name">atMonth</span><span data-ice="signature">(unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span>
+    <span data-ice="name">atMonth</span><span data-ice="signature">(monthOrNumber: <span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber635">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber798">source</a></span></span>
     </span>
   </h3>
 
@@ -2372,8 +2506,8 @@ The day-of-year value 366 is only valid in a leap year.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">unit</td>
-      <td data-ice="type"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></td>
+      <td data-ice="name" data-depth="0">monthOrNumber</td>
+      <td data-ice="type"><span><a href="class/src/Month.js~Month.html">Month</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -2418,18 +2552,16 @@ The day-of-year value 366 is only valid in a leap year.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber694">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber857">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Combines this year with a month-day to create a {@code LocalDate}.</p>
-<p></p><p>
-This returns a {@code LocalDate} formed from this year and the specified month-day.</p>
-<p></p><p>
-A month-day of February 29th will be adjusted to February 28th in the resulting
+  <div data-ice="description"><p>Combines this year with a month-day to create a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>.</p>
+<p>This returns a <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span> formed from this year and the specified month-day.</p>
+<p>A month-day of February 29th will be adjusted to February 28th in the resulting
 date if the year is not a leap year.</p>
 </div>
 
@@ -2492,19 +2624,17 @@ date if the year is not a leap year.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber657">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber820">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Combines this year with a month to create a {@code YearMonth}.</p>
-<p></p><p>
-This returns a {@code YearMonth} formed from this year and the specified month.
+  <div data-ice="description"><p>Combines this year with a month to create a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span>.</p>
+<p>This returns a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span> formed from this year and the specified month.
 All possible combinations of year and month are valid.</p>
-<p></p><p>
-This method can be used as part of a chain to produce a date:</p>
+<p>This method can be used as part of a chain to produce a date:</p>
 <p><pre>
  LocalDate date = year.atMonth(month).atDay(day);
 </pre></p>
@@ -2569,19 +2699,17 @@ This method can be used as part of a chain to produce a date:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber678">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber841">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Combines this year with a month to create a {@code YearMonth}.</p>
-<p></p><p>
-This returns a {@code YearMonth} formed from this year and the specified month.
+  <div data-ice="description"><p>Combines this year with a month to create a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span>.</p>
+<p>This returns a <span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span> formed from this year and the specified month.
 All possible combinations of year and month are valid.</p>
-<p></p><p>
-This method can be used as part of a chain to produce a date:</p>
+<p>This method can be used as part of a chain to produce a date:</p>
 <p><pre>
  LocalDate date = year.atMonth(month).atDay(day);
 </pre></p>
@@ -2658,7 +2786,7 @@ This method can be used as part of a chain to produce a date:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber742">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber905">source</a></span></span>
     </span>
   </h3>
 
@@ -2666,8 +2794,7 @@ This method can be used as part of a chain to produce a date:</p>
   
   
   <div data-ice="description"><p>Compares this year to another year.</p>
-<p></p><p>
-The comparison is based on the value of the year.
+<p>The comparison is based on the value of the year.
 It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.</p>
 </div>
 
@@ -2730,7 +2857,7 @@ It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber795">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber955">source</a></span></span>
     </span>
   </h3>
 
@@ -2738,8 +2865,7 @@ It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.
   
   
   <div data-ice="description"><p>Checks if this year is equal to the specified <span><a href="class/src/Year.js~Year.html">Year</a></span>.</p>
-<p></p><p>
-The comparison is based on the value</p>
+<p>The comparison is based on the value</p>
 </div>
 
   
@@ -2801,17 +2927,14 @@ The comparison is based on the value</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber781">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber941">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this year as a {@code String} using the formatter.</p>
-<p></p><p>
-This year will be passed to the formatter
-{@link DateTimeFormatter#format(TemporalAccessor) print method}.</p>
+  <div data-ice="description"><p>Outputs this year as a string using the formatter.</p>
 </div>
 
   
@@ -2885,28 +3008,25 @@ This year will be passed to the formatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber343">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber402">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this year as an {@code int}.</p>
-<p></p><p>
-This queries this year for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this year as an <code>int</code>.</p>
+<p>This queries this year for the value for the specified field.
 The returned value will always be within the valid range of values for the field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this year.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -2986,27 +3106,24 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber369">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber428">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Gets the value of the specified field from this year as a {@code long}.</p>
-<p></p><p>
-This queries this year for the value for the specified field.
+  <div data-ice="description"><p>Gets the value of the specified field from this year as a <code>long</code>.</p>
+<p>This queries this year for the value for the specified field.
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return valid
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this year.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.getFrom(TemporalAccessor)}
-passing {@code this} as the argument. Whether the value can be obtained,
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.getFrom</span>
+passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
@@ -3086,7 +3203,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber754">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber917">source</a></span></span>
     </span>
   </h3>
 
@@ -3155,7 +3272,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber766">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber929">source</a></span></span>
     </span>
   </h3>
 
@@ -3224,7 +3341,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber401">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber460">source</a></span></span>
     </span>
   </h3>
 
@@ -3233,17 +3350,14 @@ and what the value represents, is determined by the field.</p>
   
   <div data-ice="description"><p>Checks if the year is a leap year, according to the ISO proleptic
 calendar system rules.</p>
-<p></p><p>
-This method applies the current rules for leap years across the whole time-line.
+<p>This method applies the current rules for leap years across the whole time-line.
 In general, a year is a leap year if it is divisible by four without
 remainder. However, years divisible by 100, are not leap years, with
 the exception of years divisible by 400 which are.</p>
-<p></p><p>
-For example, 1904 is a leap year it is divisible by 4.
+<p>For example, 1904 is a leap year it is divisible by 4.
 1900 was not a leap year as it is divisible by 100, however 2000 was a
 leap year as it is divisible by 400.</p>
-<p></p><p>
-The calculation is proleptic - applying the same rules into the far future and far past.
+<p>The calculation is proleptic - applying the same rules into the far future and far past.
 This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
 </div>
 
@@ -3279,6 +3393,226 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isSupported">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isSupported</span><span data-ice="signature">(fieldOrUnit: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber301">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>function overloading for <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-isSupported">YearMonth.isSupported</a></span></p>
+<p>if called with 1 argument and first argument is an instance of TemporalField, then <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-isSupportedField">YearMonth.isSupportedField</a></span> is executed,</p>
+<p>otherwise <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-isSupportedUnit">YearMonth.isSupportedUnit</a></span> is executed</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">fieldOrUnit</td>
+      <td data-ice="type"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isSupportedField">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isSupportedField</span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber334">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if the specified field is supported.</p>
+<p>This checks if this year can be queried for the specified field.
+If false, then calling <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-range">range</a></span> and <span><a href="class/src/Period.js~Period.html#instance-method-get">get</a></span> will throw an exception.</p>
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
+values based on this date-time.
+The supported fields are:</p>
+<ul>
+<li><span>YEAR_OF_ERA</span></li>
+<li><span>YEAR</span></li>
+<li><span>ERA</span></li>
+</ul>
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.isSupportedBy</span>
+passing <code>this</code> as the argument.
+Whether the field is supported is determined by the field.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">field</td>
+      <td data-ice="type"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the field to check, null returns false</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>true if the field is supported on this year, false if not</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isSupportedUnit">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">isSupportedUnit</span><span data-ice="signature">(unit: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber341">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">unit</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isValidMonthDay">
     <span class="access" data-ice="access">public</span>
     
@@ -3289,7 +3623,7 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber595">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber758">source</a></span></span>
     </span>
   </h3>
 
@@ -3297,8 +3631,7 @@ This is historically inaccurate, but is correct for the ISO-8601 standard.</p>
   
   
   <div data-ice="description"><p>Checks if the month-day is valid for this year.</p>
-<p></p><p>
-This method checks whether this year and the input month and day form
+<p>This method checks whether this year and the input month and day form
 a valid date.</p>
 </div>
 
@@ -3361,7 +3694,7 @@ a valid date.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber604">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber767">source</a></span></span>
     </span>
   </h3>
 
@@ -3409,11 +3742,11 @@ a valid date.</p>
     
     
     
-    <span data-ice="name">minus</span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span data-ice="name">minus</span><span data-ice="signature">(amountOrNumber: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber499">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber657">source</a></span></span>
     </span>
   </h3>
 
@@ -3436,7 +3769,7 @@ a valid date.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">amount</td>
+      <td data-ice="name" data-depth="0">amountOrNumber</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
       <td data-ice="description"></td>
@@ -3444,7 +3777,7 @@ a valid date.</p>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">unit</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></td>
-      <td data-ice="appendix"></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -3488,7 +3821,7 @@ a valid date.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber523">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber681">source</a></span></span>
     </span>
   </h3>
 
@@ -3496,14 +3829,12 @@ a valid date.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this year with the specified period subtracted.</p>
-<p></p><p>
-This method returns a new year based on this year with the specified period subtracted.
+<p>This method returns a new year based on this year with the specified period subtracted.
 The subtractor is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #minus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-minus">minus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3582,7 +3913,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber534">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber694">source</a></span></span>
     </span>
   </h3>
 
@@ -3643,12 +3974,12 @@ This instance is immutable and unaffected by this method call.</p>
       
       <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException {@inheritDoc}</p>
+        <td data-ice="throwDesc"><p>DateTimeException if the subtraction cannot be made</p>
 </td>
       </tr>
 <tr class="throw" data-ice="throw">
         <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>ArithmeticException {@inheritDoc}</p>
+        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs</p>
 </td>
       </tr>
 </tbody>
@@ -3673,7 +4004,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber547">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber710">source</a></span></span>
     </span>
   </h3>
 
@@ -3681,8 +4012,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this year with the specified number of years subtracted.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3752,11 +4082,11 @@ This instance is immutable and unaffected by this method call.</p>
     
     
     
-    <span data-ice="name">plus</span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span data-ice="name">plus</span><span data-ice="signature">(amountOrNumber: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber417">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber575">source</a></span></span>
     </span>
   </h3>
 
@@ -3779,7 +4109,7 @@ This instance is immutable and unaffected by this method call.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">amount</td>
+      <td data-ice="name" data-depth="0">amountOrNumber</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
       <td data-ice="description"></td>
@@ -3787,8 +4117,9 @@ This instance is immutable and unaffected by this method call.</p>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">unit</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
+      <td data-ice="description"><p>nullable only if first argument is an instance of TemporalAmount</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -3831,7 +4162,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber441">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber599">source</a></span></span>
     </span>
   </h3>
 
@@ -3839,14 +4170,12 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this year with the specified period added.</p>
-<p></p><p>
-This method returns a new year based on this year with the specified period added.
+<p>This method returns a new year based on this year with the specified period added.
 The adder is typically <span><a href="class/src/Period.js~Period.html">Period</a></span> but may be any other type implementing
 the <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> interface.
 The calculation is delegated to the specified adjuster, which typically calls
-back to {@link #plus(long, TemporalUnit)}.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -3925,7 +4254,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber454">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber612">source</a></span></span>
     </span>
   </h3>
 
@@ -4015,7 +4344,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber480">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber638">source</a></span></span>
     </span>
   </h3>
 
@@ -4023,8 +4352,7 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this year with the specified number of years added.</p>
-<p></p><p>
-This instance is immutable and unaffected by this method call.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
 </div>
 
   
@@ -4098,7 +4426,7 @@ This instance is immutable and unaffected by this method call.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber719">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber882">source</a></span></span>
     </span>
   </h3>
 
@@ -4106,15 +4434,13 @@ This instance is immutable and unaffected by this method call.</p>
   
   
   <div data-ice="description"><p>Queries this year using the specified query.</p>
-<p></p><p>
-This queries this year using the specified query strategy object.
-The {@code TemporalQuery} object defines the logic to be used to
+<p>This queries this year using the specified query strategy object.
+The <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span> object defines the logic to be used to
 obtain the result. Read the documentation of the query to understand
 what the result of this method will be.</p>
-<p></p><p>
-The result of this method is obtained by invoking the
-{@link TemporalQuery#queryFrom(TemporalAccessor)} method on the
-specified query passing {@code this} as the argument.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html#instance-method-queryFrom">TemporalQuery#queryFrom</a></span> method on the
+specified query passing <code>this</code> as the argument.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">TemporalAccessor#query</a></span></div>
@@ -4193,7 +4519,7 @@ specified query passing {@code this} as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber313">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber370">source</a></span></span>
     </span>
   </h3>
 
@@ -4201,20 +4527,17 @@ specified query passing {@code this} as the argument.</p>
   
   
   <div data-ice="description"><p>Gets the range of valid values for the specified field.</p>
-<p></p><p>
-The range object expresses the minimum and maximum valid values for a field.
+<p>The range object expresses the minimum and maximum valid values for a field.
 This year is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
-<p></p><p>
-If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The {@link #isSupported(TemporalField) supported fields} will return
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
+The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
-All other {@code ChronoField} instances will throw a {@code DateTimeException}.</p>
-<p></p><p>
-If the field is not a {@code ChronoField}, then the result of this method
-is obtained by invoking {@code TemporalField.rangeRefinedBy(TemporalAccessor)}
-passing {@code this} as the argument.
+All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.rangeRefinedBy</span>
+passing <code>this</code> as the argument.
 Whether the range can be obtained is determined by the field.</p>
 </div>
 
@@ -4289,14 +4612,14 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber809">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber969">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this year as a {@code String}.</p>
+  <div data-ice="description"><p>Outputs this year as a string.</p>
 </div>
 
   
@@ -4381,11 +4704,298 @@ Whether the range can be obtained is determined by the field.</p>
   
   
 </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-with">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">with</span><span data-ice="signature">(adjusterOrFieldOrNumber: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> | <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber476">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>function overloading for <span><a href="class/src/YearMonth.js~YearMonth.html#instance-method-with">YearMonth.with</a></span></p>
+<p>if called with 2 arguments and first argument is an instance of TemporalField, then <span><a href="class/src/Year.js~Year.html#instance-method-withFieldValue">Year.withFieldValue</a></span> is executed,</p>
+<p>otherwise <span><a href="class/src/Year.js~Year.html#instance-method-withAdjuster">Year.withAdjuster</a></span> is executed,</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">adjusterOrFieldOrNumber</td>
+      <td data-ice="type"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> | <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">value</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: true</li></ul></td>
+      <td data-ice="description"><p>nullable only of first argument is an instance of TemporalAdjuster</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/Year.js~Year.html">Year</a></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-withAdjuster">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withAdjuster</span><span data-ice="signature">(adjuster: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber502">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns an adjusted copy of this year.</p>
+<p>This returns a new <span><a href="class/src/Year.js~Year.html">Year</a></span>, based on this one, with the year adjusted.
+The adjustment takes place using the specified adjuster strategy object.
+Read the documentation of the adjuster to understand what adjustment will be made.</p>
+<p>The result of this method is obtained by invoking the
+<span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html#instance-method-adjustInto">TemporalAdjuster#adjustInto</a></span> method on the
+specified adjuster passing <code>this</code> as the argument.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">adjuster</td>
+      <td data-ice="type"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the adjuster to use, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/Year.js~Year.html">Year</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>based on <code>this</code> with the adjustment made, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the adjustment cannot be made</p>
+</td>
+      </tr>
+<tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-withFieldValue">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">withFieldValue</span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Year.js~Year.html">Year</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/Year.js.html#lineNumber546">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this year with the specified field set to a new value.</p>
+<p>This returns a new <span><a href="class/src/Year.js~Year.html">Year</a></span>, based on this one, with the value
+for the specified field changed.
+If it is not possible to set the value, because the field is not supported or for
+some other reason, an exception is thrown.</p>
+<p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.
+The supported fields behave as follows:</p>
+<ul>
+<li><span>YEAR_OF_ERA</span> -
+Returns a <span><a href="class/src/Year.js~Year.html">Year</a></span> with the specified year-of-era
+The era will be unchanged.</li>
+<li><span>YEAR</span> -
+Returns a <span><a href="class/src/Year.js~Year.html">Year</a></span> with the specified year.
+This completely replaces the date and is equivalent to <span><a href="class/src/Year.js~Year.html#static-method-of">of</a></span>.</li>
+<li><span>ERA</span> -
+Returns a <span><a href="class/src/Year.js~Year.html">Year</a></span> with the specified era.
+The year-of-era will be unchanged.</li>
+</ul>
+<p>In all cases, if the new value is outside the valid range of values for the field
+then a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span> will be thrown.</p>
+<p>All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
+<p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
+is obtained by invoking <span>TemporalField.adjustInto</span>
+passing <code>this</code> as the argument. In this case, the field determines
+whether and how to adjust the instant.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">field</td>
+      <td data-ice="type"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the field to set in the result, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">newValue</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the new value of the field in the result</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="class/src/Year.js~Year.html">Year</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>based on <code>this</code> with the specified field set, not null</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the field cannot be set</p>
+</td>
+      </tr>
+<tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+  
+</div>
 </div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

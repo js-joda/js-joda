@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,19 +101,21 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DateTimeBuilder} from &apos;<span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber39">js-joda/src/format/DateTimeBuilder.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DateTimeBuilder} from &apos;<span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber37">js-joda/src/format/DateTimeBuilder.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber39">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber37">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -133,16 +136,15 @@
   
   
   <div class="description" data-ice="description"><p>Builder that can holds date and time fields and related date and time objects.</p>
-<p></p><p>
-The builder is used to hold onto different elements of date and time.
+<p>The builder is used to hold onto different elements of date and time.
 It is designed as two separate maps:</p>
-<p></p><p><ul></ul></p>
-<p><li>from <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> to {@code long} value, where the value may be
-outside the valid range for the field</li></p>
-<p><li>from {@code Class} to <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>, holding larger scale objects
-like {@code LocalDateTime}.
-<p></p>
-</li></p></div>
+<ul>
+<li>from <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> to <code>long</code> value, where the value may be
+outside the valid range for the field</li>
+<li>from <span>Class</span> to <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>, holding larger scale objects
+like <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>.</li>
+</ul>
+</div>
 
   
 
@@ -549,7 +551,7 @@ like {@code LocalDateTime}.
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-resolve">resolve</a></span></span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>, resolverFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>&gt;): <span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span>
+           <span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-resolve">resolve</a></span></span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>, resolverFields: <span><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span><span>[]</span></span>): <span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span>
         </p>
       </div>
       <div>
@@ -589,7 +591,7 @@ like {@code LocalDateTime}.
       <div>
         
         
-        <div data-ice="description"><p>Gets the value of the specified field as an {@code int}.</p>
+        <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
       </div>
     </td>
@@ -668,7 +670,7 @@ like {@code LocalDateTime}.
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
@@ -676,8 +678,7 @@ like {@code LocalDateTime}.
   
   
   <div data-ice="description"><p>Creates a new instance of the builder with a single field-value.</p>
-<p></p><p>
-This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an empty builder.</p>
+<p>This is equivalent to using <span>addFieldValue</span> on an empty builder.</p>
 </div>
 
   
@@ -748,7 +749,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber57">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
@@ -791,7 +792,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber67">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -832,7 +833,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber75">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber73">source</a></span></span>
     </span>
   </h3>
 
@@ -873,7 +874,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber85">source</a></span></span>
     </span>
   </h3>
 
@@ -914,7 +915,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
@@ -955,7 +956,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber83">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber81">source</a></span></span>
     </span>
   </h3>
 
@@ -996,7 +997,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber79">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber77">source</a></span></span>
     </span>
   </h3>
 
@@ -1037,7 +1038,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber71">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber69">source</a></span></span>
     </span>
   </h3>
 
@@ -1081,7 +1082,7 @@ This is equivalent to using {@link #addFieldValue(TemporalField, long)} on an em
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber456">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber457">source</a></span></span>
     </span>
   </h3>
 
@@ -1107,7 +1108,7 @@ If the builder cannot return the type, an exception is thrown.</p>
       <td data-ice="name" data-depth="0">type</td>
       <td data-ice="type"><span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
-      <td data-ice="description"><p>the type to invoke {@code from} on, not null</p>
+      <td data-ice="description"><p>the type to invoke <code>from</code> on, not null</p>
 </td>
     </tr>
 </tbody>
@@ -1164,7 +1165,7 @@ If the builder cannot return the type, an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber95">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber93">source</a></span></span>
     </span>
   </h3>
 
@@ -1231,7 +1232,7 @@ If the builder cannot return the type, an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber479">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber480">source</a></span></span>
     </span>
   </h3>
 
@@ -1297,7 +1298,7 @@ If the builder cannot return the type, an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber465">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber466">source</a></span></span>
     </span>
   </h3>
 
@@ -1363,7 +1364,7 @@ If the builder cannot return the type, an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber499">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber500">source</a></span></span>
     </span>
   </h3>
 
@@ -1425,11 +1426,11 @@ If the builder cannot return the type, an exception is thrown.</p>
     
     
     
-    <span data-ice="name">resolve</span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>, resolverFields: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>&gt;): <span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span>
+    <span data-ice="name">resolve</span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>, resolverFields: <span><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span><span>[]</span></span>): <span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber143">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeBuilder.js.html#lineNumber141">source</a></span></span>
     </span>
   </h3>
 
@@ -1437,8 +1438,7 @@ If the builder cannot return the type, an exception is thrown.</p>
   
   
   <div data-ice="description"><p>Resolves the builder, evaluating the date and time.</p>
-<p></p><p>
-This examines the contents of the builder and resolves it to produce the best
+<p>This examines the contents of the build.er and resolves it to produce the best
 available date and time, throwing an exception if a problem occurs.
 Calling this method changes the state of the builder.</p>
 </div>
@@ -1462,7 +1462,7 @@ Calling this method changes the state of the builder.</p>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">resolverFields</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>&gt;</td>
+      <td data-ice="type"><span><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span><span>[]</span></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -1501,7 +1501,7 @@ Calling this method changes the state of the builder.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

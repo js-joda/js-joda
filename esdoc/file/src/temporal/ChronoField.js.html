@@ -58,6 +58,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -100,14 +101,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">zone</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/temporal/ChronoField.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * @copyright (c) 2016, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
@@ -121,16 +124,16 @@ import {YearConstants} from &apos;../YearConstants&apos;;
 
 /**
  * A standard set of fields.
- * &lt;p&gt;
+ *
  * This set of fields provide field-based access to manipulate a date, time or date-time.
  * The standard set of fields can be extended by implementing {@link TemporalField}.
- * &lt;p&gt;
+ *
  * These fields are intended to be applicable in multiple calendar systems.
  * For example, most non-ISO calendar systems define dates as a year, month and day,
  * just with slightly different rules.
  * The documentation of each field explains how it operates.
  * 
- * &lt;h3&gt;Static properties of Class {@link ChronoField}&lt;/h3&gt;
+ * ### Static properties of Class {@link ChronoField}
  * 
  * ChronoField.NANO_OF_SECOND
  *
@@ -194,6 +197,22 @@ import {YearConstants} from &apos;../YearConstants&apos;;
  *
  */
 export class ChronoField extends TemporalField {
+    
+    /**
+     * helper function to get one of the static ChronoField defines by name, needed to resolve ChronoField from EnumMap
+     *
+     * @param {String} fieldName
+     * @return {ChronoField | null}
+     */
+    static byName(fieldName) {
+        for (let prop in ChronoField) {
+            if (ChronoField.hasOwnProperty(prop)) {
+                if ((ChronoField[prop] instanceof ChronoField) &amp;&amp; ChronoField[prop].name() === fieldName) {
+                    return ChronoField[prop];
+                }
+            }
+        }
+    }
 
     /**
      *
@@ -265,7 +284,7 @@ export class ChronoField extends TemporalField {
      * @return {boolean} true if it is a component of a date
      */
     isDateBased() {
-        var dateBased =
+        const dateBased =
             this === ChronoField.DAY_OF_WEEK ||
             this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
             this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
@@ -288,7 +307,7 @@ export class ChronoField extends TemporalField {
      * @return {boolean} true if it is a component of a time
      */
     isTimeBased() {
-        var timeBased =
+        const timeBased =
             this === ChronoField.NANO_OF_SECOND     ||
             this === ChronoField.NANO_OF_DAY        ||
             this === ChronoField.MICRO_OF_SECOND    ||
@@ -310,28 +329,28 @@ export class ChronoField extends TemporalField {
     /**
      * Get the range of valid values for this field using the temporal object to
      * refine the result.
-     * &lt;p&gt;
+     *
      * This uses the temporal object to find the range of valid values for the field.
-     * This is similar to {@link #range()}, however this method refines the result
-     * using the temporal. For example, if the field is {@code DAY_OF_MONTH} the
-     * {@code range} method is not accurate as there are four possible month lengths,
+     * This is similar to {@link range}, however this method refines the result
+     * using the temporal. For example, if the field is {@link DAY_OF_MONTH} the
+     * {@link range} method is not accurate as there are four possible month lengths,
      * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
      * accurate, returning just one of those four options.
-     * &lt;p&gt;
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
-     * The second is to use {@link TemporalAccessor#range(TemporalField)}:
+     * The second is to use {@link TemporalAccessor#range}:
      * &lt;pre&gt;
      *   // these two lines are equivalent, but the second approach is recommended
      *   temporal = thisField.rangeRefinedBy(temporal);
      *   temporal = temporal.range(thisField);
      * &lt;/pre&gt;
-     * It is recommended to use the second approach, {@code range(TemporalField)},
+     * It is recommended to use the second approach, {@link range},
      * as it is a lot clearer to read in code.
-     * &lt;p&gt;
+     *
      * Implementations should perform any queries or calculations using the fields
      * available in {@link ChronoField}.
-     * If the field is not supported a {@code DateTimeException} must be thrown.
+     * If the field is not supported a {@link DateTimeException} must be thrown.
      *
      * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
      * @return {ValueRange} the range of valid values for this field, not null
@@ -342,15 +361,15 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     * Checks that the specified value is valid and fits in an {@code int}.
-     * &lt;p&gt;
+     * Checks that the specified value is valid and fits in an `int`.
+     *
      * This validates that the value is within the outer range of valid values
-     * returned by {@link #range()}.
-     * It also checks that all valid values are within the bounds of an {@code int}.
-     * &lt;p&gt;
+     * returned by {@link range}.
+     * It also checks that all valid values are within the bounds of an `int`.
+     *
      * This method checks against the range of the field in the ISO-8601 calendar system.
      * This range may be incorrect for other calendar systems.
-     * Use {@link Chronology#range(ChronoField)} to access the correct range
+     * Use {@link Chronology#range} to access the correct range
      * for a different calendar system.
      *
      * @param {number} value - the value to check
@@ -456,7 +475,7 @@ export function _init() {
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>
