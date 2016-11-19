@@ -1,8 +1,9 @@
-import {Duration, Instant} from 'js-joda';
+/* eslint-disable no-else-return */
+import { Duration, Instant } from 'js-joda';
 
-//TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException} from './errors';
+// TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
+import { requireNonNull, requireInstance } from './assert';
+import { DateTimeException } from './errors';
 
 /**
  * An immutable interval of time between two instants.
@@ -19,13 +20,13 @@ import {DateTimeException} from './errors';
  *
  */
 export class Interval {
-    
+
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link Interval.of}
      *
      * if called without arguments, then {@link Interval.ofInstantInstant} is executed.
-     
+
      * if called with 1 arguments and first argument is an instance of ZoneId, then {@link Interval.ofInstantDuration} is executed.
      *
      * Otherwise {@link Interval.ofInstantDuration} is executed.
@@ -41,7 +42,7 @@ export class Interval {
             return Interval.ofInstantInstant(startInstant, endInstantOrDuration);
         }
     }
-    
+
     /**
      * Obtains an instance of {@code Interval} from the start and end instant.
      * <p>
@@ -88,7 +89,7 @@ export class Interval {
     }
 
     //-----------------------------------------------------------------------
-    
+
 /* TODO: OffsetDateTime is missing
     /!**
      * Obtains an instance of {@code Interval} from a text string such as
@@ -174,7 +175,7 @@ export class Interval {
     end() {
         return this._end;
     }
-    
+
     //-----------------------------------------------------------------------
     /**
      * Checks if the range is empty.
@@ -325,7 +326,7 @@ export class Interval {
         requireNonNull(other, 'other');
         requireInstance(other, Interval, 'other');
         if (this.isConnected(other) === false) {
-            throw new DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
+            throw new DateTimeException(`Intervals do not connect: ${this} and ${other}`);
         }
         const cmpStart = this._start.compareTo(other.start());
         const cmpEnd = this._end.compareTo(other.end());
@@ -354,7 +355,7 @@ export class Interval {
         requireNonNull(other, 'other');
         requireInstance(other, Interval, 'other');
         if (this.isConnected(other) === false) {
-            throw new DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
+            throw new DateTimeException(`Intervals do not connect: ${this} and ${other}`);
         }
         const cmpStart = this._start.compareTo(other.start());
         const cmpEnd = this._end.compareTo(other.end());
@@ -406,7 +407,7 @@ export class Interval {
             return this.isAfterInterval(instantOrInterval);
         }
     }
-    
+
     /**
      * function overloading for {@link Interval#isBefore}
      *
@@ -424,7 +425,7 @@ export class Interval {
             return this.isBeforeInterval(instantOrInterval);
         }
     }
-    
+
     /**
      * Checks if this interval is after the specified instant.
      * <p>
@@ -524,6 +525,7 @@ export class Interval {
      * @return {number} a suitable hash code
      */
     hashCode() {
+        // eslint-disable-next-line no-bitwise
         return this._start.hashCode() ^ this._end.hashCode();
     }
 
@@ -537,7 +539,7 @@ export class Interval {
      * @return {string} a string representation of this instant, not null
      */
     toString() {
-        return this._start.toString() + '/' + this._end.toString();
+        return `${this._start.toString()}/${this._end.toString()}`;
     }
 
 }
@@ -545,7 +547,6 @@ export class Interval {
 let _initialized = false;
 
 export function _init() {
-    
     Interval.ALL = Interval.of(Instant.MIN, Instant.MAX);
     _initialized = true;
 }
@@ -554,5 +555,6 @@ export function _plugin(jsJoda) {
     if (!_initialized) {
         _init();
     }
+    // eslint-disable-next-line no-param-reassign
     jsJoda.Interval = Interval;
 }

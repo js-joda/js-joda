@@ -4,13 +4,13 @@
  */
 
 
-import {_plugin as IntervalPlugin} from './Interval';
+import { _plugin as IntervalPlugin } from './Interval';
 
 /**
  * plugin Function, call using js-jodas use()
  *
  * @param jsJoda
  */
-export default function(jsJoda) {
+export default function (jsJoda) {
     IntervalPlugin(jsJoda);
 }
