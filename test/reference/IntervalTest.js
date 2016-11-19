@@ -6,13 +6,21 @@
 
 import { expect } from 'chai';
 
-import { ChronoUnit, Duration, Instant, ZonedDateTime, ZoneOffset } from 'js-joda';
+import {
+    ChronoUnit,
+    DateTimeException,
+    DateTimeParseException,
+    Duration,
+    Instant,
+    NullPointerException,
+    ZonedDateTime,
+    ZoneOffset,
+} from 'js-joda';
 
 import '../_init';
 
 import { assertEquals, assertFalse, assertTrue, dataProviderTest } from '../testUtils';
 
-import { DateTimeException, DateTimeParseException, NullPointerException } from '../../src/errors';
 import { Interval } from '../../src/Interval';
 
 describe('org.threeten.extra.TestInterval', () => {

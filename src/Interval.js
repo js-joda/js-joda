@@ -1,9 +1,8 @@
 /* eslint-disable no-else-return */
-import { Duration, Instant } from 'js-joda';
+import { DateTimeException, Duration, Instant } from 'js-joda';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireNonNull, requireInstance } from './assert';
-import { DateTimeException } from './errors';
 
 /**
  * An immutable interval of time between two instants.
