@@ -3,8 +3,11 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+/* eslint-disable no-param-reassign */
 
-import { _plugin as IntervalPlugin } from './Interval';
+import { Interval } from './Interval';
+
+import './_init';
 
 /**
  * plugin Function, call using js-jodas use()
@@ -12,5 +15,5 @@ import { _plugin as IntervalPlugin } from './Interval';
  * @param jsJoda
  */
 export default function (jsJoda) {
-    IntervalPlugin(jsJoda);
+    jsJoda.Interval = Interval;
 }

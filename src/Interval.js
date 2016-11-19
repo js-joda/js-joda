@@ -1,3 +1,9 @@
+/*
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
 /* eslint-disable no-else-return */
 import { DateTimeException, Duration, Instant } from 'js-joda';
 
@@ -543,17 +549,6 @@ export class Interval {
 
 }
 
-let _initialized = false;
-
 export function _init() {
     Interval.ALL = Interval.of(Instant.MIN, Instant.MAX);
-    _initialized = true;
-}
-
-export function _plugin(jsJoda) {
-    if (!_initialized) {
-        _init();
-    }
-    // eslint-disable-next-line no-param-reassign
-    jsJoda.Interval = Interval;
 }
