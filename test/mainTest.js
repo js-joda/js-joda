@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 import * as joda from 'js-joda';
 
 // since for karma/webpack tests we cannot require the actual webpack entry point,
@@ -11,11 +11,11 @@ import * as joda from 'js-joda';
 // main anyway...
 import extra from '../src/main';
 
-const testPlugin = (extra) => {
+const testPlugin = (plugin) => {
     before('use', () => {
-        joda.use(extra);
+        joda.use(plugin);
     });
-    
+
     it('should add Interval to joda', () => {
         expect(joda.Interval).to.exist;
     });

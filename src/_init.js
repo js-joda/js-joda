@@ -3,12 +3,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {_init as IntervalInit} from './Interval';
+import { _init as IntervalInit } from './Interval';
 
 let isInit = false;
 
 function init() {
-
     if (isInit) {
         return;
     }
@@ -16,7 +15,6 @@ function init() {
     isInit = true;
 
     IntervalInit();
-    
 }
 
 init();
