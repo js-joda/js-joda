@@ -110,8 +110,7 @@ describe('org.threeten.extra.TestInterval', () => {
     });
 
     //-----------------------------------------------------------------------
-    // TODO: implement parse
-    describe.skip('parse', () => {
+    describe('parse', () => {
         it('test_parse_CharSequence', () => {
             const test = Interval.parse(`${NOW1}/${NOW2}`);
             assertEquals(test.start(), NOW1);
@@ -149,7 +148,9 @@ describe('org.threeten.extra.TestInterval', () => {
         });
 
         it('test_parseCharSequence_InstantInstant_with_timezones', () => {
-            const test = Interval.parse(`${NOW1.atOffset(ZoneOffset.ofHours(2)).toString()}/${NOW2.atOffset(ZoneOffset.ofHours(2)).toString()}`);
+            const test = Interval.parse(`${ZonedDateTime.ofInstant(NOW1, ZoneOffset.ofHours(2)).toString()}/${ZonedDateTime.ofInstant(NOW2, ZoneOffset.ofHours(2)).toString()}`);
+            // original test from threeten-extra, but we don't support `atOffset`:
+            // const test = Interval.parse(`${NOW1.atOffset(ZoneOffset.ofHours(2)).toString()}/${NOW2.atOffset(ZoneOffset.ofHours(2)).toString()}`);
             assertEquals(test.start(), NOW1);
             assertEquals(test.end(), NOW2);
         });

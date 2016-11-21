@@ -5,7 +5,7 @@
  */
 
 /* eslint-disable no-else-return */
-import { DateTimeException, Duration, Instant } from 'js-joda';
+import { DateTimeException, DateTimeParseException, Duration, IllegalArgumentException, Instant, ZonedDateTime } from 'js-joda';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireNonNull, requireInstance } from './assert';
@@ -95,55 +95,57 @@ export class Interval {
 
     //-----------------------------------------------------------------------
 
-/* TODO: OffsetDateTime is missing
-    /!**
+    /**
      * Obtains an instance of {@code Interval} from a text string such as
      * {@code 2007-12-03T10:15:30Z/2007-12-04T10:15:30Z}, where the end instant is exclusive.
      * <p>
      * The string must consist of one of the following three formats:
      * <ul>
-     * <li>a representations of an {@link OffsetDateTime}, followed by a forward slash,
-     *  followed by a representation of a {@link OffsetDateTime}
-     * <li>a representation of an {@link OffsetDateTime}, followed by a forward slash,
+     * <li>a representations of an {@link ZonedDateTime}, followed by a forward slash,
+     *  followed by a representation of a {@link ZonedDateTime}
+     * <li>a representation of an {@link ZonedDateTime}, followed by a forward slash,
      *  followed by a representation of a {@link Duration}
      * <li>a representation of a {@link Duration}, followed by a forward slash,
-     *  followed by a representation of an {@link OffsetDateTime}
+     *  followed by a representation of an {@link ZonedDateTime}
      * </ul>
      *
+     * NOTE: in contrast to the threeten-extra base we are not using `OffsetDateTime` but `ZonedDateTime` to parse
+     * the string, this does not change the format but adds the possibility to optionally specify a zone
      *
      * @param {string} text  the text to parse, not null
      * @return {Interval} the parsed interval, not null
      * @throws DateTimeParseException if the text cannot be parsed
-     *!/
+     */
     static parse(text) {
         requireNonNull(text, 'text');
-        requireInstance(text, String, 'text');
-        for (let i = 0; i < text.length(); i++) {
+        if (!(typeof text === 'string')) {
+            throw new IllegalArgumentException(`text must be a string, but is ${text.constructor.name}`);
+        }
+        for (let i = 0; i < text.length; i += 1) {
             if (text.charAt(i) === '/') {
-                let firstChar = text.charAt(0);
+                const firstChar = text.charAt(0);
                 if (firstChar === 'P' || firstChar === 'p') {
                     // duration followed by instant
-                    let duration = Duration.parse(text.subSequence(0, i));
-                    let end = OffsetDateTime.parse(text.subSequence(i + 1, text.length())).toInstant();
+                    const duration = Duration.parse(text.substring(0, i));
+                    const end = ZonedDateTime.parse(text.substring(i + 1, text.length)).toInstant();
                     return Interval.of(end.minus(duration), end);
                 } else {
                     // instant followed by instant or duration
-                    let start = OffsetDateTime.parse(text.subSequence(0, i)).toInstant();
-                    if (i + 1 < text.length()) {
-                        let c = text.charAt(i + 1);
+                    const start = ZonedDateTime.parse(text.substring(0, i)).toInstant();
+                    if (i + 1 < text.length) {
+                        const c = text.charAt(i + 1);
                         if (c === 'P' || c === 'p') {
-                            let duration = Duration.parse(text.subSequence(i + 1, text.length()));
+                            const duration = Duration.parse(text.substring(i + 1, text.length));
                             return Interval.of(start, start.plus(duration));
                         }
                     }
-                    let end = OffsetDateTime.parse(text.subSequence(i + 1, text.length())).toInstant();
+                    const end = ZonedDateTime.parse(text.substring(i + 1, text.length)).toInstant();
                     return Interval.of(start, end);
                 }
             }
         }
         throw new DateTimeParseException('Interval cannot be parsed, no forward slash found', text, 0);
     }
-*/
     //-----------------------------------------------------------------------
     /**
      * Constructor.
