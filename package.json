@@ -35,12 +35,12 @@
   ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "js-joda": "^1.1.13"
+    "js-joda": "^1.1.14"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.7",
+    "babel-loader": "^6.2.8",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^3.0.0",
     "babel-preset-es2015": "^6.18.0",
@@ -52,10 +52,10 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-promise": "^3.3.2",
+    "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.7.1",
     "eslint-plugin-standard": "^2.0.1",
-    "js-joda": "^1.1.13",
+    "js-joda": "^1.1.14",
     "karma": "^1.3.0",
     "karma-chai-plugins": "^0.8.0",
     "karma-chrome-launcher": "^2.0.0",
