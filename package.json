@@ -1,6 +1,6 @@
 {
   "name": "js-joda-extra",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "additional date-time classes that complement those in js-joda",
   "repository": {
     "type": "git",

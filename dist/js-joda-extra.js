@@ -1,7 +1,8 @@
-//! @version js-joda-extra - 0.0.3
+//! @version js-joda-extra - 0.1.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("js-joda"));
@@ -84,17 +85,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 	exports.default = function (jsJoda) {
-	  (0, _Interval._plugin)(jsJoda);
+	  jsJoda.Interval = _Interval.Interval;
 	};
 
 	var _Interval = __webpack_require__(2);
 
-	/*
-	 * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-	 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-	 */
+	__webpack_require__(5);
 
-	module.exports = exports['default'];
+	module.exports = exports['default']; /*
+	                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+	                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+	                                      */
 
 /***/ },
 /* 2 */
@@ -105,15 +106,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.Interval = undefined;
 	exports._init = _init;
-	exports._plugin = _plugin;
 
 	var _jsJoda = __webpack_require__(3);
 
 	var _assert = __webpack_require__(4);
 
-	var _errors = __webpack_require__(5);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
 
 	var Interval = exports.Interval = function () {
 	    Interval.of = function of(startInstant, endInstantOrDuration) {
@@ -130,7 +132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireInstance)(startInclusive, _jsJoda.Instant, 'startInclusive');
 	        (0, _assert.requireInstance)(endExclusive, _jsJoda.Instant, 'endExclusive');
 	        if (endExclusive.isBefore(startInclusive)) {
-	            throw new _errors.DateTimeException('End instant must on or after start instant');
+	            throw new _jsJoda.DateTimeException('End instant must on or after start instant');
 	        }
 	        return new Interval(startInclusive, endExclusive);
 	    };
@@ -141,9 +143,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireInstance)(startInclusive, _jsJoda.Instant, 'startInclusive');
 	        (0, _assert.requireInstance)(duration, _jsJoda.Duration, 'duration');
 	        if (duration.isNegative()) {
-	            throw new _errors.DateTimeException('Duration must not be zero or negative');
+	            throw new _jsJoda.DateTimeException('Duration must not be zero or negative');
 	        }
 	        return new Interval(startInclusive, startInclusive.plus(duration));
+	    };
+
+	    Interval.parse = function parse(text) {
+	        (0, _assert.requireNonNull)(text, 'text');
+	        if (!(typeof text === 'string')) {
+	            throw new _jsJoda.IllegalArgumentException('text must be a string, but is ' + text.constructor.name);
+	        }
+	        for (var i = 0; i < text.length; i += 1) {
+	            if (text.charAt(i) === '/') {
+	                var firstChar = text.charAt(0);
+	                if (firstChar === 'P' || firstChar === 'p') {
+	                    var duration = _jsJoda.Duration.parse(text.substring(0, i));
+	                    var end = _jsJoda.ZonedDateTime.parse(text.substring(i + 1, text.length)).toInstant();
+	                    return Interval.of(end.minus(duration), end);
+	                } else {
+	                    var start = _jsJoda.ZonedDateTime.parse(text.substring(0, i)).toInstant();
+	                    if (i + 1 < text.length) {
+	                        var c = text.charAt(i + 1);
+	                        if (c === 'P' || c === 'p') {
+	                            var _duration = _jsJoda.Duration.parse(text.substring(i + 1, text.length));
+	                            return Interval.of(start, start.plus(_duration));
+	                        }
+	                    }
+	                    var _end = _jsJoda.ZonedDateTime.parse(text.substring(i + 1, text.length)).toInstant();
+	                    return Interval.of(start, _end);
+	                }
+	            }
+	        }
+	        throw new _jsJoda.DateTimeParseException('Interval cannot be parsed, no forward slash found', text, 0);
 	    };
 
 	    function Interval(startInclusive, endExclusive) {
@@ -215,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireNonNull)(other, 'other');
 	        (0, _assert.requireInstance)(other, Interval, 'other');
 	        if (this.isConnected(other) === false) {
-	            throw new _errors.DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
+	            throw new _jsJoda.DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
 	        }
 	        var cmpStart = this._start.compareTo(other.start());
 	        var cmpEnd = this._end.compareTo(other.end());
@@ -234,7 +265,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        (0, _assert.requireNonNull)(other, 'other');
 	        (0, _assert.requireInstance)(other, Interval, 'other');
 	        if (this.isConnected(other) === false) {
-	            throw new _errors.DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
+	            throw new _jsJoda.DateTimeException('Intervals do not connect: ' + this + ' and ' + other);
 	        }
 	        var cmpStart = this._start.compareTo(other.start());
 	        var cmpEnd = this._end.compareTo(other.end());
@@ -316,19 +347,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return Interval;
 	}();
 
-	var _initialized = false;
-
 	function _init() {
-
 	    Interval.ALL = Interval.of(_jsJoda.Instant.MIN, _jsJoda.Instant.MAX);
-	    _initialized = true;
-	}
-
-	function _plugin(jsJoda) {
-	    if (!_initialized) {
-	        _init();
-	    }
-	    jsJoda.Interval = Interval;
 	}
 
 /***/ },
@@ -349,7 +369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.requireInstance = requireInstance;
 	exports.abstractMethodFail = abstractMethodFail;
 
-	var _errors = __webpack_require__(5);
+	var _jsJoda = __webpack_require__(3);
 
 	function assert(assertion, msg, error) {
 	    if (!assertion) {
@@ -365,14 +385,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	   */
 	function requireNonNull(value, parameterName) {
 	    if (value == null) {
-	        throw new _errors.NullPointerException(parameterName + ' must not be null');
+	        throw new _jsJoda.NullPointerException(parameterName + ' must not be null');
 	    }
 	    return value;
 	}
 
 	function requireInstance(value, _class, parameterName) {
 	    if (!(value instanceof _class)) {
-	        throw new _errors.IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ', but is ' + value.constructor.name : ''));
+	        throw new _jsJoda.IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ', but is ' + value.constructor.name : ''));
 	    }
 	    return value;
 	}
@@ -383,70 +403,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 5 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.__esModule = true;
-	/**
-	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
+	var _Interval = __webpack_require__(2);
 
-	function createErrorType(name, init) {
-	    var superErrorClass = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Error;
+	var isInit = false; /*
+	                     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                     */
 
-	    function E(message) {
-	        if (!Error.captureStackTrace) {
-	            this.stack = new Error().stack;
-	        } else {
-	            Error.captureStackTrace(this, this.constructor);
-	        }
-	        this.message = message;
-	        init && init.apply(this, arguments);
+	function init() {
+	    if (isInit) {
+	        return;
 	    }
-	    E.prototype = new superErrorClass();
-	    E.prototype.name = name;
-	    E.prototype.constructor = E;
-	    return E;
+
+	    isInit = true;
+
+	    (0, _Interval._init)();
 	}
 
-	var DateTimeException = exports.DateTimeException = createErrorType('DateTimeException', messageWithCause);
-	var DateTimeParseException = exports.DateTimeParseException = createErrorType('DateTimeParseException', messageForDateTimeParseException);
-	var UnsupportedTemporalTypeException = exports.UnsupportedTemporalTypeException = createErrorType('UnsupportedTemporalTypeException', null, DateTimeException);
-	var ArithmeticException = exports.ArithmeticException = createErrorType('ArithmeticException');
-	var IllegalArgumentException = exports.IllegalArgumentException = createErrorType('IllegalArgumentException');
-	var IllegalStateException = exports.IllegalStateException = createErrorType('IllegalStateException');
-	var NullPointerException = exports.NullPointerException = createErrorType('NullPointerException');
-
-	function messageWithCause(message) {
-	    var cause = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-	    var msg = message || this.name;
-	    if (cause !== null && cause instanceof Error) {
-	        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	    }
-	    this.message = msg;
-	}
-
-	function messageForDateTimeParseException(message) {
-	    var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-	    var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-	    var cause = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-	    var msg = message || this.name;
-	    msg += ': ' + text + ', at index: ' + index;
-	    if (cause !== null && cause instanceof Error) {
-	        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
-	    }
-	    this.message = msg;
-	    this.parsedString = function () {
-	        return text;
-	    };
-	    this.errorIndex = function () {
-	        return index;
-	    };
-	}
+	init();
 
 /***/ }
 /******/ ])
