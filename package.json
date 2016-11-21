@@ -8,6 +8,8 @@
   },
   "main": "dist/js-joda-extra.js",
   "scripts": {
+    "prepublish": "npm run build-dist",
+    "postversion": "npm run build-dist",
     "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
