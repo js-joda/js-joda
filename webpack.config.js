@@ -40,6 +40,9 @@ module.exports = {
                 path.resolve(__dirname, 'test')
             ],
             test: /.js$/
+        },{
+            loader: 'json-loader',
+            test: /.json$/
         }]
     },
     plugins: minify ? [
