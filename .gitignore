@@ -8,6 +8,7 @@ npm-debug.log
 build
 tmp
 .nyc_output
+yarn.lock
 
 # Ide
 .idea
