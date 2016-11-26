@@ -6,9 +6,10 @@ export class MomentZoneRules extends ZoneRules{
      *
      * @param {string} zoneId
      */
-    constructor(zoneId){
+    constructor(zoneId, tzdbInfo){
         super();
         this._zoneId = zoneId;
+        this._tzdbInfo = tzdbInfo;
     }
 
 

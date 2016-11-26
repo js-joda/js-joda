@@ -1,6 +1,7 @@
 //! @version js-joda-timezone - 0.0.1
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+//! @copyright (c) 2016, Tim Wood, github.com/moment/moment-timezone
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -86,6 +87,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MomentZoneRules = __webpack_require__(4);
 
+	var _unpack = __webpack_require__(5);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -110,15 +113,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    MomentZoneRulesProvider.getRules = function getRules(zoneId) {
-	        return new _MomentZoneRules.MomentZoneRules(zoneId);
+	        var tzdbZoneInfo = zones[links[zoneId]];
+	        return new _MomentZoneRules.MomentZoneRules(zoneId, tzdbZoneInfo);
 	    };
 
 	    MomentZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
 	        return AVAILABLE_ZONE_IDS;
 	    };
 
-	    MomentZoneRulesProvider.unpackZoneInfo = function unpackZoneInfo(packedZoneInfo) {
-	        return packedZoneInfo.split('|');
+	    MomentZoneRulesProvider.getVersion = function getVersion() {
+	        return TZDB_VERSION;
 	    };
 
 	    MomentZoneRulesProvider.loadData = function loadData(packedJson) {
@@ -138,9 +142,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            var packedZoneInfo = _ref;
 
-	            var tzdbZoneInfo = MomentZoneRulesProvider.unpackZoneInfo(packedZoneInfo);
-	            AVAILABLE_ZONE_IDS.push(tzdbZoneInfo[0]);
-	            zones[tzdbZoneInfo[0]] = tzdbZoneInfo;
+	            var tzdbZoneInfo = (0, _unpack.unpack)(packedZoneInfo);
+	            AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
+	            zones[tzdbZoneInfo.name] = tzdbZoneInfo;
+	            links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
 	        }
 
 	        for (var _iterator2 = packedJson.links, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
@@ -161,8 +166,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            AVAILABLE_ZONE_IDS.push(link[1]);
 	            links[link[1]] = link[0];
 	        }
-
-	        console.log(TZDB_VERSION, AVAILABLE_ZONE_IDS);
 	    };
 
 	    return MomentZoneRulesProvider;
@@ -798,12 +801,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	var MomentZoneRules = exports.MomentZoneRules = function (_ZoneRules) {
 	    _inherits(MomentZoneRules, _ZoneRules);
 
-	    function MomentZoneRules(zoneId) {
+	    function MomentZoneRules(zoneId, tzdbInfo) {
 	        _classCallCheck(this, MomentZoneRules);
 
 	        var _this = _possibleConstructorReturn(this, _ZoneRules.call(this));
 
 	        _this._zoneId = zoneId;
+	        _this._tzdbInfo = tzdbInfo;
 	        return _this;
 	    }
 
@@ -890,6 +894,100 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function tbc(msg) {
 	    throw new Error('not yet implemented: ' + msg);
+	}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.unpack = unpack;
+
+
+	function charCodeToInt(charCode) {
+	    if (charCode > 96) {
+	        return charCode - 87;
+	    } else if (charCode > 64) {
+	        return charCode - 29;
+	    }
+	    return charCode - 48;
+	}
+
+	function unpackBase60(string) {
+	    var i = 0,
+	        parts = string.split('.'),
+	        whole = parts[0],
+	        fractional = parts[1] || '',
+	        multiplier = 1,
+	        num,
+	        out = 0,
+	        sign = 1;
+
+	    if (string.charCodeAt(0) === 45) {
+	        i = 1;
+	        sign = -1;
+	    }
+
+	    for (i; i < whole.length; i++) {
+	        num = charCodeToInt(whole.charCodeAt(i));
+	        out = 60 * out + num;
+	    }
+
+	    for (i = 0; i < fractional.length; i++) {
+	        multiplier = multiplier / 60;
+	        num = charCodeToInt(fractional.charCodeAt(i));
+	        out += num * multiplier;
+	    }
+
+	    return out * sign;
+	}
+
+	function arrayToInt(array) {
+	    for (var i = 0; i < array.length; i++) {
+	        array[i] = unpackBase60(array[i]);
+	    }
+	}
+
+	function intToUntil(array, length) {
+	    for (var i = 0; i < length; i++) {
+	        array[i] = Math.round((array[i - 1] || 0) + array[i] * 60000);
+	    }
+
+	    array[length - 1] = Infinity;
+	}
+
+	function mapIndices(source, indices) {
+	    var out = [],
+	        i;
+
+	    for (i = 0; i < indices.length; i++) {
+	        out[i] = source[indices[i]];
+	    }
+
+	    return out;
+	}
+
+	function unpack(string) {
+	    var data = string.split('|'),
+	        offsets = data[2].split(' '),
+	        indices = data[3].split(''),
+	        untils = data[4].split(' ');
+
+	    arrayToInt(offsets);
+	    arrayToInt(indices);
+	    arrayToInt(untils);
+
+	    intToUntil(untils, indices.length);
+
+	    return {
+	        name: data[0],
+	        abbrs: mapIndices(data[1].split(' '), indices),
+	        offsets: mapIndices(offsets, indices),
+	        untils: untils,
+	        population: data[5] | 0
+	    };
 	}
 
 /***/ }
