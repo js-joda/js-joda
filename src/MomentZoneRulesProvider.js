@@ -1,6 +1,9 @@
 import latest from 'moment-timezone/data/packed/latest';
 
-import { ZoneRulesProvider } from 'js-joda';
+import {
+    DateTimeException,
+    ZoneRulesProvider,
+} from 'js-joda';
 
 import { MomentZoneRules } from './MomentZoneRules';
 
@@ -9,8 +12,8 @@ import { unpack } from './unpack';
 let TZDB_VERSION = null;
 const AVAILABLE_ZONE_IDS = [];
 
-let zones = {};
-let links = {};
+const zones = {};
+const links = {};
 
 export class MomentZoneRulesProvider extends ZoneRulesProvider {
     /**
@@ -25,7 +28,10 @@ export class MomentZoneRulesProvider extends ZoneRulesProvider {
      */
     static getRules(zoneId){
         const tzdbZoneInfo = zones[links[zoneId]];
-        return new MomentZoneRules(zoneId, tzdbZoneInfo);
+        if(tzdbZoneInfo == null){
+            throw new DateTimeException('Unknown time-zone ID: ' + zoneId);
+        }
+        return new MomentZoneRules(tzdbZoneInfo);
     }
 
 

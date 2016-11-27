@@ -14,6 +14,13 @@ describe('MomentZoneRulesProvider', () => {
             expect(zoneRules).to.be.instanceOf(MomentZoneRules);
         });
 
+        it('should calculate isFixedOffset', () => {
+            let zoneRules = MomentZoneRulesProvider.getRules('Europe/Berlin');
+            expect(zoneRules.isFixedOffset()).to.be.false;
+
+            zoneRules = MomentZoneRulesProvider.getRules('Etc/GMT+1');
+            expect(zoneRules.isFixedOffset()).to.be.true;
+        });
     });
 
 });

@@ -2,40 +2,20 @@ import { Instant } from 'js-joda';
 import { ZoneRules } from 'js-joda';
 
 export class MomentZoneRules extends ZoneRules{
-    /**
-     *
-     * @param {string} zoneId
-     */
-    constructor(zoneId, tzdbInfo){
+    constructor(tzdbInfo){
         super();
-        this._zoneId = zoneId;
         this._tzdbInfo = tzdbInfo;
     }
-
-
     /**
      * Checks of the zone rules are fixed, such that the offset never varies.
      *
      * @return {boolean} true if the time-zone is fixed and the offset never changes
      */
     isFixedOffset(){
-        return false;
+        return this._tzdbInfo.offsets.length === 1;
     }
 
     //-----------------------------------------------------------------------
-
-    /**
-     *
-     * @param instantOrLocalDateTime
-     * @returns {ZoneOffset}
-     */
-    offset(instantOrLocalDateTime){
-        if(instantOrLocalDateTime instanceof Instant){
-            return this.offsetOfInstant(instantOrLocalDateTime);
-        } else {
-            return this.offsetOfLocalDateTime(instantOrLocalDateTime);
-        }
-    }
 
     /**
      * Gets the offset applicable at the specified instant in these rules.
@@ -334,7 +314,7 @@ export class MomentZoneRules extends ZoneRules{
             return true;
         }
         if (other instanceof MomentZoneRules) {
-            return this._zoneId === other._zoneId;
+            return this._tzdbInfo === other._tzdbInfo;
         }
         return false;
     }
@@ -344,7 +324,7 @@ export class MomentZoneRules extends ZoneRules{
      * @returns {string}
      */
     toString() {
-        return this._zoneId;
+        return this._tzdbInfo.name;
     }
 }
 
