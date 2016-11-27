@@ -3,7 +3,10 @@ Changelog
 
 ### 1.1.15 (next)
 
+### Bugfixes
 
+ * Improve LocalDateTime.toInstant error handling
+ 
 ### 1.1.14
 
 #### Add more classes to public export

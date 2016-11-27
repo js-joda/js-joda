@@ -4,11 +4,12 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from '../assert';
+import {requireNonNull, requireInstance} from '../assert';
 import {MathUtil} from '../MathUtil';
 
 import {LocalDate} from '../LocalDate';
 import {Instant} from '../Instant';
+import {ZoneOffset} from '../ZoneOffset';
 import {ChronoUnit} from '../temporal/ChronoUnit';
 import {ChronoField} from '../temporal/ChronoField';
 import {Temporal} from '../temporal/Temporal';
@@ -103,6 +104,7 @@ export class ChronoLocalDateTime extends Temporal {
      * @return {Instant} an {@link Instant} representing the same instant, not null
      */
     toInstant(offset) {
+        requireInstance(offset, ZoneOffset, 'zoneId');
         return Instant.ofEpochSecond(this.toEpochSecond(offset), this.toLocalTime().nano());
     }
 
