@@ -1,5 +1,4 @@
-import { Instant } from 'js-joda';
-import { ZoneRules } from 'js-joda';
+import { ZoneOffset, ZoneRules } from 'js-joda';
 
 export class MomentZoneRules extends ZoneRules{
     constructor(tzdbInfo){
@@ -29,7 +28,10 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfInstant(instant){
-        tbc('ZoneRules.offsetInstant');
+        let epochMilli = instant.toEpochMilli();
+
+        let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
+        return ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index]*-60));
     }
 
     /**
@@ -326,6 +328,28 @@ export class MomentZoneRules extends ZoneRules{
     toString() {
         return this._tzdbInfo.name;
     }
+}
+
+function roundDown(r){
+    if (r < 0) {
+        return Math.ceil(r);
+    } else {
+        return Math.floor(r);
+    }
+}
+
+// modified bin-search, to always find existing indices for non-empty arrays
+// value in array at index is larger than input value (or last index of array)
+function binarySearch(array, value) {
+    let hi = array.length - 1, lo = -1, mid;
+    while (hi - lo > 1) {
+        if (array[mid = hi + lo >> 1] <= value) {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    return hi;
 }
 
 function tbc(msg){
