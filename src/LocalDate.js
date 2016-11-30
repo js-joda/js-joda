@@ -302,6 +302,15 @@ export class LocalDate extends ChronoLocalDate{
         ChronoField.YEAR.checkValidValue(year);
         ChronoField.MONTH_OF_YEAR.checkValidValue(month);
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
+        
+        if(typeof month === 'string'){
+            month = parseInt(month);
+        }
+        
+        if(typeof dayOfMonth === 'string'){
+            dayOfMonth = parseInt(dayOfMonth);
+        }
+        
         if (dayOfMonth > 28) {
             dom = 31;
             switch (month) {

@@ -26,6 +26,7 @@ describe('Creating a LocalDate instance', () => {
         expect(() => {new LocalDate(1970, 2, 29);}).to.throw(Error);
         expect(() => {new LocalDate(1970, 2, 30);}).to.throw(Error);
         expect(() => {new LocalDate(1970, 4, 31);}).to.throw(Error);
+        expect(() => {new LocalDate('1970', '4', '31');}).to.throw(Error);
     });
 
 });
