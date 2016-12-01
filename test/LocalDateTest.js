@@ -19,6 +19,7 @@ describe('Creating a LocalDate instance', () => {
         expect(new LocalDate(1970, 1, 1)).to.be.an.instanceOf(LocalDate);
         expect(new LocalDate(2016, 2, 29)).to.be.an.instanceOf(LocalDate);
     });
+    
 
     it('should fail with an AssertionError for invalid dates', () => {
         expect(() => {new LocalDate(1970, 1, -1);}).to.throw(Error);
@@ -28,7 +29,24 @@ describe('Creating a LocalDate instance', () => {
         expect(() => {new LocalDate(1970, 4, 31);}).to.throw(Error);
     });
 
+    describe('from strings', () => {
+        it('should create a LocalDate instance equal to one from numbers for a valid date', () => {
+            expect(new LocalDate('1970', '1', '1')).to.deep.equal(new LocalDate(1970, 1, 1));
+            expect(new LocalDate('2016', '2', '29')).to.deep.equal(new LocalDate(2016, 2, 29));
+        });
+        
+        it('should fail with an AssertionError for unparseable dates', () => {
+            expect(() => {new LocalDate('xxxx', '4', '31');}).to.throw(Error);
+            expect(() => {new LocalDate('1970', 'x', '30');}).to.throw(Error);
+            expect(() => {new LocalDate('1970', '4', 'xx');}).to.throw(Error);
+        });
+        
+        it('should fail with an AssertionError for invalid dates', () => {
+            expect(() => {new LocalDate('1970', '4', '31');}).to.throw(Error);
+        });
+    });
 });
+
 
 describe('Using a LocalDate instance', () => {
 
