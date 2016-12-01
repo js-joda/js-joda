@@ -6,6 +6,7 @@ Changelog
 ### Bugfixes
 
  * Improve LocalDateTime.toInstant error handling
+ * Improve validation of LocalDate parameter values when passed as Strings
  
 ### 1.1.14
 
