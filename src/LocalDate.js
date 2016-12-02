@@ -282,10 +282,10 @@ export class LocalDate extends ChronoLocalDate{
         if (month instanceof Month) {
             month = month.value();
         }
-        LocalDate._validate(year, month, dayOfMonth);
         this._year = MathUtil.safeZero(year);
         this._month = MathUtil.safeZero(month);
         this._day = MathUtil.safeZero(dayOfMonth);
+        LocalDate._validate(this._year, this._month, this._day);
     }
 
 
@@ -304,9 +304,6 @@ export class LocalDate extends ChronoLocalDate{
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         
         if (dayOfMonth > 28) {
-            if(typeof month === 'string'){
-                month = parseInt(month);
-            }
             dom = 31;
             switch (month) {
                 case 2:
