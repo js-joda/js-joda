@@ -21,7 +21,30 @@ import {IllegalArgumentException, NullPointerException, UnsupportedTemporalTypeE
 describe('js-joda LocalTime', () => {
     const testTime = new LocalTime(1, 1, 1, 1);
     const testTimeZero = new LocalTime(0, 0, 0, 0);
-    
+
+    describe('of factory', () => {
+        it('should create a LocalTime instance for a valid time', () => {
+            expect(LocalTime.of(12, 0, 12)).to.be.an.instanceOf(LocalTime);
+            expect(LocalTime.of(12, 0, 12)).to.eql(LocalTime.parse('12:00:12'));
+            expect(LocalTime.of(23, 59, 59)).to.eql(LocalTime.parse('23:59:59'));
+        });
+
+        it('should create a LocalTime instance for a valid time of sting values', () => {
+            expect(LocalTime.of('12', '0', '12')).to.be.an.instanceOf(LocalTime);
+            expect(LocalTime.of('12', '0', '12')).to.eql(LocalTime.parse('12:00:12'));
+            expect(LocalTime.of('23', '59', '59')).to.eql(LocalTime.parse('23:59:59'));
+        });
+
+        it('should fail for a invalid times', () => {
+            expect(() => LocalTime.of('12', '0', '60')).to.throw(Error);
+            expect(() => LocalTime.of(12, 0, 60)).to.throw(Error);
+            expect(() => LocalTime.of('24', '0', '0')).to.throw(Error);
+            expect(() => LocalTime.of(24, 0, 0)).to.throw(Error);
+            expect(() => LocalTime.of('23', '60', '0')).to.throw(Error);
+            expect(() => LocalTime.of(23, 60, 0)).to.throw(Error);
+        });
+    });
+
     describe('isSupported', () => {
         
         it('should return true for supported ChronoUnits', () => {

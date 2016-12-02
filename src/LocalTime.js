@@ -273,14 +273,18 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      */
     constructor(hour=0, minute=0, second=0, nanoOfSecond=0) {
         super();
-        LocalTime._validate(hour, minute, second, nanoOfSecond);
-        if ((minute | second | nanoOfSecond) === 0) {
-            return LocalTime.HOURS[hour];
+        const _hour = MathUtil.safeZero(hour);
+        const _minute = MathUtil.safeZero(minute);
+        const _second = MathUtil.safeZero(second);
+        const _nanoOfSecond = MathUtil.safeZero(nanoOfSecond);
+        LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
+        if ((_minute | _second | _nanoOfSecond) === 0) {
+            return LocalTime.HOURS[_hour];
         }
-        this._hour = hour;
-        this._minute = minute;
-        this._second = second;
-        this._nano = nanoOfSecond;
+        this._hour = _hour;
+        this._minute = _minute;
+        this._second = _second;
+        this._nano = _nanoOfSecond;
     }
 
     static _validate(hour, minute, second, nanoOfSecond){
