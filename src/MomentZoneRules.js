@@ -1,4 +1,12 @@
-import { ZoneOffset, ZoneRules } from 'js-joda';
+/*
+ * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {
+    ZoneId, ZoneOffset, ZoneRules
+} from 'js-joda';
 
 export class MomentZoneRules extends ZoneRules{
     constructor(tzdbInfo){
@@ -29,9 +37,7 @@ export class MomentZoneRules extends ZoneRules{
      */
     offsetOfInstant(instant){
         let epochMilli = instant.toEpochMilli();
-
-        let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
-        return ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index]*-60));
+        return this.offsetOfEpochMilli(epochMilli);
     }
 
     /**
@@ -44,7 +50,8 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfEpochMilli(epochMilli){
-        tbc('ZoneRules.offsetOfEpochMilli');
+        let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
+        return ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index]*-60));
     }
 
 
@@ -77,7 +84,10 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the best available offset for the local date-time, not null
      */
     offsetOfLocalDateTime(localDateTime){
-        tbc('ZoneRules.offsetLocalDateTime');
+        // FIXME this is wrong, just a quick cut through.
+        // It's just working with about one day distance to the next dst
+        let epochMilli = localDateTime.toEpochSecond(ZoneId.UTC) * 1000;
+        return this.offsetOfEpochMilli(epochMilli);
     }
 
     /**
@@ -123,7 +133,9 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset[]} the list of valid offsets, may be immutable, not null
      */
     validOffsets(localDateTime){
-        tbc('ZoneRules.validOffsets');
+        // FIXME just a short cut;
+        const offset = this.offsetOfLocalDateTime(localDateTime);
+        return [offset];
     }
 
     /**
@@ -161,7 +173,8 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffsetTransition} the offset transition, null if the local date-time is not in transition
      */
     transition(localDateTime){
-        tbc('ZoneRules.transition');
+        // FIXME just a shortcut;
+        return null;
     }
 
     //-----------------------------------------------------------------------
@@ -178,7 +191,8 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the standard offset, not null
      */
     standardOffset(instant){
-        tbc('ZoneRules.standardOffset');
+        // FIXME just a shortcut
+        return this.offsetOfInstant(instant);
     }
 
     /**
@@ -231,7 +245,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {boolean} true if the offset date-time is valid for these rules
      */
     isValidOffset(localDateTime, offset){
-        tbc('ZoneRules.isValidOffset');
+        return this.offsetOfLocalDateTime(localDateTime).equals(offset);
     }
 
     //-----------------------------------------------------------------------
