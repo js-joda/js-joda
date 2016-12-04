@@ -3,9 +3,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MomentZoneRulesProvider} from './MomentZoneRulesProvider';
+import { plug as _plug } from './plug';
 
-export default function(jsJoda) {
-    jsJoda.ZoneRulesProvider = MomentZoneRulesProvider;
-    return jsJoda;
-}
+export const plug = _plug;
+export default plug;

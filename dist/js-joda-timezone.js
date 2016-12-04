@@ -12,7 +12,7 @@
 		exports["JSJoda"] = factory(require("js-joda"));
 	else
 		root["JSJoda"] = factory(root["JSJoda"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,13 +62,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.plug = undefined;
 
-	exports.default = function (jsJoda) {
-	    jsJoda.ZoneRulesProvider = _MomentZoneRulesProvider.MomentZoneRulesProvider;
-	    return jsJoda;
-	};
+	var _plug2 = __webpack_require__(1);
 
-	var _MomentZoneRulesProvider = __webpack_require__(1);
+	var plug = exports.plug = _plug2.plug; /*
+	                                        * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                        */
+
+	exports.default = plug;
 
 /***/ },
 /* 1 */
@@ -77,17 +80,39 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.plug = plug;
+
+	var _MomentZoneRulesProvider = __webpack_require__(2);
+
+	function plug(jsJoda) {
+	  jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
+	  jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
+	  return jsJoda;
+	} /*
+	   * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	   */
+
+	exports.default = plug;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
 	exports.MomentZoneRulesProvider = undefined;
 
-	var _latest = __webpack_require__(2);
+	var _latest = __webpack_require__(3);
 
 	var _latest2 = _interopRequireDefault(_latest);
 
-	var _jsJoda = __webpack_require__(3);
+	var _jsJoda = __webpack_require__(4);
 
-	var _MomentZoneRules = __webpack_require__(4);
+	var _MomentZoneRules = __webpack_require__(5);
 
-	var _unpack = __webpack_require__(5);
+	var _unpack = __webpack_require__(6);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -95,7 +120,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 	var TZDB_VERSION = null;
 	var AVAILABLE_ZONE_IDS = [];
@@ -114,7 +143,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MomentZoneRulesProvider.getRules = function getRules(zoneId) {
 	        var tzdbZoneInfo = zones[links[zoneId]];
-	        return new _MomentZoneRules.MomentZoneRules(zoneId, tzdbZoneInfo);
+	        if (tzdbZoneInfo == null) {
+	            throw new _jsJoda.DateTimeException('Unknown time-zone ID: ' + zoneId);
+	        }
+	        return new _MomentZoneRules.MomentZoneRules(tzdbZoneInfo);
 	    };
 
 	    MomentZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
@@ -174,7 +206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	MomentZoneRulesProvider.loadData(_latest2.default);
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -776,13 +808,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -790,61 +822,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.MomentZoneRules = undefined;
 
-	var _jsJoda = __webpack_require__(3);
+	var _jsJoda = __webpack_require__(4);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 	var MomentZoneRules = exports.MomentZoneRules = function (_ZoneRules) {
 	    _inherits(MomentZoneRules, _ZoneRules);
 
-	    function MomentZoneRules(zoneId, tzdbInfo) {
+	    function MomentZoneRules(tzdbInfo) {
 	        _classCallCheck(this, MomentZoneRules);
 
 	        var _this = _possibleConstructorReturn(this, _ZoneRules.call(this));
 
-	        _this._zoneId = zoneId;
 	        _this._tzdbInfo = tzdbInfo;
 	        return _this;
 	    }
 
 	    MomentZoneRules.prototype.isFixedOffset = function isFixedOffset() {
-	        return false;
-	    };
-
-	    MomentZoneRules.prototype.offset = function offset(instantOrLocalDateTime) {
-	        if (instantOrLocalDateTime instanceof _jsJoda.Instant) {
-	            return this.offsetOfInstant(instantOrLocalDateTime);
-	        } else {
-	            return this.offsetOfLocalDateTime(instantOrLocalDateTime);
-	        }
+	        return this._tzdbInfo.offsets.length === 1;
 	    };
 
 	    MomentZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
-	        tbc('ZoneRules.offsetInstant');
+	        var epochMilli = instant.toEpochMilli();
+	        return this.offsetOfEpochMilli(epochMilli);
 	    };
 
 	    MomentZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
-	        tbc('ZoneRules.offsetOfEpochMilli');
+	        var index = binarySearch(this._tzdbInfo.untils, epochMilli);
+	        return _jsJoda.ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index] * -60));
 	    };
 
 	    MomentZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-	        tbc('ZoneRules.offsetLocalDateTime');
+	        var epochMilli = localDateTime.toEpochSecond(_jsJoda.ZoneId.UTC) * 1000;
+	        return this.offsetOfEpochMilli(epochMilli);
 	    };
 
 	    MomentZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
-	        tbc('ZoneRules.validOffsets');
+	        var offset = this.offsetOfLocalDateTime(localDateTime);
+	        return [offset];
 	    };
 
 	    MomentZoneRules.prototype.transition = function transition(localDateTime) {
-	        tbc('ZoneRules.transition');
+	        return null;
 	    };
 
 	    MomentZoneRules.prototype.standardOffset = function standardOffset(instant) {
-	        tbc('ZoneRules.standardOffset');
+	        return this.offsetOfInstant(instant);
 	    };
 
 	    MomentZoneRules.prototype.daylightSavings = function daylightSavings(instant) {
@@ -856,7 +887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    MomentZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
-	        tbc('ZoneRules.isValidOffset');
+	        return this.offsetOfLocalDateTime(localDateTime).equals(offset);
 	    };
 
 	    MomentZoneRules.prototype.nextTransition = function nextTransition(instant) {
@@ -880,24 +911,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return true;
 	        }
 	        if (other instanceof MomentZoneRules) {
-	            return this._zoneId === other._zoneId;
+	            return this._tzdbInfo === other._tzdbInfo;
 	        }
 	        return false;
 	    };
 
 	    MomentZoneRules.prototype.toString = function toString() {
-	        return this._zoneId;
+	        return this._tzdbInfo.name;
 	    };
 
 	    return MomentZoneRules;
 	}(_jsJoda.ZoneRules);
+
+	function roundDown(r) {
+	    if (r < 0) {
+	        return Math.ceil(r);
+	    } else {
+	        return Math.floor(r);
+	    }
+	}
+
+	function binarySearch(array, value) {
+	    var hi = array.length - 1,
+	        lo = -1,
+	        mid = void 0;
+	    while (hi - lo > 1) {
+	        if (array[mid = hi + lo >> 1] <= value) {
+	            lo = mid;
+	        } else {
+	            hi = mid;
+	        }
+	    }
+	    return hi;
+	}
 
 	function tbc(msg) {
 	    throw new Error('not yet implemented: ' + msg);
 	}
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	'use strict';

@@ -3,14 +3,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { ZoneId, ZoneRegion} from 'js-joda';
+import { ZoneRulesProvider } from 'js-joda';
 
-import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
+import plug from '../src/plug';
 
-// FIXME
-ZoneId.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;
-ZoneRegion.ofId = (zoneId) => {
-    let rules = MomentZoneRulesProvider.getRules(zoneId);
-    return new ZoneRegion(zoneId, rules);
-
-}
+plug({ ZoneRulesProvider });

@@ -4,6 +4,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import { expect } from "chai";
+
 import {
     LocalDateTime, ZoneId, ZoneOffset
 } from 'js-joda';
@@ -17,6 +19,23 @@ describe('MomentZoneRules', () => {
     const OFFSET_ZERO = ZoneOffset.ofHours(0);
     const OFFSET_PONE = ZoneOffset.ofHours(1);
     const OFFSET_PTWO = ZoneOffset.ofHours(2);
+
+    context('ZoneId.getAvailableZoneIds', () => {
+        it('should list some common zone id\'s', () => {
+            const availableZoneIds = ZoneId.getAvailableZoneIds();
+
+            expect(availableZoneIds).contain('Australia/Darwin');
+            expect(availableZoneIds).contain('America/Argentina/Buenos_Aires');
+            expect(availableZoneIds).contain('America/New_York');
+            expect(availableZoneIds).contain('Europe/Paris');
+            expect(availableZoneIds).contain('Asia/Kolkata');
+            expect(availableZoneIds).contain('Asia/Ho_Chi_Minh');
+
+            expect(availableZoneIds).contain('Etc/GMT+0');
+            expect(availableZoneIds).contain('Etc/GMT-1');
+            expect(availableZoneIds).contain('Etc/GMT+10');
+        });
+    })
 
     context('getOffset of Instant', () => {
         const europeLondon = MomentZoneRulesProvider.getRules('Europe/London');
