@@ -7,6 +7,7 @@ Changelog
 
  * Improve LocalDateTime.toInstant error handling
  * Improve validation of LocalDate parameter values when passed as Strings
+ * First quick approach for parsing ZoneRegions
  
 ### 1.1.14
 

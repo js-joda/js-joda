@@ -11,14 +11,17 @@ import {expect} from 'chai';
 import {DateTimeException, IllegalArgumentException} from '../src/errors';
 
 import {DayOfWeek} from '../src/DayOfWeek';
+import {Instant} from '../src/Instant';
 import {LocalDate} from '../src/LocalDate';
 import {LocalDateTime} from '../src/LocalDateTime';
 import {LocalTime} from '../src/LocalTime';
 import {MathUtil} from '../src/MathUtil';
 import {Month} from '../src/Month';
 import {ZonedDateTime} from '../src/ZonedDateTime';
+import {ZoneId} from '../src/ZoneId';
 import {ZoneOffset} from '../src/ZoneOffset';
 import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
+import {ZoneRulesProvider} from '../src/zone/ZoneRulesProvider';
 
 import {ChronoField} from '../src/temporal/ChronoField';
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
@@ -603,6 +606,49 @@ describe('ZonedDateTime', () => {
             };
             expect(startZdt.until(endZdt, quarterDayUnit)).to.equal(2);
             expect(endZdt.until(startZdt, quarterDayUnit)).to.equal(-2);
+        });
+
+    });
+
+    describe('ZonedDateTime.parse ZoneRegionId', () => {
+        let getAvailableZoneIdsFn = null;
+        let getRulesFn = null;
+
+        before(() => {
+            getAvailableZoneIdsFn = ZoneRulesProvider.getAvailableZoneIds;
+            getRulesFn = ZoneRulesProvider.getRules;
+
+            ZoneRulesProvider.getAvailableZoneIds = () => {
+                return ['America/New_York', 'Europe/Berlin'];
+            };
+
+            ZoneRulesProvider.getRules = (zoneId) => {
+                switch (zoneId) {
+                    case 'America/New_York': return AMERICA_NEW_YORCK.rules();
+                    case 'Europe/Berlin': return EUROPE_BERLIN.rules();
+                    default: return null;
+                }
+
+            };
+        });
+
+        after(() => {
+            ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
+            ZoneRulesProvider.getRules = getRulesFn;
+        });
+
+        it('should parse iso 8601 date/ time with a zone region id America/New_York', () => {
+            const base = ZonedDateTime.parse('2008-01-01T00:00-05:00[America/New_York]');
+            assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
+            assertEquals(base.zone(), ZoneId.of('America/New_York'));
+            assertEquals(base.toInstant(), Instant.parse('2008-01-01T05:00:00Z'));
+        });
+
+        it('should parse iso 8601 date/ time with a zone region id Europe/Berlin', () => {
+            const base = ZonedDateTime.parse('2008-01-01T00:00+01:00[Europe/Berlin]');
+            assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
+            assertEquals(base.zone(), ZoneId.of('Europe/Berlin'));
+            assertEquals(base.toInstant(), Instant.parse('2007-12-31T23:00:00Z'));
         });
 
     });
