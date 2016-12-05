@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.15
+//! @version js-joda - 1.1.16
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -10145,20 +10145,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    ZoneIdMap.prototype._createMap = function _createMap(availableZoneIds) {
 	        var map = {};
-	        for (var _iterator = availableZoneIds, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-	            var _ref;
-
-	            if (_isArray) {
-	                if (_i >= _iterator.length) break;
-	                _ref = _iterator[_i++];
-	            } else {
-	                _i = _iterator.next();
-	                if (_i.done) break;
-	                _ref = _i.value;
-	            }
-
-	            var zoneId = _ref;
-
+	        for (var i = 0; i < availableZoneIds.length; i++) {
+	            var zoneId = availableZoneIds[i];
 	            map[zoneId] = true;
 	            this._setMinMax(zoneId);
 	        }
