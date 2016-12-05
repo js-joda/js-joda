@@ -1,12 +1,17 @@
 Changelog
 =========
 
-### 1.1.15 (next)
+### 1.1.16 (next)
+
+### 1.1.15
 
 ### Bugfixes
 
  * Improve LocalDateTime.toInstant error handling
  * Improve validation of LocalDate parameter values when passed as Strings
+ 
+### ianna tzdb
+
  * First quick approach for parsing ZoneRegions
  
 ### 1.1.14
