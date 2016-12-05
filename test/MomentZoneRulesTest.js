@@ -4,10 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
-    LocalDateTime, ZoneId, ZoneOffset
+    Instant, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset
 } from 'js-joda';
 
 import { assertEquals } from './testUtils';
@@ -35,7 +35,7 @@ describe('MomentZoneRules', () => {
             expect(availableZoneIds).contain('Etc/GMT-1');
             expect(availableZoneIds).contain('Etc/GMT+10');
         });
-    })
+    });
 
     context('getOffset of Instant', () => {
         const europeLondon = MomentZoneRulesProvider.getRules('Europe/London');
@@ -120,6 +120,22 @@ describe('MomentZoneRules', () => {
         });
     });
 
+    describe('ZonedDateTime.parse ZoneRegionId', () => {
+        it('should parse iso 8601 date/ time with a zone region id America/New_York', () => {
+            const base = ZonedDateTime.parse('2008-01-01T00:00-05:00[America/New_York]');
+            assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
+            assertEquals(base.zone(), ZoneId.of('America/New_York'));
+            assertEquals(base.toInstant(), Instant.parse('2008-01-01T05:00:00Z'));
+        });
+
+        it('should parse iso 8601 date/ time with a zone region id Europe/Berlin', () => {
+            const base = ZonedDateTime.parse('2008-01-01T00:00+01:00[Europe/Berlin]');
+            assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
+            assertEquals(base.zone(), ZoneId.of('Europe/Berlin'));
+            assertEquals(base.toInstant(), Instant.parse('2007-12-31T23:00:00Z'));
+        });
+
+    });
 
     function createInstant(year, month, day, hour, min, zoneOffset) {
         return LocalDateTime.of(year, month, day, hour, min, 0).toInstant(zoneOffset);

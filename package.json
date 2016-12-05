@@ -1,6 +1,6 @@
 {
   "name": "js-joda-timezone",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "bindings to the iana tzdb",
   "main": "dist/js-joda-timezone.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "phueper"
   ],
   "peerDependencies": {
-    "js-joda": "^1.1.14"
+    "js-joda": "^1.1.15"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -43,7 +43,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^2.0.1",
-    "js-joda": "^1.1.14",
+    "js-joda": "^1.1.15",
     "json-loader": "^0.5.4",
     "markdown-toc": "^0.13.0",
     "mocha": "^3.1.2",
