@@ -1,15 +1,9 @@
 Changelog
 =========
 
-### 1.1.17 (next)
+### 1.1.18 (next)
 
-### 1.1.16 
-
-#### Bugfixes
-
- * Fix for of loop for ie9
-
-### 1.1.15
+### 1.1.17
 
 #### Bugfixes
 
