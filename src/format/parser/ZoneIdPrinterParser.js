@@ -121,7 +121,7 @@ export class ZoneIdPrinterParser {
         while(parseLength <= maxParseLength) {
             const parsedZoneId = text.substr(position, parseLength);
             if(zoneIdMap.zoneIdMap[parsedZoneId] === true){
-                context.setParsedZone(ZoneRegion.of(parsedZoneId));
+                context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
                 return position + parseLength;
             }
             parseLength += 1;
