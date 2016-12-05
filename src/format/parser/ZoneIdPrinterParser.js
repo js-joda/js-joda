@@ -176,7 +176,8 @@ class ZoneIdMap {
 
     _createMap(availableZoneIds) {
         const map = {};
-        for(const zoneId of availableZoneIds){
+        for(let i = 0; i < availableZoneIds.length; i++){
+            const zoneId = availableZoneIds[i];
             map[zoneId] = true;
             this._setMinMax(zoneId);
         }
