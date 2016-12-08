@@ -42,13 +42,13 @@ describe('ZonedDateTime', () => {
     const LOCAL_DATE_IN_SUMMER = LocalDateTime.of(2016, 6, 30, 11, 30, 59, 500);
     const LOCAL_DATE_IN_WINTER = LocalDateTime.of(2016, 12, 21, 11, 30, 59, 500);
 
-    const SYSTEM_DEFAULT_ZONE = new SystemDefaultZoneId();
-    const FIXED_ZONE_00 = new ZoneOffset.ofHours(0);
-    const FIXED_ZONE_01 = new ZoneOffset.ofHours(1);
-    const FIXED_ZONE_02 = new ZoneOffset.ofHours(2);
-    const FIXED_ZONE_06 = new ZoneOffset.ofHours(6);
-    const FIXED_ZONE_M04 = new ZoneOffset.ofHours(-4);
-    const FIXED_ZONE_M05 = new ZoneOffset.ofHours(-5);
+    const SYSTEM_DEFAULT_ZONE = ZoneId.systemDefault();
+    const FIXED_ZONE_00 = ZoneOffset.ofHours(0);
+    const FIXED_ZONE_01 = ZoneOffset.ofHours(1);
+    const FIXED_ZONE_02 = ZoneOffset.ofHours(2);
+    const FIXED_ZONE_06 = ZoneOffset.ofHours(6);
+    const FIXED_ZONE_M04 = ZoneOffset.ofHours(-4);
+    const FIXED_ZONE_M05 = ZoneOffset.ofHours(-5);
     const EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
     const AMERICA_NEW_YORCK = new CurrentStandardZoneAmericaNew_York();
 
@@ -463,7 +463,7 @@ describe('ZonedDateTime', () => {
     });
 
     describe('getters', function () {
-        const zdt = new ZonedDateTime.ofStrict(LocalDate.of(2016, 9, 28).atStartOfDay(), FIXED_ZONE_02, EUROPE_BERLIN);
+        const zdt = ZonedDateTime.ofStrict(LocalDate.of(2016, 9, 28).atStartOfDay(), FIXED_ZONE_02, EUROPE_BERLIN);
 
         describe('isSupported()', function () {
 
