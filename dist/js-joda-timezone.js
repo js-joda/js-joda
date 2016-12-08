@@ -62,16 +62,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
-	exports.plug = undefined;
 
-	var _plug2 = __webpack_require__(1);
+	var _plug = __webpack_require__(1);
 
-	var plug = exports.plug = _plug2.plug; /*
-	                                        * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-	                                        * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                        */
+	var _plug2 = _interopRequireDefault(_plug);
 
-	exports.default = plug;
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _plug2.default; /*
+	                                   * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                   */
+
+	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
@@ -80,20 +83,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
-	exports.plug = plug;
 
-	var _MomentZoneRulesProvider = __webpack_require__(2);
-
-	function plug(jsJoda) {
+	exports.default = function (jsJoda) {
 	  jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
 	  jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
 	  return jsJoda;
-	} /*
-	   * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-	   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	   */
+	};
 
-	exports.default = plug;
+	var _MomentZoneRulesProvider = __webpack_require__(2);
+
+	/*
+	 * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	 */
+
+	module.exports = exports['default'];
 
 /***/ },
 /* 2 */
@@ -857,12 +861,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MomentZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
 	        var index = binarySearch(this._tzdbInfo.untils, epochMilli);
-	        return _jsJoda.ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index] * -60));
+	        return _jsJoda.ZoneOffset.ofTotalSeconds(-this._offsetByIndexInSeconds(index));
 	    };
 
 	    MomentZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-	        var epochMilli = localDateTime.toEpochSecond(_jsJoda.ZoneId.UTC) * 1000;
-	        return this.offsetOfEpochMilli(epochMilli);
+	        var utcEpochMilli = localDateTime.toEpochSecond(_jsJoda.ZoneId.UTC) * 1000;
+	        var index = binarySearch(this._tzdbInfo.untils, utcEpochMilli);
+	        var offsetSec = this._offsetByIndexInSeconds(index);
+	        var epochMilli = utcEpochMilli + offsetSec * 1000;
+
+	        var nextIndex = this._clipIndex(index + 1);
+	        var nextEpochMilliDst = this._tzdbInfo.untils[index];
+	        var prevIndex = this._clipIndex(index - 1);
+	        var prevEpochMilliDst = this._tzdbInfo.untils[prevIndex];
+	        if (epochMilli > nextEpochMilliDst) {
+	            offsetSec = this._offsetByIndexInSeconds(nextIndex);
+	        } else if (epochMilli < prevEpochMilliDst) {
+	            offsetSec = this._offsetByIndexInSeconds(prevIndex);
+	        }
+	        return _jsJoda.ZoneOffset.ofTotalSeconds(-offsetSec);
+	    };
+
+	    MomentZoneRules.prototype._clipIndex = function _clipIndex(index) {
+	        if (index < 0) {
+	            return 0;
+	        } else if (index >= this._tzdbInfo.offsets.length) {
+	            return this._tzdbInfo.offsets.length - 1;
+	        } else {
+	            return index;
+	        }
+	    };
+
+	    MomentZoneRules.prototype._offsetByIndexInSeconds = function _offsetByIndexInSeconds(index) {
+	        return roundDown(+this._tzdbInfo.offsets[index] * 60);
 	    };
 
 	    MomentZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {

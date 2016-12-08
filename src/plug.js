@@ -5,10 +5,8 @@
 
 import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
 
-export function plug(jsJoda) {
+export default function (jsJoda) {
     jsJoda.ZoneRulesProvider.getRules = MomentZoneRulesProvider.getRules;
     jsJoda.ZoneRulesProvider.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;
     return jsJoda;
 }
-
-export default plug;
