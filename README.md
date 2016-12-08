@@ -1,3 +1,3 @@
-# js-joda-timezone (work in progress)
+# js-joda-timezone (incomplete, untested, work in progress)
 
 bindings to the iana tzdb
