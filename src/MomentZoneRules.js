@@ -111,6 +111,7 @@ export class MomentZoneRules extends ZoneRules{
             return index;
         }
     }
+
     _offsetByIndexInSeconds(index){
         return roundDown(+this._tzdbInfo.offsets[index]*60);
     }
@@ -216,8 +217,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the standard offset, not null
      */
     standardOffset(instant){
-        // FIXME just a shortcut
-        return this.offsetOfInstant(instant);
+        notSupported('ZoneRules.standardOffset');
     }
 
     /**
@@ -234,12 +234,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {Duration} the difference between the standard and actual offset, not null
      */
     daylightSavings(instant){
-        tbc('ZoneRules.daylightSavings');
-        //    default {
-        //        ZoneOffset standardOffset = getStandardOffset(instant);
-        //        ZoneOffset actualOffset = getOffset(instant);
-        //        return actualOffset.toDuration().minus(standardOffset.toDuration()).normalized();
-        //    }
+        notSupported('ZoneRules.daylightSavings');
     }
 
     /**
@@ -252,10 +247,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {boolean} the standard offset, not null
      */
     isDaylightSavings(instant) {
-        tbc('ZoneRules.isDaylightSavings');
-        //    default {
-        //        return (getStandardOffset(instant).equals(getOffset(instant)) == false);
-        //    }
+        notSupported('ZoneRules.isDaylightSavings');
     }
 
     /**
@@ -270,6 +262,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {boolean} true if the offset date-time is valid for these rules
      */
     isValidOffset(localDateTime, offset){
+        // FIXME
         return this.offsetOfLocalDateTime(localDateTime).equals(offset);
     }
 
@@ -286,7 +279,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffsetTransition} the next transition after the specified instant, null if this is after the last transition
      */
     nextTransition(instant){
-        tbc('ZoneRules.nextTransition');
+        notSupported('ZoneRules.nextTransition');
     }
 
     /**
@@ -301,7 +294,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffsetTransition} the previous transition after the specified instant, null if this is before the first transition
      */
     previousTransition(instant){
-        tbc('ZoneRules.previousTransition');
+        notSupported('ZoneRules.previousTransition');
     }
 
     /**
@@ -317,7 +310,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffsetTransition[]} an immutable list of fully defined transitions, not null
      */
     transitions(){
-        tbc('ZoneRules.transitions');
+        notSupported('ZoneRules.transitions');
     }
 
     /**
@@ -342,7 +335,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffsetTransitionRule[]} an immutable list of transition rules, not null
      */
     transitionRules(){
-        tbc('ZoneRules.transitionRules');
+        notSupported('ZoneRules.transitionRules');
     }
 
     /**
@@ -391,6 +384,6 @@ function binarySearch(array, value) {
     return hi;
 }
 
-function tbc(msg){
-    throw new Error('not yet implemented: ' + msg);    
+function notSupported(msg){
+    throw new Error('not supported: ' + msg);
 }
