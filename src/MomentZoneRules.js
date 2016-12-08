@@ -51,7 +51,7 @@ export class MomentZoneRules extends ZoneRules{
      */
     offsetOfEpochMilli(epochMilli){
         let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
-        return ZoneOffset.ofTotalSeconds(roundDown(this._tzdbInfo.offsets[index]*-60));
+        return ZoneOffset.ofTotalSeconds(-this._offsetByIndexInSeconds(index));
     }
 
 
@@ -84,10 +84,35 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the best available offset for the local date-time, not null
      */
     offsetOfLocalDateTime(localDateTime){
-        // FIXME this is wrong, just a quick cut through.
-        // It's just working with about one day distance to the next dst
-        let epochMilli = localDateTime.toEpochSecond(ZoneId.UTC) * 1000;
-        return this.offsetOfEpochMilli(epochMilli);
+        // FIXME work in progress
+        const utcEpochMilli = localDateTime.toEpochSecond(ZoneId.UTC) * 1000;
+        const index  = binarySearch(this._tzdbInfo.untils, utcEpochMilli);
+        let offsetSec = this._offsetByIndexInSeconds(index);
+        const epochMilli = utcEpochMilli + offsetSec * 1000;
+
+        const nextIndex = this._clipIndex(index + 1);
+        const nextEpochMilliDst = this._tzdbInfo.untils[index];
+        const prevIndex = this._clipIndex(index - 1);
+        const prevEpochMilliDst = this._tzdbInfo.untils[prevIndex];
+        if(epochMilli > nextEpochMilliDst) {
+            offsetSec = this._offsetByIndexInSeconds(nextIndex);
+        } else if (epochMilli < prevEpochMilliDst) {
+            offsetSec = this._offsetByIndexInSeconds(prevIndex);
+        }
+        return ZoneOffset.ofTotalSeconds(-offsetSec);
+    }
+
+    _clipIndex(index) {
+        if (index < 0) {
+            return 0;
+        } else if (index >= this._tzdbInfo.offsets.length) {
+            return this._tzdbInfo.offsets.length - 1;
+        } else {
+            return index;
+        }
+    }
+    _offsetByIndexInSeconds(index){
+        return roundDown(+this._tzdbInfo.offsets[index]*60);
     }
 
     /**
