@@ -20,7 +20,6 @@ import {Month} from '../src/Month';
 import {ZonedDateTime} from '../src/ZonedDateTime';
 import {ZoneId} from '../src/ZoneId';
 import {ZoneOffset} from '../src/ZoneOffset';
-import {SystemDefaultZoneId} from '../src/zone/SystemDefaultZoneId';
 import {ZoneRulesProvider} from '../src/zone/ZoneRulesProvider';
 
 import {ChronoField} from '../src/temporal/ChronoField';
