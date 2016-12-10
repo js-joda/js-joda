@@ -54,10 +54,10 @@ The package is incomplete, has pure test coverage and work is in progress.
 
 * ZoneDateTime methods should work correctly, except for calculations during a daylight saving 
   transition
-* LocalDate.atStartOfDay(zone) will return wrong date if the start of day is within a daylight saving 
+* LocalDate.atStartOfDay(zone) might return wrong date if the start of day is within a daylight saving 
   transition. (very rare case like at gaza)
-* ZoneRules only implement methods that are required by js-joda core
-* other ZoneRules methods are partly complete 
+* ZoneRules only implement methods that are required by js-joda core, there is still functionality missing
+* other ZoneRules methods (like standardOffset) are not supported  
 
 ## License
 
