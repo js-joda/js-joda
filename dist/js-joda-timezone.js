@@ -9,9 +9,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["js-joda"], factory);
 	else if(typeof exports === 'object')
-		exports["JSJoda"] = factory(require("js-joda"));
+		exports["JSJodaTimezone"] = factory(require("js-joda"));
 	else
-		root["JSJoda"] = factory(root["JSJoda"]);
+		root["JSJodaTimezone"] = factory(root["JSJoda"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
