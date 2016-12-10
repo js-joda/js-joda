@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 0.0.3
+//! @version js-joda-timezone - 0.0.4
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @copyright (c) 2016, Tim Wood, github.com/moment/moment-timezone
@@ -906,15 +906,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    MomentZoneRules.prototype.standardOffset = function standardOffset(instant) {
-	        return this.offsetOfInstant(instant);
+	        notSupported('ZoneRules.standardOffset');
 	    };
 
 	    MomentZoneRules.prototype.daylightSavings = function daylightSavings(instant) {
-	        tbc('ZoneRules.daylightSavings');
+	        notSupported('ZoneRules.daylightSavings');
 	    };
 
 	    MomentZoneRules.prototype.isDaylightSavings = function isDaylightSavings(instant) {
-	        tbc('ZoneRules.isDaylightSavings');
+	        notSupported('ZoneRules.isDaylightSavings');
 	    };
 
 	    MomentZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
@@ -922,19 +922,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    MomentZoneRules.prototype.nextTransition = function nextTransition(instant) {
-	        tbc('ZoneRules.nextTransition');
+	        notSupported('ZoneRules.nextTransition');
 	    };
 
 	    MomentZoneRules.prototype.previousTransition = function previousTransition(instant) {
-	        tbc('ZoneRules.previousTransition');
+	        notSupported('ZoneRules.previousTransition');
 	    };
 
 	    MomentZoneRules.prototype.transitions = function transitions() {
-	        tbc('ZoneRules.transitions');
+	        notSupported('ZoneRules.transitions');
 	    };
 
 	    MomentZoneRules.prototype.transitionRules = function transitionRules() {
-	        tbc('ZoneRules.transitionRules');
+	        notSupported('ZoneRules.transitionRules');
 	    };
 
 	    MomentZoneRules.prototype.equals = function equals(other) {
@@ -976,8 +976,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return hi;
 	}
 
-	function tbc(msg) {
-	    throw new Error('not yet implemented: ' + msg);
+	function notSupported(msg) {
+	    throw new Error('not supported: ' + msg);
 	}
 
 /***/ },
