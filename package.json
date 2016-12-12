@@ -1,7 +1,7 @@
 {
   "name": "js-joda-timezone",
   "version": "0.0.4",
-  "description": "bindings to the iana tzdb",
+  "description": "iana tzdb timezone bindings for js-joda",
   "main": "dist/js-joda-timezone.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js",
