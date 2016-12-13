@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 0.0.4
+//! @version js-joda-timezone - 0.0.5
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @copyright (c) 2016, Tim Wood, github.com/moment/moment-timezone
