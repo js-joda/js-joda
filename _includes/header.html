@@ -7,10 +7,14 @@
         <link rel="stylesheet" href="bundle.css">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
         <script src="//cdn.jsdelivr.net/js-joda/1.1.17/js-joda.js"></script>
+        <script src="//cdn.jsdelivr.net/js-joda-timezone/0.0.5/js-joda-timezone.js"></script>
         <script>
+            // use js-joda-timezone
+            JSJoda.use(JSJodaTimezone);
             // copy all js-joda classes to the global scope
             for(var prop in JSJoda) { window[prop] = JSJoda[prop]; }
             console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
+            console.log("and '"+ LocalDateTime.now().atZone(ZoneId.of('Europe/Berlin')).toString() + "' berlin time");
         </script>
     </head>
     <body>
