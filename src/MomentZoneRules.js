@@ -198,6 +198,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the offset transition, null if the local date-time is not in transition
      */
+    // eslint-disable-next-line no-unused-vars
     transition(localDateTime){
         // FIXME just a shortcut;
         return null;
@@ -216,6 +217,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the standard offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     standardOffset(instant){
         notSupported('ZoneRules.standardOffset');
     }
@@ -233,6 +235,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {Duration} the difference between the standard and actual offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     daylightSavings(instant){
         notSupported('ZoneRules.daylightSavings');
     }
@@ -246,6 +249,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {boolean} the standard offset, not null
      */
+    // eslint-disable-next-line no-unused-vars
     isDaylightSavings(instant) {
         notSupported('ZoneRules.isDaylightSavings');
     }
@@ -278,6 +282,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the next transition after the specified instant, null if this is after the last transition
      */
+    // eslint-disable-next-line no-unused-vars
     nextTransition(instant){
         notSupported('ZoneRules.nextTransition');
     }
@@ -293,6 +298,7 @@ export class MomentZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the previous transition after the specified instant, null if this is before the first transition
      */
+    // eslint-disable-next-line no-unused-vars
     previousTransition(instant){
         notSupported('ZoneRules.previousTransition');
     }
