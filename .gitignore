@@ -9,6 +9,7 @@ build
 tmp
 .nyc_output
 yarn.lock
+sauce_connect.log
 
 # Ide
 .idea

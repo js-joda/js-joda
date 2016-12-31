@@ -1,0 +1,60 @@
+language: node_js
+os:
+  - linux
+node_js:
+  - "--lts" # use latest stable node version
+# to speed up/parallelize the build, we use the travis matrix feature
+# - CI_STEP=build will run the (webpack) build and doc build
+# - CI_STEP=node will run the mocha/typescript (node local) tests as well as providing testcoverage
+# - CI_STEP=karma will run the karma tests with the travis local browsers (Firefox and PhantomJS)
+# - CI_STEP=saucelabs will run the karma tests with the saucelabs browsers
+env:
+  - CI_STEP=build
+  - CI_STEP=node
+  - CI_STEP=karma
+  - CI_STEP=saucelabs
+before_script:
+  # for karma tests, start xvfb and give it some time to start
+  - if [[ "$CI_STEP" == "karma" ]]; then export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; sleep 3; fi
+script:
+  - #export
+  # CI_STEP = build steps to run
+  - if [[ "$CI_STEP" == "build" ]]; then
+      (
+      set -evx;
+      npm run build-dist;
+      npm run build-esdoc;
+      npm run lint;
+      )
+    fi
+  # CI_STEP = node steps to run
+  - if [[ "$CI_STEP" == "node" ]]; then
+      (
+      set -evx;
+      npm run test;
+      npm run test-coverage;
+      )
+    fi
+  # CI_STEP = karma steps to run
+  - if [[ "$CI_STEP" == "karma" ]]; then
+      (
+      set -evx;
+      npm run test-browser -- --browsers Firefox,PhantomJS --browserNoActivityTimeout 20000;
+      )
+    fi
+  # CI_STEP = saucelabs steps to run,
+  # needs SAUCE_ACCESS_KEY to be set to authenticate to SauceLabs
+  - if [[ "$CI_STEP" == "saucelabs" ]] && [[ "x$SAUCE_ACCESS_KEY" != "x" ]]; then
+      (
+      set -evx;
+      npm run test-saucelabs;
+      )
+    fi
+
+after_script:
+  - cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
+notifications:
+  slack:
+    rooms:
+      - js-joda:WtVY1EJYfAiiDW3QMnAWJZe2#travis
