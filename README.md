@@ -2,11 +2,11 @@
 
 [![npm version](https://badge.fury.io/js/js-joda-timezone.svg)](https://badge.fury.io/js/js-joda-timezone)
 [![Build Status](https://travis-ci.org/js-joda/js-joda-timezone.svg)](https://travis-ci.org/js-joda/js-joda-timezone)
-![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda-timezone)
+![Sauce Test Status](https://saucelabs.com/buildstatus/pithu)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda-timezone/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda-timezone?branch=master)
 [![Tested node version](https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat)]()
 
-![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda-timezone.svg)
+![Sauce Test Status](https://saucelabs.com/browser-matrix/pithu.svg)
 
 ## Motivation
 
