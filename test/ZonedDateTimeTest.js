@@ -654,6 +654,35 @@ describe('ZonedDateTime', () => {
             assertEquals(base.toInstant(), Instant.parse('2007-12-31T23:00:00Z'));
         });
 
+        function setZoneIdsEdgeCases() {
+            ZoneRulesProvider.getAvailableZoneIds = () => {
+                return ['foo/bar', 'foo/bar/foo', 'foo/foo'];
+            };
+
+            ZoneRulesProvider.getRules = (zoneId) => {
+                switch (zoneId) {
+                    case 'foo/bar':
+                    case 'foo/bar/foo':
+                    case 'foo/foo':
+                        return FIXED_ZONE_00.rules();
+                    default: return null;
+                }
+
+            };
+        }
+
+        it('should parse zoneids edge cases, zoneid is substring of other zoneid', () => {
+            setZoneIdsEdgeCases();
+            let zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar]');
+            assertEquals(zdt.zone().toString(), 'foo/bar');
+            zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/foo]');
+            assertEquals(zdt.zone().toString(), 'foo/foo');
+            // FIXME
+            // zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar/foo]');
+            // assertEquals(zdt.zone().toString(), 'foo/bar/foo');
+        });
+
+
     });
 
 });
