@@ -677,9 +677,8 @@ describe('ZonedDateTime', () => {
             assertEquals(zdt.zone().toString(), 'foo/bar');
             zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/foo]');
             assertEquals(zdt.zone().toString(), 'foo/foo');
-            // FIXME
-            // zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar/foo]');
-            // assertEquals(zdt.zone().toString(), 'foo/bar/foo');
+            zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar/foo]');
+            assertEquals(zdt.zone().toString(), 'foo/bar/foo');
         });
 
 
