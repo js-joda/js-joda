@@ -123,9 +123,6 @@ export class ZoneIdPrinterParser {
             const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
             treeMap = treeMap.get(parsedSubZoneId);
             if (treeMap != null && treeMap.isLeaf) {
-                if(parseLength === treeMap.length){
-                    break;
-                }
                 parsedZoneId = parsedSubZoneId;
                 parseLength = treeMap.length;
             }
