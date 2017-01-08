@@ -4,8 +4,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import latest from 'moment-timezone/data/packed/latest';
-
 import {
     DateTimeException,
     ZoneRulesProvider,
@@ -71,9 +69,5 @@ export class MomentZoneRulesProvider extends ZoneRulesProvider {
             AVAILABLE_ZONE_IDS.push(link[1]);
             links[link[1]] = link[0];
         }
-
-        // console.log(TZDB_VERSION, AVAILABLE_ZONE_IDS, zones, links);
     }
 }
-
-MomentZoneRulesProvider.loadData(latest);
