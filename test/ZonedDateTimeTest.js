@@ -414,7 +414,7 @@ describe('ZonedDateTime', () => {
             it('should fail for not equal zone offsets', function () {
                 expect(()=>{
                     ZonedDateTime.ofLenient(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_02);
-                }).to.throw(IllegalArgumentException);                
+                }).to.throw(IllegalArgumentException);
             });
 
         });
@@ -616,7 +616,14 @@ describe('ZonedDateTime', () => {
         before(() => {
             getAvailableZoneIdsFn = ZoneRulesProvider.getAvailableZoneIds;
             getRulesFn = ZoneRulesProvider.getRules;
+        });
 
+        after(() => {
+            ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
+            ZoneRulesProvider.getRules = getRulesFn;
+        });
+
+        function setAmericaBerlinZoneRules() {
             ZoneRulesProvider.getAvailableZoneIds = () => {
                 return ['America/New_York', 'Europe/Berlin'];
             };
@@ -629,14 +636,10 @@ describe('ZonedDateTime', () => {
                 }
 
             };
-        });
-
-        after(() => {
-            ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
-            ZoneRulesProvider.getRules = getRulesFn;
-        });
+        }
 
         it('should parse iso 8601 date/ time with a zone region id America/New_York', () => {
+            setAmericaBerlinZoneRules() ;
             const base = ZonedDateTime.parse('2008-01-01T00:00-05:00[America/New_York]');
             assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
             assertEquals(base.zone(), ZoneId.of('America/New_York'));
@@ -644,11 +647,40 @@ describe('ZonedDateTime', () => {
         });
 
         it('should parse iso 8601 date/ time with a zone region id Europe/Berlin', () => {
+            setAmericaBerlinZoneRules();
             const base = ZonedDateTime.parse('2008-01-01T00:00+01:00[Europe/Berlin]');
             assertEquals(base.toLocalDateTime(), LocalDateTime.of(2008, 1, 1, 0, 0));
             assertEquals(base.zone(), ZoneId.of('Europe/Berlin'));
             assertEquals(base.toInstant(), Instant.parse('2007-12-31T23:00:00Z'));
         });
+
+        function setZoneIdsEdgeCases() {
+            ZoneRulesProvider.getAvailableZoneIds = () => {
+                return ['foo/bar', 'foo/bar/foo', 'foo/foo'];
+            };
+
+            ZoneRulesProvider.getRules = (zoneId) => {
+                switch (zoneId) {
+                    case 'foo/bar':
+                    case 'foo/bar/foo':
+                    case 'foo/foo':
+                        return FIXED_ZONE_00.rules();
+                    default: return null;
+                }
+
+            };
+        }
+
+        it('should parse zoneids edge cases, zoneid is substring of other zoneid', () => {
+            setZoneIdsEdgeCases();
+            let zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar]');
+            assertEquals(zdt.zone().toString(), 'foo/bar');
+            zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/foo]');
+            assertEquals(zdt.zone().toString(), 'foo/foo');
+            zdt = ZonedDateTime.parse('2008-01-01T00:00+01:00[foo/bar/foo]');
+            assertEquals(zdt.zone().toString(), 'foo/bar/foo');
+        });
+
 
     });
 

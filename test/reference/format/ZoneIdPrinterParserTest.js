@@ -1,6 +1,6 @@
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
@@ -14,6 +14,7 @@ import {ZoneOffset} from '../../../src/ZoneOffset';
 import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
 import {ParsePosition} from '../../../src/format/ParsePosition';
 import {TemporalQueries} from '../../../src/temporal/TemporalQueries';
+import { ZoneRulesProvider } from '../../../src/zone/ZoneRulesProvider';
 
 describe('org.threeten.bp.format.TestZoneIdParser', () => {
     var OFFSET_UTC = ZoneOffset.UTC;
@@ -31,9 +32,9 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
         builder = new DateTimeFormatterBuilder();
         pos = new ParsePosition(0);
     }
-    
+
     describe('print', function () {
-        
+
         function data_print() {
             return [
                 [DT_2012_06_30_12_30_40, OFFSET_UTC, 'Z'],
@@ -52,16 +53,43 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
         });
 
     });
-    
+
     describe('parse', function () {
-        
+
+        let getAvailableZoneIdsFn = null;
+        let getRulesFn = null;
+
+        before(() => {
+            getAvailableZoneIdsFn = ZoneRulesProvider.getAvailableZoneIds;
+            getRulesFn = ZoneRulesProvider.getRules;
+
+            ZoneRulesProvider.getAvailableZoneIds = () => {
+                return ['America/New_York', 'Europe/London'];
+            };
+
+            ZoneRulesProvider.getRules = (zoneId) => {
+                switch (zoneId) {
+                    case 'America/New_York':
+                    case 'Europe/London':
+                        return ZoneOffset.ofHours(0).rules();
+                    default: return null;
+                }
+
+            };
+        });
+
+        after(() => {
+            ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
+            ZoneRulesProvider.getRules = getRulesFn;
+        });
+
         function data_parseSuccess() {
             return [
                     ['Z', 1, -1, ZoneId.of('Z')],
                     ['UTC', 3, -1, ZoneId.of('UTC')],
                     ['UT', 2, -1, ZoneId.of('UT')],
                     ['GMT', 3, -1, ZoneId.of('GMT')],
-    
+
                     ['+00:00', 6, -1, ZoneOffset.UTC],
                     ['UTC+00:00', 9, -1, ZoneId.of('UTC')],
                     ['UT+00:00', 8, -1, ZoneId.of('UT')],
@@ -70,7 +98,7 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
                     ['UTC-00:00', 9, -1, ZoneId.of('UTC')],
                     ['UT-00:00', 8, -1, ZoneId.of('UT')],
                     ['GMT-00:00', 9, -1, ZoneId.of('GMT')],
-    
+
                     ['+01:30', 6, -1, ZoneOffset.ofHoursMinutes(1, 30)],
                     ['UTC+01:30', 9, -1, ZoneId.of('UTC+01:30')],
                     ['UT+02:30', 8, -1, ZoneId.of('UT+02:30')],
@@ -79,23 +107,23 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
                     ['UTC-01:30', 9, -1, ZoneId.of('UTC-01:30')],
                     ['UT-02:30', 8, -1, ZoneId.of('UT-02:30')],
                     ['GMT-03:30', 9, -1, ZoneId.of('GMT-03:30')],
-    
+
                     // fallback to UTC
                     ['UTC-01:WW', 3, -1, ZoneId.of('UTC')],
                     ['UT-02:WW', 2, -1, ZoneId.of('UT')],
                     ['GMT-03:WW', 3, -1, ZoneId.of('GMT')],
                     ['Z0', 1, -1, ZoneOffset.UTC],
                     ['UTC1', 3, -1, ZoneId.of('UTC')],
-    
+
                     // Z not parsed as zero
                     ['UTCZ', 3, -1, ZoneId.of('UTC')],
                     ['UTZ', 2, -1, ZoneId.of('UT')],
                     ['GMTZ', 3, -1, ZoneId.of('GMT')],
-    
+
                     // 0 not parsed
                     ['UTC0', 3, -1, ZoneId.of('UTC')],
                     ['UT0', 2, -1, ZoneId.of('UT')],
-    
+
                     // fail to parse
                     ['', 0, 0, null],
                     ['A', 0, 0, null],
@@ -103,12 +131,12 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
                     ['GMA', 0, 0, null],
                     ['0', 0, 0, null],
                     ['+', 0, 0, null],
-                    ['-', 0, 0, null]
-    
+                    ['-', 0, 0, null],
+
                     // zone IDs
-                    //['Europe/London', 13, -1, ZoneId.of('Europe/London')],
-                    //['America/New_York', 16, -1, ZoneId.of('America/New_York')],
-                    //['America/Bogusville', 0, 0, null],
+                    ['Europe/London', 13, -1, ZoneId.of('Europe/London')],
+                    ['America/New_York', 16, -1, ZoneId.of('America/New_York')],
+                    ['America/Bogusville', 0, 0, null],
             ];
         }
 

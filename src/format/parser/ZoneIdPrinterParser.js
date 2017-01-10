@@ -110,24 +110,28 @@ export class ZoneIdPrinterParser {
             return position + 1;
         }
 
-        // FIXME not efficient but works, replace by subtree approach see threeten
-        // will fail if a zoneId starts with the same substring of another zoneId
         const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();
-        if (zoneIdMap.size !== availableZoneIds.length) {
-            zoneIdMap = new ZoneIdMap(availableZoneIds);
-        }
-        let parseLength = zoneIdMap.minLength;
-        const maxParseLength = Math.min(zoneIdMap.maxLength, length - position);
-        while(parseLength <= maxParseLength) {
-            const parsedZoneId = text.substr(position, parseLength);
-            if(zoneIdMap.zoneIdMap[parsedZoneId] === true){
-                context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
-                return position + parseLength;
-            }
-            parseLength += 1;
+        if (zoneIdTree.size !== availableZoneIds.length) {
+            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
         }
 
-        // ...
+        const maxParseLength = length - position;
+        let treeMap = zoneIdTree.treeMap;
+        let parsedZoneId = null;
+        let parseLength = 0;
+        while(treeMap != null) {
+            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
+            treeMap = treeMap.get(parsedSubZoneId);
+            if (treeMap != null && treeMap.isLeaf) {
+                parsedZoneId = parsedSubZoneId;
+                parseLength = treeMap.length;
+            }
+        }
+        if (parsedZoneId != null) {
+            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
+            return position + parseLength;
+        }
+
         return ~position;
     }
 
@@ -166,37 +170,48 @@ export class ZoneIdPrinterParser {
     }
 }
 
-class ZoneIdMap {
-    constructor(availableZoneIds){
-        this.size = availableZoneIds.length;
-        this.minLength = 0;
-        this.maxLength = 0;
-        this.zoneIdMap = this._createMap(availableZoneIds);
+class ZoneIdTree {
+
+    static createTreeMap(availableZoneIds) {
+        const sortedZoneIds =  availableZoneIds.sort((a, b) => a.length - b.length);
+        const treeMap = new ZoneIdTreeMap(sortedZoneIds[0].length, false);
+        for (let i=0; i<sortedZoneIds.length; i++){
+            treeMap.add(sortedZoneIds[i]);
+        }
+        return new ZoneIdTree(sortedZoneIds.length, treeMap);
     }
 
-    _createMap(availableZoneIds) {
-        const map = {};
-        for(let i = 0; i < availableZoneIds.length; i++){
-            const zoneId = availableZoneIds[i];
-            map[zoneId] = true;
-            this._setMinMax(zoneId);
-        }
-        return map;
-    }
-
-    _setMinMax(zoneId) {
-        if(zoneId == null) {
-            return;
-        }
-        if (this.minLength === 0) {
-            this.minLength = zoneId.length;
-            this.maxLength = zoneId.length;
-        } else {
-            this.minLength = Math.min(this.minLength, zoneId.length);
-            this.maxLength = Math.max(this.maxLength, zoneId.length);
-        }
+    constructor(size, treeMap) {
+        this.size = size;
+        this.treeMap = treeMap;
     }
 }
 
-let zoneIdMap = new ZoneIdMap([]);
+class ZoneIdTreeMap {
+    constructor(length = 0, isLeaf = false){
+        this.length = length;
+        this.isLeaf = isLeaf;
+        this._treeMap = {};
+    }
 
+    add(zoneId){
+        const idLength = zoneId.length;
+        if(idLength === this.length) {
+            this._treeMap[zoneId] = new ZoneIdTreeMap(idLength, true);
+        } else if (idLength > this.length) {
+            const subZoneId = zoneId.substr(0, this.length);
+            let subTreeMap = this._treeMap[subZoneId];
+            if (subTreeMap == null) {
+                subTreeMap = new ZoneIdTreeMap(idLength, false);
+                this._treeMap[subZoneId] = subTreeMap;
+            }
+            subTreeMap.add(zoneId);
+        }
+    }
+
+    get(zoneId){
+        return this._treeMap[zoneId];
+    }
+}
+
+let zoneIdTree = new ZoneIdTree([]);
