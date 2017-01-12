@@ -3,6 +3,14 @@ Changelog
 
 ### 1.1.18 (next)
 
+#### ianna tzdb
+
+ * Improve parsing of ZoneRegions
+
+#### etc
+
+ * Fix bower.json
+
 ### 1.1.17
 
 #### Bugfixes
