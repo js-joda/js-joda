@@ -3,7 +3,7 @@ Changelog
 
 ### 1.1.18 (next)
 
-#### ianna tzdb
+#### iana tzdb
 
  * Improve parsing of ZoneRegions
 
@@ -18,7 +18,7 @@ Changelog
  * Improve LocalDateTime.toInstant error handling
  * Improve validation of LocalDate parameter values when passed as Strings
  
-#### ianna tzdb
+#### iana tzdb
 
  * First quick approach for parsing ZoneRegions
  
