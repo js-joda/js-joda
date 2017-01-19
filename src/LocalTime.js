@@ -254,7 +254,8 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The text is parsed using the formatter, returning a time.
      *
      * @param {!String} text - the text to parse, not null
-     * @param {!String} formatter - the formatter to use, not null
+     * @param {DateTimeFormatter} [formatter=DateTimeFormatter.ISO_LOCAL_TIME] - the formatter to use, default is
+     * {@link DateTimeFormatter.ISO_LOCAL_TIME}
      * @return {LocalTime} the parsed local time, not null
      * @throws {DateTimeParseException} if the text cannot be parsed
      */
