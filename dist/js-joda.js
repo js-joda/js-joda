@@ -1,4 +1,4 @@
-//! @version js-joda - 1.1.17
+//! @version js-joda - 1.2.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -10091,18 +10091,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        var availableZoneIds = _ZoneRulesProvider.ZoneRulesProvider.getAvailableZoneIds();
-	        if (zoneIdMap.size !== availableZoneIds.length) {
-	            zoneIdMap = new ZoneIdMap(availableZoneIds);
+	        if (zoneIdTree.size !== availableZoneIds.length) {
+	            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
 	        }
-	        var parseLength = zoneIdMap.minLength;
-	        var maxParseLength = Math.min(zoneIdMap.maxLength, length - position);
-	        while (parseLength <= maxParseLength) {
-	            var parsedZoneId = text.substr(position, parseLength);
-	            if (zoneIdMap.zoneIdMap[parsedZoneId] === true) {
-	                context.setParsedZone(_ZoneRegion.ZoneRegion.ofId(parsedZoneId));
-	                return position + parseLength;
+
+	        var maxParseLength = length - position;
+	        var treeMap = zoneIdTree.treeMap;
+	        var parsedZoneId = null;
+	        var parseLength = 0;
+	        while (treeMap != null) {
+	            var parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
+	            treeMap = treeMap.get(parsedSubZoneId);
+	            if (treeMap != null && treeMap.isLeaf) {
+	                parsedZoneId = parsedSubZoneId;
+	                parseLength = treeMap.length;
 	            }
-	            parseLength += 1;
+	        }
+	        if (parsedZoneId != null) {
+	            context.setParsedZone(_ZoneRegion.ZoneRegion.ofId(parsedZoneId));
+	            return position + parseLength;
 	        }
 
 	        return ~position;
@@ -10133,43 +10140,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return ZoneIdPrinterParser;
 	}();
 
-	var ZoneIdMap = function () {
-	    function ZoneIdMap(availableZoneIds) {
-	        _classCallCheck(this, ZoneIdMap);
+	var ZoneIdTree = function () {
+	    ZoneIdTree.createTreeMap = function createTreeMap(availableZoneIds) {
+	        var sortedZoneIds = availableZoneIds.sort(function (a, b) {
+	            return a.length - b.length;
+	        });
+	        var treeMap = new ZoneIdTreeMap(sortedZoneIds[0].length, false);
+	        for (var i = 0; i < sortedZoneIds.length; i++) {
+	            treeMap.add(sortedZoneIds[i]);
+	        }
+	        return new ZoneIdTree(sortedZoneIds.length, treeMap);
+	    };
 
-	        this.size = availableZoneIds.length;
-	        this.minLength = 0;
-	        this.maxLength = 0;
-	        this.zoneIdMap = this._createMap(availableZoneIds);
+	    function ZoneIdTree(size, treeMap) {
+	        _classCallCheck(this, ZoneIdTree);
+
+	        this.size = size;
+	        this.treeMap = treeMap;
 	    }
 
-	    ZoneIdMap.prototype._createMap = function _createMap(availableZoneIds) {
-	        var map = {};
-	        for (var i = 0; i < availableZoneIds.length; i++) {
-	            var zoneId = availableZoneIds[i];
-	            map[zoneId] = true;
-	            this._setMinMax(zoneId);
-	        }
-	        return map;
-	    };
-
-	    ZoneIdMap.prototype._setMinMax = function _setMinMax(zoneId) {
-	        if (zoneId == null) {
-	            return;
-	        }
-	        if (this.minLength === 0) {
-	            this.minLength = zoneId.length;
-	            this.maxLength = zoneId.length;
-	        } else {
-	            this.minLength = Math.min(this.minLength, zoneId.length);
-	            this.maxLength = Math.max(this.maxLength, zoneId.length);
-	        }
-	    };
-
-	    return ZoneIdMap;
+	    return ZoneIdTree;
 	}();
 
-	var zoneIdMap = new ZoneIdMap([]);
+	var ZoneIdTreeMap = function () {
+	    function ZoneIdTreeMap() {
+	        var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	        var isLeaf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+	        _classCallCheck(this, ZoneIdTreeMap);
+
+	        this.length = length;
+	        this.isLeaf = isLeaf;
+	        this._treeMap = {};
+	    }
+
+	    ZoneIdTreeMap.prototype.add = function add(zoneId) {
+	        var idLength = zoneId.length;
+	        if (idLength === this.length) {
+	            this._treeMap[zoneId] = new ZoneIdTreeMap(idLength, true);
+	        } else if (idLength > this.length) {
+	            var subZoneId = zoneId.substr(0, this.length);
+	            var subTreeMap = this._treeMap[subZoneId];
+	            if (subTreeMap == null) {
+	                subTreeMap = new ZoneIdTreeMap(idLength, false);
+	                this._treeMap[subZoneId] = subTreeMap;
+	            }
+	            subTreeMap.add(zoneId);
+	        }
+	    };
+
+	    ZoneIdTreeMap.prototype.get = function get(zoneId) {
+	        return this._treeMap[zoneId];
+	    };
+
+	    return ZoneIdTreeMap;
+	}();
+
+	var zoneIdTree = new ZoneIdTree([]);
 
 /***/ },
 /* 53 */
