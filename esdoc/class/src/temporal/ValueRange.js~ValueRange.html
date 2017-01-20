@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -146,6 +156,7 @@ For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
 have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are invalid.</p>
 <p>Instances of this class are not tied to a specific field.</p>
 </div>
+  
 
   
 
@@ -172,7 +183,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#static-method-of">of</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#static-method-of">of</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -204,7 +217,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(minSmallest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, minLargest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, maxSmallest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, maxLargest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(minSmallest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, minLargest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, maxSmallest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, maxLargest: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
@@ -237,7 +252,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-checkValidIntValue">checkValidIntValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-checkValidIntValue">checkValidIntValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -263,7 +280,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-checkValidValue">checkValidValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-checkValidValue">checkValidValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -288,7 +307,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -314,7 +335,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -340,7 +363,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isFixed">isFixed</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isFixed">isFixed</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -366,7 +391,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isIntValue">isIntValue</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isIntValue">isIntValue</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -392,7 +419,9 @@ have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are inv
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isValidIntValue">isValidIntValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isValidIntValue">isValidIntValue</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -419,7 +448,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isValidValue">isValidValue</a></span></span><span data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-isValidValue">isValidValue</a></span></span><span data-ice="signature">(value: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -444,7 +475,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-largestMinimum">largestMinimum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-largestMinimum">largestMinimum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -469,7 +502,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-maximum">maximum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-maximum">maximum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -494,7 +529,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-minimum">minimum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-minimum">minimum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -519,7 +556,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-smallestMaximum">smallestMaximum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-smallestMaximum">smallestMaximum</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -544,7 +583,9 @@ in the range fit in an <code>int</code>.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -574,6 +615,7 @@ in the range fit in an <code>int</code>.</p>
     
     
     
+    
     <span data-ice="name">of</span><span data-ice="signature">(): <span>*</span></span>
     <span class="right-info">
       
@@ -595,14 +637,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -623,6 +669,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-constructor-constructor">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -692,6 +739,8 @@ in the range fit in an <code>int</code>.</p>
   
 
   
+
+  
   
 </div>
 </div>
@@ -701,6 +750,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-checkValidIntValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -754,15 +804,19 @@ The field is only used to improve the error message.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the value that was passed in</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the value that was passed in</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -780,6 +834,7 @@ The field is only used to improve the error message.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-checkValidValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -827,14 +882,18 @@ The field is only used to improve the error message.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -852,6 +911,7 @@ The field is only used to improve the error message.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-equals">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -898,15 +958,19 @@ Only objects of type <span><a href="class/src/temporal/ValueRange.js~ValueRange.
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the other range</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the other range</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -924,6 +988,7 @@ Only objects of type <span><a href="class/src/temporal/ValueRange.js~ValueRange.
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-hashCode">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -950,15 +1015,19 @@ Only objects of type <span><a href="class/src/temporal/ValueRange.js~ValueRange.
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a suitable hash code</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a suitable hash code</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -976,6 +1045,7 @@ Only objects of type <span><a href="class/src/temporal/ValueRange.js~ValueRange.
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isFixed">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1005,15 +1075,19 @@ However, for the month of January, the range is always 1 to 31, thus it is fixed
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if the set of values is fixed</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if the set of values is fixed</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1031,6 +1105,7 @@ However, for the month of January, the range is always 1 to 31, thus it is fixed
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isIntValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1061,15 +1136,19 @@ By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not 
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>boolean if a valid value always fits in an <code>int</code></p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>boolean if a valid value always fits in an <code>int</code></p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1087,6 +1166,7 @@ By comparison, ISO nano-of-day runs from 1 to 86,400,000,000,000 which does not 
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isValidIntValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1132,15 +1212,19 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if the value is valid and fits in an <code>int</code></p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if the value is valid and fits in an <code>int</code></p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1158,6 +1242,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isValidValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1199,14 +1284,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1224,6 +1313,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-largestMinimum">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1249,14 +1339,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1274,6 +1368,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-maximum">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1299,14 +1394,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1324,6 +1423,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minimum">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1349,14 +1449,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1374,6 +1478,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-smallestMaximum">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1399,14 +1504,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1424,6 +1533,7 @@ in the range fit in an <code>int</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1449,14 +1559,18 @@ in the range fit in an <code>int</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1475,7 +1589,7 @@ in the range fit in an <code>int</code>.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

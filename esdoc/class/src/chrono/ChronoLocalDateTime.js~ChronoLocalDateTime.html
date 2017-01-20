@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -109,13 +119,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDateTime} from &apos;<span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber51">js-joda/src/chrono/ChronoLocalDateTime.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ChronoLocalDateTime} from &apos;<span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber52">js-joda/src/chrono/ChronoLocalDateTime.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber51">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber52">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -158,6 +168,7 @@ Subclasses should be Serializable wherever possible.</p>
 <p>In JDK 8, this is an interface with default methods.
 Since there are no default methods in JDK 7, an abstract class is used.</p>
 </div>
+  
 
   
 
@@ -187,7 +198,9 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-adjustInto">adjustInto</a></span></span><span data-ice="signature">(temporal: <span>*</span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-adjustInto">adjustInto</a></span></span><span data-ice="signature">(temporal: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -212,7 +225,9 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-chronology">chronology</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-chronology">chronology</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -238,7 +253,9 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -263,7 +280,9 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -290,7 +309,9 @@ of 1970-01-01T00:00:00Z.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-toInstant">toInstant</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html#instance-method-toInstant">toInstant</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
         </p>
       </div>
       <div>
@@ -324,7 +345,9 @@ of 1970-01-01T00:00:00Z.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -350,7 +373,9 @@ of 1970-01-01T00:00:00Z.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -376,7 +401,9 @@ of 1970-01-01T00:00:00Z.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
         </p>
       </div>
       <div>
@@ -408,11 +435,12 @@ of 1970-01-01T00:00:00Z.</p>
     
     
     
+    
     <span data-ice="name">adjustInto</span><span data-ice="signature">(temporal: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber89">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber90">source</a></span></span>
     </span>
   </h3>
 
@@ -445,14 +473,18 @@ of 1970-01-01T00:00:00Z.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -474,11 +506,12 @@ of 1970-01-01T00:00:00Z.</p>
     
     
     
+    
     <span data-ice="name">chronology</span><span data-ice="signature">(): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber65">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber66">source</a></span></span>
     </span>
   </h3>
 
@@ -498,15 +531,19 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the chronology, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the chronology, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -528,18 +565,30 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
     
     
     
+    
     <span data-ice="name">query</span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber74">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber75">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Queries this date-time.</p>
+<p>This queries this date-time using the specified query strategy object.</p>
+<p>Queries are a key tool for extracting information from date-times.
+They exists to externalize the process of querying, permitting different
+approaches, as per the strategy design pattern.
+Examples might be a query that checks if the date is the day before February 29th
+in a leap year, or calculates the number of days to your next birthday.</p>
+<p>The most common query implementations are method references, such as
+<span>LocalDate::from</span> and <span>ZoneId::from</span>.
+Further implementations are on <span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span>.
+Queries may also be defined by applications.</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">TemporalAccessor#query</a></span></div>
 
@@ -565,14 +614,18 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -594,11 +647,12 @@ The era and other fields in <span><a href="class/src/temporal/ChronoField.js~Chr
     
     
     
+    
     <span data-ice="name">toEpochSecond</span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber120">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber122">source</a></span></span>
     </span>
   </h3>
 
@@ -637,15 +691,19 @@ Instants on the time-line after the epoch are positive, earlier are negative.</p
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the number of seconds from the epoch of 1970-01-01T00:00:00Z</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the number of seconds from the epoch of 1970-01-01T00:00:00Z</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -667,11 +725,12 @@ Instants on the time-line after the epoch are positive, earlier are negative.</p
     
     
     
+    
     <span data-ice="name">toInstant</span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber105">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/chrono/ChronoLocalDateTime.js.html#lineNumber106">source</a></span></span>
     </span>
   </h3>
 
@@ -708,15 +767,19 @@ an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> representing the same instant, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span> representing the same instant, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -735,7 +798,7 @@ an <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

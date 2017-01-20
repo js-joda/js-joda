@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/public-api.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/format/parser/FractionPrinterParser.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -103,54 +113,177 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/public-api.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/format/parser/FractionPrinterParser.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-export { Clock } from &apos;./Clock&apos;;
-export { DateTimeException, DateTimeParseException } from &apos;./errors&apos;;
-export { DayOfWeek } from &apos;./DayOfWeek&apos;;
-export { Duration } from &apos;./Duration&apos;;
-export { Instant } from &apos;./Instant&apos;;
-export { LocalDate } from &apos;./LocalDate&apos;;
-export { LocalTime } from &apos;./LocalTime&apos;;
-export { LocalDateTime } from &apos;./LocalDateTime&apos;;
-export { Month } from &apos;./Month&apos;;
-export { MonthDay } from &apos;./MonthDay&apos;;
-export { Period } from &apos;./Period&apos;;
-export { Year } from &apos;./Year&apos;;
-export { YearMonth } from &apos;./YearMonth&apos;;
-export { ZonedDateTime } from &apos;./ZonedDateTime&apos;;
-export { ZoneOffset } from &apos;./ZoneOffset&apos;;
-export { ZoneId } from &apos;./ZoneId&apos;;
+import {requireNonNull} from &apos;../../assert&apos;;
+import {IllegalArgumentException} from &apos;../../errors&apos;;
+import {MathUtil} from &apos;../../MathUtil&apos;;
 
-export {convert} from &apos;./convert&apos;;
+/**
+ * TODO optimize FractionPrinterParser, fix documentation
+ *
+ * Prints and parses a numeric date-time field with optional padding.
+ */
+export class FractionPrinterParser {
 
-export {nativeJs} from &apos;./temporal/NativeJsTemporal&apos;;
-export {ChronoField} from &apos;./temporal/ChronoField&apos;;
-export {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-export {IsoFields} from &apos;./temporal/IsoFields&apos;;
-export {TemporalAdjusters} from &apos;./temporal/TemporalAdjusters&apos;;
-export {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+    /**
+     * Constructor.
+     *
+     * @param {TemporalField} field  the field to output, not null
+     * @param {Number} minWidth  the minimum width to output, from 0 to 9
+     * @param {Number} maxWidth  the maximum width to output, from 0 to 9
+     * @param {boolean} decimalPoint  whether to output the localized decimal point symbol
+     */
+    constructor(field, minWidth, maxWidth, decimalPoint) {
+        requireNonNull(field, &apos;field&apos;);
+        if (field.range().isFixed() === false) {
+            throw new IllegalArgumentException(&apos;Field must have a fixed set of values: &apos; + field);
+        }
+        if (minWidth &lt; 0 || minWidth &gt; 9) {
+            throw new IllegalArgumentException(&apos;Minimum width must be from 0 to 9 inclusive but was &apos; + minWidth);
+        }
+        if (maxWidth &lt; 1 || maxWidth &gt; 9) {
+            throw new IllegalArgumentException(&apos;Maximum width must be from 1 to 9 inclusive but was &apos; + maxWidth);
+        }
+        if (maxWidth &lt; minWidth) {
+            throw new IllegalArgumentException(&apos;Maximum width must exceed or equal the minimum width but &apos; +
+                maxWidth + &apos; &lt; &apos; + minWidth);
+        }
+        this.field = field;
+        this.minWidth = minWidth;
+        this.maxWidth = maxWidth;
+        this.decimalPoint = decimalPoint;
+    }
 
-export {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-export {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
-export {ResolverStyle} from &apos;./format/ResolverStyle&apos;;
+    print(context, buf) {
+        const value = context.getValue(this.field);
+        if (value === null) {
+            return false;
+        }
+        const symbols = context.symbols();
+        if (value === 0) {  // scale is zero if value is zero
+            if (this.minWidth &gt; 0) {
+                if (this.decimalPoint) {
+                    buf.append(symbols.decimalSeparator());
+                }
+                for (let i = 0; i &lt; this.minWidth; i++) {
+                    buf.append(symbols.zeroDigit());
+                }
+            }
+        } else {
+            let fraction = this.convertToFraction(value, symbols.zeroDigit());
+            const outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);
+            fraction = fraction.substr(0, outputScale);
+            if(fraction * 1 &gt; 0 ) {
+                while (fraction.length &gt; this.minWidth &amp;&amp; fraction[fraction.length - 1] === &apos;0&apos;) {
+                    fraction = fraction.substr(0, fraction.length - 1);
+                }
+            }
+            let str = fraction;
+            str = symbols.convertNumberToI18N(str);
+            if (this.decimalPoint) {
+                buf.append(symbols.decimalSeparator());
+            }
+            buf.append(str);
+        }
+        return true;
+    }
 
-import &apos;./_init&apos;;
+    parse(context, text, position) {
+        const effectiveMin = (context.isStrict() ? this.minWidth : 0);
+        const effectiveMax = (context.isStrict() ? this.maxWidth : 9);
+        const length = text.length;
+        if (position === length) {
+            // valid if whole field is optional, invalid if minimum width
+            return (effectiveMin &gt; 0 ? ~position : position);
+        }
+        if (this.decimalPoint) {
+            if (text[position] !== context.symbols().decimalSeparator()) {
+                // valid if whole field is optional, invalid if minimum width
+                return (effectiveMin &gt; 0 ? ~position : position);
+            }
+            position++;
+        }
+        const minEndPos = position + effectiveMin;
+        if (minEndPos &gt; length) {
+            return ~position;  // need at least min width digits
+        }
+        const maxEndPos = Math.min(position + effectiveMax, length);
+        let total = 0;  // can use int because we are only parsing up to 9 digits
+        let pos = position;
+        while (pos &lt; maxEndPos) {
+            const ch = text.charAt(pos++);
+            const digit = context.symbols().convertToDigit(ch);
+            if (digit &lt; 0) {
+                if (pos &lt; minEndPos) {
+                    return ~position;  // need at least min width digits
+                }
+                pos--;
+                break;
+            }
+            total = total * 10 + digit;
+        }
+        const moveLeft = pos - position;
+        const scale = Math.pow(10, moveLeft);
+        const value = this.convertFromFraction(total, scale);
+        return context.setParsedField(this.field, value, position, pos);
+    }
+
+    /**
+     *
+     * @param {Number} value  the value to convert, must be valid for this rule
+     * @return {String} the value as a fraction within the range, from 0 to 1, not null
+     */
+    convertToFraction(value, zeroDigit) {
+        const range = this.field.range();
+        range.checkValidValue(value, this.field);
+        const _min = range.minimum();
+        const _range = range.maximum() - _min + 1;
+        const _value = value - _min;
+        const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
+        let fraction = &apos;&apos; + _scaled;
+        while(fraction.length &lt; 9){
+            fraction = zeroDigit + fraction;
+        }
+        return fraction;
+    }
+
+    /**
+     *
+     * @param {Number} fraction  the fraction to convert, not null
+     * @return {Number} the value of the field, valid for this rule
+     * @throws DateTimeException if the value cannot be converted
+     */
+    convertFromFraction(total, scale) {
+        const range = this.field.range();
+        const _min = range.minimum();
+        const _range = range.maximum() - _min + 1;
+        const _value = MathUtil.intDiv((total * _range), scale);
+        return _value;
+    }
+
+    toString() {
+        const decimal = (this.decimalPoint ? &apos;,DecimalPoint&apos; : &apos;&apos;);
+        return &apos;Fraction(&apos; + this.field + &apos;,&apos; + this.minWidth + &apos;,&apos; + this.maxWidth + decimal + &apos;)&apos;;
+    }
+}
 
 </code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

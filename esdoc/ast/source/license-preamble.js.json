@@ -1,14 +1,10 @@
 {
-  "type": "Program",
-  "body": [],
-  "sourceType": "module",
-  "range": [
-    251,
-    251
-  ],
+  "type": "File",
+  "start": 0,
+  "end": 251,
   "loc": {
     "start": {
-      "line": 4,
+      "line": 1,
       "column": 0
     },
     "end": {
@@ -16,14 +12,81 @@
       "column": 0
     }
   },
-  "leadingComments": [
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 251,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 4,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [],
+    "directives": [],
+    "leadingComments": null,
+    "innerComments": [
+      {
+        "type": "CommentLine",
+        "value": "! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors",
+        "start": 0,
+        "end": 88,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 88
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
+        "start": 89,
+        "end": 168,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 79
+          }
+        }
+      },
+      {
+        "type": "CommentLine",
+        "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
+        "start": 169,
+        "end": 250,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 0
+          },
+          "end": {
+            "line": 3,
+            "column": 81
+          }
+        }
+      }
+    ]
+  },
+  "comments": [
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors",
-      "range": [
-        0,
-        88
-      ],
+      "start": 0,
+      "end": 88,
       "loc": {
         "start": {
           "line": 1,
@@ -36,12 +99,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
-      "range": [
-        89,
-        168
-      ],
+      "start": 89,
+      "end": 168,
       "loc": {
         "start": {
           "line": 2,
@@ -54,12 +115,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
-      "range": [
-        169,
-        250
-      ],
+      "start": 169,
+      "end": 250,
       "loc": {
         "start": {
           "line": 3,
@@ -72,14 +131,12 @@
       }
     }
   ],
-  "comments": [
+  "tokens": [
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors",
-      "range": [
-        0,
-        88
-      ],
+      "start": 0,
+      "end": 88,
       "loc": {
         "start": {
           "line": 1,
@@ -92,12 +149,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
-      "range": [
-        89,
-        168
-      ],
+      "start": 89,
+      "end": 168,
       "loc": {
         "start": {
           "line": 2,
@@ -110,12 +165,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
-      "range": [
-        169,
-        250
-      ],
+      "start": 169,
+      "end": 250,
       "loc": {
         "start": {
           "line": 3,
@@ -124,6 +177,32 @@
         "end": {
           "line": 3,
           "column": 81
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 251,
+      "end": 251,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 0
         }
       }
     }

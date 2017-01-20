@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -201,15 +211,15 @@ var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); //
 <li><a href="http://js-joda.github.io/js-joda/">js-joda Homepage</a> Project homepage</li>
 </ul>
 <h2 id="roadmap">Roadmap</h2>
-<h3 id="milestone-1">Milestone 1</h3>
-<p>We reached milestone 1 with version v1.0.0 supporting the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
+<h3 id="milestone-1-core-domains-reached-with-version-v1-0-0-">Milestone 1 core domains (reached with version v1.0.0)</h3>
+<p>Support for the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
 and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
 only fixed offsets like UTC or UTC+02:00 and the system default time zone.</p>
-<h3 id="milestone-2">Milestone 2</h3>
-<p>Add iana timezone database support to js-joda. </p>
-<p>Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
-can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. </p>
-<h3 id="milestone-3">Milestone 3</h3>
+<h3 id="milestone-2-iana-timezone-support-reached-with-version-v1-2-0-">Milestone 2 iana timezone support (reached with version v1.2.0)</h3>
+<p>Add iana timezone database support to js-joda. Implement handling of Daylight saving transitions mainly in ZonedDateTime.</p>
+<p>For having acces to the the iana timezone database, a plugin with an implementation of the <code>ZoneRulesProvider</code> is required. 
+Find a first beta version at <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a> that is based on the moment timezone database.</p>
+<h3 id="milestone-3-locale-support">Milestone 3 locale support</h3>
 <p>Add locale support.</p>
 <p>Extend pattern parser/ formatter for text with locale support.</p>
 <h3 id="future-milestones">Future Milestones</h3>
@@ -256,7 +266,7 @@ are just copied but never equalled.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

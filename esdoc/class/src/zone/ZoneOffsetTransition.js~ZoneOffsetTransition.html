@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -146,6 +156,7 @@ This might be described as &apos;the clocks will move forward one hour tonight a
 An example would be when the offset changes from <code>+04:00</code> to <code>+03:00</code>.
 This might be described as &apos;the clocks will move back one hour tonight at 2am&apos;.</p>
 </div>
+  
 
   
 
@@ -172,7 +183,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#static-method-of">of</a></span></span><span data-ice="signature">(transition: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offsetBefore: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#static-method-of">of</a></span></span><span data-ice="signature">(transition: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offsetBefore: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
         </p>
       </div>
       <div>
@@ -205,7 +218,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(transition: <span>LocalDateTime \ number</span>, offsetBefore: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>)</span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(transition: <span>LocalDateTime \ number</span>, offsetBefore: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>)</span>
         </p>
       </div>
       <div>
@@ -239,7 +254,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-compareTo">compareTo</a></span></span><span data-ice="signature">(transition: <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-compareTo">compareTo</a></span></span><span data-ice="signature">(transition: <span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -265,7 +282,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeAfter">dateTimeAfter</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeAfter">dateTimeAfter</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -291,7 +310,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeBefore">dateTimeBefore</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeBefore">dateTimeBefore</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -317,7 +338,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-duration">duration</a></span></span><span data-ice="signature">(): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-duration">duration</a></span></span><span data-ice="signature">(): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
         </p>
       </div>
       <div>
@@ -343,7 +366,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-durationSeconds">durationSeconds</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-durationSeconds">durationSeconds</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -369,7 +394,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -395,7 +422,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -421,7 +450,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-instant">instant</a></span></span><span data-ice="signature">(): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-instant">instant</a></span></span><span data-ice="signature">(): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
         </p>
       </div>
       <div>
@@ -447,7 +478,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isGap">isGap</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isGap">isGap</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -473,7 +506,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isOverlap">isOverlap</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isOverlap">isOverlap</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -499,7 +534,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isValidOffset">isValidOffset</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isValidOffset">isValidOffset</a></span></span><span data-ice="signature">(offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -525,7 +562,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetAfter">offsetAfter</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetAfter">offsetAfter</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
         </p>
       </div>
       <div>
@@ -551,7 +590,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetBefore">offsetBefore</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetBefore">offsetBefore</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
         </p>
       </div>
       <div>
@@ -577,7 +618,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -603,7 +646,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -629,7 +674,9 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-validOffsets">validOffsets</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-validOffsets">validOffsets</a></span></span><span data-ice="signature">(): <span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
         </p>
       </div>
       <div>
@@ -657,6 +704,7 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
   <h3 data-ice="anchor" id="static-method-of">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -716,11 +764,13 @@ This factory is only intended for use when creating <span><a href="class/src/zon
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the transition, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -750,6 +800,8 @@ This factory is only intended for use when creating <span><a href="class/src/zon
   
 
   
+
+  
   
 </div>
 </div>
@@ -758,6 +810,7 @@ This factory is only intended for use when creating <span><a href="class/src/zon
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-constructor-constructor">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -826,6 +879,8 @@ Creates an instance from epoch-second if transition is not a LocalDateTimeInstan
   
 
   
+
+  
   
 </div>
 </div>
@@ -835,6 +890,7 @@ Creates an instance from epoch-second if transition is not a LocalDateTimeInstan
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-compareTo">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -880,15 +936,19 @@ The offsets are ignored, making this order inconsistent with equals.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the comparator value, negative if less, positive if greater</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the comparator value, negative if less, positive if greater</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -906,6 +966,7 @@ The offsets are ignored, making this order inconsistent with equals.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-dateTimeAfter">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -935,15 +996,19 @@ as the &apos;after&apos; date-time and offset.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the after offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the after offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -961,6 +1026,7 @@ as the &apos;after&apos; date-time and offset.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-dateTimeBefore">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -992,15 +1058,19 @@ as the &apos;after&apos; date-time and offset.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the before offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the before offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1018,6 +1088,7 @@ as the &apos;after&apos; date-time and offset.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-duration">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1047,15 +1118,19 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the duration of the transition, positive for gaps, negative for overlaps</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the duration of the transition, positive for gaps, negative for overlaps</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1073,6 +1148,7 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-durationSeconds">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1099,15 +1175,19 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the duration in seconds</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the duration in seconds</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1125,6 +1205,7 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-equals">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1169,15 +1250,19 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if equal</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if equal</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1195,6 +1280,7 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-hashCode">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1221,15 +1307,19 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the hash code</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the hash code</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1247,6 +1337,7 @@ Time-zones are second-based, so the nanosecond part of the duration will be zero
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-instant">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1277,15 +1368,19 @@ all represent the same instant.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the transition instant, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition instant, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1303,6 +1398,7 @@ all represent the same instant.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isGap">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1332,15 +1428,19 @@ This might be described as &apos;the clocks will move forward one hour tonight a
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if this transition is a gap, false if it is an overlap</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this transition is a gap, false if it is an overlap</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1358,6 +1458,7 @@ This might be described as &apos;the clocks will move forward one hour tonight a
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isOverlap">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1387,15 +1488,19 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if this transition is an overlap, false if it is a gap</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this transition is an overlap, false if it is a gap</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1413,6 +1518,7 @@ This might be described as &apos;the clocks will move back one hour tonight at 2
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isValidOffset">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1459,15 +1565,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if the offset is valid during the transition</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if the offset is valid during the transition</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1485,6 +1595,7 @@ An overlap will return true if the offset is either the before or after offset.<
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-offsetAfter">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1512,15 +1623,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the offset after the transition, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset after the transition, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1538,6 +1653,7 @@ An overlap will return true if the offset is either the before or after offset.<
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-offsetBefore">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1565,15 +1681,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the offset before the transition, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset before the transition, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1591,6 +1711,7 @@ An overlap will return true if the offset is either the before or after offset.<
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toEpochSecond">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1617,15 +1738,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the transition epoch second</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition epoch second</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1643,6 +1768,7 @@ An overlap will return true if the offset is either the before or after offset.<
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1669,15 +1795,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a string for debugging, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a string for debugging, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1695,6 +1825,7 @@ An overlap will return true if the offset is either the before or after offset.<
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-validOffsets">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -1722,15 +1853,19 @@ An overlap will return true if the offset is either the before or after offset.<
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the list of valid offsets</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the list of valid offsets</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -1749,7 +1884,7 @@ An overlap will return true if the offset is either the before or after offset.<
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

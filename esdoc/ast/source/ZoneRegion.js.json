@@ -1,1529 +1,230 @@
 {
-  "type": "Program",
-  "body": [
-    {
-      "type": "ImportDeclaration",
-      "specifiers": [
-        {
-          "type": "ImportSpecifier",
-          "local": {
-            "type": "Identifier",
-            "name": "ZoneId",
-            "range": [
-              238,
-              244
-            ],
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 8
-              },
-              "end": {
-                "line": 8,
-                "column": 14
-              }
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "name": "ZoneId",
-            "range": [
-              238,
-              244
-            ],
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 8
-              },
-              "end": {
-                "line": 8,
-                "column": 14
-              }
-            }
-          },
-          "range": [
-            238,
-            244
-          ],
-          "loc": {
-            "start": {
-              "line": 8,
-              "column": 8
-            },
-            "end": {
-              "line": 8,
-              "column": 14
-            }
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "value": "./ZoneId",
-        "raw": "'./ZoneId'",
-        "range": [
-          251,
-          261
-        ],
+  "type": "File",
+  "start": 0,
+  "end": 2086,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 72,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 2086,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 72,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 230,
+        "end": 262,
         "loc": {
           "start": {
             "line": 8,
-            "column": 21
+            "column": 0
           },
           "end": {
             "line": 8,
-            "column": 31
-          }
-        }
-      },
-      "range": [
-        230,
-        262
-      ],
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
-        },
-        "end": {
-          "line": 8,
-          "column": 32
-        }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
-          "range": [
-            0,
-            227
-          ],
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 0
-            },
-            "end": {
-              "line": 5,
-              "column": 3
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "ImportDeclaration",
-      "specifiers": [
-        {
-          "type": "ImportSpecifier",
-          "local": {
-            "type": "Identifier",
-            "name": "ZoneRulesProvider",
-            "range": [
-              271,
-              288
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 8
-              },
-              "end": {
-                "line": 9,
-                "column": 25
-              }
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "name": "ZoneRulesProvider",
-            "range": [
-              271,
-              288
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 8
-              },
-              "end": {
-                "line": 9,
-                "column": 25
-              }
-            }
-          },
-          "range": [
-            271,
-            288
-          ],
-          "loc": {
-            "start": {
-              "line": 9,
-              "column": 8
-            },
-            "end": {
-              "line": 9,
-              "column": 25
-            }
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "value": "./zone/ZoneRulesProvider",
-        "raw": "'./zone/ZoneRulesProvider'",
-        "range": [
-          295,
-          321
-        ],
-        "loc": {
-          "start": {
-            "line": 9,
             "column": 32
-          },
-          "end": {
-            "line": 9,
-            "column": 58
-          }
-        }
-      },
-      "range": [
-        263,
-        322
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 59
-        }
-      },
-      "trailingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
-          "range": [
-            324,
-            1193
-          ],
-          "loc": {
-            "start": {
-              "line": 11,
-              "column": 0
-            },
-            "end": {
-              "line": 29,
-              "column": 3
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "declaration": {
-        "type": "ClassDeclaration",
-        "id": {
-          "type": "Identifier",
-          "name": "ZoneRegion",
-          "range": [
-            1207,
-            1217
-          ],
-          "loc": {
-            "start": {
-              "line": 30,
-              "column": 13
-            },
-            "end": {
-              "line": 30,
-              "column": 23
-            }
           }
         },
-        "superClass": {
-          "type": "Identifier",
-          "name": "ZoneId",
-          "range": [
-            1226,
-            1232
-          ],
-          "loc": {
-            "start": {
-              "line": 30,
-              "column": 32
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 238,
+            "end": 244,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 14
+              }
             },
-            "end": {
-              "line": 30,
-              "column": 38
-            }
+            "imported": {
+              "type": "Identifier",
+              "start": 238,
+              "end": 244,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 8
+                },
+                "end": {
+                  "line": 8,
+                  "column": 14
+                },
+                "identifierName": "ZoneId"
+              },
+              "name": "ZoneId",
+              "leadingComments": null
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 238,
+              "end": 244,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 8
+                },
+                "end": {
+                  "line": 8,
+                  "column": 14
+                },
+                "identifierName": "ZoneId"
+              },
+              "name": "ZoneId"
+            },
+            "leadingComments": null
           }
-        },
-        "body": {
-          "type": "ClassBody",
-          "body": [
-            {
-              "type": "MethodDefinition",
-              "key": {
-                "type": "Identifier",
-                "name": "ofId",
-                "range": [
-                  1344,
-                  1348
-                ],
-                "loc": {
-                  "start": {
-                    "line": 36,
-                    "column": 11
-                  },
-                  "end": {
-                    "line": 36,
-                    "column": 15
-                  }
-                }
-              },
-              "value": {
-                "type": "FunctionExpression",
-                "id": null,
-                "params": [
-                  {
-                    "type": "Identifier",
-                    "name": "zoneId",
-                    "range": [
-                      1349,
-                      1355
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 36,
-                        "column": 16
-                      },
-                      "end": {
-                        "line": 36,
-                        "column": 22
-                      }
-                    }
-                  }
-                ],
-                "body": {
-                  "type": "BlockStatement",
-                  "body": [
-                    {
-                      "type": "VariableDeclaration",
-                      "declarations": [
-                        {
-                          "type": "VariableDeclarator",
-                          "id": {
-                            "type": "Identifier",
-                            "name": "rules",
-                            "range": [
-                              1370,
-                              1375
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 37,
-                                "column": 12
-                              },
-                              "end": {
-                                "line": 37,
-                                "column": 17
-                              }
-                            }
-                          },
-                          "init": {
-                            "type": "CallExpression",
-                            "callee": {
-                              "type": "MemberExpression",
-                              "computed": false,
-                              "object": {
-                                "type": "Identifier",
-                                "name": "ZoneRulesProvider",
-                                "range": [
-                                  1378,
-                                  1395
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 37,
-                                    "column": 20
-                                  },
-                                  "end": {
-                                    "line": 37,
-                                    "column": 37
-                                  }
-                                }
-                              },
-                              "property": {
-                                "type": "Identifier",
-                                "name": "getRules",
-                                "range": [
-                                  1396,
-                                  1404
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 37,
-                                    "column": 38
-                                  },
-                                  "end": {
-                                    "line": 37,
-                                    "column": 46
-                                  }
-                                }
-                              },
-                              "range": [
-                                1378,
-                                1404
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 37,
-                                  "column": 20
-                                },
-                                "end": {
-                                  "line": 37,
-                                  "column": 46
-                                }
-                              }
-                            },
-                            "arguments": [
-                              {
-                                "type": "Identifier",
-                                "name": "zoneId",
-                                "range": [
-                                  1405,
-                                  1411
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 37,
-                                    "column": 47
-                                  },
-                                  "end": {
-                                    "line": 37,
-                                    "column": 53
-                                  }
-                                }
-                              }
-                            ],
-                            "range": [
-                              1378,
-                              1412
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 37,
-                                "column": 20
-                              },
-                              "end": {
-                                "line": 37,
-                                "column": 54
-                              }
-                            }
-                          },
-                          "range": [
-                            1370,
-                            1412
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 37,
-                              "column": 12
-                            },
-                            "end": {
-                              "line": 37,
-                              "column": 54
-                            }
-                          }
-                        }
-                      ],
-                      "kind": "let",
-                      "range": [
-                        1366,
-                        1413
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 37,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 37,
-                          "column": 55
-                        }
-                      }
-                    },
-                    {
-                      "type": "ReturnStatement",
-                      "argument": {
-                        "type": "NewExpression",
-                        "callee": {
-                          "type": "Identifier",
-                          "name": "ZoneRegion",
-                          "range": [
-                            1433,
-                            1443
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 38,
-                              "column": 19
-                            },
-                            "end": {
-                              "line": 38,
-                              "column": 29
-                            }
-                          }
-                        },
-                        "arguments": [
-                          {
-                            "type": "Identifier",
-                            "name": "zoneId",
-                            "range": [
-                              1444,
-                              1450
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 38,
-                                "column": 30
-                              },
-                              "end": {
-                                "line": 38,
-                                "column": 36
-                              }
-                            }
-                          },
-                          {
-                            "type": "Identifier",
-                            "name": "rules",
-                            "range": [
-                              1452,
-                              1457
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 38,
-                                "column": 38
-                              },
-                              "end": {
-                                "line": 38,
-                                "column": 43
-                              }
-                            }
-                          }
-                        ],
-                        "range": [
-                          1429,
-                          1458
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 38,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 38,
-                            "column": 44
-                          }
-                        }
-                      },
-                      "range": [
-                        1422,
-                        1459
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 38,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 38,
-                          "column": 45
-                        }
-                      }
-                    }
-                  ],
-                  "range": [
-                    1356,
-                    1465
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 36,
-                      "column": 23
-                    },
-                    "end": {
-                      "line": 39,
-                      "column": 5
-                    }
-                  }
-                },
-                "generator": false,
-                "expression": false,
-                "range": [
-                  1348,
-                  1465
-                ],
-                "loc": {
-                  "start": {
-                    "line": 36,
-                    "column": 15
-                  },
-                  "end": {
-                    "line": 39,
-                    "column": 5
-                  }
-                }
-              },
-              "kind": "method",
-              "computed": false,
-              "range": [
-                1337,
-                1465
-              ],
-              "loc": {
-                "start": {
-                  "line": 36,
-                  "column": 4
-                },
-                "end": {
-                  "line": 39,
-                  "column": 5
-                }
-              },
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n     * not yet implemented\n     * @params {string} zoneId\n     * @return {ZoneId}\n     ",
-                  "range": [
-                    1239,
-                    1332
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 31,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 35,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "Line",
-                  "value": "-------------------------------------------------------------------------",
-                  "range": [
-                    1472,
-                    1547
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 41,
-                      "column": 5
-                    },
-                    "end": {
-                      "line": 41,
-                      "column": 80
-                    }
-                  }
-                },
-                {
-                  "type": "Block",
-                  "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
-                  "range": [
-                    1552,
-                    1709
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 42,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 47,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "static": true
-            },
-            {
-              "type": "MethodDefinition",
-              "key": {
-                "type": "Identifier",
-                "name": "constructor",
-                "range": [
-                  1714,
-                  1725
-                ],
-                "loc": {
-                  "start": {
-                    "line": 48,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 48,
-                    "column": 15
-                  }
-                }
-              },
-              "value": {
-                "type": "FunctionExpression",
-                "id": null,
-                "params": [
-                  {
-                    "type": "Identifier",
-                    "name": "id",
-                    "range": [
-                      1726,
-                      1728
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 48,
-                        "column": 16
-                      },
-                      "end": {
-                        "line": 48,
-                        "column": 18
-                      }
-                    }
-                  },
-                  {
-                    "type": "Identifier",
-                    "name": "rules",
-                    "range": [
-                      1730,
-                      1735
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 48,
-                        "column": 20
-                      },
-                      "end": {
-                        "line": 48,
-                        "column": 25
-                      }
-                    }
-                  }
-                ],
-                "body": {
-                  "type": "BlockStatement",
-                  "body": [
-                    {
-                      "type": "ExpressionStatement",
-                      "expression": {
-                        "type": "CallExpression",
-                        "callee": {
-                          "type": "Super",
-                          "range": [
-                            1747,
-                            1752
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 49,
-                              "column": 8
-                            },
-                            "end": {
-                              "line": 49,
-                              "column": 13
-                            }
-                          }
-                        },
-                        "arguments": [],
-                        "range": [
-                          1747,
-                          1754
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 49,
-                            "column": 8
-                          },
-                          "end": {
-                            "line": 49,
-                            "column": 15
-                          }
-                        }
-                      },
-                      "range": [
-                        1747,
-                        1755
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 49,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 49,
-                          "column": 16
-                        }
-                      }
-                    },
-                    {
-                      "type": "ExpressionStatement",
-                      "expression": {
-                        "type": "AssignmentExpression",
-                        "operator": "=",
-                        "left": {
-                          "type": "MemberExpression",
-                          "computed": false,
-                          "object": {
-                            "type": "ThisExpression",
-                            "range": [
-                              1764,
-                              1768
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 50,
-                                "column": 8
-                              },
-                              "end": {
-                                "line": 50,
-                                "column": 12
-                              }
-                            }
-                          },
-                          "property": {
-                            "type": "Identifier",
-                            "name": "_id",
-                            "range": [
-                              1769,
-                              1772
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 50,
-                                "column": 13
-                              },
-                              "end": {
-                                "line": 50,
-                                "column": 16
-                              }
-                            }
-                          },
-                          "range": [
-                            1764,
-                            1772
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 50,
-                              "column": 8
-                            },
-                            "end": {
-                              "line": 50,
-                              "column": 16
-                            }
-                          }
-                        },
-                        "right": {
-                          "type": "Identifier",
-                          "name": "id",
-                          "range": [
-                            1775,
-                            1777
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 50,
-                              "column": 19
-                            },
-                            "end": {
-                              "line": 50,
-                              "column": 21
-                            }
-                          }
-                        },
-                        "range": [
-                          1764,
-                          1777
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 50,
-                            "column": 8
-                          },
-                          "end": {
-                            "line": 50,
-                            "column": 21
-                          }
-                        }
-                      },
-                      "range": [
-                        1764,
-                        1778
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 50,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 50,
-                          "column": 22
-                        }
-                      }
-                    },
-                    {
-                      "type": "ExpressionStatement",
-                      "expression": {
-                        "type": "AssignmentExpression",
-                        "operator": "=",
-                        "left": {
-                          "type": "MemberExpression",
-                          "computed": false,
-                          "object": {
-                            "type": "ThisExpression",
-                            "range": [
-                              1787,
-                              1791
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 51,
-                                "column": 8
-                              },
-                              "end": {
-                                "line": 51,
-                                "column": 12
-                              }
-                            }
-                          },
-                          "property": {
-                            "type": "Identifier",
-                            "name": "_rules",
-                            "range": [
-                              1792,
-                              1798
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 51,
-                                "column": 13
-                              },
-                              "end": {
-                                "line": 51,
-                                "column": 19
-                              }
-                            }
-                          },
-                          "range": [
-                            1787,
-                            1798
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 51,
-                              "column": 8
-                            },
-                            "end": {
-                              "line": 51,
-                              "column": 19
-                            }
-                          }
-                        },
-                        "right": {
-                          "type": "Identifier",
-                          "name": "rules",
-                          "range": [
-                            1801,
-                            1806
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 51,
-                              "column": 22
-                            },
-                            "end": {
-                              "line": 51,
-                              "column": 27
-                            }
-                          }
-                        },
-                        "range": [
-                          1787,
-                          1806
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 51,
-                            "column": 8
-                          },
-                          "end": {
-                            "line": 51,
-                            "column": 27
-                          }
-                        }
-                      },
-                      "range": [
-                        1787,
-                        1807
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 51,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 51,
-                          "column": 28
-                        }
-                      }
-                    }
-                  ],
-                  "range": [
-                    1737,
-                    1813
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 48,
-                      "column": 27
-                    },
-                    "end": {
-                      "line": 52,
-                      "column": 5
-                    }
-                  }
-                },
-                "generator": false,
-                "expression": false,
-                "range": [
-                  1725,
-                  1813
-                ],
-                "loc": {
-                  "start": {
-                    "line": 48,
-                    "column": 15
-                  },
-                  "end": {
-                    "line": 52,
-                    "column": 5
-                  }
-                }
-              },
-              "kind": "constructor",
-              "computed": false,
-              "range": [
-                1714,
-                1813
-              ],
-              "loc": {
-                "start": {
-                  "line": 48,
-                  "column": 4
-                },
-                "end": {
-                  "line": 52,
-                  "column": 5
-                }
-              },
-              "leadingComments": [
-                {
-                  "type": "Line",
-                  "value": "-------------------------------------------------------------------------",
-                  "range": [
-                    1472,
-                    1547
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 41,
-                      "column": 5
-                    },
-                    "end": {
-                      "line": 41,
-                      "column": 80
-                    }
-                  }
-                },
-                {
-                  "type": "Block",
-                  "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
-                  "range": [
-                    1552,
-                    1709
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 42,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 47,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "Line",
-                  "value": "-----------------------------------------------------------------------",
-                  "range": [
-                    1819,
-                    1892
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 54,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 54,
-                      "column": 77
-                    }
-                  }
-                },
-                {
-                  "type": "Block",
-                  "value": "*\n     *\n     * @returns {string}\n     ",
-                  "range": [
-                    1897,
-                    1940
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 55,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 58,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "static": false
-            },
-            {
-              "type": "MethodDefinition",
-              "key": {
-                "type": "Identifier",
-                "name": "id",
-                "range": [
-                  1945,
-                  1947
-                ],
-                "loc": {
-                  "start": {
-                    "line": 59,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 59,
-                    "column": 6
-                  }
-                }
-              },
-              "value": {
-                "type": "FunctionExpression",
-                "id": null,
-                "params": [],
-                "body": {
-                  "type": "BlockStatement",
-                  "body": [
-                    {
-                      "type": "ReturnStatement",
-                      "argument": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                          "type": "ThisExpression",
-                          "range": [
-                            1967,
-                            1971
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 60,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 60,
-                              "column": 19
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "name": "_id",
-                          "range": [
-                            1972,
-                            1975
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 60,
-                              "column": 20
-                            },
-                            "end": {
-                              "line": 60,
-                              "column": 23
-                            }
-                          }
-                        },
-                        "range": [
-                          1967,
-                          1975
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 60,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 60,
-                            "column": 23
-                          }
-                        }
-                      },
-                      "range": [
-                        1960,
-                        1976
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 60,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 60,
-                          "column": 24
-                        }
-                      }
-                    }
-                  ],
-                  "range": [
-                    1950,
-                    1982
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 59,
-                      "column": 9
-                    },
-                    "end": {
-                      "line": 61,
-                      "column": 5
-                    }
-                  }
-                },
-                "generator": false,
-                "expression": false,
-                "range": [
-                  1947,
-                  1982
-                ],
-                "loc": {
-                  "start": {
-                    "line": 59,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 61,
-                    "column": 5
-                  }
-                }
-              },
-              "kind": "method",
-              "computed": false,
-              "range": [
-                1945,
-                1982
-              ],
-              "loc": {
-                "start": {
-                  "line": 59,
-                  "column": 4
-                },
-                "end": {
-                  "line": 61,
-                  "column": 5
-                }
-              },
-              "leadingComments": [
-                {
-                  "type": "Line",
-                  "value": "-----------------------------------------------------------------------",
-                  "range": [
-                    1819,
-                    1892
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 54,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 54,
-                      "column": 77
-                    }
-                  }
-                },
-                {
-                  "type": "Block",
-                  "value": "*\n     *\n     * @returns {string}\n     ",
-                  "range": [
-                    1897,
-                    1940
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 55,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 58,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "trailingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
-                  "range": [
-                    1988,
-                    2034
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 63,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 66,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "static": false
-            },
-            {
-              "type": "MethodDefinition",
-              "key": {
-                "type": "Identifier",
-                "name": "rules",
-                "range": [
-                  2039,
-                  2044
-                ],
-                "loc": {
-                  "start": {
-                    "line": 67,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 67,
-                    "column": 9
-                  }
-                }
-              },
-              "value": {
-                "type": "FunctionExpression",
-                "id": null,
-                "params": [],
-                "body": {
-                  "type": "BlockStatement",
-                  "body": [
-                    {
-                      "type": "ReturnStatement",
-                      "argument": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                          "type": "ThisExpression",
-                          "range": [
-                            2064,
-                            2068
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 68,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 68,
-                              "column": 19
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "name": "_rules",
-                          "range": [
-                            2069,
-                            2075
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 68,
-                              "column": 20
-                            },
-                            "end": {
-                              "line": 68,
-                              "column": 26
-                            }
-                          }
-                        },
-                        "range": [
-                          2064,
-                          2075
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 68,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 68,
-                            "column": 26
-                          }
-                        }
-                      },
-                      "range": [
-                        2057,
-                        2076
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 68,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 68,
-                          "column": 27
-                        }
-                      }
-                    }
-                  ],
-                  "range": [
-                    2047,
-                    2082
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 67,
-                      "column": 12
-                    },
-                    "end": {
-                      "line": 69,
-                      "column": 5
-                    }
-                  }
-                },
-                "generator": false,
-                "expression": false,
-                "range": [
-                  2044,
-                  2082
-                ],
-                "loc": {
-                  "start": {
-                    "line": 67,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 69,
-                    "column": 5
-                  }
-                }
-              },
-              "kind": "method",
-              "computed": false,
-              "range": [
-                2039,
-                2082
-              ],
-              "loc": {
-                "start": {
-                  "line": 67,
-                  "column": 4
-                },
-                "end": {
-                  "line": 69,
-                  "column": 5
-                }
-              },
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
-                  "range": [
-                    1988,
-                    2034
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 63,
-                      "column": 4
-                    },
-                    "end": {
-                      "line": 66,
-                      "column": 7
-                    }
-                  }
-                }
-              ],
-              "static": false
-            }
-          ],
-          "range": [
-            1233,
-            2085
-          ],
-          "loc": {
-            "start": {
-              "line": 30,
-              "column": 39
-            },
-            "end": {
-              "line": 71,
-              "column": 1
-            }
-          }
-        },
-        "range": [
-          1201,
-          2085
         ],
-        "loc": {
-          "start": {
-            "line": 30,
-            "column": 7
+        "source": {
+          "type": "StringLiteral",
+          "start": 251,
+          "end": 261,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 21
+            },
+            "end": {
+              "line": 8,
+              "column": 31
+            }
           },
-          "end": {
-            "line": 71,
-            "column": 1
-          }
+          "extra": {
+            "rawValue": "./ZoneId",
+            "raw": "'./ZoneId'"
+          },
+          "value": "./ZoneId"
         },
         "leadingComments": [
           {
-            "type": "Block",
+            "type": "CommentBlock",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "start": 0,
+            "end": 227,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ImportDeclaration",
+        "start": 263,
+        "end": 322,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "line": 9,
+            "column": 59
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 271,
+            "end": 288,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 8
+              },
+              "end": {
+                "line": 9,
+                "column": 25
+              }
+            },
+            "imported": {
+              "type": "Identifier",
+              "start": 271,
+              "end": 288,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 8
+                },
+                "end": {
+                  "line": 9,
+                  "column": 25
+                },
+                "identifierName": "ZoneRulesProvider"
+              },
+              "name": "ZoneRulesProvider"
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 271,
+              "end": 288,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 8
+                },
+                "end": {
+                  "line": 9,
+                  "column": 25
+                },
+                "identifierName": "ZoneRulesProvider"
+              },
+              "name": "ZoneRulesProvider"
+            }
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 295,
+          "end": 321,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 32
+            },
+            "end": {
+              "line": 9,
+              "column": 58
+            }
+          },
+          "extra": {
+            "rawValue": "./zone/ZoneRulesProvider",
+            "raw": "'./zone/ZoneRulesProvider'"
+          },
+          "value": "./zone/ZoneRulesProvider"
+        },
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
             "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
-            "range": [
-              324,
-              1193
-            ],
+            "start": 324,
+            "end": 1193,
             "loc": {
               "start": {
                 "line": 11,
@@ -1535,70 +236,1200 @@
               }
             }
           }
-        ],
-        "trailingComments": []
+        ]
       },
-      "specifiers": [],
-      "source": null,
-      "range": [
-        1194,
-        2085
-      ],
-      "loc": {
-        "start": {
-          "line": 30,
-          "column": 0
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 1194,
+        "end": 2085,
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 0
+          },
+          "end": {
+            "line": 71,
+            "column": 1
+          }
         },
-        "end": {
-          "line": 71,
-          "column": 1
-        }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
-          "range": [
-            324,
-            1193
-          ],
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "ClassDeclaration",
+          "start": 1201,
+          "end": 2085,
           "loc": {
             "start": {
-              "line": 11,
-              "column": 0
+              "line": 30,
+              "column": 7
             },
             "end": {
-              "line": 29,
-              "column": 3
+              "line": 71,
+              "column": 1
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 1207,
+            "end": 1217,
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 13
+              },
+              "end": {
+                "line": 30,
+                "column": 23
+              },
+              "identifierName": "ZoneRegion"
+            },
+            "name": "ZoneRegion",
+            "leadingComments": null
+          },
+          "superClass": {
+            "type": "Identifier",
+            "start": 1226,
+            "end": 1232,
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 32
+              },
+              "end": {
+                "line": 30,
+                "column": 38
+              },
+              "identifierName": "ZoneId"
+            },
+            "name": "ZoneId"
+          },
+          "body": {
+            "type": "ClassBody",
+            "start": 1233,
+            "end": 2085,
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 39
+              },
+              "end": {
+                "line": 71,
+                "column": 1
+              }
+            },
+            "body": [
+              {
+                "type": "ClassMethod",
+                "start": 1337,
+                "end": 1465,
+                "loc": {
+                  "start": {
+                    "line": 36,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 39,
+                    "column": 5
+                  }
+                },
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 1344,
+                  "end": 1348,
+                  "loc": {
+                    "start": {
+                      "line": 36,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 36,
+                      "column": 15
+                    },
+                    "identifierName": "ofId"
+                  },
+                  "name": "ofId"
+                },
+                "static": true,
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 1349,
+                    "end": 1355,
+                    "loc": {
+                      "start": {
+                        "line": 36,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 36,
+                        "column": 22
+                      },
+                      "identifierName": "zoneId"
+                    },
+                    "name": "zoneId"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1356,
+                  "end": 1465,
+                  "loc": {
+                    "start": {
+                      "line": 36,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 39,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "VariableDeclaration",
+                      "start": 1366,
+                      "end": 1413,
+                      "loc": {
+                        "start": {
+                          "line": 37,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 37,
+                          "column": 55
+                        }
+                      },
+                      "declarations": [
+                        {
+                          "type": "VariableDeclarator",
+                          "start": 1370,
+                          "end": 1412,
+                          "loc": {
+                            "start": {
+                              "line": 37,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 37,
+                              "column": 54
+                            }
+                          },
+                          "id": {
+                            "type": "Identifier",
+                            "start": 1370,
+                            "end": 1375,
+                            "loc": {
+                              "start": {
+                                "line": 37,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 37,
+                                "column": 17
+                              },
+                              "identifierName": "rules"
+                            },
+                            "name": "rules"
+                          },
+                          "init": {
+                            "type": "CallExpression",
+                            "start": 1378,
+                            "end": 1412,
+                            "loc": {
+                              "start": {
+                                "line": 37,
+                                "column": 20
+                              },
+                              "end": {
+                                "line": 37,
+                                "column": 54
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 1378,
+                              "end": 1404,
+                              "loc": {
+                                "start": {
+                                  "line": 37,
+                                  "column": 20
+                                },
+                                "end": {
+                                  "line": 37,
+                                  "column": 46
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 1378,
+                                "end": 1395,
+                                "loc": {
+                                  "start": {
+                                    "line": 37,
+                                    "column": 20
+                                  },
+                                  "end": {
+                                    "line": 37,
+                                    "column": 37
+                                  },
+                                  "identifierName": "ZoneRulesProvider"
+                                },
+                                "name": "ZoneRulesProvider"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 1396,
+                                "end": 1404,
+                                "loc": {
+                                  "start": {
+                                    "line": 37,
+                                    "column": 38
+                                  },
+                                  "end": {
+                                    "line": 37,
+                                    "column": 46
+                                  },
+                                  "identifierName": "getRules"
+                                },
+                                "name": "getRules"
+                              },
+                              "computed": false
+                            },
+                            "arguments": [
+                              {
+                                "type": "Identifier",
+                                "start": 1405,
+                                "end": 1411,
+                                "loc": {
+                                  "start": {
+                                    "line": 37,
+                                    "column": 47
+                                  },
+                                  "end": {
+                                    "line": 37,
+                                    "column": 53
+                                  },
+                                  "identifierName": "zoneId"
+                                },
+                                "name": "zoneId"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "kind": "let"
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "start": 1422,
+                      "end": 1459,
+                      "loc": {
+                        "start": {
+                          "line": 38,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 38,
+                          "column": 45
+                        }
+                      },
+                      "argument": {
+                        "type": "NewExpression",
+                        "start": 1429,
+                        "end": 1458,
+                        "loc": {
+                          "start": {
+                            "line": 38,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 38,
+                            "column": 44
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1433,
+                          "end": 1443,
+                          "loc": {
+                            "start": {
+                              "line": 38,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 38,
+                              "column": 29
+                            },
+                            "identifierName": "ZoneRegion"
+                          },
+                          "name": "ZoneRegion"
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1444,
+                            "end": 1450,
+                            "loc": {
+                              "start": {
+                                "line": 38,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 38,
+                                "column": 36
+                              },
+                              "identifierName": "zoneId"
+                            },
+                            "name": "zoneId"
+                          },
+                          {
+                            "type": "Identifier",
+                            "start": 1452,
+                            "end": 1457,
+                            "loc": {
+                              "start": {
+                                "line": 38,
+                                "column": 38
+                              },
+                              "end": {
+                                "line": 38,
+                                "column": 43
+                              },
+                              "identifierName": "rules"
+                            },
+                            "name": "rules"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     * not yet implemented\n     * @params {string} zoneId\n     * @return {ZoneId}\n     ",
+                    "start": 1239,
+                    "end": 1332,
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 35,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": "-------------------------------------------------------------------------",
+                    "start": 1472,
+                    "end": 1547,
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 80
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
+                    "start": 1552,
+                    "end": 1709,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 47,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 1714,
+                "end": 1813,
+                "loc": {
+                  "start": {
+                    "line": 48,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 52,
+                    "column": 5
+                  }
+                },
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 1714,
+                  "end": 1725,
+                  "loc": {
+                    "start": {
+                      "line": 48,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 48,
+                      "column": 15
+                    },
+                    "identifierName": "constructor"
+                  },
+                  "name": "constructor",
+                  "leadingComments": null
+                },
+                "static": false,
+                "kind": "constructor",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 1726,
+                    "end": 1728,
+                    "loc": {
+                      "start": {
+                        "line": 48,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 48,
+                        "column": 18
+                      },
+                      "identifierName": "id"
+                    },
+                    "name": "id"
+                  },
+                  {
+                    "type": "Identifier",
+                    "start": 1730,
+                    "end": 1735,
+                    "loc": {
+                      "start": {
+                        "line": 48,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 48,
+                        "column": 25
+                      },
+                      "identifierName": "rules"
+                    },
+                    "name": "rules"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1737,
+                  "end": 1813,
+                  "loc": {
+                    "start": {
+                      "line": 48,
+                      "column": 27
+                    },
+                    "end": {
+                      "line": 52,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1747,
+                      "end": 1755,
+                      "loc": {
+                        "start": {
+                          "line": 49,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 49,
+                          "column": 16
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 1747,
+                        "end": 1754,
+                        "loc": {
+                          "start": {
+                            "line": 49,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 49,
+                            "column": 15
+                          }
+                        },
+                        "callee": {
+                          "type": "Super",
+                          "start": 1747,
+                          "end": 1752,
+                          "loc": {
+                            "start": {
+                              "line": 49,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 49,
+                              "column": 13
+                            }
+                          }
+                        },
+                        "arguments": []
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1764,
+                      "end": 1778,
+                      "loc": {
+                        "start": {
+                          "line": 50,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 50,
+                          "column": 22
+                        }
+                      },
+                      "expression": {
+                        "type": "AssignmentExpression",
+                        "start": 1764,
+                        "end": 1777,
+                        "loc": {
+                          "start": {
+                            "line": 50,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 50,
+                            "column": 21
+                          }
+                        },
+                        "operator": "=",
+                        "left": {
+                          "type": "MemberExpression",
+                          "start": 1764,
+                          "end": 1772,
+                          "loc": {
+                            "start": {
+                              "line": 50,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 50,
+                              "column": 16
+                            }
+                          },
+                          "object": {
+                            "type": "ThisExpression",
+                            "start": 1764,
+                            "end": 1768,
+                            "loc": {
+                              "start": {
+                                "line": 50,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 50,
+                                "column": 12
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1769,
+                            "end": 1772,
+                            "loc": {
+                              "start": {
+                                "line": 50,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 50,
+                                "column": 16
+                              },
+                              "identifierName": "_id"
+                            },
+                            "name": "_id"
+                          },
+                          "computed": false
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "start": 1775,
+                          "end": 1777,
+                          "loc": {
+                            "start": {
+                              "line": 50,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 50,
+                              "column": 21
+                            },
+                            "identifierName": "id"
+                          },
+                          "name": "id"
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1787,
+                      "end": 1807,
+                      "loc": {
+                        "start": {
+                          "line": 51,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 51,
+                          "column": 28
+                        }
+                      },
+                      "expression": {
+                        "type": "AssignmentExpression",
+                        "start": 1787,
+                        "end": 1806,
+                        "loc": {
+                          "start": {
+                            "line": 51,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 51,
+                            "column": 27
+                          }
+                        },
+                        "operator": "=",
+                        "left": {
+                          "type": "MemberExpression",
+                          "start": 1787,
+                          "end": 1798,
+                          "loc": {
+                            "start": {
+                              "line": 51,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 51,
+                              "column": 19
+                            }
+                          },
+                          "object": {
+                            "type": "ThisExpression",
+                            "start": 1787,
+                            "end": 1791,
+                            "loc": {
+                              "start": {
+                                "line": 51,
+                                "column": 8
+                              },
+                              "end": {
+                                "line": 51,
+                                "column": 12
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1792,
+                            "end": 1798,
+                            "loc": {
+                              "start": {
+                                "line": 51,
+                                "column": 13
+                              },
+                              "end": {
+                                "line": 51,
+                                "column": 19
+                              },
+                              "identifierName": "_rules"
+                            },
+                            "name": "_rules"
+                          },
+                          "computed": false
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "start": 1801,
+                          "end": 1806,
+                          "loc": {
+                            "start": {
+                              "line": 51,
+                              "column": 22
+                            },
+                            "end": {
+                              "line": 51,
+                              "column": 27
+                            },
+                            "identifierName": "rules"
+                          },
+                          "name": "rules"
+                        }
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": "-------------------------------------------------------------------------",
+                    "start": 1472,
+                    "end": 1547,
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 80
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
+                    "start": 1552,
+                    "end": 1709,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 47,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": "-----------------------------------------------------------------------",
+                    "start": 1819,
+                    "end": 1892,
+                    "loc": {
+                      "start": {
+                        "line": 54,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 54,
+                        "column": 77
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     *\n     * @returns {string}\n     ",
+                    "start": 1897,
+                    "end": 1940,
+                    "loc": {
+                      "start": {
+                        "line": 55,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 58,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 1945,
+                "end": 1982,
+                "loc": {
+                  "start": {
+                    "line": 59,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 61,
+                    "column": 5
+                  }
+                },
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 1945,
+                  "end": 1947,
+                  "loc": {
+                    "start": {
+                      "line": 59,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 59,
+                      "column": 6
+                    },
+                    "identifierName": "id"
+                  },
+                  "name": "id",
+                  "leadingComments": null
+                },
+                "static": false,
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1950,
+                  "end": 1982,
+                  "loc": {
+                    "start": {
+                      "line": 59,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 61,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 1960,
+                      "end": 1976,
+                      "loc": {
+                        "start": {
+                          "line": 60,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 60,
+                          "column": 24
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 1967,
+                        "end": 1975,
+                        "loc": {
+                          "start": {
+                            "line": 60,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 60,
+                            "column": 23
+                          }
+                        },
+                        "object": {
+                          "type": "ThisExpression",
+                          "start": 1967,
+                          "end": 1971,
+                          "loc": {
+                            "start": {
+                              "line": 60,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 60,
+                              "column": 19
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1972,
+                          "end": 1975,
+                          "loc": {
+                            "start": {
+                              "line": 60,
+                              "column": 20
+                            },
+                            "end": {
+                              "line": 60,
+                              "column": 23
+                            },
+                            "identifierName": "_id"
+                          },
+                          "name": "_id"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentLine",
+                    "value": "-----------------------------------------------------------------------",
+                    "start": 1819,
+                    "end": 1892,
+                    "loc": {
+                      "start": {
+                        "line": 54,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 54,
+                        "column": 77
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     *\n     * @returns {string}\n     ",
+                    "start": 1897,
+                    "end": 1940,
+                    "loc": {
+                      "start": {
+                        "line": 55,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 58,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+                    "start": 1988,
+                    "end": 2034,
+                    "loc": {
+                      "start": {
+                        "line": 63,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 66,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 2039,
+                "end": 2082,
+                "loc": {
+                  "start": {
+                    "line": 67,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 69,
+                    "column": 5
+                  }
+                },
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 2039,
+                  "end": 2044,
+                  "loc": {
+                    "start": {
+                      "line": 67,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 67,
+                      "column": 9
+                    },
+                    "identifierName": "rules"
+                  },
+                  "name": "rules",
+                  "leadingComments": null
+                },
+                "static": false,
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 2047,
+                  "end": 2082,
+                  "loc": {
+                    "start": {
+                      "line": 67,
+                      "column": 12
+                    },
+                    "end": {
+                      "line": 69,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 2057,
+                      "end": 2076,
+                      "loc": {
+                        "start": {
+                          "line": 68,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 68,
+                          "column": 27
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 2064,
+                        "end": 2075,
+                        "loc": {
+                          "start": {
+                            "line": 68,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 68,
+                            "column": 26
+                          }
+                        },
+                        "object": {
+                          "type": "ThisExpression",
+                          "start": 2064,
+                          "end": 2068,
+                          "loc": {
+                            "start": {
+                              "line": 68,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 68,
+                              "column": 19
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 2069,
+                          "end": 2075,
+                          "loc": {
+                            "start": {
+                              "line": 68,
+                              "column": 20
+                            },
+                            "end": {
+                              "line": 68,
+                              "column": 26
+                            },
+                            "identifierName": "_rules"
+                          },
+                          "name": "_rules"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": []
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+                    "start": 1988,
+                    "end": 2034,
+                    "loc": {
+                      "start": {
+                        "line": 63,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 66,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+              "start": 324,
+              "end": 1193,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 0
+                },
+                "end": {
+                  "line": 29,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+            "start": 324,
+            "end": 1193,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 3
+              }
             }
           }
-        }
-      ]
-    }
-  ],
-  "sourceType": "module",
-  "range": [
-    230,
-    2085
-  ],
-  "loc": {
-    "start": {
-      "line": 8,
-      "column": 0
-    },
-    "end": {
-      "line": 71,
-      "column": 1
-    }
+        ]
+      }
+    ],
+    "directives": []
   },
   "comments": [
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
-      "range": [
-        0,
-        227
-      ],
+      "start": 0,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -1611,12 +1442,10 @@
       }
     },
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
-      "range": [
-        324,
-        1193
-      ],
+      "start": 324,
+      "end": 1193,
       "loc": {
         "start": {
           "line": 11,
@@ -1629,12 +1458,10 @@
       }
     },
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n     * not yet implemented\n     * @params {string} zoneId\n     * @return {ZoneId}\n     ",
-      "range": [
-        1239,
-        1332
-      ],
+      "start": 1239,
+      "end": 1332,
       "loc": {
         "start": {
           "line": 31,
@@ -1647,12 +1474,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "-------------------------------------------------------------------------",
-      "range": [
-        1472,
-        1547
-      ],
+      "start": 1472,
+      "end": 1547,
       "loc": {
         "start": {
           "line": 41,
@@ -1665,12 +1490,10 @@
       }
     },
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
-      "range": [
-        1552,
-        1709
-      ],
+      "start": 1552,
+      "end": 1709,
       "loc": {
         "start": {
           "line": 42,
@@ -1683,12 +1506,10 @@
       }
     },
     {
-      "type": "Line",
+      "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "range": [
-        1819,
-        1892
-      ],
+      "start": 1819,
+      "end": 1892,
       "loc": {
         "start": {
           "line": 54,
@@ -1701,12 +1522,10 @@
       }
     },
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n     *\n     * @returns {string}\n     ",
-      "range": [
-        1897,
-        1940
-      ],
+      "start": 1897,
+      "end": 1940,
       "loc": {
         "start": {
           "line": 55,
@@ -1719,12 +1538,10 @@
       }
     },
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
-      "range": [
-        1988,
-        2034
-      ],
+      "start": 1988,
+      "end": 2034,
       "loc": {
         "start": {
           "line": 63,
@@ -1733,6 +1550,2535 @@
         "end": {
           "line": 66,
           "column": 7
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "start": 0,
+      "end": 227,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 230,
+      "end": 236,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 237,
+      "end": 238,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 7
+        },
+        "end": {
+          "line": 8,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneId",
+      "start": 238,
+      "end": 244,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 8
+        },
+        "end": {
+          "line": 8,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 244,
+      "end": 245,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 14
+        },
+        "end": {
+          "line": 8,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 246,
+      "end": 250,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 16
+        },
+        "end": {
+          "line": 8,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./ZoneId",
+      "start": 251,
+      "end": 261,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 21
+        },
+        "end": {
+          "line": 8,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 261,
+      "end": 262,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 31
+        },
+        "end": {
+          "line": 8,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 263,
+      "end": 269,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 270,
+      "end": 271,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 7
+        },
+        "end": {
+          "line": 9,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneRulesProvider",
+      "start": 271,
+      "end": 288,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 8
+        },
+        "end": {
+          "line": 9,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 288,
+      "end": 289,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 25
+        },
+        "end": {
+          "line": 9,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 290,
+      "end": 294,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 27
+        },
+        "end": {
+          "line": 9,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./zone/ZoneRulesProvider",
+      "start": 295,
+      "end": 321,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 32
+        },
+        "end": {
+          "line": 9,
+          "column": 58
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 321,
+      "end": 322,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 58
+        },
+        "end": {
+          "line": 9,
+          "column": 59
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+      "start": 324,
+      "end": 1193,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 1194,
+      "end": 1200,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 30,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "class",
+        "keyword": "class",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "class",
+      "start": 1201,
+      "end": 1206,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 7
+        },
+        "end": {
+          "line": 30,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneRegion",
+      "start": 1207,
+      "end": 1217,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 13
+        },
+        "end": {
+          "line": 30,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "extends",
+        "keyword": "extends",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "extends",
+      "start": 1218,
+      "end": 1225,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 24
+        },
+        "end": {
+          "line": 30,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneId",
+      "start": 1226,
+      "end": 1232,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 32
+        },
+        "end": {
+          "line": 30,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1233,
+      "end": 1234,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 39
+        },
+        "end": {
+          "line": 30,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     * not yet implemented\n     * @params {string} zoneId\n     * @return {ZoneId}\n     ",
+      "start": 1239,
+      "end": 1332,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 35,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 1337,
+      "end": 1343,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 4
+        },
+        "end": {
+          "line": 36,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ofId",
+      "start": 1344,
+      "end": 1348,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 11
+        },
+        "end": {
+          "line": 36,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1348,
+      "end": 1349,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 15
+        },
+        "end": {
+          "line": 36,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "zoneId",
+      "start": 1349,
+      "end": 1355,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 16
+        },
+        "end": {
+          "line": 36,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1355,
+      "end": 1356,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 22
+        },
+        "end": {
+          "line": 36,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1356,
+      "end": 1357,
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 23
+        },
+        "end": {
+          "line": 36,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "let",
+        "keyword": "let",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "let",
+      "start": 1366,
+      "end": 1369,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 8
+        },
+        "end": {
+          "line": 37,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rules",
+      "start": 1370,
+      "end": 1375,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 12
+        },
+        "end": {
+          "line": 37,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 1376,
+      "end": 1377,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 18
+        },
+        "end": {
+          "line": 37,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneRulesProvider",
+      "start": 1378,
+      "end": 1395,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 20
+        },
+        "end": {
+          "line": 37,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1395,
+      "end": 1396,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 37
+        },
+        "end": {
+          "line": 37,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "getRules",
+      "start": 1396,
+      "end": 1404,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 38
+        },
+        "end": {
+          "line": 37,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1404,
+      "end": 1405,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 46
+        },
+        "end": {
+          "line": 37,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "zoneId",
+      "start": 1405,
+      "end": 1411,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 47
+        },
+        "end": {
+          "line": 37,
+          "column": 53
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1411,
+      "end": 1412,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 53
+        },
+        "end": {
+          "line": 37,
+          "column": 54
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1412,
+      "end": 1413,
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 54
+        },
+        "end": {
+          "line": 37,
+          "column": 55
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 1422,
+      "end": 1428,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 8
+        },
+        "end": {
+          "line": 38,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "new",
+        "keyword": "new",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "new",
+      "start": 1429,
+      "end": 1432,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 15
+        },
+        "end": {
+          "line": 38,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZoneRegion",
+      "start": 1433,
+      "end": 1443,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 19
+        },
+        "end": {
+          "line": 38,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1443,
+      "end": 1444,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 29
+        },
+        "end": {
+          "line": 38,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "zoneId",
+      "start": 1444,
+      "end": 1450,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 30
+        },
+        "end": {
+          "line": 38,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1450,
+      "end": 1451,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 36
+        },
+        "end": {
+          "line": 38,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rules",
+      "start": 1452,
+      "end": 1457,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 38
+        },
+        "end": {
+          "line": 38,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1457,
+      "end": 1458,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 43
+        },
+        "end": {
+          "line": 38,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1458,
+      "end": 1459,
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 44
+        },
+        "end": {
+          "line": 38,
+          "column": 45
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1464,
+      "end": 1465,
+      "loc": {
+        "start": {
+          "line": 39,
+          "column": 4
+        },
+        "end": {
+          "line": 39,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "-------------------------------------------------------------------------",
+      "start": 1472,
+      "end": 1547,
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 5
+        },
+        "end": {
+          "line": 41,
+          "column": 80
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     ",
+      "start": 1552,
+      "end": 1709,
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 47,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "constructor",
+      "start": 1714,
+      "end": 1725,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 4
+        },
+        "end": {
+          "line": 48,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1725,
+      "end": 1726,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 15
+        },
+        "end": {
+          "line": 48,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "id",
+      "start": 1726,
+      "end": 1728,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 16
+        },
+        "end": {
+          "line": 48,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1728,
+      "end": 1729,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 18
+        },
+        "end": {
+          "line": 48,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rules",
+      "start": 1730,
+      "end": 1735,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 20
+        },
+        "end": {
+          "line": 48,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1735,
+      "end": 1736,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 25
+        },
+        "end": {
+          "line": 48,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1737,
+      "end": 1738,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 27
+        },
+        "end": {
+          "line": 48,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "super",
+        "keyword": "super",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "super",
+      "start": 1747,
+      "end": 1752,
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 8
+        },
+        "end": {
+          "line": 49,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1752,
+      "end": 1753,
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 13
+        },
+        "end": {
+          "line": 49,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1753,
+      "end": 1754,
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 14
+        },
+        "end": {
+          "line": 49,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1754,
+      "end": 1755,
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 15
+        },
+        "end": {
+          "line": 49,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "this",
+        "keyword": "this",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "this",
+      "start": 1764,
+      "end": 1768,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 8
+        },
+        "end": {
+          "line": 50,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1768,
+      "end": 1769,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 12
+        },
+        "end": {
+          "line": 50,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "_id",
+      "start": 1769,
+      "end": 1772,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 13
+        },
+        "end": {
+          "line": 50,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 1773,
+      "end": 1774,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 17
+        },
+        "end": {
+          "line": 50,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "id",
+      "start": 1775,
+      "end": 1777,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 19
+        },
+        "end": {
+          "line": 50,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1777,
+      "end": 1778,
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 21
+        },
+        "end": {
+          "line": 50,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "this",
+        "keyword": "this",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "this",
+      "start": 1787,
+      "end": 1791,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 8
+        },
+        "end": {
+          "line": 51,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1791,
+      "end": 1792,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 12
+        },
+        "end": {
+          "line": 51,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "_rules",
+      "start": 1792,
+      "end": 1798,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 13
+        },
+        "end": {
+          "line": 51,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 1799,
+      "end": 1800,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 20
+        },
+        "end": {
+          "line": 51,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rules",
+      "start": 1801,
+      "end": 1806,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 22
+        },
+        "end": {
+          "line": 51,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1806,
+      "end": 1807,
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 27
+        },
+        "end": {
+          "line": 51,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1812,
+      "end": 1813,
+      "loc": {
+        "start": {
+          "line": 52,
+          "column": 4
+        },
+        "end": {
+          "line": 52,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": "-----------------------------------------------------------------------",
+      "start": 1819,
+      "end": 1892,
+      "loc": {
+        "start": {
+          "line": 54,
+          "column": 4
+        },
+        "end": {
+          "line": 54,
+          "column": 77
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     *\n     * @returns {string}\n     ",
+      "start": 1897,
+      "end": 1940,
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 4
+        },
+        "end": {
+          "line": 58,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "id",
+      "start": 1945,
+      "end": 1947,
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 4
+        },
+        "end": {
+          "line": 59,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1947,
+      "end": 1948,
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 6
+        },
+        "end": {
+          "line": 59,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1948,
+      "end": 1949,
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 7
+        },
+        "end": {
+          "line": 59,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1950,
+      "end": 1951,
+      "loc": {
+        "start": {
+          "line": 59,
+          "column": 9
+        },
+        "end": {
+          "line": 59,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 1960,
+      "end": 1966,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 8
+        },
+        "end": {
+          "line": 60,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "this",
+        "keyword": "this",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "this",
+      "start": 1967,
+      "end": 1971,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 15
+        },
+        "end": {
+          "line": 60,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1971,
+      "end": 1972,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 19
+        },
+        "end": {
+          "line": 60,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "_id",
+      "start": 1972,
+      "end": 1975,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 20
+        },
+        "end": {
+          "line": 60,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 1975,
+      "end": 1976,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 23
+        },
+        "end": {
+          "line": 60,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1981,
+      "end": 1982,
+      "loc": {
+        "start": {
+          "line": 61,
+          "column": 4
+        },
+        "end": {
+          "line": 61,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+      "start": 1988,
+      "end": 2034,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "rules",
+      "start": 2039,
+      "end": 2044,
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 4
+        },
+        "end": {
+          "line": 67,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2044,
+      "end": 2045,
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 9
+        },
+        "end": {
+          "line": 67,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2045,
+      "end": 2046,
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 10
+        },
+        "end": {
+          "line": 67,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2047,
+      "end": 2048,
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 12
+        },
+        "end": {
+          "line": 67,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 2057,
+      "end": 2063,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 8
+        },
+        "end": {
+          "line": 68,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "this",
+        "keyword": "this",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "this",
+      "start": 2064,
+      "end": 2068,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 15
+        },
+        "end": {
+          "line": 68,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2068,
+      "end": 2069,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 19
+        },
+        "end": {
+          "line": 68,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "_rules",
+      "start": 2069,
+      "end": 2075,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 20
+        },
+        "end": {
+          "line": 68,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2075,
+      "end": 2076,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 26
+        },
+        "end": {
+          "line": 68,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2081,
+      "end": 2082,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 4
+        },
+        "end": {
+          "line": 69,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2084,
+      "end": 2085,
+      "loc": {
+        "start": {
+          "line": 71,
+          "column": 0
+        },
+        "end": {
+          "line": 71,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2086,
+      "end": 2086,
+      "loc": {
+        "start": {
+          "line": 72,
+          "column": 0
+        },
+        "end": {
+          "line": 72,
+          "column": 0
         }
       }
     }

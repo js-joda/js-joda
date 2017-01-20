@@ -84,6 +84,16 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/StringBuilder.js~StringBuilder.html">StringBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format/parser</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser.html">CharLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/CompositePrinterParser.js~CompositePrinterParser.html">CompositePrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html">FractionPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~NumberPrinterParser.html">NumberPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/NumberPrinterParser.js~ReducedPrinterParser.html">ReducedPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser.html">OffsetIdPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator.html">PadPrinterParserDecorator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/SettingsParser.js~SettingsParser.html">SettingsParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser.html">StringLiteralPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser.html">ZoneIdPrinterParser</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">temporal</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
@@ -181,6 +191,7 @@ The offset and local date-time are used to define an instant when necessary.
 The zone ID is used to obtain the rules for how and when the offset changes.
 The offset cannot be freely set, as the zone controls which offsets are valid.</p>
 </div>
+  
 
   
 
@@ -207,7 +218,9 @@ The offset cannot be freely set, as the zone controls which offsets are valid.</
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-from">from</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-from">from</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -233,7 +246,9 @@ The offset cannot be freely set, as the zone controls which offsets are valid.</
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-now">now</a></span></span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-now">now</a></span></span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -260,7 +275,9 @@ or default time zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of">of</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of">of</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -286,7 +303,9 @@ or default time zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of2">of2</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of2">of2</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -312,7 +331,9 @@ or default time zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of3">of3</a></span></span><span data-ice="signature">(date: <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>, time: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of3">of3</a></span></span><span data-ice="signature">(date: <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span>, time: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -338,7 +359,9 @@ or default time zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of8">of8</a></span></span><span data-ice="signature">(year: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, month: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, dayOfMonth: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, hour: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, minute: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, second: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, nanoOfSecond: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span>ZonedDateTime </span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-of8">of8</a></span></span><span data-ice="signature">(year: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, month: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, dayOfMonth: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, hour: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, minute: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, second: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, nanoOfSecond: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span>ZonedDateTime </span></span>
         </p>
       </div>
       <div>
@@ -365,7 +388,9 @@ hour, minute, second, nanosecond and time-zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant">ofInstant</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant">ofInstant</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -391,7 +416,9 @@ hour, minute, second, nanosecond and time-zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant2">ofInstant2</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant2">ofInstant2</a></span></span><span data-ice="signature">(instant: <span><a href="class/src/Instant.js~Instant.html">Instant</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -417,7 +444,9 @@ hour, minute, second, nanosecond and time-zone.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant3">ofInstant3</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofInstant3">ofInstant3</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -444,7 +473,9 @@ the local date-time and offset.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLenient">ofLenient</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLenient">ofLenient</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -471,7 +502,9 @@ allowing any combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLocal">ofLocal</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>, preferredOffset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofLocal">ofLocal</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>, preferredOffset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -498,7 +531,9 @@ using the preferred offset if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofStrict">ofStrict</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-ofStrict">ofStrict</a></span></span><span data-ice="signature">(localDateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -525,7 +560,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-parse">parse</a></span></span><span data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-method-parse">parse</a></span></span><span data-ice="signature">(text: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -559,7 +596,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(dateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span>ZoneUd</span>)</span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(dateTime: <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, zone: <span>ZoneUd</span>)</span>
         </p>
       </div>
       <div>
@@ -593,7 +632,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfMonth">dayOfMonth</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfMonth">dayOfMonth</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -619,7 +660,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfWeek">dayOfWeek</a></span></span><span data-ice="signature">(): <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfWeek">dayOfWeek</a></span></span><span data-ice="signature">(): <span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
         </p>
       </div>
       <div>
@@ -645,7 +688,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfYear">dayOfYear</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-dayOfYear">dayOfYear</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -671,7 +716,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -697,7 +744,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-format">format</a></span></span><span data-ice="signature">(formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-format">format</a></span></span><span data-ice="signature">(formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -723,7 +772,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -749,7 +800,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-getLong">getLong</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-getLong">getLong</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -775,7 +828,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-hashCode">hashCode</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -801,7 +856,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-hour">hour</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-hour">hour</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -827,7 +884,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-isSupported">isSupported</a></span></span><span data-ice="signature">(fieldOrUnit: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-isSupported">isSupported</a></span></span><span data-ice="signature">(fieldOrUnit: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> | <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -853,7 +912,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus">minus</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus">minus</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -879,7 +940,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus2">minus2</a></span></span><span data-ice="signature">(amountToSubtract: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus2">minus2</a></span></span><span data-ice="signature">(amountToSubtract: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -905,7 +968,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusDays">minusDays</a></span></span><span data-ice="signature">(days: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusDays">minusDays</a></span></span><span data-ice="signature">(days: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -931,7 +996,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusHours">minusHours</a></span></span><span data-ice="signature">(hours: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusHours">minusHours</a></span></span><span data-ice="signature">(hours: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -957,7 +1024,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusMinutes">minusMinutes</a></span></span><span data-ice="signature">(minutes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusMinutes">minusMinutes</a></span></span><span data-ice="signature">(minutes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -983,7 +1052,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusMonths">minusMonths</a></span></span><span data-ice="signature">(months: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusMonths">minusMonths</a></span></span><span data-ice="signature">(months: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1009,7 +1080,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusNanos">minusNanos</a></span></span><span data-ice="signature">(nanos: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusNanos">minusNanos</a></span></span><span data-ice="signature">(nanos: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1035,7 +1108,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusSeconds">minusSeconds</a></span></span><span data-ice="signature">(seconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusSeconds">minusSeconds</a></span></span><span data-ice="signature">(seconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1061,7 +1136,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusTemporalAmount">minusTemporalAmount</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusTemporalAmount">minusTemporalAmount</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1087,7 +1164,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusWeeks">minusWeeks</a></span></span><span data-ice="signature">(weeks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusWeeks">minusWeeks</a></span></span><span data-ice="signature">(weeks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1113,7 +1192,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusYears">minusYears</a></span></span><span data-ice="signature">(years: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusYears">minusYears</a></span></span><span data-ice="signature">(years: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1139,7 +1220,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minute">minute</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minute">minute</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1165,7 +1248,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-month">month</a></span></span><span data-ice="signature">(): <span><a href="class/src/Month.js~Month.html">Month</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-month">month</a></span></span><span data-ice="signature">(): <span><a href="class/src/Month.js~Month.html">Month</a></span></span>
         </p>
       </div>
       <div>
@@ -1191,7 +1276,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-monthValue">monthValue</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-monthValue">monthValue</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1217,7 +1304,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-nano">nano</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-nano">nano</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1243,7 +1332,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-offset">offset</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-offset">offset</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1269,7 +1360,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus">plus</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus">plus</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1295,7 +1388,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus2">plus2</a></span></span><span data-ice="signature">(amountToAdd: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus2">plus2</a></span></span><span data-ice="signature">(amountToAdd: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1321,7 +1416,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusDays">plusDays</a></span></span><span data-ice="signature">(days: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusDays">plusDays</a></span></span><span data-ice="signature">(days: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1347,7 +1444,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusHours">plusHours</a></span></span><span data-ice="signature">(hours: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusHours">plusHours</a></span></span><span data-ice="signature">(hours: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1373,7 +1472,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusMinutes">plusMinutes</a></span></span><span data-ice="signature">(minutes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusMinutes">plusMinutes</a></span></span><span data-ice="signature">(minutes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1399,7 +1500,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusMonths">plusMonths</a></span></span><span data-ice="signature">(months: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusMonths">plusMonths</a></span></span><span data-ice="signature">(months: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1425,7 +1528,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusNanos">plusNanos</a></span></span><span data-ice="signature">(nanos: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusNanos">plusNanos</a></span></span><span data-ice="signature">(nanos: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1451,7 +1556,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusSeconds">plusSeconds</a></span></span><span data-ice="signature">(seconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusSeconds">plusSeconds</a></span></span><span data-ice="signature">(seconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1477,7 +1584,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusTemporalAmount">plusTemporalAmount</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusTemporalAmount">plusTemporalAmount</a></span></span><span data-ice="signature">(amount: <span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1503,7 +1612,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusWeeks">plusWeeks</a></span></span><span data-ice="signature">(weeks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusWeeks">plusWeeks</a></span></span><span data-ice="signature">(weeks: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1529,7 +1640,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusYears">plusYears</a></span></span><span data-ice="signature">(years: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusYears">plusYears</a></span></span><span data-ice="signature">(years: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1555,7 +1668,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1581,7 +1696,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
         </p>
       </div>
       <div>
@@ -1607,7 +1724,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-second">second</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-second">second</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1633,7 +1752,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toJSON">toJSON</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toJSON">toJSON</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -1658,7 +1779,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDate">toLocalDate</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDate">toLocalDate</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span>
         </p>
       </div>
       <div>
@@ -1684,7 +1807,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDateTime">toLocalDateTime</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalDateTime">toLocalDateTime</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1710,7 +1835,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalTime">toLocalTime</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalTime">toLocalTime</a></span></span><span data-ice="signature">(): <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1736,7 +1863,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString">toString</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -1763,7 +1892,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-truncatedTo">truncatedTo</a></span></span><span data-ice="signature">(unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-truncatedTo">truncatedTo</a></span></span><span data-ice="signature">(unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1789,7 +1920,9 @@ combination of local date-time, offset and zone ID.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-until">until</a></span></span><span data-ice="signature">(endExclusive: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-until">until</a></span></span><span data-ice="signature">(endExclusive: <span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span>, unit: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -1816,7 +1949,9 @@ terms of the specified unit.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with">with</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with">with</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1842,7 +1977,9 @@ terms of the specified unit.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with2">with2</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with2">with2</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1868,7 +2005,9 @@ terms of the specified unit.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withDayOfMonth">withDayOfMonth</a></span></span><span data-ice="signature">(dayOfMonth: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withDayOfMonth">withDayOfMonth</a></span></span><span data-ice="signature">(dayOfMonth: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1894,7 +2033,9 @@ terms of the specified unit.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withDayOfYear">withDayOfYear</a></span></span><span data-ice="signature">(dayOfYear: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withDayOfYear">withDayOfYear</a></span></span><span data-ice="signature">(dayOfYear: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1920,7 +2061,9 @@ terms of the specified unit.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap">withEarlierOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap">withEarlierOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1947,7 +2090,9 @@ earlier of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withFixedOffsetZone">withFixedOffsetZone</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withFixedOffsetZone">withFixedOffsetZone</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1973,7 +2118,9 @@ earlier of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withHour">withHour</a></span></span><span data-ice="signature">(hour: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withHour">withHour</a></span></span><span data-ice="signature">(hour: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -1999,7 +2146,9 @@ earlier of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap">withLaterOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withLaterOffsetAtOverlap">withLaterOffsetAtOverlap</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2026,7 +2175,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withMinute">withMinute</a></span></span><span data-ice="signature">(minute: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withMinute">withMinute</a></span></span><span data-ice="signature">(minute: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2052,7 +2203,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withMonth">withMonth</a></span></span><span data-ice="signature">(month: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withMonth">withMonth</a></span></span><span data-ice="signature">(month: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2078,7 +2231,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withNano">withNano</a></span></span><span data-ice="signature">(nanoOfSecond: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withNano">withNano</a></span></span><span data-ice="signature">(nanoOfSecond: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2104,7 +2259,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withSecond">withSecond</a></span></span><span data-ice="signature">(second: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withSecond">withSecond</a></span></span><span data-ice="signature">(second: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2130,7 +2287,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withTemporalAdjuster">withTemporalAdjuster</a></span></span><span data-ice="signature">(adjuster: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withTemporalAdjuster">withTemporalAdjuster</a></span></span><span data-ice="signature">(adjuster: <span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2156,7 +2315,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withYear">withYear</a></span></span><span data-ice="signature">(year: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withYear">withYear</a></span></span><span data-ice="signature">(year: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2182,7 +2343,9 @@ later of the two valid offsets at a local time-line overlap.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameInstant">withZoneSameInstant</a></span></span><span data-ice="signature">(zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameInstant">withZoneSameInstant</a></span></span><span data-ice="signature">(zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2209,7 +2372,9 @@ retaining the instant.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameLocal">withZoneSameLocal</a></span></span><span data-ice="signature">(zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withZoneSameLocal">withZoneSameLocal</a></span></span><span data-ice="signature">(zone: <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -2236,7 +2401,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-year">year</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-year">year</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -2262,7 +2429,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-zone">zone</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-zone">zone</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
         </p>
       </div>
       <div>
@@ -2296,7 +2465,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-get">get</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -2322,7 +2493,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -2348,7 +2521,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-range">range</a></span></span><span data-ice="signature">(field: <span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>): <span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span>
         </p>
       </div>
       <div>
@@ -2381,7 +2556,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-compareTo">compareTo</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-compareTo">compareTo</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -2407,7 +2584,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -2433,7 +2612,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-format">format</a></span></span><span data-ice="signature">(formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-format">format</a></span></span><span data-ice="signature">(formatter: <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -2459,7 +2640,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isAfter">isAfter</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isAfter">isAfter</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -2485,7 +2668,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isBefore">isBefore</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isBefore">isBefore</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -2511,7 +2696,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isEqual">isEqual</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-isEqual">isEqual</a></span></span><span data-ice="signature">(other: <span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -2537,7 +2724,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span>*</span>): <span>*</span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-query">query</a></span></span><span data-ice="signature">(query: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -2562,7 +2751,9 @@ retaining the local date-time if possible.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -2589,7 +2780,9 @@ of 1970-01-01T00:00:00Z.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-toInstant">toInstant</a></span></span><span data-ice="signature">(): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
+          
+          
+          <span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html#instance-method-toInstant">toInstant</a></span></span><span data-ice="signature">(): <span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span>
         </p>
       </div>
       <div>
@@ -2615,6 +2808,7 @@ of 1970-01-01T00:00:00Z.</p>
   <h3 data-ice="anchor" id="static-method-from">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -2665,11 +2859,13 @@ allowing it to be used in queries via method reference, <span>ZonedDateTime::fro
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -2698,12 +2894,15 @@ allowing it to be used in queries via method reference, <span>ZonedDateTime::fro
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-method-now">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -2752,15 +2951,19 @@ because the clock is hard-coded.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the current date-time using the system clock, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the current date-time using the system clock, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -2779,6 +2982,7 @@ because the clock is hard-coded.</p>
   <h3 data-ice="anchor" id="static-method-of">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -2807,14 +3011,18 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -2833,6 +3041,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
   <h3 data-ice="anchor" id="static-method-of2">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -2895,15 +3104,19 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -2922,6 +3135,7 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <h3 data-ice="anchor" id="static-method-of3">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -2992,15 +3206,19 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the offset date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3019,6 +3237,7 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <h3 data-ice="anchor" id="static-method-of8">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3130,11 +3349,13 @@ They are not provided here to reduce the footprint of the API.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>ZonedDateTime </span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the offset date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>ZonedDateTime </span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -3164,12 +3385,15 @@ They are not provided here to reduce the footprint of the API.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-method-ofInstant">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3197,14 +3421,18 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3223,6 +3451,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#static-me
   <h3 data-ice="anchor" id="static-method-ofInstant2">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3276,11 +3505,13 @@ offset for each instant.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -3309,12 +3540,15 @@ offset for each instant.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-method-ofInstant3">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3379,15 +3613,19 @@ to <span><a href="class/src/Year.js~Year.html#static-method-of">of</a></span>.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3406,6 +3644,7 @@ to <span><a href="class/src/Year.js~Year.html#static-method-of">of</a></span>.</
   <h3 data-ice="anchor" id="static-method-ofLenient">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3473,15 +3712,19 @@ in an &apos;invalid&apos; state, despite the change in rules.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3500,6 +3743,7 @@ in an &apos;invalid&apos; state, despite the change in rules.</p>
   <h3 data-ice="anchor" id="static-method-ofLocal">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3568,15 +3812,19 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3595,6 +3843,7 @@ moved one hour later into the offset typically corresponding to &apos;summer&apo
   <h3 data-ice="anchor" id="static-method-ofStrict">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3655,15 +3904,19 @@ If the offset is invalid, an exception is thrown.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3682,6 +3935,7 @@ If the offset is invalid, an exception is thrown.</p>
   <h3 data-ice="anchor" id="static-method-parse">
     <span class="access" data-ice="access">public</span>
     <span data-ice="static">static</span>
+    
     
     
     
@@ -3736,11 +3990,13 @@ If the offset is invalid, an exception is thrown.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the parsed zoned date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the parsed zoned date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -3769,6 +4025,8 @@ If the offset is invalid, an exception is thrown.</p>
   
 
   
+
+  
   
 </div>
 </div>
@@ -3777,6 +4035,7 @@ If the offset is invalid, an exception is thrown.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-constructor-constructor">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -3844,6 +4103,8 @@ If the offset is invalid, an exception is thrown.</p>
   
 
   
+
+  
   
 </div>
 </div>
@@ -3853,6 +4114,7 @@ If the offset is invalid, an exception is thrown.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-dayOfMonth">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -3880,15 +4142,19 @@ If the offset is invalid, an exception is thrown.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the day-of-month, from 1 to 31</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the day-of-month, from 1 to 31</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3906,6 +4172,7 @@ If the offset is invalid, an exception is thrown.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-dayOfWeek">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -3937,15 +4204,19 @@ This includes textual names of the values.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the day-of-week, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the day-of-week, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -3963,6 +4234,7 @@ This includes textual names of the values.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-dayOfYear">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -3990,15 +4262,19 @@ This includes textual names of the values.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the day-of-year, from 1 to 365, or 366 in a leap year</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the day-of-year, from 1 to 365, or 366 in a leap year</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4016,6 +4292,7 @@ This includes textual names of the values.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-equals">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4061,15 +4338,19 @@ Only objects of type <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.htm
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the other date-time</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the other date-time</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4087,6 +4368,7 @@ Only objects of type <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.htm
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-format">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4130,11 +4412,13 @@ Only objects of type <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.htm
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the formatted date-time string, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the formatted date-time string, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4163,11 +4447,14 @@ Only objects of type <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.htm
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-get">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4225,11 +4512,13 @@ and what the value represents, is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the value for the field</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the value for the field</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4263,11 +4552,14 @@ and what the value represents, is determined by the field.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-getLong">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4322,11 +4614,13 @@ and what the value represents, is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the value for the field</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the value for the field</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4360,11 +4654,14 @@ and what the value represents, is determined by the field.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-hashCode">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4391,15 +4688,19 @@ and what the value represents, is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a suitable hash code</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a suitable hash code</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4417,6 +4718,7 @@ and what the value represents, is determined by the field.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-hour">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4443,15 +4745,19 @@ and what the value represents, is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the hour-of-day, from 0 to 23</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the hour-of-day, from 0 to 23</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4469,6 +4775,7 @@ and what the value represents, is determined by the field.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-isSupported">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4553,15 +4860,19 @@ Whether the field is supported is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>true if the field is supported on this date-time, false if not</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if the field is supported on this date-time, false if not</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4579,6 +4890,7 @@ Whether the field is supported is determined by the field.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minus">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4607,14 +4919,18 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -4632,6 +4948,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minus2">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4698,11 +5015,13 @@ with the offset before the subtraction.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4731,11 +5050,14 @@ with the offset before the subtraction.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusDays">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4786,11 +5108,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4819,11 +5143,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusHours">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4881,11 +5208,13 @@ local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -4914,11 +5243,14 @@ local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusMinutes">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -4967,11 +5299,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5000,11 +5334,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusMonths">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5055,11 +5392,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5088,11 +5427,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusNanos">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5141,11 +5483,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5174,11 +5518,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusSeconds">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5227,11 +5574,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5260,11 +5609,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusTemporalAmount">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5314,11 +5666,13 @@ back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-min
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the subtraction made, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the subtraction made, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5352,11 +5706,14 @@ back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-min
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusWeeks">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5407,11 +5764,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5440,11 +5799,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusYears">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5495,11 +5857,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years subtracted, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years subtracted, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5528,11 +5892,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minute">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5559,15 +5926,19 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the minute-of-hour, from 0 to 59</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the minute-of-hour, from 0 to 59</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5585,6 +5956,7 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-month">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5614,15 +5986,19 @@ If you need access to the primitive <code>int</code> value, use <span>Month#getV
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/Month.js~Month.html">Month</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the month-of-year, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/Month.js~Month.html">Month</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the month-of-year, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5640,6 +6016,7 @@ If you need access to the primitive <code>int</code> value, use <span>Month#getV
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-monthValue">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5669,15 +6046,19 @@ is used by calling <span>getMonth</span>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the month-of-year, from 1 to 12</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the month-of-year, from 1 to 12</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5695,6 +6076,7 @@ is used by calling <span>getMonth</span>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-nano">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5721,15 +6103,19 @@ is used by calling <span>getMonth</span>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the nano-of-second, from 0 to 999,999,999</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the nano-of-second, from 0 to 999,999,999</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5747,6 +6133,7 @@ is used by calling <span>getMonth</span>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-offset">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5774,15 +6161,19 @@ is used by calling <span>getMonth</span>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>{ZoneOffset}the zone offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>{ZoneOffset}the zone offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5800,6 +6191,7 @@ is used by calling <span>getMonth</span>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plus">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5828,14 +6220,18 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -5853,6 +6249,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plus2">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -5919,11 +6316,13 @@ with the offset before the addition.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the specified period added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -5952,11 +6351,14 @@ with the offset before the addition.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusDays">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6007,11 +6409,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the days added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6040,11 +6444,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusHours">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6102,11 +6509,13 @@ local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the hours added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6135,11 +6544,14 @@ local times 01:00 to 01:59 occur twice changing from offset +02:00 to +01:00.</p
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusMinutes">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6188,11 +6600,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the minutes added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6221,11 +6635,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusMonths">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6276,11 +6693,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the months added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6309,11 +6728,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusNanos">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6362,11 +6784,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the nanoseconds added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6395,11 +6819,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusSeconds">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6448,11 +6875,13 @@ Note that this is a different approach to that used by days, months and years.</
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the seconds added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6481,11 +6910,14 @@ Note that this is a different approach to that used by days, months and years.</
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusTemporalAmount">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6535,11 +6967,13 @@ back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plu
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the addition made, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the addition made, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6573,11 +7007,14 @@ back to <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-plu
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusWeeks">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6628,11 +7065,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>{ZonedDateTime}a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the weeks added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6661,11 +7100,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusYears">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6716,11 +7158,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years added, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the years added, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6749,11 +7193,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-query">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6804,11 +7251,13 @@ specified query passing <code>this</code> as the argument.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the query result, null may be returned (defined by the query)</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the query result, null may be returned (defined by the query)</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6842,11 +7291,14 @@ specified query passing <code>this</code> as the argument.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-range">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6902,11 +7354,13 @@ Whether the range can be obtained is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the range of valid values for the field, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the range of valid values for the field, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -6935,11 +7389,14 @@ Whether the range can be obtained is determined by the field.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-second">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -6966,15 +7423,19 @@ Whether the range can be obtained is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the second-of-minute, from 0 to 59</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the second-of-minute, from 0 to 59</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -6992,6 +7453,7 @@ Whether the range can be obtained is determined by the field.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toJSON">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7017,15 +7479,19 @@ Whether the range can be obtained is determined by the field.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>same as <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString">ZonedDateTime.toString</a></span></p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>same as <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString">ZonedDateTime.toString</a></span></p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7043,6 +7509,7 @@ Whether the range can be obtained is determined by the field.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toLocalDate">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7071,15 +7538,19 @@ as this date-time.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the date part of this date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the date part of this date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7097,6 +7568,7 @@ as this date-time.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toLocalDateTime">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7125,15 +7597,19 @@ as this date-time.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the local date-time part of this date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the local date-time part of this date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7151,6 +7627,7 @@ as this date-time.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toLocalTime">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7179,15 +7656,19 @@ nanosecond as this date-time.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the time part of this date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the time part of this date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7205,6 +7686,7 @@ nanosecond as this date-time.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toString">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7235,15 +7717,19 @@ The output is compatible with ISO-8601 if the offset and ID are the same.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a string representation of this date-time, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a string representation of this date-time, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7261,6 +7747,7 @@ The output is compatible with ISO-8601 if the offset and ID are the same.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-truncatedTo">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7318,11 +7805,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the time truncated, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the time truncated, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -7351,11 +7840,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-until">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7451,11 +7943,13 @@ the second argument.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the amount of the period between this date-time and the end date-time</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the amount of the period between this date-time and the end date-time</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -7489,11 +7983,14 @@ the second argument.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-with">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7522,14 +8019,18 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
-        
-      </tr>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7547,6 +8048,7 @@ otherwise <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-with2">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7629,11 +8131,13 @@ whether and how to adjust the instant.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the specified field set, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the specified field set, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -7672,11 +8176,14 @@ whether and how to adjust the instant.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withDayOfMonth">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7728,11 +8235,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested day, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested day, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -7766,11 +8275,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withDayOfYear">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7822,11 +8334,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date with the requested day, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date with the requested day, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -7860,11 +8374,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withEarlierOffsetAtOverlap">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7899,15 +8416,19 @@ is returned.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the earlier offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the earlier offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7925,6 +8446,7 @@ is returned.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withFixedOffsetZone">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -7960,15 +8482,19 @@ and not region-based zone IDs.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the zone ID set to the offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> with the zone ID set to the offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -7986,6 +8512,7 @@ and not region-based zone IDs.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withHour">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8037,11 +8564,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested hour, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested hour, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8070,11 +8599,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withLaterOffsetAtOverlap">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8109,15 +8641,19 @@ is returned.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the later offset, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the later offset, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -8135,6 +8671,7 @@ is returned.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withMinute">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8186,11 +8723,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested minute, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested minute, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8219,11 +8758,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withMonth">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8275,11 +8817,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested month, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested month, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8308,11 +8852,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withNano">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8364,11 +8911,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested nanosecond, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested nanosecond, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8397,11 +8946,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withSecond">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8453,11 +9005,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested second, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested second, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8486,11 +9040,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withTemporalAdjuster">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8575,11 +9132,13 @@ specified adjuster passing <code>this</code> as the argument.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the adjustment made, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on <code>this</code> with the adjustment made, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8613,11 +9172,14 @@ specified adjuster passing <code>this</code> as the argument.</p>
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withYear">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8669,11 +9231,13 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested year, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested year, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8702,11 +9266,14 @@ If in a gap, the local date-time will be adjusted forward by the length of the g
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withZoneSameInstant">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8757,11 +9324,13 @@ use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
@@ -8790,11 +9359,14 @@ use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method
   
 
   
+
+  
   
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-withZoneSameLocal">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8846,15 +9418,19 @@ use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> based on this date-time with the requested zone, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -8872,6 +9448,7 @@ use <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-method
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-year">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8901,15 +9478,19 @@ To obtain the year-of-era, use <code>get(YEAR_OF_ERA)</code>.</p>
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the year, from MIN_YEAR to MAX_YEAR</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the year, from MIN_YEAR to MAX_YEAR</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -8927,6 +9508,7 @@ To obtain the year-of-era, use <code>get(YEAR_OF_ERA)</code>.</p>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-zone">
     <span class="access" data-ice="access">public</span>
+    
     
     
     
@@ -8959,15 +9541,19 @@ See also <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-m
   <div class="return-params" data-ice="returnParams">
     <h4>Return:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>the time-zone, not null</p>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the time-zone, not null</p>
 </td>
-      </tr>
+        </tr>
+      </tbody>
     </table>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
 
   
 
@@ -8986,7 +9572,7 @@ See also <span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html#instance-m
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>
