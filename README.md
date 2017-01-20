@@ -113,7 +113,7 @@ only fixed offsets like UTC or UTC+02:00 and the system default time zone.
 
 Add iana timezone database support to js-joda. 
 
-Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
+Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide iana tzdb files that 
 can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. 
  
 ### Milestone 3

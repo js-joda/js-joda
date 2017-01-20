@@ -3,6 +3,14 @@ Changelog
 
 ### 1.1.18 (next)
 
+#### iana tzdb
+
+ * Improve parsing of ZoneRegions
+
+#### etc
+
+ * Fix bower.json
+
 ### 1.1.17
 
 #### Bugfixes
@@ -10,7 +18,7 @@ Changelog
  * Improve LocalDateTime.toInstant error handling
  * Improve validation of LocalDate parameter values when passed as Strings
  
-#### ianna tzdb
+#### iana tzdb
 
  * First quick approach for parsing ZoneRegions
  

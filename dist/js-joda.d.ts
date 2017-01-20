@@ -393,7 +393,7 @@ declare namespace JSJoda {
 
         static ofSecondOfDay(secondOfDay?: number, nanoOfSecond?: number): LocalTime
 
-        static parse(text: String, formatter?: String): LocalTime
+        static parse(text: String, formatter?: DateTimeFormatter): LocalTime
 
         constructor(hour?: number, minute?: number, second?: number, nanoOfSecond?: number)
 
