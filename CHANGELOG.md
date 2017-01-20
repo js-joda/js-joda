@@ -1,15 +1,20 @@
 Changelog
 =========
 
-### 1.1.18 (next)
+### 1.2.1 (next)
+
+### 1.2.0
 
 #### iana tzdb
 
- * Improve parsing of ZoneRegions
+ * Complete parsing of ZoneRegions
 
 #### etc
 
  * Fix bower.json
+ * Fix LocalTime.parse esdoc/ typescript definition
+
+#### dependency updates
 
 ### 1.1.17
 
