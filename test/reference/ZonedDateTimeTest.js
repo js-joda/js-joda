@@ -28,6 +28,7 @@ import {Year} from '../../src/Year';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneId} from '../../src/ZoneId';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {ZoneRulesProvider} from '../../src/zone/ZoneRulesProvider';
 
 import {IsoChronology} from '../../src/chrono/IsoChronology';
 import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
@@ -37,7 +38,6 @@ import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 describe('org.threeten.bp.TestZonedDateTime', () => {
-
     const OFFSET_0100 = ZoneOffset.ofHours(1);
     const OFFSET_0200 = ZoneOffset.ofHours(2);
     const OFFSET_0130 = ZoneOffset.ofHoursMinutes(1, 30);
@@ -54,6 +54,32 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
     let TEST_LOCAL_2008_06_30_11_30_59_500;
     let TEST_DATE_TIME;
     let TEST_DATE_TIME_PARIS;
+
+    let getAvailableZoneIdsFn, getRulesFn;
+
+    before(() => {
+        getAvailableZoneIdsFn = ZoneRulesProvider.getAvailableZoneIds;
+        getRulesFn = ZoneRulesProvider.getRules;
+
+        ZoneRulesProvider.getAvailableZoneIds = () => {
+            return ['Europe/London', 'Europe/Paris', 'Europe/Berlin', 'America/New_Zork'];
+        };
+
+        ZoneRulesProvider.getRules = (zoneId) => {
+            switch (zoneId) {
+                case 'Europe/London': return ZoneOffset.ofHours(1).rules();
+                case 'Europe/Paris': return ZONE_BERLIN.rules();
+                case 'Europe/Berlin': return ZONE_BERLIN.rules();
+                case 'America/New_York': return ZONE_NEW_YORK.rules();
+                default: return null;
+            }
+        };
+    });
+
+    after(() => {
+        ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
+        ZoneRulesProvider.getRules = getRulesFn;
+    });
 
     beforeEach(function () {
         TEST_LOCAL_2008_06_30_11_30_59_500 = LocalDateTime.of(2008, 6, 30, 11, 30, 59, 500);
@@ -493,11 +519,10 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             [2008, 6, 30, 11, 30, 59, 999000, 'Z', '2008-06-30T11:30:59.000999Z'],
             [2008, 6, 30, 11, 30, 59, 999000, '+01:00', '2008-06-30T11:30:59.000999+01:00'],
             [2008, 6, 30, 11, 30, 59, 999, 'Z', '2008-06-30T11:30:59.000000999Z'],
-            [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00']
+            [2008, 6, 30, 11, 30, 59, 999, '+01:00', '2008-06-30T11:30:59.000000999+01:00'],
 
-            // TODO iana tzdb/ parser
-            //[2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
-            //[2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]']
+            [2008, 6, 30, 11, 30, 59, 999, 'Europe/London', '2008-06-30T11:30:59.000000999+01:00[Europe/London]'],
+            [2008, 6, 30, 11, 30, 59, 999, 'Europe/Paris', '2008-06-30T11:30:59.000000999+02:00[Europe/Paris]'],
         ];
     }
 
@@ -524,10 +549,9 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 ['2012-06-30T12:30:40-01:00[UTC-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC-01:00'],
 
                 // special javascript ZoneId
-                ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM']
+                ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM'],
 
-                // TODO iana tzdb/ parser
-                // ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London']
+                ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London'],
             ];
         }
 
@@ -569,7 +593,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
     });
 
-/** TODO pattern parser
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter', function () {
@@ -592,8 +615,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
         });
 
     });
-    */
-
 
     // @DataProvider(name="sampleTimes")
     function provider_sampleTimes() {
