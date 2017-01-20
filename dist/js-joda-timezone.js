@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 0.0.5
+//! @version js-joda-timezone - 0.0.6
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -88,127 +88,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return jsJoda;
 	};
 
-	var _MomentZoneRulesProvider = __webpack_require__(2);
+	var _latest = __webpack_require__(2);
+
+	var _latest2 = _interopRequireDefault(_latest);
+
+	var _MomentZoneRulesProvider = __webpack_require__(3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/*
 	 * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
 	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 	 */
 
+	_MomentZoneRulesProvider.MomentZoneRulesProvider.loadData(_latest2.default);
+
 	module.exports = exports['default'];
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	exports.__esModule = true;
-	exports.MomentZoneRulesProvider = undefined;
-
-	var _latest = __webpack_require__(3);
-
-	var _latest2 = _interopRequireDefault(_latest);
-
-	var _jsJoda = __webpack_require__(4);
-
-	var _MomentZoneRules = __webpack_require__(5);
-
-	var _unpack = __webpack_require__(6);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-	var TZDB_VERSION = null;
-	var AVAILABLE_ZONE_IDS = [];
-
-	var zones = {};
-	var links = {};
-
-	var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneRulesProvider) {
-	    _inherits(MomentZoneRulesProvider, _ZoneRulesProvider);
-
-	    function MomentZoneRulesProvider() {
-	        _classCallCheck(this, MomentZoneRulesProvider);
-
-	        return _possibleConstructorReturn(this, _ZoneRulesProvider.apply(this, arguments));
-	    }
-
-	    MomentZoneRulesProvider.getRules = function getRules(zoneId) {
-	        var tzdbZoneInfo = zones[links[zoneId]];
-	        if (tzdbZoneInfo == null) {
-	            throw new _jsJoda.DateTimeException('Unknown time-zone ID: ' + zoneId);
-	        }
-	        return new _MomentZoneRules.MomentZoneRules(tzdbZoneInfo);
-	    };
-
-	    MomentZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
-	        return AVAILABLE_ZONE_IDS;
-	    };
-
-	    MomentZoneRulesProvider.getVersion = function getVersion() {
-	        return TZDB_VERSION;
-	    };
-
-	    MomentZoneRulesProvider.loadData = function loadData(packedJson) {
-	        TZDB_VERSION = packedJson.version;
-
-	        for (var _iterator = packedJson.zones, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-	            var _ref;
-
-	            if (_isArray) {
-	                if (_i >= _iterator.length) break;
-	                _ref = _iterator[_i++];
-	            } else {
-	                _i = _iterator.next();
-	                if (_i.done) break;
-	                _ref = _i.value;
-	            }
-
-	            var packedZoneInfo = _ref;
-
-	            var tzdbZoneInfo = (0, _unpack.unpack)(packedZoneInfo);
-	            AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
-	            zones[tzdbZoneInfo.name] = tzdbZoneInfo;
-	            links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
-	        }
-
-	        for (var _iterator2 = packedJson.links, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-	            var _ref2;
-
-	            if (_isArray2) {
-	                if (_i2 >= _iterator2.length) break;
-	                _ref2 = _iterator2[_i2++];
-	            } else {
-	                _i2 = _iterator2.next();
-	                if (_i2.done) break;
-	                _ref2 = _i2.value;
-	            }
-
-	            var packedLink = _ref2;
-
-	            var link = packedLink.split('|');
-	            AVAILABLE_ZONE_IDS.push(link[1]);
-	            links[link[1]] = link[0];
-	        }
-	    };
-
-	    return MomentZoneRulesProvider;
-	}(_jsJoda.ZoneRulesProvider);
-
-	MomentZoneRulesProvider.loadData(_latest2.default);
-
-/***/ },
-/* 3 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -810,6 +708,108 @@ return /******/ (function(modules) { // webpackBootstrap
 			"Pacific/Pohnpei|Pacific/Ponape"
 		]
 	};
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.MomentZoneRulesProvider = undefined;
+
+	var _jsJoda = __webpack_require__(4);
+
+	var _MomentZoneRules = __webpack_require__(5);
+
+	var _unpack = __webpack_require__(6);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+	var TZDB_VERSION = null;
+	var AVAILABLE_ZONE_IDS = [];
+
+	var zones = {};
+	var links = {};
+
+	var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneRulesProvider) {
+	    _inherits(MomentZoneRulesProvider, _ZoneRulesProvider);
+
+	    function MomentZoneRulesProvider() {
+	        _classCallCheck(this, MomentZoneRulesProvider);
+
+	        return _possibleConstructorReturn(this, _ZoneRulesProvider.apply(this, arguments));
+	    }
+
+	    MomentZoneRulesProvider.getRules = function getRules(zoneId) {
+	        var tzdbZoneInfo = zones[links[zoneId]];
+	        if (tzdbZoneInfo == null) {
+	            throw new _jsJoda.DateTimeException('Unknown time-zone ID: ' + zoneId);
+	        }
+	        return new _MomentZoneRules.MomentZoneRules(tzdbZoneInfo);
+	    };
+
+	    MomentZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
+	        return AVAILABLE_ZONE_IDS;
+	    };
+
+	    MomentZoneRulesProvider.getVersion = function getVersion() {
+	        return TZDB_VERSION;
+	    };
+
+	    MomentZoneRulesProvider.loadData = function loadData(packedJson) {
+	        TZDB_VERSION = packedJson.version;
+
+	        for (var _iterator = packedJson.zones, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	            var _ref;
+
+	            if (_isArray) {
+	                if (_i >= _iterator.length) break;
+	                _ref = _iterator[_i++];
+	            } else {
+	                _i = _iterator.next();
+	                if (_i.done) break;
+	                _ref = _i.value;
+	            }
+
+	            var packedZoneInfo = _ref;
+
+	            var tzdbZoneInfo = (0, _unpack.unpack)(packedZoneInfo);
+	            AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
+	            zones[tzdbZoneInfo.name] = tzdbZoneInfo;
+	            links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
+	        }
+
+	        for (var _iterator2 = packedJson.links, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+	            var _ref2;
+
+	            if (_isArray2) {
+	                if (_i2 >= _iterator2.length) break;
+	                _ref2 = _iterator2[_i2++];
+	            } else {
+	                _i2 = _iterator2.next();
+	                if (_i2.done) break;
+	                _ref2 = _i2.value;
+	            }
+
+	            var packedLink = _ref2;
+
+	            var link = packedLink.split('|');
+	            AVAILABLE_ZONE_IDS.push(link[1]);
+	            links[link[1]] = link[0];
+	        }
+	    };
+
+	    return MomentZoneRulesProvider;
+	}(_jsJoda.ZoneRulesProvider);
 
 /***/ },
 /* 4 */
