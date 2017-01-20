@@ -7,4 +7,5 @@ Release how-to
 4) execute `npm run build-dist`
 5) commit your changes
 6) tag this commit with the current version and a preceeding 'v' e.g. `git tag -m "v1.1.1" v1.1.1`
-7) publish this commit `npm publish`
+7) `git push && git push --tags` and wait until travis reports a successful build 
+8) publish the package `npm publish`
