@@ -233,6 +233,20 @@ describe('MomentZoneRules', () => {
 
     });
 
+    describe('not supported', () => {
+        it('should throw an error for not supported ZoneRule functionality', () => {
+            const rules = MomentZoneRulesProvider.getRules('Europe/London');
+
+            expect(() => rules.standardOffset()).to.throw(Error);
+            expect(() => rules.daylightSavings()).to.throw(Error);
+            expect(() => rules.isDaylightSavings()).to.throw(Error);
+            expect(() => rules.nextTransition()).to.throw(Error);
+            expect(() => rules.previousTransition()).to.throw(Error);
+            expect(() => rules.transitions()).to.throw(Error);
+            expect(() => rules.transitionRules()).to.throw(Error);
+        });
+    });
+
     function createInstant(year, month, day, hour, min, zoneOffset) {
         return LocalDateTime.of(year, month, day, hour, min, 0).toInstant(zoneOffset);
     }
