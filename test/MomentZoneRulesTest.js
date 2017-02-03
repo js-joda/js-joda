@@ -276,6 +276,20 @@ describe('MomentZoneRules', () => {
 
     });
 
+    describe('equals()', function () {
+        it('should equal', () => {
+            expect(ZoneId.of('Europe/Berlin').rules().equals(ZoneId.of('Europe/Berlin').rules())).to.be.true;
+            expect(EUROPE_BERLIN.rules().equals(EUROPE_BERLIN.rules())).to.be.true;
+        });
+
+        it('should not equal', () => {
+            expect(ZoneId.of('Europe/Berlin').rules().equals(ZoneId.of('Europe/Paris').rules())).to.be.false;
+            expect(EUROPE_BERLIN.rules().equals(AMERICA_NEW_YORCK.rules())).to.be.false;
+            expect(EUROPE_BERLIN.rules().equals(null)).to.be.false;
+            expect(EUROPE_BERLIN.rules().equals({})).to.be.false;
+        });
+    });
+
     describe('not supported', () => {
         it('should throw an error for not supported ZoneRule functionality', () => {
             const rules = MomentZoneRulesProvider.getRules('Europe/London');
