@@ -290,6 +290,13 @@ describe('MomentZoneRules', () => {
         });
     });
 
+    describe('toString()', function () {
+        it('should return zone name', () => {
+            expect(ZoneId.of('Europe/Berlin').rules().toString()).to.equal('Europe/Berlin');
+            expect(AMERICA_NEW_YORCK.rules().toString()).to.equal('America/New_York');
+        });
+    });
+
     describe('not supported', () => {
         it('should throw an error for not supported ZoneRule functionality', () => {
             const rules = MomentZoneRulesProvider.getRules('Europe/London');
