@@ -9,6 +9,8 @@ import { ZoneRules } from 'js-joda';
 import { MomentZoneRules } from '../src/MomentZoneRules';
 import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
 
+import './useMomentZoneRules';
+
 describe('MomentZoneRulesProvider', () => {
     context('getRules', () => {
         it('should return an instance of MomentZoneRules', () => {
@@ -39,6 +41,14 @@ describe('MomentZoneRulesProvider', () => {
             expect(availableZoneIds).contain('Etc/GMT+0');
             expect(availableZoneIds).contain('Etc/GMT-1');
             expect(availableZoneIds).contain('Etc/GMT+10');
+        });
+    });
+
+    context('getVersion', () => {
+        it('should return a string', () => {
+            const version = MomentZoneRulesProvider.getVersion();
+
+            expect(version).to.be.a('string');
         });
     });
 });
