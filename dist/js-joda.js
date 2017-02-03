@@ -1,4 +1,4 @@
-//! @version js-joda - 1.2.0
+//! @version js-joda - 1.3.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
-	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.convert = exports.ZoneRulesProvider = exports.ZoneRules = exports.ZoneRegion = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.NullPointerException = exports.IllegalStateException = exports.IllegalArgumentException = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
+	exports.ResolverStyle = exports.DateTimeFormatterBuilder = exports.DateTimeFormatter = exports.TemporalQueries = exports.TemporalAdjusters = exports.IsoFields = exports.ChronoUnit = exports.ChronoField = exports.nativeJs = exports.convert = exports.ZoneRulesProvider = exports.ZoneRules = exports.ZoneOffsetTransition = exports.ZoneRegion = exports.ZoneId = exports.ZoneOffset = exports.ZonedDateTime = exports.YearMonth = exports.Year = exports.Period = exports.MonthDay = exports.Month = exports.LocalDateTime = exports.LocalTime = exports.LocalDate = exports.Instant = exports.Duration = exports.DayOfWeek = exports.NullPointerException = exports.IllegalStateException = exports.IllegalArgumentException = exports.DateTimeParseException = exports.DateTimeException = exports.Clock = undefined;
 
 	var _Clock = __webpack_require__(1);
 
@@ -241,6 +241,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	});
 
+	var _ZoneOffsetTransition = __webpack_require__(63);
+
+	Object.defineProperty(exports, 'ZoneOffsetTransition', {
+	    enumerable: true,
+	    get: function get() {
+	        return _ZoneOffsetTransition.ZoneOffsetTransition;
+	    }
+	});
+
 	var _ZoneRules = __webpack_require__(29);
 
 	Object.defineProperty(exports, 'ZoneRules', {
@@ -259,7 +268,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	});
 
-	var _convert = __webpack_require__(63);
+	var _convert = __webpack_require__(64);
 
 	Object.defineProperty(exports, 'convert', {
 	    enumerable: true,
@@ -268,7 +277,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	});
 
-	var _NativeJsTemporal = __webpack_require__(64);
+	var _NativeJsTemporal = __webpack_require__(65);
 
 	Object.defineProperty(exports, 'nativeJs', {
 	    enumerable: true,
@@ -350,7 +359,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.use = use;
 
-	__webpack_require__(65);
+	__webpack_require__(66);
 
 	var used = [];
 	function use(fn) {
@@ -12565,6 +12574,133 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	exports.__esModule = true;
+	exports.ZoneOffsetTransition = undefined;
+
+	var _assert = __webpack_require__(2);
+
+	var _errors = __webpack_require__(3);
+
+	var _Duration = __webpack_require__(14);
+
+	var _LocalDateTime = __webpack_require__(7);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+	                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+	                                                                                                                                                           * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+	                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                                                                                                           */
+
+	var ZoneOffsetTransition = exports.ZoneOffsetTransition = function () {
+	    ZoneOffsetTransition.of = function of(transition, offsetBefore, offsetAfter) {
+	        return new ZoneOffsetTransition(transition, offsetBefore, offsetAfter);
+	    };
+
+	    function ZoneOffsetTransition(transition, offsetBefore, offsetAfter) {
+	        _classCallCheck(this, ZoneOffsetTransition);
+
+	        (0, _assert.requireNonNull)(transition, 'transition');
+	        (0, _assert.requireNonNull)(offsetBefore, 'offsetBefore');
+	        (0, _assert.requireNonNull)(offsetAfter, 'offsetAfter');
+	        if (offsetBefore.equals(offsetAfter)) {
+	            throw new _errors.IllegalArgumentException('Offsets must not be equal');
+	        }
+	        if (transition.nano() !== 0) {
+	            throw new _errors.IllegalArgumentException('Nano-of-second must be zero');
+	        }
+	        if (transition instanceof _LocalDateTime.LocalDateTime) {
+	            this._transition = transition;
+	        } else {
+	            this._transition = _LocalDateTime.LocalDateTime.ofEpochSecond(transition, 0, offsetBefore);
+	        }
+	        this._offsetBefore = offsetBefore;
+	        this._offsetAfter = offsetAfter;
+	    }
+
+	    ZoneOffsetTransition.prototype.instant = function instant() {
+	        return this._transition.toInstant(this._offsetBefore);
+	    };
+
+	    ZoneOffsetTransition.prototype.toEpochSecond = function toEpochSecond() {
+	        return this._transition.toEpochSecond(this._offsetBefore);
+	    };
+
+	    ZoneOffsetTransition.prototype.dateTimeBefore = function dateTimeBefore() {
+	        return this._transition;
+	    };
+
+	    ZoneOffsetTransition.prototype.dateTimeAfter = function dateTimeAfter() {
+	        return this._transition.plusSeconds(this.durationSeconds());
+	    };
+
+	    ZoneOffsetTransition.prototype.offsetBefore = function offsetBefore() {
+	        return this._offsetBefore;
+	    };
+
+	    ZoneOffsetTransition.prototype.offsetAfter = function offsetAfter() {
+	        return this._offsetAfter;
+	    };
+
+	    ZoneOffsetTransition.prototype.duration = function duration() {
+	        return _Duration.Duration.ofSeconds(this.durationSeconds());
+	    };
+
+	    ZoneOffsetTransition.prototype.durationSeconds = function durationSeconds() {
+	        return this._offsetAfter.totalSeconds() - this._offsetBefore.totalSeconds();
+	    };
+
+	    ZoneOffsetTransition.prototype.isGap = function isGap() {
+	        return this._offsetAfter.totalSeconds() > this._offsetBefore.totalSeconds();
+	    };
+
+	    ZoneOffsetTransition.prototype.isOverlap = function isOverlap() {
+	        return this._offsetAfter.totalSeconds() < this._offsetBefore.totalSeconds();
+	    };
+
+	    ZoneOffsetTransition.prototype.isValidOffset = function isValidOffset(offset) {
+	        return this.isGap() ? false : this._offsetBefore.equals(offset) || this._offsetAfter.equals(offset);
+	    };
+
+	    ZoneOffsetTransition.prototype.validOffsets = function validOffsets() {
+	        if (this.isGap()) {
+	            return [];
+	        } else {
+	            return [this._offsetBefore, this._offsetAfter];
+	        }
+	    };
+
+	    ZoneOffsetTransition.prototype.compareTo = function compareTo(transition) {
+	        return this.instant().compareTo(transition.instant());
+	    };
+
+	    ZoneOffsetTransition.prototype.equals = function equals(other) {
+	        if (other === this) {
+	            return true;
+	        }
+	        if (other instanceof ZoneOffsetTransition) {
+	            var d = other;
+	            return this._transition.equals(d._transition) && this._offsetBefore.equals(d.offsetBefore()) && this._offsetAfter.equals(d.offsetAfter());
+	        }
+	        return false;
+	    };
+
+	    ZoneOffsetTransition.prototype.hashCode = function hashCode() {
+	        return this._transition.hashCode() ^ this._offsetBefore.hashCode() ^ this._offsetAfter.hashCode() >>> 16;
+	    };
+
+	    ZoneOffsetTransition.prototype.toString = function toString() {
+	        return 'Transition[' + (this.isGap() ? 'Gap' : 'Overlap') + ' at ' + this._transition.toString() + this._offsetBefore.toString() + ' to ' + this._offsetAfter + ']';
+	    };
+
+	    return ZoneOffsetTransition;
+	}();
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
 	exports.convert = convert;
 
 	var _errors = __webpack_require__(3);
@@ -12623,7 +12759,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12724,7 +12860,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12769,9 +12905,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _DateTimeFormatterBuilder = __webpack_require__(25);
 
-	var _TemporalQueriesFactory = __webpack_require__(66);
+	var _TemporalQueriesFactory = __webpack_require__(67);
 
-	var _ZoneIdFactory = __webpack_require__(67);
+	var _ZoneIdFactory = __webpack_require__(68);
 
 	/*
 	 * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -12815,7 +12951,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	init();
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12882,7 +13018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12905,7 +13041,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TemporalQueries = __webpack_require__(22);
 
-	var _SystemDefaultZoneId = __webpack_require__(68);
+	var _SystemDefaultZoneId = __webpack_require__(69);
 
 	var _ZoneRulesProvider = __webpack_require__(54);
 
@@ -13007,7 +13143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13015,7 +13151,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.SystemDefaultZoneId = undefined;
 
-	var _SystemDefaultZoneRules = __webpack_require__(69);
+	var _SystemDefaultZoneRules = __webpack_require__(70);
 
 	var _ZoneId2 = __webpack_require__(27);
 
@@ -13059,7 +13195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ZoneId2.ZoneId);
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
