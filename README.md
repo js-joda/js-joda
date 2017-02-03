@@ -1,7 +1,5 @@
 # js-joda-timezone
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/js-joda/js-joda-timezone.svg)](https://greenkeeper.io/)
-
 [![npm version](https://badge.fury.io/js/js-joda-timezone.svg)](https://badge.fury.io/js/js-joda-timezone)
 [![Build Status](https://travis-ci.org/js-joda/js-joda-timezone.svg)](https://travis-ci.org/js-joda/js-joda-timezone)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda-timezone)](https://saucelabs.com/u/js-joda-timezone)
