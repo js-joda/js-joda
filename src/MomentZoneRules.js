@@ -5,13 +5,14 @@
  */
 
 import {
-    ZoneId, ZoneOffset, ZoneRules
+    LocalDateTime, Instant, ZoneOffset, ZoneOffsetTransition, ZoneRules
 } from 'js-joda';
 
 export class MomentZoneRules extends ZoneRules{
     constructor(tzdbInfo){
         super();
         this._tzdbInfo = tzdbInfo;
+        this._ldtUntils = new LDTUntils(this._tzdbInfo.untils, this._tzdbInfo.offsets);
     }
     /**
      * Checks of the zone rules are fixed, such that the offset never varies.
@@ -51,7 +52,7 @@ export class MomentZoneRules extends ZoneRules{
      */
     offsetOfEpochMilli(epochMilli){
         let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
-        return ZoneOffset.ofTotalSeconds(-this._offsetByIndexInSeconds(index));
+        return ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(index));
     }
 
 
@@ -84,36 +85,38 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the best available offset for the local date-time, not null
      */
     offsetOfLocalDateTime(localDateTime){
-        // FIXME work in progress
-        const utcEpochMilli = localDateTime.toEpochSecond(ZoneId.UTC) * 1000;
-        const index  = binarySearch(this._tzdbInfo.untils, utcEpochMilli);
-        let offsetSec = this._offsetByIndexInSeconds(index);
-        const epochMilli = utcEpochMilli + offsetSec * 1000;
-
-        const nextIndex = this._clipIndex(index + 1);
-        const nextEpochMilliDst = this._tzdbInfo.untils[index];
-        const prevIndex = this._clipIndex(index - 1);
-        const prevEpochMilliDst = this._tzdbInfo.untils[prevIndex];
-        if(epochMilli > nextEpochMilliDst) {
-            offsetSec = this._offsetByIndexInSeconds(nextIndex);
-        } else if (epochMilli < prevEpochMilliDst) {
-            offsetSec = this._offsetByIndexInSeconds(prevIndex);
+        const info = this._offsetInfo(localDateTime);
+        if (info instanceof ZoneOffsetTransition) {
+            return info.getOffsetBefore();
         }
-        return ZoneOffset.ofTotalSeconds(-offsetSec);
+        return info;
     }
 
-    _clipIndex(index) {
-        if (index < 0) {
-            return 0;
-        } else if (index >= this._tzdbInfo.offsets.length) {
-            return this._tzdbInfo.offsets.length - 1;
-        } else {
-            return index;
+    _offsetInfo(localDateTime) {
+        const index  = ldtBinarySearch(this._ldtUntils, localDateTime);
+        const offsetIndex = index >> 1;
+
+        if (index % 2 === 1){
+            const ldtBefore = this._ldtUntils.get(Math.max(index-1, 0));
+            const ldtAfter = this._ldtUntils.get(Math.min(index, this._ldtUntils.size-1));
+            const offsetBefore = ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
+            const offsetAfter = ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(Math.min(offsetIndex+1, this._tzdbInfo.offsets.length-1)));
+            // console.log(offsetBefore.toString(), offsetAfter.toString());
+            if (offsetBefore.compareTo(offsetAfter) > 0) {
+                // gap
+                // console.log('gap', ldtBefore.toString(), localDateTime.toString(), ldtAfter.toString());
+                return ZoneOffsetTransition.of(ldtBefore, offsetBefore, offsetAfter);
+            } else {
+                // overlap
+                // console.log('overlap', ldtBefore.toString(), localDateTime.toString(), ldtAfter.toString());
+                return ZoneOffsetTransition.of(ldtAfter, offsetBefore, offsetAfter);
+            }
         }
+        return ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
     }
 
     _offsetByIndexInSeconds(index){
-        return roundDown(+this._tzdbInfo.offsets[index]*60);
+        return -offsetInSeconds(this._tzdbInfo.offsets[index]);
     }
 
     /**
@@ -156,15 +159,17 @@ export class MomentZoneRules extends ZoneRules{
      *
      * @param {LocalDateTime} localDateTime - the local date-time to query for valid offsets, not null
      *  may be ignored if the rules have a single offset for all instants
-     * @return {ZoneOffset[]} the list of valid offsets, may be immutable, not null
+     * @return {ZoneOffsetTransition | ZoneOffset[]} the list of valid offsets, may be immutable, not null
      */
     validOffsets(localDateTime){
-        // FIXME just a short cut;
-        const offset = this.offsetOfLocalDateTime(localDateTime);
-        return [offset];
+        const info = this._offsetInfo(localDateTime);
+        if (info instanceof ZoneOffsetTransition) {
+            return info.validOffsets();
+        }
+        return [info];
     }
 
-    /**
+/**
      * Gets the offset transition applicable at the specified local date-time in these rules.
      * <p>
      * The mapping from a local date-time to an offset is not straightforward.
@@ -200,7 +205,10 @@ export class MomentZoneRules extends ZoneRules{
      */
     // eslint-disable-next-line no-unused-vars
     transition(localDateTime){
-        // FIXME just a shortcut;
+        const info = this._offsetInfo(localDateTime);
+        if (info instanceof ZoneOffsetTransition) {
+            return info;
+        }
         return null;
     }
 
@@ -366,6 +374,69 @@ export class MomentZoneRules extends ZoneRules{
     toString() {
         return this._tzdbInfo.name;
     }
+}
+
+class LDTUntils {
+    constructor(_tzdbUntils, tzdbOffsets) {
+        this._tzdbUntils = _tzdbUntils;
+        this._tzdbOffsets = tzdbOffsets;
+        this._ldtUntils = [];
+        this.size = this._tzdbUntils.length * 2;
+    }
+
+
+    _generateTupple(index) {
+        const epochMillis = this._tzdbUntils[index];
+        if (epochMillis === Infinity) {
+            return [LocalDateTime.MAX, LocalDateTime.MAX];
+        }
+        const instant = Instant.ofEpochMilli(epochMillis);
+
+        const offset1 = offsetInSeconds(this._tzdbOffsets[index]);
+        const zone1 = ZoneOffset.ofTotalSeconds(-offset1);
+        const ldt1 = LocalDateTime.ofInstant(instant, zone1);
+
+        const nextIndex = Math.min(index + 1, this._tzdbOffsets.length - 1);
+        const offset2 = offsetInSeconds(this._tzdbOffsets[nextIndex]);
+        const zone2 = ZoneOffset.ofTotalSeconds(-offset2);
+        const ldt2 = LocalDateTime.ofInstant(instant, zone2);
+
+        if(offset1 > offset2) {
+            return [ldt1, ldt2];
+        } else {
+            return [ldt2, ldt1];
+        }
+    }
+
+    _getTupple(index){
+        if (this._ldtUntils[index] == null) {
+            this._ldtUntils[index] = this._generateTupple(index);
+        }
+        return this._ldtUntils[index];
+    }
+
+    get(index) {
+        const ldtTupple = this._getTupple(index >> 1);
+        return ldtTupple[index % 2];
+    }
+}
+
+// modified bin-search, to always find existing indices for non-empty arrays
+// value in array at index is larger than input value (or last index of array)
+function ldtBinarySearch(array, value) {
+    let hi = array.size - 1, lo = -1, mid;
+    while (hi - lo > 1) {
+        if (value.isAfter(array.get(mid = hi + lo >> 1))) {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    return hi;
+}
+
+function offsetInSeconds(tzdbOffset){
+    return roundDown(+tzdbOffset*60);
 }
 
 function roundDown(r){

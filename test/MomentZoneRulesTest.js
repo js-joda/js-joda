@@ -75,6 +75,7 @@ describe('MomentZoneRules', () => {
             assertEquals(europeParis.offset(createLocalDateTime(2008, 4, 1, 0, 0)), OFFSET_PTWO);
             assertEquals(europeParis.offset(createLocalDateTime(2008, 10, 1, 0, 0)), OFFSET_PTWO);
             assertEquals(europeParis.offset(createLocalDateTime(2008, 11, 1, 0, 0)), OFFSET_PONE);
+            assertEquals(europeParis.offset(createLocalDateTime(2800, 1, 1, 0, 0)), OFFSET_PONE);
         });
 
         it('Europe/London', () => {
@@ -168,13 +169,13 @@ describe('MomentZoneRules', () => {
             const testLocalToZoneEquality = [
                 ['2016-03-27T01:59', EUROPE_BERLIN, '2016-03-27T01:59+01:00[Europe/Berlin]'],
                 // ['2016-03-27T02:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Europe/Berlin]'],
-                // ['2016-03-27T02:30', EUROPE_BERLIN, '2016-03-27T03:30+02:00[Europe/Berlin]'],
-                ['2016-03-27T03:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Europe/Berlin]'],
+                ['2016-03-27T02:30', EUROPE_BERLIN, '2016-03-27T03:30+02:00[Europe/Berlin]'],
+                // ['2016-03-27T03:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Europe/Berlin]']
                 ['2016-03-27T03:01', EUROPE_BERLIN, '2016-03-27T03:01+02:00[Europe/Berlin]'],
                 ['2016-03-13T01:59', AMERICA_NEW_YORCK, '2016-03-13T01:59-05:00[America/New_York]'],
                 // ['2016-03-13T02:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[America/New_York]'],
-                // ['2016-03-13T02:30', AMERICA_NEW_YORCK, '2016-03-13T03:30-04:00[America/New_York]'],
-                ['2016-03-13T03:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[America/New_York]'],
+                ['2016-03-13T02:30', AMERICA_NEW_YORCK, '2016-03-13T03:30-04:00[America/New_York]'],
+                // ['2016-03-13T03:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[America/New_York]'],
                 ['2016-03-13T03:01', AMERICA_NEW_YORCK, '2016-03-13T03:01-04:00[America/New_York]'],
             ];
 
@@ -192,11 +193,11 @@ describe('MomentZoneRules', () => {
                 return [
                     ['2016-10-30T01:59', EUROPE_BERLIN, '2016-10-30T01:59+02:00[Europe/Berlin]'],
                     // ['2016-10-30T02:00', EUROPE_BERLIN, '2016-10-30T02:00+02:00[Europe/Berlin]'],
-                    // ['2016-10-30T02:30', EUROPE_BERLIN, '2016-10-30T02:30+02:00[Europe/Berlin]'],
-                    ['2016-10-30T03:00', EUROPE_BERLIN, '2016-10-30T03:00+01:00[Europe/Berlin]'],
+                    ['2016-10-30T02:30', EUROPE_BERLIN, '2016-10-30T02:30+02:00[Europe/Berlin]'],
+                    // ['2016-10-30T03:00', EUROPE_BERLIN, '2016-10-30T03:00+01:00[Europe/Berlin]'],
                     ['2016-10-30T03:01', EUROPE_BERLIN, '2016-10-30T03:01+01:00[Europe/Berlin]'],
                     ['2016-11-06T00:59', AMERICA_NEW_YORCK, '2016-11-06T00:59-04:00[America/New_York]'],
-                    ['2016-11-06T01:00', AMERICA_NEW_YORCK, '2016-11-06T01:00-04:00[America/New_York]'],
+                    // ['2016-11-06T01:00', AMERICA_NEW_YORCK, '2016-11-06T01:00-04:00[America/New_York]'],
                     ['2016-11-06T01:30', AMERICA_NEW_YORCK, '2016-11-06T01:30-04:00[America/New_York]'],
                     // ['2016-11-06T02:00', AMERICA_NEW_YORCK, '2016-11-06T02:00-05:00[America/New_York]'],
                     ['2016-11-06T02:01', AMERICA_NEW_YORCK, '2016-11-06T02:01-05:00[America/New_York]'],
@@ -216,9 +217,9 @@ describe('MomentZoneRules', () => {
             const testLocalToZoneEquality = () => {
                 return [
                     ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(1)],
-                    // ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(2)],
+                    ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(2)],
                     ['2016-11-06T01:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-4)],
-                    // ['2016-11-06T01:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-5)],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-5)],
                 ];
             };
 
