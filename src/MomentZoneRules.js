@@ -274,8 +274,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {boolean} true if the offset date-time is valid for these rules
      */
     isValidOffset(localDateTime, offset){
-        // FIXME
-        return this.offsetOfLocalDateTime(localDateTime).equals(offset);
+        return this.validOffsets(localDateTime).some( o => o.equals(offset));
     }
 
     //-----------------------------------------------------------------------

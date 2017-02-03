@@ -16,9 +16,15 @@ import './useMomentZoneRules';
 import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
 
 describe('MomentZoneRules', () => {
+    const OFFSET_MFIVE = ZoneOffset.ofHours(-5);
+    const OFFSET_MFOUR = ZoneOffset.ofHours(-4);
     const OFFSET_ZERO = ZoneOffset.ofHours(0);
     const OFFSET_PONE = ZoneOffset.ofHours(1);
     const OFFSET_PTWO = ZoneOffset.ofHours(2);
+    const OFFSET_PTHREE = ZoneOffset.ofHours(3);
+
+    const EUROPE_BERLIN = ZoneId.of('Europe/Berlin');
+    const AMERICA_NEW_YORCK = ZoneId.of('America/New_York');
 
     context('ZoneId.getAvailableZoneIds', () => {
         it('should list some common zone id\'s', () => {
@@ -143,8 +149,6 @@ describe('MomentZoneRules', () => {
         const LOCAL_DATE_IN_WINTER = LocalDateTime.of(2016, 12, 21, 11, 30, 59, 500);
 
         const FIXED_ZONE_06 = ZoneOffset.ofHours(6);
-        const EUROPE_BERLIN = ZoneId.of('Europe/Berlin');
-        const AMERICA_NEW_YORCK = ZoneId.of('America/New_York');
 
         it('should equal in case of a local date with one valid offset at this zone', () => {
 
@@ -229,6 +233,45 @@ describe('MomentZoneRules', () => {
                 expect(zdt.offset()).to.equal(preferredOffset);
             });
 
+        });
+
+    });
+
+    describe('isValidOffset', () => {
+
+        it('should return true for valid offsets', () => {
+
+            const testLocalToZoneEquality = () => {
+                return [
+                    // overlap
+                    ['2016-10-30T02:30', EUROPE_BERLIN, OFFSET_PONE, true],
+                    ['2016-10-30T02:30', EUROPE_BERLIN, OFFSET_PTWO, true],
+                    ['2016-10-30T02:30', EUROPE_BERLIN, OFFSET_PTHREE, false],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, OFFSET_MFOUR, true],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, OFFSET_MFIVE, true],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, OFFSET_ZERO, false],
+                    // gap
+                    ['2016-03-27T02:30', EUROPE_BERLIN, OFFSET_PONE, false],
+                    ['2016-03-27T02:30', EUROPE_BERLIN, OFFSET_PTWO, false],
+                    ['2016-03-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFOUR, false],
+                    ['2016-03-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFIVE, false],
+                    // no transition
+                    ['2016-01-01T02:30', EUROPE_BERLIN, OFFSET_PONE, true],
+                    ['2016-01-01T02:30', EUROPE_BERLIN, OFFSET_PTWO, false],
+                    ['2016-06-01T02:30', EUROPE_BERLIN, OFFSET_PONE, false],
+                    ['2016-06-01T02:30', EUROPE_BERLIN, OFFSET_PTWO, true],
+                    ['2016-01-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFOUR, false],
+                    ['2016-01-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFIVE, true],
+                    ['2016-06-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFOUR, true],
+                    ['2016-06-13T02:30', AMERICA_NEW_YORCK, OFFSET_MFIVE, false],
+                ];
+            };
+
+            dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, offset, isValid) => {
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const rules = zone.rules();
+                expect(rules.isValidOffset(ldt, offset)).to.equal(isValid);
+            });
         });
 
     });
