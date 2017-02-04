@@ -87,7 +87,7 @@ export class MomentZoneRules extends ZoneRules{
     offsetOfLocalDateTime(localDateTime){
         const info = this._offsetInfo(localDateTime);
         if (info instanceof ZoneOffsetTransition) {
-            return info.getOffsetBefore();
+            return info.offsetBefore();
         }
         return info;
     }

@@ -82,6 +82,16 @@ describe('MomentZoneRules', () => {
             assertEquals(europeParis.offset(createLocalDateTime(2008, 10, 1, 0, 0)), OFFSET_PTWO);
             assertEquals(europeParis.offset(createLocalDateTime(2008, 11, 1, 0, 0)), OFFSET_PONE);
             assertEquals(europeParis.offset(createLocalDateTime(2800, 1, 1, 0, 0)), OFFSET_PONE);
+
+            // gap
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 3, 27, 2, 0)), OFFSET_PONE);
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 3, 27, 2, 30)), OFFSET_PONE);
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 3, 27, 3, 0)), OFFSET_PTWO);
+
+            // overlap
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 10, 30, 2, 0)), OFFSET_PTWO);
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 10, 30, 2, 30)), OFFSET_PTWO);
+            assertEquals(europeParis.offset(createLocalDateTime(2016, 10, 30, 3, 0)), OFFSET_PONE);
         });
 
         it('Europe/London', () => {
