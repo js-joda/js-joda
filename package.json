@@ -63,7 +63,7 @@
     "moment-timezone": "^0.5.11",
     "nyc": "^10.1.2",
     "phantomjs-prebuilt": "^2.1.14",
-    "webpack": "^2.2.1"
+    "webpack": "^1.14.0"
   },
   "license": "BSD-3-Clause",
   "bugs": {
