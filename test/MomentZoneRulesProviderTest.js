@@ -5,7 +5,7 @@
 
 import { expect } from 'chai';
 
-import { ZoneRules } from 'js-joda';
+import { ZoneRules, DateTimeException } from 'js-joda';
 import { MomentZoneRules } from '../src/MomentZoneRules';
 import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
 
@@ -25,6 +25,11 @@ describe('MomentZoneRulesProvider', () => {
 
             zoneRules = MomentZoneRulesProvider.getRules('Etc/GMT+1');
             expect(zoneRules.isFixedOffset()).to.be.true;
+        });
+
+        it('should throw an DateTimeException for an unknown zone region', () => {
+            expect(() => MomentZoneRulesProvider.getRules('Atlantis'))
+                .to.throw(DateTimeException);
         });
     });
 
