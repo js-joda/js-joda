@@ -71,7 +71,7 @@ Require it
             .toString() // 2016-06-30T11:30-04:00[America/New_York]
     </script>
 
-## Known Issues
+## Implementation details
 
 * This ZoneRulesProvider implemantion supplies all functionality that is required from the js-joda core 
 library. 
