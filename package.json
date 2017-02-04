@@ -1,6 +1,6 @@
 {
   "name": "js-joda-timezone",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "iana tzdb timezone bindings for js-joda",
   "main": "dist/js-joda-timezone.js",
   "scripts": {

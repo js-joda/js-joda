@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 0.0.6-2016j
+//! @version js-joda-timezone - 1.0.0-2016j
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -847,6 +847,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = _possibleConstructorReturn(this, _ZoneRules.call(this));
 
 	        _this._tzdbInfo = tzdbInfo;
+	        _this._ldtUntils = new LDTUntils(_this._tzdbInfo.untils, _this._tzdbInfo.offsets);
 	        return _this;
 	    }
 
@@ -861,47 +862,53 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MomentZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
 	        var index = binarySearch(this._tzdbInfo.untils, epochMilli);
-	        return _jsJoda.ZoneOffset.ofTotalSeconds(-this._offsetByIndexInSeconds(index));
+	        return _jsJoda.ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(index));
 	    };
 
 	    MomentZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-	        var utcEpochMilli = localDateTime.toEpochSecond(_jsJoda.ZoneId.UTC) * 1000;
-	        var index = binarySearch(this._tzdbInfo.untils, utcEpochMilli);
-	        var offsetSec = this._offsetByIndexInSeconds(index);
-	        var epochMilli = utcEpochMilli + offsetSec * 1000;
-
-	        var nextIndex = this._clipIndex(index + 1);
-	        var nextEpochMilliDst = this._tzdbInfo.untils[index];
-	        var prevIndex = this._clipIndex(index - 1);
-	        var prevEpochMilliDst = this._tzdbInfo.untils[prevIndex];
-	        if (epochMilli > nextEpochMilliDst) {
-	            offsetSec = this._offsetByIndexInSeconds(nextIndex);
-	        } else if (epochMilli < prevEpochMilliDst) {
-	            offsetSec = this._offsetByIndexInSeconds(prevIndex);
+	        var info = this._offsetInfo(localDateTime);
+	        if (info instanceof _jsJoda.ZoneOffsetTransition) {
+	            return info.offsetBefore();
 	        }
-	        return _jsJoda.ZoneOffset.ofTotalSeconds(-offsetSec);
+	        return info;
 	    };
 
-	    MomentZoneRules.prototype._clipIndex = function _clipIndex(index) {
-	        if (index < 0) {
-	            return 0;
-	        } else if (index >= this._tzdbInfo.offsets.length) {
-	            return this._tzdbInfo.offsets.length - 1;
-	        } else {
-	            return index;
+	    MomentZoneRules.prototype._offsetInfo = function _offsetInfo(localDateTime) {
+	        var index = ldtBinarySearch(this._ldtUntils, localDateTime);
+	        var offsetIndex = index >> 1;
+
+	        if (index % 2 === 1) {
+	            var ldtBefore = this._ldtUntils.get(Math.max(index - 1, 0));
+	            var ldtAfter = this._ldtUntils.get(Math.min(index, this._ldtUntils.size - 1));
+	            var offsetBefore = _jsJoda.ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
+	            var offsetAfter = _jsJoda.ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(Math.min(offsetIndex + 1, this._tzdbInfo.offsets.length - 1)));
+
+	            if (offsetBefore.compareTo(offsetAfter) > 0) {
+	                return _jsJoda.ZoneOffsetTransition.of(ldtBefore, offsetBefore, offsetAfter);
+	            } else {
+	                return _jsJoda.ZoneOffsetTransition.of(ldtAfter, offsetBefore, offsetAfter);
+	            }
 	        }
+	        return _jsJoda.ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
 	    };
 
 	    MomentZoneRules.prototype._offsetByIndexInSeconds = function _offsetByIndexInSeconds(index) {
-	        return roundDown(+this._tzdbInfo.offsets[index] * 60);
+	        return -offsetInSeconds(this._tzdbInfo.offsets[index]);
 	    };
 
 	    MomentZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
-	        var offset = this.offsetOfLocalDateTime(localDateTime);
-	        return [offset];
+	        var info = this._offsetInfo(localDateTime);
+	        if (info instanceof _jsJoda.ZoneOffsetTransition) {
+	            return info.validOffsets();
+	        }
+	        return [info];
 	    };
 
 	    MomentZoneRules.prototype.transition = function transition(localDateTime) {
+	        var info = this._offsetInfo(localDateTime);
+	        if (info instanceof _jsJoda.ZoneOffsetTransition) {
+	            return info;
+	        }
 	        return null;
 	    };
 
@@ -918,7 +925,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    MomentZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
-	        return this.offsetOfLocalDateTime(localDateTime).equals(offset);
+	        return this.validOffsets(localDateTime).some(function (o) {
+	            return o.equals(offset);
+	        });
 	    };
 
 	    MomentZoneRules.prototype.nextTransition = function nextTransition(instant) {
@@ -953,6 +962,72 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return MomentZoneRules;
 	}(_jsJoda.ZoneRules);
+
+	var LDTUntils = function () {
+	    function LDTUntils(_tzdbUntils, tzdbOffsets) {
+	        _classCallCheck(this, LDTUntils);
+
+	        this._tzdbUntils = _tzdbUntils;
+	        this._tzdbOffsets = tzdbOffsets;
+	        this._ldtUntils = [];
+	        this.size = this._tzdbUntils.length * 2;
+	    }
+
+	    LDTUntils.prototype._generateTupple = function _generateTupple(index) {
+	        var epochMillis = this._tzdbUntils[index];
+	        if (epochMillis === Infinity) {
+	            return [_jsJoda.LocalDateTime.MAX, _jsJoda.LocalDateTime.MAX];
+	        }
+	        var instant = _jsJoda.Instant.ofEpochMilli(epochMillis);
+
+	        var offset1 = offsetInSeconds(this._tzdbOffsets[index]);
+	        var zone1 = _jsJoda.ZoneOffset.ofTotalSeconds(-offset1);
+	        var ldt1 = _jsJoda.LocalDateTime.ofInstant(instant, zone1);
+
+	        var nextIndex = Math.min(index + 1, this._tzdbOffsets.length - 1);
+	        var offset2 = offsetInSeconds(this._tzdbOffsets[nextIndex]);
+	        var zone2 = _jsJoda.ZoneOffset.ofTotalSeconds(-offset2);
+	        var ldt2 = _jsJoda.LocalDateTime.ofInstant(instant, zone2);
+
+	        if (offset1 > offset2) {
+	            return [ldt1, ldt2];
+	        } else {
+	            return [ldt2, ldt1];
+	        }
+	    };
+
+	    LDTUntils.prototype._getTupple = function _getTupple(index) {
+	        if (this._ldtUntils[index] == null) {
+	            this._ldtUntils[index] = this._generateTupple(index);
+	        }
+	        return this._ldtUntils[index];
+	    };
+
+	    LDTUntils.prototype.get = function get(index) {
+	        var ldtTupple = this._getTupple(index >> 1);
+	        return ldtTupple[index % 2];
+	    };
+
+	    return LDTUntils;
+	}();
+
+	function ldtBinarySearch(array, value) {
+	    var hi = array.size - 1,
+	        lo = -1,
+	        mid = void 0;
+	    while (hi - lo > 1) {
+	        if (!value.isBefore(array.get(mid = hi + lo >> 1))) {
+	            lo = mid;
+	        } else {
+	            hi = mid;
+	        }
+	    }
+	    return hi;
+	}
+
+	function offsetInSeconds(tzdbOffset) {
+	    return roundDown(+tzdbOffset * 60);
+	}
 
 	function roundDown(r) {
 	    if (r < 0) {
