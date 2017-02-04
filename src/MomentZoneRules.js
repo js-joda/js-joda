@@ -425,7 +425,7 @@ class LDTUntils {
 function ldtBinarySearch(array, value) {
     let hi = array.size - 1, lo = -1, mid;
     while (hi - lo > 1) {
-        if (value.isAfter(array.get(mid = hi + lo >> 1))) {
+        if (!value.isBefore(array.get(mid = hi + lo >> 1))) {
             lo = mid;
         } else {
             hi = mid;

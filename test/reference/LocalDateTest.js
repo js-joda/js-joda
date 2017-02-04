@@ -17,8 +17,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('atStartOfDay()', () => {
 
-        // TODO fixme
-        it.skip('test_atStartOfDay_dstGap', () => {
+        it('test_atStartOfDay_dstGap', () => {
             const t = LocalDate.of(2007, 4, 1);
             assertEquals(t.atStartOfDay(ZONE_GAZA),
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));

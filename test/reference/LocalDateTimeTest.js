@@ -49,8 +49,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
             assertEquals(t.atZone(OFFSET_PTWO), ZonedDateTime.of(LocalDateTime.of(2008, 6, 30, 11, 30), OFFSET_PTWO));
         });
 
-        // TODO Fixme
-        it.skip('test_atZone_dstGap', () => {
+        it('test_atZone_dstGap', () => {
             const t = LocalDateTime.of(2007, 4, 1, 0, 0);
             assertEquals(t.atZone(ZONE_GAZA),
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
