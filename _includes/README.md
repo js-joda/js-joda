@@ -103,20 +103,20 @@ Then add it as a script tag to your page
 
 ## Roadmap
 
-### Milestone 1
+### Milestone 1 core domains (reached with version v1.0.0)
 
-We reached milestone 1 with version v1.0.0 supporting the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
+Support for the domain models LocalDate, LocalDateTime, ZonedDateTime, Instant, Duration 
 and Period converting from and to ISO8601. ZonedDateTime (without support for loading iana time-zone databases) currently supports 
 only fixed offsets like UTC or UTC+02:00 and the system default time zone.
  
-### Milestone 2
+### Milestone 2 iana timezone support (reached with version v1.2.0)
 
-Add iana timezone database support to js-joda. 
+Add iana timezone database support to js-joda. Implement handling of Daylight saving transitions mainly in ZonedDateTime.
 
-Implement handling of Daylight saving transitions where missing, mainly in ZonedDateTime. Provide ianna tzdb files that 
-can be loaded dynamically. Probably we will use the iana tzdb files from moment-timezone. 
+For having acces to the the iana timezone database, a plugin with an implementation of the `ZoneRulesProvider` is required. 
+Find a first beta version at [js-joda-timezone](https://github.com/js-joda/js-joda-timezone) that is based on the moment timezone database.
  
-### Milestone 3
+### Milestone 3 locale support
 
 Add locale support.
 
