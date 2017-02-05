@@ -97,7 +97,7 @@ Then add it as a script tag to your page
 
 ## Documentation
 
-+ [Cheat Sheet](CheatSheet.md) Quick start guide
++ [Cheat Sheet](//js-joda.github.io/js-joda/cheat-sheet.html) Quick start guide
 + [API](//js-joda.github.io/js-joda/esdoc/) ESDoc generated API documentation
 + [js-joda Homepage](http://js-joda.github.io/js-joda/) Project homepage
 
@@ -155,7 +155,7 @@ js-joda is using the ThreeTen-Backport implementation (http://www.threeten.org/t
 This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception.
 The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our javascript port.
 
-+ js-joda is released under the [BSD 3-clause license](LICENSE):
++ js-joda is released under the [BSD 3-clause license](//github.com/js-joda/js-joda/blob/master/LICENSE):
 
 + our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
 
