@@ -73,8 +73,8 @@ Require it
 
 ## Implementation details
 
-* This ZoneRulesProvider implemantion supplies all functionality that is required from the js-joda package. 
-* Additional ZoneRules functionality like get all transitions, etc is not implemented.
+* This ZoneRulesProvider implemantion supplies all functionality that is required by the js-joda package. 
+* Additional ZoneRules functionality like `get all transitions`, etc. is not implemented.
 
 ## License
 
