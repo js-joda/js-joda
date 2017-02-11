@@ -42,11 +42,11 @@ module.exports = {
             }
         }),
         new webpack.BannerPlugin(
-            banner, {raw: true}
+            {banner: banner, raw: true}
         )
     ] : [
         new webpack.BannerPlugin(
-            banner, {raw: true}
+            {banner: banner, raw: true}
         )
     ]
 };
