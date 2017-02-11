@@ -25,8 +25,8 @@ module.exports = {
         library: 'JSJoda'
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
+        rules: [{
+            use: 'babel-loader',
             include: [
                 path.resolve(__dirname, 'src'),
                 path.resolve(__dirname, 'test')
@@ -42,11 +42,11 @@ module.exports = {
             }
         }),
         new webpack.BannerPlugin(
-            banner, {raw: true}
+            {banner: banner, raw: true}
         )
     ] : [
         new webpack.BannerPlugin(
-            banner, {raw: true}
+            {banner: banner, raw: true}
         )
     ]
 };
