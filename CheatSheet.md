@@ -40,6 +40,7 @@ js-joda Cheat sheet
   * [Convert from a javascript Date or moment](#convert-from-a-javascript-date-or-moment)
 - [ZonedDateTime](#zoneddatetime)
   * [The system default time zone](#the-system-default-time-zone)
+  * [Iana tzdb support](#iana-tzdb-support)
   * [Create a ZonedDateTime](#create-a-zoneddatetime)
   * [Switch timezones](#switch-timezones)
   * [Get and manipulate values from a ZonedDateTime](#get-and-manipulate-values-from-a-zoneddatetime)
@@ -766,6 +767,20 @@ ZonedDateTime.now().withFixedOffsetZone().toString(); // e.g. 2016-03-18T12:38:2
 
 ```
 
+### Iana tzdb support
+
+For iana tzdb support use the plugin [js-joda-timezone](https://github.com/js-joda/js-joda-timezone).
+See https://github.com/js-joda/js-joda-timezone for more information.
+The plugin gives support for zone regions like e.g. `Europe/Berlin` or `America/New_York`.
+
+```javascript
+
+// example how to use the plugin in node 
+jsJoda = require('js-joda')
+    .use(require('js-joda-timezone'))
+
+```
+
 ### Create a ZonedDateTime
 
 ```javascript
@@ -779,16 +794,20 @@ ZonedDateTime.now(ZoneOffset.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 // get now with a fixed offset time-zone
 ZonedDateTime.now(ZoneId.of('UTC-05:00')).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
 
+// get now with a ZoneRegion
+ZonedDateTime.now(ZoneId.of('Europe/Paris')).toString(); // e.g. 2017-02-04T17:01:15.846+01:00[Europe/Paris]
+
 // parse a date time with a time zone ISO String
 ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]');
 ZonedDateTime.parse('2016-03-18T12:38:23.561+01:00');
 ZonedDateTime.parse('2016-03-18T11:38:23.561Z');
 ZonedDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]');
+ZonedDateTime.parse('2017-02-04T17:01:15.846+01:00[Europe/Paris]');
 
 // create from a LocalDate(Time)
-LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM); // 2012-06-06T00:00+02:00[SYSTEM]
-ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
-ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.SYSTEM) // 2012-06-06T00:00+02:00[SYSTEM]
+LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.of('Europe/Paris')); // 2012-06-06T00:00+02:00[Europe/Paris]
+ZonedDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneId.of('Europe/Paris')); // 2012-06-06T00:00+02:00[Europe/Paris]
+ZonedDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneId.of('Europe/Paris')) // 2012-06-06T00:00+02:00[Europe/Paris]
 
 // create by Instant
 ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM) // current system time
@@ -800,13 +819,13 @@ ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM) // current system time
 ```javascript
 
 var d = LocalDate.of(2016, 3, 18)
-var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00')) // 2016-03-18T12:00-05:00[UTC-05:00]
+var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('America/New_York')) //2016-03-18T12:00-04:00[America/New_York]
 
 // switch timezone retaining the local date-time if possible
-zdt.withZoneSameLocal(ZoneId.UTC); // 2016-03-18T12:00Z
+zdt.withZoneSameLocal(ZoneId.of('Europe/Berlin')); // 2016-03-18T12:00+01:00[Europe/Berlin]
 
 // switch timezone and retain the instant
-zdt.withZoneSameInstant(ZoneId.UTC); // 2016-03-18T17:00Z
+zdt.withZoneSameInstant(ZoneId.of('Europe/Berlin')); // 2016-03-18T17:00+01:00[Europe/Berlin]
 
 
 ```
@@ -822,13 +841,13 @@ The following example shows the difference for a daylight saving transition.
 ```javascript
 
 // assume the system default time zone is CET and its 2016-03-18 at noon local time.
-var zdt = ZonedDateTime.now();  // 2016-03-18T12:00+01:00[SYSTEM]
+var zdt = ZonedDateTime.parse('2016-03-18T12:00+01:00[Europe/Berlin]');  
 
 // adding a date unit of 2 weeks  (crossing a daylight saving transition)
-zdt.plusWeeks(2); // still noon: 2016-04-01T12:00+02:00[SYSTEM]
+zdt.plusWeeks(2); // still noon: 2016-04-01T12:00+02:00[Europe/Berlin]
 
 // adding a time unit of 2 weeks (2 * 7 * 24)
-zdt.plusHours(2 * 7 * 24); // 1 pm: 2016-04-01T13:00+02:00[SYSTEM]
+zdt.plusHours(2 * 7 * 24); // 1 pm: 2016-04-01T13:00+02:00[Europe/Berlin]
 
 ```
 
