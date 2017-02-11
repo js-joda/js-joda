@@ -25,8 +25,8 @@ module.exports = {
         library: 'JSJoda'
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
+        rules: [{
+            use: 'babel-loader',
             include: [
                 path.resolve(__dirname, 'src'),
                 path.resolve(__dirname, 'test')
