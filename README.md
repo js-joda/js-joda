@@ -113,7 +113,7 @@ only fixed offsets like UTC or UTC+02:00 and the system default time zone.
 
 Add iana timezone database support to js-joda. Implement handling of Daylight saving transitions mainly in ZonedDateTime.
 
-For having access to the iana timezone database, the plugin [js-joda-timezone](https://github.com/js-joda/js-joda-timezone) is required. It is providing an implementation of the `ZoneRulesProvider` and contains the iana timezone database.
+For having access to the iana timezone database, the plugin [js-joda-timezone](https://github.com/js-joda/js-joda-timezone) is required. It is providing an implementation of the [ZoneRulesProvider](https://js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html) and contains the iana timezone database.
 
 ### Milestone 3 locale support
 
