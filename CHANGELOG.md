@@ -3,9 +3,15 @@ Changelog
 
 ### 1.3.1 (next)
 
+#### etc
+ 
+ * Fix DateTimeFormatterBuilder.constructor esdoc/ typescript definition
+ 
 ### 1.3.0
 
- * export zone/ZoneOffsetTransition.js
+#### public API
+
+ * export zone/ZoneOffsetTransition
 
 ### 1.2.0
 
