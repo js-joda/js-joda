@@ -39,8 +39,8 @@ export class DateTimeFormatterBuilder {
     /**
      * Constructs a new instance of the builder.
      *
-     * @param {DateTimeFormatterBuilder} parent  the parent builder, not null
-     * @param {boolean} optional  whether the formatter is optional, not null
+     * @param {DateTimeFormatterBuilder} [parent]  the parent builder
+     * @param {boolean} [optional=false]  whether the formatter is optional
      */
     constructor(parent=null, optional=false){
         /**
