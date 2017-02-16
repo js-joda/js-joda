@@ -322,7 +322,7 @@ declare namespace JSJoda {
         withLocale(): DateTimeFormatter
     }
     class DateTimeFormatterBuilder {
-        constructor(parentBuilder: DateTimeFormatterBuilder, optional: boolean)
+        constructor()
 
         append(formatter: DateTimeFormatter): DateTimeFormatterBuilder
 
@@ -1223,7 +1223,7 @@ declare namespace JSJoda {
     class ZoneId {
         static SYSTEM: ZoneId;
         static UTC: ZoneId;
-        
+
         static of(zoneId: string): ZoneId;
 
         equals(other: any): boolean
