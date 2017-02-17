@@ -21,7 +21,7 @@ describe('js-joda DateTimeFormatterTest', () => {
         });
         it('should return the same DateTimeFormatter it has been called with', () => {
             let formatter = DateTimeFormatter.ofPattern('uuuu');
-            let newFormatter = formatter.withResolverStyle(formatter._resolverStyle)
+            let newFormatter = formatter.withResolverStyle(formatter._resolverStyle);
             expect(newFormatter).to.equal(formatter);
         });
         it('should fail with NullPointerException if param is null', () => {
