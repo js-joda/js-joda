@@ -356,6 +356,32 @@ export class DateTimeFormatter {
         return this;
     }
 
+    /**
+     * Returns a copy of this formatter with a new resolver style.
+     * <p>
+     * This returns a formatter with similar state to this formatter but
+     * with the resolver style set. By default, a formatter has the
+     * {@link ResolverStyle#SMART SMART} resolver style.
+     * <p>
+     * Changing the resolver style only has an effect during parsing.
+     * Parsing a text string occurs in two phases.
+     * Phase 1 is a basic text parse according to the fields added to the builder.
+     * Phase 2 resolves the parsed field-value pairs into date and/or time objects.
+     * The resolver style is used to control how phase 2, resolving, happens.
+     * See {@link ResolverStyle} for more information on the options available.
+     * <p>
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {ResolverStyle} resolverStyle  the new resolver style, not null
+     * @return {DateTimeFormatter} a formatter based on this formatter with the requested resolver style, not null
+     */
+    withResolverStyle(resolverStyle) {
+        requireNonNull(resolverStyle, 'resolverStyle');
+        if (resolverStyle.equals(this._resolverStyle)) {
+            return this;
+        }
+        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);
+    }
     //-----------------------------------------------------------------------
     /**
      * Formats a date-time object using this formatter.
