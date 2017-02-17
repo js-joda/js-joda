@@ -6,6 +6,9 @@ Changelog
 #### etc
  
  * Fix DateTimeFormatterBuilder.constructor esdoc/ typescript definition
+ * unify the format pattern esdoc in `DateTimeFormatter.ofPattern` 
+   and `DateTimeFormatterBuilder.appendPattern`, and add `u` Symbol to documentation
+ * Add `DateTimeFormatter.withResolverStyle` function
  
 ### 1.3.0
 
