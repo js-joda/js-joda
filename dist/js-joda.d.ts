@@ -320,6 +320,8 @@ declare namespace JSJoda {
         withChronology(chrono: any): any
 
         withLocale(): DateTimeFormatter
+
+        withResolverStyle(resolverStyle: ResolverStyle): DateTimeFormatter
     }
     class DateTimeFormatterBuilder {
         constructor()
