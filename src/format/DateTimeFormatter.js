@@ -127,7 +127,8 @@ export class DateTimeFormatter {
      *  |Symbol  |Meaning                     |Presentation      |Examples
      *  |--------|----------------------------|------------------|----------------------------------------------------
      *  | G      | era                        | number/text      | 1; 01; AD; Anno Domini
-     *  | y      | year                       | year             | 2004; 04
+     *  | u      | year                       | year             | 2004; 04
+     *  | y      | year-of-era                | year             | 2004; 04
      *  | D      | day-of-year                | number           | 189
      *  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J
      *  | d      | day-of-month               | number           | 10
