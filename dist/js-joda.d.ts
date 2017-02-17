@@ -323,6 +323,10 @@ declare namespace JSJoda {
     }
     class DateTimeFormatterBuilder {
         constructor()
+        /**
+         * @deprecated private constructor, use public constructor with no args instead
+         */
+        constructor(parentBuilder: DateTimeFormatterBuilder, optional: boolean) // TODO remove with release 1.4.0
 
         append(formatter: DateTimeFormatter): DateTimeFormatterBuilder
 
