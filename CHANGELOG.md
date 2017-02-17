@@ -3,12 +3,15 @@ Changelog
 
 ### 1.3.1 (next)
 
+#### public API
+
+ * Add `DateTimeFormatter.withResolverStyle` function
+
 #### etc
  
  * Fix DateTimeFormatterBuilder.constructor esdoc/ typescript definition
  * unify the format pattern esdoc in `DateTimeFormatter.ofPattern` 
    and `DateTimeFormatterBuilder.appendPattern`, and add `u` Symbol to documentation
- * Add `DateTimeFormatter.withResolverStyle` function
  
 ### 1.3.0
 
