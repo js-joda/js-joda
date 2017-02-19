@@ -1,7 +1,7 @@
 {
-  "coverage": "89.3%",
-  "expectCount": 963,
-  "actualCount": 860,
+  "coverage": "92.7%",
+  "expectCount": 905,
+  "actualCount": 839,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -67,8 +67,8 @@
       ]
     },
     "src/format/DateTimeFormatter.js": {
-      "expectCount": 18,
-      "actualCount": 14,
+      "expectCount": 17,
+      "actualCount": 13,
       "undocumentLines": [
         316,
         312,
@@ -83,54 +83,30 @@
         37
       ]
     },
-    "src/format/DateTimeParseContext.js": {
-      "expectCount": 20,
-      "actualCount": 11,
-      "undocumentLines": [
-        16,
-        18,
-        200,
-        192,
-        69,
-        172,
-        73,
-        65,
-        196
-      ]
-    },
-    "src/format/DateTimePrintContext.js": {
-      "expectCount": 10,
-      "actualCount": 8,
-      "undocumentLines": [
-        11,
-        44
-      ]
-    },
     "src/DayOfWeek.js": {
       "expectCount": 19,
       "actualCount": 19,
       "undocumentLines": []
     },
     "src/format/DecimalStyle.js": {
-      "expectCount": 17,
+      "expectCount": 16,
       "actualCount": 1,
       "undocumentLines": [
-        99,
-        8,
-        65,
-        60,
-        49,
-        77,
-        88,
-        27,
+        107,
+        73,
+        68,
+        57,
+        85,
         96,
-        16,
-        92,
-        53,
-        31,
-        20,
-        42,
-        38
+        35,
+        104,
+        24,
+        100,
+        61,
+        39,
+        28,
+        50,
+        46
       ]
     },
     "src/Duration.js": {
@@ -147,22 +123,6 @@
         9,
         13,
         17
-      ]
-    },
-    "src/format/EnumMap.js": {
-      "expectCount": 11,
-      "actualCount": 1,
-      "undocumentLines": [
-        6,
-        63,
-        7,
-        18,
-        22,
-        59,
-        26,
-        11,
-        35,
-        30
       ]
     },
     "src/Instant.js": {
@@ -218,18 +178,6 @@
       "actualCount": 33,
       "undocumentLines": []
     },
-    "src/format/ParsePosition.js": {
-      "expectCount": 6,
-      "actualCount": 0,
-      "undocumentLines": [
-        6,
-        7,
-        20,
-        12,
-        24,
-        16
-      ]
-    },
     "src/Period.js": {
       "expectCount": 39,
       "actualCount": 39,
@@ -245,21 +193,6 @@
       "actualCount": 1,
       "undocumentLines": [
         9
-      ]
-    },
-    "src/format/StringBuilder.js": {
-      "expectCount": 9,
-      "actualCount": 0,
-      "undocumentLines": [
-        6,
-        11,
-        16,
-        7,
-        21,
-        31,
-        26,
-        35,
-        41
       ]
     },
     "src/StringUtil.js": {

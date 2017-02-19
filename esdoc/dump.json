@@ -30223,7 +30223,7 @@
     "__docId__": 863,
     "kind": "file",
     "name": "src/format/DateTimeFormatter.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeParseException, NullPointerException} from '../errors';\n\nimport {Period} from '../Period';\n\nimport {ParsePosition} from './ParsePosition';\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {DateTimeParseContext} from './DateTimeParseContext';\nimport {DateTimePrintContext} from './DateTimePrintContext';\nimport {DateTimeFormatterBuilder} from './DateTimeFormatterBuilder';\nimport {SignStyle} from './SignStyle';\nimport {StringBuilder} from './StringBuilder';\nimport {ResolverStyle} from './ResolverStyle';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {ChronoField} from '../temporal/ChronoField';\nimport {createTemporalQuery} from '../temporal/TemporalQuery';\n\n/**\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * DateTimeFormatter.ISO_LOCAL_DATE\n *\n * DateTimeFormatter.ISO_LOCAL_TIME\n *\n * DateTimeFormatter.ISO_LOCAL_DATE_TIME\n *\n */\nexport class DateTimeFormatter {\n\n    //-----------------------------------------------------------------------\n    /**\n     * A query that provides access to the excess days that were parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null period, with a zero period returned instead of null.\n     *\n     * There are two situations where this query may return a non-zero period.\n     *\n     * * If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed\n     *   without a date, then the complete result of the parse consists of a\n     *   {@link LocalTime} and an excess {@link Period} in days.\n     * * If the {@link ResolverStyle} is {@link SMART} and a time is parsed\n     *   without a date where the time is 24:00:00, then the complete result of\n     *   the parse consists of a {@link LocalTime} of 00:00:00 and an excess\n     *   {@link Period} of one day.\n     *\n     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}\n     * is parsed, then the excess days are added to the date part.\n     * As a result, this query will return a zero period.\n     *\n     * The {@link SMART} behaviour handles the common \"end of day\" 24:00 value.\n     * Processing in {@link LENIENT} mode also produces the same result:\n     * <pre>\n     *  Text to parse        Parsed object                         Excess days\n     *  \"2012-12-03T00:00\"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO\n     *  \"2012-12-03T24:00\"   LocalDateTime.of(2012, 12, 4, 0, 0)   ZERO\n     *  \"00:00\"              LocalTime.of(0, 0)                    ZERO\n     *  \"24:00\"              LocalTime.of(0, 0)                    Period.ofDays(1)\n     * </pre>\n     * The query can be used as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  LocalTime time = parsed.query(LocalTime.FROM);\n     *  Period extraDays = parsed.query(DateTimeFormatter.parsedExcessDays());\n     * </pre>\n     * @return {TemporalQuery} a query that provides access to the excess days that were parsed\n     */\n    static parsedExcessDays() {\n        return DateTimeFormatter.PARSED_EXCESS_DAYS;\n    }\n\n    /**\n     * A query that provides access to whether a leap-second was parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null boolean, true if parsing saw a leap-second, false if not.\n     *\n     * Instant parsing handles the special \"leap second\" time of '23:59:60'.\n     * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other\n     * local times in different time-zones. To avoid this potential ambiguity,\n     * the handling of leap-seconds is limited to\n     * {@link DateTimeFormatterBuilder#appendInstant}, as that method\n     * always parses the instant with the UTC zone offset.\n     *\n     * If the time '23:59:60' is received, then a simple conversion is applied,\n     * replacing the second-of-minute of 60 with 59. This query can be used\n     * on the parse result to determine if the leap-second adjustment was made.\n     * The query will return one second of excess if it did adjust to remove\n     * the leap-second, and zero if not. Note that applying a leap-second\n     * smoothing mechanism, such as UTC-SLS, is the responsibility of the\n     * application, as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  Instant instant = parsed.query(Instant::from);\n     *  if (parsed.query(DateTimeFormatter.parsedLeapSecond())) {\n     *    // validate leap-second is correct and apply correct smoothing\n     *  }\n     * </pre>\n     * @return a query that provides access to whether a leap-second was parsed\n     */\n    static parsedLeapSecond() {\n        return DateTimeFormatter.PARSED_LEAP_SECOND;\n    }\n\n    /**\n     * Creates a formatter using the specified pattern.\n     *\n     * This method will create a formatter based on a simple pattern of letters and symbols.\n     *\n     * The returned formatter will use the default locale, but this can be changed\n     * using {@link DateTimeFormatter.withLocale}.\n     *\n     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.\n     * The following pattern letters are defined:\n     * <pre>\n     *  |Symbol  |Meaning                     |Presentation      |Examples\n     *  |--------|----------------------------|------------------|----------------------------------------------------\n     *  | G      | era                        | number/text      | 1; 01; AD; Anno Domini\n     *  | u      | year                       | year             | 2004; 04\n     *  | y      | year-of-era                | year             | 2004; 04\n     *  | D      | day-of-year                | number           | 189\n     *  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J\n     *  | d      | day-of-month               | number           | 10\n     *  |        |                            |                  |\n     *  | Q      | quarter-of-year            | number/text      | 3; 03; Q3\n     *  | Y      | week-based-year            | year             | 1996; 96\n     *  | w      | week-of-year               | number           | 27\n     *  | W      | week-of-month              | number           | 27\n     *  | e      | localized day-of-week      | number           | 2; Tue; Tuesday; T\n     *  | E      | day-of-week                | number/text      | 2; Tue; Tuesday; T\n     *  | F      | week-of-month              | number           | 3\n     *  |        |                            |                  |\n     *  | a      | am-pm-of-day               | text             | PM\n     *  | h      | clock-hour-of-am-pm (1-12) | number           | 12\n     *  | K      | hour-of-am-pm (0-11)       | number           | 0\n     *  | k      | clock-hour-of-am-pm (1-24) | number           | 0\n     *  |        |                            |                  |\n     *  | H      | hour-of-day (0-23)         | number           | 0\n     *  | m      | minute-of-hour             | number           | 30\n     *  | s      | second-of-minute           | number           | 55\n     *  | S      | fraction-of-second         | fraction         | 978\n     *  | A      | milli-of-day               | number           | 1234\n     *  | n      | nano-of-second             | number           | 987654321\n     *  | N      | nano-of-day                | number           | 1234000000\n     *  |        |                            |                  |\n     *  | V      | time-zone ID               | zone-id          | America/Los_Angeles; Z; -08:30\n     *  | z      | time-zone name             | zone-name        | Pacific Standard Time; PST\n     *  | X      | zone-offset 'Z' for zero   | offset-X         | Z; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | x      | zone-offset                | offset-x         | +0000; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | Z      | zone-offset                | offset-Z         | +0000; -0800; -08:00;\n     *  |        |                            |                  |\n     *  | p      | pad next                   | pad modifier     | 1\n     *  |        |                            |                  |\n     *  | '      | escape for text            | delimiter        |\n     *  | ''     | single quote               | literal          | '\n     *  | [      | optional section start     |                  |\n     *  | ]      | optional section end       |                  |\n     *  | {}     | reserved for future use    |                  |\n     * </pre>\n     *\n     * The count of pattern letters determine the format.\n     *\n     * **Text**: The text style is determined based on the number of pattern letters used.\n     * Less than 4 pattern letters will use the short form `TextStyle.SHORT`.\n     * Exactly 4 pattern letters will use the full form `TextStyle.FULL`.\n     * Exactly 5 pattern letters will use the narrow form `TextStyle.NARROW`.\n     *\n     * **NOTE**: since text styles require locale support, they are currently not supported in js-joda!\n     *\n     * **Number**: If the count of letters is one, then the value is printed using the minimum number\n     * of digits and without padding as per {@link DateTimeFormatterBuilder.appendValue}.\n     * Otherwise, the count of digits is used as the width of the output field as per\n     * {@link DateTimeFormatterBuilder.appendValue}.\n     *\n     * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.\n     * Otherwise use the Number rules above.\n     *\n     * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.\n     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.\n     * If it is less than 9, then the nano-of-second value is truncated, with only the most\n     * significant digits being output.\n     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.\n     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern\n     * letters, up to 9 digits.\n     *\n     * **Year**: The count of letters determines the minimum field width below which padding is used.\n     * If the count of letters is two, then a {@link DateTimeFormatterBuilder.appendValueReduced}\n     * two digit form is used.\n     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the\n     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.\n     * If the count of letters is less than four (but not two), then the sign is only output for negative\n     * years as per `SignStyle.NORMAL`.\n     * Otherwise, the sign is output if the pad width is exceeded, as per `SignStyle.EXCEEDS_PAD`\n     *\n     * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.\n     * If the count of letters is two, then the time-zone ID is output.\n     * Any other count of letters throws `IllegalArgumentException`.\n     *\n     * **Zone names**: This outputs the display name of the time-zone ID.\n     * If the count of letters is one, two or three, then the short name is output.\n     * If the count of letters is four, then the full name is output.\n     * Five or more letters throws `IllegalArgumentException`.\n     *\n     * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!\n     *\n     * **Offset X and x**: This formats the offset based on the number of pattern letters.\n     * One letter outputs just the hour', such as '+01', unless the minute is non-zero\n     * in which case the minute is also output, such as '+0130'.\n     * Two letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.\n     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.\n     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.\n     * Six or more letters throws `IllegalArgumentException`.\n     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,\n     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.\n     *\n     * **Offset Z**: This formats the offset based on the number of pattern letters.\n     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Four or more letters throws `IllegalArgumentException`.\n     * The output will be '+0000' when the offset is zero.\n     *\n     * **Optional section**: The optional section markers work exactly like calling\n     * {@link DateTimeFormatterBuilder.optionalStart} and {@link DateTimeFormatterBuilder.optionalEnd}.\n     *\n     * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.\n     * The pad width is determined by the number of pattern letters.\n     * This is the same as calling {@link DateTimeFormatterBuilder.padNext}.\n     *\n     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.\n     *\n     * Any unrecognized letter is an error.\n     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.\n     * Despite this, it is recommended to use single quotes around all characters that you want to\n     * output directly to ensure that future changes do not break your application.\n     *\n     * @param {String} pattern  the pattern to use, not null\n     * @return {DateTimeFormatter} the formatter based on the pattern, not null\n     * @throws IllegalArgumentException if the pattern is invalid\n     * @see DateTimeFormatterBuilder#appendPattern(String)\n     * @example\n     * var s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));\n     * console.log(s); // '1 04 2016'\n     *\n     */\n    static ofPattern(pattern) {\n        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();\n    }\n\n\n    //-----------------------------------------------------------------------\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer/parser to use, not null\n     * @param locale  the locale to use, not null\n     * @param decimalStyle  the decimal style to use, not null\n     * @param resolverStyle  the resolver style to use, not null\n     * @param resolverFields  the fields to use during resolving, null for all fields\n     * @param chrono  the chronology to use, null for no override\n     * @param zone  the zone to use, null for no override\n     * @protected\n     */\n    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {\n        assert(printerParser != null);\n        assert(decimalStyle != null);\n        assert(resolverStyle != null);\n        /**\n         * The printer and/or parser to use, not null.\n         */\n        this._printerParser = printerParser;\n        /**\n         * The locale to use for formatting. // nyi\n         */\n        this._locale = locale;\n        /**\n         * The symbols to use for formatting, not null.\n         */\n        this._decimalStyle = decimalStyle;\n        /**\n         * The resolver style to use, not null.\n         */\n        this._resolverStyle = resolverStyle;\n        /**\n         * The fields to use in resolving, null for all fields.\n         */\n        this._resolverFields = resolverFields;\n        /**\n         * The chronology to use for formatting, null for no override.\n         */\n        this._chrono = chrono;\n        /**\n         * The zone to use for formatting, null for no override. // nyi\n         */\n        this._zone = zone;\n    }\n\n    locale() {\n        return this._locale;\n    }\n\n    decimalStyle() {\n        return this._decimalStyle;\n    }\n\n    chronology() {\n        return this._chrono;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new override chronology.\n     *\n     * This returns a formatter with similar state to this formatter but\n     * with the override chronology set.\n     * By default, a formatter has no override chronology, returning null.\n     *\n     * If an override is added, then any date that is printed or parsed will be affected.\n     *\n     * When printing, if the {@link Temporal} object contains a date then it will\n     * be converted to a date in the override chronology.\n     * Any time or zone will be retained unless overridden.\n     * The converted result will behave in a manner equivalent to an implementation\n     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.\n     *\n     * When parsing, the override chronology will be used to interpret the\n     * {@link ChronoField} into a date unless the\n     * formatter directly parses a valid chronology.\n     *\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param chrono  the new chronology, not null\n     * @return a formatter based on this formatter with the requested override chronology, not null\n     */\n    withChronology(chrono) {\n        if (this._chrono != null && this._chrono.equals(chrono)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle,\n            this._resolverStyle, this._resolverFields, chrono, this._zone);\n    }\n\n    /**\n     * not yet supported\n     * @returns {DateTimeFormatter}\n     */\n    withLocale(){\n        return this;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new resolver style.\n     * <p>\n     * This returns a formatter with similar state to this formatter but\n     * with the resolver style set. By default, a formatter has the\n     * {@link ResolverStyle#SMART SMART} resolver style.\n     * <p>\n     * Changing the resolver style only has an effect during parsing.\n     * Parsing a text string occurs in two phases.\n     * Phase 1 is a basic text parse according to the fields added to the builder.\n     * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n     * The resolver style is used to control how phase 2, resolving, happens.\n     * See {@link ResolverStyle} for more information on the options available.\n     * <p>\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param {ResolverStyle} resolverStyle  the new resolver style, not null\n     * @return {DateTimeFormatter} a formatter based on this formatter with the requested resolver style, not null\n     */\n    withResolverStyle(resolverStyle) {\n        requireNonNull(resolverStyle, 'resolverStyle');\n        if (resolverStyle.equals(this._resolverStyle)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);\n    }\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object using this formatter.\n     *\n     * This formats the date-time to a String using the rules of the formatter.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to print, not null\n     * @return {String} the printed string, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    format(temporal) {\n        const buf = new StringBuilder(32);\n        this._formatTo(temporal, buf);\n        return buf.toString();\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object to an {@link Appendable} using this formatter.\n     *\n     * This formats the date-time to the specified destination.\n     * {@link Appendable} is a general purpose interface that is implemented by all\n     * key character output classes including {@link StringBuffer}, {@link StringBuilder},\n     * {@link PrintStream} and {@link Writer}.\n     *\n     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.\n     * Instead, any {@link IOException} is wrapped in a runtime exception.\n     *\n     * @param {TemporalAccessor} temporal - the temporal object to print, not null\n     * @param {StringBuilder} appendable - the appendable to print to, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    _formatTo(temporal, appendable) {\n        requireNonNull(temporal, 'temporal');\n        requireNonNull(appendable, 'appendable');\n        const context = new DateTimePrintContext(temporal, this);\n        this._printerParser.print(context, appendable);\n    }\n\n    /**\n     * function overloading for {@link DateTimeFormatter.parse}\n     *\n     * if called with one arg {@link DateTimeFormatter.parse1} is called\n     * otherwise {@link DateTimeFormatter.parse2}\n     *\n     * @param {string} text\n     * @param {TemporalQuery} type\n     * @return {TemporalAccessor}\n     */\n    parse(text, type){\n        if(arguments.length === 1){\n            return this.parse1(text);\n        } else {\n            return this.parse2(text, type);\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param {String} text  the text to parse, not null\n     * @return {TemporalAccessor} the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse1(text) {\n        requireNonNull(text, 'text');\n        try {\n            return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param text  the text to parse, not null\n     * @param type the type to extract, not null\n * @return the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse2(text, type) {\n        requireNonNull(text, 'text');\n        requireNonNull(type, 'type');\n        try {\n            const builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n            return builder.build(type);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    _createError(text, ex) {\n        let abbr = '';\n        if (text.length > 64) {\n            abbr = text.subString(0, 64) + '...';\n        } else {\n            abbr = text;\n        }\n        return new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed: ' + ex.message, text, 0, ex);\n    }\n\n\n    /**\n     * Parses the text to a builder.\n     *\n     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.\n     * This method throws {@link DateTimeParseException} if unable to parse, or\n     * some other {@link DateTimeException} if another date/time problem occurs.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, null if parsing whole string\n     * @return the engine representing the result of the parse, not null\n     * @throws DateTimeParseException if the parse fails\n     */\n    _parseToBuilder(text, position) {\n        const pos = (position != null ? position : new ParsePosition(0));\n        const result = this._parseUnresolved0(text, pos);\n        if (result == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text.length)) {\n            let abbr = '';\n            if (text.length > 64) {\n                abbr = text.substr(0, 64).toString() + '...';\n            } else {\n                abbr = text;\n            }\n            if (pos.getErrorIndex() >= 0) {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed at index ' +\n                        pos.getErrorIndex(), text, pos.getErrorIndex());\n            } else {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed, unparsed text found at index ' +\n                        pos.getIndex(), text, pos.getIndex());\n            }\n        }\n        return result.toBuilder();\n    }\n\n    /**\n     * Parses the text using this formatter, without resolving the result, intended\n     * for advanced use cases.\n     *\n     * Parsing is implemented as a two-phase operation.\n     * First, the text is parsed using the layout defined by the formatter, producing\n     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.\n     * Second, the parsed data is *resolved*, by validating, combining and\n     * simplifying the various fields into more useful ones.\n     * This method performs the parsing stage but not the resolving stage.\n     *\n     * The result of this method is {@link TemporalAccessor} which represents the\n     * data as seen in the input. Values are not validated, thus parsing a date string\n     * of '2012-00-65' would result in a temporal with three fields - year of '2012',\n     * month of '0' and day-of-month of '65'.\n     *\n     * The text will be parsed from the specified start {@link ParsePosition}.\n     * The entire length of the text does not have to be parsed, the {@link ParsePosition}\n     * will be updated with the index at the end of parsing.\n     *\n     * Errors are returned using the error index field of the {@link ParsePosition}\n     * instead of {@link DateTimeParseException}.\n     * The returned error index will be set to an index indicative of the error.\n     * Callers must check for errors before using the context.\n     *\n     * If the formatter parses the same field more than once with different values,\n     * the result will be an error.\n     *\n     * This method is intended for advanced use cases that need access to the\n     * internal state during parsing. Typical application code should use\n     * {@link parse} or the parse method on the target type.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, not null\n     * @return the parsed text, null if the parse results in an error\n     * @throws DateTimeException if some problem occurs during parsing\n     * @throws IndexOutOfBoundsException if the position is invalid\n     */\n    parseUnresolved(text, position) {\n        return this._parseUnresolved0(text, position);\n    }\n\n    _parseUnresolved0(text, position) {\n        assert(text != null, 'text', NullPointerException);\n        assert(position != null, 'position', NullPointerException);\n        const context = new DateTimeParseContext(this);\n        let pos = position.getIndex();\n        pos = this._printerParser.parse(context, text, pos);\n        if (pos < 0) {\n            position.setErrorIndex(~pos);  // index not updated from input\n            return null;\n        }\n        position.setIndex(pos);  // errorIndex not updated from input\n        return context.toParsed();\n    }\n\n    /**\n     * Returns the formatter as a composite printer parser.\n     *\n     * @param {boolean} optional  whether the printer/parser should be optional\n     * @return {CompositePrinterParser} the printer/parser, not null\n     */\n    toPrinterParser(optional) {\n        return this._printerParser.withOptional(optional);\n    }\n\n    toString() {\n        const pattern = this._printerParser.toString();\n        return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);\n    }\n\n}\n\nexport function _init() {\n\n    DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)\n        .appendLiteral('-')\n        .appendValue(ChronoField.MONTH_OF_YEAR, 2)\n        .appendLiteral('-')\n        .appendValue(ChronoField.DAY_OF_MONTH, 2)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.HOUR_OF_DAY, 2)\n        .appendLiteral(':')\n        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)\n        .optionalStart()\n        .appendLiteral(':')\n        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)\n        .optionalStart()\n        .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE)\n        .appendLiteral('T')\n        .append(DateTimeFormatter.ISO_LOCAL_TIME)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .appendInstant()\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)\n        .appendOffsetId()\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()\n        .append(DateTimeFormatter.ISO_OFFSET_DATE_TIME)\n        .optionalStart()\n        .appendLiteral('[')\n        .parseCaseSensitive()\n        .appendZoneId()\n        // .appendZoneRegionId()\n        .appendLiteral(']')\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.excessDays;\n        } else {\n            return Period.ZERO;\n        }\n    });\n\n    DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.leapSecond;\n        } else {\n            return false;\n        }\n    });\n\n\n}\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeParseException, NullPointerException} from '../errors';\n\nimport {Period} from '../Period';\n\nimport {ParsePosition} from './ParsePosition';\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {DateTimeParseContext} from './DateTimeParseContext';\nimport {DateTimePrintContext} from './DateTimePrintContext';\nimport {DateTimeFormatterBuilder} from './DateTimeFormatterBuilder';\nimport {SignStyle} from './SignStyle';\nimport {StringBuilder} from './StringBuilder';\nimport {ResolverStyle} from './ResolverStyle';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {ChronoField} from '../temporal/ChronoField';\nimport {createTemporalQuery} from '../temporal/TemporalQuery';\n\n/**\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * DateTimeFormatter.ISO_LOCAL_DATE\n *\n * DateTimeFormatter.ISO_LOCAL_TIME\n *\n * DateTimeFormatter.ISO_LOCAL_DATE_TIME\n *\n */\nexport class DateTimeFormatter {\n\n    //-----------------------------------------------------------------------\n    /**\n     * A query that provides access to the excess days that were parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null period, with a zero period returned instead of null.\n     *\n     * There are two situations where this query may return a non-zero period.\n     *\n     * * If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed\n     *   without a date, then the complete result of the parse consists of a\n     *   {@link LocalTime} and an excess {@link Period} in days.\n     * * If the {@link ResolverStyle} is {@link SMART} and a time is parsed\n     *   without a date where the time is 24:00:00, then the complete result of\n     *   the parse consists of a {@link LocalTime} of 00:00:00 and an excess\n     *   {@link Period} of one day.\n     *\n     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}\n     * is parsed, then the excess days are added to the date part.\n     * As a result, this query will return a zero period.\n     *\n     * The {@link SMART} behaviour handles the common \"end of day\" 24:00 value.\n     * Processing in {@link LENIENT} mode also produces the same result:\n     * <pre>\n     *  Text to parse        Parsed object                         Excess days\n     *  \"2012-12-03T00:00\"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO\n     *  \"2012-12-03T24:00\"   LocalDateTime.of(2012, 12, 4, 0, 0)   ZERO\n     *  \"00:00\"              LocalTime.of(0, 0)                    ZERO\n     *  \"24:00\"              LocalTime.of(0, 0)                    Period.ofDays(1)\n     * </pre>\n     * The query can be used as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  LocalTime time = parsed.query(LocalTime.FROM);\n     *  Period extraDays = parsed.query(DateTimeFormatter.parsedExcessDays());\n     * </pre>\n     * @return {TemporalQuery} a query that provides access to the excess days that were parsed\n     */\n    static parsedExcessDays() {\n        return DateTimeFormatter.PARSED_EXCESS_DAYS;\n    }\n\n    /**\n     * A query that provides access to whether a leap-second was parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null boolean, true if parsing saw a leap-second, false if not.\n     *\n     * Instant parsing handles the special \"leap second\" time of '23:59:60'.\n     * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other\n     * local times in different time-zones. To avoid this potential ambiguity,\n     * the handling of leap-seconds is limited to\n     * {@link DateTimeFormatterBuilder#appendInstant}, as that method\n     * always parses the instant with the UTC zone offset.\n     *\n     * If the time '23:59:60' is received, then a simple conversion is applied,\n     * replacing the second-of-minute of 60 with 59. This query can be used\n     * on the parse result to determine if the leap-second adjustment was made.\n     * The query will return one second of excess if it did adjust to remove\n     * the leap-second, and zero if not. Note that applying a leap-second\n     * smoothing mechanism, such as UTC-SLS, is the responsibility of the\n     * application, as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  Instant instant = parsed.query(Instant::from);\n     *  if (parsed.query(DateTimeFormatter.parsedLeapSecond())) {\n     *    // validate leap-second is correct and apply correct smoothing\n     *  }\n     * </pre>\n     * @return a query that provides access to whether a leap-second was parsed\n     */\n    static parsedLeapSecond() {\n        return DateTimeFormatter.PARSED_LEAP_SECOND;\n    }\n\n    /**\n     * Creates a formatter using the specified pattern.\n     *\n     * This method will create a formatter based on a simple pattern of letters and symbols.\n     *\n     * The returned formatter will use the default locale, but this can be changed\n     * using {@link DateTimeFormatter.withLocale}.\n     *\n     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.\n     * The following pattern letters are defined:\n     * <pre>\n     *  |Symbol  |Meaning                     |Presentation      |Examples\n     *  |--------|----------------------------|------------------|----------------------------------------------------\n     *  | G      | era                        | number/text      | 1; 01; AD; Anno Domini\n     *  | u      | year                       | year             | 2004; 04\n     *  | y      | year-of-era                | year             | 2004; 04\n     *  | D      | day-of-year                | number           | 189\n     *  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J\n     *  | d      | day-of-month               | number           | 10\n     *  |        |                            |                  |\n     *  | Q      | quarter-of-year            | number/text      | 3; 03; Q3\n     *  | Y      | week-based-year            | year             | 1996; 96\n     *  | w      | week-of-year               | number           | 27\n     *  | W      | week-of-month              | number           | 27\n     *  | e      | localized day-of-week      | number           | 2; Tue; Tuesday; T\n     *  | E      | day-of-week                | number/text      | 2; Tue; Tuesday; T\n     *  | F      | week-of-month              | number           | 3\n     *  |        |                            |                  |\n     *  | a      | am-pm-of-day               | text             | PM\n     *  | h      | clock-hour-of-am-pm (1-12) | number           | 12\n     *  | K      | hour-of-am-pm (0-11)       | number           | 0\n     *  | k      | clock-hour-of-am-pm (1-24) | number           | 0\n     *  |        |                            |                  |\n     *  | H      | hour-of-day (0-23)         | number           | 0\n     *  | m      | minute-of-hour             | number           | 30\n     *  | s      | second-of-minute           | number           | 55\n     *  | S      | fraction-of-second         | fraction         | 978\n     *  | A      | milli-of-day               | number           | 1234\n     *  | n      | nano-of-second             | number           | 987654321\n     *  | N      | nano-of-day                | number           | 1234000000\n     *  |        |                            |                  |\n     *  | V      | time-zone ID               | zone-id          | America/Los_Angeles; Z; -08:30\n     *  | z      | time-zone name             | zone-name        | Pacific Standard Time; PST\n     *  | X      | zone-offset 'Z' for zero   | offset-X         | Z; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | x      | zone-offset                | offset-x         | +0000; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | Z      | zone-offset                | offset-Z         | +0000; -0800; -08:00;\n     *  |        |                            |                  |\n     *  | p      | pad next                   | pad modifier     | 1\n     *  |        |                            |                  |\n     *  | '      | escape for text            | delimiter        |\n     *  | ''     | single quote               | literal          | '\n     *  | [      | optional section start     |                  |\n     *  | ]      | optional section end       |                  |\n     *  | {}     | reserved for future use    |                  |\n     * </pre>\n     *\n     * The count of pattern letters determine the format.\n     *\n     * **Text**: The text style is determined based on the number of pattern letters used.\n     * Less than 4 pattern letters will use the short form `TextStyle.SHORT`.\n     * Exactly 4 pattern letters will use the full form `TextStyle.FULL`.\n     * Exactly 5 pattern letters will use the narrow form `TextStyle.NARROW`.\n     *\n     * **NOTE**: since text styles require locale support, they are currently not supported in js-joda!\n     *\n     * **Number**: If the count of letters is one, then the value is printed using the minimum number\n     * of digits and without padding as per {@link DateTimeFormatterBuilder.appendValue}.\n     * Otherwise, the count of digits is used as the width of the output field as per\n     * {@link DateTimeFormatterBuilder.appendValue}.\n     *\n     * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.\n     * Otherwise use the Number rules above.\n     *\n     * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.\n     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.\n     * If it is less than 9, then the nano-of-second value is truncated, with only the most\n     * significant digits being output.\n     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.\n     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern\n     * letters, up to 9 digits.\n     *\n     * **Year**: The count of letters determines the minimum field width below which padding is used.\n     * If the count of letters is two, then a {@link DateTimeFormatterBuilder.appendValueReduced}\n     * two digit form is used.\n     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the\n     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.\n     * If the count of letters is less than four (but not two), then the sign is only output for negative\n     * years as per `SignStyle.NORMAL`.\n     * Otherwise, the sign is output if the pad width is exceeded, as per `SignStyle.EXCEEDS_PAD`\n     *\n     * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.\n     * If the count of letters is two, then the time-zone ID is output.\n     * Any other count of letters throws `IllegalArgumentException`.\n     *\n     * **Zone names**: This outputs the display name of the time-zone ID.\n     * If the count of letters is one, two or three, then the short name is output.\n     * If the count of letters is four, then the full name is output.\n     * Five or more letters throws `IllegalArgumentException`.\n     *\n     * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!\n     *\n     * **Offset X and x**: This formats the offset based on the number of pattern letters.\n     * One letter outputs just the hour', such as '+01', unless the minute is non-zero\n     * in which case the minute is also output, such as '+0130'.\n     * Two letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.\n     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.\n     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.\n     * Six or more letters throws `IllegalArgumentException`.\n     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,\n     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.\n     *\n     * **Offset Z**: This formats the offset based on the number of pattern letters.\n     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Four or more letters throws `IllegalArgumentException`.\n     * The output will be '+0000' when the offset is zero.\n     *\n     * **Optional section**: The optional section markers work exactly like calling\n     * {@link DateTimeFormatterBuilder.optionalStart} and {@link DateTimeFormatterBuilder.optionalEnd}.\n     *\n     * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.\n     * The pad width is determined by the number of pattern letters.\n     * This is the same as calling {@link DateTimeFormatterBuilder.padNext}.\n     *\n     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.\n     *\n     * Any unrecognized letter is an error.\n     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.\n     * Despite this, it is recommended to use single quotes around all characters that you want to\n     * output directly to ensure that future changes do not break your application.\n     *\n     * @param {String} pattern  the pattern to use, not null\n     * @return {DateTimeFormatter} the formatter based on the pattern, not null\n     * @throws IllegalArgumentException if the pattern is invalid\n     * @see DateTimeFormatterBuilder#appendPattern(String)\n     * @example\n     * var s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));\n     * console.log(s); // '1 04 2016'\n     *\n     */\n    static ofPattern(pattern) {\n        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();\n    }\n\n\n    //-----------------------------------------------------------------------\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer/parser to use, not null\n     * @param locale  the locale to use, not null\n     * @param decimalStyle  the decimal style to use, not null\n     * @param resolverStyle  the resolver style to use, not null\n     * @param resolverFields  the fields to use during resolving, null for all fields\n     * @param chrono  the chronology to use, null for no override\n     * @param zone  the zone to use, null for no override\n     * @private\n     */\n    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {\n        assert(printerParser != null);\n        assert(decimalStyle != null);\n        assert(resolverStyle != null);\n        /**\n         * The printer and/or parser to use, not null.\n         */\n        this._printerParser = printerParser;\n        /**\n         * The locale to use for formatting. // nyi\n         */\n        this._locale = locale;\n        /**\n         * The symbols to use for formatting, not null.\n         */\n        this._decimalStyle = decimalStyle;\n        /**\n         * The resolver style to use, not null.\n         */\n        this._resolverStyle = resolverStyle;\n        /**\n         * The fields to use in resolving, null for all fields.\n         */\n        this._resolverFields = resolverFields;\n        /**\n         * The chronology to use for formatting, null for no override.\n         */\n        this._chrono = chrono;\n        /**\n         * The zone to use for formatting, null for no override. // nyi\n         */\n        this._zone = zone;\n    }\n\n    locale() {\n        return this._locale;\n    }\n\n    decimalStyle() {\n        return this._decimalStyle;\n    }\n\n    chronology() {\n        return this._chrono;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new override chronology.\n     *\n     * This returns a formatter with similar state to this formatter but\n     * with the override chronology set.\n     * By default, a formatter has no override chronology, returning null.\n     *\n     * If an override is added, then any date that is printed or parsed will be affected.\n     *\n     * When printing, if the {@link Temporal} object contains a date then it will\n     * be converted to a date in the override chronology.\n     * Any time or zone will be retained unless overridden.\n     * The converted result will behave in a manner equivalent to an implementation\n     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.\n     *\n     * When parsing, the override chronology will be used to interpret the\n     * {@link ChronoField} into a date unless the\n     * formatter directly parses a valid chronology.\n     *\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param chrono  the new chronology, not null\n     * @return a formatter based on this formatter with the requested override chronology, not null\n     */\n    withChronology(chrono) {\n        if (this._chrono != null && this._chrono.equals(chrono)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle,\n            this._resolverStyle, this._resolverFields, chrono, this._zone);\n    }\n\n    /**\n     * not yet supported\n     * @returns {DateTimeFormatter}\n     */\n    withLocale(){\n        return this;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new resolver style.\n     * <p>\n     * This returns a formatter with similar state to this formatter but\n     * with the resolver style set. By default, a formatter has the\n     * {@link ResolverStyle#SMART SMART} resolver style.\n     * <p>\n     * Changing the resolver style only has an effect during parsing.\n     * Parsing a text string occurs in two phases.\n     * Phase 1 is a basic text parse according to the fields added to the builder.\n     * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n     * The resolver style is used to control how phase 2, resolving, happens.\n     * See {@link ResolverStyle} for more information on the options available.\n     * <p>\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param {ResolverStyle} resolverStyle  the new resolver style, not null\n     * @return {DateTimeFormatter} a formatter based on this formatter with the requested resolver style, not null\n     */\n    withResolverStyle(resolverStyle) {\n        requireNonNull(resolverStyle, 'resolverStyle');\n        if (resolverStyle.equals(this._resolverStyle)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);\n    }\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object using this formatter.\n     *\n     * This formats the date-time to a String using the rules of the formatter.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to print, not null\n     * @return {String} the printed string, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    format(temporal) {\n        const buf = new StringBuilder(32);\n        this._formatTo(temporal, buf);\n        return buf.toString();\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object to an {@link Appendable} using this formatter.\n     *\n     * This formats the date-time to the specified destination.\n     * {@link Appendable} is a general purpose interface that is implemented by all\n     * key character output classes including {@link StringBuffer}, {@link StringBuilder},\n     * {@link PrintStream} and {@link Writer}.\n     *\n     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.\n     * Instead, any {@link IOException} is wrapped in a runtime exception.\n     *\n     * @param {TemporalAccessor} temporal - the temporal object to print, not null\n     * @param {StringBuilder} appendable - the appendable to print to, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    _formatTo(temporal, appendable) {\n        requireNonNull(temporal, 'temporal');\n        requireNonNull(appendable, 'appendable');\n        const context = new DateTimePrintContext(temporal, this);\n        this._printerParser.print(context, appendable);\n    }\n\n    /**\n     * function overloading for {@link DateTimeFormatter.parse}\n     *\n     * if called with one arg {@link DateTimeFormatter.parse1} is called\n     * otherwise {@link DateTimeFormatter.parse2}\n     *\n     * @param {string} text\n     * @param {TemporalQuery} type\n     * @return {TemporalAccessor}\n     */\n    parse(text, type){\n        if(arguments.length === 1){\n            return this.parse1(text);\n        } else {\n            return this.parse2(text, type);\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param {String} text  the text to parse, not null\n     * @return {TemporalAccessor} the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse1(text) {\n        requireNonNull(text, 'text');\n        try {\n            return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param text  the text to parse, not null\n     * @param type the type to extract, not null\n * @return the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse2(text, type) {\n        requireNonNull(text, 'text');\n        requireNonNull(type, 'type');\n        try {\n            const builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n            return builder.build(type);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    _createError(text, ex) {\n        let abbr = '';\n        if (text.length > 64) {\n            abbr = text.subString(0, 64) + '...';\n        } else {\n            abbr = text;\n        }\n        return new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed: ' + ex.message, text, 0, ex);\n    }\n\n\n    /**\n     * Parses the text to a builder.\n     *\n     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.\n     * This method throws {@link DateTimeParseException} if unable to parse, or\n     * some other {@link DateTimeException} if another date/time problem occurs.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, null if parsing whole string\n     * @return the engine representing the result of the parse, not null\n     * @throws DateTimeParseException if the parse fails\n     */\n    _parseToBuilder(text, position) {\n        const pos = (position != null ? position : new ParsePosition(0));\n        const result = this._parseUnresolved0(text, pos);\n        if (result == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text.length)) {\n            let abbr = '';\n            if (text.length > 64) {\n                abbr = text.substr(0, 64).toString() + '...';\n            } else {\n                abbr = text;\n            }\n            if (pos.getErrorIndex() >= 0) {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed at index ' +\n                        pos.getErrorIndex(), text, pos.getErrorIndex());\n            } else {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed, unparsed text found at index ' +\n                        pos.getIndex(), text, pos.getIndex());\n            }\n        }\n        return result.toBuilder();\n    }\n\n    /**\n     * Parses the text using this formatter, without resolving the result, intended\n     * for advanced use cases.\n     *\n     * Parsing is implemented as a two-phase operation.\n     * First, the text is parsed using the layout defined by the formatter, producing\n     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.\n     * Second, the parsed data is *resolved*, by validating, combining and\n     * simplifying the various fields into more useful ones.\n     * This method performs the parsing stage but not the resolving stage.\n     *\n     * The result of this method is {@link TemporalAccessor} which represents the\n     * data as seen in the input. Values are not validated, thus parsing a date string\n     * of '2012-00-65' would result in a temporal with three fields - year of '2012',\n     * month of '0' and day-of-month of '65'.\n     *\n     * The text will be parsed from the specified start {@link ParsePosition}.\n     * The entire length of the text does not have to be parsed, the {@link ParsePosition}\n     * will be updated with the index at the end of parsing.\n     *\n     * Errors are returned using the error index field of the {@link ParsePosition}\n     * instead of {@link DateTimeParseException}.\n     * The returned error index will be set to an index indicative of the error.\n     * Callers must check for errors before using the context.\n     *\n     * If the formatter parses the same field more than once with different values,\n     * the result will be an error.\n     *\n     * This method is intended for advanced use cases that need access to the\n     * internal state during parsing. Typical application code should use\n     * {@link parse} or the parse method on the target type.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, not null\n     * @return the parsed text, null if the parse results in an error\n     * @throws DateTimeException if some problem occurs during parsing\n     * @throws IndexOutOfBoundsException if the position is invalid\n     */\n    parseUnresolved(text, position) {\n        return this._parseUnresolved0(text, position);\n    }\n\n    _parseUnresolved0(text, position) {\n        assert(text != null, 'text', NullPointerException);\n        assert(position != null, 'position', NullPointerException);\n        const context = new DateTimeParseContext(this);\n        let pos = position.getIndex();\n        pos = this._printerParser.parse(context, text, pos);\n        if (pos < 0) {\n            position.setErrorIndex(~pos);  // index not updated from input\n            return null;\n        }\n        position.setIndex(pos);  // errorIndex not updated from input\n        return context.toParsed();\n    }\n\n    /**\n     * Returns the formatter as a composite printer parser.\n     *\n     * @param {boolean} optional  whether the printer/parser should be optional\n     * @return {CompositePrinterParser} the printer/parser, not null\n     */\n    toPrinterParser(optional) {\n        return this._printerParser.withOptional(optional);\n    }\n\n    toString() {\n        const pattern = this._printerParser.toString();\n        return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);\n    }\n\n}\n\nexport function _init() {\n\n    DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)\n        .appendLiteral('-')\n        .appendValue(ChronoField.MONTH_OF_YEAR, 2)\n        .appendLiteral('-')\n        .appendValue(ChronoField.DAY_OF_MONTH, 2)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.HOUR_OF_DAY, 2)\n        .appendLiteral(':')\n        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)\n        .optionalStart()\n        .appendLiteral(':')\n        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)\n        .optionalStart()\n        .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE)\n        .appendLiteral('T')\n        .append(DateTimeFormatter.ISO_LOCAL_TIME)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .appendInstant()\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)\n        .appendOffsetId()\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()\n        .append(DateTimeFormatter.ISO_OFFSET_DATE_TIME)\n        .optionalStart()\n        .appendLiteral('[')\n        .parseCaseSensitive()\n        .appendZoneId()\n        // .appendZoneRegionId()\n        .appendLiteral(']')\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.excessDays;\n        } else {\n            return Period.ZERO;\n        }\n    });\n\n    DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.leapSecond;\n        } else {\n            return false;\n        }\n    });\n\n\n}\n",
     "static": true,
     "longname": "src/format/DateTimeFormatter.js",
     "access": null,
@@ -30345,7 +30345,7 @@
     "async": false,
     "static": false,
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#constructor",
-    "access": "protected",
+    "access": "private",
     "description": "Constructor.",
     "lineNumber": 274,
     "params": [
@@ -32835,7 +32835,7 @@
     "__docId__": 948,
     "kind": "file",
     "name": "src/format/DateTimeParseContext.js",
-    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {EnumMap} from './EnumMap';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {Temporal} from '../temporal/Temporal';\nimport {TemporalQueries} from '../temporal/TemporalQueries';\n\nexport class DateTimeParseContext{\n\n    constructor(){\n        if(arguments.length === 1){\n            if(arguments[0] instanceof DateTimeParseContext){\n                this._constructorSelf.apply(this, arguments);\n                return;\n            } else {\n                this._constructorFormatter.apply(this, arguments);\n            }\n        } else {\n            this._constructorParam.apply(this, arguments);\n        }\n\n        this._caseSensitive = true;\n        this._strict = true;\n        this._parsed = [new Parsed(this)];\n    }\n\n    _constructorParam(locale, symbols, chronology){\n        this._locale = locale;\n        this._symbols = symbols;\n        this._overrideChronology = chronology;\n    }\n\n    _constructorFormatter(formatter){\n        this._locale = formatter.locale();\n        this._symbols = formatter.decimalStyle();\n        this._overrideChronology = formatter.chronology();\n    }\n\n\n    _constructorSelf(other) {\n        this._locale = other._locale;\n        this._symbols = other._symbols;\n        this._overrideChronology = other._overrideChronology;\n        this._overrideZone = other._overrideZone;\n        this._caseSensitive = other._caseSensitive;\n        this._strict = other._strict;\n        this._parsed = [new Parsed(this)];\n    }\n\n    /**\n     * Creates a copy of this context.\n     */\n    copy() {\n        return new DateTimeParseContext(this);\n    }\n\n    symbols(){\n        return this._symbols;\n    }\n\n    isStrict(){\n        return this._strict;\n    }\n\n    setStrict(strict){\n        this._strict = strict;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Starts the parsing of an optional segment of the input.\n     */\n    startOptional() {\n        this._parsed.push(this.currentParsed().copy());\n    }\n\n    /**\n     * Ends the parsing of an optional segment of the input.\n     *\n     * @param {boolean} successful  whether the optional segment was successfully parsed\n     */\n    endOptional(successful) {\n        if (successful) {\n            this._parsed.splice(this._parsed.length - 2, 1);\n        } else {\n            this._parsed.splice(this._parsed.length - 1, 1);\n        }\n    }\n\n    /**\n     * Checks if parsing is case sensitive.\n     *\n     * @return true if parsing is case sensitive, false if case insensitive\n     */\n    isCaseSensitive() {\n        return this._caseSensitive;\n    }\n\n    /**\n     * Sets whether the parsing is case sensitive or not.\n     *\n     * @param caseSensitive  changes the parsing to be case sensitive or not from now on\n     */\n    setCaseSensitive(caseSensitive) {\n        this._caseSensitive = caseSensitive;\n    }\n\n    /**\n     * Helper to compare two {@link CharSequence} instances.\n     * This uses {@link isCaseSensitive}.\n     *\n     * @param cs1  the first character sequence, not null\n     * @param offset1  the offset into the first sequence, valid\n     * @param cs2  the second character sequence, not null\n     * @param offset2  the offset into the second sequence, valid\n     * @param length  the length to check, valid\n     * @return true if equal\n     */\n    subSequenceEquals(cs1, offset1, cs2, offset2, length) {\n        if (offset1 + length > cs1.length || offset2 + length > cs2.length) {\n            return false;\n        }\n        if (! this.isCaseSensitive()) {\n            cs1 = cs1.toLowerCase();\n            cs2 = cs2.toLowerCase();\n        }\n        for (let i = 0; i < length; i++) {\n            let ch1 = cs1[offset1 + i];\n            let ch2 = cs2[offset2 + i];\n            if (ch1 !== ch2) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    /**\n     * Helper to compare two `char`.\n     * This uses {@link isCaseSensitive}.\n     *\n     * @param ch1  the first character\n     * @param ch2  the second character\n     * @return true if equal\n     */\n    charEquals(ch1, ch2) {\n        if (this.isCaseSensitive()) {\n            return ch1 === ch2;\n        }\n        return this.charEqualsIgnoreCase(ch1, ch2);\n    }\n\n    /**\n     * Compares two characters ignoring case.\n     *\n     * @param c1  the first\n     * @param c2  the second\n     * @return true if equal\n     */\n    charEqualsIgnoreCase(c1, c2) {\n        return c1 === c2 ||\n                c1.toLowerCase() === c2.toLowerCase();\n    }\n\n    setParsedField(field, value, errorPos, successPos){\n        const currentParsedFieldValues = this.currentParsed().fieldValues;\n        const old = currentParsedFieldValues.get(field);\n        currentParsedFieldValues.set(field, value);\n        return (old != null && old !== value) ? ~errorPos : successPos;\n    }\n\n    /**\n     * Stores the parsed zone.\n     *\n     * This stores the zone that has been parsed.\n     * No validation is performed other than ensuring it is not null.\n     *\n     * @param {ZoneId} zone  the parsed zone, not null\n     */\n    setParsedZone(zone) {\n        requireNonNull(zone, 'zone');\n        this.currentParsed().zone = zone;\n    }\n\n    getParsed(field) {\n        return this.currentParsed().fieldValues.get(field);\n    }\n\n    toParsed() {\n        return this.currentParsed();\n    }\n\n    currentParsed() {\n        return this._parsed[this._parsed.length - 1];\n    }\n\n    /**\n     * Stores the leap second.\n     */\n    setParsedLeapSecond() {\n        this.currentParsed().leapSecond = true;\n    }\n\n    /**\n     * Gets the effective chronology during parsing.\n     *\n     * @return the effective parsing chronology, not null\n     */\n    getEffectiveChronology() {\n        let chrono = this.currentParsed().chrono;\n        if (chrono == null) {\n            chrono = this._overrideChronology;\n            if (chrono == null) {\n                chrono = IsoChronology.INSTANCE;\n            }\n        }\n        return chrono;\n    }\n\n\n}\n\nclass Parsed extends Temporal {\n    constructor(dateTimeParseContext){\n        super();\n        this.chrono = null;\n        this.zone = null;\n        this.fieldValues = new EnumMap();\n        this.leapSecond = false;\n        this.dateTimeParseContext = dateTimeParseContext;\n    }\n\n    copy() {\n        const cloned = new Parsed();\n        cloned.chrono = this.chrono;\n        cloned.zone = this.zone;\n        cloned.fieldValues.putAll(this.fieldValues);\n        cloned.leapSecond = this.leapSecond;\n        cloned.dateTimeParseContext = this.dateTimeParseContext;\n        return cloned;\n    }\n\n    toString() {\n        return `${this.fieldValues}, ${this.chrono}, ${this.zone}`;\n    }\n\n    isSupported(field) {\n        return this.fieldValues.containsKey(field);\n    }\n\n    get(field) {\n        const val = this.fieldValues.get(field);\n        assert(val != null);\n        return val;\n    }\n\n    query(query) {\n        if (query === TemporalQueries.chronology()) {\n            return this.chrono;\n        }\n        if (query === TemporalQueries.zoneId() || query === TemporalQueries.zone()) {\n            return this.zone;\n        }\n        return super.query(query);\n    }\n\n    toBuilder() {\n        const builder = new DateTimeBuilder();\n        builder.fieldValues.putAll(this.fieldValues);\n        builder.chrono = this.dateTimeParseContext.getEffectiveChronology();\n        if (this.zone != null) {\n            builder.zone = this.zone;\n        } else {\n            builder.zone = this.overrideZone;\n        }\n        builder.leapSecond = this.leapSecond;\n        builder.excessDays = this.excessDays;\n        return builder;\n    }\n}\n",
+    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {EnumMap} from './EnumMap';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {Temporal} from '../temporal/Temporal';\nimport {TemporalQueries} from '../temporal/TemporalQueries';\n\n/**\n * @private\n */\nexport class DateTimeParseContext{\n\n    constructor(){\n        if(arguments.length === 1){\n            if(arguments[0] instanceof DateTimeParseContext){\n                this._constructorSelf.apply(this, arguments);\n                return;\n            } else {\n                this._constructorFormatter.apply(this, arguments);\n            }\n        } else {\n            this._constructorParam.apply(this, arguments);\n        }\n\n        this._caseSensitive = true;\n        this._strict = true;\n        this._parsed = [new Parsed(this)];\n    }\n\n    _constructorParam(locale, symbols, chronology){\n        this._locale = locale;\n        this._symbols = symbols;\n        this._overrideChronology = chronology;\n    }\n\n    _constructorFormatter(formatter){\n        this._locale = formatter.locale();\n        this._symbols = formatter.decimalStyle();\n        this._overrideChronology = formatter.chronology();\n    }\n\n\n    _constructorSelf(other) {\n        this._locale = other._locale;\n        this._symbols = other._symbols;\n        this._overrideChronology = other._overrideChronology;\n        this._overrideZone = other._overrideZone;\n        this._caseSensitive = other._caseSensitive;\n        this._strict = other._strict;\n        this._parsed = [new Parsed(this)];\n    }\n\n    /**\n     * Creates a copy of this context.\n     */\n    copy() {\n        return new DateTimeParseContext(this);\n    }\n\n    symbols(){\n        return this._symbols;\n    }\n\n    isStrict(){\n        return this._strict;\n    }\n\n    setStrict(strict){\n        this._strict = strict;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Starts the parsing of an optional segment of the input.\n     */\n    startOptional() {\n        this._parsed.push(this.currentParsed().copy());\n    }\n\n    /**\n     * Ends the parsing of an optional segment of the input.\n     *\n     * @param {boolean} successful  whether the optional segment was successfully parsed\n     */\n    endOptional(successful) {\n        if (successful) {\n            this._parsed.splice(this._parsed.length - 2, 1);\n        } else {\n            this._parsed.splice(this._parsed.length - 1, 1);\n        }\n    }\n\n    /**\n     * Checks if parsing is case sensitive.\n     *\n     * @return true if parsing is case sensitive, false if case insensitive\n     */\n    isCaseSensitive() {\n        return this._caseSensitive;\n    }\n\n    /**\n     * Sets whether the parsing is case sensitive or not.\n     *\n     * @param caseSensitive  changes the parsing to be case sensitive or not from now on\n     */\n    setCaseSensitive(caseSensitive) {\n        this._caseSensitive = caseSensitive;\n    }\n\n    /**\n     * Helper to compare two {@link CharSequence} instances.\n     * This uses {@link isCaseSensitive}.\n     *\n     * @param cs1  the first character sequence, not null\n     * @param offset1  the offset into the first sequence, valid\n     * @param cs2  the second character sequence, not null\n     * @param offset2  the offset into the second sequence, valid\n     * @param length  the length to check, valid\n     * @return true if equal\n     */\n    subSequenceEquals(cs1, offset1, cs2, offset2, length) {\n        if (offset1 + length > cs1.length || offset2 + length > cs2.length) {\n            return false;\n        }\n        if (! this.isCaseSensitive()) {\n            cs1 = cs1.toLowerCase();\n            cs2 = cs2.toLowerCase();\n        }\n        for (let i = 0; i < length; i++) {\n            let ch1 = cs1[offset1 + i];\n            let ch2 = cs2[offset2 + i];\n            if (ch1 !== ch2) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    /**\n     * Helper to compare two `char`.\n     * This uses {@link isCaseSensitive}.\n     *\n     * @param ch1  the first character\n     * @param ch2  the second character\n     * @return true if equal\n     */\n    charEquals(ch1, ch2) {\n        if (this.isCaseSensitive()) {\n            return ch1 === ch2;\n        }\n        return this.charEqualsIgnoreCase(ch1, ch2);\n    }\n\n    /**\n     * Compares two characters ignoring case.\n     *\n     * @param c1  the first\n     * @param c2  the second\n     * @return true if equal\n     */\n    charEqualsIgnoreCase(c1, c2) {\n        return c1 === c2 ||\n                c1.toLowerCase() === c2.toLowerCase();\n    }\n\n    setParsedField(field, value, errorPos, successPos){\n        const currentParsedFieldValues = this.currentParsed().fieldValues;\n        const old = currentParsedFieldValues.get(field);\n        currentParsedFieldValues.set(field, value);\n        return (old != null && old !== value) ? ~errorPos : successPos;\n    }\n\n    /**\n     * Stores the parsed zone.\n     *\n     * This stores the zone that has been parsed.\n     * No validation is performed other than ensuring it is not null.\n     *\n     * @param {ZoneId} zone  the parsed zone, not null\n     */\n    setParsedZone(zone) {\n        requireNonNull(zone, 'zone');\n        this.currentParsed().zone = zone;\n    }\n\n    getParsed(field) {\n        return this.currentParsed().fieldValues.get(field);\n    }\n\n    toParsed() {\n        return this.currentParsed();\n    }\n\n    currentParsed() {\n        return this._parsed[this._parsed.length - 1];\n    }\n\n    /**\n     * Stores the leap second.\n     */\n    setParsedLeapSecond() {\n        this.currentParsed().leapSecond = true;\n    }\n\n    /**\n     * Gets the effective chronology during parsing.\n     *\n     * @return the effective parsing chronology, not null\n     */\n    getEffectiveChronology() {\n        let chrono = this.currentParsed().chrono;\n        if (chrono == null) {\n            chrono = this._overrideChronology;\n            if (chrono == null) {\n                chrono = IsoChronology.INSTANCE;\n            }\n        }\n        return chrono;\n    }\n\n\n}\n\nclass Parsed extends Temporal {\n    constructor(dateTimeParseContext){\n        super();\n        this.chrono = null;\n        this.zone = null;\n        this.fieldValues = new EnumMap();\n        this.leapSecond = false;\n        this.dateTimeParseContext = dateTimeParseContext;\n    }\n\n    copy() {\n        const cloned = new Parsed();\n        cloned.chrono = this.chrono;\n        cloned.zone = this.zone;\n        cloned.fieldValues.putAll(this.fieldValues);\n        cloned.leapSecond = this.leapSecond;\n        cloned.dateTimeParseContext = this.dateTimeParseContext;\n        return cloned;\n    }\n\n    toString() {\n        return `${this.fieldValues}, ${this.chrono}, ${this.zone}`;\n    }\n\n    isSupported(field) {\n        return this.fieldValues.containsKey(field);\n    }\n\n    get(field) {\n        const val = this.fieldValues.get(field);\n        assert(val != null);\n        return val;\n    }\n\n    query(query) {\n        if (query === TemporalQueries.chronology()) {\n            return this.chrono;\n        }\n        if (query === TemporalQueries.zoneId() || query === TemporalQueries.zone()) {\n            return this.zone;\n        }\n        return super.query(query);\n    }\n\n    toBuilder() {\n        const builder = new DateTimeBuilder();\n        builder.fieldValues.putAll(this.fieldValues);\n        builder.chrono = this.dateTimeParseContext.getEffectiveChronology();\n        if (this.zone != null) {\n            builder.zone = this.zone;\n        } else {\n            builder.zone = this.overrideZone;\n        }\n        builder.leapSecond = this.leapSecond;\n        builder.excessDays = this.excessDays;\n        return builder;\n    }\n}\n",
     "static": true,
     "longname": "src/format/DateTimeParseContext.js",
     "access": null,
@@ -32849,19 +32849,12 @@
     "memberof": "src/format/DateTimeParseContext.js",
     "static": true,
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/DateTimeParseContext.js",
     "importStyle": "{DateTimeParseContext}",
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 19,
     "interface": false
   },
   {
@@ -32875,7 +32868,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 21,
     "undocument": true,
     "unknown": [
       {
@@ -32894,7 +32887,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_caseSensitive",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 33,
     "undocument": true,
     "unknown": [
       {
@@ -32917,7 +32910,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_strict",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 34,
     "undocument": true,
     "unknown": [
       {
@@ -32940,7 +32933,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_parsed",
     "access": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 35,
     "undocument": true,
     "unknown": [
       {
@@ -32965,7 +32958,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_constructorParam",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 38,
     "undocument": true,
     "unknown": [
       {
@@ -33003,7 +32996,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_locale",
     "access": null,
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 39,
     "undocument": true,
     "unknown": [
       {
@@ -33026,7 +33019,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_symbols",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 40,
     "undocument": true,
     "unknown": [
       {
@@ -33049,7 +33042,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_overrideChronology",
     "access": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 41,
     "undocument": true,
     "unknown": [
       {
@@ -33074,7 +33067,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_constructorFormatter",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 44,
     "undocument": true,
     "unknown": [
       {
@@ -33100,7 +33093,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_locale",
     "access": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 45,
     "undocument": true,
     "unknown": [
       {
@@ -33123,7 +33116,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_symbols",
     "access": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 46,
     "undocument": true,
     "unknown": [
       {
@@ -33146,7 +33139,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_overrideChronology",
     "access": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 47,
     "undocument": true,
     "unknown": [
       {
@@ -33171,7 +33164,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_constructorSelf",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 51,
     "undocument": true,
     "unknown": [
       {
@@ -33197,7 +33190,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_locale",
     "access": null,
     "description": null,
-    "lineNumber": 49,
+    "lineNumber": 52,
     "undocument": true,
     "unknown": [
       {
@@ -33220,7 +33213,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_symbols",
     "access": null,
     "description": null,
-    "lineNumber": 50,
+    "lineNumber": 53,
     "undocument": true,
     "unknown": [
       {
@@ -33243,7 +33236,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_overrideChronology",
     "access": null,
     "description": null,
-    "lineNumber": 51,
+    "lineNumber": 54,
     "undocument": true,
     "unknown": [
       {
@@ -33266,7 +33259,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_overrideZone",
     "access": null,
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 55,
     "undocument": true,
     "unknown": [
       {
@@ -33289,7 +33282,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_caseSensitive",
     "access": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 56,
     "undocument": true,
     "unknown": [
       {
@@ -33312,7 +33305,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_strict",
     "access": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 57,
     "undocument": true,
     "unknown": [
       {
@@ -33335,7 +33328,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_parsed",
     "access": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 58,
     "undocument": true,
     "unknown": [
       {
@@ -33360,7 +33353,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#copy",
     "access": null,
     "description": "Creates a copy of this context.",
-    "lineNumber": 61,
+    "lineNumber": 64,
     "params": [],
     "return": {
       "types": [
@@ -33379,7 +33372,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#symbols",
     "access": null,
     "description": null,
-    "lineNumber": 65,
+    "lineNumber": 68,
     "undocument": true,
     "unknown": [
       {
@@ -33405,7 +33398,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#isStrict",
     "access": null,
     "description": null,
-    "lineNumber": 69,
+    "lineNumber": 72,
     "undocument": true,
     "unknown": [
       {
@@ -33431,7 +33424,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#setStrict",
     "access": null,
     "description": null,
-    "lineNumber": 73,
+    "lineNumber": 76,
     "undocument": true,
     "unknown": [
       {
@@ -33457,7 +33450,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_strict",
     "access": null,
     "description": null,
-    "lineNumber": 74,
+    "lineNumber": 77,
     "undocument": true,
     "unknown": [
       {
@@ -33482,7 +33475,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#startOptional",
     "access": null,
     "description": "Starts the parsing of an optional segment of the input.",
-    "lineNumber": 81,
+    "lineNumber": 84,
     "params": []
   },
   {
@@ -33496,7 +33489,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#endOptional",
     "access": null,
     "description": "Ends the parsing of an optional segment of the input.",
-    "lineNumber": 90,
+    "lineNumber": 93,
     "params": [
       {
         "nullable": null,
@@ -33521,7 +33514,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#isCaseSensitive",
     "access": null,
     "description": "Checks if parsing is case sensitive.",
-    "lineNumber": 103,
+    "lineNumber": 106,
     "params": [],
     "return": {
       "nullable": null,
@@ -33543,7 +33536,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#setCaseSensitive",
     "access": null,
     "description": "Sets whether the parsing is case sensitive or not.",
-    "lineNumber": 112,
+    "lineNumber": 115,
     "params": [
       {
         "nullable": null,
@@ -33566,7 +33559,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#_caseSensitive",
     "access": null,
     "description": null,
-    "lineNumber": 113,
+    "lineNumber": 116,
     "undocument": true,
     "unknown": [
       {
@@ -33591,7 +33584,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#subSequenceEquals",
     "access": null,
     "description": "Helper to compare two {@link CharSequence} instances.\nThis uses {@link isCaseSensitive}.",
-    "lineNumber": 127,
+    "lineNumber": 130,
     "params": [
       {
         "nullable": null,
@@ -33664,7 +33657,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#charEquals",
     "access": null,
     "description": "Helper to compare two `char`.\nThis uses {@link isCaseSensitive}.",
-    "lineNumber": 153,
+    "lineNumber": 156,
     "params": [
       {
         "nullable": null,
@@ -33707,7 +33700,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#charEqualsIgnoreCase",
     "access": null,
     "description": "Compares two characters ignoring case.",
-    "lineNumber": 167,
+    "lineNumber": 170,
     "params": [
       {
         "nullable": null,
@@ -33750,7 +33743,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#setParsedField",
     "access": null,
     "description": null,
-    "lineNumber": 172,
+    "lineNumber": 175,
     "undocument": true,
     "unknown": [
       {
@@ -33801,7 +33794,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#setParsedZone",
     "access": null,
     "description": "Stores the parsed zone.\n\nThis stores the zone that has been parsed.\nNo validation is performed other than ensuring it is not null.",
-    "lineNumber": 187,
+    "lineNumber": 190,
     "params": [
       {
         "nullable": null,
@@ -33826,7 +33819,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#getParsed",
     "access": null,
     "description": null,
-    "lineNumber": 192,
+    "lineNumber": 195,
     "undocument": true,
     "unknown": [
       {
@@ -33859,7 +33852,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#toParsed",
     "access": null,
     "description": null,
-    "lineNumber": 196,
+    "lineNumber": 199,
     "undocument": true,
     "unknown": [
       {
@@ -33885,7 +33878,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#currentParsed",
     "access": null,
     "description": null,
-    "lineNumber": 200,
+    "lineNumber": 203,
     "undocument": true,
     "unknown": [
       {
@@ -33911,7 +33904,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#setParsedLeapSecond",
     "access": null,
     "description": "Stores the leap second.",
-    "lineNumber": 207,
+    "lineNumber": 210,
     "params": []
   },
   {
@@ -33925,7 +33918,7 @@
     "longname": "src/format/DateTimeParseContext.js~DateTimeParseContext#getEffectiveChronology",
     "access": null,
     "description": "Gets the effective chronology during parsing.",
-    "lineNumber": 216,
+    "lineNumber": 219,
     "params": [],
     "return": {
       "nullable": null,
@@ -33948,7 +33941,7 @@
     "importPath": "js-joda/src/format/DateTimeParseContext.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 230,
+    "lineNumber": 233,
     "undocument": true,
     "unknown": [
       {
@@ -33972,7 +33965,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 231,
+    "lineNumber": 234,
     "undocument": true,
     "unknown": [
       {
@@ -33998,7 +33991,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#chrono",
     "access": null,
     "description": null,
-    "lineNumber": 233,
+    "lineNumber": 236,
     "undocument": true,
     "unknown": [
       {
@@ -34021,7 +34014,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#zone",
     "access": null,
     "description": null,
-    "lineNumber": 234,
+    "lineNumber": 237,
     "undocument": true,
     "unknown": [
       {
@@ -34044,7 +34037,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#fieldValues",
     "access": null,
     "description": null,
-    "lineNumber": 235,
+    "lineNumber": 238,
     "undocument": true,
     "unknown": [
       {
@@ -34067,7 +34060,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#leapSecond",
     "access": null,
     "description": null,
-    "lineNumber": 236,
+    "lineNumber": 239,
     "undocument": true,
     "unknown": [
       {
@@ -34090,7 +34083,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#dateTimeParseContext",
     "access": null,
     "description": null,
-    "lineNumber": 237,
+    "lineNumber": 240,
     "undocument": true,
     "unknown": [
       {
@@ -34115,7 +34108,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#copy",
     "access": null,
     "description": null,
-    "lineNumber": 240,
+    "lineNumber": 243,
     "undocument": true,
     "unknown": [
       {
@@ -34141,7 +34134,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#toString",
     "access": null,
     "description": null,
-    "lineNumber": 250,
+    "lineNumber": 253,
     "undocument": true,
     "unknown": [
       {
@@ -34167,7 +34160,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#isSupported",
     "access": null,
     "description": null,
-    "lineNumber": 254,
+    "lineNumber": 257,
     "undocument": true,
     "unknown": [
       {
@@ -34200,7 +34193,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#get",
     "access": null,
     "description": null,
-    "lineNumber": 258,
+    "lineNumber": 261,
     "undocument": true,
     "unknown": [
       {
@@ -34233,7 +34226,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#query",
     "access": null,
     "description": null,
-    "lineNumber": 264,
+    "lineNumber": 267,
     "undocument": true,
     "unknown": [
       {
@@ -34266,7 +34259,7 @@
     "longname": "src/format/DateTimeParseContext.js~Parsed#toBuilder",
     "access": null,
     "description": null,
-    "lineNumber": 274,
+    "lineNumber": 277,
     "undocument": true,
     "unknown": [
       {
@@ -34285,7 +34278,7 @@
     "__docId__": 1003,
     "kind": "file",
     "name": "src/format/DateTimePrintContext.js",
-    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {DateTimeException} from '../errors';\n\nimport {DateTimeFormatter} from './DateTimeFormatter';\n\nexport class DateTimePrintContext{\n    /**\n     *\n     * @param {TemporalAccessor} temporal\n     * @param {DateTimeFormatter|Locale} localeOrFormatter\n     * @param {DecimalStyle} symbols\n     */\n    constructor(temporal, localeOrFormatter, symbols) {\n        if(arguments.length === 2 && arguments[1] instanceof DateTimeFormatter){\n            this._temporal = DateTimePrintContext.adjust(temporal, localeOrFormatter);\n            this._locale = localeOrFormatter.locale();\n            this._symbols = localeOrFormatter.decimalStyle();\n        } else {\n            this._temporal = temporal;\n            this._locale = localeOrFormatter;\n            this._symbols = symbols;\n        }\n        this._optional = 0;\n    }\n\n    /**\n     *\n     * @param {TemporalAccessor} temporal\n     * @param {DateTimeFormatter} formatter\n     * @returns {TemporalAccessor}\n     */\n    // eslint-disable-next-line no-unused-vars\n    static adjust(temporal, formatter) {\n        // TODO implement\n        return temporal;\n    }\n\n\n    symbols(){\n        return this._symbols;\n    }\n\n    /**\n     * Starts the printing of an optional segment of the input.\n     */\n    startOptional() {\n        this._optional++;\n    }\n\n    /**\n     * Ends the printing of an optional segment of the input.\n     */\n    endOptional() {\n        this._optional--;\n    }\n\n    /**\n     * Gets a value using a query.\n     *\n     * @param {TemporalQuery} query  the query to use, not null\n     * @return {*} the result, null if not found and optional is true\n     * @throws DateTimeException if the type is not available and the section is not optional\n     */\n    getValueQuery(query) {\n        const result = this._temporal.query(query);\n        if (result == null && this._optional === 0) {\n            throw new DateTimeException('Unable to extract value: ' + this._temporal);\n        }\n        return result;\n    }\n\n    /**\n     * Gets the value of the specified field.\n     *\n     * This will return the value for the specified field.\n     *\n     * @param field  the field to find, not null\n     * @return the value, null if not found and optional is true\n     * @throws DateTimeException if the field is not available and the section is not optional\n     */\n    getValue(field) {\n        try {\n            return this._temporal.getLong(field);\n        } catch (ex) {\n            if ((ex instanceof DateTimeException) && this._optional > 0) {\n                return null;\n            }\n            throw ex;\n        }\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Gets the temporal object being output.\n     *\n     * @return {TemporalAccessor} the temporal object, not null\n     */\n    temporal() {\n        return this._temporal;\n    }\n\n    //-------------------------------------------------------------------------\n    // for testing\n    /**\n     * Sets the date-time being output.\n     *\n     * @param temporal  the date-time object, not null\n     */\n    setDateTime(temporal) {\n        this._temporal = temporal;\n    }\n\n\n}\n",
+    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {DateTimeException} from '../errors';\n\nimport {DateTimeFormatter} from './DateTimeFormatter';\n\n/**\n * @private\n */\nexport class DateTimePrintContext{\n    /**\n     *\n     * @param {TemporalAccessor} temporal\n     * @param {DateTimeFormatter|Locale} localeOrFormatter\n     * @param {DecimalStyle} symbols\n     */\n    constructor(temporal, localeOrFormatter, symbols) {\n        if(arguments.length === 2 && arguments[1] instanceof DateTimeFormatter){\n            this._temporal = DateTimePrintContext.adjust(temporal, localeOrFormatter);\n            this._locale = localeOrFormatter.locale();\n            this._symbols = localeOrFormatter.decimalStyle();\n        } else {\n            this._temporal = temporal;\n            this._locale = localeOrFormatter;\n            this._symbols = symbols;\n        }\n        this._optional = 0;\n    }\n\n    /**\n     *\n     * @param {TemporalAccessor} temporal\n     * @param {DateTimeFormatter} formatter\n     * @returns {TemporalAccessor}\n     */\n    // eslint-disable-next-line no-unused-vars\n    static adjust(temporal, formatter) {\n        // TODO implement\n        return temporal;\n    }\n\n\n    symbols(){\n        return this._symbols;\n    }\n\n    /**\n     * Starts the printing of an optional segment of the input.\n     */\n    startOptional() {\n        this._optional++;\n    }\n\n    /**\n     * Ends the printing of an optional segment of the input.\n     */\n    endOptional() {\n        this._optional--;\n    }\n\n    /**\n     * Gets a value using a query.\n     *\n     * @param {TemporalQuery} query  the query to use, not null\n     * @return {*} the result, null if not found and optional is true\n     * @throws DateTimeException if the type is not available and the section is not optional\n     */\n    getValueQuery(query) {\n        const result = this._temporal.query(query);\n        if (result == null && this._optional === 0) {\n            throw new DateTimeException('Unable to extract value: ' + this._temporal);\n        }\n        return result;\n    }\n\n    /**\n     * Gets the value of the specified field.\n     *\n     * This will return the value for the specified field.\n     *\n     * @param field  the field to find, not null\n     * @return the value, null if not found and optional is true\n     * @throws DateTimeException if the field is not available and the section is not optional\n     */\n    getValue(field) {\n        try {\n            return this._temporal.getLong(field);\n        } catch (ex) {\n            if ((ex instanceof DateTimeException) && this._optional > 0) {\n                return null;\n            }\n            throw ex;\n        }\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Gets the temporal object being output.\n     *\n     * @return {TemporalAccessor} the temporal object, not null\n     */\n    temporal() {\n        return this._temporal;\n    }\n\n    //-------------------------------------------------------------------------\n    // for testing\n    /**\n     * Sets the date-time being output.\n     *\n     * @param temporal  the date-time object, not null\n     */\n    setDateTime(temporal) {\n        this._temporal = temporal;\n    }\n\n\n}\n",
     "static": true,
     "longname": "src/format/DateTimePrintContext.js",
     "access": null,
@@ -34299,19 +34292,12 @@
     "memberof": "src/format/DateTimePrintContext.js",
     "static": true,
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/DateTimePrintContext.js",
     "importStyle": "{DateTimePrintContext}",
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 14,
     "interface": false
   },
   {
@@ -34325,7 +34311,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#constructor",
     "access": null,
     "description": "",
-    "lineNumber": 18,
+    "lineNumber": 21,
     "params": [
       {
         "nullable": null,
@@ -34369,7 +34355,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_temporal",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 23,
     "undocument": true,
     "unknown": [
       {
@@ -34392,7 +34378,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_locale",
     "access": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 24,
     "undocument": true,
     "unknown": [
       {
@@ -34415,7 +34401,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_symbols",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 25,
     "undocument": true,
     "unknown": [
       {
@@ -34438,7 +34424,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_temporal",
     "access": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 27,
     "undocument": true,
     "unknown": [
       {
@@ -34461,7 +34447,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_locale",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 28,
     "undocument": true,
     "unknown": [
       {
@@ -34484,7 +34470,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_symbols",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -34507,7 +34493,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_optional",
     "access": null,
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 31,
     "undocument": true,
     "unknown": [
       {
@@ -34532,7 +34518,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext.adjust",
     "access": null,
     "description": "",
-    "lineNumber": 38,
+    "lineNumber": 41,
     "unknown": [
       {
         "tagName": "@returns",
@@ -34581,7 +34567,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#symbols",
     "access": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 47,
     "undocument": true,
     "unknown": [
       {
@@ -34607,7 +34593,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#startOptional",
     "access": null,
     "description": "Starts the printing of an optional segment of the input.",
-    "lineNumber": 51,
+    "lineNumber": 54,
     "params": []
   },
   {
@@ -34621,7 +34607,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#endOptional",
     "access": null,
     "description": "Ends the printing of an optional segment of the input.",
-    "lineNumber": 58,
+    "lineNumber": 61,
     "params": []
   },
   {
@@ -34635,7 +34621,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#getValueQuery",
     "access": null,
     "description": "Gets a value using a query.",
-    "lineNumber": 69,
+    "lineNumber": 72,
     "params": [
       {
         "nullable": null,
@@ -34676,7 +34662,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#getValue",
     "access": null,
     "description": "Gets the value of the specified field.\n\nThis will return the value for the specified field.",
-    "lineNumber": 86,
+    "lineNumber": 89,
     "params": [
       {
         "nullable": null,
@@ -34717,7 +34703,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#temporal",
     "access": null,
     "description": "Gets the temporal object being output.",
-    "lineNumber": 103,
+    "lineNumber": 106,
     "params": [],
     "return": {
       "nullable": null,
@@ -34739,7 +34725,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#setDateTime",
     "access": null,
     "description": "Sets the date-time being output.",
-    "lineNumber": 114,
+    "lineNumber": 117,
     "params": [
       {
         "nullable": null,
@@ -34762,7 +34748,7 @@
     "longname": "src/format/DateTimePrintContext.js~DateTimePrintContext#_temporal",
     "access": null,
     "description": null,
-    "lineNumber": 115,
+    "lineNumber": 118,
     "undocument": true,
     "unknown": [
       {
@@ -34780,7 +34766,7 @@
     "__docId__": 1022,
     "kind": "file",
     "name": "src/format/DecimalStyle.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nexport class DecimalStyle {\n    constructor(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {\n        this._zeroDigit = zeroChar;\n        this._zeroDigitCharCode = zeroChar.charCodeAt(0);\n        this._positiveSign = positiveSignChar;\n        this._negativeSign = negativeSignChar;\n        this._decimalSeparator = decimalPointChar;\n    }\n\n    positiveSign(){\n        return this._positiveSign;\n    }\n\n    withPositiveSign(positiveSign) {\n        if (positiveSign === this._positiveSign) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, positiveSign, this._negativeSign, this._decimalSeparator);\n    }\n\n    negativeSign(){\n        return this._negativeSign;\n    }\n\n    withNegativeSign(negativeSign) {\n        if (negativeSign === this._negativeSign) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, this._positiveSign, negativeSign, this._decimalSeparator);\n    }\n\n    zeroDigit(){\n        return this._zeroDigit;\n    }\n\n    withZeroDigit(zeroDigit) {\n        if (zeroDigit === this._zeroDigit) {\n            return this;\n        }\n        return new DecimalStyle(zeroDigit, this._positiveSign, this._negativeSign, this._decimalSeparator);\n    }\n\n    decimalSeparator(){\n        return this._decimalSeparator;\n    }\n\n    withDecimalSeparator(decimalSeparator) {\n        if (decimalSeparator === this._decimalSeparator) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, this._positiveSign, this._negativeSign, decimalSeparator);\n    }\n\n    convertToDigit(char){\n        const val = char.charCodeAt(0) - this._zeroDigitCharCode;\n        return (val >= 0 && val <= 9) ? val : -1;\n    }\n\n    convertNumberToI18N(numericText) {\n        if (this._zeroDigit === '0') {\n            return numericText;\n        }\n        const diff = this._zeroDigitCharCode - '0'.charCodeAt(0);\n        let convertedText = '';\n        for (let i = 0; i < numericText.length; i++) {\n            convertedText += String.fromCharCode(numericText.charCodeAt(i) + diff);\n        }\n        return convertedText;\n    }\n\n    equals(other) {\n        if (this === other) {\n            return true;\n        }\n        if (other instanceof DecimalStyle) {\n            return (this._zeroDigit === other._zeroDigit && this._positiveSign === other._positiveSign &&\n                this._negativeSign === other._negativeSign && this._decimalSeparator === other._decimalSeparator);\n        }\n        return false;\n    }\n\n    hashCode() {\n        return this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator;\n    }\n\n    toString() {\n        return 'DecimalStyle[' + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + ']';\n    }\n\n    static of(){\n        throw new Error('not yet supported');\n    }\n    static availableLocales(){\n        throw new Error('not yet supported');\n    }\n\n}\n\nDecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nexport class DecimalStyle {\n    /**\n     *\n     * @param zeroChar\n     * @param positiveSignChar\n     * @param negativeSignChar\n     * @param decimalPointChar\n     * @private\n     */\n    constructor(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {\n        this._zeroDigit = zeroChar;\n        this._zeroDigitCharCode = zeroChar.charCodeAt(0);\n        this._positiveSign = positiveSignChar;\n        this._negativeSign = negativeSignChar;\n        this._decimalSeparator = decimalPointChar;\n    }\n\n    positiveSign(){\n        return this._positiveSign;\n    }\n\n    withPositiveSign(positiveSign) {\n        if (positiveSign === this._positiveSign) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, positiveSign, this._negativeSign, this._decimalSeparator);\n    }\n\n    negativeSign(){\n        return this._negativeSign;\n    }\n\n    withNegativeSign(negativeSign) {\n        if (negativeSign === this._negativeSign) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, this._positiveSign, negativeSign, this._decimalSeparator);\n    }\n\n    zeroDigit(){\n        return this._zeroDigit;\n    }\n\n    withZeroDigit(zeroDigit) {\n        if (zeroDigit === this._zeroDigit) {\n            return this;\n        }\n        return new DecimalStyle(zeroDigit, this._positiveSign, this._negativeSign, this._decimalSeparator);\n    }\n\n    decimalSeparator(){\n        return this._decimalSeparator;\n    }\n\n    withDecimalSeparator(decimalSeparator) {\n        if (decimalSeparator === this._decimalSeparator) {\n            return this;\n        }\n        return new DecimalStyle(this._zeroDigit, this._positiveSign, this._negativeSign, decimalSeparator);\n    }\n\n    convertToDigit(char){\n        const val = char.charCodeAt(0) - this._zeroDigitCharCode;\n        return (val >= 0 && val <= 9) ? val : -1;\n    }\n\n    convertNumberToI18N(numericText) {\n        if (this._zeroDigit === '0') {\n            return numericText;\n        }\n        const diff = this._zeroDigitCharCode - '0'.charCodeAt(0);\n        let convertedText = '';\n        for (let i = 0; i < numericText.length; i++) {\n            convertedText += String.fromCharCode(numericText.charCodeAt(i) + diff);\n        }\n        return convertedText;\n    }\n\n    equals(other) {\n        if (this === other) {\n            return true;\n        }\n        if (other instanceof DecimalStyle) {\n            return (this._zeroDigit === other._zeroDigit && this._positiveSign === other._positiveSign &&\n                this._negativeSign === other._negativeSign && this._decimalSeparator === other._decimalSeparator);\n        }\n        return false;\n    }\n\n    hashCode() {\n        return this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator;\n    }\n\n    toString() {\n        return 'DecimalStyle[' + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + ']';\n    }\n\n    static of(){\n        throw new Error('not yet supported');\n    }\n    static availableLocales(){\n        throw new Error('not yet supported');\n    }\n\n}\n\nDecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');\n",
     "static": true,
     "longname": "src/format/DecimalStyle.js",
     "access": null,
@@ -34825,40 +34811,49 @@
     "async": false,
     "static": false,
     "longname": "src/format/DecimalStyle.js~DecimalStyle#constructor",
-    "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "access": "private",
+    "description": "",
+    "lineNumber": 16,
     "params": [
       {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "zeroChar",
-        "types": [
-          "*"
-        ]
+        "description": ""
       },
       {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "positiveSignChar",
-        "types": [
-          "*"
-        ]
+        "description": ""
       },
       {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
         "name": "negativeSignChar",
-        "types": [
-          "*"
-        ]
+        "description": ""
       },
       {
-        "name": "decimalPointChar",
+        "nullable": null,
         "types": [
           "*"
-        ]
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "decimalPointChar",
+        "description": ""
       }
     ]
   },
@@ -34871,7 +34866,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#_zeroDigit",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 17,
     "undocument": true,
     "unknown": [
       {
@@ -34894,7 +34889,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#_zeroDigitCharCode",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 18,
     "undocument": true,
     "unknown": [
       {
@@ -34917,7 +34912,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#_positiveSign",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 19,
     "undocument": true,
     "unknown": [
       {
@@ -34940,7 +34935,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#_negativeSign",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 20,
     "undocument": true,
     "unknown": [
       {
@@ -34963,7 +34958,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#_decimalSeparator",
     "access": null,
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 21,
     "undocument": true,
     "unknown": [
       {
@@ -34988,7 +34983,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#positiveSign",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 24,
     "undocument": true,
     "unknown": [
       {
@@ -35014,7 +35009,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#withPositiveSign",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 28,
     "undocument": true,
     "unknown": [
       {
@@ -35047,7 +35042,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#negativeSign",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 35,
     "undocument": true,
     "unknown": [
       {
@@ -35073,7 +35068,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#withNegativeSign",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 39,
     "undocument": true,
     "unknown": [
       {
@@ -35106,7 +35101,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#zeroDigit",
     "access": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 46,
     "undocument": true,
     "unknown": [
       {
@@ -35132,7 +35127,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#withZeroDigit",
     "access": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 50,
     "undocument": true,
     "unknown": [
       {
@@ -35165,7 +35160,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#decimalSeparator",
     "access": null,
     "description": null,
-    "lineNumber": 49,
+    "lineNumber": 57,
     "undocument": true,
     "unknown": [
       {
@@ -35191,7 +35186,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#withDecimalSeparator",
     "access": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 61,
     "undocument": true,
     "unknown": [
       {
@@ -35224,7 +35219,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#convertToDigit",
     "access": null,
     "description": null,
-    "lineNumber": 60,
+    "lineNumber": 68,
     "undocument": true,
     "unknown": [
       {
@@ -35257,7 +35252,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#convertNumberToI18N",
     "access": null,
     "description": null,
-    "lineNumber": 65,
+    "lineNumber": 73,
     "undocument": true,
     "unknown": [
       {
@@ -35290,7 +35285,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#equals",
     "access": null,
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 85,
     "undocument": true,
     "unknown": [
       {
@@ -35323,7 +35318,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#hashCode",
     "access": null,
     "description": null,
-    "lineNumber": 88,
+    "lineNumber": 96,
     "undocument": true,
     "unknown": [
       {
@@ -35349,7 +35344,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle#toString",
     "access": null,
     "description": null,
-    "lineNumber": 92,
+    "lineNumber": 100,
     "undocument": true,
     "unknown": [
       {
@@ -35375,7 +35370,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle.of",
     "access": null,
     "description": null,
-    "lineNumber": 96,
+    "lineNumber": 104,
     "undocument": true,
     "unknown": [
       {
@@ -35396,7 +35391,7 @@
     "longname": "src/format/DecimalStyle.js~DecimalStyle.availableLocales",
     "access": null,
     "description": null,
-    "lineNumber": 99,
+    "lineNumber": 107,
     "undocument": true,
     "unknown": [
       {
@@ -35410,7 +35405,7 @@
     "__docId__": 1045,
     "kind": "file",
     "name": "src/format/EnumMap.js",
-    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nexport class EnumMap {\n    constructor(){\n        this._map = {};\n    }\n\n    putAll(otherMap){\n        for(let key in otherMap._map){\n            this._map[key] = otherMap._map[key];\n        }\n        return this;\n    }\n\n    containsKey(key){\n        return (this._map.hasOwnProperty(key.name())) && (this.get(key) !== undefined);\n    }\n\n    get(key) {\n        return this._map[key.name()];\n    }\n\n    put(key, val) {\n        return this.set(key, val);\n    }\n\n    set(key, val) {\n        this._map[key.name()] = val;\n        return this;\n    }\n\n    retainAll(keyList){\n        const map = {};\n        for(let i=0; i<keyList.length; i++){\n            let key = keyList[i].name();\n            map[key] = this._map[key];\n        }\n        this._map = map;\n        return this;\n    }\n\n    /**\n     * due to the bad performance of delete we just set the key entry to undefined.\n     *\n     * this might lead to issues with \"null\" entries. Calling clear in the end might solve the issue\n     * @param key\n     * @returns {*}\n     */\n    remove(key){\n        const keyName = key.name();\n        const val = this._map[keyName];\n        this._map[keyName] = undefined;\n        return val;\n    }\n\n    keySet(){\n        return this._map;\n    }\n\n    clear(){\n        this._map = {};\n    }\n}\n",
+    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\n/**\n * @private\n */\nexport class EnumMap {\n    constructor(){\n        this._map = {};\n    }\n\n    putAll(otherMap){\n        for(let key in otherMap._map){\n            this._map[key] = otherMap._map[key];\n        }\n        return this;\n    }\n\n    containsKey(key){\n        return (this._map.hasOwnProperty(key.name())) && (this.get(key) !== undefined);\n    }\n\n    get(key) {\n        return this._map[key.name()];\n    }\n\n    put(key, val) {\n        return this.set(key, val);\n    }\n\n    set(key, val) {\n        this._map[key.name()] = val;\n        return this;\n    }\n\n    retainAll(keyList){\n        const map = {};\n        for(let i=0; i<keyList.length; i++){\n            let key = keyList[i].name();\n            map[key] = this._map[key];\n        }\n        this._map = map;\n        return this;\n    }\n\n    /**\n     * due to the bad performance of delete we just set the key entry to undefined.\n     *\n     * this might lead to issues with \"null\" entries. Calling clear in the end might solve the issue\n     * @param key\n     * @returns {*}\n     */\n    remove(key){\n        const keyName = key.name();\n        const val = this._map[keyName];\n        this._map[keyName] = undefined;\n        return val;\n    }\n\n    keySet(){\n        return this._map;\n    }\n\n    clear(){\n        this._map = {};\n    }\n}\n",
     "static": true,
     "longname": "src/format/EnumMap.js",
     "access": null,
@@ -35424,19 +35419,12 @@
     "memberof": "src/format/EnumMap.js",
     "static": true,
     "longname": "src/format/EnumMap.js~EnumMap",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/EnumMap.js",
     "importStyle": "{EnumMap}",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 9,
     "interface": false
   },
   {
@@ -35450,7 +35438,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 10,
     "undocument": true,
     "unknown": [
       {
@@ -35469,7 +35457,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#_map",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 11,
     "undocument": true,
     "unknown": [
       {
@@ -35494,7 +35482,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#putAll",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 14,
     "undocument": true,
     "unknown": [
       {
@@ -35527,7 +35515,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#containsKey",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 21,
     "undocument": true,
     "unknown": [
       {
@@ -35560,7 +35548,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#get",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 25,
     "undocument": true,
     "unknown": [
       {
@@ -35593,7 +35581,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#put",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -35632,7 +35620,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#set",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 33,
     "undocument": true,
     "unknown": [
       {
@@ -35671,7 +35659,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#retainAll",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 38,
     "undocument": true,
     "unknown": [
       {
@@ -35702,7 +35690,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#_map",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 44,
     "undocument": true,
     "unknown": [
       {
@@ -35727,7 +35715,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#remove",
     "access": null,
     "description": "due to the bad performance of delete we just set the key entry to undefined.\n\nthis might lead to issues with \"null\" entries. Calling clear in the end might solve the issue",
-    "lineNumber": 52,
+    "lineNumber": 55,
     "unknown": [
       {
         "tagName": "@returns",
@@ -35766,7 +35754,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#keySet",
     "access": null,
     "description": null,
-    "lineNumber": 59,
+    "lineNumber": 62,
     "undocument": true,
     "unknown": [
       {
@@ -35792,7 +35780,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#clear",
     "access": null,
     "description": null,
-    "lineNumber": 63,
+    "lineNumber": 66,
     "undocument": true,
     "unknown": [
       {
@@ -35811,7 +35799,7 @@
     "longname": "src/format/EnumMap.js~EnumMap#_map",
     "access": null,
     "description": null,
-    "lineNumber": 64,
+    "lineNumber": 67,
     "undocument": true,
     "unknown": [
       {
@@ -35829,7 +35817,7 @@
     "__docId__": 1060,
     "kind": "file",
     "name": "src/format/ParsePosition.js",
-    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\nexport class ParsePosition {\n    constructor(index) {\n        this._index = index;\n        this._errorIndex = -1;\n    }\n\n    getIndex(){\n        return this._index;\n    }\n\n    setIndex(index){\n        this._index = index;\n    }\n\n    getErrorIndex(){\n        return this._errorIndex;\n    }\n\n    setErrorIndex(errorIndex){\n        this._errorIndex = errorIndex;\n    }\n}\n",
+    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\n/**\n * @private\n */\nexport class ParsePosition {\n    constructor(index) {\n        this._index = index;\n        this._errorIndex = -1;\n    }\n\n    getIndex(){\n        return this._index;\n    }\n\n    setIndex(index){\n        this._index = index;\n    }\n\n    getErrorIndex(){\n        return this._errorIndex;\n    }\n\n    setErrorIndex(errorIndex){\n        this._errorIndex = errorIndex;\n    }\n}\n",
     "static": true,
     "longname": "src/format/ParsePosition.js",
     "access": null,
@@ -35843,19 +35831,12 @@
     "memberof": "src/format/ParsePosition.js",
     "static": true,
     "longname": "src/format/ParsePosition.js~ParsePosition",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/ParsePosition.js",
     "importStyle": "{ParsePosition}",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 10,
     "interface": false
   },
   {
@@ -35869,7 +35850,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 11,
     "undocument": true,
     "unknown": [
       {
@@ -35895,7 +35876,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#_index",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 12,
     "undocument": true,
     "unknown": [
       {
@@ -35918,7 +35899,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#_errorIndex",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 13,
     "undocument": true,
     "unknown": [
       {
@@ -35943,7 +35924,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#getIndex",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 16,
     "undocument": true,
     "unknown": [
       {
@@ -35969,7 +35950,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#setIndex",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 20,
     "undocument": true,
     "unknown": [
       {
@@ -35995,7 +35976,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#_index",
     "access": null,
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 21,
     "undocument": true,
     "unknown": [
       {
@@ -36020,7 +36001,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#getErrorIndex",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 24,
     "undocument": true,
     "unknown": [
       {
@@ -36046,7 +36027,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#setErrorIndex",
     "access": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 28,
     "undocument": true,
     "unknown": [
       {
@@ -36072,7 +36053,7 @@
     "longname": "src/format/ParsePosition.js~ParsePosition#_errorIndex",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -36208,7 +36189,7 @@
     "__docId__": 1076,
     "kind": "file",
     "name": "src/format/StringBuilder.js",
-    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nexport class StringBuilder {\n    constructor(){\n        this._str = '';\n    }\n\n    append(str){\n        this._str += str;\n        return this;\n    }\n\n    appendChar(str){\n        this._str += str[0];\n        return this;\n    }\n\n    insert(offset, str){\n        this._str = this._str.slice(0, offset) + str + this._str.slice(offset);\n        return this;\n    }\n\n    replace(start, end, str){\n        this._str = this._str.slice(0, start) + str + this._str.slice(end);\n        return this;\n    }\n\n    length(){\n        return this._str.length;\n    }\n\n    setLength(length){\n        this._str = this._str.slice(0, length);\n        return this;\n    }\n\n\n    toString() {\n        return this._str;\n    }\n}\n",
+    "content": "/*\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\n/**\n * @private\n */\nexport class StringBuilder {\n    constructor(){\n        this._str = '';\n    }\n\n    append(str){\n        this._str += str;\n        return this;\n    }\n\n    appendChar(str){\n        this._str += str[0];\n        return this;\n    }\n\n    insert(offset, str){\n        this._str = this._str.slice(0, offset) + str + this._str.slice(offset);\n        return this;\n    }\n\n    replace(start, end, str){\n        this._str = this._str.slice(0, start) + str + this._str.slice(end);\n        return this;\n    }\n\n    length(){\n        return this._str.length;\n    }\n\n    setLength(length){\n        this._str = this._str.slice(0, length);\n        return this;\n    }\n\n\n    toString() {\n        return this._str;\n    }\n}\n",
     "static": true,
     "longname": "src/format/StringBuilder.js",
     "access": null,
@@ -36222,19 +36203,12 @@
     "memberof": "src/format/StringBuilder.js",
     "static": true,
     "longname": "src/format/StringBuilder.js~StringBuilder",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/StringBuilder.js",
     "importStyle": "{StringBuilder}",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 9,
     "interface": false
   },
   {
@@ -36248,7 +36222,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 10,
     "undocument": true,
     "unknown": [
       {
@@ -36267,7 +36241,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 11,
     "undocument": true,
     "unknown": [
       {
@@ -36292,7 +36266,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#append",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 14,
     "undocument": true,
     "unknown": [
       {
@@ -36323,7 +36297,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 15,
     "undocument": true,
     "unknown": [
       {
@@ -36348,7 +36322,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#appendChar",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 19,
     "undocument": true,
     "unknown": [
       {
@@ -36379,7 +36353,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 20,
     "undocument": true,
     "unknown": [
       {
@@ -36404,7 +36378,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#insert",
     "access": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 24,
     "undocument": true,
     "unknown": [
       {
@@ -36441,7 +36415,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 25,
     "undocument": true,
     "unknown": [
       {
@@ -36466,7 +36440,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#replace",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -36509,7 +36483,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 30,
     "undocument": true,
     "unknown": [
       {
@@ -36534,7 +36508,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#length",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 34,
     "undocument": true,
     "unknown": [
       {
@@ -36560,7 +36534,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#setLength",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 38,
     "undocument": true,
     "unknown": [
       {
@@ -36591,7 +36565,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#_str",
     "access": null,
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 39,
     "undocument": true,
     "unknown": [
       {
@@ -36616,7 +36590,7 @@
     "longname": "src/format/StringBuilder.js~StringBuilder#toString",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 44,
     "undocument": true,
     "unknown": [
       {
