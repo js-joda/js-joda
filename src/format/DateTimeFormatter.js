@@ -269,6 +269,7 @@ export class DateTimeFormatter {
      * @param resolverFields  the fields to use during resolving, null for all fields
      * @param chrono  the chronology to use, null for no override
      * @param zone  the zone to use, null for no override
+     * @protected
      */
     constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {
         assert(printerParser != null);
