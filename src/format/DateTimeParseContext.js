@@ -13,6 +13,9 @@ import {IsoChronology} from '../chrono/IsoChronology';
 import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
+/**
+ * @private
+ */
 export class DateTimeParseContext{
 
     constructor(){
