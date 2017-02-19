@@ -4998,6 +4998,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/format/datetimeformatter.js~datetimeformatter#withresolverstyle",
+    "class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-withResolverStyle",
+    "src/format/DateTimeFormatter.js~DateTimeFormatter#withResolverStyle",
+    "method"
+  ],
+  [
     "src/format/datetimeformatter.js~datetimeformatter.ofpattern",
     "class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#static-method-ofPattern",
     "src/format/DateTimeFormatter.js~DateTimeFormatter.ofPattern",

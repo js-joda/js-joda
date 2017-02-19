@@ -328,7 +328,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html#instance-method-convertFromFraction">convertFromFraction</a></span></span><span data-ice="signature">(fraction: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></span>
+          <span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html#instance-method-convertFromFraction">convertFromFraction</a></span></span><span data-ice="signature">(total: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, scale: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></span>
         </p>
       </div>
       <div>
@@ -355,7 +355,7 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html#instance-method-convertToFraction">convertToFraction</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+          <span data-ice="name"><span><a href="class/src/format/parser/FractionPrinterParser.js~FractionPrinterParser.html#instance-method-convertToFraction">convertToFraction</a></span></span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, zeroDigit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
         </p>
       </div>
       <div>
@@ -728,11 +728,11 @@
     
     
     
-    <span data-ice="name">convertFromFraction</span><span data-ice="signature">(fraction: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></span>
+    <span data-ice="name">convertFromFraction</span><span data-ice="signature">(total: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, scale: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber146">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber148">source</a></span></span>
     </span>
   </h3>
 
@@ -752,10 +752,17 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">fraction</td>
+      <td data-ice="name" data-depth="0">total</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>the fraction to convert, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">scale</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the scale, not null</p>
 </td>
     </tr>
 </tbody>
@@ -813,11 +820,11 @@
     
     
     
-    <span data-ice="name">convertToFraction</span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+    <span data-ice="name">convertToFraction</span><span data-ice="signature">(value: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, zeroDigit: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber126">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber127">source</a></span></span>
     </span>
   </h3>
 
@@ -841,6 +848,13 @@
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>the value to convert, must be valid for this rule</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">zeroDigit</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the character for zero</p>
 </td>
     </tr>
 </tbody>
@@ -1050,7 +1064,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber154">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/parser/FractionPrinterParser.js.html#lineNumber156">source</a></span></span>
     </span>
   </h3>
 

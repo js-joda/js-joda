@@ -626,6 +626,34 @@ for advanced use cases.</p>
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-withResolverStyle">withResolverStyle</a></span></span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>): <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this formatter with a new resolver style.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -647,7 +675,7 @@ for advanced use cases.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber255">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber256">source</a></span></span>
     </span>
   </h3>
 
@@ -664,7 +692,8 @@ The following pattern letters are defined:</p>
  |Symbol  |Meaning                     |Presentation      |Examples
  |--------|----------------------------|------------------|----------------------------------------------------
  | G      | era                        | number/text      | 1; 01; AD; Anno Domini
- | y      | year                       | year             | 2004; 04
+ | u      | year                       | year             | 2004; 04
+ | y      | year-of-era                | year             | 2004; 04
  | D      | day-of-year                | number           | 189
  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J
  | d      | day-of-month               | number           | 10
@@ -1022,7 +1051,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber272">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber273">source</a></span></span>
     </span>
   </h3>
 
@@ -1129,7 +1158,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber314">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber315">source</a></span></span>
     </span>
   </h3>
 
@@ -1184,7 +1213,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber310">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber311">source</a></span></span>
     </span>
   </h3>
 
@@ -1239,7 +1268,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber368">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber395">source</a></span></span>
     </span>
   </h3>
 
@@ -1326,7 +1355,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber306">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber307">source</a></span></span>
     </span>
   </h3>
 
@@ -1381,7 +1410,7 @@ application, as follows:</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber407">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber434">source</a></span></span>
     </span>
   </h3>
 
@@ -1461,7 +1490,7 @@ otherwise <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber430">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber457">source</a></span></span>
     </span>
   </h3>
 
@@ -1553,7 +1582,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber459">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber486">source</a></span></span>
     </span>
   </h3>
 
@@ -1652,7 +1681,7 @@ or a problem occurs during parsing or merging, then an exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber558">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber585">source</a></span></span>
     </span>
   </h3>
 
@@ -1774,7 +1803,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber582">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber609">source</a></span></span>
     </span>
   </h3>
 
@@ -1848,7 +1877,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber586">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber613">source</a></span></span>
     </span>
   </h3>
 
@@ -1903,7 +1932,7 @@ internal state during parsing. Typical application code should use
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber342">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber343">source</a></span></span>
     </span>
   </h3>
 
@@ -1990,7 +2019,7 @@ formatter directly parses a valid chronology.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber354">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber355">source</a></span></span>
     </span>
   </h3>
 
@@ -2012,6 +2041,93 @@ formatter directly parses a valid chronology.</p>
         <tr>
           <td class="return-type" data-ice="returnType"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></td>
           
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-withResolverStyle">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">withResolverStyle</span><span data-ice="signature">(resolverStyle: <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span>): <span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/format/DateTimeFormatter.js.html#lineNumber378">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this formatter with a new resolver style.</p>
+<p></p><p>
+This returns a formatter with similar state to this formatter but
+with the resolver style set. By default, a formatter has the
+{@link ResolverStyle#SMART SMART} resolver style.</p>
+<p></p><p>
+Changing the resolver style only has an effect during parsing.
+Parsing a text string occurs in two phases.
+Phase 1 is a basic text parse according to the fields added to the builder.
+Phase 2 resolves the parsed field-value pairs into date and/or time objects.
+The resolver style is used to control how phase 2, resolving, happens.
+See <span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span> for more information on the options available.</p>
+<p></p><p>
+This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">resolverStyle</td>
+      <td data-ice="type"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the new resolver style, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a formatter based on this formatter with the requested resolver style, not null</p>
+</td>
         </tr>
       </tbody>
     </table>

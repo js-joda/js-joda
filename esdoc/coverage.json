@@ -1,7 +1,7 @@
 {
-  "coverage": "85.82%",
-  "expectCount": 1030,
-  "actualCount": 884,
+  "coverage": "85.83%",
+  "expectCount": 1031,
+  "actualCount": 885,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -87,13 +87,13 @@
       ]
     },
     "src/format/DateTimeFormatter.js": {
-      "expectCount": 17,
-      "actualCount": 13,
+      "expectCount": 18,
+      "actualCount": 14,
       "undocumentLines": [
-        314,
-        310,
-        306,
-        586
+        315,
+        311,
+        307,
+        613
       ]
     },
     "src/format/DateTimeFormatterBuilder.js": {
@@ -195,7 +195,7 @@
         42,
         81,
         47,
-        154
+        156
       ]
     },
     "src/Instant.js": {
@@ -262,8 +262,8 @@
         117,
         72,
         54,
-        344,
         214,
+        344,
         316,
         56,
         63
