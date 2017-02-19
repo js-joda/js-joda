@@ -38,11 +38,8 @@ export class DateTimeFormatterBuilder {
 
     /**
      * Constructs a new instance of the builder.
-     *
-     * @param {DateTimeFormatterBuilder} [parent]  the parent builder
-     * @param {boolean} [optional=false]  whether the formatter is optional
      */
-    constructor(parent=null, optional=false){
+    constructor() {
         /**
          * The currently active builder, used by the outermost builder.
          */
@@ -50,7 +47,7 @@ export class DateTimeFormatterBuilder {
         /**
          * The parent builder, null for the outermost builder.
          */
-        this._parent = parent;
+        this._parent = null;
 
         /**
          * The list of printers that will be used.
@@ -60,7 +57,7 @@ export class DateTimeFormatterBuilder {
         /**
          * Whether this builder produces an optional formatter.
          */
-        this._optional = optional;
+        this._optional = false;
         /**
          * The width to pad the next field to.
          */
@@ -75,6 +72,25 @@ export class DateTimeFormatterBuilder {
          * The index of the last variable width value parser.
          */
         this._valueParserIndex = -1;
+    }
+
+    /**
+     * Private static factory, replaces private threeten constructor
+     * Returns a new instance of the builder.
+     *
+     * @param {DateTimeFormatterBuilder} parent  the parent builder, not null
+     * @param {boolean} optional  whether the formatter is optional, not null
+     * @return {DateTimeFormatterBuilder} new instance
+     */
+    static _of(parent, optional){
+        requireNonNull(parent, 'parent');
+        requireNonNull(optional, 'optional');
+
+        const dtFormatterBuilder = new DateTimeFormatterBuilder();
+        dtFormatterBuilder._parent = parent;
+        dtFormatterBuilder._optional = optional;
+
+        return dtFormatterBuilder;
     }
 
     /**
@@ -1273,7 +1289,7 @@ export class DateTimeFormatterBuilder {
      */
     optionalStart() {
         this._active._valueParserIndex = -1;
-        this._active = new DateTimeFormatterBuilder(this._active, true);
+        this._active = DateTimeFormatterBuilder._of(this._active, true);
         return this;
     }
 
