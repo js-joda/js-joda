@@ -28,6 +28,9 @@ const EXCEED_POINTS = [
     1000000000
 ];
 
+/**
+ * @private
+ */
 export class NumberPrinterParser {
 
     /**

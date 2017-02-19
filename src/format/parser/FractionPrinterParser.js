@@ -12,6 +12,7 @@ import {MathUtil} from '../../MathUtil';
  * TODO optimize FractionPrinterParser, fix documentation
  *
  * Prints and parses a numeric date-time field with optional padding.
+ * @private
  */
 export class FractionPrinterParser {
 

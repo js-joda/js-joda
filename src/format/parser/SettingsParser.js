@@ -6,6 +6,9 @@
 
 import { Enum } from '../../Enum';
 
+/**
+ * @private
+ */
 export class SettingsParser extends Enum {
 
     print(/*context, buf*/) {

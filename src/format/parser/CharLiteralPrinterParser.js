@@ -8,6 +8,7 @@ import {IllegalArgumentException} from '../../errors';
 
 /**
  * Prints or parses a char literal.
+ * @private
  */
 export class CharLiteralPrinterParser {
 

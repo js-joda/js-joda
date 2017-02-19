@@ -10,6 +10,7 @@ import {DateTimeException} from '../../errors';
 
 /**
  * Pads the output to a fixed width.
+ * @private
  */
 export class PadPrinterParserDecorator {
 

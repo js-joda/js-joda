@@ -8,6 +8,7 @@ import {assert} from '../../assert';
 
 /**
  * Prints or parses a string literal.
+ * @private
  */
 export class StringLiteralPrinterParser {
 

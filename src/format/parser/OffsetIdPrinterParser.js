@@ -16,6 +16,7 @@ const PATTERNS = [
 ];
 /**
  * Prints or parses an offset ID.
+ * @private
  */
 export class OffsetIdPrinterParser  {
 

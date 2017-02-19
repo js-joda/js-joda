@@ -16,6 +16,7 @@ import {OffsetIdPrinterParser} from './OffsetIdPrinterParser';
 
 /**
  * Prints or parses a zone ID.
+ * @private
  */
 export class ZoneIdPrinterParser {
 
