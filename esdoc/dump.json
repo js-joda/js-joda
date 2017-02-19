@@ -30223,7 +30223,7 @@
     "__docId__": 863,
     "kind": "file",
     "name": "src/format/DateTimeFormatter.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeParseException, NullPointerException} from '../errors';\n\nimport {Period} from '../Period';\n\nimport {ParsePosition} from './ParsePosition';\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {DateTimeParseContext} from './DateTimeParseContext';\nimport {DateTimePrintContext} from './DateTimePrintContext';\nimport {DateTimeFormatterBuilder} from './DateTimeFormatterBuilder';\nimport {SignStyle} from './SignStyle';\nimport {StringBuilder} from './StringBuilder';\nimport {ResolverStyle} from './ResolverStyle';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {ChronoField} from '../temporal/ChronoField';\nimport {createTemporalQuery} from '../temporal/TemporalQuery';\n\n/**\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * DateTimeFormatter.ISO_LOCAL_DATE\n *\n * DateTimeFormatter.ISO_LOCAL_TIME\n *\n * DateTimeFormatter.ISO_LOCAL_DATE_TIME\n *\n */\nexport class DateTimeFormatter {\n\n    //-----------------------------------------------------------------------\n    /**\n     * A query that provides access to the excess days that were parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null period, with a zero period returned instead of null.\n     *\n     * There are two situations where this query may return a non-zero period.\n     *\n     * * If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed\n     *   without a date, then the complete result of the parse consists of a\n     *   {@link LocalTime} and an excess {@link Period} in days.\n     * * If the {@link ResolverStyle} is {@link SMART} and a time is parsed\n     *   without a date where the time is 24:00:00, then the complete result of\n     *   the parse consists of a {@link LocalTime} of 00:00:00 and an excess\n     *   {@link Period} of one day.\n     *\n     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}\n     * is parsed, then the excess days are added to the date part.\n     * As a result, this query will return a zero period.\n     *\n     * The {@link SMART} behaviour handles the common \"end of day\" 24:00 value.\n     * Processing in {@link LENIENT} mode also produces the same result:\n     * <pre>\n     *  Text to parse        Parsed object                         Excess days\n     *  \"2012-12-03T00:00\"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO\n     *  \"2012-12-03T24:00\"   LocalDateTime.of(2012, 12, 4, 0, 0)   ZERO\n     *  \"00:00\"              LocalTime.of(0, 0)                    ZERO\n     *  \"24:00\"              LocalTime.of(0, 0)                    Period.ofDays(1)\n     * </pre>\n     * The query can be used as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  LocalTime time = parsed.query(LocalTime.FROM);\n     *  Period extraDays = parsed.query(DateTimeFormatter.parsedExcessDays());\n     * </pre>\n     * @return {TemporalQuery} a query that provides access to the excess days that were parsed\n     */\n    static parsedExcessDays() {\n        return DateTimeFormatter.PARSED_EXCESS_DAYS;\n    }\n\n    /**\n     * A query that provides access to whether a leap-second was parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null boolean, true if parsing saw a leap-second, false if not.\n     *\n     * Instant parsing handles the special \"leap second\" time of '23:59:60'.\n     * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other\n     * local times in different time-zones. To avoid this potential ambiguity,\n     * the handling of leap-seconds is limited to\n     * {@link DateTimeFormatterBuilder#appendInstant}, as that method\n     * always parses the instant with the UTC zone offset.\n     *\n     * If the time '23:59:60' is received, then a simple conversion is applied,\n     * replacing the second-of-minute of 60 with 59. This query can be used\n     * on the parse result to determine if the leap-second adjustment was made.\n     * The query will return one second of excess if it did adjust to remove\n     * the leap-second, and zero if not. Note that applying a leap-second\n     * smoothing mechanism, such as UTC-SLS, is the responsibility of the\n     * application, as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  Instant instant = parsed.query(Instant::from);\n     *  if (parsed.query(DateTimeFormatter.parsedLeapSecond())) {\n     *    // validate leap-second is correct and apply correct smoothing\n     *  }\n     * </pre>\n     * @return a query that provides access to whether a leap-second was parsed\n     */\n    static parsedLeapSecond() {\n        return DateTimeFormatter.PARSED_LEAP_SECOND;\n    }\n\n    /**\n     * Creates a formatter using the specified pattern.\n     *\n     * This method will create a formatter based on a simple pattern of letters and symbols.\n     *\n     * The returned formatter will use the default locale, but this can be changed\n     * using {@link DateTimeFormatter.withLocale}.\n     *\n     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.\n     * The following pattern letters are defined:\n     * <pre>\n     *  |Symbol  |Meaning                     |Presentation      |Examples\n     *  |--------|----------------------------|------------------|----------------------------------------------------\n     *  | G      | era                        | number/text      | 1; 01; AD; Anno Domini\n     *  | u      | year                       | year             | 2004; 04\n     *  | y      | year-of-era                | year             | 2004; 04\n     *  | D      | day-of-year                | number           | 189\n     *  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J\n     *  | d      | day-of-month               | number           | 10\n     *  |        |                            |                  |\n     *  | Q      | quarter-of-year            | number/text      | 3; 03; Q3\n     *  | Y      | week-based-year            | year             | 1996; 96\n     *  | w      | week-of-year               | number           | 27\n     *  | W      | week-of-month              | number           | 27\n     *  | e      | localized day-of-week      | number           | 2; Tue; Tuesday; T\n     *  | E      | day-of-week                | number/text      | 2; Tue; Tuesday; T\n     *  | F      | week-of-month              | number           | 3\n     *  |        |                            |                  |\n     *  | a      | am-pm-of-day               | text             | PM\n     *  | h      | clock-hour-of-am-pm (1-12) | number           | 12\n     *  | K      | hour-of-am-pm (0-11)       | number           | 0\n     *  | k      | clock-hour-of-am-pm (1-24) | number           | 0\n     *  |        |                            |                  |\n     *  | H      | hour-of-day (0-23)         | number           | 0\n     *  | m      | minute-of-hour             | number           | 30\n     *  | s      | second-of-minute           | number           | 55\n     *  | S      | fraction-of-second         | fraction         | 978\n     *  | A      | milli-of-day               | number           | 1234\n     *  | n      | nano-of-second             | number           | 987654321\n     *  | N      | nano-of-day                | number           | 1234000000\n     *  |        |                            |                  |\n     *  | V      | time-zone ID               | zone-id          | America/Los_Angeles; Z; -08:30\n     *  | z      | time-zone name             | zone-name        | Pacific Standard Time; PST\n     *  | X      | zone-offset 'Z' for zero   | offset-X         | Z; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | x      | zone-offset                | offset-x         | +0000; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | Z      | zone-offset                | offset-Z         | +0000; -0800; -08:00;\n     *  |        |                            |                  |\n     *  | p      | pad next                   | pad modifier     | 1\n     *  |        |                            |                  |\n     *  | '      | escape for text            | delimiter        |\n     *  | ''     | single quote               | literal          | '\n     *  | [      | optional section start     |                  |\n     *  | ]      | optional section end       |                  |\n     *  | {}     | reserved for future use    |                  |\n     * </pre>\n     *\n     * The count of pattern letters determine the format.\n     *\n     * **Text**: The text style is determined based on the number of pattern letters used.\n     * Less than 4 pattern letters will use the short form `TextStyle.SHORT`.\n     * Exactly 4 pattern letters will use the full form `TextStyle.FULL`.\n     * Exactly 5 pattern letters will use the narrow form `TextStyle.NARROW`.\n     *\n     * **NOTE**: since text styles require locale support, they are currently not supported in js-joda!\n     *\n     * **Number**: If the count of letters is one, then the value is printed using the minimum number\n     * of digits and without padding as per {@link DateTimeFormatterBuilder.appendValue}.\n     * Otherwise, the count of digits is used as the width of the output field as per\n     * {@link DateTimeFormatterBuilder.appendValue}.\n     *\n     * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.\n     * Otherwise use the Number rules above.\n     *\n     * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.\n     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.\n     * If it is less than 9, then the nano-of-second value is truncated, with only the most\n     * significant digits being output.\n     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.\n     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern\n     * letters, up to 9 digits.\n     *\n     * **Year**: The count of letters determines the minimum field width below which padding is used.\n     * If the count of letters is two, then a {@link DateTimeFormatterBuilder.appendValueReduced}\n     * two digit form is used.\n     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the\n     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.\n     * If the count of letters is less than four (but not two), then the sign is only output for negative\n     * years as per `SignStyle.NORMAL`.\n     * Otherwise, the sign is output if the pad width is exceeded, as per `SignStyle.EXCEEDS_PAD`\n     *\n     * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.\n     * If the count of letters is two, then the time-zone ID is output.\n     * Any other count of letters throws `IllegalArgumentException`.\n     *\n     * **Zone names**: This outputs the display name of the time-zone ID.\n     * If the count of letters is one, two or three, then the short name is output.\n     * If the count of letters is four, then the full name is output.\n     * Five or more letters throws `IllegalArgumentException`.\n     *\n     * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!\n     *\n     * **Offset X and x**: This formats the offset based on the number of pattern letters.\n     * One letter outputs just the hour', such as '+01', unless the minute is non-zero\n     * in which case the minute is also output, such as '+0130'.\n     * Two letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.\n     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.\n     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.\n     * Six or more letters throws `IllegalArgumentException`.\n     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,\n     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.\n     *\n     * **Offset Z**: This formats the offset based on the number of pattern letters.\n     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Four or more letters throws `IllegalArgumentException`.\n     * The output will be '+0000' when the offset is zero.\n     *\n     * **Optional section**: The optional section markers work exactly like calling\n     * {@link DateTimeFormatterBuilder.optionalStart} and {@link DateTimeFormatterBuilder.optionalEnd}.\n     *\n     * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.\n     * The pad width is determined by the number of pattern letters.\n     * This is the same as calling {@link DateTimeFormatterBuilder.padNext}.\n     *\n     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.\n     *\n     * Any unrecognized letter is an error.\n     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.\n     * Despite this, it is recommended to use single quotes around all characters that you want to\n     * output directly to ensure that future changes do not break your application.\n     *\n     * @param {String} pattern  the pattern to use, not null\n     * @return {DateTimeFormatter} the formatter based on the pattern, not null\n     * @throws IllegalArgumentException if the pattern is invalid\n     * @see DateTimeFormatterBuilder#appendPattern(String)\n     * @example\n     * var s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));\n     * console.log(s); // '1 04 2016'\n     *\n     */\n    static ofPattern(pattern) {\n        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();\n    }\n\n\n    //-----------------------------------------------------------------------\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer/parser to use, not null\n     * @param locale  the locale to use, not null\n     * @param decimalStyle  the decimal style to use, not null\n     * @param resolverStyle  the resolver style to use, not null\n     * @param resolverFields  the fields to use during resolving, null for all fields\n     * @param chrono  the chronology to use, null for no override\n     * @param zone  the zone to use, null for no override\n     */\n    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {\n        assert(printerParser != null);\n        assert(decimalStyle != null);\n        assert(resolverStyle != null);\n        /**\n         * The printer and/or parser to use, not null.\n         */\n        this._printerParser = printerParser;\n        /**\n         * The locale to use for formatting. // nyi\n         */\n        this._locale = locale;\n        /**\n         * The symbols to use for formatting, not null.\n         */\n        this._decimalStyle = decimalStyle;\n        /**\n         * The resolver style to use, not null.\n         */\n        this._resolverStyle = resolverStyle;\n        /**\n         * The fields to use in resolving, null for all fields.\n         */\n        this._resolverFields = resolverFields;\n        /**\n         * The chronology to use for formatting, null for no override.\n         */\n        this._chrono = chrono;\n        /**\n         * The zone to use for formatting, null for no override. // nyi\n         */\n        this._zone = zone;\n    }\n\n    locale() {\n        return this._locale;\n    }\n\n    decimalStyle() {\n        return this._decimalStyle;\n    }\n\n    chronology() {\n        return this._chrono;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new override chronology.\n     *\n     * This returns a formatter with similar state to this formatter but\n     * with the override chronology set.\n     * By default, a formatter has no override chronology, returning null.\n     *\n     * If an override is added, then any date that is printed or parsed will be affected.\n     *\n     * When printing, if the {@link Temporal} object contains a date then it will\n     * be converted to a date in the override chronology.\n     * Any time or zone will be retained unless overridden.\n     * The converted result will behave in a manner equivalent to an implementation\n     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.\n     *\n     * When parsing, the override chronology will be used to interpret the\n     * {@link ChronoField} into a date unless the\n     * formatter directly parses a valid chronology.\n     *\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param chrono  the new chronology, not null\n     * @return a formatter based on this formatter with the requested override chronology, not null\n     */\n    withChronology(chrono) {\n        if (this._chrono != null && this._chrono.equals(chrono)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle,\n            this._resolverStyle, this._resolverFields, chrono, this._zone);\n    }\n\n    /**\n     * not yet supported\n     * @returns {DateTimeFormatter}\n     */\n    withLocale(){\n        return this;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new resolver style.\n     * <p>\n     * This returns a formatter with similar state to this formatter but\n     * with the resolver style set. By default, a formatter has the\n     * {@link ResolverStyle#SMART SMART} resolver style.\n     * <p>\n     * Changing the resolver style only has an effect during parsing.\n     * Parsing a text string occurs in two phases.\n     * Phase 1 is a basic text parse according to the fields added to the builder.\n     * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n     * The resolver style is used to control how phase 2, resolving, happens.\n     * See {@link ResolverStyle} for more information on the options available.\n     * <p>\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param {ResolverStyle} resolverStyle  the new resolver style, not null\n     * @return {DateTimeFormatter} a formatter based on this formatter with the requested resolver style, not null\n     */\n    withResolverStyle(resolverStyle) {\n        requireNonNull(resolverStyle, 'resolverStyle');\n        if (resolverStyle.equals(this._resolverStyle)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);\n    }\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object using this formatter.\n     *\n     * This formats the date-time to a String using the rules of the formatter.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to print, not null\n     * @return {String} the printed string, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    format(temporal) {\n        const buf = new StringBuilder(32);\n        this._formatTo(temporal, buf);\n        return buf.toString();\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object to an {@link Appendable} using this formatter.\n     *\n     * This formats the date-time to the specified destination.\n     * {@link Appendable} is a general purpose interface that is implemented by all\n     * key character output classes including {@link StringBuffer}, {@link StringBuilder},\n     * {@link PrintStream} and {@link Writer}.\n     *\n     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.\n     * Instead, any {@link IOException} is wrapped in a runtime exception.\n     *\n     * @param {TemporalAccessor} temporal - the temporal object to print, not null\n     * @param {StringBuilder} appendable - the appendable to print to, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    _formatTo(temporal, appendable) {\n        requireNonNull(temporal, 'temporal');\n        requireNonNull(appendable, 'appendable');\n        const context = new DateTimePrintContext(temporal, this);\n        this._printerParser.print(context, appendable);\n    }\n\n    /**\n     * function overloading for {@link DateTimeFormatter.parse}\n     *\n     * if called with one arg {@link DateTimeFormatter.parse1} is called\n     * otherwise {@link DateTimeFormatter.parse2}\n     *\n     * @param {string} text\n     * @param {TemporalQuery} type\n     * @return {TemporalAccessor}\n     */\n    parse(text, type){\n        if(arguments.length === 1){\n            return this.parse1(text);\n        } else {\n            return this.parse2(text, type);\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param {String} text  the text to parse, not null\n     * @return {TemporalAccessor} the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse1(text) {\n        requireNonNull(text, 'text');\n        try {\n            return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param text  the text to parse, not null\n     * @param type the type to extract, not null\n * @return the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse2(text, type) {\n        requireNonNull(text, 'text');\n        requireNonNull(type, 'type');\n        try {\n            const builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n            return builder.build(type);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    _createError(text, ex) {\n        let abbr = '';\n        if (text.length > 64) {\n            abbr = text.subString(0, 64) + '...';\n        } else {\n            abbr = text;\n        }\n        return new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed: ' + ex.message, text, 0, ex);\n    }\n\n\n    /**\n     * Parses the text to a builder.\n     *\n     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.\n     * This method throws {@link DateTimeParseException} if unable to parse, or\n     * some other {@link DateTimeException} if another date/time problem occurs.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, null if parsing whole string\n     * @return the engine representing the result of the parse, not null\n     * @throws DateTimeParseException if the parse fails\n     */\n    _parseToBuilder(text, position) {\n        const pos = (position != null ? position : new ParsePosition(0));\n        const result = this._parseUnresolved0(text, pos);\n        if (result == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text.length)) {\n            let abbr = '';\n            if (text.length > 64) {\n                abbr = text.substr(0, 64).toString() + '...';\n            } else {\n                abbr = text;\n            }\n            if (pos.getErrorIndex() >= 0) {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed at index ' +\n                        pos.getErrorIndex(), text, pos.getErrorIndex());\n            } else {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed, unparsed text found at index ' +\n                        pos.getIndex(), text, pos.getIndex());\n            }\n        }\n        return result.toBuilder();\n    }\n\n    /**\n     * Parses the text using this formatter, without resolving the result, intended\n     * for advanced use cases.\n     *\n     * Parsing is implemented as a two-phase operation.\n     * First, the text is parsed using the layout defined by the formatter, producing\n     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.\n     * Second, the parsed data is *resolved*, by validating, combining and\n     * simplifying the various fields into more useful ones.\n     * This method performs the parsing stage but not the resolving stage.\n     *\n     * The result of this method is {@link TemporalAccessor} which represents the\n     * data as seen in the input. Values are not validated, thus parsing a date string\n     * of '2012-00-65' would result in a temporal with three fields - year of '2012',\n     * month of '0' and day-of-month of '65'.\n     *\n     * The text will be parsed from the specified start {@link ParsePosition}.\n     * The entire length of the text does not have to be parsed, the {@link ParsePosition}\n     * will be updated with the index at the end of parsing.\n     *\n     * Errors are returned using the error index field of the {@link ParsePosition}\n     * instead of {@link DateTimeParseException}.\n     * The returned error index will be set to an index indicative of the error.\n     * Callers must check for errors before using the context.\n     *\n     * If the formatter parses the same field more than once with different values,\n     * the result will be an error.\n     *\n     * This method is intended for advanced use cases that need access to the\n     * internal state during parsing. Typical application code should use\n     * {@link parse} or the parse method on the target type.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, not null\n     * @return the parsed text, null if the parse results in an error\n     * @throws DateTimeException if some problem occurs during parsing\n     * @throws IndexOutOfBoundsException if the position is invalid\n     */\n    parseUnresolved(text, position) {\n        return this._parseUnresolved0(text, position);\n    }\n\n    _parseUnresolved0(text, position) {\n        assert(text != null, 'text', NullPointerException);\n        assert(position != null, 'position', NullPointerException);\n        const context = new DateTimeParseContext(this);\n        let pos = position.getIndex();\n        pos = this._printerParser.parse(context, text, pos);\n        if (pos < 0) {\n            position.setErrorIndex(~pos);  // index not updated from input\n            return null;\n        }\n        position.setIndex(pos);  // errorIndex not updated from input\n        return context.toParsed();\n    }\n\n    /**\n     * Returns the formatter as a composite printer parser.\n     *\n     * @param {boolean} optional  whether the printer/parser should be optional\n     * @return {CompositePrinterParser} the printer/parser, not null\n     */\n    toPrinterParser(optional) {\n        return this._printerParser.withOptional(optional);\n    }\n\n    toString() {\n        const pattern = this._printerParser.toString();\n        return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);\n    }\n\n}\n\nexport function _init() {\n\n    DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)\n        .appendLiteral('-')\n        .appendValue(ChronoField.MONTH_OF_YEAR, 2)\n        .appendLiteral('-')\n        .appendValue(ChronoField.DAY_OF_MONTH, 2)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.HOUR_OF_DAY, 2)\n        .appendLiteral(':')\n        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)\n        .optionalStart()\n        .appendLiteral(':')\n        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)\n        .optionalStart()\n        .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE)\n        .appendLiteral('T')\n        .append(DateTimeFormatter.ISO_LOCAL_TIME)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .appendInstant()\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)\n        .appendOffsetId()\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()\n        .append(DateTimeFormatter.ISO_OFFSET_DATE_TIME)\n        .optionalStart()\n        .appendLiteral('[')\n        .parseCaseSensitive()\n        .appendZoneId()\n        // .appendZoneRegionId()\n        .appendLiteral(']')\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.excessDays;\n        } else {\n            return Period.ZERO;\n        }\n    });\n\n    DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.leapSecond;\n        } else {\n            return false;\n        }\n    });\n\n\n}\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert, requireNonNull} from '../assert';\n\nimport {DateTimeParseException, NullPointerException} from '../errors';\n\nimport {Period} from '../Period';\n\nimport {ParsePosition} from './ParsePosition';\nimport {DateTimeBuilder} from './DateTimeBuilder';\nimport {DateTimeParseContext} from './DateTimeParseContext';\nimport {DateTimePrintContext} from './DateTimePrintContext';\nimport {DateTimeFormatterBuilder} from './DateTimeFormatterBuilder';\nimport {SignStyle} from './SignStyle';\nimport {StringBuilder} from './StringBuilder';\nimport {ResolverStyle} from './ResolverStyle';\n\nimport {IsoChronology} from '../chrono/IsoChronology';\nimport {ChronoField} from '../temporal/ChronoField';\nimport {createTemporalQuery} from '../temporal/TemporalQuery';\n\n/**\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * DateTimeFormatter.ISO_LOCAL_DATE\n *\n * DateTimeFormatter.ISO_LOCAL_TIME\n *\n * DateTimeFormatter.ISO_LOCAL_DATE_TIME\n *\n */\nexport class DateTimeFormatter {\n\n    //-----------------------------------------------------------------------\n    /**\n     * A query that provides access to the excess days that were parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null period, with a zero period returned instead of null.\n     *\n     * There are two situations where this query may return a non-zero period.\n     *\n     * * If the {@link ResolverStyle} is {@link LENIENT} and a time is parsed\n     *   without a date, then the complete result of the parse consists of a\n     *   {@link LocalTime} and an excess {@link Period} in days.\n     * * If the {@link ResolverStyle} is {@link SMART} and a time is parsed\n     *   without a date where the time is 24:00:00, then the complete result of\n     *   the parse consists of a {@link LocalTime} of 00:00:00 and an excess\n     *   {@link Period} of one day.\n     *\n     * In both cases, if a complete {@link ChronoLocalDateTime} or {@link Instant}\n     * is parsed, then the excess days are added to the date part.\n     * As a result, this query will return a zero period.\n     *\n     * The {@link SMART} behaviour handles the common \"end of day\" 24:00 value.\n     * Processing in {@link LENIENT} mode also produces the same result:\n     * <pre>\n     *  Text to parse        Parsed object                         Excess days\n     *  \"2012-12-03T00:00\"   LocalDateTime.of(2012, 12, 3, 0, 0)   ZERO\n     *  \"2012-12-03T24:00\"   LocalDateTime.of(2012, 12, 4, 0, 0)   ZERO\n     *  \"00:00\"              LocalTime.of(0, 0)                    ZERO\n     *  \"24:00\"              LocalTime.of(0, 0)                    Period.ofDays(1)\n     * </pre>\n     * The query can be used as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  LocalTime time = parsed.query(LocalTime.FROM);\n     *  Period extraDays = parsed.query(DateTimeFormatter.parsedExcessDays());\n     * </pre>\n     * @return {TemporalQuery} a query that provides access to the excess days that were parsed\n     */\n    static parsedExcessDays() {\n        return DateTimeFormatter.PARSED_EXCESS_DAYS;\n    }\n\n    /**\n     * A query that provides access to whether a leap-second was parsed.\n     *\n     * This returns a singleton {@link TemporalQuery} that provides\n     * access to additional information from the parse. The query always returns\n     * a non-null boolean, true if parsing saw a leap-second, false if not.\n     *\n     * Instant parsing handles the special \"leap second\" time of '23:59:60'.\n     * Leap seconds occur at '23:59:60' in the UTC time-zone, but at other\n     * local times in different time-zones. To avoid this potential ambiguity,\n     * the handling of leap-seconds is limited to\n     * {@link DateTimeFormatterBuilder#appendInstant}, as that method\n     * always parses the instant with the UTC zone offset.\n     *\n     * If the time '23:59:60' is received, then a simple conversion is applied,\n     * replacing the second-of-minute of 60 with 59. This query can be used\n     * on the parse result to determine if the leap-second adjustment was made.\n     * The query will return one second of excess if it did adjust to remove\n     * the leap-second, and zero if not. Note that applying a leap-second\n     * smoothing mechanism, such as UTC-SLS, is the responsibility of the\n     * application, as follows:\n     * <pre>\n     *  TemporalAccessor parsed = formatter.parse(str);\n     *  Instant instant = parsed.query(Instant::from);\n     *  if (parsed.query(DateTimeFormatter.parsedLeapSecond())) {\n     *    // validate leap-second is correct and apply correct smoothing\n     *  }\n     * </pre>\n     * @return a query that provides access to whether a leap-second was parsed\n     */\n    static parsedLeapSecond() {\n        return DateTimeFormatter.PARSED_LEAP_SECOND;\n    }\n\n    /**\n     * Creates a formatter using the specified pattern.\n     *\n     * This method will create a formatter based on a simple pattern of letters and symbols.\n     *\n     * The returned formatter will use the default locale, but this can be changed\n     * using {@link DateTimeFormatter.withLocale}.\n     *\n     * All letters 'A' to 'Z' and 'a' to 'z' are reserved as pattern letters.\n     * The following pattern letters are defined:\n     * <pre>\n     *  |Symbol  |Meaning                     |Presentation      |Examples\n     *  |--------|----------------------------|------------------|----------------------------------------------------\n     *  | G      | era                        | number/text      | 1; 01; AD; Anno Domini\n     *  | u      | year                       | year             | 2004; 04\n     *  | y      | year-of-era                | year             | 2004; 04\n     *  | D      | day-of-year                | number           | 189\n     *  | M      | month-of-year              | number/text      | 7; 07; Jul; July; J\n     *  | d      | day-of-month               | number           | 10\n     *  |        |                            |                  |\n     *  | Q      | quarter-of-year            | number/text      | 3; 03; Q3\n     *  | Y      | week-based-year            | year             | 1996; 96\n     *  | w      | week-of-year               | number           | 27\n     *  | W      | week-of-month              | number           | 27\n     *  | e      | localized day-of-week      | number           | 2; Tue; Tuesday; T\n     *  | E      | day-of-week                | number/text      | 2; Tue; Tuesday; T\n     *  | F      | week-of-month              | number           | 3\n     *  |        |                            |                  |\n     *  | a      | am-pm-of-day               | text             | PM\n     *  | h      | clock-hour-of-am-pm (1-12) | number           | 12\n     *  | K      | hour-of-am-pm (0-11)       | number           | 0\n     *  | k      | clock-hour-of-am-pm (1-24) | number           | 0\n     *  |        |                            |                  |\n     *  | H      | hour-of-day (0-23)         | number           | 0\n     *  | m      | minute-of-hour             | number           | 30\n     *  | s      | second-of-minute           | number           | 55\n     *  | S      | fraction-of-second         | fraction         | 978\n     *  | A      | milli-of-day               | number           | 1234\n     *  | n      | nano-of-second             | number           | 987654321\n     *  | N      | nano-of-day                | number           | 1234000000\n     *  |        |                            |                  |\n     *  | V      | time-zone ID               | zone-id          | America/Los_Angeles; Z; -08:30\n     *  | z      | time-zone name             | zone-name        | Pacific Standard Time; PST\n     *  | X      | zone-offset 'Z' for zero   | offset-X         | Z; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | x      | zone-offset                | offset-x         | +0000; -08; -0830; -08:30; -083015; -08:30:15;\n     *  | Z      | zone-offset                | offset-Z         | +0000; -0800; -08:00;\n     *  |        |                            |                  |\n     *  | p      | pad next                   | pad modifier     | 1\n     *  |        |                            |                  |\n     *  | '      | escape for text            | delimiter        |\n     *  | ''     | single quote               | literal          | '\n     *  | [      | optional section start     |                  |\n     *  | ]      | optional section end       |                  |\n     *  | {}     | reserved for future use    |                  |\n     * </pre>\n     *\n     * The count of pattern letters determine the format.\n     *\n     * **Text**: The text style is determined based on the number of pattern letters used.\n     * Less than 4 pattern letters will use the short form `TextStyle.SHORT`.\n     * Exactly 4 pattern letters will use the full form `TextStyle.FULL`.\n     * Exactly 5 pattern letters will use the narrow form `TextStyle.NARROW`.\n     *\n     * **NOTE**: since text styles require locale support, they are currently not supported in js-joda!\n     *\n     * **Number**: If the count of letters is one, then the value is printed using the minimum number\n     * of digits and without padding as per {@link DateTimeFormatterBuilder.appendValue}.\n     * Otherwise, the count of digits is used as the width of the output field as per\n     * {@link DateTimeFormatterBuilder.appendValue}.\n     *\n     * **Number/Text**: If the count of pattern letters is 3 or greater, use the Text rules above.\n     * Otherwise use the Number rules above.\n     *\n     * **Fraction**: Outputs the nano-of-second field as a fraction-of-second.\n     * The nano-of-second value has nine digits, thus the count of pattern letters is from 1 to 9.\n     * If it is less than 9, then the nano-of-second value is truncated, with only the most\n     * significant digits being output.\n     * When parsing in strict mode, the number of parsed digits must match the count of pattern letters.\n     * When parsing in lenient mode, the number of parsed digits must be at least the count of pattern\n     * letters, up to 9 digits.\n     *\n     * **Year**: The count of letters determines the minimum field width below which padding is used.\n     * If the count of letters is two, then a {@link DateTimeFormatterBuilder.appendValueReduced}\n     * two digit form is used.\n     * For printing, this outputs the rightmost two digits. For parsing, this will parse using the\n     * base value of 2000, resulting in a year within the range 2000 to 2099 inclusive.\n     * If the count of letters is less than four (but not two), then the sign is only output for negative\n     * years as per `SignStyle.NORMAL`.\n     * Otherwise, the sign is output if the pad width is exceeded, as per `SignStyle.EXCEEDS_PAD`\n     *\n     * **ZoneId**: This outputs the time-zone ID, such as 'Europe/Paris'.\n     * If the count of letters is two, then the time-zone ID is output.\n     * Any other count of letters throws `IllegalArgumentException`.\n     *\n     * **Zone names**: This outputs the display name of the time-zone ID.\n     * If the count of letters is one, two or three, then the short name is output.\n     * If the count of letters is four, then the full name is output.\n     * Five or more letters throws `IllegalArgumentException`.\n     *\n     * **NOTE**: since zone ids and name require the iana tzdb, they are currently not supported in js-joda!\n     *\n     * **Offset X and x**: This formats the offset based on the number of pattern letters.\n     * One letter outputs just the hour', such as '+01', unless the minute is non-zero\n     * in which case the minute is also output, such as '+0130'.\n     * Two letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Three letters outputs the hour and minute, with a colon, such as '+01:30'.\n     * Four letters outputs the hour and minute and optional second, without a colon, such as '+013015'.\n     * Five letters outputs the hour and minute and optional second, with a colon, such as '+01:30:15'.\n     * Six or more letters throws `IllegalArgumentException`.\n     * Pattern letter 'X' (upper case) will output 'Z' when the offset to be output would be zero,\n     * whereas pattern letter 'x' (lower case) will output '+00', '+0000', or '+00:00'.\n     *\n     * **Offset Z**: This formats the offset based on the number of pattern letters.\n     * One, two or three letters outputs the hour and minute, without a colon, such as '+0130'.\n     * Four or more letters throws `IllegalArgumentException`.\n     * The output will be '+0000' when the offset is zero.\n     *\n     * **Optional section**: The optional section markers work exactly like calling\n     * {@link DateTimeFormatterBuilder.optionalStart} and {@link DateTimeFormatterBuilder.optionalEnd}.\n     *\n     * **Pad modifier**: Modifies the pattern that immediately follows to be padded with spaces.\n     * The pad width is determined by the number of pattern letters.\n     * This is the same as calling {@link DateTimeFormatterBuilder.padNext}.\n     *\n     * For example, 'ppH' outputs the hour-of-day padded on the left with spaces to a width of 2.\n     *\n     * Any unrecognized letter is an error.\n     * Any non-letter character, other than '[', ']', '{', '}' and the single quote will be output directly.\n     * Despite this, it is recommended to use single quotes around all characters that you want to\n     * output directly to ensure that future changes do not break your application.\n     *\n     * @param {String} pattern  the pattern to use, not null\n     * @return {DateTimeFormatter} the formatter based on the pattern, not null\n     * @throws IllegalArgumentException if the pattern is invalid\n     * @see DateTimeFormatterBuilder#appendPattern(String)\n     * @example\n     * var s = LocalDate.parse('2016-04-01').format(DateTimeFormatter.ofPattern('d MM yyyy'));\n     * console.log(s); // '1 04 2016'\n     *\n     */\n    static ofPattern(pattern) {\n        return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();\n    }\n\n\n    //-----------------------------------------------------------------------\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer/parser to use, not null\n     * @param locale  the locale to use, not null\n     * @param decimalStyle  the decimal style to use, not null\n     * @param resolverStyle  the resolver style to use, not null\n     * @param resolverFields  the fields to use during resolving, null for all fields\n     * @param chrono  the chronology to use, null for no override\n     * @param zone  the zone to use, null for no override\n     * @protected\n     */\n    constructor(printerParser, locale, decimalStyle, resolverStyle, resolverFields, chrono=IsoChronology.INSTANCE, zone) {\n        assert(printerParser != null);\n        assert(decimalStyle != null);\n        assert(resolverStyle != null);\n        /**\n         * The printer and/or parser to use, not null.\n         */\n        this._printerParser = printerParser;\n        /**\n         * The locale to use for formatting. // nyi\n         */\n        this._locale = locale;\n        /**\n         * The symbols to use for formatting, not null.\n         */\n        this._decimalStyle = decimalStyle;\n        /**\n         * The resolver style to use, not null.\n         */\n        this._resolverStyle = resolverStyle;\n        /**\n         * The fields to use in resolving, null for all fields.\n         */\n        this._resolverFields = resolverFields;\n        /**\n         * The chronology to use for formatting, null for no override.\n         */\n        this._chrono = chrono;\n        /**\n         * The zone to use for formatting, null for no override. // nyi\n         */\n        this._zone = zone;\n    }\n\n    locale() {\n        return this._locale;\n    }\n\n    decimalStyle() {\n        return this._decimalStyle;\n    }\n\n    chronology() {\n        return this._chrono;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new override chronology.\n     *\n     * This returns a formatter with similar state to this formatter but\n     * with the override chronology set.\n     * By default, a formatter has no override chronology, returning null.\n     *\n     * If an override is added, then any date that is printed or parsed will be affected.\n     *\n     * When printing, if the {@link Temporal} object contains a date then it will\n     * be converted to a date in the override chronology.\n     * Any time or zone will be retained unless overridden.\n     * The converted result will behave in a manner equivalent to an implementation\n     * of {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.\n     *\n     * When parsing, the override chronology will be used to interpret the\n     * {@link ChronoField} into a date unless the\n     * formatter directly parses a valid chronology.\n     *\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param chrono  the new chronology, not null\n     * @return a formatter based on this formatter with the requested override chronology, not null\n     */\n    withChronology(chrono) {\n        if (this._chrono != null && this._chrono.equals(chrono)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle,\n            this._resolverStyle, this._resolverFields, chrono, this._zone);\n    }\n\n    /**\n     * not yet supported\n     * @returns {DateTimeFormatter}\n     */\n    withLocale(){\n        return this;\n    }\n\n    /**\n     * Returns a copy of this formatter with a new resolver style.\n     * <p>\n     * This returns a formatter with similar state to this formatter but\n     * with the resolver style set. By default, a formatter has the\n     * {@link ResolverStyle#SMART SMART} resolver style.\n     * <p>\n     * Changing the resolver style only has an effect during parsing.\n     * Parsing a text string occurs in two phases.\n     * Phase 1 is a basic text parse according to the fields added to the builder.\n     * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n     * The resolver style is used to control how phase 2, resolving, happens.\n     * See {@link ResolverStyle} for more information on the options available.\n     * <p>\n     * This instance is immutable and unaffected by this method call.\n     *\n     * @param {ResolverStyle} resolverStyle  the new resolver style, not null\n     * @return {DateTimeFormatter} a formatter based on this formatter with the requested resolver style, not null\n     */\n    withResolverStyle(resolverStyle) {\n        requireNonNull(resolverStyle, 'resolverStyle');\n        if (resolverStyle.equals(this._resolverStyle)) {\n            return this;\n        }\n        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);\n    }\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object using this formatter.\n     *\n     * This formats the date-time to a String using the rules of the formatter.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to print, not null\n     * @return {String} the printed string, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    format(temporal) {\n        const buf = new StringBuilder(32);\n        this._formatTo(temporal, buf);\n        return buf.toString();\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * Formats a date-time object to an {@link Appendable} using this formatter.\n     *\n     * This formats the date-time to the specified destination.\n     * {@link Appendable} is a general purpose interface that is implemented by all\n     * key character output classes including {@link StringBuffer}, {@link StringBuilder},\n     * {@link PrintStream} and {@link Writer}.\n     *\n     * Although {@link Appendable} methods throw an {@link IOException}, this method does not.\n     * Instead, any {@link IOException} is wrapped in a runtime exception.\n     *\n     * @param {TemporalAccessor} temporal - the temporal object to print, not null\n     * @param {StringBuilder} appendable - the appendable to print to, not null\n     * @throws DateTimeException if an error occurs during formatting\n     */\n    _formatTo(temporal, appendable) {\n        requireNonNull(temporal, 'temporal');\n        requireNonNull(appendable, 'appendable');\n        const context = new DateTimePrintContext(temporal, this);\n        this._printerParser.print(context, appendable);\n    }\n\n    /**\n     * function overloading for {@link DateTimeFormatter.parse}\n     *\n     * if called with one arg {@link DateTimeFormatter.parse1} is called\n     * otherwise {@link DateTimeFormatter.parse2}\n     *\n     * @param {string} text\n     * @param {TemporalQuery} type\n     * @return {TemporalAccessor}\n     */\n    parse(text, type){\n        if(arguments.length === 1){\n            return this.parse1(text);\n        } else {\n            return this.parse2(text, type);\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param {String} text  the text to parse, not null\n     * @return {TemporalAccessor} the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse1(text) {\n        requireNonNull(text, 'text');\n        try {\n            return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    /**\n     * Fully parses the text producing a temporal object.\n     *\n     * This parses the entire text producing a temporal object.\n     * It is typically more useful to use {@link parse}.\n     * The result of this method is {@link TemporalAccessor} which has been resolved,\n     * applying basic validation checks to help ensure a valid date-time.\n     *\n     * If the parse completes without reading the entire length of the text,\n     * or a problem occurs during parsing or merging, then an exception is thrown.\n     *\n     * @param text  the text to parse, not null\n     * @param type the type to extract, not null\n * @return the parsed temporal object, not null\n     * @throws DateTimeParseException if unable to parse the requested result\n     */\n    parse2(text, type) {\n        requireNonNull(text, 'text');\n        requireNonNull(type, 'type');\n        try {\n            const builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);\n            return builder.build(type);\n        } catch (ex) {\n            if(ex instanceof DateTimeParseException){\n                throw ex;\n            } else {\n                throw this._createError(text, ex);\n            }\n        }\n    }\n\n    _createError(text, ex) {\n        let abbr = '';\n        if (text.length > 64) {\n            abbr = text.subString(0, 64) + '...';\n        } else {\n            abbr = text;\n        }\n        return new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed: ' + ex.message, text, 0, ex);\n    }\n\n\n    /**\n     * Parses the text to a builder.\n     *\n     * This parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.\n     * This method throws {@link DateTimeParseException} if unable to parse, or\n     * some other {@link DateTimeException} if another date/time problem occurs.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, null if parsing whole string\n     * @return the engine representing the result of the parse, not null\n     * @throws DateTimeParseException if the parse fails\n     */\n    _parseToBuilder(text, position) {\n        const pos = (position != null ? position : new ParsePosition(0));\n        const result = this._parseUnresolved0(text, pos);\n        if (result == null || pos.getErrorIndex() >= 0 || (position == null && pos.getIndex() < text.length)) {\n            let abbr = '';\n            if (text.length > 64) {\n                abbr = text.substr(0, 64).toString() + '...';\n            } else {\n                abbr = text;\n            }\n            if (pos.getErrorIndex() >= 0) {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed at index ' +\n                        pos.getErrorIndex(), text, pos.getErrorIndex());\n            } else {\n                throw new DateTimeParseException('Text \\'' + abbr + '\\' could not be parsed, unparsed text found at index ' +\n                        pos.getIndex(), text, pos.getIndex());\n            }\n        }\n        return result.toBuilder();\n    }\n\n    /**\n     * Parses the text using this formatter, without resolving the result, intended\n     * for advanced use cases.\n     *\n     * Parsing is implemented as a two-phase operation.\n     * First, the text is parsed using the layout defined by the formatter, producing\n     * a {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.\n     * Second, the parsed data is *resolved*, by validating, combining and\n     * simplifying the various fields into more useful ones.\n     * This method performs the parsing stage but not the resolving stage.\n     *\n     * The result of this method is {@link TemporalAccessor} which represents the\n     * data as seen in the input. Values are not validated, thus parsing a date string\n     * of '2012-00-65' would result in a temporal with three fields - year of '2012',\n     * month of '0' and day-of-month of '65'.\n     *\n     * The text will be parsed from the specified start {@link ParsePosition}.\n     * The entire length of the text does not have to be parsed, the {@link ParsePosition}\n     * will be updated with the index at the end of parsing.\n     *\n     * Errors are returned using the error index field of the {@link ParsePosition}\n     * instead of {@link DateTimeParseException}.\n     * The returned error index will be set to an index indicative of the error.\n     * Callers must check for errors before using the context.\n     *\n     * If the formatter parses the same field more than once with different values,\n     * the result will be an error.\n     *\n     * This method is intended for advanced use cases that need access to the\n     * internal state during parsing. Typical application code should use\n     * {@link parse} or the parse method on the target type.\n     *\n     * @param text  the text to parse, not null\n     * @param position  the position to parse from, updated with length parsed\n     *  and the index of any error, not null\n     * @return the parsed text, null if the parse results in an error\n     * @throws DateTimeException if some problem occurs during parsing\n     * @throws IndexOutOfBoundsException if the position is invalid\n     */\n    parseUnresolved(text, position) {\n        return this._parseUnresolved0(text, position);\n    }\n\n    _parseUnresolved0(text, position) {\n        assert(text != null, 'text', NullPointerException);\n        assert(position != null, 'position', NullPointerException);\n        const context = new DateTimeParseContext(this);\n        let pos = position.getIndex();\n        pos = this._printerParser.parse(context, text, pos);\n        if (pos < 0) {\n            position.setErrorIndex(~pos);  // index not updated from input\n            return null;\n        }\n        position.setIndex(pos);  // errorIndex not updated from input\n        return context.toParsed();\n    }\n\n    /**\n     * Returns the formatter as a composite printer parser.\n     *\n     * @param {boolean} optional  whether the printer/parser should be optional\n     * @return {CompositePrinterParser} the printer/parser, not null\n     */\n    toPrinterParser(optional) {\n        return this._printerParser.withOptional(optional);\n    }\n\n    toString() {\n        const pattern = this._printerParser.toString();\n        return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);\n    }\n\n}\n\nexport function _init() {\n\n    DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)\n        .appendLiteral('-')\n        .appendValue(ChronoField.MONTH_OF_YEAR, 2)\n        .appendLiteral('-')\n        .appendValue(ChronoField.DAY_OF_MONTH, 2)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder()\n        .appendValue(ChronoField.HOUR_OF_DAY, 2)\n        .appendLiteral(':')\n        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)\n        .optionalStart()\n        .appendLiteral(':')\n        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)\n        .optionalStart()\n        .appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true)\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE)\n        .appendLiteral('T')\n        .append(DateTimeFormatter.ISO_LOCAL_TIME)\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .appendInstant()\n        .toFormatter(ResolverStyle.STRICT);\n\n    DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder()\n        .parseCaseInsensitive()\n        .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)\n        .appendOffsetId()\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder()\n        .append(DateTimeFormatter.ISO_OFFSET_DATE_TIME)\n        .optionalStart()\n        .appendLiteral('[')\n        .parseCaseSensitive()\n        .appendZoneId()\n        // .appendZoneRegionId()\n        .appendLiteral(']')\n        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);\n\n    DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.excessDays;\n        } else {\n            return Period.ZERO;\n        }\n    });\n\n    DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', (temporal) => {\n        if (temporal instanceof DateTimeBuilder) {\n            return temporal.leapSecond;\n        } else {\n            return false;\n        }\n    });\n\n\n}\n",
     "static": true,
     "longname": "src/format/DateTimeFormatter.js",
     "access": null,
@@ -30345,9 +30345,9 @@
     "async": false,
     "static": false,
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#constructor",
-    "access": null,
+    "access": "protected",
     "description": "Constructor.",
-    "lineNumber": 273,
+    "lineNumber": 274,
     "params": [
       {
         "nullable": null,
@@ -30430,7 +30430,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_printerParser",
     "access": null,
     "description": "The printer and/or parser to use, not null.",
-    "lineNumber": 280,
+    "lineNumber": 281,
     "type": {
       "types": [
         "*"
@@ -30446,7 +30446,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_locale",
     "access": null,
     "description": "The locale to use for formatting. // nyi",
-    "lineNumber": 284,
+    "lineNumber": 285,
     "type": {
       "types": [
         "*"
@@ -30462,7 +30462,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_decimalStyle",
     "access": null,
     "description": "The symbols to use for formatting, not null.",
-    "lineNumber": 288,
+    "lineNumber": 289,
     "type": {
       "types": [
         "*"
@@ -30478,7 +30478,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_resolverStyle",
     "access": null,
     "description": "The resolver style to use, not null.",
-    "lineNumber": 292,
+    "lineNumber": 293,
     "type": {
       "types": [
         "*"
@@ -30494,7 +30494,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_resolverFields",
     "access": null,
     "description": "The fields to use in resolving, null for all fields.",
-    "lineNumber": 296,
+    "lineNumber": 297,
     "type": {
       "types": [
         "*"
@@ -30510,7 +30510,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_chrono",
     "access": null,
     "description": "The chronology to use for formatting, null for no override.",
-    "lineNumber": 300,
+    "lineNumber": 301,
     "type": {
       "types": [
         "*"
@@ -30526,7 +30526,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_zone",
     "access": null,
     "description": "The zone to use for formatting, null for no override. // nyi",
-    "lineNumber": 304,
+    "lineNumber": 305,
     "type": {
       "types": [
         "*"
@@ -30544,7 +30544,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#locale",
     "access": null,
     "description": null,
-    "lineNumber": 307,
+    "lineNumber": 308,
     "undocument": true,
     "unknown": [
       {
@@ -30570,7 +30570,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#decimalStyle",
     "access": null,
     "description": null,
-    "lineNumber": 311,
+    "lineNumber": 312,
     "undocument": true,
     "unknown": [
       {
@@ -30596,7 +30596,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#chronology",
     "access": null,
     "description": null,
-    "lineNumber": 315,
+    "lineNumber": 316,
     "undocument": true,
     "unknown": [
       {
@@ -30622,7 +30622,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#withChronology",
     "access": null,
     "description": "Returns a copy of this formatter with a new override chronology.\n\nThis returns a formatter with similar state to this formatter but\nwith the override chronology set.\nBy default, a formatter has no override chronology, returning null.\n\nIf an override is added, then any date that is printed or parsed will be affected.\n\nWhen printing, if the {@link Temporal} object contains a date then it will\nbe converted to a date in the override chronology.\nAny time or zone will be retained unless overridden.\nThe converted result will behave in a manner equivalent to an implementation\nof {@link ChronoLocalDate},{@link ChronoLocalDateTime} or {@link ChronoZonedDateTime}.\n\nWhen parsing, the override chronology will be used to interpret the\n{@link ChronoField} into a date unless the\nformatter directly parses a valid chronology.\n\nThis instance is immutable and unaffected by this method call.",
-    "lineNumber": 343,
+    "lineNumber": 344,
     "params": [
       {
         "nullable": null,
@@ -30655,7 +30655,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#withLocale",
     "access": null,
     "description": "not yet supported",
-    "lineNumber": 355,
+    "lineNumber": 356,
     "unknown": [
       {
         "tagName": "@returns",
@@ -30683,7 +30683,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#withResolverStyle",
     "access": null,
     "description": "Returns a copy of this formatter with a new resolver style.\n<p>\nThis returns a formatter with similar state to this formatter but\nwith the resolver style set. By default, a formatter has the\n{@link ResolverStyle#SMART SMART} resolver style.\n<p>\nChanging the resolver style only has an effect during parsing.\nParsing a text string occurs in two phases.\nPhase 1 is a basic text parse according to the fields added to the builder.\nPhase 2 resolves the parsed field-value pairs into date and/or time objects.\nThe resolver style is used to control how phase 2, resolving, happens.\nSee {@link ResolverStyle} for more information on the options available.\n<p>\nThis instance is immutable and unaffected by this method call.",
-    "lineNumber": 378,
+    "lineNumber": 379,
     "params": [
       {
         "nullable": null,
@@ -30716,7 +30716,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#format",
     "access": null,
     "description": "Formats a date-time object using this formatter.\n\nThis formats the date-time to a String using the rules of the formatter.",
-    "lineNumber": 395,
+    "lineNumber": 396,
     "params": [
       {
         "nullable": null,
@@ -30757,7 +30757,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_formatTo",
     "access": null,
     "description": "Formats a date-time object to an {@link Appendable} using this formatter.\n\nThis formats the date-time to the specified destination.\n{@link Appendable} is a general purpose interface that is implemented by all\nkey character output classes including {@link StringBuffer}, {@link StringBuilder},\n{@link PrintStream} and {@link Writer}.\n\nAlthough {@link Appendable} methods throw an {@link IOException}, this method does not.\nInstead, any {@link IOException} is wrapped in a runtime exception.",
-    "lineNumber": 417,
+    "lineNumber": 418,
     "params": [
       {
         "nullable": null,
@@ -30800,7 +30800,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#parse",
     "access": null,
     "description": "function overloading for {@link DateTimeFormatter.parse}\n\nif called with one arg {@link DateTimeFormatter.parse1} is called\notherwise {@link DateTimeFormatter.parse2}",
-    "lineNumber": 434,
+    "lineNumber": 435,
     "params": [
       {
         "nullable": null,
@@ -30843,7 +30843,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#parse1",
     "access": null,
     "description": "Fully parses the text producing a temporal object.\n\nThis parses the entire text producing a temporal object.\nIt is typically more useful to use {@link parse}.\nThe result of this method is {@link TemporalAccessor} which has been resolved,\napplying basic validation checks to help ensure a valid date-time.\n\nIf the parse completes without reading the entire length of the text,\nor a problem occurs during parsing or merging, then an exception is thrown.",
-    "lineNumber": 457,
+    "lineNumber": 458,
     "params": [
       {
         "nullable": null,
@@ -30884,7 +30884,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#parse2",
     "access": null,
     "description": "Fully parses the text producing a temporal object.\n\nThis parses the entire text producing a temporal object.\nIt is typically more useful to use {@link parse}.\nThe result of this method is {@link TemporalAccessor} which has been resolved,\napplying basic validation checks to help ensure a valid date-time.\n\nIf the parse completes without reading the entire length of the text,\nor a problem occurs during parsing or merging, then an exception is thrown.",
-    "lineNumber": 486,
+    "lineNumber": 487,
     "params": [
       {
         "nullable": null,
@@ -30935,7 +30935,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_createError",
     "access": null,
     "description": null,
-    "lineNumber": 501,
+    "lineNumber": 502,
     "undocument": true,
     "unknown": [
       {
@@ -30974,7 +30974,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_parseToBuilder",
     "access": null,
     "description": "Parses the text to a builder.\n\nThis parses to a {@link DateTimeBuilder} ensuring that the text is fully parsed.\nThis method throws {@link DateTimeParseException} if unable to parse, or\nsome other {@link DateTimeException} if another date/time problem occurs.",
-    "lineNumber": 525,
+    "lineNumber": 526,
     "params": [
       {
         "nullable": null,
@@ -31025,7 +31025,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#parseUnresolved",
     "access": null,
     "description": "Parses the text using this formatter, without resolving the result, intended\nfor advanced use cases.\n\nParsing is implemented as a two-phase operation.\nFirst, the text is parsed using the layout defined by the formatter, producing\na {@link Map} of field to value, a {@link ZoneId} and a {@link Chronology}.\nSecond, the parsed data is *resolved*, by validating, combining and\nsimplifying the various fields into more useful ones.\nThis method performs the parsing stage but not the resolving stage.\n\nThe result of this method is {@link TemporalAccessor} which represents the\ndata as seen in the input. Values are not validated, thus parsing a date string\nof '2012-00-65' would result in a temporal with three fields - year of '2012',\nmonth of '0' and day-of-month of '65'.\n\nThe text will be parsed from the specified start {@link ParsePosition}.\nThe entire length of the text does not have to be parsed, the {@link ParsePosition}\nwill be updated with the index at the end of parsing.\n\nErrors are returned using the error index field of the {@link ParsePosition}\ninstead of {@link DateTimeParseException}.\nThe returned error index will be set to an index indicative of the error.\nCallers must check for errors before using the context.\n\nIf the formatter parses the same field more than once with different values,\nthe result will be an error.\n\nThis method is intended for advanced use cases that need access to the\ninternal state during parsing. Typical application code should use\n{@link parse} or the parse method on the target type.",
-    "lineNumber": 585,
+    "lineNumber": 586,
     "params": [
       {
         "nullable": null,
@@ -31082,7 +31082,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#_parseUnresolved0",
     "access": null,
     "description": null,
-    "lineNumber": 589,
+    "lineNumber": 590,
     "undocument": true,
     "unknown": [
       {
@@ -31121,7 +31121,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#toPrinterParser",
     "access": null,
     "description": "Returns the formatter as a composite printer parser.",
-    "lineNumber": 609,
+    "lineNumber": 610,
     "params": [
       {
         "nullable": null,
@@ -31154,7 +31154,7 @@
     "longname": "src/format/DateTimeFormatter.js~DateTimeFormatter#toString",
     "access": null,
     "description": null,
-    "lineNumber": 613,
+    "lineNumber": 614,
     "undocument": true,
     "unknown": [
       {
@@ -31183,7 +31183,7 @@
     "importPath": "js-joda/src/format/DateTimeFormatter.js",
     "importStyle": "{_init}",
     "description": null,
-    "lineNumber": 620,
+    "lineNumber": 621,
     "undocument": true,
     "unknown": [
       {
@@ -36730,7 +36730,7 @@
     "__docId__": 1097,
     "kind": "file",
     "name": "src/format/parser/CharLiteralPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {IllegalArgumentException} from '../../errors';\n\n/**\n * Prints or parses a char literal.\n */\nexport class CharLiteralPrinterParser {\n\n    constructor(literal) {\n        if (literal.length > 1) {\n            throw new IllegalArgumentException('invalid literal, too long: \"' + literal + '\"');\n        }\n        this._literal = literal;\n    }\n\n    print(context, buf) {\n        buf.append(this._literal);\n        return true;\n    }\n\n    parse(context, text, position) {\n        const length = text.length;\n        if (position === length) {\n            return ~position;\n        }\n        let ch = text.charAt(position);\n        if (context.charEquals(this._literal, ch) === false) {\n            return ~position;\n        }\n        return position + this._literal.length;\n    }\n\n    toString() {\n        if (this._literal === '\\'') {\n            return \"''\";\n        }\n        return \"'\" + this._literal + \"'\";\n    }\n}\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {IllegalArgumentException} from '../../errors';\n\n/**\n * Prints or parses a char literal.\n * @private\n */\nexport class CharLiteralPrinterParser {\n\n    constructor(literal) {\n        if (literal.length > 1) {\n            throw new IllegalArgumentException('invalid literal, too long: \"' + literal + '\"');\n        }\n        this._literal = literal;\n    }\n\n    print(context, buf) {\n        buf.append(this._literal);\n        return true;\n    }\n\n    parse(context, text, position) {\n        const length = text.length;\n        if (position === length) {\n            return ~position;\n        }\n        let ch = text.charAt(position);\n        if (context.charEquals(this._literal, ch) === false) {\n            return ~position;\n        }\n        return position + this._literal.length;\n    }\n\n    toString() {\n        if (this._literal === '\\'') {\n            return \"''\";\n        }\n        return \"'\" + this._literal + \"'\";\n    }\n}\n\n",
     "static": true,
     "longname": "src/format/parser/CharLiteralPrinterParser.js",
     "access": null,
@@ -36744,12 +36744,12 @@
     "memberof": "src/format/parser/CharLiteralPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/CharLiteralPrinterParser.js",
     "importStyle": "{CharLiteralPrinterParser}",
     "description": "Prints or parses a char literal.",
-    "lineNumber": 12,
+    "lineNumber": 13,
     "interface": false
   },
   {
@@ -36763,7 +36763,7 @@
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 15,
     "undocument": true,
     "unknown": [
       {
@@ -36789,7 +36789,7 @@
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser#_literal",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 19,
     "undocument": true,
     "unknown": [
       {
@@ -36814,7 +36814,7 @@
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 21,
+    "lineNumber": 22,
     "undocument": true,
     "unknown": [
       {
@@ -36853,7 +36853,7 @@
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 27,
     "undocument": true,
     "unknown": [
       {
@@ -36898,7 +36898,7 @@
     "longname": "src/format/parser/CharLiteralPrinterParser.js~CharLiteralPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 39,
     "undocument": true,
     "unknown": [
       {
@@ -36917,7 +36917,7 @@
     "__docId__": 1104,
     "kind": "file",
     "name": "src/format/parser/CompositePrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nexport class CompositePrinterParser {\n\n    constructor(printerParsers, optional) {\n        this._printerParsers = printerParsers;\n        this._optional = optional;\n    }\n\n    /**\n     * Returns a copy of this printer-parser with the optional flag changed.\n     *\n     * @param {boolean} optional  the optional flag to set in the copy\n     * @return {CompositePrinterParser} the new printer-parser, not null\n     */\n    withOptional(optional) {\n        if (optional === this._optional) {\n            return this;\n        }\n        return new CompositePrinterParser(this._printerParsers, optional);\n    }\n\n    print(context, buf) {\n        const length = buf.length();\n        if (this._optional) {\n            context.startOptional();\n        }\n        try {\n            for (let i=0; i<this._printerParsers.length; i++) {\n                let pp = this._printerParsers[i];\n                if (pp.print(context, buf) === false) {\n                    buf.setLength(length);  // reset buffer\n                    return true;\n                }\n            }\n        } finally {\n            if (this._optional) {\n                context.endOptional();\n            }\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        if (this._optional) {\n            context.startOptional();\n            let pos = position;\n            for (let i=0; i<this._printerParsers.length; i++) {\n                let pp = this._printerParsers[i];\n                pos = pp.parse(context, text, pos);\n                if (pos < 0) {\n                    context.endOptional(false);\n                    return position;  // return original position\n                }\n            }\n            context.endOptional(true);\n            return pos;\n        } else {\n            for (let i=0; i<this._printerParsers.length; i++) {\n                const pp = this._printerParsers[i];\n                position = pp.parse(context, text, position);\n                if (position < 0) {\n                    break;\n                }\n            }\n            return position;\n        }\n    }\n\n    toString() {\n        let buf = '';\n        if (this._printerParsers != null) {\n            buf += this._optional ? '[' : '(';\n            for (let i=0; i<this._printerParsers.length; i++) {\n                const pp = this._printerParsers[i];\n                buf += pp.toString();\n            }\n            buf += this._optional ? ']' : ')';\n        }\n        return buf;\n    }\n}\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\n/**\n * @private\n */\nexport class CompositePrinterParser {\n\n    constructor(printerParsers, optional) {\n        this._printerParsers = printerParsers;\n        this._optional = optional;\n    }\n\n    /**\n     * Returns a copy of this printer-parser with the optional flag changed.\n     *\n     * @param {boolean} optional  the optional flag to set in the copy\n     * @return {CompositePrinterParser} the new printer-parser, not null\n     */\n    withOptional(optional) {\n        if (optional === this._optional) {\n            return this;\n        }\n        return new CompositePrinterParser(this._printerParsers, optional);\n    }\n\n    print(context, buf) {\n        const length = buf.length();\n        if (this._optional) {\n            context.startOptional();\n        }\n        try {\n            for (let i=0; i<this._printerParsers.length; i++) {\n                let pp = this._printerParsers[i];\n                if (pp.print(context, buf) === false) {\n                    buf.setLength(length);  // reset buffer\n                    return true;\n                }\n            }\n        } finally {\n            if (this._optional) {\n                context.endOptional();\n            }\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        if (this._optional) {\n            context.startOptional();\n            let pos = position;\n            for (let i=0; i<this._printerParsers.length; i++) {\n                let pp = this._printerParsers[i];\n                pos = pp.parse(context, text, pos);\n                if (pos < 0) {\n                    context.endOptional(false);\n                    return position;  // return original position\n                }\n            }\n            context.endOptional(true);\n            return pos;\n        } else {\n            for (let i=0; i<this._printerParsers.length; i++) {\n                const pp = this._printerParsers[i];\n                position = pp.parse(context, text, position);\n                if (position < 0) {\n                    break;\n                }\n            }\n            return position;\n        }\n    }\n\n    toString() {\n        let buf = '';\n        if (this._printerParsers != null) {\n            buf += this._optional ? '[' : '(';\n            for (let i=0; i<this._printerParsers.length; i++) {\n                const pp = this._printerParsers[i];\n                buf += pp.toString();\n            }\n            buf += this._optional ? ']' : ')';\n        }\n        return buf;\n    }\n}\n",
     "static": true,
     "longname": "src/format/parser/CompositePrinterParser.js",
     "access": null,
@@ -36931,26 +36931,12 @@
     "memberof": "src/format/parser/CompositePrinterParser.js",
     "static": true,
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/CompositePrinterParser.js",
     "importStyle": "{CompositePrinterParser}",
     "description": "",
-    "lineNumber": 7,
-    "unknown": [
-      {
-        "tagName": "@copyright",
-        "tagValue": "(c) 2016, Philipp Thürwächter & Pattrick Hüper"
-      },
-      {
-        "tagName": "@copyright",
-        "tagValue": "(c) 2007-present, Stephen Colebourne & Michael Nascimento Santos"
-      },
-      {
-        "tagName": "@license",
-        "tagValue": "BSD-3-Clause (see LICENSE in the root directory of this source tree)"
-      }
-    ],
+    "lineNumber": 10,
     "interface": false
   },
   {
@@ -36964,7 +36950,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 12,
     "undocument": true,
     "unknown": [
       {
@@ -36996,7 +36982,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#_printerParsers",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 13,
     "undocument": true,
     "unknown": [
       {
@@ -37019,7 +37005,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#_optional",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 14,
     "undocument": true,
     "unknown": [
       {
@@ -37044,7 +37030,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#withOptional",
     "access": null,
     "description": "Returns a copy of this printer-parser with the optional flag changed.",
-    "lineNumber": 20,
+    "lineNumber": 23,
     "params": [
       {
         "nullable": null,
@@ -37077,7 +37063,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 30,
     "undocument": true,
     "unknown": [
       {
@@ -37116,7 +37102,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 51,
     "undocument": true,
     "unknown": [
       {
@@ -37161,7 +37147,7 @@
     "longname": "src/format/parser/CompositePrinterParser.js~CompositePrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 74,
+    "lineNumber": 77,
     "undocument": true,
     "unknown": [
       {
@@ -37180,7 +37166,7 @@
     "__docId__": 1113,
     "kind": "file",
     "name": "src/format/parser/FractionPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {requireNonNull} from '../../assert';\nimport {IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\n/**\n * TODO optimize FractionPrinterParser, fix documentation\n *\n * Prints and parses a numeric date-time field with optional padding.\n */\nexport class FractionPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param {TemporalField} field  the field to output, not null\n     * @param {Number} minWidth  the minimum width to output, from 0 to 9\n     * @param {Number} maxWidth  the maximum width to output, from 0 to 9\n     * @param {boolean} decimalPoint  whether to output the localized decimal point symbol\n     */\n    constructor(field, minWidth, maxWidth, decimalPoint) {\n        requireNonNull(field, 'field');\n        if (field.range().isFixed() === false) {\n            throw new IllegalArgumentException('Field must have a fixed set of values: ' + field);\n        }\n        if (minWidth < 0 || minWidth > 9) {\n            throw new IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was ' + minWidth);\n        }\n        if (maxWidth < 1 || maxWidth > 9) {\n            throw new IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was ' + maxWidth);\n        }\n        if (maxWidth < minWidth) {\n            throw new IllegalArgumentException('Maximum width must exceed or equal the minimum width but ' +\n                maxWidth + ' < ' + minWidth);\n        }\n        this.field = field;\n        this.minWidth = minWidth;\n        this.maxWidth = maxWidth;\n        this.decimalPoint = decimalPoint;\n    }\n\n    print(context, buf) {\n        const value = context.getValue(this.field);\n        if (value === null) {\n            return false;\n        }\n        const symbols = context.symbols();\n        if (value === 0) {  // scale is zero if value is zero\n            if (this.minWidth > 0) {\n                if (this.decimalPoint) {\n                    buf.append(symbols.decimalSeparator());\n                }\n                for (let i = 0; i < this.minWidth; i++) {\n                    buf.append(symbols.zeroDigit());\n                }\n            }\n        } else {\n            let fraction = this.convertToFraction(value, symbols.zeroDigit());\n            const outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);\n            fraction = fraction.substr(0, outputScale);\n            if(fraction * 1 > 0 ) {\n                while (fraction.length > this.minWidth && fraction[fraction.length - 1] === '0') {\n                    fraction = fraction.substr(0, fraction.length - 1);\n                }\n            }\n            let str = fraction;\n            str = symbols.convertNumberToI18N(str);\n            if (this.decimalPoint) {\n                buf.append(symbols.decimalSeparator());\n            }\n            buf.append(str);\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        const effectiveMin = (context.isStrict() ? this.minWidth : 0);\n        const effectiveMax = (context.isStrict() ? this.maxWidth : 9);\n        const length = text.length;\n        if (position === length) {\n            // valid if whole field is optional, invalid if minimum width\n            return (effectiveMin > 0 ? ~position : position);\n        }\n        if (this.decimalPoint) {\n            if (text[position] !== context.symbols().decimalSeparator()) {\n                // valid if whole field is optional, invalid if minimum width\n                return (effectiveMin > 0 ? ~position : position);\n            }\n            position++;\n        }\n        const minEndPos = position + effectiveMin;\n        if (minEndPos > length) {\n            return ~position;  // need at least min width digits\n        }\n        const maxEndPos = Math.min(position + effectiveMax, length);\n        let total = 0;  // can use int because we are only parsing up to 9 digits\n        let pos = position;\n        while (pos < maxEndPos) {\n            const ch = text.charAt(pos++);\n            const digit = context.symbols().convertToDigit(ch);\n            if (digit < 0) {\n                if (pos < minEndPos) {\n                    return ~position;  // need at least min width digits\n                }\n                pos--;\n                break;\n            }\n            total = total * 10 + digit;\n        }\n        const moveLeft = pos - position;\n        const scale = Math.pow(10, moveLeft);\n        const value = this.convertFromFraction(total, scale);\n        return context.setParsedField(this.field, value, position, pos);\n    }\n\n    /**\n     *\n     * @param {Number} value  the value to convert, must be valid for this rule\n     * @param {String} zeroDigit  the character for zero\n     * @return {String} the value as a fraction within the range, from 0 to 1, not null\n     */\n    convertToFraction(value, zeroDigit) {\n        const range = this.field.range();\n        range.checkValidValue(value, this.field);\n        const _min = range.minimum();\n        const _range = range.maximum() - _min + 1;\n        const _value = value - _min;\n        const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);\n        let fraction = '' + _scaled;\n        while(fraction.length < 9){\n            fraction = zeroDigit + fraction;\n        }\n        return fraction;\n    }\n\n    /**\n     *\n     * @param {Number} total  the fraction to convert, not null\n     * @param {Number} scale  the scale, not null\n     * @return {Number} the value of the field, valid for this rule\n     * @throws DateTimeException if the value cannot be converted\n     */\n    convertFromFraction(total, scale) {\n        const range = this.field.range();\n        const _min = range.minimum();\n        const _range = range.maximum() - _min + 1;\n        const _value = MathUtil.intDiv((total * _range), scale);\n        return _value;\n    }\n\n    toString() {\n        const decimal = (this.decimalPoint ? ',DecimalPoint' : '');\n        return 'Fraction(' + this.field + ',' + this.minWidth + ',' + this.maxWidth + decimal + ')';\n    }\n}\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {requireNonNull} from '../../assert';\nimport {IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\n/**\n * TODO optimize FractionPrinterParser, fix documentation\n *\n * Prints and parses a numeric date-time field with optional padding.\n * @private\n */\nexport class FractionPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param {TemporalField} field  the field to output, not null\n     * @param {Number} minWidth  the minimum width to output, from 0 to 9\n     * @param {Number} maxWidth  the maximum width to output, from 0 to 9\n     * @param {boolean} decimalPoint  whether to output the localized decimal point symbol\n     */\n    constructor(field, minWidth, maxWidth, decimalPoint) {\n        requireNonNull(field, 'field');\n        if (field.range().isFixed() === false) {\n            throw new IllegalArgumentException('Field must have a fixed set of values: ' + field);\n        }\n        if (minWidth < 0 || minWidth > 9) {\n            throw new IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was ' + minWidth);\n        }\n        if (maxWidth < 1 || maxWidth > 9) {\n            throw new IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was ' + maxWidth);\n        }\n        if (maxWidth < minWidth) {\n            throw new IllegalArgumentException('Maximum width must exceed or equal the minimum width but ' +\n                maxWidth + ' < ' + minWidth);\n        }\n        this.field = field;\n        this.minWidth = minWidth;\n        this.maxWidth = maxWidth;\n        this.decimalPoint = decimalPoint;\n    }\n\n    print(context, buf) {\n        const value = context.getValue(this.field);\n        if (value === null) {\n            return false;\n        }\n        const symbols = context.symbols();\n        if (value === 0) {  // scale is zero if value is zero\n            if (this.minWidth > 0) {\n                if (this.decimalPoint) {\n                    buf.append(symbols.decimalSeparator());\n                }\n                for (let i = 0; i < this.minWidth; i++) {\n                    buf.append(symbols.zeroDigit());\n                }\n            }\n        } else {\n            let fraction = this.convertToFraction(value, symbols.zeroDigit());\n            const outputScale = Math.min(Math.max(fraction.length, this.minWidth), this.maxWidth);\n            fraction = fraction.substr(0, outputScale);\n            if(fraction * 1 > 0 ) {\n                while (fraction.length > this.minWidth && fraction[fraction.length - 1] === '0') {\n                    fraction = fraction.substr(0, fraction.length - 1);\n                }\n            }\n            let str = fraction;\n            str = symbols.convertNumberToI18N(str);\n            if (this.decimalPoint) {\n                buf.append(symbols.decimalSeparator());\n            }\n            buf.append(str);\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        const effectiveMin = (context.isStrict() ? this.minWidth : 0);\n        const effectiveMax = (context.isStrict() ? this.maxWidth : 9);\n        const length = text.length;\n        if (position === length) {\n            // valid if whole field is optional, invalid if minimum width\n            return (effectiveMin > 0 ? ~position : position);\n        }\n        if (this.decimalPoint) {\n            if (text[position] !== context.symbols().decimalSeparator()) {\n                // valid if whole field is optional, invalid if minimum width\n                return (effectiveMin > 0 ? ~position : position);\n            }\n            position++;\n        }\n        const minEndPos = position + effectiveMin;\n        if (minEndPos > length) {\n            return ~position;  // need at least min width digits\n        }\n        const maxEndPos = Math.min(position + effectiveMax, length);\n        let total = 0;  // can use int because we are only parsing up to 9 digits\n        let pos = position;\n        while (pos < maxEndPos) {\n            const ch = text.charAt(pos++);\n            const digit = context.symbols().convertToDigit(ch);\n            if (digit < 0) {\n                if (pos < minEndPos) {\n                    return ~position;  // need at least min width digits\n                }\n                pos--;\n                break;\n            }\n            total = total * 10 + digit;\n        }\n        const moveLeft = pos - position;\n        const scale = Math.pow(10, moveLeft);\n        const value = this.convertFromFraction(total, scale);\n        return context.setParsedField(this.field, value, position, pos);\n    }\n\n    /**\n     *\n     * @param {Number} value  the value to convert, must be valid for this rule\n     * @param {String} zeroDigit  the character for zero\n     * @return {String} the value as a fraction within the range, from 0 to 1, not null\n     */\n    convertToFraction(value, zeroDigit) {\n        const range = this.field.range();\n        range.checkValidValue(value, this.field);\n        const _min = range.minimum();\n        const _range = range.maximum() - _min + 1;\n        const _value = value - _min;\n        const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);\n        let fraction = '' + _scaled;\n        while(fraction.length < 9){\n            fraction = zeroDigit + fraction;\n        }\n        return fraction;\n    }\n\n    /**\n     *\n     * @param {Number} total  the fraction to convert, not null\n     * @param {Number} scale  the scale, not null\n     * @return {Number} the value of the field, valid for this rule\n     * @throws DateTimeException if the value cannot be converted\n     */\n    convertFromFraction(total, scale) {\n        const range = this.field.range();\n        const _min = range.minimum();\n        const _range = range.maximum() - _min + 1;\n        const _value = MathUtil.intDiv((total * _range), scale);\n        return _value;\n    }\n\n    toString() {\n        const decimal = (this.decimalPoint ? ',DecimalPoint' : '');\n        return 'Fraction(' + this.field + ',' + this.minWidth + ',' + this.maxWidth + decimal + ')';\n    }\n}\n\n",
     "static": true,
     "longname": "src/format/parser/FractionPrinterParser.js",
     "access": null,
@@ -37194,12 +37180,12 @@
     "memberof": "src/format/parser/FractionPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/FractionPrinterParser.js",
     "importStyle": "{FractionPrinterParser}",
     "description": "TODO optimize FractionPrinterParser, fix documentation\n\nPrints and parses a numeric date-time field with optional padding.",
-    "lineNumber": 16,
+    "lineNumber": 17,
     "interface": false
   },
   {
@@ -37213,7 +37199,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#constructor",
     "access": null,
     "description": "Constructor.",
-    "lineNumber": 26,
+    "lineNumber": 27,
     "params": [
       {
         "nullable": null,
@@ -37266,7 +37252,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#field",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 42,
     "undocument": true,
     "unknown": [
       {
@@ -37289,7 +37275,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#minWidth",
     "access": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 43,
     "undocument": true,
     "unknown": [
       {
@@ -37312,7 +37298,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#maxWidth",
     "access": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 44,
     "undocument": true,
     "unknown": [
       {
@@ -37335,7 +37321,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#decimalPoint",
     "access": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 45,
     "undocument": true,
     "unknown": [
       {
@@ -37360,7 +37346,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 48,
     "undocument": true,
     "unknown": [
       {
@@ -37399,7 +37385,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 81,
+    "lineNumber": 82,
     "undocument": true,
     "unknown": [
       {
@@ -37444,7 +37430,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#convertToFraction",
     "access": null,
     "description": "",
-    "lineNumber": 127,
+    "lineNumber": 128,
     "params": [
       {
         "nullable": null,
@@ -37487,7 +37473,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#convertFromFraction",
     "access": null,
     "description": "",
-    "lineNumber": 148,
+    "lineNumber": 149,
     "params": [
       {
         "nullable": null,
@@ -37538,7 +37524,7 @@
     "longname": "src/format/parser/FractionPrinterParser.js~FractionPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 156,
+    "lineNumber": 157,
     "undocument": true,
     "unknown": [
       {
@@ -37557,7 +37543,7 @@
     "__docId__": 1125,
     "kind": "file",
     "name": "src/format/parser/NumberPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\nimport {ArithmeticException, DateTimeException, IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\nimport {IsoChronology} from '../../chrono/IsoChronology';\n\nimport {SignStyle} from '../SignStyle';\n\n\nconst MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript\n\nconst EXCEED_POINTS = [\n    0,\n    10,\n    100,\n    1000,\n    10000,\n    100000,\n    1000000,\n    10000000,\n    100000000,\n    1000000000\n];\n\nexport class NumberPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param field  the field to print, not null\n     * @param minWidth  the minimum field width, from 1 to 19\n     * @param maxWidth  the maximum field width, from minWidth to 19\n     * @param signStyle  the positive/negative sign style, not null\n     * @param subsequentWidth  the width of subsequent non-negative numbers, 0 or greater,\n     *  -1 if fixed width due to active adjacent parsing\n     */\n    constructor(field, minWidth, maxWidth, signStyle, subsequentWidth=0){\n        this._field = field;\n        this._minWidth = minWidth;\n        this._maxWidth = maxWidth;\n        this._signStyle = signStyle;\n        this._subsequentWidth = subsequentWidth;\n    }\n\n    field(){ return this._field;}\n    minWidth(){ return this._minWidth;}\n    maxWidth(){ return this._maxWidth;}\n    signStyle(){ return this._signStyle;}\n\n    withFixedWidth() {\n        if (this._subsequentWidth === -1) {\n            return this;\n        }\n        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, -1);\n    }\n\n    withSubsequentWidth(subsequentWidth) {\n        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);\n    }\n\n    _isFixedWidth() {\n        return this._subsequentWidth === -1 ||\n            (this._subsequentWidth > 0 && this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE);\n    }\n\n    print(context, buf) {\n        const value = context.getValue(this._field);\n        if (value == null) {\n            return false;\n        }\n        const symbols = context.symbols();\n        let str = '' + Math.abs(value);\n        if (str.length > this._maxWidth) {\n            throw new DateTimeException('Field ' + this._field +\n                ' cannot be printed as the value ' + value +\n                ' exceeds the maximum print width of ' + this._maxWidth);\n        }\n        str = symbols.convertNumberToI18N(str);\n\n        if (value >= 0) {\n            switch (this._signStyle) {\n                case SignStyle.EXCEEDS_PAD:\n                    if (this._minWidth < MAX_WIDTH && value >= EXCEED_POINTS[this._minWidth]) {\n                        buf.append(symbols.positiveSign());\n                    }\n                    break;\n                case SignStyle.ALWAYS:\n                    buf.append(symbols.positiveSign());\n                    break;\n            }\n        } else {\n            switch (this._signStyle) {\n                case SignStyle.NORMAL:\n                case SignStyle.EXCEEDS_PAD:\n                case SignStyle.ALWAYS:\n                    buf.append(symbols.negativeSign());\n                    break;\n                case SignStyle.NOT_NEGATIVE:\n                    throw new DateTimeException('Field ' + this._field +\n                        ' cannot be printed as the value ' + value +\n                        ' cannot be negative according to the SignStyle');\n            }\n        }\n        for (let i = 0; i < this._minWidth - str.length; i++) {\n            buf.append(symbols.zeroDigit());\n        }\n        buf.append(str);\n        return true;\n    }\n\n    parse(context, text, position){\n        const length = text.length;\n        if (position === length) {\n            return ~position;\n        }\n        assert(position>=0 && position<length);\n        const sign = text.charAt(position);  // IOOBE if invalid position\n        let negative = false;\n        let positive = false;\n        if (sign === context.symbols().positiveSign()) {\n            if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {\n                return ~position;\n            }\n            positive = true;\n            position++;\n        } else if (sign === context.symbols().negativeSign()) {\n            if (this._signStyle.parse(false, context.isStrict(), this._minWidth === this._maxWidth) === false) {\n                return ~position;\n            }\n            negative = true;\n            position++;\n        } else {\n            if (this._signStyle === SignStyle.ALWAYS && context.isStrict()) {\n                return ~position;\n            }\n        }\n        const effMinWidth = (context.isStrict() || this._isFixedWidth() ? this._minWidth : 1);\n        const minEndPos = position + effMinWidth;\n        if (minEndPos > length) {\n            return ~position;\n        }\n        let effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);\n        let total = 0;\n        let pos = position;\n        for (let pass = 0; pass < 2; pass++) {\n            let maxEndPos = Math.min(pos + effMaxWidth, length);\n            while (pos < maxEndPos) {\n                let ch = text.charAt(pos++);\n                let digit = context.symbols().convertToDigit(ch);\n                if (digit < 0) {\n                    pos--;\n                    if (pos < minEndPos) {\n                        return ~position;  // need at least min width digits\n                    }\n                    break;\n                }\n                if ((pos - position) > MAX_WIDTH) {\n                    throw new ArithmeticException('number text exceeds length');\n                } else {\n                    total = total * 10 + digit;\n                }\n            }\n            if (this._subsequentWidth > 0 && pass === 0) {\n                // re-parse now we know the correct width\n                let parseLen = pos - position;\n                effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);\n                pos = position;\n                total = 0;\n            } else {\n                break;\n            }\n        }\n        if (negative) {\n            if (total === 0 && context.isStrict()) {\n                return ~(position - 1);  // minus zero not allowed\n            }\n            if(total !== 0) {\n                total = -total;\n            }\n        } else if (this._signStyle === SignStyle.EXCEEDS_PAD && context.isStrict()) {\n            let parseLen = pos - position;\n            if (positive) {\n                if (parseLen <= this._minWidth) {\n                    return ~(position - 1);  // '+' only parsed if minWidth exceeded\n                }\n            } else {\n                if (parseLen > this._minWidth) {\n                    return ~position;  // '+' must be parsed if minWidth exceeded\n                }\n            }\n        }\n        return this._setValue(context, total, position, pos);\n    }\n\n    /**\n     * Stores the value.\n     *\n     * @param context  the context to store into, not null\n     * @param value  the value\n     * @param errorPos  the position of the field being parsed\n     * @param successPos  the position after the field being parsed\n     * @return the new position\n     */\n    _setValue(context, value, errorPos, successPos) {\n        return context.setParsedField(this._field, value, errorPos, successPos);\n    }\n\n    toString() {\n        if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {\n            return 'Value(' + this._field + ')';\n        }\n        if (this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE) {\n            return 'Value(' + this._field + ',' + this._minWidth + ')';\n        }\n        return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';\n    }\n\n}\n//-----------------------------------------------------------------------\n/**\n * Prints and parses a reduced numeric date-time field.\n */\nexport class ReducedPrinterParser extends NumberPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param {TemporalField} field  the field to print, validated not null\n     * @param {number} width  the field width, from 1 to 10\n     * @param {number} maxWidth  the field max width, from 1 to 10\n     * @param {number} baseValue  the base value\n     * @param {ChronoLocalDate} baseDate  the base date\n     */\n    constructor(field, width, maxWidth, baseValue, baseDate) {\n        super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);\n        if (width < 1 || width > 10) {\n            throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);\n        }\n        if (maxWidth < 1 || maxWidth > 10) {\n            throw new IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was ' + maxWidth);\n        }\n        if (maxWidth < width) {\n            throw new IllegalArgumentException('The maxWidth must be greater than the width');\n        }\n        if (baseDate === null) {\n            if (field.range().isValidValue(baseValue) === false) {\n                throw new IllegalArgumentException('The base value must be within the range of the field');\n            }\n            if ((baseValue + EXCEED_POINTS[width]) > MathUtil.MAX_SAFE_INTEGER) {\n                throw new DateTimeException('Unable to add printer-parser as the range exceeds the capacity of an int');\n            }\n        }\n        this._baseValue = baseValue;\n        this._baseDate = baseDate;\n    }\n\n    /**\n     *\n     * @param {DateTimePrintContext} context\n     * @param {number} value\n     */\n    getValue(context, value) {\n        let absValue = Math.abs(value);\n        let baseValue = this._baseValue;\n        if (this._baseDate !== null) {\n            // TODO: in threetenbp the following line is used, but we dont have Chronology yet,\n            // let chrono = Chronology.from(context.getTemporal());\n            // so let's use IsoChronology for now\n            context.temporal();\n            let chrono = IsoChronology.INSTANCE;\n            baseValue = chrono.date(this._baseDate).get(this._field);\n        }\n        if (value >= baseValue && value < baseValue + EXCEED_POINTS[this._minWidth]) {\n            return absValue % EXCEED_POINTS[this._minWidth];\n        }\n        return absValue % EXCEED_POINTS[this._maxWidth];\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     * @param {number} value\n     * @param {number} errorPos\n     * @param {number} successPos\n     */\n    _setValue(context, value, errorPos, successPos) {\n        let baseValue = this._baseValue;\n        if (this._baseDate != null) {\n            let chrono = context.getEffectiveChronology();\n            baseValue = chrono.date(this._baseDate).get(this._field);\n            context.addChronologyChangedParser(this, value, errorPos, successPos);\n        }\n        let parseLen = successPos - errorPos;\n        if (parseLen === this._minWidth && value >= 0) {\n            let range = EXCEED_POINTS[this._minWidth];\n            let lastPart = baseValue % range;\n            let basePart = baseValue - lastPart;\n            if (baseValue > 0) {\n                value = basePart + value;\n            } else {\n                value = basePart - value;\n            }\n            if (value < baseValue) {\n                value += range;\n            }\n        }\n        return context.setParsedField(this._field, value, errorPos, successPos);\n    }\n\n    withFixedWidth() {\n        if (this._subsequentWidth === -1) {\n            return this;\n        }\n        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate, -1);\n    }\n\n    /**\n     *\n     * @param {number} subsequentWidth\n     * @returns {ReducedPrinterParser}\n     */\n    withSubsequentWidth(subsequentWidth) {\n        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate,\n            this._subsequentWidth + subsequentWidth);\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     */\n    isFixedWidth(context) {\n        if (context.isStrict() === false) {\n            return false;\n        }\n        return super.isFixedWidth(context);\n    }\n\n    toString() {\n        return 'ReducedValue(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + (this._baseDate != null ? this._baseDate : this._baseValue) + ')';\n    }\n}\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\nimport {ArithmeticException, DateTimeException, IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\nimport {IsoChronology} from '../../chrono/IsoChronology';\n\nimport {SignStyle} from '../SignStyle';\n\n\nconst MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript\n\nconst EXCEED_POINTS = [\n    0,\n    10,\n    100,\n    1000,\n    10000,\n    100000,\n    1000000,\n    10000000,\n    100000000,\n    1000000000\n];\n\n/**\n * @private\n */\nexport class NumberPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param field  the field to print, not null\n     * @param minWidth  the minimum field width, from 1 to 19\n     * @param maxWidth  the maximum field width, from minWidth to 19\n     * @param signStyle  the positive/negative sign style, not null\n     * @param subsequentWidth  the width of subsequent non-negative numbers, 0 or greater,\n     *  -1 if fixed width due to active adjacent parsing\n     */\n    constructor(field, minWidth, maxWidth, signStyle, subsequentWidth=0){\n        this._field = field;\n        this._minWidth = minWidth;\n        this._maxWidth = maxWidth;\n        this._signStyle = signStyle;\n        this._subsequentWidth = subsequentWidth;\n    }\n\n    field(){ return this._field;}\n    minWidth(){ return this._minWidth;}\n    maxWidth(){ return this._maxWidth;}\n    signStyle(){ return this._signStyle;}\n\n    withFixedWidth() {\n        if (this._subsequentWidth === -1) {\n            return this;\n        }\n        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, -1);\n    }\n\n    withSubsequentWidth(subsequentWidth) {\n        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);\n    }\n\n    _isFixedWidth() {\n        return this._subsequentWidth === -1 ||\n            (this._subsequentWidth > 0 && this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE);\n    }\n\n    print(context, buf) {\n        const value = context.getValue(this._field);\n        if (value == null) {\n            return false;\n        }\n        const symbols = context.symbols();\n        let str = '' + Math.abs(value);\n        if (str.length > this._maxWidth) {\n            throw new DateTimeException('Field ' + this._field +\n                ' cannot be printed as the value ' + value +\n                ' exceeds the maximum print width of ' + this._maxWidth);\n        }\n        str = symbols.convertNumberToI18N(str);\n\n        if (value >= 0) {\n            switch (this._signStyle) {\n                case SignStyle.EXCEEDS_PAD:\n                    if (this._minWidth < MAX_WIDTH && value >= EXCEED_POINTS[this._minWidth]) {\n                        buf.append(symbols.positiveSign());\n                    }\n                    break;\n                case SignStyle.ALWAYS:\n                    buf.append(symbols.positiveSign());\n                    break;\n            }\n        } else {\n            switch (this._signStyle) {\n                case SignStyle.NORMAL:\n                case SignStyle.EXCEEDS_PAD:\n                case SignStyle.ALWAYS:\n                    buf.append(symbols.negativeSign());\n                    break;\n                case SignStyle.NOT_NEGATIVE:\n                    throw new DateTimeException('Field ' + this._field +\n                        ' cannot be printed as the value ' + value +\n                        ' cannot be negative according to the SignStyle');\n            }\n        }\n        for (let i = 0; i < this._minWidth - str.length; i++) {\n            buf.append(symbols.zeroDigit());\n        }\n        buf.append(str);\n        return true;\n    }\n\n    parse(context, text, position){\n        const length = text.length;\n        if (position === length) {\n            return ~position;\n        }\n        assert(position>=0 && position<length);\n        const sign = text.charAt(position);  // IOOBE if invalid position\n        let negative = false;\n        let positive = false;\n        if (sign === context.symbols().positiveSign()) {\n            if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {\n                return ~position;\n            }\n            positive = true;\n            position++;\n        } else if (sign === context.symbols().negativeSign()) {\n            if (this._signStyle.parse(false, context.isStrict(), this._minWidth === this._maxWidth) === false) {\n                return ~position;\n            }\n            negative = true;\n            position++;\n        } else {\n            if (this._signStyle === SignStyle.ALWAYS && context.isStrict()) {\n                return ~position;\n            }\n        }\n        const effMinWidth = (context.isStrict() || this._isFixedWidth() ? this._minWidth : 1);\n        const minEndPos = position + effMinWidth;\n        if (minEndPos > length) {\n            return ~position;\n        }\n        let effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);\n        let total = 0;\n        let pos = position;\n        for (let pass = 0; pass < 2; pass++) {\n            let maxEndPos = Math.min(pos + effMaxWidth, length);\n            while (pos < maxEndPos) {\n                let ch = text.charAt(pos++);\n                let digit = context.symbols().convertToDigit(ch);\n                if (digit < 0) {\n                    pos--;\n                    if (pos < minEndPos) {\n                        return ~position;  // need at least min width digits\n                    }\n                    break;\n                }\n                if ((pos - position) > MAX_WIDTH) {\n                    throw new ArithmeticException('number text exceeds length');\n                } else {\n                    total = total * 10 + digit;\n                }\n            }\n            if (this._subsequentWidth > 0 && pass === 0) {\n                // re-parse now we know the correct width\n                let parseLen = pos - position;\n                effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);\n                pos = position;\n                total = 0;\n            } else {\n                break;\n            }\n        }\n        if (negative) {\n            if (total === 0 && context.isStrict()) {\n                return ~(position - 1);  // minus zero not allowed\n            }\n            if(total !== 0) {\n                total = -total;\n            }\n        } else if (this._signStyle === SignStyle.EXCEEDS_PAD && context.isStrict()) {\n            let parseLen = pos - position;\n            if (positive) {\n                if (parseLen <= this._minWidth) {\n                    return ~(position - 1);  // '+' only parsed if minWidth exceeded\n                }\n            } else {\n                if (parseLen > this._minWidth) {\n                    return ~position;  // '+' must be parsed if minWidth exceeded\n                }\n            }\n        }\n        return this._setValue(context, total, position, pos);\n    }\n\n    /**\n     * Stores the value.\n     *\n     * @param context  the context to store into, not null\n     * @param value  the value\n     * @param errorPos  the position of the field being parsed\n     * @param successPos  the position after the field being parsed\n     * @return the new position\n     */\n    _setValue(context, value, errorPos, successPos) {\n        return context.setParsedField(this._field, value, errorPos, successPos);\n    }\n\n    toString() {\n        if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {\n            return 'Value(' + this._field + ')';\n        }\n        if (this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE) {\n            return 'Value(' + this._field + ',' + this._minWidth + ')';\n        }\n        return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';\n    }\n\n}\n//-----------------------------------------------------------------------\n/**\n * Prints and parses a reduced numeric date-time field.\n * @private\n */\nexport class ReducedPrinterParser extends NumberPrinterParser {\n\n    /**\n     * Constructor.\n     *\n     * @param {TemporalField} field  the field to print, validated not null\n     * @param {number} width  the field width, from 1 to 10\n     * @param {number} maxWidth  the field max width, from 1 to 10\n     * @param {number} baseValue  the base value\n     * @param {ChronoLocalDate} baseDate  the base date\n     */\n    constructor(field, width, maxWidth, baseValue, baseDate) {\n        super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);\n        if (width < 1 || width > 10) {\n            throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);\n        }\n        if (maxWidth < 1 || maxWidth > 10) {\n            throw new IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was ' + maxWidth);\n        }\n        if (maxWidth < width) {\n            throw new IllegalArgumentException('The maxWidth must be greater than the width');\n        }\n        if (baseDate === null) {\n            if (field.range().isValidValue(baseValue) === false) {\n                throw new IllegalArgumentException('The base value must be within the range of the field');\n            }\n            if ((baseValue + EXCEED_POINTS[width]) > MathUtil.MAX_SAFE_INTEGER) {\n                throw new DateTimeException('Unable to add printer-parser as the range exceeds the capacity of an int');\n            }\n        }\n        this._baseValue = baseValue;\n        this._baseDate = baseDate;\n    }\n\n    /**\n     *\n     * @param {DateTimePrintContext} context\n     * @param {number} value\n     */\n    getValue(context, value) {\n        let absValue = Math.abs(value);\n        let baseValue = this._baseValue;\n        if (this._baseDate !== null) {\n            // TODO: in threetenbp the following line is used, but we dont have Chronology yet,\n            // let chrono = Chronology.from(context.getTemporal());\n            // so let's use IsoChronology for now\n            context.temporal();\n            let chrono = IsoChronology.INSTANCE;\n            baseValue = chrono.date(this._baseDate).get(this._field);\n        }\n        if (value >= baseValue && value < baseValue + EXCEED_POINTS[this._minWidth]) {\n            return absValue % EXCEED_POINTS[this._minWidth];\n        }\n        return absValue % EXCEED_POINTS[this._maxWidth];\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     * @param {number} value\n     * @param {number} errorPos\n     * @param {number} successPos\n     */\n    _setValue(context, value, errorPos, successPos) {\n        let baseValue = this._baseValue;\n        if (this._baseDate != null) {\n            let chrono = context.getEffectiveChronology();\n            baseValue = chrono.date(this._baseDate).get(this._field);\n            context.addChronologyChangedParser(this, value, errorPos, successPos);\n        }\n        let parseLen = successPos - errorPos;\n        if (parseLen === this._minWidth && value >= 0) {\n            let range = EXCEED_POINTS[this._minWidth];\n            let lastPart = baseValue % range;\n            let basePart = baseValue - lastPart;\n            if (baseValue > 0) {\n                value = basePart + value;\n            } else {\n                value = basePart - value;\n            }\n            if (value < baseValue) {\n                value += range;\n            }\n        }\n        return context.setParsedField(this._field, value, errorPos, successPos);\n    }\n\n    withFixedWidth() {\n        if (this._subsequentWidth === -1) {\n            return this;\n        }\n        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate, -1);\n    }\n\n    /**\n     *\n     * @param {number} subsequentWidth\n     * @returns {ReducedPrinterParser}\n     */\n    withSubsequentWidth(subsequentWidth) {\n        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate,\n            this._subsequentWidth + subsequentWidth);\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     */\n    isFixedWidth(context) {\n        if (context.isStrict() === false) {\n            return false;\n        }\n        return super.isFixedWidth(context);\n    }\n\n    toString() {\n        return 'ReducedValue(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + (this._baseDate != null ? this._baseDate : this._baseValue) + ')';\n    }\n}\n\n",
     "static": true,
     "longname": "src/format/parser/NumberPrinterParser.js",
     "access": null,
@@ -37623,19 +37609,12 @@
     "memberof": "src/format/parser/NumberPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/NumberPrinterParser.js",
     "importStyle": "{NumberPrinterParser}",
-    "description": null,
-    "lineNumber": 31,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 34,
     "interface": false
   },
   {
@@ -37649,7 +37628,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#constructor",
     "access": null,
     "description": "Constructor.",
-    "lineNumber": 43,
+    "lineNumber": 46,
     "params": [
       {
         "nullable": null,
@@ -37712,7 +37691,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_field",
     "access": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 47,
     "undocument": true,
     "unknown": [
       {
@@ -37735,7 +37714,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_minWidth",
     "access": null,
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 48,
     "undocument": true,
     "unknown": [
       {
@@ -37758,7 +37737,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_maxWidth",
     "access": null,
     "description": null,
-    "lineNumber": 46,
+    "lineNumber": 49,
     "undocument": true,
     "unknown": [
       {
@@ -37781,7 +37760,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_signStyle",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 50,
     "undocument": true,
     "unknown": [
       {
@@ -37804,7 +37783,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_subsequentWidth",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 51,
     "undocument": true,
     "unknown": [
       {
@@ -37829,7 +37808,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#field",
     "access": null,
     "description": null,
-    "lineNumber": 51,
+    "lineNumber": 54,
     "undocument": true,
     "unknown": [
       {
@@ -37855,7 +37834,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#minWidth",
     "access": null,
     "description": null,
-    "lineNumber": 52,
+    "lineNumber": 55,
     "undocument": true,
     "unknown": [
       {
@@ -37881,7 +37860,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#maxWidth",
     "access": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 56,
     "undocument": true,
     "unknown": [
       {
@@ -37907,7 +37886,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#signStyle",
     "access": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 57,
     "undocument": true,
     "unknown": [
       {
@@ -37933,7 +37912,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#withFixedWidth",
     "access": null,
     "description": null,
-    "lineNumber": 56,
+    "lineNumber": 59,
     "undocument": true,
     "unknown": [
       {
@@ -37959,7 +37938,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#withSubsequentWidth",
     "access": null,
     "description": null,
-    "lineNumber": 63,
+    "lineNumber": 66,
     "undocument": true,
     "unknown": [
       {
@@ -37992,7 +37971,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_isFixedWidth",
     "access": null,
     "description": null,
-    "lineNumber": 67,
+    "lineNumber": 70,
     "undocument": true,
     "unknown": [
       {
@@ -38018,7 +37997,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 72,
+    "lineNumber": 75,
     "undocument": true,
     "unknown": [
       {
@@ -38057,7 +38036,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 117,
+    "lineNumber": 120,
     "undocument": true,
     "unknown": [
       {
@@ -38102,7 +38081,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#_setValue",
     "access": null,
     "description": "Stores the value.",
-    "lineNumber": 210,
+    "lineNumber": 213,
     "params": [
       {
         "nullable": null,
@@ -38165,7 +38144,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~NumberPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 214,
+    "lineNumber": 217,
     "undocument": true,
     "unknown": [
       {
@@ -38187,12 +38166,12 @@
     "memberof": "src/format/parser/NumberPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/NumberPrinterParser.js",
     "importStyle": "{ReducedPrinterParser}",
     "description": "Prints and parses a reduced numeric date-time field.",
-    "lineNumber": 229,
+    "lineNumber": 233,
     "interface": false,
     "extends": [
       "NumberPrinterParser"
@@ -38209,7 +38188,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#constructor",
     "access": null,
     "description": "Constructor.",
-    "lineNumber": 240,
+    "lineNumber": 244,
     "params": [
       {
         "nullable": null,
@@ -38272,7 +38251,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#_baseValue",
     "access": null,
     "description": null,
-    "lineNumber": 259,
+    "lineNumber": 263,
     "undocument": true,
     "unknown": [
       {
@@ -38295,7 +38274,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#_baseDate",
     "access": null,
     "description": null,
-    "lineNumber": 260,
+    "lineNumber": 264,
     "undocument": true,
     "unknown": [
       {
@@ -38320,7 +38299,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#getValue",
     "access": null,
     "description": "",
-    "lineNumber": 268,
+    "lineNumber": 272,
     "params": [
       {
         "nullable": null,
@@ -38360,7 +38339,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#_setValue",
     "access": null,
     "description": "",
-    "lineNumber": 292,
+    "lineNumber": 296,
     "params": [
       {
         "nullable": null,
@@ -38420,7 +38399,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#withFixedWidth",
     "access": null,
     "description": null,
-    "lineNumber": 316,
+    "lineNumber": 320,
     "undocument": true,
     "unknown": [
       {
@@ -38446,7 +38425,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#withSubsequentWidth",
     "access": null,
     "description": "",
-    "lineNumber": 328,
+    "lineNumber": 332,
     "unknown": [
       {
         "tagName": "@returns",
@@ -38485,7 +38464,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#isFixedWidth",
     "access": null,
     "description": "",
-    "lineNumber": 337,
+    "lineNumber": 341,
     "params": [
       {
         "nullable": null,
@@ -38515,7 +38494,7 @@
     "longname": "src/format/parser/NumberPrinterParser.js~ReducedPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 344,
+    "lineNumber": 348,
     "undocument": true,
     "unknown": [
       {
@@ -38534,7 +38513,7 @@
     "__docId__": 1156,
     "kind": "file",
     "name": "src/format/parser/OffsetIdPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {requireNonNull} from '../../assert';\nimport {IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\nimport {ChronoField} from '../../temporal/ChronoField';\n\n//-----------------------------------------------------------------------\nconst PATTERNS = [\n    '+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'\n];\n/**\n * Prints or parses an offset ID.\n */\nexport class OffsetIdPrinterParser  {\n\n    /**\n     * Constructor.\n     *\n     * @param {string} noOffsetText  the text to use for UTC, not null\n     * @param {string} pattern  the pattern\n     */\n    constructor(noOffsetText, pattern) {\n        requireNonNull(noOffsetText, 'noOffsetText');\n        requireNonNull(pattern, 'pattern');\n        this.noOffsetText = noOffsetText;\n        this.type = this._checkPattern(pattern);\n    }\n\n    /**\n     * @param {String} pattern\n     * @return {number}\n     */\n    _checkPattern(pattern) {\n        for (let i = 0; i < PATTERNS.length; i++) {\n            if (PATTERNS[i] === pattern) {\n                return i;\n            }\n        }\n        throw new IllegalArgumentException('Invalid zone offset pattern: ' + pattern);\n    }\n\n    /**\n     * @param {DateTimePrintContext} context\n     * @param {StringBuilder} buf\n     * @return {boolean}\n     */\n    print(context, buf) {\n        const offsetSecs = context.getValue(ChronoField.OFFSET_SECONDS);\n        if (offsetSecs == null) {\n            return false;\n        }\n        const totalSecs = MathUtil.safeToInt(offsetSecs);\n        if (totalSecs === 0) {\n            buf.append(this.noOffsetText);\n        } else {\n            const absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));  // anything larger than 99 silently dropped\n            const absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));\n            const absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));\n            const bufPos = buf.length();\n            let output = absHours;\n            buf.append(totalSecs < 0 ? '-' : '+')\n                .appendChar((MathUtil.intDiv(absHours, 10) + '0')).appendChar(MathUtil.intMod(absHours, 10) + '0');\n            if (this.type >= 3 || (this.type >= 1 && absMinutes > 0)) {\n                buf.append((this.type % 2) === 0 ? ':' : '')\n                    .appendChar((MathUtil.intDiv(absMinutes, 10) + '0')).appendChar((absMinutes % 10 + '0'));\n                output += absMinutes;\n                if (this.type >= 7 || (this.type >= 5 && absSeconds > 0)) {\n                    buf.append((this.type % 2) === 0 ? ':' : '')\n                        .appendChar((MathUtil.intDiv(absSeconds, 10) + '0')).appendChar((absSeconds % 10 + '0'));\n                    output += absSeconds;\n                }\n            }\n            if (output === 0) {\n                buf.setLength(bufPos);\n                buf.append(this.noOffsetText);\n            }\n        }\n        return true;\n    }\n\n    /**\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} position\n     * @return {number}\n     */\n    parse(context, text, position) {\n        const length = text.length;\n        const noOffsetLen = this.noOffsetText.length;\n        if (noOffsetLen === 0) {\n            if (position === length) {\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position);\n            }\n        } else {\n            if (position === length) {\n                return ~position;\n            }\n            if (context.subSequenceEquals(text, position, this.noOffsetText, 0, noOffsetLen)) {\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);\n            }\n        }\n\n        // parse normal plus/minus offset\n        const sign = text[position];  // IOOBE if invalid position\n        if (sign === '+' || sign === '-') {\n            // starts\n            const negative = (sign === '-' ? -1 : 1);\n            const array = [0,0,0,0];\n            array[0] = position + 1;\n            if ((this._parseNumber(array, 1, text, true) ||\n                this._parseNumber(array, 2, text, this.type >=3) ||\n                this._parseNumber(array, 3, text, false)) === false) {\n                // success\n                const offsetSecs = MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, offsetSecs, position, array[0]);\n            }\n        }\n        // handle special case of empty no offset text\n        if (noOffsetLen === 0) {\n            return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);\n        }\n        return ~position;\n    }\n\n    /**\n     * Parse a two digit zero-prefixed number.\n     *\n     * @param {number[]} array  the array of parsed data, 0=pos,1=hours,2=mins,3=secs, not null\n     * @param {number} arrayIndex  the index to parse the value into\n     * @param {string} parseText  the offset ID, not null\n     * @param {boolean} required  whether this number is required\n     * @return {boolean} true if an error occurred\n     */\n    _parseNumber(array, arrayIndex, parseText, required) {\n        if ((this.type + 3) / 2 < arrayIndex) {\n            return false;  // ignore seconds/minutes\n        }\n        let pos = array[0];\n        if ((this.type % 2) === 0 && arrayIndex > 1) {\n            if (pos + 1 > parseText.length || parseText[pos] !== ':') {\n                return required;\n            }\n            pos++;\n        }\n        if (pos + 2 > parseText.length) {\n            return required;\n        }\n        let ch1 = parseText[pos++];\n        let ch2 = parseText[pos++];\n        if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {\n            return required;\n        }\n        const value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);\n        if (value < 0 || value > 59) {\n            return required;\n        }\n        array[arrayIndex] = value;\n        array[0] = pos;\n        return false;\n    }\n\n\n    toString() {\n        const converted = this.noOffsetText.replace('\\'', '\\'\\'');\n        return 'Offset(' + PATTERNS[this.type] + ',\\'' + converted + '\\')';\n    }\n}\nOffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');\nOffsetIdPrinterParser.PATTERNS = PATTERNS;\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {requireNonNull} from '../../assert';\nimport {IllegalArgumentException} from '../../errors';\nimport {MathUtil} from '../../MathUtil';\n\nimport {ChronoField} from '../../temporal/ChronoField';\n\n//-----------------------------------------------------------------------\nconst PATTERNS = [\n    '+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'\n];\n/**\n * Prints or parses an offset ID.\n * @private\n */\nexport class OffsetIdPrinterParser  {\n\n    /**\n     * Constructor.\n     *\n     * @param {string} noOffsetText  the text to use for UTC, not null\n     * @param {string} pattern  the pattern\n     */\n    constructor(noOffsetText, pattern) {\n        requireNonNull(noOffsetText, 'noOffsetText');\n        requireNonNull(pattern, 'pattern');\n        this.noOffsetText = noOffsetText;\n        this.type = this._checkPattern(pattern);\n    }\n\n    /**\n     * @param {String} pattern\n     * @return {number}\n     */\n    _checkPattern(pattern) {\n        for (let i = 0; i < PATTERNS.length; i++) {\n            if (PATTERNS[i] === pattern) {\n                return i;\n            }\n        }\n        throw new IllegalArgumentException('Invalid zone offset pattern: ' + pattern);\n    }\n\n    /**\n     * @param {DateTimePrintContext} context\n     * @param {StringBuilder} buf\n     * @return {boolean}\n     */\n    print(context, buf) {\n        const offsetSecs = context.getValue(ChronoField.OFFSET_SECONDS);\n        if (offsetSecs == null) {\n            return false;\n        }\n        const totalSecs = MathUtil.safeToInt(offsetSecs);\n        if (totalSecs === 0) {\n            buf.append(this.noOffsetText);\n        } else {\n            const absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));  // anything larger than 99 silently dropped\n            const absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));\n            const absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));\n            const bufPos = buf.length();\n            let output = absHours;\n            buf.append(totalSecs < 0 ? '-' : '+')\n                .appendChar((MathUtil.intDiv(absHours, 10) + '0')).appendChar(MathUtil.intMod(absHours, 10) + '0');\n            if (this.type >= 3 || (this.type >= 1 && absMinutes > 0)) {\n                buf.append((this.type % 2) === 0 ? ':' : '')\n                    .appendChar((MathUtil.intDiv(absMinutes, 10) + '0')).appendChar((absMinutes % 10 + '0'));\n                output += absMinutes;\n                if (this.type >= 7 || (this.type >= 5 && absSeconds > 0)) {\n                    buf.append((this.type % 2) === 0 ? ':' : '')\n                        .appendChar((MathUtil.intDiv(absSeconds, 10) + '0')).appendChar((absSeconds % 10 + '0'));\n                    output += absSeconds;\n                }\n            }\n            if (output === 0) {\n                buf.setLength(bufPos);\n                buf.append(this.noOffsetText);\n            }\n        }\n        return true;\n    }\n\n    /**\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} position\n     * @return {number}\n     */\n    parse(context, text, position) {\n        const length = text.length;\n        const noOffsetLen = this.noOffsetText.length;\n        if (noOffsetLen === 0) {\n            if (position === length) {\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position);\n            }\n        } else {\n            if (position === length) {\n                return ~position;\n            }\n            if (context.subSequenceEquals(text, position, this.noOffsetText, 0, noOffsetLen)) {\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);\n            }\n        }\n\n        // parse normal plus/minus offset\n        const sign = text[position];  // IOOBE if invalid position\n        if (sign === '+' || sign === '-') {\n            // starts\n            const negative = (sign === '-' ? -1 : 1);\n            const array = [0,0,0,0];\n            array[0] = position + 1;\n            if ((this._parseNumber(array, 1, text, true) ||\n                this._parseNumber(array, 2, text, this.type >=3) ||\n                this._parseNumber(array, 3, text, false)) === false) {\n                // success\n                const offsetSecs = MathUtil.safeZero(negative * (array[1] * 3600 + array[2] * 60 + array[3]));\n                return context.setParsedField(ChronoField.OFFSET_SECONDS, offsetSecs, position, array[0]);\n            }\n        }\n        // handle special case of empty no offset text\n        if (noOffsetLen === 0) {\n            return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position + noOffsetLen);\n        }\n        return ~position;\n    }\n\n    /**\n     * Parse a two digit zero-prefixed number.\n     *\n     * @param {number[]} array  the array of parsed data, 0=pos,1=hours,2=mins,3=secs, not null\n     * @param {number} arrayIndex  the index to parse the value into\n     * @param {string} parseText  the offset ID, not null\n     * @param {boolean} required  whether this number is required\n     * @return {boolean} true if an error occurred\n     */\n    _parseNumber(array, arrayIndex, parseText, required) {\n        if ((this.type + 3) / 2 < arrayIndex) {\n            return false;  // ignore seconds/minutes\n        }\n        let pos = array[0];\n        if ((this.type % 2) === 0 && arrayIndex > 1) {\n            if (pos + 1 > parseText.length || parseText[pos] !== ':') {\n                return required;\n            }\n            pos++;\n        }\n        if (pos + 2 > parseText.length) {\n            return required;\n        }\n        let ch1 = parseText[pos++];\n        let ch2 = parseText[pos++];\n        if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {\n            return required;\n        }\n        const value = (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);\n        if (value < 0 || value > 59) {\n            return required;\n        }\n        array[arrayIndex] = value;\n        array[0] = pos;\n        return false;\n    }\n\n\n    toString() {\n        const converted = this.noOffsetText.replace('\\'', '\\'\\'');\n        return 'Offset(' + PATTERNS[this.type] + ',\\'' + converted + '\\')';\n    }\n}\nOffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');\nOffsetIdPrinterParser.PATTERNS = PATTERNS;\n\n",
     "static": true,
     "longname": "src/format/parser/OffsetIdPrinterParser.js",
     "access": null,
@@ -38574,12 +38553,12 @@
     "memberof": "src/format/parser/OffsetIdPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/OffsetIdPrinterParser.js",
     "importStyle": "{OffsetIdPrinterParser}",
     "description": "Prints or parses an offset ID.",
-    "lineNumber": 20,
+    "lineNumber": 21,
     "interface": false
   },
   {
@@ -38593,7 +38572,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#constructor",
     "access": null,
     "description": "Constructor.",
-    "lineNumber": 28,
+    "lineNumber": 29,
     "params": [
       {
         "nullable": null,
@@ -38626,7 +38605,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#noOffsetText",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 32,
     "undocument": true,
     "unknown": [
       {
@@ -38649,7 +38628,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#type",
     "access": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 33,
     "undocument": true,
     "unknown": [
       {
@@ -38674,7 +38653,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#_checkPattern",
     "access": null,
     "description": "",
-    "lineNumber": 39,
+    "lineNumber": 40,
     "params": [
       {
         "nullable": null,
@@ -38707,7 +38686,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#print",
     "access": null,
     "description": "",
-    "lineNumber": 53,
+    "lineNumber": 54,
     "params": [
       {
         "nullable": null,
@@ -38750,7 +38729,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#parse",
     "access": null,
     "description": "",
-    "lineNumber": 93,
+    "lineNumber": 94,
     "params": [
       {
         "nullable": null,
@@ -38803,7 +38782,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#_parseNumber",
     "access": null,
     "description": "Parse a two digit zero-prefixed number.",
-    "lineNumber": 140,
+    "lineNumber": 141,
     "params": [
       {
         "nullable": null,
@@ -38866,7 +38845,7 @@
     "longname": "src/format/parser/OffsetIdPrinterParser.js~OffsetIdPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 169,
+    "lineNumber": 170,
     "undocument": true,
     "unknown": [
       {
@@ -38885,7 +38864,7 @@
     "__docId__": 1167,
     "kind": "file",
     "name": "src/format/parser/PadPrinterParserDecorator.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\n\nimport {DateTimeException} from '../../errors';\n\n/**\n * Pads the output to a fixed width.\n */\nexport class PadPrinterParserDecorator {\n\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer, not null\n     * @param padWidth  the width to pad to, 1 or greater\n     * @param padChar  the pad character\n     */\n    constructor(printerParser, padWidth, padChar) {\n        // input checked by DateTimeFormatterBuilder\n        this._printerParser = printerParser;\n        this._padWidth = padWidth;\n        this._padChar = padChar;\n    }\n\n    print(context, buf) {\n        const preLen = buf.length();\n        if (this._printerParser.print(context, buf) === false) {\n            return false;\n        }\n        const len = buf.length() - preLen;\n        if (len > this._padWidth) {\n            throw new DateTimeException(\n                `Cannot print as output of ${len} characters exceeds pad width of ${this._padWidth}`);\n        }\n        for (let i = 0; i < this._padWidth - len; i++) {\n            buf.insert(preLen, this._padChar);\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        // cache context before changed by decorated parser\n        const strict = context.isStrict();\n        const caseSensitive = context.isCaseSensitive();\n        // parse\n        assert(!(position > text.length));\n        assert(position >= 0);\n        if (position === text.length) {\n            return ~position;  // no more characters in the string\n        }\n        let endPos = position + this._padWidth;\n        if (endPos > text.length) {\n            if (strict) {\n                return ~position;  // not enough characters in the string to meet the parse width\n            }\n            endPos = text.length;\n        }\n        let pos = position;\n        while (pos < endPos &&\n        (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {\n            pos++;\n        }\n        text = text.substring(0, endPos);\n        const resultPos = this._printerParser.parse(context, text, pos);\n        if (resultPos !== endPos && strict) {\n            return ~(position + pos);  // parse of decorated field didn't parse to the end\n        }\n        return resultPos;\n    }\n\n    toString() {\n        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : ',\\'' + this._padChar + '\\')')}`;\n    }\n}\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\n\nimport {DateTimeException} from '../../errors';\n\n/**\n * Pads the output to a fixed width.\n * @private\n */\nexport class PadPrinterParserDecorator {\n\n    /**\n     * Constructor.\n     *\n     * @param printerParser  the printer, not null\n     * @param padWidth  the width to pad to, 1 or greater\n     * @param padChar  the pad character\n     */\n    constructor(printerParser, padWidth, padChar) {\n        // input checked by DateTimeFormatterBuilder\n        this._printerParser = printerParser;\n        this._padWidth = padWidth;\n        this._padChar = padChar;\n    }\n\n    print(context, buf) {\n        const preLen = buf.length();\n        if (this._printerParser.print(context, buf) === false) {\n            return false;\n        }\n        const len = buf.length() - preLen;\n        if (len > this._padWidth) {\n            throw new DateTimeException(\n                `Cannot print as output of ${len} characters exceeds pad width of ${this._padWidth}`);\n        }\n        for (let i = 0; i < this._padWidth - len; i++) {\n            buf.insert(preLen, this._padChar);\n        }\n        return true;\n    }\n\n    parse(context, text, position) {\n        // cache context before changed by decorated parser\n        const strict = context.isStrict();\n        const caseSensitive = context.isCaseSensitive();\n        // parse\n        assert(!(position > text.length));\n        assert(position >= 0);\n        if (position === text.length) {\n            return ~position;  // no more characters in the string\n        }\n        let endPos = position + this._padWidth;\n        if (endPos > text.length) {\n            if (strict) {\n                return ~position;  // not enough characters in the string to meet the parse width\n            }\n            endPos = text.length;\n        }\n        let pos = position;\n        while (pos < endPos &&\n        (caseSensitive ? text[pos] === this._padChar : context.charEquals(text[pos], this._padChar))) {\n            pos++;\n        }\n        text = text.substring(0, endPos);\n        const resultPos = this._printerParser.parse(context, text, pos);\n        if (resultPos !== endPos && strict) {\n            return ~(position + pos);  // parse of decorated field didn't parse to the end\n        }\n        return resultPos;\n    }\n\n    toString() {\n        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : ',\\'' + this._padChar + '\\')')}`;\n    }\n}\n\n",
     "static": true,
     "longname": "src/format/parser/PadPrinterParserDecorator.js",
     "access": null,
@@ -38899,12 +38878,12 @@
     "memberof": "src/format/parser/PadPrinterParserDecorator.js",
     "static": true,
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/PadPrinterParserDecorator.js",
     "importStyle": "{PadPrinterParserDecorator}",
     "description": "Pads the output to a fixed width.",
-    "lineNumber": 14,
+    "lineNumber": 15,
     "interface": false
   },
   {
@@ -38918,7 +38897,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#constructor",
     "access": null,
     "description": "Constructor.",
-    "lineNumber": 23,
+    "lineNumber": 24,
     "params": [
       {
         "nullable": null,
@@ -38961,7 +38940,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#_printerParser",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 26,
     "undocument": true,
     "unknown": [
       {
@@ -38984,7 +38963,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#_padWidth",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 27,
     "undocument": true,
     "unknown": [
       {
@@ -39007,7 +38986,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#_padChar",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 28,
     "undocument": true,
     "unknown": [
       {
@@ -39032,7 +39011,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#print",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 31,
     "undocument": true,
     "unknown": [
       {
@@ -39071,7 +39050,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#parse",
     "access": null,
     "description": null,
-    "lineNumber": 46,
+    "lineNumber": 47,
     "undocument": true,
     "unknown": [
       {
@@ -39116,7 +39095,7 @@
     "longname": "src/format/parser/PadPrinterParserDecorator.js~PadPrinterParserDecorator#toString",
     "access": null,
     "description": null,
-    "lineNumber": 76,
+    "lineNumber": 77,
     "undocument": true,
     "unknown": [
       {
@@ -39135,7 +39114,7 @@
     "__docId__": 1176,
     "kind": "file",
     "name": "src/format/parser/SettingsParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport { Enum } from '../../Enum';\n\nexport class SettingsParser extends Enum {\n\n    print(/*context, buf*/) {\n        return true;  // nothing to do here\n    }\n\n    parse(context, text, position) {\n        // using ordinals to avoid javac synthetic inner class\n        switch (this) {\n            case SettingsParser.SENSITIVE:   context.setCaseSensitive(true); break;\n            case SettingsParser.INSENSITIVE: context.setCaseSensitive(false); break;\n            case SettingsParser.STRICT:      context.setStrict(true); break;\n            case SettingsParser.LENIENT:     context.setStrict(false); break;\n        }\n        return position;\n    }\n\n    toString() {\n        // using ordinals to avoid javac synthetic inner class\n        switch (this) {\n            case SettingsParser.SENSITIVE:   return 'ParseCaseSensitive(true)';\n            case SettingsParser.INSENSITIVE: return 'ParseCaseSensitive(false)';\n            case SettingsParser.STRICT:      return 'ParseStrict(true)';\n            case SettingsParser.LENIENT:     return 'ParseStrict(false)';\n        }\n    }\n}\n\nSettingsParser.SENSITIVE = new SettingsParser('SENSITIVE');\nSettingsParser.INSENSITIVE = new SettingsParser('INSENSITIVE');\nSettingsParser.STRICT = new SettingsParser('STRICT');\nSettingsParser.LENIENT = new SettingsParser('LENIENT');\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport { Enum } from '../../Enum';\n\n/**\n * @private\n */\nexport class SettingsParser extends Enum {\n\n    print(/*context, buf*/) {\n        return true;  // nothing to do here\n    }\n\n    parse(context, text, position) {\n        // using ordinals to avoid javac synthetic inner class\n        switch (this) {\n            case SettingsParser.SENSITIVE:   context.setCaseSensitive(true); break;\n            case SettingsParser.INSENSITIVE: context.setCaseSensitive(false); break;\n            case SettingsParser.STRICT:      context.setStrict(true); break;\n            case SettingsParser.LENIENT:     context.setStrict(false); break;\n        }\n        return position;\n    }\n\n    toString() {\n        // using ordinals to avoid javac synthetic inner class\n        switch (this) {\n            case SettingsParser.SENSITIVE:   return 'ParseCaseSensitive(true)';\n            case SettingsParser.INSENSITIVE: return 'ParseCaseSensitive(false)';\n            case SettingsParser.STRICT:      return 'ParseStrict(true)';\n            case SettingsParser.LENIENT:     return 'ParseStrict(false)';\n        }\n    }\n}\n\nSettingsParser.SENSITIVE = new SettingsParser('SENSITIVE');\nSettingsParser.INSENSITIVE = new SettingsParser('INSENSITIVE');\nSettingsParser.STRICT = new SettingsParser('STRICT');\nSettingsParser.LENIENT = new SettingsParser('LENIENT');\n\n",
     "static": true,
     "longname": "src/format/parser/SettingsParser.js",
     "access": null,
@@ -39149,19 +39128,12 @@
     "memberof": "src/format/parser/SettingsParser.js",
     "static": true,
     "longname": "src/format/parser/SettingsParser.js~SettingsParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/SettingsParser.js",
     "importStyle": "{SettingsParser}",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "",
+    "lineNumber": 12,
     "interface": false,
     "extends": [
       "src/Enum.js~Enum"
@@ -39178,7 +39150,7 @@
     "longname": "src/format/parser/SettingsParser.js~SettingsParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 14,
     "undocument": true,
     "unknown": [
       {
@@ -39204,7 +39176,7 @@
     "longname": "src/format/parser/SettingsParser.js~SettingsParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 18,
     "undocument": true,
     "unknown": [
       {
@@ -39249,7 +39221,7 @@
     "longname": "src/format/parser/SettingsParser.js~SettingsParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -39268,7 +39240,7 @@
     "__docId__": 1181,
     "kind": "file",
     "name": "src/format/parser/StringLiteralPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\n\n/**\n * Prints or parses a string literal.\n */\nexport class StringLiteralPrinterParser {\n\n    constructor(literal) {\n        this._literal = literal;\n    }\n\n    print(context, buf) {\n        buf.append(this._literal);\n        return true;\n    }\n\n    parse(context, text, position) {\n        const length = text.length;\n        assert(!(position > length || position < 0));\n\n        if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {\n            return ~position;\n        }\n        return position + this._literal.length;\n    }\n\n    toString() {\n        let converted = this._literal.replace(\"'\", \"''\");\n        return '\\'' + converted + '\\'';\n    }\n}\n\n",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {assert} from '../../assert';\n\n/**\n * Prints or parses a string literal.\n * @private\n */\nexport class StringLiteralPrinterParser {\n\n    constructor(literal) {\n        this._literal = literal;\n    }\n\n    print(context, buf) {\n        buf.append(this._literal);\n        return true;\n    }\n\n    parse(context, text, position) {\n        const length = text.length;\n        assert(!(position > length || position < 0));\n\n        if (context.subSequenceEquals(text, position, this._literal, 0, this._literal.length) === false) {\n            return ~position;\n        }\n        return position + this._literal.length;\n    }\n\n    toString() {\n        let converted = this._literal.replace(\"'\", \"''\");\n        return '\\'' + converted + '\\'';\n    }\n}\n\n",
     "static": true,
     "longname": "src/format/parser/StringLiteralPrinterParser.js",
     "access": null,
@@ -39282,12 +39254,12 @@
     "memberof": "src/format/parser/StringLiteralPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/StringLiteralPrinterParser.js",
     "importStyle": "{StringLiteralPrinterParser}",
     "description": "Prints or parses a string literal.",
-    "lineNumber": 12,
+    "lineNumber": 13,
     "interface": false
   },
   {
@@ -39301,7 +39273,7 @@
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 15,
     "undocument": true,
     "unknown": [
       {
@@ -39327,7 +39299,7 @@
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser#_literal",
     "access": null,
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 16,
     "undocument": true,
     "unknown": [
       {
@@ -39352,7 +39324,7 @@
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser#print",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 19,
     "undocument": true,
     "unknown": [
       {
@@ -39391,7 +39363,7 @@
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser#parse",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 24,
     "undocument": true,
     "unknown": [
       {
@@ -39436,7 +39408,7 @@
     "longname": "src/format/parser/StringLiteralPrinterParser.js~StringLiteralPrinterParser#toString",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 34,
     "undocument": true,
     "unknown": [
       {
@@ -39455,7 +39427,7 @@
     "__docId__": 1188,
     "kind": "file",
     "name": "src/format/parser/ZoneIdPrinterParser.js",
-    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {ZoneOffset} from '../../ZoneOffset';\nimport {ZoneId} from '../../ZoneId';\nimport {ZoneRegion} from '../../ZoneRegion';\n\nimport {ChronoField} from '../../temporal/ChronoField';\n\nimport { ZoneRulesProvider } from '../../zone/ZoneRulesProvider';\n\nimport {OffsetIdPrinterParser} from './OffsetIdPrinterParser';\n\n/**\n * Prints or parses a zone ID.\n */\nexport class ZoneIdPrinterParser {\n\n    /**\n     *\n     * @param {TemporalQuery} query\n     * @param {string} description\n     */\n    constructor(query, description) {\n        this.query = query;\n        this.description = description;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     *\n     * @param {DateTimePrintContext } context\n     * @param {StringBuilder} buf\n     * @returns {boolean}\n     */\n    print(context, buf) {\n        const zone = context.getValueQuery(this.query);\n        if (zone == null) {\n            return false;\n        }\n        buf.append(zone.id());\n        return true;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * This implementation looks for the longest matching string.\n     * For example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just\n     * Etc/GMC although both are valid.\n     *\n     * This implementation uses a tree to search for valid time-zone names in\n     * the parseText. The top level node of the tree has a length equal to the\n     * length of the shortest time-zone as well as the beginning characters of\n     * all other time-zones.\n     *\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} position\n     * @return {number}\n     */\n    parse(context, text, position) {\n        const length = text.length;\n        if (position > length) {\n            return ~position;\n        }\n        if (position === length) {\n            return ~position;\n        }\n\n        // handle fixed time-zone IDs\n        const nextChar = text.charAt(position);\n        if (nextChar === '+' || nextChar === '-') {\n            const newContext = context.copy();\n            const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);\n            if (endPos < 0) {\n                return endPos;\n            }\n            const offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);\n            const zone = ZoneOffset.ofTotalSeconds(offset);\n            context.setParsedZone(zone);\n            return endPos;\n        } else if (length >= position + 2) {\n            const nextNextChar = text.charAt(position + 1);\n            if (context.charEquals(nextChar, 'U') &&\n                context.charEquals(nextNextChar, 'T')) {\n                if (length >= position + 3 &&\n                    context.charEquals(text.charAt(position + 2), 'C')) {\n                    return this._parsePrefixedOffset(context, text, position, position + 3);\n                }\n                return this._parsePrefixedOffset(context, text, position, position + 2);\n            } else if (context.charEquals(nextChar, 'G') &&\n                length >= position + 3 &&\n                context.charEquals(nextNextChar, 'M') &&\n                context.charEquals(text.charAt(position + 2), 'T')) {\n                return this._parsePrefixedOffset(context, text, position, position + 3);\n            }\n        }\n        // javascript special case\n        if(text.substr(position, 6) === 'SYSTEM'){\n            context.setParsedZone(ZoneId.systemDefault());\n            return position + 6;\n        }\n\n        // ...\n        if (context.charEquals(nextChar, 'Z')) {\n            context.setParsedZone(ZoneOffset.UTC);\n            return position + 1;\n        }\n\n        const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();\n        if (zoneIdTree.size !== availableZoneIds.length) {\n            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);\n        }\n\n        const maxParseLength = length - position;\n        let treeMap = zoneIdTree.treeMap;\n        let parsedZoneId = null;\n        let parseLength = 0;\n        while(treeMap != null) {\n            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));\n            treeMap = treeMap.get(parsedSubZoneId);\n            if (treeMap != null && treeMap.isLeaf) {\n                parsedZoneId = parsedSubZoneId;\n                parseLength = treeMap.length;\n            }\n        }\n        if (parsedZoneId != null) {\n            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));\n            return position + parseLength;\n        }\n\n        return ~position;\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} prefixPos\n     * @param {number} position\n     * @return {number}\n     */\n    _parsePrefixedOffset(context, text, prefixPos, position) {\n        const prefix = text.substring(prefixPos, position).toUpperCase();\n        const newContext = context.copy();\n        if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {\n            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));\n            return position;\n        }\n        const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);\n        if (endPos < 0) {\n            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));\n            return position;\n        }\n        const offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);\n        const offset = ZoneOffset.ofTotalSeconds(offsetSecs);\n        context.setParsedZone(ZoneId.ofOffset(prefix, offset));\n        return endPos;\n    }\n\n    /**\n     *\n     * @returns {string}\n     */\n    toString() {\n        return this.description;\n    }\n}\n\nclass ZoneIdTree {\n\n    static createTreeMap(availableZoneIds) {\n        const sortedZoneIds =  availableZoneIds.sort((a, b) => a.length - b.length);\n        const treeMap = new ZoneIdTreeMap(sortedZoneIds[0].length, false);\n        for (let i=0; i<sortedZoneIds.length; i++){\n            treeMap.add(sortedZoneIds[i]);\n        }\n        return new ZoneIdTree(sortedZoneIds.length, treeMap);\n    }\n\n    constructor(size, treeMap) {\n        this.size = size;\n        this.treeMap = treeMap;\n    }\n}\n\nclass ZoneIdTreeMap {\n    constructor(length = 0, isLeaf = false){\n        this.length = length;\n        this.isLeaf = isLeaf;\n        this._treeMap = {};\n    }\n\n    add(zoneId){\n        const idLength = zoneId.length;\n        if(idLength === this.length) {\n            this._treeMap[zoneId] = new ZoneIdTreeMap(idLength, true);\n        } else if (idLength > this.length) {\n            const subZoneId = zoneId.substr(0, this.length);\n            let subTreeMap = this._treeMap[subZoneId];\n            if (subTreeMap == null) {\n                subTreeMap = new ZoneIdTreeMap(idLength, false);\n                this._treeMap[subZoneId] = subTreeMap;\n            }\n            subTreeMap.add(zoneId);\n        }\n    }\n\n    get(zoneId){\n        return this._treeMap[zoneId];\n    }\n}\n\nlet zoneIdTree = new ZoneIdTree([]);",
+    "content": "/**\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n */\n\nimport {ZoneOffset} from '../../ZoneOffset';\nimport {ZoneId} from '../../ZoneId';\nimport {ZoneRegion} from '../../ZoneRegion';\n\nimport {ChronoField} from '../../temporal/ChronoField';\n\nimport { ZoneRulesProvider } from '../../zone/ZoneRulesProvider';\n\nimport {OffsetIdPrinterParser} from './OffsetIdPrinterParser';\n\n/**\n * Prints or parses a zone ID.\n * @private\n */\nexport class ZoneIdPrinterParser {\n\n    /**\n     *\n     * @param {TemporalQuery} query\n     * @param {string} description\n     */\n    constructor(query, description) {\n        this.query = query;\n        this.description = description;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     *\n     * @param {DateTimePrintContext } context\n     * @param {StringBuilder} buf\n     * @returns {boolean}\n     */\n    print(context, buf) {\n        const zone = context.getValueQuery(this.query);\n        if (zone == null) {\n            return false;\n        }\n        buf.append(zone.id());\n        return true;\n    }\n\n    //-----------------------------------------------------------------------\n    /**\n     * This implementation looks for the longest matching string.\n     * For example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just\n     * Etc/GMC although both are valid.\n     *\n     * This implementation uses a tree to search for valid time-zone names in\n     * the parseText. The top level node of the tree has a length equal to the\n     * length of the shortest time-zone as well as the beginning characters of\n     * all other time-zones.\n     *\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} position\n     * @return {number}\n     */\n    parse(context, text, position) {\n        const length = text.length;\n        if (position > length) {\n            return ~position;\n        }\n        if (position === length) {\n            return ~position;\n        }\n\n        // handle fixed time-zone IDs\n        const nextChar = text.charAt(position);\n        if (nextChar === '+' || nextChar === '-') {\n            const newContext = context.copy();\n            const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);\n            if (endPos < 0) {\n                return endPos;\n            }\n            const offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);\n            const zone = ZoneOffset.ofTotalSeconds(offset);\n            context.setParsedZone(zone);\n            return endPos;\n        } else if (length >= position + 2) {\n            const nextNextChar = text.charAt(position + 1);\n            if (context.charEquals(nextChar, 'U') &&\n                context.charEquals(nextNextChar, 'T')) {\n                if (length >= position + 3 &&\n                    context.charEquals(text.charAt(position + 2), 'C')) {\n                    return this._parsePrefixedOffset(context, text, position, position + 3);\n                }\n                return this._parsePrefixedOffset(context, text, position, position + 2);\n            } else if (context.charEquals(nextChar, 'G') &&\n                length >= position + 3 &&\n                context.charEquals(nextNextChar, 'M') &&\n                context.charEquals(text.charAt(position + 2), 'T')) {\n                return this._parsePrefixedOffset(context, text, position, position + 3);\n            }\n        }\n        // javascript special case\n        if(text.substr(position, 6) === 'SYSTEM'){\n            context.setParsedZone(ZoneId.systemDefault());\n            return position + 6;\n        }\n\n        // ...\n        if (context.charEquals(nextChar, 'Z')) {\n            context.setParsedZone(ZoneOffset.UTC);\n            return position + 1;\n        }\n\n        const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();\n        if (zoneIdTree.size !== availableZoneIds.length) {\n            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);\n        }\n\n        const maxParseLength = length - position;\n        let treeMap = zoneIdTree.treeMap;\n        let parsedZoneId = null;\n        let parseLength = 0;\n        while(treeMap != null) {\n            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));\n            treeMap = treeMap.get(parsedSubZoneId);\n            if (treeMap != null && treeMap.isLeaf) {\n                parsedZoneId = parsedSubZoneId;\n                parseLength = treeMap.length;\n            }\n        }\n        if (parsedZoneId != null) {\n            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));\n            return position + parseLength;\n        }\n\n        return ~position;\n    }\n\n    /**\n     *\n     * @param {DateTimeParseContext} context\n     * @param {String} text\n     * @param {number} prefixPos\n     * @param {number} position\n     * @return {number}\n     */\n    _parsePrefixedOffset(context, text, prefixPos, position) {\n        const prefix = text.substring(prefixPos, position).toUpperCase();\n        const newContext = context.copy();\n        if (position < text.length && context.charEquals(text.charAt(position), 'Z')) {\n            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));\n            return position;\n        }\n        const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);\n        if (endPos < 0) {\n            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));\n            return position;\n        }\n        const offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);\n        const offset = ZoneOffset.ofTotalSeconds(offsetSecs);\n        context.setParsedZone(ZoneId.ofOffset(prefix, offset));\n        return endPos;\n    }\n\n    /**\n     *\n     * @returns {string}\n     */\n    toString() {\n        return this.description;\n    }\n}\n\nclass ZoneIdTree {\n\n    static createTreeMap(availableZoneIds) {\n        const sortedZoneIds =  availableZoneIds.sort((a, b) => a.length - b.length);\n        const treeMap = new ZoneIdTreeMap(sortedZoneIds[0].length, false);\n        for (let i=0; i<sortedZoneIds.length; i++){\n            treeMap.add(sortedZoneIds[i]);\n        }\n        return new ZoneIdTree(sortedZoneIds.length, treeMap);\n    }\n\n    constructor(size, treeMap) {\n        this.size = size;\n        this.treeMap = treeMap;\n    }\n}\n\nclass ZoneIdTreeMap {\n    constructor(length = 0, isLeaf = false){\n        this.length = length;\n        this.isLeaf = isLeaf;\n        this._treeMap = {};\n    }\n\n    add(zoneId){\n        const idLength = zoneId.length;\n        if(idLength === this.length) {\n            this._treeMap[zoneId] = new ZoneIdTreeMap(idLength, true);\n        } else if (idLength > this.length) {\n            const subZoneId = zoneId.substr(0, this.length);\n            let subTreeMap = this._treeMap[subZoneId];\n            if (subTreeMap == null) {\n                subTreeMap = new ZoneIdTreeMap(idLength, false);\n                this._treeMap[subZoneId] = subTreeMap;\n            }\n            subTreeMap.add(zoneId);\n        }\n    }\n\n    get(zoneId){\n        return this._treeMap[zoneId];\n    }\n}\n\nlet zoneIdTree = new ZoneIdTree([]);",
     "static": true,
     "longname": "src/format/parser/ZoneIdPrinterParser.js",
     "access": null,
@@ -39469,12 +39441,12 @@
     "memberof": "src/format/parser/ZoneIdPrinterParser.js",
     "static": true,
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser",
-    "access": null,
+    "access": "private",
     "export": true,
     "importPath": "js-joda/src/format/parser/ZoneIdPrinterParser.js",
     "importStyle": "{ZoneIdPrinterParser}",
     "description": "Prints or parses a zone ID.",
-    "lineNumber": 20,
+    "lineNumber": 21,
     "interface": false
   },
   {
@@ -39488,7 +39460,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#constructor",
     "access": null,
     "description": "",
-    "lineNumber": 27,
+    "lineNumber": 28,
     "params": [
       {
         "nullable": null,
@@ -39521,7 +39493,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#query",
     "access": null,
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 29,
     "undocument": true,
     "unknown": [
       {
@@ -39544,7 +39516,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#description",
     "access": null,
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 30,
     "undocument": true,
     "unknown": [
       {
@@ -39569,7 +39541,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#print",
     "access": null,
     "description": "",
-    "lineNumber": 39,
+    "lineNumber": 40,
     "unknown": [
       {
         "tagName": "@returns",
@@ -39618,7 +39590,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#parse",
     "access": null,
     "description": "This implementation looks for the longest matching string.\nFor example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just\nEtc/GMC although both are valid.\n\nThis implementation uses a tree to search for valid time-zone names in\nthe parseText. The top level node of the tree has a length equal to the\nlength of the shortest time-zone as well as the beginning characters of\nall other time-zones.",
-    "lineNumber": 64,
+    "lineNumber": 65,
     "params": [
       {
         "nullable": null,
@@ -39671,7 +39643,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#_parsePrefixedOffset",
     "access": null,
     "description": "",
-    "lineNumber": 146,
+    "lineNumber": 147,
     "params": [
       {
         "nullable": null,
@@ -39734,7 +39706,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdPrinterParser#toString",
     "access": null,
     "description": "",
-    "lineNumber": 168,
+    "lineNumber": 169,
     "unknown": [
       {
         "tagName": "@returns",
@@ -39763,7 +39735,7 @@
     "importPath": "js-joda/src/format/parser/ZoneIdPrinterParser.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 173,
+    "lineNumber": 174,
     "undocument": true,
     "unknown": [
       {
@@ -39784,7 +39756,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTree.createTreeMap",
     "access": null,
     "description": null,
-    "lineNumber": 175,
+    "lineNumber": 176,
     "undocument": true,
     "unknown": [
       {
@@ -39817,7 +39789,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTree#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 184,
+    "lineNumber": 185,
     "undocument": true,
     "unknown": [
       {
@@ -39849,7 +39821,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTree#size",
     "access": null,
     "description": null,
-    "lineNumber": 185,
+    "lineNumber": 186,
     "undocument": true,
     "unknown": [
       {
@@ -39872,7 +39844,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTree#treeMap",
     "access": null,
     "description": null,
-    "lineNumber": 186,
+    "lineNumber": 187,
     "undocument": true,
     "unknown": [
       {
@@ -39898,7 +39870,7 @@
     "importPath": "js-joda/src/format/parser/ZoneIdPrinterParser.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 190,
+    "lineNumber": 191,
     "undocument": true,
     "unknown": [
       {
@@ -39919,7 +39891,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 191,
+    "lineNumber": 192,
     "undocument": true,
     "unknown": [
       {
@@ -39957,7 +39929,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#length",
     "access": null,
     "description": null,
-    "lineNumber": 192,
+    "lineNumber": 193,
     "undocument": true,
     "unknown": [
       {
@@ -39980,7 +39952,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#isLeaf",
     "access": null,
     "description": null,
-    "lineNumber": 193,
+    "lineNumber": 194,
     "undocument": true,
     "unknown": [
       {
@@ -40003,7 +39975,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#_treeMap",
     "access": null,
     "description": null,
-    "lineNumber": 194,
+    "lineNumber": 195,
     "undocument": true,
     "unknown": [
       {
@@ -40028,7 +40000,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#add",
     "access": null,
     "description": null,
-    "lineNumber": 197,
+    "lineNumber": 198,
     "undocument": true,
     "unknown": [
       {
@@ -40056,7 +40028,7 @@
     "longname": "src/format/parser/ZoneIdPrinterParser.js~ZoneIdTreeMap#get",
     "access": null,
     "description": null,
-    "lineNumber": 212,
+    "lineNumber": 213,
     "undocument": true,
     "unknown": [
       {
@@ -40090,7 +40062,7 @@
     "importPath": "js-joda/src/format/parser/ZoneIdPrinterParser.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 217,
+    "lineNumber": 218,
     "undocument": true,
     "unknown": [
       {

@@ -1,7 +1,7 @@
 {
-  "coverage": "85.83%",
-  "expectCount": 1031,
-  "actualCount": 885,
+  "coverage": "89.3%",
+  "expectCount": 963,
+  "actualCount": 860,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -14,16 +14,6 @@
         28,
         29,
         25
-      ]
-    },
-    "src/format/parser/CharLiteralPrinterParser.js": {
-      "expectCount": 5,
-      "actualCount": 1,
-      "undocumentLines": [
-        14,
-        26,
-        21,
-        38
       ]
     },
     "src/temporal/ChronoField.js": {
@@ -69,16 +59,6 @@
         139
       ]
     },
-    "src/format/parser/CompositePrinterParser.js": {
-      "expectCount": 6,
-      "actualCount": 2,
-      "undocumentLines": [
-        9,
-        48,
-        27,
-        74
-      ]
-    },
     "src/format/DateTimeBuilder.js": {
       "expectCount": 16,
       "actualCount": 15,
@@ -90,10 +70,10 @@
       "expectCount": 18,
       "actualCount": 14,
       "undocumentLines": [
-        315,
-        311,
-        307,
-        613
+        316,
+        312,
+        308,
+        614
       ]
     },
     "src/format/DateTimeFormatterBuilder.js": {
@@ -185,19 +165,6 @@
         30
       ]
     },
-    "src/format/parser/FractionPrinterParser.js": {
-      "expectCount": 11,
-      "actualCount": 4,
-      "undocumentLines": [
-        44,
-        41,
-        43,
-        42,
-        81,
-        47,
-        156
-      ]
-    },
     "src/Instant.js": {
       "expectCount": 38,
       "actualCount": 38,
@@ -251,42 +218,6 @@
       "actualCount": 33,
       "undocumentLines": []
     },
-    "src/format/parser/NumberPrinterParser.js": {
-      "expectCount": 18,
-      "actualCount": 6,
-      "undocumentLines": [
-        31,
-        51,
-        53,
-        52,
-        117,
-        72,
-        54,
-        214,
-        344,
-        316,
-        56,
-        63
-      ]
-    },
-    "src/format/parser/OffsetIdPrinterParser.js": {
-      "expectCount": 7,
-      "actualCount": 4,
-      "undocumentLines": [
-        31,
-        169,
-        32
-      ]
-    },
-    "src/format/parser/PadPrinterParserDecorator.js": {
-      "expectCount": 5,
-      "actualCount": 2,
-      "undocumentLines": [
-        46,
-        30,
-        76
-      ]
-    },
     "src/format/ParsePosition.js": {
       "expectCount": 6,
       "actualCount": 0,
@@ -309,16 +240,6 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/format/parser/SettingsParser.js": {
-      "expectCount": 4,
-      "actualCount": 0,
-      "undocumentLines": [
-        9,
-        15,
-        11,
-        26
-      ]
-    },
     "src/format/SignStyle.js": {
       "expectCount": 2,
       "actualCount": 1,
@@ -339,16 +260,6 @@
         26,
         35,
         41
-      ]
-    },
-    "src/format/parser/StringLiteralPrinterParser.js": {
-      "expectCount": 5,
-      "actualCount": 1,
-      "undocumentLines": [
-        14,
-        23,
-        18,
-        33
       ]
     },
     "src/StringUtil.js": {
@@ -467,14 +378,6 @@
       "expectCount": 6,
       "actualCount": 6,
       "undocumentLines": []
-    },
-    "src/format/parser/ZoneIdPrinterParser.js": {
-      "expectCount": 7,
-      "actualCount": 5,
-      "undocumentLines": [
-        29,
-        28
-      ]
     },
     "src/ZoneOffset.js": {
       "expectCount": 19,
