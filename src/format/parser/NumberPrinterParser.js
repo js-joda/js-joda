@@ -228,6 +228,7 @@ export class NumberPrinterParser {
 //-----------------------------------------------------------------------
 /**
  * Prints and parses a reduced numeric date-time field.
+ * @private
  */
 export class ReducedPrinterParser extends NumberPrinterParser {
 
