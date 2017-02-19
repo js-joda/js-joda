@@ -121,6 +121,7 @@ export class FractionPrinterParser {
     /**
      *
      * @param {Number} value  the value to convert, must be valid for this rule
+     * @param {String} zeroDigit  the character for zero
      * @return {String} the value as a fraction within the range, from 0 to 1, not null
      */
     convertToFraction(value, zeroDigit) {
@@ -139,7 +140,8 @@ export class FractionPrinterParser {
 
     /**
      *
-     * @param {Number} fraction  the fraction to convert, not null
+     * @param {Number} total  the fraction to convert, not null
+     * @param {Number} scale  the scale, not null
      * @return {Number} the value of the field, valid for this rule
      * @throws DateTimeException if the value cannot be converted
      */
