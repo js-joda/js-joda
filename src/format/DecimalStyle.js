@@ -5,6 +5,14 @@
  */
 
 export class DecimalStyle {
+    /**
+     *
+     * @param zeroChar
+     * @param positiveSignChar
+     * @param negativeSignChar
+     * @param decimalPointChar
+     * @private
+     */
     constructor(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {
         this._zeroDigit = zeroChar;
         this._zeroDigitCharCode = zeroChar.charCodeAt(0);
