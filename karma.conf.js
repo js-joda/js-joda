@@ -19,11 +19,32 @@ module.exports = function(config) {
             platform: 'Windows 10',
             version: 'latest'
         },
-        // doesn't work yet
+        sl_android_simulator: {
+            base: 'SauceLabs',
+            browserName: 'chrome',
+            device: 'Android Emulator',
+            platform: 'Android',
+            version: 'latest'
+        },
+        sl_ios_simulator: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            device: 'iPhone Simulator',
+            platform: 'iOS',
+            version: 'latest'
+        },
+        // these don't work yet :(
         sl_safari: {
             base: 'SauceLabs',
             browserName: 'safari',
             platform: 'OS X 10.11',
+            version: 'latest'
+        },
+        sl_ios: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            device: 'iPhone 6 Device',
+            platform: 'iOS',
             version: 'latest'
         },
     };
