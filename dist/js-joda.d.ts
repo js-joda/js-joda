@@ -296,6 +296,10 @@ declare namespace JSJoda {
 
         static parsedLeapSecond(): boolean
 
+        /**
+         * TODO remove with release 1.4.0
+         * @deprecated private constructor, use static factories instead
+         */
         constructor(printerParser: any, locale: any, decimalStyle: any, resolverStyle: ResolverStyle, resolverFields?: any, chrono?: any, zone?: any)
 
         chronology(): any
@@ -314,7 +318,12 @@ declare namespace JSJoda {
 
         parseUnresolved(text: any, position: any): any
 
+        /**
+         * TODO remove with release 1.4.0 and rename function to _toPrinterParser
+         * @deprecated private, dont use
+         */
         toPrinterParser(optional: boolean): any // CompositePrinterParser, not documented
+
         toString(): any
 
         withChronology(chrono: any): any
