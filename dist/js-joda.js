@@ -1,4 +1,4 @@
-//! @version js-joda - 1.3.0
+//! @version js-joda - 1.3.1
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1508,6 +1508,8 @@ exports.ZoneId = undefined;
 
 var _assert = __webpack_require__(0);
 
+var _errors = __webpack_require__(1);
+
 var _StringUtil = __webpack_require__(41);
 
 var _Instant = __webpack_require__(14);
@@ -1522,6 +1524,26 @@ var ZoneId = exports.ZoneId = function () {
     function ZoneId() {
         _classCallCheck(this, ZoneId);
     }
+
+    ZoneId.systemDefault = function systemDefault() {
+        throw new _errors.DateTimeException('not supported operation');
+    };
+
+    ZoneId.getAvailableZoneIds = function getAvailableZoneIds() {
+        throw new _errors.DateTimeException('not supported operation');
+    };
+
+    ZoneId.of = function of(zoneId) {
+        throw new _errors.DateTimeException('not supported operation' + zoneId);
+    };
+
+    ZoneId.ofOffset = function ofOffset(prefix, offset) {
+        throw new _errors.DateTimeException('not supported operation' + prefix + offset);
+    };
+
+    ZoneId.from = function from(temporal) {
+        throw new _errors.DateTimeException('not supported operation' + temporal);
+    };
 
     ZoneId.prototype.id = function id() {
         (0, _assert.abstractMethodFail)('ZoneId.id');
@@ -1940,6 +1962,14 @@ var DateTimeFormatter = exports.DateTimeFormatter = function () {
 
     DateTimeFormatter.prototype.withLocale = function withLocale() {
         return this;
+    };
+
+    DateTimeFormatter.prototype.withResolverStyle = function withResolverStyle(resolverStyle) {
+        (0, _assert.requireNonNull)(resolverStyle, 'resolverStyle');
+        if (resolverStyle.equals(this._resolverStyle)) {
+            return this;
+        }
+        return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);
     };
 
     DateTimeFormatter.prototype.format = function format(temporal) {
@@ -4546,18 +4576,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var MAX_WIDTH = 15;
 var DateTimeFormatterBuilder = exports.DateTimeFormatterBuilder = function () {
     function DateTimeFormatterBuilder() {
-        var parent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        var optional = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
         _classCallCheck(this, DateTimeFormatterBuilder);
 
         this._active = this;
 
-        this._parent = parent;
+        this._parent = null;
 
         this._printerParsers = [];
 
-        this._optional = optional;
+        this._optional = false;
 
         this._padNextWidth = 0;
 
@@ -4565,6 +4592,17 @@ var DateTimeFormatterBuilder = exports.DateTimeFormatterBuilder = function () {
 
         this._valueParserIndex = -1;
     }
+
+    DateTimeFormatterBuilder._of = function _of(parent, optional) {
+        (0, _assert.requireNonNull)(parent, 'parent');
+        (0, _assert.requireNonNull)(optional, 'optional');
+
+        var dtFormatterBuilder = new DateTimeFormatterBuilder();
+        dtFormatterBuilder._parent = parent;
+        dtFormatterBuilder._optional = optional;
+
+        return dtFormatterBuilder;
+    };
 
     DateTimeFormatterBuilder.prototype.parseCaseSensitive = function parseCaseSensitive() {
         this._appendInternalPrinterParser(_SettingsParser.SettingsParser.SENSITIVE);
@@ -5103,7 +5141,7 @@ var DateTimeFormatterBuilder = exports.DateTimeFormatterBuilder = function () {
 
     DateTimeFormatterBuilder.prototype.optionalStart = function optionalStart() {
         this._active._valueParserIndex = -1;
-        this._active = new DateTimeFormatterBuilder(this._active, true);
+        this._active = DateTimeFormatterBuilder._of(this._active, true);
         return this;
     };
 
@@ -9814,29 +9852,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 
 var StringUtil = exports.StringUtil = function () {
-    function StringUtil() {
-        _classCallCheck(this, StringUtil);
+  function StringUtil() {
+    _classCallCheck(this, StringUtil);
+  }
+
+  StringUtil.startsWith = function startsWith(text, pattern) {
+    return text.indexOf(pattern) === 0;
+  };
+
+  StringUtil.hashCode = function hashCode(text) {
+    var hash = 0,
+        i = void 0,
+        chr = void 0,
+        len = void 0;
+    if (text.length === 0) return hash;
+    for (i = 0, len = text.length; i < len; i++) {
+      chr = text.charCodeAt(i);
+      hash = (hash << 5) - hash + chr;
+      hash |= 0;
     }
+    return hash;
+  };
 
-    StringUtil.startsWith = function startsWith(text, pattern) {
-        return text.indexOf(pattern) === 0;
-    };
-
-    StringUtil.hashCode = function hashCode(text) {
-        var hash = 0,
-            i = void 0,
-            chr = void 0,
-            len = void 0;
-        if (text.length === 0) return hash;
-        for (i = 0, len = text.length; i < len; i++) {
-            chr = text.charCodeAt(i);
-            hash = (hash << 5) - hash + chr;
-            hash |= 0;
-        }
-        return hash;
-    };
-
-    return StringUtil;
+  return StringUtil;
 }();
 
 /***/ }),
@@ -11654,6 +11692,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 var ParsePosition = exports.ParsePosition = function () {
     function ParsePosition(index) {
         _classCallCheck(this, ParsePosition);
