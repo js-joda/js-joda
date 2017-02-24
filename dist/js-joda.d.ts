@@ -1297,6 +1297,7 @@ declare namespace JSJoda {
     class ZoneRegion extends ZoneId {
         static ofId(zoneId: any): ZoneId
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(id: string, rules: ZoneRules)
 
         id(): string
@@ -1358,6 +1359,7 @@ declare namespace JSJoda {
 
         static parse(text: string, formatter?: DateTimeFormatter): ZonedDateTime
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(dateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId)
 
         dayOfMonth(): number

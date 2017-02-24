@@ -490,6 +490,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @param {LocalDateTime} dateTime - the date-time, validated as not null
      * @param {ZoneOffset} offset - the zone offset, validated as not null
      * @param {ZoneUd} zone - the time-zone, validated as not null
+     * @private
      */
     constructor(dateTime, offset, zone) {
         requireNonNull(dateTime, 'dateTime');

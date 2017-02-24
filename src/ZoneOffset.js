@@ -36,6 +36,7 @@ export class ZoneOffset extends ZoneId {
     /**
      *
      * @param {number} totalSeconds
+     * @private
      */
     constructor(totalSeconds){
         super();

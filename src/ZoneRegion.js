@@ -44,6 +44,7 @@ export class ZoneRegion extends ZoneId {
      *
      * @param {string} id  the time-zone ID, not null
      * @param {ZoneRules} rules  the rules, null for lazy lookup
+     * @private
      */
     constructor(id, rules) {
         super();
