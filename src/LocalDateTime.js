@@ -297,6 +297,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      * @param {LocalDate} date - the date part of the date-time, validated not null
      * @param {LocalTime} time - the time part of the date-time, validated not null
+     * @private
      */
     constructor(date, time) {
         super();

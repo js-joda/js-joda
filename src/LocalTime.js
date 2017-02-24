@@ -271,6 +271,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {number} [minute=0] - the minute-of-hour to represent, validated from 0 to 59
      * @param {number} [second=0] - the second-of-minute to represent, validated from 0 to 59
      * @param {number} [nanoOfSecond=0] - the nano-of-second to represent, validated from 0 to 999,999,999
+     * @private
      */
     constructor(hour=0, minute=0, second=0, nanoOfSecond=0) {
         super();
@@ -445,7 +446,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.MINUTE_OF_DAY: return this._hour * 60 + this._minute;
             case ChronoField.HOUR_OF_AMPM: return MathUtil.intMod(this._hour, 12);
             case ChronoField.CLOCK_HOUR_OF_AMPM: {
-                const ham = MathUtil.intMod(this._hour, 12); 
+                const ham = MathUtil.intMod(this._hour, 12);
                 return (ham % 12 === 0 ? 12 : ham);
             }
             case ChronoField.HOUR_OF_DAY: return this._hour;

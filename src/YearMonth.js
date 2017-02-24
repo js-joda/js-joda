@@ -259,6 +259,7 @@ export class YearMonth extends Temporal {
      *
      * @param {number} year  the year to represent, validated from MIN_YEAR to MAX_YEAR
      * @param {number} month  the month-of-year to represent, validated from 1 (January) to 12 (December)
+     * @private
      */
     constructor(year, month) {
         super();

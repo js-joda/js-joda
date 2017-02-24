@@ -278,6 +278,7 @@ export class MonthDay extends Temporal {
      *
      * @param {number} month  the month-of-year to represent, validated from 1 to 12
      * @param {number} dayOfMonth  the day-of-month to represent, validated from 1 to 29-31
+     * @private
      */
     constructor(month, dayOfMonth) {
         super();

@@ -402,6 +402,7 @@ declare namespace JSJoda {
 
         static parse(text: String, formatter?: DateTimeFormatter): LocalTime
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(hour?: number, minute?: number, second?: number, nanoOfSecond?: number)
 
         adjustInto(temporal: TemporalAdjuster): Temporal
@@ -532,6 +533,7 @@ declare namespace JSJoda {
 
         static values(): Month[]
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(value: number)
 
         adjustInto(temporal: Temporal): Temporal
@@ -581,6 +583,7 @@ declare namespace JSJoda {
 
         static parseStringFormatter(text: string, formatter: DateTimeFormatter): MonthDay
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(month: number, dayOfMonth: number)
 
         adjustInto(temporal: Temporal): Temporal
@@ -883,6 +886,7 @@ declare namespace JSJoda {
         static MIN: LocalDateTime
         static MAX: LocalDateTime
 
+        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
         constructor(date: LocalDate, time: LocalTime)
 
         static from(temporal: TemporalAccessor): LocalDateTime
@@ -1106,6 +1110,7 @@ declare namespace JSJoda {
 
         years(): number
     }
+    // @deprecated, private class, do not use. TODO remove with 1.4.0
     class StringUtil {
         static hashCode(text: string): number
 

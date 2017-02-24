@@ -72,6 +72,7 @@ export class Year extends Temporal {
     /**
      *
      * @param {number} value
+     * @private
      */
     constructor(value) {
         super();

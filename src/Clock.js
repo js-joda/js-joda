@@ -144,6 +144,8 @@ export class Clock {
 /**
  * Implementation of a clock that always returns the latest time from
  * {@link Date#getTime}.
+ *
+ * @private
  */
 class SystemClock extends Clock {
     /**
@@ -193,6 +195,7 @@ class SystemClock extends Clock {
 /**
  * Implementation of a clock that always returns the same instant.
  * This is typically used for testing.
+ * @private
  */
 class FixedClock extends Clock{
     constructor(fixedInstant, zoneId) {

@@ -38,10 +38,11 @@ import {TemporalQueries} from './temporal/TemporalQueries';
  *
  */
 export class Month extends Temporal {
-    
+
     /**
      *
      * @param {number} value
+     * @private
      */
     constructor(value) {
         super();
@@ -55,7 +56,7 @@ export class Month extends Temporal {
     value() {
         return this._value;
     }
-    
+
     /**
      * Gets the textual representation, such as 'Jan' or 'December'.
      *
@@ -166,7 +167,7 @@ export class Month extends Temporal {
         }
         return field.getFrom(this);
     }
-    
+
     /**
      * Returns the month-of-year that is the specified number of months after this one.
      *
@@ -346,7 +347,7 @@ export class Month extends Temporal {
                 return Month.OCTOBER;
         }
     }
-    
+
     /**
      * Queries this month-of-year using the specified query.
      *
@@ -378,7 +379,7 @@ export class Month extends Temporal {
 
     /**
      * toString implementation... in JDK this is inherited from the Enum class
-     * 
+     *
      * @return {String}
      */
     toString() {
@@ -455,7 +456,7 @@ export class Month extends Temporal {
         */
         return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
     }
-    
+
     /**
      * replacement for enum values
      * @return {Month[]}
@@ -475,7 +476,7 @@ export class Month extends Temporal {
         }
         return MONTHS[month-1];
     }
-    
+
     /**
      * Obtains an instance of {@link Month} from a temporal object.
      *
