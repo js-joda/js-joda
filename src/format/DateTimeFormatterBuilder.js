@@ -1406,7 +1406,7 @@ export class DateTimeFormatterBuilder {
      */
     append(formatter) {
         requireNonNull(formatter, 'formatter');
-        this._appendInternal(formatter.toPrinterParser(false));
+        this._appendInternal(formatter._toPrinterParser(false));
         return this;
     }
 
@@ -1531,7 +1531,7 @@ class InstantPrinterParser  {
             .append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T')
             .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':')
             .appendValue(ChronoField.SECOND_OF_MINUTE, 2).appendFraction(ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z')
-            .toFormatter().toPrinterParser(false);
+            .toFormatter()._toPrinterParser(false);
         const pos = parser.parse(newContext, text, position);
         if (pos < 0) {
             return pos;

@@ -606,9 +606,8 @@ export class DateTimeFormatter {
      *
      * @param {boolean} optional  whether the printer/parser should be optional
      * @return {CompositePrinterParser} the printer/parser, not null
-     * @private
      */
-    toPrinterParser(optional) {
+    _toPrinterParser(optional) {
         return this._printerParser.withOptional(optional);
     }
 

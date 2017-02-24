@@ -312,9 +312,6 @@ declare namespace JSJoda {
 
         parseUnresolved(text: any, position: any): any
 
-        // @deprecated, private function, do not use. TODO remove with 1.4.0 and rename function to _toPrinterParser
-        toPrinterParser(optional: boolean): any // CompositePrinterParser, not documented
-
         toString(): any
 
         withChronology(chrono: any): any
