@@ -1239,10 +1239,15 @@ declare namespace JSJoda {
         isSupported(fieldOrUnit: TemporalField | ChronoUnit): boolean
     }
     class ZoneId {
-        static SYSTEM: ZoneId;
-        static UTC: ZoneId;
+        static SYSTEM: ZoneId
+        static UTC: ZoneId
 
-        static of(zoneId: string): ZoneId;
+        static systemDefault(): ZoneId
+        static of(zoneId: string): ZoneId
+        static ofOffset(prefix: string, offset: ZoneOffset): ZoneId
+        static from(temporal: TemporalAccessor): ZoneId
+
+        static getAvailableZoneIds(): string[]
 
         equals(other: any): boolean
 

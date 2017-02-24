@@ -21,6 +21,7 @@ import {ZoneRulesProvider} from './zone/ZoneRulesProvider';
  *
  * Helper class to avoid dependency cycles.
  * Static methods of the class ZoneIdFactory are added automatically to class ZoneId.
+ * @private
  */
 export class ZoneIdFactory {
 
