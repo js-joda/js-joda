@@ -1,4 +1,4 @@
-//! @version js-joda - 1.3.1
+//! @version js-joda - 1.4.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -2068,7 +2068,7 @@ var DateTimeFormatter = exports.DateTimeFormatter = function () {
         return context.toParsed();
     };
 
-    DateTimeFormatter.prototype.toPrinterParser = function toPrinterParser(optional) {
+    DateTimeFormatter.prototype._toPrinterParser = function _toPrinterParser(optional) {
         return this._printerParser.withOptional(optional);
     };
 
@@ -5201,7 +5201,7 @@ var DateTimeFormatterBuilder = exports.DateTimeFormatterBuilder = function () {
 
     DateTimeFormatterBuilder.prototype.append = function append(formatter) {
         (0, _assert.requireNonNull)(formatter, 'formatter');
-        this._appendInternal(formatter.toPrinterParser(false));
+        this._appendInternal(formatter._toPrinterParser(false));
         return this;
     };
 
@@ -5301,7 +5301,7 @@ var InstantPrinterParser = function () {
         var newContext = context.copy();
         var minDigits = this.fractionalDigits < 0 ? 0 : this.fractionalDigits;
         var maxDigits = this.fractionalDigits < 0 ? 9 : this.fractionalDigits;
-        var parser = new DateTimeFormatterBuilder().append(_DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').appendValue(_ChronoField.ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, 2).appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z').toFormatter().toPrinterParser(false);
+        var parser = new DateTimeFormatterBuilder().append(_DateTimeFormatter.DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').appendValue(_ChronoField.ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':').appendValue(_ChronoField.ChronoField.SECOND_OF_MINUTE, 2).appendFraction(_ChronoField.ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z').toFormatter()._toPrinterParser(false);
         var pos = parser.parse(newContext, text, position);
         if (pos < 0) {
             return pos;
