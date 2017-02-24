@@ -44,12 +44,10 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/StringUtil.js~StringUtil.html">StringUtil</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html">ZoneIdFactory</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
@@ -377,6 +375,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {number} [minute=0] - the minute-of-hour to represent, validated from 0 to 59
      * @param {number} [second=0] - the second-of-minute to represent, validated from 0 to 59
      * @param {number} [nanoOfSecond=0] - the nano-of-second to represent, validated from 0 to 999,999,999
+     * @private
      */
     constructor(hour=0, minute=0, second=0, nanoOfSecond=0) {
         super();
@@ -551,7 +550,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.MINUTE_OF_DAY: return this._hour * 60 + this._minute;
             case ChronoField.HOUR_OF_AMPM: return MathUtil.intMod(this._hour, 12);
             case ChronoField.CLOCK_HOUR_OF_AMPM: {
-                const ham = MathUtil.intMod(this._hour, 12); 
+                const ham = MathUtil.intMod(this._hour, 12);
                 return (ham % 12 === 0 ? 12 : ham);
             }
             case ChronoField.HOUR_OF_DAY: return this._hour;

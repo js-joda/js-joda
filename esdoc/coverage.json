@@ -1,7 +1,7 @@
 {
-  "coverage": "92.7%",
-  "expectCount": 905,
-  "actualCount": 839,
+  "coverage": "92.67%",
+  "expectCount": 887,
+  "actualCount": 822,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -17,8 +17,8 @@
       ]
     },
     "src/temporal/ChronoField.js": {
-      "expectCount": 16,
-      "actualCount": 16,
+      "expectCount": 15,
+      "actualCount": 15,
       "undocumentLines": []
     },
     "src/chrono/ChronoLocalDate.js": {
@@ -38,10 +38,10 @@
       ]
     },
     "src/temporal/ChronoUnit.js": {
-      "expectCount": 11,
-      "actualCount": 10,
+      "expectCount": 10,
+      "actualCount": 9,
       "undocumentLines": [
-        335
+        336
       ]
     },
     "src/chrono/ChronoZonedDateTime.js": {
@@ -67,8 +67,8 @@
       ]
     },
     "src/format/DateTimeFormatter.js": {
-      "expectCount": 17,
-      "actualCount": 13,
+      "expectCount": 16,
+      "actualCount": 12,
       "undocumentLines": [
         316,
         312,
@@ -151,13 +151,13 @@
       ]
     },
     "src/LocalDateTime.js": {
-      "expectCount": 73,
-      "actualCount": 73,
+      "expectCount": 72,
+      "actualCount": 72,
       "undocumentLines": []
     },
     "src/LocalTime.js": {
-      "expectCount": 53,
-      "actualCount": 53,
+      "expectCount": 52,
+      "actualCount": 52,
       "undocumentLines": []
     },
     "src/MathUtil.js": {
@@ -169,13 +169,13 @@
       ]
     },
     "src/Month.js": {
-      "expectCount": 20,
-      "actualCount": 20,
+      "expectCount": 19,
+      "actualCount": 19,
       "undocumentLines": []
     },
     "src/MonthDay.js": {
-      "expectCount": 33,
-      "actualCount": 33,
+      "expectCount": 32,
+      "actualCount": 32,
       "undocumentLines": []
     },
     "src/Period.js": {
@@ -193,13 +193,6 @@
       "actualCount": 1,
       "undocumentLines": [
         9
-      ]
-    },
-    "src/StringUtil.js": {
-      "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        6
       ]
     },
     "src/zone/SystemDefaultZoneId.js": {
@@ -274,18 +267,18 @@
       "undocumentLines": []
     },
     "src/temporal/ValueRange.js": {
-      "expectCount": 16,
-      "actualCount": 14,
+      "expectCount": 15,
+      "actualCount": 13,
       "undocumentLines": [
-        246,
-        208
+        247,
+        209
       ]
     },
     "src/Year.js": {
-      "expectCount": 46,
-      "actualCount": 45,
+      "expectCount": 45,
+      "actualCount": 44,
       "undocumentLines": [
-        341
+        342
       ]
     },
     "src/YearConstants.js": {
@@ -294,37 +287,32 @@
       "undocumentLines": []
     },
     "src/YearMonth.js": {
-      "expectCount": 53,
-      "actualCount": 52,
+      "expectCount": 52,
+      "actualCount": 51,
       "undocumentLines": [
-        322
+        323
       ]
     },
     "src/ZoneId.js": {
-      "expectCount": 7,
-      "actualCount": 6,
+      "expectCount": 12,
+      "actualCount": 11,
       "undocumentLines": [
-        12
+        14
       ]
     },
-    "src/ZoneIdFactory.js": {
-      "expectCount": 6,
-      "actualCount": 6,
-      "undocumentLines": []
-    },
     "src/ZoneOffset.js": {
-      "expectCount": 19,
-      "actualCount": 19,
+      "expectCount": 18,
+      "actualCount": 18,
       "undocumentLines": []
     },
     "src/zone/ZoneOffsetTransition.js": {
-      "expectCount": 19,
-      "actualCount": 19,
+      "expectCount": 18,
+      "actualCount": 18,
       "undocumentLines": []
     },
     "src/ZoneRegion.js": {
-      "expectCount": 5,
-      "actualCount": 5,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     },
     "src/zone/ZoneRules.js": {
@@ -342,8 +330,8 @@
       ]
     },
     "src/ZonedDateTime.js": {
-      "expectCount": 80,
-      "actualCount": 80,
+      "expectCount": 79,
+      "actualCount": 79,
       "undocumentLines": []
     },
     "src/assert.js": {

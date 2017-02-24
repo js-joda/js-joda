@@ -198,12 +198,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "js-joda/src/stringutil.js~stringutil",
-    "class/src/StringUtil.js~StringUtil.html",
-    "<span>StringUtil</span> <span class=\"search-result-import-path\">js-joda/src/StringUtil.js</span>",
-    "class"
-  ],
-  [
     "js-joda/src/zone/systemdefaultzoneid.js~systemdefaultzoneid",
     "class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html",
     "<span>SystemDefaultZoneId</span> <span class=\"search-result-import-path\">js-joda/src/zone/SystemDefaultZoneId.js</span>",
@@ -309,12 +303,6 @@ window.esdocSearchIndex = [
     "js-joda/src/zoneid.js~zoneid",
     "class/src/ZoneId.js~ZoneId.html",
     "<span>ZoneId</span> <span class=\"search-result-import-path\">js-joda/src/ZoneId.js</span>",
-    "class"
-  ],
-  [
-    "js-joda/src/zoneidfactory.js~zoneidfactory",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html",
-    "<span>ZoneIdFactory</span> <span class=\"search-result-import-path\">js-joda/src/ZoneIdFactory.js</span>",
     "class"
   ],
   [
@@ -1872,12 +1860,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/localdatetime.js~localdatetime#constructor",
-    "class/src/LocalDateTime.js~LocalDateTime.html#instance-constructor-constructor",
-    "src/LocalDateTime.js~LocalDateTime#constructor",
-    "method"
-  ],
-  [
     "src/localdatetime.js~localdatetime#dayofmonth",
     "class/src/LocalDateTime.js~LocalDateTime.html#instance-method-dayOfMonth",
     "src/LocalDateTime.js~LocalDateTime#dayOfMonth",
@@ -2310,12 +2292,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/localtime.js~localtime#constructor",
-    "class/src/LocalTime.js~LocalTime.html#instance-constructor-constructor",
-    "src/LocalTime.js~LocalTime#constructor",
-    "method"
-  ],
-  [
     "src/localtime.js~localtime#equals",
     "class/src/LocalTime.js~LocalTime.html#instance-method-equals",
     "src/LocalTime.js~LocalTime#equals",
@@ -2700,12 +2676,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/month.js~month#constructor",
-    "class/src/Month.js~Month.html#instance-constructor-constructor",
-    "src/Month.js~Month#constructor",
-    "method"
-  ],
-  [
     "src/month.js~month#firstdayofyear",
     "class/src/Month.js~Month.html#instance-method-firstDayOfYear",
     "src/Month.js~Month#firstDayOfYear",
@@ -2829,12 +2799,6 @@ window.esdocSearchIndex = [
     "src/monthday.js~monthday#compareto",
     "class/src/MonthDay.js~MonthDay.html#instance-method-compareTo",
     "src/MonthDay.js~MonthDay#compareTo",
-    "method"
-  ],
-  [
-    "src/monthday.js~monthday#constructor",
-    "class/src/MonthDay.js~MonthDay.html#instance-constructor-constructor",
-    "src/MonthDay.js~MonthDay#constructor",
     "method"
   ],
   [
@@ -3246,18 +3210,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/stringutil.js~stringutil.hashcode",
-    "class/src/StringUtil.js~StringUtil.html#static-method-hashCode",
-    "src/StringUtil.js~StringUtil.hashCode",
-    "method"
-  ],
-  [
-    "src/stringutil.js~stringutil.startswith",
-    "class/src/StringUtil.js~StringUtil.html#static-method-startsWith",
-    "src/StringUtil.js~StringUtil.startsWith",
-    "method"
-  ],
-  [
     "src/year.js",
     "file/src/Year.js.html",
     "src/Year.js",
@@ -3303,12 +3255,6 @@ window.esdocSearchIndex = [
     "src/year.js~year#compareto",
     "class/src/Year.js~Year.html#instance-method-compareTo",
     "src/Year.js~Year#compareTo",
-    "method"
-  ],
-  [
-    "src/year.js~year#constructor",
-    "class/src/Year.js~Year.html#instance-constructor-constructor",
-    "src/Year.js~Year#constructor",
     "method"
   ],
   [
@@ -3567,12 +3513,6 @@ window.esdocSearchIndex = [
     "src/yearmonth.js~yearmonth#compareto",
     "class/src/YearMonth.js~YearMonth.html#instance-method-compareTo",
     "src/YearMonth.js~YearMonth#compareTo",
-    "method"
-  ],
-  [
-    "src/yearmonth.js~yearmonth#constructor",
-    "class/src/YearMonth.js~YearMonth.html#instance-constructor-constructor",
-    "src/YearMonth.js~YearMonth#constructor",
     "method"
   ],
   [
@@ -3900,40 +3840,40 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/zoneid.js~zoneid.from",
+    "class/src/ZoneId.js~ZoneId.html#static-method-from",
+    "src/ZoneId.js~ZoneId.from",
+    "method"
+  ],
+  [
+    "src/zoneid.js~zoneid.getavailablezoneids",
+    "class/src/ZoneId.js~ZoneId.html#static-method-getAvailableZoneIds",
+    "src/ZoneId.js~ZoneId.getAvailableZoneIds",
+    "method"
+  ],
+  [
+    "src/zoneid.js~zoneid.of",
+    "class/src/ZoneId.js~ZoneId.html#static-method-of",
+    "src/ZoneId.js~ZoneId.of",
+    "method"
+  ],
+  [
+    "src/zoneid.js~zoneid.ofoffset",
+    "class/src/ZoneId.js~ZoneId.html#static-method-ofOffset",
+    "src/ZoneId.js~ZoneId.ofOffset",
+    "method"
+  ],
+  [
+    "src/zoneid.js~zoneid.systemdefault",
+    "class/src/ZoneId.js~ZoneId.html#static-method-systemDefault",
+    "src/ZoneId.js~ZoneId.systemDefault",
+    "method"
+  ],
+  [
     "src/zoneidfactory.js",
     "file/src/ZoneIdFactory.js.html",
     "src/ZoneIdFactory.js",
     "file"
-  ],
-  [
-    "src/zoneidfactory.js~zoneidfactory.from",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-from",
-    "src/ZoneIdFactory.js~ZoneIdFactory.from",
-    "method"
-  ],
-  [
-    "src/zoneidfactory.js~zoneidfactory.getavailablezoneids",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-getAvailableZoneIds",
-    "src/ZoneIdFactory.js~ZoneIdFactory.getAvailableZoneIds",
-    "method"
-  ],
-  [
-    "src/zoneidfactory.js~zoneidfactory.of",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-of",
-    "src/ZoneIdFactory.js~ZoneIdFactory.of",
-    "method"
-  ],
-  [
-    "src/zoneidfactory.js~zoneidfactory.ofoffset",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-ofOffset",
-    "src/ZoneIdFactory.js~ZoneIdFactory.ofOffset",
-    "method"
-  ],
-  [
-    "src/zoneidfactory.js~zoneidfactory.systemdefault",
-    "class/src/ZoneIdFactory.js~ZoneIdFactory.html#static-method-systemDefault",
-    "src/ZoneIdFactory.js~ZoneIdFactory.systemDefault",
-    "method"
   ],
   [
     "src/zoneoffset.js",
@@ -3951,12 +3891,6 @@ window.esdocSearchIndex = [
     "src/zoneoffset.js~zoneoffset#compareto",
     "class/src/ZoneOffset.js~ZoneOffset.html#instance-method-compareTo",
     "src/ZoneOffset.js~ZoneOffset#compareTo",
-    "method"
-  ],
-  [
-    "src/zoneoffset.js~zoneoffset#constructor",
-    "class/src/ZoneOffset.js~ZoneOffset.html#instance-constructor-constructor",
-    "src/ZoneOffset.js~ZoneOffset#constructor",
     "method"
   ],
   [
@@ -4056,12 +3990,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/zoneregion.js~zoneregion#constructor",
-    "class/src/ZoneRegion.js~ZoneRegion.html#instance-constructor-constructor",
-    "src/ZoneRegion.js~ZoneRegion#constructor",
-    "method"
-  ],
-  [
     "src/zoneregion.js~zoneregion#id",
     "class/src/ZoneRegion.js~ZoneRegion.html#instance-method-id",
     "src/ZoneRegion.js~ZoneRegion#id",
@@ -4084,12 +4012,6 @@ window.esdocSearchIndex = [
     "file/src/ZonedDateTime.js.html",
     "src/ZonedDateTime.js",
     "file"
-  ],
-  [
-    "src/zoneddatetime.js~zoneddatetime#constructor",
-    "class/src/ZonedDateTime.js~ZonedDateTime.html#instance-constructor-constructor",
-    "src/ZonedDateTime.js~ZonedDateTime#constructor",
-    "method"
   ],
   [
     "src/zoneddatetime.js~zoneddatetime#dayofmonth",
@@ -4878,12 +4800,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/format/datetimeformatter.js~datetimeformatter#toprinterparser",
-    "class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-toPrinterParser",
-    "src/format/DateTimeFormatter.js~DateTimeFormatter#toPrinterParser",
-    "method"
-  ],
-  [
     "src/format/datetimeformatter.js~datetimeformatter#tostring",
     "class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#instance-method-toString",
     "src/format/DateTimeFormatter.js~DateTimeFormatter#toString",
@@ -5304,12 +5220,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/temporal/chronofield.js~chronofield#constructor",
-    "class/src/temporal/ChronoField.js~ChronoField.html#instance-constructor-constructor",
-    "src/temporal/ChronoField.js~ChronoField#constructor",
-    "method"
-  ],
-  [
     "src/temporal/chronofield.js~chronofield#displayname",
     "class/src/temporal/ChronoField.js~ChronoField.html#instance-method-displayName",
     "src/temporal/ChronoField.js~ChronoField#displayName",
@@ -5397,12 +5307,6 @@ window.esdocSearchIndex = [
     "src/temporal/chronounit.js~chronounit#compareto",
     "class/src/temporal/ChronoUnit.js~ChronoUnit.html#instance-method-compareTo",
     "src/temporal/ChronoUnit.js~ChronoUnit#compareTo",
-    "method"
-  ],
-  [
-    "src/temporal/chronounit.js~chronounit#constructor",
-    "class/src/temporal/ChronoUnit.js~ChronoUnit.html#instance-constructor-constructor",
-    "src/temporal/ChronoUnit.js~ChronoUnit#constructor",
     "method"
   ],
   [
@@ -5748,12 +5652,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/temporal/valuerange.js~valuerange#constructor",
-    "class/src/temporal/ValueRange.js~ValueRange.html#instance-constructor-constructor",
-    "src/temporal/ValueRange.js~ValueRange#constructor",
-    "method"
-  ],
-  [
     "src/temporal/valuerange.js~valuerange#equals",
     "class/src/temporal/ValueRange.js~ValueRange.html#instance-method-equals",
     "src/temporal/ValueRange.js~ValueRange#equals",
@@ -5967,12 +5865,6 @@ window.esdocSearchIndex = [
     "src/zone/zoneoffsettransition.js~zoneoffsettransition#compareto",
     "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-compareTo",
     "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#compareTo",
-    "method"
-  ],
-  [
-    "src/zone/zoneoffsettransition.js~zoneoffsettransition#constructor",
-    "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-constructor-constructor",
-    "src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition#constructor",
     "method"
   ],
   [

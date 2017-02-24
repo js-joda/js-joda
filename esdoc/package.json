@@ -1,6 +1,6 @@
 {
   "name": "js-joda",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js ./test/*Test_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
-    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie_9,sl_firefox\" --single-run=true",
+    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie_9,sl_firefox,sl_android_simulator,sl_ios_simulator\" --single-run=true",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser -- --browsers \"Firefox,PhantomJS\" && npm run test-ts-definitions && npm run build-esdoc && npm run test-coverage",
     "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty test/typescript_defintions/js-joda-tests.ts",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",

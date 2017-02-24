@@ -44,12 +44,10 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/StringUtil.js~StringUtil.html">StringUtil</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html">ZoneIdFactory</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
@@ -116,17 +114,17 @@ import {MathUtil} from &apos;../MathUtil&apos;;
 
 /**
  * The range of valid values for a date-time field.
- * 
+ *
  * All TemporalField instances have a valid range of values.
  * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
  * This class captures that valid range.
- * 
+ *
  * It is important to be aware of the limitations of this class.
  * Only the minimum and maximum values are provided.
  * It is possible for there to be invalid values within the outer range.
  * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
  * have a range of &apos;1 - 7&apos;, despite that fact that values 3 and 5 are invalid.
- * 
+ *
  * Instances of this class are not tied to a specific field.
  */
 export class ValueRange {
@@ -137,6 +135,7 @@ export class ValueRange {
      * @param {!number} minLargest
      * @param {!number} maxSmallest
      * @param {!number} maxLargest
+     * @private
      */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
         assert(!(minSmallest &gt; minLargest), &apos;Smallest minimum value \&apos;&apos; + minSmallest +
@@ -301,10 +300,10 @@ export class ValueRange {
             this._maxSmallest &gt;&gt; 32 + this._maxLargest &lt;&lt; 48 + this._maxLargest &gt;&gt; 16;
         return (hash ^ (hash &gt;&gt;&gt; 32));
     }
-    
+
     /*
      * Outputs this range as a String.
-     * 
+     *
      * The format will be &apos;{min}/{largestMin} - {smallestMax}/{max}&apos;,
      * where the largestMin or smallestMax sections may be omitted, together
      * with associated slash, if they are the same as the min or max.

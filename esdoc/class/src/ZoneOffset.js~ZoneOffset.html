@@ -44,12 +44,10 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/StringUtil.js~StringUtil.html">StringUtil</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneIdFactory.js~ZoneIdFactory.html">ZoneIdFactory</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
@@ -318,40 +316,7 @@
 </tbody>
 </table>
 </div>
-<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          <span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(totalSeconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 
 <div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
@@ -672,6 +637,147 @@
   <tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-from">from</a></span></span><span data-ice="signature">(temporal: <span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span>): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from a temporal object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-getAvailableZoneIds">getAvailableZoneIds</a></span></span><span data-ice="signature">(): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the set of available zone IDs.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-of">of</a></span></span><span data-ice="signature">(zoneId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> from an ID ensuring that the
+ID is valid and available for use.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-ofOffset">ofOffset</a></span></span><span data-ice="signature">(prefix: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, offset: <span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span> wrapping an offset.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-systemDefault">systemDefault</a></span></span><span data-ice="signature">(): <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the system default time-zone.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
       
       
       
@@ -856,7 +962,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber166">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber167">source</a></span></span>
     </span>
   </h3>
 
@@ -886,7 +992,7 @@ described by <span>getId</span>.</p>
 <p>The maximum supported range is from +18:00 to -18:00 inclusive.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/ZoneId.js~ZoneId.html#static-method-of">ZoneId#of</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -962,7 +1068,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber244">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber245">source</a></span></span>
     </span>
   </h3>
 
@@ -1033,7 +1139,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber254">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber255">source</a></span></span>
     </span>
   </h3>
 
@@ -1110,7 +1216,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber265">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber266">source</a></span></span>
     </span>
   </h3>
 
@@ -1193,7 +1299,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber276">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber277">source</a></span></span>
     </span>
   </h3>
 
@@ -1264,7 +1370,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber286">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber287">source</a></span></span>
     </span>
   </h3>
 
@@ -1324,68 +1430,7 @@ described by <span>getId</span>.</p>
   
 </div>
 </div>
-<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-constructor-constructor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span data-ice="name">constructor</span><span data-ice="signature">(totalSeconds: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber40">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">totalSeconds</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
@@ -1401,7 +1446,7 @@ described by <span>getId</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber422">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber423">source</a></span></span>
     </span>
   </h3>
 
@@ -1506,7 +1551,7 @@ passing <span>ChronoField#OFFSET_SECONDS</span> as the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber439">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber440">source</a></span></span>
     </span>
   </h3>
 
@@ -1596,7 +1641,7 @@ offset of <code>+09:00</code> and so on down to <code>-18:00</code>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber454">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber455">source</a></span></span>
     </span>
   </h3>
 
@@ -1672,7 +1717,7 @@ This is equivalent to a comparison by ID.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber335">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber336">source</a></span></span>
     </span>
   </h3>
 
@@ -1774,7 +1819,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber360">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber361">source</a></span></span>
     </span>
   </h3>
 
@@ -1875,7 +1920,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber467">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber468">source</a></span></span>
     </span>
   </h3>
 
@@ -1931,7 +1976,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber60">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
@@ -1989,7 +2034,7 @@ The format of an offset based ID is defined by <span>ZoneOffset#getId</span>.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber387">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber388">source</a></span></span>
     </span>
   </h3>
 
@@ -2087,7 +2132,7 @@ specified query passing <code>this</code> as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber309">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber310">source</a></span></span>
     </span>
   </h3>
 
@@ -2146,7 +2191,7 @@ The implementation class is immutable, thread-safe and serializable.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber475">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber476">source</a></span></span>
     </span>
   </h3>
 
@@ -2202,7 +2247,7 @@ The implementation class is immutable, thread-safe and serializable.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ZoneOffset.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
