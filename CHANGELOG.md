@@ -1,7 +1,13 @@
 Changelog
 =========
 
-### 1.4.0 (next)
+### 1.4.1 (next)
+
+### 1.4.0
+
+#### public API
+
+ * Remove private constructors, functions and classes from  typescript definition (see #134)
 
 ### 1.3.1
 
