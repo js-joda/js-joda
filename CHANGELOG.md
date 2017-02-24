@@ -10,6 +10,8 @@ Changelog
 #### etc
  
  * Fix DateTimeFormatterBuilder.constructor esdoc/ typescript definition
+ * Fix esdoc/ typescript definition for ZoneId
+ * Remove private functions, classses and constructors from esdoc
  * unify the format pattern esdoc in `DateTimeFormatter.ofPattern` 
    and `DateTimeFormatterBuilder.appendPattern`, and add `u` Symbol to documentation
  
