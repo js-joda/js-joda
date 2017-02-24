@@ -296,9 +296,6 @@ declare namespace JSJoda {
 
         static parsedLeapSecond(): boolean
 
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(printerParser: any, locale: any, decimalStyle: any, resolverStyle: ResolverStyle, resolverFields?: any, chrono?: any, zone?: any)
-
         chronology(): any
 
         decimalStyle(): any
@@ -328,8 +325,6 @@ declare namespace JSJoda {
     }
     class DateTimeFormatterBuilder {
         constructor()
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(parentBuilder: DateTimeFormatterBuilder, optional: boolean) // TODO remove with release 1.4.0
 
         append(formatter: DateTimeFormatter): DateTimeFormatterBuilder
 
@@ -401,9 +396,6 @@ declare namespace JSJoda {
         static ofSecondOfDay(secondOfDay?: number, nanoOfSecond?: number): LocalTime
 
         static parse(text: String, formatter?: DateTimeFormatter): LocalTime
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(hour?: number, minute?: number, second?: number, nanoOfSecond?: number)
 
         adjustInto(temporal: TemporalAdjuster): Temporal
 
@@ -533,9 +525,6 @@ declare namespace JSJoda {
 
         static values(): Month[]
 
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(value: number)
-
         adjustInto(temporal: Temporal): Temporal
 
         firstDayOfYear(leapYear: boolean): number
@@ -582,9 +571,6 @@ declare namespace JSJoda {
         static parseString(text: string): MonthDay
 
         static parseStringFormatter(text: string, formatter: DateTimeFormatter): MonthDay
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(month: number, dayOfMonth: number)
 
         adjustInto(temporal: Temporal): Temporal
 
@@ -660,9 +646,6 @@ declare namespace JSJoda {
         static INSTANT_SECONDS: ChronoField
         static OFFSET_SECONDS: ChronoField
 
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(name: string, baseUnit: number, rangeUnit: number, range: ValueRange)
-
         baseUnit(): number
 
         checkValidIntValue(value: number): number
@@ -720,9 +703,6 @@ declare namespace JSJoda {
         static MILLENNIA: ChronoUnit
         static ERAS: ChronoUnit
         static FOREVER: ChronoUnit
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(name: string, estimatedDuration: Duration)
 
         addTo(temporal: Temporal, amount: number): Temporal
 
@@ -885,9 +865,6 @@ declare namespace JSJoda {
     class LocalDateTime extends ChronoLocalDateTime {
         static MIN: LocalDateTime
         static MAX: LocalDateTime
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(date: LocalDate, time: LocalTime)
 
         static from(temporal: TemporalAccessor): LocalDateTime
 
@@ -1110,12 +1087,6 @@ declare namespace JSJoda {
 
         years(): number
     }
-    // @deprecated, private class, do not use. TODO remove with 1.4.0
-    class StringUtil {
-        static hashCode(text: string): number
-
-        static startsWith(text: string, pattern: string): boolean
-    }
     class TemporalAdjuster {
         adjustInto(temporal: Temporal): Temporal
     }
@@ -1168,9 +1139,6 @@ declare namespace JSJoda {
         static of(min: number, max: number): ValueRange
         static of(min: number, maxSmallest: number, maxLargest: number): ValueRange
         static of(minSmallest: number, minLargest: number, maxSmallest: number, maxLargest: number): ValueRange
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(minSmallest: number, minLargest: number, maxSmallest: number, maxLargest: number)
 
         checkValidIntValue(value: number, field: TemporalField): number
 
@@ -1274,9 +1242,6 @@ declare namespace JSJoda {
 
         static ofTotalSeconds(totalSeconds: number): ZoneOffset
 
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(totalSeconds: number)
-
         adjustInto(temporal: Temporal): Temporal
 
         compareTo(other: ZoneOffset): number
@@ -1301,9 +1266,6 @@ declare namespace JSJoda {
     }
     class ZoneRegion extends ZoneId {
         static ofId(zoneId: any): ZoneId
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(id: string, rules: ZoneRules)
 
         id(): string
 
@@ -1363,9 +1325,6 @@ declare namespace JSJoda {
         static ofStrict(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 
         static parse(text: string, formatter?: DateTimeFormatter): ZonedDateTime
-
-        // @deprecated, private constructor, do not use. TODO remove with 1.4.0
-        constructor(dateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId)
 
         dayOfMonth(): number
 
