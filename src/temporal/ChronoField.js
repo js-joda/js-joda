@@ -21,9 +21,9 @@ import {YearConstants} from '../YearConstants';
  * For example, most non-ISO calendar systems define dates as a year, month and day,
  * just with slightly different rules.
  * The documentation of each field explains how it operates.
- * 
+ *
  * ### Static properties of Class {@link ChronoField}
- * 
+ *
  * ChronoField.NANO_OF_SECOND
  *
  * ChronoField.NANO_OF_DAY
@@ -86,7 +86,7 @@ import {YearConstants} from '../YearConstants';
  *
  */
 export class ChronoField extends TemporalField {
-    
+
     /**
      * helper function to get one of the static ChronoField defines by name, needed to resolve ChronoField from EnumMap
      *
@@ -109,6 +109,7 @@ export class ChronoField extends TemporalField {
      * @param {!number} baseUnit
      * @param {!number} rangeUnit
      * @param {!ValueRange} range
+     * @private
      */
     constructor(name, baseUnit, rangeUnit, range) {
         super();
@@ -123,7 +124,7 @@ export class ChronoField extends TemporalField {
      * @returns {string}
      */
     name(){
-        return this._name;    
+        return this._name;
     }
 
     /**
@@ -131,7 +132,7 @@ export class ChronoField extends TemporalField {
      * @returns {!number}
      */
     baseUnit(){
-        return this._baseUnit;    
+        return this._baseUnit;
     }
 
     /**
@@ -139,7 +140,7 @@ export class ChronoField extends TemporalField {
      * @returns {!number}
      */
     rangeUnit(){
-        return this._rangeUnit;    
+        return this._rangeUnit;
     }
 
     /**
@@ -147,7 +148,7 @@ export class ChronoField extends TemporalField {
      * @returns {!ValueRange}
      */
     range(){
-        return this._range;    
+        return this._range;
     }
 
     /**
@@ -155,7 +156,7 @@ export class ChronoField extends TemporalField {
      * @returns {string}
      */
     displayName(){
-        return this.toString();    
+        return this.toString();
     }
 
     /**

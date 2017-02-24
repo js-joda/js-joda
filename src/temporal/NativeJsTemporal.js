@@ -23,9 +23,9 @@ import {TemporalAccessor} from './TemporalAccessor';
 class NativeJsTemporal extends TemporalAccessor {
 
     /**
-     *
      * @param {!(Date|moment)} date - a javascript Date or a moment instance
      * @param {ZoneId} [zone=ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
+     * @private
      */
     constructor(date, zone=ZoneId.systemDefault()){
         super();

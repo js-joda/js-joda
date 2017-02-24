@@ -142,6 +142,7 @@ export class ChronoUnit extends TemporalUnit {
      *
      * @param {String} name
      * @param {Duration} estimatedDuration
+     * @private
      */
     constructor (name, estimatedDuration) {
         super();

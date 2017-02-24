@@ -665,6 +665,7 @@ declare namespace JSJoda {
         static INSTANT_SECONDS: ChronoField
         static OFFSET_SECONDS: ChronoField
 
+        // @deprecated TODO remove private constructor with 1.4.0
         constructor(name: string, baseUnit: number, rangeUnit: number, range: ValueRange)
 
         baseUnit(): number
@@ -725,6 +726,7 @@ declare namespace JSJoda {
         static ERAS: ChronoUnit
         static FOREVER: ChronoUnit
 
+        // @deprecated TODO remove private constructor with 1.4.0
         constructor(name: string, estimatedDuration: Duration)
 
         addTo(temporal: Temporal, amount: number): Temporal
@@ -1170,6 +1172,7 @@ declare namespace JSJoda {
         static of(min: number, maxSmallest: number, maxLargest: number): ValueRange
         static of(minSmallest: number, minLargest: number, maxSmallest: number, maxLargest: number): ValueRange
 
+        // @deprecated TODO remove private constructor with 1.4.0
         constructor(minSmallest: number, minLargest: number, maxSmallest: number, maxLargest: number)
 
         checkValidIntValue(value: number, field: TemporalField): number

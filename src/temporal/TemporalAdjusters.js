@@ -355,6 +355,11 @@ export class TemporalAdjusters {
  */
 class Impl extends TemporalAdjuster {
 
+    /**
+     *
+     * @param ordinal
+     * @private
+     */
     constructor(ordinal) {
         super();
         this._ordinal = ordinal;
@@ -393,6 +398,12 @@ Impl.FIRST_DAY_OF_NEXT_YEAR = new Impl(5);
  */
 class DayOfWeekInMonth extends TemporalAdjuster {
 
+    /**
+     *
+     * @param ordinal
+     * @param dow
+     * @private
+     */
     constructor(ordinal, dow) {
         super();
         this._ordinal = ordinal;
@@ -422,6 +433,12 @@ class DayOfWeekInMonth extends TemporalAdjuster {
  */
 class RelativeDayOfWeek extends TemporalAdjuster {
 
+    /**
+     *
+     * @param relative
+     * @param dayOfWeek
+     * @private
+     */
     constructor(relative, dayOfWeek) {
         super();
         requireNonNull(dayOfWeek, 'dayOfWeek');

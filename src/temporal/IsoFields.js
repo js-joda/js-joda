@@ -722,6 +722,7 @@ class Unit extends TemporalUnit {
      *
      * @param {string} name
      * @param {Duration} estimatedDuration
+     * @private
      */
     constructor(name, estimatedDuration) {
         super();

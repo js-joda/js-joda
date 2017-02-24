@@ -10,17 +10,17 @@ import {MathUtil} from '../MathUtil';
 
 /**
  * The range of valid values for a date-time field.
- * 
+ *
  * All TemporalField instances have a valid range of values.
  * For example, the ISO day-of-month runs from 1 to somewhere between 28 and 31.
  * This class captures that valid range.
- * 
+ *
  * It is important to be aware of the limitations of this class.
  * Only the minimum and maximum values are provided.
  * It is possible for there to be invalid values within the outer range.
  * For example, a weird field may have valid values of 1, 2, 4, 6, 7, thus
  * have a range of '1 - 7', despite that fact that values 3 and 5 are invalid.
- * 
+ *
  * Instances of this class are not tied to a specific field.
  */
 export class ValueRange {
@@ -31,6 +31,7 @@ export class ValueRange {
      * @param {!number} minLargest
      * @param {!number} maxSmallest
      * @param {!number} maxLargest
+     * @private
      */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
         assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest +
@@ -195,10 +196,10 @@ export class ValueRange {
             this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
         return (hash ^ (hash >>> 32));
     }
-    
+
     /*
      * Outputs this range as a String.
-     * 
+     *
      * The format will be '{min}/{largestMin} - {smallestMax}/{max}',
      * where the largestMin or smallestMax sections may be omitted, together
      * with associated slash, if they are the same as the min or max.
