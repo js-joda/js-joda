@@ -354,6 +354,7 @@ class Fixed extends ZoneRules{
     /**
      *
      * @param {ZoneOffset} offset
+     * @private
      */
     constructor(offset){
         super();

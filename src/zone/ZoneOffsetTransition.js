@@ -54,6 +54,7 @@ export class ZoneOffsetTransition {
      * @param {(LocalDateTime \ number)} transition - the transition date-time with the offset before the transition, not null
      * @param {ZoneOffset} offsetBefore - the offset before the transition, not null
      * @param {ZoneOffset} offsetAfter - the offset at and after the transition, not null
+     * @private
      */
     constructor(transition, offsetBefore, offsetAfter) {
         requireNonNull(transition, 'transition');
