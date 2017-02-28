@@ -44,7 +44,7 @@
     "coveralls": "^2.11.15",
     "esdoc": "^0.5.2",
     "eslint": "^3.13.1",
-    "eslint-config-standard": "^6.2.1",
+    "eslint-config-standard": "^7.0.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "karma": "^1.4.0",
