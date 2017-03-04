@@ -17,12 +17,12 @@ import {TemporalQueries} from '../../../src/temporal/TemporalQueries';
 import { ZoneRulesProvider } from '../../../src/zone/ZoneRulesProvider';
 
 describe('org.threeten.bp.format.TestZoneIdParser', () => {
-    var OFFSET_UTC = ZoneOffset.UTC;
-    var OFFSET_P0123 = ZoneOffset.ofHoursMinutes(1, 23);
-    var DT_2012_06_30_12_30_40 = LocalDateTime.of(2012, 6, 30, 12, 30, 40);
+    const OFFSET_UTC = ZoneOffset.UTC;
+    const OFFSET_P0123 = ZoneOffset.ofHoursMinutes(1, 23);
+    const DT_2012_06_30_12_30_40 = LocalDateTime.of(2012, 6, 30, 12, 30, 40);
 
-    var builder = null;
-    var pos = null;
+    let builder = null;
+    let pos = null;
 
     beforeEach(function () {
         init();
@@ -45,9 +45,9 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
         it('test_print', function () {
             dataProviderTest(data_print, (ldt, zone, expected) => {
                 init();
-                var zdt = ldt.atZone(zone);
+                const zdt = ldt.atZone(zone);
                 builder.appendZoneId();
-                var output = builder.toFormatter().format(zdt);
+                const output = builder.toFormatter().format(zdt);
                 assertEquals(output, expected);
             });
         });
@@ -144,7 +144,7 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
             dataProviderTest(data_parseSuccess, (text, expectedIndex, expectedErrorIndex, expected) => {
                 init();
                 builder.appendZoneId();
-                var parsed = builder.toFormatter().parseUnresolved(text, pos);
+                const parsed = builder.toFormatter().parseUnresolved(text, pos);
                 assertEquals(pos.getErrorIndex(), expectedErrorIndex, 'Incorrect error index parsing: ' + text);
                 assertEquals(pos.getIndex(), expectedIndex, 'Incorrect index parsing: ' + text);
                 if (expected != null) {
@@ -160,8 +160,8 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
     });
 
     it('javascript special id SYSTEM', function () {
-        var text = 'SYSTEM';
-        var parsed = builder.appendZoneId().toFormatter().parseUnresolved(text, pos);
+        const text = 'SYSTEM';
+        const parsed = builder.appendZoneId().toFormatter().parseUnresolved(text, pos);
         assertEquals(pos.getErrorIndex(), -1);
         assertEquals(pos.getIndex(), 6);
         assertEquals(parsed.query(TemporalQueries.zoneId()), ZoneId.systemDefault());

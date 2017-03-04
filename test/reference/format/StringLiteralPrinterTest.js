@@ -19,42 +19,42 @@ const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinter
 import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestStringLiteralPrinter', () => {
-    var printEmptyContext, printContext, buf;
+    let printEmptyContext, printContext, buf;
 
     beforeEach(() => {
         printEmptyContext = new DateTimePrintContext(new EMPTY(), null, DecimalStyle.STANDARD);
-        var d = LocalDate.of(2011, 6, 30);
+        const d = LocalDate.of(2011, 6, 30);
         printContext = new DateTimePrintContext(d, null, DecimalStyle.STANDARD);
         buf = new StringBuilder();
     });
 
     it('test_print_emptyCalendrical', () => {
         buf.append('EXISTING');
-        var pp = new StringLiteralPrinterParser('hello');
+        const pp = new StringLiteralPrinterParser('hello');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), 'EXISTINGhello');
     });
 
     it('test_print_dateTime', () => {
         buf.append('EXISTING');
-        var pp = new StringLiteralPrinterParser('hello');
+        const pp = new StringLiteralPrinterParser('hello');
         pp.print(printContext, buf);
         assertEquals(buf.toString(), 'EXISTINGhello');
     });
 
     it('test_print_emptyAppendable', () => {
-        var pp = new StringLiteralPrinterParser('hello');
+        const pp = new StringLiteralPrinterParser('hello');
         pp.print(printContext, buf);
         assertEquals(buf.toString(), 'hello');
     });
 
     it('test_toString', () => {
-        var pp = new StringLiteralPrinterParser('hello');
+        const pp = new StringLiteralPrinterParser('hello');
         assertEquals(pp.toString(), '\'hello\'');
     });
 
     it('test_toString_apos', () => {
-        var pp = new StringLiteralPrinterParser('o\'clock');
+        const pp = new StringLiteralPrinterParser('o\'clock');
         assertEquals(pp.toString(), '\'o\'\'clock\'');
     });
 });

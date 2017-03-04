@@ -17,7 +17,7 @@ import {IsoChronology} from '../../../src/chrono/IsoChronology';
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
 
 describe('org.threeten.bp.format.TestStringLiteralParser', () => {
-    var parseContext;
+    let parseContext;
 
     beforeEach(() => {
         init();
@@ -61,7 +61,7 @@ describe('org.threeten.bp.format.TestStringLiteralParser', () => {
     function test_parse_success(pp, caseSensitive, text, pos, expectedPos) {
         // console.log(pp, caseSensitive, text, pos, expectedPos);
         parseContext.setCaseSensitive(caseSensitive);
-        var result = pp.parse(parseContext, text, pos);
+        const result = pp.parse(parseContext, text, pos);
         assertEquals(result, expectedPos);
         assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
         assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);

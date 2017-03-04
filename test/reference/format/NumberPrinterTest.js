@@ -26,8 +26,8 @@ import {MockFieldValue} from '../temporal/MockFieldValue';
 import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestNumberPrinter', () => {
-    var printEmptyContext, printContext;
-    var buf;
+    let printEmptyContext, printContext;
+    let buf;
 
     beforeEach(() => {
         init();
@@ -35,13 +35,13 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
 
     function init(){
         printEmptyContext = new DateTimePrintContext(new EMPTY(), null, DecimalStyle.STANDARD);
-        var d = LocalDate.of(2011, 6, 30);
+        const d = LocalDate.of(2011, 6, 30);
         printContext = new DateTimePrintContext(d, null, DecimalStyle.STANDARD);
         buf = new StringBuilder();
     }
 
     it('test_print_emptyCalendrical', () => {
-        var pp = new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER);
+        const pp = new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER);
         expect(() => {
             pp.print(printEmptyContext, buf);
         }).to.throw(DateTimeException);
@@ -50,7 +50,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
 
     it('test_print_append', () => {
         printContext.setDateTime(LocalDate.of(2012, 1, 3));
-        var pp = new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER);
+        const pp = new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER);
         buf.append('EXISTING');
         pp.print(printContext, buf);
         assertEquals(buf.toString(), 'EXISTING3');
@@ -143,7 +143,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
             [1, 10, -2147483648 + 1, '2147483647'],
             [1, 10, -2147483648, '2147483648']
         ];
-        
+
         it('test_pad_NOT_NEGATIVE', () => {
             for(let i=0; i < provider_pad.length; i++){
                 init();
@@ -154,7 +154,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
         function test_pad_NOT_NEGATIVE(minPad, maxPad, value, result){
             // console.log(minPad, maxPad, value, result);
             printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NOT_NEGATIVE);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NOT_NEGATIVE);
             try {
                 pp.print(printContext, buf);
                 if (result == null || value < 0) {
@@ -180,7 +180,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
         function test_pad_NEVER(minPad, maxPad, value, result) {
             // console.log(minPad, maxPad, value, result);
             printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NEVER);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NEVER);
             try {
                 pp.print(printContext, buf);
                 if (result == null) {
@@ -208,7 +208,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
         function test_pad_NORMAL(minPad, maxPad, value,  result){
             // console.log(minPad, maxPad, value, result);
             printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NORMAL);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.NORMAL);
             try {
                 pp.print(printContext, buf);
                 if (result == null) {
@@ -236,7 +236,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
         function test_pad_ALWAYS(minPad, maxPad, value,  result){
             // console.log(minPad, maxPad, value, result);
             printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.ALWAYS);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.ALWAYS);
             try {
                 pp.print(printContext, buf);
                 if (result == null) {
@@ -264,7 +264,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
         function test_pad_EXCEEDS_PAD(minPad, maxPad, value,  result){
             // console.log(minPad, maxPad, value, result);
             printContext.setDateTime(new MockFieldValue(DAY_OF_MONTH, value));
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.EXCEEDS_PAD);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, minPad, maxPad, SignStyle.EXCEEDS_PAD);
             try {
                 pp.print(printContext, buf);
                 if (result == null) {
@@ -285,19 +285,19 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
             }
         }
     });
-    
+
     it('test_toString1', () => {
-        var pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 15, SignStyle.NORMAL);
+        const pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 15, SignStyle.NORMAL);
         assertEquals(pp.toString(), 'Value(HourOfDay)');
     });
 
     it('test_toString2', () => {
-        var pp = new NumberPrinterParser(HOUR_OF_DAY, 2, 2, SignStyle.NOT_NEGATIVE);
+        const pp = new NumberPrinterParser(HOUR_OF_DAY, 2, 2, SignStyle.NOT_NEGATIVE);
         assertEquals(pp.toString(), 'Value(HourOfDay,2)');
     });
 
     it('test_toString3', () => {
-        var pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 2, SignStyle.NOT_NEGATIVE);
+        const pp = new NumberPrinterParser(HOUR_OF_DAY, 1, 2, SignStyle.NOT_NEGATIVE);
         assertEquals(pp.toString(), 'Value(HourOfDay,1,2,NOT_NEGATIVE)');
     });
 });

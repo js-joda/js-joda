@@ -18,90 +18,83 @@ import {LocalDate} from '../../../src/LocalDate';
 
 const SettingsParser = DateTimeFormatterBuilder.SettingsParser;
 
-import {EMPTY} from '../temporal/Empty';
-
 describe('org.threeten.bp.format.TestSettingsParser', () => {
-    var parseContext;
-    // eslint-disable-next-line no-unused-vars
-    var printEmptyContext, printContext;
-    // eslint-disable-next-line no-unused-vars
-    var buf;
+    let parseContext;
+    let printContext;
 
     beforeEach(() => {
         parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-        printEmptyContext = new DateTimePrintContext(new EMPTY(), null, DecimalStyle.STANDARD);
-        var d = LocalDate.of(2011, 6, 30);
+        const d = LocalDate.of(2011, 6, 30);
         printContext = new DateTimePrintContext(d, null, DecimalStyle.STANDARD);
-        buf = new StringBuilder();
     });
 
     it('test_print_sensitive', () => {
-        var pp = SettingsParser.SENSITIVE;
-        var buf = new StringBuilder();
+        const pp = SettingsParser.SENSITIVE;
+        const buf = new StringBuilder();
         pp.print(printContext, buf);
         assertEquals(buf.toString(), '');
     });
 
     it('test_print_strict', () => {
-        var pp = SettingsParser.STRICT;
-        var buf = new StringBuilder();
+        const pp = SettingsParser.STRICT;
+        const buf = new StringBuilder();
         pp.print(printContext, buf);
         assertEquals(buf.toString(), '');
     });
 
     it('test_print_nulls', () => {
-        var pp = SettingsParser.SENSITIVE;
+        const pp = SettingsParser.SENSITIVE;
         pp.print(null, null);
     });
 
     it('test_parse_changeStyle_sensitive', () => {
-        var pp = SettingsParser.SENSITIVE;
-        var result = pp.parse(parseContext, 'a', 0);
+        const pp = SettingsParser.SENSITIVE;
+        const result = pp.parse(parseContext, 'a', 0);
         assertEquals(result, 0);
         assertEquals(parseContext.isCaseSensitive(), true);
     });
 
     it('test_parse_changeStyle_insensitive', () => {
-        var pp = SettingsParser.INSENSITIVE;
-        var result = pp.parse(parseContext, 'a', 0);
+        const pp = SettingsParser.INSENSITIVE;
+        const result = pp.parse(parseContext, 'a', 0);
         assertEquals(result, 0);
         assertEquals(parseContext.isCaseSensitive(), false);
     });
 
     it('test_parse_changeStyle_strict', () => {
-        var pp = SettingsParser.STRICT;
-        var result = pp.parse(parseContext, 'a', 0);
+        const pp = SettingsParser.STRICT;
+        const result = pp.parse(parseContext, 'a', 0);
         assertEquals(result, 0);
         assertEquals(parseContext.isStrict(), true);
     });
 
     it('test_parse_changeStyle_lenient', () => {
-        var pp = SettingsParser.LENIENT;
-        var result = pp.parse(parseContext, 'a', 0);
+        const pp = SettingsParser.LENIENT;
+        const result = pp.parse(parseContext, 'a', 0);
         assertEquals(result, 0);
         assertEquals(parseContext.isStrict(), false);
     });
 
     it('test_toString_sensitive', () => {
-        var pp = SettingsParser.SENSITIVE;
+        const pp = SettingsParser.SENSITIVE;
         assertEquals(pp.toString(), 'ParseCaseSensitive(true)');
     });
 
     it('test_toString_insensitive', () => {
-        var pp = SettingsParser.INSENSITIVE;
+        const pp = SettingsParser.INSENSITIVE;
         assertEquals(pp.toString(), 'ParseCaseSensitive(false)');
     });
 
     it('test_toString_strict', () => {
-        var pp = SettingsParser.STRICT;
+        const pp = SettingsParser.STRICT;
         assertEquals(pp.toString(), 'ParseStrict(true)');
     });
 
     it('test_toString_lenient', () => {
-        var pp = SettingsParser.LENIENT;
+        const pp = SettingsParser.LENIENT;
         assertEquals(pp.toString(), 'ParseStrict(false)');
     });
-    
+
 });
 
 

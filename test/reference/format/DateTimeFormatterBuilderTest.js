@@ -17,131 +17,131 @@ import {SignStyle} from '../../../src/format/SignStyle';
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 
 describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
-    var builder = null;
+    let builder = null;
 
     beforeEach(() => {
         builder = new DateTimeFormatterBuilder();
     });
-    
+
     describe('toFormatter', () => {
         it('test_toFormatter_empty', () => {
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), '');
         });
     });
-    
+
     describe('parse', () => {
         it('test_parseCaseSensitive', () => {
             builder.parseCaseSensitive();
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ParseCaseSensitive(true)');
         });
-        
+
         it('test_parseCaseInsensitive', () => {
             builder.parseCaseInsensitive();
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ParseCaseSensitive(false)');
         });
-        
+
         it('test_parseStrict', () => {
             builder.parseStrict();
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ParseStrict(true)');
         });
-        
+
         it('test_parseLenient', () => {
             builder.parseLenient();
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ParseStrict(false)');
         });
     });
-    
+
     describe('appendValue', () => {
         it('test_appendValue_1arg', () => {
             builder.appendValue(DAY_OF_MONTH);
-            var f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(DayOfMonth)');
         });
-        
+
         it('test_appendValue_1arg_null', () => {
             expect(() => {
                 builder.appendValue(null);
             }).to.throw(Error);
         });
-        
+
         it('test_appendValue_2arg', () => {
             builder.appendValue(DAY_OF_MONTH, 3);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(DayOfMonth,3)');
         });
-        
+
         it('test_appendValue_2arg_null', () => {
             expect(() => {
                 builder.appendValue(null, 3);
             }).to.throw(NullPointerException);
         });
-        
+
         it('test_appendValue_2arg_widthTooSmall', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 0);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_2arg_widthTooBig', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 20);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg', () => {
             builder.appendValue(DAY_OF_MONTH, 2, 3, SignStyle.NORMAL);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(DayOfMonth,2,3,NORMAL)');
         });
-        
+
         it('test_appendValue_3arg_nullField', () => {
             expect(() => {
                 builder.appendValue(null, 2, 3, SignStyle.NORMAL);
             }).to.throw(NullPointerException);
         });
-        
+
         it('test_appendValue_3arg_minWidthTooSmall', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 0, 2, SignStyle.NORMAL);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg_minWidthTooBig', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 20, 2, SignStyle.NORMAL);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg_maxWidthTooSmall', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 2, 0, SignStyle.NORMAL);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg_maxWidthTooBig', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 2, 20, SignStyle.NORMAL);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg_maxWidthMinWidth', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 4, 2, SignStyle.NORMAL);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendValue_3arg_nullSignStyle', () => {
             expect(() => {
                 builder.appendValue(DAY_OF_MONTH, 2, 3, null);
             }).to.throw(NullPointerException);
         });
     });
-    
+
     describe('appendValue_subsequent_parse', () => {
         it('test_appendValue_subsequent2_parse3', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2);
@@ -151,7 +151,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent2_parse4', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2);
             let f = builder.toFormatter();
@@ -160,7 +160,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent2_parse5', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2).appendLiteral('4');
             let f = builder.toFormatter();
@@ -169,7 +169,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent3_parse6', () => {
             builder
                 .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
@@ -182,7 +182,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 30);
         });
-        
+
         it('test_appendValue_subsequent2_parse3', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2);
             let f = builder.toFormatter();
@@ -191,7 +191,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent2_parse4', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2);
             let f = builder.toFormatter();
@@ -200,7 +200,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent2_parse5', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral('4');
             let f = builder.toFormatter();
@@ -209,7 +209,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
-        
+
         it('test_appendValue_subsequent3_parse6', () => {
             builder
                 .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
@@ -223,15 +223,15 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 30);
         });
     });
-    
+
     describe('appendValueReduced', () => {
         it('test_appendValueReduced_null', () => {
             expect(() => {
                 builder.appendValueReduced(null, 2, 2, 2000);
             }).to.throw(NullPointerException);
         });
-        
-        
+
+
         it('test_appendValueReduced', () => {
             builder.appendValueReduced(ChronoField.YEAR, 2, 2, 2000);
             let f = builder.toFormatter();
@@ -239,7 +239,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             let cal = f.parseUnresolved('12', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.YEAR), 2012);
         });
-        
+
         it('test_appendValueReduced_subsequent_parse', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValueReduced(ChronoField.YEAR, 2, 2, 2000);
             let f = builder.toFormatter();
@@ -248,9 +248,9 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.YEAR), 2023);
         });
-        
+
     });
-    
+
     describe('appendPattern', () => {
         let dataValid = [
             ["'a'", "'a'"],
@@ -271,11 +271,11 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['GGGG', 'Text(Era)'],
             ['GGGGG', 'Text(Era,NARROW)'],
             */
-            
+
             ['u', 'Value(Year)'],
             ['uu', 'ReducedValue(Year,2,2,2000-01-01)'],
             ['uuu', 'Value(Year,3,15,NORMAL)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
-            ['uuuu', 'Value(Year,4,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing 
+            ['uuuu', 'Value(Year,4,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
             ['uuuuu', 'Value(Year,5,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
 
             ['y', 'Value(YearOfEra)'],
@@ -320,7 +320,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
             ['a', 'Text(AmPmOfDay,SHORT)'],
             */
-            
+
             ['H', 'Value(HourOfDay)'],
             ['HH', 'Value(HourOfDay,2)'],
 
@@ -347,7 +347,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['A', 'Value(MilliOfDay)'],
             ['AA', 'Value(MilliOfDay,2)'],
             ['AAA', 'Value(MilliOfDay,3)'],
-    
+
             ['L', 'Value(MonthOfYear)'],
 
             ['n', 'Value(NanoOfSecond)'],
@@ -366,7 +366,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             */
 
             ['VV', 'ZoneId()'],
-    
+
             ['Z', "Offset(+HHMM,'+0000')"],  // SimpleDateFormat compatible
             ['ZZ', "Offset(+HHMM,'+0000')"],
             ['ZZZ', "Offset(+HHMM,'+0000')"],
@@ -444,7 +444,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['p'],
             ['pp'],
             ['p:'],
-            
+
             ['qqqqqq'],
 
             ['f'],
@@ -482,64 +482,64 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             });
         });
     });
-    
+
     describe('appendFraction', () => {
         it('test_appendFraction_4arg', () => {
             builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 1, 9, false);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Fraction(MinuteOfHour,1,9)');
         });
-        
+
         it('test_appendFraction_4arg_nullRule', () => {
             expect(() => {
                 builder.appendFraction(null, 1, 9, false);
             }).to.throw(NullPointerException);
         });
-        
+
         it('test_appendFraction_4arg_invalidRuleNotFixedSet', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.DAY_OF_MONTH, 1, 9, false);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendFraction_4arg_minTooSmall', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.MINUTE_OF_HOUR, -1, 9, false);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendFraction_4arg_minTooBig', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 10, 9, false);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendFraction_4arg_maxTooSmall', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 0, -1, false);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendFraction_4arg_maxTooBig', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 1, 10, false);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_appendFraction_4arg_maxWidthMinWidth', () => {
             expect(() => {
                 builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 9, 3, false);
             }).to.throw(IllegalArgumentException);
         });
     });
-    
+
     describe('appendOffset', () => {
         it('test_appendOffsetId', () => {
             builder.appendOffsetId();
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Offset(+HH:MM:ss,\'Z\')');
         });
-        
+
         let data_offsetPatterns = [
             ['+HH'],
             ['+HHMM'],
@@ -549,7 +549,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['+HHMMSS'],
             ['+HH:MM:SS'],
         ];
-        
+
         it('test_appendOffset', () => {
             dataProviderTest(data_offsetPatterns, (pattern) => {
                 builder = new DateTimeFormatterBuilder();
@@ -558,7 +558,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 assertEquals(f.toString(), 'Offset(' + pattern + ',\'Z\')');
             });
         });
-        
+
         let data_badOffsetPatterns = [
             ['HH'],
             ['HHMM'],
@@ -572,7 +572,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['+HHM'],
             ['+A'],
         ];
-        
+
         it('test_appendOffset_badPattern', () => {
             dataProviderTest(data_badOffsetPatterns, (pattern) => {
                 expect(() => {
@@ -581,66 +581,66 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 }).to.throw(IllegalArgumentException);
             });
         });
-        
+
         it('test_appendOffset_3arg_nullText', () => {
             expect(() => {
                 builder.appendOffset('+HH:MM', null);
             }).to.throw(NullPointerException);
         });
-        
+
         it('test_appendOffset_3arg_nullPattern', () => {
             expect(() => {
                 builder.appendOffset(null, 'Z');
             }).to.throw(NullPointerException);
         });
     });
-    
+
     describe('padNext', () => {
         it('test_padNext_1arg', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(2).appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad(Value(DayOfMonth),2)Value(DayOfWeek)');
         });
-        
+
         it('test_padNext_1arg_invalidWidth', () => {
             expect(() => {
                 builder.padNext(0);
             }).to.throw(IllegalArgumentException);
         });
-        
+
         //-----------------------------------------------------------------------
         it('test_padNext_2arg_dash', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(2, '-').appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad(Value(DayOfMonth),2,\'-\')Value(DayOfWeek)');
         });
-        
+
         it('test_padNext_2arg_invalidWidth', () => {
             expect(() => {
                 builder.padNext(0, '-');
             }).to.throw(IllegalArgumentException);
         });
-        
+
         it('test_padOptional', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(5).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd().appendValue(ChronoField.DAY_OF_WEEK);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad([Value(DayOfMonth)],5)Value(DayOfWeek)');
         });
     });
-    
+
     describe('optionalStartEnd', () => {
         it('test_optionalStart_noEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)Value(DayOfWeek)]');
         });
-        
+
         it('test_optionalStart2_noEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalStart().appendValue(ChronoField.DAY_OF_WEEK);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)[Value(DayOfWeek)]]');
         });
-        
+
         it('test_optionalStart_doubleStart', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH);
             let f = builder.toFormatter();
@@ -653,40 +653,40 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)]Value(DayOfWeek)');
         });
-        
+
         it('test_optionalEnd2', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH)
                 .optionalStart().appendValue(ChronoField.DAY_OF_WEEK).optionalEnd().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd();
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)[Value(DayOfWeek)]Value(DayOfMonth)]');
         });
-        
+
         it('test_optionalEnd_doubleStartSingleEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd();
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[[Value(DayOfMonth)]]');
         });
-        
+
         it('test_optionalEnd_doubleStartDoubleEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd().optionalEnd();
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[[Value(DayOfMonth)]]');
         });
-        
+
         it('test_optionalStartEnd_immediateStartEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalEnd().appendValue(ChronoField.DAY_OF_MONTH);
             let f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Value(DayOfMonth)');
         });
-        
+
         it('test_optionalEnd_noStart', () => {
             expect(() => {
                 builder.optionalEnd();
             }).to.throw(IllegalStateException);
         });
-        
+
     });
-    
+
     describe('appendZone', () => {
         it('test_appendZoneId', () => {
             builder.appendZoneId();
@@ -694,12 +694,12 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             assertEquals(f.toString(), 'ZoneId()');
         });
     });
-    
+
 });
 
 
 /***
- 
+
  public class TestDateTimeFormatterBuilder {
 
 

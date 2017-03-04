@@ -24,16 +24,16 @@ import {DecimalStyle} from '../../../src/format/DecimalStyle';
 import {StringBuilder} from '../../../src/format/StringBuilder';
 import {IsoChronology} from '../../../src/chrono/IsoChronology';
 
-var FractionPrinterParser = DateTimeFormatterBuilder.FractionPrinterParser;
+const FractionPrinterParser = DateTimeFormatterBuilder.FractionPrinterParser;
 
 import {EMPTY} from '../temporal/Empty';
 import {MockFieldValue} from '../temporal/MockFieldValue';
 
 describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
-    var printEmptyContext, printContext;
-    var buf;
-    var parseContext;
+    let printEmptyContext, printContext;
+    let buf;
+    let parseContext;
 
     beforeEach(() => {
         init();
@@ -41,7 +41,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
     function init(){
         printEmptyContext = new DateTimePrintContext(new EMPTY(), null, DecimalStyle.STANDARD);
-        var d = LocalDate.of(2011, 6, 30);
+        const d = LocalDate.of(2011, 6, 30);
         printContext = new DateTimePrintContext(d, null, DecimalStyle.STANDARD);
         buf = new StringBuilder();
         parseContext = new DateTimeParseContext(null, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
@@ -171,14 +171,14 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
         it('test_print_emptyCalendrical()', () => {
             expect(() => {
-                var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 0, 9, true);
+                const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 0, 9, true);
                 pp.print(printEmptyContext, buf);
             }).to.throw(DateTimeException);
         });
 
         it('test_print_append()', () => {
             printContext.setDateTime(LocalTime.of(12, 30, 40, 3));
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 0, 9, true);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 0, 9, true);
             buf.append('EXISTING');
             pp.print(printContext, buf);
             assertEquals(buf.toString(), 'EXISTING.000000003');
@@ -195,7 +195,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         function test_print_nanos(minWidth, maxWidth, value, result) {
             // console.log(minWidth, maxWidth, value, result);
             printContext.setDateTime(new MockFieldValue(ChronoField.NANO_OF_SECOND, value));
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
             pp.print(printContext, buf);
             if (result === null) {
                 fail('Expected exception');
@@ -214,14 +214,14 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         function test_print_nanos_noDecimalPoint(minWidth, maxWidth, value, result){
             //console.log(minWidth, maxWidth, value, result);
             printContext.setDateTime(new MockFieldValue(ChronoField.NANO_OF_SECOND, value));
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
             pp.print(printContext, buf);
             if (result === null) {
                 fail('Expected exception');
             }
             assertEquals(buf.toString(), (result[0] === '.' ? result.substring(1) : result));
         }
-    
+
         it('test_print_seconds', function () {
             provider_seconds().forEach((data) => {
                 init();
@@ -232,7 +232,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Seconds')
         function test_print_seconds(minWidth, maxWidth, value, result){
             printContext.setDateTime(new MockFieldValue(ChronoField.SECOND_OF_MINUTE, value));
-            var pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, true);
+            const pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, true);
             pp.print(printContext, buf);
             if (result === null) {
                 fail('Expected exception');
@@ -250,7 +250,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Seconds')
         function test_print_seconds_noDecimalPoint(minWidth, maxWidth, value, result){
             printContext.setDateTime(new MockFieldValue(ChronoField.SECOND_OF_MINUTE, value));
-            var pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, false);
+            const pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, false);
             pp.print(printContext, buf);
             if (result === null) {
                 fail('Expected exception');
@@ -272,10 +272,10 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Nanos')
         function test_reverseParse(minWidth, maxWidth, value, result){
             //console.log(minWidth, maxWidth, value, result);
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            var newPos = pp.parse(parseContext, result, 0);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
+            const newPos = pp.parse(parseContext, result, 0);
             assertEquals(newPos, result.length);
-            var expectedValue = fixParsedValue(maxWidth, value);
+            const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
         }
 
@@ -288,10 +288,10 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
         // @Test(dataProvider='Nanos')
         function test_reverseParse_noDecimalPoint(minWidth, maxWidth, value, result){
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
-            var newPos = pp.parse(parseContext, result, (result[0] === '.' ? 1 : 0));
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
+            const newPos = pp.parse(parseContext, result, (result[0] === '.' ? 1 : 0));
             assertEquals(newPos, result.length);
-            var expectedValue = fixParsedValue(maxWidth, value);
+            const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
         }
 
@@ -304,10 +304,10 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
         // @Test(dataProvider='Nanos')
         function test_reverseParse_followedByNonDigit(minWidth, maxWidth, value, result){
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            var newPos = pp.parse(parseContext, result + ' ', 0);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
+            const newPos = pp.parse(parseContext, result + ' ', 0);
             assertEquals(newPos, result.length);
-            var expectedValue = fixParsedValue(maxWidth, value);
+            const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
         }
 
@@ -321,10 +321,10 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         //
         //// @Test(dataProvider='Nanos')
         //function test_reverseParse_followedByNonDigit_noDecimalPoint(minWidth, maxWidth, value, result){
-        //    var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
-        //    var newPos = pp.parse(parseContext, result + ' ', (result[0] === '.' ? 1 : 0));
+        //    const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, false);
+        //    const newPos = pp.parse(parseContext, result + ' ', (result[0] === '.' ? 1 : 0));
         //    assertEquals(newPos, result.length);
-        //    var expectedValue = fixParsedValue(maxWidth, value);
+        //    const expectedValue = fixParsedValue(maxWidth, value);
         //    assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
         //}
 
@@ -337,10 +337,10 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
         // @Test(dataProvider='Nanos')
         function test_reverseParse_preceededByNonDigit(minWidth, maxWidth, value, result){
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            var newPos = pp.parse(parseContext, ' ' + result, 1);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
+            const newPos = pp.parse(parseContext, ' ' + result, 1);
             assertEquals(newPos, result.length + 1);
-            var expectedValue = fixParsedValue(maxWidth, value);
+            const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null :  expectedValue);
         }
 
@@ -353,8 +353,8 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
         // @Test(dataProvider='Seconds')
         function test_reverseParse_seconds(minWidth, maxWidth, value, result){
-            var pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, true);
-            var newPos = pp.parse(parseContext, result, 0);
+            const pp = new FractionPrinterParser(ChronoField.SECOND_OF_MINUTE, minWidth, maxWidth, true);
+            const newPos = pp.parse(parseContext, result, 0);
             assertEquals(newPos, result.length);
             assertParsed(parseContext, ChronoField.SECOND_OF_MINUTE, value === 0 && minWidth === 0 ? null : value);
         }
@@ -383,7 +383,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
     // @Test(dataProvider = 'ParseNothing')
     function test_parse_nothing(pp, text, pos, expected) {
-        var newPos = pp.parse(parseContext, text, pos);
+        const newPos = pp.parse(parseContext, text, pos);
         assertEquals(newPos, expected);
         assertEquals(parseContext.getParsed(ChronoField.NANO_OF_SECOND), null);
     }
@@ -391,20 +391,20 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
     describe('toString()', function () {
 
         it('test_toString()', () => {
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 3, 6, true);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 3, 6, true);
             assertEquals(pp.toString(), 'Fraction(NanoOfSecond,3,6,DecimalPoint)');
         });
 
         it('test_toString_noDecimalPoint()', () => {
-            var pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 3, 6, false);
+            const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, 3, 6, false);
             assertEquals(pp.toString(), 'Fraction(NanoOfSecond,3,6)');
         });
 
     });
-    
+
     function fixParsedValue(maxWidth, value) {
         if (maxWidth < 9) {
-            var power = Math.pow(10, (9 - maxWidth));
+            const power = Math.pow(10, (9 - maxWidth));
             value = MathUtil.intDiv(value, power) * power;
         }
         return value;

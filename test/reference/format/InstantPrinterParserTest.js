@@ -50,8 +50,8 @@ describe('tck.java.time.format.TCKInstantPrinterParser', () => {
 
     // @Test(dataProvider='printGrouped')
     function test_print_grouped(instantSecs, nano, expected) {
-        var instant = Instant.ofEpochSecond(instantSecs, nano);
-        var f = new DateTimeFormatterBuilder().appendInstant().toFormatter();
+        const instant = Instant.ofEpochSecond(instantSecs, nano);
+        const f = new DateTimeFormatterBuilder().appendInstant().toFormatter();
         assertEquals(f.format(instant), expected);
     }
 
@@ -134,8 +134,8 @@ describe('tck.java.time.format.TCKInstantPrinterParser', () => {
 
     // @Test(dataProvider='printDigits')
     function test_print_digits(fractionalDigits, instantSecs, nano, expected) {
-        var instant = Instant.ofEpochSecond(instantSecs, nano);
-        var f = new DateTimeFormatterBuilder().appendInstant(fractionalDigits).toFormatter();
+        const instant = Instant.ofEpochSecond(instantSecs, nano);
+        const f = new DateTimeFormatterBuilder().appendInstant(fractionalDigits).toFormatter();
         assertEquals(f.format(instant), expected);
     }
 
@@ -177,8 +177,8 @@ describe('tck.java.time.format.TCKInstantPrinterParser', () => {
     // @Test(dataProvider='parseDigits')
     function test_parse_digitsMinusOne(instantSecs, nano, input) {
         //console.log(instantSecs, nano, input);
-        var expected = Instant.ofEpochSecond(instantSecs, nano);
-        var f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter();
+        const expected = Instant.ofEpochSecond(instantSecs, nano);
+        const f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter();
         assertEquals(f.parse(input, Instant.FROM), expected);
         // assertEquals(f.parse(input).query(DateTimeFormatter.parsedExcessDays()), Period.ZERO);
         assertEquals(f.parse(input).query(DateTimeFormatter.parsedLeapSecond()), false);
@@ -192,9 +192,9 @@ describe('tck.java.time.format.TCKInstantPrinterParser', () => {
 
     // @Test(dataProvider='parseDigits')
     function test_parse_digitsNine(instantSecs, nano, input) {
-        var f = new DateTimeFormatterBuilder().appendInstant(9).toFormatter();
+        const f = new DateTimeFormatterBuilder().appendInstant(9).toFormatter();
         if (input.charAt(input.length - 11) === '.') {
-            var expected = Instant.ofEpochSecond(instantSecs, nano);
+            const expected = Instant.ofEpochSecond(instantSecs, nano);
             assertEquals(f.parse(input, Instant.FROM), expected);
             // assertEquals(f.parse(input).query(DateTimeFormatter.parsedExcessDays()), Period.ZERO);
             assertEquals(f.parse(input).query(DateTimeFormatter.parsedLeapSecond()), false);
@@ -209,23 +209,23 @@ describe('tck.java.time.format.TCKInstantPrinterParser', () => {
     }
 
     it('test_parse_endOfDay', function () {
-        var expected = LocalDateTime.of(1970, 2, 4, 0, 0, 0, 0).toInstant(ZoneOffset.UTC);
-        var f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter(ResolverStyle.STRICT);
-        var parsed = f.parse('1970-02-03T24:00:00Z');
+        const expected = LocalDateTime.of(1970, 2, 4, 0, 0, 0, 0).toInstant(ZoneOffset.UTC);
+        const f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter(ResolverStyle.STRICT);
+        const parsed = f.parse('1970-02-03T24:00:00Z');
         assertEquals(parsed.query(Instant.FROM), expected);
         // assertEquals(parsed.query(DateTimeFormatter.parsedExcessDays()), Period.ZERO);
         assertEquals(parsed.query(DateTimeFormatter.parsedLeapSecond()), false);
     });
 
     it('test_parse_leapSecond', function () {
-        var expected = LocalDateTime.of(1970, 2, 3, 23, 59, 59, 123456789).toInstant(ZoneOffset.UTC);
-        var f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter(ResolverStyle.STRICT);
-        var parsed = f.parse('1970-02-03T23:59:60.123456789Z');
+        const expected = LocalDateTime.of(1970, 2, 3, 23, 59, 59, 123456789).toInstant(ZoneOffset.UTC);
+        const f = new DateTimeFormatterBuilder().appendInstant(-1).toFormatter(ResolverStyle.STRICT);
+        const parsed = f.parse('1970-02-03T23:59:60.123456789Z');
         assertEquals(parsed.query(Instant.FROM), expected);
         // assertEquals(parsed.query(DateTimeFormatter.parsedExcessDays()), Period.ZERO);
         assertEquals(parsed.query(DateTimeFormatter.parsedLeapSecond()), true);
     });
-    
+
     //-----------------------------------------------------------------------
     it('test_appendInstant_tooSmall', () => {
         expect(() => {

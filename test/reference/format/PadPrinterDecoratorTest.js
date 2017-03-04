@@ -22,77 +22,77 @@ const CharLiteralPrinterParser = DateTimeFormatterBuilder.CharLiteralPrinterPars
 import {EMPTY} from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestPadPrinterDecorator', () => {
-    var printEmptyContext, printContext;
-    var buf;
+    let printEmptyContext, printContext;
+    let buf;
 
     beforeEach(() => {
         printEmptyContext = new DateTimePrintContext(new EMPTY(), null, DecimalStyle.STANDARD);
-        var d = LocalDate.of(2011, 6, 30);
+        const d = LocalDate.of(2011, 6, 30);
         printContext = new DateTimePrintContext(d, null, DecimalStyle.STANDARD);
         buf = new StringBuilder();
     });
 
     it('test_print_emptyCalendrical', () => {
-        var pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
+        const pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), '--Z');
     });
 
     it('test_print_fullDateTime', () => {
         printContext.setDateTime(LocalDate.of(2008, 12, 3));
-        var pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
+        const pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
         pp.print(printContext, buf);
         assertEquals(buf.toString(), '--Z');
     });
 
     it('test_print_append', () => {
         buf.append('EXISTING');
-        var pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
+        const pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 3, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), 'EXISTING--Z');
     });
 
-    
+
     it('test_print_noPadRequiredSingle', () => {
-        var pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 1, '-');
+        const pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 1, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), 'Z');
     });
 
     it('test_print_padRequiredSingle', () => {
-        var pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 5, '-');
+        const pp = new PadPrinterParserDecorator(new CharLiteralPrinterParser('Z'), 5, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), '----Z');
     });
 
     it('test_print_noPadRequiredMultiple', () => {
-        var pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 4, '-');
+        const pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 4, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), 'WXYZ');
     });
 
     it('test_print_padRequiredMultiple', () => {
-        var pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 5, '-');
+        const pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 5, '-');
         pp.print(printEmptyContext, buf);
         assertEquals(buf.toString(), '-WXYZ');
     });
 
     it('test_print_overPad', () => {
-        var pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 3, '-');
+        const pp = new PadPrinterParserDecorator(new StringLiteralPrinterParser('WXYZ'), 3, '-');
         expect(() => {
             pp.print(printEmptyContext, buf);
         }).to.throw(DateTimeException);
     });
 
     it('test_toString1', () => {
-        var wrapped = new CharLiteralPrinterParser('Y');
-        var pp = new PadPrinterParserDecorator(wrapped, 5, ' ');
+        const wrapped = new CharLiteralPrinterParser('Y');
+        const pp = new PadPrinterParserDecorator(wrapped, 5, ' ');
         assertEquals(pp.toString(), 'Pad(\'Y\',5)');
     });
 
     it('test_toString2', () => {
-        var wrapped = new CharLiteralPrinterParser('Y');
-        var pp = new PadPrinterParserDecorator(wrapped, 5, '-');
+        const wrapped = new CharLiteralPrinterParser('Y');
+        const pp = new PadPrinterParserDecorator(wrapped, 5, '-');
         assertEquals(pp.toString(), 'Pad(\'Y\',5,\'-\')');
     });
 });

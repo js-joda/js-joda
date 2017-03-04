@@ -22,7 +22,7 @@ const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const DAY_OF_WEEK = ChronoField.DAY_OF_WEEK;
 
 describe('org.threeten.bp.TestNumberParser', () => {
-    var parseContext;
+    let parseContext;
 
     beforeEach(() => {
         init();
@@ -34,11 +34,11 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
     describe('parseError', () => {
         it('test_parse_error', () => {
-            var dataProviderErrorData = [
+            const dataProviderErrorData = [
                 [new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER), '12', -1, Error],
                 [new NumberPrinterParser(DAY_OF_MONTH, 1, 2, SignStyle.NEVER), '12', 3, Error]
             ];
-            for(var i=0; i < dataProviderErrorData.length; i++){
+            for(let i=0; i < dataProviderErrorData.length; i++){
                 init();
                 test_parse_error.apply(this, dataProviderErrorData[i]);
             }
@@ -56,7 +56,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
     });
 
     describe('parseData', () => {
-        var dataProviderParseData;
+        let dataProviderParseData;
         beforeEach(() => {
             dataProviderParseData = [
                 // normal
@@ -105,7 +105,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
         });
 
         it('test_parse_fresh', () => {
-            for(var i=0; i < dataProviderParseData.length; i++){
+            for(let i=0; i < dataProviderParseData.length; i++){
                 init();
                 test_parse_fresh.apply(this, dataProviderParseData[i]);
             }
@@ -113,11 +113,11 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         function test_parse_fresh(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue) {
             // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, minWidth, maxWidth, signStyle);
+            let pp = new NumberPrinterParser(DAY_OF_MONTH, minWidth, maxWidth, signStyle);
             if (subsequentWidth > 0) {
                 pp = pp.withSubsequentWidth(subsequentWidth);
             }
-            var newPos = pp.parse(parseContext, text, pos);
+            const newPos = pp.parse(parseContext, text, pos);
             assertEquals(newPos, expectedPos);
             if (expectedPos > 0) {
                 assertParsed(parseContext, DAY_OF_MONTH, expectedValue);
@@ -128,7 +128,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
         }
 
         it('test_parse_textField', () => {
-            for(var i=0; i < dataProviderParseData.length; i++){
+            for(let i=0; i < dataProviderParseData.length; i++){
                 init();
                 test_parse_textField.apply(this, dataProviderParseData[i]);
             }
@@ -136,11 +136,11 @@ describe('org.threeten.bp.TestNumberParser', () => {
 
         function test_parse_textField(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue){
             // console.log(minWidth, maxWidth, signStyle, subsequentWidth, text, pos, expectedPos, expectedValue);
-            var pp = new NumberPrinterParser(DAY_OF_WEEK, minWidth, maxWidth, signStyle);
+            let pp = new NumberPrinterParser(DAY_OF_WEEK, minWidth, maxWidth, signStyle);
             if (subsequentWidth > 0) {
                 pp = pp.withSubsequentWidth(subsequentWidth);
             }
-            var newPos = pp.parse(parseContext, text, pos);
+            const newPos = pp.parse(parseContext, text, pos);
             assertEquals(newPos, expectedPos);
             if (expectedPos > 0) {
                 assertParsed(parseContext, DAY_OF_WEEK, expectedValue);
@@ -150,7 +150,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
     });
 
     describe('parseSignsStrict', () => {
-        var provider_parseSignsStrict = [
+        const provider_parseSignsStrict = [
             // basics
             ['0', 1, 2, SignStyle.NEVER, 1, 0],
             ['1', 1, 2, SignStyle.NEVER, 1, 1],
@@ -248,22 +248,22 @@ describe('org.threeten.bp.TestNumberParser', () => {
         ];
 
         it('test_parseSignsStrict', () => {
-            for(var i=0; i < provider_parseSignsStrict.length; i++){
+            for(let i=0; i < provider_parseSignsStrict.length; i++){
                 init();
                 test_parseSignsStrict.apply(this, provider_parseSignsStrict[i]);
             }
         });
 
         function test_parseSignsStrict(input, min, max, style, parseLen, parseVal){
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
-            var newPos = pp.parse(parseContext, input, 0);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
+            const newPos = pp.parse(parseContext, input, 0);
             assertEquals(newPos, parseLen);
             assertParsed(parseContext, DAY_OF_MONTH, (parseVal != null ? parseVal : null));
         }
     });
 
     describe('parseSignsLenient', () => {
-        var provider_parseSignsLenient = [
+        const provider_parseSignsLenient = [
             // never
             ['0', 1, 2, SignStyle.NEVER, 1, 0],
             ['5', 1, 2, SignStyle.NEVER, 1, 5],
@@ -355,7 +355,7 @@ describe('org.threeten.bp.TestNumberParser', () => {
         ];
 
         it('test_parseSignsStrict', () => {
-            for(var i=0; i < provider_parseSignsLenient.length; i++){
+            for(let i=0; i < provider_parseSignsLenient.length; i++){
                 init();
                 test_parseSignsLenient.apply(this, provider_parseSignsLenient[i]);
             }
@@ -364,8 +364,8 @@ describe('org.threeten.bp.TestNumberParser', () => {
         function test_parseSignsLenient(input, min, max, style, parseLen, parseVal){
             // console.log(input, min, max, style, parseLen, parseVal);
             parseContext.setStrict(false);
-            var pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
-            var newPos = pp.parse(parseContext, input, 0);
+            const pp = new NumberPrinterParser(DAY_OF_MONTH, min, max, style);
+            const newPos = pp.parse(parseContext, input, 0);
             assertEquals(newPos, parseLen);
             assertParsed(parseContext, DAY_OF_MONTH, (parseVal != null ? parseVal : null));
         }
