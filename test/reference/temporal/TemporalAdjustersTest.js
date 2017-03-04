@@ -21,12 +21,8 @@ import {assertTrue} from '../../testUtils';
 import {assertFalse} from '../../testUtils';
 
 describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
-    var MonthValues, DayOfWeekValues;
-
-    beforeEach(function () {
-        MonthValues = Month.values();
-        DayOfWeekValues = DayOfWeek.values();
-    });
+    const MonthValues = Month.values();
+    const DayOfWeekValues = DayOfWeek.values();
 
     function createDate(year, month, day) {
         return LocalDate.of(year, month, day);
@@ -40,10 +36,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfMonth_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
+                const month = MonthValues[j];
                 for (let i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test = TemporalAdjusters.firstDayOfMonth().adjustInto(date);
+                    const date = createDate(2007, month, i);
+                    const test = TemporalAdjusters.firstDayOfMonth().adjustInto(date);
                     assertEquals(test.year(), 2007);
                     assertEquals(test.month(), month);
                     assertEquals(test.dayOfMonth(), 1);
@@ -53,10 +49,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfMonth_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.firstDayOfMonth().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.firstDayOfMonth().adjustInto(date);
                     assertEquals(test.year(), 2008);
                     assertEquals(test.month(), month);
                     assertEquals(test.dayOfMonth(), 1);
@@ -71,33 +67,33 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
         it('factory_lastDayOfMonth', () => {
             assertNotNull(TemporalAdjusters.lastDayOfMonth());
         });
-    
+
         it('test_lastDayOfMonth_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test =  TemporalAdjusters.lastDayOfMonth().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
+                    const test =  TemporalAdjusters.lastDayOfMonth().adjustInto(date);
                     assertEquals(test.year(), 2007);
                     assertEquals(test.month(), month);
                     assertEquals(test.dayOfMonth(), month.length(false));
                 }
             }
         });
-    
+
         it('test_lastDayOfMonth_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.lastDayOfMonth().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.lastDayOfMonth().adjustInto(date);
                     assertEquals(test.year(), 2008);
                     assertEquals(test.month(), month);
                     assertEquals(test.dayOfMonth(), month.length(true));
                 }
             }
         });
-    
+
     });
 
     describe('firstDayOfNextMonth()', () => {
@@ -108,10 +104,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfNextMonth_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test = TemporalAdjusters.firstDayOfNextMonth().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
+                    const test = TemporalAdjusters.firstDayOfNextMonth().adjustInto(date);
                     assertEquals(test.year(), month === Month.DECEMBER ? 2008 : 2007);
                     assertEquals(test.month(), month.plus(1));
                     assertEquals(test.dayOfMonth(), 1);
@@ -121,10 +117,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfNextMonth_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.firstDayOfNextMonth().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.firstDayOfNextMonth().adjustInto(date);
                     assertEquals(test.year(), month === Month.DECEMBER ? 2009 : 2008);
                     assertEquals(test.month(), month.plus(1));
                     assertEquals(test.dayOfMonth(), 1);
@@ -142,10 +138,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfYear_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test = TemporalAdjusters.firstDayOfYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
+                    const test = TemporalAdjusters.firstDayOfYear().adjustInto(date);
                     assertEquals(test.year(), 2007);
                     assertEquals(test.month(), Month.JANUARY);
                     assertEquals(test.dayOfMonth(), 1);
@@ -155,10 +151,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfYear_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.firstDayOfYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.firstDayOfYear().adjustInto(date);
                     assertEquals(test.year(), 2008);
                     assertEquals(test.month(), Month.JANUARY);
                     assertEquals(test.dayOfMonth(), 1);
@@ -176,10 +172,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_lastDayOfYear_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test = TemporalAdjusters.lastDayOfYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
+                    const test = TemporalAdjusters.lastDayOfYear().adjustInto(date);
                     assertEquals(test.year(), 2007);
                     assertEquals(test.month(), Month.DECEMBER);
                     assertEquals(test.dayOfMonth(), 31);
@@ -189,10 +185,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_lastDayOfYear_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.lastDayOfYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.lastDayOfYear().adjustInto(date);
                     assertEquals(test.year(), 2008);
                     assertEquals(test.month(), Month.DECEMBER);
                     assertEquals(test.dayOfMonth(), 31);
@@ -210,10 +206,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfNextYear_nonLeap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
-                    var test = TemporalAdjusters.firstDayOfNextYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
+                    const test = TemporalAdjusters.firstDayOfNextYear().adjustInto(date);
                     assertEquals(test.year(), 2008);
                     assertEquals(test.month(), Month.JANUARY);
                     assertEquals(test.dayOfMonth(), 1);
@@ -223,10 +219,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_firstDayOfNextYear_leap()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(true); i++) {
-                    var date = createDate(2008, month, i);
-                    var test = TemporalAdjusters.firstDayOfNextYear().adjustInto(date);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(true); i++) {
+                    const date = createDate(2008, month, i);
+                    const test = TemporalAdjusters.firstDayOfNextYear().adjustInto(date);
                     assertEquals(test.year(), 2009);
                     assertEquals(test.month(), Month.JANUARY);
                     assertEquals(test.dayOfMonth(), 1);
@@ -311,10 +307,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         // @Test(dataProvider = 'dayOfWeekInMonth_positive')
         function test_dayOfWeekInMonth_positive(year, month, dow, expected) {
-            for (var ordinal = 1; ordinal <= 5; ordinal++) {
-                for (var day = 1; day <= Month.of(month).length(false); day++) {
-                    var date = createDate(year, month, day);
-                    var test = TemporalAdjusters.dayOfWeekInMonth(ordinal, dow).adjustInto(date);
+            for (let ordinal = 1; ordinal <= 5; ordinal++) {
+                for (let day = 1; day <= Month.of(month).length(false); day++) {
+                    const date = createDate(year, month, day);
+                    const test = TemporalAdjusters.dayOfWeekInMonth(ordinal, dow).adjustInto(date);
                     assertEquals(test, expected.plusWeeks(ordinal - 1));
                 }
             }
@@ -329,9 +325,9 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         // @Test(dataProvider = 'dayOfWeekInMonth_zero')
         function test_dayOfWeekInMonth_zero(year, month, dow, expected) {
-            for (var day = 1; day <= Month.of(month).length(false); day++) {
-                var date = createDate(year, month, day);
-                var test = TemporalAdjusters.dayOfWeekInMonth(0, dow).adjustInto(date);
+            for (let day = 1; day <= Month.of(month).length(false); day++) {
+                const date = createDate(year, month, day);
+                const test = TemporalAdjusters.dayOfWeekInMonth(0, dow).adjustInto(date);
                 assertEquals(test, expected);
             }
         }
@@ -345,10 +341,10 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         // @Test(dataProvider = 'dayOfWeekInMonth_negative')
         function test_dayOfWeekInMonth_negative(year, month, dow, expected) {
-            for (var ordinal = 0; ordinal < 5; ordinal++) {
-                for (var day = 1; day <= Month.of(month).length(false); day++) {
-                    var date = createDate(year, month, day);
-                    var test = TemporalAdjusters.dayOfWeekInMonth(-1 - ordinal, dow).adjustInto(date);
+            for (let ordinal = 0; ordinal < 5; ordinal++) {
+                for (let day = 1; day <= Month.of(month).length(false); day++) {
+                    const date = createDate(year, month, day);
+                    const test = TemporalAdjusters.dayOfWeekInMonth(-1 - ordinal, dow).adjustInto(date);
                     assertEquals(test, expected.minusWeeks(ordinal));
                 }
             }
@@ -377,9 +373,9 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         // @Test(dataProvider = 'dayOfWeekInMonth_positive')
         function test_firstInMonth(year, month, dow, expected) {
-            for (var day = 1; day <= Month.of(month).length(false); day++) {
-                var date = createDate(year, month, day);
-                var test = TemporalAdjusters.firstInMonth(dow).adjustInto(date);
+            for (let day = 1; day <= Month.of(month).length(false); day++) {
+                const date = createDate(year, month, day);
+                const test = TemporalAdjusters.firstInMonth(dow).adjustInto(date);
                 assertEquals(test, expected, 'day-of-month=' + day);
             }
         }
@@ -406,9 +402,9 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         // @Test(dataProvider = 'dayOfWeekInMonth_negative')
         function test_lastInMonth(year, month, dow, expected) {
-            for (var day = 1; day <= Month.of(month).length(false); day++) {
-                var date = createDate(year, month, day);
-                var test = TemporalAdjusters.lastInMonth(dow).adjustInto(date);
+            for (let day = 1; day <= Month.of(month).length(false); day++) {
+                const date = createDate(year, month, day);
+                const test = TemporalAdjusters.lastInMonth(dow).adjustInto(date);
                 assertEquals(test, expected, 'day-of-month=' + day);
             }
         }
@@ -429,17 +425,17 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_next()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
                     for (let d = 0; d < DayOfWeekValues.length; d++) {
-                        var dow = DayOfWeekValues[d];
-                        var test = TemporalAdjusters.next(dow).adjustInto(date);
+                        const dow = DayOfWeekValues[d];
+                        const test = TemporalAdjusters.next(dow).adjustInto(date);
 
                         assertSame(test.dayOfWeek(), dow, date + ' ' + test);
 
                         if (test.year() === 2007) {
-                            var dayDiff = test.dayOfYear() - date.dayOfYear();
+                            const dayDiff = test.dayOfYear() - date.dayOfYear();
                             assertTrue(dayDiff > 0 && dayDiff < 8);
                         } else {
                             assertSame(month, Month.DECEMBER);
@@ -468,18 +464,18 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_nextOrSame()', () => {
             for (let j = 0; j < MonthValues.length; j++) {
-                var month = MonthValues[j];
-                for (var i = 1; i <= month.length(false); i++) {
-                    var date = createDate(2007, month, i);
+                const month = MonthValues[j];
+                for (let i = 1; i <= month.length(false); i++) {
+                    const date = createDate(2007, month, i);
 
                     for (let d = 0; d < DayOfWeekValues.length; d++) {
-                        var dow = DayOfWeekValues[d];
-                        var test = TemporalAdjusters.nextOrSame(dow).adjustInto(date);
+                        const dow = DayOfWeekValues[d];
+                        const test = TemporalAdjusters.nextOrSame(dow).adjustInto(date);
 
                         assertSame(test.dayOfWeek(), dow);
 
                         if (test.year() === 2007) {
-                            var dayDiff = test.dayOfYear() - date.dayOfYear();
+                            const dayDiff = test.dayOfYear() - date.dayOfYear();
                             assertTrue(dayDiff < 8);
                             assertEquals(date.equals(test), date.dayOfWeek() === dow);
                         } else {
@@ -515,16 +511,16 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_previous()', () => {
         for (Month month : Month.values()) {
-            for (var i = 1; i <= month.length(false); i++) {
-                var date = createDate(2007, month, i);
+            for (let i = 1; i <= month.length(false); i++) {
+                const date = createDate(2007, month, i);
 
                 for (DayOfWeek dow : DayOfWeek.values()) {
-                    var test = TemporalAdjusters.previous(dow).adjustInto(date);
+                    const test = TemporalAdjusters.previous(dow).adjustInto(date);
 
                     assertSame(test.dayOfWeek(), dow, date + ' ' + test);
 
                     if (test.year() == 2007) {
-                        var dayDiff = test.dayOfYear() - date.dayOfYear();
+                        const dayDiff = test.dayOfYear() - date.dayOfYear();
                         assertTrue(dayDiff < 0 && dayDiff > -8, dayDiff + ' ' + test);
                     } else {
                         assertSame(month, Month.JANUARY);
@@ -553,16 +549,16 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
 
         it('test_previousOrSame()', () => {
         for (Month month : Month.values()) {
-            for (var i = 1; i <= month.length(false); i++) {
-                var date = createDate(2007, month, i);
+            for (let i = 1; i <= month.length(false); i++) {
+                const date = createDate(2007, month, i);
 
                 for (DayOfWeek dow : DayOfWeek.values()) {
-                    var test = TemporalAdjusters.previousOrSame(dow).adjustInto(date);
+                    const test = TemporalAdjusters.previousOrSame(dow).adjustInto(date);
 
                     assertSame(test.dayOfWeek(), dow);
 
                     if (test.year() == 2007) {
-                        var dayDiff = test.dayOfYear() - date.dayOfYear();
+                        const dayDiff = test.dayOfYear() - date.dayOfYear();
                         assertTrue(dayDiff <= 0 && dayDiff > -7);
                         assertEquals(date.equals(test), date.dayOfWeek() == dow);
                     } else {

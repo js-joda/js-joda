@@ -15,7 +15,7 @@ import {ChronoField} from '../../../src/temporal/ChronoField';
 import {IsoFields} from '../../../src/temporal/IsoFields';
 
 describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
-    
+
     // @DataProvider(name='week')
     function data_week() {
         return [
@@ -50,7 +50,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                 assertEquals(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), week);
             });
         });
-    
+
         // @Test(dataProvider='week')
         it('test_with_WOWBY', function () {
             dataProviderTest(data_week, (date, dow, week) => {
@@ -101,11 +101,11 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
         // @Test(dataProvider='week')
         it('test_parse_weeks', function () {
             dataProviderTest(data_week, (date, dow, week, wby) => {
-                var f = new DateTimeFormatterBuilder()
+                const f = new DateTimeFormatterBuilder()
                     .appendValue(IsoFields.WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(ChronoField.DAY_OF_WEEK).toFormatter();
-                var parsed = LocalDate.parse(wby + '-' + week + '-' + dow.value(), f);
+                const parsed = LocalDate.parse(wby + '-' + week + '-' + dow.value(), f);
                 assertEquals(parsed, date);
             });
         });
@@ -113,18 +113,18 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
     });
 */
 
-    var yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 23; // should be at least 400
+    const yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 23; // should be at least 400
     it('test_loop', function () {
         // yearsToLoop = 400; this.timeout(10000);
         // loop round at least one 400 year cycle, including before 1970
-        var date = LocalDate.of(1960, 1, 5);  // Tuseday of week 1 1960
-        var year = 1960;
-        var endYear = year + yearsToLoop;
-        var wby = 1960;
-        var weekLen = 52;
-        var week = 1;
+        let date = LocalDate.of(1960, 1, 5);  // Tuseday of week 1 1960
+        let year = 1960;
+        const endYear = year + yearsToLoop;
+        let wby = 1960;
+        let weekLen = 52;
+        let week = 1;
         while (date.year() < endYear) {
-            var loopDow = date.dayOfWeek();
+            const loopDow = date.dayOfWeek();
             if (date.year() !== year) {
                 year = date.year();
             }
@@ -132,8 +132,8 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                 week++;
                 if ((week === 53 && weekLen === 52) || week === 54) {
                     week = 1;
-                    var firstDayOfWeekBasedYear = date.plusDays(14).withDayOfYear(1);
-                    var firstDay = firstDayOfWeekBasedYear.dayOfWeek();
+                    const firstDayOfWeekBasedYear = date.plusDays(14).withDayOfYear(1);
+                    const firstDay = firstDayOfWeekBasedYear.dayOfWeek();
                     weekLen = (firstDay === DayOfWeek.THURSDAY || (firstDay === DayOfWeek.WEDNESDAY && firstDayOfWeekBasedYear.isLeapYear()) ? 53 : 52);
                     wby++;
                 }
@@ -263,7 +263,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                     [LocalDate.of(2000, 1, 1), LocalDate.of(2000, 12, 31), 3],
                     [LocalDate.of(2000, 1, 1), LocalDate.of(2001, 1, 1), 4],
                     [LocalDate.of(2000, 1, 1), LocalDate.of(2002, 1, 1), 8],
-   
+
                     [LocalDate.of(2000, 1, 1), LocalDate.of(1999, 12, 31), 0],
                     [LocalDate.of(2000, 1, 1), LocalDate.of(1999, 10, 2), 0],
                     [LocalDate.of(2000, 1, 1), LocalDate.of(1999, 10, 1), -1],

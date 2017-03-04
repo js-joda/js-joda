@@ -1,6 +1,6 @@
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
@@ -14,11 +14,11 @@ import {MathUtil} from '../../../src/MathUtil';
 import {ValueRange} from '../../../src/temporal/ValueRange';
 
 describe('org.threeten.bp.temporal.TestValueRange', function () {
-    
+
     describe('of(long,long)', function () {
-        
+
         it('test_of_longlong', () => {
-            var test = ValueRange.of(1, 12);
+            const test = ValueRange.of(1, 12);
             assertEquals(test.minimum(), 1);
             assertEquals(test.largestMinimum(), 1);
             assertEquals(test.smallestMaximum(), 12);
@@ -26,9 +26,9 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(test.isFixed(), true);
             assertEquals(test.isIntValue(), true);
         });
-    
+
         it('test_of_longlong_big', () => {
-            var test = ValueRange.of(1, 123456789012345);
+            const test = ValueRange.of(1, 123456789012345);
             assertEquals(test.minimum(), 1);
             assertEquals(test.largestMinimum(), 1);
             assertEquals(test.smallestMaximum(), 123456789012345);
@@ -36,19 +36,19 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(test.isFixed(), true);
             assertEquals(test.isIntValue(), true); // differs from threetenbp should be s.l. isSafeIntegerValue()
         });
-    
+
         it('test_of_longlong_minGtMax', () => {
             expect(()=>{
                 ValueRange.of(12, 1);
             }).to.throw(IllegalArgumentException);
         });
-    
+
     });
 
     describe('of(long,long,long)', function () {
 
         it('test_of_longlonglong', () => {
-            var test = ValueRange.of(1, 28, 31);
+            const test = ValueRange.of(1, 28, 31);
             assertEquals(test.minimum(), 1);
             assertEquals(test.largestMinimum(), 1);
             assertEquals(test.smallestMaximum(), 28);
@@ -72,7 +72,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
     });
 
     describe('of(long,long,long,long)', function () {
-        
+
         // @DataProvider(name='valid')
         function data_valid() {
             return [
@@ -96,7 +96,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
 
         // @Test(dataProvider='valid')
         function test_of_longlonglonglong(sMin, lMin, sMax, lMax) {
-            var test = ValueRange.of(sMin, lMin, sMax, lMax);
+            const test = ValueRange.of(sMin, lMin, sMax, lMax);
             assertEquals(test.minimum(), sMin);
             assertEquals(test.largestMinimum(), lMin);
             assertEquals(test.smallestMaximum(), sMax);
@@ -104,7 +104,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(test.isFixed(), sMin === lMin && sMax === lMax);
             assertEquals(test.isIntValue(), true);
         }
-    
+
         // @DataProvider(name='invalid')
         function data_invalid() {
             return [
@@ -112,13 +112,13 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
                     [1, 31, 2, 28],
                     [31, 2, 1, 28],
                     [31, 2, 3, 28],
-    
+
                     [2, 1, 28, 31],
                     [2, 1, 31, 28],
                     [12, 13, 1, 2]
             ];
         }
-    
+
         it('test_of_longlonglonglong_invalid', function () {
             data_invalid().forEach((data) => {
                 test_of_longlonglonglong_invalid.apply(this, data);
@@ -137,7 +137,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
     describe('isValidValue(long)', () => {
 
         it('test_isValidValue_long', () => {
-            var test = ValueRange.of(1, 28, 31);
+            const test = ValueRange.of(1, 28, 31);
             assertEquals(test.isValidValue(0), false);
             assertEquals(test.isValidValue(1), true);
             assertEquals(test.isValidValue(2), true);
@@ -151,7 +151,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
     describe('isValidIntValue(long)', () => {
 
         it('test_isValidValue_long_int', () => {
-            var test = ValueRange.of(1, 28, 31);
+            const test = ValueRange.of(1, 28, 31);
             assertEquals(test.isValidValue(0), false);
             assertEquals(test.isValidValue(1), true);
             assertEquals(test.isValidValue(31), true);
@@ -159,7 +159,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
         });
 
         it('test_isValidValue_long_long', () => {
-            var test = ValueRange.of(1, 28, MathUtil.MAX_SAFE_INTEGER + 1);
+            const test = ValueRange.of(1, 28, MathUtil.MAX_SAFE_INTEGER + 1);
             assertEquals(test.isValidIntValue(0), false);
             assertEquals(test.isValidIntValue(1), false);
             assertEquals(test.isValidIntValue(31), false);
@@ -171,8 +171,8 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
     describe('equals() / hashCode()', function () {
 
         it('test_equals1', () => {
-            var a = ValueRange.of(1, 2, 3, 4);
-            var b = ValueRange.of(1, 2, 3, 4);
+            const a = ValueRange.of(1, 2, 3, 4);
+            const b = ValueRange.of(1, 2, 3, 4);
             assertEquals(a.equals(a), true);
             assertEquals(a.equals(b), true);
             assertEquals(b.equals(a), true);
@@ -181,7 +181,7 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
         });
 
         it('test_equals2', () => {
-            var a = ValueRange.of(1, 2, 3, 4);
+            const a = ValueRange.of(1, 2, 3, 4);
             assertEquals(a.equals(ValueRange.of(0, 2, 3, 4)), false);
             assertEquals(a.equals(ValueRange.of(1, 3, 3, 4)), false);
             assertEquals(a.equals(ValueRange.of(1, 2, 4, 4)), false);
@@ -189,12 +189,12 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
         });
 
         it('test_equals_otherType', function () {
-            var a = ValueRange.of(1, 12);
+            const a = ValueRange.of(1, 12);
             assertEquals(a.equals('Rubbish'), false);
         });
 
         it('test_equals_null', () => {
-            var a = ValueRange.of(1, 12);
+            const a = ValueRange.of(1, 12);
             assertEquals(a.equals(null), false);
         });
 
