@@ -26,7 +26,7 @@ describe('js-joda Instant', () => {
     describe('from(TemporalAccessor)', () => {
         
         it('should fail if TemporalAccessor throws an exception', () => {
-            let temporalAccessor = new TemporalAccessor();
+            const temporalAccessor = new TemporalAccessor();
             temporalAccessor.getLong = () => {
                 throw new Error();
             };
@@ -126,7 +126,7 @@ describe('js-joda Instant', () => {
         });
         
         it('should return corresponding value of rangeRefinedBy for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return 'Test Value';
             };
@@ -143,7 +143,7 @@ describe('js-joda Instant', () => {
     
     describe('getLong', () => {
         it('should return corresponding value of getFrom for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.getFrom = () => {
                 return 'Test Value';
             };
@@ -160,7 +160,7 @@ describe('js-joda Instant', () => {
     
     describe('with(TemporalField, value)', () => {
         it('should return corresponding value of adjustInto for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.adjustInto = () => {
                 return 'Test Value';
             };
@@ -180,7 +180,7 @@ describe('js-joda Instant', () => {
         });
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
-            let unit = new TemporalUnit();
+            const unit = new TemporalUnit();
             unit.addTo = () => {
                 return 'Test Value';
             };
@@ -209,7 +209,7 @@ describe('js-joda Instant', () => {
     describe('query', () => {
         
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -218,7 +218,7 @@ describe('js-joda Instant', () => {
     });
     
     describe('until', () => {
-        let end = testInstant.plus(1, ChronoUnit.DAYS);
+        const end = testInstant.plus(1, ChronoUnit.DAYS);
         it('should return result for the given values', () => {
             assertEquals(testInstant.until(end, ChronoUnit.NANOS), LocalTime.NANOS_PER_DAY);
             assertEquals(testInstant.until(end, ChronoUnit.MICROS), LocalTime.MICROS_PER_DAY);
@@ -231,7 +231,7 @@ describe('js-joda Instant', () => {
         });
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
-            let unit = new TemporalUnit();
+            const unit = new TemporalUnit();
             unit.between = () => {
                 return 'Test Value';
             };

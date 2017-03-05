@@ -48,7 +48,7 @@ describe('js-joda ChronoLocalDate', () => {
     
     describe('query', () => {
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -56,10 +56,10 @@ describe('js-joda ChronoLocalDate', () => {
         });
 
         it('should return corresponding value of when queried with TemporalQueries.localDate()', () => {
-            let query = TemporalQueries.localDate();
+            const query = TemporalQueries.localDate();
             // LocalDate handles TemporalQueries.localDate() itself, so we need to "construct"
             // a ChronoLocalDate here, that provides the needed function :/
-            let testChronoDate = new ChronoLocalDate();
+            const testChronoDate = new ChronoLocalDate();
             testChronoDate.toEpochDay = () => {
                 return testDate.toEpochDay();
             };
@@ -69,7 +69,7 @@ describe('js-joda ChronoLocalDate', () => {
     
     describe('adjustInto', () => {
         it('should return corresponding value of with for TemporalAdjuster', () => {
-            let adjuster = new TemporalAdjuster();
+            const adjuster = new TemporalAdjuster();
             adjuster.with = () => {
                 return 'Test Value';
             };

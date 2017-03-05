@@ -19,7 +19,7 @@ describe('js-joda ChronoLocalDateTime', () => {
     
     describe('query', () => {
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -27,10 +27,10 @@ describe('js-joda ChronoLocalDateTime', () => {
         });
 
         it('should return corresponding value of when queried with TemporalQueries.localDate()', () => {
-            let query = TemporalQueries.localDate();
+            const query = TemporalQueries.localDate();
             // LocalDateTime handles TemporalQueries.localDate() itself, so we need to "construct"
             // a ChronoLocalDateTime here, that provides the needed function :/
-            let testChronoDateTime = new ChronoLocalDateTime();
+            const testChronoDateTime = new ChronoLocalDateTime();
             testChronoDateTime.toLocalDate = () => {
                 return testDateTime.toLocalDate();
             };

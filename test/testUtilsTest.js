@@ -38,7 +38,7 @@ describe('testUtils', () =>{
         testAssertEquals(null, new A(1), false);
         testAssertEquals({}, new A(1), false);
 
-        let a = new A('a');
+        const a = new A('a');
         testAssertEquals(a, a, true);
     });
 

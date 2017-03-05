@@ -356,7 +356,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('ofEpochDay()', () => {
         it('factory_ofEpochDay', () => {
-            let date_0000_01_01 = -678941 - 40587;
+            const date_0000_01_01 = -678941 - 40587;
             expect(LocalDate.ofEpochDay(0)).to.eql(LocalDate.of(1970, 1, 1));
             expect(LocalDate.ofEpochDay(date_0000_01_01)).to.eql(LocalDate.of(0, 1, 1));
             expect(LocalDate.ofEpochDay(date_0000_01_01 - 1)).to.eql(LocalDate.of(-1, 12, 31));
@@ -489,21 +489,21 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('parse(DateTimeFormatter)', () => {
         it('factory_parse_formatter', () => {
-            let f = DateTimeFormatter.ofPattern('u M d');
-            let test = LocalDate.parse('2010 12 3', f);
+            const f = DateTimeFormatter.ofPattern('u M d');
+            const test = LocalDate.parse('2010 12 3', f);
             assertEquals(test, LocalDate.of(2010, 12, 3));
         });
 
         // TODO tests are missing in threeten bp
         it('factory_parse_formatter_2', () => {
-            let f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
-            let test = LocalDate.parse('2010-12-03', f);
+            const f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
+            const test = LocalDate.parse('2010-12-03', f);
             assertEquals(test, LocalDate.of(2010, 12, 3));
         });
 
         it('factory_parse_formatter_nullText', () => {
             expect(() => {
-                let f = DateTimeFormatter.ofPattern('u M d');
+                const f = DateTimeFormatter.ofPattern('u M d');
                 LocalDate.parse(null, f);
             }).to.throw(NullPointerException);
         });
@@ -1986,15 +1986,15 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('format(DateTimeFormatter)', function () {
         it('test_format_formatter', () => {
-            let f = DateTimeFormatter.ofPattern('y M d');
-            let t = LocalDate.of(2010, 12, 3).format(f);
+            const f = DateTimeFormatter.ofPattern('y M d');
+            const t = LocalDate.of(2010, 12, 3).format(f);
             assertEquals(t, '2010 12 3');
         });
 
         // TODO tests are missing in threeten bp
         it('test_format_formatter_2', () => {
-            let f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
-            let t = LocalDate.of(2010, 12, 3).format(f);
+            const f = DateTimeFormatter.ofPattern('yyyy-MM-dd');
+            const t = LocalDate.of(2010, 12, 3).format(f);
             assertEquals(t, '2010-12-03');
         });
 

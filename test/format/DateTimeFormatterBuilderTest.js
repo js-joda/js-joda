@@ -21,7 +21,7 @@ describe('js-joda DateTimeFormatterBuilderTest', () => {
     });
     
     describe('appendPattern notImplemented', () => {
-        let dataNotImplemented = [
+        const dataNotImplemented = [
             ['G'],
             ['GG'],
             ['GGG'],

@@ -31,9 +31,9 @@ describe('plugTest', () => {
     });
 
     it('should use the previously added plugin', function () {
-        let date1 = LocalDate.parse('2016-12-21');
-        let date1_ = LocalDate.parse('2016-12-21');
-        let otherDate = LocalDate.parse('2016-12-24');
+        const date1 = LocalDate.parse('2016-12-21');
+        const date1_ = LocalDate.parse('2016-12-21');
+        const otherDate = LocalDate.parse('2016-12-24');
 
         expect(date1_.isAfterOrEqual(date1)).to.be.true;
         expect(otherDate.isAfterOrEqual(date1)).to.be.true;

@@ -71,7 +71,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
         it('test_appendValue_2arg', () => {
             builder.appendValue(DAY_OF_MONTH, 3);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(DayOfMonth,3)');
         });
 
@@ -95,7 +95,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
         it('test_appendValue_3arg', () => {
             builder.appendValue(DAY_OF_MONTH, 2, 3, SignStyle.NORMAL);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(DayOfMonth,2,3,NORMAL)');
         });
 
@@ -145,27 +145,27 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('appendValue_subsequent_parse', () => {
         it('test_appendValue_subsequent2_parse3', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('123', new ParsePosition(0));
+            const cal = f.parseUnresolved('123', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
 
         it('test_appendValue_subsequent2_parse4', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('0123', new ParsePosition(0));
+            const cal = f.parseUnresolved('0123', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
 
         it('test_appendValue_subsequent2_parse5', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(DAY_OF_MONTH, 2).appendLiteral('4');
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)\'4\'');
-            let cal = f.parseUnresolved('01234', new ParsePosition(0));
+            const cal = f.parseUnresolved('01234', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
@@ -175,9 +175,9 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
                 .appendValue(ChronoField.MONTH_OF_YEAR, 2)
                 .appendValue(ChronoField.DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(Year,4,10,EXCEEDS_PAD)Value(MonthOfYear,2)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('20090630', new ParsePosition(0));
+            const cal = f.parseUnresolved('20090630', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.YEAR), 2009);
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 30);
@@ -185,27 +185,27 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
         it('test_appendValue_subsequent2_parse3', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('123', new ParsePosition(0));
+            const cal = f.parseUnresolved('123', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
 
         it('test_appendValue_subsequent2_parse4', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('0123', new ParsePosition(0));
+            const cal = f.parseUnresolved('0123', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
 
         it('test_appendValue_subsequent2_parse5', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral('4');
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)Value(DayOfMonth,2)\'4\'');
-            let cal = f.parseUnresolved('01234', new ParsePosition(0));
+            const cal = f.parseUnresolved('01234', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 23);
         });
@@ -215,9 +215,9 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
                 .appendValue(ChronoField.MONTH_OF_YEAR, 2)
                 .appendValue(ChronoField.DAY_OF_MONTH, 2);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(Year,4,10,EXCEEDS_PAD)Value(MonthOfYear,2)Value(DayOfMonth,2)');
-            let cal = f.parseUnresolved('20090630', new ParsePosition(0));
+            const cal = f.parseUnresolved('20090630', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.YEAR), 2009);
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(cal.get(ChronoField.DAY_OF_MONTH), 30);
@@ -234,17 +234,17 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
         it('test_appendValueReduced', () => {
             builder.appendValueReduced(ChronoField.YEAR, 2, 2, 2000);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ReducedValue(Year,2,2,2000)');
-            let cal = f.parseUnresolved('12', new ParsePosition(0));
+            const cal = f.parseUnresolved('12', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.YEAR), 2012);
         });
 
         it('test_appendValueReduced_subsequent_parse', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR, 1, 2, SignStyle.NORMAL).appendValueReduced(ChronoField.YEAR, 2, 2, 2000);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear,1,2,NORMAL)ReducedValue(Year,2,2,2000)');
-            let cal = f.parseUnresolved('123', new ParsePosition(0));
+            const cal = f.parseUnresolved('123', new ParsePosition(0));
             assertEquals(cal.get(ChronoField.MONTH_OF_YEAR), 1);
             assertEquals(cal.get(ChronoField.YEAR), 2023);
         });
@@ -252,7 +252,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     });
 
     describe('appendPattern', () => {
-        let dataValid = [
+        const dataValid = [
             ["'a'", "'a'"],
             ["''", "''"],
             ["'!'", "'!'"],
@@ -404,13 +404,13 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 // since we are forEach ing dataValid, the beforeEach doesn't catch... so we create the builder here
                 builder = new DateTimeFormatterBuilder();
                 builder.appendPattern(input);
-                let f = builder.toFormatter();
+                const f = builder.toFormatter();
                 assertEquals(f.toString(), expected);
             });
         });
 
         //-----------------------------------------------------------------------
-        let dataInvalid = [
+        const dataInvalid = [
             ["'"],
             ["'hello"],
             ["'hel''lo"],
@@ -486,7 +486,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('appendFraction', () => {
         it('test_appendFraction_4arg', () => {
             builder.appendFraction(ChronoField.MINUTE_OF_HOUR, 1, 9, false);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Fraction(MinuteOfHour,1,9)');
         });
 
@@ -536,11 +536,11 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('appendOffset', () => {
         it('test_appendOffsetId', () => {
             builder.appendOffsetId();
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Offset(+HH:MM:ss,\'Z\')');
         });
 
-        let data_offsetPatterns = [
+        const data_offsetPatterns = [
             ['+HH'],
             ['+HHMM'],
             ['+HH:MM'],
@@ -554,12 +554,12 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             dataProviderTest(data_offsetPatterns, (pattern) => {
                 builder = new DateTimeFormatterBuilder();
                 builder.appendOffset(pattern, 'Z');
-                let f = builder.toFormatter();
+                const f = builder.toFormatter();
                 assertEquals(f.toString(), 'Offset(' + pattern + ',\'Z\')');
             });
         });
 
-        let data_badOffsetPatterns = [
+        const data_badOffsetPatterns = [
             ['HH'],
             ['HHMM'],
             ['HH:MM'],
@@ -576,7 +576,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         it('test_appendOffset_badPattern', () => {
             dataProviderTest(data_badOffsetPatterns, (pattern) => {
                 expect(() => {
-                    let builder = new DateTimeFormatterBuilder();
+                    const builder = new DateTimeFormatterBuilder();
                     builder.appendOffset(pattern, 'Z');
                 }).to.throw(IllegalArgumentException);
             });
@@ -598,7 +598,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('padNext', () => {
         it('test_padNext_1arg', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(2).appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad(Value(DayOfMonth),2)Value(DayOfWeek)');
         });
 
@@ -611,7 +611,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
         //-----------------------------------------------------------------------
         it('test_padNext_2arg_dash', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(2, '-').appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad(Value(DayOfMonth),2,\'-\')Value(DayOfWeek)');
         });
 
@@ -623,7 +623,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
 
         it('test_padOptional', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).padNext(5).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd().appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Pad([Value(DayOfMonth)],5)Value(DayOfWeek)');
         });
     });
@@ -631,51 +631,51 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('optionalStartEnd', () => {
         it('test_optionalStart_noEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)Value(DayOfWeek)]');
         });
 
         it('test_optionalStart2_noEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalStart().appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)[Value(DayOfWeek)]]');
         });
 
         it('test_optionalStart_doubleStart', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[[Value(DayOfMonth)]]');
         });
 
     //-----------------------------------------------------------------------
         it('test_optionalEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd().appendValue(ChronoField.DAY_OF_WEEK);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)]Value(DayOfWeek)');
         });
 
         it('test_optionalEnd2', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().appendValue(ChronoField.DAY_OF_MONTH)
                 .optionalStart().appendValue(ChronoField.DAY_OF_WEEK).optionalEnd().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd();
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[Value(DayOfMonth)[Value(DayOfWeek)]Value(DayOfMonth)]');
         });
 
         it('test_optionalEnd_doubleStartSingleEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd();
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[[Value(DayOfMonth)]]');
         });
 
         it('test_optionalEnd_doubleStartDoubleEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalStart().appendValue(ChronoField.DAY_OF_MONTH).optionalEnd().optionalEnd();
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)[[Value(DayOfMonth)]]');
         });
 
         it('test_optionalStartEnd_immediateStartEnd', () => {
             builder.appendValue(ChronoField.MONTH_OF_YEAR).optionalStart().optionalEnd().appendValue(ChronoField.DAY_OF_MONTH);
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'Value(MonthOfYear)Value(DayOfMonth)');
         });
 
@@ -690,7 +690,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     describe('appendZone', () => {
         it('test_appendZoneId', () => {
             builder.appendZoneId();
-            let f = builder.toFormatter();
+            const f = builder.toFormatter();
             assertEquals(f.toString(), 'ZoneId()');
         });
     });

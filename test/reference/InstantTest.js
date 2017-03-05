@@ -95,17 +95,17 @@ describe('org.threeten.bp.TestInstant', () => {
         it('factory_seconds_long_long()', () => {
             for (let i = -2; i <= 2; i++) {
                 for (let j = 0; j < 10; j++) {
-                    let t = Instant.ofEpochSecond(i, j);
+                    const t = Instant.ofEpochSecond(i, j);
                     assertEquals(t.epochSecond(), i);
                     assertEquals(t.nano(), j);
                 }
                 for (let j = -10; j < 0; j++) {
-                    let t = Instant.ofEpochSecond(i, j);
+                    const t = Instant.ofEpochSecond(i, j);
                     assertEquals(t.epochSecond(), i - 1);
                     assertEquals(t.nano(), j + 1000000000);
                 }
                 for (let j = 999999990; j < 1000000000; j++) {
-                    let t = Instant.ofEpochSecond(i, j);
+                    const t = Instant.ofEpochSecond(i, j);
                     assertEquals(t.epochSecond(), i);
                     assertEquals(t.nano(), j);
                 }
@@ -270,14 +270,14 @@ describe('org.threeten.bp.TestInstant', () => {
 
     describe('get(TemporalField)', () => {
         it('test_get_TemporalField', () => {
-            let test = TEST_12345_123456789;
+            const test = TEST_12345_123456789;
             expect(test.get(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
             expect(test.get(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
             expect(test.get(ChronoField.MILLI_OF_SECOND)).to.eql(123);
         });
 
         it('test_getLong_TemporalField', () => {
-            let test = TEST_12345_123456789;
+            const test = TEST_12345_123456789;
             expect(test.getLong(ChronoField.NANO_OF_SECOND)).to.eql(123456789);
             expect(test.getLong(ChronoField.MICRO_OF_SECOND)).to.eql(123456);
             expect(test.getLong(ChronoField.MILLI_OF_SECOND)).to.eql(123);
@@ -374,7 +374,7 @@ describe('org.threeten.bp.TestInstant', () => {
         // @Test(dataProvider='with')
         function test_with_temporalAdjuster(test, adjuster, expected, expectedEx) {
             if (expectedEx == null) {
-                let result = test.with(adjuster);
+                const result = test.with(adjuster);
                 assertEquals(result, expected);
             } else {
                 expect(()=> {
@@ -423,7 +423,7 @@ describe('org.threeten.bp.TestInstant', () => {
         // @Test(dataProvider='with_longTemporalField')
         function test_with_longTemporalField(test, field, value, expected, expectedEx) {
             if (expectedEx == null) {
-                let result = test.with(field, value);
+                const result = test.with(field, value);
                 assertEquals(result, expected);
             } else {
                 expect(()=> {

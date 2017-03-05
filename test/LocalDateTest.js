@@ -75,7 +75,7 @@ describe('Using a LocalDate instance', () => {
         });
 
         it('should convert to same value as toString()', () => {
-            let d = LocalDate.of(1970, 1, 1);
+            const d = LocalDate.of(1970, 1, 1);
             expect(d.toString()).to.equal(d.toJSON());
         });
     });

@@ -21,13 +21,13 @@ describe('js-joda DayOfWeek', () => {
     describe('from', () => {
         
         it('should return the same DayOfWeek it has been called with', () => {
-            let dayOfWeek = new DayOfWeek(0, 'TEST');
-            let newDayOfWeek = DayOfWeek.from(dayOfWeek);
+            const dayOfWeek = new DayOfWeek(0, 'TEST');
+            const newDayOfWeek = DayOfWeek.from(dayOfWeek);
             expect(newDayOfWeek).to.equal(dayOfWeek);
         });
         
         it('should rethrow an exception thrown by Temporal.get', () => {
-            let t = new TemporalAccessor();
+            const t = new TemporalAccessor();
             t.get = () => {
                 throw new Error('Test Error');
             };
@@ -50,19 +50,19 @@ describe('js-joda DayOfWeek', () => {
     describe('isSupported', () => {
         
         it('should return true for supported ChronoFields', () => {
-            let dayOfWeek = DayOfWeek.MONDAY;
+            const dayOfWeek = DayOfWeek.MONDAY;
             expect(dayOfWeek.isSupported(ChronoField.DAY_OF_WEEK)).to.be.true;
         });
         
         it('should return false for unsupported ChronoFields', () => {
-            let dayOfWeek = DayOfWeek.MONDAY;
+            const dayOfWeek = DayOfWeek.MONDAY;
             expect(dayOfWeek.isSupported(ChronoField.DAY_OF_MONTH)).to.be.false;
             expect(dayOfWeek.isSupported(ChronoField.DAY_OF_YEAR)).to.be.false;
             expect(dayOfWeek.isSupported(null)).to.be.false;
         });
         
         it('should return corresponding value of isSupportedBy for TemporalFields', () => {
-            let dayOfWeek = DayOfWeek.MONDAY;
+            const dayOfWeek = DayOfWeek.MONDAY;
             let field = new TemporalField();
             field.isSupportedBy = () => {
                 return false;
@@ -82,7 +82,7 @@ describe('js-joda DayOfWeek', () => {
         });
         
         it('should return corresponding value of rangeRefindeBy for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return 'Test Value';
             };
@@ -99,7 +99,7 @@ describe('js-joda DayOfWeek', () => {
     
     describe('getLong', () => {
         it('should return corresponding value of getFrom for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.getFrom = () => {
                 return 'Test Value';
             };
@@ -116,7 +116,7 @@ describe('js-joda DayOfWeek', () => {
     
     describe('get', () => {
         it('should return corresponding value of getFrom for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return ValueRange.of(1234, 1234);
             };
@@ -137,8 +137,8 @@ describe('js-joda DayOfWeek', () => {
     describe('query', () => {
         
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let test = DayOfWeek.MONDAY;
-            let query = new TemporalQuery();
+            const test = DayOfWeek.MONDAY;
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -149,8 +149,8 @@ describe('js-joda DayOfWeek', () => {
     describe('DayOfWeek.FROM', () => {
     
         it('should return the same DayOfWeek it has been called with', () => {
-            let dayOfWeek = new DayOfWeek(0, 'TEST');
-            let newDayOfWeek = DayOfWeek.FROM.queryFrom(dayOfWeek);
+            const dayOfWeek = new DayOfWeek(0, 'TEST');
+            const newDayOfWeek = DayOfWeek.FROM.queryFrom(dayOfWeek);
             expect(newDayOfWeek).to.equal(dayOfWeek);
         });
     

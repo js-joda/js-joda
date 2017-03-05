@@ -62,9 +62,9 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('getters', () => {
 
         it('test_getters_gap()', () => {
-            let before = LocalDateTime.of(2010, 3, 31, 1, 0);
-            let after = LocalDateTime.of(2010, 3, 31, 2, 0);
-            let test = ZoneOffsetTransition.of(before, OFFSET_0200, OFFSET_0300);
+            const before = LocalDateTime.of(2010, 3, 31, 1, 0);
+            const after = LocalDateTime.of(2010, 3, 31, 2, 0);
+            const test = ZoneOffsetTransition.of(before, OFFSET_0200, OFFSET_0300);
             assertEquals(test.isGap(), true);
             assertEquals(test.isOverlap(), false);
             assertEquals(test.dateTimeBefore(), before);
@@ -77,9 +77,9 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
         });
 
         it('test_getters_overlap()', () => {
-            let before = LocalDateTime.of(2010, 10, 31, 1, 0);
-            let after = LocalDateTime.of(2010, 10, 31, 0, 0);
-            let test = ZoneOffsetTransition.of(before, OFFSET_0300, OFFSET_0200);
+            const before = LocalDateTime.of(2010, 10, 31, 1, 0);
+            const after = LocalDateTime.of(2010, 10, 31, 0, 0);
+            const test = ZoneOffsetTransition.of(before, OFFSET_0300, OFFSET_0200);
             assertEquals(test.isGap(), false);
             assertEquals(test.isOverlap(), true);
             assertEquals(test.dateTimeBefore(), before);
@@ -96,8 +96,8 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('isValidOffset()', () => {
 
         it('test_isValidOffset_gap', () => {
-            let ldt = LocalDateTime.of(2010, 3, 31, 1, 0);
-            let test = ZoneOffsetTransition.of(ldt, OFFSET_0200, OFFSET_0300);
+            const ldt = LocalDateTime.of(2010, 3, 31, 1, 0);
+            const test = ZoneOffsetTransition.of(ldt, OFFSET_0200, OFFSET_0300);
             assertEquals(test.isValidOffset(OFFSET_0100), false);
             assertEquals(test.isValidOffset(OFFSET_0200), false);
             assertEquals(test.isValidOffset(OFFSET_0230), false);
@@ -106,8 +106,8 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
         });
 
         it('test_isValidOffset_overlap', () => {
-            let ldt = LocalDateTime.of(2010, 10, 31, 1, 0);
-            let test = ZoneOffsetTransition.of(ldt, OFFSET_0300, OFFSET_0200);
+            const ldt = LocalDateTime.of(2010, 10, 31, 1, 0);
+            const test = ZoneOffsetTransition.of(ldt, OFFSET_0300, OFFSET_0200);
             assertEquals(test.isValidOffset(OFFSET_0100), false);
             assertEquals(test.isValidOffset(OFFSET_0200), true);
             assertEquals(test.isValidOffset(OFFSET_0230), false);
@@ -120,11 +120,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('compareTo()', () => {
 
         it('test_compareTo()', () => {
-            let a = ZoneOffsetTransition.of(
+            const a = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287 - 1, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
-            let b = ZoneOffsetTransition.of(
+            const b = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
-            let c = ZoneOffsetTransition.of(
+            const c = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287 + 1, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
 
             assertEquals(a.compareTo(a) === 0, true);
@@ -141,11 +141,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
         });
 
         it('test_compareTo_sameInstant', () => {
-            let a = ZoneOffsetTransition.of(
+            const a = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
-            let b = ZoneOffsetTransition.of(
+            const b = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
-            let c = ZoneOffsetTransition.of(
+            const c = ZoneOffsetTransition.of(
                     LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
 
             assertEquals(a.compareTo(a) === 0, true);
@@ -166,11 +166,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('equals()', () => {
 
         it('test_equals()', () => {
-            let ldtA = LocalDateTime.of(2010, 3, 31, 1, 0);
-            let a1 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
-            let a2 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
-            let ldtB = LocalDateTime.of(2010, 10, 31, 1, 0);
-            let b = ZoneOffsetTransition.of(ldtB, OFFSET_0300, OFFSET_0200);
+            const ldtA = LocalDateTime.of(2010, 3, 31, 1, 0);
+            const a1 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
+            const a2 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
+            const ldtB = LocalDateTime.of(2010, 10, 31, 1, 0);
+            const b = ZoneOffsetTransition.of(ldtB, OFFSET_0300, OFFSET_0200);
 
             assertEquals(a1.equals(a1), true);
             assertEquals(a1.equals(a2), true);
@@ -191,11 +191,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('hashCode()', () => {
 
         it('test_hashCode_floatingWeek_gap_notEndOfDay', () => {
-            let ldtA = LocalDateTime.of(2010, 3, 31, 1, 0);
-            let a1 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
-            let a2 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
-            let ldtB = LocalDateTime.of(2010, 10, 31, 1, 0);
-            let b = ZoneOffsetTransition.of(ldtB, OFFSET_0300, OFFSET_0200);
+            const ldtA = LocalDateTime.of(2010, 3, 31, 1, 0);
+            const a1 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
+            const a2 = ZoneOffsetTransition.of(ldtA, OFFSET_0200, OFFSET_0300);
+            const ldtB = LocalDateTime.of(2010, 10, 31, 1, 0);
+            const b = ZoneOffsetTransition.of(ldtB, OFFSET_0300, OFFSET_0200);
 
             assertEquals(a1.hashCode(), a1.hashCode());
             assertEquals(a1.hashCode(), a2.hashCode());
@@ -208,14 +208,14 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
     describe('toString()', () => {
 
         it('test_toString_gap()', () => {
-            let ldt = LocalDateTime.of(2010, 3, 31, 1, 0);
-            let test = ZoneOffsetTransition.of(ldt, OFFSET_0200, OFFSET_0300);
+            const ldt = LocalDateTime.of(2010, 3, 31, 1, 0);
+            const test = ZoneOffsetTransition.of(ldt, OFFSET_0200, OFFSET_0300);
             assertEquals(test.toString(), 'Transition[Gap at 2010-03-31T01:00+02:00 to +03:00]');
         });
 
         it('test_toString_overlap()', () => {
-            let ldt = LocalDateTime.of(2010, 10, 31, 1, 0);
-            let test = ZoneOffsetTransition.of(ldt, OFFSET_0300, OFFSET_0200);
+            const ldt = LocalDateTime.of(2010, 10, 31, 1, 0);
+            const test = ZoneOffsetTransition.of(ldt, OFFSET_0300, OFFSET_0200);
             assertEquals(test.toString(), 'Transition[Overlap at 2010-10-31T01:00+03:00 to +02:00]');
         });
 

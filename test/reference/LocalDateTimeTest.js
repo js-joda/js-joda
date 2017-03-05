@@ -40,9 +40,9 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     let OFFSET_PONE;
     let OFFSET_PTWO;
     let OFFSET_MTWO;
-    let EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
-    let ZONE_GAZA = new CurrentStandardZoneAsiaGaza();
-    let TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
+    const EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
+    const ZONE_GAZA = new CurrentStandardZoneAsiaGaza();
+    const TEST_2007_07_15_12_30_40_987654321 = LocalDateTime.of(2007, 7, 15, 12, 30, 40, 987654321);
     let MAX_DATE_TIME;
     let MIN_DATE_TIME;
     let MAX_INSTANT;
@@ -2269,7 +2269,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         }
 
         it('test_minusDays_normal', () => {
-            let t = TEST_2007_07_15_12_30_40_987654321.minusDays(1);
+            const t = TEST_2007_07_15_12_30_40_987654321.minusDays(1);
             check(t, 2007, 7, 14, 12, 30, 40, 987654321);
         });
 
@@ -2451,7 +2451,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_minusSeconds_one()', () => {
             let t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-            let d = t.toLocalDate().minusDays(1);
+            const d = t.toLocalDate().minusDays(1);
 
             let hour = 0;
             let min = 0;
@@ -2534,7 +2534,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
 
         it('test_minusNanos_halfABillion()', () => {
             let t = TEST_2007_07_15_12_30_40_987654321.with(LocalTime.MIDNIGHT);
-            let d = t.toLocalDate().minusDays(1);
+            const d = t.toLocalDate().minusDays(1);
 
             let hour = 0;
             let min = 0;

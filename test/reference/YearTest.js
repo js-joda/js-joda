@@ -57,7 +57,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         });
 
         it('now_ZoneId', () => {
-            let zone = ZoneId.of('UTC+01:02:03');
+            const zone = ZoneId.of('UTC+01:02:03');
             let expected = Year.now(Clock.system(zone));
             let test = Year.now(zone);
             for (let i = 0; i < 100; i++) {
@@ -76,9 +76,9 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('now(ZoneId)', () => {
         it('now_Clock', () => {
-            let instant = LocalDateTime.of(2010, 12, 31, 0, 0).toInstant(ZoneOffset.UTC);
-            let clock = Clock.fixed(instant, ZoneOffset.UTC);
-            let test = Year.now(clock);
+            const instant = LocalDateTime.of(2010, 12, 31, 0, 0).toInstant(ZoneOffset.UTC);
+            const clock = Clock.fixed(instant, ZoneOffset.UTC);
+            const test = Year.now(clock);
             expect(test.value()).to.eql(2010);
         });
 
@@ -94,7 +94,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     describe('of()', () => {
         it('test_factory_int_singleton', () => {
             for (let i = -4; i <= 2104; i++) {
-                let test = Year.of(i);
+                const test = Year.of(i);
                 expect(test.value()).to.eql(i);
                 expect(Year.of(i)).to.eql(test);
             }
@@ -134,7 +134,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('parse()', () => {
 
-        let data_goodParseData = [
+        const data_goodParseData = [
             ['0000', Year.of(0)],
             ['9999', Year.of(9999)],
             ['2000', Year.of(2000)],
@@ -150,13 +150,13 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('factory_parse_success', () => {
             data_goodParseData.forEach((val) => {
-                let [text, expected] = val;
-                let year = Year.parse(text);
+                const [text, expected] = val;
+                const year = Year.parse(text);
                 expect(year).to.eql(expected);
             });
         });
 
-        let data_badParseData = [
+        const data_badParseData = [
             ['', 0],
             ['-00', 1],
             ['--01-0', 1],
@@ -176,7 +176,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('factory_parse_fail', () => {
             data_badParseData.forEach((val) => {
-                let [text, pos] = val;
+                const [text, pos] = val;
                 expect(() => {
                     try {
                         Year.parse(text);
@@ -200,14 +200,14 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         // parse(DateTimeFormatter)
         //-----------------------------------------------------------------------
         it('factory_parse_formatter', () => {
-            let f = DateTimeFormatter.ofPattern('u');
-            let test = Year.parse('2010', f);
+            const f = DateTimeFormatter.ofPattern('u');
+            const test = Year.parse('2010', f);
             expect(test).to.eql(Year.of(2010));
         });
 
         it('factory_parse_formatter_nullText', () => {
             expect(() => {
-                let f = DateTimeFormatter.ofPattern('u');
+                const f = DateTimeFormatter.ofPattern('u');
                 Year.parse(null, f);
             }).to.throw(NullPointerException);
         });
@@ -309,12 +309,12 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         });
 
         it('test_plusYear_zero_equals', () => {
-            let base = Year.of(2007);
+            const base = Year.of(2007);
             expect(base.plusYears(0)).to.eql(base);
         });
 
         it('test_plusYears_big', () => {
-            let years = 20 + Year.MAX_VALUE;
+            const years = 20 + Year.MAX_VALUE;
             expect(Year.of(-40).plusYears(years)).to.eql(Year.of(-40 + years));
         });
 
@@ -361,12 +361,12 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         });
 
         it('test_minusYear_zero_equals', () => {
-            let base = Year.of(2007);
+            const base = Year.of(2007);
             expect(base.minusYears(0)).to.eql(base);
         });
 
         it('test_minusYears_big', () => {
-            let years = 20 + Year.MAX_VALUE;
+            const years = 20 + Year.MAX_VALUE;
             expect(Year.of(40).minusYears(years)).to.eql(Year.of(40 - years));
         });
 
@@ -400,21 +400,21 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('doAdjustment()', () => {
         it('test_adjustDate', () => {
-            let base = LocalDate.of(2007, 2, 12);
+            const base = LocalDate.of(2007, 2, 12);
             for (let i = -4; i <= 2104; i++) {
-                let result = Year.of(i).adjustInto(base);
+                const result = Year.of(i).adjustInto(base);
                 expect(result).to.eql(LocalDate.of(i, 2, 12));
             }
         });
 
         it('test_adjustDate_resolve', () => {
-            let test = Year.of(2011);
+            const test = Year.of(2011);
             expect(test.adjustInto(LocalDate.of(2012, 2, 29))).to.eql(LocalDate.of(2011, 2, 28));
         });
 
         it('test_adjustDate_nullLocalDate', () => {
             expect(() => {
-                let test = Year.of(1);
+                const test = Year.of(1);
                 test.adjustInto(null);
             }).to.throw(NullPointerException);
         });
@@ -467,25 +467,25 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('isValidMonthDay(Month)', () => {
         it('test_isValidMonthDay_june', () => {
-            let test = Year.of(2007);
-            let monthDay = MonthDay.of(6, 30);
+            const test = Year.of(2007);
+            const monthDay = MonthDay.of(6, 30);
             expect(test.isValidMonthDay(monthDay)).to.eql(true);
         });
 
         it('test_isValidMonthDay_febNonLeap', () => {
-            let test = Year.of(2007);
-            let monthDay = MonthDay.of(2, 29);
+            const test = Year.of(2007);
+            const monthDay = MonthDay.of(2, 29);
             expect(test.isValidMonthDay(monthDay)).to.eql(false);
         });
 
         it('test_isValidMonthDay_febLeap', () => {
-            let test = Year.of(2008);
-            let monthDay = MonthDay.of(2, 29);
+            const test = Year.of(2008);
+            const monthDay = MonthDay.of(2, 29);
             expect(test.isValidMonthDay(monthDay)).to.eql(true);
         });
 
         it('test_isValidMonthDay_null', () => {
-            let test = Year.of(2008);
+            const test = Year.of(2008);
             expect(test.isValidMonthDay(null)).to.eql(false);
         });
     });
@@ -495,13 +495,13 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('atMonth(Month)', () => {
         it('test_atMonth', () => {
-            let test = Year.of(2008);
+            const test = Year.of(2008);
             expect(test.atMonth(Month.JUNE)).to.eql(YearMonth.of(2008, 6));
         });
 
         it('test_atMonth_nullMonth', () => {
             expect(() => {
-                let test = Year.of(2008);
+                const test = Year.of(2008);
                 test.atMonth(null);
             }).to.throw(NullPointerException);
         });
@@ -512,13 +512,13 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('atMonth(Month)', () => {
         it('test_atMonth_int', () => {
-            let test = Year.of(2008);
+            const test = Year.of(2008);
             expect(test.atMonth(6)).to.eql(YearMonth.of(2008, 6));
         });
 
         it('test_atMonth_int_invalidMonth', () => {
             expect(() => {
-                let test = Year.of(2008);
+                const test = Year.of(2008);
                 test.atMonth(13);
             }).to.throw(DateTimeException);
         });
@@ -527,7 +527,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     // atMonthDay(MonthDay)
     //-----------------------------------------------------------------------
     describe('atMonthDay(MonthDay)', () => {
-        let data_atMonthDay = [
+        const data_atMonthDay = [
             [Year.of(2008), MonthDay.of(6, 30), LocalDate.of(2008, 6, 30)],
             [Year.of(2008), MonthDay.of(2, 29), LocalDate.of(2008, 2, 29)],
             [Year.of(2009), MonthDay.of(2, 29), LocalDate.of(2009, 2, 28)]
@@ -535,14 +535,14 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('test_atMonthDay', () => {
             data_atMonthDay.forEach((val) => {
-                let [year, monthDay, expected] = val;
+                const [year, monthDay, expected] = val;
                 expect(year.atMonthDay(monthDay)).to.eql(expected);
             });
         });
 
         it('test_atMonthDay_nullMonthDay', () => {
             expect(() => {
-                let test = Year.of(2008);
+                const test = Year.of(2008);
                 test.atMonthDay(null);
             }).to.throw(NullPointerException);
         });
@@ -552,7 +552,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('atDay(int)', () => {
         it('test_atDay_notLeapYear', () => {
-            let test = Year.of(2007);
+            const test = Year.of(2007);
             let expected = LocalDate.of(2007, 1, 1);
             for (let i = 1; i <= 365; i++) {
                 expect(test.atDay(i)).to.eql(expected);
@@ -562,13 +562,13 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('test_atDay_notLeapYear_day366', () => {
             expect(() => {
-                let test = Year.of(2007);
+                const test = Year.of(2007);
                 test.atDay(366);
             });
         });
 
         it('test_atDay_leapYear', () => {
-            let test = Year.of(2008);
+            const test = Year.of(2008);
             let expected = LocalDate.of(2008, 1, 1);
             for (let i = 1; i <= 366; i++) {
                 expect(test.atDay(i)).to.eql(expected);
@@ -578,14 +578,14 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('test_atDay_day0', () => {
             expect(() => {
-                let test = Year.of(2007);
+                const test = Year.of(2007);
                 test.atDay(0);
             }).to.throw(DateTimeException);
         });
 
         it('test_atDay_day367', () => {
             expect(() => {
-                let test = Year.of(2007);
+                const test = Year.of(2007);
                 test.atDay(367);
             }).to.throw(DateTimeException);
         });
@@ -618,9 +618,9 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     describe('compareTo()', () => {
         it('test_compareTo', () => {
             for (let i = -4; i <= 2104; i += 25) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
-                let a = Year.of(i);
+                const a = Year.of(i);
                 for (let j = -4; j <= 2104; j += 25) {
-                    let b = Year.of(j);
+                    const b = Year.of(j);
                     if (i < j) {
                         expect(a.compareTo(b) < 0).to.eql(true);
                         expect(b.compareTo(a) > 0).to.eql(true);
@@ -649,8 +649,8 @@ describe('org.threeten.bp.temporal.TestYear', () => {
 
         it('test_compareTo_nullYear', () => {
             expect(() => {
-                let doy = null;
-                let test = Year.of(1);
+                const doy = null;
+                const test = Year.of(1);
                 test.compareTo(doy);
             }).to.throw(NullPointerException);
         });
@@ -661,27 +661,27 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     describe('equals()', () => {
         it('test_equals', () => {
             for (let i = -4; i <= 2104; i += 25) { // threetenbp checks _every_ year, but that is too slow for mocha timeout
-                let a = Year.of(i);
+                const a = Year.of(i);
                 for (let j = -4; j <= 2104; j += 25) {
-                    let b = Year.of(j);
+                    const b = Year.of(j);
                     expect(a.equals(b)).to.eql(i === j);
                 }
             }
         });
 
         it('test_equals_same', () => {
-            let test = Year.of(2011);
+            const test = Year.of(2011);
             expect(test.equals(test)).to.eql(true);
         });
 
         it('test_equals_nullYear', () => {
-            let doy = null;
-            let test = Year.of(1);
+            const doy = null;
+            const test = Year.of(1);
             expect(test.equals(doy)).to.eql(false);
         });
 
         it('test_equals_incorrectType', () => {
-            let test = Year.of(1);
+            const test = Year.of(1);
             expect(test.equals('Incorrect type')).to.eql(false);
         });
     });
@@ -692,7 +692,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     describe('toString()', () => {
         it('test_toString', () => {
             for (let i = -4; i <= 2104; i++) {
-                let a = Year.of(i);
+                const a = Year.of(i);
                 expect(a.toString()).to.eql('' + i);
             }
         });
@@ -703,8 +703,8 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     //-----------------------------------------------------------------------
     describe('format(DateTimeFormatter)', () => {
         it('test_format_formatter', () => {
-            let f = DateTimeFormatter.ofPattern('y');
-            let t = Year.of(2010).format(f);
+            const f = DateTimeFormatter.ofPattern('y');
+            const t = Year.of(2010).format(f);
             expect(t).to.eql('2010');
         });
 

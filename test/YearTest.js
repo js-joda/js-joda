@@ -25,7 +25,7 @@ describe('js-joda Year', () => {
     describe('from', () => {
         
         it('should return the same Year it has been called with', () => {
-            let newYear = Year.from(testYear);
+            const newYear = Year.from(testYear);
             expect(newYear).to.equal(testYear);
         });
         
@@ -90,7 +90,7 @@ describe('js-joda Year', () => {
         });
         
         it('should return corresponding value of rangeRefindeBy for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return 'Test Value';
             };
@@ -110,7 +110,7 @@ describe('js-joda Year', () => {
     
     describe('get', () => {
         it('should return corresponding value of getFrom for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return ValueRange.of(1234, 1234);
             };
@@ -146,8 +146,8 @@ describe('js-joda Year', () => {
     
     describe('with(TemporalField, value)', () => {
         it('should set the given values', () => {
-            let test = Year.of(2015, 12);
-            let testBeforeEra = Year.of(-1, 12);
+            const test = Year.of(2015, 12);
+            const testBeforeEra = Year.of(-1, 12);
             expect(test.with(ChronoField.YEAR, 2016)).to.eql(Year.of(2016, 12));
             expect(test.with(ChronoField.YEAR_OF_ERA, 2016)).to.eql(Year.of(2016, 12));
             expect(testBeforeEra.with(ChronoField.YEAR_OF_ERA, 2016)).to.eql(Year.of(-2015, 12));
@@ -156,7 +156,7 @@ describe('js-joda Year', () => {
         });
         
         it('should return corresponding value of adjustInto for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.adjustInto = () => {
                 return 'Test Value';
             };
@@ -195,7 +195,7 @@ describe('js-joda Year', () => {
         });
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
-            let unit = new TemporalUnit();
+            const unit = new TemporalUnit();
             unit.addTo = () => {
                 return 'Test Value';
             };
@@ -248,7 +248,7 @@ describe('js-joda Year', () => {
     describe('query', () => {
         
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };

@@ -24,7 +24,7 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
     describe('of', () => {
         it('test_factory_int_singleton', () => {
             for (let i = 1; i <= 7; i++) {
-                let test = DayOfWeek.of(i);
+                const test = DayOfWeek.of(i);
                 assertEquals(test.value(), i);
                 assertSame(DayOfWeek.of(i), test);
             }

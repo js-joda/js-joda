@@ -20,13 +20,13 @@ import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 describe('js-joda DateTimeBuilderTest', () => {
     describe('_addFieldValue', () => {
         it('should add a fieldValue', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(ChronoField.YEAR, 2016);
             expect(builder.fieldValues.containsKey(ChronoField.YEAR)).to.be.true;
             expect(builder.fieldValues.get(ChronoField.YEAR)).to.eql(2016);
         });
         it('should add same fieldValue', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(ChronoField.YEAR, 2016);
             expect(builder.fieldValues.containsKey(ChronoField.YEAR)).to.be.true;
             builder._addFieldValue(ChronoField.YEAR, 2016);
@@ -34,7 +34,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             expect(builder.fieldValues.get(ChronoField.YEAR)).to.eql(2016);
         });
         it('should fail when adding same field with different value', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(ChronoField.YEAR, 2016);
             expect(builder.fieldValues.containsKey(ChronoField.YEAR)).to.be.true;
             expect(() => {
@@ -45,7 +45,7 @@ describe('js-joda DateTimeBuilderTest', () => {
     
     describe('_checkDate', () => {
         it('should run without exception for a null date', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.YEAR, 2016);
             builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -75,7 +75,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
 
         it('should throw an exception for a different date than the fieldValues', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.YEAR, 2016);
             builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -86,12 +86,12 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
     
         it('should throw an exception if date.getLong throws an exception', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.YEAR, 2016);
             builder._addFieldValue(ChronoField.DAY_OF_YEAR, 1);
             expect(() => {
-                let d = LocalDate.of(2016, 1, 1);
+                const d = LocalDate.of(2016, 1, 1);
                 // "mock" getLong to throw
                 d.getLong = () => {
                     throw new Error('Test Error');
@@ -101,12 +101,12 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
     
         it('should not throw an exception if date.getLong throws a DateTimeException', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.YEAR, 2016);
             builder._addFieldValue(ChronoField.DAY_OF_YEAR, 1);
             expect(() => {
-                let d = LocalDate.of(2016, 1, 1);
+                const d = LocalDate.of(2016, 1, 1);
                 // "mock" getLong to throw
                 d.getLong = () => {
                     throw new DateTimeException('Test Error');
@@ -119,31 +119,31 @@ describe('js-joda DateTimeBuilderTest', () => {
     
     describe('isSupported', () => {
         it('should return true for a field that has been added', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(ChronoField.YEAR, 2016);
             expect(builder.isSupported(ChronoField.YEAR)).to.be.true;
         });
         
         it('should return false for a field that has not been added', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             expect(builder.isSupported(ChronoField.YEAR)).to.be.false;
         });
         
         it('should return false if requested field is null', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             expect(builder.isSupported(null)).to.be.false;
         });
     });
     
     describe('getLong', () => {
         it('should return field value for a field that has been added', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(ChronoField.YEAR, 2016);
             expect(builder.getLong(ChronoField.YEAR)).to.eql(2016);
         });
         
         it('should return field value for a date field that can be determined after resolution', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.YEAR, 2016);
             builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -153,7 +153,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
         
         it('should return field value for a time field that can be determined after resolution', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
             builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -163,7 +163,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
         
         it('should should throw an excpetion for a field that cannot be determined', () => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder.chrono = IsoChronology.INSTANCE;
             expect(() => {
                 builder.getLong(ChronoField.SECOND_OF_DAY);
@@ -175,7 +175,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         
         describe('TemporalQueries.localDate()', () => {
             it('should return null if builder has not been resolved', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.YEAR, 2016);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -184,7 +184,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should return a LocalDate if builder has been resolved', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.YEAR, 2016);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -196,7 +196,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         
         describe('TemporalQueries.localTime()', () => {
             it('should return null if builder has not been resolved', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -205,7 +205,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should return a LocalDate if builder has been resolved', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 1);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 1);
@@ -217,7 +217,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         
         describe('TemporalQueries.precision()', () => {
             it('should return null since it is not supported', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.YEAR, 2016);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
@@ -232,12 +232,12 @@ describe('js-joda DateTimeBuilderTest', () => {
         
         describe('TemporalQueries.chronology()', () => {
             it('should return null if chrono has not been set', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 expect(builder.query(TemporalQueries.chronology())).to.be.null;
             });
             
             it('should return the chronology', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 assertEquals(builder.query(TemporalQueries.chronology()), IsoChronology.INSTANCE);
             });
@@ -248,7 +248,7 @@ describe('js-joda DateTimeBuilderTest', () => {
     describe('resolve', () => {
         describe('ResolverStyle.SMART', () => {
             it('should only resolve the given fields', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.YEAR, 2016);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 6);
@@ -260,7 +260,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should resolve excessDays when hour 24 is given', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.YEAR, 2016);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 6);
@@ -273,7 +273,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             
             it('should handle MILLI_OF_SECOND and MICRO_OF_SECOND', () => {
                 // only works, if HOUR/MINUTE/SECOND are also set
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -287,7 +287,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             it('should handle MILLI_OF_SECOND and NANO_OF_SECOND (NANO overwrites MILLI)', () => {
                 // only works, if HOUR/MINUTE/SECOND are also set
                 // NANO overwrites MILLI, seems strange to me, but thats the way it's implemented
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -301,7 +301,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             it('should handle MICRO_OF_SECOND and NANO_OF_SECOND (NANO overwrites MICRO)', () => {
                 // only works, if HOUR/MINUTE/SECOND are also set
                 // NANO overwrites MICRO, seems strange to me, but thats the way it's implemented
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -315,7 +315,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             it('should handle MICRO_OF_SECOND and NANO_OF_SECOND (NANO overwrites MICRO)', () => {
                 // only works, if HOUR/MINUTE/SECOND are also set
                 // NANO overwrites MICRO, seems strange to me, but thats the way it's implemented
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 0);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 0);
@@ -326,7 +326,7 @@ describe('js-joda DateTimeBuilderTest', () => {
                 assertEquals(builder.build(LocalTime.FROM), LocalTime.of(0, 0, 0, 1));
             });
             
-            let data_times = [
+            const data_times = [
                 [ChronoField.HOUR_OF_DAY, 0, ChronoField.MINUTE_OF_HOUR, 0, ChronoField.SECOND_OF_MINUTE, 0, ChronoField.NANO_OF_SECOND, 0, LocalTime.FROM, LocalTime.of(0, 0, 0, 0)],
                 [ChronoField.HOUR_OF_DAY, 24, ChronoField.MINUTE_OF_HOUR, 0, ChronoField.SECOND_OF_MINUTE, 0, ChronoField.NANO_OF_SECOND, 0, LocalTime.FROM, LocalTime.of(0, 0, 0, 0)],
                 [ChronoField.HOUR_OF_DAY, 0, ChronoField.MINUTE_OF_HOUR, 0, ChronoField.SECOND_OF_MINUTE, 0, ChronoField.MICRO_OF_SECOND, 1, LocalTime.FROM, LocalTime.of(0, 0, 0, 1000)],
@@ -361,7 +361,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             it('should resolve times', () => {
                 dataProviderTest(data_times, (field1, value1, field2, value2, field3, value3, field4, value4, query, expectedVal) => {
                     
-                    let builder = new DateTimeBuilder();
+                    const builder = new DateTimeBuilder();
                     builder._addFieldValue(field1, value1);
                     builder.chrono = IsoChronology.INSTANCE;
                     if (field2 != null) {
@@ -379,7 +379,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should fail if no time fields are set', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder.resolve(ResolverStyle.SMART);
                 expect(() => {
@@ -388,7 +388,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should fail if no MINUTE_OF_HOUR is not set', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 1);
                 builder._addFieldValue(ChronoField.SECOND_OF_MINUTE, 1);
@@ -400,7 +400,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             });
             
             it('should fail if no SECOND_OF_MINUTE is not set', () => {
-                let builder = new DateTimeBuilder();
+                const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
                 builder._addFieldValue(ChronoField.HOUR_OF_DAY, 1);
                 builder._addFieldValue(ChronoField.MINUTE_OF_HOUR, 1);
@@ -414,7 +414,7 @@ describe('js-joda DateTimeBuilderTest', () => {
         
         describe('ResolverStyle.LENIENT', () => {
             // LENIENT allows some values to be out of range that SMART does not allow
-            let data_times = [
+            const data_times = [
                 [ChronoField.HOUR_OF_DAY, 25, ChronoField.MINUTE_OF_HOUR, 1, ChronoField.SECOND_OF_MINUTE, 1, ChronoField.NANO_OF_SECOND, 1, LocalTime.FROM, LocalTime.of(1, 1, 1, 1)],
                 [ChronoField.HOUR_OF_DAY, 0, ChronoField.MINUTE_OF_HOUR, 61, ChronoField.SECOND_OF_MINUTE, 1, ChronoField.NANO_OF_SECOND, 1, LocalTime.FROM, LocalTime.of(1, 1, 1, 1)],
                 [ChronoField.HOUR_OF_DAY, 1, ChronoField.MINUTE_OF_HOUR, 0, ChronoField.SECOND_OF_MINUTE, 61, ChronoField.NANO_OF_SECOND, 1, LocalTime.FROM, LocalTime.of(1, 1, 1, 1)],
@@ -426,7 +426,7 @@ describe('js-joda DateTimeBuilderTest', () => {
             it('should resolve times', () => {
                 dataProviderTest(data_times, (field1, value1, field2, value2, field3, value3, field4, value4, query, expectedVal) => {
                     
-                    let builder = new DateTimeBuilder();
+                    const builder = new DateTimeBuilder();
                     builder._addFieldValue(field1, value1);
                     builder.chrono = IsoChronology.INSTANCE;
                     if (field2 != null) {

@@ -18,7 +18,7 @@ import {ZonedDateTime} from '../../../src/ZonedDateTime';
 
 describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     
-    let data_combine = [
+    const data_combine = [
         [ChronoField.YEAR, 2012, ChronoField.MONTH_OF_YEAR, 6, ChronoField.DAY_OF_MONTH, 3, null, null, LocalDate.FROM, LocalDate.of(2012, 6, 3)],
         [ChronoField.PROLEPTIC_MONTH, 2012 * 12 + 6 - 1, ChronoField.DAY_OF_MONTH, 3, null, null, null, null, LocalDate.FROM, LocalDate.of(2012, 6, 3)],
         [ChronoField.YEAR, 2012, ChronoField.ALIGNED_WEEK_OF_YEAR, 6, ChronoField.DAY_OF_WEEK, 3, null, null, LocalDate.FROM, LocalDate.of(2012, 2, 8)],
@@ -32,7 +32,7 @@ describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     it('test_derive', () => {
         dataProviderTest(data_combine, (field1, value1, field2, value2, field3, value3, field4, value4, query, expectedVal) => {
             
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(field1, value1);
             builder.chrono = IsoChronology.INSTANCE;
             if (field2 != null) {
@@ -50,7 +50,7 @@ describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     });
     
     //-----------------------------------------------------------------------
-    let data_normalized = [
+    const data_normalized = [
         [ChronoField.YEAR, 2127, null, null, null, null, ChronoField.YEAR, 2127],
         [ChronoField.MONTH_OF_YEAR, 12, null, null, null, null, ChronoField.MONTH_OF_YEAR, 12],
         [ChronoField.DAY_OF_YEAR, 127, null, null, null, null, ChronoField.DAY_OF_YEAR, 127],
@@ -67,7 +67,7 @@ describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     
     it('test_normalized', () => {
         dataProviderTest(data_normalized, (field1, value1, field2, value2, field3, value3, query, expectedVal) => {
-            let builder = new DateTimeBuilder();
+            const builder = new DateTimeBuilder();
             builder._addFieldValue(field1, value1);
             builder.chrono = IsoChronology.INSTANCE;
             if (field2 != null) {
@@ -89,14 +89,14 @@ describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     const PARIS = undefined;//ZoneId.of('Europe/Paris');
 
     it.skip('test_parse_ZDT_withZone', () => {
-        let fmt = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss').withZone(PARIS);
-        let acc = fmt.parse('2014-06-30 01:02:03');
+        const fmt = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss').withZone(PARIS);
+        const acc = fmt.parse('2014-06-30 01:02:03');
         assertEquals(ZonedDateTime.from(acc), ZonedDateTime.of(2014, 6, 30, 1, 2, 3, 0, PARIS));
     });
 
     it.skip('test_parse_Instant_withZone', () => {
-        let fmt = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss').withZone(PARIS);
-        let acc = fmt.parse('2014-06-30 01:02:03');
+        const fmt = DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss').withZone(PARIS);
+        const acc = fmt.parse('2014-06-30 01:02:03');
         assertEquals(Instant.from(acc), ZonedDateTime.of(2014, 6, 30, 1, 2, 3, 0, PARIS).toInstant());
     });
     

@@ -20,7 +20,7 @@ describe('js-joda ChronoZonedDateTime', () => {
     
     describe('query', () => {
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -28,10 +28,10 @@ describe('js-joda ChronoZonedDateTime', () => {
         });
         
         it('should return corresponding value when queried with TemporalQueries.localDate()', () => {
-            let query = TemporalQueries.localDate();
+            const query = TemporalQueries.localDate();
             // ZonedDateTime handles TemporalQueries.localDate() itself, so we need to "construct"
             // a ChronoZonedDateTime here, that provides the needed function :/
-            let testChronoDateTime = new ChronoZonedDateTime();
+            const testChronoDateTime = new ChronoZonedDateTime();
             testChronoDateTime.toLocalDate = () => {
                 return testZonedDateTime.toLocalDate();
             };
@@ -47,7 +47,7 @@ describe('js-joda ChronoZonedDateTime', () => {
         });
         
         it('should return true for another object when compareTo returns 0', () => {
-            let otherChronoZonedDateTime = new ChronoZonedDateTime();
+            const otherChronoZonedDateTime = new ChronoZonedDateTime();
             otherChronoZonedDateTime.compareTo = () => {
                 return 0;
             };
@@ -55,7 +55,7 @@ describe('js-joda ChronoZonedDateTime', () => {
         });
         
         it('should return false for another object when compareTo does not return 0', () => {
-            let otherChronoZonedDateTime = new ChronoZonedDateTime();
+            const otherChronoZonedDateTime = new ChronoZonedDateTime();
             otherChronoZonedDateTime.compareTo = () => {
                 return 1;
             };

@@ -1812,7 +1812,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     describe('toSecondOfDay()', () => {
 
-        let delta = isCoverageTestRunner() ? 97 : 7;
+        const delta = isCoverageTestRunner() ? 97 : 7;
 
         it('test_toSecondOfDay()', () => {
             let t = LocalTime.of(0, 0);
@@ -1834,7 +1834,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     describe('toNanoOfDay()', () => {
 
-        let delta = isCoverageTestRunner() ? 997 : 167;
+        const delta = isCoverageTestRunner() ? 997 : 167;
 
         it('test_toNanoOfDay()', () => {
             let t = LocalTime.of(0, 0);

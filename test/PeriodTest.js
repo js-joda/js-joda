@@ -22,7 +22,7 @@ describe('js-joda Period', () => {
     describe('from(TemporalAmount)', () => {
         
         it('should return a Period with values from the TemporalAmount it has been called with', () => {
-            let temporalAmount = new TemporalAmount();
+            const temporalAmount = new TemporalAmount();
             temporalAmount.units = () => {
                 return [
                     ChronoUnit.YEARS
@@ -50,7 +50,7 @@ describe('js-joda Period', () => {
         });
         
         it('should fail if TemporalAmount has unsupported units', () => {
-            let temporalAmount = new TemporalAmount();
+            const temporalAmount = new TemporalAmount();
             temporalAmount.units = () => {
                 return [
                     ChronoUnit.YEARS,

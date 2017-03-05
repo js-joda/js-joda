@@ -19,21 +19,21 @@ import {SystemDefaultZoneRules} from '../../src/zone/SystemDefaultZoneRules';
 describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     it('should return an offset for an Instant', function () {
-        let zone = ZoneId.systemDefault();
-        let instant = Instant.parse('2016-03-16T00:00:00Z');
-        let offset = zone.rules().offset(instant);
+        const zone = ZoneId.systemDefault();
+        const instant = Instant.parse('2016-03-16T00:00:00Z');
+        const offset = zone.rules().offset(instant);
 
         expect(offset).to.be.instanceOf(ZoneOffset);
         expect(offset.totalSeconds()).to.be.a('number');
         expect(offset.toString()).to.be.a('string');
         expect(offset.id()).to.be.a('string');
 
-        let standardOffset = zone.rules().standardOffset(instant);
+        const standardOffset = zone.rules().standardOffset(instant);
         assertEquals(offset, standardOffset);
     });
 
     it('should return an offset for epochMillis', function () {
-        let zone = ZoneId.systemDefault();
+        const zone = ZoneId.systemDefault();
         const instant = Instant.parse('2016-03-16T00:00:00Z');
         const offset = zone.rules().offsetOfEpochMilli(instant.toEpochMilli());
 

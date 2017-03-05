@@ -115,8 +115,8 @@ class CurrentStandardZoneRules extends ZoneRules {
      */
     transition(localDateTime){
         const year = localDateTime.year();
-        let winterSummerTransition = this._localDateOfwinterSummerTransition(year);
-        let summerWinterTransition = this._localDateOfSummerWinterTransition (year).minusHours(1);
+        const winterSummerTransition = this._localDateOfwinterSummerTransition(year);
+        const summerWinterTransition = this._localDateOfSummerWinterTransition (year).minusHours(1);
         if(localDateTime.compareTo(winterSummerTransition) >= 0 &&
                 localDateTime.isBefore(winterSummerTransition.plusHours(1))) {
             // gap
@@ -135,7 +135,7 @@ class CurrentStandardZoneRules extends ZoneRules {
      * @return {[ZoneOffset]}
      */
     validOffsets(localDateTime){
-        let transition = this.transition(localDateTime);
+        const transition = this.transition(localDateTime);
         if(transition != null) {
             return transition.validOffsets();
         } else {

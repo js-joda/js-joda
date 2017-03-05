@@ -106,16 +106,16 @@ describe('zone/ZoneRules', () => {
     describe('Fixed ZoneRules', function () {
 
         it('should return same offset rules for any epoch milli', function () {
-            let fixedOffset = ZoneOffset.ofHours(2);
-            let offsetOfMilli = fixedOffset.rules().offsetOfEpochMilli(0);
+            const fixedOffset = ZoneOffset.ofHours(2);
+            const offsetOfMilli = fixedOffset.rules().offsetOfEpochMilli(0);
 
             assertEquals(offsetOfMilli, fixedOffset);
             assertEquals(offsetOfMilli.rules(), fixedOffset.rules());
         });
 
         it('should equal for same rules', function () {
-            let fixedOffset = ZoneOffset.ofHours(2);
-            let offsetOfMilli = fixedOffset.rules().offsetOfEpochMilli(0);
+            const fixedOffset = ZoneOffset.ofHours(2);
+            const offsetOfMilli = fixedOffset.rules().offsetOfEpochMilli(0);
 
             expect(offsetOfMilli.rules().equals(ZoneOffset.ofHours(2).rules())).to.be.true;
             expect(offsetOfMilli.rules().equals(ZoneOffset.ofHours(3).rules())).to.be.false;

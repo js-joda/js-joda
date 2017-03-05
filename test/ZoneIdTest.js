@@ -14,7 +14,7 @@ describe('ZoneId', function () {
     describe('abstract methods', function () {
 
         it('should fail for id()', function () {
-            let abstractZomeId  = new ZoneId();
+            const abstractZomeId  = new ZoneId();
 
             expect(()=>{
                 abstractZomeId.id();
@@ -22,7 +22,7 @@ describe('ZoneId', function () {
         });
 
         it('should fail for rules()', function () {
-            let abstractZomeId  = new ZoneId();
+            const abstractZomeId  = new ZoneId();
 
             expect(()=>{
                 abstractZomeId.rules();

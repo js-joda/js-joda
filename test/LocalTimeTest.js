@@ -113,7 +113,7 @@ describe('js-joda LocalTime', () => {
         });
         
         it('should return corresponding value of rangeRefinedBy for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.rangeRefinedBy = () => {
                 return 'Test Value';
             };
@@ -151,7 +151,7 @@ describe('js-joda LocalTime', () => {
     describe('with(TemporalAdjuster)', () => {
         
         it('should return the same LocalTime instance it has been called with', () => {
-            let newDayOfWeek = testTime.with(testTime);
+            const newDayOfWeek = testTime.with(testTime);
             expect(newDayOfWeek).to.equal(testTime);
         });
         
@@ -179,7 +179,7 @@ describe('js-joda LocalTime', () => {
         });
         
         it('should return corresponding value of adjustInto for TemporalField', () => {
-            let field = new TemporalField();
+            const field = new TemporalField();
             field.adjustInto = () => {
                 return 'Test Value';
             };
@@ -220,7 +220,7 @@ describe('js-joda LocalTime', () => {
         });
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
-            let unit = new TemporalUnit();
+            const unit = new TemporalUnit();
             unit.addTo = () => {
                 return 'Test Value';
             };
@@ -249,7 +249,7 @@ describe('js-joda LocalTime', () => {
     describe('query', () => {
         
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
-            let query = new TemporalQuery();
+            const query = new TemporalQuery();
             query.queryFrom = () => {
                 return 'Test Value';
             };
@@ -258,10 +258,10 @@ describe('js-joda LocalTime', () => {
     });
     
     describe('until', () => {
-        let end = testTime.plus(1, ChronoUnit.HOURS);
+        const end = testTime.plus(1, ChronoUnit.HOURS);
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
-            let unit = new TemporalUnit();
+            const unit = new TemporalUnit();
             unit.between = () => {
                 return 'Test Value';
             };
@@ -289,7 +289,7 @@ describe('js-joda LocalTime', () => {
     
     describe('adjustInto', () => {
         it('should return corresponding value of with for TemporalAdjuster', () => {
-            let adjuster = new TemporalAdjuster();
+            const adjuster = new TemporalAdjuster();
             adjuster.with = () => {
                 return 'Test Value';
             };

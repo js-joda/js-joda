@@ -65,8 +65,8 @@ describe('ZonedDateTime', () => {
             };
 
             dataProviderTest(testZones, (zone) => {
-                let zdt = ZonedDateTime.ofLocal(LOCAL_DATE_IN_SUMMER, zone);
-                let utcSameInstant = ZonedDateTime.parse('2016-06-30T11:30:59.000000500Z');
+                const zdt = ZonedDateTime.ofLocal(LOCAL_DATE_IN_SUMMER, zone);
+                const utcSameInstant = ZonedDateTime.parse('2016-06-30T11:30:59.000000500Z');
                 expect(utcSameInstant.isEqual(zdt));
             });
 
@@ -86,7 +86,7 @@ describe('ZonedDateTime', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTime, zone, expectedZonedDateAsString) => {
-                let zdt = ZonedDateTime.ofLocal(localDateTime, zone);
+                const zdt = ZonedDateTime.ofLocal(localDateTime, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -106,8 +106,8 @@ describe('ZonedDateTime', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, expectedZonedDateAsString) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -127,8 +127,8 @@ describe('ZonedDateTime', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, expectedZonedDateAsString) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -146,8 +146,8 @@ describe('ZonedDateTime', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, preferredOffset) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone, preferredOffset);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone, preferredOffset);
                 expect(zdt.offset()).to.equal(preferredOffset);
             });
 
@@ -225,8 +225,8 @@ describe('ZonedDateTime', () => {
 
             it('test_until', function () {
                 dataProviderTest(provider_until, (startStr, endStr, unit, expected) => {
-                    let start = LocalDateTime.parse(startStr).atZone(FIXED_ZONE_01);
-                    let end = LocalDateTime.parse(endStr).atZone(FIXED_ZONE_01);
+                    const start = LocalDateTime.parse(startStr).atZone(FIXED_ZONE_01);
+                    const end = LocalDateTime.parse(endStr).atZone(FIXED_ZONE_01);
                     assertEquals(start.until(end, unit), expected);
                 });
             });
@@ -385,27 +385,27 @@ describe('ZonedDateTime', () => {
     describe('of() factories', function () {
 
         it('of(date, time, zone)', function () {
-            let zdt = ZonedDateTime.of(LocalDate.of(2016, 9, 27), LocalTime.of(10, 0), FIXED_ZONE_00);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            const zdt = ZonedDateTime.of(LocalDate.of(2016, 9, 27), LocalTime.of(10, 0), FIXED_ZONE_00);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
             assertEquals(expectedZdt, zdt);
         });
 
         it('of(year, month, dayOfMonth,hour, minute, second, nanoOfSecond, zone)', function () {
-            let zdt = ZonedDateTime.of(2016, 9, 27, 10, 0, 0, 0, FIXED_ZONE_00);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            const zdt = ZonedDateTime.of(2016, 9, 27, 10, 0, 0, 0, FIXED_ZONE_00);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
             assertEquals(expectedZdt, zdt);
         });
 
         it('ofInstant(dateTime, offset, zone)', function () {
-            let zdt = ZonedDateTime.ofInstant(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            const zdt = ZonedDateTime.ofInstant(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
             assertEquals(expectedZdt, zdt);
         });
 
         describe('ofLenient(localDateTime, offset, zone)', function () {
 
             it('should construct an invalid zoned data time instance', function () {
-                let zdt = ZonedDateTime.ofLenient(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, EUROPE_BERLIN);
+                const zdt = ZonedDateTime.ofLenient(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, EUROPE_BERLIN);
                 assertEquals(LocalDateTime.of(2016, 9, 27, 10, 0), zdt.toLocalDateTime());
                 assertEquals(FIXED_ZONE_00, zdt.offset());
                 assertEquals(EUROPE_BERLIN, zdt.zone());
@@ -444,14 +444,14 @@ describe('ZonedDateTime', () => {
             }
 
             it('should ignore DateTimeException', function () {
-                let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
-                let temporal = new ZDTTemporal(DateTimeException);
-                let zdt = ZonedDateTime.from(temporal);
+                const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 27, 10, 0), FIXED_ZONE_00, FIXED_ZONE_00);
+                const temporal = new ZDTTemporal(DateTimeException);
+                const zdt = ZonedDateTime.from(temporal);
                 assertEquals(expectedZdt, zdt);
             });
 
             it('should re-throw a not DateTimeException', function () {
-                let temporal = new ZDTTemporal(Error);
+                const temporal = new ZDTTemporal(Error);
                 expect(() => {
                     ZonedDateTime.from(temporal);
                 }).to.throw(Error);
@@ -527,41 +527,41 @@ describe('ZonedDateTime', () => {
         const instant = LocalDate.of(2016, 9, 28).atTime(12,0,0,500).toInstant(FIXED_ZONE_02);
 
         it('should adjust to instant', function () {
-            let adjustedZdt = zdt.with(instant);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,500), FIXED_ZONE_02, EUROPE_BERLIN);
+            const adjustedZdt = zdt.with(instant);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,500), FIXED_ZONE_02, EUROPE_BERLIN);
             assertEquals(expectedZdt, adjustedZdt);
         });
 
         it('should adjust to instant seconds', function () {
-            let adjustedZdt = zdt.with(ChronoField.INSTANT_SECONDS, instant.epochSecond());
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,0), FIXED_ZONE_02, EUROPE_BERLIN);
+            const adjustedZdt = zdt.with(ChronoField.INSTANT_SECONDS, instant.epochSecond());
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 9, 28, 12,0,0,0), FIXED_ZONE_02, EUROPE_BERLIN);
             assertEquals(expectedZdt, adjustedZdt);
         });
 
         it('should adjust to instant seconds', function () {
             // overlap
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let adjustedZdt = zdt.with(ChronoField.OFFSET_SECONDS, FIXED_ZONE_01.totalSeconds());
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            const zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const adjustedZdt = zdt.with(ChronoField.OFFSET_SECONDS, FIXED_ZONE_01.totalSeconds());
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
             assertEquals(expectedZdt, adjustedZdt);
         });
 
         it('should adjust into next week day', () => {
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 11, 6, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
-            let adjustedZdt = zdt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+            const zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 11, 6, 2, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            const adjustedZdt = zdt.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
             assertEquals(expectedZdt, adjustedZdt);
         });
 
         it('should adjust into a custom field adjuster', () => {
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 6, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let customField = {
+            const zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 6, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const customField = {
                 adjustInto: (thisZdt, newValue) => {
                     return thisZdt.with(ChronoField.DAY_OF_MONTH, newValue);
                 }
             };
-            let adjustedZdt = zdt.with(customField, 6);
+            const adjustedZdt = zdt.with(customField, 6);
             assertEquals(expectedZdt, adjustedZdt);
         });
     });
@@ -569,9 +569,9 @@ describe('ZonedDateTime', () => {
     describe('truncatedTo', function () {
 
         it('should truncate to time based value', function () {
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 0), FIXED_ZONE_02, EUROPE_BERLIN);
-            let truncatedZdt = zdt.truncatedTo(ChronoUnit.HOURS);
+            const zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 0), FIXED_ZONE_02, EUROPE_BERLIN);
+            const truncatedZdt = zdt.truncatedTo(ChronoUnit.HOURS);
             assertEquals(expectedZdt, truncatedZdt);
         });
 
@@ -580,14 +580,14 @@ describe('ZonedDateTime', () => {
     describe('plus custom unit', function () {
 
         it('should add a custom value', function () {
-            let zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 7, 30), FIXED_ZONE_01, EUROPE_BERLIN);
-            let quarterDayUnit = {
+            const zdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const expectedZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 7, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            const quarterDayUnit = {
                 addTo: (thisZdt, amountToAdd) => {
                     return thisZdt.plusHours(6 * amountToAdd);
                 }
             };
-            let truncatedZdt = zdt.plus(1, quarterDayUnit);
+            const truncatedZdt = zdt.plus(1, quarterDayUnit);
             assertEquals(expectedZdt, truncatedZdt);
         });
 
@@ -596,9 +596,9 @@ describe('ZonedDateTime', () => {
     describe('until with a custom unit', function () {
 
         it('should calculate the difference in a custom unit', function () {
-            let startZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
-            let endZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 14, 30), FIXED_ZONE_01, EUROPE_BERLIN);
-            let quarterDayUnit = {
+            const startZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 2, 30), FIXED_ZONE_02, EUROPE_BERLIN);
+            const endZdt = ZonedDateTime.ofStrict(LocalDateTime.of(2016, 10, 30, 14, 30), FIXED_ZONE_01, EUROPE_BERLIN);
+            const quarterDayUnit = {
                 between: (start, end) => {
                     return MathUtil.intDiv(start.until(end, ChronoUnit.HOURS), 6);
                 }

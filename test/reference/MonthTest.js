@@ -23,7 +23,7 @@ describe('org.threeten.bp.TestMonth', () => {
     //-----------------------------------------------------------------------
     it('test_factory_int_singleton', () => {
         for (let i = 1; i <= MAX_LENGTH; i++) {
-            let test = Month.of(i);
+            const test = Month.of(i);
             expect(test.value()).to.eql(i);
         }
     });
@@ -81,13 +81,13 @@ describe('org.threeten.bp.TestMonth', () => {
         });
         it('test_query', () => {
             data_query.forEach((val) => {
-                let [temporal, query, expected] = val;
+                const [temporal, query, expected] = val;
                 expect(temporal.query(query)).to.eql(expected);
             });
         });
         it('test_queryFrom', () => {
             data_query.forEach((val) => {
-                let [temporal, query, expected] = val;
+                const [temporal, query, expected] = val;
                 expect(query.queryFrom(temporal)).to.eql(expected);
             });
         });
@@ -119,7 +119,7 @@ describe('org.threeten.bp.TestMonth', () => {
     describe('plus(long), plus(long,unit)', () => {
 
         it('test_plus_long', () => {
-            let data_plus = [
+            const data_plus = [
                 [1, -13, 12],
                 [1, -12, 1],
                 [1, -11, 2],
@@ -175,7 +175,7 @@ describe('org.threeten.bp.TestMonth', () => {
                 [12, -1, 11]
             ];
             data_plus.forEach((val) => {
-                let [base, amount, expected] = val;
+                const [base, amount, expected] = val;
                 expect(Month.of(base).plus(amount)).to.eql(Month.of(expected));
             });
         });
@@ -185,7 +185,7 @@ describe('org.threeten.bp.TestMonth', () => {
     describe('minus(long), minus(long,unit)', () => {
 
         it('test_minus_long', () => {
-            let data_minus = [
+            const data_minus = [
                 [1, -13, 2],
                 [1, -12, 1],
                 [1, -11, 12],
@@ -215,7 +215,7 @@ describe('org.threeten.bp.TestMonth', () => {
                 [1, 13, 12]
             ];
             data_minus.forEach((val) => {
-                let [base, amount, expected] = val;
+                const [base, amount, expected] = val;
                 expect(Month.of(base).minus(amount)).to.eql(Month.of(expected));
             });
         });
