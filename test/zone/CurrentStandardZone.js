@@ -61,11 +61,11 @@ class CurrentStandardZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfInstant(instant){
-        var year = yearOfInstant(instant);
-        var winterSummerTransition = this._localDateOfwinterSummerTransition(year)
+        const year = yearOfInstant(instant);
+        const winterSummerTransition = this._localDateOfwinterSummerTransition(year)
             .minusSeconds(this._winterOffset.totalSeconds())
             .toInstant(ZoneOffset.UTC);
-        var summerWinterTransition = this._localDateOfSummerWinterTransition(year)
+        const summerWinterTransition = this._localDateOfSummerWinterTransition(year)
             .minusHours(1)
             .minusSeconds(this._winterOffset.totalSeconds())
             .toInstant(ZoneOffset.UTC);
@@ -92,9 +92,9 @@ class CurrentStandardZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfLocalDateTime(localDateTime){
-        var year = localDateTime.year();
-        var winterSummerTransition = this._localDateOfwinterSummerTransition(year);
-        var summerWinterTransition = this._localDateOfSummerWinterTransition (year).minusHours(1);
+        const year = localDateTime.year();
+        const winterSummerTransition = this._localDateOfwinterSummerTransition(year);
+        const summerWinterTransition = this._localDateOfSummerWinterTransition (year).minusHours(1);
         if (localDateTime.isBefore(winterSummerTransition) || localDateTime.compareTo(summerWinterTransition.plusHours(1)) >= 0){
             return this._winterOffset;
         } else if (localDateTime.compareTo(winterSummerTransition.plusHours(1)) >= 0 && localDateTime.isBefore(summerWinterTransition)){
@@ -114,7 +114,7 @@ class CurrentStandardZoneRules extends ZoneRules {
      * @return {ZoneOffsetTransition}
      */
     transition(localDateTime){
-        var year = localDateTime.year();
+        const year = localDateTime.year();
         let winterSummerTransition = this._localDateOfwinterSummerTransition(year);
         let summerWinterTransition = this._localDateOfSummerWinterTransition (year).minusHours(1);
         if(localDateTime.compareTo(winterSummerTransition) >= 0 &&

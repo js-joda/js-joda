@@ -5,7 +5,7 @@ import {
 } from './testUtils';
 
 describe('testUtils', () =>{
-    
+
     class A {
         constructor(val) {
             this.val = val;
@@ -20,7 +20,7 @@ describe('testUtils', () =>{
             return false;
         }
     }
-    
+
     it('assertEquals', () =>{
         testAssertEquals(null, 1, false);
         testAssertEquals(1, null, false);
@@ -59,7 +59,7 @@ describe('testUtils', () =>{
         testAssertSame(new A(1), new A(2), false);
         testAssertSame(1, 1, true);
 
-        var a = new A('a');
+        let a = new A('a');
         testAssertSame(a, a, true);
 
         a = [];

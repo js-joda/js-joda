@@ -32,8 +32,8 @@ describe('MathUtil', () => {
         });
 
         function testIntDivMod(x, y, divExpected, modExpected) {
-            var resultDiv = MathUtil.intDiv(x, y);
-            var resultMod = MathUtil.intMod(x, y);
+            const resultDiv = MathUtil.intDiv(x, y);
+            const resultMod = MathUtil.intMod(x, y);
             expect(resultDiv, `testIntDiv: ${x}, ${y}, ${divExpected}`).to.eql(divExpected);
             expect(resultMod, `testIntMod: ${x}, ${y}, ${modExpected}`).to.eql(modExpected);
         }
@@ -87,12 +87,12 @@ describe('MathUtil', () => {
         }
 
         function testFloorDiv(x, y, divExpected) {
-            var result = MathUtil.floorDiv(x, y);
+            const result = MathUtil.floorDiv(x, y);
             expect(result, `testFloorDiv: ${x}, ${y}, ${divExpected}`).to.eql(divExpected);
         }
 
         function testFloorMod(x, y, modExpected) {
-            var result = MathUtil.floorMod(x, y);
+            const result = MathUtil.floorMod(x, y);
             expect(result, `testFloorMod: ${x}, ${y}, ${modExpected}`).to.eql(modExpected);
         }
 
@@ -111,12 +111,12 @@ describe('MathUtil', () => {
             testSafeAddInvalid(MAX_SAFE_INTEGER-1, 2);
             testSafeAddInvalid(null, 2);
             testSafeAddInvalid(2, null);
-            
+
             function testSafeAddValid(x, y, expected) {
-                var result = MathUtil.safeAdd(x, y);
+                const result = MathUtil.safeAdd(x, y);
                 expect(result, `testSafeAdd: ${x}, ${y}, ${expected}`).to.eql(expected);
             }
-    
+
             function testSafeAddInvalid(x, y) {
                 expect(() => MathUtil.safeAdd(x, y)).to.throw(ArithmeticException);
             }
@@ -132,12 +132,12 @@ describe('MathUtil', () => {
             testSafeSubtractInvalid(MIN_SAFE_INTEGER+1, 2);
             testSafeSubtractInvalid(undefined, 2);
             testSafeSubtractInvalid(1, undefined);
-            
+
             function testSafeSubtractValid(x, y, expected) {
-                var result = MathUtil.safeSubtract(x, y);
+                const result = MathUtil.safeSubtract(x, y);
                 expect(result, `safeSubtract: ${x}, ${y}, ${expected}`).to.eql(expected);
             }
-    
+
             function testSafeSubtractInvalid(x, y) {
                 expect(() => MathUtil.safeSubtract(x, y)).to.throw(ArithmeticException);
             }

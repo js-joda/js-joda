@@ -233,8 +233,8 @@ describe('ZonedDateTime', () => {
 
             it('test_until_reveresed', function () {
                 dataProviderTest(provider_until, (startStr, endStr, unit, expected) => {
-                    var start = LocalDateTime.parse(startStr).atZone(FIXED_ZONE_01);
-                    var end = LocalDateTime.parse(endStr).atZone(FIXED_ZONE_01);
+                    const start = LocalDateTime.parse(startStr).atZone(FIXED_ZONE_01);
+                    const end = LocalDateTime.parse(endStr).atZone(FIXED_ZONE_01);
                     assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
                 });
             });
@@ -373,7 +373,7 @@ describe('ZonedDateTime', () => {
 
             it('should caclulate distance in days', ()=> {
                 dataProviderTest(data_until_Zone1_Zone2, (zone1, zone2, expectedHours) => {
-                    var expectedDays = Math.floor(expectedHours / 24);
+                    const expectedDays = Math.floor(expectedHours / 24);
                     assertEquals(zone1.until(zone2, ChronoUnit.DAYS), expectedDays);
                     assertEquals(zone2.until(zone1, ChronoUnit.DAYS), MathUtil.safeZero(-expectedDays));
                 });

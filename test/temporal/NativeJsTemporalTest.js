@@ -24,8 +24,8 @@ describe('temporal/NativeJsTemporal.js', ()=>{
 
 
     it('should create a LocalDate from native js Date instance', function () {
-        var jsDate = new Date('2016-02-29T00:00:00Z');
-        var testData = [
+        const jsDate = new Date('2016-02-29T00:00:00Z');
+        const testData = [
             [new Date('2016-02-29T00:00:00Z'), LocalDate.parse('2016-02-29')],
             [new Date(jsDate.getTime()-1), LocalDate.parse('2016-02-28')],
             [new Date(jsDate.getTime()+(24*60*60*1000)-1), LocalDate.parse('2016-02-29')],
@@ -33,14 +33,14 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalDate) => {
-            var d = LocalDate.from(nativeJs(jsDate, ZoneOffset.UTC));
+            const d = LocalDate.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalDate);
         });
     });
 
     it('should create a LocalTime from native js Date instance', function () {
-        var jsDate = new Date('2016-02-29T12:00:00Z');
-        var testData = [
+        const jsDate = new Date('2016-02-29T12:00:00Z');
+        const testData = [
             [new Date('2016-02-29T12:00:00Z'), LocalTime.NOON],
             [new Date(jsDate.getTime()-1), LocalTime.parse('11:59:59.999')],
             [new Date(jsDate.getTime()+(12*60*60*1000)), LocalTime.parse('00:00:00')],
@@ -48,14 +48,14 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalTime) => {
-            var d = LocalTime.from(nativeJs(jsDate, ZoneOffset.UTC));
+            const d = LocalTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalTime);
         });
     });
 
     it('should create a LocalDateTime from native js Date instance', function () {
-        var jsDate = new Date('2016-02-29T00:00:00Z');
-        var testData = [
+        const jsDate = new Date('2016-02-29T00:00:00Z');
+        const testData = [
             [new Date('2016-02-29T00:00:00Z'), LocalDateTime.parse('2016-02-29T00:00:00')],
             [new Date(jsDate.getTime()-1), LocalDateTime.parse('2016-02-28T23:59:59.999')],
             [new Date(jsDate.getTime()+(24*60*60*1000)-1), LocalDateTime.parse('2016-02-29T23:59:59.999')],
@@ -63,14 +63,14 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalDateTime) => {
-            var d = LocalDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
+            const d = LocalDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalDateTime);
         });
     });
 
     it('should create an Instant from native js Date instance', function () {
-        var leapDayEpochMilli = new Date('2016-02-29T00:00:00Z').getTime();
-        var testData = [
+        const leapDayEpochMilli = new Date('2016-02-29T00:00:00Z').getTime();
+        const testData = [
             [new Date(0), Instant.parse('1970-01-01T00:00:00Z')],
             [new Date(leapDayEpochMilli), Instant.parse('2016-02-29T00:00:00Z')],
             [new Date(leapDayEpochMilli-1), Instant.parse('2016-02-28T23:59:59.999Z')],
@@ -79,7 +79,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedInstant) => {
-            var i = Instant.from(nativeJs(jsDate, ZoneOffset.UTC));
+            const i = Instant.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(i, expectedInstant);
         });
     });
@@ -92,19 +92,19 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         check('2016-06-21T00:00:00');
 
         function check(isoDateString){
-            var jsDate = new Date(isoDateString + 'Z');
-            var dtn = LocalDateTime.from(nativeJs(jsDate));
-            var dtl = LocalDateTime.parse(isoDateString);
+            const jsDate = new Date(isoDateString + 'Z');
+            const dtn = LocalDateTime.from(nativeJs(jsDate));
+            const dtl = LocalDateTime.parse(isoDateString);
 
-            var duration = dtn.until(dtl, ChronoUnit.MINUTES);
+            const duration = dtn.until(dtl, ChronoUnit.MINUTES);
             expect(duration).to.equal(jsDate.getTimezoneOffset());
         }
 
     });
 
     it('should create a ZonedDateTime from native js Date instance', function () {
-        var jsDate = new Date('2016-02-29T00:00:00Z');
-        var testData = [
+        const jsDate = new Date('2016-02-29T00:00:00Z');
+        const testData = [
             [new Date('2016-02-29T00:00:00Z'), ZonedDateTime.parse('2016-02-29T00:00:00Z')],
             [new Date(jsDate.getTime()-1), ZonedDateTime.parse('2016-02-28T23:59:59.999Z')],
             [new Date(jsDate.getTime()+(24*60*60*1000)-1), ZonedDateTime.parse('2016-02-29T23:59:59.999Z')],
@@ -112,7 +112,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         ];
 
         dataProviderTest(testData, (jsDate, expectedLocalDateTime) => {
-            var d = ZonedDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
+            const d = ZonedDateTime.from(nativeJs(jsDate, ZoneOffset.UTC));
             assertEquals(d, expectedLocalDateTime);
         });
     });

@@ -21,7 +21,7 @@ describe('assert.js', () => {
         });
 
         it('should throw an specific Error if assert is false and an Error class is passed', () => {
-            var TestError = () => {};
+            const TestError = () => {};
             expect(() => {
                 assert(false, 'assert fail message', TestError);
             }).to.throw(TestError);

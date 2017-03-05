@@ -34,8 +34,8 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     it('should return an offset for epochMillis', function () {
         let zone = ZoneId.systemDefault();
-        var instant = Instant.parse('2016-03-16T00:00:00Z');
-        var offset = zone.rules().offsetOfEpochMilli(instant.toEpochMilli());
+        const instant = Instant.parse('2016-03-16T00:00:00Z');
+        const offset = zone.rules().offsetOfEpochMilli(instant.toEpochMilli());
 
         expect(offset).to.be.instanceOf(ZoneOffset);
         expect(offset.totalSeconds()).to.be.a('number');
@@ -44,9 +44,9 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
     });
 
     it('should return an offset for a LocalDateTime', function () {
-        var zone = ZoneId.systemDefault();
-        var ldt = LocalDateTime.parse('2016-10-30T00:00:00');
-        var offset = zone.rules().offset(ldt);
+        const zone = ZoneId.systemDefault();
+        const ldt = LocalDateTime.parse('2016-10-30T00:00:00');
+        const offset = zone.rules().offset(ldt);
 
         expect(zone.rules().isValidOffset(ldt, offset)).to.be.true;
         expect(offset).to.be.instanceOf(ZoneOffset);
@@ -55,25 +55,25 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
     });
 
     it('ZoneIdSystemDefault.toString', function () {
-        var zone = ZoneId.systemDefault();
+        const zone = ZoneId.systemDefault();
         expect(zone.toString()).to.be.a('string');
         expect(zone.toString()).to.contain('SYSTEM');
     });
 
     it('ZoneIdSystemDefault.rules.toString', function () {
-        var zone = ZoneId.systemDefault();
+        const zone = ZoneId.systemDefault();
         expect(zone.rules().toString()).to.be.a('string');
         expect(zone.rules().toString()).to.contain('SYSTEM');
     });
 
     it('ZoneIdSystemDefault.equals', function () {
-        var zone = ZoneId.systemDefault();
+        const zone = ZoneId.systemDefault();
         expect(zone.equals(zone)).to.be.true;
         expect(zone.equals({})).to.be.false;
     });
 
     it('ZoneIdSystemDefault.rules.equals', function () {
-        var zone = ZoneId.systemDefault();
+        const zone = ZoneId.systemDefault();
         expect(zone.rules().equals(zone.rules())).to.be.true;
         expect(zone.rules().equals(new SystemDefaultZoneRules())).to.be.true;
         expect(zone.rules().equals({})).to.be.false;
@@ -81,7 +81,7 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
     it('manual daylight savings scan', function () {
         // eslint-disable-next-line no-unused-vars
-        var logResult = '';
+        let logResult = '';
 
         // CET transition
         scan(LocalDateTime.parse('2016-03-27T00:00:00'));
@@ -106,7 +106,7 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
         }
 
         function sample(ldt){
-            var zone = ZoneId.systemDefault();
+            const zone = ZoneId.systemDefault();
             log(ldt.toString() + '\t' + zone.rules().offset(ldt).toString());
 
         }
