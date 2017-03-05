@@ -7,6 +7,8 @@ Changelog
 
 * add linter rules `no-var`, `prefer-const`
 
+#### dependency updates
+
 ### 1.4.0
 
 #### public API
