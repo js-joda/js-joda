@@ -1,43 +1,43 @@
 if(typeof require === 'function') { require('../node-init'); }
 /* eslint-disable no-undef, no-unused-vars */
 (function() {
-    var instantDateStr = '2015-12-24T16:30:00Z';
-    var dateStr = '2015-12-24';
-    var dateTimeStr = '2015-12-24T16:30:00';
-    var timeStr = '16:30:00';
-    var zonedDateTimeStr = '2015-12-24T16:30:00+01:00[UTC+01:00]';
+    const instantDateStr = '2015-12-24T16:30:00Z';
+    const dateStr = '2015-12-24';
+    const dateTimeStr = '2015-12-24T16:30:00';
+    const timeStr = '16:30:00';
+    const zonedDateTimeStr = '2015-12-24T16:30:00+01:00[UTC+01:00]';
 
     addSuite(
         new Benchmark.Suite('parse')
             .add('native Date ' + instantDateStr, function () {
-                var d = new Date(instantDateStr);
+                const d = new Date(instantDateStr);
             })
             .add('moment ' + instantDateStr, function () {
-                var m = moment(instantDateStr);
+                const m = moment(instantDateStr);
             })
             .add('js-joda ' + instantDateStr, function () {
-                var i = JSJoda.Instant.parse(instantDateStr);
+                const i = JSJoda.Instant.parse(instantDateStr);
             })
             .add('native Date ' + dateStr, function () {
-                var d = new Date(dateStr);
+                const d = new Date(dateStr);
             })
             .add('moment ' + dateStr, function () {
-                var m = moment(dateStr);
+                const m = moment(dateStr);
             })
             .add('js-joda ' + dateStr, function () {
-                var i = JSJoda.LocalDate.parse(dateStr);
+                const i = JSJoda.LocalDate.parse(dateStr);
             })
             .add('moment ' + zonedDateTimeStr, function () {
-                var m = moment(zonedDateTimeStr);
+                const m = moment(zonedDateTimeStr);
             })
             .add('js-joda ' + zonedDateTimeStr, function () {
-                var i = JSJoda.ZonedDateTime.parse(zonedDateTimeStr);
+                const i = JSJoda.ZonedDateTime.parse(zonedDateTimeStr);
             })
             .add('js-joda ' + timeStr, function () {
-                var i = JSJoda.LocalTime.parse(timeStr);
+                const i = JSJoda.LocalTime.parse(timeStr);
             })
             .add('js-joda ' + dateTimeStr, function () {
-                var i = JSJoda.LocalDateTime.parse(dateTimeStr);
+                const i = JSJoda.LocalDateTime.parse(dateTimeStr);
             })
     );
 })();

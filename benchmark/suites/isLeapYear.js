@@ -1,12 +1,12 @@
 if(typeof require === 'function') { require('../node-init'); }
 /* eslint-disable no-undef */
 (function() {
-    var d1 = '2015-12-24';
-    var d2 = '2016-12-24';
-    var dt1 = JSJoda.LocalDate.parse(d1);
-    var dt2 = JSJoda.LocalDate.parse(d2);
-    var m1 = moment(d1);
-    var m2 = moment(d2);
+    const d1 = '2015-12-24';
+    const d2 = '2016-12-24';
+    const dt1 = JSJoda.LocalDate.parse(d1);
+    const dt2 = JSJoda.LocalDate.parse(d2);
+    const m1 = moment(d1);
+    const m2 = moment(d2);
 
     addSuite(
         new Benchmark.Suite('is leap year')

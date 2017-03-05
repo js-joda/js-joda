@@ -5,8 +5,8 @@ function log(msg){
     document.getElementById('result').textContent += msg + '\n';
 }
 
-var suites = [];
-var running = false;
+const suites = [];
+let running = false;
 function next(suite){
     if(suite!=null){
         suites.push(suite);
@@ -14,7 +14,7 @@ function next(suite){
         running = false;
     }
     if(!running){
-        var s = suites.shift();
+        const s = suites.shift();
         if(s!=null) {
             s.run({'async': true});
             running = true;
