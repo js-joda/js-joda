@@ -179,9 +179,9 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         function factory_between_LocalDate(y1, m1, d1, y2, m2, d2, ye, me, de) {
             // console.log(y1, m1, d1, y2, m2, d2, ye, me, de);
-            var start = LocalDate.of(y1, m1, d1);
-            var end = LocalDate.of(y2, m2, d2);
-            var test = Period.between(start, end);
+            const start = LocalDate.of(y1, m1, d1);
+            const end = LocalDate.of(y2, m2, d2);
+            const test = Period.between(start, end);
             assertPeriod(test, ye, me, de);
             //assertEquals(start.plus(test), end);
         }
@@ -327,17 +327,17 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('withYears()', function () {
 
         it('test_withYears', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.withYears(10), 10, 2, 3);
         });
 
         it('test_withYears_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.withYears(1), test);
         });
 
         it('test_withYears_toZero', () => {
-            var test = Period.ofYears(1);
+            const test = Period.ofYears(1);
             assertSame(test.withYears(0), Period.ZERO);
         });
 
@@ -346,17 +346,17 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('withMonths()', function () {
 
         it('test_withMonths', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.withMonths(10), 1, 10, 3);
         });
 
         it('test_withMonths_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.withMonths(2), test);
         });
 
         it('test_withMonths_toZero', () => {
-            var test = Period.ofMonths(1);
+            const test = Period.ofMonths(1);
             assertSame(test.withMonths(0), Period.ZERO);
         });
 
@@ -365,17 +365,17 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('withDays()', function () {
 
         it('test_withDays', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.withDays(10), 1, 2, 10);
         });
 
         it('test_withDays_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.withDays(3), test);
         });
 
         it('test_withDays_toZero', () => {
-            var test = Period.ofDays(1);
+            const test = Period.ofDays(1);
             assertSame(test.withDays(0), Period.ZERO);
         });
 
@@ -416,33 +416,33 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('plusYears()', () => {
 
         it('test_plusYears', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.plusYears(10), 11, 2, 3);
             assertPeriod(test.plus(Period.ofYears(10)), 11, 2, 3);
         });
 
         it('test_plusYears_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.plusYears(0), test);
             assertPeriod(test.plus(Period.ofYears(0)), 1, 2, 3);
         });
 
         it('test_plusYears_toZero', () => {
-            var test = Period.ofYears(-1);
+            const test = Period.ofYears(-1);
             assertSame(test.plusYears(1), Period.ZERO);
             assertSame(test.plus(Period.ofYears(1)), Period.ZERO);
         });
 
         it('test_plusYears_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofYears(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofYears(MathUtil.MAX_SAFE_INTEGER);
                 test.plusYears(1);
             }).to.throw(ArithmeticException);
         });
 
         it('test_plusYears_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofYears(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofYears(MathUtil.MIN_SAFE_INTEGER);
                 test.plusYears(-1);
             }).to.throw(ArithmeticException);
         });
@@ -452,26 +452,26 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('plusMonths()', () => {
 
         it('test_plusMonths', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.plusMonths(10), 1, 12, 3);
             assertPeriod(test.plus(Period.ofMonths(10)), 1, 12, 3);
         });
 
         it('test_plusMonths_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.plusMonths(0), test);
             assertEquals(test.plus(Period.ofMonths(0)), test);
         });
 
         it('test_plusMonths_toZero', () => {
-            var test = Period.ofMonths(-1);
+            const test = Period.ofMonths(-1);
             assertSame(test.plusMonths(1), Period.ZERO);
             assertSame(test.plus(Period.ofMonths(1)), Period.ZERO);
         });
 
         it('test_plusMonths_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofMonths(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofMonths(MathUtil.MAX_SAFE_INTEGER);
                 test.plusMonths(1);
 
             }).to.throw(ArithmeticException);
@@ -479,7 +479,7 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         it('test_plusMonths_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofMonths(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofMonths(MathUtil.MIN_SAFE_INTEGER);
                 test.plusMonths(-1);
 
             }).to.throw(ArithmeticException);
@@ -490,23 +490,23 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('plusDays()', () => {
 
         it('test_plusDays', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.plusDays(10), 1, 2, 13);
         });
 
         it('test_plusDays_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.plusDays(0), test);
         });
 
         it('test_plusDays_toZero', () => {
-            var test = Period.ofDays(-1);
+            const test = Period.ofDays(-1);
             assertSame(test.plusDays(1), Period.ZERO);
         });
 
         it('test_plusDays_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofDays(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofDays(MathUtil.MAX_SAFE_INTEGER);
                 test.plusDays(1);
 
             }).to.throw(ArithmeticException);
@@ -514,7 +514,7 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         it('test_plusDays_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofDays(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofDays(MathUtil.MIN_SAFE_INTEGER);
                 test.plusDays(-1);
 
             }).to.throw(ArithmeticException);
@@ -557,30 +557,30 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('minusYears()', () => {
 
         it('test_minusYears', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.minusYears(10), -9, 2, 3);
         });
 
         it('test_minusYears_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.minusYears(0), test);
         });
 
         it('test_minusYears_toZero', () => {
-            var test = Period.ofYears(1);
+            const test = Period.ofYears(1);
             assertSame(test.minusYears(1), Period.ZERO);
         });
 
         it('test_minusYears_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofYears(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofYears(MathUtil.MAX_SAFE_INTEGER);
                 test.minusYears(-1);
             }).to.throw(ArithmeticException);
         });
 
         it('test_minusYears_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofYears(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofYears(MathUtil.MIN_SAFE_INTEGER);
                 test.minusYears(1);
             }).to.throw(ArithmeticException);
         });
@@ -590,30 +590,30 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('minusMonths()', () => {
 
         it('test_minusMonths', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.minusMonths(10), 1, -8, 3);
         });
 
         it('test_minusMonths_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.minusMonths(0), test);
         });
 
         it('test_minusMonths_toZero', () => {
-            var test = Period.ofMonths(1);
+            const test = Period.ofMonths(1);
             assertSame(test.minusMonths(1), Period.ZERO);
         });
 
         it('test_minusMonths_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofMonths(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofMonths(MathUtil.MAX_SAFE_INTEGER);
                 test.minusMonths(-1);
             }).to.throw(ArithmeticException);
         });
 
         it('test_minusMonths_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofMonths(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofMonths(MathUtil.MIN_SAFE_INTEGER);
                 test.minusMonths(1);
             }).to.throw(ArithmeticException);
         });
@@ -623,30 +623,30 @@ describe('org.threeten.bp.TestPeriod', () => {
     describe('minusDays()', () => {
 
         it('test_minusDays', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertPeriod(test.minusDays(10), 1, 2, -7);
         });
 
         it('test_minusDays_noChange', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertSame(test.minusDays(0), test);
         });
 
         it('test_minusDays_toZero', () => {
-            var test = Period.ofDays(1);
+            const test = Period.ofDays(1);
             assertSame(test.minusDays(1), Period.ZERO);
         });
 
         it('test_minusDays_overflowTooBig', () => {
             expect(() => {
-                var test = Period.ofDays(MathUtil.MAX_SAFE_INTEGER);
+                const test = Period.ofDays(MathUtil.MAX_SAFE_INTEGER);
                 test.minusDays(-1);
             }).to.throw(ArithmeticException);
         });
 
         it('test_minusDays_overflowTooSmall', () => {
             expect(() => {
-                var test = Period.ofDays(MathUtil.MIN_SAFE_INTEGER);
+                const test = Period.ofDays(MathUtil.MIN_SAFE_INTEGER);
                 test.minusDays(1);
             }).to.throw(ArithmeticException);
         });
@@ -659,7 +659,7 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
     it('test_multipliedBy', () => {
-        var test = Period.of(1, 2, 3);
+        const test = Period.of(1, 2, 3);
         assertPeriod(test.multipliedBy(2), 2, 4, 6);
         assertPeriod(test.multipliedBy(-3), -3, -6, -9);
     });
@@ -669,25 +669,25 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
     it('test_multipliedBy_zero', () => {
-        var test = Period.of(1, 2, 3);
+        const test = Period.of(1, 2, 3);
         assertSame(test.multipliedBy(0), Period.ZERO);
     });
 
     it('test_multipliedBy_one', () => {
-        var test = Period.of(1, 2, 3);
+        const test = Period.of(1, 2, 3);
         assertSame(test.multipliedBy(1), test);
     });
 
     /*
      @Test(expectedExceptions=ArithmeticException.class)
      public void test_multipliedBy_overflowTooBig() {
-     var test = Period.ofYears(Integer.MAX_VALUE / 2 + 1);
+     const test = Period.ofYears(Integer.MAX_VALUE / 2 + 1);
      test.multipliedBy(2);
      }
 
      @Test(expectedExceptions=ArithmeticException.class)
      public void test_multipliedBy_overflowTooSmall() {
-     var test = Period.ofYears(Integer.MIN_VALUE / 2 - 1);
+     const test = Period.ofYears(Integer.MIN_VALUE / 2 - 1);
      test.multipliedBy(2);
      }
      */
@@ -697,7 +697,7 @@ describe('org.threeten.bp.TestPeriod', () => {
     });
 
     it('test_negated', () => {
-        var test = Period.of(1, 2, 3);
+        const test = Period.of(1, 2, 3);
         assertPeriod(test.negated(), -1, -2, -3);
     });
 
@@ -772,14 +772,14 @@ describe('org.threeten.bp.TestPeriod', () => {
 
         it('test_normalizedMonthsISO_min', () => {
             expect(() => {
-                var base = Period.of(MathUtil.MIN_SAFE_INTEGER, -12, 0);
+                const base = Period.of(MathUtil.MIN_SAFE_INTEGER, -12, 0);
                 base.normalized();
             }).to.throw(ArithmeticException);
         });
 
         it('test_normalizedMonthsISO_max', () => {
             expect(() => {
-                var base = Period.of(MathUtil.MAX_SAFE_INTEGER, 12, 0);
+                const base = Period.of(MathUtil.MAX_SAFE_INTEGER, 12, 0);
                 base.normalized();
             }).to.throw(ArithmeticException);
         });
@@ -948,26 +948,26 @@ describe('org.threeten.bp.TestPeriod', () => {
         });
 
         it('test_equals_self', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertEquals(test.equals(test), true);
         });
 
         it('test_equals_null', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertEquals(test.equals(null), false);
         });
 
         it('test_equals_otherClass', () => {
-            var test = Period.of(1, 2, 3);
+            const test = Period.of(1, 2, 3);
             assertEquals(test.equals(''), false);
         });
 
         //-----------------------------------------------------------------------
         it('test_hashCode', () => {
-            var test5 = Period.ofDays(5);
-            var test6 = Period.ofDays(6);
-            var test5M = Period.ofMonths(5);
-            var test5Y = Period.ofYears(5);
+            const test5 = Period.ofDays(5);
+            const test6 = Period.ofDays(6);
+            const test5M = Period.ofMonths(5);
+            const test5Y = Period.ofYears(5);
             assertEquals(test5.hashCode() === test5.hashCode(), true);
             assertEquals(test5.hashCode() === test6.hashCode(), false);
             assertEquals(test5.hashCode() === test5M.hashCode(), false);

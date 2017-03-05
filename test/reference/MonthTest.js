@@ -67,7 +67,7 @@ describe('org.threeten.bp.TestMonth', () => {
     });
 
     describe('query(TemporalQuery)', () => {
-        var data_query;
+        let data_query;
         before(() => {
             data_query = [
                 [Month.JUNE, TemporalQueries.chronology(), IsoChronology.INSTANCE],
@@ -115,7 +115,7 @@ describe('org.threeten.bp.TestMonth', () => {
             }).to.throw(DateTimeException); //NullPointerException in JDK
         });
     });
-    
+
     describe('plus(long), plus(long,unit)', () => {
 
         it('test_plus_long', () => {
@@ -333,7 +333,7 @@ describe('org.threeten.bp.TestMonth', () => {
             expect(Month.DECEMBER.firstMonthOfQuarter()).to.eql(Month.OCTOBER);
         });
     });
-    
+
     describe('toString()', () => {
         it('test_toString', () => {
             expect(Month.JANUARY.toString()).to.eql('JANUARY');

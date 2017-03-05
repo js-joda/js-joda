@@ -86,11 +86,11 @@ describe('org.threeten.bp.TestLocalDate', () => {
         }
         return true;
     }
-    
+
     //-----------------------------------------------------------------------
     // Since plusDays/minusDays actually depends on MJDays, it cannot be used for testing
     function next(date) {
-        var newDayOfMonth = date.dayOfMonth() + 1;
+        const newDayOfMonth = date.dayOfMonth() + 1;
         if (newDayOfMonth <= date.month().length(isIsoLeap(date.year()))) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -102,7 +102,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
     }
 
     function previous(date) {
-        var newDayOfMonth = date.dayOfMonth() - 1;
+        const newDayOfMonth = date.dayOfMonth() - 1;
         if (newDayOfMonth > 0) {
             return date.withDayOfMonth(newDayOfMonth);
         }
@@ -116,8 +116,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('now()', () => {
 
         it('now', () => {
-            var expected = LocalDate.now(Clock.systemDefaultZone());
-            var test = LocalDate.now();
+            let expected = LocalDate.now(Clock.systemDefaultZone());
+            let test = LocalDate.now();
             for (let i = 0; i < 100; i++) {
                 if (expected.equals(test)) {
                     return;
@@ -132,10 +132,10 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('now(ZoneId)', () => {
 
         it('now_ZoneId()', () => {
-            var zone = ZoneId.of('UTC+01:02:03');
-            var expected = LocalDate.now(Clock.system(zone));
-            var test = LocalDate.now(zone);
-            for (var i = 0; i < 100; i++) {
+            const zone = ZoneId.of('UTC+01:02:03');
+            let expected = LocalDate.now(Clock.system(zone));
+            let test = LocalDate.now(zone);
+            for (let i = 0; i < 100; i++) {
                 if (expected.equals(test)) {
                     return;
                 }
@@ -148,9 +148,9 @@ describe('org.threeten.bp.TestLocalDate', () => {
     });
 
     describe('now(Clock)', () => {
-        
+
         it('now_Clock_allSecsInDay_utc', () => {
-            var instant, clock, test;
+            let instant, clock, test;
             for (let i = 0; i < (2 * 24 * 60 * 60); i += 100) {
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant, ZoneOffset.UTC);
@@ -162,8 +162,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('now_Clock_allSecsInDay_offset', () => {
-            var instant, clock, test;
-            var zoneOffset = ZoneOffset.ofHours(1);
+            let instant, clock, test;
+            const zoneOffset = ZoneOffset.ofHours(1);
             for (let i = 0; i < (2 * 24 * 60 * 60); i +=100) {
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant.minusSeconds(zoneOffset.totalSeconds()), zoneOffset);
@@ -175,7 +175,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('now_Clock_allSecsInDay_beforeEpoch', () => {
-            var instant, clock, test;
+            let instant, clock, test;
             for (let i = -1; i >= -(2 * 24 * 60 * 60); i -= 100) {
                 instant = Instant.ofEpochSecond(i);
                 clock = Clock.fixed(instant, ZoneOffset.UTC);
@@ -187,26 +187,26 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('now_Clock_maxYear', () => {
-            var clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
-            var test = LocalDate.now(clock);
+            const clock = Clock.fixed(MAX_INSTANT, ZoneOffset.UTC);
+            const test = LocalDate.now(clock);
             expect(test.equals(MAX_DATE)).to.equal(true);
         });
 
         it('now_Clock_tooBig', () => {
-            var clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
+            const clock = Clock.fixed(MAX_INSTANT.plusSeconds(24 * 60 * 60), ZoneOffset.UTC);
             expect(() => {
                 LocalDate.now(clock);
             }).to.throw(DateTimeException);
         });
 
         it('now_Clock_minYear', () => {
-            var clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
-            var test = LocalDate.now(clock);
+            const clock = Clock.fixed(MIN_INSTANT, ZoneOffset.UTC);
+            const test = LocalDate.now(clock);
             expect(test.equals(MIN_DATE)).to.equal(true);
         });
 
         it('now_Clock_tooLow', () => {
-            var clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
+            const clock = Clock.fixed(MIN_INSTANT.minusNanos(1), ZoneOffset.UTC);
             expect(() => {
                 LocalDate.now(clock);
             }).to.throw(DateTimeException);
@@ -314,7 +314,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         //-----------------------------------------------------------------------
         it('factory_ofYearDay_ints_nonLeap', () => {
-            var date = LocalDate.of(2007, 1, 1);
+            let date = LocalDate.of(2007, 1, 1);
             for (let i = 1; i < 365; i++) {
                 expect(LocalDate.ofYearDay(2007, i)).to.eql(date);
                 date = next(date);
@@ -322,7 +322,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('factory_ofYearDay_ints_leap', () => {
-            var date = LocalDate.of(2008, 1, 1);
+            let date = LocalDate.of(2008, 1, 1);
             for (let i = 1; i < 366; i++) {
                 expect(LocalDate.ofYearDay(2008, i)).to.eql(date);
                 date = next(date);
@@ -411,7 +411,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             [-999999, 1, 1, '-999999-01-01']
         ];
     }
-    
+
     function provider_sampleBadParse() {
         return [
             ['2008/07/05'],
@@ -427,10 +427,10 @@ describe('org.threeten.bp.TestLocalDate', () => {
             ['2008-02-01+01:00[Europe/Paris]']
         ];
     }
-    
+
     describe('parse()', () => {
         it('factory_parse_validText', () => {
-            var sampleToString = provider_sampleToString();
+            const sampleToString = provider_sampleToString();
             sampleToString.forEach((sample) => {
                 factory_parse_validText.apply(this, sample);
             });
@@ -439,7 +439,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         function factory_parse_validText(y, m, d, parsable){
             // console.log(y, m, d, parsable);
-            var t = LocalDate.parse(parsable);
+            const t = LocalDate.parse(parsable);
             assertNotNull(t, parsable);
             assertEquals(t.year(), y, parsable);
             assertEquals(t.month().value(), m, parsable);
@@ -447,7 +447,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         }
 
         it('factory_parse_invalidText', () => {
-            var sampleBadParse = provider_sampleBadParse();
+            const sampleBadParse = provider_sampleBadParse();
             sampleBadParse.forEach((sample) => {
                 expect(() => {
                     factory_parse_invalidText.apply(this, sample);
@@ -517,7 +517,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('get/ getLong(TemporalField)', () => {
         it('test_get_TemporalField', () => {
-            var test = LocalDate.of(2008, 6, 30);
+            const test = LocalDate.of(2008, 6, 30);
             assertEquals(test.get(ChronoField.YEAR), 2008);
             assertEquals(test.get(ChronoField.MONTH_OF_YEAR), 6);
             assertEquals(test.get(ChronoField.DAY_OF_MONTH), 30);
@@ -577,7 +577,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_get(y, m, d) {
-            var a = LocalDate.of(y, m, d);
+            const a = LocalDate.of(y, m, d);
             assertEquals(a.year(), y);
             assertEquals(a.month(), Month.of(m));
             assertEquals(a.dayOfMonth(), d);
@@ -590,23 +590,23 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_getDOY(y, m, d) {
-            var a = LocalDate.of(y, m, d);
-            var total = 0;
+            const a = LocalDate.of(y, m, d);
+            let total = 0;
             for (let i = 1; i < m; i++) {
                 total += Month.of(i).length(isIsoLeap(y));
             }
-            var doy = total + d;
+            const doy = total + d;
             assertEquals(a.dayOfYear(), doy);
         }
 
         it('test_getDayOfWeek', function () {
-            var MONTH = Month.values();
-            var dow = DayOfWeek.MONDAY;
+            const MONTH = Month.values();
+            let dow = DayOfWeek.MONDAY;
             for (let m=0; m< MONTH.length; m++) {
-                var month = MONTH[m];
-                var length = month.length(false);
+                const month = MONTH[m];
+                const length = month.length(false);
                 for (let i = 1; i <= length; i++) {
-                    var d = LocalDate.of(2007, month, i);
+                    const d = LocalDate.of(2007, month, i);
                     assertEquals(d.dayOfWeek(), dow);
                     dow = dow.plus(1);
                 }
@@ -676,8 +676,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('with()', () => {
         it('test_with_adjustment', () => {
-            var sample = LocalDate.of(2012, 3, 4);
-            var adjuster = {
+            const sample = LocalDate.of(2012, 3, 4);
+            const adjuster = {
                 adjustInto: () => {
                     return sample;
                 }
@@ -697,7 +697,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('with(DateTimeField,long)', () => {
 
         it('test_with_DateTimeField_long_normal', () => {
-            var t = TEST_2007_07_15.with(ChronoField.YEAR, 2008);
+            const t = TEST_2007_07_15.with(ChronoField.YEAR, 2008);
             assertEquals(t, LocalDate.of(2008, 7, 15));
         });
 
@@ -734,7 +734,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('withYear()', () => {
         it('test_withYear_int_normal', function () {
-            var t = TEST_2007_07_15.withYear(2008);
+            const t = TEST_2007_07_15.withYear(2008);
             assertEquals(t, LocalDate.of(2008, 7, 15));
         });
 
@@ -745,15 +745,15 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('test_withYear_int_adjustDay', function () {
-            var t = LocalDate.of(2008, 2, 29).withYear(2007);
-            var expected = LocalDate.of(2007, 2, 28);
+            const t = LocalDate.of(2008, 2, 29).withYear(2007);
+            const expected = LocalDate.of(2007, 2, 28);
             assertEquals(t, expected);
         });
     });
 
     describe('withMonth()', () => {
         it('test_withMonth_int_normal', function () {
-            var t = TEST_2007_07_15.withMonth(1);
+            const t = TEST_2007_07_15.withMonth(1);
             assertEquals(t, LocalDate.of(2007, 1, 15));
         });
 
@@ -764,15 +764,15 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         it('test_withMonth_int_adjustDay', function () {
-            var t = LocalDate.of(2007, 12, 31).withMonth(11);
-            var expected = LocalDate.of(2007, 11, 30);
+            const t = LocalDate.of(2007, 12, 31).withMonth(11);
+            const expected = LocalDate.of(2007, 11, 30);
             assertEquals(t, expected);
         });
     });
 
     describe('withDayOfMonth()', () => {
         it('test_withDayOfMonth_normal', function () {
-            var t = TEST_2007_07_15.withDayOfMonth(1);
+            const t = TEST_2007_07_15.withDayOfMonth(1);
             assertEquals(t, LocalDate.of(2007, 7, 1));
         });
 
@@ -791,7 +791,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
     describe('withDayOfYear(int)', () => {
         it('test_withDayOfYear_normal', function () {
-            var t = TEST_2007_07_15.withDayOfYear(33);
+            let t = TEST_2007_07_15.withDayOfYear(33);
             assertEquals(t, LocalDate.of(2007, 2, 2));
 
             t = LocalDate.of(2008, 7, 15).withDayOfYear(366);
@@ -814,21 +814,21 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plus(Period)', () => {
 
         it('test_plus_Period_positiveMonths', () => {
-            var period = Period.ofMonths(7);
-            var t = TEST_2007_07_15.plus(period);
+            const period = Period.ofMonths(7);
+            const t = TEST_2007_07_15.plus(period);
             assertEquals(t, LocalDate.of(2008, 2, 15));
         });
 
         it('test_plus_Period_negativeDays', () => {
-            var period = Period.ofDays(-25);
-            var t = TEST_2007_07_15.plus(period);
+            const period = Period.ofDays(-25);
+            const t = TEST_2007_07_15.plus(period);
             assertEquals(t, LocalDate.of(2007, 6, 20));
         });
 
 /* strange test
         it('test_plus_Period_timeNotAllowed', () => {
             expect(() => {
-                var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+                const period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
                 TEST_2007_07_15.plus(period);
             }).to.throw(DateTimeException);
         });
@@ -843,14 +843,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('test_plus_Period_invalidTooLarge', () => {
             expect(() => {
-                var period = Period.ofYears(1);
+                const period = Period.ofYears(1);
                 LocalDate.of(Year.MAX_VALUE, 1, 1).plus(period);
             }).to.throw(DateTimeException);
         });
 
         it('test_plus_Period_invalidTooSmall', () => {
             expect(() => {
-                var period = Period.ofYears(-1, ChronoUnit.YEARS);
+                const period = Period.ofYears(-1, ChronoUnit.YEARS);
                 LocalDate.of(Year.MIN_VALUE, 1, 1).plus(period);
             }).to.throw(DateTimeException);
         });
@@ -859,12 +859,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plus(long,PeriodUnit)', () => {
 
         it('test_plus_longPeriodUnit_positiveMonths', () => {
-            var t = TEST_2007_07_15.plus(7, ChronoUnit.MONTHS);
+            const t = TEST_2007_07_15.plus(7, ChronoUnit.MONTHS);
             assertEquals(t, LocalDate.of(2008, 2, 15));
         });
 
         it('test_plus_longPeriodUnit_negativeDays', () => {
-            var t = TEST_2007_07_15.plus(-25, ChronoUnit.DAYS);
+            const t = TEST_2007_07_15.plus(-25, ChronoUnit.DAYS);
             assertEquals(t, LocalDate.of(2007, 6, 20));
         });
 
@@ -897,44 +897,44 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plusYears()', () => {
 
         it('test_plusYears_long_normal', function () {
-            var t = TEST_2007_07_15.plusYears(1);
+            const t = TEST_2007_07_15.plusYears(1);
             assertEquals(t, LocalDate.of(2008, 7, 15));
         });
 
         it('test_plusYears_long_negative', function () {
-            var t = TEST_2007_07_15.plusYears(-1);
+            const t = TEST_2007_07_15.plusYears(-1);
             assertEquals(t, LocalDate.of(2006, 7, 15));
         });
 
         it('test_plusYears_long_adjustDay', function () {
-            var t = LocalDate.of(2008, 2, 29).plusYears(1);
-            var expected = LocalDate.of(2009, 2, 28);
+            const t = LocalDate.of(2008, 2, 29).plusYears(1);
+            const expected = LocalDate.of(2009, 2, 28);
             assertEquals(t, expected);
         });
 
         it('test_plusYears_long_big', function () {
-            var years = 20 + Year.MAX_VALUE;
-            var test = LocalDate.of(-40, 6, 1).plusYears(years);
+            const years = 20 + Year.MAX_VALUE;
+            const test = LocalDate.of(-40, 6, 1).plusYears(years);
             assertEquals(test, LocalDate.of((-40 + years), 6, 1));
         });
 
         it('test_plusYears_long_invalidTooLarge', function () {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 6, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 6, 1);
                 test.plusYears(1);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusYears_long_invalidTooLargeMaxAddMax', function () {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.plusYears(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusYears_long_invalidTooLargeMaxAddMin', function () {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.plusYears(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
@@ -955,45 +955,45 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plusMonths()', () => {
 
         it('test_plusMonths_long_normal', () => {
-            var t = TEST_2007_07_15.plusMonths(1);
+            const t = TEST_2007_07_15.plusMonths(1);
             assertEquals(t, LocalDate.of(2007, 8, 15));
         });
 
         it('test_plusMonths_long_overYears', () => {
-            var t = TEST_2007_07_15.plusMonths(25);
+            const t = TEST_2007_07_15.plusMonths(25);
             assertEquals(t, LocalDate.of(2009, 8, 15));
         });
 
         it('test_plusMonths_long_negative', () => {
-            var t = TEST_2007_07_15.plusMonths(-1);
+            const t = TEST_2007_07_15.plusMonths(-1);
             assertEquals(t, LocalDate.of(2007, 6, 15));
         });
 
         it('test_plusMonths_long_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.plusMonths(-7);
+            const t = TEST_2007_07_15.plusMonths(-7);
             assertEquals(t, LocalDate.of(2006, 12, 15));
         });
 
         it('test_plusMonths_long_negativeOverYears', () => {
-            var t = TEST_2007_07_15.plusMonths(-31);
+            const t = TEST_2007_07_15.plusMonths(-31);
             assertEquals(t, LocalDate.of(2004, 12, 15));
         });
 
         it('test_plusMonths_long_adjustDayFromLeapYear', () => {
-            var t = LocalDate.of(2008, 2, 29).plusMonths(12);
-            var expected = LocalDate.of(2009, 2, 28);
+            const t = LocalDate.of(2008, 2, 29).plusMonths(12);
+            const expected = LocalDate.of(2009, 2, 28);
             assertEquals(t, expected);
         });
 
         it('test_plusMonths_long_adjustDayFromMonthLength', () => {
-            var t = LocalDate.of(2007, 3, 31).plusMonths(1);
-            var expected = LocalDate.of(2007, 4, 30);
+            const t = LocalDate.of(2007, 3, 31).plusMonths(1);
+            const expected = LocalDate.of(2007, 4, 30);
             assertEquals(t, expected);
         });
 
         it('test_plusMonths_long_big', () => {
-            var months = 12000468; // Integer.MAX_VALUE;
-            var test = LocalDate.of(-40, 6, 1).plusMonths(months);
+            const months = 12000468; // Integer.MAX_VALUE;
+            const test = LocalDate.of(-40, 6, 1).plusMonths(months);
             assertEquals(test, LocalDate.of(999999,6,1));
         });
 
@@ -1005,14 +1005,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('test_plusMonths_long_invalidTooLargeMaxAddMax', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.plusMonths(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
 
         it('test_plusMonths_long_invalidTooLargeMaxAddMin', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.plusMonths(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
@@ -1028,49 +1028,49 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plusWeeks()', () => {
 
         it('test_plusWeeks_normal', () => {
-            var t = TEST_2007_07_15.plusWeeks(1);
+            const t = TEST_2007_07_15.plusWeeks(1);
             assertEquals(t, LocalDate.of(2007, 7, 22));
         });
 
         it('test_plusWeeks_overMonths', () => {
-            var t = TEST_2007_07_15.plusWeeks(9);
+            const t = TEST_2007_07_15.plusWeeks(9);
             assertEquals(t, LocalDate.of(2007, 9, 16));
         });
 
         it('test_plusWeeks_overYears', () => {
-            var t = LocalDate.of(2006, 7, 16).plusWeeks(52);
+            const t = LocalDate.of(2006, 7, 16).plusWeeks(52);
             assertEquals(t, TEST_2007_07_15);
         });
 
         it('test_plusWeeks_overLeapYears', () => {
-            var t = TEST_2007_07_15.plusYears(-1).plusWeeks(104);
+            const t = TEST_2007_07_15.plusYears(-1).plusWeeks(104);
             assertEquals(t, LocalDate.of(2008, 7, 12));
         });
 
         it('test_plusWeeks_negative', () => {
-            var t = TEST_2007_07_15.plusWeeks(-1);
+            const t = TEST_2007_07_15.plusWeeks(-1);
             assertEquals(t, LocalDate.of(2007, 7, 8));
         });
 
         it('test_plusWeeks_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.plusWeeks(-28);
+            const t = TEST_2007_07_15.plusWeeks(-28);
             assertEquals(t, LocalDate.of(2006, 12, 31));
         });
 
         it('test_plusWeeks_negativeOverYears', () => {
-            var t = TEST_2007_07_15.plusWeeks(-104);
+            const t = TEST_2007_07_15.plusWeeks(-104);
             assertEquals(t, LocalDate.of(2005, 7, 17));
         });
 
         it('test_plusWeeks_maximum', () => {
-            var t = LocalDate.of(Year.MAX_VALUE, 12, 24).plusWeeks(1);
-            var expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+            const t = LocalDate.of(Year.MAX_VALUE, 12, 24).plusWeeks(1);
+            const expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
             assertEquals(t, expected);
         });
 
         it('test_plusWeeks_minimum', () => {
-            var t = LocalDate.of(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
-            var expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+            const t = LocalDate.of(Year.MIN_VALUE, 1, 8).plusWeeks(-1);
+            const expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
             assertEquals(t, expected);
         });
 
@@ -1104,49 +1104,49 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('plusDays()', () => {
 
         it('test_plusDays_normal', () => {
-            var t = TEST_2007_07_15.plusDays(1);
+            const t = TEST_2007_07_15.plusDays(1);
             assertEquals(t, LocalDate.of(2007, 7, 16));
         });
 
         it('test_plusDays_overMonths', () => {
-            var t = TEST_2007_07_15.plusDays(62);
+            const t = TEST_2007_07_15.plusDays(62);
             assertEquals(t, LocalDate.of(2007, 9, 15));
         });
 
         it('test_plusDays_overYears', () => {
-            var t = LocalDate.of(2006, 7, 14).plusDays(366);
+            const t = LocalDate.of(2006, 7, 14).plusDays(366);
             assertEquals(t, TEST_2007_07_15);
         });
 
         it('test_plusDays_overLeapYears', () => {
-            var t = TEST_2007_07_15.plusYears(-1).plusDays(365 + 366);
+            const t = TEST_2007_07_15.plusYears(-1).plusDays(365 + 366);
             assertEquals(t, LocalDate.of(2008, 7, 15));
         });
 
         it('test_plusDays_negative', () => {
-            var t = TEST_2007_07_15.plusDays(-1);
+            const t = TEST_2007_07_15.plusDays(-1);
             assertEquals(t, LocalDate.of(2007, 7, 14));
         });
 
         it('test_plusDays_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.plusDays(-196);
+            const t = TEST_2007_07_15.plusDays(-196);
             assertEquals(t, LocalDate.of(2006, 12, 31));
         });
 
         it('test_plusDays_negativeOverYears', () => {
-            var t = TEST_2007_07_15.plusDays(-730);
+            const t = TEST_2007_07_15.plusDays(-730);
             assertEquals(t, LocalDate.of(2005, 7, 15));
         });
 
         it('test_plusDays_maximum', () => {
-            var t = LocalDate.of(Year.MAX_VALUE, 12, 30).plusDays(1);
-            var expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+            const t = LocalDate.of(Year.MAX_VALUE, 12, 30).plusDays(1);
+            const expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
             assertEquals(t, expected);
         });
 
         it('test_plusDays_minimum', () => {
-            var t = LocalDate.of(Year.MIN_VALUE, 1, 2).plusDays(-1);
-            var expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+            const t = LocalDate.of(Year.MIN_VALUE, 1, 2).plusDays(-1);
+            const expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
             assertEquals(t, expected);
         });
 
@@ -1179,14 +1179,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('minus(Period)', () => {
 
         it('test_minus_Period_positiveMonths', () => {
-            var period = Period.ofMonths(7);
-            var t = TEST_2007_07_15.minus(period);
+            const period = Period.ofMonths(7);
+            const t = TEST_2007_07_15.minus(period);
             assertEquals(t, LocalDate.of(2006, 12, 15));
         });
 
         it('test_minus_Period_negativeDays', () => {
-            var period = Period.ofDays(-25);
-            var t = TEST_2007_07_15.minus(period);
+            const period = Period.ofDays(-25);
+            const t = TEST_2007_07_15.minus(period);
             assertEquals(t, LocalDate.of(2007, 8, 9));
         });
 
@@ -1194,7 +1194,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 /* strange test
         it('test_minus_Period_timeNotAllowed', () => {
             expect(() => {
-                var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+                const period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
                 TEST_2007_07_15.minus(period);
             }).to.throw(DateTimeException);
         });
@@ -1208,14 +1208,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('test_minus_Period_invalidTooLarge', () => {
             expect(() => {
-                var period = Period.ofYears(-1);
+                const period = Period.ofYears(-1);
                 LocalDate.of(Year.MAX_VALUE, 1, 1).minus(period);
             }).to.throw(DateTimeException);
         });
 
         it('test_minus_Period_invalidTooSmall', () => {
             expect(() => {
-                var period = Period.ofYears(1);
+                const period = Period.ofYears(1);
                 LocalDate.of(Year.MIN_VALUE, 1, 1).minus(period);
             }).to.throw(DateTimeException);
         });
@@ -1225,12 +1225,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('minus(long,PeriodUnit)', () => {
 
         it('test_minus_longPeriodUnit_positiveMonths', () => {
-            var t = TEST_2007_07_15.minus(7, ChronoUnit.MONTHS);
+            const t = TEST_2007_07_15.minus(7, ChronoUnit.MONTHS);
             assertEquals(t, LocalDate.of(2006, 12, 15));
         });
 
         it('test_minus_longPeriodUnit_negativeDays', () => {
-            var t = TEST_2007_07_15.minus(-25, ChronoUnit.DAYS);
+            const t = TEST_2007_07_15.minus(-25, ChronoUnit.DAYS);
             assertEquals(t, LocalDate.of(2007, 8, 9));
         });
 
@@ -1263,44 +1263,44 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('minusYears()', () => {
 
         it('test_minusYears_long_normal', () => {
-            var t = TEST_2007_07_15.minusYears(1);
+            const t = TEST_2007_07_15.minusYears(1);
             assertEquals(t, LocalDate.of(2006, 7, 15));
         });
 
         it('test_minusYears_long_negative', () => {
-            var t = TEST_2007_07_15.minusYears(-1);
+            const t = TEST_2007_07_15.minusYears(-1);
             assertEquals(t, LocalDate.of(2008, 7, 15));
         });
 
         it('test_minusYears_long_adjustDay', () => {
-            var t = LocalDate.of(2008, 2, 29).minusYears(1);
-            var expected = LocalDate.of(2007, 2, 28);
+            const t = LocalDate.of(2008, 2, 29).minusYears(1);
+            const expected = LocalDate.of(2007, 2, 28);
             assertEquals(t, expected);
         });
 
         it('test_minusYears_long_big', () => {
-            var years = 20 + Year.MAX_VALUE;
-            var test = LocalDate.of(40, 6, 1).minusYears(years);
+            const years = 20 + Year.MAX_VALUE;
+            const test = LocalDate.of(40, 6, 1).minusYears(years);
             assertEquals(test, LocalDate.of(40 - years, 6, 1));
         });
 
         it('test_minusYears_long_invalidTooLarge', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 6, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 6, 1);
                 test.minusYears(-1);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusYears_long_invalidTooLargeMaxAddMax', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.minusYears(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusYears_long_invalidTooLargeMaxAddMin', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.minusYears(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
@@ -1310,51 +1310,51 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 LocalDate.of(Year.MIN_VALUE, 1, 1).minusYears(1);
             }).to.throw(DateTimeException);
         });
-         
+
     });
 
     describe('minusMonths()', () => {
 
         it('test_minusMonths_long_normal', () => {
-            var t = TEST_2007_07_15.minusMonths(1);
+            const t = TEST_2007_07_15.minusMonths(1);
             assertEquals(t, LocalDate.of(2007, 6, 15));
         });
 
         it('test_minusMonths_long_overYears', () => {
-            var t = TEST_2007_07_15.minusMonths(25);
+            const t = TEST_2007_07_15.minusMonths(25);
             assertEquals(t, LocalDate.of(2005, 6, 15));
         });
 
         it('test_minusMonths_long_negative', () => {
-            var t = TEST_2007_07_15.minusMonths(-1);
+            const t = TEST_2007_07_15.minusMonths(-1);
             assertEquals(t, LocalDate.of(2007, 8, 15));
         });
 
         it('test_minusMonths_long_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.minusMonths(-7);
+            const t = TEST_2007_07_15.minusMonths(-7);
             assertEquals(t, LocalDate.of(2008, 2, 15));
         });
 
         it('test_minusMonths_long_negativeOverYears', () => {
-            var t = TEST_2007_07_15.minusMonths(-31);
+            const t = TEST_2007_07_15.minusMonths(-31);
             assertEquals(t, LocalDate.of(2010, 2, 15));
         });
 
         it('test_minusMonths_long_adjustDayFromLeapYear', () => {
-            var t = LocalDate.of(2008, 2, 29).minusMonths(12);
-            var expected = LocalDate.of(2007, 2, 28);
+            const t = LocalDate.of(2008, 2, 29).minusMonths(12);
+            const expected = LocalDate.of(2007, 2, 28);
             assertEquals(t, expected);
         });
 
         it('test_minusMonths_long_adjustDayFromMonthLength', () => {
-            var t = LocalDate.of(2007, 3, 31).minusMonths(1);
-            var expected = LocalDate.of(2007, 2, 28);
+            const t = LocalDate.of(2007, 3, 31).minusMonths(1);
+            const expected = LocalDate.of(2007, 2, 28);
             assertEquals(t, expected);
         });
 
         it('test_minusMonths_long_big()', () => {
-            var months = 20 + 12000444; // Integer.MAX_VALUE;
-            var test = LocalDate.of(40, 6, 1).minusMonths(months);
+            const months = 20 + 12000444; // Integer.MAX_VALUE;
+            const test = LocalDate.of(40, 6, 1).minusMonths(months);
             assertEquals(test, LocalDate.of(-999999, 10, 1));
         });
 
@@ -1366,14 +1366,14 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('test_minusMonths_long_invalidTooLargeMaxAddMax', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.minusMonths(MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
 
         it('test_minusMonths_long_invalidTooLargeMaxAddMin', () => {
             expect(() => {
-                var test = LocalDate.of(Year.MAX_VALUE, 12, 1);
+                const test = LocalDate.of(Year.MAX_VALUE, 12, 1);
                 test.minusMonths(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
@@ -1390,49 +1390,49 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('minusWeeks()', () => {
 
         it('test_minusWeeks_normal', () => {
-            var t = TEST_2007_07_15.minusWeeks(1);
+            const t = TEST_2007_07_15.minusWeeks(1);
             assertEquals(t, LocalDate.of(2007, 7, 8));
         });
 
         it('test_minusWeeks_overMonths', () => {
-            var t = TEST_2007_07_15.minusWeeks(9);
+            const t = TEST_2007_07_15.minusWeeks(9);
             assertEquals(t, LocalDate.of(2007, 5, 13));
         });
 
         it('test_minusWeeks_overYears', () => {
-            var t = LocalDate.of(2008, 7, 13).minusWeeks(52);
+            const t = LocalDate.of(2008, 7, 13).minusWeeks(52);
             assertEquals(t, TEST_2007_07_15);
         });
 
         it('test_minusWeeks_overLeapYears', () => {
-            var t = TEST_2007_07_15.minusYears(-1).minusWeeks(104);
+            const t = TEST_2007_07_15.minusYears(-1).minusWeeks(104);
             assertEquals(t, LocalDate.of(2006, 7, 18));
         });
 
         it('test_minusWeeks_negative', () => {
-            var t = TEST_2007_07_15.minusWeeks(-1);
+            const t = TEST_2007_07_15.minusWeeks(-1);
             assertEquals(t, LocalDate.of(2007, 7, 22));
         });
 
         it('test_minusWeeks_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.minusWeeks(-28);
+            const t = TEST_2007_07_15.minusWeeks(-28);
             assertEquals(t, LocalDate.of(2008, 1, 27));
         });
 
         it('test_minusWeeks_negativeOverYears', () => {
-            var t = TEST_2007_07_15.minusWeeks(-104);
+            const t = TEST_2007_07_15.minusWeeks(-104);
             assertEquals(t, LocalDate.of(2009, 7, 12));
         });
 
         it('test_minusWeeks_maximum', () => {
-            var t = LocalDate.of(Year.MAX_VALUE, 12, 24).minusWeeks(-1);
-            var expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+            const t = LocalDate.of(Year.MAX_VALUE, 12, 24).minusWeeks(-1);
+            const expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
             assertEquals(t, expected);
         });
 
         it('test_minusWeeks_minimum', () => {
-            var t = LocalDate.of(Year.MIN_VALUE, 1, 8).minusWeeks(1);
-            var expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+            const t = LocalDate.of(Year.MIN_VALUE, 1, 8).minusWeeks(1);
+            const expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
             assertEquals(t, expected);
         });
 
@@ -1465,49 +1465,49 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('minusDays()', () => {
 
         it('test_minusDays_normal', () => {
-            var t = TEST_2007_07_15.minusDays(1);
+            const t = TEST_2007_07_15.minusDays(1);
             assertEquals(t, LocalDate.of(2007, 7, 14));
         });
 
         it('test_minusDays_overMonths', () => {
-            var t = TEST_2007_07_15.minusDays(62);
+            const t = TEST_2007_07_15.minusDays(62);
             assertEquals(t, LocalDate.of(2007, 5, 14));
         });
 
         it('test_minusDays_overYears', () => {
-            var t = LocalDate.of(2008, 7, 16).minusDays(367);
+            const t = LocalDate.of(2008, 7, 16).minusDays(367);
             assertEquals(t, TEST_2007_07_15);
         });
 
         it('test_minusDays_overLeapYears', () => {
-            var t = TEST_2007_07_15.plusYears(2).minusDays(365 + 366);
+            const t = TEST_2007_07_15.plusYears(2).minusDays(365 + 366);
             assertEquals(t, TEST_2007_07_15);
         });
 
         it('test_minusDays_negative', () => {
-            var t = TEST_2007_07_15.minusDays(-1);
+            const t = TEST_2007_07_15.minusDays(-1);
             assertEquals(t, LocalDate.of(2007, 7, 16));
         });
 
         it('test_minusDays_negativeAcrossYear', () => {
-            var t = TEST_2007_07_15.minusDays(-169);
+            const t = TEST_2007_07_15.minusDays(-169);
             assertEquals(t, LocalDate.of(2007, 12, 31));
         });
 
         it('test_minusDays_negativeOverYears', () => {
-            var t = TEST_2007_07_15.minusDays(-731);
+            const t = TEST_2007_07_15.minusDays(-731);
             assertEquals(t, LocalDate.of(2009, 7, 15));
         });
 
         it('test_minusDays_maximum', () => {
-            var t = LocalDate.of(Year.MAX_VALUE, 12, 30).minusDays(-1);
-            var expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
+            const t = LocalDate.of(Year.MAX_VALUE, 12, 30).minusDays(-1);
+            const expected = LocalDate.of(Year.MAX_VALUE, 12, 31);
             assertEquals(t, expected);
         });
 
         it('test_minusDays_minimum', () => {
-            var t = LocalDate.of(Year.MIN_VALUE, 1, 2).minusDays(1);
-            var expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
+            const t = LocalDate.of(Year.MIN_VALUE, 1, 2).minusDays(1);
+            const expected = LocalDate.of(Year.MIN_VALUE, 1, 1);
             assertEquals(t, expected);
         });
 
@@ -1581,8 +1581,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         // @Test(dataProvider = "until")
         function test_until(startStr, endStr, unit, expected) {
             // console.log(startStr, endStr, unit.toString(), expected);
-            var start = LocalDate.parse(startStr);
-            var end = LocalDate.parse(endStr);
+            const start = LocalDate.parse(startStr);
+            const end = LocalDate.parse(endStr);
             assertEquals(start.until(end, unit), expected);
             assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
         }
@@ -1592,154 +1592,154 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('atTime()', () => {
 
         it('test_atTime_LocalTime', () => {
-            var t = LocalDate.of(2008, 6, 30);
+            const t = LocalDate.of(2008, 6, 30);
             assertEquals(t.atTime(LocalTime.of(11, 30)), LocalDateTime.of(2008, 6, 30, 11, 30));
         });
 
         it('test_atTime_LocalTime_null', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(null);
             }).to.throw(NullPointerException);
         });
 
         it('test_atTime_int_int', () => {
-            var t = LocalDate.of(2008, 6, 30);
+            const t = LocalDate.of(2008, 6, 30);
             assertEquals(t.atTime(11, 30), LocalDateTime.of(2008, 6, 30, 11, 30));
         });
 
         it('test_atTime_int_int_hourTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(-1, 30);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_hourTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(24, 30);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_minuteTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, -1);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_minuteTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 60);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int', () => {
-            var t = LocalDate.of(2008, 6, 30);
+            const t = LocalDate.of(2008, 6, 30);
             assertEquals(t.atTime(11, 30, 40), LocalDateTime.of(2008, 6, 30, 11, 30, 40));
         });
 
         it('test_atTime_int_int_int_hourTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(-1, 30, 40);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_hourTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(24, 30, 40);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_minuteTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, -1, 40);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_minuteTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 60, 40);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_secondTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, -1);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_secondTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, 60);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int', () => {
-            var t = LocalDate.of(2008, 6, 30);
+            const t = LocalDate.of(2008, 6, 30);
             assertEquals(t.atTime(11, 30, 40, 50), LocalDateTime.of(2008, 6, 30, 11, 30, 40, 50));
         });
 
         it('test_atTime_int_int_int_int_hourTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(-1, 30, 40, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_hourTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(24, 30, 40, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_minuteTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, -1, 40, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_minuteTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 60, 40, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_secondTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, -1, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_secondTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, 60, 50);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_nanoTooSmall', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, 40, -1);
             }).to.throw(DateTimeException);
         });
 
         it('test_atTime_int_int_int_int_nanoTooBig', () => {
             expect(() => {
-                var t = LocalDate.of(2008, 6, 30);
+                const t = LocalDate.of(2008, 6, 30);
                 t.atTime(11, 30, 40, 1000000000);
             }).to.throw(DateTimeException);
         });
@@ -1749,20 +1749,20 @@ describe('org.threeten.bp.TestLocalDate', () => {
     describe('atStartOfDay()', () => {
 
         it('test_atStartOfDay', () => {
-            var t = LocalDate.of(2008, 6, 30);
+            const t = LocalDate.of(2008, 6, 30);
             assertEquals(t.atStartOfDay(),LocalDateTime.of(2008, 6, 30, 0, 0));
         });
 
 
         it('test_atStartOfDay_zone', () => {
-            var zone = ZoneId.of('UTC+01:00');
-            var t = LocalDate.of(2007, 4, 1);
+            const zone = ZoneId.of('UTC+01:00');
+            const t = LocalDate.of(2007, 4, 1);
             assertEquals(t.atStartOfDay(zone),
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 0, 0), zone));
         });
 
         it('test_atStartOfDay_dstGap', () => {
-            var t = LocalDate.of(2007, 4, 1);
+            const t = LocalDate.of(2007, 4, 1);
             assertEquals(t.atStartOfDay(ZONE_GAZA),
                 ZonedDateTime.of(LocalDateTime.of(2007, 4, 1, 1, 0), ZONE_GAZA));
         });
@@ -1770,12 +1770,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
     });
 
     describe('toEpochDay()', function () {
-        var date_0000_01_01 = -678941 - 40587;
-        var nextSteps = date_0000_01_01 + (2*356); // 700000;
-        var previousSteps = date_0000_01_01 + (2*356); // -2000000;
+        const date_0000_01_01 = -678941 - 40587;
+        const nextSteps = date_0000_01_01 + (2*356); // 700000;
+        const previousSteps = date_0000_01_01 + (2*356); // -2000000;
 
         it('test_toEpochDay', function () {
-            var test = LocalDate.of(0, 1, 1);
+            let test = LocalDate.of(0, 1, 1);
             for (let i = date_0000_01_01; i < nextSteps; i++) {
                 assertEquals(test.toEpochDay(), i);
                 test = next(test);
@@ -1819,9 +1819,9 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         function doTest_comparisons_LocalDate(localDates) {
             for (let i = 0; i < localDates.length; i++) {
-                var a = localDates[i];
+                const a = localDates[i];
                 for (let j = 0; j < localDates.length; j++) {
-                    var b = localDates[j];
+                    const b = localDates[j];
                     if (i < j) {
                         assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
@@ -1900,8 +1900,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_equals_true(y, m, d) {
-            var a = LocalDate.of(y, m, d);
-            var b = LocalDate.of(y, m, d);
+            const a = LocalDate.of(y, m, d);
+            const b = LocalDate.of(y, m, d);
             assertEquals(a.equals(b), true);
         }
 
@@ -1912,8 +1912,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_equals_false_year_differs(y, m, d) {
-            var a = LocalDate.of(y, m, d);
-            var b = LocalDate.of(y + 1, m, d);
+            const a = LocalDate.of(y, m, d);
+            const b = LocalDate.of(y + 1, m, d);
             assertEquals(a.equals(b), false);
         }
 
@@ -1924,8 +1924,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_equals_false_month_differs(y, m, d) {
-            var a = LocalDate.of(y, m, d);
-            var b = LocalDate.of(y, m + 1, d);
+            const a = LocalDate.of(y, m, d);
+            const b = LocalDate.of(y, m + 1, d);
             assertEquals(a.equals(b), false);
         }
 
@@ -1936,8 +1936,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_equals_false_day_differs(y, m, d) {
-            var a = LocalDate.of(y, m, d);
-            var b = LocalDate.of(y, m, d + 1);
+            const a = LocalDate.of(y, m, d);
+            const b = LocalDate.of(y, m, d + 1);
             assertEquals(a.equals(b), false);
         }
 
@@ -1962,9 +1962,9 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_hashCode(y, m, d) {
-            var a = LocalDate.of(y, m, d);
+            const a = LocalDate.of(y, m, d);
             assertEquals(a.hashCode(), a.hashCode());
-            var b = LocalDate.of(y, m, d);
+            const b = LocalDate.of(y, m, d);
             assertEquals(a.hashCode(), b.hashCode());
         }
     });
@@ -1977,8 +1977,8 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
 
         function test_toString(y, m, d, expected) {
-            var t = LocalDate.of(y, m, d);
-            var str = t.toString();
+            const t = LocalDate.of(y, m, d);
+            const str = t.toString();
             assertEquals(str, expected);
             assertEquals(t.toJSON(), str);
         }

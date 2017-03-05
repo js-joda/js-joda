@@ -28,13 +28,9 @@ const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
 
 describe('org.threeten.bp.TestInstant', () => {
-    
-    var TEST_12345_123456789;
-    
-    before(() => {
-        TEST_12345_123456789 = Instant.ofEpochSecond(12345, 123456789);
-    });
-    
+
+    const TEST_12345_123456789 = Instant.ofEpochSecond(12345, 123456789);
+
     function check(instant, epochSecs, nos) {
         expect(instant.epochSecond()).to.equal(epochSecs);
         expect(instant.nano()).to.equal(nos);
@@ -57,26 +53,26 @@ describe('org.threeten.bp.TestInstant', () => {
     describe('now', () => {
 
         it('two calls of now should be closer the 0.1 secs', () => {
-            var expected = Instant.now(Clock.systemUTC());
-            var test = Instant.now();
-            var diff = Math.abs(test.toEpochMilli() - expected.toEpochMilli());
+            const expected = Instant.now(Clock.systemUTC());
+            const test = Instant.now();
+            const diff = Math.abs(test.toEpochMilli() - expected.toEpochMilli());
             expect(diff).to.be.lessThan(100);  // less than 0.1 secs
         });
 
         it('now_Clock_allSecsInDay_utc', () => {
-            for (var i = 0; i < (2 * 24 * 60 * 60); i += 100) {
-                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
-                var clock = Clock.fixed(expected, ZoneOffset.UTC);
-                var test = Instant.now(clock);
+            for (let i = 0; i < (2 * 24 * 60 * 60); i += 100) {
+                const expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                const clock = Clock.fixed(expected, ZoneOffset.UTC);
+                const test = Instant.now(clock);
                 expect(test.equals(expected)).to.equal(true);
             }
         });
 
         it('now_Clock_allSecsInDay_beforeEpoch', () => {
-            for (var i = -1; i >= -(24 * 60 * 60); i -= 100) {
-                var expected = Instant.ofEpochSecond(i).plusNanos(123456789);
-                var clock = Clock.fixed(expected, ZoneOffset.UTC);
-                var test = Instant.now(clock);
+            for (let i = -1; i >= -(24 * 60 * 60); i -= 100) {
+                const expected = Instant.ofEpochSecond(i).plusNanos(123456789);
+                const clock = Clock.fixed(expected, ZoneOffset.UTC);
+                const test = Instant.now(clock);
                 expect(test.equals(expected)).to.equal(true);
             }
         });
@@ -85,8 +81,8 @@ describe('org.threeten.bp.TestInstant', () => {
     describe('ofEpochSecond(long)', () => {
 
         it('factory_seconds_long()', () => {
-            for (var i = -2; i <= 2; i++) {
-                var t = Instant.ofEpochSecond(i);
+            for (let i = -2; i <= 2; i++) {
+                const t = Instant.ofEpochSecond(i);
                 assertEquals(t.epochSecond(), i);
                 assertEquals(t.nano(), 0);
             }
@@ -95,7 +91,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('ofEpochSecond(long,long)', function () {
-        
+
         it('factory_seconds_long_long()', () => {
             for (let i = -2; i <= 2; i++) {
                 for (let j = 0; j < 10; j++) {
@@ -115,27 +111,27 @@ describe('org.threeten.bp.TestInstant', () => {
                 }
             }
         });
-    
+
         it('factory_seconds_long_long_nanosNegativeAdjusted', () => {
-            var test = Instant.ofEpochSecond(2, -1);
+            const test = Instant.ofEpochSecond(2, -1);
             assertEquals(test.epochSecond(), 1);
             assertEquals(test.nano(), 999999999);
         });
-    
+
         it('factory_seconds_long_long_tooBig', () => {
             expect(() => {
                 Instant.ofEpochSecond(MAX_SECOND, 1000000000);
             }).to.throw(DateTimeException);
         });
-    
+
         it('factory_seconds_long_long_tooBigBig', () => {
             expect(() => {
                 Instant.ofEpochSecond(MathUtil.MAX_SAFE_INTEGER, MathUtil.MAX_SAFE_INTEGER);
             }).to.throw(DateTimeException);
         });
-    
+
     });
-    
+
     describe('ofEpochMilli(long)', () => {
 
         // @DataProvider(name="MillisInstantNoNanos")
@@ -166,7 +162,7 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="MillisInstantNoNanos")
         function factory_millis_long(millis, expectedSeconds, expectedNanoOfSecond) {
-            var t = Instant.ofEpochMilli(millis);
+            const t = Instant.ofEpochMilli(millis);
             assertEquals(t.epochSecond(), expectedSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
             assertEquals(t.toEpochMilli(), millis);
@@ -205,7 +201,7 @@ describe('org.threeten.bp.TestInstant', () => {
         // @Test(dataProvider='Parse')
         function factory_parse(text, expectedEpochSeconds, expectedNanoOfSecond) {
             // console.log(text, expectedEpochSeconds, expectedNanoOfSecond);
-            var t = Instant.parse(text);
+            const t = Instant.parse(text);
             assertEquals(t.epochSecond(), expectedEpochSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
@@ -216,7 +212,7 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider='Parse')
         function factory_parseLowercase(text, expectedEpochSeconds, expectedNanoOfSecond) {
-            var t = Instant.parse(text.toLowerCase(/*Locale.ENGLISH*/));
+            const t = Instant.parse(text.toLowerCase(/*Locale.ENGLISH*/));
             assertEquals(t.epochSecond(), expectedEpochSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
@@ -225,7 +221,7 @@ describe('org.threeten.bp.TestInstant', () => {
         //    @Test(dataProvider='Parse')
         //    public void factory_parse_comma(text, expectedEpochSeconds, expectedNanoOfSecond) {
         //        text = text.replace('.', ',');
-        //        var t = Instant.parse(text);
+        //        const t = Instant.parse(text);
         //        assertEquals(t.epochSecond(), expectedEpochSeconds);
         //        assertEquals(t.nano(), expectedNanoOfSecond);
         //    }
@@ -340,7 +336,7 @@ describe('org.threeten.bp.TestInstant', () => {
         function test_adjustInto(test, temporal, expected, expectedEx) {
             // console.log(test, temporal, expected, expectedEx);
             if (expectedEx == null) {
-                var result = test.adjustInto(temporal);
+                const result = test.adjustInto(temporal);
                 assertEquals(result, expected);
             } else {
                 expect(()=> {
@@ -352,7 +348,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
 
-    // TODO tests are missing in threeten bp  
+    // TODO tests are missing in threeten bp
     describe('with(TemporalAdjuster)', () => {
 
         // @DataProvider(name='with')
@@ -441,11 +437,11 @@ describe('org.threeten.bp.TestInstant', () => {
     // TODO tests are missing in threeten bp
     describe('truncatedTo(TemporalUnit)', () => {
 
-        var NINETY_MINUTES = {
+        const NINETY_MINUTES = {
             duration: () => { return Duration.ofMinutes(90); }
         };
 
-        var NINETYFIVE_MINUTES = {
+        const NINETYFIVE_MINUTES = {
             duration: () => { return Duration.ofMinutes(95); }
         };
 
@@ -505,7 +501,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('plus', () => {
-        var dataProviderPlus;
+        let dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
                 [MIN_SECOND, 0, -MIN_SECOND, 0, 0, 0],
@@ -708,43 +704,43 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         it('plus_Duration', () => {
-            for (var i = 0; i < dataProviderPlus.length; i++) {
-                var plusData = dataProviderPlus[i];
+            for (let i = 0; i < dataProviderPlus.length; i++) {
+                const plusData = dataProviderPlus[i];
                 plus_Duration.apply(this, plusData);
             }
         });
 
         //@Test(dataProvider="Plus")
         function plus_Duration(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
+            const i = Instant.ofEpochSecond(seconds, nanos).plus(Duration.ofSeconds(otherSeconds, otherNanos));
             assertEquals(i.epochSecond(), expectedSeconds);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
 
         it('plus_Duration_overflowTooBig', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
                 i.plus(Duration.ofSeconds(0, 1));
             }).to.throw(DateTimeException);
         });
 
         it('plus_Duration_overflowTooSmall', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MIN_SECOND);
+                const i = Instant.ofEpochSecond(MIN_SECOND);
                 i.plus(Duration.ofSeconds(-1, 999999999));
             }).to.throw(DateTimeException);
         });
 
 
         it('plus_longTemporalUnit', () => {
-            for(var i=0; i < dataProviderPlus.length; i++){
-                var plusData = dataProviderPlus[i];
+            for (let i=0; i < dataProviderPlus.length; i++){
+                const plusData = dataProviderPlus[i];
                 plus_longTemporalUnit.apply(this, plusData);
             }
         });
 
         function plus_longTemporalUnit(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond){
-            var instant = Instant.ofEpochSecond(seconds, nanos)
+            const instant = Instant.ofEpochSecond(seconds, nanos)
                 .plus(otherSeconds, ChronoUnit.SECONDS)
                 .plus(otherNanos, ChronoUnit.NANOS);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
@@ -752,14 +748,14 @@ describe('org.threeten.bp.TestInstant', () => {
         }
 
         it('plus_longTemporalUnit_overflowTooBig', () => {
-            var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+            const instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
             expect(()=>{
                 instant.plusNanos(1);
             }).to.throw(DateTimeException);
         });
 
         it('plus_longTemporalUnit_overflowTooSmall', () => {
-            var instant = Instant.ofEpochSecond(MIN_SECOND);
+            const instant = Instant.ofEpochSecond(MIN_SECOND);
             expect(()=>{
                 instant.plusNanos(999999999);
                 instant.plusSeconds(-1);
@@ -768,7 +764,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('plusSeconds', () => {
-        var dataProviderPlus;
+        let dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
                 [0, 0, 0, 0, 0],
@@ -799,28 +795,28 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         it('plusSeconds', () => {
-            for(var i=0; i < dataProviderPlus.length; i++){
-                var plusData = dataProviderPlus[i];
+            for (let i=0; i < dataProviderPlus.length; i++){
+                const plusData = dataProviderPlus[i];
                 plusSeconds.apply(this, plusData);
             }
         });
 
         function plusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
-            var instant = Instant.ofEpochSecond(seconds, nanos);
-            instant = instant.plusSeconds(amount);
+            const instant = Instant.ofEpochSecond(seconds, nanos)
+                .plusSeconds(amount);
             expect(instant.epochSecond()).to.equal(expectedSeconds);
             expect(instant.nano()).to.equal(expectedNanoOfSecond);
         }
 
         it('plusSeconds_long_overflowTooBig', () => {
-            var instant = Instant.ofEpochSecond(1, 0);
+            const instant = Instant.ofEpochSecond(1, 0);
             expect(()=>{
                 instant.plusSeconds(MAX_SECOND);
             }).to.throw(DateTimeException);
         });
 
         it('plusSeconds_long_overflowTooSmall', () => {
-            var instant = Instant.ofEpochSecond(-1, 0);
+            const instant = Instant.ofEpochSecond(-1, 0);
             expect(()=>{
                 instant.plusSeconds(MIN_SECOND);
             }).to.throw(DateTimeException);
@@ -828,7 +824,7 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('plusMillis', function () {
-        
+
         //@DataProvider(name="PlusMillis")
         function provider_plusMillis_long() {
             return [
@@ -844,7 +840,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 0, -1000,   -1, 0],
                     [0, 0, -1001,   -2, 999000000],
                     [0, 0, -1999,   -2, 1000000],
-    
+
                     [0, 1, 0,       0, 1],
                     [0, 1, 1,       0, 1000001],
                     [0, 1, 998,     0, 998000001],
@@ -857,7 +853,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 1, -2,      -1, 998000001],
                     [0, 1, -1000,   -1, 1],
                     [0, 1, -1001,   -2, 999000001],
-    
+
                     [0, 1000000, 0,       0, 1000000],
                     [0, 1000000, 1,       0, 2000000],
                     [0, 1000000, 998,     0, 999000000],
@@ -872,7 +868,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 1000000, -1000,   -1, 1000000],
                     [0, 1000000, -1001,   -1, 0],
                     [0, 1000000, -1002,   -2, 999000000],
-    
+
                     [0, 999999999, 0,     0, 999999999],
                     [0, 999999999, 1,     1, 999999],
                     [0, 999999999, 999,   1, 998999999],
@@ -881,7 +877,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 999999999, -1,    0, 998999999],
                     [0, 999999999, -1000, -1, 999999999],
                     [0, 999999999, -1001, -1, 998999999],
-    
+
                     [0, 0, MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
                     [0, 0, MathUtil.MIN_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1, MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000 + 1000000000]
             ];
@@ -892,15 +888,15 @@ describe('org.threeten.bp.TestInstant', () => {
                 plusMillis_long.apply(this, data);
             });
         });
-    
+
         //@Test(dataProvider="PlusMillis")
         function plusMillis_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var t = Instant.ofEpochSecond(seconds, nanos);
-            t = t.plusMillis(amount);
+            const t = Instant.ofEpochSecond(seconds, nanos)
+                .plusMillis(amount);
             assertEquals(t.epochSecond(), expectedSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
-        
+
         it('plusMillis_long_oneMore', function () {
             provider_plusMillis_long().forEach((data) => {
                 plusMillis_long_oneMore.apply(this, data);
@@ -909,12 +905,12 @@ describe('org.threeten.bp.TestInstant', () => {
 
         //@Test(dataProvider="PlusMillis")
         function plusMillis_long_oneMore(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var t = Instant.ofEpochSecond(seconds + 1, nanos);
-            t = t.plusMillis(amount);
+            const t = Instant.ofEpochSecond(seconds + 1, nanos)
+                .plusMillis(amount);
             assertEquals(t.epochSecond(), expectedSeconds + 1);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
-        
+
         it('plusMillis_long_minusOneLess', function () {
             provider_plusMillis_long().forEach((data) => {
                 plusMillis_long_minusOneLess.apply(this, data);
@@ -923,44 +919,44 @@ describe('org.threeten.bp.TestInstant', () => {
 
         //@Test(dataProvider="PlusMillis")
         function plusMillis_long_minusOneLess(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var t = Instant.ofEpochSecond(seconds - 1, nanos);
-            t = t.plusMillis(amount);
+            const t = Instant.ofEpochSecond(seconds - 1, nanos)
+                .plusMillis(amount);
             assertEquals(t.epochSecond(), expectedSeconds - 1);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
-    
+
         it('plusMillis_long_max', () => {
-            var t = Instant.ofEpochSecond(MAX_SECOND, 998999999);
-            t = t.plusMillis(1);
+            const t = Instant.ofEpochSecond(MAX_SECOND, 998999999)
+                .plusMillis(1);
             assertEquals(t.epochSecond(), MAX_SECOND);
             assertEquals(t.nano(), 999999999);
         });
-    
+
         it('plusMillis_long_overflowTooBig', () => {
             expect(() => {
-                var t = Instant.ofEpochSecond(MAX_SECOND, 999000000);
+                const t = Instant.ofEpochSecond(MAX_SECOND, 999000000);
                 t.plusMillis(1);
             }).to.throw(DateTimeException);
         });
-    
+
         it('plusMillis_long_min', () => {
-            var t = Instant.ofEpochSecond(MIN_SECOND, 1000000);
-            t = t.plusMillis(-1);
+            const t = Instant.ofEpochSecond(MIN_SECOND, 1000000)
+                .plusMillis(-1);
             assertEquals(t.epochSecond(), MIN_SECOND);
             assertEquals(t.nano(), 0);
         });
-    
+
         it('plusMillis_long_overflowTooSmall', () => {
             expect(() => {
-                var t = Instant.ofEpochSecond(MIN_SECOND, 0);
+                const t = Instant.ofEpochSecond(MIN_SECOND, 0);
                 t.plusMillis(-1);
             }).to.throw(DateTimeException);
         });
-        
+
     });
 
     describe('plusNanos', () => {
-        var dataProviderPlus;
+        let dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
                 [0, 0, 0,           0, 0],
@@ -1040,28 +1036,28 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         it('plusNanos', () => {
-            for(var i=0; i < dataProviderPlus.length; i++){
-                var plusData = dataProviderPlus[i];
+            for (let i=0; i < dataProviderPlus.length; i++){
+                const plusData = dataProviderPlus[i];
                 plusNanos.apply(this, plusData);
             }
         });
 
         function plusNanos(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
-            var instant = Instant.ofEpochSecond(seconds, nanos);
-            instant = instant.plusNanos(amount);
+            const instant = Instant.ofEpochSecond(seconds, nanos)
+                .plusNanos(amount);
             expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
             expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
         }
 
         it('plusNanos_long_overflowTooBig', () => {
-            var instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+            const instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
             expect(()=>{
                 instant.plusNanos(1);
             }).to.throw(DateTimeException);
         });
 
         it('plusNanos_long_overflowTooSmall', () => {
-            var instant = Instant.ofEpochSecond(MIN_SECOND, 0);
+            const instant = Instant.ofEpochSecond(MIN_SECOND, 0);
             expect(()=>{
                 instant.plusNanos(-1);
             }).to.throw(DateTimeException);
@@ -1069,20 +1065,20 @@ describe('org.threeten.bp.TestInstant', () => {
     });
 
     describe('minus', function () {
-        
+
         //@DataProvider(name="Minus")
         function provider_minus(){
             return [
                     [MIN_SECOND, 0, MIN_SECOND, 0, 0, 0],
-    
+
                     [MIN_SECOND, 0, -1, 0, MIN_SECOND + 1, 0],
                     [MIN_SECOND, 0, 0, -500, MIN_SECOND, 500],
                     [MIN_SECOND, 0, 0, -1000000000, MIN_SECOND + 1, 0],
-    
+
                     [MIN_SECOND + 1, 0, 1, 0, MIN_SECOND, 0],
                     [MIN_SECOND + 1, 0, 0, 500, MIN_SECOND, 999999500],
                     [MIN_SECOND + 1, 0, 0, 1000000000, MIN_SECOND, 0],
-    
+
                     [-4, 666666667, -4, 666666667,  0,         0],
                     [-4, 666666667, -3,         0, -1, 666666667],
                     [-4, 666666667, -2,         0, -2, 666666667],
@@ -1098,7 +1094,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-4, 666666667,  2,         0, -6, 666666667],
                     [-4, 666666667,  3,         0, -7, 666666667],
                     [-4, 666666667,  3, 333333333, -7, 333333334],
-    
+
                     [-3, 0, -4, 666666667,  0, 333333333],
                     [-3, 0, -3,         0,  0,         0],
                     [-3, 0, -2,         0, -1,         0],
@@ -1114,7 +1110,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-3, 0,  2,         0, -5,         0],
                     [-3, 0,  3,         0, -6,         0],
                     [-3, 0,  3, 333333333, -7, 666666667],
-    
+
                     [-2, 0, -4, 666666667,  1, 333333333],
                     [-2, 0, -3,         0,  1,         0],
                     [-2, 0, -2,         0,  0,         0],
@@ -1130,7 +1126,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-2, 0,  2,         0, -4,         0],
                     [-2, 0,  3,         0, -5,         0],
                     [-2, 0,  3, 333333333, -6, 666666667],
-    
+
                     [-1, 0, -4, 666666667,  2, 333333333],
                     [-1, 0, -3,         0,  2,         0],
                     [-1, 0, -2,         0,  1,         0],
@@ -1146,7 +1142,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-1, 0,  2,         0, -3,         0],
                     [-1, 0,  3,         0, -4,         0],
                     [-1, 0,  3, 333333333, -5, 666666667],
-    
+
                     [-1, 666666667, -4, 666666667,  3,         0],
                     [-1, 666666667, -3,         0,  2, 666666667],
                     [-1, 666666667, -2,         0,  1, 666666667],
@@ -1162,7 +1158,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [-1, 666666667,  2,         0, -3, 666666667],
                     [-1, 666666667,  3,         0, -4, 666666667],
                     [-1, 666666667,  3, 333333333, -4, 333333334],
-    
+
                     [0, 0, -4, 666666667,  3, 333333333],
                     [0, 0, -3,         0,  3,         0],
                     [0, 0, -2,         0,  2,         0],
@@ -1178,7 +1174,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 0,  2,         0, -2,         0],
                     [0, 0,  3,         0, -3,         0],
                     [0, 0,  3, 333333333, -4, 666666667],
-    
+
                     [0, 333333333, -4, 666666667,  3, 666666666],
                     [0, 333333333, -3,         0,  3, 333333333],
                     [0, 333333333, -2,         0,  2, 333333333],
@@ -1194,7 +1190,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [0, 333333333,  2,         0, -2, 333333333],
                     [0, 333333333,  3,         0, -3, 333333333],
                     [0, 333333333,  3, 333333333, -3,         0],
-    
+
                     [1, 0, -4, 666666667,  4, 333333333],
                     [1, 0, -3,         0,  4,         0],
                     [1, 0, -2,         0,  3,         0],
@@ -1210,7 +1206,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [1, 0,  2,         0, -1,         0],
                     [1, 0,  3,         0, -2,         0],
                     [1, 0,  3, 333333333, -3, 666666667],
-    
+
                     [2, 0, -4, 666666667,  5, 333333333],
                     [2, 0, -3,         0,  5,         0],
                     [2, 0, -2,         0,  4,         0],
@@ -1226,7 +1222,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [2, 0,  2,         0,  0,         0],
                     [2, 0,  3,         0, -1,         0],
                     [2, 0,  3, 333333333, -2, 666666667],
-    
+
                     [3, 0, -4, 666666667,  6, 333333333],
                     [3, 0, -3,         0,  6,         0],
                     [3, 0, -2,         0,  5,         0],
@@ -1242,7 +1238,7 @@ describe('org.threeten.bp.TestInstant', () => {
                     [3, 0,  2,         0,  1,         0],
                     [3, 0,  3,         0,  0,         0],
                     [3, 0,  3, 333333333, -1, 666666667],
-    
+
                     [3, 333333333, -4, 666666667,  6, 666666666],
                     [3, 333333333, -3,         0,  6, 333333333],
                     [3, 333333333, -2,         0,  5, 333333333],
@@ -1258,15 +1254,15 @@ describe('org.threeten.bp.TestInstant', () => {
                     [3, 333333333,  2,         0,  1, 333333333],
                     [3, 333333333,  3,         0,  0, 333333333],
                     [3, 333333333,  3, 333333333,  0,         0],
-    
+
                     [MAX_SECOND - 1, 0, -1, 0, MAX_SECOND, 0],
                     [MAX_SECOND - 1, 0, 0, -500, MAX_SECOND - 1, 500],
                     [MAX_SECOND - 1, 0, 0, -1000000000, MAX_SECOND, 0],
-    
+
                     [MAX_SECOND, 0, 1, 0, MAX_SECOND - 1, 0],
                     [MAX_SECOND, 0, 0, 500, MAX_SECOND - 1, 999999500],
                     [MAX_SECOND, 0, 0, 1000000000, MAX_SECOND - 1, 0],
-    
+
                     [MAX_SECOND, 0, MAX_SECOND, 0, 0, 0]
             ];
         }
@@ -1279,25 +1275,25 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="Minus")
         function minus_Duration(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds, nanos).minus(Duration.ofSeconds(otherSeconds, otherNanos));
+            const i = Instant.ofEpochSecond(seconds, nanos).minus(Duration.ofSeconds(otherSeconds, otherNanos));
             assertEquals(i.epochSecond(), expectedSeconds);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
-    
+
         it('minus_Duration_overflowTooSmall', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MIN_SECOND);
+                const i = Instant.ofEpochSecond(MIN_SECOND);
                 i.minus(Duration.ofSeconds(0, 1));
             }).to.throw(DateTimeException);
         });
-    
+
         it('minus_Duration_overflowTooBig', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
                 i.minus(Duration.ofSeconds(-1, 999999999));
             }).to.throw(DateTimeException);
         });
-    
+
         it('minus_longTemporalUnit', function () {
             provider_minus().forEach((data) => {
                 minus_longTemporalUnit.apply(this, data);
@@ -1306,31 +1302,30 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="Minus")
         function minus_longTemporalUnit(seconds, nanos, otherSeconds, otherNanos, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds, nanos).minus(otherSeconds, ChronoUnit.SECONDS).minus(otherNanos, ChronoUnit.NANOS);
+            const i = Instant.ofEpochSecond(seconds, nanos).minus(otherSeconds, ChronoUnit.SECONDS).minus(otherNanos, ChronoUnit.NANOS);
             assertEquals(i.epochSecond(), expectedSeconds);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
-    
+
         it('minus_longTemporalUnit_overflowTooSmall', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MIN_SECOND);
+                const i = Instant.ofEpochSecond(MIN_SECOND);
                 i.minus(1, ChronoUnit.NANOS);
             }).to.throw(DateTimeException);
         });
-    
+
         it('minus_longTemporalUnit_overflowTooBig', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
                 i.minus(999999999, ChronoUnit.NANOS);
                 i.minus(-1, ChronoUnit.SECONDS);
             }).to.throw(DateTimeException);
         });
-        
+
     });
-    
+
     describe('minusSeconds', () => {
-    
-        var dataProviderPlus;
+        let dataProviderPlus;
         beforeEach(() => {
             dataProviderPlus = [
                 [0, 0, 0, 0, 0],
@@ -1361,28 +1356,28 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         it('minuseconds', () => {
-            for(var i=0; i < dataProviderPlus.length; i++){
-                var plusData = dataProviderPlus[i];
+            for (let i=0; i < dataProviderPlus.length; i++){
+                const plusData = dataProviderPlus[i];
                 minusSeconds.apply(this, plusData);
             }
         });
 
         function minusSeconds(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
-            var instant = Instant.ofEpochSecond(seconds, nanos);
-            instant = instant.minusSeconds(amount);
+            const instant = Instant.ofEpochSecond(seconds, nanos)
+                .minusSeconds(amount);
             expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
             expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
         }
 
         it('minusSeconds_long_overflowTooBig', () => {
-            var instant = Instant.ofEpochSecond(1, 0);
+            const instant = Instant.ofEpochSecond(1, 0);
             expect(()=>{
                 instant.minusSeconds(-MAX_SECOND);
             }).to.throw(DateTimeException);
         });
 
         it('minusSeconds_long_overflowTooSmall', () => {
-            var instant = Instant.ofEpochSecond(-1, 0);
+            const instant = Instant.ofEpochSecond(-1, 0);
             expect(()=>{
                 instant.minusSeconds(-MIN_SECOND);
             }).to.throw(DateTimeException);
@@ -1457,8 +1452,8 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="MinusMillis")
         function minusMillis_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds, nanos);
-            i = i.minusMillis(amount);
+            const i = Instant.ofEpochSecond(seconds, nanos)
+                .minusMillis(amount);
             assertEquals(i.epochSecond(), expectedSeconds);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
@@ -1471,8 +1466,8 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="MinusMillis")
         function minusMillis_long_oneMore(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds + 1, nanos);
-            i = i.minusMillis(amount);
+            const i = Instant.ofEpochSecond(seconds + 1, nanos)
+                .minusMillis(amount);
             assertEquals(i.epochSecond(), expectedSeconds + 1);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
@@ -1485,36 +1480,36 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="MinusMillis")
         function minusMillis_long_minusOneLess(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds - 1, nanos);
-            i = i.minusMillis(amount);
+            const i = Instant.ofEpochSecond(seconds - 1, nanos)
+                .minusMillis(amount);
             assertEquals(i.epochSecond(), expectedSeconds - 1);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
 
         it('minusMillis_long_max', () => {
-            var i = Instant.ofEpochSecond(MAX_SECOND, 998999999);
-            i = i.minusMillis(-1);
+            const i = Instant.ofEpochSecond(MAX_SECOND, 998999999)
+                .minusMillis(-1);
             assertEquals(i.epochSecond(), MAX_SECOND);
             assertEquals(i.nano(), 999999999);
         });
 
         it('minusMillis_long_overflowTooBig', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MAX_SECOND, 999000000);
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999000000);
                 i.minusMillis(-1);
             }).to.throw(DateTimeException);
         });
 
         it('minusMillis_long_min', () => {
-            var i = Instant.ofEpochSecond(MIN_SECOND, 1000000);
-            i = i.minusMillis(1);
+            const i = Instant.ofEpochSecond(MIN_SECOND, 1000000)
+                .minusMillis(1);
             assertEquals(i.epochSecond(), MIN_SECOND);
             assertEquals(i.nano(), 0);
         });
 
         it('minusMillis_long_overflowTooSmall', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MIN_SECOND, 0);
+                const i = Instant.ofEpochSecond(MIN_SECOND, 0);
                 i.minusMillis(1);
             }).to.throw(DateTimeException);
         });
@@ -1609,22 +1604,22 @@ describe('org.threeten.bp.TestInstant', () => {
 
         // @Test(dataProvider="MinusNanos")
         function minusNanos_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
-            var i = Instant.ofEpochSecond(seconds, nanos);
-            i = i.minusNanos(amount);
+            const i = Instant.ofEpochSecond(seconds, nanos)
+                .minusNanos(amount);
             assertEquals(i.epochSecond(), expectedSeconds);
             assertEquals(i.nano(), expectedNanoOfSecond);
         }
 
         it('minusNanos_long_overflowTooBig', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
                 i.minusNanos(-1);
             }).to.throw(DateTimeException);
         });
 
         it('minusNanos_long_overflowTooSmall', () => {
             expect(() => {
-                var i = Instant.ofEpochSecond(MIN_SECOND, 0);
+                const i = Instant.ofEpochSecond(MIN_SECOND, 0);
                 i.minusNanos(1);
             }).to.throw(DateTimeException);
         });
@@ -1643,7 +1638,7 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
     });
-    
+
     describe('toEpochMilli', function () {
 
         it('test_toEpochMilli', () => {
@@ -1662,19 +1657,19 @@ describe('org.threeten.bp.TestInstant', () => {
             assertEquals(Instant.ofEpochSecond(0, -1000000).toEpochMilli(), -1);
             assertEquals(Instant.ofEpochSecond(0, -1000001).toEpochMilli(), -2);
         });
-    
+
         it('test_toEpochMilli_tooBig', () => {
             expect(() => {
                 Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000) + 1).toEpochMilli();
             }).to.throw(ArithmeticException);
         });
-    
+
         it('test_toEpochMilli_tooSmall', () => {
             expect(() => {
                 Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1).toEpochMilli();
             }).to.throw(ArithmeticException);
         });
-    
+
     });
 
     describe('compareTo', function () {
@@ -1698,10 +1693,10 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         function doTest_comparisons_Instant(...instants) {
-            for (var i = 0; i < instants.length; i++) {
-                var a = instants[i];
-                for (var j = 0; j < instants.length; j++) {
-                    var b = instants[j];
+            for (let i = 0; i < instants.length; i++) {
+                const a = instants[i];
+                for (let j = 0; j < instants.length; j++) {
+                    const b = instants[j];
                     if (i < j) {
                         assertEquals(a.compareTo(b) < 0, true, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
@@ -1724,28 +1719,28 @@ describe('org.threeten.bp.TestInstant', () => {
 
         it('test_compareTo_ObjectNull', () => {
             expect(() => {
-                var a = Instant.ofEpochSecond(0, 0);
+                const a = Instant.ofEpochSecond(0, 0);
                 a.compareTo(null);
             }).to.throw(NullPointerException);
         });
 
         it('test_isBefore_ObjectNull', () => {
             expect(() => {
-                var a = Instant.ofEpochSecond(0, 0);
+                const a = Instant.ofEpochSecond(0, 0);
                 a.isBefore(null);
             }).to.throw(NullPointerException);
         });
 
         it('test_isAfter_ObjectNull', () => {
             expect(() => {
-                var a = Instant.ofEpochSecond(0, 0);
+                const a = Instant.ofEpochSecond(0, 0);
                 a.isAfter(null);
             }).to.throw(NullPointerException);
         });
 
         it('compareToNonInstant', () => {
             expect(() => {
-                var c = Instant.ofEpochSecond(0);
+                const c = Instant.ofEpochSecond(0);
                 c.compareTo({});
             }).to.throw(IllegalArgumentException);
         });
@@ -1755,10 +1750,10 @@ describe('org.threeten.bp.TestInstant', () => {
     describe('equals', function () {
 
         it('test_equals', () => {
-            var test5a = Instant.ofEpochSecond(5, 20);
-            var test5b = Instant.ofEpochSecond(5, 20);
-            var test5n = Instant.ofEpochSecond(5, 30);
-            var test6 = Instant.ofEpochSecond(6, 20);
+            const test5a = Instant.ofEpochSecond(5, 20);
+            const test5b = Instant.ofEpochSecond(5, 20);
+            const test5n = Instant.ofEpochSecond(5, 30);
+            const test6 = Instant.ofEpochSecond(6, 20);
 
             assertEquals(test5a.equals(test5a), true);
             assertEquals(test5a.equals(test5b), true);
@@ -1782,12 +1777,12 @@ describe('org.threeten.bp.TestInstant', () => {
         });
 
         it('test_equals_null', () => {
-            var test5 = Instant.ofEpochSecond(5, 20);
+            const test5 = Instant.ofEpochSecond(5, 20);
             assertEquals(test5.equals(null), false);
         });
 
         it('test_equals_otherClass', () => {
-            var test5 = Instant.ofEpochSecond(5, 20);
+            const test5 = Instant.ofEpochSecond(5, 20);
             assertEquals(test5.equals(''), false);
         });
 
@@ -1796,10 +1791,10 @@ describe('org.threeten.bp.TestInstant', () => {
     describe('hashCode', function () {
 
         it('test_hashCode', () => {
-            var test5a = Instant.ofEpochSecond(5, 20);
-            var test5b = Instant.ofEpochSecond(5, 20);
-            var test5n = Instant.ofEpochSecond(5, 30);
-            var test6 = Instant.ofEpochSecond(6, 20);
+            const test5a = Instant.ofEpochSecond(5, 20);
+            const test5b = Instant.ofEpochSecond(5, 20);
+            const test5n = Instant.ofEpochSecond(5, 30);
+            const test6 = Instant.ofEpochSecond(6, 20);
 
             assertEquals(test5a.hashCode() === test5a.hashCode(), true);
             assertEquals(test5a.hashCode() === test5b.hashCode(), true);

@@ -22,20 +22,20 @@ import {ChronoField} from '../../src/temporal/ChronoField';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 
 describe('org.threeten.bp.TestZoneOffset', () => {
-    
+
     describe('constant', () => {
         it('test_constant_UTC', () => {
-            var test = ZoneOffset.UTC;
+            const test = ZoneOffset.UTC;
             doTestOffset(test, 0, 0, 0);
         });
 
         it('test_constant_MIN', () => {
-            var test = ZoneOffset.MIN;
+            const test = ZoneOffset.MIN;
             doTestOffset(test, -18, 0, 0);
         });
 
         it('test_constant_MAX', () => {
-            var test = ZoneOffset.MAX;
+            const test = ZoneOffset.MAX;
             doTestOffset(test, 18, 0, 0);
         });
     });
@@ -43,19 +43,19 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('of(String)', () => {
 
         it('test_factory_string_UTC', () => {
-            var values = [
+            const values = [
                 'Z','+0',
                 '+00', '+0000', '+00:00', '+000000', '+00:00:00',
                 '-00', '-0000', '-00:00', '-000000', '-00:00:00'
             ];
-            for (var i = 0; i < values.length; i++) {
-                var test = ZoneOffset.of(values[i]);
+            for (let i = 0; i < values.length; i++) {
+                const test = ZoneOffset.of(values[i]);
                 assertSame(test, ZoneOffset.UTC);
             }
         });
-    
+
         it('test_factory_string_invalid', () => {
-            var values = [
+            const values = [
                 '', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'ZZ',
                 '0', '+0:00', '+00:0', '+0:0',
@@ -70,122 +70,122 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                 '-01_00', '-01;00', '-01@00', '-01:AA',
                 '@01:00'
             ];
-            for (var i = 0; i < values.length; i++) {
+            for (let i = 0; i < values.length; i++) {
                 expect(() => {
                     ZoneOffset.of(values[i]);
                 }).to.throw(DateTimeException);
             }
         });
-    
+
         it('test_factory_string_null', () => {
             expect(() => {
                 ZoneOffset.of(null);
             }).to.throw(NullPointerException);
         });
-    
+
         //-----------------------------------------------------------------------
         it('test_factory_string_singleDigitHours', () => {
-            for (var i = -9; i <= 9; i++) {
-                var str = (i < 0 ? '-' : '+') + Math.abs(i);
-                var test = ZoneOffset.of(str);
+            for (let i = -9; i <= 9; i++) {
+                const str = (i < 0 ? '-' : '+') + Math.abs(i);
+                const test = ZoneOffset.of(str);
                 doTestOffset(test, i, 0, 0);
             }
         });
-    
+
         it('test_factory_string_hours', () => {
-            for (var i = -18; i <= 18; i++) {
-                var str = (i < 0 ? '-' : '+') + ('' + (Math.abs(i) + 100)).substring(1);
-                var test = ZoneOffset.of(str);
+            for (let i = -18; i <= 18; i++) {
+                const str = (i < 0 ? '-' : '+') + ('' + (Math.abs(i) + 100)).substring(1);
+                const test = ZoneOffset.of(str);
                 doTestOffset(test, i, 0, 0);
             }
         });
-    
+
         it('test_factory_string_hours_minutes_noColon', () => {
-            for (var i = -17; i <= 17; i++) {
-                for (var j = -59; j <= 59; j++) {
+            for (let i = -17; i <= 17; i++) {
+                for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
-                        var str = (i < 0 || j < 0 ? '-' : '+') +
+                        const str = (i < 0 || j < 0 ? '-' : '+') +
                             ('' + (Math.abs(i) + 100)).substring(1) +
                             ('' + (Math.abs(j) + 100)).substring(1);
-                        var test = ZoneOffset.of(str);
+                        const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
                 }
             }
-            var test1 = ZoneOffset.of('-1800');
+            const test1 = ZoneOffset.of('-1800');
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.of('+1800');
+            const test2 = ZoneOffset.of('+1800');
             doTestOffset(test2, 18, 0, 0);
         });
-    
+
         it('test_factory_string_hours_minutes_colon', () => {
-            for (var i = -17; i <= 17; i++) {
-                for (var j = -59; j <= 59; j++) {
+            for (let i = -17; i <= 17; i++) {
+                for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
-                        var str = (i < 0 || j < 0 ? '-' : '+') +
+                        const str = (i < 0 || j < 0 ? '-' : '+') +
                             ('' + (Math.abs(i) + 100)).substring(1) + ':' +
                             ('' + (Math.abs(j) + 100)).substring(1);
-                        var test = ZoneOffset.of(str);
+                        const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
                 }
             }
-            var test1 = ZoneOffset.of('-18:00');
+            const test1 = ZoneOffset.of('-18:00');
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.of('+18:00');
+            const test2 = ZoneOffset.of('+18:00');
             doTestOffset(test2, 18, 0, 0);
         });
-    
+
         it('test_factory_string_hours_minutes_seconds_noColon', () => {
-            for (var i = -17; i <= 17; i+=2) {
-                for (var j = -59; j <= 59; j+=7) {
-                    for (var k = -59; k <= 59; k+=11) {
+            for (let i = -17; i <= 17; i+=2) {
+                for (let j = -59; j <= 59; j+=7) {
+                    for (let k = -59; k <= 59; k+=11) {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
-                            var str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
+                            const str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
                                 ('' + (Math.abs(i) + 100)).substring(1) +
                                 ('' + (Math.abs(j) + 100)).substring(1) +
                                 ('' + (Math.abs(k) + 100)).substring(1);
-                            var test = ZoneOffset.of(str);
+                            const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
                     }
                 }
             }
-            var test1 = ZoneOffset.of('-180000');
+            const test1 = ZoneOffset.of('-180000');
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.of('+180000');
+            const test2 = ZoneOffset.of('+180000');
             doTestOffset(test2, 18, 0, 0);
         });
-    
+
         it('test_factory_string_hours_minutes_seconds_colon', () => {
-            for (var i = -17; i <= 17; i+=3) {
-                for (var j = -59; j <= 59; j+=11) {
-                    for (var k = -59; k <= 59; k+=7) {
+            for (let i = -17; i <= 17; i+=3) {
+                for (let j = -59; j <= 59; j+=11) {
+                    for (let k = -59; k <= 59; k+=7) {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
-                            var str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
+                            const str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
                                 ('' + (Math.abs(i) + 100)).substring(1) + ':' +
                                 ('' + (Math.abs(j) + 100)).substring(1) + ':' +
                                 ('' + (Math.abs(k) + 100)).substring(1);
-                            var test = ZoneOffset.of(str);
+                            const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
                     }
                 }
             }
-            var test1 = ZoneOffset.of('-18:00:00');
+            const test1 = ZoneOffset.of('-18:00:00');
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.of('+18:00:00');
+            const test2 = ZoneOffset.of('+18:00:00');
             doTestOffset(test2, 18, 0, 0);
         });
 
     });
-    
+
     describe('ofHours', () => {
         it('test_factory_int_hours', () => {
             for (let i = -18; i <= 18; i++) {
-                var test = ZoneOffset.ofHours(i);
+                const test = ZoneOffset.ofHours(i);
                 doTestOffset(test, i, 0, 0);
             }
         });
@@ -208,14 +208,14 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             for (let i = -17; i <= 17; i++) {
                 for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
-                        var test = ZoneOffset.ofHoursMinutes(i, j);
+                        const test = ZoneOffset.ofHoursMinutes(i, j);
                         doTestOffset(test, i, j, 0);
                     }
                 }
             }
-            var test1 = ZoneOffset.ofHoursMinutes(-18, 0);
+            const test1 = ZoneOffset.ofHoursMinutes(-18, 0);
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.ofHoursMinutes(18, 0);
+            const test2 = ZoneOffset.ofHoursMinutes(18, 0);
             doTestOffset(test2, 18, 0, 0);
         });
 
@@ -245,22 +245,22 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     });
 
     describe('ofHoursMinutesSeconds', () => {
-        var step = 10; // isCoverageTestRunner() ? 10 : 1;
+        const step = 10; // isCoverageTestRunner() ? 10 : 1;
         it('test_factory_int_hours_minutes_seconds', () => {
             for (let i = -17; i <= 17; i++) {
                 for (let j = -59; j <= 59; j+= step) {
                     for (let k = -59; k <= 59; k+= step) {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                                 (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
-                            var test = ZoneOffset.ofHoursMinutesSeconds(i, j, k);
+                            const test = ZoneOffset.ofHoursMinutesSeconds(i, j, k);
                             doTestOffset(test, i, j, k);
                         }
                     }
                 }
             }
-            var test1 = ZoneOffset.ofHoursMinutesSeconds(-18, 0, 0);
+            const test1 = ZoneOffset.ofHoursMinutesSeconds(-18, 0, 0);
             doTestOffset(test1, -18, 0, 0);
-            var test2 = ZoneOffset.ofHoursMinutesSeconds(18, 0, 0);
+            const test2 = ZoneOffset.ofHoursMinutesSeconds(18, 0, 0);
             doTestOffset(test2, 18, 0, 0);
         });
 
@@ -370,7 +370,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             assertEquals(ZoneOffset.from(ZonedDateTime.of(LocalDateTime.of(LocalDate.of(2007, 7, 15),
                     LocalTime.of(17, 30)), ZoneOffset.ofHours(2))), ZoneOffset.ofHours(2));
         });
-    
+
         it('test_factory_TemporalAccessor_invalid_noDerive', () => {
             expect(() => {
                 ZoneOffset.from(LocalTime.of(12, 30));
@@ -388,7 +388,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('getTotalSeconds()', () => {
 
         it('test_getTotalSeconds', () => {
-            var offset = ZoneOffset.ofTotalSeconds(60 * 60 + 1);
+            const offset = ZoneOffset.ofTotalSeconds(60 * 60 + 1);
             assertEquals(offset.totalSeconds(), 60 * 60 + 1);
         });
 
@@ -397,7 +397,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('getId()', () => {
 
         it('test_getId()', () => {
-            var offset = ZoneOffset.ofHoursMinutesSeconds(1, 0, 0);
+            let offset = ZoneOffset.ofHoursMinutesSeconds(1, 0, 0);
             assertEquals(offset.id(), '+01:00');
             offset = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
             assertEquals(offset.id(), '+01:02:03');
@@ -410,7 +410,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('getRules()', () => {
 
         it('test_getRules', () => {
-            var offset = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
+            const offset = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
             assertEquals(offset.rules().isFixedOffset(), true);
             assertEquals(offset.rules().offset(null), offset);
 
@@ -419,7 +419,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             assertEquals(offset.rules().standardOffset(null), offset);
             assertEquals(offset.rules().nextTransition(null), null);
             assertEquals(offset.rules().previousTransition(null), null);
-    
+
             assertEquals(offset.rules().isValidOffset(null, offset), true);
             assertEquals(offset.rules().isValidOffset(null, ZoneOffset.UTC), false);
             assertEquals(offset.rules().isValidOffset(null, null), false);
@@ -440,7 +440,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             assertEquals(ZoneOffset.ofHours(-2).get(ChronoField.OFFSET_SECONDS), -7200);
             assertEquals(ZoneOffset.ofHoursMinutesSeconds(0, 1, 5).get(ChronoField.OFFSET_SECONDS), 65);
         });
-    
+
         it('test_getLong_TemporalField', () => {
             assertEquals(ZoneOffset.UTC.getLong(ChronoField.OFFSET_SECONDS), 0);
             assertEquals(ZoneOffset.ofHours(-2).getLong(ChronoField.OFFSET_SECONDS), -7200);
@@ -460,7 +460,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             assertEquals(ZoneOffset.UTC.query(TemporalQueries.zone()), ZoneOffset.UTC);
             assertEquals(ZoneOffset.UTC.query(TemporalQueries.zoneId()), null);
         });
-    
+
         it('test_query_null', () => {
             expect(() => {
                 ZoneOffset.UTC.query(null);
@@ -472,8 +472,8 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('compareTo()', () => {
 
         it('test_compareTo()', () => {
-            var offset1 = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
-            var offset2 = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
+            const offset1 = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
+            const offset2 = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
             assertTrue(offset1.compareTo(offset2) > 0);
             assertTrue(offset2.compareTo(offset1) < 0);
             assertTrue(offset1.compareTo(offset1) === 0);
@@ -484,9 +484,9 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 
     describe('equals', () => {
         it('test_equals', () => {
-            var offset1 = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
-            var offset2 = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
-            var offset2b = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
+            const offset1 = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
+            const offset2 = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
+            const offset2b = ZoneOffset.ofHoursMinutesSeconds(2, 3, 4);
 
             expect(offset1.equals(offset2)).to.equal(false);
             expect(offset2.equals(offset1)).to.equal(false);
@@ -503,11 +503,11 @@ describe('org.threeten.bp.TestZoneOffset', () => {
         });
 
     });
-    
+
     describe('toString()', () => {
 
         it('test_toString()', () => {
-            var offset = ZoneOffset.ofHoursMinutesSeconds(1, 0, 0);
+            let offset = ZoneOffset.ofHoursMinutesSeconds(1, 0, 0);
             assertEquals(offset.toString(), '+01:00');
             offset = ZoneOffset.ofHoursMinutesSeconds(1, 2, 3);
             assertEquals(offset.toString(), '+01:02:03');
@@ -522,11 +522,11 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 function doTestOffset(offset, hours, minutes, seconds) {
     expect(offset.totalSeconds()).to.equal(hours * 60 * 60 + minutes * 60 + seconds);
 
-    var id;
+    let id;
     if (hours === 0 && minutes === 0 && seconds === 0) {
         id = 'Z';
     } else {
-        var str = (hours < 0 || minutes < 0 || seconds < 0) ? '-' : '+';
+        let str = (hours < 0 || minutes < 0 || seconds < 0) ? '-' : '+';
         str += ('' + (Math.abs(hours) + 100)).substring(1);
         str += ':';
         str += ('' + (Math.abs(minutes) + 100)).substring(1);

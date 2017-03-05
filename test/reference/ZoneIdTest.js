@@ -1,6 +1,6 @@
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos  
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
@@ -28,11 +28,11 @@ describe('org.threeten.bp.TestZoneId', ()=>{
     }
 
     describe('regular factory', function () {
-        
+
         // @Test(dataProvider='String_UTC')
         it('test_of_string_UTC', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                var test = ZoneId.of('UTC' + id);
+                const test = ZoneId.of('UTC' + id);
                 assertEquals(test.id(), 'UTC');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -41,7 +41,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_UTC')
         it('test_of_string_GMT', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                var test = ZoneId.of('GMT' + id);
+                const test = ZoneId.of('GMT' + id);
                 assertEquals(test.id(), 'GMT');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -50,7 +50,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_UTC')
         it('test_of_string_UT', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                var test = ZoneId.of('UT' + id);
+                const test = ZoneId.of('UT' + id);
                 assertEquals(test.id(), 'UT');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -78,8 +78,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_offset', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                var test = ZoneId.of(input);
-                var offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
+                const test = ZoneId.of(input);
+                const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test, offset);
             });
         });
@@ -87,10 +87,10 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedUTC', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                var test = ZoneId.of('UTC' + input);
+                const test = ZoneId.of('UTC' + input);
                 assertEquals(test.id(), 'UTC' + id);
                 assertEquals(test.rules().isFixedOffset(), true);
-                var offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
+                const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
                 checkOffset(test.rules(), createLDT(2008, 6, 30), offset, 1);
             });
@@ -100,10 +100,10 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedGMT', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                var test = ZoneId.of('GMT' + input);
+                const test = ZoneId.of('GMT' + input);
                 assertEquals(test.id(), 'GMT' + id);
                 assertEquals(test.rules().isFixedOffset(), true);
-                var offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
+                const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
                 checkOffset(test.rules(), createLDT(2008, 6, 30), offset, 1);
             });
@@ -112,10 +112,10 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedUT', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                var test = ZoneId.of('UT' + input);
+                const test = ZoneId.of('UT' + input);
                 assertEquals(test.id(), 'UT' + id);
                 assertEquals(test.rules().isFixedOffset(), true);
-                var offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
+                const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
                 checkOffset(test.rules(), createLDT(2008, 6, 30), offset, 1);
             });
@@ -186,7 +186,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
 
         //-----------------------------------------------------------------------
         it('test_of_string_GMT0()', () => {
-            var test = ZoneId.of('GMT0');
+            const test = ZoneId.of('GMT0');
             assertEquals(test.id(), 'GMT0');
             assertEquals(test.rules().isFixedOffset(), true);
             assertEquals(test.normalized(), ZoneOffset.UTC);
@@ -208,14 +208,14 @@ describe('org.threeten.bp.TestZoneId', ()=>{
 
 
         it('test_get_TzdbFixed()', () => {
-            var test = ZoneId.of('+01:30');
+            const test = ZoneId.of('+01:30');
             assertEquals(test.id(), '+01:30');
             assertEquals(test.rules().isFixedOffset(), true);
         });
 
         // javascript SYSTEM time-zone
         it('test_of_string_SYSTEM', () => {
-            var test = ZoneId.of('SYSTEM');
+            const test = ZoneId.of('SYSTEM');
             assertEquals(test.id(), 'SYSTEM');
             assertEquals(test, ZoneId.systemDefault());
             assertEquals(test.normalized(), ZoneId.systemDefault());
@@ -238,8 +238,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
 
         it('test_prefixOfOffset', () => {
             dataProviderTest(data_prefixValid, (prefix, offset, expectedHour) => {
-                var zoff = ZoneOffset.of(offset);
-                var zoneId = ZoneIdFactory.ofOffset(prefix, zoff);
+                const zoff = ZoneOffset.of(offset);
+                const zoneId = ZoneIdFactory.ofOffset(prefix, zoff);
                 assertEquals(zoneId.rules(), ZoneOffset.ofHours(expectedHour).rules());
                 assertEquals(zoneId.id(), prefix + (expectedHour !== 0 ? zoff.id() : ''), 'in correct id for : ' + prefix + ', zoff: ' + zoff);
             });
@@ -257,7 +257,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         it('test_invalidPrefixOfOffset', () => {
             dataProviderTest(data_prefixInvalid, (prefix, offset) => {
                 expect(() => {
-                    var zoff = ZoneOffset.of(offset);
+                    const zoff = ZoneOffset.of(offset);
                     ZoneIdFactory.ofOffset(prefix, zoff);
                 }).to.throw(IllegalArgumentException);
             });
@@ -278,33 +278,33 @@ describe('org.threeten.bp.TestZoneId', ()=>{
     });
 
     describe('equals() / hashCode()', function () {
-        
+
         it('test_equals()', () => {
-            var test1 = ZoneId.of('UTC+00');
-            var test2 = ZoneId.of('GMT+00');
-            var test2b = ZoneId.of('GMT+00');
+            const test1 = ZoneId.of('UTC+00');
+            const test2 = ZoneId.of('GMT+00');
+            const test2b = ZoneId.of('GMT+00');
             assertEquals(test1.equals(test2), false);
             assertEquals(test2.equals(test1), false);
-    
+
             assertEquals(test1.equals(test1), true);
             assertEquals(test2.equals(test2), true);
             assertEquals(test2.equals(test2b), true);
-    
+
             assertEquals(test1.hashCode() === test1.hashCode(), true);
             assertEquals(test2.hashCode() === test2.hashCode(), true);
             assertEquals(test2.hashCode() === test2b.hashCode(), true);
         });
-        
+
         it('test_equals_null()', () => {
             assertEquals(ZoneId.of('GMT+00').equals(null), false);
         });
-    
+
         it('test_equals_notTimeZone()', () => {
             assertEquals(ZoneId.of('GMT+00').equals('GMT+00'), false);
         });
-    
+
     });
-    
+
     describe('toString()', () => {
 
         // @DataProvider(name='ToString')
@@ -324,7 +324,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='ToString')
         it('test_toString', () => {
             dataProviderTest(data_toString, (id, expected) => {
-                var test = ZoneId.of(id);
+                const test = ZoneId.of(id);
                 assertEquals(test.toString(), expected);
             });
         });
@@ -334,7 +334,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
     function createLDT(year, month, day) {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
-    
+
     // eslint-disable-next-line no-unused-vars
     function checkOffset(rules, dateTime, offset, type) {
         //List<ZoneOffset> validOffsets = rules.getValidOffsets(dateTime);
@@ -344,7 +344,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         //    assertEquals(validOffsets.get(0), offset);
         //    return null;
         //} else {
-        //    var zot = rules.getTransition(dateTime);
+        //    const zot = rules.getTransition(dateTime);
         //    assertNotNull(zot);
         //    assertEquals(zot.isOverlap(), type == 2);
         //    assertEquals(zot.isGap(), type == 0);
@@ -353,5 +353,5 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         //}
     }
 
-    
+
 });

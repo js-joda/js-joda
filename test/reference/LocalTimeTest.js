@@ -35,12 +35,11 @@ import {MockFieldNoValue} from './temporal/MockFieldNoValue';
 import '../_init';
 
 describe('org.threeten.bp.TestLocalTime', function () {
-    var TEST_12_30_40_987654321;
-    var INVALID_UNITS;
+    const TEST_12_30_40_987654321 = LocalTime.of(12, 30, 40, 987654321);
+    let INVALID_UNITS;
 
 
     beforeEach(function () {
-        TEST_12_30_40_987654321 = LocalTime.of(12, 30, 40, 987654321);
         INVALID_UNITS = [ChronoUnit.WEEKS, ChronoUnit.MONTHS, ChronoUnit.YEARS, ChronoUnit.ERAS];
     });
 
@@ -88,13 +87,13 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
     });
-    
+
     describe('now()', () => {
 
         it('now()', () => {
-            var expected = LocalTime.now(Clock.systemDefaultZone());
-            var test = LocalTime.now();
-            var diff = Math.abs(test.toNanoOfDay() - expected.toNanoOfDay());
+            const expected = LocalTime.now(Clock.systemDefaultZone());
+            const test = LocalTime.now();
+            const diff = Math.abs(test.toNanoOfDay() - expected.toNanoOfDay());
             assertTrue(diff < 100000000);  // less than 0.1 secs
         });
 
@@ -103,10 +102,10 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('now(ZoneId)', () => {
 
         it('now_ZoneId()', () => {
-            var zone = ZoneId.of('UTC+01:02:03');
-            var expected = LocalTime.now(Clock.system(zone));
-            var test = LocalTime.now(zone);
-            for (var i = 0; i < 100; i++) {
+            const zone = ZoneId.of('UTC+01:02:03');
+            let expected = LocalTime.now(Clock.system(zone));
+            let test = LocalTime.now(zone);
+            for (let i = 0; i < 100; i++) {
                 if (expected.equals(test)) {
                     return;
                 }
@@ -121,44 +120,44 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
     describe('now(Clock)', () => {
 
-        var delta = isCoverageTestRunner() ? 937 : 13;
+        const delta = isCoverageTestRunner() ? 937 : 13;
         it('now_Clock_allSecsInDay()', () => {
-            for (var i = 0; i < (2 * 24 * 60 * 60); i += delta) {
-                var instant = Instant.ofEpochSecond(i, 8);
-                var clock = Clock.fixed(instant, ZoneOffset.UTC);
-                var test = LocalTime.now(clock);
+            for (let i = 0; i < (2 * 24 * 60 * 60); i += delta) {
+                const instant = Instant.ofEpochSecond(i, 8);
+                const clock = Clock.fixed(instant, ZoneOffset.UTC);
+                const test = LocalTime.now(clock);
                 assertEquals(test.hour(), MathUtil.intMod(MathUtil.intDiv(i, (60 * 60)), 24));
                 assertEquals(test.minute(), MathUtil.intMod(MathUtil.intDiv(i, 60), 60));
                 assertEquals(test.second(), i % 60);
                 assertEquals(test.nano(), 8);
             }
         });
-        
+
         it('now_Clock_beforeEpoch()', () => {
             for (let i =-1; i >= -(24 * 60 * 60); i -= delta) {
-                var instant = Instant.ofEpochSecond(i, 8);
-                var clock = Clock.fixed(instant, ZoneOffset.UTC);
-                var test = LocalTime.now(clock);
+                const instant = Instant.ofEpochSecond(i, 8);
+                const clock = Clock.fixed(instant, ZoneOffset.UTC);
+                const test = LocalTime.now(clock);
                 assertEquals(test.hour(), MathUtil.intMod(MathUtil.intDiv((i + 24 * 60 * 60), (60 * 60)), 24));
                 assertEquals(test.minute(), (MathUtil.intDiv((i + 24 * 60 * 60), 60) % 60));
                 assertEquals(test.second(), (i + 24 * 60 * 60) % 60);
                 assertEquals(test.nano(), 8);
             }
         });
-    
+
         //-----------------------------------------------------------------------
         it('now_Clock_max', () => {
-            var clock = Clock.fixed(Instant.MAX, ZoneOffset.UTC);
-            var test = LocalTime.now(clock);
+            const clock = Clock.fixed(Instant.MAX, ZoneOffset.UTC);
+            const test = LocalTime.now(clock);
             assertEquals(test.hour(), 23);
             assertEquals(test.minute(), 59);
             assertEquals(test.second(), 59);
             assertEquals(test.nano(), 999999999);
         });
-        
+
         it('now_Clock_min', () => {
-            var clock = Clock.fixed(Instant.MIN, ZoneOffset.UTC);
-            var test = LocalTime.now(clock);
+            const clock = Clock.fixed(Instant.MIN, ZoneOffset.UTC);
+            const test = LocalTime.now(clock);
             assertEquals(test.hour(), 0);
             assertEquals(test.minute(), 0);
             assertEquals(test.second(), 0);
@@ -170,7 +169,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('of() factories', function () {
 
         it('factory_time_2ints', () => {
-            var test = LocalTime.of(12, 30);
+            const test = LocalTime.of(12, 30);
             check(test, 12, 30, 0, 0);
         });
 
@@ -200,7 +199,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         //-----------------------------------------------------------------------
         it('factory_time_3ints', () => {
-            var test = LocalTime.of(12, 30, 40);
+            const test = LocalTime.of(12, 30, 40);
             check(test, 12, 30, 40, 0);
         });
 
@@ -242,7 +241,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         //-----------------------------------------------------------------------
         it('factory_time_4ints', () => {
-            var test = LocalTime.of(12, 30, 40, 987654321);
+            let test = LocalTime.of(12, 30, 40, 987654321);
             check(test, 12, 30, 40, 987654321);
             test = LocalTime.of(12, 0, 40, 987654321);
             check(test, 12, 0, 40, 987654321);
@@ -302,7 +301,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('ofSecondOfDay(long)', () => {
 
         it('factory_ofSecondOfDay()', () => {
-            var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23);
+            const localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23);
             check(localTime, 2, 17, 23, 0);
         });
 
@@ -323,7 +322,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('ofSecondOfDay(long, int)', function () {
 
         it('factory_ofSecondOfDay_long_int()', () => {
-            var localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23, 987);
+            const localTime = LocalTime.ofSecondOfDay(2 * 60 * 60 + 17 * 60 + 23, 987);
             check(localTime, 2, 17, 23, 987);
         });
 
@@ -356,7 +355,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('ofNanoOfDay(long)', () => {
 
         it('factory_ofNanoOfDay()', () => {
-            var localTime = LocalTime.ofNanoOfDay(60 * 60 * 1000000000 + 17);
+            const localTime = LocalTime.ofNanoOfDay(60 * 60 * 1000000000 + 17);
             check(localTime, 1, 0, 0, 17);
         });
 
@@ -451,7 +450,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         function factory_parse_validText(h, m, s, n, parsable) {
             // console.log(h, m, s, n, parsable);
-            var t = LocalTime.parse(parsable);
+            const t = LocalTime.parse(parsable);
             assertNotNull(t, parsable);
             assertEquals(t.hour(), h);
             assertEquals(t.minute(), m);
@@ -499,14 +498,14 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('parse(DateTimeFormatter)', () => {
 
         it('factory_parse_formatter()', () => {
-            var f = DateTimeFormatter.ofPattern('H m s');
-            var test = LocalTime.parse('14 30 40', f);
+            const f = DateTimeFormatter.ofPattern('H m s');
+            const test = LocalTime.parse('14 30 40', f);
             assertEquals(test, LocalTime.of(14, 30, 40));
         });
 
         it('factory_parse_formatter_nullText()', () => {
             expect(() => {
-                var f = DateTimeFormatter.ofPattern('H m s');
+                const f = DateTimeFormatter.ofPattern('H m s');
                 LocalTime.parse(null, f);
             }).to.throw(NullPointerException);
         });
@@ -522,7 +521,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('get(TemporalField)', () => {
 
         it('test_get_TemporalField()', () => {
-            var test = TEST_12_30_40_987654321;
+            const test = TEST_12_30_40_987654321;
             assertEquals(test.get(ChronoField.HOUR_OF_DAY), 12);
             assertEquals(test.get(ChronoField.MINUTE_OF_HOUR), 30);
             assertEquals(test.get(ChronoField.SECOND_OF_MINUTE), 40);
@@ -567,7 +566,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('getLong(TemporalField)', () => {
 
         it('test_getLong_TemporalField()', () => {
-            var test = TEST_12_30_40_987654321;
+            const test = TEST_12_30_40_987654321;
             assertEquals(test.getLong(ChronoField.HOUR_OF_DAY), 12);
             assertEquals(test.getLong(ChronoField.MINUTE_OF_HOUR), 30);
             assertEquals(test.getLong(ChronoField.SECOND_OF_MINUTE), 40);
@@ -652,7 +651,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_get(h, m, s, ns) {
-            var a = LocalTime.of(h, m, s, ns);
+            const a = LocalTime.of(h, m, s, ns);
             assertEquals(a.hour(), h);
             assertEquals(a.minute(), m);
             assertEquals(a.second(), s);
@@ -664,8 +663,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('with()', () => {
 
         it('test_with_adjustment()', () => {
-            var sample = LocalTime.of(23, 5);
-            var adjuster = {
+            const sample = LocalTime.of(23, 5);
+            const adjuster = {
                 adjustInto: () => {
                     return sample;
                 }
@@ -684,25 +683,25 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('withHour()', () => {
 
         it('test_withHour_normal()', () => {
-            var t = TEST_12_30_40_987654321;
-            for (var i = 0; i < 24; i++) {
+            let t = TEST_12_30_40_987654321;
+            for (let i = 0; i < 24; i++) {
                 t = t.withHour(i);
                 assertEquals(t.hour(), i);
             }
         });
 
         it('test_withHour_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.withHour(12);
+            const t = TEST_12_30_40_987654321.withHour(12);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_withHour_toMidnight_equal', () => {
-            var t = LocalTime.of(1, 0).withHour(0);
+            const t = LocalTime.of(1, 0).withHour(0);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_withHour_toMidday_equal', () => {
-            var t = LocalTime.of(1, 0).withHour(12);
+            const t = LocalTime.of(1, 0).withHour(12);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -722,25 +721,25 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('withMinute()', () => {
 
         it('test_withMinute_normal()', () => {
-            var t = TEST_12_30_40_987654321;
-            for (var i = 0; i < 60; i++) {
+            let t = TEST_12_30_40_987654321;
+            for (let i = 0; i < 60; i++) {
                 t = t.withMinute(i);
                 assertEquals(t.minute(), i);
             }
         });
 
         it('test_withMinute_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.withMinute(30);
+            const t = TEST_12_30_40_987654321.withMinute(30);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_withMinute_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 1).withMinute(0);
+            const t = LocalTime.of(0, 1).withMinute(0);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_withMinute_toMidday_equals', () => {
-            var t = LocalTime.of(12, 1).withMinute(0);
+            const t = LocalTime.of(12, 1).withMinute(0);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -761,25 +760,25 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('withSecond()', () => {
 
         it('test_withSecond_normal()', () => {
-            var t = TEST_12_30_40_987654321;
-            for (var i = 0; i < 60; i++) {
+            let t = TEST_12_30_40_987654321;
+            for (let i = 0; i < 60; i++) {
                 t = t.withSecond(i);
                 assertEquals(t.second(), i);
             }
         });
 
         it('test_withSecond_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.withSecond(40);
+            const t = TEST_12_30_40_987654321.withSecond(40);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_withSecond_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 0, 1).withSecond(0);
+            const t = LocalTime.of(0, 0, 1).withSecond(0);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_withSecond_toMidday_equal', () => {
-            var t = LocalTime.of(12, 0, 1).withSecond(0);
+            const t = LocalTime.of(12, 0, 1).withSecond(0);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -800,7 +799,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('withNano()', () => {
 
         it('test_withNanoOfSecond_normal', () => {
-            var t = TEST_12_30_40_987654321;
+            let t = TEST_12_30_40_987654321;
             t = t.withNano(1);
             assertEquals(t.nano(), 1);
             t = t.withNano(10);
@@ -812,17 +811,17 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_withNanoOfSecond_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.withNano(987654321);
+            const t = TEST_12_30_40_987654321.withNano(987654321);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_withNanoOfSecond_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 0, 0, 1).withNano(0);
+            const t = LocalTime.of(0, 0, 0, 1).withNano(0);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_withNanoOfSecond_toMidday_equal', () => {
-            var t = LocalTime.of(12, 0, 0, 1).withNano(0);
+            const t = LocalTime.of(12, 0, 0, 1).withNano(0);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -894,8 +893,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
             }
         }
 
-        var NINETY_MINS = new NINETY_MINS_TemporalUnit();
-        var NINETY_FIVE_MINS = new NINETY_FIVE_MINS_TemporalUnit();
+        const NINETY_MINS = new NINETY_MINS_TemporalUnit();
+        const NINETY_FIVE_MINS = new NINETY_FIVE_MINS_TemporalUnit();
 
         function data_truncatedToValid() {
             return [
@@ -955,26 +954,26 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plus(PlusAdjuster)', () => {
 
         it('test_plus_Adjuster_positiveHours', () => {
-            var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
-            var t = TEST_12_30_40_987654321.plus(period);
+            const period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+            const t = TEST_12_30_40_987654321.plus(period);
             assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
         });
 
         it('test_plus_Adjuster_negativeMinutes', () => {
-            var period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
-            var t = TEST_12_30_40_987654321.plus(period);
+            const period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.plus(period);
             assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
         });
 
         it('test_plus_Adjuster_zero', () => {
-            var period = Period.ZERO;
-            var t = TEST_12_30_40_987654321.plus(period);
+            const period = Period.ZERO;
+            const t = TEST_12_30_40_987654321.plus(period);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plus_Adjuster_dateNotAllowed', () => {
             expect(() => {
-                var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+                const period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
                 TEST_12_30_40_987654321.plus(period);
             }).to.throw(DateTimeException);
         });
@@ -986,8 +985,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plus_Adjuster_wrap', () => {
-            var p = Duration.ofHours(1);
-            var t = LocalTime.of(23, 30).plus(p);
+            const p = Duration.ofHours(1);
+            const t = LocalTime.of(23, 30).plus(p);
             assertEquals(t, LocalTime.of(0, 30));
         });
 
@@ -996,23 +995,23 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plus(long,PeriodUnit)', function () {
 
         it('test_plus_longPeriodUnit_positiveHours', () => {
-            var t = TEST_12_30_40_987654321.plus(7, ChronoUnit.HOURS);
+            const t = TEST_12_30_40_987654321.plus(7, ChronoUnit.HOURS);
             assertEquals(t, LocalTime.of(19, 30, 40, 987654321));
         });
 
         it('test_plus_longPeriodUnit_negativeMinutes', () => {
-            var t = TEST_12_30_40_987654321.plus(-25, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.plus(-25, ChronoUnit.MINUTES);
             assertEquals(t, LocalTime.of(12, 5, 40, 987654321));
         });
 
         it('test_plus_longPeriodUnit_zero', () => {
-            var t = TEST_12_30_40_987654321.plus(0, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.plus(0, ChronoUnit.MINUTES);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plus_long_unit_invalidUnit()', () => {
             for (let i = 0; i < INVALID_UNITS.length; i++) {
-                var unit = INVALID_UNITS[i];
+                const unit = INVALID_UNITS[i];
                 expect(() => {
                     TEST_12_30_40_987654321.plus(1, unit);
                 }).to.throw(DateTimeException);
@@ -1030,31 +1029,31 @@ describe('org.threeten.bp.TestLocalTime', function () {
                 TEST_12_30_40_987654321.plus(1, null);
             }).to.throw(NullPointerException);
         });
-    
+
     });
 
     describe('plus(adjuster)', () => {
 
         it('test_plus_adjuster', () => {
-            var p = Duration.ofSeconds(62, 3);
-            var t = TEST_12_30_40_987654321.plus(p);
+            const p = Duration.ofSeconds(62, 3);
+            const t = TEST_12_30_40_987654321.plus(p);
             assertEquals(t, LocalTime.of(12, 31, 42, 987654324));
         });
 
         it('test_plus_adjuster_big', () => {
-            var p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
-            var t = TEST_12_30_40_987654321.plus(p);
+            const p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
+            const t = TEST_12_30_40_987654321.plus(p);
             assertEquals(t, TEST_12_30_40_987654321.plusNanos(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plus_adjuster_zero_equal', () => {
-            var t = TEST_12_30_40_987654321.plus(Period.ZERO);
+            const t = TEST_12_30_40_987654321.plus(Period.ZERO);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plus_adjuster_wrap', () => {
-            var p = Duration.ofHours(1);
-            var t = LocalTime.of(23, 30).plus(p);
+            const p = Duration.ofHours(1);
+            const t = LocalTime.of(23, 30).plus(p);
             assertEquals(t, LocalTime.of(0, 30));
         });
 
@@ -1069,47 +1068,47 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plusHours()', () => {
 
         it('test_plusHours_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            for (var i = 0; i < 50; i++) {
+            let t = LocalTime.MIDNIGHT;
+            for (let i = 0; i < 50; i++) {
                 t = t.plusHours(1);
                 assertEquals(t.hour(), (i + 1) % 24);
             }
         });
 
         it('test_plusHours_fromZero()', () => {
-            var base = LocalTime.MIDNIGHT;
-            for (var i = -50; i < 50; i++) {
-                var t = base.plusHours(i);
+            const base = LocalTime.MIDNIGHT;
+            for (let i = -50; i < 50; i++) {
+                const t = base.plusHours(i);
                 assertEquals(t.hour(), (i + 72) % 24);
             }
         });
 
         it('test_plusHours_fromOne()', () => {
-            var base = LocalTime.of(1, 0);
-            for (var i = -50; i < 50; i++) {
-                var t = base.plusHours(i);
+            const base = LocalTime.of(1, 0);
+            for (let i = -50; i < 50; i++) {
+                const t = base.plusHours(i);
                 assertEquals(t.hour(), (1 + i + 72) % 24);
             }
         });
 
         it('test_plusHours_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.plusHours(0);
+            const t = TEST_12_30_40_987654321.plusHours(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusHours_toMidnight_equal', () => {
-            var t = LocalTime.of(23, 0).plusHours(1);
+            const t = LocalTime.of(23, 0).plusHours(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_plusHours_toMidday_equal', () => {
-            var t = LocalTime.of(11, 0).plusHours(1);
+            const t = LocalTime.of(11, 0).plusHours(1);
             assertEquals(t, LocalTime.NOON);
         });
 
         it('test_plusHours_big()', () => {
-            var t = LocalTime.of(2, 30).plusHours(MathUtil.MAX_SAFE_INTEGER);
-            var hours = (MathUtil.MAX_SAFE_INTEGER % 24);
+            const t = LocalTime.of(2, 30).plusHours(MathUtil.MAX_SAFE_INTEGER);
+            const hours = (MathUtil.MAX_SAFE_INTEGER % 24);
             assertEquals(t, LocalTime.of(2, 30).plusHours(hours));
         });
 
@@ -1118,10 +1117,10 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plusMinutes()', () => {
 
         it('test_plusMinutes_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            for (var i = 0; i < 70; i++) {
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            for (let i = 0; i < 70; i++) {
                 t = t.plusMinutes(1);
                 min++;
                 if (min === 60) {
@@ -1134,11 +1133,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusMinutes_fromZero()', () => {
-            var base = LocalTime.MIDNIGHT;
-            var hour;
-            var min;
+            const base = LocalTime.MIDNIGHT;
+            let hour;
+            let min;
             for (let i = -70; i < 70; i++) {
-                var t = base.plusMinutes(i);
+                const t = base.plusMinutes(i);
                 if (i < -60) {
                     hour = 22;
                     min = i + 120;
@@ -1158,28 +1157,28 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusMinutes_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.plusMinutes(0);
+            const t = TEST_12_30_40_987654321.plusMinutes(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusMinutes_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.plusMinutes(24 * 60);
+            const t = TEST_12_30_40_987654321.plusMinutes(24 * 60);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusMinutes_toMidnight_equal', () => {
-            var t = LocalTime.of(23, 59).plusMinutes(1);
+            const t = LocalTime.of(23, 59).plusMinutes(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_plusMinutes_toMidday_equal', () => {
-            var t = LocalTime.of(11, 59).plusMinutes(1);
+            const t = LocalTime.of(11, 59).plusMinutes(1);
             assertEquals(t, LocalTime.NOON);
         });
 
         it('test_plusMinutes_big()', () => {
-            var t = LocalTime.of(2, 30).plusMinutes(MathUtil.MAX_SAFE_INTEGER);
-            var mins = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60));
+            const t = LocalTime.of(2, 30).plusMinutes(MathUtil.MAX_SAFE_INTEGER);
+            const mins = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60));
             assertEquals(t, LocalTime.of(2, 30).plusMinutes(mins));
         });
 
@@ -1188,11 +1187,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plusSeconds()', () => {
 
         it('test_plusSeconds_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            var sec = 0;
-            for (var i = 0; i < 3700; i++) {
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            let sec = 0;
+            for (let i = 0; i < 3700; i++) {
                 t = t.plusSeconds(1);
                 sec++;
                 if (sec === 60) {
@@ -1210,13 +1209,13 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusSeconds_fromZero', () => {
-            var base = LocalTime.MIDNIGHT;
-            var i = -3660;
-            var delta = 30;
-            var hour = 22;
-            var min = 59;
-            var sec = 0;
-            var iEnd = 3660;
+            const base = LocalTime.MIDNIGHT;
+            let i = -3660;
+            const delta = 30;
+            let hour = 22;
+            let min = 59;
+            let sec = 0;
+            const iEnd = 3660;
 
             while(i <= iEnd){
                 i += delta;
@@ -1232,7 +1231,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
                         }
                     }
                 }
-                var t = base.plusSeconds(i);
+                const t = base.plusSeconds(i);
                 assertEquals(hour, t.hour());
                 assertEquals(min, t.minute());
                 assertEquals(sec, t.second());
@@ -1240,22 +1239,22 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusSeconds_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.plusSeconds(0);
+            const t = TEST_12_30_40_987654321.plusSeconds(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusSeconds_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.plusSeconds(24 * 60 * 60);
+            const t = TEST_12_30_40_987654321.plusSeconds(24 * 60 * 60);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusSeconds_toMidnight_equal', () => {
-            var t = LocalTime.of(23, 59, 59).plusSeconds(1);
+            const t = LocalTime.of(23, 59, 59).plusSeconds(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_plusSeconds_toMidday_equal', () => {
-            var t = LocalTime.of(11, 59, 59).plusSeconds(1);
+            const t = LocalTime.of(11, 59, 59).plusSeconds(1);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -1264,11 +1263,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('plusNanos()', () => {
 
         it('test_plusNanos_halfABillion()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            var sec = 0;
-            var nanos = 0;
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            let sec = 0;
+            let nanos = 0;
             for (let i = 0; i < 3700 * 1000000000; i += 500000000) {
                 t = t.plusNanos(500000000);
                 nanos += 500000000;
@@ -1292,14 +1291,14 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusNanos_fromZero', () => {
-            var base = LocalTime.MIDNIGHT;
-            var delta = 7500000000;
-            var i = -3660 * 1000000000;
-            var hour = 22;
-            var min = 59;
-            var sec = 0;
-            var nanos = 0;
-            var iEnd = 3660 * 1000000000;
+            const base = LocalTime.MIDNIGHT;
+            const delta = 7500000000;
+            let i = -3660 * 1000000000;
+            let hour = 22;
+            let min = 59;
+            let sec = 0;
+            let nanos = 0;
+            const iEnd = 3660 * 1000000000;
 
             while (i <= iEnd) {
                 i += delta;
@@ -1319,7 +1318,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
                         }
                     }
                 }
-                var t = base.plusNanos(i);
+                const t = base.plusNanos(i);
 
                 assertEquals(hour, t.hour());
                 assertEquals(min, t.minute());
@@ -1329,22 +1328,22 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_plusNanos_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.plusNanos(0);
+            const t = TEST_12_30_40_987654321.plusNanos(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusNanos_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000);
+            const t = TEST_12_30_40_987654321.plusNanos(24 * 60 * 60 * 1000000000);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_plusNanos_toMidnight_equal', () => {
-            var t = LocalTime.of(23, 59, 59, 999999999).plusNanos(1);
+            const t = LocalTime.of(23, 59, 59, 999999999).plusNanos(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_plusNanos_toMidday_equal', () => {
-            var t = LocalTime.of(11, 59, 59, 999999999).plusNanos(1);
+            const t = LocalTime.of(11, 59, 59, 999999999).plusNanos(1);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -1353,44 +1352,44 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minus(MinusAdjuster)', () => {
 
         it('test_minus_Adjuster', () => {
-            var p = Duration.ofSeconds(62, 3);
-            var t = TEST_12_30_40_987654321.minus(p);
+            const p = Duration.ofSeconds(62, 3);
+            const t = TEST_12_30_40_987654321.minus(p);
             assertEquals(t, LocalTime.of(12, 29, 38, 987654318));
         });
 
         it('test_minus_Adjuster_positiveHours', () => {
-            var period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
-            var t = TEST_12_30_40_987654321.minus(period);
+            const period = MockSimplePeriod.of(7, ChronoUnit.HOURS);
+            const t = TEST_12_30_40_987654321.minus(period);
             assertEquals(t, LocalTime.of(5, 30, 40, 987654321));
         });
 
         it('test_minus_Adjuster_negativeMinutes', () => {
-            var period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
-            var t = TEST_12_30_40_987654321.minus(period);
+            const period = MockSimplePeriod.of(-25, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.minus(period);
             assertEquals(t, LocalTime.of(12, 55, 40, 987654321));
         });
 
         it('test_minus_Adjuster_big1', () => {
-            var p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
-            var t = TEST_12_30_40_987654321.minus(p);
+            const p = Duration.ofNanos(MathUtil.MAX_SAFE_INTEGER);
+            const t = TEST_12_30_40_987654321.minus(p);
             assertEquals(t, TEST_12_30_40_987654321.minusNanos(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_minus_Adjuster_zero', () => {
-            var p = Period.ZERO;
-            var t = TEST_12_30_40_987654321.minus(p);
+            const p = Period.ZERO;
+            const t = TEST_12_30_40_987654321.minus(p);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minus_Adjuster_wrap', () => {
-            var p = Duration.ofHours(1);
-            var t = LocalTime.of(0, 30).minus(p);
+            const p = Duration.ofHours(1);
+            const t = LocalTime.of(0, 30).minus(p);
             assertEquals(t, LocalTime.of(23, 30));
         });
 
         it('test_minus_Adjuster_dateNotAllowed', () => {
             expect(() => {
-                var period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
+                const period = MockSimplePeriod.of(7, ChronoUnit.MONTHS);
                 TEST_12_30_40_987654321.minus(period);
             }).to.throw(DateTimeException);
         });
@@ -1406,23 +1405,23 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minus(long,PeriodUnit)', function () {
 
         it('test_minus_longPeriodUnit_positiveHours', () => {
-            var t = TEST_12_30_40_987654321.minus(7, ChronoUnit.HOURS);
+            const t = TEST_12_30_40_987654321.minus(7, ChronoUnit.HOURS);
             assertEquals(t, LocalTime.of(5, 30, 40, 987654321));
         });
 
         it('test_minus_longPeriodUnit_negativeMinutes', () => {
-            var t = TEST_12_30_40_987654321.minus(-25, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.minus(-25, ChronoUnit.MINUTES);
             assertEquals(t, LocalTime.of(12, 55, 40, 987654321));
         });
 
         it('test_minus_longPeriodUnit_zero', () => {
-            var t = TEST_12_30_40_987654321.minus(0, ChronoUnit.MINUTES);
+            const t = TEST_12_30_40_987654321.minus(0, ChronoUnit.MINUTES);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minus_long_unit_invalidUnit()', () => {
             for (let i = 0; i < INVALID_UNITS.length; i++) {
-                var unit = INVALID_UNITS[i];
+                const unit = INVALID_UNITS[i];
                 expect(() => {
                     TEST_12_30_40_987654321.minus(1, unit);
                 }).to.throw(DateTimeException);
@@ -1446,47 +1445,47 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minusHours()', () => {
 
         it('test_minusHours_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            for (var i = 0; i < 50; i++) {
+            let t = LocalTime.MIDNIGHT;
+            for (let i = 0; i < 50; i++) {
                 t = t.minusHours(1);
                 assertEquals(t.hour(), (((-i + 23) % 24) + 24) % 24, String.valueOf(i));
             }
         });
 
         it('test_minusHours_fromZero()', () => {
-            var base = LocalTime.MIDNIGHT;
-            for (var i = -50; i < 50; i++) {
-                var t = base.minusHours(i);
+            const base = LocalTime.MIDNIGHT;
+            for (let i = -50; i < 50; i++) {
+                const t = base.minusHours(i);
                 assertEquals(t.hour(), ((-i % 24) + 24) % 24);
             }
         });
 
         it('test_minusHours_fromOne()', () => {
-            var base = LocalTime.of(1, 0);
-            for (var i = -50; i < 50; i++) {
-                var t = base.minusHours(i);
+            const base = LocalTime.of(1, 0);
+            for (let i = -50; i < 50; i++) {
+                const t = base.minusHours(i);
                 assertEquals(t.hour(), (1 + (-i % 24) + 24) % 24);
             }
         });
 
         it('test_minusHours_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.minusHours(0);
+            const t = TEST_12_30_40_987654321.minusHours(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusHours_toMidnight_equal', () => {
-            var t = LocalTime.of(1, 0).minusHours(1);
+            const t = LocalTime.of(1, 0).minusHours(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_minusHours_toMidday_equal', () => {
-            var t = LocalTime.of(13, 0).minusHours(1);
+            const t = LocalTime.of(13, 0).minusHours(1);
             assertEquals(t, LocalTime.NOON);
         });
 
         it('test_minusHours_big()', () => {
-            var t = LocalTime.of(2, 30).minusHours(MathUtil.MAX_SAFE_INTEGER);
-            var hours = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 24);
+            const t = LocalTime.of(2, 30).minusHours(MathUtil.MAX_SAFE_INTEGER);
+            const hours = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 24);
             assertEquals(t, LocalTime.of(2, 30).minusHours(hours));
         });
 
@@ -1495,10 +1494,10 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minusMinutes()', () => {
 
         it('test_minusMinutes_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            for (var i = 0; i < 70; i++) {
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            for (let i = 0; i < 70; i++) {
                 t = t.minusMinutes(1);
                 min--;
                 if (min === -1) {
@@ -1515,11 +1514,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusMinutes_fromZero()', () => {
-            var base = LocalTime.MIDNIGHT;
-            var hour = 22;
-            var min = 49;
-            for (var i = 70; i > -70; i--) {
-                var t = base.minusMinutes(i);
+            const base = LocalTime.MIDNIGHT;
+            let hour = 22;
+            let min = 49;
+            for (let i = 70; i > -70; i--) {
+                const t = base.minusMinutes(i);
                 min++;
 
                 if (min === 60) {
@@ -1537,28 +1536,28 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusMinutes_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.minusMinutes(0);
+            const t = TEST_12_30_40_987654321.minusMinutes(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusMinutes_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.minusMinutes(24 * 60);
+            const t = TEST_12_30_40_987654321.minusMinutes(24 * 60);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusMinutes_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 1).minusMinutes(1);
+            const t = LocalTime.of(0, 1).minusMinutes(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_minusMinutes_toMidday_equals', () => {
-            var t = LocalTime.of(12, 1).minusMinutes(1);
+            const t = LocalTime.of(12, 1).minusMinutes(1);
             assertEquals(t, LocalTime.NOON);
         });
 
         it('test_minusMinutes_big()', () => {
-            var t = LocalTime.of(2, 30).minusMinutes(MathUtil.MAX_SAFE_INTEGER);
-            var mins = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60));
+            const t = LocalTime.of(2, 30).minusMinutes(MathUtil.MAX_SAFE_INTEGER);
+            const mins = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60));
             assertEquals(t, LocalTime.of(2, 30).minusMinutes(mins));
         });
 
@@ -1567,11 +1566,11 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minusSeconds()', () => {
 
         it('test_minusSeconds_one()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            var sec = 0;
-            for (var i = 0; i < 3700; i++) {
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            let sec = 0;
+            for (let i = 0; i < 3700; i++) {
                 t = t.minusSeconds(1);
                 sec--;
                 if (sec === -1) {
@@ -1594,13 +1593,13 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusSeconds_fromZero', function () {
-            var base = LocalTime.MIDNIGHT;
-            var delta = 30;
-            var i = 3660;
-            var hour = 22;
-            var min = 59;
-            var sec = 0;
-            var iEnd = -3660;
+            const base = LocalTime.MIDNIGHT;
+            const delta = 30;
+            let i = 3660;
+            let hour = 22;
+            let min = 59;
+            let sec = 0;
+            const iEnd = -3660;
             while (i < iEnd) {
                 i -= delta;
                 sec += delta;
@@ -1618,7 +1617,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
                         }
                     }
                 }
-                var t = base.minusSeconds(i);
+                const t = base.minusSeconds(i);
 
                 assertEquals(t.hour(), hour);
                 assertEquals(t.minute(), min);
@@ -1627,28 +1626,28 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusSeconds_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.minusSeconds(0);
+            const t = TEST_12_30_40_987654321.minusSeconds(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusSeconds_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.minusSeconds(24 * 60 * 60);
+            const t = TEST_12_30_40_987654321.minusSeconds(24 * 60 * 60);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusSeconds_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 0, 1).minusSeconds(1);
+            const t = LocalTime.of(0, 0, 1).minusSeconds(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_minusSeconds_toMidday_equal', () => {
-            var t = LocalTime.of(12, 0, 1).minusSeconds(1);
+            const t = LocalTime.of(12, 0, 1).minusSeconds(1);
             assertEquals(t, LocalTime.NOON);
         });
 
         it('test_minusSeconds_big()', () => {
-            var t = LocalTime.of(2, 30).minusSeconds(MathUtil.MAX_SAFE_INTEGER);
-            var secs = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60 * 60));
+            const t = LocalTime.of(2, 30).minusSeconds(MathUtil.MAX_SAFE_INTEGER);
+            const secs = MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, (24 * 60 * 60));
             assertEquals(t, LocalTime.of(2, 30).minusSeconds(secs));
         });
 
@@ -1657,12 +1656,12 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('minusNanos()', () => {
 
         it('test_minusNanos_halfABillion()', () => {
-            var t = LocalTime.MIDNIGHT;
-            var hour = 0;
-            var min = 0;
-            var sec = 0;
-            var nanos = 0;
-            for (var i = 0; i < 3700 * 1000000000; i += 500000000) {
+            let t = LocalTime.MIDNIGHT;
+            let hour = 0;
+            let min = 0;
+            let sec = 0;
+            let nanos = 0;
+            for (let i = 0; i < 3700 * 1000000000; i += 500000000) {
                 t = t.minusNanos(500000000);
                 nanos -= 500000000;
 
@@ -1693,14 +1692,14 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusNanos_fromZero', function () {
-            var base = LocalTime.MIDNIGHT;
-            var delta = 7500000000;
-            var i = 3660 * 1000000000;
-            var hour = 22;
-            var min = 59;
-            var sec = 0;
-            var nanos = 0;
-            var iEnd = -3660 * 1000000000;
+            const base = LocalTime.MIDNIGHT;
+            const delta = 7500000000;
+            let i = 3660 * 1000000000;
+            let hour = 22;
+            let min = 59;
+            let sec = 0;
+            let nanos = 0;
+            const iEnd = -3660 * 1000000000;
             while (i >= iEnd) {
                 i -= delta;
                 nanos += delta;
@@ -1719,7 +1718,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
                         }
                     }
                 }
-                var t = base.minusNanos(i);
+                const t = base.minusNanos(i);
                 assertEquals(hour, t.hour());
                 assertEquals(min, t.minute());
                 assertEquals(sec, t.second());
@@ -1729,22 +1728,22 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_minusNanos_noChange_equal', () => {
-            var t = TEST_12_30_40_987654321.minusNanos(0);
+            const t = TEST_12_30_40_987654321.minusNanos(0);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusNanos_noChange_oneDay_equal()', () => {
-            var t = TEST_12_30_40_987654321.minusNanos(24 * 60 * 60 * 1000000000);
+            const t = TEST_12_30_40_987654321.minusNanos(24 * 60 * 60 * 1000000000);
             assertEquals(t, TEST_12_30_40_987654321);
         });
 
         it('test_minusNanos_toMidnight_equal', () => {
-            var t = LocalTime.of(0, 0, 0, 1).minusNanos(1);
+            const t = LocalTime.of(0, 0, 0, 1).minusNanos(1);
             assertEquals(t, LocalTime.MIDNIGHT);
         });
 
         it('test_minusNanos_toMidday_equal', () => {
-            var t = LocalTime.of(12, 0, 0, 1).minusNanos(1);
+            const t = LocalTime.of(12, 0, 0, 1).minusNanos(1);
             assertEquals(t, LocalTime.NOON);
         });
 
@@ -1788,8 +1787,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_until(startStr, endStr, unit, expected) {
-            var start = LocalTime.parse(startStr);
-            var end = LocalTime.parse(endStr);
+            const start = LocalTime.parse(startStr);
+            const end = LocalTime.parse(endStr);
             assertEquals(start.until(end, unit), expected);
             assertEquals(end.until(start, unit), MathUtil.safeZero(-expected));
         }
@@ -1799,7 +1798,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('atDate()', () => {
 
         it('test_atDate', () => {
-            var t = LocalTime.of(11, 30);
+            const t = LocalTime.of(11, 30);
             assertEquals(t.atDate(LocalDate.of(2012, 6, 30)), LocalDateTime.of(2012, 6, 30, 11, 30));
         });
 
@@ -1816,16 +1815,16 @@ describe('org.threeten.bp.TestLocalTime', function () {
         let delta = isCoverageTestRunner() ? 97 : 7;
 
         it('test_toSecondOfDay()', () => {
-            var t = LocalTime.of(0, 0);
-            for (var i = 0; i < 24 * 60 * 60; i+=delta) {
+            let t = LocalTime.of(0, 0);
+            for (let i = 0; i < 24 * 60 * 60; i+=delta) {
                 assertEquals(t.toSecondOfDay(), i);
                 t = t.plusSeconds(delta);
             }
         });
 
         it('test_toSecondOfDay_fromNanoOfDay_symmetry()', () => {
-            var t = LocalTime.of(0, 0);
-            for (var i = 0; i < 24 * 60 * 60; i+=delta) {
+            let t = LocalTime.of(0, 0);
+            for (let i = 0; i < 24 * 60 * 60; i+=delta) {
                 assertEquals(LocalTime.ofSecondOfDay(t.toSecondOfDay()), t);
                 t = t.plusSeconds(delta);
             }
@@ -1838,8 +1837,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         let delta = isCoverageTestRunner() ? 997 : 167;
 
         it('test_toNanoOfDay()', () => {
-            var t = LocalTime.of(0, 0);
-            var nanosOfDay = 24 * 60 * 60 * 1000000000;
+            let t = LocalTime.of(0, 0);
+            const nanosOfDay = 24 * 60 * 60 * 1000000000;
 
             for (let i = 0; i < 1000000; i+=delta) {
                 assertEquals(t.toNanoOfDay(), i);
@@ -1853,7 +1852,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         it('test_toNanoOfDay_fromNanoOfDay_symmetry()', () => {
-            var t = LocalTime.of(0, 0);
+            let t = LocalTime.of(0, 0);
             for (let i = 0; i < 1000000; i+=delta) {
                 assertEquals(LocalTime.ofNanoOfDay(t.toNanoOfDay()), t);
                 t = t.plusNanos(delta);
@@ -1900,9 +1899,9 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         function doTest_comparisons_LocalTime(...localTimes) {
             for (let i = 0; i < localTimes.length; i++) {
-                var a = localTimes[i];
+                const a = localTimes[i];
                 for (let j = 0; j < localTimes.length; j++) {
-                    var b = localTimes[j];
+                    const b = localTimes[j];
                     if (i < j) {
                         assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
@@ -1958,8 +1957,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_equals_true(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s, n);
             assertEquals(a.equals(b), true);
         }
 
@@ -1970,8 +1969,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_equals_false_hour_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h + 1, m, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h + 1, m, s, n);
             assertEquals(a.equals(b), false);
         }
 
@@ -1982,8 +1981,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_equals_false_minute_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m + 1, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m + 1, s, n);
             assertEquals(a.equals(b), false);
         }
 
@@ -1994,8 +1993,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_equals_false_second_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s + 1, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s + 1, n);
             assertEquals(a.equals(b), false);
         }
 
@@ -2006,8 +2005,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_equals_false_nano_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s, n + 1);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s, n + 1);
             assertEquals(a.equals(b), false);
         }
 
@@ -2034,8 +2033,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_hashCode_same(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s, n);
             assertEquals(a.hashCode(), b.hashCode());
         }
 
@@ -2046,8 +2045,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_hashCode_hour_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h + 1, m, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h + 1, m, s, n);
             assertEquals(a.hashCode() === b.hashCode(), false);
         }
 
@@ -2058,8 +2057,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_hashCode_minute_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m + 1, s, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m + 1, s, n);
             assertEquals(a.hashCode() === b.hashCode(), false);
         }
 
@@ -2070,8 +2069,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_hashCode_second_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s + 1, n);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s + 1, n);
             assertEquals(a.hashCode() === b.hashCode(), false);
         }
 
@@ -2082,8 +2081,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
         });
 
         function test_hashCode_nano_differs(h, m, s, n) {
-            var a = LocalTime.of(h, m, s, n);
-            var b = LocalTime.of(h, m, s, n + 1);
+            const a = LocalTime.of(h, m, s, n);
+            const b = LocalTime.of(h, m, s, n + 1);
             assertEquals(a.hashCode() === b.hashCode(), false);
         }
 
@@ -2099,8 +2098,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         function test_toString(h, m, s, n, expected) {
             // console.log(h, m, s, n, expected);
-            var t = LocalTime.of(h, m, s, n);
-            var str = t.toString();
+            const t = LocalTime.of(h, m, s, n);
+            const str = t.toString();
             assertEquals(str, expected);
             assertEquals(t.toJSON(), str);
         }
@@ -2111,8 +2110,8 @@ describe('org.threeten.bp.TestLocalTime', function () {
     describe('format(DateTimeFormatter)', () => {
 
         it('test_format_formatter()', () => {
-            var f = DateTimeFormatter.ofPattern('H m s');
-            var t = LocalTime.of(11, 30, 45).format(f);
+            const f = DateTimeFormatter.ofPattern('H m s');
+            const t = LocalTime.of(11, 30, 45).format(f);
             assertEquals(t, '11 30 45');
         });
 
