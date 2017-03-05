@@ -29,7 +29,9 @@ module.exports = {
         'eqeqeq': [
             2,
             'smart'
-        ]
+        ],
+        'no-var': 'error',
+        'prefer-const': 'error'
     },
     'env': {
         'es6': false,
