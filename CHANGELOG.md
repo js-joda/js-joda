@@ -3,6 +3,10 @@ Changelog
 
 ### 1.4.1 (next)
 
+#### lint
+
+* add linter rules `no-var`, `prefer-const`
+
 ### 1.4.0
 
 #### public API
