@@ -1,6 +1,6 @@
 module.exports = function(config) {
-    
-    var saucelabsLaunchers = {
+
+    const saucelabsLaunchers = {
         sl_ie_9: {
             base: 'SauceLabs',
             browserName: 'internet explorer',
@@ -48,7 +48,7 @@ module.exports = function(config) {
             version: 'latest'
         },
     };
-    
+
     config.set({
         files: [
             {pattern: 'test/karmaWebpackTestEntry.js'}

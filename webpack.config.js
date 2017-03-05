@@ -1,18 +1,18 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 
-var minify = JSON.parse(process.env.DIST_MIN || '0');
-var sourceMaps = !minify;
+const minify = JSON.parse(process.env.DIST_MIN || '0');
+const sourceMaps = !minify;
 
 function createBanner(){
-    var packageJson = require('./package.json');
-    var version = '//! @version ' + packageJson.name + ' - ' + packageJson.version + '\n';
-    var preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
+    const packageJson = require('./package.json');
+    const version = '//! @version ' + packageJson.name + ' - ' + packageJson.version + '\n';
+    const preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
     return version + preamble;
 }
 
-var banner = createBanner();
+const banner = createBanner();
 
 module.exports = {
     context: __dirname,
