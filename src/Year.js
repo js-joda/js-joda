@@ -155,7 +155,7 @@ export class Year extends Temporal {
     static nowClock(clock) {
         requireNonNull(clock, 'clock');
         requireInstance(clock, Clock, 'clock');
-        let now = LocalDate.now(clock);  // called once
+        const now = LocalDate.now(clock);  // called once
         return Year.of(now.year());
     }
     /**

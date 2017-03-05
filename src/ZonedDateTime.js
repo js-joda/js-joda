@@ -255,12 +255,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             return new ZonedDateTime(localDateTime, zone, zone);
         }
         let offset = null;
-        let rules = zone.rules();
-        let validOffsets = rules.validOffsets(localDateTime);
+        const rules = zone.rules();
+        const validOffsets = rules.validOffsets(localDateTime);
         if (validOffsets.length === 1) {
             offset = validOffsets[0];
         } else if (validOffsets.length === 0) {
-            let trans = rules.transition(localDateTime);
+            const trans = rules.transition(localDateTime);
             localDateTime = localDateTime.plusSeconds(trans.duration().seconds());
             offset = trans.offsetAfter();
         } else {
@@ -1909,8 +1909,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (unit.isDateBased()) {
                 return this._dateTime.until(end._dateTime, unit);
             } else {
-                let difference = this._offset.totalSeconds() - end._offset.totalSeconds();
-                let adjustedEnd = end._dateTime.plusSeconds(difference);
+                const difference = this._offset.totalSeconds() - end._offset.totalSeconds();
+                const adjustedEnd = end._dateTime.plusSeconds(difference);
                 return this._dateTime.until(adjustedEnd, unit);
             }
         }

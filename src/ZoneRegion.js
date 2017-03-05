@@ -34,7 +34,7 @@ export class ZoneRegion extends ZoneId {
      * @return {ZoneId}
      */
     static ofId(zoneId){
-        let rules = ZoneRulesProvider.getRules(zoneId);
+        const rules = ZoneRulesProvider.getRules(zoneId);
         return new ZoneRegion(zoneId, rules);
     }
 

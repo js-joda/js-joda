@@ -114,7 +114,7 @@ export class YearMonth extends Temporal {
      * @return {YearMonth} the current year-month, not null
      */
     static nowClock(clock) {
-        let now = LocalDate.now(clock);
+        const now = LocalDate.now(clock);
         return YearMonth.of(now.year(), now.month());
     }
 
@@ -645,7 +645,7 @@ export class YearMonth extends Temporal {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
-            let f = field;
+            const f = field;
             f.checkValidValue(newValue);
             switch (f) {
                 case ChronoField.MONTH_OF_YEAR: return this.withMonth(newValue);
@@ -767,7 +767,7 @@ export class YearMonth extends Temporal {
         if (yearsToAdd === 0) {
             return this;
         }
-        let newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
+        const newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
         return this.withYearMonth(newYear, this._month);
     }
 
@@ -784,10 +784,10 @@ export class YearMonth extends Temporal {
         if (monthsToAdd === 0) {
             return this;
         }
-        let monthCount = (this._year * 12) + (this._month - 1);
-        let calcMonths = monthCount + monthsToAdd;
-        let newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
-        let newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
+        const monthCount = (this._year * 12) + (this._month - 1);
+        const calcMonths = monthCount + monthsToAdd;
+        const newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
+        const newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
         return this.withYearMonth(newYear, newMonth);
     }
 
@@ -986,9 +986,9 @@ export class YearMonth extends Temporal {
         requireInstance(endExclusive, Temporal, 'endExclusive');
         requireInstance(unit, TemporalUnit, 'unit');
 
-        let end = YearMonth.from(endExclusive);
+        const end = YearMonth.from(endExclusive);
         if (unit instanceof ChronoUnit) {
-            let monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();  // no overflow
+            const monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();  // no overflow
             switch (unit) {
                 case ChronoUnit.MONTHS: return monthsUntil;
                 case ChronoUnit.YEARS: return monthsUntil / 12;
@@ -1096,7 +1096,7 @@ export class YearMonth extends Temporal {
             return true;
         }
         if (obj instanceof YearMonth) {
-            let other = obj;
+            const other = obj;
             return this.year() === other.year() && this.monthValue() === other.monthValue();
         }
         return false;

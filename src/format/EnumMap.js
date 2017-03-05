@@ -12,7 +12,7 @@ export class EnumMap {
     }
 
     putAll(otherMap){
-        for(let key in otherMap._map){
+        for(const key in otherMap._map){
             this._map[key] = otherMap._map[key];
         }
         return this;
@@ -38,7 +38,7 @@ export class EnumMap {
     retainAll(keyList){
         const map = {};
         for(let i=0; i<keyList.length; i++){
-            let key = keyList[i].name();
+            const key = keyList[i].name();
             map[key] = this._map[key];
         }
         this._map = map;

@@ -29,7 +29,7 @@ export class CharLiteralPrinterParser {
         if (position === length) {
             return ~position;
         }
-        let ch = text.charAt(position);
+        const ch = text.charAt(position);
         if (context.charEquals(this._literal, ch) === false) {
             return ~position;
         }

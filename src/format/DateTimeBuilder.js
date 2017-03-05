@@ -186,8 +186,8 @@ export class DateTimeBuilder extends Temporal {
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
-            for (let fieldName in this.fieldValues.keySet()) {
-                let field = ChronoField.byName(fieldName);
+            for (const fieldName in this.fieldValues.keySet()) {
+                const field = ChronoField.byName(fieldName);
                 if (field !== null) {
                     if (this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
                         if (field.isDateBased()) {
@@ -371,13 +371,13 @@ export class DateTimeBuilder extends Temporal {
                     hod = 0;
                     this.excessDays = Period.ofDays(1);
                 }
-                let hodVal = ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
+                const hodVal = ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
                 if (moh != null) {
-                    let mohVal = ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
+                    const mohVal = ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
                     if (som != null) {
-                        let somVal = ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
+                        const somVal = ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
                         if (nos != null) {
-                            let nosVal = ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
+                            const nosVal = ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
                             this._addObject(LocalTime.of(hodVal, mohVal, somVal, nosVal));
                         } else {
                             this._addObject(LocalTime.of(hodVal, mohVal, somVal));
@@ -405,20 +405,20 @@ export class DateTimeBuilder extends Temporal {
                         totalNanos = MathUtil.safeAdd(totalNanos, MathUtil.safeMultiply(moh, 60000000000));
                         totalNanos = MathUtil.safeAdd(totalNanos, MathUtil.safeMultiply(som, 1000000000));
                         totalNanos = MathUtil.safeAdd(totalNanos, nos);
-                        let excessDays =  MathUtil.floorDiv(totalNanos, 86400000000000);  // safe int cast
-                        let nod = MathUtil.floorMod(totalNanos, 86400000000000);
+                        const excessDays =  MathUtil.floorDiv(totalNanos, 86400000000000);  // safe int cast
+                        const nod = MathUtil.floorMod(totalNanos, 86400000000000);
                         this._addObject(LocalTime.ofNanoOfDay(nod));
                         this.excessDays = Period.ofDays(excessDays);
                     } else {
                         let totalSecs = MathUtil.safeMultiply(hodVal, 3600);
                         totalSecs = MathUtil.safeAdd(totalSecs, MathUtil.safeMultiply(moh, 60));
-                        let excessDays =  MathUtil.floorDiv(totalSecs, 86400);  // safe int cast
-                        let sod = MathUtil.floorMod(totalSecs, 86400);
+                        const excessDays =  MathUtil.floorDiv(totalSecs, 86400);  // safe int cast
+                        const sod = MathUtil.floorMod(totalSecs, 86400);
                         this._addObject(LocalTime.ofSecondOfDay(sod));
                         this.excessDays = Period.ofDays(excessDays);
                     }
                 } else {
-                    let excessDays = MathUtil.safeToInt(MathUtil.floorDiv(hodVal, 24));
+                    const excessDays = MathUtil.safeToInt(MathUtil.floorDiv(hodVal, 24));
                     hodVal = MathUtil.floorMod(hodVal, 24);
                     this._addObject(LocalTime.of(hodVal, 0));
                     this.excessDays = Period.ofDays(excessDays);

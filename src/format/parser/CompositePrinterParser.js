@@ -34,7 +34,7 @@ export class CompositePrinterParser {
         }
         try {
             for (let i=0; i<this._printerParsers.length; i++) {
-                let pp = this._printerParsers[i];
+                const pp = this._printerParsers[i];
                 if (pp.print(context, buf) === false) {
                     buf.setLength(length);  // reset buffer
                     return true;
@@ -53,7 +53,7 @@ export class CompositePrinterParser {
             context.startOptional();
             let pos = position;
             for (let i=0; i<this._printerParsers.length; i++) {
-                let pp = this._printerParsers[i];
+                const pp = this._printerParsers[i];
                 pos = pp.parse(context, text, pos);
                 if (pos < 0) {
                     context.endOptional(false);

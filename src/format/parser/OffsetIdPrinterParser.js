@@ -152,8 +152,8 @@ export class OffsetIdPrinterParser  {
         if (pos + 2 > parseText.length) {
             return required;
         }
-        let ch1 = parseText[pos++];
-        let ch2 = parseText[pos++];
+        const ch1 = parseText[pos++];
+        const ch2 = parseText[pos++];
         if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
             return required;
         }

@@ -106,14 +106,14 @@ export class ZoneIdFactory {
         }
         if (StringUtil.startsWith(zoneId, 'UTC+') || StringUtil.startsWith(zoneId, 'GMT+') ||
                 StringUtil.startsWith(zoneId, 'UTC-') || StringUtil.startsWith(zoneId, 'GMT-')) {
-            let offset = ZoneOffset.of(zoneId.substring(3));
+            const offset = ZoneOffset.of(zoneId.substring(3));
             if (offset.totalSeconds() === 0) {
                 return new ZoneRegion(zoneId.substring(0, 3), offset.rules());
             }
             return new ZoneRegion(zoneId.substring(0, 3) + offset.id(), offset.rules());
         }
         if (StringUtil.startsWith(zoneId, 'UT+') || StringUtil.startsWith(zoneId, 'UT-')) {
-            let offset = ZoneOffset.of(zoneId.substring(2));
+            const offset = ZoneOffset.of(zoneId.substring(2));
             if (offset.totalSeconds() === 0) {
                 return new ZoneRegion('UT', offset.rules());
             }

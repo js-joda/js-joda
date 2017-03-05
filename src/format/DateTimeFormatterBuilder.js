@@ -920,7 +920,7 @@ export class DateTimeFormatterBuilder {
                     if (count > 5) {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     }
-                    let zero = (count === 1 ? '+00' : (count % 2 === 0 ? '+0000' : '+00:00'));
+                    const zero = (count === 1 ? '+00' : (count % 2 === 0 ? '+0000' : '+00:00'));
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
                 } else if (cur === 'W') {
                     if (count > 1) {
@@ -1464,10 +1464,10 @@ class InstantPrinterParser  {
         let inNano = ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
         if (inSec >= -SECONDS_0000_TO_1970) {
             // current era
-            let zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
-            let hi = MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
-            let lo = MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
-            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            const zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
+            const hi = MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
+            const lo = MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            const ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
             if (hi > 0) {
                 buf.append('+').append(hi);
             }
@@ -1477,11 +1477,11 @@ class InstantPrinterParser  {
             }
         } else {
             // before current era
-            let zeroSecs = inSec + SECONDS_0000_TO_1970;
-            let hi = MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
-            let lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
-            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
-            let pos = buf.length();
+            const zeroSecs = inSec + SECONDS_0000_TO_1970;
+            const hi = MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
+            const lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            const ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            const pos = buf.length();
             buf.append(ldt);
             if (ldt.second() === 0) {
                 buf.append(':00');
@@ -1512,7 +1512,7 @@ class InstantPrinterParser  {
             buf.append('.');
             let div = 100000000;
             for (let i = 0; ((this.fractionalDigits === -1 && inNano > 0) || i < this.fractionalDigits); i++) {
-                let digit = MathUtil.intDiv(inNano, div);
+                const digit = MathUtil.intDiv(inNano, div);
                 buf.append(digit);
                 inNano = inNano - (digit * div);
                 div = MathUtil.intDiv(div, 10);

@@ -234,12 +234,12 @@ class Field extends TemporalField{
         let year = date.year();
         let doy = date.dayOfYear();
         if (doy <= 3) {
-            let dow = date.dayOfWeek().ordinal();
+            const dow = date.dayOfWeek().ordinal();
             if (doy - dow < -2) {
                 year--;
             }
         } else if (doy >= 363) {
-            let dow = date.dayOfWeek().ordinal();
+            const dow = date.dayOfWeek().ordinal();
             doy = doy - 363 - (date.isLeapYear() ? 1 : 0);
             if (doy - dow >= 0) {
                 year++;
@@ -381,12 +381,12 @@ class DAY_OF_QUARTER_FIELD extends Field {
         const doq = fieldValues.get(DAY_OF_QUARTER);
         let date;
         if (resolverStyle === ResolverStyle.LENIENT) {
-            let qoy = qoyLong;
+            const qoy = qoyLong;
             date = LocalDate.of(y, 1, 1);
             date = date.plusMonths(MathUtil.safeMultiply(MathUtil.safeSubtract(qoy, 1), 3));
             date = date.plusDays(MathUtil.safeSubtract(doq, 1));
         } else {
-            let qoy = QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, QUARTER_OF_YEAR);
+            const qoy = QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, QUARTER_OF_YEAR);
             if (resolverStyle === ResolverStyle.STRICT) {
                 let max = 92;
                 if (qoy === 1) {
@@ -595,10 +595,10 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
             }
             date = LocalDate.of(wby, 1, 4).plusWeeks(wowby - 1).plusWeeks(weeks).with(ChronoField.DAY_OF_WEEK, dow);
         } else {
-            let dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(dowLong);
+            const dow = ChronoField.DAY_OF_WEEK.checkValidIntValue(dowLong);
             if (resolverStyle === ResolverStyle.STRICT) {
-                let temp = LocalDate.of(wby, 1, 4);
-                let range = Field._getWeekRangeByLocalDate(temp);
+                const temp = LocalDate.of(wby, 1, 4);
+                const range = Field._getWeekRangeByLocalDate(temp);
                 range.checkValidValue(wowby, this);
             } else {
                 this.range().checkValidValue(wowby, this);  // leniently check from 1 to 53

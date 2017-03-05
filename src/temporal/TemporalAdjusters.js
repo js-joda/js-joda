@@ -412,14 +412,14 @@ class DayOfWeekInMonth extends TemporalAdjuster {
 
     adjustInto(temporal) {
         if (this._ordinal >= 0) {
-            let temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
-            let curDow = temp.get(ChronoField.DAY_OF_WEEK);
+            const temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
+            const curDow = temp.get(ChronoField.DAY_OF_WEEK);
             let dowDiff = MathUtil.intMod((this._dowValue - curDow + 7), 7);
             dowDiff += (this._ordinal - 1) * 7;  // safe from overflow
             return temp.plus(dowDiff, ChronoUnit.DAYS);
         } else {
-            let temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).maximum());
-            let curDow = temp.get(ChronoField.DAY_OF_WEEK);
+            const temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).maximum());
+            const curDow = temp.get(ChronoField.DAY_OF_WEEK);
             let daysDiff = this._dowValue - curDow;
             daysDiff = (daysDiff === 0 ? 0 : (daysDiff > 0 ? daysDiff - 7 : daysDiff));
             daysDiff -= (-this._ordinal - 1) * 7;  // safe from overflow
@@ -454,10 +454,10 @@ class RelativeDayOfWeek extends TemporalAdjuster {
             return temporal;
         }
         if ((this._relative & 1) === 0) {
-            let daysDiff = calDow - this._dowValue;
+            const daysDiff = calDow - this._dowValue;
             return temporal.plus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, ChronoUnit.DAYS);
         } else {
-            let daysDiff = this._dowValue - calDow;
+            const daysDiff = this._dowValue - calDow;
             return temporal.minus(daysDiff >= 0 ? 7 - daysDiff : -daysDiff, ChronoUnit.DAYS);
         }
     }

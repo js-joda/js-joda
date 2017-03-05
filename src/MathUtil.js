@@ -130,7 +130,7 @@ export class MathUtil {
         if (x === 0 || y === 0) {
             return 0;
         }
-        let r = MathUtil.safeToInt(x * y);
+        const r = MathUtil.safeToInt(x * y);
         if (r / y !== x || (x === MIN_SAFE_INTEGER && y === -1) || (y === MIN_SAFE_INTEGER && x === -1)) {
             throw new ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
         }

@@ -117,7 +117,7 @@ export class MonthDay extends Temporal {
      */
     static nowClock(clock) {
         requireNonNull(clock, 'clock');
-        let now = LocalDate.now(clock);  // called once
+        const now = LocalDate.now(clock);  // called once
         return MonthDay.of(now.month(), now.dayOfMonth());
     }
     //-----------------------------------------------------------------------
@@ -502,7 +502,7 @@ export class MonthDay extends Temporal {
         if (month.value() === this._month) {
             return this;
         }
-        let day = Math.min(this._day, month.maxLength());
+        const day = Math.min(this._day, month.maxLength());
         return new MonthDay(month.value(), day);
     }
 
@@ -667,7 +667,7 @@ export class MonthDay extends Temporal {
             return true;
         }
         if (obj instanceof MonthDay) {
-            let other = obj;
+            const other = obj;
             return this.monthValue() === other.monthValue() && this.dayOfMonth() === other.dayOfMonth();
         }
         return false;

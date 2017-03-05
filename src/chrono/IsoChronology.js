@@ -54,7 +54,7 @@ export class IsoChronology extends Enum{
         // TODO: this function is in Chronology in threetenbp, maybe needs to be moved?
         requireNonNull(fieldValues, 'fieldValues');
         requireNonNull(field, 'field');
-        let current = fieldValues.get(field);
+        const current = fieldValues.get(field);
         if (current != null && current !== value) {
             throw new DateTimeException('Invalid state, field: ' + field + ' ' + current + ' conflicts with ' + field + ' ' + value);
         }
@@ -67,7 +67,7 @@ export class IsoChronology extends Enum{
         }
 
         // normalize fields
-        let prolepticMonth = fieldValues.remove(ChronoField.PROLEPTIC_MONTH);
+        const prolepticMonth = fieldValues.remove(ChronoField.PROLEPTIC_MONTH);
         if (prolepticMonth != null) {
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.PROLEPTIC_MONTH.checkValidValue(prolepticMonth);
@@ -77,14 +77,14 @@ export class IsoChronology extends Enum{
         }
 
         // eras
-        let yoeLong = fieldValues.remove(ChronoField.YEAR_OF_ERA);
+        const yoeLong = fieldValues.remove(ChronoField.YEAR_OF_ERA);
         if (yoeLong != null) {
             if (resolverStyle !== ResolverStyle.LENIENT) {
                 ChronoField.YEAR_OF_ERA.checkValidValue(yoeLong);
             }
-            let era = fieldValues.remove(ChronoField.ERA);
+            const era = fieldValues.remove(ChronoField.ERA);
             if (era == null) {
-                let year = fieldValues.get(ChronoField.YEAR);
+                const year = fieldValues.get(ChronoField.YEAR);
                 if (resolverStyle === ResolverStyle.STRICT) {
                     // do not invent era if strict, but do cross-check with year
                     if (year != null) {

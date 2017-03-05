@@ -136,8 +136,8 @@ export class DateTimeParseContext{
             cs2 = cs2.toLowerCase();
         }
         for (let i = 0; i < length; i++) {
-            let ch1 = cs1[offset1 + i];
-            let ch2 = cs2[offset2 + i];
+            const ch1 = cs1[offset1 + i];
+            const ch2 = cs2[offset2 + i];
             if (ch1 !== ch2) {
                 return false;
             }

@@ -152,10 +152,10 @@ export class NumberPrinterParser {
         let total = 0;
         let pos = position;
         for (let pass = 0; pass < 2; pass++) {
-            let maxEndPos = Math.min(pos + effMaxWidth, length);
+            const maxEndPos = Math.min(pos + effMaxWidth, length);
             while (pos < maxEndPos) {
-                let ch = text.charAt(pos++);
-                let digit = context.symbols().convertToDigit(ch);
+                const ch = text.charAt(pos++);
+                const digit = context.symbols().convertToDigit(ch);
                 if (digit < 0) {
                     pos--;
                     if (pos < minEndPos) {
@@ -171,7 +171,7 @@ export class NumberPrinterParser {
             }
             if (this._subsequentWidth > 0 && pass === 0) {
                 // re-parse now we know the correct width
-                let parseLen = pos - position;
+                const parseLen = pos - position;
                 effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);
                 pos = position;
                 total = 0;
@@ -187,7 +187,7 @@ export class NumberPrinterParser {
                 total = -total;
             }
         } else if (this._signStyle === SignStyle.EXCEEDS_PAD && context.isStrict()) {
-            let parseLen = pos - position;
+            const parseLen = pos - position;
             if (positive) {
                 if (parseLen <= this._minWidth) {
                     return ~(position - 1);  // '+' only parsed if minWidth exceeded
@@ -270,14 +270,14 @@ export class ReducedPrinterParser extends NumberPrinterParser {
      * @param {number} value
      */
     getValue(context, value) {
-        let absValue = Math.abs(value);
+        const absValue = Math.abs(value);
         let baseValue = this._baseValue;
         if (this._baseDate !== null) {
             // TODO: in threetenbp the following line is used, but we dont have Chronology yet,
             // let chrono = Chronology.from(context.getTemporal());
             // so let's use IsoChronology for now
             context.temporal();
-            let chrono = IsoChronology.INSTANCE;
+            const chrono = IsoChronology.INSTANCE;
             baseValue = chrono.date(this._baseDate).get(this._field);
         }
         if (value >= baseValue && value < baseValue + EXCEED_POINTS[this._minWidth]) {
@@ -296,15 +296,15 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     _setValue(context, value, errorPos, successPos) {
         let baseValue = this._baseValue;
         if (this._baseDate != null) {
-            let chrono = context.getEffectiveChronology();
+            const chrono = context.getEffectiveChronology();
             baseValue = chrono.date(this._baseDate).get(this._field);
             context.addChronologyChangedParser(this, value, errorPos, successPos);
         }
-        let parseLen = successPos - errorPos;
+        const parseLen = successPos - errorPos;
         if (parseLen === this._minWidth && value >= 0) {
-            let range = EXCEED_POINTS[this._minWidth];
-            let lastPart = baseValue % range;
-            let basePart = baseValue - lastPart;
+            const range = EXCEED_POINTS[this._minWidth];
+            const lastPart = baseValue % range;
+            const basePart = baseValue - lastPart;
             if (baseValue > 0) {
                 value = basePart + value;
             } else {

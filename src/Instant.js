@@ -188,8 +188,8 @@ export class Instant extends Temporal {
      */
     static from(temporal) {
         try {
-            let instantSecs = temporal.getLong(ChronoField.INSTANT_SECONDS);
-            let nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
+            const instantSecs = temporal.getLong(ChronoField.INSTANT_SECONDS);
+            const nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
             return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
         } catch (ex) {
             throw new DateTimeException('Unable to obtain Instant from TemporalAccessor: ' +
@@ -493,11 +493,11 @@ export class Instant extends Temporal {
             field.checkValidValue(newValue);
             switch (field) {
                 case ChronoField.MILLI_OF_SECOND: {
-                    let nval = newValue * NANOS_PER_MILLI;
+                    const nval = newValue * NANOS_PER_MILLI;
                     return (nval !== this._nanos? Instant._create(this._seconds, nval) : this);
                 }
                 case ChronoField.MICRO_OF_SECOND: {
-                    let nval = newValue * 1000;
+                    const nval = newValue * 1000;
                     return (nval !== this._nanos? Instant._create(this._seconds, nval) : this);
                 }
                 case ChronoField.NANO_OF_SECOND: return (newValue !== this._nanos? Instant._create(this._seconds, newValue) : this);
@@ -535,16 +535,16 @@ export class Instant extends Temporal {
         if (unit === ChronoUnit.NANOS) {
             return this;
         }
-        let unitDur = unit.duration();
+        const unitDur = unit.duration();
         if (unitDur.seconds() > LocalTime.SECONDS_PER_DAY) {
             throw new DateTimeException('Unit is too large to be used for truncation');
         }
-        let dur = unitDur.toNanos();
+        const dur = unitDur.toNanos();
         if (MathUtil.intMod(LocalTime.NANOS_PER_DAY, dur) !== 0) {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
-        let nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
-        let result = MathUtil.intDiv(nod, dur) * dur;
+        const nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
+        const result = MathUtil.intDiv(nod, dur) * dur;
         return this.plusNanos(result - nod);
     }
 
@@ -845,7 +845,7 @@ export class Instant extends Temporal {
     until(endExclusive, unit) {
         requireNonNull(endExclusive, 'endExclusive');
         requireNonNull(unit, 'unit');
-        let end = Instant.from(endExclusive);
+        const end = Instant.from(endExclusive);
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this._nanosUntil(end);
@@ -869,8 +869,8 @@ export class Instant extends Temporal {
      * @private
      */
     _nanosUntil(end) {
-        let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
-        let totalNanos = MathUtil.safeMultiply(secsDiff, LocalTime.NANOS_PER_SECOND);
+        const secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        const totalNanos = MathUtil.safeMultiply(secsDiff, LocalTime.NANOS_PER_SECOND);
         return MathUtil.safeAdd(totalNanos, end.nano() - this.nano());
     }
 
@@ -882,7 +882,7 @@ export class Instant extends Temporal {
      */
     _secondsUntil(end) {
         let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
-        let nanosDiff = end.nano() - this.nano();
+        const nanosDiff = end.nano() - this.nano();
         if (secsDiff > 0 && nanosDiff < 0) {
             secsDiff--;
         } else if (secsDiff < 0 && nanosDiff > 0) {

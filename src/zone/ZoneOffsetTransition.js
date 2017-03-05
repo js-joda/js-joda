@@ -258,7 +258,7 @@ export class ZoneOffsetTransition {
             return true;
         }
         if (other instanceof ZoneOffsetTransition) {
-            let d = other;
+            const d = other;
             return this._transition.equals(d._transition) &&
                 this._offsetBefore.equals(d.offsetBefore()) && this._offsetAfter.equals(d.offsetAfter());
         }

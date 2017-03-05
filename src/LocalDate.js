@@ -179,7 +179,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {AssertionError} if the epoch days exceeds the supported date range
      */
     static ofEpochDay(epochDay=0) {
-        let adjust, adjustCycles, dom, doyEst, marchDoy0, marchMonth0, month, year, yearEst, zeroDay;
+        let adjust, adjustCycles, doyEst, yearEst, zeroDay;
         zeroDay = epochDay + DAYS_0000_TO_1970;
         zeroDay -= 60;
         adjust = 0;
@@ -195,12 +195,12 @@ export class LocalDate extends ChronoLocalDate{
             doyEst = zeroDay - (365 * yearEst + MathUtil.intDiv(yearEst, 4) - MathUtil.intDiv(yearEst, 100) + MathUtil.intDiv(yearEst, 400));
         }
         yearEst += adjust;
-        marchDoy0 = doyEst;
-        marchMonth0 = MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
-        month = (marchMonth0 + 2) % 12 + 1;
-        dom = marchDoy0 - MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
+        const marchDoy0 = doyEst;
+        const marchMonth0 = MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
+        const month = (marchMonth0 + 2) % 12 + 1;
+        const dom = marchDoy0 - MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
         yearEst += MathUtil.intDiv(marchMonth0, 10);
-        year = yearEst;
+        const year = yearEst;
         return new LocalDate(year, month, dom);
     }
 
@@ -302,7 +302,7 @@ export class LocalDate extends ChronoLocalDate{
         ChronoField.YEAR.checkValidValue(year);
         ChronoField.MONTH_OF_YEAR.checkValidValue(month);
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
-        
+
         if (dayOfMonth > 28) {
             dom = 31;
             switch (month) {
