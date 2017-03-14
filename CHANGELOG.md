@@ -1,7 +1,11 @@
 Changelog
 =========
 
-### 1.4.1 (next)
+### 1.5.0 (next)
+
+#### public API
+
+* Remove protected class DateTimeBuilder from esdoc and typescript definition
 
 #### lint
 

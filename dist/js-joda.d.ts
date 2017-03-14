@@ -255,31 +255,6 @@ declare namespace JSJoda {
         withTemporalAdjuster(adjuster: TemporalAdjuster): Instant
 
     }
-    class DateTimeBuilder extends Temporal {
-        static create(field: TemporalField, value: number): DateTimeBuilder
-
-        constructor()
-
-        public chrono: any
-        public date: any
-        public excessDays: any
-        public fieldValues: any
-        public leapSecond: boolean
-        public time: any
-        public zone: any
-
-        build(type: TemporalQuery): any
-
-        getFieldValue0(field: TemporalField): number
-
-        getLong(field: TemporalField): number
-
-        isSupported(field: TemporalField): number
-
-        query(query: TemporalQuery): any
-
-        resolve(resolverStyle: ResolverStyle, resolverFields: Array<TemporalField>): DateTimeBuilder
-    }
     class ResolverStyle {
         static STRICT: ResolverStyle
         static SMART: ResolverStyle
