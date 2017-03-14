@@ -33,6 +33,8 @@ import {Period} from '../Period';
  *   outside the valid range for the field
  * * from {@link Class} to {@link TemporalAccessor}, holding larger scale objects
  *   like {@link LocalDateTime}.
+ *
+ *   @private
  */
 export class DateTimeBuilder extends Temporal {
 
