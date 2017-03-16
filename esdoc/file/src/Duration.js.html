@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -351,7 +350,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         let nanos = 0;
         if (startInclusive.isSupported(ChronoField.NANO_OF_SECOND) &amp;&amp; endExclusive.isSupported(ChronoField.NANO_OF_SECOND)) {
             try {
-                let startNos = startInclusive.getLong(ChronoField.NANO_OF_SECOND);
+                const startNos = startInclusive.getLong(ChronoField.NANO_OF_SECOND);
                 nanos = endExclusive.getLong(ChronoField.NANO_OF_SECOND) - startNos;
                 if (secs &gt; 0 &amp;&amp; nanos &lt; 0) {
                     nanos += LocalTime.NANOS_PER_SECOND;
@@ -359,7 +358,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
                     nanos -= LocalTime.NANOS_PER_SECOND;
                 } else if (secs === 0 &amp;&amp; nanos !== 0) {
                     // two possible meanings for result, so recalculate secs
-                    let adjustedEnd = endExclusive.with(ChronoField.NANO_OF_SECOND, startNos);
+                    const adjustedEnd = endExclusive.with(ChronoField.NANO_OF_SECOND, startNos);
                     secs = startInclusive.until(adjustedEnd, ChronoUnit.SECONDS);
                 }
             } catch (e) {

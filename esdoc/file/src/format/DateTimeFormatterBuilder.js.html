@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -1024,7 +1023,7 @@ export class DateTimeFormatterBuilder {
                     if (count &gt; 5) {
                         throw new IllegalArgumentException(&apos;Too many pattern letters: &apos; + cur);
                     }
-                    let zero = (count === 1 ? &apos;+00&apos; : (count % 2 === 0 ? &apos;+0000&apos; : &apos;+00:00&apos;));
+                    const zero = (count === 1 ? &apos;+00&apos; : (count % 2 === 0 ? &apos;+0000&apos; : &apos;+00:00&apos;));
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
                 } else if (cur === &apos;W&apos;) {
                     if (count &gt; 1) {
@@ -1568,10 +1567,10 @@ class InstantPrinterParser  {
         let inNano = ChronoField.NANO_OF_SECOND.checkValidIntValue(inNanos);
         if (inSec &gt;= -SECONDS_0000_TO_1970) {
             // current era
-            let zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
-            let hi = MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
-            let lo = MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
-            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            const zeroSecs = inSec - SECONDS_PER_10000_YEARS + SECONDS_0000_TO_1970;
+            const hi = MathUtil.floorDiv(zeroSecs, SECONDS_PER_10000_YEARS) + 1;
+            const lo = MathUtil.floorMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            const ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
             if (hi &gt; 0) {
                 buf.append(&apos;+&apos;).append(hi);
             }
@@ -1581,11 +1580,11 @@ class InstantPrinterParser  {
             }
         } else {
             // before current era
-            let zeroSecs = inSec + SECONDS_0000_TO_1970;
-            let hi = MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
-            let lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
-            let ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
-            let pos = buf.length();
+            const zeroSecs = inSec + SECONDS_0000_TO_1970;
+            const hi = MathUtil.intDiv(zeroSecs, SECONDS_PER_10000_YEARS);
+            const lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
+            const ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
+            const pos = buf.length();
             buf.append(ldt);
             if (ldt.second() === 0) {
                 buf.append(&apos;:00&apos;);
@@ -1616,7 +1615,7 @@ class InstantPrinterParser  {
             buf.append(&apos;.&apos;);
             let div = 100000000;
             for (let i = 0; ((this.fractionalDigits === -1 &amp;&amp; inNano &gt; 0) || i &lt; this.fractionalDigits); i++) {
-                let digit = MathUtil.intDiv(inNano, div);
+                const digit = MathUtil.intDiv(inNano, div);
                 buf.append(digit);
                 inNano = inNano - (digit * div);
                 div = MathUtil.intDiv(div, 10);

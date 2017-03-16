@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -3822,7 +3821,7 @@ The returned value will always be within the valid range of values for the field
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
+The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time, except <span>NANO_OF_DAY</span>, <span>MICRO_OF_DAY</span>,
 <span>EPOCH_DAY</span> and <span>EPOCH_MONTH</span> which are too large to fit in
 an <code>int</code> and throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.
@@ -3926,7 +3925,7 @@ and what the value represents, is determined by the field.</p>
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return valid
+The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
@@ -6851,7 +6850,7 @@ This date-time is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will return
+The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
@@ -7558,7 +7557,7 @@ such as changing the month from 31st January to February would make the day-of-m
 In cases like this, the field is responsible for resolving the date. Typically it will choose
 the previous valid date, which would be the last valid day of February in this example.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.
-The supported fields (see <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-isSupported">isSupported</a></span>) will behave as in
+The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will behave as in
 <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-with">LocalDate#with</a></span> or <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-with">LocalTime#with</a></span>.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method

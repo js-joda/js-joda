@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -516,14 +515,14 @@ class DayOfWeekInMonth extends TemporalAdjuster {
 
     adjustInto(temporal) {
         if (this._ordinal &gt;= 0) {
-            let temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
-            let curDow = temp.get(ChronoField.DAY_OF_WEEK);
+            const temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
+            const curDow = temp.get(ChronoField.DAY_OF_WEEK);
             let dowDiff = MathUtil.intMod((this._dowValue - curDow + 7), 7);
             dowDiff += (this._ordinal - 1) * 7;  // safe from overflow
             return temp.plus(dowDiff, ChronoUnit.DAYS);
         } else {
-            let temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).maximum());
-            let curDow = temp.get(ChronoField.DAY_OF_WEEK);
+            const temp = temporal.with(ChronoField.DAY_OF_MONTH, temporal.range(ChronoField.DAY_OF_MONTH).maximum());
+            const curDow = temp.get(ChronoField.DAY_OF_WEEK);
             let daysDiff = this._dowValue - curDow;
             daysDiff = (daysDiff === 0 ? 0 : (daysDiff &gt; 0 ? daysDiff - 7 : daysDiff));
             daysDiff -= (-this._ordinal - 1) * 7;  // safe from overflow
@@ -558,10 +557,10 @@ class RelativeDayOfWeek extends TemporalAdjuster {
             return temporal;
         }
         if ((this._relative &amp; 1) === 0) {
-            let daysDiff = calDow - this._dowValue;
+            const daysDiff = calDow - this._dowValue;
             return temporal.plus(daysDiff &gt;= 0 ? 7 - daysDiff : -daysDiff, ChronoUnit.DAYS);
         } else {
-            let daysDiff = this._dowValue - calDow;
+            const daysDiff = this._dowValue - calDow;
             return temporal.minus(daysDiff &gt;= 0 ? 7 - daysDiff : -daysDiff, ChronoUnit.DAYS);
         }
     }

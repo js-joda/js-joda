@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -256,10 +255,10 @@ export class NumberPrinterParser {
         let total = 0;
         let pos = position;
         for (let pass = 0; pass &lt; 2; pass++) {
-            let maxEndPos = Math.min(pos + effMaxWidth, length);
+            const maxEndPos = Math.min(pos + effMaxWidth, length);
             while (pos &lt; maxEndPos) {
-                let ch = text.charAt(pos++);
-                let digit = context.symbols().convertToDigit(ch);
+                const ch = text.charAt(pos++);
+                const digit = context.symbols().convertToDigit(ch);
                 if (digit &lt; 0) {
                     pos--;
                     if (pos &lt; minEndPos) {
@@ -275,7 +274,7 @@ export class NumberPrinterParser {
             }
             if (this._subsequentWidth &gt; 0 &amp;&amp; pass === 0) {
                 // re-parse now we know the correct width
-                let parseLen = pos - position;
+                const parseLen = pos - position;
                 effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);
                 pos = position;
                 total = 0;
@@ -291,7 +290,7 @@ export class NumberPrinterParser {
                 total = -total;
             }
         } else if (this._signStyle === SignStyle.EXCEEDS_PAD &amp;&amp; context.isStrict()) {
-            let parseLen = pos - position;
+            const parseLen = pos - position;
             if (positive) {
                 if (parseLen &lt;= this._minWidth) {
                     return ~(position - 1);  // &apos;+&apos; only parsed if minWidth exceeded
@@ -374,14 +373,14 @@ export class ReducedPrinterParser extends NumberPrinterParser {
      * @param {number} value
      */
     getValue(context, value) {
-        let absValue = Math.abs(value);
+        const absValue = Math.abs(value);
         let baseValue = this._baseValue;
         if (this._baseDate !== null) {
             // TODO: in threetenbp the following line is used, but we dont have Chronology yet,
             // let chrono = Chronology.from(context.getTemporal());
             // so let&apos;s use IsoChronology for now
             context.temporal();
-            let chrono = IsoChronology.INSTANCE;
+            const chrono = IsoChronology.INSTANCE;
             baseValue = chrono.date(this._baseDate).get(this._field);
         }
         if (value &gt;= baseValue &amp;&amp; value &lt; baseValue + EXCEED_POINTS[this._minWidth]) {
@@ -400,15 +399,15 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     _setValue(context, value, errorPos, successPos) {
         let baseValue = this._baseValue;
         if (this._baseDate != null) {
-            let chrono = context.getEffectiveChronology();
+            const chrono = context.getEffectiveChronology();
             baseValue = chrono.date(this._baseDate).get(this._field);
             context.addChronologyChangedParser(this, value, errorPos, successPos);
         }
-        let parseLen = successPos - errorPos;
+        const parseLen = successPos - errorPos;
         if (parseLen === this._minWidth &amp;&amp; value &gt;= 0) {
-            let range = EXCEED_POINTS[this._minWidth];
-            let lastPart = baseValue % range;
-            let basePart = baseValue - lastPart;
+            const range = EXCEED_POINTS[this._minWidth];
+            const lastPart = baseValue % range;
+            const basePart = baseValue - lastPart;
             if (baseValue &gt; 0) {
                 value = basePart + value;
             } else {

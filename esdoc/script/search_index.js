@@ -42,12 +42,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "js-joda/src/format/datetimebuilder.js~datetimebuilder",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html",
-    "<span>DateTimeBuilder</span> <span class=\"search-result-import-path\">js-joda/src/format/DateTimeBuilder.js</span>",
-    "class"
-  ],
-  [
     "js-joda/src/errors.js~datetimeexception",
     "variable/index.html#static-variable-DateTimeException",
     "<span>DateTimeException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
@@ -4654,96 +4648,6 @@ window.esdocSearchIndex = [
     "file/src/format/DateTimeBuilder.js.html",
     "src/format/DateTimeBuilder.js",
     "file"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#build",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-build",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#build",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#chrono",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-chrono",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#chrono",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#constructor",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-constructor-constructor",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#constructor",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#date",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-date",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#date",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#excessdays",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-excessDays",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#excessDays",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#fieldvalues",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-fieldValues",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#fieldValues",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#getfieldvalue0",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-getFieldValue0",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#getFieldValue0",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#getlong",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-getLong",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#getLong",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#issupported",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-isSupported",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#isSupported",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#leapsecond",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-leapSecond",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#leapSecond",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#query",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-query",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#query",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#resolve",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-method-resolve",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#resolve",
-    "method"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#time",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-time",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#time",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder#zone",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#instance-member-zone",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder#zone",
-    "member"
-  ],
-  [
-    "src/format/datetimebuilder.js~datetimebuilder.create",
-    "class/src/format/DateTimeBuilder.js~DateTimeBuilder.html#static-method-create",
-    "src/format/DateTimeBuilder.js~DateTimeBuilder.create",
-    "method"
   ],
   [
     "src/format/datetimeformatter.js",

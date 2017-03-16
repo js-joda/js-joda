@@ -70,8 +70,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeBuilder.js~DateTimeBuilder.html">DateTimeBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">format</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
@@ -137,6 +136,8 @@ import {Period} from &apos;../Period&apos;;
  *   outside the valid range for the field
  * * from {@link Class} to {@link TemporalAccessor}, holding larger scale objects
  *   like {@link LocalDateTime}.
+ *
+ *   @private
  */
 export class DateTimeBuilder extends Temporal {
 
@@ -290,8 +291,8 @@ export class DateTimeBuilder extends Temporal {
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
-            for (let fieldName in this.fieldValues.keySet()) {
-                let field = ChronoField.byName(fieldName);
+            for (const fieldName in this.fieldValues.keySet()) {
+                const field = ChronoField.byName(fieldName);
                 if (field !== null) {
                     if (this.fieldValues.get(field) !== undefined) { // undefined if &quot;removed&quot; in EnumMap
                         if (field.isDateBased()) {
@@ -475,13 +476,13 @@ export class DateTimeBuilder extends Temporal {
                     hod = 0;
                     this.excessDays = Period.ofDays(1);
                 }
-                let hodVal = ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
+                const hodVal = ChronoField.HOUR_OF_DAY.checkValidIntValue(hod);
                 if (moh != null) {
-                    let mohVal = ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
+                    const mohVal = ChronoField.MINUTE_OF_HOUR.checkValidIntValue(moh);
                     if (som != null) {
-                        let somVal = ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
+                        const somVal = ChronoField.SECOND_OF_MINUTE.checkValidIntValue(som);
                         if (nos != null) {
-                            let nosVal = ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
+                            const nosVal = ChronoField.NANO_OF_SECOND.checkValidIntValue(nos);
                             this._addObject(LocalTime.of(hodVal, mohVal, somVal, nosVal));
                         } else {
                             this._addObject(LocalTime.of(hodVal, mohVal, somVal));
@@ -509,20 +510,20 @@ export class DateTimeBuilder extends Temporal {
                         totalNanos = MathUtil.safeAdd(totalNanos, MathUtil.safeMultiply(moh, 60000000000));
                         totalNanos = MathUtil.safeAdd(totalNanos, MathUtil.safeMultiply(som, 1000000000));
                         totalNanos = MathUtil.safeAdd(totalNanos, nos);
-                        let excessDays =  MathUtil.floorDiv(totalNanos, 86400000000000);  // safe int cast
-                        let nod = MathUtil.floorMod(totalNanos, 86400000000000);
+                        const excessDays =  MathUtil.floorDiv(totalNanos, 86400000000000);  // safe int cast
+                        const nod = MathUtil.floorMod(totalNanos, 86400000000000);
                         this._addObject(LocalTime.ofNanoOfDay(nod));
                         this.excessDays = Period.ofDays(excessDays);
                     } else {
                         let totalSecs = MathUtil.safeMultiply(hodVal, 3600);
                         totalSecs = MathUtil.safeAdd(totalSecs, MathUtil.safeMultiply(moh, 60));
-                        let excessDays =  MathUtil.floorDiv(totalSecs, 86400);  // safe int cast
-                        let sod = MathUtil.floorMod(totalSecs, 86400);
+                        const excessDays =  MathUtil.floorDiv(totalSecs, 86400);  // safe int cast
+                        const sod = MathUtil.floorMod(totalSecs, 86400);
                         this._addObject(LocalTime.ofSecondOfDay(sod));
                         this.excessDays = Period.ofDays(excessDays);
                     }
                 } else {
-                    let excessDays = MathUtil.safeToInt(MathUtil.floorDiv(hodVal, 24));
+                    const excessDays = MathUtil.safeToInt(MathUtil.floorDiv(hodVal, 24));
                     hodVal = MathUtil.floorMod(hodVal, 24);
                     this._addObject(LocalTime.of(hodVal, 0));
                     this.excessDays = Period.ofDays(excessDays);
