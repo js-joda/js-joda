@@ -3,8 +3,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { ZoneRulesProvider } from 'js-joda';
+import { ZoneRulesProvider, ZoneId } from 'js-joda';
 
 import plug from '../src/plug';
 
-plug({ ZoneRulesProvider });
+plug({ ZoneRulesProvider, ZoneId });

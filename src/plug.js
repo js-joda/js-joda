@@ -6,11 +6,13 @@
 import latest from 'moment-timezone/data/packed/latest';
 
 import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
+import extendSystemDefaultZoneId from './system-default-zone';
 
 MomentZoneRulesProvider.loadData(latest);
 
 export default function (jsJoda) {
     jsJoda.ZoneRulesProvider.getRules = MomentZoneRulesProvider.getRules;
     jsJoda.ZoneRulesProvider.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;
+    extendSystemDefaultZoneId(jsJoda.ZoneId);
     return jsJoda;
 }
