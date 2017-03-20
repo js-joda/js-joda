@@ -5,6 +5,7 @@ Changelog
 
 #### public API
 
+* Add toJSON methods where missing and useful
 * Remove protected class DateTimeBuilder from esdoc and typescript definition
 
 #### lint

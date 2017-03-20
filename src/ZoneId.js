@@ -224,4 +224,13 @@ export class ZoneId {
         return this.id();
     }
 
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }

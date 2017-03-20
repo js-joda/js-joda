@@ -687,6 +687,16 @@ export class MonthDay extends Temporal {
     }
 
     /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
      * Outputs this month-day as a string using the formatter.
      *
      * This month-day will be passed to the formatter

@@ -347,6 +347,20 @@ export class ZoneRules {
     transitionRules(){
         abstractMethodFail('ZoneRules.transitionRules');
     }
+
+    toString(){
+        abstractMethodFail('ZoneRules.toString');
+    }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 

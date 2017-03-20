@@ -397,6 +397,16 @@ export class DayOfWeek extends Temporal {
     toString(){
         return this._name;
     }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 let ENUMS;

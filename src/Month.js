@@ -414,6 +414,16 @@ export class Month extends Temporal {
     }
 
     /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
      * Adjusts the specified temporal object to have this month-of-year.
      *
      * This returns a temporal object of the same observable type as the input

@@ -1115,6 +1115,16 @@ export class YearMonth extends Temporal {
     }
 
     /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
      * Outputs this year-month as a string using the formatter.
      *
      * @param {DateTimeFormatter} formatter  the formatter to use, not null

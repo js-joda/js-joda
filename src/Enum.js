@@ -17,4 +17,14 @@ export class Enum {
     toString() {
         return this._name;
     }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }

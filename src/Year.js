@@ -970,6 +970,16 @@ export class Year extends Temporal {
     toString() {
         return '' + this._year;
     }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 let PARSER;
