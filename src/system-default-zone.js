@@ -1,7 +1,7 @@
 
 function getResolvedTimeZone() {
-    if (Intl != null && Intl.DateTimeFormat != null) {
-        const dateTimeFormat = Intl.DateTimeFormat();
+    if (global.Intl != null && global.Intl.DateTimeFormat != null) {
+        const dateTimeFormat = global.Intl.DateTimeFormat();
         if (dateTimeFormat.resolvedOptions != null) {
             return dateTimeFormat.resolvedOptions().timeZone;
         }
