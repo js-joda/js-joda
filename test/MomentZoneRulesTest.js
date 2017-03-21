@@ -43,6 +43,15 @@ describe('MomentZoneRules', () => {
         });
     });
 
+    context('now', function () {
+        it('should return system default zone', () => {
+            const zdt = ZonedDateTime.now();
+            const defaultZone = ZoneId.systemDefault();
+
+            expect(zdt.zone().equals(defaultZone)).to.be.true;
+        });
+    });
+
     context('getOffset of Instant', () => {
         const europeLondon = MomentZoneRulesProvider.getRules('Europe/London');
         const europeParis = MomentZoneRulesProvider.getRules('Europe/Paris');

@@ -1,27 +1,22 @@
 
-function getResolvedTimeZone() {
-    if (global.Intl != null && global.Intl.DateTimeFormat != null) {
-        const dateTimeFormat = global.Intl.DateTimeFormat();
-        if (dateTimeFormat.resolvedOptions != null) {
-            return dateTimeFormat.resolvedOptions().timeZone;
-        }
+function getResolvedZoneId(ZoneId) {
+    try {
+        const resolvedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        return ZoneId.of(resolvedTimeZone);
+    } catch (err) {
+        // ignore
     }
     return null;
 }
 
 export default function extendSystemDefaultZoneId(ZoneId) {
-    const resolvedTimeZone = getResolvedTimeZone();
+    const resolvedZoneId = getResolvedZoneId(ZoneId);
 
-    if (resolvedTimeZone != null) {
-        try {
-            const systemDefaultZoneId = ZoneId.of(resolvedTimeZone);
-
-            ZoneId.systemDefault = function () {
-                return systemDefaultZoneId;
-            };
-
-        } catch (err) {
-            // just swallow
-        }
+    if (resolvedZoneId == null) {
+        return;
     }
+
+    ZoneId.systemDefault = function () {
+        return resolvedZoneId;
+    };
 }
