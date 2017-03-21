@@ -23,7 +23,7 @@ module.exports = {
     output: {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda-timezone.min.js' : 'js-joda-timezone.js',
-        libraryTarget: minify ? 'var' : 'umd',
+        libraryTarget: 'umd',
         library: 'JSJodaTimezone'
     },
     externals: {
