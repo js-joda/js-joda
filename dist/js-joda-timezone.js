@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 1.0.0-2016j
+//! @version js-joda-timezone - 1.1.0-2016j
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -83,9 +83,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 
 	exports.default = function (jsJoda) {
-	  jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
-	  jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
-	  return jsJoda;
+	    jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
+	    jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
+	    (0, _systemDefaultZone2.default)(jsJoda.ZoneId);
+	    return jsJoda;
 	};
 
 	var _latest = __webpack_require__(2);
@@ -94,14 +95,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MomentZoneRulesProvider = __webpack_require__(3);
 
+	var _systemDefaultZone = __webpack_require__(7);
+
+	var _systemDefaultZone2 = _interopRequireDefault(_systemDefaultZone);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/*
-	 * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-	 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-	 */
-
-	_MomentZoneRulesProvider.MomentZoneRulesProvider.loadData(_latest2.default);
+	_MomentZoneRulesProvider.MomentZoneRulesProvider.loadData(_latest2.default); /*
+	                                                                              * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+	                                                                              * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+	                                                                              */
 
 	module.exports = exports['default'];
 
@@ -1148,6 +1151,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	        population: data[5] | 0
 	    };
 	}
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+	exports.default = extendSystemDefaultZoneId;
+
+	function getResolvedZoneId(ZoneId) {
+	    try {
+	        var resolvedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	        return ZoneId.of(resolvedTimeZone);
+	    } catch (err) {}
+	    return null;
+	}
+
+	function extendSystemDefaultZoneId(ZoneId) {
+	    var resolvedZoneId = getResolvedZoneId(ZoneId);
+
+	    if (resolvedZoneId == null) {
+	        return;
+	    }
+
+	    ZoneId.systemDefault = function () {
+	        return resolvedZoneId;
+	    };
+	}
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ])
