@@ -14,7 +14,7 @@
             // copy all js-joda classes to the global scope
             for(var prop in JSJoda) { window[prop] = JSJoda[prop]; }
             console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
-            console.log("and '"+ LocalDateTime.now().atZone(ZoneId.of('Europe/Berlin')).toString() + "' berlin time");
+            console.log("and '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone");
         </script>
     </head>
     <body>
