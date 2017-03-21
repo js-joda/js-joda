@@ -1,4 +1,4 @@
-//! @version js-joda - 1.4.0
+//! @version js-joda - 1.5.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -828,12 +828,7 @@ var LocalDate = function (_ChronoLocalDate) {
 
         var adjust = void 0,
             adjustCycles = void 0,
-            dom = void 0,
             doyEst = void 0,
-            marchDoy0 = void 0,
-            marchMonth0 = void 0,
-            month = void 0,
-            year = void 0,
             yearEst = void 0,
             zeroDay = void 0;
         zeroDay = epochDay + DAYS_0000_TO_1970;
@@ -851,12 +846,12 @@ var LocalDate = function (_ChronoLocalDate) {
             doyEst = zeroDay - (365 * yearEst + _MathUtil.MathUtil.intDiv(yearEst, 4) - _MathUtil.MathUtil.intDiv(yearEst, 100) + _MathUtil.MathUtil.intDiv(yearEst, 400));
         }
         yearEst += adjust;
-        marchDoy0 = doyEst;
-        marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
-        month = (marchMonth0 + 2) % 12 + 1;
-        dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
+        var marchDoy0 = doyEst;
+        var marchMonth0 = _MathUtil.MathUtil.intDiv(marchDoy0 * 5 + 2, 153);
+        var month = (marchMonth0 + 2) % 12 + 1;
+        var dom = marchDoy0 - _MathUtil.MathUtil.intDiv(marchMonth0 * 306 + 5, 10) + 1;
         yearEst += _MathUtil.MathUtil.intDiv(marchMonth0, 10);
-        year = yearEst;
+        var year = yearEst;
         return new LocalDate(year, month, dom);
     };
 
@@ -1578,6 +1573,10 @@ var ZoneId = exports.ZoneId = function () {
 
     ZoneId.prototype.toString = function toString() {
         return this.id();
+    };
+
+    ZoneId.prototype.toJSON = function toJSON() {
+        return this.toString();
     };
 
     return ZoneId;
@@ -4457,6 +4456,10 @@ var Month = function (_Temporal) {
         }
     };
 
+    Month.prototype.toJSON = function toJSON() {
+        return this.toString();
+    };
+
     Month.prototype.adjustInto = function adjustInto(temporal) {
         return temporal.with(_ChronoField.ChronoField.MONTH_OF_YEAR, this.value());
     };
@@ -6298,6 +6301,10 @@ var Year = function (_Temporal) {
         return '' + this._year;
     };
 
+    Year.prototype.toJSON = function toJSON() {
+        return this.toString();
+    };
+
     return Year;
 }(_Temporal2.Temporal);
 
@@ -6386,6 +6393,10 @@ var Enum = exports.Enum = function () {
 
     Enum.prototype.toString = function toString() {
         return this._name;
+    };
+
+    Enum.prototype.toJSON = function toJSON() {
+        return this.toString();
     };
 
     return Enum;
@@ -6610,6 +6621,10 @@ var DayOfWeek = function (_Temporal) {
 
     DayOfWeek.prototype.toString = function toString() {
         return this._name;
+    };
+
+    DayOfWeek.prototype.toJSON = function toJSON() {
+        return this.toString();
     };
 
     return DayOfWeek;
@@ -8263,6 +8278,10 @@ var MonthDay = function (_Temporal) {
         return '--' + (this._month < 10 ? '0' : '') + this._month + (this._day < 10 ? '-0' : '-') + this._day;
     };
 
+    MonthDay.prototype.toJSON = function toJSON() {
+        return this.toString();
+    };
+
     MonthDay.prototype.format = function format(formatter) {
         (0, _assert.requireNonNull)(formatter, 'formatter');
         (0, _assert.requireInstance)(formatter, _DateTimeFormatter.DateTimeFormatter, 'formatter');
@@ -8745,6 +8764,10 @@ var YearMonth = function (_Temporal) {
 
     YearMonth.prototype.toString = function toString() {
         return PARSER.format(this);
+    };
+
+    YearMonth.prototype.toJSON = function toJSON() {
+        return this.toString();
     };
 
     YearMonth.prototype.format = function format(formatter) {
@@ -9459,6 +9482,14 @@ var ZoneRules = exports.ZoneRules = function () {
 
     ZoneRules.prototype.transitionRules = function transitionRules() {
         (0, _assert.abstractMethodFail)('ZoneRules.transitionRules');
+    };
+
+    ZoneRules.prototype.toString = function toString() {
+        (0, _assert.abstractMethodFail)('ZoneRules.toString');
+    };
+
+    ZoneRules.prototype.toJSON = function toJSON() {
+        return this.toString();
     };
 
     return ZoneRules;
