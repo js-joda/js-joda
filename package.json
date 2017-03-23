@@ -1,14 +1,32 @@
 {
   "name": "js-joda-locale",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "plugin for locale functionality for js-joda",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/js-joda/js-joda-locale.git"
+    "url": "https://github.com/phueper/js-joda-locale.git"
+  },
+  "main": "dist/js-joda-locale.js",
+  "scripts": {
+    "prepublish": "npm run build-dist",
+    "postversion": "npm run build-dist",
+    "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
+    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie_9,sl_firefox\" --single-run=true",
+    "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
+    "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
+    "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "keywords": [
+    "date",
+    "time",
+    "locale"
+  ],
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
   },
   "author": "phueper",
   "contributors": [
@@ -19,5 +37,41 @@
   "bugs": {
     "url": "https://github.com/js-joda/js-joda-locale/issues"
   },
-  "homepage": "https://github.com/js-joda/js-joda-locale#readme"
+  "homepage": "https://github.com/js-joda/js-joda-locale#readme",
+  "peerDependencies": {
+    "js-joda": "^1.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^4.1.1",
+    "babel-preset-es2015": "^6.24.0",
+    "chai": "^3.5.0",
+    "coveralls": "^2.12.0",
+    "esdoc": "^0.5.2",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-standard": "^2.1.1",
+    "js-joda": "^1.5.0",
+    "karma": "^1.5.0",
+    "karma-chai-plugins": "^0.8.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sauce-launcher": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
+    "phantomjs-prebuilt": "^2.1.14",
+    "webpack": "^2.3.1"
+  }
 }
