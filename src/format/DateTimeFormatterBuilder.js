@@ -808,6 +808,28 @@ export class DateTimeFormatterBuilder {
         return this;
     }
 
+
+    //-----------------------------------------------------------------------
+    // empty implementations of locale functionality, be implemented/overridden by js-joda-locale
+
+    appendZoneText() {
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+    }
+
+    appendText() {
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+    }
+
+    appendLocalizedOffset() {
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+    }
+
+    appendWeekField() {
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+    }
+
+    //-----------------------------------------------------------------------
+
     _parsePattern(pattern) {
         /** Map of letters to fields. */
         const FIELD_MAP = {
@@ -869,14 +891,8 @@ export class DateTimeFormatterBuilder {
                     if (count > 4) {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     } else if (count === 4) {
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendZoneText(TextStyle.FULL);
                     } else {
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendZoneText(TextStyle.SHORT);
                     }
                 } else if (cur === 'V') {
@@ -888,9 +904,6 @@ export class DateTimeFormatterBuilder {
                     if (count < 4) {
                         this.appendOffset('+HHMM', '+0000');
                     } else if (count === 4) {
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendLocalizedOffset(TextStyle.FULL);
                     } else if (count === 5) {
                         this.appendOffset('+HH:MM:ss', 'Z');
@@ -899,14 +912,8 @@ export class DateTimeFormatterBuilder {
                     }
                 } else if (cur === 'O') {
                     if (count === 1) {
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendLocalizedOffset(TextStyle.SHORT);
                     } else if (count === 4) {
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendLocalizedOffset(TextStyle.FULL);
                     } else {
                         throw new IllegalArgumentException('Pattern letter count must be 1 or 4: ' + cur);
@@ -926,14 +933,14 @@ export class DateTimeFormatterBuilder {
                     if (count > 1) {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     }
-                    this._appendInternal(new OffsetIdPrinterParser('W', count));
+                    this.appendWeekField('W', count);
                 } else if (cur === 'w') {
                     if (count > 2) {
                         throw new IllegalArgumentException('Too many pattern letters: ' + cur);
                     }
-                    this._appendInternal(new OffsetIdPrinterParser('w', count));
+                    this.appendWeekField('w', count);
                 } else if (cur === 'Y') {
-                    this._appendInternal(new OffsetIdPrinterParser('Y', count));
+                    this.appendWeekField('Y', count);
                 } else {
                     throw new IllegalArgumentException('Unknown pattern letter: ' + cur);
                 }
@@ -1000,21 +1007,12 @@ export class DateTimeFormatterBuilder {
                         this.appendValue(field, 2);
                         break;
                     case 3:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.SHORT);
                         break;
                     case 4:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.FULL);
                         break;
                     case 5:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
@@ -1031,21 +1029,12 @@ export class DateTimeFormatterBuilder {
                         this.appendValue(field, 2);
                         break;
                     case 3:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.SHORT_STANDALONE);
                         break;
                     case 4:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.FULL_STANDALONE);
                         break;
                     case 5:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
@@ -1056,27 +1045,15 @@ export class DateTimeFormatterBuilder {
                 switch (count) {
                     case 1:
                     case 2:
-                        // TODO: WeekFieldsPrinterParser
-                        throw new IllegalArgumentException('Pattern using WeekFields not implemented yet!');
-                        // eslint-disable-next-line no-unreachable, no-undef
-                        this.appendInternal(new WeekFieldsPrinterParser('e', count));
+                        this.appendWeekField('e', count);
                         break;
                     case 3:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.SHORT);
                         break;
                     case 4:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.FULL);
                         break;
                     case 5:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
@@ -1087,29 +1064,17 @@ export class DateTimeFormatterBuilder {
             case 'c':
                 switch (count) {
                     case 1:
-                        // TODO: WeekFieldsPrinterParser
-                        throw new IllegalArgumentException('Pattern using WeekFields not implemented yet!');
-                        // eslint-disable-next-line no-unreachable, no-undef
-                        this.appendInternal(new WeekFieldsPrinterParser('c', count));
+                        this.appendWeekField('c', count);
                         break;
                     case 2:
                         throw new IllegalArgumentException('Invalid number of pattern letters: ' + cur);
                     case 3:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.SHORT_STANDALONE);
                         break;
                     case 4:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.FULL_STANDALONE);
                         break;
                     case 5:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
@@ -1119,9 +1084,6 @@ export class DateTimeFormatterBuilder {
                 break;
             case 'a':
                 if (count === 1) {
-                    //TODO:
-                    throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                    // eslint-disable-next-line no-unreachable
                     this.appendText(field, TextStyle.SHORT);
                 } else {
                     throw new IllegalArgumentException('Too many pattern letters: ' + cur);
@@ -1134,21 +1096,12 @@ export class DateTimeFormatterBuilder {
                     case 1:
                     case 2:
                     case 3:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.SHORT);
                         break;
                     case 4:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.FULL);
                         break;
                     case 5:
-                        //TODO:
-                        throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-                        // eslint-disable-next-line no-unreachable
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
