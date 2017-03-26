@@ -55,8 +55,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder', () => {
             }).to.throw(NullPointerException);
         });
 
-        // TODO: unskip
-        it.skip('test_appendTextMap', () => {
+        it('test_appendTextMap', () => {
             const map = {
                 1: 'JNY',
                 2: 'FBY',

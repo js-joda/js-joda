@@ -10,6 +10,7 @@ import { DateTimeFormatterBuilder, IllegalArgumentException, TextStyle, ChronoFi
 import { requireNonNull, requireInstance } from '../../assert';
 import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';
+import {LocaleStore} from '../LocaleStore';
 
 /** DateTimeFormatterBuilder extension functions implementing locale handling using cldr data (http://cldr.unicode.org/)
  */
@@ -132,22 +133,19 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
         requireNonNull(field, 'field');
         requireInstance(field, ChronoField, 'field');
         requireNonNull(textLookup, 'textLookup');
-        throw new IllegalArgumentException('js-joda-locale: Pattern using (localized) text not implemented yet!');
-        /* Map<Long, String> copy = new LinkedHashMap<Long, String>(textLookup);
-        Map<TextStyle, Map<Long, String>> map = Collections.singletonMap(TextStyle.FULL, copy);
-        final LocaleStore store = new LocaleStore(map);
-        DateTimeTextProvider provider = new DateTimeTextProvider() {
-            @Override
-            public String getText(TemporalField field, long value, TextStyle style, Locale locale) {
+        const copy = Object.assign({}, textLookup);
+        const map = {};
+        map[TextStyle.FULL] = copy;
+        const store = new LocaleStore(map);
+        const provider = {
+            getText: function(field, value, style) {
                 return store.getText(value, style);
-            }
-            @Override
-            public Iterator<Entry<String, Long>> getTextIterator(TemporalField field, TextStyle style, Locale locale) {
+            },
+            getTextIterator: function(field, style) {
                 return store.getTextIterator(style);
             }
         };
-        appendInternal(new TextPrinterParser(field, TextStyle.FULL, provider));
-        */
+        this._appendInternal(new TextPrinterParser(field, TextStyle.FULL, provider));
         return this;
     }
 
