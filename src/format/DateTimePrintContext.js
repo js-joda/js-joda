@@ -107,6 +107,18 @@ export class DateTimePrintContext{
         return this._temporal;
     }
 
+    /**
+     * Gets the locale.
+     * <p>
+     * This locale is used to control localization in the print output except
+     * where localization is controlled by the symbols.
+     *
+     * @return the locale, not null
+     */
+    locale() {
+        return this._locale;
+    }
+
     //-------------------------------------------------------------------------
     // for testing
     /**
@@ -116,6 +128,10 @@ export class DateTimePrintContext{
      */
     setDateTime(temporal) {
         this._temporal = temporal;
+    }
+
+    setLocale(locale) {
+        this._locale = locale;
     }
 
 
