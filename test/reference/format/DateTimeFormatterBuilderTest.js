@@ -264,14 +264,6 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ["''''", "''"],
             ["'o''clock'", "'o''clock'"],
 
-            /* TODO: text patterns not implemented yet
-            ['G', 'Text(Era,SHORT)'],
-            ['GG', 'Text(Era,SHORT)'],
-            ['GGG', 'Text(Era,SHORT)'],
-            ['GGGG', 'Text(Era)'],
-            ['GGGGG', 'Text(Era,NARROW)'],
-            */
-
             ['u', 'Value(Year)'],
             ['uu', 'ReducedValue(Year,2,2,2000-01-01)'],
             ['uuu', 'Value(Year,3,15,NORMAL)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
@@ -284,23 +276,8 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['yyyy', 'Value(YearOfEra,4,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
             ['yyyyy', 'Value(YearOfEra,5,15,EXCEEDS_PAD)'], // was ...,19,... in threeten, but we have lower MAX_WIDTH for number parsing
 
-            //            ['Y', 'Value(WeekBasedYear)'],
-            //            ['YY', 'ReducedValue(WeekBasedYear,2,2000)'],
-            //            ['YYY', 'Value(WeekBasedYear,3,19,NORMAL)'],
-            //            ['YYYY', 'Value(WeekBasedYear,4,19,EXCEEDS_PAD)'],
-            //            ['YYYYY', 'Value(WeekBasedYear,5,19,EXCEEDS_PAD)'],
-
             ['M', 'Value(MonthOfYear)'],
             ['MM', 'Value(MonthOfYear,2)'],
-            /* TODO: text patterns not implemented yet
-            ['MMM', 'Text(MonthOfYear,SHORT)'],
-            ['MMMM', 'Text(MonthOfYear)'],
-            ['MMMMM', 'Text(MonthOfYear,NARROW)'],
-            */
-
-            //            ['w', 'Value(WeekOfWeekBasedYear)'],
-            //            ['ww', 'Value(WeekOfWeekBasedYear,2)'],
-            //            ['www', 'Value(WeekOfWeekBasedYear,3)'],
 
             ['D', 'Value(DayOfYear)'],
             ['DD', 'Value(DayOfYear,2)'],
@@ -310,16 +287,6 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['dd', 'Value(DayOfMonth,2)'],
 
             ['F', 'Value(AlignedDayOfWeekInMonth)'],
-
-            /* TODO: text patterns not implemented yet
-            ['E', 'Text(DayOfWeek,SHORT)'],
-            ['EE', 'Text(DayOfWeek,SHORT)'],
-            ['EEE', 'Text(DayOfWeek,SHORT)'],
-            ['EEEE', 'Text(DayOfWeek)'],
-            ['EEEEE', 'Text(DayOfWeek,NARROW)'],
-
-            ['a', 'Text(AmPmOfDay,SHORT)'],
-            */
 
             ['H', 'Value(HourOfDay)'],
             ['HH', 'Value(HourOfDay,2)'],
@@ -357,13 +324,6 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
             ['N', 'Value(NanoOfDay)'],
             ['NN', 'Value(NanoOfDay,2)'],
             ['NNN', 'Value(NanoOfDay,3)'],
-
-            /* TODO: text patterns not implemented yet
-            ['z', 'ZoneText(SHORT)'],
-            ['zz', 'ZoneText(SHORT)'],
-            ['zzz', 'ZoneText(SHORT)'],
-            ['zzzz', 'ZoneText(FULL)'],
-            */
 
             ['VV', 'ZoneId()'],
 
@@ -696,90 +656,3 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
     });
 
 });
-
-
-/***
-
- public class TestDateTimeFormatterBuilder {
-
-
-
-    @Test
-    public void test_appendText_1arg() throws Exception {
-        builder.appendText(MONTH_OF_YEAR);
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), 'Text(MonthOfYear)');
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendText_1arg_null() throws Exception {
-        builder.appendText(null);
-    }
-
-    //-----------------------------------------------------------------------
-    @Test
-    public void test_appendText_2arg() throws Exception {
-        builder.appendText(MONTH_OF_YEAR, TextStyle.SHORT);
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), 'Text(MonthOfYear,SHORT)');
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendText_2arg_nullRule() throws Exception {
-        builder.appendText(null, TextStyle.SHORT);
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendText_2arg_nullStyle() throws Exception {
-        builder.appendText(MONTH_OF_YEAR, (TextStyle) null);
-    }
-
-    //-----------------------------------------------------------------------
-    @Test
-    public void test_appendTextMap() throws Exception {
-        Map<Long, String> map = new HashMap<Long, String>();
-        map.put(1L, 'JNY');
-        map.put(2L, 'FBY');
-        map.put(3L, 'MCH');
-        map.put(4L, 'APL');
-        map.put(5L, 'MAY');
-        map.put(6L, 'JUN');
-        map.put(7L, 'JLY');
-        map.put(8L, 'AGT');
-        map.put(9L, 'SPT');
-        map.put(10L, 'OBR');
-        map.put(11L, 'NVR');
-        map.put(12L, 'DBR');
-        builder.appendText(MONTH_OF_YEAR, map);
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), 'Text(MonthOfYear)');  // TODO: toString should be different?
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendTextMap_nullRule() throws Exception {
-        builder.appendText(null, new HashMap<Long, String>());
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendTextMap_nullStyle() throws Exception {
-        builder.appendText(MONTH_OF_YEAR, (Map<Long, String>) null);
-    }
-
-    //-----------------------------------------------------------------------
-    @Test
-    public void test_appendZoneText_1arg() throws Exception {
-        builder.appendZoneText(TextStyle.FULL);
-        DateTimeFormatter f = builder.toFormatter();
-        assertEquals(f.toString(), 'ZoneText(FULL)');
-    }
-
-    @Test(expectedExceptions=NullPointerException.class)
-    public void test_appendZoneText_1arg_nullText() throws Exception {
-        builder.appendZoneText(null);
-    }
-
-    //-----------------------------------------------------------------------
-
-}
- *
- */
