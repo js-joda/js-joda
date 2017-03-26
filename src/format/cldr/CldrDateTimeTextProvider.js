@@ -8,26 +8,7 @@ import { ChronoField, IsoFields, TextStyle } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
-/**
- * Helper method to create an immutable entry.
- *
- * @param text  the text, not null
- * @param field  the field, not null
- * @return the entry, not null
- */
-const _createEntry = (text, field) => {
-    return {
-        key: text,
-        value: field,
-        toString: function() {
-            return text + '->' + field;
-        }
-    };
-};
-
-const _comparator = (obj1, obj2) => {
-    return obj2.key.length - obj1.key.length;  // longest to shortest
-};
+import {LocaleStore, createEntry} from '../LocaleStore';
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.
@@ -68,7 +49,7 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     _findStore(field, locale) {
-        const key = _createEntry(field, locale);
+        const key = createEntry(field, locale);
         let store = this._cache[key];
         if (store === undefined) {
             store = this._createStore(field, locale);
@@ -83,7 +64,7 @@ export default class CldrDateTimeTextProvider {
         if (field === ChronoField.MONTH_OF_YEAR) {
             const monthsData = cldr.main('dates/calendars/gregorian/months/format');
             const styleMap = {};
-            let data = [];
+            let data = {};
             data[1] = monthsData.wide[1];
             data[2] = monthsData.wide[2];
             data[3] = monthsData.wide[3];
@@ -98,7 +79,7 @@ export default class CldrDateTimeTextProvider {
             data[12] = monthsData.wide[12];
             styleMap[TextStyle.FULL] = data;
 
-            data = [];
+            data = {};
             data[1] = monthsData.narrow[1];
             data[2] = monthsData.narrow[2];
             data[3] = monthsData.narrow[3];
@@ -113,7 +94,7 @@ export default class CldrDateTimeTextProvider {
             data[12] = monthsData.narrow[12];
             styleMap[TextStyle.NARROW] = data;
 
-            data = [];
+            data = {};
             data[1] = monthsData.abbreviated[1];
             data[2] = monthsData.abbreviated[2];
             data[3] = monthsData.abbreviated[3];
@@ -132,7 +113,7 @@ export default class CldrDateTimeTextProvider {
         if (field === ChronoField.DAY_OF_WEEK) {
             const daysData = cldr.main('dates/calendars/gregorian/days/format');
             const styleMap = {};
-            let data = [];
+            let data = {};
             data[1] = daysData.wide.mon;
             data[2] = daysData.wide.tue;
             data[3] = daysData.wide.wed;
@@ -142,7 +123,7 @@ export default class CldrDateTimeTextProvider {
             data[7] = daysData.wide.sun;
             styleMap[TextStyle.FULL] = data;
 
-            data = [];
+            data = {};
             data[1] = daysData.narrow.mon;
             data[2] = daysData.narrow.tue;
             data[3] = daysData.narrow.wed;
@@ -152,7 +133,7 @@ export default class CldrDateTimeTextProvider {
             data[7] = daysData.narrow.sun;
             styleMap[TextStyle.NARROW] = data;
 
-            data = [];
+            data = {};
             data[1] = daysData.abbreviated.mon;
             data[2] = daysData.abbreviated.tue;
             data[3] = daysData.abbreviated.wed;
@@ -228,71 +209,5 @@ export default class CldrDateTimeTextProvider {
             valueTextMap[TextStyle.NARROW_STANDALONE] = valueTextMap[TextStyle.NARROW];
         }
         return new LocaleStore(valueTextMap);
-    }
-}
-
-/**
- * Stores the text for a single locale.
- * <p>
- * Some fields have a textual representation, such as day-of-week or month-of-year.
- * These textual representations can be captured in this class for printing
- * and parsing.
- */
-class LocaleStore {
-    //-----------------------------------------------------------------------
-    /**
-     * Constructor.
-     *
-     * @param {Object} valueTextMap  the map of values to text to store, assigned and not altered, not null
-     */
-    constructor(valueTextMap) {
-        this._valueTextMap = valueTextMap;
-        const map = {};
-        let allList = [];
-        Object.keys(valueTextMap).forEach((style) => {
-            const reverse = {};
-            valueTextMap[style].forEach((value, key) => {
-                if (reverse[value] !== undefined) {
-                    //TODO
-                    // continue;  // not parsable, try next style
-                }
-                reverse[value] = _createEntry(value, key);
-            });
-            const list = Object.values(reverse);
-            list.sort(_comparator);
-            map[style] = list;
-            allList = allList.concat(list);
-            map[null] = allList;
-        });
-        allList.sort(_comparator);
-        this._parsable = map;
-    }
-
-    //-----------------------------------------------------------------------
-    /**
-     * Gets the text for the specified field value, locale and style
-     * for the purpose of printing.
-     *
-     * @param {Number} value  the value to get text for, not null
-     * @param {TextStyle} style  the style to get text for, not null
-     * @return the text for the field value, null if no text found
-     */
-    getText(value, style) {
-        const map = this._valueTextMap[style];
-        return map != null ? map[value] : null;
-    }
-
-    /**
-     * Gets an iterator of text to field for the specified style for the purpose of parsing.
-     * <p>
-     * The iterator must be returned in order from the longest text to the shortest.
-     *
-     * @param style  the style to get text for, null for all parsable text
-     * @return the iterator of text to field pairs, in order from longest text to shortest text,
-     *  null if the style is not parsable
-     */
-    getTextIterator(style) {
-        const list = this._parsable[style];
-        return list != null ? list[Symbol.iterator]() : null;
     }
 }
