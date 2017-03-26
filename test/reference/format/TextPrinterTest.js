@@ -9,10 +9,8 @@ import {
     use as jodaUse,
     ChronoField,
     DateTimeException,
-    DateTimeParseContext,
     DateTimePrintContext,
     DecimalStyle,
-    IsoChronology,
     LocalDateTime,
     LocalDate,
     StringBuilder,
@@ -38,7 +36,6 @@ describe('org.threeten.bp.format.TestTextPrinter', () => {
 
     let printEmptyContext;
     let printContext;
-    let parseContext;
     let buf;
 
     const EMPTY = new TemporalAccessor();
@@ -56,7 +53,6 @@ describe('org.threeten.bp.format.TestTextPrinter', () => {
         printEmptyContext = new DateTimePrintContext(EMPTY, LOCALE_ENGLISH, DecimalStyle.STANDARD);
         const zdt = LocalDateTime.of(2011, 6, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Paris'));
         printContext = new DateTimePrintContext(zdt, LOCALE_ENGLISH, DecimalStyle.STANDARD);
-        parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
         buf = new StringBuilder();
     });
 

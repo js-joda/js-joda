@@ -11,17 +11,12 @@ import {
     ChronoField,
     DateTimeException,
     DateTimeParseContext,
-    DateTimePrintContext,
     DecimalStyle,
     IllegalArgumentException,
     IsoChronology,
-    LocalDateTime,
-    LocalDate,
-    StringBuilder,
     TextStyle,
     TemporalAccessor,
     TemporalQueries,
-    ZoneId,
 } from 'js-joda';
 
 import jodaTZ from 'js-joda-timezone';
@@ -32,16 +27,12 @@ import '../../_init';
 
 import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextProvider';
 import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
-import { MockFieldValue } from '../temporal/MockFieldValue';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
 
 describe('org.threeten.bp.format.TestTextParser', () => {
-    let printEmptyContext;
-    let printContext;
     let parseContext;
-    let buf;
 
     const EMPTY = new TemporalAccessor();
     EMPTY.isSupported = () => {
@@ -55,11 +46,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
     const LOCALE_FRENCH = 'fr';
 
     beforeEach(() => {
-        printEmptyContext = new DateTimePrintContext(EMPTY, LOCALE_ENGLISH, DecimalStyle.STANDARD);
-        const zdt = LocalDateTime.of(2011, 6, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Paris'));
-        printContext = new DateTimePrintContext(zdt, LOCALE_ENGLISH, DecimalStyle.STANDARD);
         parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-        buf = new StringBuilder();
     });
 
     const PROVIDER = new CldrDateTimeTextProvider();
