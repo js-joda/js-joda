@@ -248,7 +248,7 @@ class LocaleStore {
     constructor(valueTextMap) {
         this._valueTextMap = valueTextMap;
         const map = {};
-        const allList = [];
+        let allList = [];
         Object.keys(valueTextMap).forEach((style) => {
             const reverse = {};
             valueTextMap[style].forEach((value, key) => {
@@ -261,8 +261,7 @@ class LocaleStore {
             const list = Object.values(reverse);
             list.sort(_comparator);
             map[style] = list;
-            allList.concat(list);
-            // TODO: map[null] won't work probably :/
+            allList = allList.concat(list);
             map[null] = allList;
         });
         allList.sort(_comparator);
@@ -293,7 +292,7 @@ class LocaleStore {
      *  null if the style is not parsable
      */
     getTextIterator(style) {
-        const list = this._parsable.get(style);
-        return list != null ? list.iterator() : null;
+        const list = this._parsable[style];
+        return list != null ? list[Symbol.iterator]() : null;
     }
 }
