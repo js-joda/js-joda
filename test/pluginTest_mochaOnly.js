@@ -6,8 +6,8 @@
 // test the actual js-joda-locale plugin, it might be nice to test with the actual `dist/js-joda-locale`
 // but that would require a npm run build-dist before each test :/
 import jsJodaLocale from '../src/js-joda-locale';
-// the test functions are imported from mainTest to only write them once :)
-import testPlugin from './mainTest';
+// the test functions are imported from plugTest to only write them once :)
+import testPlugin from './plugTest';
 
 describe('plugin test', () => {
     testPlugin(jsJodaLocale);
