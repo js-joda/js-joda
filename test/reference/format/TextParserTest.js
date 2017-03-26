@@ -58,63 +58,65 @@ describe('org.threeten.bp.format.TestTextParser', () => {
             assertEquals(context.getParsed(field), value);
         }
     };
-    //-----------------------------------------------------------------------
-    it('test_parse_error', () => {
-        const data_error = [
-            [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', -1, IllegalArgumentException],
-            [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', 7, IllegalArgumentException],
-        ];
+    describe('parse_error', () => {
+        it('test_parse_error', () => {
+            const data_error = [
+                [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', -1, IllegalArgumentException],
+                [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', 7, IllegalArgumentException],
+            ];
 
-        dataProviderTest(data_error, (pp, text, pos, expected) => {
-            expect(() => {
-                pp.parse(parseContext, text, pos);
-            }).to.throw(expected);
+            dataProviderTest(data_error, (pp, text, pos, expected) => {
+                expect(() => {
+                    pp.parse(parseContext, text, pos);
+                }).to.throw(expected);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+            });
+        });
+    });
+
+    describe('parse_partial', () => {
+        it('test_parse_midStr', () => {
+            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'XxxMondayXxx', 3);
+            assertEquals(newPos, 9);
+            assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 1);
+        });
+
+        it('test_parse_remainderIgnored', () => {
+            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Wednesday', 0);
+            assertEquals(newPos, 3);
+            assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 3);
+        });
+    });
+
+    describe('parse_noMatch', () => {
+        it('test_parse_noMatch1', () => {
+            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Munday', 0);
+            assertEquals(newPos, ~0);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_parse_noMatch2', () => {
+            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Monday', 3);
+            assertEquals(newPos, ~3);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_parse_noMatch_atEnd', () => {
+            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Monday', 6);
+            assertEquals(newPos, ~6);
             assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
             assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
         });
     });
 
-    //-----------------------------------------------------------------------
-    it('test_parse_midStr', () => {
-        const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'XxxMondayXxx', 3);
-        assertEquals(newPos, 9);
-        assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 1);
-    });
-
-    it('test_parse_remainderIgnored', () => {
-        const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Wednesday', 0);
-        assertEquals(newPos, 3);
-        assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 3);
-    });
-
-    //-----------------------------------------------------------------------
-    it('test_parse_noMatch1', () => {
-        const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Munday', 0);
-        assertEquals(newPos, ~0);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
-
-    it('test_parse_noMatch2', () => {
-        const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Monday', 3);
-        assertEquals(newPos, ~3);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
-
-    it('test_parse_noMatch_atEnd', () => {
-        const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Monday', 6);
-        assertEquals(newPos, ~6);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
-
-    //-----------------------------------------------------------------------
 
     const data_text = [
         [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 1, 'Monday'],
@@ -152,197 +154,204 @@ describe('org.threeten.bp.format.TestTextParser', () => {
         [ChronoField.DAY_OF_MONTH, TextStyle.SHORT, 31, '31'],
     ];
 
-    it('test_parseText', () => {
-        dataProviderTest(data_text, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input, 0);
-            assertEquals(newPos, input.length);
-            assertParsed(parseContext, field, value);
+    describe('parse', () => {
+        it('test_parseText', () => {
+            dataProviderTest(data_text, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input, 0);
+                assertEquals(newPos, input.length);
+                assertParsed(parseContext, field, value);
+            });
+        });
+
+        it('test_parseNumber', () => {
+            dataProviderTest(data_number, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input, 0);
+                assertEquals(newPos, input.length);
+                assertParsed(parseContext, field, value);
+            });
         });
     });
 
-    it('test_parseNumber', () => {
-        dataProviderTest(data_number, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input, 0);
-            assertEquals(newPos, input.length);
-            assertParsed(parseContext, field, value);
+    describe('parse_strict_upper', () => {
+        it('test_parse_strict_caseSensitive_parseUpper', () => {
+            dataProviderTest(data_text, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext.setCaseSensitive(true);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
+                assertEquals(newPos, ~0);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+            });
+        });
+
+        it('test_parse_strict_caseInsensitive_parseUpper', () => {
+            dataProviderTest(data_text, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext.setCaseSensitive(false);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
+                assertEquals(newPos, input.length);
+                assertParsed(parseContext, field, value);
+            });
         });
     });
 
-    //-----------------------------------------------------------------------
-    it('test_parse_strict_caseSensitive_parseUpper', () => {
-        dataProviderTest(data_text, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            parseContext.setCaseSensitive(true);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
+    describe('parse_strict_lower', () => {
+        it('test_parse_strict_caseSensitive_parseLower', () => {
+            dataProviderTest(data_text, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext.setCaseSensitive(true);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
+                assertEquals(newPos, ~0);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+            });
+        });
+
+        it('test_parse_strict_caseInsensitive_parseLower', () => {
+            dataProviderTest(data_text, (field, style, value, input) => {
+                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext.setCaseSensitive(false);
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
+                assertEquals(newPos, input.length);
+                assertParsed(parseContext, field, value);
+            });
+        });
+    });
+
+    describe('parse_full_strict', () => {
+        it('test_parse_full_strict_full_match', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'January', 0);
+            assertEquals(newPos, 7);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
+
+        it('test_parse_full_strict_short_noMatch', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Janua', 0);
+            assertEquals(newPos, ~0);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_parse_full_strict_number_noMatch', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, '1', 0);
             assertEquals(newPos, ~0);
             assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
             assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
         });
     });
 
-    it('test_parse_strict_caseInsensitive_parseUpper', () => {
-        dataProviderTest(data_text, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            parseContext.setCaseSensitive(false);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
-            assertEquals(newPos, input.length);
-            assertParsed(parseContext, field, value);
+    describe('parse_short_strict', () => {
+        it('test_parse_short_strict_full_match', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'January', 0);
+            assertEquals(newPos, 3);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
         });
-    });
 
-    //-----------------------------------------------------------------------
-    it('test_parse_strict_caseSensitive_parseLower', () => {
-        dataProviderTest(data_text, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            parseContext.setCaseSensitive(true);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
+        it('test_parse_short_strict_short_match', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Janua', 0);
+            assertEquals(newPos, 3);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
+
+        it('test_parse_short_strict_number_noMatch', () => {
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, '1', 0);
             assertEquals(newPos, ~0);
             assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
             assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
         });
     });
 
-    it('test_parse_strict_caseInsensitive_parseLower', () => {
-        dataProviderTest(data_text, (field, style, value, input) => {
-            parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-            parseContext.setCaseSensitive(false);
-            const pp = new TextPrinterParser(field, style, PROVIDER);
-            const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
-            assertEquals(newPos, input.length);
-            assertParsed(parseContext, field, value);
+    describe('parse_french_short_strict', () => {
+        it('test_parse_french_short_strict_full_noMatch', () => {
+            parseContext.setLocale(LOCALE_FRENCH);
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'janvier', 0);  // correct short form is 'janv.'
+            assertEquals(newPos, ~0);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
+            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
+        });
+
+        it('test_parse_french_short_strict_short_match', () => {
+            parseContext.setLocale(LOCALE_FRENCH);
+            parseContext.setStrict(true);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'janv.', 0);
+            assertEquals(newPos, 5);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
         });
     });
 
-    //-----------------------------------------------------------------------
-    //-----------------------------------------------------------------------
-    //-----------------------------------------------------------------------
-    it('test_parse_full_strict_full_match', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'January', 0);
-        assertEquals(newPos, 7);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+    describe('parse_full_lenient', () => {
+        it('test_parse_full_lenient_full_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'January', 0);
+            assertEquals(newPos, 7);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
+
+        it('test_parse_full_lenient_short_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Janua', 0);
+            assertEquals(newPos, 3);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
+
+        it('test_parse_full_lenient_number_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
+            const newPos = pp.parse(parseContext, '1', 0);
+            assertEquals(newPos, 1);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
     });
 
-    it('test_parse_full_strict_short_noMatch', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Janua', 0);
-        assertEquals(newPos, ~0);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
+    describe('parse_short_lenient', () => {
+        it('test_parse_short_lenient_full_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'January', 0);
+            assertEquals(newPos, 7);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
 
-    it('test_parse_full_strict_number_noMatch', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, '1', 0);
-        assertEquals(newPos, ~0);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
+        it('test_parse_short_lenient_short_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, 'Janua', 0);
+            assertEquals(newPos, 3);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
 
-    //-----------------------------------------------------------------------
-    it('test_parse_short_strict_full_match', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'January', 0);
-        assertEquals(newPos, 3);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_short_strict_short_match', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Janua', 0);
-        assertEquals(newPos, 3);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_short_strict_number_noMatch', () => {
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, '1', 0);
-        assertEquals(newPos, ~0);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
-
-    //-----------------------------------------------------------------------
-    it('test_parse_french_short_strict_full_noMatch', () => {
-        parseContext.setLocale(LOCALE_FRENCH);
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'janvier', 0);  // correct short form is 'janv.'
-        assertEquals(newPos, ~0);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-        assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-    });
-
-    it('test_parse_french_short_strict_short_match', () => {
-        parseContext.setLocale(LOCALE_FRENCH);
-        parseContext.setStrict(true);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'janv.', 0);
-        assertEquals(newPos, 5);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    //-----------------------------------------------------------------------
-    it('test_parse_full_lenient_full_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'January', 0);
-        assertEquals(newPos, 7);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_full_lenient_short_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Janua', 0);
-        assertEquals(newPos, 3);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_full_lenient_number_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
-        const newPos = pp.parse(parseContext, '1', 0);
-        assertEquals(newPos, 1);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    //-----------------------------------------------------------------------
-    it('test_parse_short_lenient_full_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'January', 0);
-        assertEquals(newPos, 7);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_short_lenient_short_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, 'Janua', 0);
-        assertEquals(newPos, 3);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
-    });
-
-    it('test_parse_short_lenient_number_match', () => {
-        parseContext.setStrict(false);
-        const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
-        const newPos = pp.parse(parseContext, '1', 0);
-        assertEquals(newPos, 1);
-        assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        it('test_parse_short_lenient_number_match', () => {
+            parseContext.setStrict(false);
+            const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
+            const newPos = pp.parse(parseContext, '1', 0);
+            assertEquals(newPos, 1);
+            assertParsed(parseContext, ChronoField.MONTH_OF_YEAR, 1);
+        });
     });
 
 });
