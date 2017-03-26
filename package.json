@@ -39,7 +39,10 @@
   },
   "homepage": "https://github.com/js-joda/js-joda-locale#readme",
   "peerDependencies": {
-    "js-joda": "^1.5.0"
+    "js-joda": "^1.5.0",
+    "js-joda-timezone": "^1.1.1",
+    "cldr-data": "^31.0.1",
+    "cldrjs": "^0.4.8"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -47,8 +50,11 @@
     "babel-loader": "^6.4.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.1",
-    "babel-preset-es2015": "^6.24.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-latest": "^6.24.0",
     "chai": "^3.5.0",
+    "cldr-data": "^31.0.1",
+    "cldrjs": "^0.4.8",
     "coveralls": "^2.12.0",
     "esdoc": "^0.5.2",
     "eslint": "^3.18.0",
@@ -60,6 +66,7 @@
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^2.1.1",
     "js-joda": "^1.5.0",
+    "js-joda-timezone": "^1.1.1",
     "karma": "^1.5.0",
     "karma-chai-plugins": "^0.8.0",
     "karma-chrome-launcher": "^2.0.0",
