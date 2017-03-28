@@ -26,6 +26,7 @@ import { assertEquals, dataProviderTest } from '../../testUtils';
 import '../../_init';
 
 import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextProvider';
+import Locale from '../../../src/Locale';
 import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
 
 //use js-joda-timezone
@@ -42,11 +43,8 @@ describe('org.threeten.bp.format.TestTextParser', () => {
         throw new DateTimeException('Mock');
     };
 
-    const LOCALE_ENGLISH = 'en';
-    const LOCALE_FRENCH = 'fr';
-
     beforeEach(() => {
-        parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+        parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
     });
 
     const PROVIDER = new CldrDateTimeTextProvider();
@@ -157,7 +155,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
     describe('parse', () => {
         it('test_parseText', () => {
             dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input, 0);
                 assertEquals(newPos, input.length);
@@ -167,7 +165,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
 
         it('test_parseNumber', () => {
             dataProviderTest(data_number, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input, 0);
                 assertEquals(newPos, input.length);
@@ -179,7 +177,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
     describe('parse_strict_upper', () => {
         it('test_parse_strict_caseSensitive_parseUpper', () => {
             dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 parseContext.setCaseSensitive(true);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
@@ -191,7 +189,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
 
         it('test_parse_strict_caseInsensitive_parseUpper', () => {
             dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 parseContext.setCaseSensitive(false);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
@@ -204,7 +202,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
     describe('parse_strict_lower', () => {
         it('test_parse_strict_caseSensitive_parseLower', () => {
             dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 parseContext.setCaseSensitive(true);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
@@ -216,7 +214,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
 
         it('test_parse_strict_caseInsensitive_parseLower', () => {
             dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(LOCALE_ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 parseContext.setCaseSensitive(false);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
@@ -283,7 +281,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
 
     describe('parse_french_short_strict', () => {
         it('test_parse_french_short_strict_full_noMatch', () => {
-            parseContext.setLocale(LOCALE_FRENCH);
+            parseContext.setLocale(Locale.FRENCH);
             parseContext.setStrict(true);
             const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
             const newPos = pp.parse(parseContext, 'janvier', 0);  // correct short form is 'janv.'
@@ -293,7 +291,7 @@ describe('org.threeten.bp.format.TestTextParser', () => {
         });
 
         it('test_parse_french_short_strict_short_match', () => {
-            parseContext.setLocale(LOCALE_FRENCH);
+            parseContext.setLocale(Locale.FRENCH);
             parseContext.setStrict(true);
             const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
             const newPos = pp.parse(parseContext, 'janv.', 0);

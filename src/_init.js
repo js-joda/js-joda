@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-// import { _init as intervalInit } from './Interval';
+import { _init as localeInit } from './Locale';
 
 let isInit = false;
 
@@ -14,7 +14,7 @@ function init() {
 
     isInit = true;
 
-    // intervalInit();
+    localeInit();
 }
 
 init();
