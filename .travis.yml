@@ -33,6 +33,7 @@ script:
       set -evx;
       npm run test;
       npm run test-coverage;
+      npm run test-ts-definitions;
       )
     fi
   # CI_STEP = karma steps to run
