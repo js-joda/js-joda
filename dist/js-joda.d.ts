@@ -1448,7 +1448,7 @@ declare namespace JSJoda {
         toDate: () => Date,
         toEpochMilli: () => number
     };
-    function use(plugin: Function);
+    function use(plugin: Function):any;
 }
 
 export = JSJoda;
