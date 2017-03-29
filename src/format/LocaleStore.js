@@ -88,7 +88,6 @@ export class LocaleStore {
      */
     getTextIterator(style) {
         const list = this._parsable[style];
-        // eslint-disable-next-line no-undef
         return list != null ? list[Symbol.iterator]() : null;
     }
 }
