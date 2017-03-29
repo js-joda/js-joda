@@ -1444,6 +1444,11 @@ declare namespace JSJoda {
     }
 
     function nativeJs(date: Date|any, zone?: ZoneId): TemporalAccessor;
+    function convert(temporal: LocalDate|LocalDateTime|ZonedDateTime, zone?: ZoneId): {
+        toDate: () => Date,
+        toEpochMilli: () => number
+    };
+    function use(plugin: Function);
 }
 
 export = JSJoda;
