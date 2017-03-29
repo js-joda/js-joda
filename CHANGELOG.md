@@ -3,6 +3,11 @@ Changelog
 
 ### 1.5.1 (next)
 
+#### public API
+
+ * Add `use` function to typescript definition
+ * Add `convert` function to typescript definition
+
 ### 1.5.0
 
 #### public API
