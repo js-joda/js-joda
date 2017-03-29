@@ -22,12 +22,12 @@ Install joda using npm
     npm install js-joda
     npm install js-joda-timezone
 
-Require it 
+### es5
 
-    jsJoda = require('js-joda')
+    const jsJoda = require('js-joda')
         .use(require('js-joda-timezone'))
     
-    const {LocalDateTime, ZoneId, ZonedDateTime } = jsJoda;
+    const { LocalDateTime, ZoneId, ZonedDateTime } = jsJoda;
          
     LocalDateTime
         .parse('2016-06-30T11:30')
@@ -43,6 +43,15 @@ Require it
         .parse('2016-06-30T11:30+02:00[Europe/Berlin]')
         .withZoneSameLocal(ZoneId.of('America/New_York'))
         .toString() // 2016-06-30T11:30-04:00[America/New_York]
+
+### es6
+
+    import { use as jsJodaUse, ZonedDateTime, ZoneId } from 'js-joda'
+    import jsJodaTimeZone from 'js-joda-timezone'
+    
+    jsJodaUse(jsJodaTimeZone)
+    
+    const zdt = ZonedDateTime.now(ZoneId.of('America/New_York'))
 
 ### Browser
 
