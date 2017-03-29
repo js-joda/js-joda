@@ -1,7 +1,9 @@
 Changelog
 =========
 
-### 1.1.2 (next)
+### 1.1.3 (next)
+
+### 1.1.2
 
 #### add typescript definition
 
