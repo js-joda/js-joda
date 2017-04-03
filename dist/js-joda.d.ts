@@ -357,7 +357,7 @@ declare namespace JSJoda {
 
         static from(temporal: TemporalAccessor): LocalTime
 
-        static now(clockOrZone?: Clock | ZoneId): LocalDateTime
+        static now(clockOrZone?: Clock | ZoneId): LocalTime
 
         static of(hour?: number, minute?: number, second?: number, nanoOfSecond?: number): LocalTime
 
