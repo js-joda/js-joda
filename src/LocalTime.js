@@ -120,7 +120,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The alternate clock may be introduced using dependency injection.
      *
      * @param {Clock|ZoneId} clockOrZone - the zone ID or clock to use, if null Clock.systemDefaultZone() is used.
-     * @return {LocalDateTime} the current time using the system clock, not null
+     * @return {LocalTime} the current time using the system clock, not null
      */
     static now(clockOrZone) {
         if (clockOrZone == null){
