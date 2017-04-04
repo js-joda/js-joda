@@ -3,6 +3,10 @@ Changelog
 
 ### 1.5.2 (next)
 
+#### public API
+
+ * fix LocalDate.now in typescript definition and esdoc 
+
 ### 1.5.1
 
 #### public API
