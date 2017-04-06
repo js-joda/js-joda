@@ -48,7 +48,7 @@
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.0.0",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.2.0",
+    "eslint-plugin-standard": "^3.0.1",
     "js-joda": "^1.5.1",
     "json-loader": "^0.5.4",
     "karma": "^1.6.0",
