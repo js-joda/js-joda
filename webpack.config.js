@@ -57,8 +57,8 @@ module.exports = {
                 warnings: false,
             },
         }),
-        new webpack.BannerPlugin({banner: banner, raw: true}),
+        new webpack.BannerPlugin({ banner: banner, raw: true }),
     ] : [
-        new webpack.BannerPlugin({banner: banner, raw: true}),
+        new webpack.BannerPlugin({ banner: banner, raw: true }),
     ],
 };
