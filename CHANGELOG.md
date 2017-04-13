@@ -3,6 +3,10 @@ Changelog
 
 ### 1.1.4 (next)
 
+#### etc
+ 
+ * add bower.json
+
 ### 1.1.3
 
 #### dependendency updates
