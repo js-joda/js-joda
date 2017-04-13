@@ -68,6 +68,6 @@
     "mocha": "^3.2.0",
     "nyc": "^10.0.0",
     "phantomjs-prebuilt": "^2.1.14",
-    "webpack": "^1.14.0"
+    "webpack": "^2.3.0"
   }
 }
