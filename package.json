@@ -49,7 +49,7 @@
     "esdoc": "^0.5.2",
     "eslint": "^3.13.1",
     "eslint-config-airbnb": "^14.0.0",
-    "eslint-config-standard": "^7.0.0",
+    "eslint-config-standard": "^10.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-promise": "^3.4.0",
