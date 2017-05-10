@@ -342,18 +342,19 @@ declare namespace JSJoda {
         static MAX: LocalTime
         static MIDNIGHT: LocalTime
         static NOON: LocalTime
-        static HOURS_PER_DAY: LocalTime
-        static MINUTES_PER_HOUR: LocalTime
-        static MINUTES_PER_DAY: LocalTime
-        static SECONDS_PER_MINUTE: LocalTime
-        static SECONDS_PER_HOUR: LocalTime
-        static SECONDS_PER_DAY: LocalTime
-        static MILLIS_PER_DAY: LocalTime
-        static MICROS_PER_DAY: LocalTime
-        static NANOS_PER_SECOND: LocalTime
-        static NANOS_PER_MINUTE: LocalTime
-        static NANOS_PER_HOUR: LocalTime
-        static NANOS_PER_DAY: LocalTime
+        
+        static HOURS_PER_DAY: number
+        static MINUTES_PER_HOUR: number
+        static MINUTES_PER_DAY: number
+        static SECONDS_PER_MINUTE: number
+        static SECONDS_PER_HOUR: number
+        static SECONDS_PER_DAY: number
+        static MILLIS_PER_DAY: number
+        static MICROS_PER_DAY: number
+        static NANOS_PER_SECOND: number
+        static NANOS_PER_MINUTE: number
+        static NANOS_PER_HOUR: number
+        static NANOS_PER_DAY: number
 
         static from(temporal: TemporalAccessor): LocalTime
 
