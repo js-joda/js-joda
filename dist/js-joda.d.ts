@@ -50,7 +50,7 @@ declare namespace JSJoda {
 
         getLong(field: TemporalField): number
 
-        isSupported(field: TemporalField): number
+        isSupported(field: TemporalField): boolean
 
         minus(days: number): DayOfWeek
 
@@ -112,7 +112,7 @@ declare namespace JSJoda {
 
         isZero(): boolean
 
-        minus(durationOrNumber: Duration | number, unit: ChronoUnit): Duration
+        minus(durationOrNumber: Duration|number, unit: ChronoUnit): Duration
 
         minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): Duration
 
@@ -136,7 +136,7 @@ declare namespace JSJoda {
 
         negated(): Duration
 
-        plus(durationOrNumber: Duration | number, unitOrNumber: TemporalUnit | number): Duration
+        plus(durationOrNumber: Duration|number, unitOrNumber: TemporalUnit|number): Duration
 
         plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration
 
@@ -215,7 +215,7 @@ declare namespace JSJoda {
 
         isBefore(otherInstant: Instant): boolean
 
-        isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
         minus(amount: TemporalAmount): Instant
         minus(amountToSubtract: number, unit: TemporalUnit): Instant
@@ -287,7 +287,7 @@ declare namespace JSJoda {
 
         parseUnresolved(text: any, position: any): any
 
-        toString(): any
+        toString(): string
 
         withChronology(chrono: any): any
 
@@ -358,7 +358,7 @@ declare namespace JSJoda {
 
         static from(temporal: TemporalAccessor): LocalTime
 
-        static now(clockOrZone?: Clock | ZoneId): LocalTime
+        static now(clockOrZone?: Clock|ZoneId): LocalTime
 
         static of(hour?: number, minute?: number, second?: number, nanoOfSecond?: number): LocalTime
 
@@ -376,7 +376,7 @@ declare namespace JSJoda {
 
         compareTo(other: LocalTime): number
 
-        equals(other: any): any
+        equals(other: any): boolean
 
         format(formatter: DateTimeFormatter): string
 
@@ -388,11 +388,11 @@ declare namespace JSJoda {
 
         hour(): number
 
-        isAfter(other: LocalTime): any
+        isAfter(other: LocalTime): boolean
 
-        isBefore(other: LocalTime): any
+        isBefore(other: LocalTime): boolean
 
-        isSupported(fieldOrUnit: ChronoField | ChronoUnit): boolean
+        isSupported(fieldOrUnit: ChronoField|ChronoUnit): boolean
 
         minus(amount: TemporalAmount): LocalTime
         minus(amountToSubtract: number, unit: ChronoUnit): LocalTime
@@ -531,9 +531,9 @@ declare namespace JSJoda {
     class MonthDay extends Temporal {
         static from(temporal: TemporalAccessor): MonthDay
 
-        static now(arg1?: ZoneId | Clock): MonthDay
+        static now(arg1?: ZoneId|Clock): MonthDay
 
-        static of(monthOrNumber: Month | number, number?: number): MonthDay
+        static of(monthOrNumber: Month|number, number?: number): MonthDay
 
         static ofMonthNumber(month: Month, dayOfMonth: number): MonthDay
 
@@ -885,7 +885,7 @@ declare namespace JSJoda {
 
         isEqual(other: any): boolean
 
-        isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
         minus(amount: TemporalAmount): LocalDateTime
         minus(amountToSubtract: number, unit: TemporalUnit): LocalDateTime
@@ -966,7 +966,7 @@ declare namespace JSJoda {
 
         withMinute(minute: number): LocalDateTime
 
-        withMonth(month: number | Month): LocalDateTime
+        withMonth(month: number|Month): LocalDateTime
 
         withNano(nanoOfSecond: number): LocalDateTime
 
@@ -1147,34 +1147,34 @@ declare namespace JSJoda {
 
         static isLeap(year: number): boolean
 
-        static now(zoneIdOrClock?: ZoneId | Clock): Year
+        static now(zoneIdOrClock?: ZoneId|Clock): Year
 
         static of(isoYear: number): Year
 
         static parse(text: string, formatter?: DateTimeFormatter): Year
 
-        atMonth(monthOrNumber: Month | number): Year
+        atMonth(monthOrNumber: Month|number): Year
 
-        plus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
+        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
 
-        minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
+        minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
     }
     class YearMonth extends Temporal {
         static from(temporal: TemporalAccessor): YearMonth
 
-        static now(zoneIdOrClock?: ZoneId | Clock): YearMonth
+        static now(zoneIdOrClock?: ZoneId|Clock): YearMonth
 
-        static of(year: number, monthOrNumber: Month | number): YearMonth
+        static of(year: number, monthOrNumber: Month|number): YearMonth
 
         static parse(text: string, formatter?: DateTimeFormatter): YearMonth
 
-        minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): YearMonth
+        minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): YearMonth
 
-        plus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): YearMonth
+        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): YearMonth
 
-        with(adjusterOrField: TemporalAdjuster | TemporalField, value?: number): YearMonth
+        with(adjusterOrField: TemporalAdjuster|TemporalField, value?: number): YearMonth
 
-        isSupported(fieldOrUnit: TemporalField | ChronoUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|ChronoUnit): boolean
     }
     class ZoneId {
         static SYSTEM: ZoneId
@@ -1238,7 +1238,7 @@ declare namespace JSJoda {
         totalSeconds(): number
     }
     class ZoneRegion extends ZoneId {
-        static ofId(zoneId: any): ZoneId
+        static ofId(zoneId: string): ZoneId
 
         id(): string
 
@@ -1282,7 +1282,7 @@ declare namespace JSJoda {
     class ZonedDateTime extends ChronoZonedDateTime {
         static from(temporal: TemporalAccessor): ZonedDateTime
 
-        static now(clockOrZone?: Clock | ZoneId): ZonedDateTime
+        static now(clockOrZone?: Clock|ZoneId): ZonedDateTime
 
         static of(): any
         static of(localDateTime: LocalDateTime, zone: ZoneId): ZonedDateTime
@@ -1305,7 +1305,7 @@ declare namespace JSJoda {
 
         dayOfYear(): number
 
-        equals(other: any): any
+        equals(other: any): boolean
 
         format(formatter: DateTimeFormatter): string
 
@@ -1317,7 +1317,7 @@ declare namespace JSJoda {
 
         hour(): number
 
-        isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
         minus(): any
         minus(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime
