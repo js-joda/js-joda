@@ -5,7 +5,6 @@ Changelog
 
 #### public API
 
- * use libraryTarget umd for minified dist version  
  * fix LocalDate.now in typescript definition and esdoc 
 
 ### 1.5.1
