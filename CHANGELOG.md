@@ -6,6 +6,7 @@ Changelog
 #### public API
 
  * fix LocalDate.now in typescript definition and esdoc 
+ * fix LocalTime static properties in typescript definition
 
 ### 1.5.1
 
