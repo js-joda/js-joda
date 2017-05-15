@@ -3,6 +3,12 @@ Changelog
 
 ### 1.5.3 (next)
 
+#### public API
+
+ * fix typescript definition and esdoc 
+
+#### dependency updates
+
 ### 1.5.2
 
 #### public API
