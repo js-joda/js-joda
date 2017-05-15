@@ -7,6 +7,8 @@ Changelog
  
  * add bower.json
 
+#### dependendency updates
+
 ### 1.1.3
 
 #### dependendency updates
