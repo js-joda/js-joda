@@ -611,6 +611,10 @@ export class DateTimeFormatter {
         return this._printerParser.withOptional(optional);
     }
 
+    /**
+     *
+     * @returns {string}
+     */
     toString() {
         const pattern = this._printerParser.toString();
         return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
