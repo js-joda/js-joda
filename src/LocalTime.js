@@ -1259,7 +1259,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The comparison is based on the time-line position of the time within a day.
      *
      * @param {LocalTime} other - the other time to compare to, not null
-     * @return {boolean}true if this is after the specified time
+     * @return {boolean} true if this is after the specified time
      * @throws {NullPointerException} if `other` is null
      */
     isAfter(other) {
@@ -1272,7 +1272,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The comparison is based on the time-line position of the time within a day.
      *
      * @param {LocalTime} other - the other time to compare to, not null
-     * @return {boolean}true if this point is before the specified time
+     * @return {boolean} true if this point is before the specified time
      * @throws {NullPointerException} if `other` is null
      */
     isBefore(other) {
@@ -1290,7 +1290,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * {@link ChronoField#NANO_OF_DAY} as a comparator.
      *
      * @param {*} other - the object to check, null returns false
-     * @return {boolean}true if this is equal to the other time
+     * @return {boolean} true if this is equal to the other time
      */
     equals(other) {
         if (this === other) {

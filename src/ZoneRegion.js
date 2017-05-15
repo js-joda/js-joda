@@ -30,7 +30,7 @@ import {ZoneRulesProvider} from './zone/ZoneRulesProvider';
 export class ZoneRegion extends ZoneId {
     /**
      * not yet implemented
-     * @params {string} zoneId
+     * @param {string} zoneId
      * @return {ZoneId}
      */
     static ofId(zoneId){

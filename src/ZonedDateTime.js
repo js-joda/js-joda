@@ -1977,7 +1977,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * Only objects of type {@link ZonedDateTime} are compared, other types return false.
      *
      * @param {*} other  the object to check, null returns false
-     * @return true if this is equal to the other date-time
+     * @return {boolean} true if this is equal to the other date-time
      */
     equals(other) {
         if (this === other) {
