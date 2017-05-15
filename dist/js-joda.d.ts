@@ -727,6 +727,9 @@ declare namespace JSJoda {
 
         static ofYearDay(year: number, dayOfYear: number): LocalDate
 
+        static min(firstDate: LocalDate, secondDate: LocalDate): LocalDate
+        static max(firstDate: LocalDate, secondDate: LocalDate): LocalDate
+
         static parse(text: string, formatter?: DateTimeFormatter): LocalDate
 
         atStartOfDay(): LocalDateTime
@@ -756,8 +759,10 @@ declare namespace JSJoda {
         hashCode(): number
 
         isAfter(other: LocalDate): boolean
+        isAfterOrEqual(other: LocalDate): boolean
 
         isBefore(other: LocalDate): boolean
+        isBeforeOrEqual(other: LocalDate): boolean
 
         isEqual(other: LocalDate): boolean
 

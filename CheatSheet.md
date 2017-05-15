@@ -453,12 +453,17 @@ t.truncatedTo(ChronoUnit.DAYS);      // '00:00'
 ### Compare LocalTime instances
 
 ```javascript
+var today = LocalDate.now(), tomorrow = today.plusDays(1);
+LocalDate.min(today, tomorrow); // today
+LocalDate.max(today, tomorrow); // tomorrow
 
 var t1 = LocalTime.parse('11:55:42')
 var t2 = t1.plusHours(2);
 
 t1.isAfter(t2);  // false
+t1.isAfterOrEqual(t2);  // false
 t1.isBefore(t2); // true
+t1.isBeforeOrEqual(t2); // true
 
 t1.equals(t1.plusHours(0));   // true
 t1.equals(t1.plusHours(1));   // false
@@ -467,7 +472,7 @@ t1.compareTo(t1) === 0; // true
 t1.compareTo(t2) < 0;   // true
 t2.compareTo(t1) > 0;   // true
 
-// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
+// Warn! hashCode is equal if in instances are equal, but might be equal for unequal instances as well
 t1.hashCode(); // 916974646
 t2.hashCode(); // -1743180648
 t1.hashCode() !== t2.hashCode(); // true

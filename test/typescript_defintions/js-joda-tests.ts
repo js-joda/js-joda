@@ -22,7 +22,7 @@ declare function moment(): any;
 
 /* - these test function don't actually *do* anything, they are also not meant to be run
  * - they are used to test the typescript definitions / typings that we provide
- * - they are mostly copied from the CheatSheet.md file and show usage of JSJoda and wether the usage complies
+ * - they are mostly copied from the CheatSheet.md file and show usage of JSJoda and whether the usage complies
  *   with the typing definitions
  *
  *  We used the Contribution guide ideas from DefinitelyTyped for these "tests"
@@ -95,9 +95,15 @@ function test_LocalDate() {
     let d1 = LocalDate.parse('2016-12-24');
     let d2 = d1.plusDays(2);
 
-    d1.isAfter(d2);
-    d1.isBefore(d2);
+    LocalDate.min(d1, d2);
+    LocalDate.max(d1, d2);
 
+    d1.isAfter(d2);
+    d1.isAfterOrEqual(d2);
+    d1.isBefore(d2);
+    d1.isBeforeOrEqual(d2);
+
+    d1.isEqual(d2);
     d1.equals(d2);
     d1.equals(d1.plusDays(0));
     d1.equals(d1.plusDays(1));

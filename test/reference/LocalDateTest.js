@@ -397,6 +397,22 @@ describe('org.threeten.bp.TestLocalDate', () => {
         });
     });
 
+    describe('min/max', () => {
+        var today = LocalDate.now(), tomorrow = today.plusDays(1);
+
+        it('min', () => {
+            assertEquals(LocalDate.min(today, tomorrow), today);
+            assertEquals(LocalDate.min(tomorrow, today), today);
+            assertEquals(LocalDate.min(today, today), today);
+        });
+
+        it('max', () => {
+            assertEquals(LocalDate.max(today, tomorrow), tomorrow);
+            assertEquals(LocalDate.max(tomorrow, today), tomorrow);
+            assertEquals(LocalDate.max(tomorrow, tomorrow), tomorrow);
+        });
+    });
+
     function provider_sampleToString() {
         return [
             [2008, 7, 5, '2008-07-05'],
@@ -1825,17 +1841,21 @@ describe('org.threeten.bp.TestLocalDate', () => {
                     if (i < j) {
                         assertTrue(a.compareTo(b) < 0, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isBeforeOrEqual(b), true, a + ' <=> ' + b);
                         assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
                         assertEquals(a.equals(b), false, a + ' <=> ' + b);
                     } else if (i > j) {
                         assertTrue(a.compareTo(b) > 0, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
                         assertEquals(a.isAfter(b), true, a + ' <=> ' + b);
+                        assertEquals(a.isAfterOrEqual(b), true, a + ' <=> ' + b);
                         assertEquals(a.equals(b), false, a + ' <=> ' + b);
                     } else {
                         assertEquals(a.compareTo(b), 0, a + ' <=> ' + b);
                         assertEquals(a.isBefore(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isBeforeOrEqual(b), true, a + ' <=> ' + b);
                         assertEquals(a.isAfter(b), false, a + ' <=> ' + b);
+                        assertEquals(a.isAfterOrEqual(b), true, a + ' <=> ' + b);
                         assertEquals(a.equals(b), true, a + ' <=> ' + b);
                     }
                 }
