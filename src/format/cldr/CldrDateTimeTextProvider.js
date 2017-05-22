@@ -146,57 +146,69 @@ export default class CldrDateTimeTextProvider {
         }
         if (field === ChronoField.AMPM_OF_DAY) {
             const dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
-            const oldSymbols = DateFormatSymbols.getInstance(locale);
             const styleMap = {};
-            const array = oldSymbols.getAmPmStrings();
-            const map = {};
-            map[0] = array[Calendar.AM];
-            map[1] = array[Calendar.PM];
-            styleMap[TextStyle.FULL] = map;
-            styleMap[TextStyle.SHORT] = map;  // re-use, as we don't have different data
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[0] = dayPeriodsData.wide.am;
+            data[1] = dayPeriodsData.wide.pm;
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[0] = dayPeriodsData.narrow.am;
+            data[1] = dayPeriodsData.narrow.pm;
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[0] = dayPeriodsData.abbreviated.am;
+            data[1] = dayPeriodsData.abbreviated.pm;
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
         if (field === ChronoField.ERA) {
             const erasData = cldr.main('dates/calendars/gregorian/eras');
-            const oldSymbols = DateFormatSymbols.getInstance(locale);
             const styleMap = {};
-            const array = oldSymbols.getEras();
-            let map = {};
-            map[0] = array[GregorianCalendar.BC];
-            map[1] = array[GregorianCalendar.AD];
-            styleMap[TextStyle.SHORT] = map;
-            if (locale.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
-                map = {};
-                map[0] = 'Before Christ';
-                map[1] = 'Anno Domini';
-                styleMap[TextStyle.FULL] = map;
-            } else {
-                // re-use, as we don't have different data
-                styleMap[TextStyle.FULL] = map;
-            }
-            map = {};
-            map[0] = array[GregorianCalendar.BC].substring(0, 1);
-            map[1] = array[GregorianCalendar.AD].substring(0, 1);
-            styleMap[TextStyle.NARROW] = map;
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[0] = erasData.eraNames['0'];
+            data[1] = erasData.eraNames['1'];
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[0] = erasData.eraNarrow['0'];
+            data[1] = erasData.eraNarrow['1'];
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[0] = erasData.eraAbbr['0'];
+            data[1] = erasData.eraAbbr['1'];
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
-        // hard code English quarter text
         if (field === IsoFields.QUARTER_OF_YEAR) {
             const quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
             const styleMap = {};
-            let map = {};
-            map[1] = 'Q1';
-            map[2] = 'Q2';
-            map[3] = 'Q3';
-            map[4] = 'Q4';
-            styleMap[TextStyle.SHORT] = map;
-            map = {};
-            map[1] = '1st quarter';
-            map[2] = '2nd quarter';
-            map[3] = '3rd quarter';
-            map[4] = '4th quarter';
-            styleMap[TextStyle.FULL] = map;
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[1] = quartersData.wide['1'];
+            data[2] = quartersData.wide['2'];
+            data[3] = quartersData.wide['3'];
+            data[4] = quartersData.wide['4'];
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[1] = quartersData.narrow['1'];
+            data[2] = quartersData.narrow['2'];
+            data[3] = quartersData.narrow['3'];
+            data[4] = quartersData.narrow['4'];
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[1] = quartersData.abbreviated['1'];
+            data[2] = quartersData.abbreviated['2'];
+            data[3] = quartersData.abbreviated['3'];
+            data[4] = quartersData.abbreviated['4'];
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
         return null;  // null marker for map
     }
