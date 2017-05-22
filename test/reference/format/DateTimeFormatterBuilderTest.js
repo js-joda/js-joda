@@ -137,6 +137,10 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder', () => {
             ['zzz', 'ZoneText(SHORT)'],
             ['zzzz', 'ZoneText(FULL)'],
 
+            ['ZZZZ', 'LocalizedOffset(FULL)'],
+
+            ['O', 'LocalizedOffset(SHORT)'],
+            ['OOOO', 'LocalizedOffset(FULL)'],
         ];
 
         it('test_appendPattern_valid', () => {
@@ -146,7 +150,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder', () => {
                 builder.appendPattern(input);
                 const f = builder.toFormatter();
                 assertEquals(f.toString(), expected);
-            }, true);
+            }, false);
         });
     });
 });

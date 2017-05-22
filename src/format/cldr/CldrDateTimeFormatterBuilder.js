@@ -12,18 +12,12 @@ import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';
 import CldrZoneTextPrinterParser from './CldrZoneTextPrinterParser';
 import {LocaleStore} from '../LocaleStore';
+import LocalizedOffsetPrinterParser from '../parser/LocalizedOffsetPrinterParser';
 import WeekFieldsPrinterParser from '../parser/WeekFieldsPrinterParser';
 
 /** DateTimeFormatterBuilder extension functions implementing locale handling using cldr data (http://cldr.unicode.org/)
  */
 export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuilder {
-
-    //-----------------------------------------------------------------------
-    // empty implementations of locale functionality, be implemented/overridden by js-joda-locale
-
-    appendLocalizedOffset() {
-        throw new IllegalArgumentException('js-joda-locale: Pattern using (localized) text not implemented yet!');
-    }
 
     //-------------------------------------------------------------------------
     /**
@@ -179,6 +173,44 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
      */
     appendZoneText(textStyle) {
         this._appendInternal(new CldrZoneTextPrinterParser(textStyle));
+        return this;
+    }
+
+    /**
+     * Appends the localized zone offset, such as 'GMT+01:00', to the formatter.
+     * <p>
+     * This appends a localized zone offset to the builder, the format of the
+     * localized offset is controlled by the specified {@link FormatStyle style}
+     * to this method:
+     * <ul>
+     * <li>{@link TextStyle#FULL full} - formats with localized offset text, such
+     * as 'GMT, 2-digit hour and minute field, optional second field if non-zero,
+     * and colon.
+     * <li>{@link TextStyle#SHORT short} - formats with localized offset text,
+     * such as 'GMT, hour without leading zero, optional 2-digit minute and
+     * second if non-zero, and colon.
+     * </ul>
+     * <p>
+     * During formatting, the offset is obtained using a mechanism equivalent
+     * to querying the temporal with {@link TemporalQueries#offset()}.
+     * If the offset cannot be obtained then an exception is thrown unless the
+     * section of the formatter is optional.
+     * <p>
+     * During parsing, the offset is parsed using the format defined above.
+     * If the offset cannot be parsed then an exception is thrown unless the
+     * section of the formatter is optional.
+     * <p>
+     * @param {TextStyle} textStyle  the format style to use, not null
+     * @return this, for chaining, not null
+     * @throws IllegalArgumentException if style is neither {@link TextStyle#FULL
+     * full} nor {@link TextStyle#SHORT short}
+     */
+    appendLocalizedOffset(textStyle) {
+        requireNonNull(textStyle, 'textStyle');
+        if (textStyle !== TextStyle.FULL && textStyle !== TextStyle.SHORT) {
+            throw new IllegalArgumentException('Style must be either full or short');
+        }
+        this._appendInternal(new LocalizedOffsetPrinterParser(textStyle));
         return this;
     }
 
