@@ -12,11 +12,11 @@ import {
     IllegalArgumentException,
     IllegalStateException,
     IsoFields,
-    MathUtil,
     ResolverStyle,
     ValueRange,
     Year
 } from 'js-joda';
+import { MathUtil } from 'js-joda/src/MathUtil';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
