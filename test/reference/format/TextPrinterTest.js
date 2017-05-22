@@ -26,6 +26,7 @@ import { assertEquals, dataProviderTest } from '../../testUtils';
 import '../../_init';
 
 import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextProvider';
+import Locale from '../../../src/Locale';
 import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
 import { MockFieldValue } from '../temporal/MockFieldValue';
 
@@ -46,13 +47,10 @@ describe('org.threeten.bp.format.TestTextPrinter', () => {
         throw new DateTimeException('Mock');
     };
 
-    const LOCALE_ENGLISH = 'en';
-    const LOCALE_FRENCH = 'fr';
-
     beforeEach(() => {
-        printEmptyContext = new DateTimePrintContext(EMPTY, LOCALE_ENGLISH, DecimalStyle.STANDARD);
+        printEmptyContext = new DateTimePrintContext(EMPTY, Locale.ENGLISH, DecimalStyle.STANDARD);
         const zdt = LocalDateTime.of(2011, 6, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Paris'));
-        printContext = new DateTimePrintContext(zdt, LOCALE_ENGLISH, DecimalStyle.STANDARD);
+        printContext = new DateTimePrintContext(zdt, Locale.ENGLISH, DecimalStyle.STANDARD);
         buf = new StringBuilder();
     });
 
@@ -127,7 +125,7 @@ describe('org.threeten.bp.format.TestTextPrinter', () => {
 
     describe('print_french', () => {
         it('test_print_french_long', () => {
-            printContext.setLocale(LOCALE_FRENCH);
+            printContext.setLocale(Locale.FRENCH);
             printContext.setDateTime(LocalDate.of(2012, 1, 1));
             const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.FULL, PROVIDER);
             pp.print(printContext, buf);
@@ -135,7 +133,7 @@ describe('org.threeten.bp.format.TestTextPrinter', () => {
         });
 
         it('test_print_french_short', () => {
-            printContext.setLocale(LOCALE_FRENCH);
+            printContext.setLocale(Locale.FRENCH);
             printContext.setDateTime(LocalDate.of(2012, 1, 1));
             const pp = new TextPrinterParser(ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, PROVIDER);
             pp.print(printContext, buf);
