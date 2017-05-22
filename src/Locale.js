@@ -5,6 +5,8 @@
 
 
 export default class Locale {
+    // TODO: maybe use new Cldr(<'en'>) constructor instead?
+    // see https://github.com/rxaviers/cldrjs#instantiate-a-locale-and-get-it-normalized
     constructor(language, country = '') {
         this._language = language;
         this._country = country;
@@ -27,7 +29,7 @@ export default class Locale {
     }
 
     toString() {
-        return this.localeString();
+        return `Locale[${this.localeString()}]`;
     }
 }
 
