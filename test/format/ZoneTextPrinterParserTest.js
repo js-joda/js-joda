@@ -72,7 +72,6 @@ describe('js-joda-locale CldrZoneTextPrinterParser', () => {
 
         ];
 
-
         it('test_print_parse_zones', () => {
             dataProviderTest(data, (ldt, zoneStr, locale, style, expectedString) => {
                 const buf = new StringBuilder();
