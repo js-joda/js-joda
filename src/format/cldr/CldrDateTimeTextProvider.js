@@ -59,8 +59,8 @@ export default class CldrDateTimeTextProvider {
     }
 
     _createStore(field, locale) {
-        Cldr.load(cldrData(`main/${locale}/ca-gregorian`));
-        const cldr = new Cldr(locale.toLocaleString());
+        Cldr.load(cldrData(`main/${locale.localeString()}/ca-gregorian`));
+        const cldr = new Cldr(locale.localeString());
         if (field === ChronoField.MONTH_OF_YEAR) {
             const monthsData = cldr.main('dates/calendars/gregorian/months/format');
             const styleMap = {};
