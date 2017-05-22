@@ -10,7 +10,9 @@ import { DateTimeFormatterBuilder, IllegalArgumentException, TextStyle, ChronoFi
 import { requireNonNull, requireInstance } from '../../assert';
 import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';
+import CldrZoneTextPrinterParser from './CldrZoneTextPrinterParser';
 import {LocaleStore} from '../LocaleStore';
+import WeekFieldsPrinterParser from '../parser/WeekFieldsPrinterParser';
 
 /** DateTimeFormatterBuilder extension functions implementing locale handling using cldr data (http://cldr.unicode.org/)
  */
@@ -20,10 +22,6 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
     // empty implementations of locale functionality, be implemented/overridden by js-joda-locale
 
     appendLocalizedOffset() {
-        throw new IllegalArgumentException('js-joda-locale: Pattern using (localized) text not implemented yet!');
-    }
-
-    appendZoneText() {
         throw new IllegalArgumentException('js-joda-locale: Pattern using (localized) text not implemented yet!');
     }
 
@@ -146,6 +144,41 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
             }
         };
         this._appendInternal(new TextPrinterParser(field, TextStyle.FULL, provider));
+        return this;
+    }
+
+    appendWeekField(field, count) {
+        requireNonNull(field, 'field');
+        requireNonNull(count, 'count');
+        this._appendInternal(new WeekFieldsPrinterParser(field, count));
+        return this;
+    }
+
+    /**
+     * Appends the time-zone name, such as 'British Summer Time', to the formatter.
+     * <p>
+     * This appends an instruction to print the textual name of the zone to the builder.
+     * <p>
+     * During printing, the zone is obtained using a mechanism equivalent
+     * to querying the temporal with {@link TemporalQueries#zoneId()}.
+     * If the zone is a {@code ZoneOffset} it will be printed using the
+     * result of {@link ZoneOffset#getId()}.
+     * If the zone is not an offset, the textual name will be looked up
+     * for the locale set in the {@link DateTimeFormatter}.
+     * If the temporal object being printed represents an instant, then the text
+     * will be the summer or winter time text as appropriate.
+     * If the lookup for text does not find any suitable reuslt, then the
+     * {@link ZoneId#getId() ID} will be printed instead.
+     * If the zone cannot be obtained then an exception is thrown unless the
+     * section of the formatter is optional.
+     * <p>
+     * Parsing is not currently supported.
+     *
+     * @param {!TextStyle} textStyle  the text style to use, not null
+     * @return this, for chaining, not null
+     */
+    appendZoneText(textStyle) {
+        this._appendInternal(new CldrZoneTextPrinterParser(textStyle));
         return this;
     }
 
