@@ -38,14 +38,6 @@ describe('js-joda-locale TextPrinterTest', () => {
     let printContext;
     let buf;
 
-    const EMPTY = new TemporalAccessor();
-    EMPTY.isSupported = () => {
-        return true;
-    };
-    EMPTY.getLong = () => {
-        throw new DateTimeException('Mock');
-    };
-
     beforeEach(() => {
         const zdt = LocalDateTime.of(2011, 6, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Paris'));
         printContext = new DateTimePrintContext(zdt, Locale.ENGLISH, DecimalStyle.STANDARD);

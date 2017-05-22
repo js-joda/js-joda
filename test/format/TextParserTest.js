@@ -34,14 +34,6 @@ jodaUse(jodaTZ);
 describe('js-joda-local TextParserTest', () => {
     let parseContext;
 
-    const EMPTY = new TemporalAccessor();
-    EMPTY.isSupported = () => {
-        return true;
-    };
-    EMPTY.getLong = () => {
-        throw new DateTimeException('Mock');
-    };
-
     beforeEach(() => {
         parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
     });
