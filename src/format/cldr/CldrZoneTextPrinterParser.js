@@ -37,7 +37,6 @@ export default class CldrZoneTextPrinterParser {
         this._textStyle = textStyle;
         Cldr.load(cldrData('supplemental/likelySubtags'));
         Cldr.load(cldrData('supplemental/metaZones'));
-        Cldr.load(cldrData('main/de/timeZoneNames'));
     }
 
     _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
@@ -66,13 +65,13 @@ export default class CldrZoneTextPrinterParser {
                         const preferredZone = mapZones[metazone][cldr.attributes.territory];
                         if (preferredZone) {
                             if (preferredZone !== zoneId) {
-                                return this._resolveZoneIdText(cldr, preferredZone, style, type);
+                                return this._resolveZoneIdText(cldr, preferredZone, style, type, mapZones);
                             }
                         } else {
                             // find golden Zone and resolve again
                             const goldenZone = mapZones[metazone]['001'];
                             if (goldenZone !== zoneId) {
-                                return this._resolveZoneIdText(cldr, goldenZone, style, type);
+                                return this._resolveZoneIdText(cldr, goldenZone, style, type, mapZones);
                             }
                         }
                     }
@@ -86,7 +85,7 @@ export default class CldrZoneTextPrinterParser {
 
         //see http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Zone_Names
 
-        const zone = context.getValue(TemporalQueries.zoneId());
+        const zone = context.getValueQuery(TemporalQueries.zoneId());
         if (zone == null) {
             return false;
         }
@@ -94,18 +93,18 @@ export default class CldrZoneTextPrinterParser {
             buf.append(zone.id());
             return true;
         }
-        const temporal = context.getTemporal();
-        let daylight = false;
-        let hasDaylightSupport = false;
-        if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
+        const daylight = false;
+        const hasDaylightSupport = false;
+        /* TODO: currently js-joda-timezone does not support ZoneRules.isDaylightSavings() ... uncomment if it does
+         const temporal = context.temporal();
+         if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
             hasDaylightSupport = true;
             const instant = Instant.ofEpochSecond(temporal.getLong(ChronoField.INSTANT_SECONDS));
-            daylight = zone.getRules().isDaylightSavings(instant);
-        }
-        // get zone from cldr, see if metazone is available (for temporal? some metazones have from/to) ...
-        // get short/long name for metazone if available from timeZoneNames, otherwise just add the zone id
+            daylight = zone.rules().isDaylightSavings(instant);
+        }*/
         const tzType = hasDaylightSupport ? (daylight ? 'daylight' : 'standard') : 'generic';
         const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
+        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames`));
         const cldr = new Cldr(context.locale().localeString());
         const mapZones = {};
 
@@ -130,20 +129,21 @@ export default class CldrZoneTextPrinterParser {
 
     parse(context, text, position) {
         const ids = {};
+        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames`));
+        const cldr = new Cldr(context.locale().localeString());
+        const mapZones = {};
+
+        cldr.get('supplemental/metaZones/metazones').forEach((metaZone) => {
+            if (metaZone.mapZone) {
+                if (!mapZones[metaZone.mapZone._other]) {
+                    mapZones[metaZone.mapZone._other] = {};
+                }
+                mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
+            }
+        });
         for (const id of ZoneRulesProvider.getAvailableZoneIds()) {
             ids[id] = id;
             const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
-            const cldr = new Cldr(context.locale().localeString());
-            const mapZones = {};
-
-            cldr.get('supplemental/metaZones/metazones').forEach((metaZone) => {
-                if (metaZone.mapZone) {
-                    if (!mapZones[metaZone.mapZone._other]) {
-                        mapZones[metaZone.mapZone._other] = {};
-                    }
-                    mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-                }
-            });
 
             const genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
             if (genericText) {
@@ -159,11 +159,11 @@ export default class CldrZoneTextPrinterParser {
             }
         }
         // threeten is using a (sorted) TreeMap... so we need to sort the keys
-        const sortedKeys = Array.from(ids.keys()).sort(LENGTH_COMPARATOR);
+        const sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
         for (const name of sortedKeys) {
             if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-                context.setParsed(ZoneId.of(ids[name]));
-                return position + name.length();
+                context.setParsedZone(ZoneId.of(ids[name]));
+                return position + name.length;
             }
         }
         return ~position;
