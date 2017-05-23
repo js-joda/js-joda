@@ -16,7 +16,7 @@ import {
     ValueRange,
     Year
 } from 'js-joda';
-import { MathUtil } from 'js-joda/src/MathUtil';
+import { MathUtil } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 

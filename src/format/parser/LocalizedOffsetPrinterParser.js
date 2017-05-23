@@ -10,7 +10,7 @@ import {
     TextStyle
 } from 'js-joda';
 
-import {MathUtil} from 'js-joda/src/MathUtil';
+import {MathUtil} from 'js-joda';
 //-----------------------------------------------------------------------
 /**
  * Prints or parses field text.
