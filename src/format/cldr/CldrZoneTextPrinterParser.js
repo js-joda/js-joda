@@ -8,8 +8,6 @@ import Cldr from 'cldrjs';
 
 import { requireNonNull, requireInstance } from '../../assert';
 import {
-    ChronoField,
-    Instant,
     TextStyle,
     TemporalQueries,
     ZoneId,
