@@ -32,7 +32,7 @@ export class MockFieldValue {
     }
 
     getLong(field) {
-        if (this._field.equals(field)) {
+        if (this._field === field) {
             return this._value;
         }
         throw new DateTimeException('Unsupported field: ' + field);

@@ -52,22 +52,21 @@ export default class TextPrinterParser {
     }
 
     parse(context, parseText, position) {
-        const length = parseText.length();
+        const length = parseText.length;
         if (position < 0 || position > length) {
             throw new IllegalArgumentException(`The position is invalid: ${position}`);
         }
         const style = (context.isStrict() ? this._textStyle : null);
-        const it = this._provider.getTextIterator(this._field, style, context.getLocale());
+        const it = this._provider.getTextIterator(this._field, style, context.locale());
         if (it != null) {
-            while (it.hasNext()) {
-                const entry = it.next();
-                const itText = entry.getKey();
-                if (context.subSequenceEquals(itText, 0, parseText, position, itText.length())) {
-                    return context.setParsedField(this._field, entry.getValue(), position, position + itText.length());
+            for (const entry of it) {
+                const itText = entry.key;
+                if (context.subSequenceEquals(itText, 0, parseText, position, itText.length)) {
+                    return context.setParsedField(this._field, entry.value, position, position + itText.length);
                 }
             }
             if (context.isStrict()) {
-                return ~this._position;
+                return ~position;
             }
         }
         return this._numberPrinterParser().parse(context, parseText, position);

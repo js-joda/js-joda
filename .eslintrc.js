@@ -34,7 +34,7 @@ module.exports = {
         'prefer-const': 'error'
     },
     'env': {
-        'es6': false,
+        'es6': true,
         'browser': true,
         'node': true,
         'mocha': true

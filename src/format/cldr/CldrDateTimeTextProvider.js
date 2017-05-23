@@ -8,26 +8,7 @@ import { ChronoField, IsoFields, TextStyle } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
-/**
- * Helper method to create an immutable entry.
- *
- * @param text  the text, not null
- * @param field  the field, not null
- * @return the entry, not null
- */
-const _createEntry = (text, field) => {
-    return {
-        key: text,
-        value: field,
-        toString: function() {
-            return text + '->' + field;
-        }
-    };
-};
-
-const _comparator = (obj1, obj2) => {
-    return obj2.key.length - obj1.key.length;  // longest to shortest
-};
+import {LocaleStore, createEntry} from '../LocaleStore';
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.
@@ -68,7 +49,7 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     _findStore(field, locale) {
-        const key = _createEntry(field, locale);
+        const key = createEntry(field, locale);
         let store = this._cache[key];
         if (store === undefined) {
             store = this._createStore(field, locale);
@@ -78,12 +59,12 @@ export default class CldrDateTimeTextProvider {
     }
 
     _createStore(field, locale) {
-        Cldr.load(cldrData(`main/${locale}/ca-gregorian`));
-        const cldr = new Cldr(locale);
+        Cldr.load(cldrData(`main/${locale.localeString()}/ca-gregorian`));
+        const cldr = new Cldr(locale.localeString());
         if (field === ChronoField.MONTH_OF_YEAR) {
             const monthsData = cldr.main('dates/calendars/gregorian/months/format');
             const styleMap = {};
-            let data = [];
+            let data = {};
             data[1] = monthsData.wide[1];
             data[2] = monthsData.wide[2];
             data[3] = monthsData.wide[3];
@@ -98,7 +79,7 @@ export default class CldrDateTimeTextProvider {
             data[12] = monthsData.wide[12];
             styleMap[TextStyle.FULL] = data;
 
-            data = [];
+            data = {};
             data[1] = monthsData.narrow[1];
             data[2] = monthsData.narrow[2];
             data[3] = monthsData.narrow[3];
@@ -113,7 +94,7 @@ export default class CldrDateTimeTextProvider {
             data[12] = monthsData.narrow[12];
             styleMap[TextStyle.NARROW] = data;
 
-            data = [];
+            data = {};
             data[1] = monthsData.abbreviated[1];
             data[2] = monthsData.abbreviated[2];
             data[3] = monthsData.abbreviated[3];
@@ -132,7 +113,7 @@ export default class CldrDateTimeTextProvider {
         if (field === ChronoField.DAY_OF_WEEK) {
             const daysData = cldr.main('dates/calendars/gregorian/days/format');
             const styleMap = {};
-            let data = [];
+            let data = {};
             data[1] = daysData.wide.mon;
             data[2] = daysData.wide.tue;
             data[3] = daysData.wide.wed;
@@ -142,7 +123,7 @@ export default class CldrDateTimeTextProvider {
             data[7] = daysData.wide.sun;
             styleMap[TextStyle.FULL] = data;
 
-            data = [];
+            data = {};
             data[1] = daysData.narrow.mon;
             data[2] = daysData.narrow.tue;
             data[3] = daysData.narrow.wed;
@@ -152,7 +133,7 @@ export default class CldrDateTimeTextProvider {
             data[7] = daysData.narrow.sun;
             styleMap[TextStyle.NARROW] = data;
 
-            data = [];
+            data = {};
             data[1] = daysData.abbreviated.mon;
             data[2] = daysData.abbreviated.tue;
             data[3] = daysData.abbreviated.wed;
@@ -165,57 +146,69 @@ export default class CldrDateTimeTextProvider {
         }
         if (field === ChronoField.AMPM_OF_DAY) {
             const dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
-            const oldSymbols = DateFormatSymbols.getInstance(locale);
             const styleMap = {};
-            const array = oldSymbols.getAmPmStrings();
-            const map = {};
-            map[0] = array[Calendar.AM];
-            map[1] = array[Calendar.PM];
-            styleMap[TextStyle.FULL] = map;
-            styleMap[TextStyle.SHORT] = map;  // re-use, as we don't have different data
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[0] = dayPeriodsData.wide.am;
+            data[1] = dayPeriodsData.wide.pm;
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[0] = dayPeriodsData.narrow.am;
+            data[1] = dayPeriodsData.narrow.pm;
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[0] = dayPeriodsData.abbreviated.am;
+            data[1] = dayPeriodsData.abbreviated.pm;
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
         if (field === ChronoField.ERA) {
             const erasData = cldr.main('dates/calendars/gregorian/eras');
-            const oldSymbols = DateFormatSymbols.getInstance(locale);
             const styleMap = {};
-            const array = oldSymbols.getEras();
-            let map = {};
-            map[0] = array[GregorianCalendar.BC];
-            map[1] = array[GregorianCalendar.AD];
-            styleMap[TextStyle.SHORT] = map;
-            if (locale.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
-                map = {};
-                map[0] = 'Before Christ';
-                map[1] = 'Anno Domini';
-                styleMap[TextStyle.FULL] = map;
-            } else {
-                // re-use, as we don't have different data
-                styleMap[TextStyle.FULL] = map;
-            }
-            map = {};
-            map[0] = array[GregorianCalendar.BC].substring(0, 1);
-            map[1] = array[GregorianCalendar.AD].substring(0, 1);
-            styleMap[TextStyle.NARROW] = map;
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[0] = erasData.eraNames['0'];
+            data[1] = erasData.eraNames['1'];
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[0] = erasData.eraNarrow['0'];
+            data[1] = erasData.eraNarrow['1'];
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[0] = erasData.eraAbbr['0'];
+            data[1] = erasData.eraAbbr['1'];
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
-        // hard code English quarter text
         if (field === IsoFields.QUARTER_OF_YEAR) {
             const quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
             const styleMap = {};
-            let map = {};
-            map[1] = 'Q1';
-            map[2] = 'Q2';
-            map[3] = 'Q3';
-            map[4] = 'Q4';
-            styleMap[TextStyle.SHORT] = map;
-            map = {};
-            map[1] = '1st quarter';
-            map[2] = '2nd quarter';
-            map[3] = '3rd quarter';
-            map[4] = '4th quarter';
-            styleMap[TextStyle.FULL] = map;
-            return createLocaleStore(styleMap);
+            let data = {};
+            data[1] = quartersData.wide['1'];
+            data[2] = quartersData.wide['2'];
+            data[3] = quartersData.wide['3'];
+            data[4] = quartersData.wide['4'];
+            styleMap[TextStyle.FULL] = data;
+
+            data = {};
+            data[1] = quartersData.narrow['1'];
+            data[2] = quartersData.narrow['2'];
+            data[3] = quartersData.narrow['3'];
+            data[4] = quartersData.narrow['4'];
+            styleMap[TextStyle.NARROW] = data;
+
+            data = {};
+            data[1] = quartersData.abbreviated['1'];
+            data[2] = quartersData.abbreviated['2'];
+            data[3] = quartersData.abbreviated['3'];
+            data[4] = quartersData.abbreviated['4'];
+            styleMap[TextStyle.SHORT] = data;
+
+            return this._createLocaleStore(styleMap);
         }
         return null;  // null marker for map
     }
@@ -228,72 +221,5 @@ export default class CldrDateTimeTextProvider {
             valueTextMap[TextStyle.NARROW_STANDALONE] = valueTextMap[TextStyle.NARROW];
         }
         return new LocaleStore(valueTextMap);
-    }
-}
-
-/**
- * Stores the text for a single locale.
- * <p>
- * Some fields have a textual representation, such as day-of-week or month-of-year.
- * These textual representations can be captured in this class for printing
- * and parsing.
- */
-class LocaleStore {
-    //-----------------------------------------------------------------------
-    /**
-     * Constructor.
-     *
-     * @param {Object} valueTextMap  the map of values to text to store, assigned and not altered, not null
-     */
-    constructor(valueTextMap) {
-        this._valueTextMap = valueTextMap;
-        const map = {};
-        const allList = [];
-        Object.keys(valueTextMap).forEach((style) => {
-            const reverse = {};
-            valueTextMap[style].forEach((value, key) => {
-                if (reverse[value] !== undefined) {
-                    //TODO
-                    // continue;  // not parsable, try next style
-                }
-                reverse[value] = _createEntry(value, key);
-            });
-            const list = Object.values(reverse);
-            list.sort(_comparator);
-            map[style] = list;
-            allList.concat(list);
-            // TODO: map[null] won't work probably :/
-            map[null] = allList;
-        });
-        allList.sort(_comparator);
-        this._parsable = map;
-    }
-
-    //-----------------------------------------------------------------------
-    /**
-     * Gets the text for the specified field value, locale and style
-     * for the purpose of printing.
-     *
-     * @param {Number} value  the value to get text for, not null
-     * @param {TextStyle} style  the style to get text for, not null
-     * @return the text for the field value, null if no text found
-     */
-    getText(value, style) {
-        const map = this._valueTextMap[style];
-        return map != null ? map[value] : null;
-    }
-
-    /**
-     * Gets an iterator of text to field for the specified style for the purpose of parsing.
-     * <p>
-     * The iterator must be returned in order from the longest text to the shortest.
-     *
-     * @param style  the style to get text for, null for all parsable text
-     * @return the iterator of text to field pairs, in order from longest text to shortest text,
-     *  null if the style is not parsable
-     */
-    getTextIterator(style) {
-        const list = this._parsable.get(style);
-        return list != null ? list.iterator() : null;
     }
 }

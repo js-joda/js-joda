@@ -1,47 +1,36 @@
 /*
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { expect } from 'chai';
 import {
     use as jodaUse,
     ChronoField,
-    DateTimeException,
     DateTimeParseContext,
     DecimalStyle,
-    IllegalArgumentException,
+    IsoFields,
     IsoChronology,
     TextStyle,
-    TemporalAccessor,
     TemporalQueries,
 } from 'js-joda';
 
 import jodaTZ from 'js-joda-timezone';
 
-import { assertEquals, dataProviderTest } from '../../testUtils';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
-import '../../_init';
+import '../_init';
 
-import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextProvider';
-import Locale from '../../../src/Locale';
-import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
+import CldrDateTimeTextProvider from '../../src/format/cldr/CldrDateTimeTextProvider';
+import Locale from '../../src/Locale';
+import TextPrinterParser from '../../src/format/parser/TextPrinterParser';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
 
-describe('org.threeten.bp.format.TestTextParser', () => {
+/* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
+describe('js-joda-local TextParserTest', () => {
     let parseContext;
-
-    const EMPTY = new TemporalAccessor();
-    EMPTY.isSupported = () => {
-        return true;
-    };
-    EMPTY.getLong = () => {
-        throw new DateTimeException('Mock');
-    };
 
     beforeEach(() => {
         parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
@@ -56,100 +45,44 @@ describe('org.threeten.bp.format.TestTextParser', () => {
             assertEquals(context.getParsed(field), value);
         }
     };
-    describe('parse_error', () => {
-        it('test_parse_error', () => {
-            const data_error = [
-                [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', -1, IllegalArgumentException],
-                [new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER), 'Monday', 7, IllegalArgumentException],
-            ];
-
-            dataProviderTest(data_error, (pp, text, pos, expected) => {
-                expect(() => {
-                    pp.parse(parseContext, text, pos);
-                }).to.throw(expected);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-            });
-        });
-    });
-
-    describe('parse_partial', () => {
-        it('test_parse_midStr', () => {
-            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-            const newPos = pp.parse(parseContext, 'XxxMondayXxx', 3);
-            assertEquals(newPos, 9);
-            assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 1);
-        });
-
-        it('test_parse_remainderIgnored', () => {
-            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.SHORT, PROVIDER);
-            const newPos = pp.parse(parseContext, 'Wednesday', 0);
-            assertEquals(newPos, 3);
-            assertParsed(parseContext, ChronoField.DAY_OF_WEEK, 3);
-        });
-    });
-
-    describe('parse_noMatch', () => {
-        it('test_parse_noMatch1', () => {
-            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-            const newPos = pp.parse(parseContext, 'Munday', 0);
-            assertEquals(newPos, ~0);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-        });
-
-        it('test_parse_noMatch2', () => {
-            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-            const newPos = pp.parse(parseContext, 'Monday', 3);
-            assertEquals(newPos, ~3);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-        });
-
-        it('test_parse_noMatch_atEnd', () => {
-            const pp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
-            const newPos = pp.parse(parseContext, 'Monday', 6);
-            assertEquals(newPos, ~6);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-            assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-        });
-    });
-
 
     const data_text = [
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 1, 'Monday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 2, 'Tuesday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 3, 'Wednesday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 4, 'Thursday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 5, 'Friday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 6, 'Saturday'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.FULL, 7, 'Sunday'],
 
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 1, 'Mon'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 2, 'Tue'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 3, 'Wed'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 4, 'Thu'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 5, 'Fri'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 6, 'Sat'],
-        [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, 7, 'Sun'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, 'AM'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, 'PM'],
 
-        [ChronoField.MONTH_OF_YEAR, TextStyle.FULL, 1, 'January'],
-        [ChronoField.MONTH_OF_YEAR, TextStyle.FULL, 12, 'December'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'a'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'p'],
 
-        [ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, 1, 'Jan'],
-        [ChronoField.MONTH_OF_YEAR, TextStyle.SHORT, 12, 'Dec'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'AM'],
+        [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'PM'],
+
+        [ChronoField.ERA, TextStyle.FULL, 0, 'Before Christ'],
+        [ChronoField.ERA, TextStyle.FULL, 1, 'Anno Domini'],
+
+        [ChronoField.ERA, TextStyle.NARROW, 0, 'B'],
+        [ChronoField.ERA, TextStyle.NARROW, 1, 'A'],
+
+        [ChronoField.ERA, TextStyle.SHORT, 0, 'BC'],
+        [ChronoField.ERA, TextStyle.SHORT, 1, 'AD'],
+
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 1, '1st quarter'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 2, '2nd quarter'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 3, '3rd quarter'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 4, '4th quarter'],
+
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 1, 'Q1'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 2, 'Q2'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 3, 'Q3'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 4, 'Q4'],
     ];
 
     const data_number = [
-        [ChronoField.DAY_OF_MONTH, TextStyle.FULL, 1, '1'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.FULL, 2, '2'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.FULL, 30, '30'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.FULL, 31, '31'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 1, '1'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 2, '2'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 3, '3'],
+        [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 4, '4'],
 
-        [ChronoField.DAY_OF_MONTH, TextStyle.SHORT, 1, '1'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.SHORT, 2, '2'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.SHORT, 30, '30'],
-        [ChronoField.DAY_OF_MONTH, TextStyle.SHORT, 31, '31'],
     ];
 
     describe('parse', () => {
@@ -168,56 +101,6 @@ describe('org.threeten.bp.format.TestTextParser', () => {
                 parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 const newPos = pp.parse(parseContext, input, 0);
-                assertEquals(newPos, input.length);
-                assertParsed(parseContext, field, value);
-            });
-        });
-    });
-
-    describe('parse_strict_upper', () => {
-        it('test_parse_strict_caseSensitive_parseUpper', () => {
-            dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-                parseContext.setCaseSensitive(true);
-                const pp = new TextPrinterParser(field, style, PROVIDER);
-                const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
-                assertEquals(newPos, ~0);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-            });
-        });
-
-        it('test_parse_strict_caseInsensitive_parseUpper', () => {
-            dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-                parseContext.setCaseSensitive(false);
-                const pp = new TextPrinterParser(field, style, PROVIDER);
-                const newPos = pp.parse(parseContext, input.toUpperCase(), 0);
-                assertEquals(newPos, input.length);
-                assertParsed(parseContext, field, value);
-            });
-        });
-    });
-
-    describe('parse_strict_lower', () => {
-        it('test_parse_strict_caseSensitive_parseLower', () => {
-            dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-                parseContext.setCaseSensitive(true);
-                const pp = new TextPrinterParser(field, style, PROVIDER);
-                const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
-                assertEquals(newPos, ~0);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.chronology()), null);
-                assertEquals(parseContext.toParsed().query(TemporalQueries.zoneId()), null);
-            });
-        });
-
-        it('test_parse_strict_caseInsensitive_parseLower', () => {
-            dataProviderTest(data_text, (field, style, value, input) => {
-                parseContext = new DateTimeParseContext(Locale.ENGLISH, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
-                parseContext.setCaseSensitive(false);
-                const pp = new TextPrinterParser(field, style, PROVIDER);
-                const newPos = pp.parse(parseContext, input.toLowerCase(), 0);
                 assertEquals(newPos, input.length);
                 assertParsed(parseContext, field, value);
             });
