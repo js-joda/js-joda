@@ -30,7 +30,7 @@ module.exports = {
         path: `${__dirname}/dist`,
         filename: minify ? 'js-joda-locale.min.js' : 'js-joda-locale.js',
         libraryTarget: 'umd',
-        library: 'JSJodaExtra',
+        library: 'JSJodaLocale',
     },
     externals: {
         'js-joda': {
@@ -38,6 +38,24 @@ module.exports = {
             commonjs: 'js-joda',
             commonjs2: 'js-joda',
             root: 'JSJoda',
+        },
+        'js-joda-timezone': {
+            amd: 'js-joda-timezone',
+            commonjs: 'js-joda-timzezone',
+            commonjs2: 'js-joda-timezone',
+            root: 'JSJodaTimezone',
+        },
+        'cldr-data': {
+            amd: 'cldr-data',
+            commonjs: 'cldr-data',
+            commonjs2: 'cldr-data',
+            root: 'cldr-data',
+        },
+        'cldrjs': {
+            amd: 'cldrjs',
+            commonjs: 'cldrjs',
+            commonjs2: 'cldrjs',
+            root: 'cldrjs',
         },
     },
     module: {
