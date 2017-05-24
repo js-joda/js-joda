@@ -61,7 +61,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
     "markdown-toc": "^1.1.0",
-    "mocha": "^3.4.1",
+    "mocha": "^3.4.2",
     "moment-timezone": "^0.5.13",
     "nyc": "^10.3.2",
     "phantomjs-prebuilt": "^2.1.14",
