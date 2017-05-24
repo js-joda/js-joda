@@ -5,8 +5,8 @@
  */
 
 import {
+    DateTimeFormatterBuilder,
     ChronoField,
-    OffsetIdPrinterParser,
     TextStyle
 } from 'js-joda';
 
@@ -37,7 +37,7 @@ export default class LocalizedOffsetPrinterParser {
         }
         buf.append('GMT');
         if (this._textStyle === TextStyle.FULL) {
-            return new OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
+            return new DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
         }
         const totalSecs = MathUtil.safeToInt(offsetSecs);
         if (totalSecs !== 0) {
@@ -63,7 +63,7 @@ export default class LocalizedOffsetPrinterParser {
         }
         position += 3;
         if (this._textStyle === TextStyle.FULL) {
-            return new OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
+            return new DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
         }
         const end = text.length();
         if (position === end) {

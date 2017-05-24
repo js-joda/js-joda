@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { IllegalArgumentException, NumberPrinterParser, SignStyle, TextStyle } from 'js-joda';
+import { DateTimeFormatterBuilder, IllegalArgumentException, SignStyle, TextStyle } from 'js-joda';
 
 //-----------------------------------------------------------------------
 /**
@@ -78,7 +78,7 @@ export default class TextPrinterParser {
      */
     _numberPrinterParser() {
         if (this._currentNumberPrinterParser == null) {
-            this._currentNumberPrinterParser = new NumberPrinterParser(this._field, 1, 19, SignStyle.NORMAL);
+            this._currentNumberPrinterParser = new DateTimeFormatterBuilder.NumberPrinterParser(this._field, 1, 19, SignStyle.NORMAL);
         }
         return this._currentNumberPrinterParser;
     }
