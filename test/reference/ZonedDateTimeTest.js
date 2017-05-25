@@ -6,7 +6,7 @@
 import { expect } from 'chai';
 
 import {
-    LocalDate, LocalTime, LocalDateTime, ZonedDateTime,
+    LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Instant,
     Year, Month,
     ZoneId, ZoneOffset,
     DateTimeFormatter,
@@ -178,6 +178,36 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 expect(() => {
                     ZonedDateTime.parse('ANY', null);
                 }).to.throw(NullPointerException);
+            });
+
+            context('parse during dst', function () {
+                const data_dst_samples = [
+                    // overlap
+                    ['2017-11-05T01:00:00-07:00[America/Los_Angeles]', '2017-11-05T08:00:00Z'],
+                    ['2017-11-05T01:00:00-08:00[America/Los_Angeles]', '2017-11-05T08:00:00Z'],
+                    ['2017-11-05T02:00:00-08:00[America/Los_Angeles]', '2017-11-05T10:00:00Z'],
+
+                    ['2016-11-06T01:00-04:00[America/New_York]', '2016-11-06T05:00:00Z'],
+                    ['2016-11-06T01:00-05:00[America/New_York]', '2016-11-06T05:00:00Z'],
+                    ['2016-11-06T01:30-04:00[America/New_York]', '2016-11-06T05:30:00Z'],
+                    ['2016-11-06T01:30-05:00[America/New_York]', '2016-11-06T05:30:00Z'],
+                    ['2016-11-06T02:00-04:00[America/New_York]', '2016-11-06T07:00:00Z'],
+                    ['2016-11-06T02:00-05:00[America/New_York]', '2016-11-06T07:00:00Z'],
+
+                    ['2016-10-30T02:00+02:00[Europe/Berlin]', '2016-10-30T00:00:00Z'],
+                    ['2016-10-30T02:00+03:00[Europe/Berlin]', '2016-10-30T00:00:00Z'],
+                    ['2016-10-30T02:30+02:00[Europe/Berlin]', '2016-10-30T00:30:00Z'],
+                    ['2016-10-30T02:30+03:00[Europe/Berlin]', '2016-10-30T00:30:00Z'],
+                    ['2016-10-30T03:00+02:00[Europe/Berlin]', '2016-10-30T02:00:00Z'],
+                    ['2016-10-30T03:00+03:00[Europe/Berlin]', '2016-10-30T02:00:00Z'],
+                ];
+
+                it('should parse dst situation to expected point in timeline', () => {
+                    dataProviderTest(data_dst_samples, (zonedIsoString, instantIsoString) => {
+                        const base = ZonedDateTime.parse(zonedIsoString);
+                        assertEquals(base.toInstant(), Instant.parse(instantIsoString));
+                    });
+                });
             });
 
         });
@@ -506,7 +536,6 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 }).to.throw(NullPointerException);
             });
         });
-
     });
 });
 
