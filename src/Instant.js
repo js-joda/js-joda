@@ -1031,6 +1031,14 @@ export class Instant extends Temporal {
     toString(){
         return DateTimeFormatter.ISO_INSTANT.format(this);
     }
+
+    /**
+     *
+     * @return {string} same as {@link LocalDate.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 export function _init() {
