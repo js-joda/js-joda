@@ -231,6 +231,32 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
+     * Get the instance of {@link LocalDate} that is before the other one.
+     *
+     * @param {!LocalDate} firstDate - a {@link LocalDate} instance
+     * @param {!LocalDate} secondDate - a {@link LocalDate} instance
+     * @return {LocalDate} the earlier local date, not null
+     */
+    static min(firstDate, secondDate){
+        requireNonNull(firstDate, 'firstDate');
+        requireNonNull(secondDate, 'secondDate');
+        return firstDate.isBefore(secondDate) ? firstDate : secondDate;
+    }
+
+    /**
+     * Get the instance of {@link LocalDate} that is after the other one.
+     *
+     * @param {!LocalDate} firstDate - a {@link LocalDate} instance
+     * @param {!LocalDate} secondDate - a {@link LocalDate} instance
+     * @return {LocalDate} the later local date, not null
+     */
+    static max(firstDate, secondDate){
+        requireNonNull(firstDate, 'firstDate');
+        requireNonNull(secondDate, 'secondDate');
+        return firstDate.isAfter(secondDate) ? firstDate : secondDate;
+    }
+
+    /**
      * Obtains an instance of {@link LocalDate} from a text string using a specific formatter.
      *
      * The text is parsed using the formatter, returning a date.
@@ -1579,6 +1605,17 @@ export class LocalDate extends ChronoLocalDate{
         return this.compareTo(other) > 0;
         // return super.isAfter(other) if not instanceof LocalDate
     }
+    /**
+     * Checks if this date is after or equal to the specified date.
+     * @see #isBefore
+     *
+     * @param {!LocalDate} other - the other date to compare to, not null
+     * @return {boolean} true if this date is after or equal to the specified date
+     */
+    isAfterOrEqual(other) {
+        return this.compareTo(other) >= 0;
+        // return super.isAfter(other) if not instanceof LocalDate
+    }
 
     /**
      * Checks if this date is before the specified date.
@@ -1603,6 +1640,17 @@ export class LocalDate extends ChronoLocalDate{
      */
     isBefore(other) {
         return this.compareTo(other) < 0;
+        // return super.isBefore(other) if not instanceof LocalDate
+    }
+    /**
+     * Checks if this date is before or equal to the specified date.
+     * @see #isBefore
+     *
+     * @param {!LocalDate} other - the other date to compare to, not null
+     * @return {boolean} true if this date is before or equal to the specified date
+     */
+    isBeforeOrEqual(other) {
+        return this.compareTo(other) <= 0;
         // return super.isBefore(other) if not instanceof LocalDate
     }
 
