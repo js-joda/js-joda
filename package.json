@@ -7,7 +7,16 @@
     "url": "https://github.com/js-joda/js-joda.git"
   },
   "main": "dist/js-joda.js",
+  "module": "src/js-joda.js",
   "typings": "dist/js-joda.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "bower.json",
+    "CHANGELOG.md",
+    "CheatSheet.md",
+    "README.md"
+  ],
   "scripts": {
     "prepublish": "npm run build-dist",
     "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js ./test/*Test_mochaOnly.js",

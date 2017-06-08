@@ -193,7 +193,7 @@ declare namespace JSJoda {
 
         static ofEpochMilli(epochMilli: number): Instant
 
-        static ofEpochSecond(epochSecond: number, nanoAdjustment: number): Instant
+        static ofEpochSecond(epochSecond: number, nanoAdjustment?: number): Instant
 
         static parse(text: string): Instant
 
