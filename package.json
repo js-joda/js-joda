@@ -67,7 +67,7 @@
     "karma-webpack": "^2.0.3",
     "markdown-toc": "^1.1.0",
     "mocha": "^3.4.2",
-    "nyc": "^10.3.2",
+    "nyc": "^11.0.0",
     "phantomjs-prebuilt": "^2.1.14",
     "typescript": "^2.3.3",
     "webpack": "^2.5.1"
