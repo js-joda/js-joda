@@ -70,7 +70,7 @@
     "nyc": "^11.0.0",
     "phantomjs-prebuilt": "^2.1.14",
     "typescript": "^2.3.3",
-    "webpack": "^2.5.1"
+    "webpack": "^3.0.0"
   },
   "license": "BSD-3-Clause"
 }
