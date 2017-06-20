@@ -643,7 +643,6 @@ export class WeekFields {
         this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        // TODO: needs to be loaded? why?
         Cldr.load(cldrData('supplemental/likelySubtags'));
     }
 

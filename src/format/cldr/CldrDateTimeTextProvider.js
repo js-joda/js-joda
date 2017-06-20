@@ -21,7 +21,6 @@ export default class CldrDateTimeTextProvider {
 
     constructor() {
         this._cache = {};
-        // TODO: needs to be loaded? why?
         Cldr.load(cldrData('supplemental/likelySubtags'));
     }
 
