@@ -49,7 +49,7 @@ module.exports = {
             amd: 'cldr-data',
             commonjs: 'cldr-data',
             commonjs2: 'cldr-data',
-            root: 'cldr-data',
+            root: 'cldrData',
         },
         'cldrjs': {
             amd: 'cldrjs',
@@ -59,14 +59,18 @@ module.exports = {
         },
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
-            include: [
-                path.resolve(__dirname, 'src'),
-                path.resolve(__dirname, 'test'),
-            ],
-            test: /.js$/,
-        }],
+        rules: [
+            {
+                use: [{ loader: 'babel-loader' }],
+                resource: {
+                    include: [
+                        path.resolve(__dirname, 'src'),
+                        path.resolve(__dirname, 'test'),
+                    ],
+                    test: /.js$/,
+                }
+            },
+        ],
     },
     plugins: minify ? [
         new webpack.optimize.UglifyJsPlugin({
