@@ -10,6 +10,7 @@
 // to execute our tests
 // Downside to this is, that we need to manage any exclusions here as well :/
 
+import 'babel-polyfill';
 // require all *Test.js files expect test/plugTest
 const testsContext = require.context('.', true, /Test.js$/);
 testsContext.keys().forEach(testsContext);
