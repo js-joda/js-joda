@@ -3,6 +3,8 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+const path = require('path');
+
 // eslint-disable-next-line func-names
 module.exports = function (config) {
     const saucelabsLaunchers = {
@@ -43,8 +45,33 @@ module.exports = function (config) {
     // eslint-disable-next-line global-require
     const webpackConfig = require('./webpack.config.js');
     // for the karma test runs, we don't want to have any externals,
-    // especially js-joda should be included!
+    // especially js-joda and others should be included!
     webpackConfig.externals = undefined;
+    // we can't use the cldr-data module load function from npm module since it uses 'fs' and other
+    // modules not available in the browser... so we resolve the cldr-data module to our own "faked"
+    // cldr-data loader that just requires the cldr-data files
+    webpackConfig.resolve = {
+        alias: {
+            'cldr-data$': path.resolve(__dirname, 'test/utils/karma_cldrData.js')
+        }
+    };
+    // for cldr-data, we only want to include needed locales from main and supplemental subdirs
+    // otherwise the webpack karma bundle is getting too large
+    webpackConfig.module.rules.push(
+        {
+            use: [{ loader: 'null-loader' }],
+            resource: {
+                // don't load everything in cldr-data
+                test: path.resolve(__dirname, 'node_modules/cldr-data'),
+                // except the actual data we need (supplemental and de, en, fr locales from main)
+                exclude: [
+                    path.resolve(__dirname, 'node_modules/cldr-data/main/de'),
+                    path.resolve(__dirname, 'node_modules/cldr-data/main/en'),
+                    path.resolve(__dirname, 'node_modules/cldr-data/main/fr'),
+                    path.resolve(__dirname, 'node_modules/cldr-data/supplemental'),
+                ],
+            }
+        });
 
     config.set({
         files: [
@@ -59,7 +86,8 @@ module.exports = function (config) {
         },
         webpack: webpackConfig,
         webpackMiddleware: {
-            noInfo: true,
+            quiet: false,
+            noInfo: false,
         },
         sauceLabs: {
             testName: 'js-joda-locale karma Tests',
