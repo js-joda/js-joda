@@ -577,8 +577,8 @@ export class WeekFields {
         //TODO: firstDay is in supplemental/weekData stored by *country* :/
         Cldr.load(cldrData('supplemental/weekData'));
         const country = locale.country() ? locale.country() : '001'; // 001 is world region
-        const cldr = new Cldr(locale);
-        const weekData = cldr.main('weekData');
+        const cldr = new Cldr(locale.toLocaleString());
+        const weekData = cldr.supplemental('weekData');
         const calDow = weekData.first[country];
         const dow = DayOfWeek.SUNDAY.plus(calDow - 1);
         const minDays = weekData.minDays[country];

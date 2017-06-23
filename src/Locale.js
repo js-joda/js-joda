@@ -31,6 +31,16 @@ export default class Locale {
     toString() {
         return `Locale[${this.localeString()}]`;
     }
+
+    equals(other) {
+        if (!other) {
+            return false;
+        }
+        if (!(other instanceof Locale)) {
+            return false;
+        }
+        return this.localeString().equals(other.localeString());
+    }
 }
 
 export function _init() {

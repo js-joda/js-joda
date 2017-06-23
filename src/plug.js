@@ -6,6 +6,8 @@
 /* eslint-disable no-param-reassign */
 
 import CldrDateTimeFormatterBuilder from './format/cldr/CldrDateTimeFormatterBuilder';
+import LocaleDateTimeFormatter from './format/LocaleDateTimeFormatter';
+import Locale from './Locale';
 
 import './_init';
 
@@ -21,4 +23,12 @@ export default function (jsJoda) {
             jsJoda.DateTimeFormatterBuilder.prototype[prop] = CldrDateTimeFormatterBuilder.prototype[prop];
         }
     });
+    // inject all prototype properties (except constructor) from LocaleDateTimeFormatter into DateTimeFormatter
+    Object.getOwnPropertyNames(LocaleDateTimeFormatter.prototype).forEach((prop) => {
+        if (prop !== 'constructor') {
+            jsJoda.DateTimeFormatter.prototype[prop] = LocaleDateTimeFormatter.prototype[prop];
+        }
+    });
+    // inject Locale into jsJoda
+    jsJoda.Locale = Locale;
 }

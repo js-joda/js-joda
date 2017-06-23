@@ -12,6 +12,7 @@ import * as joda from 'js-joda';
 // plug anyway...
 import locale from '../src/plug';
 import CldrDateTimeFormatterBuilder from '../src/format/cldr/CldrDateTimeFormatterBuilder';
+import LocaleDateTimeFormatter from '../src/format/LocaleDateTimeFormatter';
 
 const testPlugin = (plugin) => {
     before('use', () => {
@@ -27,6 +28,11 @@ const testPlugin = (plugin) => {
         expect(jodaDateTimeFormatterBuilder.appendLocalizedOffset).to.equal(cldrDateTimeFormatterBuilder.appendLocalizedOffset);
         expect(jodaDateTimeFormatterBuilder.appendZoneText).to.be.a('function');
         expect(jodaDateTimeFormatterBuilder.appendZoneText).to.equal(cldrDateTimeFormatterBuilder.appendZoneText);
+        expect(jodaDateTimeFormatterBuilder.appendZoneText).to.equal(cldrDateTimeFormatterBuilder.appendZoneText);
+
+        const jodaDateTimeFormatter = joda.DateTimeFormatter.prototype;
+        const localeDateTimeFormatter = LocaleDateTimeFormatter.prototype;
+        expect(jodaDateTimeFormatter.withLocale).to.equal(localeDateTimeFormatter.withLocale);
     });
 };
 
