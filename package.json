@@ -80,6 +80,9 @@
     "mocha": "^3.4.2",
     "nyc": "^11.0.2",
     "phantomjs-prebuilt": "^2.1.14",
+    "requirejs": "^2.3.3",
+    "requirejs-json": "0.0.3",
+    "requirejs-text": "^2.0.15",
     "webpack": "^3.0.0"
   },
   "cldr-data-coverage": "core",
