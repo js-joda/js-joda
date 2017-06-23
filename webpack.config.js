@@ -55,7 +55,7 @@ module.exports = {
             amd: 'cldrjs',
             commonjs: 'cldrjs',
             commonjs2: 'cldrjs',
-            root: 'cldrjs',
+            root: 'Cldr',
         },
     },
     module: {
