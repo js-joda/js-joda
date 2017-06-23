@@ -88,7 +88,7 @@ describe('js-joda-locale CldrZoneTextPrinterParser', () => {
                 // same zone id, we compare the offset of the parsed zone
                 assertEquals(zone.rules().offsetOfInstant(zdt.toInstant()), parsedZone.rules().offsetOfInstant(zdt.toInstant()));
             });
-        }).timeout(10000); // longer timeout, 2 seconds are not enough :/
+        }).timeout(20000); // longer timeout, 2 seconds are not enough :/
 
         // these take forever (> 1 minute each ... so we skip them by default
         describe.skip('print / parse all available zones', () => {

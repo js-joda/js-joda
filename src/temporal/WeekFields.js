@@ -16,7 +16,7 @@ import {
     ValueRange,
     Year
 } from 'js-joda';
-import { MathUtil } from 'js-joda/src/MathUtil';
+import { MathUtil } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
@@ -577,8 +577,8 @@ export class WeekFields {
         //TODO: firstDay is in supplemental/weekData stored by *country* :/
         Cldr.load(cldrData('supplemental/weekData'));
         const country = locale.country() ? locale.country() : '001'; // 001 is world region
-        const cldr = new Cldr(locale);
-        const weekData = cldr.main('weekData');
+        const cldr = new Cldr(locale.toLocaleString());
+        const weekData = cldr.supplemental('weekData');
         const calDow = weekData.first[country];
         const dow = DayOfWeek.SUNDAY.plus(calDow - 1);
         const minDays = weekData.minDays[country];
@@ -643,7 +643,6 @@ export class WeekFields {
         this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        // TODO: needs to be loaded? why?
         Cldr.load(cldrData('supplemental/likelySubtags'));
     }
 

@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { NumberPrinterParser, ReducedPrinterParser, SignStyle, StringBuilder } from 'js-joda';
+import { DateTimeFormatterBuilder, SignStyle, StringBuilder } from 'js-joda';
 
 import { WeekFields } from '../../temporal/WeekFields';
 
@@ -14,13 +14,13 @@ export default class WeekFieldsPrinterParser {
     }
 
     print(context, buf) {
-        const weekFields = WeekFields.of(context.getLocale());
+        const weekFields = WeekFields.ofLocale(context.locale());
         const pp = this._evaluate(weekFields);
         return pp.print(context, buf);
     }
 
     parse(context, text, position) {
-        const weekFields = WeekFields.of(context.getLocale());
+        const weekFields = WeekFields.ofLocale(context.locale());
         const pp = this._evaluate(weekFields);
         return pp.parse(context, text, position);
     }
@@ -29,22 +29,22 @@ export default class WeekFieldsPrinterParser {
         let pp = null;
         switch (this._letter) {
             case 'e':  // day-of-week
-                pp = new NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, SignStyle.NOT_NEGATIVE);
+                pp = new DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, SignStyle.NOT_NEGATIVE);
                 break;
             case 'c':  // day-of-week
-                pp = new NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, SignStyle.NOT_NEGATIVE);
+                pp = new DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, SignStyle.NOT_NEGATIVE);
                 break;
             case 'w':  // week-of-year
-                pp = new NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, SignStyle.NOT_NEGATIVE);
+                pp = new DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, SignStyle.NOT_NEGATIVE);
                 break;
             case 'W':  // week-of-month
-                pp = new NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, SignStyle.NOT_NEGATIVE);
+                pp = new DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, SignStyle.NOT_NEGATIVE);
                 break;
             case 'Y':  // weekyear
                 if (this._count === 2) {
-                    pp = new ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, ReducedPrinterParser.BASE_DATE);
+                    pp = new DateTimeFormatterBuilder.ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, DateTimeFormatterBuilder.ReducedPrinterParser.BASE_DATE);
                 } else {
-                    pp = new NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19,
+                    pp = new DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19,
                         (this._count < 4) ? SignStyle.NORMAL : SignStyle.EXCEEDS_PAD, -1);
                 }
                 break;

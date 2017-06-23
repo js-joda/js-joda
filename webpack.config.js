@@ -30,7 +30,7 @@ module.exports = {
         path: `${__dirname}/dist`,
         filename: minify ? 'js-joda-locale.min.js' : 'js-joda-locale.js',
         libraryTarget: 'umd',
-        library: 'JSJodaExtra',
+        library: 'JSJodaLocale',
     },
     externals: {
         'js-joda': {
@@ -39,16 +39,38 @@ module.exports = {
             commonjs2: 'js-joda',
             root: 'JSJoda',
         },
+        'js-joda-timezone': {
+            amd: 'js-joda-timezone',
+            commonjs: 'js-joda-timzezone',
+            commonjs2: 'js-joda-timezone',
+            root: 'JSJodaTimezone',
+        },
+        'cldr-data': {
+            amd: 'cldr-data',
+            commonjs: 'cldr-data',
+            commonjs2: 'cldr-data',
+            root: 'cldrData',
+        },
+        'cldrjs': {
+            amd: 'cldrjs',
+            commonjs: 'cldrjs',
+            commonjs2: 'cldrjs',
+            root: 'Cldr',
+        },
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
-            include: [
-                path.resolve(__dirname, 'src'),
-                path.resolve(__dirname, 'test'),
-            ],
-            test: /.js$/,
-        }],
+        rules: [
+            {
+                use: [{ loader: 'babel-loader' }],
+                resource: {
+                    include: [
+                        path.resolve(__dirname, 'src'),
+                        path.resolve(__dirname, 'test'),
+                    ],
+                    test: /.js$/,
+                }
+            },
+        ],
     },
     plugins: minify ? [
         new webpack.optimize.UglifyJsPlugin({
