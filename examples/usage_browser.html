@@ -39,8 +39,11 @@
 
         }
     });
+    /* define cldr-data module that preloads and returns the necessary data when used
+    from within js-joda-locale implementation
+     */
     define('cldr-data', [
-        // CLDR content.
+        // CLDR content, all files that are needed must be required here and can then be dynamically required below
         "json!cldrData/supplemental/likelySubtags.json",
         "json!cldrData/supplemental/metaZones.json",
         "json!cldrData/main/en/ca-gregorian.json",
@@ -50,36 +53,9 @@
         "json!cldrData/main/fr/ca-gregorian.json",
         "json!cldrData/main/fr/timeZoneNames.json",
     ], function (
-        likelySubtags,
-        metaZones,
-        enCaGregorian,
-        enTimeZoneNames,
-        deCaGregorian,
-        deTimeZoneNames,
-        frCaGregorian,
-        frTimeZoneNames,
     ){
         return function(path) {
-            switch (path) {
-                case 'supplemental/likelySubtags':
-                    return likelySubtags;
-                case 'supplemental/metaZones':
-                    return metaZones;
-                case 'main/en/ca-gregorian':
-                    return enCaGregorian;
-                case 'main/en/timeZoneNames':
-                    return enTimeZoneNames;
-                case 'main/de/ca-gregorian':
-                    return deCaGregorian;
-                case 'main/de/timeZoneNames':
-                    return deTimeZoneNames;
-                case 'main/fr/ca-gregorian':
-                    return frCaGregorian;
-                case 'main/fr/timeZoneNames':
-                    return frTimeZoneNames;
-                default:
-                    throw Error ('Undefined cldr-data path: ' + path);
-            }
+            return (require('json!cldrData/' + path + '.json'));
         }
     });
     require([
