@@ -86,8 +86,8 @@ module.exports = function (config) {
         },
         webpack: webpackConfig,
         webpackMiddleware: {
-            quiet: false,
-            noInfo: false,
+            quiet: true,
+            noInfo: true,
         },
         sauceLabs: {
             testName: 'js-joda-locale karma Tests',
