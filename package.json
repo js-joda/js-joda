@@ -30,7 +30,7 @@
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
     "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",
     "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -alh ./dist/js-joda.min.js*",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint  ./src ./test"
   },
   "keywords": [
     "date",
