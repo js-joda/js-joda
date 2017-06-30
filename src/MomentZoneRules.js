@@ -169,7 +169,7 @@ export class MomentZoneRules extends ZoneRules{
         return [info];
     }
 
-/**
+    /**
      * Gets the offset transition applicable at the specified local date-time in these rules.
      * <p>
      * The mapping from a local date-time to an offset is not straightforward.
