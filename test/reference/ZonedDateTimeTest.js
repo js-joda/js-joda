@@ -684,7 +684,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
             assertEquals(test.get(ChronoField.OFFSET_SECONDS), 3600);
         });
 
-/* invalid test in javascript
+        /* invalid test in javascript
         it('test_get_DateTimeField_long', () => {
             expect(() => {
                 TEST_DATE_TIME.get(ChronoField.INSTANT_SECONDS);

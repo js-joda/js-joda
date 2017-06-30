@@ -535,7 +535,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
             assertEquals(test.get(ChronoField.AMPM_OF_DAY), 1);
         });
 
-/* invalid test in javascript version
+        /* invalid test in javascript version
         it('test_get_TemporalField_tooBig', () => {
             expect(() => {
                 TEST_12_30_40_987654321.get(ChronoField.NANO_OF_DAY);
@@ -1754,29 +1754,29 @@ describe('org.threeten.bp.TestLocalTime', function () {
 
         function provider_until() {
             return [
-                    ['00:00', '00:00', ChronoUnit.NANOS, 0],
-                    ['00:00', '00:00', ChronoUnit.MICROS, 0],
-                    ['00:00', '00:00', ChronoUnit.MILLIS, 0],
-                    ['00:00', '00:00', ChronoUnit.SECONDS, 0],
-                    ['00:00', '00:00', ChronoUnit.MINUTES, 0],
-                    ['00:00', '00:00', ChronoUnit.HOURS, 0],
-                    ['00:00', '00:00', ChronoUnit.HALF_DAYS, 0],
+                ['00:00', '00:00', ChronoUnit.NANOS, 0],
+                ['00:00', '00:00', ChronoUnit.MICROS, 0],
+                ['00:00', '00:00', ChronoUnit.MILLIS, 0],
+                ['00:00', '00:00', ChronoUnit.SECONDS, 0],
+                ['00:00', '00:00', ChronoUnit.MINUTES, 0],
+                ['00:00', '00:00', ChronoUnit.HOURS, 0],
+                ['00:00', '00:00', ChronoUnit.HALF_DAYS, 0],
 
-                    ['00:00', '00:00:01', ChronoUnit.NANOS, 1000000000],
-                    ['00:00', '00:00:01', ChronoUnit.MICROS, 1000000],
-                    ['00:00', '00:00:01', ChronoUnit.MILLIS, 1000],
-                    ['00:00', '00:00:01', ChronoUnit.SECONDS, 1],
-                    ['00:00', '00:00:01', ChronoUnit.MINUTES, 0],
-                    ['00:00', '00:00:01', ChronoUnit.HOURS, 0],
-                    ['00:00', '00:00:01', ChronoUnit.HALF_DAYS, 0],
+                ['00:00', '00:00:01', ChronoUnit.NANOS, 1000000000],
+                ['00:00', '00:00:01', ChronoUnit.MICROS, 1000000],
+                ['00:00', '00:00:01', ChronoUnit.MILLIS, 1000],
+                ['00:00', '00:00:01', ChronoUnit.SECONDS, 1],
+                ['00:00', '00:00:01', ChronoUnit.MINUTES, 0],
+                ['00:00', '00:00:01', ChronoUnit.HOURS, 0],
+                ['00:00', '00:00:01', ChronoUnit.HALF_DAYS, 0],
 
-                    ['00:00', '00:01', ChronoUnit.NANOS, 60000000000],
-                    ['00:00', '00:01', ChronoUnit.MICROS, 60000000],
-                    ['00:00', '00:01', ChronoUnit.MILLIS, 60000],
-                    ['00:00', '00:01', ChronoUnit.SECONDS, 60],
-                    ['00:00', '00:01', ChronoUnit.MINUTES, 1],
-                    ['00:00', '00:01', ChronoUnit.HOURS, 0],
-                    ['00:00', '00:01', ChronoUnit.HALF_DAYS, 0]
+                ['00:00', '00:01', ChronoUnit.NANOS, 60000000000],
+                ['00:00', '00:01', ChronoUnit.MICROS, 60000000],
+                ['00:00', '00:01', ChronoUnit.MILLIS, 60000],
+                ['00:00', '00:01', ChronoUnit.SECONDS, 60],
+                ['00:00', '00:01', ChronoUnit.MINUTES, 1],
+                ['00:00', '00:01', ChronoUnit.HOURS, 0],
+                ['00:00', '00:01', ChronoUnit.HALF_DAYS, 0]
             ];
         }
 

@@ -255,16 +255,16 @@ export class DateTimeBuilder extends Temporal {
             const hap = this.fieldValues.remove(ChronoField.HOUR_OF_AMPM);
             this._addFieldValue(ChronoField.HOUR_OF_DAY, ap * 12 + hap);
         }
-//        if (timeFields.containsKey(HOUR_OF_DAY) && timeFields.containsKey(MINUTE_OF_HOUR)) {
-//            const hod = timeFields.remove(HOUR_OF_DAY);
-//            const moh = timeFields.remove(MINUTE_OF_HOUR);
-//            this._addFieldValue(MINUTE_OF_DAY, hod * 60 + moh);
-//        }
-//        if (timeFields.containsKey(MINUTE_OF_DAY) && timeFields.containsKey(SECOND_OF_MINUTE)) {
-//            const mod = timeFields.remove(MINUTE_OF_DAY);
-//            const som = timeFields.remove(SECOND_OF_MINUTE);
-//            this._addFieldValue(SECOND_OF_DAY, mod * 60 + som);
-//        }
+        //        if (timeFields.containsKey(HOUR_OF_DAY) && timeFields.containsKey(MINUTE_OF_HOUR)) {
+        //            const hod = timeFields.remove(HOUR_OF_DAY);
+        //            const moh = timeFields.remove(MINUTE_OF_HOUR);
+        //            this._addFieldValue(MINUTE_OF_DAY, hod * 60 + moh);
+        //        }
+        //        if (timeFields.containsKey(MINUTE_OF_DAY) && timeFields.containsKey(SECOND_OF_MINUTE)) {
+        //            const mod = timeFields.remove(MINUTE_OF_DAY);
+        //            const som = timeFields.remove(SECOND_OF_MINUTE);
+        //            this._addFieldValue(SECOND_OF_DAY, mod * 60 + som);
+        //        }
         if (this.fieldValues.containsKey(ChronoField.NANO_OF_DAY)) {
             const nod = this.fieldValues.remove(ChronoField.NANO_OF_DAY);
             if (resolverStyle !== ResolverStyle.LENIENT) {
@@ -307,11 +307,11 @@ export class DateTimeBuilder extends Temporal {
             this._addFieldValue(ChronoField.MINUTE_OF_HOUR, MathUtil.intMod(mod, 60));
         }
 
-//            const sod = MathUtil.intDiv(nod, 1000000000L);
-//            this._addFieldValue(HOUR_OF_DAY, MathUtil.intDiv(sod, 3600));
-//            this._addFieldValue(MINUTE_OF_HOUR, MathUtil.intMod(MathUtil.intDiv(sod, 60), 60));
-//            this._addFieldValue(SECOND_OF_MINUTE, MathUtil.intMod(sod, 60));
-//            this._addFieldValue(NANO_OF_SECOND, MathUtil.intMod(nod, 1000000000L));
+        //            const sod = MathUtil.intDiv(nod, 1000000000L);
+        //            this._addFieldValue(HOUR_OF_DAY, MathUtil.intDiv(sod, 3600));
+        //            this._addFieldValue(MINUTE_OF_HOUR, MathUtil.intMod(MathUtil.intDiv(sod, 60), 60));
+        //            this._addFieldValue(SECOND_OF_MINUTE, MathUtil.intMod(sod, 60));
+        //            this._addFieldValue(NANO_OF_SECOND, MathUtil.intMod(nod, 1000000000L));
         if (resolverStyle !== ResolverStyle.LENIENT) {
             if (this.fieldValues.containsKey(ChronoField.MILLI_OF_SECOND)) {
                 ChronoField.MILLI_OF_SECOND.checkValidValue(this.fieldValues.get(ChronoField.MILLI_OF_SECOND));

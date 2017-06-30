@@ -187,7 +187,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (amount instanceof Period) {
             return amount;
         }
-/*
+        /*
         if (amount instanceof ChronoPeriod) {
             if (IsoChronology.INSTANCE !== amount.chronology()) {
                 throw new DateTimeException('Period requires ISO chronology: ' + amount);
@@ -622,9 +622,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     minus(amountToSubtract) {
         const amount = Period.from(amountToSubtract);
         return Period.create(
-                MathUtil.safeSubtract(this._years, amount._years),
-                MathUtil.safeSubtract(this._months, amount._months),
-                MathUtil.safeSubtract(this._days, amount._days));
+            MathUtil.safeSubtract(this._years, amount._years),
+            MathUtil.safeSubtract(this._months, amount._months),
+            MathUtil.safeSubtract(this._days, amount._days));
     }
 
     /**
@@ -695,9 +695,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             return this;
         }
         return Period.create(
-                MathUtil.safeMultiply(this._years, scalar),
-                MathUtil.safeMultiply(this._months, scalar),
-                MathUtil.safeMultiply(this._days, scalar));
+            MathUtil.safeMultiply(this._years, scalar),
+            MathUtil.safeMultiply(this._months, scalar),
+            MathUtil.safeMultiply(this._days, scalar));
     }
 
     /**

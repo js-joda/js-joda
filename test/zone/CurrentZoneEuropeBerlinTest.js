@@ -110,14 +110,14 @@ describe('CurrentZoneEuropeBerlinTest', () => {
     it('test_rules_validOffsets', function () {
 
         const testData = [
-               [LocalDateTime.parse('2016-12-21T00:00:00'), [OFFSET_01]],
-               [LocalDateTime.parse('2016-06-21T00:00:00'), [OFFSET_02]],
-               [LocalDateTime.parse('2016-03-27T02:00:00'), []],
-               [LocalDateTime.parse('2016-03-27T02:30:00'), []],
-               [LocalDateTime.parse('2016-03-27T03:00:00'), [OFFSET_02]],
-               [LocalDateTime.parse('2016-10-30T02:00:00'), [OFFSET_01, OFFSET_02]],
-               [LocalDateTime.parse('2016-10-30T02:30:00'), [OFFSET_01, OFFSET_02]],
-               [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_01]],
+            [LocalDateTime.parse('2016-12-21T00:00:00'), [OFFSET_01]],
+            [LocalDateTime.parse('2016-06-21T00:00:00'), [OFFSET_02]],
+            [LocalDateTime.parse('2016-03-27T02:00:00'), []],
+            [LocalDateTime.parse('2016-03-27T02:30:00'), []],
+            [LocalDateTime.parse('2016-03-27T03:00:00'), [OFFSET_02]],
+            [LocalDateTime.parse('2016-10-30T02:00:00'), [OFFSET_01, OFFSET_02]],
+            [LocalDateTime.parse('2016-10-30T02:30:00'), [OFFSET_01, OFFSET_02]],
+            [LocalDateTime.parse('2016-10-30T03:00:00'), [OFFSET_01]],
         ];
 
         dataProviderTest(testData, (localDateTime, validOffsets) => {
@@ -128,12 +128,12 @@ describe('CurrentZoneEuropeBerlinTest', () => {
     it('test_rules_transition', () => {
 
         const testData = [
-               [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
+            [LocalDateTime.parse('2016-12-21T00:00:00'), null, false, false],
             [LocalDateTime.parse('2016-03-27T02:30:00'),
                 ZoneOffsetTransition.of(LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, OFFSET_02), true, false],
             [LocalDateTime.parse('2016-10-30T02:30:00'),
                 ZoneOffsetTransition.of(LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, OFFSET_01), false, true],
-               [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
+            [LocalDateTime.parse('2016-06-21T00:00:00'), null, false, false]
         ];
 
         dataProviderTest(testData, (localDateTime, zoneOffsetTransition, isGap, isOverlap) => {

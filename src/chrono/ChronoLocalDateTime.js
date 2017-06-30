@@ -50,7 +50,7 @@ import {TemporalQueries} from '../temporal/TemporalQueries';
  * @param D the date type
  */
 export class ChronoLocalDateTime extends Temporal {
-        /* <D extends ChronoLocalDate>
+    /* <D extends ChronoLocalDate>
         extends DefaultInterfaceTemporal
         implements Temporal, TemporalAdjuster, Comparable<ChronoLocalDateTime<?>> */
 
@@ -89,8 +89,8 @@ export class ChronoLocalDateTime extends Temporal {
 
     adjustInto(temporal) {
         return temporal
-                .with(ChronoField.EPOCH_DAY, this.toLocalDate().toEpochDay())
-                .with(ChronoField.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
+            .with(ChronoField.EPOCH_DAY, this.toLocalDate().toEpochDay())
+            .with(ChronoField.NANO_OF_DAY, this.toLocalTime().toNanoOfDay());
     }
 
     //-----------------------------------------------------------------------

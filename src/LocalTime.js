@@ -1194,7 +1194,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {OffsetTime} offset - the offset to combine with, not null
      * @return {OffsetTime} the offset time formed from this time and the specified offset, not null
      */
-/*
+    /*
     atOffset(offset) {
         return OffsetTime.of(this, offset);
     }

@@ -337,7 +337,7 @@ export class ZoneOffset extends ZoneId {
         return this.getLong(field);
     }
 
-     /**
+    /**
       * Gets the value of the specified field from this offset as a `long`.
       *
       * This queries this offset for the value for the specified field.
@@ -367,8 +367,8 @@ export class ZoneOffset extends ZoneId {
         return field.getFrom(this);
     }
 
-     //-----------------------------------------------------------------------
-     /**
+    //-----------------------------------------------------------------------
+    /**
       * Queries this offset using the specified query.
       *
       * This queries this offset using the specified query strategy object.
@@ -396,7 +396,7 @@ export class ZoneOffset extends ZoneId {
         return query.queryFrom(this);
     }
 
-     /**
+    /**
       * Adjusts the specified temporal object to have the same offset as this object.
       *
       * This returns a temporal object of the same observable type as the input

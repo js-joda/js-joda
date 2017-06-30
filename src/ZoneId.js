@@ -186,8 +186,8 @@ export class ZoneId {
         return this;
     }
 
-     //-----------------------------------------------------------------------
-     /**
+    //-----------------------------------------------------------------------
+    /**
       * Checks if this time-zone ID is equal to another time-zone ID.
       *
       * The comparison is based on the ID.
@@ -205,7 +205,7 @@ export class ZoneId {
         return false;
     }
 
-     /**
+    /**
       * A hash code for this time-zone ID.
       *
       * @return {number} a suitable hash code
@@ -214,8 +214,8 @@ export class ZoneId {
         return StringUtil.hashCode(this.id());
     }
 
-     //-----------------------------------------------------------------------
-     /**
+    //-----------------------------------------------------------------------
+    /**
       * Outputs this zone as a string, using the ID.
       *
       * @return {string} a string representation of this time-zone ID, not null

@@ -219,8 +219,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *  if the day-of-month is invalid for the month-year
      */
     static of8(
-            year, month, dayOfMonth,
-            hour, minute, second, nanoOfSecond, zone) {
+        year, month, dayOfMonth,
+        hour, minute, second, nanoOfSecond, zone) {
         const dt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
         return ZonedDateTime.ofLocal(dt, zone, null);
     }

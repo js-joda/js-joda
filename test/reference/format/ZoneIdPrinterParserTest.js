@@ -85,58 +85,58 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
 
         function data_parseSuccess() {
             return [
-                    ['Z', 1, -1, ZoneId.of('Z')],
-                    ['UTC', 3, -1, ZoneId.of('UTC')],
-                    ['UT', 2, -1, ZoneId.of('UT')],
-                    ['GMT', 3, -1, ZoneId.of('GMT')],
+                ['Z', 1, -1, ZoneId.of('Z')],
+                ['UTC', 3, -1, ZoneId.of('UTC')],
+                ['UT', 2, -1, ZoneId.of('UT')],
+                ['GMT', 3, -1, ZoneId.of('GMT')],
 
-                    ['+00:00', 6, -1, ZoneOffset.UTC],
-                    ['UTC+00:00', 9, -1, ZoneId.of('UTC')],
-                    ['UT+00:00', 8, -1, ZoneId.of('UT')],
-                    ['GMT+00:00', 9, -1, ZoneId.of('GMT')],
-                    ['-00:00', 6, -1, ZoneOffset.UTC],
-                    ['UTC-00:00', 9, -1, ZoneId.of('UTC')],
-                    ['UT-00:00', 8, -1, ZoneId.of('UT')],
-                    ['GMT-00:00', 9, -1, ZoneId.of('GMT')],
+                ['+00:00', 6, -1, ZoneOffset.UTC],
+                ['UTC+00:00', 9, -1, ZoneId.of('UTC')],
+                ['UT+00:00', 8, -1, ZoneId.of('UT')],
+                ['GMT+00:00', 9, -1, ZoneId.of('GMT')],
+                ['-00:00', 6, -1, ZoneOffset.UTC],
+                ['UTC-00:00', 9, -1, ZoneId.of('UTC')],
+                ['UT-00:00', 8, -1, ZoneId.of('UT')],
+                ['GMT-00:00', 9, -1, ZoneId.of('GMT')],
 
-                    ['+01:30', 6, -1, ZoneOffset.ofHoursMinutes(1, 30)],
-                    ['UTC+01:30', 9, -1, ZoneId.of('UTC+01:30')],
-                    ['UT+02:30', 8, -1, ZoneId.of('UT+02:30')],
-                    ['GMT+03:30', 9, -1, ZoneId.of('GMT+03:30')],
-                    ['-01:30', 6, -1, ZoneOffset.ofHoursMinutes(-1, -30)],
-                    ['UTC-01:30', 9, -1, ZoneId.of('UTC-01:30')],
-                    ['UT-02:30', 8, -1, ZoneId.of('UT-02:30')],
-                    ['GMT-03:30', 9, -1, ZoneId.of('GMT-03:30')],
+                ['+01:30', 6, -1, ZoneOffset.ofHoursMinutes(1, 30)],
+                ['UTC+01:30', 9, -1, ZoneId.of('UTC+01:30')],
+                ['UT+02:30', 8, -1, ZoneId.of('UT+02:30')],
+                ['GMT+03:30', 9, -1, ZoneId.of('GMT+03:30')],
+                ['-01:30', 6, -1, ZoneOffset.ofHoursMinutes(-1, -30)],
+                ['UTC-01:30', 9, -1, ZoneId.of('UTC-01:30')],
+                ['UT-02:30', 8, -1, ZoneId.of('UT-02:30')],
+                ['GMT-03:30', 9, -1, ZoneId.of('GMT-03:30')],
 
-                    // fallback to UTC
-                    ['UTC-01:WW', 3, -1, ZoneId.of('UTC')],
-                    ['UT-02:WW', 2, -1, ZoneId.of('UT')],
-                    ['GMT-03:WW', 3, -1, ZoneId.of('GMT')],
-                    ['Z0', 1, -1, ZoneOffset.UTC],
-                    ['UTC1', 3, -1, ZoneId.of('UTC')],
+                // fallback to UTC
+                ['UTC-01:WW', 3, -1, ZoneId.of('UTC')],
+                ['UT-02:WW', 2, -1, ZoneId.of('UT')],
+                ['GMT-03:WW', 3, -1, ZoneId.of('GMT')],
+                ['Z0', 1, -1, ZoneOffset.UTC],
+                ['UTC1', 3, -1, ZoneId.of('UTC')],
 
-                    // Z not parsed as zero
-                    ['UTCZ', 3, -1, ZoneId.of('UTC')],
-                    ['UTZ', 2, -1, ZoneId.of('UT')],
-                    ['GMTZ', 3, -1, ZoneId.of('GMT')],
+                // Z not parsed as zero
+                ['UTCZ', 3, -1, ZoneId.of('UTC')],
+                ['UTZ', 2, -1, ZoneId.of('UT')],
+                ['GMTZ', 3, -1, ZoneId.of('GMT')],
 
-                    // 0 not parsed
-                    ['UTC0', 3, -1, ZoneId.of('UTC')],
-                    ['UT0', 2, -1, ZoneId.of('UT')],
+                // 0 not parsed
+                ['UTC0', 3, -1, ZoneId.of('UTC')],
+                ['UT0', 2, -1, ZoneId.of('UT')],
 
-                    // fail to parse
-                    ['', 0, 0, null],
-                    ['A', 0, 0, null],
-                    ['UZ', 0, 0, null],
-                    ['GMA', 0, 0, null],
-                    ['0', 0, 0, null],
-                    ['+', 0, 0, null],
-                    ['-', 0, 0, null],
+                // fail to parse
+                ['', 0, 0, null],
+                ['A', 0, 0, null],
+                ['UZ', 0, 0, null],
+                ['GMA', 0, 0, null],
+                ['0', 0, 0, null],
+                ['+', 0, 0, null],
+                ['-', 0, 0, null],
 
-                    // zone IDs
-                    ['Europe/London', 13, -1, ZoneId.of('Europe/London')],
-                    ['America/New_York', 16, -1, ZoneId.of('America/New_York')],
-                    ['America/Bogusville', 0, 0, null],
+                // zone IDs
+                ['Europe/London', 13, -1, ZoneId.of('Europe/London')],
+                ['America/New_York', 16, -1, ZoneId.of('America/New_York')],
+                ['America/Bogusville', 0, 0, null],
             ];
         }
 

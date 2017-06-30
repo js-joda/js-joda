@@ -121,11 +121,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
 
         it('test_compareTo()', () => {
             const a = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287 - 1, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
+                LocalDateTime.ofEpochSecond(23875287 - 1, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
             const b = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
+                LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
             const c = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287 + 1, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
+                LocalDateTime.ofEpochSecond(23875287 + 1, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
 
             assertEquals(a.compareTo(a) === 0, true);
             assertEquals(a.compareTo(b) < 0, true);
@@ -142,11 +142,11 @@ describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
 
         it('test_compareTo_sameInstant', () => {
             const a = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
+                LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0200), OFFSET_0200, OFFSET_0300);
             const b = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
+                LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0300), OFFSET_0300, OFFSET_0200);
             const c = ZoneOffsetTransition.of(
-                    LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
+                LocalDateTime.ofEpochSecond(23875287, 0, OFFSET_0100), OFFSET_0100, OFFSET_0400);
 
             assertEquals(a.compareTo(a) === 0, true);
             assertEquals(a.compareTo(b) === 0, true);

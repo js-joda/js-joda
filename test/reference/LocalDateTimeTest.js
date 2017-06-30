@@ -58,7 +58,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         MIN_INSTANT = MIN_DATE_TIME.atZone(ZoneOffset.UTC).toInstant();
     });
 
-/*
+    /*
     function samples() {
         return [
             TEST_2007_07_15_12_30_40_987654321, LocalDateTime.MAX, LocalDateTime.MIN
@@ -66,7 +66,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     }
 */
 
-/*
+    /*
     function validFields() {
         return [
             ChronoField.NANO_OF_SECOND,
@@ -104,7 +104,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     }
 */
 
-/*
+    /*
     function invalidFields() {
         throw Error('todo');
         // list = ChronoField.values();
@@ -1047,7 +1047,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
                 const length = month.length(false);
                 for (let i = 1; i <= length; i++) {
                     const d = LocalDateTime.of(LocalDate.of(2007, month, i),
-                            TEST_2007_07_15_12_30_40_987654321.toLocalTime());
+                        TEST_2007_07_15_12_30_40_987654321.toLocalTime());
                     assertSame(d.dayOfWeek(), dow);
                     dow = dow.plus(1);
                 }

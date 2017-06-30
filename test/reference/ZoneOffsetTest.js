@@ -368,7 +368,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
         it('test_factory_TemporalAccessor', () => {
             // assertEquals(ZoneOffset.from(OffsetTime.of(LocalTime.of(12, 30), ZoneOffset.ofHours(6))), ZoneOffset.ofHours(6));
             assertEquals(ZoneOffset.from(ZonedDateTime.of(LocalDateTime.of(LocalDate.of(2007, 7, 15),
-                    LocalTime.of(17, 30)), ZoneOffset.ofHours(2))), ZoneOffset.ofHours(2));
+                LocalTime.of(17, 30)), ZoneOffset.ofHours(2))), ZoneOffset.ofHours(2));
         });
 
         it('test_factory_TemporalAccessor_invalid_noDerive', () => {
