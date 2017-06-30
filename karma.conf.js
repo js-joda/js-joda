@@ -79,6 +79,11 @@ module.exports = function(config) {
         captureTimeout: 4 * 60 * 1000, //default 60000
         reporters: ['progress'],
         browsers: ['Chrome', 'Firefox', 'PhantomJS'],
-        plugins: ['karma-*']
+        plugins: ['karma-*'],
+        client: {
+            mocha: {
+                timeout : 6000
+            }
+        }
     });
 };
