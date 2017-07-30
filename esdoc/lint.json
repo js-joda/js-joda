@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Fixed#isValidOffset",
+    "filePath": "src/zone/ZoneRules.js",
+    "lines": [
+      {
+        "lineNumber": 413,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 414,
+        "line": "     *"
+      },
+      {
+        "lineNumber": 415,
+        "line": "     * @param {LocalDateTime} LocalDateTime"
+      },
+      {
+        "lineNumber": 416,
+        "line": "     * @param {ZoneOffset} offset"
+      },
+      {
+        "lineNumber": 417,
+        "line": "     * @return {boolean}"
+      },
+      {
+        "lineNumber": 418,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 419,
+        "line": "    isValidOffset(dateTime, offset) {"
+      }
+    ],
+    "codeParams": [
+      "dateTime",
+      "offset"
+    ],
+    "docParams": [
+      "LocalDateTime",
+      "offset"
+    ]
+  }
+]
