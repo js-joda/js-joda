@@ -76,7 +76,7 @@ export class Year extends Temporal {
      */
     constructor(value) {
         super();
-        this._year = value;
+        this._year = MathUtil.safeToInt(value);
     }
 
     /**

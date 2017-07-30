@@ -41,7 +41,7 @@ export class ZoneOffset extends ZoneId {
     constructor(totalSeconds){
         super();
         ZoneOffset._validateTotalSeconds(totalSeconds);
-        this._totalSeconds = totalSeconds;
+        this._totalSeconds = MathUtil.safeToInt(totalSeconds);
         this._rules = ZoneRules.of(this);
         this._id = ZoneOffset._buildId(totalSeconds);
     }

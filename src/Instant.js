@@ -250,8 +250,8 @@ export class Instant extends Temporal {
     constructor(seconds, nanoOfSecond){
         super();
         Instant._validate(seconds, nanoOfSecond);
-        this._seconds = seconds;
-        this._nanos = nanoOfSecond;
+        this._seconds = MathUtil.safeToInt(seconds);
+        this._nanos = MathUtil.safeToInt(nanoOfSecond);
     }
 
     /**

@@ -5,6 +5,7 @@
 
 import {requireNonNull, requireInstance} from './assert';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import {MathUtil} from './MathUtil';
 
 import {ChronoField} from './temporal/ChronoField';
 import {Clock} from './Clock';
@@ -282,8 +283,8 @@ export class MonthDay extends Temporal {
      */
     constructor(month, dayOfMonth) {
         super();
-        this._month = month;
-        this._day = dayOfMonth;
+        this._month = MathUtil.safeToInt(month);
+        this._day = MathUtil.safeToInt(dayOfMonth);
     }
 
     //-----------------------------------------------------------------------

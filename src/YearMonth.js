@@ -263,8 +263,8 @@ export class YearMonth extends Temporal {
      */
     constructor(year, month) {
         super();
-        this._year = year;
-        this._month = month;
+        this._year = MathUtil.safeToInt(year);
+        this._month = MathUtil.safeToInt(month);
     }
 
     /**

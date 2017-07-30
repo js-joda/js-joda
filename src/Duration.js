@@ -56,8 +56,8 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      */
     constructor(seconds, nanos) {
         super();
-        this._seconds = seconds;
-        this._nanos = nanos;
+        this._seconds = MathUtil.safeToInt(seconds);
+        this._nanos = MathUtil.safeToInt(nanos);
     }
 
     //-----------------------------------------------------------------------

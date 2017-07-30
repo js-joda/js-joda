@@ -46,7 +46,7 @@ export class Month extends Temporal {
      */
     constructor(value) {
         super();
-        this._value = value;
+        this._value = MathUtil.safeToInt(value);
     }
 
     /**
