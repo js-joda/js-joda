@@ -261,7 +261,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_of_intsMonth_yearTooLow', () => {
             expect(() => {
-                LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 30);
+                LocalDate.of(LocalDate.MIN.year() - 1, Month.JANUARY, 30);
             }).to.throw(DateTimeException);
         });
 
@@ -308,7 +308,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_of_ints_yearTooLow', () => {
             expect(() => {
-                LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 1);
+                LocalDate.of(LocalDate.MIN.year() - 1, 1, 1);
             }).to.throw(DateTimeException);
         });
 
