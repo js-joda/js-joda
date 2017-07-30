@@ -1,4 +1,4 @@
-//! @version js-joda - 1.5.2
+//! @version js-joda - 1.5.3
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -499,6 +499,9 @@ var MathUtil = exports.MathUtil = function () {
         if (isNaN(value)) {
             throw new _errors.ArithmeticException('Invalid int value, using NaN as argument');
         }
+        if (value % 1 !== 0) {
+            throw new _errors.ArithmeticException('Invalid value: \'' + value + '\' is a float');
+        }
         if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
             throw new _errors.ArithmeticException('Calculation overflows an int: ' + value);
         }
@@ -891,9 +894,9 @@ var LocalDate = function (_ChronoLocalDate) {
         if (month instanceof _Month.Month) {
             month = month.value();
         }
-        _this._year = _MathUtil.MathUtil.safeZero(year);
-        _this._month = _MathUtil.MathUtil.safeZero(month);
-        _this._day = _MathUtil.MathUtil.safeZero(dayOfMonth);
+        _this._year = _MathUtil.MathUtil.safeToInt(year);
+        _this._month = _MathUtil.MathUtil.safeToInt(month);
+        _this._day = _MathUtil.MathUtil.safeToInt(dayOfMonth);
         LocalDate._validate(_this._year, _this._month, _this._day);
         return _this;
     }
@@ -1312,7 +1315,7 @@ var LocalDate = function (_ChronoLocalDate) {
         }
         var years = _MathUtil.MathUtil.intDiv(totalMonths, 12);
         var months = _MathUtil.MathUtil.intMod(totalMonths, 12);
-        return _Period.Period.of(_MathUtil.MathUtil.safeToInt(years), months, days);
+        return _Period.Period.of(years, months, days);
     };
 
     LocalDate.prototype.atTime = function atTime() {
@@ -1845,7 +1848,7 @@ var ZoneOffset = function (_ZoneId) {
         var _this = _possibleConstructorReturn(this, _ZoneId.call(this));
 
         ZoneOffset._validateTotalSeconds(totalSeconds);
-        _this._totalSeconds = totalSeconds;
+        _this._totalSeconds = _MathUtil.MathUtil.safeToInt(totalSeconds);
         _this._rules = _ZoneRules.ZoneRules.of(_this);
         _this._id = ZoneOffset._buildId(totalSeconds);
         return _this;
@@ -2459,10 +2462,10 @@ var LocalTime = function (_Temporal) {
 
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
-        var _hour = _MathUtil.MathUtil.safeZero(hour);
-        var _minute = _MathUtil.MathUtil.safeZero(minute);
-        var _second = _MathUtil.MathUtil.safeZero(second);
-        var _nanoOfSecond = _MathUtil.MathUtil.safeZero(nanoOfSecond);
+        var _hour = _MathUtil.MathUtil.safeToInt(hour);
+        var _minute = _MathUtil.MathUtil.safeToInt(minute);
+        var _second = _MathUtil.MathUtil.safeToInt(second);
+        var _nanoOfSecond = _MathUtil.MathUtil.safeToInt(nanoOfSecond);
         LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
         if ((_minute | _second | _nanoOfSecond) === 0) {
             var _ret;
@@ -3170,8 +3173,8 @@ var Instant = function (_Temporal) {
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
         Instant._validate(seconds, nanoOfSecond);
-        _this._seconds = seconds;
-        _this._nanos = nanoOfSecond;
+        _this._seconds = _MathUtil.MathUtil.safeToInt(seconds);
+        _this._nanos = _MathUtil.MathUtil.safeToInt(nanoOfSecond);
         return _this;
     }
 
@@ -4269,7 +4272,7 @@ var Month = function (_Temporal) {
 
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
-        _this._value = value;
+        _this._value = _MathUtil.MathUtil.safeToInt(value);
         return _this;
     }
 
@@ -5448,8 +5451,8 @@ var Duration = exports.Duration = function (_TemporalAmount) {
 
         var _this = _possibleConstructorReturn(this, _TemporalAmount.call(this));
 
-        _this._seconds = seconds;
-        _this._nanos = nanos;
+        _this._seconds = _MathUtil.MathUtil.safeToInt(seconds);
+        _this._nanos = _MathUtil.MathUtil.safeToInt(nanos);
         return _this;
     }
 
@@ -6103,7 +6106,7 @@ var Year = function (_Temporal) {
 
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
-        _this._year = value;
+        _this._year = _MathUtil.MathUtil.safeToInt(value);
         return _this;
     }
 
@@ -8890,6 +8893,8 @@ var _assert = __webpack_require__(0);
 
 var _errors = __webpack_require__(1);
 
+var _MathUtil = __webpack_require__(3);
+
 var _ChronoField = __webpack_require__(2);
 
 var _Clock = __webpack_require__(15);
@@ -9015,8 +9020,8 @@ var MonthDay = function (_Temporal) {
 
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
-        _this._month = month;
-        _this._day = dayOfMonth;
+        _this._month = _MathUtil.MathUtil.safeToInt(month);
+        _this._day = _MathUtil.MathUtil.safeToInt(dayOfMonth);
         return _this;
     }
 
@@ -9315,8 +9320,8 @@ var YearMonth = function (_Temporal) {
 
         var _this = _possibleConstructorReturn(this, _Temporal.call(this));
 
-        _this._year = year;
-        _this._month = month;
+        _this._year = _MathUtil.MathUtil.safeToInt(year);
+        _this._month = _MathUtil.MathUtil.safeToInt(month);
         return _this;
     }
 
