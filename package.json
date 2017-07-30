@@ -52,6 +52,7 @@
     "chai": "^4.1.0",
     "coveralls": "^2.13.1",
     "esdoc": "^1.0.1",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-promise": "^3.5.0",
